@@ -16,7 +16,6 @@
 
 package com.android.contacts.dialpad;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -52,12 +51,12 @@ import android.text.method.DialerKeyListener;
 import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -87,7 +86,7 @@ public class DialpadFragment extends Fragment
         View.OnLongClickListener, View.OnKeyListener,
         AdapterView.OnItemClickListener, TextWatcher,
         PopupMenu.OnMenuItemClickListener,
-        View.OnTouchListener {
+        DialpadImageButton.OnPressedListener {
     private static final String TAG = DialpadFragment.class.getSimpleName();
 
     private static final boolean DEBUG = false;
@@ -96,6 +95,7 @@ public class DialpadFragment extends Fragment
 
     /** The length of DTMF tones in milliseconds */
     private static final int TONE_LENGTH_MS = 150;
+    private static final int TONE_LENGTH_INFINITE = -1;
 
     /** The DTMF tone volume relative to other sounds in the stream */
     private static final int TONE_RELATIVE_VOLUME = 80;
@@ -213,6 +213,9 @@ public class DialpadFragment extends Fragment
 
     @Override
     public void afterTextChanged(Editable input) {
+        // When DTMF dialpad buttons are being pressed, we delay SpecialCharSequencMgr sequence,
+        // since some of SpecialCharSequenceMgr's behavior is too abrupt for the "touch-down"
+        // behavior.
         if (SpecialCharSequenceMgr.handleChars(getActivity(), input.toString(), mDigits)) {
             // A special sequence was entered, clear the digits
             mDigits.getText().clear();
@@ -465,23 +468,11 @@ public class DialpadFragment extends Fragment
     }
 
     private void setupKeypad(View fragmentView) {
-        // For numeric buttons, we rely on onTouchListener instead of onClickListener
-        // for faster event handling, while some other buttons since basically
-        // onTouch event conflicts with horizontal swipes.
-        fragmentView.findViewById(R.id.one).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.two).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.three).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.four).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.five).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.six).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.seven).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.eight).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.nine).setOnTouchListener(this);
-        fragmentView.findViewById(R.id.zero).setOnTouchListener(this);
-
-        // Buttons other than numeric ones should use onClick as usual.
-        fragmentView.findViewById(R.id.star).setOnClickListener(this);
-        fragmentView.findViewById(R.id.pound).setOnClickListener(this);
+        int[] buttonIds = new int[] { R.id.one, R.id.two, R.id.three, R.id.four, R.id.five,
+                R.id.six, R.id.seven, R.id.eight, R.id.nine, R.id.zero, R.id.star, R.id.pound};
+        for (int id : buttonIds) {
+            ((DialpadImageButton) fragmentView.findViewById(id)).setOnPressedListener(this);
+        }
 
         // Long-pressing one button will initiate Voicemail.
         fragmentView.findViewById(R.id.one).setOnLongClickListener(this);
@@ -572,6 +563,8 @@ public class DialpadFragment extends Fragment
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
 
+        // Make sure we don't leave this activity with a tone still playing.
+        stopTone();
         synchronized (mToneGeneratorLock) {
             if (mToneGenerator != null) {
                 mToneGenerator.release();
@@ -690,6 +683,47 @@ public class DialpadFragment extends Fragment
     }
 
     private void keyPressed(int keyCode) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_1:
+                playTone(ToneGenerator.TONE_DTMF_1, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_2:
+                playTone(ToneGenerator.TONE_DTMF_2, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_3:
+                playTone(ToneGenerator.TONE_DTMF_3, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_4:
+                playTone(ToneGenerator.TONE_DTMF_4, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_5:
+                playTone(ToneGenerator.TONE_DTMF_5, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_6:
+                playTone(ToneGenerator.TONE_DTMF_6, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_7:
+                playTone(ToneGenerator.TONE_DTMF_7, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_8:
+                playTone(ToneGenerator.TONE_DTMF_8, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_9:
+                playTone(ToneGenerator.TONE_DTMF_9, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_0:
+                playTone(ToneGenerator.TONE_DTMF_0, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_POUND:
+                playTone(ToneGenerator.TONE_DTMF_P, TONE_LENGTH_INFINITE);
+                break;
+            case KeyEvent.KEYCODE_STAR:
+                playTone(ToneGenerator.TONE_DTMF_S, TONE_LENGTH_INFINITE);
+                break;
+            default:
+                break;
+        }
+
         mHaptic.vibrate();
         KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
         mDigits.onKeyDown(keyCode, event);
@@ -715,12 +749,15 @@ public class DialpadFragment extends Fragment
     }
 
     /**
-     * We handle the key based on the DOWN event, but we wait till the UP event to play the local
-     * DTMF tone (to avoid playing a spurious tone if the user is actually doing a swipe...)
+     * When a key is pressed, we start playing DTMF tone, do vibration, and enter the digit
+     * immediately. When a key is released, we stop the tone. Note that the "key press" event will
+     * be delivered by the system with certain amount of delay, it won't be synced with user's
+     * actual "touch-down" behavior.
      */
     @Override
-    public boolean onTouch(View view, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+    public void onPressed(View view, boolean pressed) {
+        if (DEBUG) Log.d(TAG, "onPressed(). view: " + view + ", pressed: " + pressed);
+        if (pressed) {
             switch (view.getId()) {
                 case R.id.one: {
                     keyPressed(KeyEvent.KEYCODE_1);
@@ -762,82 +799,28 @@ public class DialpadFragment extends Fragment
                     keyPressed(KeyEvent.KEYCODE_0);
                     break;
                 }
+                case R.id.pound: {
+                    keyPressed(KeyEvent.KEYCODE_POUND);
+                    break;
+                }
+                case R.id.star: {
+                    keyPressed(KeyEvent.KEYCODE_STAR);
+                    break;
+                }
                 default: {
                     Log.wtf(TAG, "Unexpected onTouch(ACTION_DOWN) event from: " + view);
                     break;
                 }
             }
-        } else if (event.getAction() == MotionEvent.ACTION_UP) {
-            switch (view.getId()) {
-                case R.id.one: {
-                    playTone(ToneGenerator.TONE_DTMF_1);
-                    break;
-                }
-                case R.id.two: {
-                    playTone(ToneGenerator.TONE_DTMF_2);
-                    break;
-                }
-                case R.id.three: {
-                    playTone(ToneGenerator.TONE_DTMF_3);
-                    break;
-                }
-                case R.id.four: {
-                    playTone(ToneGenerator.TONE_DTMF_4);
-                    break;
-                }
-                case R.id.five: {
-                    playTone(ToneGenerator.TONE_DTMF_5);
-                    break;
-                }
-                case R.id.six: {
-                    playTone(ToneGenerator.TONE_DTMF_6);
-                    break;
-                }
-                case R.id.seven: {
-                    playTone(ToneGenerator.TONE_DTMF_7);
-                    break;
-                }
-                case R.id.eight: {
-                    playTone(ToneGenerator.TONE_DTMF_8);
-                    break;
-                }
-                case R.id.nine: {
-                    playTone(ToneGenerator.TONE_DTMF_9);
-                    break;
-                }
-                case R.id.zero: {
-                    playTone(ToneGenerator.TONE_DTMF_0);
-                    break;
-                }
-                default: {
-                    Log.wtf(TAG, "Unexpected onTouch(ACTION_UP) event from: " + view);
-                    break;
-                }
-            }
-        } else if (event.getAction() == MotionEvent.ACTION_CANCEL) {
-            // This event will be thrown when a user starts dragging the dialpad screen,
-            // intending horizontal swipe. The system will see the event after ACTION_DOWN while
-            // it won't see relevant ACTION_UP event anymore.
-            //
-            // Here, remove the last digit already entered in the last ACTION_DOWN event.
-            removeLastOneDigitIfPossible();
+        } else {
+            view.jumpDrawablesToCurrentState();
+            stopTone();
         }
-        return false;
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.pound: {
-                playTone(ToneGenerator.TONE_DTMF_P);
-                keyPressed(KeyEvent.KEYCODE_POUND);
-                return;
-            }
-            case R.id.star: {
-                playTone(ToneGenerator.TONE_DTMF_S);
-                keyPressed(KeyEvent.KEYCODE_STAR);
-                return;
-            }
             case R.id.deleteButton: {
                 keyPressed(KeyEvent.KEYCODE_DEL);
                 return;
@@ -1090,14 +1073,25 @@ public class DialpadFragment extends Fragment
 
     /**
      * Plays the specified tone for TONE_LENGTH_MS milliseconds.
+     */
+    private void playTone(int tone) {
+        playTone(tone, TONE_LENGTH_MS);
+    }
+
+    /**
+     * Play the specified tone for the specified milliseconds
      *
      * The tone is played locally, using the audio stream for phone calls.
      * Tones are played only if the "Audible touch tones" user preference
      * is checked, and are NOT played if the device is in silent mode.
      *
+     * The tone length can be -1, meaning "keep playing the tone." If the caller does so, it should
+     * call stopTone() afterward.
+     *
      * @param tone a tone code from {@link ToneGenerator}
+     * @param durationMs tone length.
      */
-    void playTone(int tone) {
+    private void playTone(int tone, int durationMs) {
         // if local tone playback is disabled, just return.
         if (!mDTMFToneEnabled) {
             return;
@@ -1123,7 +1117,24 @@ public class DialpadFragment extends Fragment
             }
 
             // Start the new tone (will stop any playing tone)
-            mToneGenerator.startTone(tone, TONE_LENGTH_MS);
+            mToneGenerator.startTone(tone, durationMs);
+        }
+    }
+
+    /**
+     * Stop the tone if it is played.
+     */
+    private void stopTone() {
+        // if local tone playback is disabled, just return.
+        if (!mDTMFToneEnabled) {
+            return;
+        }
+        synchronized (mToneGeneratorLock) {
+            if (mToneGenerator == null) {
+                Log.w(TAG, "stopTone: mToneGenerator == null");
+                return;
+            }
+            mToneGenerator.stopTone();
         }
     }
 

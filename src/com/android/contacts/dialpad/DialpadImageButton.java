@@ -19,6 +19,7 @@ package com.android.contacts.dialpad;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageButton;
 
 /**
@@ -29,6 +30,15 @@ import android.widget.ImageButton;
  * the behavior.
  */
 public class DialpadImageButton extends ImageButton {
+    public interface OnPressedListener {
+        public void onPressed(View view, boolean pressed);
+    }
+
+    private OnPressedListener mOnPressedListener;
+
+    public void setOnPressedListener(OnPressedListener onPressedListener) {
+        mOnPressedListener = onPressedListener;
+    }
 
     public DialpadImageButton(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,11 +49,10 @@ public class DialpadImageButton extends ImageButton {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        final boolean ret = super.onTouchEvent(event);
-        if (event.getAction() == MotionEvent.ACTION_CANCEL) {
-            jumpDrawablesToCurrentState();
+    public void setPressed(boolean pressed) {
+        super.setPressed(pressed);
+        if (mOnPressedListener != null) {
+            mOnPressedListener.onPressed(this, pressed);
         }
-        return ret;
     }
 }
