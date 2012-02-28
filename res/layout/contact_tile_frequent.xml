@@ -24,19 +24,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <view
-            android:id="@+id/image_container"
-            class="com.android.contacts.list.ContactTileImageContainer"
+        <com.android.contacts.widget.LayoutSuppressingQuickContactBadge
+            android:id="@+id/contact_tile_quick"
             android:layout_width="64dip"
             android:layout_height="64dip"
-            android:layout_alignParentRight="true">
-            <QuickContactBadge
-                android:id="@+id/contact_tile_quick"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:focusable="true" />
-        </view>
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop"
+            android:focusable="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="?android:attr/listDivider"
-            android:layout_below="@id/image_container" />
+            android:layout_below="@id/contact_tile_quick" />
 
     </RelativeLayout>
 

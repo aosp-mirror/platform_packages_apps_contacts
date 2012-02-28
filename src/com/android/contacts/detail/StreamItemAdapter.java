@@ -104,7 +104,7 @@ public class StreamItemAdapter extends BaseAdapter {
                 manager.getAccountType(streamItem.getAccountType(), streamItem.getDataSet());
 
         final View view = ContactDetailDisplayUtils.createStreamItemView(
-                mInflater, mContext, streamItem, null,
+                mInflater, mContext, convertView, streamItem,
                 // Only pass the photo click listener if the account type has the photo
                 // view activity.
                 (accountType.getViewStreamItemPhotoActivity() == null) ? null : mPhotoClickListener
@@ -127,6 +127,12 @@ public class StreamItemAdapter extends BaseAdapter {
             contentView.setEnabled(false);
         }
         return view;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        // ITEM_VIEW_TYPE_HEADER and ITEM_VIEW_TYPE_STREAM_ITEM
+        return 2;
     }
 
     @Override

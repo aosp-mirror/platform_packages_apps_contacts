@@ -108,7 +108,7 @@ public class ContactDetailDisplayUtilsTest extends AndroidTestCase {
      */
     private View addStreamItemText(StreamItemEntry streamItem) {
         return ContactDetailDisplayUtils.addStreamItemText(getContext(), streamItem,
-                mLayoutInflater.inflate(R.layout.stream_item_row_text, null));
+                mLayoutInflater.inflate(R.layout.stream_item_container, null));
     }
 
     private StreamItemEntryBuilder getTestBuilder() {

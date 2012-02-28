@@ -74,6 +74,8 @@ import java.util.Set;
 public class ContactLoader extends Loader<ContactLoader.Result> {
     private static final String TAG = "ContactLoader";
 
+    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
+
     private final Uri mRequestedUri;
     private Uri mLookupUri;
     private boolean mLoadGroupMetaData;
@@ -1074,6 +1076,17 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 }
             } finally {
                 cursor.close();
+            }
+
+            // Pre-decode all HTMLs
+            final long start = System.currentTimeMillis();
+            for (StreamItemEntry streamItem : streamItems) {
+                streamItem.decodeHtml(getContext());
+            }
+            final long end = System.currentTimeMillis();
+            if (DEBUG) {
+                Log.d(TAG, "Decoded HTML for " + streamItems.size() + " items, took "
+                        + (end - start) + " ms");
             }
 
             // Now retrieve any photo records associated with the stream items.
