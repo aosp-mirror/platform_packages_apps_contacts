@@ -255,6 +255,11 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     private final LruCache<Object, BitmapHolder> mBitmapHolderCache;
 
     /**
+     * {@code true} if ALL entries in {@link #mBitmapHolderCache} are NOT fresh.
+     */
+    private volatile boolean mBitmapHolderCacheAllUnfresh = true;
+
+    /**
      * Cache size threshold at which bitmaps will not be preloaded.
      */
     private final int mBitmapHolderCacheRedZoneBytes;
@@ -460,7 +465,12 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     @Override
     public void refreshCache() {
+        if (mBitmapHolderCacheAllUnfresh) {
+            if (DEBUG) Log.d(TAG, "refreshCache -- no fresh entries.");
+            return;
+        }
         if (DEBUG) Log.d(TAG, "refreshCache");
+        mBitmapHolderCacheAllUnfresh = true;
         for (BitmapHolder holder : mBitmapHolderCache.snapshot().values()) {
             holder.fresh = false;
         }
@@ -666,7 +676,6 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             Log.d(TAG, "Caching data: key=" + key + ", " + btk(bytes.length));
         }
         BitmapHolder holder = new BitmapHolder(bytes);
-        holder.fresh = true;
 
         // Unless this image is being preloaded, decode it right away while
         // we are still on the background thread.
@@ -675,6 +684,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         }
 
         mBitmapHolderCache.put(key, holder);
+        mBitmapHolderCacheAllUnfresh = false;
     }
 
     @Override
@@ -682,6 +692,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         Request request = Request.createFromUri(photoUri, true, false, DEFAULT_AVATAR);
         BitmapHolder holder = new BitmapHolder(photoBytes);
         mBitmapHolderCache.put(request.getKey(), holder);
+        mBitmapHolderCacheAllUnfresh = false;
         mBitmapCache.put(request.getKey(), bitmap);
     }
 
