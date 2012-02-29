@@ -27,20 +27,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <view
-            android:id="@+id/image_container"
-            class="com.android.contacts.list.ContactTileImageContainer"
+        <com.android.contacts.widget.LayoutSuppressingQuickContactBadge
+            android:id="@id/contact_tile_quick"
             android:layout_width="64dip"
             android:layout_height="64dip"
-            android:layout_alignParentLeft="true">
-            <QuickContactBadge
-                android:id="@id/contact_tile_quick"
-                android:nextFocusRight="@id/contact_tile_frequent_phone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:focusable="true" />
-        </view>
+            android:layout_alignParentLeft="true"
+            android:nextFocusRight="@id/contact_tile_frequent_phone"
+            android:scaleType="centerCrop"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/contact_tile_name"
@@ -49,7 +43,7 @@
             android:layout_marginLeft="8dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="8dip"
-            android:layout_toRightOf="@id/image_container"
+            android:layout_toRightOf="@id/contact_tile_quick"
             android:singleLine="true"
             android:fadingEdge="horizontal"
             android:fadingEdgeLength="3dip"
@@ -60,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/contact_tile_name"
-            android:layout_toRightOf="@id/image_container"
+            android:layout_toRightOf="@id/contact_tile_quick"
             android:gravity="center_vertical">
 
             <TextView
@@ -96,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="?android:attr/listDivider"
-            android:layout_below="@id/image_container" />
+            android:layout_below="@id/contact_tile_quick" />
 
     </RelativeLayout>
 

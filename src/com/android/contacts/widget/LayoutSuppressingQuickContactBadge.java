@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 The Android Open Source Project
+ * Copyright (C) 2012 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts.list;
+
+package com.android.contacts.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
+import android.widget.QuickContactBadge;
 
 /**
- * Custom container for ImageView or ContactBadge inside {@link ContactTileView}.
+ * Custom {@link QuickContactBadge} that improves layouting performance.
  *
- * This improves the performance of favorite tabs by not passing the layout request to the parent
- * views, assuming that once measured this will not need to resize itself.
+ * This improves the performance by not passing requestLayout() to its parent, taking advantage
+ * of knowing that image size won't change once set.
  */
-public class ContactTileImageContainer extends FrameLayout {
+public class LayoutSuppressingQuickContactBadge extends QuickContactBadge {
 
-    public ContactTileImageContainer(Context context, AttributeSet attrs) {
+    public LayoutSuppressingQuickContactBadge(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

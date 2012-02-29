@@ -16,10 +16,13 @@
 
 package com.android.contacts.util;
 
+import com.android.contacts.detail.ContactDetailDisplayUtils;
 import com.android.contacts.test.NeededForTesting;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.StreamItems;
+import android.text.Html;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,6 +39,8 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
     private final long mId;
     private final String mText;
     private final String mComments;
+    private CharSequence mDecodedText;
+    private CharSequence mDecodedComments;
     private final long mTimestamp;
     private final String mAccountType;
     private final String mAccountName;
@@ -134,6 +139,24 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
     public List<StreamItemPhotoEntry> getPhotos() {
         Collections.sort(mPhotos);
         return mPhotos;
+    }
+
+    public void decodeHtml(Context context) {
+        final Html.ImageGetter imageGetter = ContactDetailDisplayUtils.getImageGetter(context);
+        if (mText != null) {
+            mDecodedText = HtmlUtils.fromHtml(context, mText, imageGetter, null);
+        }
+        if (mComments != null) {
+            mDecodedComments = HtmlUtils.fromHtml(context, mComments, imageGetter, null);
+        }
+    }
+
+    public CharSequence getDecodedText() {
+        return mDecodedText;
+    }
+
+    public CharSequence getDecodedComments() {
+        return mDecodedComments;
     }
 
     private static String getString(Cursor cursor, String columnName) {
