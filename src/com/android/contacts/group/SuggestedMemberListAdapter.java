@@ -295,6 +295,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
+            @SuppressWarnings("unchecked")
             List<SuggestedMember> suggestionsList = (List<SuggestedMember>) results.values;
             if (suggestionsList == null) {
                 return;
