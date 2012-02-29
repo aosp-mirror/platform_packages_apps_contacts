@@ -104,7 +104,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
@@ -221,8 +220,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             new HashMap<AccountType, List<DetailViewEntry>>();
     private ArrayList<ViewEntry> mAllEntries = new ArrayList<ViewEntry>();
     private LayoutInflater mInflater;
-
-    private boolean mTransitionAnimationRequested;
 
     private boolean mIsUniqueNumber;
     private boolean mIsUniqueEmail;
@@ -416,11 +413,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         if (isAdded()) {
             getActivity().invalidateOptionsMenu();
-        }
-
-        if (mTransitionAnimationRequested) {
-            TransitionAnimationView.startAnimation(mView, mContactData == null);
-            mTransitionAnimationRequested = false;
         }
 
         if (mContactData == null) {

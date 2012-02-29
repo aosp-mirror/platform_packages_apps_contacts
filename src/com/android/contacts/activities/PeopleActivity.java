@@ -60,6 +60,7 @@ import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.widget.TransitionAnimationView;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -129,7 +130,6 @@ public class PeopleActivity extends ContactsActivity
     private ActionBarAdapter mActionBarAdapter;
 
     private ContactDetailFragment mContactDetailFragment;
-    private ContactDetailUpdatesFragment mContactDetailUpdatesFragment;
 
     private ContactLoaderFragment mContactDetailLoaderFragment;
     private final ContactDetailLoaderFragmentListener mContactDetailLoaderFragmentListener =
@@ -160,7 +160,7 @@ public class PeopleActivity extends ContactsActivity
 
     private View mFavoritesView;
     private View mBrowserView;
-    private View mDetailsView;
+    private TransitionAnimationView mDetailsView;
 
     private View mAddGroupImageView;
 
@@ -240,8 +240,6 @@ public class PeopleActivity extends ContactsActivity
     public void onAttachFragment(Fragment fragment) {
         if (fragment instanceof ContactDetailFragment) {
             mContactDetailFragment = (ContactDetailFragment) fragment;
-        } else if (fragment instanceof ContactDetailUpdatesFragment) {
-            mContactDetailUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
         } else if (fragment instanceof ContactsUnavailableFragment) {
             mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
             mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
@@ -418,7 +416,7 @@ public class PeopleActivity extends ContactsActivity
 
             // Configure contact details
             mContactDetailLayoutController = new ContactDetailLayoutController(this, savedState,
-                    getFragmentManager(), findViewById(R.id.contact_detail_container),
+                    getFragmentManager(), mDetailsView, findViewById(R.id.contact_detail_container),
                     new ContactDetailFragmentListener());
         }
         transaction.commitAllowingStateLoss();
