@@ -28,6 +28,7 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -35,14 +36,12 @@ import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
@@ -70,7 +69,7 @@ import java.util.Set;
 /**
  * Loads a single Contact and all it constituent RawContacts.
  */
-public class ContactLoader extends Loader<ContactLoader.Result> {
+public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
     private static final String TAG = "ContactLoader";
 
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
@@ -82,11 +81,24 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     private final boolean mLoadInvitableAccountTypes;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
-    private boolean mDestroyed;
     private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
 
     public interface Listener {
         public void onContactLoaded(Result contact);
+    }
+
+    public ContactLoader(Context context, Uri lookupUri) {
+        this(context, lookupUri, false, false, false);
+    }
+
+    public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
+            boolean loadStreamItems, boolean loadInvitableAccountTypes) {
+        super(context);
+        mLookupUri = lookupUri;
+        mRequestedUri = lookupUri;
+        mLoadGroupMetaData = loadGroupMetaData;
+        mLoadStreamItems = loadStreamItems;
+        mLoadInvitableAccountTypes = loadInvitableAccountTypes;
     }
 
     /**
@@ -670,498 +682,495 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int FAVORITES = 7;
     }
 
-    private final class LoadContactTask extends AsyncTask<Void, Void, Result> {
-
-        @Override
-        protected Result doInBackground(Void... args) {
-            try {
-                final ContentResolver resolver = getContext().getContentResolver();
-                final Uri uriCurrentFormat = ContactLoaderUtils.ensureIsContactUri(
-                        resolver, mLookupUri);
-                Result result = loadContactEntity(resolver, uriCurrentFormat);
-                if (!result.isNotFound()) {
-                    if (result.isDirectoryEntry()) {
-                        loadDirectoryMetaData(result);
-                    } else if (mLoadGroupMetaData) {
-                        loadGroupMetaData(result);
-                    }
-                    if (mLoadStreamItems) {
-                        loadStreamItems(result);
-                    }
-                    loadPhotoBinaryData(result);
-
-                    // Note ME profile should never have "Add connection"
-                    if (mLoadInvitableAccountTypes && !result.isUserProfile()) {
-                        loadInvitableAccountTypes(result);
-                    }
+    @Override
+    public Result loadInBackground() {
+        try {
+            final ContentResolver resolver = getContext().getContentResolver();
+            final Uri uriCurrentFormat = ContactLoaderUtils.ensureIsContactUri(
+                    resolver, mLookupUri);
+            Result result = loadContactEntity(resolver, uriCurrentFormat);
+            if (!result.isNotFound()) {
+                if (result.isDirectoryEntry()) {
+                    loadDirectoryMetaData(result);
+                } else if (mLoadGroupMetaData) {
+                    loadGroupMetaData(result);
                 }
-                return result;
-            } catch (Exception e) {
-                Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
-                return Result.forError(mRequestedUri, e);
+                if (mLoadStreamItems) {
+                    loadStreamItems(result);
+                }
+                loadPhotoBinaryData(result);
+
+                // Note ME profile should never have "Add connection"
+                if (mLoadInvitableAccountTypes && !result.isUserProfile()) {
+                    loadInvitableAccountTypes(result);
+                }
             }
+            return result;
+        } catch (Exception e) {
+            Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
+            return Result.forError(mRequestedUri, e);
+        }
+    }
+
+    private Result loadContactEntity(ContentResolver resolver, Uri contactUri) {
+        Uri entityUri = Uri.withAppendedPath(contactUri, Contacts.Entity.CONTENT_DIRECTORY);
+        Cursor cursor = resolver.query(entityUri, ContactQuery.COLUMNS, null, null,
+                Contacts.Entity.RAW_CONTACT_ID);
+        if (cursor == null) {
+            Log.e(TAG, "No cursor returned in loadContactEntity");
+            return Result.forNotFound(mRequestedUri);
         }
 
-        private Result loadContactEntity(ContentResolver resolver, Uri contactUri) {
-            Uri entityUri = Uri.withAppendedPath(contactUri, Contacts.Entity.CONTENT_DIRECTORY);
-            Cursor cursor = resolver.query(entityUri, ContactQuery.COLUMNS, null, null,
-                    Contacts.Entity.RAW_CONTACT_ID);
-            if (cursor == null) {
-                Log.e(TAG, "No cursor returned in loadContactEntity");
+        try {
+            if (!cursor.moveToFirst()) {
+                cursor.close();
                 return Result.forNotFound(mRequestedUri);
             }
 
-            try {
-                if (!cursor.moveToFirst()) {
-                    cursor.close();
-                    return Result.forNotFound(mRequestedUri);
+            long currentRawContactId = -1;
+            Entity entity = null;
+            Result result = loadContactHeaderData(cursor, contactUri);
+            ArrayList<Entity> entities = result.getEntities();
+            LongSparseArray<DataStatus> statuses = result.getStatuses();
+            for (; !cursor.isAfterLast(); cursor.moveToNext()) {
+                long rawContactId = cursor.getLong(ContactQuery.RAW_CONTACT_ID);
+                if (rawContactId != currentRawContactId) {
+                    currentRawContactId = rawContactId;
+                    entity = new android.content.Entity(loadRawContact(cursor));
+                    entities.add(entity);
                 }
+                if (!cursor.isNull(ContactQuery.DATA_ID)) {
+                    ContentValues data = loadData(cursor);
+                    entity.addSubValue(ContactsContract.Data.CONTENT_URI, data);
 
-                long currentRawContactId = -1;
-                Entity entity = null;
-                Result result = loadContactHeaderData(cursor, contactUri);
-                ArrayList<Entity> entities = result.getEntities();
-                LongSparseArray<DataStatus> statuses = result.getStatuses();
-                for (; !cursor.isAfterLast(); cursor.moveToNext()) {
-                    long rawContactId = cursor.getLong(ContactQuery.RAW_CONTACT_ID);
-                    if (rawContactId != currentRawContactId) {
-                        currentRawContactId = rawContactId;
-                        entity = new android.content.Entity(loadRawContact(cursor));
-                        entities.add(entity);
-                    }
-                    if (!cursor.isNull(ContactQuery.DATA_ID)) {
-                        ContentValues data = loadData(cursor);
-                        entity.addSubValue(ContactsContract.Data.CONTENT_URI, data);
-
-                        if (!cursor.isNull(ContactQuery.PRESENCE)
-                                || !cursor.isNull(ContactQuery.STATUS)) {
-                            final DataStatus status = new DataStatus(cursor);
-                            final long dataId = cursor.getLong(ContactQuery.DATA_ID);
-                            statuses.put(dataId, status);
-                        }
+                    if (!cursor.isNull(ContactQuery.PRESENCE)
+                            || !cursor.isNull(ContactQuery.STATUS)) {
+                        final DataStatus status = new DataStatus(cursor);
+                        final long dataId = cursor.getLong(ContactQuery.DATA_ID);
+                        statuses.put(dataId, status);
                     }
                 }
-
-                return result;
-            } finally {
-                cursor.close();
             }
+
+            return result;
+        } finally {
+            cursor.close();
         }
+    }
 
-        /**
-         * Looks for the photo data item in entities. If found, creates a new Bitmap instance. If
-         * not found, returns null
-         */
-        private void loadPhotoBinaryData(Result contactData) {
+    /**
+     * Looks for the photo data item in entities. If found, creates a new Bitmap instance. If
+     * not found, returns null
+     */
+    private void loadPhotoBinaryData(Result contactData) {
 
-            // If we have a photo URI, try loading that first.
-            String photoUri = contactData.getPhotoUri();
-            if (photoUri != null) {
+        // If we have a photo URI, try loading that first.
+        String photoUri = contactData.getPhotoUri();
+        if (photoUri != null) {
+            try {
+                AssetFileDescriptor fd = getContext().getContentResolver()
+                       .openAssetFileDescriptor(Uri.parse(photoUri), "r");
+                byte[] buffer = new byte[16 * 1024];
+                FileInputStream fis = fd.createInputStream();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 try {
-                    AssetFileDescriptor fd = getContext().getContentResolver()
-                           .openAssetFileDescriptor(Uri.parse(photoUri), "r");
-                    byte[] buffer = new byte[16 * 1024];
-                    FileInputStream fis = fd.createInputStream();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    int size;
+                    while ((size = fis.read(buffer)) != -1) {
+                        baos.write(buffer, 0, size);
+                    }
+                    contactData.setPhotoBinaryData(baos.toByteArray());
+                } finally {
+                    fis.close();
+                    fd.close();
+                }
+                return;
+            } catch (IOException ioe) {
+                // Just fall back to the case below.
+            }
+        }
+
+        // If we couldn't load from a file, fall back to the data blob.
+        final long photoId = contactData.getPhotoId();
+        if (photoId <= 0) {
+            // No photo ID
+            return;
+        }
+
+        for (Entity entity : contactData.getEntities()) {
+            for (NamedContentValues subValue : entity.getSubValues()) {
+                final ContentValues entryValues = subValue.values;
+                final long dataId = entryValues.getAsLong(Data._ID);
+                if (dataId == photoId) {
+                    final String mimeType = entryValues.getAsString(Data.MIMETYPE);
+                    // Correct Data Id but incorrect MimeType? Don't load
+                    if (!Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                        return;
+                    }
+                    contactData.setPhotoBinaryData(entryValues.getAsByteArray(Photo.PHOTO));
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Sets the "invitable" account types to {@link Result#mInvitableAccountTypes}.
+     */
+    private void loadInvitableAccountTypes(Result contactData) {
+        Map<AccountTypeWithDataSet, AccountType> invitables =
+                AccountTypeManager.getInstance(getContext()).getUsableInvitableAccountTypes();
+        if (invitables.isEmpty()) {
+            return;
+        }
+
+        Map<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap(invitables);
+
+        // Remove the ones that already have a raw contact in the current contact
+        for (Entity entity : contactData.getEntities()) {
+            final ContentValues values = entity.getEntityValues();
+            final AccountTypeWithDataSet type = AccountTypeWithDataSet.get(
+                    values.getAsString(RawContacts.ACCOUNT_TYPE),
+                    values.getAsString(RawContacts.DATA_SET));
+            result.remove(type);
+        }
+
+        // Set to mInvitableAccountTypes
+        contactData.mInvitableAccountTypes.addAll(result.values());
+    }
+
+    /**
+     * Extracts Contact level columns from the cursor.
+     */
+    private Result loadContactHeaderData(final Cursor cursor, Uri contactUri) {
+        final String directoryParameter =
+                contactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
+        final long directoryId = directoryParameter == null
+                ? Directory.DEFAULT
+                : Long.parseLong(directoryParameter);
+        final long contactId = cursor.getLong(ContactQuery.CONTACT_ID);
+        final String lookupKey = cursor.getString(ContactQuery.LOOKUP_KEY);
+        final long nameRawContactId = cursor.getLong(ContactQuery.NAME_RAW_CONTACT_ID);
+        final int displayNameSource = cursor.getInt(ContactQuery.DISPLAY_NAME_SOURCE);
+        final String displayName = cursor.getString(ContactQuery.DISPLAY_NAME);
+        final String altDisplayName = cursor.getString(ContactQuery.ALT_DISPLAY_NAME);
+        final String phoneticName = cursor.getString(ContactQuery.PHONETIC_NAME);
+        final long photoId = cursor.getLong(ContactQuery.PHOTO_ID);
+        final String photoUri = cursor.getString(ContactQuery.PHOTO_URI);
+        final boolean starred = cursor.getInt(ContactQuery.STARRED) != 0;
+        final Integer presence = cursor.isNull(ContactQuery.CONTACT_PRESENCE)
+                ? null
+                : cursor.getInt(ContactQuery.CONTACT_PRESENCE);
+        final boolean sendToVoicemail = cursor.getInt(ContactQuery.SEND_TO_VOICEMAIL) == 1;
+        final String customRingtone = cursor.getString(ContactQuery.CUSTOM_RINGTONE);
+        final boolean isUserProfile = cursor.getInt(ContactQuery.IS_USER_PROFILE) == 1;
+
+        Uri lookupUri;
+        if (directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE) {
+            lookupUri = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), contactId);
+        } else {
+            lookupUri = contactUri;
+        }
+
+        return new Result(mRequestedUri, contactUri, lookupUri, directoryId, lookupKey,
+                contactId, nameRawContactId, displayNameSource, photoId, photoUri, displayName,
+                altDisplayName, phoneticName, starred, presence, sendToVoicemail,
+                customRingtone, isUserProfile);
+    }
+
+    /**
+     * Extracts RawContact level columns from the cursor.
+     */
+    private ContentValues loadRawContact(Cursor cursor) {
+        ContentValues cv = new ContentValues();
+
+        cv.put(RawContacts._ID, cursor.getLong(ContactQuery.RAW_CONTACT_ID));
+
+        cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_NAME);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SET);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE_AND_DATA_SET);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DIRTY);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.VERSION);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.SOURCE_ID);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC1);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC2);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC3);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC4);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DELETED);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.CONTACT_ID);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.STARRED);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.NAME_VERIFIED);
+
+        return cv;
+    }
+
+    /**
+     * Extracts Data level columns from the cursor.
+     */
+    private ContentValues loadData(Cursor cursor) {
+        ContentValues cv = new ContentValues();
+
+        cv.put(Data._ID, cursor.getLong(ContactQuery.DATA_ID));
+
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA1);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA2);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA3);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA4);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA5);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA6);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA7);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA8);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA9);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA10);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA11);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA12);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA13);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA14);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA15);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC1);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC2);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC3);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC4);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_VERSION);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.IS_PRIMARY);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.IS_SUPERPRIMARY);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.MIMETYPE);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.RES_PACKAGE);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.GROUP_SOURCE_ID);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.CHAT_CAPABILITY);
+
+        return cv;
+    }
+
+    private void cursorColumnToContentValues(
+            Cursor cursor, ContentValues values, int index) {
+        switch (cursor.getType(index)) {
+            case Cursor.FIELD_TYPE_NULL:
+                // don't put anything in the content values
+                break;
+            case Cursor.FIELD_TYPE_INTEGER:
+                values.put(ContactQuery.COLUMNS[index], cursor.getLong(index));
+                break;
+            case Cursor.FIELD_TYPE_STRING:
+                values.put(ContactQuery.COLUMNS[index], cursor.getString(index));
+                break;
+            case Cursor.FIELD_TYPE_BLOB:
+                values.put(ContactQuery.COLUMNS[index], cursor.getBlob(index));
+                break;
+            default:
+                throw new IllegalStateException("Invalid or unhandled data type");
+        }
+    }
+
+    private void loadDirectoryMetaData(Result result) {
+        long directoryId = result.getDirectoryId();
+
+        Cursor cursor = getContext().getContentResolver().query(
+                ContentUris.withAppendedId(Directory.CONTENT_URI, directoryId),
+                DirectoryQuery.COLUMNS, null, null, null);
+        if (cursor == null) {
+            return;
+        }
+        try {
+            if (cursor.moveToFirst()) {
+                final String displayName = cursor.getString(DirectoryQuery.DISPLAY_NAME);
+                final String packageName = cursor.getString(DirectoryQuery.PACKAGE_NAME);
+                final int typeResourceId = cursor.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
+                final String accountType = cursor.getString(DirectoryQuery.ACCOUNT_TYPE);
+                final String accountName = cursor.getString(DirectoryQuery.ACCOUNT_NAME);
+                final int exportSupport = cursor.getInt(DirectoryQuery.EXPORT_SUPPORT);
+                String directoryType = null;
+                if (!TextUtils.isEmpty(packageName)) {
+                    PackageManager pm = getContext().getPackageManager();
                     try {
-                        int size;
-                        while ((size = fis.read(buffer)) != -1) {
-                            baos.write(buffer, 0, size);
-                        }
-                        contactData.setPhotoBinaryData(baos.toByteArray());
-                    } finally {
-                        fis.close();
-                        fd.close();
-                    }
-                    return;
-                } catch (IOException ioe) {
-                    // Just fall back to the case below.
-                }
-            }
-
-            // If we couldn't load from a file, fall back to the data blob.
-            final long photoId = contactData.getPhotoId();
-            if (photoId <= 0) {
-                // No photo ID
-                return;
-            }
-
-            for (Entity entity : contactData.getEntities()) {
-                for (NamedContentValues subValue : entity.getSubValues()) {
-                    final ContentValues entryValues = subValue.values;
-                    final long dataId = entryValues.getAsLong(Data._ID);
-                    if (dataId == photoId) {
-                        final String mimeType = entryValues.getAsString(Data.MIMETYPE);
-                        // Correct Data Id but incorrect MimeType? Don't load
-                        if (!Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                            return;
-                        }
-                        contactData.setPhotoBinaryData(entryValues.getAsByteArray(Photo.PHOTO));
-                        break;
+                        Resources resources = pm.getResourcesForApplication(packageName);
+                        directoryType = resources.getString(typeResourceId);
+                    } catch (NameNotFoundException e) {
+                        Log.w(TAG, "Contact directory resource not found: "
+                                + packageName + "." + typeResourceId);
                     }
                 }
+
+                result.setDirectoryMetaData(
+                        displayName, directoryType, accountType, accountName, exportSupport);
             }
+        } finally {
+            cursor.close();
         }
+    }
 
-        /**
-         * Sets the "invitable" account types to {@link Result#mInvitableAccountTypes}.
-         */
-        private void loadInvitableAccountTypes(Result contactData) {
-            Map<AccountTypeWithDataSet, AccountType> invitables =
-                    AccountTypeManager.getInstance(getContext()).getUsableInvitableAccountTypes();
-            if (invitables.isEmpty()) {
-                return;
-            }
-
-            Map<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap(invitables);
-
-            // Remove the ones that already have a raw contact in the current contact
-            for (Entity entity : contactData.getEntities()) {
-                final ContentValues values = entity.getEntityValues();
-                final AccountTypeWithDataSet type = AccountTypeWithDataSet.get(
-                        values.getAsString(RawContacts.ACCOUNT_TYPE),
-                        values.getAsString(RawContacts.DATA_SET));
-                result.remove(type);
-            }
-
-            // Set to mInvitableAccountTypes
-            contactData.mInvitableAccountTypes.addAll(result.values());
-        }
-
-        /**
-         * Extracts Contact level columns from the cursor.
-         */
-        private Result loadContactHeaderData(final Cursor cursor, Uri contactUri) {
-            final String directoryParameter =
-                    contactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
-            final long directoryId = directoryParameter == null
-                    ? Directory.DEFAULT
-                    : Long.parseLong(directoryParameter);
-            final long contactId = cursor.getLong(ContactQuery.CONTACT_ID);
-            final String lookupKey = cursor.getString(ContactQuery.LOOKUP_KEY);
-            final long nameRawContactId = cursor.getLong(ContactQuery.NAME_RAW_CONTACT_ID);
-            final int displayNameSource = cursor.getInt(ContactQuery.DISPLAY_NAME_SOURCE);
-            final String displayName = cursor.getString(ContactQuery.DISPLAY_NAME);
-            final String altDisplayName = cursor.getString(ContactQuery.ALT_DISPLAY_NAME);
-            final String phoneticName = cursor.getString(ContactQuery.PHONETIC_NAME);
-            final long photoId = cursor.getLong(ContactQuery.PHOTO_ID);
-            final String photoUri = cursor.getString(ContactQuery.PHOTO_URI);
-            final boolean starred = cursor.getInt(ContactQuery.STARRED) != 0;
-            final Integer presence = cursor.isNull(ContactQuery.CONTACT_PRESENCE)
-                    ? null
-                    : cursor.getInt(ContactQuery.CONTACT_PRESENCE);
-            final boolean sendToVoicemail = cursor.getInt(ContactQuery.SEND_TO_VOICEMAIL) == 1;
-            final String customRingtone = cursor.getString(ContactQuery.CUSTOM_RINGTONE);
-            final boolean isUserProfile = cursor.getInt(ContactQuery.IS_USER_PROFILE) == 1;
-
-            Uri lookupUri;
-            if (directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE) {
-                lookupUri = ContentUris.withAppendedId(
-                    Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), contactId);
-            } else {
-                lookupUri = contactUri;
-            }
-
-            return new Result(mRequestedUri, contactUri, lookupUri, directoryId, lookupKey,
-                    contactId, nameRawContactId, displayNameSource, photoId, photoUri, displayName,
-                    altDisplayName, phoneticName, starred, presence, sendToVoicemail,
-                    customRingtone, isUserProfile);
-        }
-
-        /**
-         * Extracts RawContact level columns from the cursor.
-         */
-        private ContentValues loadRawContact(Cursor cursor) {
-            ContentValues cv = new ContentValues();
-
-            cv.put(RawContacts._ID, cursor.getLong(ContactQuery.RAW_CONTACT_ID));
-
-            cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_NAME);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SET);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE_AND_DATA_SET);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DIRTY);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.VERSION);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.SOURCE_ID);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC1);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC2);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC3);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.SYNC4);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DELETED);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.CONTACT_ID);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.STARRED);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.NAME_VERIFIED);
-
-            return cv;
-        }
-
-        /**
-         * Extracts Data level columns from the cursor.
-         */
-        private ContentValues loadData(Cursor cursor) {
-            ContentValues cv = new ContentValues();
-
-            cv.put(Data._ID, cursor.getLong(ContactQuery.DATA_ID));
-
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA1);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA2);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA3);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA4);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA5);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA6);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA7);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA8);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA9);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA10);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA11);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA12);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA13);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA14);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA15);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC1);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC2);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC3);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SYNC4);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_VERSION);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.IS_PRIMARY);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.IS_SUPERPRIMARY);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.MIMETYPE);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.RES_PACKAGE);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.GROUP_SOURCE_ID);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.CHAT_CAPABILITY);
-
-            return cv;
-        }
-
-        private void cursorColumnToContentValues(
-                Cursor cursor, ContentValues values, int index) {
-            switch (cursor.getType(index)) {
-                case Cursor.FIELD_TYPE_NULL:
-                    // don't put anything in the content values
-                    break;
-                case Cursor.FIELD_TYPE_INTEGER:
-                    values.put(ContactQuery.COLUMNS[index], cursor.getLong(index));
-                    break;
-                case Cursor.FIELD_TYPE_STRING:
-                    values.put(ContactQuery.COLUMNS[index], cursor.getString(index));
-                    break;
-                case Cursor.FIELD_TYPE_BLOB:
-                    values.put(ContactQuery.COLUMNS[index], cursor.getBlob(index));
-                    break;
-                default:
-                    throw new IllegalStateException("Invalid or unhandled data type");
-            }
-        }
-
-        private void loadDirectoryMetaData(Result result) {
-            long directoryId = result.getDirectoryId();
-
-            Cursor cursor = getContext().getContentResolver().query(
-                    ContentUris.withAppendedId(Directory.CONTENT_URI, directoryId),
-                    DirectoryQuery.COLUMNS, null, null, null);
-            if (cursor == null) {
-                return;
-            }
-            try {
-                if (cursor.moveToFirst()) {
-                    final String displayName = cursor.getString(DirectoryQuery.DISPLAY_NAME);
-                    final String packageName = cursor.getString(DirectoryQuery.PACKAGE_NAME);
-                    final int typeResourceId = cursor.getInt(DirectoryQuery.TYPE_RESOURCE_ID);
-                    final String accountType = cursor.getString(DirectoryQuery.ACCOUNT_TYPE);
-                    final String accountName = cursor.getString(DirectoryQuery.ACCOUNT_NAME);
-                    final int exportSupport = cursor.getInt(DirectoryQuery.EXPORT_SUPPORT);
-                    String directoryType = null;
-                    if (!TextUtils.isEmpty(packageName)) {
-                        PackageManager pm = getContext().getPackageManager();
-                        try {
-                            Resources resources = pm.getResourcesForApplication(packageName);
-                            directoryType = resources.getString(typeResourceId);
-                        } catch (NameNotFoundException e) {
-                            Log.w(TAG, "Contact directory resource not found: "
-                                    + packageName + "." + typeResourceId);
-                        }
-                    }
-
-                    result.setDirectoryMetaData(
-                            displayName, directoryType, accountType, accountName, exportSupport);
+    /**
+     * Loads groups meta-data for all groups associated with all constituent raw contacts'
+     * accounts.
+     */
+    private void loadGroupMetaData(Result result) {
+        StringBuilder selection = new StringBuilder();
+        ArrayList<String> selectionArgs = new ArrayList<String>();
+        for (Entity entity : result.mEntities) {
+            ContentValues values = entity.getEntityValues();
+            String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+            String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+            String dataSet = values.getAsString(RawContacts.DATA_SET);
+            if (accountName != null && accountType != null) {
+                if (selection.length() != 0) {
+                    selection.append(" OR ");
                 }
-            } finally {
-                cursor.close();
-            }
-        }
+                selection.append(
+                        "(" + Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?");
+                selectionArgs.add(accountName);
+                selectionArgs.add(accountType);
 
-        /**
-         * Loads groups meta-data for all groups associated with all constituent raw contacts'
-         * accounts.
-         */
-        private void loadGroupMetaData(Result result) {
-            StringBuilder selection = new StringBuilder();
-            ArrayList<String> selectionArgs = new ArrayList<String>();
-            for (Entity entity : result.mEntities) {
-                ContentValues values = entity.getEntityValues();
-                String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-                String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-                String dataSet = values.getAsString(RawContacts.DATA_SET);
-                if (accountName != null && accountType != null) {
-                    if (selection.length() != 0) {
-                        selection.append(" OR ");
-                    }
-                    selection.append(
-                            "(" + Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?");
-                    selectionArgs.add(accountName);
-                    selectionArgs.add(accountType);
-
-                    if (dataSet != null) {
-                        selection.append(" AND " + Groups.DATA_SET + "=?");
-                        selectionArgs.add(dataSet);
-                    } else {
-                        selection.append(" AND " + Groups.DATA_SET + " IS NULL");
-                    }
-                    selection.append(")");
-                }
-            }
-            Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
-                    GroupQuery.COLUMNS, selection.toString(), selectionArgs.toArray(new String[0]),
-                    null);
-            try {
-                while (cursor.moveToNext()) {
-                    final String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
-                    final String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
-                    final String dataSet = cursor.getString(GroupQuery.DATA_SET);
-                    final long groupId = cursor.getLong(GroupQuery.ID);
-                    final String title = cursor.getString(GroupQuery.TITLE);
-                    final boolean defaultGroup = cursor.isNull(GroupQuery.AUTO_ADD)
-                            ? false
-                            : cursor.getInt(GroupQuery.AUTO_ADD) != 0;
-                    final boolean favorites = cursor.isNull(GroupQuery.FAVORITES)
-                            ? false
-                            : cursor.getInt(GroupQuery.FAVORITES) != 0;
-
-                    result.addGroupMetaData(new GroupMetaData(
-                            accountName, accountType, dataSet, groupId, title, defaultGroup,
-                            favorites));
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-
-        /**
-         * Loads all stream items and stream item photos belonging to this contact.
-         */
-        private void loadStreamItems(Result result) {
-            Cursor cursor = getContext().getContentResolver().query(
-                    Contacts.CONTENT_LOOKUP_URI.buildUpon()
-                            .appendPath(result.getLookupKey())
-                            .appendPath(Contacts.StreamItems.CONTENT_DIRECTORY).build(),
-                    null, null, null, null);
-            LongSparseArray<StreamItemEntry> streamItemsById =
-                    new LongSparseArray<StreamItemEntry>();
-            ArrayList<StreamItemEntry> streamItems = new ArrayList<StreamItemEntry>();
-            try {
-                while (cursor.moveToNext()) {
-                    StreamItemEntry streamItem = new StreamItemEntry(cursor);
-                    streamItemsById.put(streamItem.getId(), streamItem);
-                    streamItems.add(streamItem);
-                }
-            } finally {
-                cursor.close();
-            }
-
-            // Pre-decode all HTMLs
-            final long start = System.currentTimeMillis();
-            for (StreamItemEntry streamItem : streamItems) {
-                streamItem.decodeHtml(getContext());
-            }
-            final long end = System.currentTimeMillis();
-            if (DEBUG) {
-                Log.d(TAG, "Decoded HTML for " + streamItems.size() + " items, took "
-                        + (end - start) + " ms");
-            }
-
-            // Now retrieve any photo records associated with the stream items.
-            if (!streamItems.isEmpty()) {
-                if (result.isUserProfile()) {
-                    // If the stream items we're loading are for the profile, we can't bulk-load the
-                    // stream items with a custom selection.
-                    for (StreamItemEntry entry : streamItems) {
-                        Cursor siCursor = getContext().getContentResolver().query(
-                                Uri.withAppendedPath(
-                                        ContentUris.withAppendedId(
-                                                StreamItems.CONTENT_URI, entry.getId()),
-                                        StreamItems.StreamItemPhotos.CONTENT_DIRECTORY),
-                                null, null, null, null);
-                        try {
-                            while (siCursor.moveToNext()) {
-                                entry.addPhoto(new StreamItemPhotoEntry(siCursor));
-                            }
-                        } finally {
-                            siCursor.close();
-                        }
-                    }
+                if (dataSet != null) {
+                    selection.append(" AND " + Groups.DATA_SET + "=?");
+                    selectionArgs.add(dataSet);
                 } else {
-                    String[] streamItemIdArr = new String[streamItems.size()];
-                    StringBuilder streamItemPhotoSelection = new StringBuilder();
-                    streamItemPhotoSelection.append(StreamItemPhotos.STREAM_ITEM_ID + " IN (");
-                    for (int i = 0; i < streamItems.size(); i++) {
-                        if (i > 0) {
-                            streamItemPhotoSelection.append(",");
-                        }
-                        streamItemPhotoSelection.append("?");
-                        streamItemIdArr[i] = String.valueOf(streamItems.get(i).getId());
-                    }
-                    streamItemPhotoSelection.append(")");
-                    Cursor sipCursor = getContext().getContentResolver().query(
-                            StreamItems.CONTENT_PHOTO_URI,
-                            null, streamItemPhotoSelection.toString(), streamItemIdArr,
-                            StreamItemPhotos.STREAM_ITEM_ID);
+                    selection.append(" AND " + Groups.DATA_SET + " IS NULL");
+                }
+                selection.append(")");
+            }
+        }
+        Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
+                GroupQuery.COLUMNS, selection.toString(), selectionArgs.toArray(new String[0]),
+                null);
+        try {
+            while (cursor.moveToNext()) {
+                final String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
+                final String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
+                final String dataSet = cursor.getString(GroupQuery.DATA_SET);
+                final long groupId = cursor.getLong(GroupQuery.ID);
+                final String title = cursor.getString(GroupQuery.TITLE);
+                final boolean defaultGroup = cursor.isNull(GroupQuery.AUTO_ADD)
+                        ? false
+                        : cursor.getInt(GroupQuery.AUTO_ADD) != 0;
+                final boolean favorites = cursor.isNull(GroupQuery.FAVORITES)
+                        ? false
+                        : cursor.getInt(GroupQuery.FAVORITES) != 0;
+
+                result.addGroupMetaData(new GroupMetaData(
+                        accountName, accountType, dataSet, groupId, title, defaultGroup,
+                        favorites));
+            }
+        } finally {
+            cursor.close();
+        }
+    }
+
+    /**
+     * Loads all stream items and stream item photos belonging to this contact.
+     */
+    private void loadStreamItems(Result result) {
+        Cursor cursor = getContext().getContentResolver().query(
+                Contacts.CONTENT_LOOKUP_URI.buildUpon()
+                        .appendPath(result.getLookupKey())
+                        .appendPath(Contacts.StreamItems.CONTENT_DIRECTORY).build(),
+                null, null, null, null);
+        LongSparseArray<StreamItemEntry> streamItemsById =
+                new LongSparseArray<StreamItemEntry>();
+        ArrayList<StreamItemEntry> streamItems = new ArrayList<StreamItemEntry>();
+        try {
+            while (cursor.moveToNext()) {
+                StreamItemEntry streamItem = new StreamItemEntry(cursor);
+                streamItemsById.put(streamItem.getId(), streamItem);
+                streamItems.add(streamItem);
+            }
+        } finally {
+            cursor.close();
+        }
+
+        // Pre-decode all HTMLs
+        final long start = System.currentTimeMillis();
+        for (StreamItemEntry streamItem : streamItems) {
+            streamItem.decodeHtml(getContext());
+        }
+        final long end = System.currentTimeMillis();
+        if (DEBUG) {
+            Log.d(TAG, "Decoded HTML for " + streamItems.size() + " items, took "
+                    + (end - start) + " ms");
+        }
+
+        // Now retrieve any photo records associated with the stream items.
+        if (!streamItems.isEmpty()) {
+            if (result.isUserProfile()) {
+                // If the stream items we're loading are for the profile, we can't bulk-load the
+                // stream items with a custom selection.
+                for (StreamItemEntry entry : streamItems) {
+                    Cursor siCursor = getContext().getContentResolver().query(
+                            Uri.withAppendedPath(
+                                    ContentUris.withAppendedId(
+                                            StreamItems.CONTENT_URI, entry.getId()),
+                                    StreamItems.StreamItemPhotos.CONTENT_DIRECTORY),
+                            null, null, null, null);
                     try {
-                        while (sipCursor.moveToNext()) {
-                            long streamItemId = sipCursor.getLong(
-                                    sipCursor.getColumnIndex(StreamItemPhotos.STREAM_ITEM_ID));
-                            StreamItemEntry streamItem = streamItemsById.get(streamItemId);
-                            streamItem.addPhoto(new StreamItemPhotoEntry(sipCursor));
+                        while (siCursor.moveToNext()) {
+                            entry.addPhoto(new StreamItemPhotoEntry(siCursor));
                         }
                     } finally {
-                        sipCursor.close();
+                        siCursor.close();
                     }
                 }
-            }
-
-            // Set the sorted stream items on the result.
-            Collections.sort(streamItems);
-            result.mStreamItems.addAll(streamItems);
-        }
-
-        @Override
-        protected void onPostExecute(Result result) {
-            unregisterObserver();
-
-            // The creator isn't interested in any further updates
-            if (mDestroyed || result == null) {
-                return;
-            }
-
-            mContact = result;
-
-            if (result.isLoaded()) {
-                mLookupUri = result.getLookupUri();
-
-                if (!result.isDirectoryEntry()) {
-                    Log.i(TAG, "Registering content observer for " + mLookupUri);
-                    if (mObserver == null) {
-                        mObserver = new ForceLoadContentObserver();
+            } else {
+                String[] streamItemIdArr = new String[streamItems.size()];
+                StringBuilder streamItemPhotoSelection = new StringBuilder();
+                streamItemPhotoSelection.append(StreamItemPhotos.STREAM_ITEM_ID + " IN (");
+                for (int i = 0; i < streamItems.size(); i++) {
+                    if (i > 0) {
+                        streamItemPhotoSelection.append(",");
                     }
-                    getContext().getContentResolver().registerContentObserver(
-                            mLookupUri, true, mObserver);
+                    streamItemPhotoSelection.append("?");
+                    streamItemIdArr[i] = String.valueOf(streamItems.get(i).getId());
                 }
+                streamItemPhotoSelection.append(")");
+                Cursor sipCursor = getContext().getContentResolver().query(
+                        StreamItems.CONTENT_PHOTO_URI,
+                        null, streamItemPhotoSelection.toString(), streamItemIdArr,
+                        StreamItemPhotos.STREAM_ITEM_ID);
+                try {
+                    while (sipCursor.moveToNext()) {
+                        long streamItemId = sipCursor.getLong(
+                                sipCursor.getColumnIndex(StreamItemPhotos.STREAM_ITEM_ID));
+                        StreamItemEntry streamItem = streamItemsById.get(streamItemId);
+                        streamItem.addPhoto(new StreamItemPhotoEntry(sipCursor));
+                    }
+                } finally {
+                    sipCursor.close();
+                }
+            }
+        }
 
-                // inform the source of the data that this contact is being looked at
-                postViewNotificationToSyncAdapter();
+        // Set the sorted stream items on the result.
+        Collections.sort(streamItems);
+        result.mStreamItems.addAll(streamItems);
+    }
+
+    @Override
+    public void deliverResult(Result result) {
+        unregisterObserver();
+
+        // The creator isn't interested in any further updates
+        if (isReset() || result == null) {
+            return;
+        }
+
+        mContact = result;
+
+        if (result.isLoaded()) {
+            mLookupUri = result.getLookupUri();
+
+            if (!result.isDirectoryEntry()) {
+                Log.i(TAG, "Registering content observer for " + mLookupUri);
+                if (mObserver == null) {
+                    mObserver = new ForceLoadContentObserver();
+                }
+                getContext().getContentResolver().registerContentObserver(
+                        mLookupUri, true, mObserver);
             }
 
-            deliverResult(mContact);
+            // inform the source of the data that this contact is being looked at
+            postViewNotificationToSyncAdapter();
         }
+
+        super.deliverResult(mContact);
     }
 
     /**
@@ -1205,20 +1214,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         }
     }
 
-    public ContactLoader(Context context, Uri lookupUri) {
-        this(context, lookupUri, false, false, false);
-    }
-
-    public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
-            boolean loadStreamItems, boolean loadInvitableAccountTypes) {
-        super(context);
-        mLookupUri = lookupUri;
-        mRequestedUri = lookupUri;
-        mLoadGroupMetaData = loadGroupMetaData;
-        mLoadStreamItems = loadStreamItems;
-        mLoadInvitableAccountTypes = loadInvitableAccountTypes;
-    }
-
     /**
      * Sets whether to load stream items. Will trigger a reload if the value has changed.
      * At the moment, this is only used for debugging purposes
@@ -1250,15 +1245,15 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     @Override
-    protected void onForceLoad() {
-        final LoadContactTask task = new LoadContactTask();
-        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[])null);
+    protected void onStopLoading() {
+        cancelLoad();
     }
 
     @Override
     protected void onReset() {
+        super.onReset();
+        cancelLoad();
         unregisterObserver();
         mContact = null;
-        mDestroyed = true;
     }
 }
