@@ -61,7 +61,6 @@ import android.util.LongSparseArray;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -131,7 +130,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         private ArrayList<GroupMetaData> mGroups;
 
-        private boolean mLoadingPhoto;
         private byte[] mPhotoBinaryData;
         private final boolean mSendToVoicemail;
         private final String mCustomRingtone;
@@ -246,7 +244,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             mGroups = from.mGroups;
 
-            mLoadingPhoto = from.mLoadingPhoto;
             mPhotoBinaryData = from.mPhotoBinaryData;
             mSendToVoicemail = from.mSendToVoicemail;
             mCustomRingtone = from.mCustomRingtone;
@@ -263,10 +260,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mDirectoryAccountType = accountType;
             mDirectoryAccountName = accountName;
             mDirectoryExportSupport = exportSupport;
-        }
-
-        private void setLoadingPhoto(boolean flag) {
-            mLoadingPhoto = flag;
         }
 
         private void setPhotoBinaryData(byte[] photoBinaryData) {
@@ -423,10 +416,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         public String getDirectoryAccountName() {
             return mDirectoryAccountName;
-        }
-
-        public boolean isLoadingPhoto() {
-            return mLoadingPhoto;
         }
 
         public byte[] getPhotoBinaryData() {
@@ -1167,11 +1156,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                             mLookupUri, true, mObserver);
                 }
 
-                if (mContact.getPhotoBinaryData() == null && mContact.getPhotoUri() != null) {
-                    mContact.setLoadingPhoto(true);
-                    new AsyncPhotoLoader().execute(mContact.getPhotoUri());
-                }
-
                 // inform the source of the data that this contact is being looked at
                 postViewNotificationToSyncAdapter();
             }
@@ -1210,50 +1194,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 } catch (Exception e) {
                     Log.e(TAG, "Error sending message to source-app", e);
                 }
-            }
-        }
-    }
-
-    private class AsyncPhotoLoader extends AsyncTask<String, Void, byte[]> {
-
-        private static final int BUFFER_SIZE = 1024*16;
-
-        @Override
-        protected byte[] doInBackground(String... params) {
-            Uri uri = Uri.parse(params[0]);
-            byte[] data = null;
-            try {
-                InputStream is = getContext().getContentResolver().openInputStream(uri);
-                if (is != null) {
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    try {
-                        byte[] mBuffer = new byte[BUFFER_SIZE];
-
-                        int size;
-                        while ((size = is.read(mBuffer)) != -1) {
-                            baos.write(mBuffer, 0, size);
-                        }
-                        data = baos.toByteArray();
-                    } finally {
-                        is.close();
-                    }
-                } else {
-                    Log.v(TAG, "Cannot load photo " + uri);
-                }
-            } catch (IOException e) {
-                Log.e(TAG, "Cannot load photo " + uri, e);
-            }
-
-            return data;
-        }
-
-        @Override
-        protected void onPostExecute(byte[] data) {
-            if (mContact != null) {
-                mContact = new Result(mContact);
-                mContact.setPhotoBinaryData(data);
-                mContact.setLoadingPhoto(false);
-                deliverResult(mContact);
             }
         }
     }

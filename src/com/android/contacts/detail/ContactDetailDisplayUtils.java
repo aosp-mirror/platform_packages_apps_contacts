@@ -61,7 +61,6 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -208,10 +207,6 @@ public class ContactDetailDisplayUtils {
      */
     public static OnClickListener setPhoto(Context context, Result contactData,
             ImageView photoView, boolean expandPhotoOnClick) {
-        if (contactData.isLoadingPhoto()) {
-            photoView.setImageBitmap(null);
-            return null;
-        }
         byte[] photo = contactData.getPhotoBinaryData();
         Bitmap bitmap = photo != null ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
                 : ContactBadgeUtil.loadDefaultAvatarPhoto(context, true, false);
