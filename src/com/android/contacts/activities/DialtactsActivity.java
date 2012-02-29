@@ -809,6 +809,12 @@ public class DialtactsActivity extends TransactionSafeActivity {
             } else {
                 Log.e(TAG, "DialpadFragment isn't ready yet when the tab is already selected.");
             }
+        } else if (mViewPager.getCurrentItem() == TAB_INDEX_CALL_LOG) {
+            if (mCallLogFragment != null) {
+                mCallLogFragment.configureScreenFromIntent(newIntent);
+            } else {
+                Log.e(TAG, "CallLogFragment isn't ready yet when the tab is already selected.");
+            }
         }
         invalidateOptionsMenu();
     }
