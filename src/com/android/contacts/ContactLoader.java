@@ -56,6 +56,7 @@ import android.provider.ContactsContract.StreamItemPhotos;
 import android.provider.ContactsContract.StreamItems;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.LongSparseArray;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -63,7 +64,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -120,7 +120,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final Integer mPresence;
         private final ArrayList<Entity> mEntities;
         private final ArrayList<StreamItemEntry> mStreamItems;
-        private final HashMap<Long, DataStatus> mStatuses;
+        private final LongSparseArray<DataStatus> mStatuses;
         private final ArrayList<AccountType> mInvitableAccountTypes;
 
         private String mDirectoryDisplayName;
@@ -199,7 +199,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mId = id;
             mEntities = new ArrayList<Entity>();
             mStreamItems = new ArrayList<StreamItemEntry>();
-            mStatuses = new HashMap<Long, DataStatus>();
+            mStatuses = new LongSparseArray<DataStatus>();
             mNameRawContactId = nameRawContactId;
             mDisplayNameSource = displayNameSource;
             mPhotoId = photoId;
@@ -392,7 +392,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return mStreamItems;
         }
 
-        public HashMap<Long, DataStatus> getStatuses() {
+        public LongSparseArray<DataStatus> getStatuses() {
             return mStatuses;
         }
 
@@ -732,7 +732,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 Entity entity = null;
                 Result result = loadContactHeaderData(cursor, contactUri);
                 ArrayList<Entity> entities = result.getEntities();
-                HashMap<Long, DataStatus> statuses = result.getStatuses();
+                LongSparseArray<DataStatus> statuses = result.getStatuses();
                 for (; !cursor.isAfterLast(); cursor.moveToNext()) {
                     long rawContactId = cursor.getLong(ContactQuery.RAW_CONTACT_ID);
                     if (rawContactId != currentRawContactId) {
@@ -824,7 +824,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 return;
             }
 
-            HashMap<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap(invitables);
+            Map<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap(invitables);
 
             // Remove the ones that already have a raw contact in the current contact
             for (Entity entity : contactData.getEntities()) {
@@ -1066,7 +1066,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                             .appendPath(result.getLookupKey())
                             .appendPath(Contacts.StreamItems.CONTENT_DIRECTORY).build(),
                     null, null, null, null);
-            Map<Long, StreamItemEntry> streamItemsById = new HashMap<Long, StreamItemEntry>();
+            LongSparseArray<StreamItemEntry> streamItemsById =
+                    new LongSparseArray<StreamItemEntry>();
             ArrayList<StreamItemEntry> streamItems = new ArrayList<StreamItemEntry>();
             try {
                 while (cursor.moveToNext()) {

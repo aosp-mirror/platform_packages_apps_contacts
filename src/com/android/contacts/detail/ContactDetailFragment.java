@@ -42,7 +42,6 @@ import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
-import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
 

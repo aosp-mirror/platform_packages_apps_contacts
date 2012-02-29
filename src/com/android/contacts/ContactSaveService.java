@@ -727,7 +727,7 @@ public class ContactSaveService extends IntentService {
         deliverCallback(callbackIntent);
     }
 
-    private void addMembersToGroup(ContentResolver resolver, long[] rawContactsToAdd,
+    private static void addMembersToGroup(ContentResolver resolver, long[] rawContactsToAdd,
             long groupId) {
         if (rawContactsToAdd == null) {
             return;
@@ -762,9 +762,8 @@ public class ContactSaveService extends IntentService {
                 }
 
                 // Apply batch
-                ContentProviderResult[] results = null;
                 if (!rawContactOperations.isEmpty()) {
-                    results = resolver.applyBatch(ContactsContract.AUTHORITY, rawContactOperations);
+                    resolver.applyBatch(ContactsContract.AUTHORITY, rawContactOperations);
                 }
             } catch (RemoteException e) {
                 // Something went wrong, bail without success
@@ -780,7 +779,7 @@ public class ContactSaveService extends IntentService {
         }
     }
 
-    private void removeMembersFromGroup(ContentResolver resolver, long[] rawContactsToRemove,
+    private static void removeMembersFromGroup(ContentResolver resolver, long[] rawContactsToRemove,
             long groupId) {
         if (rawContactsToRemove == null) {
             return;
@@ -789,7 +788,7 @@ public class ContactSaveService extends IntentService {
             // Apply the delete operation on the data row for the given raw contact's
             // membership in the given group. If no contact matches the provided selection, then
             // nothing will be done. Just continue to the next contact.
-            getContentResolver().delete(Data.CONTENT_URI, Data.RAW_CONTACT_ID + "=? AND " +
+            resolver.delete(Data.CONTENT_URI, Data.RAW_CONTACT_ID + "=? AND " +
                     Data.MIMETYPE + "=? AND " + GroupMembership.GROUP_ROW_ID + "=?",
                     new String[] { String.valueOf(rawContactId),
                     GroupMembership.CONTENT_ITEM_TYPE, String.valueOf(groupId)});
