@@ -25,12 +25,10 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.FrameLayout;
 
 /**
@@ -99,7 +97,7 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
         if (mExitAnimation == null) {
             throw new IllegalArgumentException("Invalid exit animation: " + mExitAnimationId);
         }
-
+        mExitAnimation.setDuration(mAnimationDuration);
     }
 
     @Override
@@ -136,23 +134,7 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
         }
     }
 
-    public static void startAnimation(View view, boolean closing) {
-        TransitionAnimationView container = null;
-        ViewParent parent = view.getParent();
-        while (parent instanceof View) {
-            if (parent instanceof TransitionAnimationView) {
-                container = (TransitionAnimationView) parent;
-                break;
-            }
-            parent = parent.getParent();
-        }
-
-        if (container != null) {
-            container.start(view, closing);
-        }
-    }
-
-    private void start(View view, boolean closing) {
+    public void startTransition(View view, boolean closing) {
         if (mEnterAnimation.isRunning()) {
             mEnterAnimation.end();
         }
@@ -172,11 +154,8 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
                 return;
             }
 
+            mPreviousStateBitmap.eraseColor(Color.TRANSPARENT);
             Canvas canvas = new Canvas(mPreviousStateBitmap);
-            Paint paint = new Paint();
-            paint.setColor(Color.TRANSPARENT);
-            canvas.drawRect(0, 0, mPreviousStateBitmap.getWidth(), mPreviousStateBitmap.getHeight(),
-                    paint);
             canvas.clipRect(mClipRect);
             view.draw(canvas);
             canvas.setBitmap(null);

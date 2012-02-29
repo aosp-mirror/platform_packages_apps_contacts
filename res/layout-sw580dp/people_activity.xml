@@ -72,10 +72,7 @@
                 android:id="@+id/contact_detail_container"
                 layout="@layout/contact_detail_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dip"
-                android:layout_marginLeft="16dip"
-                android:layout_marginRight="16dip"/>
+                android:layout_height="match_parent" />
 
             <!-- This invisible worker fragment loads the contact's details -->
             <fragment
@@ -94,54 +91,41 @@
                 android:visibility="gone" />
         </view>
 
-        <view
-            class="com.android.contacts.widget.TransitionAnimationView"
+        <LinearLayout
             android:id="@+id/favorites_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            ex:clipMarginLeft="0dip"
-            ex:clipMarginTop="3dip"
-            ex:clipMarginRight="3dip"
-            ex:clipMarginBottom="9dip"
-            ex:enterAnimation="@android:animator/fade_in"
-            ex:exitAnimation="@android:animator/fade_out"
-            ex:animationDuration="200">
+            android:background="@drawable/list_background_holo"
+            android:baselineAligned="false">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Starred -->
+            <FrameLayout
+                android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:background="@drawable/list_background_holo"
-                android:baselineAligned="false">
+                android:layout_weight="10"
+                android:background="@drawable/panel_favorites_holo_light">
 
-                <!-- Starred -->
-                <FrameLayout
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:background="@drawable/panel_favorites_holo_light">
-
-                    <fragment
-                        android:id="@+id/favorites_fragment"
-                        class="com.android.contacts.list.ContactTileListFragment"
-                        android:layout_height="match_parent"
-                        android:layout_width="match_parent"
-                        android:layout_marginRight="16dip"
-                        android:layout_marginLeft="16dip"/>
-
-                </FrameLayout>
-
-                <!-- Most Frequent -->
                 <fragment
-                    android:id="@+id/frequent_fragment"
-                    class="com.android.contacts.list.ContactTileFrequentFragment"
-                    android:layout_width="0dip"
+                    android:id="@+id/favorites_fragment"
+                    class="com.android.contacts.list.ContactTileListFragment"
                     android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:layout_marginTop="16dip"
-                    android:layout_marginRight="16dip"/>
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="16dip"
+                    android:layout_marginLeft="16dip"/>
 
-            </LinearLayout>
-        </view>
+            </FrameLayout>
+
+            <!-- Most Frequent -->
+            <fragment
+                android:id="@+id/frequent_fragment"
+                class="com.android.contacts.list.ContactTileFrequentFragment"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:layout_marginTop="16dip"
+                android:layout_marginRight="16dip"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

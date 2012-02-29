@@ -20,7 +20,9 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UriUtils;
+import com.android.contacts.widget.TransitionAnimationView;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -35,6 +37,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -51,6 +54,8 @@ public class ContactDetailLayoutController {
     private static final int TAB_INDEX_DETAIL = 0;
     private static final int TAB_INDEX_UPDATES = 1;
 
+    private final int SINGLE_PANE_FADE_IN_DURATION = 275;
+
     /**
      * There are 3 possible layouts for the contact detail screen:
      * 1. TWO_COLUMN - Tall and wide screen so the 2 pages can be shown side-by-side
@@ -65,7 +70,8 @@ public class ContactDetailLayoutController {
     private final LayoutInflater mLayoutInflater;
     private final FragmentManager mFragmentManager;
 
-    private View mViewContainer;
+    private final View mViewContainer;
+    private final TransitionAnimationView mTransitionAnimationView;
     private ContactDetailFragment mDetailFragment;
     private ContactDetailUpdatesFragment mUpdatesFragment;
 
@@ -79,7 +85,7 @@ public class ContactDetailLayoutController {
     private final ContactDetailTabCarousel mTabCarousel;
     private final ContactDetailFragmentCarousel mFragmentCarousel;
 
-    private ContactDetailFragment.Listener mContactDetailFragmentListener;
+    private final ContactDetailFragment.Listener mContactDetailFragmentListener;
 
     private ContactLoader.Result mContactData;
     private Uri mContactUri;
@@ -91,8 +97,8 @@ public class ContactDetailLayoutController {
     private LayoutMode mLayoutMode;
 
     public ContactDetailLayoutController(Activity activity, Bundle savedState,
-            FragmentManager fragmentManager, View viewContainer, ContactDetailFragment.Listener
-            contactDetailFragmentListener) {
+            FragmentManager fragmentManager, TransitionAnimationView animationView,
+            View viewContainer, ContactDetailFragment.Listener contactDetailFragmentListener) {
 
         if (fragmentManager == null) {
             throw new IllegalStateException("Cannot initialize a ContactDetailLayoutController "
@@ -105,8 +111,11 @@ public class ContactDetailLayoutController {
         mFragmentManager = fragmentManager;
         mContactDetailFragmentListener = contactDetailFragmentListener;
 
+        mTransitionAnimationView = animationView;
+
         // Retrieve views in case this is view pager and carousel mode
         mViewContainer = viewContainer;
+
         mViewPager = (ViewPager) viewContainer.findViewById(R.id.pager);
         mTabCarousel = (ContactDetailTabCarousel) viewContainer.findViewById(R.id.tab_carousel);
 
@@ -239,17 +248,36 @@ public class ContactDetailLayoutController {
     }
 
     public void setContactData(ContactLoader.Result data) {
-        final Boolean contactHadUpdates;
+        final boolean contactWasLoaded;
+        final boolean contactHadUpdates;
         if (mContactData == null) {
-            contactHadUpdates = null;
+            contactHadUpdates = false;
+            contactWasLoaded = false;
         } else {
             contactHadUpdates = mContactHasUpdates;
+            contactWasLoaded = true;
         }
         mContactData = data;
         mContactHasUpdates = !data.getStreamItems().isEmpty();
+
+        if (PhoneCapabilityTester.isUsingTwoPanes(mActivity)) {
+            // Tablet: If we already showed data before, we want to cross-fade from screen to screen
+            if (contactWasLoaded && mTransitionAnimationView != null) {
+                mTransitionAnimationView.startTransition(mViewContainer, mContactData == null);
+            }
+        } else {
+            // Small screen: We are on our own screen. Fade the data in, but only the first time
+            if (!contactWasLoaded) {
+                mViewContainer.setAlpha(0.0f);
+                final ViewPropertyAnimator animator = mViewContainer.animate();
+                animator.alpha(1.0f);
+                animator.setDuration(SINGLE_PANE_FADE_IN_DURATION);
+            }
+        }
+
         if (mContactHasUpdates) {
             showContactWithUpdates(
-                    contactHadUpdates != null && contactHadUpdates.booleanValue() == false);
+                    contactWasLoaded && contactHadUpdates == false);
         } else {
             showContactWithoutUpdates();
         }

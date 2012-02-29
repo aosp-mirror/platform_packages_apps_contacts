@@ -100,7 +100,7 @@ public class ContactDetailActivity extends ContactsActivity {
         setContentView(R.layout.contact_detail_activity);
 
         mContactDetailLayoutController = new ContactDetailLayoutController(this, savedState,
-                getFragmentManager(), findViewById(R.id.contact_detail_container),
+                getFragmentManager(), null, findViewById(R.id.contact_detail_container),
                 mContactDetailFragmentListener);
 
         // We want the UP affordance but no app icon.
