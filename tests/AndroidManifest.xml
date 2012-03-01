@@ -28,6 +28,9 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_SOCIAL_STREAM" />
+
     <application>
         <uses-library android:name="android.test.runner" />
         <meta-data android:name="com.android.contacts.iconset" android:resource="@xml/iconset" />
