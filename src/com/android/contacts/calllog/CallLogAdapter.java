@@ -48,7 +48,7 @@ import libcore.util.Objects;
  * Adapter class to fill in data for the Call Log.
  */
 /*package*/ class CallLogAdapter extends GroupingListAdapter
-        implements Runnable, ViewTreeObserver.OnPreDrawListener, CallLogGroupBuilder.GroupCreator {
+        implements ViewTreeObserver.OnPreDrawListener, CallLogGroupBuilder.GroupCreator {
     /** Interface used to initiate a refresh of the content. */
     public interface CallFetcher {
         public void fetchCalls();
@@ -94,6 +94,7 @@ import libcore.util.Objects;
     private final Context mContext;
     private final ContactInfoHelper mContactInfoHelper;
     private final CallFetcher mCallFetcher;
+    private ViewTreeObserver mViewTreeObserver = null;
 
     /**
      * A cache of the contact details for the phone numbers in the call log.
@@ -159,14 +160,11 @@ import libcore.util.Objects;
      */
     private final LinkedList<ContactInfoRequest> mRequests;
 
-    private volatile boolean mDone;
     private boolean mLoading = true;
-    private ViewTreeObserver.OnPreDrawListener mPreDrawListener;
     private static final int REDRAW = 1;
     private static final int START_THREAD = 2;
 
-    private boolean mFirst;
-    private Thread mCallerIdThread;
+    private QueryThread mCallerIdThread;
 
     /** Instance of helper class for managing views. */
     private final CallLogListItemHelper mCallLogViewsHelper;
@@ -204,11 +202,15 @@ import libcore.util.Objects;
 
     @Override
     public boolean onPreDraw() {
-        if (mFirst) {
-            mHandler.sendEmptyMessageDelayed(START_THREAD,
-                    START_PROCESSING_REQUESTS_DELAY_MILLIS);
-            mFirst = false;
+        // We only wanted to listen for the first draw (and this is it).
+        unregisterPreDrawListener();
+
+        // Only schedule a thread-creation message if the thread hasn't been
+        // created yet. This is purely an optimization, to queue fewer messages.
+        if (mCallerIdThread == null) {
+            mHandler.sendEmptyMessageDelayed(START_THREAD, START_PROCESSING_REQUESTS_DELAY_MILLIS);
         }
+
         return true;
     }
 
@@ -236,7 +238,6 @@ import libcore.util.Objects;
 
         mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
         mRequests = new LinkedList<ContactInfoRequest>();
-        mPreDrawListener = null;
 
         Resources resources = mContext.getResources();
         CallTypeHelper callTypeHelper = new CallTypeHelper(resources);
@@ -273,35 +274,53 @@ import libcore.util.Objects;
         }
     }
 
-    private void startRequestProcessing() {
-        if (mRequestProcessingDisabled) {
-            return;
-        }
+    /**
+     * Starts a background thread to process contact-lookup requests, unless one
+     * has already been started.
+     */
+    private synchronized void startRequestProcessing() {
+        // For unit-testing.
+        if (mRequestProcessingDisabled) return;
 
-        mDone = false;
-        mCallerIdThread = new Thread(this, "CallLogContactLookup");
+        // Idempotence... if a thread is already started, don't start another.
+        if (mCallerIdThread != null) return;
+
+        mCallerIdThread = new QueryThread();
         mCallerIdThread.setPriority(Thread.MIN_PRIORITY);
         mCallerIdThread.start();
     }
 
     /**
-     * Stops the background thread that processes updates and cancels any pending requests to
-     * start it.
-     * <p>
-     * Should be called from the main thread to prevent a race condition between the request to
-     * start the thread being processed and stopping the thread.
+     * Stops the background thread that processes updates and cancels any
+     * pending requests to start it.
      */
-    public void stopRequestProcessing() {
+    public synchronized void stopRequestProcessing() {
         // Remove any pending requests to start the processing thread.
         mHandler.removeMessages(START_THREAD);
-        mDone = true;
-        if (mCallerIdThread != null) mCallerIdThread.interrupt();
+        if (mCallerIdThread != null) {
+            // Stop the thread; we are finished with it.
+            mCallerIdThread.stopProcessing();
+            mCallerIdThread.interrupt();
+            mCallerIdThread = null;
+        }
+    }
+
+    /**
+     * Stop receiving onPreDraw() notifications.
+     */
+    private void unregisterPreDrawListener() {
+        if (mViewTreeObserver != null && mViewTreeObserver.isAlive()) {
+            mViewTreeObserver.removeOnPreDrawListener(this);
+        }
+        mViewTreeObserver = null;
     }
 
     public void invalidateCache() {
         mContactInfoCache.expireAll();
-        // Let it restart the thread after next draw
-        mPreDrawListener = null;
+
+        // Restart the request-processing thread after the next draw.
+        stopRequestProcessing();
+        unregisterPreDrawListener();
     }
 
     /**
@@ -323,10 +342,7 @@ import libcore.util.Objects;
                 mRequests.notifyAll();
             }
         }
-        if (mFirst && immediate) {
-            startRequestProcessing();
-            mFirst = false;
-        }
+        if (immediate) startRequestProcessing();
     }
 
     /**
@@ -362,34 +378,60 @@ import libcore.util.Objects;
         updateCallLogContactInfoCache(number, countryIso, info, callLogInfo);
         return updated;
     }
+
     /*
-     * Handles requests for contact name and number type
-     * @see java.lang.Runnable#run()
+     * Handles requests for contact name and number type.
      */
-    @Override
-    public void run() {
-        boolean needNotify = false;
-        while (!mDone) {
-            ContactInfoRequest request = null;
-            synchronized (mRequests) {
-                if (!mRequests.isEmpty()) {
-                    request = mRequests.removeFirst();
-                } else {
-                    if (needNotify) {
-                        needNotify = false;
-                        mHandler.sendEmptyMessage(REDRAW);
-                    }
-                    try {
-                        mRequests.wait(1000);
-                    } catch (InterruptedException ie) {
-                        // Ignore and continue processing requests
-                        Thread.currentThread().interrupt();
+    private class QueryThread extends Thread {
+        private volatile boolean mDone = false;
+
+        public QueryThread() {
+            super("CallLogAdapter.QueryThread");
+        }
+
+        public void stopProcessing() {
+            mDone = true;
+        }
+
+        @Override
+        public void run() {
+            boolean needRedraw = false;
+            while (true) {
+                // Check if thread is finished, and if so return immediately.
+                if (mDone) return;
+
+                // Obtain next request, if any is available.
+                // Keep synchronized section small.
+                ContactInfoRequest req = null;
+                synchronized (mRequests) {
+                    if (!mRequests.isEmpty()) {
+                        req = mRequests.removeFirst();
                     }
                 }
-            }
-            if (!mDone && request != null
-                    && queryContactInfo(request.number, request.countryIso, request.callLogInfo)) {
-                needNotify = true;
+
+                if (req != null) {
+                    // Process the request. If the lookup succeeds, schedule a
+                    // redraw.
+                    needRedraw |= queryContactInfo(req.number, req.countryIso, req.callLogInfo);
+                } else {
+                    // Throttle redraw rate by only sending them when there are
+                    // more requests.
+                    if (needRedraw) {
+                        needRedraw = false;
+                        mHandler.sendEmptyMessage(REDRAW);
+                    }
+
+                    // Wait until another request is available, or until this
+                    // thread is no longer needed (as indicated by being
+                    // interrupted).
+                    try {
+                        synchronized (mRequests) {
+                            mRequests.wait(1000);
+                        }
+                    } catch (InterruptedException ie) {
+                        // Ignore, and attempt to continue processing requests.
+                    }
+                }
             }
         }
     }
@@ -567,10 +609,9 @@ import libcore.util.Objects;
         setPhoto(views, photoId, lookupUri);
 
         // Listen for the first draw
-        if (mPreDrawListener == null) {
-            mFirst = true;
-            mPreDrawListener = this;
-            view.getViewTreeObserver().addOnPreDrawListener(this);
+        if (mViewTreeObserver == null) {
+            mViewTreeObserver = view.getViewTreeObserver();
+            mViewTreeObserver.addOnPreDrawListener(this);
         }
     }
 
@@ -647,9 +688,7 @@ import libcore.util.Objects;
             needsUpdate = true;
         }
 
-        if (!needsUpdate) {
-            return;
-        }
+        if (!needsUpdate) return;
 
         if (countryIso == null) {
             mContext.getContentResolver().update(Calls.CONTENT_URI_WITH_VOICEMAIL, values,
