@@ -245,7 +245,7 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Mae-export ang <xliff:g id="FILENAME">%s</xliff:g> sa ilang saglit."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Tinanggihan ang kahilingan sa pag-export ng vCard. Subukang muli sa ibang pagkakataon."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"contact"</string>
-    <string name="percentage" msgid="1887004062152632812">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"I-export ang mga contact?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Ang listahan ng iyong contact ay ie-export sa file: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Hindi ma-export"</string>
@@ -402,7 +402,6 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"Tingnan ang mga pangalan ng contact bilang"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Pangalan muna"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Apelyido muna"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"Maghanap ng mga contact"</string>
     <string name="take_photo" msgid="7496128293167402354">"Kumuha ng larawan"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Kumuha ng bagong larawan"</string>
     <string name="pick_photo" msgid="3746334626214970837">"Pumili ng larawan mula sa Gallery"</string>
@@ -486,7 +485,7 @@
     <string name="clear_default" msgid="7193185801596678067">"I-clear ang default"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Kinopya ang teksto"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Itapon ang iyong mga pagbabago?"</string>
-    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"I-set up ang aking profile"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"I-type ang pangalan ng tao"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Tingnan ang mga update"</string>

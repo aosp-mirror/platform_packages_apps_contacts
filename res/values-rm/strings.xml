@@ -266,9 +266,7 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto dal contact"</string>
     <string name="description_minus_button" msgid="387136707700230172">"minus"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <!-- no translation found for description_view_contact_detail (9133251213656414807) -->
-    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
-    <skip />
+    <string name="description_view_contact_detail" msgid="9133251213656414807">"Mussar il contact"</string>
     <!-- no translation found for no_sdcard_message (5242558018442357189) -->
     <skip />
     <!-- no translation found for no_sdcard_message (3357810406684913482) -->
@@ -338,7 +336,7 @@
     <skip />
     <!-- no translation found for vcard_unknown_filename (7171709890959915954) -->
     <skip />
-    <!-- no translation found for percentage (1887004062152632812) -->
+    <!-- no translation found for percentage (1044592438199055502) -->
     <skip />
     <!-- no translation found for confirm_export_title (6834385377255286349) -->
     <skip />
@@ -547,7 +545,6 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"Mussar ils nums da contacts sco"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"L\'emprim il prenum"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"L\'emprim il num da famiglia"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"Retschertgar ils contacts"</string>
     <string name="take_photo" msgid="7496128293167402354">"Far ina foto"</string>
     <!-- no translation found for take_new_photo (7341354729436576304) -->
     <skip />
@@ -680,7 +677,7 @@
     <skip />
     <!-- no translation found for cancel_confirmation_dialog_message (5885724679874403115) -->
     <skip />
-    <!-- no translation found for call_type_and_date (1766269584078149149) -->
+    <!-- no translation found for call_type_and_date (747163730039311423) -->
     <skip />
     <!-- no translation found for profile_display_name (4127389543625918771) -->
     <skip />
@@ -799,9 +796,7 @@
     <skip />
     <!-- no translation found for add_new_account (5748627740680940264) -->
     <skip />
-    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
-    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
-    <skip />
+    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Il clom n\'è betg vegnì exequì."</string>
     <!-- no translation found for dialog_voicemail_not_ready_message (4384716252789515378) -->
     <skip />
     <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->

@@ -245,7 +245,7 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g>을(를) 곧 내보냅니다."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard 내보내기 요청이 거부되었습니다. 나중에 다시 시도해 주세요."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"연락처"</string>
-    <string name="percentage" msgid="1887004062152632812">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"주소록을 내보내시겠습니까?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"연락처 목록을 <xliff:g id="VCARD_FILENAME">%s</xliff:g> 파일로 내보냅니다."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"내보내기 실패"</string>
@@ -402,7 +402,6 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"연락처 이름 표시 방법:"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"이름 먼저 표시"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"성 먼저 표시"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"연락처 검색"</string>
     <string name="take_photo" msgid="7496128293167402354">"사진 찍기"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"새 사진 가져오기"</string>
     <string name="pick_photo" msgid="3746334626214970837">"갤러리에서 사진 선택"</string>
@@ -486,7 +485,7 @@
     <string name="clear_default" msgid="7193185801596678067">"기본 설정 지우기"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"텍스트 복사됨"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"변경사항을 삭제하시겠습니까?"</string>
-    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g> "</string>
+    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"내 프로필 설정"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"이름 입력"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"업데이트 보기"</string>
@@ -528,11 +527,11 @@
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"음성사서함"</string>
     <string name="description_add_contact" msgid="3103414772502485851">"연락처 추가"</string>
     <string name="description_view_contact" msgid="5205669345700598415">"<xliff:g id="NAME">%1$s</xliff:g>님의 연락처 보기"</string>
-    <string name="description_call" msgid="3443678121983852666">"<xliff:g id="NAME">%1$s</xliff:g>님에게 전화걸기"</string>
+    <string name="description_call" msgid="3443678121983852666">"전화하기:<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"<xliff:g id="NAME">%1$s</xliff:g>님에게 문자 메시지 보내기"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"듣지 않은 음성사서함"</string>
     <string name="description_send_message" msgid="6046623392322890962">"<xliff:g id="NAME">%1$s</xliff:g>님에게 메시지 보내기"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g>님에게 전화걸기"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"전화하기:<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>님의 빠른 주소록"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"나"</string>

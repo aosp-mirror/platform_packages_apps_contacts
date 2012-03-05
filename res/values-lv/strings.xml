@@ -245,7 +245,7 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Fails <xliff:g id="FILENAME">%s</xliff:g> tiks drīzumā eksportēts."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Tika noraidīts vCard faila eksportēšanas pieprasījums. Vēlāk mēģiniet vēlreiz."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontaktpersona"</string>
-    <string name="percentage" msgid="1887004062152632812">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Vai eksp. kontaktp.?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Kontaktpersonu saraksts tiks eksportēts uz failu <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Nevarēja eksportēt"</string>
@@ -402,7 +402,6 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"Kontaktpersonu vārdu attēlošana:"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Vispirms rādīt vārdu"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Vispirms rādīt uzvārdu"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"Meklēt kontaktpersonas"</string>
     <string name="take_photo" msgid="7496128293167402354">"Uzņemt fotoattēlu"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Uzņemt jaunu fotoattēlu"</string>
     <string name="pick_photo" msgid="3746334626214970837">"Izvēlēties fotoattēlu no galerijas"</string>
@@ -486,7 +485,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Notīrīt noklusējuma iestatījumus"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Teksts ir nokopēts"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vai atmest veiktās izmaiņas?"</string>
-    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g><xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> — <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Iestatīt savu profilu"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Rakstiet personas vārdu."</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Skatīt atjaunināj."</string>

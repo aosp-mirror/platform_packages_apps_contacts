@@ -245,7 +245,8 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Vizitka <xliff:g id="FILENAME">%s</xliff:g> bude čoskoro exportovaná."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Žiadosť o exportovanie vizitky vCard bola odmietnutá. Skúste to znova neskôr."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
-    <string name="percentage" msgid="1887004062152632812">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <!-- no translation found for percentage (1044592438199055502) -->
+    <skip />
     <string name="confirm_export_title" msgid="6834385377255286349">"Exportovať kontakty?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Váš zoznam kontaktov bude exportovaný do súboru: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Export sa nepodaril"</string>
@@ -402,7 +403,6 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"Zobrazenie mien kontaktov"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Najskôr krstné meno"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Najskôr priezvisko"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"Hľadať v kontaktoch"</string>
     <string name="take_photo" msgid="7496128293167402354">"Zaznamenať fotografiu"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Urobiť novú fotografiu"</string>
     <string name="pick_photo" msgid="3746334626214970837">"Vybrať fotografiu z Galérie"</string>
@@ -486,7 +486,8 @@
     <string name="clear_default" msgid="7193185801596678067">"Vymazať predvolené nastavenia"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text bol skopírovaný"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Zahodiť zmeny?"</string>
-    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for call_type_and_date (747163730039311423) -->
+    <skip />
     <string name="profile_display_name" msgid="4127389543625918771">"Nastaviť môj profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Zadajte meno osoby"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Zobraziť aktualizácie"</string>

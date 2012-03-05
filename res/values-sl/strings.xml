@@ -245,7 +245,7 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Dat. <xliff:g id="FILENAME">%s</xliff:g> bo kmalu izvožena."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Zahteva za izvoz datoteke vCard je bila zavrnjena. Poskusite znova pozneje."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"stik"</string>
-    <string name="percentage" msgid="1887004062152632812">"<xliff:g id="PERCENTAGE">%s</xliff:g> <xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Želite izvoz. stike?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Seznam stikov bo izvožen v datoteko: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Izvoz ni mogoč"</string>
@@ -402,7 +402,6 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"Prikaži imena stikov kot"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Najprej ime"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Najprej priimek"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"Iskanje stikov"</string>
     <string name="take_photo" msgid="7496128293167402354">"Posnemi fotografijo"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Posnemi novo fotografijo"</string>
     <string name="pick_photo" msgid="3746334626214970837">"Izberite fotografijo iz galerije"</string>
@@ -486,7 +485,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Počisti privzeto"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Besedilo kopirano"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Ali želite zavreči spremembe?"</string>
-    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Nastavi moj profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Vnesite ime osebe"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Prikaz posodobitev"</string>
