@@ -17,7 +17,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="40dip"
+    android:minHeight="48dip"
     android:paddingLeft="@dimen/editor_add_field_label_left_padding"
     android:background="?android:attr/selectableItemBackground">
     <TextView
