@@ -280,9 +280,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                         public void onClick(View v) {
                             // Once the user expands the organization field, the user cannot
                             // collapse them again.
-                            addOrganizationButton.setVisibility(View.GONE);
-                            organizationSectionViewContainer.setVisibility(View.VISIBLE);
-                            organizationSectionViewContainer.requestFocus();
+                            EditorAnimator.getInstance().expandOrganization(addOrganizationButton,
+                                    organizationSectionViewContainer);
                         }
                     });
 

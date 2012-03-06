@@ -178,7 +178,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         mEntry.markDeleted();
 
         // Remove the view
-        ((ViewGroup) getParent()).removeView(LabeledEditorView.this);
+        EditorAnimator.getInstance().removeEditorView(this);
     }
 
     public boolean isReadOnly() {
