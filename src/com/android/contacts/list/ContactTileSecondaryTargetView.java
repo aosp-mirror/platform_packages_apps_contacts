@@ -46,7 +46,11 @@ public class ContactTileSecondaryTargetView extends ContactTileStarredView {
         mSecondaryButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getContext().startActivity(new Intent(Intent.ACTION_VIEW, getLookupUri()));
+                Intent intent = new Intent(Intent.ACTION_VIEW, getLookupUri());
+                // Secondary target will be visible only from phone's favorite screen, then
+                // we want to launch it as a separate People task.
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getContext().startActivity(intent);
             }
         });
     }

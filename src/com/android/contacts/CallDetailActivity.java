@@ -408,6 +408,10 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
 
                 if (contactUri != null) {
                     mainActionIntent = new Intent(Intent.ACTION_VIEW, contactUri);
+                    // This will launch People's detail contact screen, so we probably want to
+                    // treat it as a separate People task.
+                    mainActionIntent.setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     mainActionIcon = R.drawable.ic_contacts_holo_dark;
                     mainActionDescription =
                             getString(R.string.description_view_contact, nameOrNumber);
