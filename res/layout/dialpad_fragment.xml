@@ -98,7 +98,7 @@
             android:layout_height="?android:attr/actionBarSize"
             android:layout_gravity="bottom|center_horizontal"
             android:src="@drawable/ic_menu_overflow"
-            android:contentDescription="@*android:string/action_menu_overflow_description"
+            android:contentDescription="@string/action_menu_overflow_description"
             android:nextFocusLeft="@id/digits"
             android:background="?android:attr/selectableItemBackground"/>
     </LinearLayout>
