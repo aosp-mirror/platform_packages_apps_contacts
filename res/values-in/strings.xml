@@ -213,24 +213,24 @@
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Impor dari penyimpanan"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Ekspor ke penyimpanan"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Bagikan kenalan yang terlihat"</string>
-    <string name="import_one_vcard_string" msgid="9059163467020328433">"Impor satu berkas vCard"</string>
-    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Impor beberapa berkas vCard"</string>
-    <string name="import_all_vcard_string" msgid="5518136113853448474">"Impor semua berkas vCard"</string>
+    <string name="import_one_vcard_string" msgid="9059163467020328433">"Impor satu file vCard"</string>
+    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Impor beberapa file vCard"</string>
+    <string name="import_all_vcard_string" msgid="5518136113853448474">"Impor semua file vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Menelusuri data vCard dalam penyimpanan..."</string>
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Menelusuri data vCard pada kartu SD..."</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Penyimpanan tidak dapat dipindai. (Alasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Kartu SD tidak dapat dipindai. (Alasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"Galat I/O"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Memori tidak cukup. Berkas mungkin terlalu besar."</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Memori tidak cukup. File mungkin terlalu besar."</string>
     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Tidak dapat mengurai vCard karena alasan yang tak terduga."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Format tidak didukung."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"Tidak dapat mengimpor vCard."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Tidak ditemukan berkas vCard dalam penyimpanan."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Tidak ditemukan berkas vCard pada kartu SD."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Tidak dapat mengumpulkan informasi meta dari berkas vCard yang diberikan."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Satu berkas atau lebih tidak dapat diimpor (%s)."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Tidak ditemukan file vCard dalam penyimpanan."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Tidak ditemukan file vCard pada kartu SD."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Tidak dapat mengumpulkan informasi meta dari file vCard yang diberikan."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Satu file atau lebih tidak dapat diimpor (%s)."</string>
     <string name="fail_reason_unknown" msgid="1714092345030570863">"Galat tidak dikenal."</string>
-    <string name="select_vcard_title" msgid="7791371083694672861">"Pilih berkas vCard"</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"Pilih file vCard"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Menyimpan ke tembolok"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"Menyimpan vCard ke tembolok untuk penyimpanan lokal sementara. Impor yang sebenarnya akan segera dimulai."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Mengimpor <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -240,20 +240,20 @@
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Selesai mengimpor vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Mengimpor <xliff:g id="FILENAME">%s</xliff:g> dibatalkan"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> akan segera diimpor."</string>
-    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Berkas akan diimpor segera."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"File akan diimpor segera."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Permintaan impor vCard ditolak. Coba lagi nanti."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> akan segera diekspor."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Permintaan ekspor vCard ditolak. Coba lagi nanti."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kenalan"</string>
     <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Ekspor data kenalan?"</string>
-    <string name="confirm_export_message" msgid="2423421354816428708">"Daftar data kenalan Anda akan diekspor ke berkas: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"Daftar data kenalan Anda akan diekspor ke file: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Tak dapat mengekspor"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Data kenalan tidak diekspor."\n"Alasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Tidak ada data kenalan yang dapat diekspor."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Terlalu banyak berkas vCard dalam penyimpanan."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Terlalu banyak berkas vCard di kartu SD."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Nama berkas yang diperlukan terlalu panjang (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Terlalu banyak file vCard dalam penyimpanan."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Terlalu banyak file vCard di kartu SD."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Nama file yang diperlukan terlalu panjang (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Selesai mengekspor <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Mengekspor <xliff:g id="FILENAME">%s</xliff:g> dibatalkan."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Mengekspor data kenalan"</string>
@@ -273,7 +273,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Tambahkan jeda 2-det"</string>
     <string name="add_wait" msgid="3360818652790319634">"Tambahkan tunggu"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Panggil menggunakan"</string>
-    <string name="call_settings" msgid="7666474782093693667">"Setelan"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Pengaturan"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"SMS menggunakan"</string>
     <string name="make_primary" msgid="5829291915305113983">"Ingat pilihan ini"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Tidak ada apl yang ditemukan untuk menangani tindakan ini."</string>
@@ -447,9 +447,9 @@
     <string name="list_filter_single" msgid="5871400283515893087">"Kenalan"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan ubahsuaian"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Memuat..."</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"Setelan"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Pengaturan"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kenalan untuk ditampilkan"</string>
-    <string name="menu_settings" msgid="377929915873428211">"Setelan"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Pengaturan"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opsi tampilan"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Temukan kenalan"</string>
@@ -538,16 +538,16 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Profil lokal saya"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> saya"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Menampilkan semua kenalan"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Orang bekerja lebih baik dengan Akun Google."\n\n"• Akses dari peramban web mana pun."\n"• Cadangkan data kenalan Anda dengan aman."</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tetap amankan data kenalan Anda jika kehilangan ponsel: sinkronkan dengan layanan daring."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Orang bekerja lebih baik dengan Akun Google."\n\n"• Akses dari browser web mana pun."\n"• Cadangkan data kenalan Anda dengan aman."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tetap amankan data kenalan Anda jika kehilangan ponsel: sinkronkan dengan layanan online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tambahkan akun"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Data kenalan baru Anda tidak akan dicadangkan. Tambahkan akun yang mencadangkan data kenalan secara daring?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Data kenalan baru Anda tidak akan dicadangkan. Tambahkan akun yang mencadangkan data kenalan secara online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Data kenalan baru Anda akan disinkronkan dengan <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Anda dapat menyinkronkan data kenalan baru dengan salah satu akun berikut. Akun mana yang ingin Anda gunakan?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Simpan secara lokal"</string>
     <string name="add_account" msgid="8201790677994503186">"Tambahkan akun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambahkan akun baru"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Panggilan tidak terkirim"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Untuk menyiapkan kotak pesan, buka Menu &gt; Setelan."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Untuk menyiapkan kotak pesan, buka Menu &gt; Pengaturan."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Untuk memanggil pesan suara, pertama-tama matikan mode Pesawat."</string>
 </resources>

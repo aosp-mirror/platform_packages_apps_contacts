@@ -539,7 +539,7 @@
     <string name="external_profile_title" msgid="8034998767621359438">"የእኔ የ<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> መገለጫ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ሁሉንም ዕውቂያዎች በማሳየት ላይ"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"ሰዎች በGoogle መለያ የተሻለ ይሰራሉ።"\n\n"• ከማንኛውም የድረ ማሰሻ ላይ ይድረሱበት።"\n"• ዝግጅቶችዎን በደንብ ያስጠብቁ"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"ስልክህ ቢጠፋብህ እንኳ ዕውቂያዎችህን ደህንነታቸው እንደተጠበቀ እንዲቆዩ አድርግ ከመስመር ላይ አገልገሎት ጋር አመሳስለው::"</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"ስልክህ ቢጠፋብህ እንኳን  ዕውቂያዎችህን ደህንነታቸው እንደተጠበቀ እንዲቆዩ አድርግ ከመስመር ላይ አገልገሎት ጋር አመሳስለው::"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"መለያ አክል"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"አዲሱ  ዕውቅያ ምትክ አይቀመጥለትም:: በመስመር ላይ ዕውቅያዎች በምትክ የሚያስቀምጥ መለያ አክል?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"አዲሱ ዕውቅያህ ከ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ጋር ይመሳሰላል፡፡"</string>

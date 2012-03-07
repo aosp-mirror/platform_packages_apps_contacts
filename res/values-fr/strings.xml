@@ -182,7 +182,7 @@
     <string name="callBack" msgid="5498224409038809224">"Rappeler"</string>
     <string name="callAgain" msgid="3197312117049874778">"Renouveler l\'appel"</string>
     <string name="returnCall" msgid="8171961914203617813">"Rappeler"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> mn <xliff:g id="SECONDS">%s</xliff:g> s"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Contacts fréquents"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Appels fréquents"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Ajouter \"<xliff:g id="EMAIL">%s</xliff:g>\" aux contacts ?"</string>
@@ -245,8 +245,7 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Exportation du fichier <xliff:g id="FILENAME">%s</xliff:g> imminente"</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"La demande d\'exportation du fichier vCard a été rejetée. Veuillez réessayer ultérieurement."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"contact"</string>
-    <!-- no translation found for percentage (1044592438199055502) -->
-    <skip />
+    <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g> <xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Exporter contacts ?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Votre liste de contacts va être exportée vers le fichier \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Échec exportation"</string>
@@ -486,8 +485,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Effacer les valeurs par défaut"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texte copié"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Annuler les modifications ?"</string>
-    <!-- no translation found for call_type_and_date (747163730039311423) -->
-    <skip />
+    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configurer mon profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Saisissez le nom de la personne"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Afficher mises à jour"</string>

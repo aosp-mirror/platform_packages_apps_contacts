@@ -247,8 +247,7 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> akan dieksport sebentar lagi."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Permintaan eksport vCard telah ditolak. Cuba lagi nanti."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kenalan"</string>
-    <!-- no translation found for percentage (1044592438199055502) -->
-    <skip />
+    <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Eksport kenalan?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Senarai kenalan anda akan dieksport ke: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Tidak boleh mengeksport"</string>
@@ -488,8 +487,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Kosongkan lalai"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Teks disalin"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Buang perubahan anda?"</string>
-    <!-- no translation found for call_type_and_date (747163730039311423) -->
-    <skip />
+    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Sediakan profil saya"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Taip nama orang"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Lihat kemas kini"</string>
