@@ -888,7 +888,7 @@ public class DialpadFragment extends Fragment
                 // Just for safety we also check if the digits field is empty or not.
                 if (isDigitsEmpty() || TextUtils.equals(mDigits.getText(), "1")) {
                     // We'll try to initiate voicemail and thus we want to remove irrelevant string.
-                    removeLastOneDigitIfPossible();
+                    removePreviousDigitIfPossible();
 
                     if (isVoicemailAvailable()) {
                         callVoicemail();
@@ -915,7 +915,7 @@ public class DialpadFragment extends Fragment
             }
             case R.id.zero: {
                 // Remove tentative input ('0') done by onTouch().
-                removeLastOneDigitIfPossible();
+                removePreviousDigitIfPossible();
                 keyPressed(KeyEvent.KEYCODE_PLUS);
                 return true;
             }
@@ -930,11 +930,16 @@ public class DialpadFragment extends Fragment
         return false;
     }
 
-    private void removeLastOneDigitIfPossible() {
+    /**
+     * Remove the digit just before the current position. This can be used if we want to replace
+     * the previous digit or cancel previously entered character.
+     */
+    private void removePreviousDigitIfPossible() {
         final Editable editable = mDigits.getText();
-        final int length = editable.length();
-        if (length > 0) {
-            mDigits.getText().delete(length - 1, length);
+        final int currentPosition = mDigits.getSelectionStart();
+        if (currentPosition > 0) {
+            mDigits.setSelection(currentPosition);
+            mDigits.getText().delete(currentPosition - 1, currentPosition);
         }
     }
 
