@@ -904,31 +904,6 @@ public class ContactListItemView extends ViewGroup
     }
 
     /**
-     * Adds a call button using the supplied arguments as an id and tag.
-     */
-    public void showCallButton(int id, int tag) {
-        if (mCallButton == null) {
-            mCallButton = new DontPressWithParentImageView(mContext, null);
-            mCallButton.setId(id);
-            mCallButton.setOnClickListener(mCallButtonClickListener);
-            mCallButton.setBackgroundResource(R.drawable.call_background);
-            mCallButton.setImageResource(android.R.drawable.sym_action_call);
-            mCallButton.setPadding(mCallButtonPadding, 0, mCallButtonPadding, 0);
-            mCallButton.setScaleType(ScaleType.CENTER);
-            addView(mCallButton);
-        }
-
-        mCallButton.setTag(tag);
-        mCallButton.setVisibility(View.VISIBLE);
-    }
-
-    public void hideCallButton() {
-        if (mCallButton != null) {
-            mCallButton.setVisibility(View.GONE);
-        }
-    }
-
-    /**
      * Adds or updates a text view for the phonetic name.
      */
     public void setPhoneticName(char[] text, int size) {
