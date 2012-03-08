@@ -56,6 +56,7 @@ import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.util.AccountsListAdapter;
+import com.android.contacts.util.UriUtils;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DialogManager;
@@ -160,7 +161,8 @@ public class PeopleActivity extends ContactsActivity
 
     private View mFavoritesView;
     private View mBrowserView;
-    private TransitionAnimationView mDetailsView;
+    private TransitionAnimationView mContactDetailsView;
+    private TransitionAnimationView mGroupDetailsView;
 
     private View mAddGroupImageView;
 
@@ -393,7 +395,8 @@ public class PeopleActivity extends ContactsActivity
 
             // Container views for fragments
             mFavoritesView = getView(R.id.favorites_view);
-            mDetailsView = getView(R.id.details_view);
+            mContactDetailsView = getView(R.id.contact_details_view);
+            mGroupDetailsView = getView(R.id.group_details_view);
             mBrowserView = getView(R.id.browse_view);
 
             // 2-pane only fragments
@@ -416,7 +419,8 @@ public class PeopleActivity extends ContactsActivity
 
             // Configure contact details
             mContactDetailLayoutController = new ContactDetailLayoutController(this, savedState,
-                    getFragmentManager(), mDetailsView, findViewById(R.id.contact_detail_container),
+                    getFragmentManager(), mContactDetailsView,
+                    findViewById(R.id.contact_detail_container),
                     new ContactDetailFragmentListener());
         }
         transaction.commitAllowingStateLoss();
@@ -592,6 +596,11 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private void setupGroupDetailFragment(Uri groupUri) {
+        // If we are switching from one group to another, do a cross-fade
+        if (mGroupDetailFragment != null && mGroupDetailFragment.getGroupUri() != null &&
+                !UriUtils.areEqual(mGroupDetailFragment.getGroupUri(), groupUri)) {
+            mGroupDetailsView.startTransition(mGroupDetailFragment.getView(), false);
+        }
         mGroupDetailFragment.loadGroup(groupUri);
         invalidateOptionsMenuIfNeeded();
     }
@@ -664,18 +673,21 @@ public class PeopleActivity extends ContactsActivity
             case FAVORITES:
                 mFavoritesView.setVisibility(View.VISIBLE);
                 mBrowserView.setVisibility(View.GONE);
-                mDetailsView.setVisibility(View.GONE);
+                mGroupDetailsView.setVisibility(View.GONE);
+                mContactDetailsView.setVisibility(View.GONE);
                 break;
             case GROUPS:
                 mFavoritesView.setVisibility(View.GONE);
                 mBrowserView.setVisibility(View.VISIBLE);
-                mDetailsView.setVisibility(View.VISIBLE);
+                mGroupDetailsView.setVisibility(View.VISIBLE);
+                mContactDetailsView.setVisibility(View.GONE);
                 mGroupsFragment.setAddAccountsVisibility(!areGroupWritableAccountsAvailable());
                 break;
             case ALL:
                 mFavoritesView.setVisibility(View.GONE);
                 mBrowserView.setVisibility(View.VISIBLE);
-                mDetailsView.setVisibility(View.VISIBLE);
+                mContactDetailsView.setVisibility(View.VISIBLE);
+                mGroupDetailsView.setVisibility(View.GONE);
                 break;
         }
         FragmentManager fragmentManager = getFragmentManager();
