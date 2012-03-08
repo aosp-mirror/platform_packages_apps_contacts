@@ -550,4 +550,5 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Skambutis neišsiųstas"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Jei norite nustatyti balso paštą, eikite į „Meniu“ &gt; „Nustatymai“."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Jei norite skambinti į balso paštą, išjunkite lėktuvo režimą."</string>
+    <string name="action_menu_overflow_description" msgid="2303272250613084574">"Daugiau parinkčių"</string>
 </resources>

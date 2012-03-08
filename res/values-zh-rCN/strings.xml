@@ -550,4 +550,5 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"电话未拨出"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"要设置语音信箱，请转到“菜单”&gt;“设置”。"</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"要呼叫语音信箱，请先关闭飞行模式。"</string>
+    <string name="action_menu_overflow_description" msgid="2303272250613084574">"更多选项"</string>
 </resources>

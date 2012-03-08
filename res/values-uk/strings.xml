@@ -550,4 +550,5 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Виклик не здійснено"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Щоб налаштувати голосову пошту, перейдіть у Меню &gt; Налаштування."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Щоб перевірити голосову пошту, спочатку вимкніть режим польоту."</string>
+    <string name="action_menu_overflow_description" msgid="2303272250613084574">"Інші варіанти"</string>
 </resources>

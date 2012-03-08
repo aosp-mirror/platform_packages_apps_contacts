@@ -550,4 +550,5 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"कॉल नहीं भेजा गया"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"ध्‍वनिमेल सेट करने के लिए, मेनू &gt; सेटिंग पर जाएं."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"ध्‍वनिमेल कॉल करने के लिए, पहले हवाई जहाज़ मोड बंद करें."</string>
+    <string name="action_menu_overflow_description" msgid="2303272250613084574">"अधिक विकल्प"</string>
 </resources>

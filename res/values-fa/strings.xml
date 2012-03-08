@@ -550,4 +550,5 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"تماس ارسال نشد"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"برای راه‌اندازی پست صوتی به منو &gt; تنظیمات بروید."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"برای تماس با پست صوتی، ابتدا حالت هواپیما را غیرفعال کنید."</string>
+    <string name="action_menu_overflow_description" msgid="2303272250613084574">"سایر گزینه ها"</string>
 </resources>

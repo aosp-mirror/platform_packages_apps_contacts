@@ -550,4 +550,5 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Samtalet gick inte att koppla fram"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Välj Meny &gt; Inställningar om du vill konfigurera röstbrevlådan."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Om du vill ringa röstbrevlådan måste du först inaktivera flygplansläget."</string>
+    <string name="action_menu_overflow_description" msgid="2303272250613084574">"Fler alternativ"</string>
 </resources>
