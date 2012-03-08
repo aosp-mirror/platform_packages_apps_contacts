@@ -250,20 +250,25 @@ public class ContactDetailLayoutController {
     public void setContactData(ContactLoader.Result data) {
         final boolean contactWasLoaded;
         final boolean contactHadUpdates;
+        final boolean isDifferentContact;
         if (mContactData == null) {
             contactHadUpdates = false;
             contactWasLoaded = false;
+            isDifferentContact = true;
         } else {
             contactHadUpdates = mContactHasUpdates;
             contactWasLoaded = true;
+            isDifferentContact =
+                    !UriUtils.areEqual(mContactData.getLookupUri(), data.getLookupUri());
         }
         mContactData = data;
         mContactHasUpdates = !data.getStreamItems().isEmpty();
 
         if (PhoneCapabilityTester.isUsingTwoPanes(mActivity)) {
             // Tablet: If we already showed data before, we want to cross-fade from screen to screen
-            if (contactWasLoaded && mTransitionAnimationView != null) {
-                mTransitionAnimationView.startTransition(mViewContainer, mContactData == null);
+            if (contactWasLoaded && mTransitionAnimationView != null && isDifferentContact) {
+                mTransitionAnimationView.startTransition(
+                        mViewContainer, mContactData == null);
             }
         } else {
             // Small screen: We are on our own screen. Fade the data in, but only the first time
@@ -326,9 +331,12 @@ public class ContactDetailLayoutController {
 
         switch (mLayoutMode) {
             case TWO_COLUMN: {
-                // This is screen is very hard to animate properly, because there is such a hard
-                // cut from the regular version. A proper animation would have to reflow text and
-                // move things around. No animation for now
+                if (!isDifferentContact && animateStateChange) {
+                    // This is screen is very hard to animate properly, because there is such a hard
+                    // cut from the regular version. A proper animation would have to reflow text
+                    // and move things around. Doing a simple cross-fade instead.
+                    mTransitionAnimationView.startTransition(mViewContainer, false);
+                }
 
                 // Set the contact data (hide the static photo because the photo will already be in
                 // the header that scrolls with contact details).

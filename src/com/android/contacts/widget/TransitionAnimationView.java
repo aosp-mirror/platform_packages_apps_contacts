@@ -15,17 +15,13 @@
  */
 package com.android.contacts.widget;
 
-import com.android.contacts.R;
-
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
-import android.animation.AnimatorInflater;
+import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -33,23 +29,16 @@ import android.widget.FrameLayout;
 
 /**
  * A container for a view that needs to have exit/enter animations when rebinding data.
- * This layout should have a single child.  Just before rebinding data that child
- * should make this call:
+ * After rebinding the contents, the following call should be made (where child is the only visible)
+ * child
  * <pre>
- *   TransitionAnimationView.startAnimation(this);
+ *   TransitionAnimationView.startAnimation(child);
  * </pre>
  */
 public class TransitionAnimationView extends FrameLayout implements AnimatorListener {
-
     private View mPreviousStateView;
     private Bitmap mPreviousStateBitmap;
-    private int mEnterAnimationId;
-    private int mExitAnimationId;
-    private int mAnimationDuration;
-    private Rect mClipMargins = new Rect();
-    private Rect mClipRect = new Rect();
-    private Animator mEnterAnimation;
-    private Animator mExitAnimation;
+    private ObjectAnimator mPreviousAnimator;
 
     public TransitionAnimationView(Context context) {
         this(context, null, 0);
@@ -61,67 +50,16 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
 
     public TransitionAnimationView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.TransitionAnimationView);
-
-        mEnterAnimationId = a.getResourceId(R.styleable.TransitionAnimationView_enterAnimation,
-                android.R.animator.fade_in);
-        mExitAnimationId = a.getResourceId(R.styleable.TransitionAnimationView_exitAnimation,
-                android.R.animator.fade_out);
-        mClipMargins.left = a.getDimensionPixelOffset(
-                R.styleable.TransitionAnimationView_clipMarginLeft, 0);
-        mClipMargins.top = a.getDimensionPixelOffset(
-                R.styleable.TransitionAnimationView_clipMarginTop, 0);
-        mClipMargins.right = a.getDimensionPixelOffset(
-                R.styleable.TransitionAnimationView_clipMarginRight, 0);
-        mClipMargins.bottom = a.getDimensionPixelOffset(
-                R.styleable.TransitionAnimationView_clipMarginBottom, 0);
-        mAnimationDuration = a.getInt(
-                R.styleable.TransitionAnimationView_animationDuration, 100);
-
-        a.recycle();
-
-        mPreviousStateView = new View(context);
-        mPreviousStateView.setVisibility(View.INVISIBLE);
-        addView(mPreviousStateView);
-
-        mEnterAnimation = AnimatorInflater.loadAnimator(getContext(), mEnterAnimationId);
-        if (mEnterAnimation == null) {
-            throw new IllegalArgumentException("Invalid enter animation: " + mEnterAnimationId);
-        }
-        mEnterAnimation.addListener(this);
-        mEnterAnimation.setDuration(mAnimationDuration);
-
-        mExitAnimation = AnimatorInflater.loadAnimator(getContext(), mExitAnimationId);
-        if (mExitAnimation == null) {
-            throw new IllegalArgumentException("Invalid exit animation: " + mExitAnimationId);
-        }
-        mExitAnimation.setDuration(mAnimationDuration);
     }
 
     @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-        if (changed || mPreviousStateBitmap == null) {
-            if (mPreviousStateBitmap != null) {
-                mPreviousStateBitmap.recycle();
-                mPreviousStateBitmap = null;
-            }
-            int width = right - left;
-            int height = bottom - top;
-            if (width > 0 && height > 0) {
-                mPreviousStateBitmap = Bitmap.createBitmap(
-                        width, height, Bitmap.Config.ARGB_8888);
-                mPreviousStateView.setBackgroundDrawable(
-                        new BitmapDrawable(getContext().getResources(), mPreviousStateBitmap));
-                mClipRect.set(mClipMargins.left, mClipMargins.top,
-                        width - mClipMargins.right, height - mClipMargins.bottom);
-            } else {
-                mPreviousStateBitmap = null;
-                mPreviousStateView.setBackgroundDrawable(null);
-            }
-        }
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        mPreviousStateView = new View(getContext());
+        mPreviousStateView.setVisibility(View.INVISIBLE);
+        mPreviousStateView.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT));
+        addView(mPreviousStateView);
     }
 
     @Override
@@ -135,40 +73,46 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
     }
 
     public void startTransition(View view, boolean closing) {
-        if (mEnterAnimation.isRunning()) {
-            mEnterAnimation.end();
-        }
-        if (mExitAnimation.isRunning()) {
-            mExitAnimation.end();
+        if (mPreviousAnimator != null && mPreviousAnimator.isRunning()) {
+            mPreviousAnimator.end();
         }
         if (view.getVisibility() != View.VISIBLE) {
             if (!closing) {
-                mEnterAnimation.setTarget(view);
-                mEnterAnimation.start();
+                mPreviousAnimator = ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f);
+                mPreviousAnimator.start();
             }
         } else if (closing) {
-            mExitAnimation.setTarget(view);
-            mExitAnimation.start();
+            mPreviousAnimator = ObjectAnimator.ofFloat(view, View.ALPHA, 1.0f, 0.0f);
+            mPreviousAnimator.start();
         } else {
-            if (mPreviousStateBitmap == null) {
-                return;
+            if (view.getWidth() > 0 && view.getHeight() > 0) {
+                // Take a "screenshot" of the current state of the screen and show that on top
+                // of the real content. Then, fade that out.
+                mPreviousStateBitmap = Bitmap.createBitmap(
+                        view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+                mPreviousStateView.setBackgroundDrawable(
+                        new BitmapDrawable(getContext().getResources(), mPreviousStateBitmap));
+                mPreviousStateView.setLayoutParams(view.getLayoutParams());
+                mPreviousStateBitmap.eraseColor(Color.WHITE);
+                Canvas canvas = new Canvas(mPreviousStateBitmap);
+                view.draw(canvas);
+                canvas.setBitmap(null);
+                mPreviousStateView.setVisibility(View.VISIBLE);
+
+                mPreviousAnimator =
+                        ObjectAnimator.ofFloat(mPreviousStateView, View.ALPHA, 1.0f, 0.0f);
+                mPreviousAnimator.start();
             }
-
-            mPreviousStateBitmap.eraseColor(Color.TRANSPARENT);
-            Canvas canvas = new Canvas(mPreviousStateBitmap);
-            canvas.clipRect(mClipRect);
-            view.draw(canvas);
-            canvas.setBitmap(null);
-            mPreviousStateView.setVisibility(View.VISIBLE);
-
-            mEnterAnimation.setTarget(view);
-            mEnterAnimation.start();
         }
     }
 
     @Override
     public void onAnimationEnd(Animator animation) {
         mPreviousStateView.setVisibility(View.INVISIBLE);
+        mPreviousStateView.setBackgroundDrawable(null);
+        mPreviousStateBitmap.recycle();
+        mPreviousStateBitmap = null;
+        mPreviousAnimator = null;
     }
 
     @Override

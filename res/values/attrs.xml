@@ -56,16 +56,6 @@
         <attr name="ratio" format="float"/>
     </declare-styleable>
 
-    <declare-styleable name="TransitionAnimationView">
-        <attr name="clipMarginLeft" format="dimension"/>
-        <attr name="clipMarginRight" format="dimension"/>
-        <attr name="clipMarginTop" format="dimension"/>
-        <attr name="clipMarginBottom" format="dimension"/>
-        <attr name="enterAnimation" format="reference"/>
-        <attr name="exitAnimation" format="reference"/>
-        <attr name="animationDuration" format="integer"/>
-    </declare-styleable>
-
     <declare-styleable name="ContactBrowser">
         <attr name="contact_browser_list_padding_left" format="dimension"/>
         <attr name="contact_browser_list_padding_right" format="dimension"/>

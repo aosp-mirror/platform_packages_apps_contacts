@@ -191,6 +191,10 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         mShowGroupActionInActionBar = show;
     }
 
+    public Uri getGroupUri() {
+        return mGroupUri;
+    }
+
     /**
      * Start the loader to retrieve the metadata for this group.
      */
