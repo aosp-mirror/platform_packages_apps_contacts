@@ -574,6 +574,8 @@ public class DialpadFragment extends Fragment
         // TODO: I wonder if we should not check if the AsyncTask that
         // lookup the last dialed number has completed.
         mLastNumberDialed = EMPTY_NUMBER;  // Since we are going to query again, free stale number.
+
+        SpecialCharSequenceMgr.cleanup();
     }
 
     @Override
