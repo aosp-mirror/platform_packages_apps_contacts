@@ -15,8 +15,6 @@
  */
 package com.android.contacts.vcard;
 
-import com.android.contacts.R;
-
 import android.app.Service;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -24,17 +22,18 @@ import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
 import android.os.Binder;
-import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.SparseArray;
+
+import com.android.contacts.R;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -108,8 +107,7 @@ public class VCardService extends Service {
 
     // Stores all unfinished import/export jobs which will be executed by mExecutorService.
     // Key is jobId.
-    private final Map<Integer, ProcessorBase> mRunningJobMap =
-            new HashMap<Integer, ProcessorBase>();
+    private final SparseArray<ProcessorBase> mRunningJobMap = new SparseArray<ProcessorBase>();
     // Stores ScannerConnectionClient objects until they finish scanning requested files.
     // Uses List class for simplicity. It's not costly as we won't have multiple objects in
     // almost all cases.
@@ -272,7 +270,9 @@ public class VCardService extends Service {
             VCardImportExportListener listener) {
         final int jobId = request.jobId;
         if (DEBUG) Log.d(LOG_TAG, String.format("Received cancel request. (id: %d)", jobId));
-        final ProcessorBase processor = mRunningJobMap.remove(jobId);
+
+        final ProcessorBase processor = mRunningJobMap.get(jobId);
+        mRunningJobMap.remove(jobId);
 
         if (processor != null) {
             processor.cancel(true);
@@ -321,16 +321,37 @@ public class VCardService extends Service {
      */
     private synchronized void stopServiceIfAppropriate() {
         if (mRunningJobMap.size() > 0) {
-            for (final Map.Entry<Integer, ProcessorBase> entry : mRunningJobMap.entrySet()) {
-                final int jobId = entry.getKey();
-                final ProcessorBase processor = entry.getValue();
-                if (processor.isDone()) {
-                    mRunningJobMap.remove(jobId);
-                } else {
+            final int size = mRunningJobMap.size();
+
+            // Check if there are processors which aren't finished yet. If we still have ones to
+            // process, we cannot stop the service yet. Also clean up already finished processors
+            // here.
+
+            // Job-ids to be removed. At first all elements in the array are invalid and will
+            // be filled with real job-ids from the array's top. When we find a not-yet-finished
+            // processor, then we start removing those finished jobs. In that case latter half of
+            // this array will be invalid.
+            final int[] toBeRemoved = new int[size];
+            for (int i = 0; i < size; i++) {
+                final int jobId = mRunningJobMap.keyAt(i);
+                final ProcessorBase processor = mRunningJobMap.valueAt(i);
+                if (!processor.isDone()) {
                     Log.i(LOG_TAG, String.format("Found unfinished job (id: %d)", jobId));
+
+                    // Remove processors which are already "done", all of which should be before
+                    // processors which aren't done yet.
+                    for (int j = 0; j < i; j++) {
+                        mRunningJobMap.remove(toBeRemoved[j]);
+                    }
                     return;
                 }
+
+                // Remember the finished processor.
+                toBeRemoved[i] = jobId;
             }
+
+            // We're sure we can remove all. Instead of removing one by one, just call clear().
+            mRunningJobMap.clear();
         }
 
         if (!mRemainingScannerConnections.isEmpty()) {
@@ -374,9 +395,7 @@ public class VCardService extends Service {
             Log.d(LOG_TAG, String.format("Received vCard import finish notification (id: %d). "
                     + "Result: %b", jobId, (successful ? "success" : "failure")));
         }
-        if (mRunningJobMap.remove(jobId) == null) {
-            Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
-        }
+        mRunningJobMap.remove(jobId);
         stopServiceIfAppropriate();
     }
 
@@ -386,7 +405,8 @@ public class VCardService extends Service {
             Log.d(LOG_TAG, String.format("Received vCard export finish notification (id: %d). "
                     + "Result: %b", jobId, (successful ? "success" : "failure")));
         }
-        final ProcessorBase job = mRunningJobMap.remove(jobId);
+        final ProcessorBase job = mRunningJobMap.get(jobId);
+        mRunningJobMap.remove(jobId);
         if (job == null) {
             Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         } else if (!(job instanceof ExportProcessor)) {
@@ -408,8 +428,8 @@ public class VCardService extends Service {
      * Mainly called from onDestroy().
      */
     private synchronized void cancelAllRequestsAndShutdown() {
-        for (final Map.Entry<Integer, ProcessorBase> entry : mRunningJobMap.entrySet()) {
-            entry.getValue().cancel(true);
+        for (int i = 0; i < mRunningJobMap.size(); i++) {
+            mRunningJobMap.valueAt(i).cancel(true);
         }
         mRunningJobMap.clear();
         mExecutorService.shutdown();
