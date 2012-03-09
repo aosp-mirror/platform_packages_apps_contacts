@@ -23,6 +23,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.util.DataStatus;
+import com.android.contacts.util.ImageViewDrawableSetter;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -111,6 +112,8 @@ public class QuickContactActivity extends Activity {
     private ImageButton mOpenDetailsButton;
     private ImageButton mOpenDetailsPushLayerButton;
     private ViewPager mListPager;
+
+    private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
 
     /**
      * Keeps the default action per mimetype. Empty if no default actions are set
@@ -296,13 +299,7 @@ public class QuickContactActivity extends Activity {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
                 context.getApplicationContext());
         final ImageView photoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
-        final byte[] photo = data.getPhotoBinaryData();
-        if (photo != null) {
-            photoView.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
-        } else {
-            photoView.setImageResource(
-                    ContactPhotoManager.getDefaultAvatarResId(true, false));
-        }
+        mPhotoSetter.setupContactPhoto(data, photoView);
 
         for (Entity entity : data.getEntities()) {
             final ContentValues entityValues = entity.getEntityValues();
