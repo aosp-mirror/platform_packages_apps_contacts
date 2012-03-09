@@ -77,27 +77,16 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private boolean mShowHomeIcon;
     private boolean mShowTabsAsText;
 
-    public enum TabState {
-        GROUPS,
-        ALL,
-        FAVORITES;
+    public interface TabState {
+        public static int GROUPS = 0;
+        public static int ALL = 1;
+        public static int FAVORITES = 2;
 
-        public static TabState fromInt(int value) {
-            if (GROUPS.ordinal() == value) {
-                return GROUPS;
-            }
-            if (ALL.ordinal() == value) {
-                return ALL;
-            }
-            if (FAVORITES.ordinal() == value) {
-                return FAVORITES;
-            }
-            throw new IllegalArgumentException("Invalid value: " + value);
-        }
+        public static int COUNT = 3;
+        public static int DEFAULT = ALL;
     }
 
-    private static final TabState DEFAULT_TAB = TabState.ALL;
-    private TabState mCurrentTab = DEFAULT_TAB;
+    private int mCurrentTab = TabState.DEFAULT;
 
     public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar,
             boolean isUsingTwoPanes) {
@@ -149,7 +138,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
 
             // Just set to the field here.  The listener will be notified by update().
-            mCurrentTab = TabState.fromInt(savedState.getInt(EXTRA_KEY_SELECTED_TAB));
+            mCurrentTab = savedState.getInt(EXTRA_KEY_SELECTED_TAB);
         }
         // Show tabs or the expanded {@link SearchView}, depending on whether or not we are in
         // search mode.
@@ -165,9 +154,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mListener = listener;
     }
 
-    private void addTab(TabState tabState, int icon, int description) {
+    private void addTab(int expectedTabIndex, int icon, int description) {
         final Tab tab = mActionBar.newTab();
-        tab.setTag(tabState);
         tab.setTabListener(mTabListener);
         if (mShowTabsAsText) {
             tab.setText(description);
@@ -176,6 +164,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             tab.setContentDescription(description);
         }
         mActionBar.addTab(tab);
+        if (expectedTabIndex != tab.getPosition()) {
+            throw new IllegalStateException("Tabs must be created in the right order");
+        }
     }
 
     private class MyTabListener implements ActionBar.TabListener {
@@ -191,7 +182,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
 
         @Override public void onTabSelected(Tab tab, FragmentTransaction ft) {
             if (!mIgnoreTabSelected) {
-                setCurrentTab((TabState)tab.getTag());
+                setCurrentTab(tab.getPosition());
             }
         }
     }
@@ -199,31 +190,29 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     /**
      * Change the current tab, and notify the listener.
      */
-    public void setCurrentTab(TabState tab) {
+    public void setCurrentTab(int tab) {
         setCurrentTab(tab, true);
     }
 
     /**
      * Change the current tab
      */
-    public void setCurrentTab(TabState tab, boolean notifyListener) {
-        if (tab == null) throw new NullPointerException();
+    public void setCurrentTab(int tab, boolean notifyListener) {
         if (tab == mCurrentTab) {
             return;
         }
         mCurrentTab = tab;
 
-        int index = mCurrentTab.ordinal();
         if ((mActionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_TABS)
-                && (index != mActionBar.getSelectedNavigationIndex())) {
-            mActionBar.setSelectedNavigationItem(index);
+                && (mCurrentTab != mActionBar.getSelectedNavigationIndex())) {
+            mActionBar.setSelectedNavigationItem(mCurrentTab);
         }
 
         if (notifyListener && mListener != null) mListener.onSelectedTabChanged();
         saveLastTabPreference(mCurrentTab);
     }
 
-    public TabState getCurrentTab() {
+    public int getCurrentTab() {
         return mCurrentTab;
     }
 
@@ -320,7 +309,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 // after this anyway.
                 mTabListener.mIgnoreTabSelected = true;
                 mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-                mActionBar.setSelectedNavigationItem(mCurrentTab.ordinal());
+                mActionBar.setSelectedNavigationItem(mCurrentTab);
                 mTabListener.mIgnoreTabSelected = false;
             }
             mActionBar.setTitle(null);
@@ -379,7 +368,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     public void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(EXTRA_KEY_SEARCH_MODE, mSearchMode);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
-        outState.putInt(EXTRA_KEY_SELECTED_TAB, mCurrentTab.ordinal());
+        outState.putInt(EXTRA_KEY_SELECTED_TAB, mCurrentTab);
     }
 
     /**
@@ -399,16 +388,16 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mSearchView.setIconified(false); // Workaround for the "IME not popping up" issue.
     }
 
-    private void saveLastTabPreference(TabState tab) {
-        mPrefs.edit().putInt(PERSISTENT_LAST_TAB, tab.ordinal()).apply();
+    private void saveLastTabPreference(int tab) {
+        mPrefs.edit().putInt(PERSISTENT_LAST_TAB, tab).apply();
     }
 
-    private TabState loadLastTabPreference() {
+    private int loadLastTabPreference() {
         try {
-            return TabState.fromInt(mPrefs.getInt(PERSISTENT_LAST_TAB, DEFAULT_TAB.ordinal()));
+            return mPrefs.getInt(PERSISTENT_LAST_TAB, TabState.DEFAULT);
         } catch (IllegalArgumentException e) {
             // Preference is corrupt?
-            return DEFAULT_TAB;
+            return TabState.DEFAULT;
         }
     }
 }
