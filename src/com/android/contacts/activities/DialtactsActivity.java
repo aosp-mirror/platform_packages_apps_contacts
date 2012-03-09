@@ -16,8 +16,8 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.R;
 import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
@@ -27,7 +27,6 @@ import com.android.contacts.list.ContactListItemView;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.PhoneFavoriteFragment;
 import com.android.contacts.list.PhoneNumberPickerFragment;
-import com.android.contacts.activities.TransactionSafeActivity;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.Constants;
 import com.android.internal.telephony.ITelephony;
@@ -55,6 +54,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,6 +64,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
@@ -77,10 +78,14 @@ import android.widget.SearchView.OnQueryTextListener;
  * embedded using intents.
  * The dialer tab's title is 'phone', a more common name (see strings.xml).
  */
-public class DialtactsActivity extends TransactionSafeActivity {
+public class DialtactsActivity extends TransactionSafeActivity
+        implements View.OnClickListener {
     private static final String TAG = "DialtactsActivity";
 
-    private static final boolean DEBUG = false;
+    /**
+     * STOPSHIP: This must be turned off after issue 6127931 and 6041917 being resolved.
+     */
+    public static final boolean DEBUG = true;
 
     /** Used to open Call Setting */
     private static final String PHONE_PACKAGE = "com.android.phone";
@@ -135,6 +140,16 @@ public class DialtactsActivity extends TransactionSafeActivity {
         }
 
         @Override
+        public void setPrimaryItem(ViewGroup container, int position, Object object) {
+            // The parent's setPrimaryItem() also calls setMenuVisibility(), so we want to know
+            // when it happens.
+            if (DEBUG) {
+                Log.d(TAG, "FragmentPagerAdapter#setPrimaryItem(), position: " + position);
+            }
+            super.setPrimaryItem(container, position, object);
+        }
+
+        @Override
         public int getCount() {
             return TAB_INDEX_COUNT;
         }
@@ -174,13 +189,14 @@ public class DialtactsActivity extends TransactionSafeActivity {
         public void onPageSelected(int position) {
             if (DEBUG) Log.d(TAG, "onPageSelected: position: " + position);
             final ActionBar actionBar = getActionBar();
-            if (mDialpadFragment != null && !mDuringSwipe) {
-                if (DEBUG) {
-                    Log.d(TAG, "Immediately show/hide fake menu buttons. position: "
-                            + position + ", dragging: " + mDuringSwipe);
+            if (mDialpadFragment != null) {
+                if (mDuringSwipe && position == TAB_INDEX_DIALER) {
+                    // TODO: Figure out if we want this or not. Right now
+                    // - with this call, both fake buttons and real action bar overlap
+                    // - without this call, there's tiny flicker happening to search/menu buttons.
+                    // If we can reduce the flicker without this call, it would be much better.
+                    // updateFakeMenuButtonsVisibility(true);
                 }
-                mDialpadFragment.updateFakeMenuButtonsVisibility(
-                        position == TAB_INDEX_DIALER && !mDuringSwipe);
             }
 
             if (mCurrentPosition == position) {
@@ -189,44 +205,14 @@ public class DialtactsActivity extends TransactionSafeActivity {
 
             actionBar.selectTab(actionBar.getTabAt(position));
             mNextPosition = position;
-
-            // This method is called halfway between swiping between the two pages.
-            // When the next page is fully selected, the ViewPager will go back to IDLE state in
-            // onPageScrollStateChanged(). The order should be:
-            // (user's swipe) -> onPageSelected() -> IDLE in onPageScrollStateChanged()
-            //
-            // sendFragmentVisibilityChange() must be called from here or in the IDLE state to
-            // notify the visibility change events to two pages: the current page (pointed by
-            // mCurrentPosition) should receive sendFragmentVisibilityChange() with the second
-            // argument false, meaning "the page is now invisible", while the next page (pointed by
-            // mNextPosition) should receive the method with the second argument true, meaning
-            // "the page becomes visible".
-            //
-            // To make transition animation smooth enough, we need to delay the event in some cases:
-            // - We should delay both method calls when the dialpad screen is involved.
-            //   The screen does not have the bottom action bar, requiring different layout to
-            //   fill the screen. The layout refresh takes some time and thus should be done after
-            //   the page migration being completed.
-            // - We should delay the method for the call log screen. The screen will update
-            //   its internal state and may query full call log. which is too costly to do when
-            //   setMenuVisibility() is called, making the animation slower.
-            // - We should *not* delay the method for the phone favorite screen. The screen has
-            //   another icon the call log screen doesn't have. We want to show/hide it immediately
-            //   after user's choosing pages.
-            if (mCurrentPosition == TAB_INDEX_CALL_LOG && mNextPosition == TAB_INDEX_FAVORITES) {
-                sendFragmentVisibilityChange(mNextPosition, true /* visible */ );
-                invalidateOptionsMenu();
-            } else if (mCurrentPosition == TAB_INDEX_FAVORITES
-                    && mNextPosition == TAB_INDEX_CALL_LOG) {
-                sendFragmentVisibilityChange(mCurrentPosition, false /* not visible */ );
-                invalidateOptionsMenu();
-            } else {
-                // Delay sendFragmentVisibilityChange() for both positions.
-            }
         }
 
         public void setCurrentPosition(int position) {
             mCurrentPosition = position;
+        }
+
+        public int getCurrentPosition() {
+            return mCurrentPosition;
         }
 
         @Override
@@ -254,25 +240,9 @@ public class DialtactsActivity extends TransactionSafeActivity {
                     mDuringSwipe = false;
                     mUserTabClick = false;
 
-                    // Call delayed sendFragmentVisibilityChange() call(s).
-                    // See comments in onPageSelected() for more details.
-                    if (mCurrentPosition == TAB_INDEX_CALL_LOG
-                            && mNextPosition == TAB_INDEX_FAVORITES) {
-                        sendFragmentVisibilityChange(mCurrentPosition, false /* not visible */ );
-                    } else if (mCurrentPosition == TAB_INDEX_FAVORITES
-                            && mNextPosition == TAB_INDEX_CALL_LOG) {
-                        sendFragmentVisibilityChange(mNextPosition, true /* visible */ );
-                    } else if (mCurrentPosition == TAB_INDEX_DIALER
-                            && mNextPosition == TAB_INDEX_DIALER) {
-                        // Dragged the dialer screen, but remained in the dialer screen.
-                        // During user's dragging the dialer, we show the ActonBar, so we need to
-                        // explicitly reset it in this exact case.
-                        sendFragmentVisibilityChange(TAB_INDEX_DIALER, true);
-                        sendFragmentVisibilityChange(TAB_INDEX_CALL_LOG, false);
-                    } else {
-                        sendFragmentVisibilityChange(mCurrentPosition, false /* not visible */ );
-                        sendFragmentVisibilityChange(mNextPosition, true /* visible */ );
-                    }
+                    updateFakeMenuButtonsVisibility(mNextPosition == TAB_INDEX_DIALER);
+                    sendFragmentVisibilityChange(mCurrentPosition, false);
+                    sendFragmentVisibilityChange(mNextPosition, true);
 
                     invalidateOptionsMenu();
 
@@ -283,12 +253,6 @@ public class DialtactsActivity extends TransactionSafeActivity {
                     if (DEBUG) Log.d(TAG, "onPageScrollStateChanged() with SCROLL_STATE_DRAGGING");
                     mDuringSwipe = true;
                     mUserTabClick = false;
-
-                    if (mCurrentPosition == TAB_INDEX_DIALER) {
-                        sendFragmentVisibilityChange(TAB_INDEX_DIALER, false);
-                        sendFragmentVisibilityChange(TAB_INDEX_CALL_LOG, true);
-                        invalidateOptionsMenu();
-                    }
                     break;
                 }
                 case ViewPager.SCROLL_STATE_SETTLING: {
@@ -311,6 +275,9 @@ public class DialtactsActivity extends TransactionSafeActivity {
     private DialpadFragment mDialpadFragment;
     private CallLogFragment mCallLogFragment;
     private PhoneFavoriteFragment mPhoneFavoriteFragment;
+
+    private View mSearchButton;
+    private View mMenuButton;
 
     private final ContactListFilterListener mContactListFilterListener =
             new ContactListFilterListener() {
@@ -352,9 +319,12 @@ public class DialtactsActivity extends TransactionSafeActivity {
             // when the user clicks a tab at the ActionBar at the top, this will be called before
             // them. This logic interprets the order difference as a difference of the user action.
             if (!mDuringSwipe) {
+                if (DEBUG) {
+                    Log.d(TAG, "Tab select. from: " + mPageChangeListener.getCurrentPosition()
+                            + ", to: " + tab.getPosition());
+                }
                 if (mDialpadFragment != null) {
-                    if (DEBUG) Log.d(TAG, "Immediately hide fake buttons for tab selection case");
-                    mDialpadFragment.updateFakeMenuButtonsVisibility(false);
+                    updateFakeMenuButtonsVisibility(tab.getPosition() == TAB_INDEX_DIALER);
                 }
                 mUserTabClick = true;
             }
@@ -528,6 +498,30 @@ public class DialtactsActivity extends TransactionSafeActivity {
         mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mViewPager.setOnPageChangeListener(mPageChangeListener);
 
+        // Do same width calculation as ActionBar does
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        int minCellSize = getResources().getDimensionPixelSize(R.dimen.fake_menu_button_min_width);
+        int cellCount = dm.widthPixels / minCellSize;
+        int fakeMenuItemWidth = dm.widthPixels / cellCount;
+        if (DEBUG) Log.d(TAG, "The size of fake menu buttons (in pixel): " + fakeMenuItemWidth);
+
+        // Soft menu button should appear only when there's no hardware menu button.
+        mMenuButton = findViewById(R.id.overflow_menu);
+        if (mMenuButton != null) {
+            mMenuButton.setMinimumWidth(fakeMenuItemWidth);
+            if (ViewConfiguration.get(this).hasPermanentMenuKey()) {
+                // This is required for dialpad button's layout, so must not use GONE here.
+                mMenuButton.setVisibility(View.INVISIBLE);
+            } else {
+                mMenuButton.setOnClickListener(this);
+            }
+        }
+        mSearchButton = findViewById(R.id.searchButton);
+        if (mSearchButton != null) {
+            mSearchButton.setMinimumWidth(fakeMenuItemWidth);
+            mSearchButton.setOnClickListener(this);
+        }
+
         // Setup the ActionBar tabs (the order matches the tab-index contants TAB_INDEX_*)
         setupDialer();
         setupCallLog();
@@ -568,12 +562,47 @@ public class DialtactsActivity extends TransactionSafeActivity {
             mDuringSwipe = false;
             mUserTabClick = false;
         }
+
+        final int currentPosition = mPageChangeListener.getCurrentPosition();
+        if (DEBUG) {
+            Log.d(TAG, "onStart(). current position: " + mPageChangeListener.getCurrentPosition()
+                    + ". Reset all menu visibility state.");
+        }
+        updateFakeMenuButtonsVisibility(currentPosition == TAB_INDEX_DIALER);
+        for (int i = 0; i < TAB_INDEX_COUNT; i++) {
+            sendFragmentVisibilityChange(i, i == currentPosition);
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mContactListFilterController.removeListener(mContactListFilterListener);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.searchButton: {
+                enterSearchUi();
+                break;
+            }
+            case R.id.overflow_menu: {
+                if (mDialpadFragment != null) {
+                    PopupMenu popup = mDialpadFragment.constructPopupMenu(view);
+                    if (popup != null) {
+                        popup.show();
+                    }
+                } else {
+                    Log.w(TAG, "DialpadFragment is null during onClick() event for " + view);
+                }
+                break;
+            }
+            default: {
+                Log.wtf(TAG, "Unexpected onClick event from " + view);
+                break;
+            }
+        }
     }
 
     /**
@@ -642,7 +671,6 @@ public class DialtactsActivity extends TransactionSafeActivity {
 
         if (fragment instanceof DialpadFragment) {
             mDialpadFragment = (DialpadFragment) fragment;
-            mDialpadFragment.setListener(mDialpadListener);
         } else if (fragment instanceof CallLogFragment) {
             mCallLogFragment = (CallLogFragment) fragment;
         } else if (fragment instanceof PhoneFavoriteFragment) {
@@ -891,14 +919,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
         }
     }
 
-    private DialpadFragment.Listener mDialpadListener = new DialpadFragment.Listener() {
-        @Override
-        public void onSearchButtonPressed() {
-            enterSearchUi();
-        }
-    };
-
-    private PhoneFavoriteFragment.Listener mPhoneFavoriteListener =
+    private final PhoneFavoriteFragment.Listener mPhoneFavoriteListener =
             new PhoneFavoriteFragment.Listener() {
         @Override
         public void onContactSelected(Uri contactUri) {
@@ -966,7 +987,8 @@ public class DialtactsActivity extends TransactionSafeActivity {
                 searchMenuItem.setVisible(true);
                 searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
                 showCallSettingsMenu = true;
-                fakeMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
+                fakeMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey()
+                        && (tab != null && tab.getPosition() == TAB_INDEX_CALL_LOG));
             }
             if (tab != null && tab.getPosition() == TAB_INDEX_FAVORITES) {
                 filterOptionMenuItem.setVisible(true);
@@ -1042,7 +1064,9 @@ public class DialtactsActivity extends TransactionSafeActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        sendFragmentVisibilityChange(mViewPager.getCurrentItem(), false /* not visible */ );
+        for (int i = 0; i < TAB_INDEX_COUNT; i++) {
+            sendFragmentVisibilityChange(i, false /* not visible */ );
+        }
 
         // Show the search fragment and hide everything else.
         mSearchFragment.setUserVisibleHint(true);
@@ -1094,7 +1118,9 @@ public class DialtactsActivity extends TransactionSafeActivity {
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        sendFragmentVisibilityChange(mViewPager.getCurrentItem(), true /* visible */ );
+        for (int i = 0; i < TAB_INDEX_COUNT; i++) {
+            sendFragmentVisibilityChange(i, i == mViewPager.getCurrentItem());
+        }
 
         // Before exiting the search screen, reset swipe state.
         mDuringSwipe = false;
@@ -1135,6 +1161,35 @@ public class DialtactsActivity extends TransactionSafeActivity {
             final Fragment fragment = getFragmentAt(position);
             if (fragment != null) {
                 fragment.setMenuVisibility(visibility);
+                fragment.setUserVisibleHint(visibility);
+            }
+        }
+    }
+
+    /**
+     * Update visibility of the search button and menu button at the bottom.
+     * They should be invisible when bottom ActionBar's real items are available, and be visible
+     * otherwise.
+     *
+     * @param visible True when visible.
+     */
+    private void updateFakeMenuButtonsVisibility(boolean visible) {
+        if (DEBUG) {
+            Log.d(TAG, "updateFakeMenuButtonVisibility(" + visible + ")");
+        }
+
+        if (mSearchButton != null) {
+            if (visible) {
+                mSearchButton.setVisibility(View.VISIBLE);
+            } else {
+                mSearchButton.setVisibility(View.INVISIBLE);
+            }
+        }
+        if (mMenuButton != null) {
+            if (visible && !ViewConfiguration.get(this).hasPermanentMenuKey()) {
+                mMenuButton.setVisibility(View.VISIBLE);
+            } else {
+                mMenuButton.setVisibility(View.INVISIBLE);
             }
         }
     }

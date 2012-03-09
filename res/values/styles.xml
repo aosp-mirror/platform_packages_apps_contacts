@@ -284,7 +284,12 @@
     </style>
 
     <style name="DialtactsActionBarStyle" parent="android:Widget.Holo.ActionBar">
-        <!-- For making test easier. Should use @null. -->
+        <!-- For making test easier. Should use @null.
+             TODO: use @null once we're sure issue 6041917 is gone.
+             Don't forget to add android:showDividers="end" to call_log_fragment.xml
+             and phone_contact_tile_list.xml, to show horizontal divider between
+             the list and the split ActionBar.
+          -->
         <!-- <item name="android:backgroundSplit">@null</item> -->
         <item name="android:backgroundStacked">@drawable/ab_stacked_opaque_dark_holo</item>
         <item name="android:displayOptions"></item>

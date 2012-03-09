@@ -21,8 +21,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="?android:attr/actionBarSize"
-    android:divider="?android:attr/dividerHorizontal"
-    android:showDividers="end">
+    android:divider="?android:attr/dividerHorizontal">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -24,4 +24,24 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ImageButton
+         android:id="@+id/searchButton"
+         android:layout_width="wrap_content"
+         android:layout_height="?android:attr/actionBarSize"
+         android:layout_gravity="bottom|left"
+         android:state_enabled="false"
+         android:background="?android:attr/selectableItemBackground"
+         android:contentDescription="@string/description_search_button"
+         android:src="@drawable/ic_dial_action_search"/>
+
+    <ImageButton
+         android:id="@+id/overflow_menu"
+         android:layout_width="wrap_content"
+         android:layout_height="?android:attr/actionBarSize"
+         android:layout_gravity="bottom|right"
+         android:src="@drawable/ic_menu_overflow"
+         android:contentDescription="@string/action_menu_overflow_description"
+         android:nextFocusLeft="@id/digits"
+         android:background="?android:attr/selectableItemBackground"/>
 </FrameLayout>

@@ -87,6 +87,9 @@ public class CallLogFragment extends ListFragment
 
     private final Handler mHandler = new Handler();
 
+    // Exactly same variable is in Fragment as a package private.
+    private boolean mMenuVisible = true;
+
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -384,12 +387,13 @@ public class CallLogFragment extends ListFragment
     @Override
     public void setMenuVisibility(boolean menuVisible) {
         super.setMenuVisibility(menuVisible);
-        if (menuVisible && isResumed()) {
-            refreshData();
-        }
-
-        if (!menuVisible) {
-            updateOnExit();
+        if (mMenuVisible != menuVisible) {
+            mMenuVisible = menuVisible;
+            if (!menuVisible) {
+                updateOnExit();
+            } else if (isResumed()) {
+                refreshData();
+            }
         }
     }
 

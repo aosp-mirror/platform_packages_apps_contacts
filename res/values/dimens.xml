@@ -238,4 +238,7 @@
     <!-- Min height of the list of contacts when the contact picker is a dialog (on
         wide screen devices). -->
     <dimen name="contact_picker_contact_list_min_height">550dip</dimen>
+
+    <!-- Min with of fake menu buttons, which should be same as ActionBar's one -->
+    <dimen name="fake_menu_button_min_width">56dip</dimen>
 </resources>
