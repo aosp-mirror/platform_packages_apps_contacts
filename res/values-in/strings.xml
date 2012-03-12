@@ -273,7 +273,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Tambahkan jeda 2-det"</string>
     <string name="add_wait" msgid="3360818652790319634">"Tambahkan tunggu"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Panggil menggunakan"</string>
-    <string name="call_settings" msgid="7666474782093693667">"Pengaturan"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Setelan"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"SMS menggunakan"</string>
     <string name="make_primary" msgid="5829291915305113983">"Ingat pilihan ini"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Tidak ada apl yang ditemukan untuk menangani tindakan ini."</string>
@@ -447,9 +447,9 @@
     <string name="list_filter_single" msgid="5871400283515893087">"Kenalan"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan ubahsuaian"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Memuat..."</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"Pengaturan"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Setelan"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kenalan untuk ditampilkan"</string>
-    <string name="menu_settings" msgid="377929915873428211">"Pengaturan"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Setelan"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opsi tampilan"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Temukan kenalan"</string>
@@ -548,7 +548,7 @@
     <string name="add_account" msgid="8201790677994503186">"Tambahkan akun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambahkan akun baru"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Panggilan tidak terkirim"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Untuk menyiapkan kotak pesan, buka Menu &gt; Pengaturan."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Untuk menyiapkan kotak pesan, buka Menu &gt; Setelan."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Untuk memanggil pesan suara, pertama-tama matikan mode Pesawat."</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Opsi lainnya"</string>
 </resources>
