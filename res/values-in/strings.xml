@@ -481,8 +481,8 @@
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Ketik nama kenalan sebelum menggabungkan dengan lainnya."</string>
     <string name="copy_text" msgid="3257145021583508761">"Salin ke papan klip"</string>
-    <string name="set_default" msgid="4417505153468300351">"Setel sebagai bawaan"</string>
-    <string name="clear_default" msgid="7193185801596678067">"Hapus bawaan"</string>
+    <string name="set_default" msgid="4417505153468300351">"Setel sebagai default"</string>
+    <string name="clear_default" msgid="7193185801596678067">"Hapus default"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Teks disalin"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Buang perubahan Anda?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
