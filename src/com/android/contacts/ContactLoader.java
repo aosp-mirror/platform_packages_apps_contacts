@@ -410,6 +410,23 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                     && mDirectoryId != Directory.LOCAL_INVISIBLE;
         }
 
+        /**
+         * @return true if this is a contact (not group, etc.) with at least one
+         *         writeable raw-contact, and false otherwise.
+         */
+        public boolean isWritableContact(Context context) {
+            if (isDirectoryEntry()) return false;
+            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
+            for (Entity rawContact : getEntities()) {
+                final ContentValues rawValues = rawContact.getEntityValues();
+                final String accountType = rawValues.getAsString(RawContacts.ACCOUNT_TYPE);
+                final String dataSet = rawValues.getAsString(RawContacts.DATA_SET);
+                final AccountType type = accountTypes.getAccountType(accountType, dataSet);
+                if (type != null && type.areContactsWritable()) return true;
+            }
+            return false;
+        }
+
         public int getDirectoryExportSupport() {
             return mDirectoryExportSupport;
         }

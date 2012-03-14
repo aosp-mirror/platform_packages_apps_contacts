@@ -29,7 +29,7 @@ import android.view.ViewGroup;
 public class ContactDetailViewPagerAdapter extends PagerAdapter {
 
     public static final String ABOUT_FRAGMENT_TAG = "view-pager-about-fragment";
-    public static final String UPDTES_FRAGMENT_TAG = "view-pager-updates-fragment";
+    public static final String UPDATES_FRAGMENT_TAG = "view-pager-updates-fragment";
 
     private static final int INDEX_ABOUT_FRAGMENT = 0;
     private static final int INDEX_UPDATES_FRAGMENT = 1;
