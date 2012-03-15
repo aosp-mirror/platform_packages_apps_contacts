@@ -40,6 +40,7 @@ import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
+import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.internal.telephony.ITelephony;
@@ -143,6 +144,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
     private ViewEntryDimensions mViewEntryDimensions;
+
+    private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
 
     private Button mQuickFixButton;
     private QuickFix mQuickFix;
@@ -435,8 +438,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             if (mShowStaticPhoto) {
                 mStaticPhotoContainer.setVisibility(View.VISIBLE);
                 ImageView photoView = (ImageView) mStaticPhotoContainer.findViewById(R.id.photo);
-                OnClickListener listener = ContactDetailDisplayUtils.setPhoto(mContext,
-                        mContactData, photoView, false);
+                OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
+                        mContext, mContactData, photoView, false);
                 if (mPhotoTouchOverlay != null) {
                     mPhotoTouchOverlay.setVisibility(View.VISIBLE);
                     mPhotoTouchOverlay.setOnClickListener(listener);
@@ -1489,9 +1492,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
             // Set the photo if it should be displayed
             if (viewCache.photoView != null) {
-                OnClickListener listener = ContactDetailDisplayUtils.setPhoto(mContext,
-                        mContactData, viewCache.photoView,
-                        !PhoneCapabilityTester.isUsingTwoPanes(mContext));
+                final boolean expandOnClick = !PhoneCapabilityTester.isUsingTwoPanes(mContext);
+                OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
+                        mContext, mContactData, viewCache.photoView, expandOnClick);
                 viewCache.enableTouchInterceptor(listener);
             }
 

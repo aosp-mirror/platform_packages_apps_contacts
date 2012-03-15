@@ -19,6 +19,7 @@ package com.android.contacts.detail;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.ImageViewDrawableSetter;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -60,6 +61,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private TextView mStatusView;
     private ImageView mStatusPhotoView;
     private OnClickListener mPhotoClickListener;
+    private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
 
     private Listener mListener;
 
@@ -408,16 +410,15 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
      * from the outside to fully setup the View
      */
     public void loadData(ContactLoader.Result contactData) {
-        if (contactData == null) {
-            return;
-        }
+        if (contactData == null) return;
 
-        // TODO: Move this into the {@link CarouselTab} class when the updates fragment code is more
-        // finalized
-        mPhotoClickListener = ContactDetailDisplayUtils.setPhoto(mContext, contactData, mPhotoView,
-                !PhoneCapabilityTester.isUsingTwoPanes(mContext));
-        ContactDetailDisplayUtils.setSocialSnippet(mContext, contactData, mStatusView,
-                mStatusPhotoView);
+        // TODO: Move this into the {@link CarouselTab} class when the updates
+        // fragment code is more finalized.
+        final boolean expandOnClick = !PhoneCapabilityTester.isUsingTwoPanes(mContext);
+        mPhotoClickListener = mPhotoSetter.setupContactPhotoForClick(
+                mContext, contactData, mPhotoView, expandOnClick);
+        ContactDetailDisplayUtils.setSocialSnippet(
+                mContext, contactData, mStatusView, mStatusPhotoView);
     }
 
     /**
