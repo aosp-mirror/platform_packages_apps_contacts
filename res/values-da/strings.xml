@@ -99,8 +99,8 @@
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Der er ingen kontakter med telefonnumre."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Ingen personer i denne gruppe."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Rediger gruppen for at tilføje nogen."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Gemmer kontakt ..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Gemmer indstillinger for visning …"</string>
+    <string name="savingContact" msgid="4075751076741924939">"Gemmer kontakt..."</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"Gemmer indstillinger for visning…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakten er gemt."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Der kunne ikke gemmes ændringer i kontaktpersoner."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen er gemt."</string>
