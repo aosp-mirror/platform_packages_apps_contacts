@@ -226,10 +226,9 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     }
 
     private void updateAlphaLayers() {
-        mAboutFragment.setAlphaLayerValue(mLastScrollPosition * MAX_ALPHA /
-                mAllowedHorizontalScrollLength);
-        mUpdatesFragment.setAlphaLayerValue(MAX_ALPHA - mLastScrollPosition * MAX_ALPHA /
-                mAllowedHorizontalScrollLength);
+        float alpha = mLastScrollPosition * MAX_ALPHA / mAllowedHorizontalScrollLength;
+        mAboutFragment.setAlphaLayerValue(alpha);
+        mUpdatesFragment.setAlphaLayerValue(MAX_ALPHA - alpha);
     }
 
     @Override

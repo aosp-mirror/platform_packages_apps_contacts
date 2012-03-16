@@ -16,10 +16,11 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
+import com.android.contacts.ContactLoader;
+import com.android.contacts.detail.ContactDetailPhotoSetter;
 import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.util.ImageViewDrawableSetter;
+
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -61,7 +62,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private TextView mStatusView;
     private ImageView mStatusPhotoView;
     private OnClickListener mPhotoClickListener;
-    private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
+    private final ContactDetailPhotoSetter mPhotoSetter = new ContactDetailPhotoSetter();
 
     private Listener mListener;
 
@@ -301,10 +302,9 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     }
 
     private void updateAlphaLayers() {
-        mAboutTab.setAlphaLayerValue(mLastScrollPosition * MAX_ALPHA /
-                mAllowedHorizontalScrollLength);
-        mUpdatesTab.setAlphaLayerValue(MAX_ALPHA - mLastScrollPosition * MAX_ALPHA /
-                mAllowedHorizontalScrollLength);
+        float alpha = mLastScrollPosition * MAX_ALPHA / mAllowedHorizontalScrollLength;
+        mAboutTab.setAlphaLayerValue(alpha);
+        mUpdatesTab.setAlphaLayerValue(MAX_ALPHA - alpha);
     }
 
     @Override

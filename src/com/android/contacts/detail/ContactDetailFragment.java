@@ -26,6 +26,7 @@ import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.detail.ContactDetailPhotoSetter;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
@@ -40,7 +41,6 @@ import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
-import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.internal.telephony.ITelephony;
@@ -145,7 +145,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private Uri mPrimaryPhoneUri = null;
     private ViewEntryDimensions mViewEntryDimensions;
 
-    private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
+    private final ContactDetailPhotoSetter mPhotoSetter = new ContactDetailPhotoSetter();
 
     private Button mQuickFixButton;
     private QuickFix mQuickFix;

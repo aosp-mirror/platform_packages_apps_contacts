@@ -17,6 +17,7 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
+
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
@@ -35,6 +36,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -55,6 +57,9 @@ public class ContactDetailLayoutController {
     private static final int TAB_INDEX_UPDATES = 1;
 
     private final int SINGLE_PANE_FADE_IN_DURATION = 275;
+
+    private static final String TAG = "ContactDetailLayoutController";
+    private static final boolean DEBUG = false;
 
     /**
      * There are 3 possible layouts for the contact detail screen:
@@ -130,9 +135,13 @@ public class ContactDetailLayoutController {
         // Determine the layout mode based on the presence of certain views in the layout XML.
         if (mViewPager != null) {
             mLayoutMode = LayoutMode.VIEW_PAGER_AND_TAB_CAROUSEL;
+            if (DEBUG) Log.d(TAG, "set layout mode to VIEW_PAGER_AND_TAB_CAROUSEL");
+        } else if (mFragmentCarousel != null) {
+            mLayoutMode = LayoutMode.FRAGMENT_CAROUSEL;
+            if (DEBUG) Log.d(TAG, "set layout mode to FRAGMENT_CAROUSEL");
         } else {
-            mLayoutMode = (mFragmentCarousel != null) ? LayoutMode.FRAGMENT_CAROUSEL :
-                    LayoutMode.TWO_COLUMN;
+            mLayoutMode = LayoutMode.TWO_COLUMN;
+            if (DEBUG) Log.d(TAG, "set layout mode to TWO_COLUMN");
         }
 
         initialize(savedState);
@@ -143,7 +152,7 @@ public class ContactDetailLayoutController {
         mDetailFragment = (ContactDetailFragment) mFragmentManager.findFragmentByTag(
                 ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
         mUpdatesFragment = (ContactDetailUpdatesFragment) mFragmentManager.findFragmentByTag(
-                ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+                ContactDetailViewPagerAdapter.UPDATES_FRAGMENT_TAG);
 
         // If the detail fragment was found in the {@link FragmentManager} then we don't need to add
         // it again. Otherwise, create the fragments dynamically and remember to add them to the
@@ -190,7 +199,7 @@ public class ContactDetailLayoutController {
                     transaction.add(R.id.about_fragment_container, mDetailFragment,
                             ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
                     transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
-                            ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+                            ContactDetailViewPagerAdapter.UPDATES_FRAGMENT_TAG);
                     transaction.commitAllowingStateLoss();
                     mFragmentManager.executePendingTransactions();
                 }
@@ -210,7 +219,7 @@ public class ContactDetailLayoutController {
                     transaction.add(R.id.about_fragment_container, mDetailFragment,
                             ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
                     transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
-                            ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+                            ContactDetailViewPagerAdapter.UPDATES_FRAGMENT_TAG);
                     transaction.commitAllowingStateLoss();
                     mFragmentManager.executePendingTransactions();
                 }
@@ -225,7 +234,7 @@ public class ContactDetailLayoutController {
                     transaction.add(R.id.about_fragment_container, mDetailFragment,
                             ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
                     transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
-                            ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+                            ContactDetailViewPagerAdapter.UPDATES_FRAGMENT_TAG);
                     transaction.commitAllowingStateLoss();
                     mFragmentManager.executePendingTransactions();
                 }

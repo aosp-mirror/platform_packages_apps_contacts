@@ -25,6 +25,7 @@ import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.HtmlUtils;
+import com.android.contacts.util.MoreMath;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.common.annotations.VisibleForTesting;
@@ -616,7 +617,7 @@ public class ContactDetailDisplayUtils {
         if (view != null) {
             // Convert alpha layer to a black background HEX color with an alpha value for better
             // performance (i.e. use setBackgroundColor() instead of setAlpha())
-            view.setBackgroundColor((int) (alpha * 255) << 24);
+            view.setBackgroundColor((int) (MoreMath.clamp(alpha, 0.0f, 1.0f) * 255) << 24);
         }
     }
 

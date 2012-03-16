@@ -57,10 +57,7 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
         super.onFinishInflate();
 
         mLabelView = (TextView) findViewById(R.id.label);
-        mLabelView.setClickable(true);
-
         mLabelBackgroundView = findViewById(R.id.label_background);
-
         mAlphaLayer = findViewById(R.id.alpha_overlay);
         mTouchInterceptLayer = findViewById(R.id.touch_intercept_overlay);
     }

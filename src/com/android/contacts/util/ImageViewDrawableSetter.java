@@ -61,11 +61,8 @@ public class ImageViewDrawableSetter {
         Bitmap bitmap = setCompressedImage(contactData.getPhotoBinaryData());
     }
 
-    public OnClickListener setupContactPhotoForClick(Context context, Result contactData,
-            ImageView photoView, boolean expandPhotoOnClick) {
-        setTarget(photoView);
-        Bitmap bitmap = setCompressedImage(contactData.getPhotoBinaryData());
-        return setupClickListener(context, contactData, bitmap, expandPhotoOnClick);
+    public ImageView getTarget() {
+        return mTarget;
     }
 
     /**
@@ -73,7 +70,7 @@ public class ImageViewDrawableSetter {
      * is set, it will immediately be applied to the target (there will be no
      * fade transition).
      */
-    private void setTarget(ImageView target) {
+    protected void setTarget(ImageView target) {
         if (mTarget != target) {
             mTarget = target;
             mCompressed = null;
@@ -81,7 +78,11 @@ public class ImageViewDrawableSetter {
         }
     }
 
-    private Bitmap setCompressedImage(byte[] compressed) {
+    protected byte[] getCompressedImage() {
+        return mCompressed;
+    }
+
+    protected Bitmap setCompressedImage(byte[] compressed) {
         if (mPreviousDrawable == null) {
             // If we don't already have a drawable, skip the exit-early test
             // below; otherwise we might not end up setting the default image.
@@ -127,67 +128,6 @@ public class ImageViewDrawableSetter {
         return (mPreviousDrawable == null)
                 ? null
                 : ((BitmapDrawable) mPreviousDrawable).getBitmap();
-    }
-
-    private static final class PhotoClickListener implements OnClickListener {
-
-        private final Context mContext;
-        private final Result mContactData;
-        private final Bitmap mPhotoBitmap;
-        private final byte[] mPhotoBytes;
-        private final boolean mExpandPhotoOnClick;
-        public PhotoClickListener(Context context, Result contactData, Bitmap photoBitmap,
-                byte[] photoBytes, boolean expandPhotoOnClick) {
-            mContext = context;
-            mContactData = contactData;
-            mPhotoBitmap = photoBitmap;
-            mPhotoBytes = photoBytes;
-            mExpandPhotoOnClick = expandPhotoOnClick;
-        }
-
-        @Override
-        public void onClick(View v) {
-            // Assemble the intent.
-            EntityDeltaList delta = EntityDeltaList.fromIterator(
-                    mContactData.getEntities().iterator());
-
-            // Find location and bounds of target view, adjusting based on the
-            // assumed local density.
-            final float appScale =
-                    mContext.getResources().getCompatibilityInfo().applicationScale;
-            final int[] pos = new int[2];
-            v.getLocationOnScreen(pos);
-
-            final Rect rect = new Rect();
-            rect.left = (int) (pos[0] * appScale + 0.5f);
-            rect.top = (int) (pos[1] * appScale + 0.5f);
-            rect.right = (int) ((pos[0] + v.getWidth()) * appScale + 0.5f);
-            rect.bottom = (int) ((pos[1] + v.getHeight()) * appScale + 0.5f);
-
-            Uri photoUri = null;
-            if (mContactData.getPhotoUri() != null) {
-                photoUri = Uri.parse(mContactData.getPhotoUri());
-            }
-            Intent photoSelectionIntent = PhotoSelectionActivity.buildIntent(mContext,
-                    photoUri, mPhotoBitmap, mPhotoBytes, rect, delta, mContactData.isUserProfile(),
-                    mContactData.isDirectoryEntry(), mExpandPhotoOnClick);
-            // Cache the bitmap directly, so the activity can pull it from the photo manager.
-            if (mPhotoBitmap != null) {
-                ContactPhotoManager.getInstance(mContext).cacheBitmap(
-                        photoUri, mPhotoBitmap, mPhotoBytes);
-            }
-            mContext.startActivity(photoSelectionIntent);
-        }
-    }
-
-    private OnClickListener setupClickListener(Context context, Result contactData, Bitmap bitmap,
-            boolean expandPhotoOnClick) {
-        if (mTarget == null) return null;
-
-        OnClickListener clickListener = new PhotoClickListener(
-                context, contactData, bitmap, mCompressed, expandPhotoOnClick);
-        mTarget.setOnClickListener(clickListener);
-        return clickListener;
     }
 
     /**
