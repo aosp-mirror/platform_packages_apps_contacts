@@ -412,9 +412,9 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
 
         /**
          * @return true if this is a contact (not group, etc.) with at least one
-         *         writeable raw-contact, and false otherwise.
+         *         writable raw-contact, and false otherwise.
          */
-        public boolean isWritableContact(Context context) {
+        public boolean isWritableContact(final Context context) {
             if (isDirectoryEntry()) return false;
             final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
             for (Entity rawContact : getEntities()) {

@@ -177,11 +177,18 @@ public class ContactDetailUpdatesFragment extends ListFragment
         }
     }
 
+
     @Override
-    public void enableTouchInterceptor(OnClickListener clickListener) {
+    public void setTouchInterceptorListener(OnClickListener clickListener) {
+        if (mTouchInterceptLayer != null) {
+            mTouchInterceptLayer.setOnClickListener(clickListener);
+        }
+    }
+
+    @Override
+    public void enableTouchInterceptor() {
         if (mTouchInterceptLayer != null) {
             mTouchInterceptLayer.setVisibility(View.VISIBLE);
-            mTouchInterceptLayer.setOnClickListener(clickListener);
         }
     }
 

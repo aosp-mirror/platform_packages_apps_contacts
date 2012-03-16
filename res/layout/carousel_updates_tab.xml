@@ -81,13 +81,4 @@
         android:textColor="@color/detail_tab_carousel_tab_label_color"
         style="@android:style/Widget.Holo.ActionBar.TabView" />
 
-    <View
-        android:id="@+id/touch_intercept_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="?android:attr/selectableItemBackground"
-        android:visibility="gone"/>
-
 </view>

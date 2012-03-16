@@ -21,7 +21,6 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.detail.ContactDetailPhotoSetter;
 import com.android.contacts.util.PhoneCapabilityTester;
 
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
@@ -61,7 +60,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private ImageView mPhotoView;
     private TextView mStatusView;
     private ImageView mStatusPhotoView;
-    private OnClickListener mPhotoClickListener;
     private final ContactDetailPhotoSetter mPhotoSetter = new ContactDetailPhotoSetter();
 
     private Listener mListener;
@@ -85,6 +83,9 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private int mAllowedHorizontalScrollLength = Integer.MIN_VALUE;
     private int mAllowedVerticalScrollLength = Integer.MIN_VALUE;
 
+    /** Factor to scale scroll-amount sent to listeners. */
+    private float mScrollScaleFactor = 1.0f;
+
     private static final float MAX_ALPHA = 0.5f;
 
     /**
@@ -93,6 +94,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     public interface Listener {
         public void onTouchDown();
         public void onTouchUp();
+
         public void onScrollChanged(int l, int t, int oldl, int oldt);
         public void onTabSelected(int position);
     }
@@ -119,14 +121,13 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         mTabAndShadowContainer = findViewById(R.id.tab_and_shadow_container);
         mAboutTab = (CarouselTab) findViewById(R.id.tab_about);
         mAboutTab.setLabel(mContext.getString(R.string.contactDetailAbout));
+        mAboutTab.setTouchInterceptorListener(mAboutTabTouchInterceptListener);
 
         mTabDivider = findViewById(R.id.tab_divider);
 
         mUpdatesTab = (CarouselTab) findViewById(R.id.tab_update);
         mUpdatesTab.setLabel(mContext.getString(R.string.contactDetailUpdates));
-
-        mAboutTab.enableTouchInterceptor(mAboutTabTouchInterceptListener);
-        mUpdatesTab.enableTouchInterceptor(mUpdatesTabTouchInterceptListener);
+        mUpdatesTab.setTouchInterceptorListener(mUpdatesTabTouchInterceptListener);
 
         mShadow = findViewById(R.id.shadow);
 
@@ -138,6 +139,13 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         // TODO: This should be moved down to mUpdatesTab, so that it hosts its own controls
         mStatusView = (TextView) mUpdatesTab.findViewById(R.id.status);
         mStatusPhotoView = (ImageView) mUpdatesTab.findViewById(R.id.status_photo);
+
+        // Workaround for framework issue... it shouldn't be necessary to have a
+        // clickable object in the hierarchy, but if not the horizontal scroll
+        // behavior doesn't work. Note: the "About" tab doesn't need this
+        // because we set a real click-handler elsewhere.
+        mStatusView.setClickable(true);
+        mStatusPhotoView.setClickable(true);
     }
 
     @Override
@@ -150,13 +158,18 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         // from the total length of the tabs.
         mAllowedHorizontalScrollLength = tabWidth * TAB_COUNT - screenWidth;
 
+        // Scrolling by mAllowedHorizontalScrollLength causes listeners to
+        // scroll by the entire screen amount; compute the scale-factor
+        // necessary to make this so.
+        mScrollScaleFactor = screenWidth / mAllowedHorizontalScrollLength;
+
         int tabHeight = Math.round(screenWidth * mTabHeightScreenWidthFraction) + mTabShadowHeight;
         // Set the child {@link LinearLayout} to be TAB_COUNT * the computed tab width so that the
         // {@link LinearLayout}'s children (which are the tabs) will evenly split that width.
         if (getChildCount() > 0) {
             View child = getChildAt(0);
 
-            // add 1 dip of seperation between the tabs
+            // add 1 dip of separation between the tabs
             final int seperatorPixels =
                     (int)(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1,
                     getResources().getDisplayMetrics()) + 0.5f);
@@ -184,23 +197,26 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         }
     }
 
-    private final OnClickListener mAboutTabTouchInterceptListener = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (mCurrentTab == TAB_INDEX_ABOUT && mPhotoClickListener != null) {
-                mPhotoClickListener.onClick(v);
-            } else {
-                mListener.onTabSelected(TAB_INDEX_ABOUT);
-            }
-        }
-    };
+    /** When clicked, selects the corresponding tab. */
+    private class TabClickListener implements OnClickListener {
+        private final int mTab;
 
-    private final OnClickListener mUpdatesTabTouchInterceptListener = new OnClickListener() {
+        public TabClickListener(int tab) {
+            super();
+            mTab = tab;
+        }
+
         @Override
         public void onClick(View v) {
-            mListener.onTabSelected(TAB_INDEX_UPDATES);
+            mListener.onTabSelected(mTab);
         }
-    };
+    }
+
+    private final TabClickListener mAboutTabTouchInterceptListener =
+            new TabClickListener(TAB_INDEX_ABOUT);
+
+    private final TabClickListener mUpdatesTabTouchInterceptListener =
+            new TabClickListener(TAB_INDEX_UPDATES);
 
     /**
      * Does in "appear" animation to allow a seamless transition from
@@ -308,9 +324,18 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     }
 
     @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        super.onScrollChanged(l, t, oldl, oldt);
-        mListener.onScrollChanged(l, t, oldl, oldt);
+    protected void onScrollChanged(int l, int t, int oldL, int oldT) {
+        super.onScrollChanged(l, t, oldL, oldT);
+
+        // Since we never completely scroll the about/updates tabs off-screen,
+        // the draggable range is less than the width of the carousel. Our
+        // listeners don't care about this... if we scroll 75% percent of our
+        // draggable range, they want to scroll 75% of the entire carousel
+        // width, not the same number of pixels that we scrolled.
+        int scaledL = (int) (l * mScrollScaleFactor);
+        int oldScaledL = (int) (oldL * mScrollScaleFactor);
+        mListener.onScrollChanged(scaledL, t, oldScaledL, oldT);
+
         mLastScrollPosition = l;
         updateAlphaLayers();
     }
@@ -388,20 +413,24 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
      * Updates the tab selection.
      */
     public void setCurrentTab(int position) {
+        final CarouselTab selected, deselected;
+
         switch (position) {
             case TAB_INDEX_ABOUT:
-                mAboutTab.showSelectedState();
-                mUpdatesTab.showDeselectedState();
-                mUpdatesTab.enableTouchInterceptor(mUpdatesTabTouchInterceptListener);
+                selected = mAboutTab;
+                deselected = mUpdatesTab;
                 break;
             case TAB_INDEX_UPDATES:
-                mUpdatesTab.showSelectedState();
-                mUpdatesTab.disableTouchInterceptor();
-                mAboutTab.showDeselectedState();
+                selected = mUpdatesTab;
+                deselected = mAboutTab;
                 break;
             default:
                 throw new IllegalStateException("Invalid tab position " + position);
         }
+        selected.showSelectedState();
+        selected.disableTouchInterceptor();
+        deselected.showDeselectedState();
+        deselected.enableTouchInterceptor();
         mCurrentTab = position;
     }
 
@@ -415,8 +444,17 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         // TODO: Move this into the {@link CarouselTab} class when the updates
         // fragment code is more finalized.
         final boolean expandOnClick = !PhoneCapabilityTester.isUsingTwoPanes(mContext);
-        mPhotoClickListener = mPhotoSetter.setupContactPhotoForClick(
+        OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
                 mContext, contactData, mPhotoView, expandOnClick);
+
+        if (expandOnClick || contactData.isWritableContact(mContext)) {
+            mPhotoView.setOnClickListener(listener);
+        } else {
+            // Work around framework issue... if we instead use
+            // setClickable(false), then we can't swipe horizontally.
+            mPhotoView.setOnClickListener(null);
+        }
+
         ContactDetailDisplayUtils.setSocialSnippet(
                 mContext, contactData, mStatusView, mStatusPhotoView);
     }

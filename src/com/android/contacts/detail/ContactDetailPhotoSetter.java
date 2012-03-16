@@ -101,9 +101,7 @@ public class ContactDetailPhotoSetter extends ImageViewDrawableSetter {
         final ImageView target = getTarget();
         if (target == null) return null;
 
-        OnClickListener clickListener = new PhotoClickListener(
+        return new PhotoClickListener(
                 context, contactData, bitmap, getCompressedImage(), expandPhotoOnClick);
-        target.setOnClickListener(clickListener);
-        return clickListener;
     }
 }

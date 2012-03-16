@@ -169,6 +169,9 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     public void setFragments(ViewOverlay aboutFragment, ViewOverlay updatesFragment) {
         mAboutFragment = aboutFragment;
         mUpdatesFragment = updatesFragment;
+
+        mAboutFragment.setTouchInterceptorListener(mAboutFragTouchInterceptListener);
+        mUpdatesFragment.setTouchInterceptorListener(mUpdatesFragTouchInterceptListener);
     }
 
     /**
@@ -216,11 +219,11 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
                 // The "about this contact" page has been selected, so disable the touch interceptor
                 // on this page and enable it for the "updates" page.
                 mAboutFragment.disableTouchInterceptor();
-                mUpdatesFragment.enableTouchInterceptor(mUpdatesFragTouchInterceptListener);
+                mUpdatesFragment.enableTouchInterceptor();
                 break;
             case UPDATES_PAGE:
                 mUpdatesFragment.disableTouchInterceptor();
-                mAboutFragment.enableTouchInterceptor(mAboutFragTouchInterceptListener);
+                mAboutFragment.enableTouchInterceptor();
                 break;
         }
     }

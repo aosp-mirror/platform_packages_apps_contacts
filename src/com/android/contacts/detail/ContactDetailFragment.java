@@ -317,7 +317,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     @Override
     public void setAlphaLayerValue(float alpha) {
-        // If the alpha layer is not ready yet, store it for later when the view is initialized
+        // If the alpha layer is not ready yet, store it for later when the view
+        // is initialized
         if (mAlphaLayer == null) {
             mInitialAlphaValue = alpha;
         } else {
@@ -327,10 +328,16 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     @Override
-    public void enableTouchInterceptor(OnClickListener clickListener) {
+    public void setTouchInterceptorListener(OnClickListener listener) {
+        if (mTouchInterceptLayer != null) {
+            mTouchInterceptLayer.setOnClickListener(listener);
+        }
+    }
+
+    @Override
+    public void enableTouchInterceptor() {
         if (mTouchInterceptLayer != null) {
             mTouchInterceptLayer.setVisibility(View.VISIBLE);
-            mTouchInterceptLayer.setOnClickListener(clickListener);
         }
     }
 
@@ -442,7 +449,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         mContext, mContactData, photoView, false);
                 if (mPhotoTouchOverlay != null) {
                     mPhotoTouchOverlay.setVisibility(View.VISIBLE);
-                    mPhotoTouchOverlay.setOnClickListener(listener);
+                    if (mContactData.isWritableContact(mContext)) {
+                        mPhotoTouchOverlay.setOnClickListener(listener);
+                    } else {
+                        mPhotoTouchOverlay.setClickable(false);
+                    }
                 }
             } else {
                 mStaticPhotoContainer.setVisibility(View.GONE);
@@ -1363,15 +1374,21 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         @Override
+        public void setTouchInterceptorListener(OnClickListener listener) {
+            if (photoOverlayView != null) {
+                photoOverlayView.setOnClickListener(listener);
+            }
+        }
+
+        @Override
         public void setAlphaLayerValue(float alpha) {
             // Nothing to do.
         }
 
         @Override
-        public void enableTouchInterceptor(OnClickListener clickListener) {
+        public void enableTouchInterceptor() {
             if (photoOverlayView != null) {
                 photoOverlayView.setVisibility(View.VISIBLE);
-                photoOverlayView.setOnClickListener(clickListener);
             }
         }
 
@@ -1495,7 +1512,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 final boolean expandOnClick = !PhoneCapabilityTester.isUsingTwoPanes(mContext);
                 OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
                         mContext, mContactData, viewCache.photoView, expandOnClick);
-                viewCache.enableTouchInterceptor(listener);
+
+                if (expandOnClick || mContactData.isWritableContact(mContext)) {
+                    viewCache.setTouchInterceptorListener(listener);
+                    viewCache.enableTouchInterceptor();
+                }
             }
 
             // Set the starred state if it should be displayed

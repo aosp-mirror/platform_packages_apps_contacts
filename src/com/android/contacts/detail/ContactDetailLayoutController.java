@@ -36,7 +36,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -57,9 +56,6 @@ public class ContactDetailLayoutController {
     private static final int TAB_INDEX_UPDATES = 1;
 
     private final int SINGLE_PANE_FADE_IN_DURATION = 275;
-
-    private static final String TAG = "ContactDetailLayoutController";
-    private static final boolean DEBUG = false;
 
     /**
      * There are 3 possible layouts for the contact detail screen:
@@ -135,13 +131,10 @@ public class ContactDetailLayoutController {
         // Determine the layout mode based on the presence of certain views in the layout XML.
         if (mViewPager != null) {
             mLayoutMode = LayoutMode.VIEW_PAGER_AND_TAB_CAROUSEL;
-            if (DEBUG) Log.d(TAG, "set layout mode to VIEW_PAGER_AND_TAB_CAROUSEL");
         } else if (mFragmentCarousel != null) {
             mLayoutMode = LayoutMode.FRAGMENT_CAROUSEL;
-            if (DEBUG) Log.d(TAG, "set layout mode to FRAGMENT_CAROUSEL");
         } else {
             mLayoutMode = LayoutMode.TWO_COLUMN;
-            if (DEBUG) Log.d(TAG, "set layout mode to TWO_COLUMN");
         }
 
         initialize(savedState);
@@ -491,9 +484,8 @@ public class ContactDetailLayoutController {
             // these scroll changes to the tab carousel. Ignore these events though if the carousel
             // is actually controlling the {@link ViewPager} scrolls because it will already be
             // in the correct position.
-            if (mViewPager.isFakeDragging()) {
-                return;
-            }
+            if (mViewPager.isFakeDragging()) return;
+
             int x = (int) ((position + positionOffset) *
                     mTabCarousel.getAllowedHorizontalScrollLength());
             mTabCarousel.scrollTo(x, 0);
@@ -626,34 +618,31 @@ public class ContactDetailLayoutController {
         }
     };
 
-    private final ContactDetailTabCarousel.Listener mTabCarouselListener =
-            new ContactDetailTabCarousel.Listener() {
+    private final ContactDetailTabCarousel.Listener mTabCarouselListener 
+            = new ContactDetailTabCarousel.Listener() {
 
         @Override
         public void onTouchDown() {
-            // The user just started scrolling the carousel, so begin "fake dragging" the
-            // {@link ViewPager} if it's not already doing so.
-            if (mViewPager.isFakeDragging()) {
-                return;
-            }
-            mViewPager.beginFakeDrag();
+            // The user just started scrolling the carousel, so begin
+            // "fake dragging" the {@link ViewPager} if it's not already
+            // doing so.
+            if (!mViewPager.isFakeDragging()) mViewPager.beginFakeDrag();
         }
 
         @Override
         public void onTouchUp() {
-            // The user just stopped scrolling the carousel, so stop "fake dragging" the
-            // {@link ViewPager} if was doing so before.
-            if (mViewPager.isFakeDragging()) {
-                mViewPager.endFakeDrag();
-            }
+            // The user just stopped scrolling the carousel, so stop
+            // "fake dragging" the {@link ViewPager} if it was doing so
+            // before.
+            if (mViewPager.isFakeDragging()) mViewPager.endFakeDrag();
         }
 
         @Override
         public void onScrollChanged(int l, int t, int oldl, int oldt) {
-            // The user is scrolling the carousel, so send the scroll deltas to the
-            // {@link ViewPager} so it can move in sync.
+            // The user is scrolling the carousel, so send the scroll
+            // deltas to the {@link ViewPager} so it can move in sync.
             if (mViewPager.isFakeDragging()) {
-                mViewPager.fakeDragBy(oldl-l);
+                mViewPager.fakeDragBy(oldl - l);
             }
         }
 

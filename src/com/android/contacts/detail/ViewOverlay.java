@@ -27,18 +27,25 @@ import android.view.View.OnClickListener;
 public interface ViewOverlay {
 
     /**
+     * Sets the callback that will be invoked when the touch-interceptor tapped
+     * while enabled.
+     */
+    public void setTouchInterceptorListener(OnClickListener listener);
+
+    /**
      * Sets the alpha value on the alpha layer (if there is one).
      */
     public void setAlphaLayerValue(float alpha);
 
     /**
-     * Makes the touch intercept layer on this fragment visible (if there is one). Also adds a click
-     * listener which is called when there is a touch event on the layer.
+     * Enables the touch intercept layer on this fragment, so that it intercepts
+     * and handles touch events.
      */
-    public void enableTouchInterceptor(OnClickListener clickListener);
+    public void enableTouchInterceptor();
 
     /**
-     * Makes the touch intercept layer on this fragment gone (if there is one).
+     * Disables the touch intercept layer on this fragment; touch events are
+     * handled normally by the view hierarchy under the overlay.
      */
     public void disableTouchInterceptor();
 }
