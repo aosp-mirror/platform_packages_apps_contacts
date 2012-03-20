@@ -21,6 +21,7 @@ import com.android.contacts.R;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.PhotoActionPopup;
 import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.util.AnimationUtils;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -175,14 +176,12 @@ public class PhotoSelectionActivity extends Activity {
         });
 
         // Wait until the layout pass to show the photo, so that the source bounds will match up.
-        OnGlobalLayoutListener globalLayoutListener = new OnGlobalLayoutListener() {
+        AnimationUtils.doAfterLayout(mBackdrop, new Runnable() {
             @Override
-            public void onGlobalLayout() {
+            public void run() {
                 displayPhoto();
-                mBackdrop.getViewTreeObserver().removeGlobalOnLayoutListener(this);
             }
-        };
-        mBackdrop.getViewTreeObserver().addOnGlobalLayoutListener(globalLayoutListener);
+        });
     }
 
     @Override
@@ -432,7 +431,14 @@ public class PhotoSelectionActivity extends Activity {
                     mPendingPhotoResult.mResultCode, mPendingPhotoResult.mData);
             mPendingPhotoResult = null;
         } else {
-            animatePhotoOpen();
+            // Setting the photo in displayPhoto() resulted in a relayout
+            // request... to avoid jank, wait until this layout has happened.
+            AnimationUtils.doAfterLayout(mBackdrop, new Runnable() {
+                @Override
+                public void run() {
+                    animatePhotoOpen();
+                }
+            });
         }
     }
 

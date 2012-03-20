@@ -16,6 +16,8 @@
 
 package com.android.contacts.editor;
 
+import com.android.contacts.util.AnimationUtils;
+
 import com.google.common.collect.Lists;
 
 import android.animation.Animator;
@@ -87,7 +89,7 @@ public class EditorAnimator {
         organizationSectionViewContainer.setVisibility(View.VISIBLE);
         organizationSectionViewContainer.setAlpha(0.0f);
         organizationSectionViewContainer.requestFocus();
-        doAfterLayout(addOrganizationButton, new Runnable() {
+        AnimationUtils.doAfterLayout(addOrganizationButton, new Runnable() {
             @Override
             public void run() {
                 // How many pixels extra do we need?
@@ -124,7 +126,7 @@ public class EditorAnimator {
         // Make the new controls visible and do one layout pass (so that we can measure)
         view.setVisibility(View.VISIBLE);
         view.setAlpha(0.0f);
-        doAfterLayout(view, new Runnable() {
+        AnimationUtils.doAfterLayout(view, new Runnable() {
             @Override
             public void run() {
                 // How many pixels extra do we need?
@@ -180,19 +182,6 @@ public class EditorAnimator {
                 victim.setVisibility(View.GONE);
             }
         });
-    }
-
-    /** Runs a piece of code after the next layout run */
-    private static void doAfterLayout(final View view, final Runnable runnable) {
-        final OnGlobalLayoutListener listener = new OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                // Layout pass done, unregister for further events
-                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                runnable.run();
-            }
-        };
-        view.getViewTreeObserver().addOnGlobalLayoutListener(listener);
     }
 
     /**
