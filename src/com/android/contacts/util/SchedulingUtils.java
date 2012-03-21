@@ -19,8 +19,8 @@ package com.android.contacts.util;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
-/** Static methods that are useful for animations. */
-public class AnimationUtils {
+/** Static methods that are useful for scheduling actions to occur at a later time. */
+public class SchedulingUtils {
 
     /** Runs a piece of code after the next layout run */
     public static void doAfterLayout(final View view, final Runnable runnable) {

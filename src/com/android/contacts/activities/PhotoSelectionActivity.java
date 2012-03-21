@@ -21,7 +21,7 @@ import com.android.contacts.R;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.PhotoActionPopup;
 import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.util.AnimationUtils;
+import com.android.contacts.util.SchedulingUtils;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -37,7 +37,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
 
@@ -176,7 +176,7 @@ public class PhotoSelectionActivity extends Activity {
         });
 
         // Wait until the layout pass to show the photo, so that the source bounds will match up.
-        AnimationUtils.doAfterLayout(mBackdrop, new Runnable() {
+        SchedulingUtils.doAfterLayout(mBackdrop, new Runnable() {
             @Override
             public void run() {
                 displayPhoto();
@@ -433,7 +433,7 @@ public class PhotoSelectionActivity extends Activity {
         } else {
             // Setting the photo in displayPhoto() resulted in a relayout
             // request... to avoid jank, wait until this layout has happened.
-            AnimationUtils.doAfterLayout(mBackdrop, new Runnable() {
+            SchedulingUtils.doAfterLayout(mBackdrop, new Runnable() {
                 @Override
                 public void run() {
                     animatePhotoOpen();
@@ -450,8 +450,10 @@ public class PhotoSelectionActivity extends Activity {
         }
 
         private final class PhotoListener extends PhotoActionListener {
-            private final Context mContext;
+            @SuppressWarnings("hiding")
             private final boolean mIsProfile;
+            private final Context mContext;
+
             private PhotoListener(Context context, boolean isProfile) {
                 mContext = context;
                 mIsProfile = isProfile;

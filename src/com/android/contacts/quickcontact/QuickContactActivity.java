@@ -24,6 +24,7 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.ImageViewDrawableSetter;
+import com.android.contacts.util.SchedulingUtils;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -479,7 +480,7 @@ public class QuickContactActivity extends Activity {
 
             // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
             // that the layout passes are completed
-            new Handler().post(new Runnable() {
+            SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
                 @Override
                 public void run() {
                     mFloatingLayout.showChild(new Runnable() {

@@ -19,7 +19,7 @@ package com.android.contacts.quickcontact;
 import com.android.contacts.R;
 
 import android.animation.Animator;
-import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -153,33 +153,24 @@ public class FloatingChildLayout extends FrameLayout {
     private void animateScale(boolean isExitAnimation, final Runnable onAnimationEndRunnable) {
         mChild.setPivotX(mTargetScreen.centerX() - mChild.getLeft());
         mChild.setPivotY(mTargetScreen.centerY() - mChild.getTop());
-        ViewPropertyAnimator animator = mChild.animate();
-        animator.setDuration(mAnimationDuration);
-        final int scaleInterpolator = isExitAnimation ? android.R.interpolator.accelerate_quint
+
+        final int scaleInterpolator = isExitAnimation
+                ? android.R.interpolator.accelerate_quint
                 : android.R.interpolator.decelerate_quint;
-        animator.setInterpolator(AnimationUtils.loadInterpolator(getContext(), scaleInterpolator));
         final float scaleTarget = isExitAnimation ? 0.5f : 1.0f;
-        animator.scaleX(scaleTarget);
-        animator.scaleY(scaleTarget);
-        animator.alpha(isExitAnimation ? 0.0f : 1.0f);
 
-        if (onAnimationEndRunnable != null) {
-            animator.setListener(new AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {}
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {}
-
-                @Override
-                public void onAnimationCancel(Animator animation) {}
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    onAnimationEndRunnable.run();
-                }
-            });
-        }
+        ViewPropertyAnimator animator = mChild.animate().withLayer()
+                .setDuration(mAnimationDuration)
+                .setInterpolator(AnimationUtils.loadInterpolator(getContext(), scaleInterpolator))
+                .scaleX(scaleTarget)
+                .scaleY(scaleTarget)
+                .alpha(isExitAnimation ? 0.0f : 1.0f)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        if (onAnimationEndRunnable != null) onAnimationEndRunnable.run();
+                    }
+                });
     }
 
     private View.OnTouchListener mOutsideTouchListener;
