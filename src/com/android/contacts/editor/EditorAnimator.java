@@ -16,7 +16,7 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.util.AnimationUtils;
+import com.android.contacts.util.SchedulingUtils;
 
 import com.google.common.collect.Lists;
 
@@ -28,7 +28,6 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.LinearLayout;
 
 import java.util.List;
@@ -89,7 +88,7 @@ public class EditorAnimator {
         organizationSectionViewContainer.setVisibility(View.VISIBLE);
         organizationSectionViewContainer.setAlpha(0.0f);
         organizationSectionViewContainer.requestFocus();
-        AnimationUtils.doAfterLayout(addOrganizationButton, new Runnable() {
+        SchedulingUtils.doAfterLayout(addOrganizationButton, new Runnable() {
             @Override
             public void run() {
                 // How many pixels extra do we need?
@@ -126,7 +125,7 @@ public class EditorAnimator {
         // Make the new controls visible and do one layout pass (so that we can measure)
         view.setVisibility(View.VISIBLE);
         view.setAlpha(0.0f);
-        AnimationUtils.doAfterLayout(view, new Runnable() {
+        SchedulingUtils.doAfterLayout(view, new Runnable() {
             @Override
             public void run() {
                 // How many pixels extra do we need?
