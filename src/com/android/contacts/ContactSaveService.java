@@ -21,6 +21,7 @@ import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.CallerInfoCacheUtils;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
@@ -177,11 +178,15 @@ public class ContactSaveService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        // Call an appropriate method. If we're sure it affects how incoming phone calls are
+        // handled, then notify the fact to in-call screen.
         String action = intent.getAction();
         if (ACTION_NEW_RAW_CONTACT.equals(action)) {
             createRawContact(intent);
+            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_SAVE_CONTACT.equals(action)) {
             saveContact(intent);
+            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_CREATE_GROUP.equals(action)) {
             createGroup(intent);
         } else if (ACTION_RENAME_GROUP.equals(action)) {
@@ -198,12 +203,16 @@ public class ContactSaveService extends IntentService {
             clearPrimary(intent);
         } else if (ACTION_DELETE_CONTACT.equals(action)) {
             deleteContact(intent);
+            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_JOIN_CONTACTS.equals(action)) {
             joinContacts(intent);
+            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_SET_SEND_TO_VOICEMAIL.equals(action)) {
             setSendToVoicemail(intent);
+            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_SET_RINGTONE.equals(action)) {
             setRingtone(intent);
+            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         }
     }
 
