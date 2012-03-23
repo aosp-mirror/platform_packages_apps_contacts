@@ -276,7 +276,7 @@
     <string name="call_settings" msgid="7666474782093693667">"设置"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"短信发送方式"</string>
     <string name="make_primary" msgid="5829291915305113983">"记住此选择"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"未找到可处理此操作的应用程序。"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"未找到可处理此操作的应用。"</string>
     <string name="missing_name" msgid="8745511583852904385">"（无姓名）"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"帐户"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"要显示的联系人"</string>
@@ -393,7 +393,7 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"使用此照片"</string>
-    <string name="contact_read_only" msgid="7421346527289472273">"无法通过此应用程序修改。"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"无法通过此应用修改。"</string>
     <string name="no_contact_details" msgid="6636856378019344497">"没有此联系人的其他信息。"</string>
     <string name="group_read_only" msgid="1061762906115697637">"无法在此设备上修改。"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"列表排序依据"</string>
@@ -409,7 +409,7 @@
     <string name="locale_change_in_progress" msgid="7583992153091537467">"正在更新联系人列表，以反映语言的变更。"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"正在更新联系人列表。"</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"正在升级“联系人”。"\n\n"升级过程大约需要 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB 的内存空间。"\n\n"请选择以下某个选项："</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"卸载一些应用程序"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"卸载一些应用"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"重新尝试升级"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"正在搜索..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"已选收件人"</string>
