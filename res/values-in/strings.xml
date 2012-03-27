@@ -220,7 +220,7 @@
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Menelusuri data vCard pada kartu SD..."</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Penyimpanan tidak dapat dipindai. (Alasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Kartu SD tidak dapat dipindai. (Alasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="fail_reason_io_error" msgid="6748358842976073255">"Galat I/O"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"Kesalahan I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Memori tidak cukup. File mungkin terlalu besar."</string>
     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Tidak dapat mengurai vCard karena alasan yang tak terduga."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Format tidak didukung."</string>
@@ -229,7 +229,7 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Tidak ditemukan file vCard pada kartu SD."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Tidak dapat mengumpulkan informasi meta dari file vCard yang diberikan."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Satu file atau lebih tidak dapat diimpor (%s)."</string>
-    <string name="fail_reason_unknown" msgid="1714092345030570863">"Galat tidak dikenal."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"Kesalahan tidak dikenal."</string>
     <string name="select_vcard_title" msgid="7791371083694672861">"Pilih file vCard"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Menyimpan ke tembolok"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"Menyimpan vCard ke tembolok untuk penyimpanan lokal sementara. Impor yang sebenarnya akan segera dimulai."</string>
@@ -259,7 +259,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Mengekspor data kenalan"</string>
     <string name="exporting_contact_list_message" msgid="7181663157672374569">"Data kenalan Anda sedang diekspor ke: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Tidak dapat memulai pengeskpor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Terjadi galat saat ekspor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Terjadi kesalahan saat ekspor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Tidak dapat memperoleh informasi basis data."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Tidak ada data kenalan yang dapat diekspor. Jika Anda menyimpan data kenalan di tablet, beberapa penyedia data mungkin tidak mengizinkan data kenalan untuk diekspor dari tablet."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Tidak ada data kenalan yang dapat diekspor. Jika Anda menyimpan data kenalan pada ponsel, beberapa penyedia data tidak mengizinkan data kenalan diekspor dari ponsel."</string>
