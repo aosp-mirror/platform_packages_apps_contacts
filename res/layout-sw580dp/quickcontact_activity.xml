@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <FrameLayout
-            android:layout_width="400dip"
+            android:layout_width="360dip"
             android:layout_height="@dimen/quick_contact_photo_container_height">
             <include layout="@layout/quickcontact_photo_container" />
         </FrameLayout>
