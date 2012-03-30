@@ -56,7 +56,7 @@ public class DateUtils {
     private static final java.text.DateFormat FORMAT_WITHOUT_YEAR_MONTH_FIRST =
             new SimpleDateFormat("MMMM dd");
 
-    private static final java.text.DateFormat FORMAT_WITHOUT_YEAR_DATE_FIRST =
+    private static final java.text.DateFormat FORMAT_WITHOUT_YEAR_DAY_FIRST =
             new SimpleDateFormat("dd MMMM");
 
     static {
@@ -66,7 +66,7 @@ public class DateUtils {
         }
         NO_YEAR_DATE_FORMAT.setTimeZone(UTC_TIMEZONE);
         FORMAT_WITHOUT_YEAR_MONTH_FIRST.setTimeZone(UTC_TIMEZONE);
-        FORMAT_WITHOUT_YEAR_DATE_FIRST.setTimeZone(UTC_TIMEZONE);
+        FORMAT_WITHOUT_YEAR_DAY_FIRST.setTimeZone(UTC_TIMEZONE);
     }
 
     /**
@@ -112,9 +112,9 @@ public class DateUtils {
         }
 
         if (parsePosition.getIndex() == string.length()) {
-            java.text.DateFormat outFormat = isMonthBeforeDate(context)
+            java.text.DateFormat outFormat = isMonthBeforeDay(context)
                     ? FORMAT_WITHOUT_YEAR_MONTH_FIRST
-                    : FORMAT_WITHOUT_YEAR_DATE_FIRST;
+                    : FORMAT_WITHOUT_YEAR_DAY_FIRST;
             synchronized (outFormat) {
                 return outFormat.format(date);
             }
@@ -135,7 +135,7 @@ public class DateUtils {
         return string;
     }
 
-    private static boolean isMonthBeforeDate(Context context) {
+    public static boolean isMonthBeforeDay(Context context) {
         char[] dateFormatOrder = DateFormat.getDateFormatOrder(context);
         for (int i = 0; i < dateFormatOrder.length; i++) {
             if (dateFormatOrder[i] == DateFormat.DATE) {

@@ -19,8 +19,6 @@
 
 <!-- Layout of date picker-->
 
-<!-- Warning: everything within the parent is removed and re-ordered depending
-     on the date format selected by the user. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
@@ -33,8 +31,11 @@
         android:paddingTop="5dip"
         android:paddingBottom="5dip"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <!-- Warning: everything within the parent is removed and re-ordered depending
+         on the date format selected by the user. -->
     <LinearLayout
         android:id="@+id/parent"
         android:orientation="horizontal"

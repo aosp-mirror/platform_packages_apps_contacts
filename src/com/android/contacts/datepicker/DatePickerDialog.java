@@ -19,6 +19,10 @@ package com.android.contacts.datepicker;
 // This is a fork of the standard Android DatePicker that additionally allows toggling the year
 // on/off. It uses some private API so that not everything has to be copied.
 
+import com.android.contacts.R;
+import com.android.contacts.datepicker.DatePicker.OnDateChangedListener;
+import com.android.contacts.util.DateUtils;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -30,10 +34,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.contacts.R;
-import com.android.contacts.datepicker.DatePicker.OnDateChangedListener;
-
-import java.text.DateFormatSymbols;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -53,8 +55,8 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
     private final DatePicker mDatePicker;
     private final OnDateSetListener mCallBack;
     private final Calendar mCalendar;
-    private final java.text.DateFormat mTitleDateFormat;
-    private final String[] mWeekDays;
+    private final DateFormat mTitleDateFormat;
+    private final DateFormat mTitleNoYearDateFormat;
 
     private int mInitialYear;
     private int mInitialMonth;
@@ -148,11 +150,10 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
         mInitialYear = year;
         mInitialMonth = monthOfYear;
         mInitialDay = dayOfMonth;
-        DateFormatSymbols symbols = new DateFormatSymbols();
-        mWeekDays = symbols.getShortWeekdays();
 
-        mTitleDateFormat = java.text.DateFormat.
-                                getDateInstance(java.text.DateFormat.FULL);
+        mTitleDateFormat = DateFormat.getDateInstance(DateFormat.FULL);
+        mTitleNoYearDateFormat = new SimpleDateFormat(
+                DateUtils.isMonthBeforeDay(getContext()) ? "MMMM dd" : "dd MMMM");
         mCalendar = Calendar.getInstance();
         updateTitle(mInitialYear, mInitialMonth, mInitialDay);
 
@@ -182,6 +183,7 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
         title.setEllipsize(TruncateAt.END);
     }
 
+    @Override
     public void onClick(DialogInterface dialog, int which) {
         if (mCallBack != null) {
             mDatePicker.clearFocus();
@@ -190,8 +192,8 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
         }
     }
 
-    public void onDateChanged(DatePicker view, int year,
-            int month, int day) {
+    @Override
+    public void onDateChanged(DatePicker view, int year, int month, int day) {
         updateTitle(year, month, day);
     }
 
@@ -206,7 +208,9 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
         mCalendar.set(Calendar.YEAR, year);
         mCalendar.set(Calendar.MONTH, month);
         mCalendar.set(Calendar.DAY_OF_MONTH, day);
-        setTitle(mTitleDateFormat.format(mCalendar.getTime()));
+        final DateFormat dateFormat =
+                year == 0 ? mTitleNoYearDateFormat : mTitleDateFormat;
+        setTitle(dateFormat.format(mCalendar.getTime()));
     }
 
     @Override

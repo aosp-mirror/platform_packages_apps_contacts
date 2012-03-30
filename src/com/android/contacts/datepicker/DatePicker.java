@@ -108,6 +108,7 @@ public class DatePicker extends FrameLayout {
         mDayPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
         mDayPicker.setOnLongPressUpdateInterval(100);
         mDayPicker.setOnValueChangedListener(new OnValueChangeListener() {
+            @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 mDay = newVal;
                 notifyDateChanged();
@@ -137,6 +138,7 @@ public class DatePicker extends FrameLayout {
 
         mMonthPicker.setOnLongPressUpdateInterval(200);
         mMonthPicker.setOnValueChangedListener(new OnValueChangeListener() {
+            @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
                 /* We display the month 1-12 but store it 0-11 so always
@@ -152,6 +154,7 @@ public class DatePicker extends FrameLayout {
         mYearPicker = (NumberPicker) findViewById(R.id.year);
         mYearPicker.setOnLongPressUpdateInterval(100);
         mYearPicker.setOnValueChangedListener(new OnValueChangeListener() {
+            @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 mYear = newVal;
                 // Adjust max day for leap years if needed
@@ -353,10 +356,12 @@ public class DatePicker extends FrameLayout {
         public static final Parcelable.Creator<SavedState> CREATOR =
                 new Creator<SavedState>() {
 
+                    @Override
                     public SavedState createFromParcel(Parcel in) {
                         return new SavedState(in);
                     }
 
+                    @Override
                     public SavedState[] newArray(int size) {
                         return new SavedState[size];
                     }

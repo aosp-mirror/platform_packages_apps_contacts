@@ -29,7 +29,6 @@ import com.android.contacts.util.DateUtils;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -238,10 +237,11 @@ public class EventFieldEditorView extends LabeledEditorView {
                 final Calendar outCalendar =
                         Calendar.getInstance(DateUtils.UTC_TIMEZONE, Locale.US);
 
-                // If no year specified, set it to 1900. The format string will ignore that year
+                // If no year specified, set it to 2000 (we could pick any leap year here).
+                // The format string will ignore that year.
                 // For formats other than Exchange, the time of the day is ignored
                 outCalendar.clear();
-                outCalendar.set(year == 0 ? 1900 : year, monthOfYear, dayOfMonth,
+                outCalendar.set(year == 0 ? 2000 : year, monthOfYear, dayOfMonth,
                         DEFAULT_HOUR, 0, 0);
 
                 final String resultString;
