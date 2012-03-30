@@ -19,10 +19,13 @@
 
 <!-- Layout of date picker-->
 
+<!-- The width of this container is manually set a little bigger than the one of the children
+     contained in it. This helps to prevent rounding errors when toggling the "Show year" option -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
-    android:layout_width="wrap_content"
+    android:layout_width="270dip"
     android:layout_height="wrap_content">
 
     <CheckBox
