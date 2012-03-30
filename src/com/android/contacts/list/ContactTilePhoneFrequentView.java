@@ -15,18 +15,18 @@
  */
 package com.android.contacts.list;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.text.TextUtils;
-
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.list.ContactTileAdapter.ContactEntry;
+import com.android.contacts.util.ViewUtil;
+
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.View;
 
 /**
  * A dark version of the {@link ContactTileView} that is used in Dialtacts
- * for frequently called contacts.  Slightly different behavior from superclass...
+ * for frequently called contacts. Slightly different behavior from superclass...
  * when you tap it, you want to call the frequently-called number for the
  * contact, even if that is not the default number for that contact.
  */
@@ -40,6 +40,11 @@ public class ContactTilePhoneFrequentView extends ContactTileView {
     @Override
     protected boolean isDarkTheme() {
         return true;
+    }
+
+    @Override
+    protected int getApproximateImageSize() {
+        return ViewUtil.getConstantPreLayoutWidth(getQuickContact());
     }
 
     @Override

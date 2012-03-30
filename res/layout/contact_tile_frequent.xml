@@ -15,7 +15,7 @@
 -->
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.list.ContactTileView"
+    class="com.android.contacts.list.ContactTileFrequentView"
     android:focusable="true"
     android:background="?android:attr/selectableItemBackground"
     android:nextFocusRight="@+id/contact_tile_quick">

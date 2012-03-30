@@ -737,7 +737,7 @@ import libcore.util.Objects;
 
     private void setPhoto(CallLogListItemViews views, long photoId, Uri contactUri) {
         views.quickContactView.assignContactUri(contactUri);
-        mContactPhotoManager.loadPhoto(views.quickContactView, photoId, false, true);
+        mContactPhotoManager.loadThumbnail(views.quickContactView, photoId, true);
     }
 
     /**

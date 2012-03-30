@@ -35,9 +35,9 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
-
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
 
@@ -47,6 +47,8 @@ import java.io.File;
  * Popup activity for choosing a contact photo within the Contacts app.
  */
 public class PhotoSelectionActivity extends Activity {
+
+    private static final String TAG = "PhotoSelectionActivity";
 
     /** Number of ms for the animation to expand the photo. */
     private static final int PHOTO_EXPAND_DURATION = 100;
@@ -243,15 +245,6 @@ public class PhotoSelectionActivity extends Activity {
     }
 
     private void displayPhoto() {
-        // Load the photo.
-        if (mPhotoUri != null) {
-            // If we have a URI, the bitmap should be cached directly.
-            ContactPhotoManager.getInstance(this).loadPhoto(mPhotoView, mPhotoUri, true, false);
-        } else {
-            // Fall back to avatar image.
-            mPhotoView.setImageResource(ContactPhotoManager.getDefaultAvatarResId(true, false));
-        }
-
         // Animate the photo view into its end location.
         final int[] pos = new int[2];
         mBackdrop.getLocationOnScreen(pos);
@@ -266,6 +259,19 @@ public class PhotoSelectionActivity extends Activity {
         mPhotoStartParams = layoutParams;
         mPhotoView.setLayoutParams(layoutParams);
         mPhotoView.requestLayout();
+
+        // Load the photo.
+        int photoWidth = getPhotoEndParams().width;
+        Log.d(TAG, "Photo width: " + photoWidth);
+        if (mPhotoUri != null) {
+            // If we have a URI, the bitmap should be cached directly.
+            ContactPhotoManager.getInstance(this).loadPhoto(mPhotoView, mPhotoUri, photoWidth,
+                    false);
+        } else {
+            // Fall back to avatar image.
+            mPhotoView.setImageResource(ContactPhotoManager.getDefaultAvatarResId(this, photoWidth,
+                    false));
+        }
 
         mPhotoView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override

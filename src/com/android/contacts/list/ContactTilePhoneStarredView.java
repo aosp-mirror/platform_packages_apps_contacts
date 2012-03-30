@@ -24,17 +24,13 @@ import android.view.View;
 import android.widget.ImageButton;
 
 /**
- * A {@link ContactTileSecondaryTargetView} displays the contact's picture overlayed with their name
- * in a perfect square like the {@link ContactTileStarredView}. However it adds in an additional
- * touch target for a secondary action.
+ * Displays the contact's picture overlayed with their name
+ * in a perfect square. It also has an additional touch target for a secondary action.
  */
-public class ContactTileSecondaryTargetView extends ContactTileStarredView {
-
-    private final static String TAG = ContactTileSecondaryTargetView.class.getSimpleName();
-
+public class ContactTilePhoneStarredView extends ContactTileView {
     private ImageButton mSecondaryButton;
 
-    public ContactTileSecondaryTargetView(Context context, AttributeSet attrs) {
+    public ContactTilePhoneStarredView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -58,5 +54,11 @@ public class ContactTileSecondaryTargetView extends ContactTileStarredView {
     @Override
     protected boolean isDarkTheme() {
         return true;
+    }
+
+    @Override
+    protected int getApproximateImageSize() {
+        // The picture is the full size of the tile (minus some padding, but we can be generous)
+        return mListener.getApproximateTileWidth();
     }
 }

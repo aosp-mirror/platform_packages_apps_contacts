@@ -638,11 +638,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                 getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn));
 
         if (photoId != 0 || photoUriColumn == -1) {
-            getPhotoLoader().loadPhoto(quickContact, photoId, false, mDarkTheme);
+            getPhotoLoader().loadThumbnail(quickContact, photoId, mDarkTheme);
         } else {
             final String photoUriString = cursor.getString(photoUriColumn);
             final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
-            getPhotoLoader().loadPhoto(quickContact, photoUri, false, mDarkTheme);
+            getPhotoLoader().loadPhoto(quickContact, photoUri, -1, mDarkTheme);
         }
 
     }
