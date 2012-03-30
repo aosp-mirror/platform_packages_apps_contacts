@@ -150,7 +150,7 @@
     <dimen name="group_detail_border_padding">0dip</dimen>
 
     <!-- Height of the quick contact photo container (for screens that are too large to use the screen width/height as a constraint)-->
-    <dimen name="quick_contact_photo_container_height">200dip</dimen>
+    <dimen name="quick_contact_photo_container_height">180dip</dimen>
 
     <!-- Height of edit text in dialpad fragment -->
     <dimen name="dialpad_horizontal_margin">0dip</dimen>
