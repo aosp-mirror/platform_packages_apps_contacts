@@ -29,6 +29,7 @@ import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.util.ViewUtil;
 import com.android.internal.util.Objects;
 
 import android.accounts.Account;
@@ -959,7 +960,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 });
             }
 
-            mPhotoManager.loadPhoto(badge, member.getPhotoUri(), false, false);
+            mPhotoManager.loadPhoto(badge, member.getPhotoUri(),
+                    ViewUtil.getConstantPreLayoutWidth(badge), false);
             return result;
         }
 

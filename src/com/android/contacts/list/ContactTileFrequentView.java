@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 The Android Open Source Project
+ * Copyright (C) 2012 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,16 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.util.ViewUtil;
+
 import android.content.Context;
 import android.util.AttributeSet;
 
 /**
- * A {@link ContactTileStarredView} displays the contact's picture overlayed with their name
- * in a square. The actual dimensions are set by
- * {@link com.android.contacts.list.ContactTileAdapter.ContactTileRow}.
+ * A {@link ContactTileView} that is used for most frequently contacted in the People app
  */
-public class ContactTileStarredView extends ContactTileView {
-    public ContactTileStarredView(Context context, AttributeSet attrs) {
+public class ContactTileFrequentView extends ContactTileView {
+    public ContactTileFrequentView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -35,7 +35,6 @@ public class ContactTileStarredView extends ContactTileView {
 
     @Override
     protected int getApproximateImageSize() {
-        // The picture is the full size of the tile (minus some padding, but we can be generous)
-        return mListener.getApproximateTileWidth();
+        return ViewUtil.getConstantPreLayoutWidth(getQuickContact());
     }
 }

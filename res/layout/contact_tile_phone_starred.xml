@@ -18,7 +18,7 @@
     android:background="@null"
     android:paddingBottom="1dip"
     android:paddingRight="1dip"
-    class="com.android.contacts.list.ContactTileSecondaryTargetView" >
+    class="com.android.contacts.list.ContactTilePhoneStarredView" >
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -17,7 +17,6 @@
 package com.android.contacts;
 
 import com.android.contacts.activities.DialtactsActivity;
-import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
@@ -27,12 +26,14 @@ import com.android.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Rect;
 import android.location.CountryDetector;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.DisplayPhoto;
 import android.provider.ContactsContract.QuickContact;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -45,6 +46,7 @@ public class ContactsUtils {
     private static final String TAG = "ContactsUtils";
     private static final String WAIT_SYMBOL_AS_STRING = String.valueOf(PhoneNumberUtils.WAIT);
 
+    private static int sThumbnailSize = -1;
 
     // TODO find a proper place for the canonical version of these
     public interface ProviderNames {
@@ -304,5 +306,25 @@ public class ContactsUtils {
         rect.right = (int) ((pos[0] + view.getWidth()) * appScale + 0.5f);
         rect.bottom = (int) ((pos[1] + view.getHeight()) * appScale + 0.5f);
         return rect;
+    }
+
+    /**
+     * Returns the size (width and height) of thumbnail pictures as configured in the provider. This
+     * can safely be called from the UI thread, as the provider can serve this without performing
+     * a database access
+     */
+    public static int getThumbnailSize(Context context) {
+        if (sThumbnailSize == -1) {
+            final Cursor c = context.getContentResolver().query(
+                    DisplayPhoto.CONTENT_MAX_DIMENSIONS_URI,
+                    new String[] { DisplayPhoto.THUMBNAIL_MAX_DIM }, null, null, null);
+            try {
+                c.moveToFirst();
+                sThumbnailSize = c.getInt(0);
+            } finally {
+                c.close();
+            }
+        }
+        return sThumbnailSize;
     }
 }

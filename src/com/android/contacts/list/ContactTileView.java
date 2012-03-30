@@ -32,9 +32,9 @@ import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 /**
- * A ContactTile displays the contact's picture overlayed with their name
+ * A ContactTile displays a contact's picture and name
  */
-public class ContactTileView extends FrameLayout {
+public abstract class ContactTileView extends FrameLayout {
     private final static String TAG = ContactTileView.class.getSimpleName();
 
     private Uri mLookupUri;
@@ -65,7 +65,6 @@ public class ContactTileView extends FrameLayout {
         mPhoneNumber = (TextView) findViewById(R.id.contact_tile_phone_number);
         mPushState = findViewById(R.id.contact_tile_push_state);
         mHorizontalDivider = findViewById(R.id.contact_tile_horizontal_divider);
-
 
         OnClickListener listener = createClickListener();
 
@@ -126,7 +125,7 @@ public class ContactTileView extends FrameLayout {
 
             if (mPhotoManager != null) {
                 if (mPhoto != null) {
-                    mPhotoManager.loadPhoto(mPhoto, entry.photoUri, isDefaultIconHires(),
+                    mPhotoManager.loadPhoto(mPhoto, entry.photoUri, getApproximateImageSize(),
                             isDarkTheme());
 
                     if (mQuickContact != null) {
@@ -134,10 +133,9 @@ public class ContactTileView extends FrameLayout {
                     }
                 } else if (mQuickContact != null) {
                     mQuickContact.assignContactUri(mLookupUri);
-                    mPhotoManager.loadPhoto(mQuickContact, entry.photoUri, isDefaultIconHires(),
-                            isDarkTheme());
+                    mPhotoManager.loadPhoto(mQuickContact, entry.photoUri,
+                            getApproximateImageSize(), isDarkTheme());
                 }
-
             } else {
                 Log.w(TAG, "contactPhotoManager not set");
             }
@@ -164,13 +162,17 @@ public class ContactTileView extends FrameLayout {
         return mLookupUri;
     }
 
-    protected boolean isDefaultIconHires() {
-        return false;
+    protected QuickContactBadge getQuickContact() {
+        return mQuickContact;
     }
 
-    protected boolean isDarkTheme() {
-        return false;
-    }
+    /**
+     * Implemented by subclasses to estimate the size of the picture. This can return -1 if only
+     * a thumbnail is shown anyway
+     */
+    protected abstract int getApproximateImageSize();
+
+    protected abstract boolean isDarkTheme();
 
     public interface Listener {
         /**
@@ -181,5 +183,10 @@ public class ContactTileView extends FrameLayout {
          * Notification that the specified number is to be called.
          */
         void onCallNumberDirectly(String phoneNumber);
+        /**
+         * @return The width of each tile. This doesn't have to be a precise number (e.g. paddings
+         *         can be ignored), but is used to load the correct picture size from the database
+         */
+        int getApproximateTileWidth();
     }
 }

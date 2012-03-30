@@ -309,7 +309,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             photoId = cursor.getLong(PhoneQuery.PHONE_PHOTO_ID);
         }
 
-        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
+        getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false);
     }
 
     public void setPhotoPosition(ContactListItemView.PhotoPosition photoPosition) {

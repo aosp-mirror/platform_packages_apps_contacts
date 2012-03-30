@@ -15,27 +15,13 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.LoaderManager;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
 
 /**
  * Fragment containing a list of frequently contacted people.

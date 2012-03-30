@@ -16,25 +16,18 @@
 
 package com.android.contacts.util;
 
-import android.content.Context;
-import android.content.Intent;
+import com.android.contacts.ContactLoader.Result;
+import com.android.contacts.ContactPhotoManager;
+
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.net.Uri;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactLoader.Result;
-import com.android.contacts.activities.PhotoSelectionActivity;
-import com.android.contacts.model.EntityDeltaList;
 
 import java.util.Arrays;
 
@@ -58,7 +51,7 @@ public class ImageViewDrawableSetter {
 
     public void setupContactPhoto(Result contactData, ImageView photoView) {
         setTarget(photoView);
-        Bitmap bitmap = setCompressedImage(contactData.getPhotoBinaryData());
+        setCompressedImage(contactData.getPhotoBinaryData());
     }
 
     public ImageView getTarget() {

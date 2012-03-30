@@ -173,7 +173,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
             photoId = cursor.getLong(EmailQuery.EMAIL_PHOTO_ID);
         }
 
-        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
+        getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false);
     }
 //
 //    protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {

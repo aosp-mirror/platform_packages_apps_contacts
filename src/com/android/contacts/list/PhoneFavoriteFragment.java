@@ -151,6 +151,11 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
                 mListener.onCallNumberDirectly(phoneNumber);
             }
         }
+
+        @Override
+        public int getApproximateTileWidth() {
+            return getView().getWidth() / mContactTileAdapter.getColumnCount();
+        }
     }
 
     private class FilterHeaderClickListener implements OnClickListener {

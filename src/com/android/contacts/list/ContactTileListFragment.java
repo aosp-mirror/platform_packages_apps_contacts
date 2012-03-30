@@ -179,5 +179,10 @@ public class ContactTileListFragment extends Fragment {
                 mListener.onCallNumberDirectly(phoneNumber);
             }
         }
+
+        @Override
+        public int getApproximateTileWidth() {
+            return getView().getWidth() / mAdapter.getColumnCount();
+        }
     };
 }

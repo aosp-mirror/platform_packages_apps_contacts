@@ -225,11 +225,11 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         }
 
         if (photoId != 0) {
-            getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
+            getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false);
         } else {
             final String photoUriString = cursor.getString(ContactQuery.CONTACT_PHOTO_URI);
             final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
-            getPhotoLoader().loadPhoto(view.getPhotoView(), photoUri, false, false);
+            getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false);
         }
     }
 

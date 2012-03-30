@@ -20,8 +20,6 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactLoader.Result;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
-import com.android.contacts.activities.PhotoSelectionActivity;
-import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.HtmlUtils;
@@ -35,14 +33,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -57,10 +51,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -74,8 +65,6 @@ import java.util.List;
  */
 public class ContactDetailDisplayUtils {
     private static final String TAG = "ContactDetailDisplayUtils";
-
-    private static final int PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS = 100;
 
     /**
      * Tag object used for stream item photos.
@@ -195,88 +184,6 @@ public class ContactDetailDisplayUtils {
     }
 
     /**
-     * Sets the contact photo to display in the given {@link ImageView}. If bitmap is null, the
-     * default placeholder image is shown.
-     * @param context The context.
-     * @param contactData The contact loader result.
-     * @param photoView The photo view that will host the image and act as the basis for the
-     *     photo selector.
-     * @param expandPhotoOnClick Whether the photo should be expanded to fill more of the screen
-     *     when clicked.
-     * @return The onclick listener for the photo.  When clicked, a photo selection activity will
-     *     be launched.
-     */
-    public static OnClickListener setPhoto(Context context, Result contactData,
-            ImageView photoView, boolean expandPhotoOnClick) {
-        byte[] photo = contactData.getPhotoBinaryData();
-        Bitmap bitmap = photo != null ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
-                : ContactBadgeUtil.loadDefaultAvatarPhoto(context, true, false);
-        boolean fadeIn = contactData.isDirectoryEntry();
-        if (photoView.getDrawable() == null && fadeIn) {
-            AlphaAnimation animation = new AlphaAnimation(0, 1);
-            animation.setDuration(PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS);
-            animation.setInterpolator(new AccelerateInterpolator());
-            photoView.startAnimation(animation);
-        }
-        photoView.setImageBitmap(bitmap);
-
-        // Set up the photo to display a full-screen photo selection activity when clicked.
-        OnClickListener clickListener = new PhotoClickListener(context, contactData, bitmap,
-                photo, expandPhotoOnClick);
-        photoView.setOnClickListener(clickListener);
-        return clickListener;
-    }
-
-    private static final class PhotoClickListener implements OnClickListener {
-
-        private final Context mContext;
-        private final Result mContactData;
-        private final Bitmap mPhotoBitmap;
-        private final byte[] mPhotoBytes;
-        private final boolean mExpandPhotoOnClick;
-        public PhotoClickListener(Context context, Result contactData, Bitmap photoBitmap,
-                byte[] photoBytes, boolean expandPhotoOnClick) {
-            mContext = context;
-            mContactData = contactData;
-            mPhotoBitmap = photoBitmap;
-            mPhotoBytes = photoBytes;
-            mExpandPhotoOnClick = expandPhotoOnClick;
-        }
-
-        @Override
-        public void onClick(View v) {
-            // Assemble the intent.
-            EntityDeltaList delta = EntityDeltaList.fromIterator(
-                    mContactData.getEntities().iterator());
-
-            // Find location and bounds of target view, adjusting based on the
-            // assumed local density.
-            final float appScale =
-                    mContext.getResources().getCompatibilityInfo().applicationScale;
-            final int[] pos = new int[2];
-            v.getLocationOnScreen(pos);
-
-            final Rect rect = new Rect();
-            rect.left = (int) (pos[0] * appScale + 0.5f);
-            rect.top = (int) (pos[1] * appScale + 0.5f);
-            rect.right = (int) ((pos[0] + v.getWidth()) * appScale + 0.5f);
-            rect.bottom = (int) ((pos[1] + v.getHeight()) * appScale + 0.5f);
-
-            Uri photoUri = null;
-            if (mContactData.getPhotoUri() != null) {
-                photoUri = Uri.parse(mContactData.getPhotoUri());
-            }
-            Intent photoSelectionIntent = PhotoSelectionActivity.buildIntent(mContext,
-                    photoUri, mPhotoBitmap, mPhotoBytes, rect, delta, mContactData.isUserProfile(),
-                    mContactData.isDirectoryEntry(), mExpandPhotoOnClick);
-            // Cache the bitmap directly, so the activity can pull it from the photo manager.
-            ContactPhotoManager.getInstance(mContext).cacheBitmap(photoUri, mPhotoBitmap,
-                    mPhotoBytes);
-            mContext.startActivity(photoSelectionIntent);
-        }
-    }
-
-    /**
      * Sets the starred state of this contact.
      */
     public static void configureStarredImageView(ImageView starredView, boolean isDirectoryEntry,
@@ -340,7 +247,7 @@ public class ContactDetailDisplayUtils {
         setDataOrHideIfNone(snippet, statusView);
         if (photoUri != null) {
             ContactPhotoManager.getInstance(context).loadPhoto(
-                    statusPhotoView, Uri.parse(photoUri), true, false,
+                    statusPhotoView, Uri.parse(photoUri), -1, false,
                     ContactPhotoManager.DEFAULT_BLANK);
             statusPhotoView.setVisibility(View.VISIBLE);
         } else {
@@ -445,7 +352,7 @@ public class ContactDetailDisplayUtils {
             pushLayerView.setClickable(false);
             pushLayerView.setEnabled(false);
         }
-        contactPhotoManager.loadPhoto(imageView, Uri.parse(streamItemPhoto.getPhotoUri()), true,
+        contactPhotoManager.loadPhoto(imageView, Uri.parse(streamItemPhoto.getPhotoUri()), -1,
                 false, ContactPhotoManager.DEFAULT_BLANK);
     }
 
