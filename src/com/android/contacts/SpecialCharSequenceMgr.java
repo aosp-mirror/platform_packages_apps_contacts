@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.internal.telephony.ITelephony;
+import com.android.internal.telephony.TelephonyCapabilities;
 
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
@@ -148,6 +149,12 @@ public class SpecialCharSequenceMgr {
      */
     static boolean handleAdnEntry(Context context, String input, EditText textField) {
         /* ADN entries are of the form "N(N)(N)#" */
+
+        int phoneType = ((TelephonyManager)context.getSystemService(
+                Context.TELEPHONY_SERVICE)).getCurrentPhoneType();
+        if (!TelephonyCapabilities.supportsAdn(phoneType)) {
+            return false;
+        }
 
         // if the phone is keyguard-restricted, then just ignore this
         // input.  We want to make sure that sim card contacts are NOT
