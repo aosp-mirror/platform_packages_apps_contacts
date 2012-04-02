@@ -537,7 +537,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     private boolean loadCachedPhoto(ImageView view, Request request, boolean fadeIn) {
         BitmapHolder holder = mBitmapHolderCache.get(request.getKey());
         if (holder == null) {
-            // The bitmap has not been loaded - should display the placeholder image.
+            // The bitmap has not been loaded ==> show default avatar
             request.applyDefaultImage(view);
             return false;
         }
@@ -547,13 +547,19 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             return holder.fresh;
         }
 
-        // Optionally decode bytes into a bitmap
-        final long inflateStart = System.currentTimeMillis();
-        final boolean decodingPicture = holder.bitmap == null;
-        inflateBitmap(holder, request.getRequestedExtent());
-        if (decodingPicture && DEBUG) {
-            Log.d(TAG, "Inflated a picture on the foreground thread. Took " +
-                    (System.currentTimeMillis() - inflateStart) + "ms");
+        Bitmap cachedBitmap = holder.bitmapRef == null ? null : holder.bitmapRef.get();
+        if (cachedBitmap == null) {
+            if (holder.bytes.length < 8 * 1024) {
+                // Small thumbnails are usually quick to inflate. Let's do that on the UI thread
+                inflateBitmap(holder, request.getRequestedExtent());
+                cachedBitmap = holder.bitmap;
+                if (cachedBitmap == null) return false;
+            } else {
+                // This is bigger data. Let's send that back to the Loader so that we can
+                // inflate this in the background
+                request.applyDefaultImage(view);
+                return false;
+            }
         }
 
         final Drawable previousDrawable = view.getDrawable();
@@ -561,24 +567,23 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             final Drawable[] layers = new Drawable[2];
             // Prevent cascade of TransitionDrawables.
             if (previousDrawable instanceof TransitionDrawable) {
-                final TransitionDrawable transitionDrawable = (TransitionDrawable) previousDrawable;
-                layers[0] =
-                        transitionDrawable.getDrawable(transitionDrawable.getNumberOfLayers() - 1);
+                final TransitionDrawable previousTransitionDrawable =
+                        (TransitionDrawable) previousDrawable;
+                layers[0] = previousTransitionDrawable.getDrawable(
+                        previousTransitionDrawable.getNumberOfLayers() - 1);
             } else {
                 layers[0] = previousDrawable;
             }
-            layers[1] = new BitmapDrawable(mContext.getResources(), holder.bitmap);
+            layers[1] = new BitmapDrawable(mContext.getResources(), cachedBitmap);
             TransitionDrawable drawable = new TransitionDrawable(layers);
             view.setImageDrawable(drawable);
             drawable.startTransition(FADE_TRANSITION_DURATION);
         } else {
-            view.setImageBitmap(holder.bitmap);
+            view.setImageBitmap(cachedBitmap);
         }
 
-        if (holder.bitmap != null) {
-            // Put the bitmap in the LRU cache
-            mBitmapCache.put(request.getKey(), holder.bitmap);
-        }
+        // Put the bitmap in the LRU cache
+        mBitmapCache.put(request.getKey(), cachedBitmap);
 
         // Soften the reference
         holder.bitmap = null;
@@ -778,19 +783,23 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         // requested
         Request request = Request.createFromUri(photoUri, smallerExtent, false, DEFAULT_AVATAR);
         BitmapHolder holder = new BitmapHolder(photoBytes, smallerExtent);
+        holder.bitmapRef = new SoftReference<Bitmap>(bitmap);
         mBitmapHolderCache.put(request.getKey(), holder);
         mBitmapHolderCacheAllUnfresh = false;
         mBitmapCache.put(request.getKey(), bitmap);
     }
 
     /**
-     * Populates an array of photo IDs that need to be loaded.
+     * Populates an array of photo IDs that need to be loaded. Also decodes bitmaps that we have
+     * already loaded
      */
     private void obtainPhotoIdsAndUrisToLoad(Set<Long> photoIds,
             Set<String> photoIdsAsStrings, Set<Request> uris) {
         photoIds.clear();
         photoIdsAsStrings.clear();
         uris.clear();
+
+        boolean jpegsDecoded = false;
 
         /*
          * Since the call is made from the loader thread, the map could be
@@ -803,16 +812,25 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         Iterator<Request> iterator = mPendingRequests.values().iterator();
         while (iterator.hasNext()) {
             Request request = iterator.next();
-            BitmapHolder holder = mBitmapHolderCache.get(request);
-            if (holder == null || !holder.fresh) {
-                if (request.isUriRequest()) {
-                    uris.add(request);
-                } else {
-                    photoIds.add(request.getId());
-                    photoIdsAsStrings.add(String.valueOf(request.mId));
+            final BitmapHolder holder = mBitmapHolderCache.get(request.getKey());
+            if (holder != null && holder.bytes != null && holder.fresh &&
+                    (holder.bitmapRef == null || holder.bitmapRef.get() == null)) {
+                // This was previously loaded but we don't currently have the inflated Bitmap
+                inflateBitmap(holder, request.getRequestedExtent());
+                jpegsDecoded = true;
+            } else {
+                if (holder == null || !holder.fresh) {
+                    if (request.isUriRequest()) {
+                        uris.add(request);
+                    } else {
+                        photoIds.add(request.getId());
+                        photoIdsAsStrings.add(String.valueOf(request.mId));
+                    }
                 }
             }
         }
+
+        if (jpegsDecoded) mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
     }
 
     /**
