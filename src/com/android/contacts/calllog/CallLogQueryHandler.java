@@ -59,7 +59,6 @@ import javax.annotation.concurrent.GuardedBy;
     private static final int UPDATE_MARK_VOICEMAILS_AS_OLD_TOKEN = 56;
     /** The token for the query to mark all missed calls as read after seeing the call log. */
     private static final int UPDATE_MARK_MISSED_CALL_AS_READ_TOKEN = 57;
-
     /** The token for the query to fetch voicemail status messages. */
     private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 58;
 
@@ -75,6 +74,24 @@ import javax.annotation.concurrent.GuardedBy;
     @GuardedBy("this") private Cursor mNewCallsCursor;
     /** The cursor containing the old calls, or null if they have not yet been fetched. */
     @GuardedBy("this") private Cursor mOldCallsCursor;
+    /**
+     * The identifier of the latest calls request.
+     * <p>
+     * A request for the list of calls requires two queries and hence the two cursor
+     * {@link #mNewCallsCursor} and {@link #mOldCallsCursor} above, corresponding to
+     * {@link #QUERY_NEW_CALLS_TOKEN} and {@link #QUERY_OLD_CALLS_TOKEN}.
+     * <p>
+     * When a new request is about to be started, existing cursors are closed. However, it is
+     * possible that one of the queries completes after the new request has started. This means that
+     * we might merge two cursors that do not correspond to the same request. Moreover, this may
+     * lead to a resource leak if the same query completes and we override the cursor without
+     * closing it first.
+     * <p>
+     * To make sure we only join two cursors from the same request, we use this variable to store
+     * the request id of the latest request and make sure we only process cursors corresponding to
+     * the this request.
+     */
+    @GuardedBy("this") private int mCallsRequestId;
 
     /**
      * Simple handler that wraps background calls to catch
@@ -141,9 +158,9 @@ import javax.annotation.concurrent.GuardedBy;
      */
     public void fetchAllCalls() {
         cancelFetch();
-        invalidate();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, true /*isNew*/, false /*voicemailOnly*/);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, false /*isNew*/, false /*voicemailOnly*/);
+        int requestId = newCallsRequest();
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, false /*voicemailOnly*/);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, false /*voicemailOnly*/);
     }
 
     /**
@@ -153,9 +170,9 @@ import javax.annotation.concurrent.GuardedBy;
      */
     public void fetchVoicemailOnly() {
         cancelFetch();
-        invalidate();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, true /*isNew*/, true /*voicemailOnly*/);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, false /*isNew*/, true /*voicemailOnly*/);
+        int requestId = newCallsRequest();
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, true /*voicemailOnly*/);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, true /*voicemailOnly*/);
     }
 
 
@@ -165,7 +182,7 @@ import javax.annotation.concurrent.GuardedBy;
     }
 
     /** Fetches the list of calls in the call log, either the new one or the old ones. */
-    private void fetchCalls(int token, boolean isNew, boolean voicemailOnly) {
+    private void fetchCalls(int token, int requestId, boolean isNew, boolean voicemailOnly) {
         // We need to check for NULL explicitly otherwise entries with where READ is NULL
         // may not match either the query or its negation.
         // We consider the calls that are not yet consumed (i.e. IS_READ = 0) as "new".
@@ -182,7 +199,7 @@ import javax.annotation.concurrent.GuardedBy;
             selection = String.format("(%s) AND (%s = ?)", selection, Calls.TYPE);
             selectionArgs.add(Integer.toString(Calls.VOICEMAIL_TYPE));
         }
-        startQuery(token, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
+        startQuery(token, requestId, Calls.CONTENT_URI_WITH_VOICEMAIL,
                 CallLogQuery._PROJECTION, selection, selectionArgs.toArray(EMPTY_STRING_ARRAY),
                 Calls.DEFAULT_SORT_ORDER);
     }
@@ -239,25 +256,41 @@ import javax.annotation.concurrent.GuardedBy;
     }
 
     /**
-     * Invalidate the current list of calls.
+     * Start a new request and return its id. The request id will be used as the cookie for the
+     * background request.
      * <p>
-     * This method is synchronized because it must close the cursors and reset them atomically.
+     * Closes any open cursor that has not yet been sent to the requester.
      */
-    private synchronized void invalidate() {
+    private synchronized int newCallsRequest() {
         MoreCloseables.closeQuietly(mNewCallsCursor);
         MoreCloseables.closeQuietly(mOldCallsCursor);
         mNewCallsCursor = null;
         mOldCallsCursor = null;
+        return ++mCallsRequestId;
     }
 
     @Override
     protected synchronized void onQueryComplete(int token, Object cookie, Cursor cursor) {
         if (token == QUERY_NEW_CALLS_TOKEN) {
+            int requestId = ((Integer) cookie).intValue();
+            if (requestId != mCallsRequestId) {
+                // Ignore this query since it does not correspond to the latest request.
+                return;
+            }
+
             // Store the returned cursor.
+            MoreCloseables.closeQuietly(mNewCallsCursor);
             mNewCallsCursor = new ExtendedCursor(
                     cursor, CallLogQuery.SECTION_NAME, CallLogQuery.SECTION_NEW_ITEM);
         } else if (token == QUERY_OLD_CALLS_TOKEN) {
+            int requestId = ((Integer) cookie).intValue();
+            if (requestId != mCallsRequestId) {
+                // Ignore this query since it does not correspond to the latest request.
+                return;
+            }
+
             // Store the returned cursor.
+            MoreCloseables.closeQuietly(mOldCallsCursor);
             mOldCallsCursor = new ExtendedCursor(
                     cursor, CallLogQuery.SECTION_NAME, CallLogQuery.SECTION_OLD_ITEM);
         } else if (token == QUERY_VOICEMAIL_STATUS_TOKEN) {
