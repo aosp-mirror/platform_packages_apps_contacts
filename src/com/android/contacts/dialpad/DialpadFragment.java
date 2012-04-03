@@ -100,7 +100,7 @@ public class DialpadFragment extends Fragment
     private static final int TONE_RELATIVE_VOLUME = 80;
 
     /** Stream type used to play the DTMF tones off call, and mapped to the volume control keys */
-    private static final int DIAL_TONE_STREAM_TYPE = AudioManager.STREAM_MUSIC;
+    private static final int DIAL_TONE_STREAM_TYPE = AudioManager.STREAM_DTMF;
 
     /**
      * View (usually FrameLayout) containing mDigits field. This can be null, in which mDigits
@@ -483,11 +483,7 @@ public class DialpadFragment extends Fragment
         synchronized (mToneGeneratorLock) {
             if (mToneGenerator == null) {
                 try {
-                    // we want the user to be able to control the volume of the dial tones
-                    // outside of a call, so we use the stream type that is also mapped to the
-                    // volume control keys for this activity
                     mToneGenerator = new ToneGenerator(DIAL_TONE_STREAM_TYPE, TONE_RELATIVE_VOLUME);
-                    getActivity().setVolumeControlStream(DIAL_TONE_STREAM_TYPE);
                 } catch (RuntimeException e) {
                     Log.w(TAG, "Exception caught while creating local tone generator: " + e);
                     mToneGenerator = null;
