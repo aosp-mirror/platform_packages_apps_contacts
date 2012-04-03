@@ -116,6 +116,13 @@ public class DialpadFragment extends Fragment
     private ToneGenerator mToneGenerator;
     private final Object mToneGeneratorLock = new Object();
     private View mDialpad;
+    /**
+     * Remembers the number of dialpad buttons which are pressed at this moment.
+     * If it becomes 0, meaning no buttons are pressed, we'll call
+     * {@link ToneGenerator#stopTone()}; the method shouldn't be called unless the last key is
+     * released.
+     */
+    private int mDialpadPressCount;
 
     private View mDialButtonContainer;
     private View mDialButton;
@@ -487,6 +494,8 @@ public class DialpadFragment extends Fragment
                 }
             }
         }
+        // Prevent unnecessary confusion. Reset the press count anyway.
+        mDialpadPressCount = 0;
 
         Activity parent = getActivity();
         if (parent instanceof DialtactsActivity) {
@@ -539,6 +548,9 @@ public class DialpadFragment extends Fragment
 
         // Make sure we don't leave this activity with a tone still playing.
         stopTone();
+        // Just in case reset the counter too.
+        mDialpadPressCount = 0;
+
         synchronized (mToneGeneratorLock) {
             if (mToneGenerator != null) {
                 mToneGenerator.release();
@@ -788,9 +800,19 @@ public class DialpadFragment extends Fragment
                     break;
                 }
             }
+            mDialpadPressCount++;
         } else {
             view.jumpDrawablesToCurrentState();
-            stopTone();
+            mDialpadPressCount--;
+            if (mDialpadPressCount < 0) {
+                // This must be a very buggy situation in which the number of touch-down events
+                // don't match that of touch-up. We should tolerate the situation anyway.
+                Log.e(TAG, "mKeyPressCount become negative.");
+                stopTone();
+                mDialpadPressCount = 0;
+            } else if (mDialpadPressCount == 0) {
+                stopTone();
+            }
         }
     }
 
