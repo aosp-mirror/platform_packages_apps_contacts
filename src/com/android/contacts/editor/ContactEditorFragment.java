@@ -942,9 +942,7 @@ public class ContactEditorFragment extends Fragment implements
 
         // If we just started creating a new contact and haven't added any data, it's too
         // early to do a join
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        if (mState.size() == 1 && mState.get(0).isContactInsert()
-                && !EntityModifier.hasChanges(mState, accountTypes)) {
+        if (mState.size() == 1 && mState.get(0).isContactInsert() && !hasPendingChanges()) {
             Toast.makeText(getActivity(), R.string.toast_join_with_empty_contact,
                             Toast.LENGTH_LONG).show();
             return true;
@@ -959,6 +957,15 @@ public class ContactEditorFragment extends Fragment implements
      */
     private boolean hasValidState() {
         return mState != null && mState.size() > 0;
+    }
+
+    /**
+     * Return true if there are any edits to the current contact which need to
+     * be saved.
+     */
+    private boolean hasPendingChanges() {
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+        return EntityModifier.hasChanges(mState, accountTypes);
     }
 
     /**
@@ -977,8 +984,7 @@ public class ContactEditorFragment extends Fragment implements
 
         mStatus = Status.SAVING;
 
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        if (!EntityModifier.hasChanges(mState, accountTypes)) {
+        if (!hasPendingChanges()) {
             if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
                 // We don't have anything to save and there isn't even an existing contact yet.
                 // Nothing to do, simply go back to editing mode
@@ -1031,8 +1037,7 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private boolean revert() {
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        if (mState == null || !EntityModifier.hasChanges(mState, accountTypes)) {
+        if (mState == null || !hasPendingChanges()) {
             doRevertAction();
         } else {
             CancelEditDialogFragment.show(this);
