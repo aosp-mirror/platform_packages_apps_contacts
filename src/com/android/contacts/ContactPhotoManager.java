@@ -582,8 +582,11 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             view.setImageBitmap(cachedBitmap);
         }
 
-        // Put the bitmap in the LRU cache
-        mBitmapCache.put(request.getKey(), cachedBitmap);
+        // Put the bitmap in the LRU cache. But only do this for images that are small enough
+        // (we require that at least six of those can be cached at the same time)
+        if (cachedBitmap.getByteCount() < mBitmapCache.maxSize() / 6) {
+            mBitmapCache.put(request.getKey(), cachedBitmap);
+        }
 
         // Soften the reference
         holder.bitmap = null;
