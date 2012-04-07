@@ -18,7 +18,6 @@ package com.android.contacts.quickcontact;
 
 import com.android.contacts.Collapser;
 import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
@@ -41,7 +40,6 @@ import android.content.Entity.NamedContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -91,6 +89,7 @@ public class QuickContactActivity extends Activity {
 
     private static final boolean TRACE_LAUNCH = false;
     private static final String TRACE_TAG = "quickcontact";
+    private static final int POST_DRAW_WAIT_DURATION = 60;
 
     @SuppressWarnings("deprecation")
     private static final String LEGACY_AUTHORITY = android.provider.Contacts.AUTHORITY;
@@ -242,7 +241,25 @@ public class QuickContactActivity extends Activity {
             mFloatingLayout.hideChild(new Runnable() {
                 @Override
                 public void run() {
-                    finish();
+                    // Wait until the final animation frame has been drawn, otherwise
+                    // there is jank as the framework transitions to the next Activity.
+                    SchedulingUtils.doAfterDraw(mFloatingLayout, new Runnable() {
+                        @Override
+                        public void run() {
+                            // Unfortunately, we need to also use postDelayed() to wait a moment
+                            // for the frame to be drawn, else the framework's activity-transition
+                            // animation will kick in before the final frame is available to it.
+                            // This seems unavoidable.  The problem isn't merely that there is no
+                            // post-draw listener API; if that were so, it would be sufficient to
+                            // call post() instead of postDelayed().
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    finish();
+                                }
+                            }, POST_DRAW_WAIT_DURATION);
+                        }
+                    });
                 }
             });
         } else {
