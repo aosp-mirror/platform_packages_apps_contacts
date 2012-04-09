@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.ContactsUtils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -127,6 +128,24 @@ public class PhotoEditorView extends FrameLayout implements Editor {
     }
 
     /**
+     * Creates a byte[] containing the PNG-compressed bitmap, or null if
+     * something goes wrong.
+     */
+    private static byte[] compressBitmap(Bitmap bitmap) {
+        final int size = bitmap.getWidth() * bitmap.getHeight() * 4;
+        final ByteArrayOutputStream out = new ByteArrayOutputStream(size);
+        try {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            out.flush();
+            out.close();
+            return out.toByteArray();
+        } catch (IOException e) {
+            Log.w(TAG, "Unable to serialize photo: " + e.toString());
+            return null;
+        }
+    }
+
+    /**
      * Assign the given {@link Bitmap} as the new value, updating UI and
      * readying for persisting through {@link ValuesDelta}.
      */
@@ -145,6 +164,16 @@ public class PhotoEditorView extends FrameLayout implements Editor {
 
         // When the user chooses a new photo mark it as super primary
         mEntry.put(Photo.IS_SUPER_PRIMARY, 1);
+
+        // Even though high-res photos cannot be saved by passing them via
+        // an EntityDeltaList (since they cause the Bundle size limit to be
+        // exceeded), we still pass a low-res thumbnail. This simplifies
+        // code all over the place, because we don't have to test whether
+        // there is a change in EITHER the delta-list OR a changed photo...
+        // this way, there is always a change in the delta-list.
+        final int size = ContactsUtils.getThumbnailSize(getContext());
+        byte[] compressed = compressBitmap(Bitmap.createScaledBitmap(photo, size, size, false));
+        if (compressed != null) mEntry.put(Photo.PHOTO, compressed);
     }
 
     /**
