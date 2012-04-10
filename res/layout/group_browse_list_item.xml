@@ -53,12 +53,9 @@
         android:paddingTop="8dip"
         android:paddingLeft="8dip"
         android:paddingBottom="8dip"
-        android:layout_marginRight="?attr/list_item_padding_right"
         android:orientation="vertical"
         android:duplicateParentState="true"
-        android:background="@drawable/group_list_item_background"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true">
+        android:background="@drawable/group_list_item_background">
 
         <TextView
             android:id="@+id/label"
