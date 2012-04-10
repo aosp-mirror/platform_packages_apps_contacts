@@ -18,9 +18,11 @@ package com.android.contacts.util;
 
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.ViewTreeObserver.OnDrawListener;
 
 /** Static methods that are useful for scheduling actions to occur at a later time. */
 public class SchedulingUtils {
+
 
     /** Runs a piece of code after the next layout run */
     public static void doAfterLayout(final View view, final Runnable runnable) {
@@ -33,5 +35,17 @@ public class SchedulingUtils {
             }
         };
         view.getViewTreeObserver().addOnGlobalLayoutListener(listener);
+    }
+
+    /** Runs a piece of code just before the next draw. */
+    public static void doAfterDraw(final View view, final Runnable runnable) {
+        final OnDrawListener listener = new OnDrawListener() {
+            @Override
+            public void onDraw() {
+                view.getViewTreeObserver().removeOnDrawListener(this);
+                runnable.run();
+            }
+        };
+        view.getViewTreeObserver().addOnDrawListener(listener);
     }
 }

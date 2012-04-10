@@ -24,7 +24,11 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -46,11 +50,16 @@ import android.widget.PopupWindow;
  * {@link PopupWindow} might work better.
  */
 public class FloatingChildLayout extends FrameLayout {
-    private static final String TAG = "FloatingChild";
+    private static final String TAG = "FloatingChildLayout";
     private int mFixedTopPosition;
     private View mChild;
+    private boolean mIsShowingChild;
     private Rect mTargetScreen = new Rect();
     private final int mAnimationDuration;
+    private final TransitionDrawable mBackground;
+
+    // Black, 50% alpha as per the system default.
+    private static final int DIM_BACKGROUND_COLOR = 0x7F000000;
 
     public FloatingChildLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -58,6 +67,11 @@ public class FloatingChildLayout extends FrameLayout {
         mFixedTopPosition =
                 resources.getDimensionPixelOffset(R.dimen.quick_contact_top_position);
         mAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime);
+
+        final ColorDrawable[] drawables =
+            { new ColorDrawable(0), new ColorDrawable(DIM_BACKGROUND_COLOR) };
+        mBackground = new TransitionDrawable(drawables);
+        super.setBackground(mBackground);
     }
 
     @Override
@@ -69,10 +83,20 @@ public class FloatingChildLayout extends FrameLayout {
         mChild.setScaleX(0.5f);
         mChild.setScaleY(0.5f);
         mChild.setAlpha(0.0f);
+
+        mIsShowingChild = false;
     }
 
     public View getChild() {
         return mChild;
+    }
+
+    /**
+     * FloatingChildLayout manages its own background, don't set it.
+     */
+    @Override
+    public void setBackground(Drawable background) {
+        Log.wtf(TAG, "don't setBackground(), it is managed internally");
     }
 
     /**
@@ -140,13 +164,38 @@ public class FloatingChildLayout extends FrameLayout {
     }
 
     /** Begin animating {@link #getChild()} visible. */
-    public void showChild(Runnable onAnimationEndRunnable) {
+    public void showChild(final Runnable onAnimationEndRunnable) {
+        if (mIsShowingChild) return;
+        mIsShowingChild = true;
+
+        // TODO: understand this.
+        // For some reason this needs wait a tick in order to avoid jank.
+        // Maybe because we set up a hardware layer in animateScale()?
+        // Probably not, since it should also be required in hideChild().
+        new Handler().post(new Runnable() {
+            @Override public void run() {
+                animateBackground(false);
+            }
+        });
+
         animateScale(false, onAnimationEndRunnable);
     }
 
     /** Begin animating {@link #getChild()} invisible. */
-    public void hideChild(Runnable onAnimationEndRunnable) {
+    public void hideChild(final Runnable onAnimationEndRunnable) {
+        if (!mIsShowingChild) return;
+        mIsShowingChild = false;
+
+        animateBackground(true);
         animateScale(true, onAnimationEndRunnable);
+    }
+
+    private void animateBackground(boolean isExitAnimation) {
+        if (isExitAnimation) {
+            mBackground.reverseTransition(mAnimationDuration);
+        } else {
+            mBackground.startTransition(mAnimationDuration);
+        }
     }
 
     /** Creates the open/close animation */
