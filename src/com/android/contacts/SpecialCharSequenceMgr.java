@@ -150,9 +150,10 @@ public class SpecialCharSequenceMgr {
     static boolean handleAdnEntry(Context context, String input, EditText textField) {
         /* ADN entries are of the form "N(N)(N)#" */
 
-        int phoneType = ((TelephonyManager)context.getSystemService(
-                Context.TELEPHONY_SERVICE)).getCurrentPhoneType();
-        if (!TelephonyCapabilities.supportsAdn(phoneType)) {
+        TelephonyManager telephonyManager =
+                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (telephonyManager == null
+                || !TelephonyCapabilities.supportsAdn(telephonyManager.getCurrentPhoneType())) {
             return false;
         }
 
@@ -234,15 +235,15 @@ public class SpecialCharSequenceMgr {
     }
 
     static boolean handleIMEIDisplay(Context context, String input, boolean useSystemWindow) {
-        if (input.equals(MMI_IMEI_DISPLAY)) {
-            int phoneType = ((TelephonyManager)context.getSystemService(
-                    Context.TELEPHONY_SERVICE)).getCurrentPhoneType();
-
+        TelephonyManager telephonyManager =
+                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (telephonyManager != null && input.equals(MMI_IMEI_DISPLAY)) {
+            int phoneType = telephonyManager.getCurrentPhoneType();
             if (phoneType == TelephonyManager.PHONE_TYPE_GSM) {
-                showIMEIPanel(context, useSystemWindow);
+                showIMEIPanel(context, useSystemWindow, telephonyManager);
                 return true;
             } else if (phoneType == TelephonyManager.PHONE_TYPE_CDMA) {
-                showMEIDPanel(context, useSystemWindow);
+                showMEIDPanel(context, useSystemWindow, telephonyManager);
                 return true;
             }
         }
@@ -256,9 +257,9 @@ public class SpecialCharSequenceMgr {
     // the phone app's TelephonyCapabilities.getDeviceIdLabel() method
     // into the telephony framework, though.)
 
-    static void showIMEIPanel(Context context, boolean useSystemWindow) {
-        String imeiStr = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE))
-                .getDeviceId();
+    private static void showIMEIPanel(Context context, boolean useSystemWindow,
+            TelephonyManager telephonyManager) {
+        String imeiStr = telephonyManager.getDeviceId();
 
         AlertDialog alert = new AlertDialog.Builder(context)
                 .setTitle(R.string.imei)
@@ -268,9 +269,9 @@ public class SpecialCharSequenceMgr {
                 .show();
     }
 
-    static void showMEIDPanel(Context context, boolean useSystemWindow) {
-        String meidStr = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE))
-                .getDeviceId();
+    private static void showMEIDPanel(Context context, boolean useSystemWindow,
+            TelephonyManager telephonyManager) {
+        String meidStr = telephonyManager.getDeviceId();
 
         AlertDialog alert = new AlertDialog.Builder(context)
                 .setTitle(R.string.meid)
