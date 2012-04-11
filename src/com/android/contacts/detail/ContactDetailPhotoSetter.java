@@ -63,8 +63,7 @@ public class ContactDetailPhotoSetter extends ImageViewDrawableSetter {
         @Override
         public void onClick(View v) {
             // Assemble the intent.
-            EntityDeltaList delta = EntityDeltaList.fromIterator(
-                    mContactData.getEntities().iterator());
+            EntityDeltaList delta = mContactData.createEntityDeltaList();
 
             // Find location and bounds of target view, adjusting based on the
             // assumed local density.

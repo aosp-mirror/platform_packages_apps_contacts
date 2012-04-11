@@ -560,19 +560,10 @@ public class ConfirmAddDetailActivity extends Activity implements
     }
 
     public void findEditableRawContact() {
-        if (mEntityDeltaList == null) {
-            return;
-        }
-        for (EntityDelta state : mEntityDeltaList) {
-            final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final String dataSet = state.getValues().getAsString(RawContacts.DATA_SET);
-            final AccountType type = mAccountTypeManager.getAccountType(accountType, dataSet);
-
-            if (type.areContactsWritable()) {
-                mEditableAccountType = type;
-                mState = state;
-                return;
-            }
+        if (mEntityDeltaList == null) return;
+        mState = mEntityDeltaList.getFirstWritableRawContact(this);
+        if (mState != null) {
+            mEditableAccountType = mState.getRawContactAccountType(this);
         }
     }
 

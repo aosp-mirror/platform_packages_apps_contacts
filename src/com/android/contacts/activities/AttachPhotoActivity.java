@@ -18,29 +18,31 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-import com.android.contacts.model.ExchangeAccountType;
-import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsUtils;
 
-import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.content.OperationApplicationException;
+import android.content.Loader;
+import android.content.Loader.OnLoadCompleteListener;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.RemoteException;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayPhoto;
-import android.provider.ContactsContract.RawContacts;
-import android.widget.Toast;
+import android.provider.MediaStore;
+import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
+import java.io.File;
 
 /**
  * Provides an external interface for other applications to attach images
@@ -49,25 +51,38 @@ import java.util.ArrayList;
  * size and give the user a chance to use the face detector.
  */
 public class AttachPhotoActivity extends ContactsActivity {
+    private static final String TAG = AttachPhotoActivity.class.getSimpleName();
+
     private static final int REQUEST_PICK_CONTACT = 1;
     private static final int REQUEST_CROP_PHOTO = 2;
 
-    private static final String RAW_CONTACT_URIS_KEY = "raw_contact_uris";
+    private static final String KEY_CONTACT_URI = "contact_uri";
+    private static final String KEY_TEMP_PHOTO_URI = "temp_photo_uri";
 
-    private Long[] mRawContactIds;
+    private File mTempPhotoFile;
+    private Uri mTempPhotoUri;
 
     private ContentResolver mContentResolver;
 
-    // Height/width (in pixels) to request for the photo - queried from the provider.
+    // Height and width (in pixels) to request for the photo - queried from the provider.
     private static int mPhotoDim;
+
+    private Uri mContactUri;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         if (icicle != null) {
-            mRawContactIds = toClassArray(icicle.getLongArray(RAW_CONTACT_URIS_KEY));
+            final String uri = icicle.getString(KEY_CONTACT_URI);
+            mContactUri = (uri == null) ? null : Uri.parse(uri);
+
+            mTempPhotoUri = Uri.parse(icicle.getString(KEY_TEMP_PHOTO_URI));
+            mTempPhotoFile = new File(mTempPhotoUri.getPath());
         } else {
+            mTempPhotoFile = ContactPhotoUtils.generateTempPhotoFile();
+            mTempPhotoUri = Uri.fromFile(mTempPhotoFile);
+
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType(Contacts.CONTENT_ITEM_TYPE);
             startActivityForResult(intent, REQUEST_PICK_CONTACT);
@@ -89,32 +104,8 @@ public class AttachPhotoActivity extends ContactsActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        if (mRawContactIds != null && mRawContactIds.length != 0) {
-            outState.putLongArray(RAW_CONTACT_URIS_KEY, toPrimativeArray(mRawContactIds));
-        }
-    }
-
-    private static long[] toPrimativeArray(Long[] in) {
-        if (in == null) {
-            return null;
-        }
-        long[] out = new long[in.length];
-        for (int i = 0; i < in.length; i++) {
-            out[i] = in[i];
-        }
-        return out;
-    }
-
-    private static Long[] toClassArray(long[] in) {
-        if (in == null) {
-            return null;
-        }
-        Long[] out = new Long[in.length];
-        for (int i = 0; i < in.length; i++) {
-            out[i] = in[i];
-        }
-        return out;
+        if (mContactUri != null) outState.putString(KEY_CONTACT_URI, mContactUri.toString());
+        outState.putString(KEY_TEMP_PHOTO_URI, mTempPhotoUri.toString());
     }
 
     @Override
@@ -137,147 +128,94 @@ public class AttachPhotoActivity extends ContactsActivity {
             intent.putExtra("aspectY", 1);
             intent.putExtra("outputX", mPhotoDim);
             intent.putExtra("outputY", mPhotoDim);
-            intent.putExtra("return-data", true);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, mTempPhotoUri);
+
             startActivityForResult(intent, REQUEST_CROP_PHOTO);
 
-            // while they're cropping, convert the contact into a raw_contact
-            final long contactId = ContentUris.parseId(result.getData());
-            final ArrayList<Long> rawContactIdsList = queryForAllRawContactIds(
-                    mContentResolver, contactId);
-            mRawContactIds = new Long[rawContactIdsList.size()];
-            mRawContactIds = rawContactIdsList.toArray(mRawContactIds);
+            mContactUri = result.getData();
 
-            if (mRawContactIds == null || rawContactIdsList.isEmpty()) {
-                Toast.makeText(this, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
-            }
         } else if (requestCode == REQUEST_CROP_PHOTO) {
-            final Bundle extras = result.getExtras();
-            if (extras != null && mRawContactIds != null) {
-                Bitmap photo = extras.getParcelable("data");
-                if (photo != null) {
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
-
-                    final ContentValues imageValues = new ContentValues();
-                    imageValues.put(Photo.PHOTO, stream.toByteArray());
-                    imageValues.put(RawContacts.Data.IS_SUPER_PRIMARY, 1);
-
-                    // attach the photo to every raw contact
-                    for (Long rawContactId : mRawContactIds) {
-
-                        // exchange and google only allow one image, so do an update rather than insert
-                        boolean shouldUpdate = false;
-
-                        final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
-                                rawContactId);
-                        final Uri rawContactDataUri = Uri.withAppendedPath(rawContactUri,
-                                RawContacts.Data.CONTENT_DIRECTORY);
-                        insertPhoto(imageValues, rawContactDataUri, true);
-                    }
+            loadContact(mContactUri, new ContactLoader.Listener() {
+                @Override
+                public void onContactLoaded(ContactLoader.Result contact) {
+                    saveContact(contact);
                 }
-            }
-            finish();
+            });
         }
     }
 
-    // TODO: move to background
-    public static ArrayList<Long> queryForAllRawContactIds(ContentResolver cr, long contactId) {
-        Cursor rawContactIdCursor = null;
-        ArrayList<Long> rawContactIds = new ArrayList<Long>();
-        try {
-            rawContactIdCursor = cr.query(RawContacts.CONTENT_URI,
-                    new String[] {RawContacts._ID},
-                    RawContacts.CONTACT_ID + "=" + contactId, null, null);
-            if (rawContactIdCursor != null) {
-                while (rawContactIdCursor.moveToNext()) {
-                    rawContactIds.add(rawContactIdCursor.getLong(0));
+    // TODO: consider moving this to ContactLoader, especially if we keep adding similar
+    // code elsewhere (ViewNotificationService is another case).  The only concern is that,
+    // although this is convenient, it isn't quite as robust as using LoaderManager... for
+    // instance, the loader doesn't persist across Activity restarts.
+    private void loadContact(Uri contactUri, final ContactLoader.Listener listener) {
+        final ContactLoader loader = new ContactLoader(this, contactUri);
+        loader.registerListener(0, new OnLoadCompleteListener<ContactLoader.Result>() {
+            @Override
+            public void onLoadComplete(
+                    Loader<ContactLoader.Result> loader, ContactLoader.Result contact) {
+                try {
+                    loader.reset();
                 }
+                catch (RuntimeException e) {
+                    Log.e(TAG, "Error resetting loader", e);
+                }
+                listener.onContactLoaded(contact);
             }
-        } finally {
-            if (rawContactIdCursor != null) {
-                rawContactIdCursor.close();
-            }
-        }
-        return rawContactIds;
+        });
+        loader.startLoading();
     }
 
     /**
-     * Inserts a photo on the raw contact.
-     * @param values the photo values
-     * @param assertAccount if true, will check to verify that no photos exist for Google,
-     *     Exchange and unsynced phone account types. These account types only take one picture,
-     *     so if one exists, the account will be updated with the new photo.
+     * If prerequisites have been met, attach the photo to a raw-contact and save.
+     * The prerequisites are:
+     * - photo has been cropped
+     * - contact has been loaded
      */
-    private void insertPhoto(ContentValues values, Uri rawContactDataUri,
-            boolean assertAccount) {
+    private void saveContact(ContactLoader.Result contact) {
 
-        ArrayList<ContentProviderOperation> operations =
-            new ArrayList<ContentProviderOperation>();
-
-        if (assertAccount) {
-            // Make sure no pictures exist for Google, Exchange and unsynced phone accounts.
-            operations.add(ContentProviderOperation.newAssertQuery(rawContactDataUri)
-                    .withSelection(Photo.MIMETYPE + "=? AND "
-                            + RawContacts.DATA_SET + " IS NULL AND ("
-                            + RawContacts.ACCOUNT_TYPE + " IN (?,?) OR "
-                            + RawContacts.ACCOUNT_TYPE + " IS NULL)",
-                            new String[] {Photo.CONTENT_ITEM_TYPE, GoogleAccountType.ACCOUNT_TYPE,
-                            ExchangeAccountType.ACCOUNT_TYPE})
-                            .withExpectedCount(0).build());
+        // Obtain the raw-contact that we will save to.
+        EntityDeltaList deltaList = contact.createEntityDeltaList();
+        EntityDelta raw = deltaList.getFirstWritableRawContact(this);
+        if (raw == null) {
+            Log.w(TAG, "no writable raw-contact found");
+            return;
         }
 
-        // insert the photo
-        values.put(Photo.MIMETYPE, Photo.CONTENT_ITEM_TYPE);
-        operations.add(ContentProviderOperation.newInsert(rawContactDataUri)
-                .withValues(values).build());
-
-        try {
-            mContentResolver.applyBatch(ContactsContract.AUTHORITY, operations);
-        } catch (RemoteException e) {
-            throw new IllegalStateException("Problem querying raw_contacts/data", e);
-        } catch (OperationApplicationException e) {
-            // the account doesn't allow multiple photos, so update
-            if (assertAccount) {
-                updatePhoto(values, rawContactDataUri, false);
-            } else {
-                throw new IllegalStateException("Problem inserting photo into raw_contacts/data", e);
-            }
+        // Create a scaled, compressed bitmap to add to the entity-delta list.
+        final int size = ContactsUtils.getThumbnailSize(this);
+        final Bitmap bitmap = BitmapFactory.decodeFile(mTempPhotoFile.getAbsolutePath());
+        final Bitmap scaled = Bitmap.createScaledBitmap(bitmap, size, size, false);
+        final byte[] compressed = ContactPhotoUtils.compressBitmap(scaled);
+        if (compressed == null) {
+            Log.w(TAG, "could not create scaled and compressed Bitmap");
+            return;
         }
-    }
 
-    /**
-     * Tries to update the photo on the raw_contact.  If no photo exists, and allowInsert == true,
-     * then will try to {@link #updatePhoto(ContentValues, boolean)}
-     */
-    private void updatePhoto(ContentValues values, Uri rawContactDataUri,
-            boolean allowInsert) {
-        ArrayList<ContentProviderOperation> operations =
-            new ArrayList<ContentProviderOperation>();
-
-        values.remove(Photo.MIMETYPE);
-
-        // check that a photo exists
-        operations.add(ContentProviderOperation.newAssertQuery(rawContactDataUri)
-                .withSelection(Photo.MIMETYPE + "=?", new String[] {
-                    Photo.CONTENT_ITEM_TYPE
-                }).withExpectedCount(1).build());
-
-        // update that photo
-        operations.add(ContentProviderOperation.newUpdate(rawContactDataUri)
-                .withSelection(Photo.MIMETYPE + "=?", new String[] {Photo.CONTENT_ITEM_TYPE})
-                .withValues(values).build());
-
-        try {
-            mContentResolver.applyBatch(ContactsContract.AUTHORITY, operations);
-        } catch (RemoteException e) {
-            throw new IllegalStateException("Problem querying raw_contacts/data", e);
-        } catch (OperationApplicationException e) {
-            if (allowInsert) {
-                // they deleted the photo between insert and update, so insert one
-                insertPhoto(values, rawContactDataUri, false);
-            } else {
-                throw new IllegalStateException("Problem inserting photo raw_contacts/data", e);
-            }
+        // Add compressed bitmap to entity-delta... this allows us to save to
+        // a new contact; otherwise the entity-delta-list would be empty, and
+        // the ContactSaveService would not create the new contact, and the
+        // full-res photo would fail to be saved to the non-existent contact.
+        AccountType account = raw.getRawContactAccountType(this);
+        EntityDelta.ValuesDelta values =
+                EntityModifier.ensureKindExists(raw, account, Photo.CONTENT_ITEM_TYPE);
+        if (values == null) {
+            Log.w(TAG, "cannot attach photo to this account type");
+            return;
         }
+        values.put(Photo.PHOTO, compressed);
+
+        // Finally, invoke the ContactSaveService.
+        Log.v(TAG, "all prerequisites met, about to save photo to contact");
+        Intent intent = ContactSaveService.createSaveContactIntent(
+                this,
+                deltaList,
+                "", 0,
+                contact.isUserProfile(),
+                null, null,
+                raw.getRawContactId(),
+                mTempPhotoFile.getAbsolutePath());
+        startService(intent);
+        finish();
     }
 }

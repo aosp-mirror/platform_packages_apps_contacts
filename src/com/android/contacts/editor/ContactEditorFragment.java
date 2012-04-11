@@ -462,15 +462,15 @@ public class ContactEditorFragment extends Fragment implements
         mListener.onCustomEditContactActivityRequested(account, uri, null, false);
     }
 
-    private void bindEditorsForExistingContact(ContactLoader.Result data) {
+    private void bindEditorsForExistingContact(ContactLoader.Result contact) {
         setEnabled(true);
 
-        mState = EntityDeltaList.fromIterator(data.getEntities().iterator());
+        mState = contact.createEntityDeltaList();
         setIntentExtras(mIntentExtras);
         mIntentExtras = null;
 
         // For user profile, change the contacts query URI
-        mIsUserProfile = data.isUserProfile();
+        mIsUserProfile = contact.isUserProfile();
         boolean localProfileExists = false;
 
         if (mIsUserProfile) {
@@ -1714,21 +1714,32 @@ public class ContactEditorFragment extends Fragment implements
     private final class PhotoHandler extends PhotoSelectionHandler {
 
         final long mRawContactId;
+        private final BaseRawContactEditorView mEditor;
+        private PhotoActionListener mListener;
 
         public PhotoHandler(Context context, BaseRawContactEditorView editor, int photoMode,
                 EntityDeltaList state) {
             super(context, editor.getPhotoEditor(), photoMode, false, state);
-            setListener(new PhotoEditorListener(editor));
+            mEditor = editor;
             mRawContactId = editor.getRawContactId();
+            mListener = new PhotoEditorListener();
+        }
+
+        @Override
+        public PhotoActionListener getListener() {
+            return mListener;
+        }
+
+        @Override
+        public void startPhotoActivity(Intent intent, int requestCode, File photoFile) {
+            mRawContactIdRequestingPhoto = mEditor.getRawContactId();
+            mStatus = Status.SUB_ACTIVITY;
+            mCurrentPhotoFile = photoFile;
+            ContactEditorFragment.this.startActivityForResult(intent, requestCode);
         }
 
         private final class PhotoEditorListener extends PhotoSelectionHandler.PhotoActionListener
                 implements EditorListener {
-            private final BaseRawContactEditorView mEditor;
-
-            private PhotoEditorListener(BaseRawContactEditorView editor) {
-                mEditor = editor;
-            }
 
             @Override
             public void onRequest(int request) {
@@ -1773,23 +1784,6 @@ public class ContactEditorFragment extends Fragment implements
                 // Prevent bitmap from being restored if rotate the device.
                 // (only if we first chose a new photo before removing it)
                 mUpdatedPhotos.remove(String.valueOf(mRawContactId));
-            }
-
-            @Override
-            public void startTakePhotoActivity(Intent intent, int requestCode, File photoFile) {
-                mRawContactIdRequestingPhoto = mEditor.getRawContactId();
-                mStatus = Status.SUB_ACTIVITY;
-                mCurrentPhotoFile = photoFile;
-                startActivityForResult(intent, requestCode);
-            }
-
-            @Override
-            public void startPickFromGalleryActivity(Intent intent, int requestCode,
-                    File photoFile) {
-                mRawContactIdRequestingPhoto = mEditor.getRawContactId();
-                mStatus = Status.SUB_ACTIVITY;
-                mCurrentPhotoFile = photoFile;
-                startActivityForResult(intent, requestCode);
             }
 
             @Override

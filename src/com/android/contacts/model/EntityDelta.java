@@ -24,6 +24,7 @@ import com.google.android.collect.Sets;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
 import android.net.Uri;
@@ -207,6 +208,20 @@ public class EntityDelta implements Parcelable {
             return primary;
         }
         return mimeEntries.size() > 0 ? mimeEntries.get(0) : null;
+    }
+
+    /**
+     * Return the AccountType that this raw-contact belongs to.
+     */
+    public AccountType getRawContactAccountType(Context context) {
+        ContentValues entityValues = getValues().getCompleteValues();
+        String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
+        String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
+        return AccountTypeManager.getInstance(context).getAccountType(type, dataSet);
+    }
+
+    public Long getRawContactId() {
+        return getValues().getAsLong(RawContacts._ID);
     }
 
     /**

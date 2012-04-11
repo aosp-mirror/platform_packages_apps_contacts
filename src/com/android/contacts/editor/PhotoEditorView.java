@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.ContactsUtils;
 
 import android.content.Context;
@@ -27,19 +28,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 /**
  * Simple editor for {@link Photo}.
  */
 public class PhotoEditorView extends FrameLayout implements Editor {
-    private static final String TAG = "PhotoEditorView";
 
     private ImageView mPhotoImageView;
     private View mFrameView;
@@ -127,23 +123,7 @@ public class PhotoEditorView extends FrameLayout implements Editor {
         return mHasSetPhoto;
     }
 
-    /**
-     * Creates a byte[] containing the PNG-compressed bitmap, or null if
-     * something goes wrong.
-     */
-    private static byte[] compressBitmap(Bitmap bitmap) {
-        final int size = bitmap.getWidth() * bitmap.getHeight() * 4;
-        final ByteArrayOutputStream out = new ByteArrayOutputStream(size);
-        try {
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.flush();
-            out.close();
-            return out.toByteArray();
-        } catch (IOException e) {
-            Log.w(TAG, "Unable to serialize photo: " + e.toString());
-            return null;
-        }
-    }
+
 
     /**
      * Assign the given {@link Bitmap} as the new value, updating UI and
@@ -172,7 +152,8 @@ public class PhotoEditorView extends FrameLayout implements Editor {
         // there is a change in EITHER the delta-list OR a changed photo...
         // this way, there is always a change in the delta-list.
         final int size = ContactsUtils.getThumbnailSize(getContext());
-        byte[] compressed = compressBitmap(Bitmap.createScaledBitmap(photo, size, size, false));
+        final Bitmap scaled = Bitmap.createScaledBitmap(photo, size, size, false);
+        final byte[] compressed = ContactPhotoUtils.compressBitmap(scaled);
         if (compressed != null) mEntry.put(Photo.PHOTO, compressed);
     }
 

@@ -449,45 +449,36 @@ public class PhotoSelectionActivity extends Activity {
     }
 
     private final class PhotoHandler extends PhotoSelectionHandler {
-        private PhotoHandler(Context context, View photoView, int photoMode,
-                EntityDeltaList state) {
-            super(context, photoView, photoMode, mIsDirectoryContact, state);
-            setListener(new PhotoListener(context, mIsProfile));
+        private PhotoActionListener mListener;
+
+        private PhotoHandler(
+                Context context, View photoView, int photoMode, EntityDeltaList state) {
+            super(context, photoView, photoMode, PhotoSelectionActivity.this.mIsDirectoryContact,
+                    state);
+            mListener = new PhotoListener();
+        }
+
+        @Override
+        public PhotoActionListener getListener() {
+            return mListener;
+        }
+
+        @Override
+        public void startPhotoActivity(Intent intent, int requestCode, File photoFile) {
+            mSubActivityInProgress = true;
+            mCurrentPhotoFile = photoFile;
+            PhotoSelectionActivity.this.startActivityForResult(intent, requestCode);
         }
 
         private final class PhotoListener extends PhotoActionListener {
-            @SuppressWarnings("hiding")
-            private final boolean mIsProfile;
-            private final Context mContext;
-
-            private PhotoListener(Context context, boolean isProfile) {
-                mContext = context;
-                mIsProfile = isProfile;
-            }
-
-            @Override
-            public void startTakePhotoActivity(Intent intent, int requestCode, File photoFile) {
-                mSubActivityInProgress = true;
-                mCurrentPhotoFile = photoFile;
-                startActivityForResult(intent, requestCode);
-            }
-
-            @Override
-            public void startPickFromGalleryActivity(Intent intent, int requestCode,
-                    File photoFile) {
-                mSubActivityInProgress = true;
-                mCurrentPhotoFile = photoFile;
-                startActivityForResult(intent, requestCode);
-            }
 
             @Override
             public void onPhotoSelected(Bitmap bitmap) {
                 EntityDeltaList delta = getDeltaForAttachingPhotoToContact();
                 long rawContactId = getWritableEntityId();
                 String filePath = mCurrentPhotoFile.getAbsolutePath();
-                Intent intent = ContactSaveService.createSaveContactIntent(mContext, delta,
-                        "", 0, mIsProfile, PhotoSelectionActivity.class,
-                        ContactEditorActivity.ACTION_SAVE_COMPLETED, rawContactId, filePath);
+                Intent intent = ContactSaveService.createSaveContactIntent(
+                        mContext, delta, "", 0, mIsProfile, null, null, rawContactId, filePath);
                 startService(intent);
                 finish();
             }

@@ -19,15 +19,14 @@ package com.android.contacts.detail;
 import com.android.contacts.R;
 import com.android.contacts.editor.PhotoActionPopup;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.ContactPhotoUtils;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -35,10 +34,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.DisplayPhoto;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -46,30 +43,20 @@ import android.view.View.OnClickListener;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.Toast;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Handles displaying a photo selection popup for a given photo view and dealing with the results
  * that come back.
  */
-public class PhotoSelectionHandler implements OnClickListener {
+public abstract class PhotoSelectionHandler implements OnClickListener {
 
     private static final String TAG = PhotoSelectionHandler.class.getSimpleName();
-
-    private static final File PHOTO_DIR = new File(
-            Environment.getExternalStorageDirectory() + "/DCIM/Camera");
-
-    private static final String PHOTO_DATE_FORMAT = "'IMG'_yyyyMMdd_HHmmss";
 
     private static final int REQUEST_CODE_CAMERA_WITH_DATA = 1001;
     private static final int REQUEST_CODE_PHOTO_PICKED_WITH_DATA = 1002;
 
-    private final Context mContext;
+    protected final Context mContext;
     private final View mPhotoView;
     private final int mPhotoMode;
     private final int mPhotoPickSize;
@@ -87,6 +74,8 @@ public class PhotoSelectionHandler implements OnClickListener {
         mIsDirectoryContact = isDirectoryContact;
         mState = state;
         mPhotoPickSize = getPhotoPickSize();
+
+        // NOTE: subclasses should call setListener()
     }
 
     public void destroy() {
@@ -95,13 +84,7 @@ public class PhotoSelectionHandler implements OnClickListener {
         }
     }
 
-    public PhotoActionListener getListener() {
-        return mListener;
-    }
-
-    public void setListener(PhotoActionListener listener) {
-        mListener = listener;
-    }
+    public abstract PhotoActionListener getListener();
 
     @Override
     public void onClick(View v) {
@@ -109,10 +92,11 @@ public class PhotoSelectionHandler implements OnClickListener {
             if (getWritableEntityIndex() != -1) {
                 mPopup = PhotoActionPopup.createPopupMenu(
                         mContext, mPhotoView, mListener, mPhotoMode);
+                final PhotoActionListener listener = mListener; // a bit more bulletproof
                 mPopup.setOnDismissListener(new OnDismissListener() {
                     @Override
                     public void onDismiss() {
-                        mListener.onPhotoSelectionDismissed();
+                        listener.onPhotoSelectionDismissed();
                     }
                 });
                 mPopup.show();
@@ -152,25 +136,8 @@ public class PhotoSelectionHandler implements OnClickListener {
      */
     private int getWritableEntityIndex() {
         // Directory entries are non-writable.
-        if (mIsDirectoryContact) {
-            return -1;
-        }
-
-        // Find the first writable entity.
-        int entityIndex = 0;
-        for (EntityDelta delta : mState) {
-            ContentValues entityValues = delta.getValues().getCompleteValues();
-            String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
-            String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
-            AccountType accountType = AccountTypeManager.getInstance(mContext).getAccountType(
-                    type, dataSet);
-            if (accountType.areContactsWritable()) {
-                mWritableAccount = accountType;
-                return entityIndex;
-            }
-            entityIndex++;
-        }
-        return -1;
+        if (mIsDirectoryContact) return -1;
+        return mState.indexOfFirstWritableRawContact(mContext);
     }
 
     /**
@@ -187,7 +154,6 @@ public class PhotoSelectionHandler implements OnClickListener {
      * Utility method to retrieve the entity delta for attaching the given bitmap to the contact.
      * This will attach the photo to the first contact-writable account that provided data to the
      * contact.  It is the caller's responsibility to apply the delta.
-     * @param bitmap The photo to use.
      * @return An entity delta list that can be applied to associate the bitmap with the contact,
      *     or null if the photo could not be parsed or none of the accounts associated with the
      *     contact are writable.
@@ -208,6 +174,9 @@ public class PhotoSelectionHandler implements OnClickListener {
         return null;
     }
 
+    /** Used by subclasses to delegate to their enclosing Activity or Fragment. */
+    protected abstract void startPhotoActivity(Intent intent, int requestCode, File photoFile);
+
     /**
      * Sends a newly acquired photo to Gallery for cropping
      */
@@ -222,22 +191,33 @@ public class PhotoSelectionHandler implements OnClickListener {
 
             // Launch gallery to crop the photo
             final Intent intent = getCropImageIntent(f);
-            mListener.startPickFromGalleryActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, f);
+            startPhotoActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, f);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
             Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
         }
     }
 
-    private String getPhotoFileName() {
-        Date date = new Date(System.currentTimeMillis());
-        SimpleDateFormat dateFormat = new SimpleDateFormat(PHOTO_DATE_FORMAT);
-        return dateFormat.format(date) + ".jpg";
+    /**
+     * Should initiate an activity to take a photo using the camera.
+     * @param photoFile The file path that will be used to store the photo.  This is generally
+     *     what should be returned by
+     *     {@link PhotoSelectionHandler.PhotoActionListener#getCurrentPhotoFile()}.
+     */
+    private void startTakePhotoActivity(File photoFile) {
+        final Intent intent = getTakePhotoIntent(photoFile);
+        startPhotoActivity(intent, REQUEST_CODE_CAMERA_WITH_DATA, photoFile);
     }
 
-    private File getPhotoFile() {
-        PHOTO_DIR.mkdirs();
-        return new File(PHOTO_DIR, getPhotoFileName());
+    /**
+     * Should initiate an activity pick a photo from the gallery.
+     * @param photoFile The temporary file that the cropped image is written to before being
+     *     stored by the content-provider.
+     *     {@link PhotoSelectionHandler#handlePhotoActivityResult(int, int, Intent)}.
+     */
+    private void startPickFromGalleryActivity(File photoFile) {
+        final Intent intent = getPhotoPickIntent(photoFile);
+        startPhotoActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, photoFile);
     }
 
     private int getPhotoPickSize() {
@@ -308,9 +288,7 @@ public class PhotoSelectionHandler implements OnClickListener {
         public void onTakePhotoChosen() {
             try {
                 // Launch camera to take photo for selected contact
-                File f = getPhotoFile();
-                final Intent intent = getTakePhotoIntent(f);
-                startTakePhotoActivity(intent, REQUEST_CODE_CAMERA_WITH_DATA, f);
+                startTakePhotoActivity(ContactPhotoUtils.generateTempPhotoFile());
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.photoPickerNotFoundText,
                         Toast.LENGTH_LONG).show();
@@ -321,36 +299,12 @@ public class PhotoSelectionHandler implements OnClickListener {
         public void onPickFromGalleryChosen() {
             try {
                 // Launch picker to choose photo for selected contact
-                File f = getPhotoFile();
-                final Intent intent = getPhotoPickIntent(f);
-                startPickFromGalleryActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, f);
+                startPickFromGalleryActivity(ContactPhotoUtils.generateTempPhotoFile());
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.photoPickerNotFoundText,
                         Toast.LENGTH_LONG).show();
             }
         }
-
-        /**
-         * Should initiate an activity to take a photo using the camera.
-         * @param intent The image capture intent.
-         * @param requestCode The request code to use, suitable for handling by
-         *     {@link PhotoSelectionHandler#handlePhotoActivityResult(int, int, Intent)}.
-         * @param photoFile The file path that will be used to store the photo.  This is generally
-         *     what should be returned by
-         *     {@link PhotoSelectionHandler.PhotoActionListener#getCurrentPhotoFile()}.
-         */
-        public abstract void startTakePhotoActivity(Intent intent, int requestCode, File photoFile);
-
-        /**
-         * Should initiate an activity pick a photo from the gallery.
-         * @param intent The image capture intent.
-         * @param requestCode The request code to use, suitable for handling by
-         * @param photoFile The temporary file that the cropped image is written to before being
-         *     stored by the content-provider.
-         *     {@link PhotoSelectionHandler#handlePhotoActivityResult(int, int, Intent)}.
-         */
-        public abstract void startPickFromGalleryActivity(Intent intent, int requestCode,
-                File photoFile);
 
         /**
          * Called when the user has completed selection of a photo.
