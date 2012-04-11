@@ -801,9 +801,9 @@ public class DialpadFragment extends Fragment
             view.jumpDrawablesToCurrentState();
             mDialpadPressCount--;
             if (mDialpadPressCount < 0) {
-                // This must be a very buggy situation in which the number of touch-down events
-                // don't match that of touch-up. We should tolerate the situation anyway.
-                Log.e(TAG, "mKeyPressCount become negative.");
+                // May happen when the user action is detected as horizontal swipe, at which only
+                // "up" event is thrown.
+                if (DEBUG) Log.d(TAG, "mKeyPressCount become negative.");
                 stopTone();
                 mDialpadPressCount = 0;
             } else if (mDialpadPressCount == 0) {
