@@ -205,6 +205,7 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
         }
     }
 
+    @Override
     public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
         mListener.onShortcutIntentCreated(shortcutIntent);
     }

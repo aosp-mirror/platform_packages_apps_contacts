@@ -37,4 +37,8 @@
         android:id="@+id/menu_send_to_voicemail"
         android:checkable="true"
         android:title="@string/menu_redirect_calls_to_vm" />
+
+    <item
+        android:id="@+id/menu_create_contact_shortcut"
+        android:title="@string/menu_create_contact_shortcut" />
 </menu>
