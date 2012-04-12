@@ -345,7 +345,7 @@ public class QuickContactActivity extends Activity {
                     // along with all others of this MIME-type.
                     final Action action = new DataAction(context, mimeType, kind, dataId,
                             entryValues);
-                    final boolean wasAdded = considerAdd(action, cache);
+                    final boolean wasAdded = considerAdd(action, cache, isSuperPrimary);
                     if (wasAdded) {
                         // Remember the default
                         if (isSuperPrimary || (isPrimary && (mDefaultsMap.get(mimeType) == null))) {
@@ -363,7 +363,7 @@ public class QuickContactActivity extends Activity {
                         final DataAction action = new DataAction(context, Im.CONTENT_ITEM_TYPE,
                                 imKind, dataId, entryValues);
                         action.setPresence(status.getPresence());
-                        considerAdd(action, cache);
+                        considerAdd(action, cache, isSuperPrimary);
                     }
                 }
             }
@@ -421,11 +421,14 @@ public class QuickContactActivity extends Activity {
      * Consider adding the given {@link Action}, which will only happen if
      * {@link PackageManager} finds an application to handle
      * {@link Action#getIntent()}.
+     * @param action the action to handle
+     * @param resolveCache cache of applications that can handle actions
+     * @param front indicates whether to add the action to the front of the list
      * @return true if action has been added
      */
-    private boolean considerAdd(Action action, ResolveCache resolveCache) {
+    private boolean considerAdd(Action action, ResolveCache resolveCache, boolean front) {
         if (resolveCache.hasResolve(action)) {
-            mActions.put(action.getMimeType(), action);
+            mActions.put(action.getMimeType(), action, front);
             return true;
         }
         return false;
