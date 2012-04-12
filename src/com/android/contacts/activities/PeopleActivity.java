@@ -85,6 +85,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -1629,7 +1630,10 @@ public class PeopleActivity extends ContactsActivity
             default: {
                 // Bring up the search UI if the user starts typing
                 final int unicodeChar = event.getUnicodeChar();
-                if (unicodeChar != 0 && !Character.isWhitespace(unicodeChar)) {
+                if ((unicodeChar != 0)
+                        // If COMBINING_ACCENT is set, it's not a unicode character.
+                        && ((unicodeChar & KeyCharacterMap.COMBINING_ACCENT) == 0)
+                        && !Character.isWhitespace(unicodeChar)) {
                     String query = new String(new int[]{ unicodeChar }, 0, 1);
                     if (!mActionBarAdapter.isSearchMode()) {
                         mActionBarAdapter.setQueryString(query);
