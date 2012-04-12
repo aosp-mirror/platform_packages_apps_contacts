@@ -20,6 +20,8 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.list.ShortcutIntentBuilder;
+import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.internal.util.Objects;
 
@@ -57,10 +59,14 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
     /** The launch code when picking a ringtone */
     private static final int REQUEST_CODE_PICK_RINGTONE = 1;
 
+    /** This is the Intent action to install a shortcut in the launcher. */
+    private static final String ACTION_INSTALL_SHORTCUT =
+            "com.android.launcher.action.INSTALL_SHORTCUT";
 
     private boolean mOptionsMenuOptions;
     private boolean mOptionsMenuEditable;
     private boolean mOptionsMenuShareable;
+    private boolean mOptionsMenuCanCreateShortcut;
     private boolean mSendToVoicemailState;
     private String mCustomRingtone;
 
@@ -222,7 +228,8 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
     public boolean isOptionsMenuChanged() {
         return mOptionsMenuOptions != isContactOptionsChangeEnabled()
                 || mOptionsMenuEditable != isContactEditable()
-                || mOptionsMenuShareable != isContactShareable();
+                || mOptionsMenuShareable != isContactShareable()
+                || mOptionsMenuCanCreateShortcut != isContactCanCreateShortcut();
     }
 
     @Override
@@ -230,6 +237,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         mOptionsMenuOptions = isContactOptionsChangeEnabled();
         mOptionsMenuEditable = isContactEditable();
         mOptionsMenuShareable = isContactShareable();
+        mOptionsMenuCanCreateShortcut = isContactCanCreateShortcut();
         if (mContactData != null) {
             mSendToVoicemailState = mContactData.isSendToVoicemail();
             mCustomRingtone = mContactData.getCustomRingtone();
@@ -255,6 +263,9 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
 
         final MenuItem shareMenu = menu.findItem(R.id.menu_share);
         shareMenu.setVisible(mOptionsMenuShareable);
+
+        final MenuItem createContactShortcutMenu = menu.findItem(R.id.menu_create_contact_shortcut);
+        createContactShortcutMenu.setVisible(mOptionsMenuCanCreateShortcut);
     }
 
     public boolean isContactOptionsChangeEnabled() {
@@ -268,6 +279,10 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
 
     public boolean isContactShareable() {
         return mContactData != null && !mContactData.isDirectoryEntry();
+    }
+
+    public boolean isContactCanCreateShortcut() {
+        return mContactData != null && !mContactData.isUserProfile();
     }
 
     @Override
@@ -322,8 +337,42 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 mContext.startService(intent);
                 return true;
             }
+            case R.id.menu_create_contact_shortcut: {
+                // Create a launcher shortcut with this contact
+                createLauncherShortcutWithContact();
+                return true;
+            }
         }
         return false;
+    }
+
+    /**
+     * Creates a launcher shortcut with the current contact.
+     */
+    private void createLauncherShortcutWithContact() {
+        // Hold the parent activity of this fragment in case this fragment is destroyed
+        // before the callback to onShortcutIntentCreated(...)
+        final Activity parentActivity = getActivity();
+
+        ShortcutIntentBuilder builder = new ShortcutIntentBuilder(parentActivity,
+                new OnShortcutIntentCreatedListener() {
+
+            @Override
+            public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
+                // Broadcast the shortcutIntent to the launcher to create a
+                // shortcut to this contact
+                shortcutIntent.setAction(ACTION_INSTALL_SHORTCUT);
+                parentActivity.sendBroadcast(shortcutIntent);
+
+                // Send a toast to give feedback to the user that a shortcut to this
+                // contact was added to the launcher.
+                Toast.makeText(parentActivity,
+                        R.string.createContactShortcutSuccessful,
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        builder.createContactShortcutIntent(mLookupUri);
     }
 
     /**

@@ -31,4 +31,8 @@
         android:id="@+id/menu_delete"
         android:title="@string/menu_deleteContact" />
 
+    <item
+        android:id="@+id/menu_create_contact_shortcut"
+        android:title="@string/menu_create_contact_shortcut" />
+
 </menu>
