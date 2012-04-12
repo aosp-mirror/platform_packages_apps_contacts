@@ -627,13 +627,26 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     if (isSuperPrimary) mPrimaryPhoneUri = entry.uri;
 
                     entry.isPrimary = isSuperPrimary;
-                    mPhoneEntries.add(entry);
+
+                    // If the entry is a primary entry, then render it first in the view.
+                    if (entry.isPrimary) {
+                        // add to beginning of list so that this phone number shows up first
+                        mPhoneEntries.add(0, entry);
+                    } else {
+                        // add to end of list
+                        mPhoneEntries.add(entry);
+                    }
                 } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build email entries
                     entry.intent = new Intent(Intent.ACTION_SENDTO,
                             Uri.fromParts(Constants.SCHEME_MAILTO, entry.data, null));
                     entry.isPrimary = isSuperPrimary;
-                    mEmailEntries.add(entry);
+                    // If entry is a primary entry, then render it first in the view.
+                    if (entry.isPrimary) {
+                        mEmailEntries.add(0, entry);
+                    } else {
+                        mEmailEntries.add(entry);
+                    }
 
                     // When Email rows have status, create additional Im row
                     final DataStatus status = mContactData.getStatuses().get(entry.id);

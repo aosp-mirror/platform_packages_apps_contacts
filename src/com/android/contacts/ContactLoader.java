@@ -744,14 +744,20 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                 return Result.forNotFound(mRequestedUri);
             }
 
+            // Create the loaded result starting with the Contact data.
+            Result result = loadContactHeaderData(cursor, contactUri);
+
+            // Fill in the raw contacts, which is wrapped in an Entity and any
+            // status data.  Initially, result has empty entities and statuses.
             long currentRawContactId = -1;
             Entity entity = null;
-            Result result = loadContactHeaderData(cursor, contactUri);
             ArrayList<Entity> entities = result.getEntities();
             LongSparseArray<DataStatus> statuses = result.getStatuses();
             for (; !cursor.isAfterLast(); cursor.moveToNext()) {
                 long rawContactId = cursor.getLong(ContactQuery.RAW_CONTACT_ID);
                 if (rawContactId != currentRawContactId) {
+                    // First time to see this raw contact id, so create a new entity, and
+                    // add it to the result's entities.
                     currentRawContactId = rawContactId;
                     entity = new android.content.Entity(loadRawContact(cursor));
                     entities.add(entity);
