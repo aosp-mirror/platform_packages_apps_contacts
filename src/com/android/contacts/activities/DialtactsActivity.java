@@ -1064,6 +1064,8 @@ public class DialtactsActivity extends TransactionSafeActivity
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        updateFakeMenuButtonsVisibility(false);
+
         for (int i = 0; i < TAB_INDEX_COUNT; i++) {
             sendFragmentVisibilityChange(i, false /* not visible */ );
         }
