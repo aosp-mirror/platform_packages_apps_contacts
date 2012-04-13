@@ -601,7 +601,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build phone entries
                     String phoneNumberE164 =
-                            entryValues.getAsString(PhoneLookup.NORMALIZED_NUMBER);
+                            entryValues.getAsString(Phone.NORMALIZED_NUMBER);
                     entry.data = PhoneNumberUtils.formatNumber(
                             entry.data, phoneNumberE164, mDefaultCountryIso);
                     final Intent phoneIntent = mHasPhone ?
