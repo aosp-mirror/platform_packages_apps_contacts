@@ -46,6 +46,8 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Susa ezintandokazini"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Hlela"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Susa"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1217971915748509640) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Shayela othintana naye"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Bhalela othintana naye"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Hlukanisa"</string>
@@ -76,6 +78,8 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Inkampani"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Isihloko"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Oxhumana naye akekho."</string>
+    <!-- no translation found for createContactShortcutSuccessful (7874133287558150877) -->
+    <skip />
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Dala othintana naye omusha"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Dala othintana naye omusha"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Ifoni"</string>

@@ -46,6 +46,8 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Xóa khỏi mục ưa thích"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Chỉnh sửa"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Xóa"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1217971915748509640) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Gọi liên hệ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Nhắn tin tới liên hệ"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Tách"</string>
@@ -76,6 +78,8 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Công ty"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Tiêu đề"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Địa chỉ liên hệ không tồn tại."</string>
+    <!-- no translation found for createContactShortcutSuccessful (7874133287558150877) -->
+    <skip />
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Tạo liên hệ mới"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Tạo địa chỉ liên hệ mới"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Điện thoại"</string>
