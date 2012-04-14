@@ -383,7 +383,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
     }
 
-    private void setFocusOnSearchView() {
+    public void setFocusOnSearchView() {
         mSearchView.requestFocus();
         mSearchView.setIconified(false); // Workaround for the "IME not popping up" issue.
     }
