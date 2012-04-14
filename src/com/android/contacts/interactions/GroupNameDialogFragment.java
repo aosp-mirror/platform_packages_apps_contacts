@@ -44,31 +44,32 @@ public abstract class GroupNameDialogFragment extends DialogFragment
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.group_name_dialog, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final LayoutInflater layoutInflater = LayoutInflater.from(builder.getContext());
+        final View view = layoutInflater.inflate(R.layout.group_name_dialog, null);
         mEdit = (EditText) view.findViewById(R.id.group_label);
         initializeGroupLabelEditText(mEdit);
 
         mEdit.addTextChangedListener(this);
 
-        AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                .setIconAttribute(android.R.attr.alertDialogIcon)
-                .setTitle(getTitleResourceId())
-                .setView(view)
-                .setPositiveButton(android.R.string.ok,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            onCompleted(mEdit.getText().toString().trim());
-                        }
+        builder.setTitle(getTitleResourceId());
+        builder.setView(view);
+        builder.setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int whichButton) {
+                        onCompleted(mEdit.getText().toString().trim());
                     }
-                )
-                .setNegativeButton(android.R.string.cancel, null)
-                .create();
+                }
+            );
+        builder.setNegativeButton(android.R.string.cancel, null);
+        final AlertDialog dialog = builder.create();
 
         dialog.setOnShowListener(this);
         return dialog;
     }
 
+    @Override
     public void onShow(DialogInterface dialog) {
         updateOkButtonState((AlertDialog) dialog);
     }
