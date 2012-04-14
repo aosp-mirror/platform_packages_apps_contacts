@@ -31,19 +31,24 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.content.DialogInterface.OnShowListener;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -376,20 +381,21 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
      */
     private Dialog createCustomDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        final LayoutInflater layoutInflater = LayoutInflater.from(builder.getContext());
         builder.setTitle(R.string.customLabelPickerTitle);
 
-        final EditText customType = new EditText(builder.getContext());
-        customType.setId(R.id.custom_dialog_content);
-        customType.setInputType(INPUT_TYPE_CUSTOM);
-        customType.setSaveEnabled(true);
-        customType.requestFocus();
+        final View view = layoutInflater.inflate(R.layout.contact_editor_label_name_dialog, null);
+        final EditText editText = (EditText) view.findViewById(R.id.custom_dialog_content);
+        editText.setInputType(INPUT_TYPE_CUSTOM);
+        editText.setSaveEnabled(true);
 
-        builder.setView(customType);
+        builder.setView(view);
+        editText.requestFocus();
 
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final String customText = customType.getText().toString().trim();
+                final String customText = editText.getText().toString().trim();
                 if (ContactsUtils.isGraphic(customText)) {
                     final List<EditType> allTypes =
                             EntityModifier.getValidTypes(mState, mKind, null);
@@ -413,7 +419,36 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
         builder.setNegativeButton(android.R.string.cancel, null);
 
-        return builder.create();
+        final AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                updateCustomDialogOkButtonState(dialog, editText);
+            }
+        });
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateCustomDialogOkButtonState(dialog, editText);
+            }
+        });
+        dialog.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+        return dialog;
+    }
+
+    /* package */ void updateCustomDialogOkButtonState(AlertDialog dialog, EditText editText) {
+        final Button okButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        okButton.setEnabled(!TextUtils.isEmpty(editText.getText().toString().trim()));
     }
 
     /**

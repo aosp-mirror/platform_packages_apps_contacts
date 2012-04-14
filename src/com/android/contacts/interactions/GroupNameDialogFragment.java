@@ -28,16 +28,14 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 /**
  * A common superclass for creating and renaming groups.
  */
-public abstract class GroupNameDialogFragment extends DialogFragment
-        implements TextWatcher, OnShowListener {
-    private EditText mEdit;
-
+public abstract class GroupNameDialogFragment extends DialogFragment {
     protected abstract int getTitleResourceId();
     protected abstract void initializeGroupLabelEditText(EditText editText);
     protected abstract void onCompleted(String groupLabel);
@@ -47,52 +45,51 @@ public abstract class GroupNameDialogFragment extends DialogFragment
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater layoutInflater = LayoutInflater.from(builder.getContext());
         final View view = layoutInflater.inflate(R.layout.group_name_dialog, null);
-        mEdit = (EditText) view.findViewById(R.id.group_label);
-        initializeGroupLabelEditText(mEdit);
-
-        mEdit.addTextChangedListener(this);
+        final EditText editText = (EditText) view.findViewById(R.id.group_label);
+        initializeGroupLabelEditText(editText);
 
         builder.setTitle(getTitleResourceId());
         builder.setView(view);
+        editText.requestFocus();
         builder.setPositiveButton(android.R.string.ok,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int whichButton) {
-                        onCompleted(mEdit.getText().toString().trim());
+                        onCompleted(editText.getText().toString().trim());
                     }
                 }
             );
+
         builder.setNegativeButton(android.R.string.cancel, null);
         final AlertDialog dialog = builder.create();
 
-        dialog.setOnShowListener(this);
+        dialog.setOnShowListener(new OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                updateOkButtonState(dialog, editText);
+            }
+        });
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateOkButtonState(dialog, editText);
+            }
+        });
+        dialog.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         return dialog;
     }
 
-    @Override
-    public void onShow(DialogInterface dialog) {
-        updateOkButtonState((AlertDialog) dialog);
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-        AlertDialog dialog = (AlertDialog) getDialog();
-        // Make sure the dialog has not already been dismissed or destroyed.
-        if (dialog != null) {
-            updateOkButtonState(dialog);
-        }
-    }
-
-    private void updateOkButtonState(AlertDialog dialog) {
-        Button okButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-        okButton.setEnabled(!TextUtils.isEmpty(mEdit.getText().toString().trim()));
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    /* package */ void updateOkButtonState(AlertDialog dialog, EditText editText) {
+        final Button okButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        okButton.setEnabled(!TextUtils.isEmpty(editText.getText().toString().trim()));
     }
 }
