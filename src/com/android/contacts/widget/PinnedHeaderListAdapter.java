@@ -48,6 +48,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
         this.mPinnedPartitionHeadersEnabled = flag;
     }
 
+    @Override
     public int getPinnedHeaderCount() {
         if (mPinnedPartitionHeadersEnabled) {
             return getPartitionCount();
@@ -65,6 +66,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
      * The default implementation creates the same type of view as a normal
      * partition header.
      */
+    @Override
     public View getPinnedHeaderView(int partition, View convertView, ViewGroup parent) {
         if (hasHeader(partition)) {
             View view = null;
@@ -87,6 +89,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
         }
     }
 
+    @Override
     public void configurePinnedHeaders(PinnedHeaderListView listView) {
         if (!mPinnedPartitionHeadersEnabled) {
             return;
@@ -161,6 +164,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
         }
     }
 
+    @Override
     public int getScrollPositionForHeader(int viewIndex) {
         return getPositionForPartition(viewIndex);
     }
