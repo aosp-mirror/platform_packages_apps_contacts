@@ -33,6 +33,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import android.util.Log;
+
 /**
  * This is a horizontally scrolling carousel with 2 tabs: one to see info about the contact and
  * one to see updates from the contact.
@@ -161,7 +163,16 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         // Scrolling by mAllowedHorizontalScrollLength causes listeners to
         // scroll by the entire screen amount; compute the scale-factor
         // necessary to make this so.
-        mScrollScaleFactor = screenWidth / mAllowedHorizontalScrollLength;
+        if (mAllowedHorizontalScrollLength == 0) {
+            // Guard against divide-by-zero.
+            // Note: this hard-coded value prevents a crash, but won't result in the
+            // desired scrolling behavior.  We rely on the framework calling onMeasure()
+            // again with a non-zero screen width.
+            mScrollScaleFactor = 1.0f;
+            Log.w(TAG, "set scale-factor to 1.0 to avoid divide-by-zero");
+        } else {
+            mScrollScaleFactor = screenWidth / mAllowedHorizontalScrollLength;
+        }
 
         int tabHeight = Math.round(screenWidth * mTabHeightScreenWidthFraction) + mTabShadowHeight;
         // Set the child {@link LinearLayout} to be TAB_COUNT * the computed tab width so that the
