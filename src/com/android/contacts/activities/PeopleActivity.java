@@ -1689,6 +1689,17 @@ public class PeopleActivity extends ContactsActivity
     }
 
     @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // In our own lifecycle, the focus is saved and restore but later taken away by the
+        // ViewPager. As a hack, we force focus on the SearchView if we know that we are searching.
+        // This fixes the keyboard going away on screen rotation
+        if (mActionBarAdapter.isSearchMode()) {
+            mActionBarAdapter.setFocusOnSearchView();
+        }
+    }
+
+    @Override
     public DialogManager getDialogManager() {
         return mDialogManager;
     }
