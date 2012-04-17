@@ -23,7 +23,7 @@ import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
-import com.google.android.collect.Lists;
+import com.android.contacts.util.UriUtils;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -74,11 +74,14 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
 
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
+    /** A short-lived cache that can be set by {@link #cacheResult()} */
+    private static Result sCachedResult = null;
+
     private final Uri mRequestedUri;
     private Uri mLookupUri;
     private boolean mLoadGroupMetaData;
     private boolean mLoadStreamItems;
-    private final boolean mLoadInvitableAccountTypes;
+    private boolean mLoadInvitableAccountTypes;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
     private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
@@ -130,9 +133,9 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
         private final boolean mStarred;
         private final Integer mPresence;
         private final ArrayList<Entity> mEntities;
-        private final ArrayList<StreamItemEntry> mStreamItems;
+        private ArrayList<StreamItemEntry> mStreamItems;
         private final LongSparseArray<DataStatus> mStatuses;
-        private final ArrayList<AccountType> mInvitableAccountTypes;
+        private ArrayList<AccountType> mInvitableAccountTypes;
 
         private String mDirectoryDisplayName;
         private String mDirectoryType;
@@ -166,7 +169,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             mLookupKey = null;
             mId = -1;
             mEntities = null;
-            mStreamItems = new ArrayList<StreamItemEntry>();
+            mStreamItems = null;
             mStatuses = null;
             mNameRawContactId = -1;
             mDisplayNameSource = DisplayNameSources.UNDEFINED;
@@ -208,7 +211,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             mLookupKey = lookupKey;
             mId = id;
             mEntities = new ArrayList<Entity>();
-            mStreamItems = new ArrayList<StreamItemEntry>();
+            mStreamItems = null;
             mStatuses = new LongSparseArray<DataStatus>();
             mNameRawContactId = nameRawContactId;
             mDisplayNameSource = displayNameSource;
@@ -219,7 +222,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             mPhoneticName = phoneticName;
             mStarred = starred;
             mPresence = presence;
-            mInvitableAccountTypes = Lists.newArrayList();
+            mInvitableAccountTypes = null;
             mSendToVoicemail = sendToVoicemail;
             mCustomRingtone = customRingtone;
             mIsUserProfile = isUserProfile;
@@ -482,13 +485,6 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             return result;
         }
 
-        private void addGroupMetaData(GroupMetaData group) {
-            if (mGroups == null) {
-                mGroups = new ArrayList<GroupMetaData>();
-            }
-            mGroups.add(group);
-        }
-
         public List<GroupMetaData> getGroupMetaData() {
             return mGroups;
         }
@@ -705,20 +701,39 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             final ContentResolver resolver = getContext().getContentResolver();
             final Uri uriCurrentFormat = ContactLoaderUtils.ensureIsContactUri(
                     resolver, mLookupUri);
-            Result result = loadContactEntity(resolver, uriCurrentFormat);
+            final Result cachedResult = sCachedResult;
+            sCachedResult = null;
+            // Is this the same Uri as what we had before already? In that case, reuse that result
+            final Result result;
+            final boolean resultIsCached;
+            if (cachedResult != null &&
+                    UriUtils.areEqual(cachedResult.getLookupUri(), mLookupUri)) {
+                // We are using a cached result from earlier. Below, we should make sure
+                // we are not doing any more network or disc accesses
+                result = cachedResult;
+                resultIsCached = true;
+            } else {
+                result = loadContactEntity(resolver, uriCurrentFormat);
+                resultIsCached = false;
+            }
             if (!result.isNotFound()) {
                 if (result.isDirectoryEntry()) {
-                    loadDirectoryMetaData(result);
+                    if (!resultIsCached) {
+                        loadDirectoryMetaData(result);
+                    }
                 } else if (mLoadGroupMetaData) {
-                    loadGroupMetaData(result);
+                    if (result.getGroupMetaData() == null) {
+                        loadGroupMetaData(result);
+                    }
                 }
-                if (mLoadStreamItems) {
+                if (mLoadStreamItems && result.getStreamItems() == null) {
                     loadStreamItems(result);
                 }
-                loadPhotoBinaryData(result);
+                if (!resultIsCached) loadPhotoBinaryData(result);
 
                 // Note ME profile should never have "Add connection"
-                if (mLoadInvitableAccountTypes && !result.isUserProfile()) {
+                if (mLoadInvitableAccountTypes && result.getInvitableAccountTypes() == null &&
+                        !result.isUserProfile()) {
                     loadInvitableAccountTypes(result);
                 }
             }
@@ -858,7 +873,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
         }
 
         // Set to mInvitableAccountTypes
-        contactData.mInvitableAccountTypes.addAll(result.values());
+        contactData.mInvitableAccountTypes = new ArrayList<AccountType>(result.values());
     }
 
     /**
@@ -1053,7 +1068,8 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                 selection.append(")");
             }
         }
-        Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
+        final ArrayList<GroupMetaData> groupList = new ArrayList<GroupMetaData>();
+        final Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
                 GroupQuery.COLUMNS, selection.toString(), selectionArgs.toArray(new String[0]),
                 null);
         try {
@@ -1070,13 +1086,14 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                         ? false
                         : cursor.getInt(GroupQuery.FAVORITES) != 0;
 
-                result.addGroupMetaData(new GroupMetaData(
+                groupList.add(new GroupMetaData(
                         accountName, accountType, dataSet, groupId, title, defaultGroup,
                         favorites));
             }
         } finally {
             cursor.close();
         }
+        result.mGroups = groupList;
     }
 
     /**
@@ -1163,7 +1180,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
 
         // Set the sorted stream items on the result.
         Collections.sort(streamItems);
-        result.mStreamItems.addAll(streamItems);
+        result.mStreamItems = streamItems;
     }
 
     @Override
@@ -1248,6 +1265,23 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
         }
     }
 
+    /**
+     * Fully upgrades this ContactLoader to one with all lists fully loaded. When done, the
+     * new result will be delivered
+     */
+    public void upgradeToFullContact() {
+        mLoadGroupMetaData = true;
+        mLoadInvitableAccountTypes = true;
+        mLoadStreamItems = true;
+
+        // Cache the current result, so that we only load the "missing" parts of the contact.
+        cacheResult();
+
+        // Our load parameters have changed, so let's pretend the data has changed. Its the same
+        // thing, essentially.
+        onContentChanged();
+    }
+
     public boolean getLoadStreamItems() {
         return mLoadStreamItems;
     }
@@ -1278,5 +1312,13 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
         cancelLoad();
         unregisterObserver();
         mContact = null;
+    }
+
+    /**
+     * Caches the result, which is useful when we switch from activity to activity, using the same
+     * contact. If the next load is for a different contact, the cached result will be dropped
+     */
+    public void cacheResult() {
+        sCachedResult = mContact;
     }
 }

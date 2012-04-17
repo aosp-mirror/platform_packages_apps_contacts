@@ -113,6 +113,8 @@ public class QuickContactActivity extends Activity {
     private ImageButton mOpenDetailsPushLayerButton;
     private ViewPager mListPager;
 
+    private ContactLoader mContactLoader;
+
     private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
 
     /**
@@ -179,6 +181,7 @@ public class QuickContactActivity extends Activity {
             public void onClick(View v) {
                 final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mContactLoader.cacheResult();
                 startActivity(intent);
                 hide(false);
             }
@@ -507,6 +510,7 @@ public class QuickContactActivity extends Activity {
                         @Override
                         public void run() {
                             mHasFinishedAnimatingIn = true;
+                            mContactLoader.upgradeToFullContact();
                         }
                     });
                 }
@@ -518,7 +522,8 @@ public class QuickContactActivity extends Activity {
             if (mLookupUri == null) {
                 Log.wtf(TAG, "Lookup uri wasn't initialized. Loader was started too early");
             }
-            return new ContactLoader(getApplicationContext(), mLookupUri);
+            mContactLoader = new ContactLoader(getApplicationContext(), mLookupUri);
+            return mContactLoader;
         }
     };
 
