@@ -41,7 +41,7 @@ public class SpannedTestUtils {
             // If the text is empty, it does not add the <p></p> bits to it.
             Assert.assertEquals("", actualHtmlText);
         } else {
-            Assert.assertEquals("<p>" + expectedHtmlText + "</p>\n", actualHtmlText);
+            Assert.assertEquals("<p dir=ltr>" + expectedHtmlText + "</p>\n", actualHtmlText);
         }
     }
 

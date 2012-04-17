@@ -16,6 +16,10 @@
 
 package com.android.contacts.util;
 
+import com.android.contacts.util.StreamItemEntry;
+
+import android.content.Context;
+
 /**
  * Builder for {@link StreamItemEntry}s to make writing tests easier.
  */
@@ -58,8 +62,10 @@ public class StreamItemEntryBuilder {
         return this;
     }
 
-    public StreamItemEntry build() {
-        return new StreamItemEntry(mId, mText, mComment, mTimestamp, mAccountType, mAccountName,
-                mDataSet, mResPackage, mIconRes, mLabelRes);
+    public StreamItemEntry build(Context context) {
+        StreamItemEntry ret = new StreamItemEntry(mId, mText, mComment, mTimestamp, mAccountType,
+                mAccountName, mDataSet, mResPackage, mIconRes, mLabelRes);
+        ret.decodeHtml(context);
+        return ret;
     }
 }

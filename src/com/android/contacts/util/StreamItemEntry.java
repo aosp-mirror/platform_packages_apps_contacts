@@ -141,6 +141,12 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
         return mPhotos;
     }
 
+    /**
+     * Make {@link #getDecodedText} and {@link #getDecodedComments} available.  Must be called
+     * before calling those.
+     *
+     * We can't do this automatically in the getters, because it'll require a {@link Context}.
+     */
     public void decodeHtml(Context context) {
         final Html.ImageGetter imageGetter = ContactDetailDisplayUtils.getImageGetter(context);
         if (mText != null) {
@@ -152,11 +158,19 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
     }
 
     public CharSequence getDecodedText() {
+        checkDecoded(mText, mDecodedText);
         return mDecodedText;
     }
 
     public CharSequence getDecodedComments() {
+        checkDecoded(mComments, mDecodedComments);
         return mDecodedComments;
+    }
+
+    private static void checkDecoded(CharSequence original, CharSequence decoded) {
+        if (original != null && decoded == null) {
+            throw new IllegalStateException("decodeHtml must have been called");
+        }
     }
 
     private static String getString(Cursor cursor, String columnName) {
