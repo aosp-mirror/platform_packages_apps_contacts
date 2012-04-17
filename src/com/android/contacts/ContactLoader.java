@@ -25,6 +25,7 @@ import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.android.contacts.util.UriUtils;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
@@ -732,8 +733,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                 if (!resultIsCached) loadPhotoBinaryData(result);
 
                 // Note ME profile should never have "Add connection"
-                if (mLoadInvitableAccountTypes && result.getInvitableAccountTypes() == null &&
-                        !result.isUserProfile()) {
+                if (mLoadInvitableAccountTypes && result.getInvitableAccountTypes() == null) {
                     loadInvitableAccountTypes(result);
                 }
             }
@@ -855,25 +855,29 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      * Sets the "invitable" account types to {@link Result#mInvitableAccountTypes}.
      */
     private void loadInvitableAccountTypes(Result contactData) {
-        Map<AccountTypeWithDataSet, AccountType> invitables =
-                AccountTypeManager.getInstance(getContext()).getUsableInvitableAccountTypes();
-        if (invitables.isEmpty()) {
-            return;
-        }
+        final ArrayList<AccountType> resultList = Lists.newArrayList();
+        if (!contactData.isUserProfile()) {
+            Map<AccountTypeWithDataSet, AccountType> invitables =
+                    AccountTypeManager.getInstance(getContext()).getUsableInvitableAccountTypes();
+            if (!invitables.isEmpty()) {
+                final Map<AccountTypeWithDataSet, AccountType> resultMap =
+                        Maps.newHashMap(invitables);
 
-        Map<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap(invitables);
+                // Remove the ones that already have a raw contact in the current contact
+                for (Entity entity : contactData.getEntities()) {
+                    final ContentValues values = entity.getEntityValues();
+                    final AccountTypeWithDataSet type = AccountTypeWithDataSet.get(
+                            values.getAsString(RawContacts.ACCOUNT_TYPE),
+                            values.getAsString(RawContacts.DATA_SET));
+                    resultMap.remove(type);
+                }
 
-        // Remove the ones that already have a raw contact in the current contact
-        for (Entity entity : contactData.getEntities()) {
-            final ContentValues values = entity.getEntityValues();
-            final AccountTypeWithDataSet type = AccountTypeWithDataSet.get(
-                    values.getAsString(RawContacts.ACCOUNT_TYPE),
-                    values.getAsString(RawContacts.DATA_SET));
-            result.remove(type);
+                resultList.addAll(resultMap.values());
+            }
         }
 
         // Set to mInvitableAccountTypes
-        contactData.mInvitableAccountTypes = new ArrayList<AccountType>(result.values());
+        contactData.mInvitableAccountTypes = resultList;
     }
 
     /**
