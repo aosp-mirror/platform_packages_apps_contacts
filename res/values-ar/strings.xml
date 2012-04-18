@@ -46,8 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"إزالة من المفضلة"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"تعديل"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"حذف"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1217971915748509640) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"وضع على الشاشة الرئيسية"</string>
     <string name="menu_call" msgid="3992595586042260618">"الاتصال بجهة الاتصال"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"إرسال رسالة لجهة الاتصال"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"فصل"</string>
@@ -78,8 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"شركة"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"المسمى الوظيفي"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"جهة الاتصال غير موجودة."</string>
-    <!-- no translation found for createContactShortcutSuccessful (7874133287558150877) -->
-    <skip />
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"تمت إضافة أداة جهات الاتصال إلى الشاشة الرئيسية."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"إنشاء جهة اتصال جديدة"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"إنشاء جهة اتصال جديدة"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"الهاتف"</string>
@@ -380,12 +378,12 @@
     <string name="postal_postcode" msgid="572136414136673751">"الرمز البريدي"</string>
     <string name="postal_country" msgid="7638264508416368690">"البلد"</string>
     <string name="full_name" msgid="6602579550613988977">"الاسم"</string>
-    <string name="name_given" msgid="1687286314106019813">"الاسم الممنوح"</string>
+    <string name="name_given" msgid="1687286314106019813">"الاسم الأول"</string>
     <string name="name_family" msgid="3416695586119999058">"اسم العائلة"</string>
     <string name="name_prefix" msgid="59756378548779822">"بادئة الاسم"</string>
     <string name="name_middle" msgid="8467433655992690326">"الاسم الأوسط"</string>
     <string name="name_suffix" msgid="3855278445375651441">"لاحقة الاسم"</string>
-    <string name="name_phonetic_given" msgid="6853570431394449191">"الاسم الصوتي الممنوح"</string>
+    <string name="name_phonetic_given" msgid="6853570431394449191">"الاسم الأول - صوتي"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"الاسم الصوتي الأوسط"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"اسم الأسرة الصوتي"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"الاسم"</string>
@@ -401,10 +399,10 @@
     <string name="no_contact_details" msgid="6636856378019344497">"ليس هناك أية معلومات إضافية لجهة الاتصال هذه."</string>
     <string name="group_read_only" msgid="1061762906115697637">"غير قابلة للتعديل على هذا الجهاز."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"تصنيف القائمة بحسب"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"الاسم الممنوح"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"الاسم الأول"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"اسم العائلة"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"عرض أسماء جهات الاتصال كـ"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"الاسم الممنوح أولاً"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"كيفية عرض الأسماء"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"الاسم الأول أولاً"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"الاسم العائلة أولاً"</string>
     <string name="take_photo" msgid="7496128293167402354">"التقاط صورة"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"التقاط صورة جديدة"</string>

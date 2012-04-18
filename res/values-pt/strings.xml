@@ -46,8 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Remover dos favoritos"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Excluir"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1217971915748509640) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Colocar na tela inicial"</string>
     <string name="menu_call" msgid="3992595586042260618">"Chamar contato"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar SMS/MMS para o contato"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
@@ -78,8 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Empresa"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Título"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"O contato não existe."</string>
-    <!-- no translation found for createContactShortcutSuccessful (7874133287558150877) -->
-    <skip />
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget Contato adicionado à tela inicial."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Criar novo contato"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Criar novo contato"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefone"</string>

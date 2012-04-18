@@ -46,8 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"즐겨찾기에서 삭제"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"수정"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"삭제"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1217971915748509640) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"홈 화면에 만들기"</string>
     <string name="menu_call" msgid="3992595586042260618">"연락처로 전화 걸기"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"연락처에 문자 보내기"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"분리"</string>
@@ -78,8 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"회사"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"직함"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"연락처가 없습니다."</string>
-    <!-- no translation found for createContactShortcutSuccessful (7874133287558150877) -->
-    <skip />
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"주소록 위젯이 홈 화면에 추가됨"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"새 연락처 만들기"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"새 연락처 만들기"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"전화"</string>

@@ -46,8 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"お気に入りから削除"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編集"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"削除"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1217971915748509640) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ホーム画面に配置"</string>
     <string name="menu_call" msgid="3992595586042260618">"連絡先に発信"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"連絡先にSMS"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"分割"</string>
@@ -78,8 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"会社"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"役職"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"連絡先が存在しません。"</string>
-    <!-- no translation found for createContactShortcutSuccessful (7874133287558150877) -->
-    <skip />
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"ホーム画面に連絡先ウィジェットを追加しました。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"連絡先を新規登録"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"新しい連絡先を作成"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話番号"</string>
