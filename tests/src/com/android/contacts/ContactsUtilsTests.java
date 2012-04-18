@@ -126,7 +126,7 @@ public class ContactsUtilsTests extends AndroidTestCase {
         assertCollapses("72", true,
                 Phone.CONTENT_ITEM_TYPE, "+49 (8092) 1234",
                 Phone.CONTENT_ITEM_TYPE, "+49 (8092)1234");
-        assertCollapses("73", true,
+        assertCollapses("73", false,
                 Phone.CONTENT_ITEM_TYPE, "0049 (8092) 1234",
                 Phone.CONTENT_ITEM_TYPE, "+49/80921234");
         assertCollapses("74", false,
@@ -147,14 +147,37 @@ public class ContactsUtilsTests extends AndroidTestCase {
                 Phone.CONTENT_ITEM_TYPE, "1234567;+49 (8092) 1234",
                 Phone.CONTENT_ITEM_TYPE, "1234567;+49/80921234");
 
-        // this makes sure that if if two segments are identical, we don't even try to parse
-        // (and therefore allow invalid phone numbers)
-        assertCollapses("84", true,
-                Phone.CONTENT_ITEM_TYPE, "+49/80921234;a89",
-                Phone.CONTENT_ITEM_TYPE, "+49 (8092) 1234;a89");
-        assertCollapses("85", false,
-                Phone.CONTENT_ITEM_TYPE, "+49/80921234;a89",
-                Phone.CONTENT_ITEM_TYPE, "+49/80921234;b89");
+        assertCollapses("86", true,
+                Phone.CONTENT_ITEM_TYPE, "",
+                Phone.CONTENT_ITEM_TYPE, "");
+
+        assertCollapses("87", false,
+                Phone.CONTENT_ITEM_TYPE, "1",
+                Phone.CONTENT_ITEM_TYPE, "");
+
+        assertCollapses("88", false,
+                Phone.CONTENT_ITEM_TYPE, "",
+                Phone.CONTENT_ITEM_TYPE, "1");
+
+        assertCollapses("89", true,
+                Phone.CONTENT_ITEM_TYPE, "---",
+                Phone.CONTENT_ITEM_TYPE, "---");
+
+        assertCollapses("90", true,
+                Phone.CONTENT_ITEM_TYPE, "1-/().",
+                Phone.CONTENT_ITEM_TYPE, "--$%1");
+
+        assertCollapses("91", true,
+                Phone.CONTENT_ITEM_TYPE, "abcdefghijklmnopqrstuvwxyz",
+                Phone.CONTENT_ITEM_TYPE, "22233344455566677778889999");
+
+        assertCollapses("92", false,
+                Phone.CONTENT_ITEM_TYPE, "1;2",
+                Phone.CONTENT_ITEM_TYPE, "12");
+
+        assertCollapses("93", false,
+                Phone.CONTENT_ITEM_TYPE, "1,2",
+                Phone.CONTENT_ITEM_TYPE, "12");
     }
 
     private void assertCollapses(String message, boolean expected, CharSequence mimetype1,
@@ -164,12 +187,17 @@ public class ContactsUtilsTests extends AndroidTestCase {
         assertEquals(message, expected,
                 ContactsUtils.shouldCollapse(mimetype2, data2, mimetype1, data1));
 
+        // If data1 and data2 are the same instance, make sure the same test passes with different
+        // instances.
         if (data1 == data2 && data1 != null) {
-            // make sure we also do a test where object equality is not given
-            final CharSequence data2_newref = data2 + "";
+            // Create a different instance
+            final CharSequence data2_newref = new StringBuilder(data2).append("").toString();
 
-            // this just makes sure the test is working
-            assertFalse(data1 == data2_newref);
+            if (data1 == data2_newref) {
+                // In some cases no matter what we do the runtime reuses the same instance, so
+                // we can't do the "different instance" test.
+                return;
+            }
 
             // we have two different instances, now make sure we get the same result as before
             assertEquals(message, expected,

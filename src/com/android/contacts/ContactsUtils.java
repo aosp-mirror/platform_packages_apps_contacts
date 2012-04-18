@@ -22,7 +22,6 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.util.Constants;
-import com.android.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.content.Context;
 import android.content.Intent;
@@ -129,36 +128,41 @@ public class ContactsUtils {
         // mimetypes could have more sophisticated matching is the future, e.g. addresses)
         if (!TextUtils.equals(Phone.CONTENT_ITEM_TYPE, mimetype1)) return false;
 
-        // Now do the full phone number thing. split into parts, seperated by waiting symbol
-        // and compare them individually
-        final String[] dataParts1 = data1.toString().split(WAIT_SYMBOL_AS_STRING);
-        final String[] dataParts2 = data2.toString().split(WAIT_SYMBOL_AS_STRING);
-        if (dataParts1.length != dataParts2.length) return false;
-        final PhoneNumberUtil util = PhoneNumberUtil.getInstance();
-        for (int i = 0; i < dataParts1.length; i++) {
-            final String dataPart1 = dataParts1[i];
-            final String dataPart2 = dataParts2[i];
+        return shouldCollapsePhoneNumbers(data1.toString(), data2.toString());
+    }
 
-            // substrings equal? shortcut, don't parse
-            if (TextUtils.equals(dataPart1, dataPart2)) continue;
+    private static final boolean shouldCollapsePhoneNumbers(
+            String number1WithLetters, String number2WithLetters) {
+        final String number1 = PhoneNumberUtils.convertKeypadLettersToDigits(number1WithLetters);
+        final String number2 = PhoneNumberUtils.convertKeypadLettersToDigits(number2WithLetters);
 
-            // do a full parse of the numbers
-            switch (util.isNumberMatch(dataPart1, dataPart2)) {
-                case NOT_A_NUMBER:
-                    // don't understand the numbers? let's play it safe
-                    return false;
-                case NO_MATCH:
-                    return false;
-                case EXACT_MATCH:
-                case SHORT_NSN_MATCH:
-                case NSN_MATCH:
-                    break;
-                default:
-                    throw new IllegalStateException("Unknown result value from phone number " +
-                            "library");
+        int index1 = 0;
+        int index2 = 0;
+        for (;;) {
+            // Skip formatting characters.
+            while (index1 < number1.length() &&
+                    !PhoneNumberUtils.isNonSeparator(number1.charAt(index1))) {
+                index1++;
             }
+            while (index2 < number2.length() &&
+                    !PhoneNumberUtils.isNonSeparator(number2.charAt(index2))) {
+                index2++;
+            }
+            // If both have finished, match.  If only one has finished, not match.
+            final boolean number1End = (index1 == number1.length());
+            final boolean number2End = (index2 == number2.length());
+            if (number1End) {
+                return number2End;
+            }
+            if (number2End) return false;
+
+            // If the non-formatting characters are different, not match.
+            if (number1.charAt(index1) != number2.charAt(index2)) return false;
+
+            // Go to the next characters.
+            index1++;
+            index2++;
         }
-        return true;
     }
 
     /**

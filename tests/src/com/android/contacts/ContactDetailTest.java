@@ -21,7 +21,9 @@ import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
 
 import android.test.ActivityUnitTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
+@SmallTest
 public class ContactDetailTest extends ActivityUnitTestCase<ContactDetailActivity> {
     private ContactsMockContext mContext;
     private MockContentProvider mContactsProvider;
