@@ -497,6 +497,7 @@ public class DialtactsActivity extends TransactionSafeActivity
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mViewPager.setOnPageChangeListener(mPageChangeListener);
+        mViewPager.setOffscreenPageLimit(2);
 
         // Do same width calculation as ActionBar does
         DisplayMetrics dm = getResources().getDisplayMetrics();
