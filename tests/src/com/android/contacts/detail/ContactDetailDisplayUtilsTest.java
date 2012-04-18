@@ -51,19 +51,20 @@ public class ContactDetailDisplayUtilsTest extends AndroidTestCase {
     }
 
     public void testAddStreamItemText_IncludesComments() {
-        StreamItemEntry streamItem = getTestBuilder().setComment("1 comment").build();
+        StreamItemEntry streamItem = getTestBuilder().setComment("1 comment").build(getContext());
         View streamItemView = addStreamItemText(streamItem);
         assertHasText(streamItemView, R.id.stream_item_comments, "1 comment");
     }
 
     public void testAddStreamItemText_IncludesHtmlComments() {
-        StreamItemEntry streamItem = getTestBuilder().setComment("1 <b>comment</b>").build();
+        StreamItemEntry streamItem = getTestBuilder().setComment("1 <b>comment</b>")
+                .build(getContext());
         View streamItemView = addStreamItemText(streamItem);
         assertHasHtmlText(streamItemView, R.id.stream_item_comments, "1 <b>comment<b>");
     }
 
     public void testAddStreamItemText_NoComments() {
-        StreamItemEntry streamItem = getTestBuilder().setComment(null).build();
+        StreamItemEntry streamItem = getTestBuilder().setComment(null).build(getContext());
         View streamItemView = addStreamItemText(streamItem);
         assertGone(streamItemView, R.id.stream_item_comments);
     }
