@@ -19,6 +19,7 @@ package com.android.contacts.detail;
 import com.android.contacts.R;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.detail.ContactDetailPhotoSetter;
+import com.android.contacts.util.MoreMath;
 import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.content.Context;
@@ -80,8 +81,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private int mTabDisplayLabelHeight;
 
     private boolean mScrollToCurrentTab = false;
-    private int mLastScrollPosition;
-
+    private int mLastScrollPosition = Integer.MIN_VALUE;
     private int mAllowedHorizontalScrollLength = Integer.MIN_VALUE;
     private int mAllowedVerticalScrollLength = Integer.MIN_VALUE;
 
@@ -330,24 +330,31 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
     private void updateAlphaLayers() {
         float alpha = mLastScrollPosition * MAX_ALPHA / mAllowedHorizontalScrollLength;
+        alpha = MoreMath.clamp(alpha, 0.0f, 1.0f);
         mAboutTab.setAlphaLayerValue(alpha);
         mUpdatesTab.setAlphaLayerValue(MAX_ALPHA - alpha);
     }
 
     @Override
-    protected void onScrollChanged(int l, int t, int oldL, int oldT) {
-        super.onScrollChanged(l, t, oldL, oldT);
+    protected void onScrollChanged(int x, int y, int oldX, int oldY) {
+        super.onScrollChanged(x, y, oldX, oldY);
+
+        // Guard against framework issue where onScrollChanged() is called twice
+        // for each touch-move event.  This wreaked havoc on the tab-carousel: the
+        // view-pager moved twice as fast as it should because we called fakeDragBy()
+        // twice with the same value.
+        if (mLastScrollPosition == x) return;
 
         // Since we never completely scroll the about/updates tabs off-screen,
         // the draggable range is less than the width of the carousel. Our
         // listeners don't care about this... if we scroll 75% percent of our
         // draggable range, they want to scroll 75% of the entire carousel
         // width, not the same number of pixels that we scrolled.
-        int scaledL = (int) (l * mScrollScaleFactor);
-        int oldScaledL = (int) (oldL * mScrollScaleFactor);
-        mListener.onScrollChanged(scaledL, t, oldScaledL, oldT);
+        int scaledL = (int) (x * mScrollScaleFactor);
+        int oldScaledL = (int) (oldX * mScrollScaleFactor);
+        mListener.onScrollChanged(scaledL, y, oldScaledL, oldY);
 
-        mLastScrollPosition = l;
+        mLastScrollPosition = x;
         updateAlphaLayers();
     }
 
