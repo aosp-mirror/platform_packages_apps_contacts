@@ -33,12 +33,15 @@ import android.app.KeyguardManager;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.provider.CallLog;
+import android.provider.ContactsContract;
 import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -87,6 +90,21 @@ public class CallLogFragment extends ListFragment
 
     private final Handler mHandler = new Handler();
 
+    private class CustomContentObserver extends ContentObserver {
+        public CustomContentObserver() {
+            super(mHandler);
+        }
+        @Override
+        public void onChange(boolean selfChange) {
+            mRefreshDataRequired = true;
+        }
+    }
+
+    // See issue 6363009
+    private final ContentObserver mCallLogObserver = new CustomContentObserver();
+    private final ContentObserver mContactsObserver = new CustomContentObserver();
+    private boolean mRefreshDataRequired = true;
+
     // Exactly same variable is in Fragment as a package private.
     private boolean mMenuVisible = true;
 
@@ -97,6 +115,10 @@ public class CallLogFragment extends ListFragment
         mCallLogQueryHandler = new CallLogQueryHandler(getActivity().getContentResolver(), this);
         mKeyguardManager =
                 (KeyguardManager) getActivity().getSystemService(Context.KEYGUARD_SERVICE);
+        getActivity().getContentResolver().registerContentObserver(
+                CallLog.CONTENT_URI, true, mCallLogObserver);
+        getActivity().getContentResolver().registerContentObserver(
+                ContactsContract.Contacts.CONTENT_URI, true, mContactsObserver);
         setHasOptionsMenu(true);
     }
 
@@ -270,6 +292,8 @@ public class CallLogFragment extends ListFragment
         super.onDestroy();
         mAdapter.stopRequestProcessing();
         mAdapter.changeCursor(null);
+        getActivity().getContentResolver().unregisterContentObserver(mCallLogObserver);
+        getActivity().getContentResolver().unregisterContentObserver(mContactsObserver);
     }
 
     @Override
@@ -399,12 +423,16 @@ public class CallLogFragment extends ListFragment
 
     /** Requests updates to the data to be shown. */
     private void refreshData() {
-        // Mark all entries in the contact info cache as out of date, so they will be looked up
-        // again once being shown.
-        mAdapter.invalidateCache();
-        startCallsQuery();
-        startVoicemailStatusQuery();
-        updateOnEntry();
+        // Prevent unnecessary refresh.
+        if (mRefreshDataRequired) {
+            // Mark all entries in the contact info cache as out of date, so they will be looked up
+            // again once being shown.
+            mAdapter.invalidateCache();
+            startCallsQuery();
+            startVoicemailStatusQuery();
+            updateOnEntry();
+            mRefreshDataRequired = false;
+        }
     }
 
     /** Removes the missed call notifications. */
