@@ -280,6 +280,7 @@ public class DialpadFragment extends Fragment
         mDialButton = fragmentView.findViewById(R.id.dialButton);
         if (r.getBoolean(R.bool.config_show_onscreen_dial_button)) {
             mDialButton.setOnClickListener(this);
+            mDialButton.setOnLongClickListener(this);
         } else {
             mDialButton.setVisibility(View.GONE); // It's VISIBLE by default
             mDialButton = null;
@@ -906,6 +907,16 @@ public class DialpadFragment extends Fragment
                 mDigits.setCursorVisible(true);
                 return false;
             }
+            case R.id.dialButton: {
+                if (isDigitsEmpty()) {
+                    handleDialButtonClickWithEmptyDigits();
+                    // This event should be consumed so that onClick() won't do the exactly same
+                    // thing.
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
         return false;
     }
@@ -997,35 +1008,7 @@ public class DialpadFragment extends Fragment
      */
     public void dialButtonPressed() {
         if (isDigitsEmpty()) { // No number entered.
-            if (phoneIsCdma() && phoneIsOffhook()) {
-                // This is really CDMA specific. On GSM is it possible
-                // to be off hook and wanted to add a 3rd party using
-                // the redial feature.
-                startActivity(newFlashIntent());
-            } else {
-                if (!TextUtils.isEmpty(mLastNumberDialed)) {
-                    // Recall the last number dialed.
-                    mDigits.setText(mLastNumberDialed);
-
-                    // ...and move the cursor to the end of the digits string,
-                    // so you'll be able to delete digits using the Delete
-                    // button (just as if you had typed the number manually.)
-                    //
-                    // Note we use mDigits.getText().length() here, not
-                    // mLastNumberDialed.length(), since the EditText widget now
-                    // contains a *formatted* version of mLastNumberDialed (due to
-                    // mTextWatcher) and its length may have changed.
-                    mDigits.setSelection(mDigits.getText().length());
-                } else {
-                    // There's no "last number dialed" or the
-                    // background query is still running. There's
-                    // nothing useful for the Dial button to do in
-                    // this case.  Note: with a soft dial button, this
-                    // can never happens since the dial button is
-                    // disabled under these conditons.
-                    playTone(ToneGenerator.TONE_PROP_NACK);
-                }
-            }
+            handleDialButtonClickWithEmptyDigits();
         } else {
             final String number = mDigits.getText().toString();
 
@@ -1052,6 +1035,38 @@ public class DialpadFragment extends Fragment
                 startActivity(intent);
                 mClearDigitsOnStop = true;
                 getActivity().finish();
+            }
+        }
+    }
+
+    private void handleDialButtonClickWithEmptyDigits() {
+        if (phoneIsCdma() && phoneIsOffhook()) {
+            // This is really CDMA specific. On GSM is it possible
+            // to be off hook and wanted to add a 3rd party using
+            // the redial feature.
+            startActivity(newFlashIntent());
+        } else {
+            if (!TextUtils.isEmpty(mLastNumberDialed)) {
+                // Recall the last number dialed.
+                mDigits.setText(mLastNumberDialed);
+
+                // ...and move the cursor to the end of the digits string,
+                // so you'll be able to delete digits using the Delete
+                // button (just as if you had typed the number manually.)
+                //
+                // Note we use mDigits.getText().length() here, not
+                // mLastNumberDialed.length(), since the EditText widget now
+                // contains a *formatted* version of mLastNumberDialed (due to
+                // mTextWatcher) and its length may have changed.
+                mDigits.setSelection(mDigits.getText().length());
+            } else {
+                // There's no "last number dialed" or the
+                // background query is still running. There's
+                // nothing useful for the Dial button to do in
+                // this case.  Note: with a soft dial button, this
+                // can never happens since the dial button is
+                // disabled under these conditons.
+                playTone(ToneGenerator.TONE_PROP_NACK);
             }
         }
     }
