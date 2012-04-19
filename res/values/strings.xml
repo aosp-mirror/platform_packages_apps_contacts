@@ -115,6 +115,9 @@
     <!-- Menu item used to delete a specific contact -->
     <string name="menu_deleteContact">Delete</string>
 
+    <!-- Menu item to copy something [CHAR_LIMIT=10] -->
+    <string name="menu_copy">Copy</string>
+
     <!-- Menu item used to create a contact shortcut when viewing contact details. [CHAR LIMIT=30] -->
     <string name="menu_create_contact_shortcut">Place on Home screen</string>
 

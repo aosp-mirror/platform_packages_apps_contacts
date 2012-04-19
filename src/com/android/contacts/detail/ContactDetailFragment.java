@@ -38,6 +38,7 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.util.ClipboardUtils;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
@@ -1904,17 +1905,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         // Checking for empty string
         if (TextUtils.isEmpty(textToCopy)) return;
 
-        // Adding item to clipboard
-        ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(
-                Context.CLIPBOARD_SERVICE);
-        String[] mimeTypes = new String[]{detailViewEntry.mimetype};
-        ClipData.Item clipDataItem = new ClipData.Item(textToCopy);
-        ClipData cd = new ClipData(detailViewEntry.typeString, mimeTypes, clipDataItem);
-        clipboardManager.setPrimaryClip(cd);
-
-        // Display Confirmation Toast
-        String toastText = getString(R.string.toast_text_copied);
-        Toast.makeText(getActivity(), toastText, Toast.LENGTH_SHORT).show();
+        ClipboardUtils.copyText(getActivity(), detailViewEntry.typeString, textToCopy, true);
     }
 
     @Override
