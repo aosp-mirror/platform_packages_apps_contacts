@@ -801,8 +801,11 @@ public class DialpadFragment extends Fragment
             view.jumpDrawablesToCurrentState();
             mDialpadPressCount--;
             if (mDialpadPressCount < 0) {
-                // May happen when the user action is detected as horizontal swipe, at which only
-                // "up" event is thrown.
+                // e.g.
+                // - when the user action is detected as horizontal swipe, at which only
+                //   "up" event is thrown.
+                // - when the user long-press '0' button, at which dialpad will decrease this count
+                //   while it still gets press-up event here.
                 if (DEBUG) Log.d(TAG, "mKeyPressCount become negative.");
                 stopTone();
                 mDialpadPressCount = 0;
@@ -897,6 +900,14 @@ public class DialpadFragment extends Fragment
                 // Remove tentative input ('0') done by onTouch().
                 removePreviousDigitIfPossible();
                 keyPressed(KeyEvent.KEYCODE_PLUS);
+
+                // Stop tone immediately and decrease the press count, so that possible subsequent
+                // dial button presses won't honor the 0 click any more.
+                // Note: this *will* make mDialpadPressCount negative when the 0 key is released,
+                // which should be handled appropriately.
+                stopTone();
+                if (mDialpadPressCount > 0) mDialpadPressCount--;
+
                 return true;
             }
             case R.id.digits: {
