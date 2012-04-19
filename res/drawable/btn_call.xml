@@ -17,8 +17,7 @@
 <!-- Background resource for call button in the various dialpads.
      Almost a copy from framework's item_background_holo_dark.xml, but has different pressed effect
   -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-          android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_window_focused="false" android:drawable="@android:color/transparent" />
 
