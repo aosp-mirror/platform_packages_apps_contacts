@@ -275,7 +275,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 ሰከንድ ፋታ አክል"</string>
     <string name="add_wait" msgid="3360818652790319634">"ጠብቅአክል"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"ጥሪ በመጠቀም"</string>
-    <string name="call_settings" msgid="7666474782093693667">"ቅንጅቶች"</string>
+    <string name="call_settings" msgid="7666474782093693667">"ቅንብሮች"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"ፅሁፍበመጠቀም"</string>
     <string name="make_primary" msgid="5829291915305113983">"ይህን ምርጫ አስታውስ"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ይህን እርምጃ ለማስተናገድ ምንም መተግበሪያ አልተገኘም፡፡"</string>
@@ -550,7 +550,7 @@
     <string name="add_account" msgid="8201790677994503186">"መለያ አክል"</string>
     <string name="add_new_account" msgid="5748627740680940264">"አዲስ መለያ አክል"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"ጥሪ አልተላከም"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"ድምጽ መልዕክትን ለማደራጀት ወደ ምናሌ &gt; ቅንጅቶች ሂድ::"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"ድምጽ መልዕክትን ለማደራጀት ወደ ምናሌ &gt; ቅንብሮች  ሂድ::"</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"የድምጽ መልዕክት ጥሪ ለማድረግ፣ በመጀመሪያ የአውሮፕላን ሁነታን አጥፋ።"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"ተጨማሪ አማራጮች"</string>
 </resources>
