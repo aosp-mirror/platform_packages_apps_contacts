@@ -39,12 +39,14 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
     private final long mId;
     private final String mText;
     private final String mComments;
-    private CharSequence mDecodedText;
-    private CharSequence mDecodedComments;
     private final long mTimestamp;
     private final String mAccountType;
     private final String mAccountName;
     private final String mDataSet;
+
+    private boolean mDecoded;
+    private CharSequence mDecodedText;
+    private CharSequence mDecodedComments;
 
     // Package references for label and icon resources.
     private final String mResPackage;
@@ -55,7 +57,14 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
     private List<StreamItemPhotoEntry> mPhotos;
 
     @NeededForTesting
-    public StreamItemEntry(long id, String text, String comments, long timestamp,
+    public static StreamItemEntry createForTest(long id, String text, String comments,
+            long timestamp, String accountType, String accountName, String dataSet,
+            String resPackage, String iconRes, String labelRes) {
+        return new StreamItemEntry(id, text, comments, timestamp, accountType, accountName, dataSet,
+                resPackage, iconRes, labelRes);
+    }
+
+    private StreamItemEntry(long id, String text, String comments, long timestamp,
             String accountType, String accountName, String dataSet, String resPackage,
             String iconRes, String labelRes) {
         mId = id;
@@ -155,20 +164,21 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
         if (mComments != null) {
             mDecodedComments = HtmlUtils.fromHtml(context, mComments, imageGetter, null);
         }
+        mDecoded = true;
     }
 
     public CharSequence getDecodedText() {
-        checkDecoded(mText, mDecodedText);
+        checkDecoded();
         return mDecodedText;
     }
 
     public CharSequence getDecodedComments() {
-        checkDecoded(mComments, mDecodedComments);
+        checkDecoded();
         return mDecodedComments;
     }
 
-    private static void checkDecoded(CharSequence original, CharSequence decoded) {
-        if (original != null && decoded == null) {
+    private void checkDecoded() {
+        if (!mDecoded) {
             throw new IllegalStateException("decodeHtml must have been called");
         }
     }

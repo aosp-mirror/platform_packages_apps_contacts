@@ -63,8 +63,8 @@ public class StreamItemEntryBuilder {
     }
 
     public StreamItemEntry build(Context context) {
-        StreamItemEntry ret = new StreamItemEntry(mId, mText, mComment, mTimestamp, mAccountType,
-                mAccountName, mDataSet, mResPackage, mIconRes, mLabelRes);
+        StreamItemEntry ret = StreamItemEntry.createForTest(mId, mText, mComment, mTimestamp,
+                mAccountType, mAccountName, mDataSet, mResPackage, mIconRes, mLabelRes);
         ret.decodeHtml(context);
         return ret;
     }
