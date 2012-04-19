@@ -25,6 +25,7 @@ import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.format.FormatUtils;
 import com.android.contacts.util.AsyncTaskExecutor;
 import com.android.contacts.util.AsyncTaskExecutors;
+import com.android.contacts.util.ClipboardUtils;
 import com.android.contacts.util.Constants;
 import com.android.contacts.voicemail.VoicemailPlaybackFragment;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
@@ -40,6 +41,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,6 +55,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -132,6 +135,15 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     private ProximitySensorManager mProximitySensorManager;
     private final ProximitySensorListener mProximitySensorListener = new ProximitySensorListener();
 
+    /**
+     * The action mode used when the phone number is selected.  This will be non-null only when the
+     * phone number is selected.
+     */
+    private ActionMode mPhoneNumberActionMode;
+
+    private CharSequence mPhoneNumberLabelToCopy;
+    private CharSequence mPhoneNumberToCopy;
+
     /** Listener to changes in the proximity sensor state. */
     private class ProximitySensorListener implements ProximitySensorManager.Listener {
         /** Used to show a blank view and hide the action bar. */
@@ -202,6 +214,9 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     private final View.OnClickListener mPrimaryActionListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            if (finishPhoneNumerSelectedActionModeIfShown()) {
+                return;
+            }
             startActivity(((ViewEntry) view.getTag()).primaryIntent);
         }
     };
@@ -209,7 +224,22 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     private final View.OnClickListener mSecondaryActionListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            if (finishPhoneNumerSelectedActionModeIfShown()) {
+                return;
+            }
             startActivity(((ViewEntry) view.getTag()).secondaryIntent);
+        }
+    };
+
+    private final View.OnLongClickListener mPrimaryLongClickListener =
+            new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            if (finishPhoneNumerSelectedActionModeIfShown()) {
+                return true;
+            }
+            startPhoneNumberSelectedActionMode(v);
+            return true;
         }
     };
 
@@ -497,8 +527,12 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                     }
 
                     configureCallButton(entry);
+                    mPhoneNumberToCopy = displayNumber;
+                    mPhoneNumberLabelToCopy = entry.label;
                 } else {
                     disableCallButton();
+                    mPhoneNumberToCopy = null;
+                    mPhoneNumberLabelToCopy = null;
                 }
 
                 mHasEditNumberBeforeCallOption =
@@ -656,6 +690,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
         mainAction.setOnClickListener(mPrimaryActionListener);
         mainAction.setTag(entry);
         mainAction.setContentDescription(entry.primaryDescription);
+        mainAction.setOnLongClickListener(mPrimaryLongClickListener);
 
         if (entry.secondaryIntent != null) {
             icon.setOnClickListener(mSecondaryActionListener);
@@ -828,5 +863,65 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     @Override
     public void disableProximitySensor(boolean waitForFarState) {
         mProximitySensorManager.disable(waitForFarState);
+    }
+
+    /**
+     * If the phone number is selected, unselect it and return {@code true}.
+     * Otherwise, just {@code false}.
+     */
+    private boolean finishPhoneNumerSelectedActionModeIfShown() {
+        if (mPhoneNumberActionMode == null) return false;
+        mPhoneNumberActionMode.finish();
+        return true;
+    }
+
+    private void startPhoneNumberSelectedActionMode(View targetView) {
+        mPhoneNumberActionMode = startActionMode(new PhoneNumberActionModeCallback(targetView));
+    }
+
+    private class PhoneNumberActionModeCallback implements ActionMode.Callback {
+        private final View mTargetView;
+        private final Drawable mOriginalViewBackground;
+
+        public PhoneNumberActionModeCallback(View targetView) {
+            mTargetView = targetView;
+
+            // Highlight the phone number view.  Remember the old background, and put a new one.
+            mOriginalViewBackground = mTargetView.getBackground();
+            mTargetView.setBackgroundColor(getResources().getColor(R.color.item_selected));
+        }
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            if (TextUtils.isEmpty(mPhoneNumberToCopy)) return false;
+
+            getMenuInflater().inflate(R.menu.call_details_cab, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return true;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.copy_phone_number:
+                    ClipboardUtils.copyText(CallDetailActivity.this, mPhoneNumberLabelToCopy,
+                            mPhoneNumberToCopy, true);
+                    mode.finish(); // Close the CAB
+                    return true;
+            }
+            return false;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            mPhoneNumberActionMode = null;
+
+            // Restore the view background.
+            mTargetView.setBackground(mOriginalViewBackground);
+        }
     }
 }
