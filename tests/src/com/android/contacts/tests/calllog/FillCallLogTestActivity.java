@@ -32,11 +32,12 @@ import android.provider.CallLog.Calls;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.security.SecureRandom;
+import java.util.Random;
 
 /**
  * Activity to add entries to the call log for testing.
@@ -46,9 +47,15 @@ public class FillCallLogTestActivity extends Activity {
     /** Identifier of the loader for querying the call log. */
     private static final int CALLLOG_LOADER_ID = 1;
 
+    private static final Random RNG = new Random();
+    private static final int[] CALL_TYPES = new int[] {
+        Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE, Calls.MISSED_TYPE,
+    };
+
     private TextView mNumberTextView;
     private Button mAddButton;
     private ProgressBar mProgressBar;
+    private CheckBox mUseRandomNumbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +64,23 @@ public class FillCallLogTestActivity extends Activity {
         mNumberTextView = (TextView) findViewById(R.id.number);
         mAddButton = (Button) findViewById(R.id.add);
         mProgressBar = (ProgressBar) findViewById(R.id.progress);
+        mUseRandomNumbers = (CheckBox) findViewById(R.id.use_random_numbers);
 
         mAddButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                int count = Integer.parseInt(mNumberTextView.getText().toString());
-                addEntriesToCallLog(count);
+                int count;
+                try {
+                    count = Integer.parseInt(mNumberTextView.getText().toString());
+                    if (count > 100) {
+                        throw new RuntimeException("Number too large.  Max=100");
+                    }
+                } catch (RuntimeException e) {
+                    Toast.makeText(FillCallLogTestActivity.this, e.toString(), Toast.LENGTH_LONG)
+                            .show();
+                    return;
+                }
+                addEntriesToCallLog(count, mUseRandomNumbers.isChecked());
                 mNumberTextView.setEnabled(false);
                 mAddButton.setEnabled(false);
                 mProgressBar.setProgress(0);
@@ -78,8 +96,13 @@ public class FillCallLogTestActivity extends Activity {
      *
      * @param count the number of entries to add
      */
-    private void addEntriesToCallLog(final int count) {
-        getLoaderManager().initLoader(CALLLOG_LOADER_ID, null, new CallLogLoaderListener(count));
+    private void addEntriesToCallLog(final int count, boolean useRandomNumbers) {
+        if (useRandomNumbers) {
+            addRandomNumbers(count);
+        } else {
+            getLoaderManager().initLoader(CALLLOG_LOADER_ID, null,
+                    new CallLogLoaderListener(count));
+        }
     }
 
     /**
@@ -133,6 +156,21 @@ public class FillCallLogTestActivity extends Activity {
         return values;
     }
 
+    private void addRandomNumbers(int count) {
+        ContentValues[] values = new ContentValues[count];
+        for (int i = 0; i < count; i++) {
+            values[i] = new ContentValues();
+            values[i].put(Calls.NUMBER, generateRandomNumber());
+            values[i].put(Calls.DATE, System.currentTimeMillis()); // Will be randomized later
+            values[i].put(Calls.DURATION, 1); // Will be overwritten later
+        }
+        new AsyncCallLogInserter(values).execute(new Void[0]);
+    }
+
+    private static String generateRandomNumber() {
+        return String.format("5%09d", RNG.nextInt(1000000000));
+    }
+
     /** Invokes {@link AsyncCallLogInserter} when the call log has loaded. */
     private final class CallLogLoaderListener implements LoaderManager.LoaderCallbacks<Cursor> {
         /** The number of items to insert when done. */
@@ -151,31 +189,29 @@ public class FillCallLogTestActivity extends Activity {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            Log.d(TAG, "onLoadFinished");
-            // Stores the content values associated with the various entries in call log.
-            // It needs at most as many entries as the number of entries in the templates, or the
-            // number of entries to insert, whichever is smaller.
-            int dataCount = Math.min(data.getCount(), mCount);
+            try {
+                Log.d(TAG, "onLoadFinished");
 
-            if (dataCount == 0) {
-                // If there are no entries in the call log, we cannot generate new ones.
-                insertCompleted(getString(R.string.noLogEntriesToast));
-                return;
-            }
-
-            ContentValues[] values = new ContentValues[dataCount];
-            for (int index = 0; index < dataCount; ++index) {
-                if (!data.moveToNext()) {
-                    throw new IllegalStateException("unexpected end of data");
+                if (data.getCount() == 0) {
+                    // If there are no entries in the call log, we cannot generate new ones.
+                    insertCompleted(getString(R.string.noLogEntriesToast));
+                    return;
                 }
-                if (values[index] == null) {
-                    // Create the content value at most once.
+
+                data.moveToPosition(-1);
+
+                ContentValues[] values = new ContentValues[mCount];
+                for (int index = 0; index < mCount; ++index) {
+                    if (!data.moveToNext()) {
+                        data.moveToFirst();
+                    }
                     values[index] = createContentValuesFromCursor(data);
                 }
+                new AsyncCallLogInserter(values).execute(new Void[0]);
+            } finally {
+                // This is a one shot loader.
+                getLoaderManager().destroyLoader(CALLLOG_LOADER_ID);
             }
-            new AsyncCallLogInserter(mCount, values).execute(new Void[0]);
-            // This is a one shot loader.
-            getLoaderManager().destroyLoader(CALLLOG_LOADER_ID);
         }
 
         @Override
@@ -185,14 +221,10 @@ public class FillCallLogTestActivity extends Activity {
     /** Inserts a given number of entries in the call log based on the values given. */
     private final class AsyncCallLogInserter extends AsyncTask<Void, Integer, Integer> {
         /** The number of items to insert. */
-        private final int mCount;
         private final ContentValues[] mValues;
-        private final SecureRandom mRandom;
 
-        public AsyncCallLogInserter(int count, ContentValues[] values) {
-            mCount = count;
+        public AsyncCallLogInserter(ContentValues[] values) {
             mValues = values;
-            mRandom = new SecureRandom();
         }
 
         @Override
@@ -221,19 +253,33 @@ public class FillCallLogTestActivity extends Activity {
         private Integer insertIntoCallLog() {
             int inserted = 0;
 
-            for (int index = 0; index < mCount; ++index) {
-                ContentValues values = mValues[index % mValues.length];
+            for (int index = 0; index < mValues.length; ++index) {
+                ContentValues values = mValues[index];
                 // These should not be set.
                 values.putNull(Calls._ID);
                 // Add some randomness to the date. For each new entry being added, add an extra
                 // day to the maximum possible offset from the original.
                 values.put(Calls.DATE,
                         values.getAsLong(Calls.DATE)
-                        - mRandom.nextInt(24 * 60 * 60 * (index + 1)) * 1000L);
+                        - RNG.nextInt(24 * 60 * 60 * (index + 1)) * 1000L);
                 // Add some randomness to the duration.
                 if (values.getAsLong(Calls.DURATION) > 0) {
-                    values.put(Calls.DURATION, mRandom.nextInt(30 * 60 * 60 * 1000));
+                    values.put(Calls.DURATION, RNG.nextInt(30 * 60 * 60 * 1000));
                 }
+
+                // Overwrite type.
+                values.put(Calls.TYPE, CALL_TYPES[RNG.nextInt(CALL_TYPES.length)]);
+
+                // Clear cached columns.
+                values.putNull(Calls.CACHED_FORMATTED_NUMBER);
+                values.putNull(Calls.CACHED_LOOKUP_URI);
+                values.putNull(Calls.CACHED_MATCHED_NUMBER);
+                values.putNull(Calls.CACHED_NAME);
+                values.putNull(Calls.CACHED_NORMALIZED_NUMBER);
+                values.putNull(Calls.CACHED_NUMBER_LABEL);
+                values.putNull(Calls.CACHED_NUMBER_TYPE);
+                values.putNull(Calls.CACHED_PHOTO_ID);
+
                 // Insert into the call log the newly generated entry.
                 ContentProviderClient contentProvider =
                         getContentResolver().acquireContentProviderClient(

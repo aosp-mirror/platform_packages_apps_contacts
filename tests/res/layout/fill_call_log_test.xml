@@ -31,7 +31,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:text="10"
         />
+    <CheckBox
+        android:id="@+id/use_random_numbers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/useRandomNumbers"
+    />
     <Button
         android:id="@+id/add"
         android:layout_width="match_parent"
