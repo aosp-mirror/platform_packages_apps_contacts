@@ -46,6 +46,8 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Sık kullanılanlardan kaldır"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Düzenle"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Sil"</string>
+    <!-- no translation found for menu_copy (6108677035381940698) -->
+    <skip />
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Ana ekrana yerleştir"</string>
     <string name="menu_call" msgid="3992595586042260618">"Çağrı yap"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Kısa mesaj gönder"</string>

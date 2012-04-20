@@ -55,6 +55,8 @@
     <skip />
     <!-- no translation found for menu_deleteContact (6788644058868189393) -->
     <skip />
+    <!-- no translation found for menu_copy (6108677035381940698) -->
+    <skip />
     <!-- no translation found for menu_create_contact_shortcut (1217971915748509640) -->
     <skip />
     <string name="menu_call" msgid="3992595586042260618">"Telefonar al contact"</string>
