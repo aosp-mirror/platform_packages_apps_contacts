@@ -645,5 +645,16 @@
             android:name=".calllog.CallLogNotificationsService"
             android:exported="false"
         />
+
+        <!-- Service that is exclusively for the Phone application that sends out a view
+             notification. This service might be removed in future versions of the app  -->
+        <service android:name=".ViewNotificationService"
+            android:permission="android.permission.WRITE_CONTACTS"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.contacts.VIEW_NOTIFICATION" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>

@@ -76,7 +76,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             ContactLoader loader = sLoaders.get(appWidgetId);
             if (loader != null) {
                 Log.d(TAG, "Stopping loader for widget with id=" + appWidgetId);
-                loader.stopLoading();
+                loader.reset();
                 sLoaders.delete(appWidgetId);
             }
         }
