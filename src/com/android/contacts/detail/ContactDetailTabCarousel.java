@@ -123,13 +123,13 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         mTabAndShadowContainer = findViewById(R.id.tab_and_shadow_container);
         mAboutTab = (CarouselTab) findViewById(R.id.tab_about);
         mAboutTab.setLabel(mContext.getString(R.string.contactDetailAbout));
-        mAboutTab.setTouchInterceptorListener(mAboutTabTouchInterceptListener);
+        mAboutTab.setOverlayOnClickListener(mAboutTabTouchInterceptListener);
 
         mTabDivider = findViewById(R.id.tab_divider);
 
         mUpdatesTab = (CarouselTab) findViewById(R.id.tab_update);
         mUpdatesTab.setLabel(mContext.getString(R.string.contactDetailUpdates));
-        mUpdatesTab.setTouchInterceptorListener(mUpdatesTabTouchInterceptListener);
+        mUpdatesTab.setOverlayOnClickListener(mUpdatesTabTouchInterceptListener);
 
         mShadow = findViewById(R.id.shadow);
 
@@ -446,9 +446,9 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
                 throw new IllegalStateException("Invalid tab position " + position);
         }
         selected.showSelectedState();
-        selected.disableTouchInterceptor();
+        selected.setOverlayClickable(false);
         deselected.showDeselectedState();
-        deselected.enableTouchInterceptor();
+        deselected.setOverlayClickable(true);
         mCurrentTab = position;
     }
 

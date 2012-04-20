@@ -26,59 +26,65 @@
     android:layout_weight="1"
     android:background="@drawable/bg_people_updates_holo">
 
-    <ImageView android:id="@+id/status_photo"
-        android:scaleType="centerCrop"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:visibility="gone" />
+        android:layout_height="match_parent" >
 
-    <!-- Transparent view to overlay on the update photo
-    (to allow white text to appear over a white photo). -->
-    <View android:id="@+id/label_background"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_above="@id/status_photo"
-        android:background="#7F000000" />
+        <ImageView android:id="@+id/status_photo"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:visibility="gone" />
 
-    <TextView android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_above="@id/label"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/detail_update_tab_side_padding"
-        android:paddingRight="@dimen/detail_update_tab_side_padding"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/detail_update_tab_text_color"
-        android:textStyle="bold"
-        android:maxLines="@integer/updates_tab_snippet_max_lines"
-        android:ellipsize="end" />
+        <!-- Transparent view to overlay on the update photo
+        (to allow white text to appear over a white photo). -->
+        <View android:id="@+id/label_background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_above="@id/status_photo"
+            android:background="#7F000000" />
 
-    <View
-        android:id="@+id/alpha_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/detail_tab_carousel_tab_label_height"/>
+        <TextView android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@id/label"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/detail_update_tab_side_padding"
+            android:paddingRight="@dimen/detail_update_tab_side_padding"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/detail_update_tab_text_color"
+            android:textStyle="bold"
+            android:maxLines="@integer/updates_tab_snippet_max_lines"
+            android:ellipsize="end" />
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_above="@id/status_photo"
-        android:paddingLeft="@dimen/detail_tab_carousel_tab_label_indent"
-        android:singleLine="true"
-        android:gravity="left|center_vertical"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/detail_tab_carousel_tab_label_color"
-        style="@android:style/Widget.Holo.ActionBar.TabView" />
+        <View
+            android:id="@+id/alpha_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/detail_tab_carousel_tab_label_height"/>
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_above="@id/status_photo"
+            android:paddingLeft="@dimen/detail_tab_carousel_tab_label_indent"
+            android:singleLine="true"
+            android:gravity="left|center_vertical"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/detail_tab_carousel_tab_label_color"
+            style="@android:style/Widget.Holo.ActionBar.TabView" />
+
+    </RelativeLayout>
 
 </view>

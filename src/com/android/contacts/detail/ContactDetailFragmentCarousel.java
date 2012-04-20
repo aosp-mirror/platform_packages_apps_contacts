@@ -17,6 +17,7 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.R;
+import com.android.contacts.widget.FrameLayoutWithOverlay;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -82,11 +83,8 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private int mCurrentPage = ABOUT_PAGE;
     private int mLastScrollPosition;
 
-    private ViewOverlay mAboutFragment;
-    private ViewOverlay mUpdatesFragment;
-
-    private View mAboutFragmentView;
-    private View mUpdatesFragmentView;
+    private FrameLayoutWithOverlay mAboutFragment;
+    private FrameLayoutWithOverlay mUpdatesFragment;
 
     public ContactDetailFragmentCarousel(Context context) {
         this(context, null);
@@ -153,25 +151,19 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             mAboutFragment.setAlphaLayerValue(mCurrentPage == ABOUT_PAGE ? 0 : MAX_ALPHA);
             mUpdatesFragment.setAlphaLayerValue(mCurrentPage == UPDATES_PAGE ? 0 : MAX_ALPHA);
         }
+
+        updateTouchInterceptors();
     }
 
     /**
      * Set the view containers for the detail and updates fragment.
      */
-    public void setFragmentViews(View aboutFragmentView, View updatesFragmentView) {
-        mAboutFragmentView = aboutFragmentView;
-        mUpdatesFragmentView = updatesFragmentView;
-    }
+    public void setFragmentViews(FrameLayoutWithOverlay about, FrameLayoutWithOverlay updates) {
+        mAboutFragment = about;
+        mUpdatesFragment = updates;
 
-    /**
-     * Set the detail and updates fragment.
-     */
-    public void setFragments(ViewOverlay aboutFragment, ViewOverlay updatesFragment) {
-        mAboutFragment = aboutFragment;
-        mUpdatesFragment = updatesFragment;
-
-        mAboutFragment.setTouchInterceptorListener(mAboutFragTouchInterceptListener);
-        mUpdatesFragment.setTouchInterceptorListener(mUpdatesFragTouchInterceptListener);
+        mAboutFragment.setOverlayOnClickListener(mAboutFragTouchInterceptListener);
+        mUpdatesFragment.setOverlayOnClickListener(mUpdatesFragTouchInterceptListener);
     }
 
     /**
@@ -181,12 +173,12 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     public void enableSwipe(boolean enable) {
         if (mEnableSwipe != enable) {
             mEnableSwipe = enable;
-            if (mUpdatesFragmentView != null) {
-                mUpdatesFragmentView.setVisibility(enable ? View.VISIBLE : View.GONE);
+            if (mUpdatesFragment != null) {
+                mUpdatesFragment.setVisibility(enable ? View.VISIBLE : View.GONE);
                 if (mCurrentPage == ABOUT_PAGE) {
-                    mAboutFragmentView.requestFocus();
+                    mAboutFragment.requestFocus();
                 } else {
-                    mUpdatesFragmentView.requestFocus();
+                    mUpdatesFragment.requestFocus();
                 }
                 updateTouchInterceptors();
             }
@@ -214,17 +206,12 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     };
 
     private void updateTouchInterceptors() {
-        switch (mCurrentPage) {
-            case ABOUT_PAGE:
-                // The "about this contact" page has been selected, so disable the touch interceptor
-                // on this page and enable it for the "updates" page.
-                mAboutFragment.disableTouchInterceptor();
-                mUpdatesFragment.enableTouchInterceptor();
-                break;
-            case UPDATES_PAGE:
-                mUpdatesFragment.disableTouchInterceptor();
-                mAboutFragment.enableTouchInterceptor();
-                break;
+        // Disable the touch-interceptor on the selected page, and enable it on the other.
+        if (mAboutFragment != null) {
+            mAboutFragment.setOverlayClickable(mCurrentPage != ABOUT_PAGE);
+        }
+        if (mUpdatesFragment != null) {
+            mUpdatesFragment.setOverlayClickable(mCurrentPage != UPDATES_PAGE);
         }
     }
 
@@ -245,14 +232,8 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     }
 
     private void snapToEdge() {
-        switch (mCurrentPage) {
-            case ABOUT_PAGE:
-                smoothScrollTo(0, 0);
-                break;
-            case UPDATES_PAGE:
-                smoothScrollTo(mAllowedHorizontalScrollLength, 0);
-                break;
-        }
+        final int x = mCurrentPage == ABOUT_PAGE ? 0 : mAllowedHorizontalScrollLength;
+        smoothScrollTo(x,0);
         updateTouchInterceptors();
     }
 
@@ -292,8 +273,8 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
      */
     public void animateAppear() {
         final int x = Math.round((1.0f - FRAGMENT_WIDTH_SCREEN_WIDTH_FRACTION) * getWidth());
-        mUpdatesFragmentView.setTranslationX(x);
-        final ViewPropertyAnimator animator = mUpdatesFragmentView.animate();
+        mUpdatesFragment.setTranslationX(x);
+        final ViewPropertyAnimator animator = mUpdatesFragment.animate();
         animator.translationX(0.0f);
     }
 }

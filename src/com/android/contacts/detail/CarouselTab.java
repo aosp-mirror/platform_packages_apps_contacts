@@ -17,23 +17,20 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.R;
-import com.android.contacts.util.ThemeUtils;
+import com.android.contacts.widget.FrameLayoutWithOverlay;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
  * This is a tab in the {@link ContactDetailTabCarousel}.
  */
-public class CarouselTab extends RelativeLayout implements ViewOverlay {
+public class CarouselTab extends FrameLayoutWithOverlay {
 
     private static final String TAG = CarouselTab.class.getSimpleName();
-
-    private static final boolean DEBUG = false;
 
     private static final long FADE_TRANSITION_TIME = 150;
 
@@ -41,33 +38,12 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
     private View mLabelBackgroundView;
 
     /**
-     * This view adds an alpha layer over the entire tab.
+     * This view adds an alpha layer over the entire tab (except for the label).
      */
     private View mAlphaLayer;
 
-    /**
-     * This view adds a layer over the entire tab so that when visible, it intercepts all touch
-     * events on the tab.
-     */
-    private View mTouchInterceptLayer;
-
     public CarouselTab(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        // Programmatically create and initialize touch-interceptor View.
-        mTouchInterceptLayer = new View(context);
-
-        LayoutParams layoutParams =
-                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.addRule(ALIGN_PARENT_LEFT, TRUE);
-        layoutParams.addRule(ALIGN_PARENT_TOP, TRUE);
-        int background = ThemeUtils.getSelectableItemBackground(context.getTheme());
-
-        mTouchInterceptLayer.setVisibility(GONE);
-        mTouchInterceptLayer.setBackgroundResource(background);
-        mTouchInterceptLayer.setLayoutParams(layoutParams);
-
-        addView(mTouchInterceptLayer);
     }
 
     @Override
@@ -77,9 +53,7 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
         mLabelView = (TextView) findViewById(R.id.label);
         mLabelBackgroundView = findViewById(R.id.label_background);
         mAlphaLayer = findViewById(R.id.alpha_overlay);
-
-        mTouchInterceptLayer.bringToFront();
-        if (DEBUG) mTouchInterceptLayer.setBackgroundColor(0x4400FF00);
+        setAlphaLayer(mAlphaLayer);
     }
 
     public void setLabel(String label) {
@@ -92,26 +66,6 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
 
     public void showDeselectedState() {
         mLabelView.setSelected(false);
-    }
-
-    @Override
-    public void setTouchInterceptorListener(OnClickListener listener) {
-        mTouchInterceptLayer.setOnClickListener(listener);
-    }
-
-    @Override
-    public void disableTouchInterceptor() {
-        mTouchInterceptLayer.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void enableTouchInterceptor() {
-        mTouchInterceptLayer.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void setAlphaLayerValue(float alpha) {
-        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
     }
 
     public void fadeInLabelViewAnimator(int startDelay, boolean fadeBackground) {

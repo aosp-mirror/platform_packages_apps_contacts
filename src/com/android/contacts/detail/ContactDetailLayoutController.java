@@ -23,6 +23,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UriUtils;
+import com.android.contacts.widget.FrameLayoutWithOverlay;
 import com.android.contacts.widget.TransitionAnimationView;
 
 import android.animation.Animator;
@@ -42,6 +43,8 @@ import android.view.ViewPropertyAnimator;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+
+import android.util.Log;
 
 /**
  * Determines the layout of the contact card.
@@ -232,9 +235,11 @@ public class ContactDetailLayoutController {
                     mFragmentManager.executePendingTransactions();
                 }
 
-                mFragmentCarousel.setFragmentViews(mDetailFragmentView, mUpdatesFragmentView);
-                mFragmentCarousel.setFragments(mDetailFragment, mUpdatesFragment);
+                mFragmentCarousel.setFragmentViews(
+                        (FrameLayoutWithOverlay) mDetailFragmentView,
+                        (FrameLayoutWithOverlay) mUpdatesFragmentView);
                 mFragmentCarousel.setCurrentPage(currentPageIndex);
+
                 break;
             }
         }
@@ -618,7 +623,7 @@ public class ContactDetailLayoutController {
         }
     };
 
-    private final ContactDetailTabCarousel.Listener mTabCarouselListener 
+    private final ContactDetailTabCarousel.Listener mTabCarouselListener
             = new ContactDetailTabCarousel.Listener() {
 
         @Override

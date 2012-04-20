@@ -118,7 +118,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ContactDetailFragment extends Fragment implements FragmentKeyListener, ViewOverlay,
+public class ContactDetailFragment extends Fragment implements FragmentKeyListener,
         SelectAccountDialogFragment.Listener, OnItemClickListener {
 
     private static final String TAG = "ContactDetailFragment";
@@ -180,22 +180,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * we're loading data.
      */
     private View mEmptyView;
-
-    /**
-     * Initial alpha value to set on the alpha layer.
-     */
-    private float mInitialAlphaValue;
-
-    /**
-     * This optional view adds an alpha layer over the entire fragment.
-     */
-    private View mAlphaLayer;
-
-    /**
-     * This optional view adds a layer over the entire fragment so that when visible, it intercepts
-     * all touch events on the fragment.
-     */
-    private View mTouchInterceptLayer;
 
     /**
      * Saved state of the {@link ListView}. This must be saved and applied to the {@ListView} only
@@ -285,10 +269,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
         mEmptyView = mView.findViewById(android.R.id.empty);
 
-        mTouchInterceptLayer = mView.findViewById(R.id.touch_intercept_overlay);
-        mAlphaLayer = mView.findViewById(R.id.alpha_overlay);
-        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, mInitialAlphaValue);
-
         mQuickFixButton = (Button) mView.findViewById(R.id.contact_quick_fix);
         mQuickFixButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -314,39 +294,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     public void setListener(Listener value) {
         mListener = value;
-    }
-
-    @Override
-    public void setAlphaLayerValue(float alpha) {
-        // If the alpha layer is not ready yet, store it for later when the view
-        // is initialized
-        if (mAlphaLayer == null) {
-            mInitialAlphaValue = alpha;
-        } else {
-            // Otherwise set the value immediately
-            ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
-        }
-    }
-
-    @Override
-    public void setTouchInterceptorListener(OnClickListener listener) {
-        if (mTouchInterceptLayer != null) {
-            mTouchInterceptLayer.setOnClickListener(listener);
-        }
-    }
-
-    @Override
-    public void enableTouchInterceptor() {
-        if (mTouchInterceptLayer != null) {
-            mTouchInterceptLayer.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
-    public void disableTouchInterceptor() {
-        if (mTouchInterceptLayer != null) {
-            mTouchInterceptLayer.setVisibility(View.GONE);
-        }
     }
 
     protected Context getContext() {
@@ -1370,7 +1317,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     /**
      * Cache of the children views for a view that displays a header view entry.
      */
-    private static class HeaderViewCache implements ViewOverlay {
+    private static class HeaderViewCache {
         public final TextView displayNameView;
         public final TextView companyView;
         public final ImageView photoView;
@@ -1387,29 +1334,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             layoutResourceId = layoutResourceInflated;
         }
 
-        @Override
-        public void setTouchInterceptorListener(OnClickListener listener) {
+        public void enablePhotoOverlay(OnClickListener listener) {
             if (photoOverlayView != null) {
                 photoOverlayView.setOnClickListener(listener);
-            }
-        }
-
-        @Override
-        public void setAlphaLayerValue(float alpha) {
-            // Nothing to do.
-        }
-
-        @Override
-        public void enableTouchInterceptor() {
-            if (photoOverlayView != null) {
                 photoOverlayView.setVisibility(View.VISIBLE);
-            }
-        }
-
-        @Override
-        public void disableTouchInterceptor() {
-            if (photoOverlayView != null) {
-                photoOverlayView.setVisibility(View.GONE);
             }
         }
     }
@@ -1528,8 +1456,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         mContext, mContactData, viewCache.photoView, expandOnClick);
 
                 if (expandOnClick || mContactData.isWritableContact(mContext)) {
-                    viewCache.setTouchInterceptorListener(listener);
-                    viewCache.enableTouchInterceptor();
+                    viewCache.enablePhotoOverlay(listener);
                 }
             }
 
