@@ -569,7 +569,7 @@ public class DialtactsActivity extends TransactionSafeActivity
             Log.d(TAG, "onStart(). current position: " + mPageChangeListener.getCurrentPosition()
                     + ". Reset all menu visibility state.");
         }
-        updateFakeMenuButtonsVisibility(currentPosition == TAB_INDEX_DIALER);
+        updateFakeMenuButtonsVisibility(currentPosition == TAB_INDEX_DIALER && !mInSearchUi);
         for (int i = 0; i < TAB_INDEX_COUNT; i++) {
             sendFragmentVisibilityChange(i, i == currentPosition);
         }
