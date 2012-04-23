@@ -44,6 +44,7 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
     private final ContactTileAdapter mContactTileAdapter;
     private final ContactEntryListAdapter mContactEntryListAdapter;
     private final View mAccountFilterHeaderContainer;
+    private final View mLoadingView;
 
     private final int mItemPaddingLeft;
     private final int mItemPaddingRight;
@@ -56,7 +57,8 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
     public PhoneFavoriteMergedAdapter(Context context,
             ContactTileAdapter contactTileAdapter,
             View accountFilterHeaderContainer,
-            ContactEntryListAdapter contactEntryListAdapter) {
+            ContactEntryListAdapter contactEntryListAdapter,
+            View loadingView) {
         Resources resources = context.getResources();
         mItemPaddingLeft = resources.getDimensionPixelSize(R.dimen.detail_item_side_margin);
         mItemPaddingRight = resources.getDimensionPixelSize(R.dimen.list_visible_scrollbar_padding);
@@ -70,6 +72,8 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
         mObserver = new CustomDataSetObserver();
         mContactTileAdapter.registerDataSetObserver(mObserver);
         mContactEntryListAdapter.registerDataSetObserver(mObserver);
+
+        mLoadingView = loadingView;
     }
 
     @Override
@@ -77,9 +81,12 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
         final int contactTileAdapterCount = mContactTileAdapter.getCount();
         final int contactEntryListAdapterCount = mContactEntryListAdapter.getCount();
         if (mContactEntryListAdapter.isLoading()) {
-            // Hide "all" contacts during its being loaded.
-            return contactTileAdapterCount + 1;
+            // Hide "all" contacts during its being loaded. Instead show "loading" view.
+            //
+            // "+2" for mAccountFilterHeaderContainer and mLoadingView
+            return contactTileAdapterCount + 2;
         } else {
+            // "+1" for mAccountFilterHeaderContainer
             return contactTileAdapterCount + contactEntryListAdapterCount + 1;
         }
     }
@@ -88,13 +95,18 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
     public Object getItem(int position) {
         final int contactTileAdapterCount = mContactTileAdapter.getCount();
         final int contactEntryListAdapterCount = mContactEntryListAdapter.getCount();
-        if (position < contactTileAdapterCount) {
+        if (position < contactTileAdapterCount) {  // For "tile" and "frequent" sections
             return mContactTileAdapter.getItem(position);
-        } else if (position == contactTileAdapterCount) {
+        } else if (position == contactTileAdapterCount) {  // For "all" section's account header
             return mAccountFilterHeaderContainer;
-        } else {
-            final int localPosition = position - contactTileAdapterCount - 1;
-            return mContactTileAdapter.getItem(localPosition);
+        } else {  // For "all" section
+            if (mContactEntryListAdapter.isLoading()) {  // "All" section is being loaded.
+                return mLoadingView;
+            } else {
+                // "-1" for mAccountFilterHeaderContainer
+                final int localPosition = position - contactTileAdapterCount - 1;
+                return mContactTileAdapter.getItem(localPosition);
+            }
         }
     }
 
@@ -105,25 +117,63 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
 
     @Override
     public int getViewTypeCount() {
+        // "+2" for mAccountFilterHeaderContainer and mLoadingView
         return (mContactTileAdapter.getViewTypeCount()
                 + mContactEntryListAdapter.getViewTypeCount()
-                + 1);
+                + 2);
     }
 
     @Override
     public int getItemViewType(int position) {
         final int contactTileAdapterCount = mContactTileAdapter.getCount();
         final int contactEntryListAdapterCount = mContactEntryListAdapter.getCount();
-        if (position < contactTileAdapterCount) {
+        // There should be four kinds of types that are usually used, and one more exceptional
+        // type (IGNORE_ITEM_VIEW_TYPE), which sometimes comes from mContactTileAdapter.
+        //
+        // The four ordinary view types have the index equal to or more than 0, and less than
+        // mContactTileAdapter.getViewTypeCount()+ mContactEntryListAdapter.getViewTypeCount() + 2.
+        // (See also this class's getViewTypeCount())
+        //
+        // We have those values for:
+        // - The view types mContactTileAdapter originally has
+        // - The view types mContactEntryListAdapter originally has
+        // - mAccountFilterHeaderContainer ("all" section's account header), and
+        // - mLoadingView
+        //
+        // Those types should not be mixed, so we have a different range for each kinds of types:
+        // - Types for mContactTileAdapter ("tile" and "frequent" sections)
+        //   They should have the index, >=0 and <mContactTileAdapter.getViewTypeCount()
+        //
+        // - Types for mContactEntryListAdapter ("all" sections)
+        //   They should have the index, >=mContactTileAdapter.getViewTypeCount() and
+        //   <(mContactTileAdapter.getViewTypeCount() + mContactEntryListAdapter.getViewTypeCount())
+        //
+        // - Type for "all" section's account header
+        //   It should have the exact index
+        //   mContactTileAdapter.getViewTypeCount()+ mContactEntryListAdapter.getViewTypeCount()
+        //
+        // - Type for "loading" view used during "all" section is being loaded.
+        //   It should have the exact index
+        //   mContactTileAdapter.getViewTypeCount()+ mContactEntryListAdapter.getViewTypeCount() + 1
+        //
+        // As an exception, IGNORE_ITEM_VIEW_TYPE (-1) will be remained as is, which will be used
+        // by framework's Adapter implementation and thus should be left as is.
+        if (position < contactTileAdapterCount) {  // For "tile" and "frequent" sections
             return mContactTileAdapter.getItemViewType(position);
-        } else if (position == contactTileAdapterCount) {
+        } else if (position == contactTileAdapterCount) {  // For "all" section's account header
             return mContactTileAdapter.getViewTypeCount()
                     + mContactEntryListAdapter.getViewTypeCount();
-        } else {
-            final int localPosition = position - contactTileAdapterCount - 1;
-            final int type = mContactEntryListAdapter.getItemViewType(localPosition);
-            // IGNORE_ITEM_VIEW_TYPE must be handled differently.
-            return (type < 0) ? type : type + mContactTileAdapter.getViewTypeCount();
+        } else {  // For "all" section
+            if (mContactEntryListAdapter.isLoading()) {  // "All" section is being loaded.
+                return mContactTileAdapter.getViewTypeCount()
+                        + mContactEntryListAdapter.getViewTypeCount() + 1;
+            } else {
+                // "-1" for mAccountFilterHeaderContainer
+                final int localPosition = position - contactTileAdapterCount - 1;
+                final int type = mContactEntryListAdapter.getItemViewType(localPosition);
+                // IGNORE_ITEM_VIEW_TYPE must be handled differently.
+                return (type < 0) ? type : type + mContactTileAdapter.getViewTypeCount();
+            }
         }
     }
 
@@ -134,7 +184,7 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
 
         // Obtain a View relevant for that position, and adjust its horizontal padding. Each
         // View has different implementation, so we use different way to control those padding.
-        if (position < contactTileAdapterCount) {
+        if (position < contactTileAdapterCount) {  // For "tile" and "frequent" sections
             final View view = mContactTileAdapter.getView(position, convertView, parent);
             final int frequentHeaderPosition = mContactTileAdapter.getFrequentHeaderPosition();
             if (position < frequentHeaderPosition) {  // "starred" contacts
@@ -153,26 +203,39 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
                 child.setLayoutParams(params);
             }
             return view;
-        } else if (position == contactTileAdapterCount) {
+        } else if (position == contactTileAdapterCount) {  // For "all" section's account header
             mAccountFilterHeaderContainer.setPadding(mItemPaddingLeft,
                     mAccountFilterHeaderContainer.getPaddingTop(),
                     mItemPaddingRight,
                     mAccountFilterHeaderContainer.getPaddingBottom());
             return mAccountFilterHeaderContainer;
-        } else {
-            final int localPosition = position - contactTileAdapterCount - 1;
-            final ContactListItemView itemView = (ContactListItemView)
-                    mContactEntryListAdapter.getView(localPosition, convertView, null);
-            itemView.setPadding(mItemPaddingLeft, itemView.getPaddingTop(),
-                    mItemPaddingRight, itemView.getPaddingBottom());
-            itemView.setSelectionBoundsHorizontalMargin(mItemPaddingLeft, mItemPaddingRight);
-            return itemView;
+        } else {  // For "all" section
+            if (mContactEntryListAdapter.isLoading()) {  // "All" section is being loaded.
+                mLoadingView.setPadding(mItemPaddingLeft,
+                        mLoadingView.getPaddingTop(),
+                        mItemPaddingRight,
+                        mLoadingView.getPaddingBottom());
+                return mLoadingView;
+            } else {
+                // "-1" for mAccountFilterHeaderContainer
+                final int localPosition = position - contactTileAdapterCount - 1;
+                final ContactListItemView itemView = (ContactListItemView)
+                        mContactEntryListAdapter.getView(localPosition, convertView, null);
+                itemView.setPadding(mItemPaddingLeft, itemView.getPaddingTop(),
+                        mItemPaddingRight, itemView.getPaddingBottom());
+                itemView.setSelectionBoundsHorizontalMargin(mItemPaddingLeft, mItemPaddingRight);
+                return itemView;
+            }
         }
     }
 
     @Override
     public boolean areAllItemsEnabled() {
-        return (mContactTileAdapter.areAllItemsEnabled()
+        // If "all" section is being loaded we'll show mLoadingView, which is not enabled.
+        // Otherwise check the all the other components in the ListView and return appropriate
+        // result.
+        return !mContactEntryListAdapter.isLoading()
+                && (mContactTileAdapter.areAllItemsEnabled()
                 && mAccountFilterHeaderContainer.isEnabled()
                 && mContactEntryListAdapter.areAllItemsEnabled());
     }
@@ -181,14 +244,19 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
     public boolean isEnabled(int position) {
         final int contactTileAdapterCount = mContactTileAdapter.getCount();
         final int contactEntryListAdapterCount = mContactEntryListAdapter.getCount();
-        if (position < contactTileAdapterCount) {
+        if (position < contactTileAdapterCount) {  // For "tile" and "frequent" sections
             return mContactTileAdapter.isEnabled(position);
-        } else if (position == contactTileAdapterCount) {
+        } else if (position == contactTileAdapterCount) {  // For "all" section's account header
             // This will be handled by View's onClick event instead of ListView's onItemClick event.
             return false;
-        } else {
-            final int localPosition = position - contactTileAdapterCount - 1;
-            return mContactEntryListAdapter.isEnabled(localPosition);
+        } else {  // For "all" section
+            if (mContactEntryListAdapter.isLoading()) {  // "All" section is being loaded.
+                return false;
+            } else {
+                // "-1" for mAccountFilterHeaderContainer
+                final int localPosition = position - contactTileAdapterCount - 1;
+                return mContactEntryListAdapter.isEnabled(localPosition);
+            }
         }
     }
 
@@ -205,6 +273,7 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
         if (position <= contactTileAdapterCount) {
             return 0;
         } else {
+            // "-1" for mAccountFilterHeaderContainer
             final int localPosition = position - contactTileAdapterCount - 1;
             return mContactEntryListAdapter.getSectionForPosition(localPosition);
         }
