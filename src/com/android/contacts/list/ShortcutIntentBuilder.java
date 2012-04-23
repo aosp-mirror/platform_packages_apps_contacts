@@ -248,15 +248,18 @@ public class ShortcutIntentBuilder {
         Intent shortcutIntent;
         // This is a simple shortcut to view a contact.
         shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
-        shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+        // When starting from the launcher, start in a new, cleared task.
+        // CLEAR_WHEN_TASK_RESET cannot reset the root of a task, so we
+        // clear the whole thing preemptively here since QuickContactActivity will
+        // finish itself when launching other detail activities.
+        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         shortcutIntent.setData(contactUri);
         shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
                 ContactsContract.QuickContact.MODE_LARGE);
         shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
                 (String[]) null);
-        shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         final Bitmap icon = generateQuickContactIcon(bitmap);
 

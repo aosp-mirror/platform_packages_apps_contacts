@@ -147,9 +147,12 @@ public class SocialWidgetProvider extends AppWidgetProvider {
 
             // OnClick launch QuickContact
             final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+            // When starting from the launcher, start in a new, cleared task.
+            // CLEAR_WHEN_TASK_RESET cannot reset the root of a task, so we
+            // clear the whole thing preemptively here since QuickContactActivity will
+            // finish itself when launching other detail activities.
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
             intent.setData(contactData.getLookupUri());
             intent.putExtra(QuickContact.EXTRA_MODE, QuickContact.MODE_SMALL);

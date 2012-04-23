@@ -57,17 +57,8 @@ public class ContactDetailActivity extends ContactsActivity {
     /** Shows a toogle button for hiding/showing updates. Don't submit with true */
     private static final boolean DEBUG_TRANSITIONS = false;
 
-    /**
-     * Boolean intent key that specifies whether pressing the "up" affordance in this activity
-     * should cause it to finish itself or launch an intent to bring the user back to a specific
-     * parent activity - the {@link PeopleActivity}.
-     */
-    public static final String INTENT_KEY_FINISH_ACTIVITY_ON_UP_SELECTED =
-            "finishActivityOnUpSelected";
-
     private ContactLoader.Result mContactData;
     private Uri mLookupUri;
-    private boolean mFinishActivityOnUpSelected;
 
     private ContactDetailLayoutController mContactDetailLayoutController;
     private ContactLoaderFragment mLoaderFragment;
@@ -93,9 +84,6 @@ public class ContactDetailActivity extends ContactsActivity {
             finish();
             return;
         }
-
-        mFinishActivityOnUpSelected = getIntent().getBooleanExtra(
-                INTENT_KEY_FINISH_ACTIVITY_ON_UP_SELECTED, false);
 
         setContentView(R.layout.contact_detail_activity);
 
@@ -308,25 +296,5 @@ public class ContactDetailActivity extends ContactsActivity {
          * otherwise.
          */
         public boolean handleKeyDown(int keyCode);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                if (mFinishActivityOnUpSelected) {
-                    finish();
-                    return true;
-                }
-                Intent intent = new Intent(this, PeopleActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return true;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

@@ -407,7 +407,7 @@
             android:launchMode="singleTop"
             android:excludeFromRecents="true"
             android:noHistory="true"
-            android:taskAffinity="android.task.quickcontact"
+            android:taskAffinity=""
             android:windowSoftInputMode="stateUnchanged">
 
             <intent-filter>
@@ -474,7 +474,8 @@
         <!-- Views the details of a single contact -->
         <activity android:name=".activities.ContactDetailActivity"
             android:label="@string/viewContactTitle"
-            android:theme="@style/DetailActivityTheme">
+            android:theme="@style/DetailActivityTheme"
+            android:parentActivityName=".activities.PeopleActivity">
 
             <intent-filter android:label="@string/viewContactDesription">
                 <action android:name="android.intent.action.VIEW" />

@@ -1056,12 +1056,6 @@ public class PeopleActivity extends ContactsActivity
                 setupContactDetailFragment(contactLookupUri);
             } else {
                 Intent intent = new Intent(Intent.ACTION_VIEW, contactLookupUri);
-                // In search mode, the "up" affordance in the contact detail page should return the
-                // user to the search results, so finish the activity when that button is selected.
-                if (mActionBarAdapter.isSearchMode()) {
-                    intent.putExtra(
-                            ContactDetailActivity.INTENT_KEY_FINISH_ACTIVITY_ON_UP_SELECTED, true);
-                }
                 startActivity(intent);
             }
         }

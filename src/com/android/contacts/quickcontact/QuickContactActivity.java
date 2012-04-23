@@ -31,6 +31,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.app.TaskStackBuilder;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -180,8 +181,8 @@ public class QuickContactActivity extends Activity {
             @Override
             public void onClick(View v) {
                 final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContactLoader.cacheResult();
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 startActivity(intent);
                 hide(false);
             }

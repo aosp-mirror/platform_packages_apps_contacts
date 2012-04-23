@@ -224,13 +224,7 @@ public class DataAction implements Action {
             mIntent.setDataAndType(mDataUri, mimeType);
         }
 
-        // Always launch as new task, since we're like a launcher
-        setCommonIntentFlags(mIntent);
-        if (mAlternateIntent != null) setCommonIntentFlags(mAlternateIntent);
-    }
-
-    private static void setCommonIntentFlags(Intent intent) {
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
     }
 
     @Override
