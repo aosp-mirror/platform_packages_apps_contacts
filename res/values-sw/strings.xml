@@ -48,7 +48,7 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Futa"</string>
     <!-- no translation found for menu_copy (6108677035381940698) -->
     <skip />
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Mahali kwenye skrini ya Nyumbani"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Weka kwenye skrini ya Nyumbani"</string>
     <string name="menu_call" msgid="3992595586042260618">"Mpigie"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Tuma ujumbe kwa anwani"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Kando"</string>

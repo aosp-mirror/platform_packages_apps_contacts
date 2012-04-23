@@ -46,8 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Удалить из избранных"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Изменить"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Удалить"</string>
-    <!-- no translation found for menu_copy (6108677035381940698) -->
-    <skip />
+    <string name="menu_copy" msgid="6108677035381940698">"Копировать"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Поместить на главный экран"</string>
     <string name="menu_call" msgid="3992595586042260618">"Позвонить"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Отправить SMS/MMS"</string>
@@ -159,7 +158,7 @@
     <string name="private_num" msgid="6374339738119166953">"Скрытый номер"</string>
     <string name="payphone" msgid="4864313342828942922">"Телефон-автомат"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Наберите номер с клавиатуры"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Наберите номер, чтобы добавить вызов"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Наберите номер"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Загрузка с SIM-карты…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Контакты на SIM-карте"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Отсутствуют контакты для отображения. (Если аккаунт был только что добавлен, потребуется несколько минут для синхронизации контактов.)"</string>
