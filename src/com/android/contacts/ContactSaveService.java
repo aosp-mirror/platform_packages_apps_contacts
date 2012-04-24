@@ -222,7 +222,7 @@ public class ContactSaveService extends IntentService {
      */
     public static Intent createNewRawContactIntent(Context context,
             ArrayList<ContentValues> values, AccountWithDataSet account,
-            Class<?> callbackActivity, String callbackAction) {
+            Class<? extends Activity> callbackActivity, String callbackAction) {
         Intent serviceIntent = new Intent(
                 context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_NEW_RAW_CONTACT);
@@ -290,8 +290,9 @@ public class ContactSaveService extends IntentService {
      * @param updatedPhotoPath denotes a temporary file containing the contact's new photo.
      */
     public static Intent createSaveContactIntent(Context context, EntityDeltaList state,
-            String saveModeExtraKey, int saveMode, boolean isProfile, Class<?> callbackActivity,
-            String callbackAction, long rawContactId, String updatedPhotoPath) {
+            String saveModeExtraKey, int saveMode, boolean isProfile,
+            Class<? extends Activity> callbackActivity, String callbackAction, long rawContactId,
+            String updatedPhotoPath) {
         Bundle bundle = new Bundle();
         bundle.putString(String.valueOf(rawContactId), updatedPhotoPath);
         return createSaveContactIntent(context, state, saveModeExtraKey, saveMode, isProfile,
@@ -306,8 +307,9 @@ public class ContactSaveService extends IntentService {
      * @param updatedPhotos maps each raw-contact's ID to the file-path of the new photo.
      */
     public static Intent createSaveContactIntent(Context context, EntityDeltaList state,
-            String saveModeExtraKey, int saveMode, boolean isProfile, Class<?> callbackActivity,
-            String callbackAction, Bundle updatedPhotos) {
+            String saveModeExtraKey, int saveMode, boolean isProfile,
+            Class<? extends Activity> callbackActivity, String callbackAction,
+            Bundle updatedPhotos) {
         Intent serviceIntent = new Intent(
                 context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_SAVE_CONTACT);
@@ -317,19 +319,20 @@ public class ContactSaveService extends IntentService {
             serviceIntent.putExtra(EXTRA_UPDATED_PHOTOS, (Parcelable) updatedPhotos);
         }
 
-        // Callback intent will be invoked by the service once the contact is
-        // saved.  The service will put the URI of the new contact as "data" on
-        // the callback intent.
-        Intent callbackIntent = new Intent(context, callbackActivity);
-        callbackIntent.putExtra(saveModeExtraKey, saveMode);
-        callbackIntent.setAction(callbackAction);
-        serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+        if (callbackActivity != null) {
+            // Callback intent will be invoked by the service once the contact is
+            // saved.  The service will put the URI of the new contact as "data" on
+            // the callback intent.
+            Intent callbackIntent = new Intent(context, callbackActivity);
+            callbackIntent.putExtra(saveModeExtraKey, saveMode);
+            callbackIntent.setAction(callbackAction);
+            serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+        }
         return serviceIntent;
     }
 
     private void saveContact(Intent intent) {
         EntityDeltaList state = intent.getParcelableExtra(EXTRA_CONTACT_STATE);
-        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
         boolean isProfile = intent.getBooleanExtra(EXTRA_SAVE_IS_PROFILE, false);
         Bundle updatedPhotos = intent.getParcelableExtra(EXTRA_UPDATED_PHOTOS);
 
@@ -462,15 +465,17 @@ public class ContactSaveService extends IntentService {
             }
         }
 
-        if (succeeded) {
-            // Mark the intent to indicate that the save was successful (even if the lookup URI
-            // is now null).  For local contacts or the local profile, it's possible that the
-            // save triggered removal of the contact, so no lookup URI would exist..
-            callbackIntent.putExtra(EXTRA_SAVE_SUCCEEDED, true);
+        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        if (callbackIntent != null) {
+            if (succeeded) {
+                // Mark the intent to indicate that the save was successful (even if the lookup URI
+                // is now null).  For local contacts or the local profile, it's possible that the
+                // save triggered removal of the contact, so no lookup URI would exist..
+                callbackIntent.putExtra(EXTRA_SAVE_SUCCEEDED, true);
+            }
+            callbackIntent.setData(lookupUri);
+            deliverCallback(callbackIntent);
         }
-        callbackIntent.setData(lookupUri);
-
-        deliverCallback(callbackIntent);
     }
 
     /**
@@ -554,7 +559,7 @@ public class ContactSaveService extends IntentService {
      * @param callbackAction is the intent action for the callback intent
      */
     public static Intent createNewGroupIntent(Context context, AccountWithDataSet account,
-            String label, long[] rawContactsToAdd, Class<?> callbackActivity,
+            String label, long[] rawContactsToAdd, Class<? extends Activity> callbackActivity,
             String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_CREATE_GROUP);
@@ -618,7 +623,7 @@ public class ContactSaveService extends IntentService {
      * Creates an intent that can be sent to this service to rename a group.
      */
     public static Intent createGroupRenameIntent(Context context, long groupId, String newLabel,
-            Class<?> callbackActivity, String callbackAction) {
+            Class<? extends Activity> callbackActivity, String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_RENAME_GROUP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
@@ -689,7 +694,7 @@ public class ContactSaveService extends IntentService {
      */
     public static Intent createGroupUpdateIntent(Context context, long groupId, String newLabel,
             long[] rawContactsToAdd, long[] rawContactsToRemove,
-            Class<?> callbackActivity, String callbackAction) {
+            Class<? extends Activity> callbackActivity, String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_UPDATE_GROUP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
@@ -959,7 +964,7 @@ public class ContactSaveService extends IntentService {
      */
     public static Intent createJoinContactsIntent(Context context, long contactId1,
             long contactId2, boolean contactWritable,
-            Class<?> callbackActivity, String callbackAction) {
+            Class<? extends Activity> callbackActivity, String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_JOIN_CONTACTS);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_ID1, contactId1);

@@ -19,6 +19,7 @@ package com.android.contacts;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountTypeWithDataSet;
+import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
@@ -71,7 +72,7 @@ import java.util.Set;
  * Loads a single Contact and all it constituent RawContacts.
  */
 public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
-    private static final String TAG = "ContactLoader";
+    private static final String TAG = ContactLoader.class.getSimpleName();
 
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
@@ -313,6 +314,13 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
         }
 
         /**
+         * Instantiate a new EntityDeltaList for this contact.
+         */
+        public EntityDeltaList createEntityDeltaList() {
+            return EntityDeltaList.fromIterator(getEntities().iterator());
+        }
+
+        /**
          * Returns the contact ID.
          */
         @VisibleForTesting
@@ -419,16 +427,31 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
          *         writable raw-contact, and false otherwise.
          */
         public boolean isWritableContact(final Context context) {
-            if (isDirectoryEntry()) return false;
+            return getFirstWritableRawContactId(context) != -1;
+        }
+
+        /**
+         * Return the ID of the first raw-contact in the contact data that belongs to a
+         * contact-writable account, or -1 if no such entity exists.
+         */
+        public long getFirstWritableRawContactId(final Context context) {
+            // Directory entries are non-writable
+            if (isDirectoryEntry()) return -1;
+
+            // Iterate through raw-contacts; if we find a writable on, return its ID.
             final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
-            for (Entity rawContact : getEntities()) {
-                final ContentValues rawValues = rawContact.getEntityValues();
-                final String accountType = rawValues.getAsString(RawContacts.ACCOUNT_TYPE);
-                final String dataSet = rawValues.getAsString(RawContacts.DATA_SET);
-                final AccountType type = accountTypes.getAccountType(accountType, dataSet);
-                if (type != null && type.areContactsWritable()) return true;
+            for (Entity entity : getEntities()) {
+                ContentValues values = entity.getEntityValues();
+                String type = values.getAsString(RawContacts.ACCOUNT_TYPE);
+                String dataSet = values.getAsString(RawContacts.DATA_SET);
+
+                AccountType accountType = accountTypes.getAccountType(type, dataSet);
+                if (accountType != null && accountType.areContactsWritable()) {
+                    return values.getAsLong(RawContacts._ID);
+                }
             }
-            return false;
+            // No writable raw-contact was found.
+            return -1;
         }
 
         public int getDirectoryExportSupport() {

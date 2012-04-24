@@ -2016,8 +2016,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             if (defaultGroupId == -1) return;
 
             // add the group membership to the current state
-            final EntityDeltaList contactDeltaList = EntityDeltaList.fromIterator(
-                    mContactData.getEntities().iterator());
+            final EntityDeltaList contactDeltaList = mContactData.createEntityDeltaList();
             final EntityDelta rawContactEntityDelta = contactDeltaList.get(0);
 
             final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
