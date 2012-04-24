@@ -78,7 +78,7 @@ public class EntityDelta implements Parcelable {
      * Internal map of children values from {@link Entity#getSubValues()}, which
      * we store here sorted into {@link Data#MIMETYPE} bins.
      */
-    private HashMap<String, ArrayList<ValuesDelta>> mEntries = Maps.newHashMap();
+    private final HashMap<String, ArrayList<ValuesDelta>> mEntries = Maps.newHashMap();
 
     public EntityDelta() {
     }
@@ -354,15 +354,18 @@ public class EntityDelta implements Parcelable {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("\n(");
+        builder.append("Uri=");
+        builder.append(mContactsQueryUri);
+        builder.append(", Values=");
         builder.append(mValues != null ? mValues.toString() : "null");
-        builder.append(") = {");
+        builder.append(", Entries={");
         for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
             for (ValuesDelta child : mimeEntries) {
                 builder.append("\n\t");
                 child.toString(builder);
             }
         }
-        builder.append("\n}\n");
+        builder.append("\n})\n");
         return builder.toString();
     }
 
@@ -865,6 +868,11 @@ public class EntityDelta implements Parcelable {
          */
         public void toString(StringBuilder builder) {
             builder.append("{ ");
+            builder.append("IdColumn=");
+            builder.append(mIdColumn);
+            builder.append(", FromTemplate=");
+            builder.append(mFromTemplate);
+            builder.append(", ");
             for (String key : this.keySet()) {
                 builder.append(key);
                 builder.append("=");
