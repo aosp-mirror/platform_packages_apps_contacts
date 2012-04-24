@@ -46,6 +46,8 @@
         <item>ACTION_GET_CONTENT: postal</item>
         <item>ACTION_GET_CONTENT: postal (legacy)</item>
         <item>ACTION_INSERT_OR_EDIT</item>
+        <item>ACTION_INSERT_OR_EDIT_PHONE_NUMBER</item>
+        <item>ACTION_INSERT_OR_EDIT_EMAIL_ADDRESS</item>
         <item>ACTION_SEARCH (call button)</item>
         <item>ACTION_SEARCH: contact</item>
         <item>ACTION_SEARCH: email</item>

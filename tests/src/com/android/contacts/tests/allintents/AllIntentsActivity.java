@@ -90,6 +90,8 @@ public class AllIntentsActivity extends ListActivity
         ACTION_GET_CONTENT_POSTAL,
         ACTION_GET_CONTENT_POSTAL_LEGACY,
         ACTION_INSERT_OR_EDIT,
+        ACTION_INSERT_OR_EDIT_PHONE_NUMBER,
+        ACTION_INSERT_OR_EDIT_EMAIL_ADDRESS,
         ACTION_SEARCH_CALL,
         ACTION_SEARCH_CONTACT,
         ACTION_SEARCH_EMAIL,
@@ -272,6 +274,20 @@ public class AllIntentsActivity extends ListActivity
                 Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                 intent.setType(Contacts.CONTENT_ITEM_TYPE);
                 putDataExtra(intent);
+                startActivity(intent);
+                break;
+            }
+            case ACTION_INSERT_OR_EDIT_PHONE_NUMBER: {
+                Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                intent.setType(Contacts.CONTENT_ITEM_TYPE);
+                intent.putExtra(Insert.PHONE, "5123456789");
+                startActivity(intent);
+                break;
+            }
+            case ACTION_INSERT_OR_EDIT_EMAIL_ADDRESS: {
+                Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                intent.setType(Contacts.CONTENT_ITEM_TYPE);
+                intent.putExtra(Insert.EMAIL, "android@android.com");
                 startActivity(intent);
                 break;
             }

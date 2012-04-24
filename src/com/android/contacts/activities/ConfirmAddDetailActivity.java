@@ -21,6 +21,7 @@ import com.android.contacts.editor.Editor;
 import com.android.contacts.editor.ViewIdGenerator;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -37,6 +38,7 @@ import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.OperationApplicationException;
@@ -54,6 +56,7 @@ import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -73,6 +76,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * This is a dialog-themed activity for confirming the addition of a detail to an existing contact
@@ -82,6 +86,18 @@ import java.util.HashMap;
  * {@link android.provider.ContactsContract.Intents.Insert#PHONE_TYPE} or
  * {@link android.provider.ContactsContract.Intents.Insert#EMAIL} with type
  * {@link android.provider.ContactsContract.Intents.Insert#EMAIL_TYPE} intent keys.
+ *
+ * If the selected contact doesn't contain editable raw_contacts, it'll create a new raw_contact
+ * on the first editable account found, and the data will be added to this raw_contact.  The newly
+ * created raw_contact will be joined with the selected contact with aggregation-exceptions.
+ *
+ * TODO: Don't open this activity if there's no editable accounts.
+ * If there's no editable accounts on the system, we'll set {@link #mIsReadOnly} and the dialog
+ * just says "contact is not editable".  It's slightly misleading because this really means
+ * "there's no editable accounts", but in this case we shouldn't show the contact picker in the
+ * first place.
+ * Note when there's no accounts, it *is* okay to show the picker / dialog, because the local-only
+ * contacts are writable.
  */
 public class ConfirmAddDetailActivity extends Activity implements
         DialogManager.DialogShowingViewActivity {
@@ -413,6 +429,12 @@ public class ConfirmAddDetailActivity extends Activity implements
             if (activityTarget.isFinishing()) {
                 return;
             }
+            if ((entityList == null) || (entityList.size() == 0)) {
+                Log.e(TAG, "Contact not found.");
+                activityTarget.finish();
+                return;
+            }
+
             activityTarget.setEntityDeltaList(entityList);
         }
     }
@@ -555,9 +577,20 @@ public class ConfirmAddDetailActivity extends Activity implements
 
         mEntityDeltaList = entityList;
 
-        // Find the editable type.
+        // Find the editable raw_contact.
         mEntityDelta = mEntityDeltaList.getFirstWritableRawContact(this);
+
+        // If no editable raw_contacts are found, create one.
         if (mEntityDelta == null) {
+            mEntityDelta = addEditableRawContact(this, mEntityDeltaList);
+
+            if ((mEntityDelta != null) && VERBOSE_LOGGING) {
+                Log.v(TAG, "setEntityDeltaList: created editable raw_contact " + entityList);
+            }
+        }
+
+        if (mEntityDelta == null) {
+            // Selected contact is read-only, and there's no editable account.
             mIsReadOnly = true;
             mEditableAccountType = null;
         } else {
@@ -574,6 +607,67 @@ public class ConfirmAddDetailActivity extends Activity implements
         }
 
         bindEditor();
+    }
+
+    /**
+     * Create an {@link EntityDelta} for a raw_contact on the first editable account found, and add
+     * to the list.  Also copy the structured name from an existing (read-only) raw_contact to the
+     * new one, if any of the read-only contacts has a name.
+     */
+    private static EntityDelta addEditableRawContact(Context context,
+            EntityDeltaList entityDeltaList) {
+        // First, see if there's an editable account.
+        final AccountTypeManager accounts = AccountTypeManager.getInstance(context);
+        final List<AccountWithDataSet> editableAccounts = accounts.getAccounts(true);
+        if (editableAccounts.size() == 0) {
+            // No editable account type found.  The dialog will be read-only mode.
+            return null;
+        }
+        final AccountWithDataSet editableAccount = editableAccounts.get(0);
+        final AccountType accountType = accounts.getAccountType(
+                editableAccount.type, editableAccount.dataSet);
+
+        // Create a new EntityDelta for the new raw_contact.
+        final ContentValues values = new ContentValues();
+        values.put(RawContacts.ACCOUNT_NAME, editableAccount.name);
+        values.put(RawContacts.ACCOUNT_TYPE, editableAccount.type);
+        values.put(RawContacts.DATA_SET, editableAccount.dataSet);
+
+        final EntityDelta entityDelta = new EntityDelta(ValuesDelta.fromAfter(values));
+
+        // Then, copy the structure name from an existing (read-only) raw_contact.
+        for (EntityDelta entity : entityDeltaList) {
+            final ArrayList<ValuesDelta> readOnlyNames =
+                    entity.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
+            if ((readOnlyNames != null) && (readOnlyNames.size() > 0)) {
+                final ValuesDelta readOnlyName = readOnlyNames.get(0);
+
+                final ValuesDelta newName = EntityModifier.ensureKindExists(entityDelta,
+                        accountType, StructuredName.CONTENT_ITEM_TYPE);
+
+                // Copy all the data fields.
+                newName.copyStringFrom(readOnlyName, StructuredName.DISPLAY_NAME);
+
+                newName.copyStringFrom(readOnlyName, StructuredName.GIVEN_NAME);
+                newName.copyStringFrom(readOnlyName, StructuredName.FAMILY_NAME);
+                newName.copyStringFrom(readOnlyName, StructuredName.PREFIX);
+                newName.copyStringFrom(readOnlyName, StructuredName.MIDDLE_NAME);
+                newName.copyStringFrom(readOnlyName, StructuredName.SUFFIX);
+
+                newName.copyStringFrom(readOnlyName, StructuredName.PHONETIC_GIVEN_NAME);
+                newName.copyStringFrom(readOnlyName, StructuredName.PHONETIC_MIDDLE_NAME);
+                newName.copyStringFrom(readOnlyName, StructuredName.PHONETIC_FAMILY_NAME);
+
+                newName.copyStringFrom(readOnlyName, StructuredName.FULL_NAME_STYLE);
+                newName.copyStringFrom(readOnlyName, StructuredName.PHONETIC_NAME_STYLE);
+                break;
+            }
+        }
+
+        // Add the new EntityDelta to the list.
+        entityDeltaList.add(entityDelta);
+
+        return entityDelta;
     }
 
     /**
@@ -724,6 +818,9 @@ public class ConfirmAddDetailActivity extends Activity implements
             while (tries++ < PERSIST_TRIES) {
                 try {
                     // Build operations and try applying
+                    // Note: In case we've created a new raw_contact because the selected contact
+                    // is read-only, buildDiff() will create aggregation exceptions to join
+                    // the new one to the existing contact.
                     final ArrayList<ContentProviderOperation> diff = state.buildDiff();
                     ContentProviderResult[] results = null;
                     if (!diff.isEmpty()) {

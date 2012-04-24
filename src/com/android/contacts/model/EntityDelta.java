@@ -781,6 +781,11 @@ public class EntityDelta implements Parcelable {
             mAfter.putNull(key);
         }
 
+        public void copyStringFrom(ValuesDelta from, String key) {
+            ensureUpdate();
+            put(key, from.getAsString(key));
+        }
+
         /**
          * Return set of all keys defined through this object.
          */
