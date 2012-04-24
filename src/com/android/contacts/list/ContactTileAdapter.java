@@ -53,6 +53,7 @@ public class ContactTileAdapter extends BaseAdapter {
     private Resources mResources;
     private Cursor mContactCursor = null;
     private ContactPhotoManager mPhotoManager;
+    private int mNumFrequents;
 
     /**
      * Index of the first NON starred contact in the {@link Cursor}
@@ -119,6 +120,7 @@ public class ContactTileAdapter extends BaseAdapter {
         mResources = context.getResources();
         mColumnCount = (displayType == DisplayType.FREQUENT_ONLY ? 1 : numCols);
         mDisplayType = displayType;
+        mNumFrequents = 0;
 
         // Converting padding in dips to padding in pixels
         mPaddingInPixels = mContext.getResources()
@@ -184,6 +186,25 @@ public class ContactTileAdapter extends BaseAdapter {
     public void setContactCursor(Cursor cursor) {
         mContactCursor = cursor;
         mDividerPosition = getDividerPosition(cursor);
+
+        // count the number of frequents
+        switch (mDisplayType) {
+            case STARRED_ONLY:
+            case GROUP_MEMBERS:
+                mNumFrequents = 0;
+                break;
+            case STREQUENT:
+            case STREQUENT_PHONE_ONLY:
+                mNumFrequents = mContactCursor.getCount() - mDividerPosition;
+                break;
+            case FREQUENT_ONLY:
+                mNumFrequents = mContactCursor.getCount();
+                break;
+            default:
+                throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
+        }
+
+        // cause a refresh of any views that rely on this data
         notifyDataSetChanged();
     }
 
@@ -274,6 +295,13 @@ public class ContactTileAdapter extends BaseAdapter {
         return contact;
     }
 
+    /**
+     * Returns the number of frequents that will be displayed in the list.
+     */
+    public int getNumFrequents() {
+        return mNumFrequents;
+    }
+
     @Override
     public int getCount() {
         if (mContactCursor == null || mContactCursor.isClosed()) {
@@ -289,11 +317,9 @@ public class ContactTileAdapter extends BaseAdapter {
                 // Takes numbers of rows the Starred Contacts Occupy
                 int starredRowCount = getRowCount(mDividerPosition);
 
-                // Calculates the number of frequent contacts
-                int frequentRowCount = mContactCursor.getCount() - mDividerPosition ;
-
-                // If there are any frequent contacts add one for the divider
-                frequentRowCount += frequentRowCount == 0 ? 0 : 1;
+                // Compute the frequent row count which is 1 plus the number of frequents
+                // (to account for the divider) or 0 if there are no frequents.
+                int frequentRowCount = mNumFrequents == 0 ? 0 : mNumFrequents + 1;
 
                 // Return the number of starred plus frequent rows
                 return starredRowCount + frequentRowCount;

@@ -19,6 +19,10 @@
         android:title="@string/menu_import_export" />
 
     <item
+        android:id="@+id/menu_clear_frequents"
+        android:title="@string/menu_clear_frequents" />
+
+    <item
         android:id="@+id/menu_accounts"
         android:title="@string/menu_accounts" />
 </menu>

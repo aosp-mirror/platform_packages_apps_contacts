@@ -61,6 +61,8 @@ public class ContactTileListFragment extends Fragment {
     private TextView mEmptyView;
     private ListView mListView;
 
+    private boolean mOptionsMenuHasFrequents;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -96,6 +98,24 @@ public class ContactTileListFragment extends Fragment {
     public void onStart() {
         super.onStart();
         getLoaderManager().initLoader(LOADER_CONTACTS, null, mContactTileLoaderListener);
+    }
+
+    /**
+     * Returns whether there are any frequents with the side effect of setting the
+     * internal flag mOptionsMenuHasFrequents to the value.  This should be called externally
+     * by the activity that is about to prepare the options menu with the clear frequents
+     * menu item.
+     */
+    public boolean hasFrequents() {
+        mOptionsMenuHasFrequents = internalHasFrequents();
+        return mOptionsMenuHasFrequents;
+    }
+
+    /**
+     * Returns whether there are any frequents.
+     */
+    private boolean internalHasFrequents() {
+        return mAdapter.getNumFrequents() > 0;
     }
 
     public void setColumnCount(int columnCount) {
@@ -136,11 +156,24 @@ public class ContactTileListFragment extends Fragment {
             mAdapter.setContactCursor(data);
             mEmptyView.setText(getEmptyStateText());
             mListView.setEmptyView(mEmptyView);
+
+            // invalidate the menu options if needed
+            invalidateOptionsMenuIfNeeded();
         }
 
         @Override
         public void onLoaderReset(Loader<Cursor> loader) {}
     };
+
+    private boolean isOptionsMenuChanged() {
+        return mOptionsMenuHasFrequents != internalHasFrequents();
+    }
+
+    private void invalidateOptionsMenuIfNeeded() {
+        if (isOptionsMenuChanged()) {
+            getActivity().invalidateOptionsMenu();
+        }
+    }
 
     private String getEmptyStateText() {
         String emptyText;
