@@ -46,8 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"पसंदीदा से निकालें"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"संपादित करें"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"हटाएं"</string>
-    <!-- no translation found for menu_copy (6108677035381940698) -->
-    <skip />
+    <string name="menu_copy" msgid="6108677035381940698">"प्रतिलिपि"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुखपृष्ठ स्क्रीन पर रखें"</string>
     <string name="menu_call" msgid="3992595586042260618">"संपर्क को कॉल करें"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"इस संपर्क को SMS भेजें"</string>
@@ -152,6 +151,12 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"कॉल लॉग साफ़ करें?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"आपके सभी कॉल रिकॉर्ड हटा दिए जाएंगे."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"कॉल लॉग साफ़ हो रहा है..."</string>
+    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
+    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"ध्वनिमेल"</string>
@@ -283,6 +288,8 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"यह कार्यवाही प्रबंधित करने के लिए कोई एप्लिकेशन नहीं मिला."</string>
     <string name="missing_name" msgid="8745511583852904385">"(कोई नाम नहीं)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"खाते"</string>
+    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
+    <skip />
     <string name="menu_contacts_filter" msgid="2165153460860262501">"प्रदर्शन के लिए संपर्क"</string>
     <string name="menu_import_export" msgid="26217871113229507">"आयात करें/निर्यात करें"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"संपर्क आयात/निर्यात करें"</string>
