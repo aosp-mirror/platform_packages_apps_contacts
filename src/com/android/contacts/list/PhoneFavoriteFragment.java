@@ -18,6 +18,7 @@ package com.android.contacts.list;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.R;
+import com.android.contacts.dialog.ClearFrequentsDialog;
 import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.AccountFilterUtil;
@@ -106,6 +107,9 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
             // Show the filter header with "loading" state.
             updateFilterHeaderView();
             mAccountFilterHeader.setVisibility(View.VISIBLE);
+
+            // invalidate the options menu if needed
+            invalidateOptionsMenuIfNeeded();
         }
 
         @Override
@@ -236,6 +240,8 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
             new ContactsPreferenceChangeListener();
     private final ScrollListener mScrollListener = new ScrollListener();
 
+    private boolean mOptionsMenuHasFrequents;
+
     @Override
     public void onAttach(Activity activity) {
         if (DEBUG) Log.d(TAG, "onAttach()");
@@ -337,10 +343,31 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         return listLayout;
     }
 
+    private boolean isOptionsMenuChanged() {
+        return mOptionsMenuHasFrequents != hasFrequents();
+    }
+
+    private void invalidateOptionsMenuIfNeeded() {
+        if (isOptionsMenuChanged()) {
+            getActivity().invalidateOptionsMenu();
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.phone_favorite_options, menu);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        final MenuItem clearFrequents = menu.findItem(R.id.menu_clear_frequents);
+        mOptionsMenuHasFrequents = hasFrequents();
+        clearFrequents.setVisible(mOptionsMenuHasFrequents);
+    }
+
+    private boolean hasFrequents() {
+        return mContactTileAdapter.getNumFrequents() > 0;
     }
 
     @Override
@@ -360,6 +387,9 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
                 });
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 startActivity(intent);
+                return true;
+            case R.id.menu_clear_frequents:
+                ClearFrequentsDialog.show(getFragmentManager());
                 return true;
         }
         return false;

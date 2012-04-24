@@ -430,6 +430,15 @@
     <!-- Title of the "Clearing call log" progress-dialog [CHAR LIMIT=35] -->
     <string name="clearCallLogProgress_title">Clearing call log\u2026</string>
 
+    <!-- Title of the confirmation dialog for clearing frequents. [CHAR LIMIT=37] -->
+    <string name="clearFrequentsConfirmation_title">Clear frequently contacted?</string>
+
+    <!-- Confirmation dialog for clearing frequents. [CHAR LIMIT=NONE] -->
+    <string name="clearFrequentsConfirmation">You\'ll clear the frequently contacted list in the People and Phone apps, and force email apps to learn your addressing preferences from scratch.</string>
+
+    <!-- Title of the "Clearing frequently contacted" progress-dialog [CHAR LIMIT=35] -->
+    <string name="clearFrequentsProgress_title">Clearing frequently contacted\u2026</string>
+
     <!-- The title of a dialog that displays the IMEI of the phone -->
     <string name="imei">IMEI</string>
 
@@ -998,6 +1007,9 @@
 
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>
+
+    <!--  The menu item to clear frequents [CHAR LIMIT=30] -->
+    <string name="menu_clear_frequents">Clear frequents</string>
 
     <!-- The menu item to filter the list of contacts displayed -->
     <string name="menu_contacts_filter">Contacts to display</string>
