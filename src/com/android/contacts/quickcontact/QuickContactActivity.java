@@ -31,7 +31,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.app.TaskStackBuilder;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -225,7 +224,8 @@ public class QuickContactActivity extends Activity {
         mPhotoContainer = findViewById(R.id.photo_container);
         setHeaderNameText(R.id.name, R.string.missing_name);
 
-        getLoaderManager().initLoader(LOADER_ID, null, mLoaderCallbacks);
+        mContactLoader = (ContactLoader) getLoaderManager().initLoader(
+                LOADER_ID, null, mLoaderCallbacks);
     }
 
     private boolean handleOutsideTouch() {
@@ -523,8 +523,7 @@ public class QuickContactActivity extends Activity {
             if (mLookupUri == null) {
                 Log.wtf(TAG, "Lookup uri wasn't initialized. Loader was started too early");
             }
-            mContactLoader = new ContactLoader(getApplicationContext(), mLookupUri);
-            return mContactLoader;
+            return new ContactLoader(getApplicationContext(), mLookupUri);
         }
     };
 

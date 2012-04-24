@@ -1297,6 +1297,9 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      * new result will be delivered
      */
     public void upgradeToFullContact() {
+        // Everything requested already? Nothing to do, so let's bail out
+        if (mLoadGroupMetaData && mLoadInvitableAccountTypes && mLoadStreamItems) return;
+
         mLoadGroupMetaData = true;
         mLoadInvitableAccountTypes = true;
         mLoadStreamItems = true;
@@ -1346,6 +1349,6 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      * contact. If the next load is for a different contact, the cached result will be dropped
      */
     public void cacheResult() {
-        sCachedResult = mContact;
+        sCachedResult = new Result(mContact);
     }
 }
