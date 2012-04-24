@@ -46,8 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Odebrat z oblíbených položek"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Upravit"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Smazat"</string>
-    <!-- no translation found for menu_copy (6108677035381940698) -->
-    <skip />
+    <string name="menu_copy" msgid="6108677035381940698">"Kopírovat"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Umístit na plochu"</string>
     <string name="menu_call" msgid="3992595586042260618">"Volat kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Odeslat zprávu kontaktu"</string>
@@ -152,6 +151,12 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Vymazat hovory?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Všechny záznamy hovorů budou smazány."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Vymazání hovorů..."</string>
+    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
+    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Hlasová schránka"</string>
@@ -283,6 +288,8 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikace potřebná k provedení této akce nebyla nalezena."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Žádné jméno)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Účty"</string>
+    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
+    <skip />
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty k zobrazení"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importovat/Exportovat"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Importovat nebo exportovat kontakty"</string>

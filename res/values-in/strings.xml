@@ -46,8 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Hapus dari favorit"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Edit"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Hapus"</string>
-    <!-- no translation found for menu_copy (6108677035381940698) -->
-    <skip />
+    <string name="menu_copy" msgid="6108677035381940698">"Salin"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Letakkan di layar Utama"</string>
     <string name="menu_call" msgid="3992595586042260618">"Hubungi kenalan"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS kenalan"</string>
@@ -152,6 +151,12 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Hapus log panggilan?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Semua catatan panggilan Anda akan dihapus."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Menghapus log panggilan..."</string>
+    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
+    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Kotak Pesan"</string>
@@ -283,6 +288,8 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Tidak ada apl yang ditemukan untuk menangani tindakan ini."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Tanpa nama)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Akun"</string>
+    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
+    <skip />
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kenalan untuk ditampilkan"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Impor/ekspor"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Impor/ekspor data kenalan"</string>

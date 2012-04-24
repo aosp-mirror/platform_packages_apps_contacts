@@ -152,6 +152,12 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Izbr. dnev. klicev?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Vsi vaši zapisi bodo izbrisani."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Brisanje dnevnika klicev ..."</string>
+    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
+    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Glasovna pošta"</string>
@@ -283,6 +289,8 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Programa za obravnavo tega dejanja ni mogoče najti."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Ni imena)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Računi"</string>
+    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
+    <skip />
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Stiki, ki naj bodo prikazani"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Uvoz/izvoz"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Uvoz/izvoz stikov"</string>
