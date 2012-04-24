@@ -114,7 +114,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             return;
         }
         final boolean shouldShowHeader = AccountFilterUtil.updateAccountFilterTitleForPhone(
-                mAccountFilterHeader, filter, false, false);
+                mAccountFilterHeader, filter, false);
         if (shouldShowHeader) {
             mPaddingView.setVisibility(View.GONE);
             mAccountFilterHeader.setVisibility(View.VISIBLE);

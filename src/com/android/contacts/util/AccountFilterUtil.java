@@ -44,9 +44,8 @@ public class AccountFilterUtil {
      * showing or hiding this entire view.
      */
     public static boolean updateAccountFilterTitleForPeople(View filterContainer,
-            ContactListFilter filter, boolean isLoading, boolean showTitleForAllAccounts) {
-        return updateAccountFilterTitle(
-                filterContainer, filter, isLoading, showTitleForAllAccounts, false);
+            ContactListFilter filter, boolean showTitleForAllAccounts) {
+        return updateAccountFilterTitle(filterContainer, filter, showTitleForAllAccounts, false);
     }
 
     /**
@@ -54,22 +53,20 @@ public class AccountFilterUtil {
      * boolean)}, but for Phone UI.
      */
     public static boolean updateAccountFilterTitleForPhone(View filterContainer,
-            ContactListFilter filter, boolean isLoading, boolean showTitleForAllAccounts) {
+            ContactListFilter filter, boolean showTitleForAllAccounts) {
         return updateAccountFilterTitle(
-                filterContainer, filter, isLoading, showTitleForAllAccounts, true);
+                filterContainer, filter, showTitleForAllAccounts, true);
     }
 
     private static boolean updateAccountFilterTitle(View filterContainer,
-            ContactListFilter filter, boolean isLoading, boolean showTitleForAllAccounts,
+            ContactListFilter filter, boolean showTitleForAllAccounts,
             boolean forPhone) {
         final Context context = filterContainer.getContext();
         final TextView headerTextView = (TextView)
                 filterContainer.findViewById(R.id.account_filter_header);
 
         boolean textWasSet = false;
-        if (isLoading) {
-            headerTextView.setText(R.string.contact_list_loading);
-        } else if (filter != null) {
+        if (filter != null) {
             if (forPhone) {
                 if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
                     if (showTitleForAllAccounts) {

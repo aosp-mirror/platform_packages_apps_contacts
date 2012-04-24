@@ -26,7 +26,6 @@ import com.android.contacts.util.AccountFilterUtil;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -34,6 +33,8 @@ import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
 import android.provider.Settings;
@@ -132,7 +133,8 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
             if (DEBUG) Log.d(TAG, "AllContactsLoaderListener#onLoadFinished");
             mAllContactsAdapter.changeCursor(0, data);
             updateFilterHeaderView();
-            mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
+            mHandler.removeMessages(MESSAGE_SHOW_LOADING_EFFECT);
+            mLoadingView.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -202,6 +204,19 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         }
     }
 
+    private static final int MESSAGE_SHOW_LOADING_EFFECT = 1;
+    private static final int LOADING_EFFECT_DELAY = 500;  // ms
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MESSAGE_SHOW_LOADING_EFFECT:
+                    mLoadingView.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
+    };
+
     private Listener mListener;
     private PhoneFavoriteMergedAdapter mAdapter;
     private ContactTileAdapter mContactTileAdapter;
@@ -228,6 +243,12 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
      */
     private FrameLayout mAccountFilterHeaderContainer;
     private View mAccountFilterHeader;
+
+    /**
+     * Layout used when contacts load is slower than expected and thus "loading" view should be
+     * shown.
+     */
+    private View mLoadingView;
 
     private final ContactTileView.Listener mContactTileAdapterListener =
             new ContactTileAdapterListener();
@@ -323,10 +344,12 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
                 mListView, false);
         mAccountFilterHeader.setOnClickListener(mFilterHeaderClickListener);
         mAccountFilterHeaderContainer.addView(mAccountFilterHeader);
-        mAccountFilterHeaderContainer.setVisibility(View.GONE);
+
+        mLoadingView = inflater.inflate(R.layout.phone_loading_contacts, mListView, false);
 
         mAdapter = new PhoneFavoriteMergedAdapter(getActivity(),
-                mContactTileAdapter, mAccountFilterHeaderContainer, mAllContactsAdapter);
+                mContactTileAdapter, mAccountFilterHeaderContainer, mAllContactsAdapter,
+                mLoadingView);
 
         mListView.setAdapter(mAdapter);
 
@@ -411,6 +434,12 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         // This method call implicitly assures ContactTileLoaderListener's onLoadFinished() will
         // be called, on which we'll check if "all" contacts should be reloaded again or not.
         getLoaderManager().initLoader(LOADER_ID_CONTACT_TILE, null, mContactTileLoaderListener);
+
+        // Delay showing "loading" view until certain amount of time so that users won't see
+        // instant flash of the view when the contacts load is fast enough.
+        // This will be kept shown until both tile and all sections are loaded.
+        mLoadingView.setVisibility(View.INVISIBLE);
+        mHandler.sendEmptyMessageDelayed(MESSAGE_SHOW_LOADING_EFFECT, LOADING_EFFECT_DELAY);
     }
 
     @Override
@@ -502,8 +531,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         if (mAccountFilterHeader == null || mAllContactsAdapter == null || filter == null) {
             return;
         }
-        AccountFilterUtil.updateAccountFilterTitleForPhone(
-                mAccountFilterHeader, filter, mAllContactsAdapter.isLoading(), true);
+        AccountFilterUtil.updateAccountFilterTitleForPhone(mAccountFilterHeader, filter, true);
     }
 
     public ContactListFilter getFilter() {

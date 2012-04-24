@@ -149,7 +149,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         final ContactListFilter filter = getFilter();
         if (filter != null && !isSearchMode()) {
             final boolean shouldShowHeader = AccountFilterUtil.updateAccountFilterTitleForPeople(
-                    mAccountFilterHeader, filter, false, false);
+                    mAccountFilterHeader, filter, false);
             mAccountFilterHeader.setVisibility(shouldShowHeader ? View.VISIBLE : View.GONE);
         } else {
             mAccountFilterHeader.setVisibility(View.GONE);
