@@ -266,7 +266,12 @@ public class ShortcutIntentBuilder {
         Intent intent = new Intent();
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, displayName);
+        if (TextUtils.isEmpty(displayName)) {
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, mContext.getResources().getString(
+                    R.string.missing_name));
+        } else {
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, displayName);
+        }
 
         mListener.onShortcutIntentCreated(contactUri, intent);
     }
