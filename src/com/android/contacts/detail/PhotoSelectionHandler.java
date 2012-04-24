@@ -19,6 +19,7 @@ package com.android.contacts.detail;
 import com.android.contacts.R;
 import com.android.contacts.editor.PhotoActionPopup;
 import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
@@ -27,6 +28,7 @@ import com.android.contacts.util.ContactPhotoUtils;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -36,6 +38,7 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.DisplayPhoto;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -63,8 +66,6 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     private final EntityDeltaList mState;
     private final boolean mIsDirectoryContact;
     private ListPopupWindow mPopup;
-    private AccountType mWritableAccount;
-    private PhotoActionListener mListener;
 
     public PhotoSelectionHandler(Context context, View photoView, int photoMode,
             boolean isDirectoryContact, EntityDeltaList state) {
@@ -74,8 +75,6 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         mIsDirectoryContact = isDirectoryContact;
         mState = state;
         mPhotoPickSize = getPhotoPickSize();
-
-        // NOTE: subclasses should call setListener()
     }
 
     public void destroy() {
@@ -88,11 +87,11 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (mListener != null) {
+        final PhotoActionListener listener = getListener();
+        if (listener != null) {
             if (getWritableEntityIndex() != -1) {
                 mPopup = PhotoActionPopup.createPopupMenu(
-                        mContext, mPhotoView, mListener, mPhotoMode);
-                final PhotoActionListener listener = mListener; // a bit more bulletproof
+                        mContext, mPhotoView, listener, mPhotoMode);
                 mPopup.setOnDismissListener(new OnDismissListener() {
                     @Override
                     public void onDismiss() {
@@ -113,16 +112,17 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      * @return Whether the handler was able to process the result.
      */
     public boolean handlePhotoActivityResult(int requestCode, int resultCode, Intent data) {
+        final PhotoActionListener listener = getListener();
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CODE_PHOTO_PICKED_WITH_DATA: {
                     Bitmap bitmap = BitmapFactory.decodeFile(
-                            mListener.getCurrentPhotoFile().getAbsolutePath());
-                    mListener.onPhotoSelected(bitmap);
+                            listener.getCurrentPhotoFile().getAbsolutePath());
+                    listener.onPhotoSelected(bitmap);
                     return true;
                 }
                 case REQUEST_CODE_CAMERA_WITH_DATA: {
-                    doCropPhoto(mListener.getCurrentPhotoFile());
+                    doCropPhoto(listener.getCurrentPhotoFile());
                     return true;
                 }
             }
@@ -162,10 +162,18 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         // Find the first writable entity.
         int writableEntityIndex = getWritableEntityIndex();
         if (writableEntityIndex != -1) {
-            // Note - guaranteed to have contact data if we have a writable entity index.
-            EntityDelta delta = mState.get(writableEntityIndex);
-            ValuesDelta child = EntityModifier.ensureKindExists(
-                    delta, mWritableAccount, Photo.CONTENT_ITEM_TYPE);
+            // We are guaranteed to have contact data if we have a writable entity index.
+            final EntityDelta delta = mState.get(writableEntityIndex);
+
+            // Need to find the right account so that EntityModifier knows which fields to add
+            final ContentValues entityValues = delta.getValues().getCompleteValues();
+            final String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
+            final String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
+            final AccountType accountType = AccountTypeManager.getInstance(mContext).getAccountType(
+                        type, dataSet);
+
+            final ValuesDelta child = EntityModifier.ensureKindExists(
+                    delta, accountType, Photo.CONTENT_ITEM_TYPE);
             child.setFromTemplate(false);
             child.put(Photo.IS_SUPER_PRIMARY, 1);
 
