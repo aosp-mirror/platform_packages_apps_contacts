@@ -1715,19 +1715,19 @@ public class ContactEditorFragment extends Fragment implements
 
         final long mRawContactId;
         private final BaseRawContactEditorView mEditor;
-        private PhotoActionListener mListener;
+        private PhotoActionListener mPhotoEditorListener;
 
         public PhotoHandler(Context context, BaseRawContactEditorView editor, int photoMode,
                 EntityDeltaList state) {
             super(context, editor.getPhotoEditor(), photoMode, false, state);
             mEditor = editor;
             mRawContactId = editor.getRawContactId();
-            mListener = new PhotoEditorListener();
+            mPhotoEditorListener = new PhotoEditorListener();
         }
 
         @Override
         public PhotoActionListener getListener() {
-            return mListener;
+            return mPhotoEditorListener;
         }
 
         @Override
