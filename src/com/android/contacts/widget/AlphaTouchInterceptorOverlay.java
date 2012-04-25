@@ -17,9 +17,11 @@
 package com.android.contacts.widget;
 
 import com.android.contacts.detail.ContactDetailDisplayUtils;
+import com.android.contacts.util.ThemeUtils;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
 
 /**
  * A View that other Views can use to create a touch-interceptor layer above
@@ -37,16 +39,21 @@ import android.view.View;
  * Typically, you would not use this class directly, but rather use another class
  * that uses it, for example {@link FrameLayoutWithOverlay}.
  */
-public class AlphaTouchInterceptorOverlay extends View {
+public class AlphaTouchInterceptorOverlay extends FrameLayout {
 
-    private View mAlphaLayer = this;
-    private float mAlpha = 1.0f;
+    private View mInterceptorLayer;
+    private View mAlphaLayer;
+    private float mAlpha = 0.0f;
 
     public AlphaTouchInterceptorOverlay(Context context) {
         super(context);
-        setAlphaLayer(this);
-        setVisibility(VISIBLE);
-        ContactDetailDisplayUtils.setAlphaOnViewBackground(this, 1.0f);
+
+        mInterceptorLayer = new View(context);
+        final int resId = ThemeUtils.getSelectableItemBackground(context.getTheme());
+        mInterceptorLayer.setBackgroundResource(resId);
+        addView(mInterceptorLayer);
+
+        mAlphaLayer = this;
     }
 
     /**
@@ -60,6 +67,7 @@ public class AlphaTouchInterceptorOverlay extends View {
 
         // We're no longer the alpha-layer, so make ourself invisible.
         if (mAlphaLayer == this) ContactDetailDisplayUtils.setAlphaOnViewBackground(this, 0.0f);
+
         mAlphaLayer = (alphaLayer == null) ? this : alphaLayer;
         setAlphaLayerValue(mAlpha);
     }
@@ -67,6 +75,18 @@ public class AlphaTouchInterceptorOverlay extends View {
     /** Sets the alpha value on the alpha layer. */
     public void setAlphaLayerValue(float alpha) {
         mAlpha = alpha;
-        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, mAlpha);
+        if (mAlphaLayer != null) {
+            ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, mAlpha);
+        }
+    }
+
+    /** Delegate to interceptor-layer. */
+    public void setOverlayOnClickListener(OnClickListener listener) {
+        mInterceptorLayer.setOnClickListener(listener);
+    }
+
+    /** Delegate to interceptor-layer. */
+    public void setOverlayClickable(boolean clickable) {
+        mInterceptorLayer.setClickable(clickable);
     }
 }

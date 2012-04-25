@@ -32,6 +32,13 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"/>
 
+        <View android:id="@+id/photo_overlay"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
+
         <!-- Transparent view to overlay on the contact's photo
         (to allow white text to appear over a white photo). -->
         <View android:id="@+id/label_background"

@@ -61,6 +61,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private int mTabShadowHeight;
 
     private ImageView mPhotoView;
+    private View mPhotoViewOverlay;
     private TextView mStatusView;
     private ImageView mStatusPhotoView;
     private final ContactDetailPhotoSetter mPhotoSetter = new ContactDetailPhotoSetter();
@@ -136,6 +137,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         // Retrieve the photo view for the "about" tab
         // TODO: This should be moved down to mAboutTab, so that it hosts its own controls
         mPhotoView = (ImageView) mAboutTab.findViewById(R.id.photo);
+        mPhotoViewOverlay = mAboutTab.findViewById(R.id.photo_overlay);
 
         // Retrieve the social update views for the "updates" tab
         // TODO: This should be moved down to mUpdatesTab, so that it hosts its own controls
@@ -466,11 +468,11 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
                 mContext, contactData, mPhotoView, expandOnClick);
 
         if (expandOnClick || contactData.isWritableContact(mContext)) {
-            mPhotoView.setOnClickListener(listener);
+            mPhotoViewOverlay.setOnClickListener(listener);
         } else {
             // Work around framework issue... if we instead use
             // setClickable(false), then we can't swipe horizontally.
-            mPhotoView.setOnClickListener(null);
+            mPhotoViewOverlay.setOnClickListener(null);
         }
 
         ContactDetailDisplayUtils.setSocialSnippet(
