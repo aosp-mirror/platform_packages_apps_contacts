@@ -24,6 +24,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
@@ -148,14 +149,14 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
 
     @Override
     protected void onItemClick(int position, long id) {
-        JoinContactListAdapter adapter = getAdapter();
-        int partition = adapter.getPartitionForPosition(position);
-        mListener.onPickContactAction(adapter.getContactUri(position));
+        final Uri contactUri = getAdapter().getContactUri(position);
+        if (contactUri != null) mListener.onPickContactAction(contactUri);
     }
 
     @Override
     public void onPickerResult(Intent data) {
-        mListener.onPickContactAction(data.getData());
+        final Uri contactUri = data.getData();
+        if (contactUri != null) mListener.onPickContactAction(contactUri);
     }
 
     @Override
