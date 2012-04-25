@@ -36,6 +36,7 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.util.HelpUtils;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -895,14 +896,31 @@ public class ContactEditorFragment extends Fragment implements
         // This supports the keyboard shortcut to save changes to a contact but shouldn't be visible
         // because the custom action bar contains the "save" button now (not the overflow menu).
         // TODO: Find a better way to handle shortcuts, i.e. onKeyDown()?
-        menu.findItem(R.id.menu_done).setVisible(false);
+        final MenuItem doneMenu = menu.findItem(R.id.menu_done);
+        final MenuItem splitMenu = menu.findItem(R.id.menu_split);
+        final MenuItem joinMenu = menu.findItem(R.id.menu_join);
+        final MenuItem helpMenu = menu.findItem(R.id.menu_help);
+
+        // Set visibility of menus
+        doneMenu.setVisible(false);
 
         // Split only if more than one raw profile and not a user profile
-        menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1 &&
-                !isEditingUserProfile());
-        // Cannot join a user profile
-        menu.findItem(R.id.menu_join).setVisible(!isEditingUserProfile());
+        splitMenu.setVisible(mState != null && mState.size() > 1 && !isEditingUserProfile());
 
+        // Cannot join a user profile
+        joinMenu.setVisible(!isEditingUserProfile());
+
+        // help menu depending on whether this is inserting or editing
+        if (Intent.ACTION_INSERT.equals(mAction)) {
+            // inserting
+            HelpUtils.prepareHelpMenuItem(getActivity(), helpMenu, R.string.help_url_people_add);
+        } else if (Intent.ACTION_EDIT.equals(mAction)) {
+            // editing
+            HelpUtils.prepareHelpMenuItem(getActivity(), helpMenu, R.string.help_url_people_edit);
+        } else {
+            // something else, so don't show the help menu
+            helpMenu.setVisible(false);
+        }
 
         int size = menu.size();
         for (int i = 0; i < size; i++) {
