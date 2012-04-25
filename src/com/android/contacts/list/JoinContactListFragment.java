@@ -16,6 +16,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.list.JoinContactLoader.JoinContactLoaderResult;
 
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -78,13 +79,14 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                     break;
                 }
                 case JoinContactListAdapter.PARTITION_ALL_CONTACTS: {
-                    Cursor suggestionsCursor = ((JoinContactLoader) loader).getSuggestionsCursor();
+                    Cursor suggestionsCursor = ((JoinContactLoaderResult) data).suggestionCursor;
                     onContactListLoaded(suggestionsCursor, data);
                     break;
                 }
             }
         }
 
+        @Override
         public void onLoaderReset(Loader<Cursor> loader) {
         }
     };
