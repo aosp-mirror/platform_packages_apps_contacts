@@ -37,8 +37,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-public class ContactDetailUpdatesFragment extends ListFragment
-        implements FragmentKeyListener, ViewOverlay {
+public class ContactDetailUpdatesFragment extends ListFragment implements FragmentKeyListener {
 
     private static final String TAG = "ContactDetailUpdatesFragment";
 
@@ -47,19 +46,6 @@ public class ContactDetailUpdatesFragment extends ListFragment
 
     private LayoutInflater mInflater;
     private StreamItemAdapter mStreamItemAdapter;
-
-    private float mInitialAlphaValue;
-
-    /**
-     * This optional view adds an alpha layer over the entire fragment.
-     */
-    private View mAlphaLayer;
-
-    /**
-     * This optional view adds a layer over the entire fragment so that when visible, it intercepts
-     * all touch events on the fragment.
-     */
-    private View mTouchInterceptLayer;
 
     private OnScrollListener mVerticalScrollListener;
 
@@ -116,14 +102,7 @@ public class ContactDetailUpdatesFragment extends ListFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         mInflater = inflater;
-        View rootView = mInflater.inflate(R.layout.contact_detail_updates_fragment, container,
-                false);
-
-        mTouchInterceptLayer = rootView.findViewById(R.id.touch_intercept_overlay);
-        mAlphaLayer = rootView.findViewById(R.id.alpha_overlay);
-        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, mInitialAlphaValue);
-
-        return rootView;
+        return mInflater.inflate(R.layout.contact_detail_updates_fragment, container, false);
     }
 
     @Override
@@ -164,39 +143,6 @@ public class ContactDetailUpdatesFragment extends ListFragment
      */
     public void resetAdapter() {
         setListAdapter(mStreamItemAdapter);
-    }
-
-    @Override
-    public void setAlphaLayerValue(float alpha) {
-        // If the alpha layer is not ready yet, store it for later when the view is initialized
-        if (mAlphaLayer == null) {
-            mInitialAlphaValue = alpha;
-        } else {
-            // Otherwise set the value immediately
-            ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
-        }
-    }
-
-
-    @Override
-    public void setTouchInterceptorListener(OnClickListener clickListener) {
-        if (mTouchInterceptLayer != null) {
-            mTouchInterceptLayer.setOnClickListener(clickListener);
-        }
-    }
-
-    @Override
-    public void enableTouchInterceptor() {
-        if (mTouchInterceptLayer != null) {
-            mTouchInterceptLayer.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
-    public void disableTouchInterceptor() {
-        if (mTouchInterceptLayer != null) {
-            mTouchInterceptLayer.setVisibility(View.GONE);
-        }
     }
 
     @Override

@@ -25,20 +25,4 @@
         android:fadingEdge="none"
         android:divider="@null"/>
 
-    <View
-        android:id="@+id/alpha_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"/>
-
-    <View
-        android:id="@+id/touch_intercept_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="?android:attr/selectableItemBackground"
-        android:visibility="gone"/>
-
 </FrameLayout>

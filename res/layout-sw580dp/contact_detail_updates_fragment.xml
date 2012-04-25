@@ -26,19 +26,4 @@
         android:fadingEdge="none"
         android:divider="@null"/>
 
-    <View
-        android:id="@+id/alpha_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/black"
-        android:alpha=".50"
-        android:visibility="gone"/>
-
-    <View
-        android:id="@+id/touch_intercept_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:visibility="gone"/>
-
 </FrameLayout>
