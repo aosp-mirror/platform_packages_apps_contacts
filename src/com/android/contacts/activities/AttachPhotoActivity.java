@@ -16,16 +16,16 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactLoader.Result;
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.util.ContactPhotoUtils;
-import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsUtils;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -135,7 +135,7 @@ public class AttachPhotoActivity extends ContactsActivity {
             mContactUri = result.getData();
 
         } else if (requestCode == REQUEST_CROP_PHOTO) {
-            loadContact(mContactUri, new ContactLoader.Listener() {
+            loadContact(mContactUri, new Listener() {
                 @Override
                 public void onContactLoaded(ContactLoader.Result contact) {
                     saveContact(contact);
@@ -148,7 +148,7 @@ public class AttachPhotoActivity extends ContactsActivity {
     // code elsewhere (ViewNotificationService is another case).  The only concern is that,
     // although this is convenient, it isn't quite as robust as using LoaderManager... for
     // instance, the loader doesn't persist across Activity restarts.
-    private void loadContact(Uri contactUri, final ContactLoader.Listener listener) {
+    private void loadContact(Uri contactUri, final Listener listener) {
         final ContactLoader loader = new ContactLoader(this, contactUri);
         loader.registerListener(0, new OnLoadCompleteListener<ContactLoader.Result>() {
             @Override
@@ -164,6 +164,10 @@ public class AttachPhotoActivity extends ContactsActivity {
             }
         });
         loader.startLoading();
+    }
+
+    private interface Listener {
+        public void onContactLoaded(Result contact);
     }
 
     /**

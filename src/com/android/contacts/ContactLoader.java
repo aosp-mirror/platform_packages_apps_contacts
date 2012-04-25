@@ -88,10 +88,6 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
     private ForceLoadContentObserver mObserver;
     private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
 
-    public interface Listener {
-        public void onContactLoaded(Result contact);
-    }
-
     public ContactLoader(Context context, Uri lookupUri) {
         this(context, lookupUri, false, false, false);
     }
