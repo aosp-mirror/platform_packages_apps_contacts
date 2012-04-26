@@ -46,13 +46,18 @@ public class ResolveCache {
      * multiple {@link ResolveInfo} are found to match. This only happens when
      * the user has not selected a default app yet, and they will still be
      * presented with the system disambiguation dialog.
+     * If several of this list match (e.g. Android Browser vs. Chrome), we will pick either one
      */
     private static final HashSet<String> sPreferResolve = Sets.newHashSet(
             "com.android.email",
-            "com.android.calendar",
-            "com.android.contacts",
-            "com.android.mms",
+            "com.google.android.email",
+
             "com.android.phone",
+
+            "com.google.android.apps.maps",
+
+            "com.android.chrome",
+            "com.google.android.browser",
             "com.android.browser");
 
     private final Context mContext;
