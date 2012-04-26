@@ -461,6 +461,8 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"设置"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"要显示的联系人"</string>
     <string name="menu_settings" msgid="377929915873428211">"设置"</string>
+    <!-- no translation found for menu_help (5123887102216637725) -->
+    <skip />
     <string name="preference_displayOptions" msgid="1341720270148252393">"显示选项"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>，<xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"查找联系人"</string>
