@@ -1397,7 +1397,6 @@ public class ContactEditorFragment extends Fragment implements
         mAggregationSuggestionPopup.setAnchorView(anchorView);
         mAggregationSuggestionPopup.setWidth(anchorView.getWidth());
         mAggregationSuggestionPopup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
-        mAggregationSuggestionPopup.setModal(true);
         mAggregationSuggestionPopup.setAdapter(
                 new AggregationSuggestionAdapter(getActivity(),
                         mState.size() == 1 && mState.get(0).isContactInsert(),
