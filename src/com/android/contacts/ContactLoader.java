@@ -1345,6 +1345,10 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      * contact. If the next load is for a different contact, the cached result will be dropped
      */
     public void cacheResult() {
-        sCachedResult = new Result(mContact);
+        if (mContact == null) {
+            sCachedResult = null;
+        } else {
+            sCachedResult = new Result(mContact);
+        }
     }
 }
