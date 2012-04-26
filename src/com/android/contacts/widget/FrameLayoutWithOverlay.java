@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-
 /**
  * A FrameLayout whose contents are kept beneath an {@link AlphaTouchInterceptorOverlay}.
  * If necessary, you can specify your own alpha-layer and manually manage its z-order.
@@ -47,8 +46,8 @@ public class FrameLayoutWithOverlay extends FrameLayout {
     }
 
     /**
-     * Delegate to overlay:  set the View that it will use as it's alpha-layer.
-     * If none is set, the overlay will use itself as the alpha layer.  Only
+     * Delegate to overlay:  set the View that it will use as its alpha-layer.
+     * If none is set, the overlay will use its own alpha layer.  Only
      * necessary to set this if some child views need to appear above the
      * alpha-layer.
      */
@@ -63,11 +62,11 @@ public class FrameLayoutWithOverlay extends FrameLayout {
 
     /** Delegate to overlay. */
     public void setOverlayOnClickListener(OnClickListener listener) {
-        mOverlay.setOnClickListener(listener);
+        mOverlay.setOverlayOnClickListener(listener);
     }
 
     /** Delegate to overlay. */
     public void setOverlayClickable(boolean clickable) {
-        mOverlay.setClickable(clickable);
+        mOverlay.setOverlayClickable(clickable);
     }
 }
