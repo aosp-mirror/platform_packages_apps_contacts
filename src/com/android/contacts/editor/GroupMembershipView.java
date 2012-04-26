@@ -253,6 +253,7 @@ public class GroupMembershipView extends LinearLayout
         mPopup.setAnchorView(mGroupList);
         mPopup.setAdapter(mAdapter);
         mPopup.setModal(true);
+        mPopup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
         mPopup.show();
 
         ListView listView = mPopup.getListView();
