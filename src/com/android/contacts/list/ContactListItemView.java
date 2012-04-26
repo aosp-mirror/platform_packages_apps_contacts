@@ -415,7 +415,9 @@ public class ContactListItemView extends ViewGroup
 
         // Status view height is the biggest of the text view and the presence icon
         if (isVisible(mPresenceIcon)) {
-            mPresenceIcon.measure(mPresenceIconSize, mPresenceIconSize);
+            mPresenceIcon.measure(
+                    MeasureSpec.makeMeasureSpec(mPresenceIconSize, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(mPresenceIconSize, MeasureSpec.EXACTLY));
             mStatusTextViewHeight = mPresenceIcon.getMeasuredHeight();
         }
 
