@@ -46,7 +46,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Выдаліць з Выбранага"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Рэдагаваць"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Выдаліць"</string>
-    <string name="menu_copy" msgid="6108677035381940698">"Капіяваць"</string>
+    <string name="menu_copy" msgid="6108677035381940698">"Капіраваць"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Размясціць на галоўным экране"</string>
     <string name="menu_call" msgid="3992595586042260618">"Выклікаць кантакт"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Паведамленне кантакту"</string>
@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Ачысціць спіс выклікаў?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Усе вашы запісы выклікаў будуць выдалены."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Выдаленне гiсторыi выклiкаў..."</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Выдалiць частыя кантакты?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Вы выдалiце найбольш частыя кантакты ў прыкладаннях \"Кантакты\" i \"Тэлефон\" i прымусiце прыкладаннi па працы з электроннай поштай вывучыць вашы налады адрасацыi з нуля."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Выдаленне частых кантактаў..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Галасавая пошта"</string>
@@ -288,8 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не знойдзена прыкладанне для гэтага дзеяння."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Без назвы)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Уліковыя запісы"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Выдалiць частыя кантакты"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Паказаць кантакты"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Імпарт/экспарт"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Імпарт/экспарт кантактаў"</string>
@@ -461,6 +457,8 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Налады"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Кантакты для адлюстр."</string>
     <string name="menu_settings" msgid="377929915873428211">"Налады"</string>
+    <!-- no translation found for menu_help (5123887102216637725) -->
+    <skip />
     <string name="preference_displayOptions" msgid="1341720270148252393">"Паказаць параметры"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Знайсці кантакты"</string>
