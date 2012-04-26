@@ -70,14 +70,11 @@ public class ContactListItemView extends ViewGroup
     private static final int QUICK_CONTACT_BADGE_STYLE =
             com.android.internal.R.attr.quickContactBadgeStyleWindowMedium;
 
-    protected final Context mContext;
-
     // Style values for layout and appearance
     private final int mPreferredHeight;
     private final int mVerticalDividerMargin;
     private final int mGapBetweenImageAndText;
     private final int mGapBetweenLabelAndData;
-    private final int mCallButtonPadding;
     private final int mPresenceIconMargin;
     private final int mPresenceIconSize;
     private final int mHeaderTextColor;
@@ -186,7 +183,6 @@ public class ContactListItemView extends ViewGroup
     // same row.
     private int mLabelAndDataViewMaxHeight;
 
-    private OnClickListener mCallButtonClickListener;
     // TODO: some TextView fields are using CharArrayBuffer while some are not. Determine which is
     // more efficient for each case or in general, and simplify the whole implementation.
     // Note: if we're sure MARQUEE will be used every time, there's no reason to use
@@ -201,7 +197,7 @@ public class ContactListItemView extends ViewGroup
     private Rect mBoundsWithoutHeader = new Rect();
 
     /** A helper used to highlight a prefix in a text field. */
-    private PrefixHighlighter mPrefixHighligher;
+    private PrefixHighlighter mPrefixHighlighter;
     private CharSequence mUnknownNameText;
 
     /**
@@ -244,8 +240,6 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_gap_between_image_and_text, 0);
         mGapBetweenLabelAndData = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_gap_between_label_and_data, 0);
-        mCallButtonPadding = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_call_button_padding, 0);
         mPresenceIconMargin = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_presence_icon_margin, 4);
         mPresenceIconSize = a.getDimensionPixelOffset(
@@ -285,9 +279,9 @@ public class ContactListItemView extends ViewGroup
                 a.getDimensionPixelOffset(
                         R.styleable.ContactListItemView_list_item_padding_bottom, 0));
 
-        mPrefixHighligher = new PrefixHighlighter(
-                a.getColor(R.styleable.ContactListItemView_list_item_prefix_highlight_color,
-                        Color.GREEN));
+        final int prefixHighlightColor = a.getColor(
+                R.styleable.ContactListItemView_list_item_prefix_highlight_color, Color.GREEN);
+        mPrefixHighlighter = new PrefixHighlighter(prefixHighlightColor);
         a.recycle();
 
         a = getContext().obtainStyledAttributes(android.R.styleable.Theme);
@@ -299,13 +293,6 @@ public class ContactListItemView extends ViewGroup
         if (mActivatedBackgroundDrawable != null) {
             mActivatedBackgroundDrawable.setCallback(this);
         }
-    }
-
-    /**
-     * Installs a call button listener.
-     */
-    public void setOnCallButtonClickListener(OnClickListener callButtonClickListener) {
-        mCallButtonClickListener = callButtonClickListener;
     }
 
     public void setUnknownNameText(CharSequence unknownNameText) {
@@ -841,7 +828,7 @@ public class ContactListItemView extends ViewGroup
                 mPhotoView = new ImageView(mContext);
             }
             // Quick contact style used above will set a background - remove it
-            mPhotoView.setBackgroundDrawable(null);
+            mPhotoView.setBackground(null);
             addView(mPhotoView);
             mPhotoViewWidthAndHeightAreReady = false;
         }
@@ -1033,7 +1020,7 @@ public class ContactListItemView extends ViewGroup
                 mSnippetView.setVisibility(View.GONE);
             }
         } else {
-            mPrefixHighligher.setText(getSnippetView(), text, mHighlightedPrefix);
+            mPrefixHighlighter.setText(getSnippetView(), text, mHighlightedPrefix);
             mSnippetView.setVisibility(VISIBLE);
         }
     }
@@ -1144,7 +1131,7 @@ public class ContactListItemView extends ViewGroup
     public void showDisplayName(Cursor cursor, int nameColumnIndex, int displayOrder) {
         CharSequence name = cursor.getString(nameColumnIndex);
         if (!TextUtils.isEmpty(name)) {
-            name = mPrefixHighligher.apply(name, mHighlightedPrefix);
+            name = mPrefixHighlighter.apply(name, mHighlightedPrefix);
         } else {
             name = mUnknownNameText;
         }
