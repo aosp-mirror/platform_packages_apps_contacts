@@ -36,7 +36,7 @@
         android:scrollHorizontally="true"
         android:textSize="@dimen/dialpad_digits_text_size"
         android:freezesText="true"
-        android:background="@drawable/btn_dial_textfield"
+        android:background="@drawable/dialpad_background"
         android:textColor="@color/dialer_button_text"
         android:hint="@string/dialerKeyboardHintText"
      />
