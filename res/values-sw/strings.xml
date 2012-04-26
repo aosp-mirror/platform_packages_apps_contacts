@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Futa rekodi ya simu?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Kumbukumbu zako zote za simu zitafutwa."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Inafuta rekodi ya simu ..."</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Futa uliowasiliana nao mara kwa mara?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Utafuta orodha unayowasiliana nayo mara kwa mara katika programu ya Watu na Simu, na ulazimishe programu za barua pepe kujifunza mapendeleo yako ya anwani kutoka mwanzo."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Inafuta uliowasiliana nao mara kwa mara..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Barua ya sauti"</string>
@@ -290,8 +287,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Hakuna programu iliyopatikana ya kushughulikia tendo hili."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Hakuna jina)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Akaunti"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Futa za mara kwa mara"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Anwani za kuonyesha"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Leta/hamisha"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Leta/Hamisha wawasiliani"</string>
@@ -463,6 +459,8 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Mipangilio"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Anwani za uonyesha"</string>
     <string name="menu_settings" msgid="377929915873428211">"Mipangilio"</string>
+    <!-- no translation found for menu_help (5123887102216637725) -->
+    <skip />
     <string name="preference_displayOptions" msgid="1341720270148252393">"Onyesha machaguo"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Tafuta anwani"</string>
