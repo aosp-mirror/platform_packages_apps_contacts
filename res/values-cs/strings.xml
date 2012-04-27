@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Vymazat hovory?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Všechny záznamy hovorů budou smazány."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Vymazání hovorů..."</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vymazat často kontaktované osoby?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Vymažete seznam často kontaktovaných osob v aplikacích Lidé a Telefon a e-mailové aplikace budou muset nastavení adresátů vytvořit znovu."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Mazání často kontaktovaných osob..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Hlasová schránka"</string>
@@ -288,8 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikace potřebná k provedení této akce nebyla nalezena."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Žádné jméno)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Účty"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Vymazat často kontaktované os."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty k zobrazení"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importovat/Exportovat"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Importovat nebo exportovat kontakty"</string>

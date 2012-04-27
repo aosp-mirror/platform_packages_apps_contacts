@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"要清除通话记录吗？"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"系统将删除您的所有通话记录。"</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"正在清除通话记录..."</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"是否清除常用联系人？"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"此操作会清除“联系人”和“拨号”应用中的常用联系人列表，并强制电子邮件应用重新获取您最常使用的联系地址。"</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"正在清除常用联系人…"</string>
     <string name="imei" msgid="3045126336951684285">"移动通信国际识别码"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"语音信箱"</string>
@@ -288,8 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"未找到可处理此操作的应用。"</string>
     <string name="missing_name" msgid="8745511583852904385">"（无姓名）"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"帐户"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"清除常用联系人"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"要显示的联系人"</string>
     <string name="menu_import_export" msgid="26217871113229507">"导入/导出"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"导入/导出联系人"</string>

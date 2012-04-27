@@ -151,9 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Vai not. zv. žurn.?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Visi zvanu ieraksti tiks dzēsti."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Notiek zvanu žurnāla tīrīšana..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vai dzēst bieži lietotās kontaktp.?"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vai dzēst bieži lietotos kontaktus?"</string>
     <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Tiks dzēsts bieži lietoto kontaktpersonu saraksts lietotnēs Personas un Tālrunis, un e-pasta lietotnēs adrešu preferenču saglabāšana tiks sākta no sākuma."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Notiek bieži liet. kontaktp. dzēš."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Bieži lietoto kontaktu dzēšana..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Balss pasts"</string>
@@ -285,7 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Netika atrasta neviena lietotne šīs darbības veikšanai."</string>
     <string name="missing_name" msgid="8745511583852904385">"(nav vārda)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konti"</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"Dzēst bieži lietotās kontaktp."</string>
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Dzēst bieži lietotos kontaktus"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Attēlojamās kontaktpersonas"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importēt/eksportēt"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"K. pers. imports/eksports"</string>

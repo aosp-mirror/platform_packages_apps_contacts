@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"通話履歴を消しますか？"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"すべての通話記録は削除されます。"</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"通話履歴を消去しています..."</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"よく使う連絡先をクリアしますか？"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Peopleアプリや電話アプリのよく使う連絡先リストをクリアし、メールアプリがアドレス設定を初めから保存していくようにします。"</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"よく使う連絡先をクリアしています…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI（端末識別番号）"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"ボイスメール"</string>
@@ -288,8 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"この操作を行うアプリが見つかりませんでした。"</string>
     <string name="missing_name" msgid="8745511583852904385">"（名前なし）"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"アカウント"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"よく使う連絡先のクリア"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"表示する連絡先"</string>
     <string name="menu_import_export" msgid="26217871113229507">"インポート/エクスポート"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"連絡先のインポート/エクスポート"</string>

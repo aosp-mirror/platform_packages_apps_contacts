@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"통화기록을 지우시겠습니까?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"모든 통화 기록을 삭제합니다."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"통화기록을 지우는 중..."</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"사용자 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"음성사서함"</string>
@@ -288,8 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
     <string name="missing_name" msgid="8745511583852904385">"(이름 없음)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"계정"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"자주 연락하는 사람들 목록 삭제"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"표시할 연락처"</string>
     <string name="menu_import_export" msgid="26217871113229507">"가져오기/내보내기"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"주소록 가져오기/내보내기"</string>
