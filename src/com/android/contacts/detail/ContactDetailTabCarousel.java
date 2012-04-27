@@ -21,6 +21,7 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.detail.ContactDetailPhotoSetter;
 import com.android.contacts.util.MoreMath;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.SchedulingUtils;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -203,11 +204,19 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        if (mScrollToCurrentTab) {
-            mScrollToCurrentTab = false;
-            scrollTo(mCurrentTab == TAB_INDEX_ABOUT ? 0 : mAllowedHorizontalScrollLength, 0);
-            updateAlphaLayers();
-        }
+
+        // Defer this stuff until after the layout has finished.  This is because
+        // updateAlphaLayers() ultimately results in another layout request, and
+        // the framework currently can't handle this safely.
+        if (!mScrollToCurrentTab) return;
+        mScrollToCurrentTab = false;
+        SchedulingUtils.doAfterLayout(this, new Runnable() {
+            @Override
+            public void run() {
+                scrollTo(mCurrentTab == TAB_INDEX_ABOUT ? 0 : mAllowedHorizontalScrollLength, 0);
+                updateAlphaLayers();
+            }
+        });
     }
 
     /** When clicked, selects the corresponding tab. */
