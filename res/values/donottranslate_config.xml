@@ -44,6 +44,9 @@
          resource. -->
     <bool name="config_enable_dialer_key_vibration">true</bool>
 
+    <!-- Flag indicating whether to show images in browse list -->
+    <bool name="config_browse_list_show_images">true</bool>
+
     <!-- The type of vcard for improt. If the vcard importer cannot guess the exact type
     of a vCard type, the improter uses this type. -->
     <string name="config_import_vcard_type" translatable="false">default</string>
