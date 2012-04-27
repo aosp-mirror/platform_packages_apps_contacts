@@ -724,13 +724,17 @@ public class ContactEditorFragment extends Fragment implements
             if (bitmap != null) editor.setPhotoBitmap(bitmap);
 
             if (editor instanceof RawContactEditorView) {
+                final Activity activity = getActivity();
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
                 EditorListener listener = new EditorListener() {
 
                     @Override
                     public void onRequest(int request) {
+                        if (activity.isFinishing()) { // Make sure activity is still running.
+                            return;
+                        }
                         if (request == EditorListener.FIELD_CHANGED && !isEditingUserProfile()) {
-                            acquireAggregationSuggestions(rawContactEditor);
+                            acquireAggregationSuggestions(activity, rawContactEditor);
                         }
                     }
 
@@ -752,7 +756,7 @@ public class ContactEditorFragment extends Fragment implements
                 rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);
 
                 if (rawContactId == mAggregationSuggestionsRawContactId) {
-                    acquireAggregationSuggestions(rawContactEditor);
+                    acquireAggregationSuggestions(activity, rawContactEditor);
                 }
             }
         }
@@ -1351,7 +1355,8 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Triggers an asynchronous search for aggregation suggestions.
      */
-    public void acquireAggregationSuggestions(RawContactEditorView rawContactEditor) {
+    private void acquireAggregationSuggestions(Context context,
+            RawContactEditorView rawContactEditor) {
         long rawContactId = rawContactEditor.getRawContactId();
         if (mAggregationSuggestionsRawContactId != rawContactId
                 && mAggregationSuggestionView != null) {
@@ -1363,7 +1368,7 @@ public class ContactEditorFragment extends Fragment implements
         mAggregationSuggestionsRawContactId = rawContactId;
 
         if (mAggregationSuggestionEngine == null) {
-            mAggregationSuggestionEngine = new AggregationSuggestionEngine(getActivity());
+            mAggregationSuggestionEngine = new AggregationSuggestionEngine(context);
             mAggregationSuggestionEngine.setListener(this);
             mAggregationSuggestionEngine.start();
         }

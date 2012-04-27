@@ -119,7 +119,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
 
     public AggregationSuggestionEngine(Context context) {
         super("AggregationSuggestions", Process.THREAD_PRIORITY_BACKGROUND);
-        mContext = context;
+        mContext = context.getApplicationContext();
         mMainHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
