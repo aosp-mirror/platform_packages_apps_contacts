@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Очистити журнал викликів?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Усі записи викликів буде видалено."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Очищення журналу викликів..."</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Очистити список частих контактів?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Ви очистите список користувачів, з якими часто спілкувалися, у програмах \"Телефон\" і \"Люди\" та примусите програми електронної пошти заново запам’ятовувати нові адреси."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Очищення списку частих контактів…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Голос. пошта"</string>
@@ -288,8 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не знайдено програму для обробки цієї дії."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Без імені)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Обл. записи"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Очистити часті контакти"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Контакти для показу"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Імпорт або експорт"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Імпорт/експорт контактів"</string>
