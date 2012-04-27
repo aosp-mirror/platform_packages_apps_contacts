@@ -211,6 +211,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private boolean mIsUniqueNumber;
     private boolean mIsUniqueEmail;
 
+    private ListPopupWindow mPopup;
+
     public ContactDetailFragment() {
         // Explicit constructor for inflation
     }
@@ -235,6 +237,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     @Override
     public void onPause() {
+        dismissPopupIfShown();
         super.onPause();
     }
 
@@ -286,10 +289,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         return mView;
-    }
-
-    protected View inflate(int resource, ViewGroup root, boolean attachToRoot) {
-        return mInflater.inflate(resource, root, attachToRoot);
     }
 
     public void setListener(Listener value) {
@@ -1006,23 +1005,31 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      */
     private void showListPopup(View anchorView, ListAdapter adapter,
             final AdapterView.OnItemClickListener onItemClickListener) {
-        final ListPopupWindow popup = new ListPopupWindow(mContext, null);
-        popup.setAnchorView(anchorView);
-        popup.setWidth(anchorView.getWidth());
-        popup.setAdapter(adapter);
-        popup.setModal(true);
+        dismissPopupIfShown();
+        mPopup = new ListPopupWindow(mContext, null);
+        mPopup.setAnchorView(anchorView);
+        mPopup.setWidth(anchorView.getWidth());
+        mPopup.setAdapter(adapter);
+        mPopup.setModal(true);
 
         // We need to wrap the passed onItemClickListener here, so that we can dismiss() the
         // popup afterwards.  Otherwise we could directly use the passed listener.
-        popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mPopup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                     long id) {
                 onItemClickListener.onItemClick(parent, view, position, id);
-                popup.dismiss();
+                dismissPopupIfShown();
             }
         });
-        popup.show();
+        mPopup.show();
+    }
+
+    private void dismissPopupIfShown() {
+        if (mPopup != null && mPopup.isShowing()) {
+            mPopup.dismiss();
+        }
+        mPopup = null;
     }
 
     /**
