@@ -199,7 +199,9 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                     ContactQuery.CONTACT_PHOTO_URI, ContactQuery.CONTACT_ID,
                     ContactQuery.CONTACT_LOOKUP_KEY);
         } else {
-            bindPhoto(view, partition, cursor);
+            if (getDisplayPhotos()) {
+                bindPhoto(view, partition, cursor);
+            }
         }
 
         bindName(view, cursor);

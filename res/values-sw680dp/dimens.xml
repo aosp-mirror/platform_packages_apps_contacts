@@ -20,4 +20,5 @@
     <dimen name="group_editor_side_padding">16dip</dimen>
     <dimen name="quick_contact_photo_container_height">360dip</dimen>
     <dimen name="contact_picker_contact_list_min_height">650dip</dimen>
+    <dimen name="list_visible_scrollbar_padding">48dip</dimen>
 </resources>
