@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Çağrı günlüğünü sil?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Tüm çağrı kayıtlarınız silinecek."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Çağrı günlüğü temizleniyor..."</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Sık iletişim kurulanlar silinsin mi?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Kişiler ve Telefon uygulamalarındaki sık iletişim kurulanlar listesini temizleyecek ve e-posta uygulamalarını adres tercihlerinizi en baştan öğrenmeye zorlayacaksınız."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Sık iletişim kurulanlar siliniyor…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Sesli Mesaj"</string>
@@ -288,8 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Bu işlemi gerçekleştirecek uygulama bulunamadı."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Adsız)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Hesaplar"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Sık iletişim kurulanları sil"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Görüntülenecek kişiler"</string>
     <string name="menu_import_export" msgid="26217871113229507">"İçe/Dışa Aktar"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Kişileri içe/dışa aktar"</string>
