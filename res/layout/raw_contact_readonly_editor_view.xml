@@ -42,24 +42,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="?android:attr/textColorSecondary" />
 
-        <LinearLayout
-            android:id="@+id/stub_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <include
+            android:id="@+id/edit_photo"
             android:layout_marginRight="8dip"
-            android:orientation="horizontal">
-
-            <include
-                android:id="@+id/edit_photo"
-                layout="@layout/item_photo_editor" />
-
-            <ImageView
-                android:src="@drawable/account_spinner_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom" />
-
-        </LinearLayout>
+            layout="@layout/item_photo_editor" />
 
     </LinearLayout>
 
