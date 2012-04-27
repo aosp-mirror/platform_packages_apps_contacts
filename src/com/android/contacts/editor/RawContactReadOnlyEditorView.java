@@ -55,7 +55,6 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         implements OnClickListener {
     private LayoutInflater mInflater;
 
-    private View mPhotoStub;
     private TextView mName;
     private Button mEditExternallyButton;
     private ViewGroup mGeneral;
@@ -95,8 +94,6 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
 
         mInflater = (LayoutInflater)getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-
-        mPhotoStub = findViewById(R.id.stub_photo);
 
         mName = (TextView) findViewById(R.id.read_only_name);
         mEditExternallyButton = (Button) findViewById(R.id.button_edit_externally);
@@ -177,13 +174,6 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
             setHasPhotoEditor(hasPhotoEditor);
             primary = state.getPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
             getPhotoEditor().setValues(kind, primary, state, !type.areContactsWritable(), vig);
-            if (!hasPhotoEditor || !getPhotoEditor().hasSetPhoto()) {
-                mPhotoStub.setVisibility(View.GONE);
-            } else {
-                mPhotoStub.setVisibility(View.VISIBLE);
-            }
-        } else {
-            mPhotoStub.setVisibility(View.VISIBLE);
         }
 
         // Name
