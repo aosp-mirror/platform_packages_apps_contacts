@@ -799,6 +799,7 @@ public class ContactEditorFragment extends Fragment implements
                 mode = PhotoActionPopup.Modes.READ_ONLY_ALLOW_PRIMARY;
             } else {
                 // Read-only and either no photo or the only photo ==> no options
+                editor.getPhotoEditor().setEditorListener(null);
                 return;
             }
         }
@@ -882,7 +883,7 @@ public class ContactEditorFragment extends Fragment implements
         // Remove the pressed state from the account header because the user cannot switch accounts
         // on an existing contact
         final View accountView = editor.findViewById(R.id.account);
-        accountView.setBackgroundDrawable(null);
+        accountView.setBackground(null);
         accountView.setEnabled(false);
     }
 

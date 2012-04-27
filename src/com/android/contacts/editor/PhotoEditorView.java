@@ -16,12 +16,12 @@
 
 package com.android.contacts.editor;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.util.ContactPhotoUtils;
-import com.android.contacts.ContactsUtils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -29,19 +29,20 @@ import android.graphics.BitmapFactory;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 /**
  * Simple editor for {@link Photo}.
  */
-public class PhotoEditorView extends FrameLayout implements Editor {
+public class PhotoEditorView extends LinearLayout implements Editor {
 
     private ImageView mPhotoImageView;
     private View mFrameView;
 
     private ValuesDelta mEntry;
     private EditorListener mListener;
+    private View mTriangleAffordance;
 
     private boolean mHasSetPhoto = false;
     private boolean mReadOnly;
@@ -70,6 +71,7 @@ public class PhotoEditorView extends FrameLayout implements Editor {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        mTriangleAffordance = findViewById(R.id.photo_triangle_affordance);
         mPhotoImageView = (ImageView) findViewById(R.id.photo);
         mFrameView = findViewById(R.id.frame);
         mFrameView.setOnClickListener(new OnClickListener() {
@@ -123,8 +125,6 @@ public class PhotoEditorView extends FrameLayout implements Editor {
         return mHasSetPhoto;
     }
 
-
-
     /**
      * Assign the given {@link Bitmap} as the new value, updating UI and
      * readying for persisting through {@link ValuesDelta}.
@@ -176,6 +176,10 @@ public class PhotoEditorView extends FrameLayout implements Editor {
     @Override
     public void setEditorListener(EditorListener listener) {
         mListener = listener;
+
+        final boolean isPushable = listener != null;
+        mTriangleAffordance.setVisibility(isPushable ? View.VISIBLE : View.INVISIBLE);
+        mFrameView.setVisibility(isPushable ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
