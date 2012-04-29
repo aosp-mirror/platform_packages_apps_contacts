@@ -615,20 +615,20 @@ public class PeopleActivity extends ContactsActivity
      * Handler for action bar actions.
      */
     @Override
-    public void onAction(Action action) {
+    public void onAction(int action) {
         switch (action) {
-            case START_SEARCH_MODE:
+            case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
                 // Tell the fragments that we're in the search mode
                 configureFragments(false /* from request */);
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
                 break;
-            case STOP_SEARCH_MODE:
+            case ActionBarAdapter.Listener.Action.STOP_SEARCH_MODE:
                 setQueryTextToFragment("");
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
                 break;
-            case CHANGE_SEARCH_QUERY:
+            case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
                 setQueryTextToFragment(mActionBarAdapter.getQueryString());
                 break;
             default:

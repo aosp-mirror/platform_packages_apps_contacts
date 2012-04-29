@@ -42,11 +42,13 @@ import android.widget.SearchView.OnQueryTextListener;
 public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
 
     public interface Listener {
-        public enum Action {
-            CHANGE_SEARCH_QUERY, START_SEARCH_MODE, STOP_SEARCH_MODE
+        public abstract class Action {
+            public static final int CHANGE_SEARCH_QUERY = 0;
+            public static final int START_SEARCH_MODE = 1;
+            public static final int STOP_SEARCH_MODE = 2;
         }
 
-        void onAction(Action action);
+        void onAction(int action);
 
         /**
          * Called when the user selects a tab.  The new tab can be obtained using
@@ -238,6 +240,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             } else {
                 mSearchView.setQuery(null, false);
             }
+        } else if (flag) {
+            // Everything is already set up. Still make sure the keyboard is up
+            if (mSearchView != null) setFocusOnSearchView();
         }
     }
 
