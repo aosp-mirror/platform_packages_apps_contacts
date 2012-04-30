@@ -48,8 +48,8 @@ import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
-import com.android.contacts.list.ProviderStatusLoader;
-import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
+import com.android.contacts.list.ProviderStatusWatcher;
+import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
@@ -149,7 +149,7 @@ public class PeopleActivity extends ContactsActivity
     private ContactListFilterController mContactListFilterController;
 
     private ContactsUnavailableFragment mContactsUnavailableFragment;
-    private ProviderStatusLoader mProviderStatusLoader;
+    private ProviderStatusWatcher mProviderStatusWatcher;
     private int mProviderStatus = -1;
 
     private boolean mOptionsMenuContactsAvailable;
@@ -207,7 +207,7 @@ public class PeopleActivity extends ContactsActivity
     public PeopleActivity() {
         mInstanceId = sNextInstanceId.getAndIncrement();
         mIntentResolver = new ContactsIntentResolver(this);
-        mProviderStatusLoader = new ProviderStatusLoader(this);
+        mProviderStatusWatcher = ProviderStatusWatcher.getInstance(this);
     }
 
     @Override
@@ -247,7 +247,6 @@ public class PeopleActivity extends ContactsActivity
             mContactDetailFragment = (ContactDetailFragment) fragment;
         } else if (fragment instanceof ContactsUnavailableFragment) {
             mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
-            mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
             mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
                     new ContactsUnavailableFragmentListener());
         }
@@ -268,6 +267,8 @@ public class PeopleActivity extends ContactsActivity
         mContactListFilterController = ContactListFilterController.getInstance(this);
         mContactListFilterController.checkFilterValidity(false);
         mContactListFilterController.addListener(this);
+
+        mProviderStatusWatcher.addListener(this);
 
         mIsRecreatedInstance = (savedState != null);
         createViewsAndFragments(savedState);
@@ -486,14 +487,14 @@ public class PeopleActivity extends ContactsActivity
         mOptionsMenuContactsAvailable = false;
 
         mProviderStatus = -1;
-        mProviderStatusLoader.setProviderStatusListener(null);
+        mProviderStatusWatcher.stop();
         super.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mProviderStatusLoader.setProviderStatusListener(this);
+        mProviderStatusWatcher.start();
         showContactsUnavailableFragmentIfNecessary();
 
         // Re-register the listener, which may have been cleared when onSaveInstanceState was
@@ -515,6 +516,8 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     protected void onDestroy() {
+        mProviderStatusWatcher.removeListener(this);
+
         // Some of variables will be null if this Activity redirects Intent.
         // See also onCreate() or other methods called during the Activity's initialization.
         if (mActionBarAdapter != null) {
@@ -975,7 +978,7 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private void showContactsUnavailableFragmentIfNecessary() {
-        int providerStatus = mProviderStatusLoader.getProviderStatus();
+        int providerStatus = mProviderStatusWatcher.getProviderStatus();
         if (providerStatus == mProviderStatus) {
             return;
         }
@@ -1015,7 +1018,6 @@ public class PeopleActivity extends ContactsActivity
             }
             if (mContactsUnavailableFragment == null) {
                 mContactsUnavailableFragment = new ContactsUnavailableFragment();
-                mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
                 mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
                         new ContactsUnavailableFragmentListener());
                 getFragmentManager().beginTransaction()
