@@ -34,7 +34,6 @@ import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 /**
@@ -54,6 +53,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private Button mProfileMessage;
     private FrameLayout mMessageContainer;
     private TextView mProfileTitle;
+    private View mSearchProgress;
+    private TextView mSearchProgressText;
 
     private View mPaddingView;
 
@@ -117,12 +118,21 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         headerContainer.addView(mSearchHeaderView);
         getListView().addHeaderView(headerContainer, null, false);
         checkHeaderViewVisibility();
+
+        mSearchProgress = getView().findViewById(R.id.search_progress);
+        mSearchProgressText = (TextView) mSearchHeaderView.findViewById(R.id.totalContactsText);
     }
 
     @Override
     protected void setSearchMode(boolean flag) {
         super.setSearchMode(flag);
         checkHeaderViewVisibility();
+        if (!flag) showSearchProgress(false);
+    }
+
+    /** Show or hide the directory-search progress spinner. */
+    private void showSearchProgress(boolean show) {
+        mSearchProgress.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private void checkHeaderViewVisibility() {
@@ -203,19 +213,17 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             // In search mode we only display the header if there is nothing found
             if (TextUtils.isEmpty(getQueryString()) || !adapter.areAllPartitionsEmpty()) {
                 mSearchHeaderView.setVisibility(View.GONE);
+                showSearchProgress(false);
             } else {
-                TextView textView = (TextView) mSearchHeaderView.findViewById(
-                        R.id.totalContactsText);
-                ProgressBar progress = (ProgressBar) mSearchHeaderView.findViewById(
-                        R.id.progress);
                 mSearchHeaderView.setVisibility(View.VISIBLE);
                 if (adapter.isLoading()) {
-                    textView.setText(R.string.search_results_searching);
-                    progress.setVisibility(View.VISIBLE);
+                    mSearchProgressText.setText(R.string.search_results_searching);
+                    showSearchProgress(true);
                 } else {
-                    textView.setText(R.string.listFoundAllContactsZero);
-                    textView.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED);
-                    progress.setVisibility(View.GONE);
+                    mSearchProgressText.setText(R.string.listFoundAllContactsZero);
+                    mSearchProgressText.sendAccessibilityEvent(
+                            AccessibilityEvent.TYPE_VIEW_SELECTED);
+                    showSearchProgress(false);
                 }
             }
             showEmptyUserProfile(false);

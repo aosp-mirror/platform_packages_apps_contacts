@@ -33,21 +33,32 @@
         android:id="@+id/account_filter_header_container"
         layout="@layout/account_filter_header" />
 
-    <view
-        class="com.android.contacts.widget.PinnedHeaderListView"
-        android:id="@android:id/list"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginLeft="?attr/contact_browser_list_padding_left"
-        android:layout_marginRight="?attr/contact_browser_list_padding_right"
-        android:fastScrollEnabled="true"
-        android:fadingEdge="none"
-        android:layout_weight="1" />
+        android:layout_weight="1" >
+        <view
+            class="com.android.contacts.widget.PinnedHeaderListView"
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="?attr/contact_browser_list_padding_left"
+            android:layout_marginRight="?attr/contact_browser_list_padding_right"
+            android:fastScrollEnabled="true"
+            android:fadingEdge="none" />
+        <ProgressBar
+            android:id="@+id/search_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
 
-   <ViewStub
-       android:id="@+id/footer_stub"
-       android:layout="@layout/footer_panel"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content" />
+    <ViewStub
+        android:id="@+id/footer_stub"
+        android:layout="@layout/footer_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
