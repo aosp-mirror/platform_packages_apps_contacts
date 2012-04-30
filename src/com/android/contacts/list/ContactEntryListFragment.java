@@ -128,7 +128,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private ContextMenuAdapter mContextMenuAdapter;
     private ContactPhotoManager mPhotoManager;
     private ContactListEmptyView mEmptyView;
-    private ProviderStatusLoader mProviderStatusLoader;
     private ContactsPreferences mContactsPrefs;
 
     private boolean mForceLoad;
@@ -290,10 +289,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         super.onStart();
 
         mContactsPrefs.registerChangeListener(mPreferencesChangeListener);
-
-        if (mProviderStatusLoader == null) {
-            mProviderStatusLoader = new ProviderStatusLoader(mContext);
-        }
 
         mForceLoad = loadPreferences();
 

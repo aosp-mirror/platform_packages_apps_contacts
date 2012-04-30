@@ -35,7 +35,7 @@ import android.widget.TextView;
  */
 public class ContactsUnavailableFragment extends Fragment implements OnClickListener {
 
-    private ProviderStatusLoader mProviderStatusLoader;
+    private ProviderStatusWatcher mProviderStatusWatcher;
 
     private View mView;
     private TextView mMessageView;
@@ -50,6 +50,12 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
     private int mNSecNoContactsMsgResId = -1;
 
     private OnContactsUnavailableActionListener mListener;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mProviderStatusWatcher = ProviderStatusWatcher.getInstance(getActivity());
+    }
 
     @Override
     public View onCreateView(
@@ -77,12 +83,8 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mListener = listener;
     }
 
-    public void setProviderStatusLoader(ProviderStatusLoader loader) {
-        mProviderStatusLoader = loader;
-    }
-
     public void update() {
-        int providerStatus = mProviderStatusLoader.getProviderStatus();
+        int providerStatus = mProviderStatusWatcher.getProviderStatus();
         switch (providerStatus) {
             case ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS:
                 setMessageText(mNoContactsMsgResId, mNSecNoContactsMsgResId);
@@ -120,7 +122,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
 
             case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
                 String message = getResources().getString(R.string.upgrade_out_of_memory,
-                        new Object[] { mProviderStatusLoader.getProviderStatusData() });
+                        new Object[] { mProviderStatusWatcher.getProviderStatusData() });
                 mMessageView.setText(message);
                 mMessageView.setGravity(Gravity.LEFT);
                 mMessageView.setVisibility(View.VISIBLE);
@@ -153,7 +155,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mListener.onFreeInternalStorageAction();
                 break;
             case R.id.import_failure_retry_button:
-                mProviderStatusLoader.retryUpgrade();
+                mProviderStatusWatcher.retryUpgrade();
                 break;
         }
     }
@@ -166,7 +168,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mNoContactsMsgResId = resId;
         mNSecNoContactsMsgResId = secResId;
         if (mMessageView != null &&
-                mProviderStatusLoader.getProviderStatus() ==
+                mProviderStatusWatcher.getProviderStatus() ==
                     ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS) {
             if (resId != -1) {
                 mMessageView.setText(mNoContactsMsgResId);
