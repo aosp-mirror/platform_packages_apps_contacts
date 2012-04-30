@@ -237,8 +237,8 @@
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Satu file atau lebih tidak dapat diimpor (%s)."</string>
     <string name="fail_reason_unknown" msgid="1714092345030570863">"Kesalahan tidak dikenal."</string>
     <string name="select_vcard_title" msgid="7791371083694672861">"Pilih file vCard"</string>
-    <string name="caching_vcard_title" msgid="1226272312940516605">"Menyimpan ke tembolok"</string>
-    <string name="caching_vcard_message" msgid="4926308675041506756">"Menyimpan vCard ke tembolok untuk penyimpanan lokal sementara. Impor yang sebenarnya akan segera dimulai."</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"Menyimpan ke cache"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"Menyimpan vCard ke cache untuk penyimpanan lokal sementara. Impor yang sebenarnya akan segera dimulai."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Mengimpor <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Mengimpor <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Tidak dapat membaca data vCard"</string>
@@ -457,8 +457,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Setelan"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kenalan untuk ditampilkan"</string>
     <string name="menu_settings" msgid="377929915873428211">"Setelan"</string>
-    <!-- no translation found for menu_help (5123887102216637725) -->
-    <skip />
+    <string name="menu_help" msgid="5123887102216637725">"Bantuan"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opsi tampilan"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Temukan kenalan"</string>
