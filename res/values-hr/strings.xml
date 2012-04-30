@@ -151,7 +151,7 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Izbrisati dnevnik poziva?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Svi vaši zapisi poziva bit će izbrisani."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Brisanje dnevnika poziva..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Briši podatke o čestim kontaktima?"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Brisati podatke o čestim kontaktima?"</string>
     <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Obrisat ćete popis osoba s kojima često kontaktirate u aplikacijama Osobe i Telefoni tako da će aplikacije e-pošte morati naučiti vaše preference adresiranja od početka."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Brisanje često kontaktiranih..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
@@ -457,8 +457,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Postavke"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakti za prikaz"</string>
     <string name="menu_settings" msgid="377929915873428211">"Postavke"</string>
-    <!-- no translation found for menu_help (5123887102216637725) -->
-    <skip />
+    <string name="menu_help" msgid="5123887102216637725">"Pomoć"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opcije prikaza"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Pronađi kontakte"</string>

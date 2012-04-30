@@ -151,12 +151,9 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"I-clear ang log ng tawag?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Tatanggalin ang lahat ng iyong record ng tawag."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Kini-clear ang log ng tawag…"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"I-clear ang mga madalas tinatawagan?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Iki-clear mo ang listahan ng mga madalas na tinatawagan sa Mga Tao at Telepono na mga app, at pilitin ang mga email app na matutunan ang iyong mga kagustuhan sa pag-address mula sa umpisa."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Kini-clear ang mga madalas tinatawagan…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Voicemail"</string>
@@ -288,8 +285,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Walang natagpuang app na mangangasiwa sa pagkilos na ito."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Walang pangalan)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Mga Account"</string>
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"I-clear ang mga madadalas"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Mga contact na ipapakita"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Mag-import/mag-export"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Mag-import/mag-export ng mga contact"</string>
@@ -461,8 +457,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Mga Setting"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Mga contact na ipapakita"</string>
     <string name="menu_settings" msgid="377929915873428211">"Mga Setting"</string>
-    <!-- no translation found for menu_help (5123887102216637725) -->
-    <skip />
+    <string name="menu_help" msgid="5123887102216637725">"Tulong"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Mga pagpipilian sa pagpapakita"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Mghanap ng contact"</string>
