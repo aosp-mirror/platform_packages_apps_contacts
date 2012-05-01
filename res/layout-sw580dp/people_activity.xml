@@ -78,7 +78,7 @@
                 class="com.android.contacts.detail.ContactLoaderFragment"
                 android:layout_height="0dip"
                 android:layout_width="0dip"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </view>
 
         <!-- Right panel detail view for Groups tab -->
@@ -100,42 +100,21 @@
                 android:visibility="gone" />
         </view>
 
-        <!-- Two-panel view under the Favorites tab -->
-        <LinearLayout
+        <!-- Single panel view under the Favorites tab (Strequent) -->
+        <FrameLayout
             android:id="@+id/favorites_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/list_background_holo"
-            android:baselineAligned="false">
+            android:layout_height="match_parent">
 
-            <!-- Starred -->
-            <FrameLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:background="@drawable/panel_favorites_holo_light">
-
-                <fragment
-                    android:id="@+id/favorites_fragment"
-                    class="com.android.contacts.list.ContactTileListFragment"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    android:layout_marginRight="16dip"
-                    android:layout_marginLeft="16dip"/>
-
-            </FrameLayout>
-
-            <!-- Most Frequent -->
             <fragment
-                android:id="@+id/frequent_fragment"
-                class="com.android.contacts.list.ContactTileFrequentFragment"
-                android:layout_width="0dip"
+                android:id="@+id/favorites_fragment"
+                class="com.android.contacts.list.ContactTileListFragment"
                 android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:layout_marginTop="16dip"
-                android:layout_marginRight="16dip"/>
+                android:layout_width="match_parent"
+                android:layout_marginRight="16dip"
+                android:layout_marginLeft="16dip" />
 
-        </LinearLayout>
+        </FrameLayout>
 
     </LinearLayout>
 

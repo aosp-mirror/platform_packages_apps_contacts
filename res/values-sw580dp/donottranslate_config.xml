@@ -19,6 +19,7 @@
 
 <resources>
     <bool name="config_use_two_panes">true</bool>
+    <bool name="config_use_two_panes_in_favorites">false</bool>
     <bool name="show_home_icon">true</bool>
     <bool name="config_show_group_action_in_action_bar">false</bool>
     <bool name="config_browse_list_show_images">false</bool>

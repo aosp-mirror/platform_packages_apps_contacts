@@ -15,5 +15,6 @@
 -->
 <resources>
     <integer name="contact_tile_column_count">2</integer>
+    <integer name="contact_tile_column_count_in_favorites">3</integer>
     <integer name="updates_tab_snippet_max_lines">4</integer>
 </resources>
