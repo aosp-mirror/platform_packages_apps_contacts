@@ -403,11 +403,13 @@ public class PeopleActivity extends ContactsActivity
             mGroupDetailsView = getView(R.id.group_details_view);
             mBrowserView = getView(R.id.browse_view);
 
-            // 2-pane only fragments
-            mFrequentFragment = getFragment(R.id.frequent_fragment);
-            mFrequentFragment.setListener(mFavoritesFragmentListener);
-            mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
-            mFrequentFragment.enableQuickContact(true);
+            // Only favorites tab with two panes has a separate frequent fragment
+            if (PhoneCapabilityTester.isUsingTwoPanesInFavorites(this)) {
+                mFrequentFragment = getFragment(R.id.frequent_fragment);
+                mFrequentFragment.setListener(mFavoritesFragmentListener);
+                mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
+                mFrequentFragment.enableQuickContact(true);
+            }
 
             mContactDetailLoaderFragment = getFragment(R.id.contact_detail_loader_fragment);
             mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
@@ -431,7 +433,7 @@ public class PeopleActivity extends ContactsActivity
         fragmentManager.executePendingTransactions();
 
         // Setting Properties after fragment is created
-        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+        if (PhoneCapabilityTester.isUsingTwoPanesInFavorites(this)) {
             mFavoritesFragment.enableQuickContact(true);
             mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
         } else {
@@ -1450,7 +1452,7 @@ public class PeopleActivity extends ContactsActivity
      * @return
      */
     private boolean hasFrequents() {
-        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+        if (PhoneCapabilityTester.isUsingTwoPanesInFavorites(this)) {
             return mFrequentFragment.hasFrequents();
         } else {
             return mFavoritesFragment.hasFrequents();
