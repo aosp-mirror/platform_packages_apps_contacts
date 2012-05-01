@@ -20,6 +20,8 @@ import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedLi
 import com.android.contacts.util.AccountFilterUtil;
 
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * Fragment containing a phone number list for picking.
@@ -186,6 +189,14 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     protected void startLoading() {
         mLoaderStarted = true;
         super.startLoading();
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        super.onLoadFinished(loader, data);
+
+        // disable scroll bar if there is no data
+        setVisibleScrollbarEnabled(data.getCount() > 0);
     }
 
     public void setUseCallableUri(boolean useCallableUri) {
