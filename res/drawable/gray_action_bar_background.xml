@@ -14,8 +14,9 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-          android:exitFadeDuration="@android:integer/config_mediumAnimTime">
-    <item android:state_pressed="true" android:drawable="@drawable/action_bar_item_pressed_holo_light"/>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/ab_solid_custom_blue_inverse_holo"/>
     <item android:drawable="@drawable/ab_stacked_solid_inverse_holo" />
 </selector>
