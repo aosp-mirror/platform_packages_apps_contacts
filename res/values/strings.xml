@@ -990,13 +990,13 @@
     <string name="add_wait">Add wait</string>
 
     <!-- Title for the call disambiguation dialog -->
-    <string name="call_disambig_title">Call using</string>
+    <string name="call_disambig_title">Choose number</string>
 
     <!-- Menu item label for call settings [CHAR LIMIT=30] -->
     <string name="call_settings">Settings</string>
 
     <!-- Title for the sms disambiguation dialog -->
-    <string name="sms_disambig_title">Text using</string>
+    <string name="sms_disambig_title">Choose number</string>
 
     <!-- Message next to disamgiguation dialog check box -->
     <string name="make_primary">Remember this choice</string>
