@@ -77,6 +77,13 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
     }
 
     @Override
+    public boolean isEmpty() {
+        // Cannot use the super's method here because we add extra rows in getCount() to account
+        // for headers
+        return mContactTileAdapter.getCount() + mContactEntryListAdapter.getCount() == 0;
+    }
+
+    @Override
     public int getCount() {
         final int contactTileAdapterCount = mContactTileAdapter.getCount();
         final int contactEntryListAdapterCount = mContactEntryListAdapter.getCount();
