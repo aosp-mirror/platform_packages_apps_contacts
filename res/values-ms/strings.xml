@@ -152,7 +152,7 @@
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Semua rekod panggilan anda akan dipadamkan."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Memadam bersih log panggilan..."</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Padam bersih senarai kerap dihubungi?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Anda akan mengosongkan senarai orang yang kerap dihubungi dalam apl Orang dan Telefon serta memaksa apl e-mel untuk mempelajari pilihan alamat anda dari mula."</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Anda akan mengosongkan senarai orang yang kerap dihubungi dalam apl Orang dan Telefon serta memaksa apl e-mel untuk mempelajari pilihan alamat anda dari awal."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Memadam bersih senarai kerap dihubungi..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
@@ -459,8 +459,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Tetapan"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kenalan untuk dipaparkan"</string>
     <string name="menu_settings" msgid="377929915873428211">"Tetapan"</string>
-    <!-- no translation found for menu_help (5123887102216637725) -->
-    <skip />
+    <string name="menu_help" msgid="5123887102216637725">"Bantuan"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Pilihan paparan"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Cari kenalan"</string>
