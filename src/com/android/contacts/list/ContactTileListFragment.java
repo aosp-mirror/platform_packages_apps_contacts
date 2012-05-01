@@ -19,6 +19,7 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.R;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -31,6 +32,7 @@ import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +55,6 @@ public class ContactTileListFragment extends Fragment {
         void onCallNumberDirectly(String phoneNumber);
     }
 
-    private static int LOADER_CONTACTS = 1;
-
     private Listener mListener;
     private ContactTileAdapter mAdapter;
     private DisplayType mDisplayType;
@@ -68,7 +68,7 @@ public class ContactTileListFragment extends Fragment {
         super.onAttach(activity);
 
         Resources res = getResources();
-        int columnCount = res.getInteger(R.integer.contact_tile_column_count);
+        int columnCount = res.getInteger(R.integer.contact_tile_column_count_in_favorites);
 
         mAdapter = new ContactTileAdapter(activity, mAdapterListener,
                 columnCount, mDisplayType);
@@ -97,7 +97,17 @@ public class ContactTileListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        getLoaderManager().initLoader(LOADER_CONTACTS, null, mContactTileLoaderListener);
+
+        // initialize the loader for this display type and destroy all others
+        final DisplayType[] loaderTypes = mDisplayType.values();
+        for (int i = 0; i < loaderTypes.length; i++) {
+            if (loaderTypes[i] == mDisplayType) {
+                getLoaderManager().initLoader(mDisplayType.ordinal(), null,
+                        mContactTileLoaderListener);
+            } else {
+                getLoaderManager().destroyLoader(loaderTypes[i].ordinal());
+            }
+        }
     }
 
     /**

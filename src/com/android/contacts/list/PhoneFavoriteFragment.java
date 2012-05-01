@@ -275,7 +275,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         // that will be available on onCreateView().
 
         mContactTileAdapter = new ContactTileAdapter(activity, mContactTileAdapterListener,
-                getResources().getInteger(R.integer.contact_tile_column_count),
+                getResources().getInteger(R.integer.contact_tile_column_count_in_favorites),
                 ContactTileAdapter.DisplayType.STREQUENT_PHONE_ONLY);
         mContactTileAdapter.setPhotoLoader(ContactPhotoManager.getInstance(activity));
 

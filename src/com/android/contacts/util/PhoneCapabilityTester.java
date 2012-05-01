@@ -89,4 +89,11 @@ public final class PhoneCapabilityTester {
     public static boolean isUsingTwoPanes(Context context) {
         return context.getResources().getBoolean(R.bool.config_use_two_panes);
     }
+
+    /**
+     * True if the favorites tab should be shown in two-pane mode.  False, otherwise.
+     */
+    public static boolean isUsingTwoPanesInFavorites(Context context) {
+        return context.getResources().getBoolean(R.bool.config_use_two_panes_in_favorites);
+    }
 }
