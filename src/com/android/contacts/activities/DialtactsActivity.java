@@ -936,79 +936,127 @@ public class DialtactsActivity extends TransactionSafeActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dialtacts_options, menu);
+
+        // set up intents and onClick listeners
+        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
+        final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
+        final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
+        final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
+
+        callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
+        searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
+        filterOptionMenuItem.setOnMenuItemClickListener(mFilterOptionsMenuItemClickListener);
+        addContactOptionMenuItem.setIntent(
+                new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
+
         return true;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (mInSearchUi) {
+            prepareOptionsMenuInSearchMode(menu);
+        } else {
+            // get reference to the currently selected tab
+            final Tab tab = getActionBar().getSelectedTab();
+            if (tab != null) {
+                switch(tab.getPosition()) {
+                    case TAB_INDEX_DIALER:
+                        prepareOptionsMenuForDialerTab(menu);
+                        break;
+                    case TAB_INDEX_CALL_LOG:
+                        prepareOptionsMenuForCallLogTab(menu);
+                        break;
+                    case TAB_INDEX_FAVORITES:
+                        prepareOptionsMenuForFavoritesTab(menu);
+                        break;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void prepareOptionsMenuInSearchMode(Menu menu) {
+        // get references to menu items
         final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
         final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
         final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
         final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
-        final Tab tab = getActionBar().getSelectedTab();
-        final MenuItem fakeMenuItem = menu.findItem(R.id.fake_menu_item);
-        if (mInSearchUi) {
-            searchMenuItem.setVisible(false);
-            if (ViewConfiguration.get(this).hasPermanentMenuKey()) {
-                filterOptionMenuItem.setVisible(true);
-                filterOptionMenuItem.setOnMenuItemClickListener(
-                        mFilterOptionsMenuItemClickListener);
-            } else {
-                // Filter option menu should be not be shown as a overflow menu.
-                filterOptionMenuItem.setVisible(false);
-            }
-            addContactOptionMenuItem.setVisible(false);
-            callSettingsMenuItem.setVisible(false);
-            fakeMenuItem.setVisible(false);
-        } else {
-            final boolean showCallSettingsMenu;
-            if (tab != null && tab.getPosition() == TAB_INDEX_DIALER) {
-                if (DEBUG) {
-                    Log.d(TAG, "onPrepareOptionsMenu(dialer). swipe: " + mDuringSwipe
-                            + ", user tab click: " + mUserTabClick);
-                }
-                if (mDuringSwipe || mUserTabClick) {
-                    // During horizontal movement, we just show real ActionBar menu items.
-                    searchMenuItem.setVisible(true);
-                    searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
-                    showCallSettingsMenu = true;
+        final MenuItem emptyRightMenuItem = menu.findItem(R.id.empty_right_menu_item);
 
-                    fakeMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
-                } else {
-                    searchMenuItem.setVisible(false);
-                    // When permanent menu key is _not_ available, the call settings menu should be
-                    // available via DialpadFragment.
-                    showCallSettingsMenu = ViewConfiguration.get(this).hasPermanentMenuKey();
-                    fakeMenuItem.setVisible(false);
-                }
-            } else {
-                searchMenuItem.setVisible(true);
-                searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
-                showCallSettingsMenu = true;
-                fakeMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey()
-                        && (tab != null && tab.getPosition() == TAB_INDEX_CALL_LOG));
-            }
-            if (tab != null && tab.getPosition() == TAB_INDEX_FAVORITES) {
-                filterOptionMenuItem.setVisible(true);
-                filterOptionMenuItem.setOnMenuItemClickListener(
-                        mFilterOptionsMenuItemClickListener);
-                addContactOptionMenuItem.setVisible(true);
-                addContactOptionMenuItem.setIntent(
-                        new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
-            } else {
-                filterOptionMenuItem.setVisible(false);
-                addContactOptionMenuItem.setVisible(false);
-            }
+        // prepare the menu items
+        searchMenuItem.setVisible(false);
+        filterOptionMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
+        addContactOptionMenuItem.setVisible(false);
+        callSettingsMenuItem.setVisible(false);
+        emptyRightMenuItem.setVisible(false);
+    }
 
-            if (showCallSettingsMenu) {
-                callSettingsMenuItem.setVisible(true);
-                callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
-            } else {
-                callSettingsMenuItem.setVisible(false);
-            }
+    private void prepareOptionsMenuForDialerTab(Menu menu) {
+        if (DEBUG) {
+            Log.d(TAG, "onPrepareOptionsMenu(dialer). swipe: " + mDuringSwipe
+                    + ", user tab click: " + mUserTabClick);
         }
 
-        return true;
+        // get references to menu items
+        final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
+        final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
+        final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
+        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
+        final MenuItem emptyRightMenuItem = menu.findItem(R.id.empty_right_menu_item);
+
+        // prepare the menu items
+        filterOptionMenuItem.setVisible(false);
+        addContactOptionMenuItem.setVisible(false);
+        if (mDuringSwipe || mUserTabClick) {
+            // During horizontal movement, the real ActionBar menu items are shown
+            searchMenuItem.setVisible(true);
+            callSettingsMenuItem.setVisible(true);
+            // When there is a permanent menu key, there is no overflow icon on the right of
+            // the action bar which would force the search menu item (if it is visible) to the
+            // left.  This is the purpose of showing the emptyRightMenuItem.
+            emptyRightMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
+        } else {
+            // This is when the user is looking at the dialer pad.  In this case, the real
+            // ActionBar is hidden and fake menu items are shown.
+            searchMenuItem.setVisible(false);
+            // If a permanent menu key is available, then we need to show the call settings item
+            // so that the call settings item can be invoked by the permanent menu key.
+            callSettingsMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
+            emptyRightMenuItem.setVisible(false);
+        }
+    }
+
+    private void prepareOptionsMenuForCallLogTab(Menu menu) {
+        // get references to menu items
+        final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
+        final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
+        final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
+        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
+        final MenuItem emptyRightMenuItem = menu.findItem(R.id.empty_right_menu_item);
+
+        // prepare the menu items
+        searchMenuItem.setVisible(true);
+        filterOptionMenuItem.setVisible(false);
+        addContactOptionMenuItem.setVisible(false);
+        callSettingsMenuItem.setVisible(true);
+        emptyRightMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
+    }
+
+    private void prepareOptionsMenuForFavoritesTab(Menu menu) {
+        // get references to menu items
+        final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
+        final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
+        final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
+        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
+        final MenuItem emptyRightMenuItem = menu.findItem(R.id.empty_right_menu_item);
+
+        // prepare the menu items
+        searchMenuItem.setVisible(true);
+        filterOptionMenuItem.setVisible(true);
+        addContactOptionMenuItem.setVisible(true);
+        callSettingsMenuItem.setVisible(true);
+        emptyRightMenuItem.setVisible(false);
     }
 
     @Override

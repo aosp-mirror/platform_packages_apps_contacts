@@ -39,7 +39,7 @@
             android:id="@+id/contact_tile_list_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:layout_marginTop="@dimen/empty_message_top_margin"
             android:textColor="?android:attr/textColorSecondary"
             android:textAppearance="?android:attr/textAppearanceLarge"/>

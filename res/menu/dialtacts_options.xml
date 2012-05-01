@@ -46,7 +46,7 @@
 
          TODO: look for better idea. -->
     <item
-        android:id="@+id/fake_menu_item"
+        android:id="@+id/empty_right_menu_item"
         android:actionLayout="@layout/empty2"
         android:showAsAction="ifRoom" />
 </menu>
