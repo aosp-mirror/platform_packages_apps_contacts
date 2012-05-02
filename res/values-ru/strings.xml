@@ -278,9 +278,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Имена контактов"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Добавить двухсекундную паузу"</string>
     <string name="add_wait" msgid="3360818652790319634">"Добавить паузу"</string>
-    <string name="call_disambig_title" msgid="1911302597959335178">"Вызов"</string>
+    <!-- no translation found for call_disambig_title (4392886850104795739) -->
+    <skip />
     <string name="call_settings" msgid="7666474782093693667">"Настройки"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"Отправить SMS с помощью"</string>
+    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
+    <skip />
     <string name="make_primary" msgid="5829291915305113983">"Запомнить выбранное"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Действие не поддерживается ни в одном приложении."</string>
     <string name="missing_name" msgid="8745511583852904385">"Имя не указано"</string>

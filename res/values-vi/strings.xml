@@ -153,7 +153,7 @@
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Đang xóa nhật ký cuộc gọi…"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Xóa danh sách liên hệ thường xuyên?"</string>
     <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Bạn sẽ xóa danh sách liên hệ thường xuyên trong ứng dụng Liên hệ và điện thoại cũng như buộc các ứng dụng email phải tìm hiểu các tùy chọn gửi của bạn lại từ đầu."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Đang xóa d.sách l.hệ thường xuyên…"</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Đang xóa DS liên hệ thường xuyên…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Thư thoại"</string>
@@ -278,14 +278,16 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Tên danh bạ của bạn"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Thêm 2 giây dừng"</string>
     <string name="add_wait" msgid="3360818652790319634">"Thêm chờ"</string>
-    <string name="call_disambig_title" msgid="1911302597959335178">"Sử dụng cuộc gọi"</string>
+    <!-- no translation found for call_disambig_title (4392886850104795739) -->
+    <skip />
     <string name="call_settings" msgid="7666474782093693667">"Cài đặt"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"Nhắn tin sử dụng"</string>
+    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
+    <skip />
     <string name="make_primary" msgid="5829291915305113983">"Nhớ lựa chọn này"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Không tìm thấy ứng dụng nào để xử lý tác vụ này."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Không có tên)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Tài khoản"</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"Xóa d.sách l.hệ thường xuyên"</string>
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Xóa DS liên hệ thường xuyên"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Danh sách liên hệ để hiển thị"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Nhập/xuất"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Nhập/xuất danh bạ"</string>

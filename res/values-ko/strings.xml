@@ -152,7 +152,7 @@
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"모든 통화 기록을 삭제합니다."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"통화기록을 지우는 중..."</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"사용자 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"피플 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
@@ -278,9 +278,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2초 간 일시 정지 추가"</string>
     <string name="add_wait" msgid="3360818652790319634">"대기 시간 추가"</string>
-    <string name="call_disambig_title" msgid="1911302597959335178">"전화 걸기:"</string>
+    <!-- no translation found for call_disambig_title (4392886850104795739) -->
+    <skip />
     <string name="call_settings" msgid="7666474782093693667">"설정"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"다음을 사용하여 문자 보내기:"</string>
+    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
+    <skip />
     <string name="make_primary" msgid="5829291915305113983">"이 선택사항 저장"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
     <string name="missing_name" msgid="8745511583852904385">"(이름 없음)"</string>

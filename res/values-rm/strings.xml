@@ -397,10 +397,12 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Num da Voss contacts"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Agiuntar ina pausa da 2 secundas"</string>
     <string name="add_wait" msgid="3360818652790319634">"Agiuntar Spetgar"</string>
-    <string name="call_disambig_title" msgid="1911302597959335178">"Telefonar cun"</string>
+    <!-- no translation found for call_disambig_title (4392886850104795739) -->
+    <skip />
     <!-- no translation found for call_settings (7666474782093693667) -->
     <skip />
-    <string name="sms_disambig_title" msgid="4675399294513152364">"Trametter in SMS sur"</string>
+    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
+    <skip />
     <string name="make_primary" msgid="5829291915305113983">"Memorisar questa tscherna"</string>
     <!-- no translation found for quickcontact_missing_app (358168575340921552) -->
     <skip />
