@@ -152,7 +152,7 @@
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"บันทึกการโทรทั้งหมดของคุณจะถูกลบออก"</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"กำลังล้างบันทึกการโทร..."</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ หรือไม่"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอปพลิเคชัน People และ Phone และทำให้แอปพลิเคชันอีเมลต้องเรียนรู้การกำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอป People and Phone และบังคับให้แอปอีเมลเรียนรู้การกำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"กำลังล้างผู้ที่คุณติดต่อด้วยบ่อยๆ…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
@@ -278,9 +278,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"ชื่อของรายชื่อในสมุดโทรศัพท์ของคุณ"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"เพิ่มช่วงคั่น 2 วินาที"</string>
     <string name="add_wait" msgid="3360818652790319634">"เพิ่มการรอ"</string>
-    <string name="call_disambig_title" msgid="1911302597959335178">"โทรออกโดยใช้"</string>
+    <!-- no translation found for call_disambig_title (4392886850104795739) -->
+    <skip />
     <string name="call_settings" msgid="7666474782093693667">"การตั้งค่า"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"ส่งข้อความโดยใช้"</string>
+    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
+    <skip />
     <string name="make_primary" msgid="5829291915305113983">"จำตัวเลือกนี้"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ไม่พบแอปพลิเคชันสำหรับการทำงานนี้"</string>
     <string name="missing_name" msgid="8745511583852904385">"(ไม่มีชื่อ)"</string>

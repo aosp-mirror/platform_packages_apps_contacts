@@ -152,7 +152,7 @@
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Kumbukumbu zako zote za simu zitafutwa."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Inafuta rekodi ya simu ..."</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Futa uliowasiliana nao mara kwa mara?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Utafuta orodha unayowasiliana nayo mara kwa mara katika programu ya Watu na Simu, na ulazimishe programu za barua pepe kujifunza mapendeleo yako ya anwani kutoka mwanzo."</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Utafuta orodha ya unaowasiliana nao mara kwa mara katika programu ya Watu na Simu, na ulazimishe programu za barua pepe kujifunza mapendeleo yako ya anwani kutoka mwanzo."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Inafuta uliowasiliana nao mara kwa mara..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
@@ -280,14 +280,16 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Majina ya anwani zako"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Ongeza usitishaji wa sekunde 2"</string>
     <string name="add_wait" msgid="3360818652790319634">"Ongeza kusubiri"</string>
-    <string name="call_disambig_title" msgid="1911302597959335178">"Piga simu kwa kutumia"</string>
+    <!-- no translation found for call_disambig_title (4392886850104795739) -->
+    <skip />
     <string name="call_settings" msgid="7666474782093693667">"Mipangilio"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"Tuma ujumbe kwa kutumia"</string>
+    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
+    <skip />
     <string name="make_primary" msgid="5829291915305113983">"Kumbuka chaguo hili"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Hakuna programu iliyopatikana ya kushughulikia tendo hili."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Hakuna jina)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Akaunti"</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"Futa za mara kwa mara"</string>
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Futa idadi ya mara ambazo unawasiliana nao"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Anwani za kuonyesha"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Leta/hamisha"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Leta/Hamisha wawasiliani"</string>

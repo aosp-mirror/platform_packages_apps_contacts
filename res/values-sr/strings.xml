@@ -151,8 +151,8 @@
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Обрисати евиденцију позива?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Све евиденције позива ће бити избрисане."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Брисање евиденције позива..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Обриши често контактиране?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Обрисаћете листу често контактираних у апликацијама Људи и Телефон, па ће апликације е-поште морати из почетка да сакупе информације о подешавањима адресирања."</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Брисање често контактираних?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Обрисаћете листу често контактираних у апликацијама Људи и Телефон, па ће апликације е-поште морати из почетка да сакупе информације о адресирању."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Брисање често контактираних..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
@@ -278,9 +278,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Имена контаката"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Додај паузу од 2 секунде"</string>
     <string name="add_wait" msgid="3360818652790319634">"Додај чекање"</string>
-    <string name="call_disambig_title" msgid="1911302597959335178">"Позови помоћу"</string>
+    <!-- no translation found for call_disambig_title (4392886850104795739) -->
+    <skip />
     <string name="call_settings" msgid="7666474782093693667">"Подешавања"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"Пошаљи SMS помоћу"</string>
+    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
+    <skip />
     <string name="make_primary" msgid="5829291915305113983">"Запамти овај избор"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Није пронађена ниједна апликација која би могла да изврши ову радњу."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Без имена)"</string>
