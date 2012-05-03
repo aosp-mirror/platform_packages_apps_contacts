@@ -72,7 +72,7 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"Tento kontakt bude smazán."</string>
     <string name="menu_done" msgid="796017761764190697">"Hotovo"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Zrušit"</string>
-    <string name="menu_discard" msgid="6456087569315685632">"Zrušit"</string>
+    <string name="menu_discard" msgid="6456087569315685632">"Zahodit"</string>
     <string name="label_notes" msgid="8337354953278341042">"Poznámky"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Internetový hovor"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Společnost"</string>
@@ -494,7 +494,7 @@
     <string name="set_default" msgid="4417505153468300351">"Výchozí nastavení"</string>
     <string name="clear_default" msgid="7193185801596678067">"Vymazat výchozí nastavení"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text zkopírován"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Zrušit změny?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Zahodit změny?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Nastavit profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Zadejte jméno osoby"</string>
