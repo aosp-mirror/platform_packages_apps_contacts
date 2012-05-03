@@ -551,11 +551,16 @@
             </intent-filter>
         </activity>
 
-        <!-- Internal photo selection activity -->
+        <!--
+            Internal photo selection activity.  This activity handles all configuration changes by
+            itself.
+        -->
         <activity android:name=".activities.PhotoSelectionActivity"
             android:theme="@style/Theme.PhotoSelector"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="stateUnchanged">
+            android:windowSoftInputMode="stateUnchanged"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            >
         </activity>
 
         <!-- Interstitial activity that shows a phone disambig dialog -->
