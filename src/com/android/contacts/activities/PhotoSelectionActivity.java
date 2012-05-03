@@ -30,6 +30,7 @@ import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -58,10 +59,6 @@ public class PhotoSelectionActivity extends Activity {
 
     /** Number of ms for the animation to hide the backdrop on finish. */
     private static final int BACKDROP_FADEOUT_DURATION = 100;
-
-    private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
-
-    private static final String KEY_SUB_ACTIVITY_IN_PROGRESS = "subinprogress";
 
     /** Intent extra to get the photo URI. */
     public static final String PHOTO_URI = "photo_uri";
@@ -132,10 +129,7 @@ public class PhotoSelectionActivity extends Activity {
     /** Whether a sub-activity is currently in progress. */
     private boolean mSubActivityInProgress;
 
-    /**
-     * A photo result received by the activity, persisted across activity lifecycle.
-     */
-    private PendingPhotoResult mPendingPhotoResult;
+    private boolean mCloseActivityWhenCameBackFromSubActivity;
 
     /**
      * The photo file being interacted with, if any.  Saved/restored between activity instances.
@@ -146,13 +140,6 @@ public class PhotoSelectionActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photoselection_activity);
-        if (savedInstanceState != null) {
-            String fileName = savedInstanceState.getString(KEY_CURRENT_PHOTO_FILE);
-            if (fileName != null) {
-                mCurrentPhotoFile = new File(fileName);
-            }
-            mSubActivityInProgress = savedInstanceState.getBoolean(KEY_SUB_ACTIVITY_IN_PROGRESS);
-        }
 
         // Pull data out of the intent.
         final Intent intent = getIntent();
@@ -187,11 +174,26 @@ public class PhotoSelectionActivity extends Activity {
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // The current look may not seem right on the new configuration, so let's just close self.
+
+        if (!mSubActivityInProgress) {
+            finishImmediatelyWithNoAnimation();
+        } else {
+            // A sub-activity is in progress, so don't close it yet, but close it when we come back
+            // to this activity.
+            mCloseActivityWhenCameBackFromSubActivity = true;
+        }
+    }
+
+    @Override
     public void finish() {
         if (!mSubActivityInProgress) {
             closePhotoAndFinish();
         } else {
-            activityFinish();
+            finishImmediatelyWithNoAnimation();
         }
     }
 
@@ -227,7 +229,7 @@ public class PhotoSelectionActivity extends Activity {
         return intent;
     }
 
-    private void activityFinish() {
+    private void finishImmediatelyWithNoAnimation() {
         super.finish();
     }
 
@@ -360,15 +362,13 @@ public class PhotoSelectionActivity extends Activity {
                 anim.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        activityFinish();
+                        finishImmediatelyWithNoAnimation();
                     }
                 });
                 anim.start();
             }
         };
 
-        // TODO: This won't animate in the right way if the rotation has changed since the activity
-        // was first started.
         animatePhoto(mPhotoStartParams);
         animateAwayBackground();
     }
@@ -395,28 +395,23 @@ public class PhotoSelectionActivity extends Activity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mCurrentPhotoFile != null) {
-            outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile.toString());
-        }
-        outState.putBoolean(KEY_SUB_ACTIVITY_IN_PROGRESS, mSubActivityInProgress);
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (mPhotoHandler != null) {
             mSubActivityInProgress = false;
             if (mPhotoHandler.handlePhotoActivityResult(requestCode, resultCode, data)) {
-                // Clear out any pending photo result.
-                mPendingPhotoResult = null;
+                // Result was handled.  We'll get a callback later.
             } else {
-                // User returning to the photo selection activity.  Re-display options.
-                mPhotoHandler.onClick(mPhotoView);
+                // User cancelled the sub-activity and returning to the photo selection activity.
+                if (mCloseActivityWhenCameBackFromSubActivity) {
+                    finishImmediatelyWithNoAnimation();
+                } else {
+                    // Re-display options.
+                    mPhotoHandler.onClick(mPhotoView);
+                }
             }
         } else {
-            // Create a pending photo result to be handled when the photo handler is created.
-            mPendingPhotoResult = new PendingPhotoResult(requestCode, resultCode, data);
+            // The result comes back before we prepare the handler?  This activity won't get
+            // re-created for orientation changes, so this shouldn't happen.
         }
     }
 
@@ -432,24 +427,19 @@ public class PhotoSelectionActivity extends Activity {
         mode &= ~PhotoActionPopup.Flags.REMOVE_PHOTO;
 
         mPhotoHandler = new PhotoHandler(this, mPhotoView, mode, mState);
-        if (mPendingPhotoResult != null) {
-            mPhotoHandler.handlePhotoActivityResult(mPendingPhotoResult.mRequestCode,
-                    mPendingPhotoResult.mResultCode, mPendingPhotoResult.mData);
-            mPendingPhotoResult = null;
-        } else {
-            // Setting the photo in displayPhoto() resulted in a relayout
-            // request... to avoid jank, wait until this layout has happened.
-            SchedulingUtils.doAfterLayout(mBackdrop, new Runnable() {
-                @Override
-                public void run() {
-                    animatePhotoOpen();
-                }
-            });
-        }
+
+        // Setting the photo in displayPhoto() resulted in a relayout
+        // request... to avoid jank, wait until this layout has happened.
+        SchedulingUtils.doAfterLayout(mBackdrop, new Runnable() {
+            @Override
+            public void run() {
+                animatePhotoOpen();
+            }
+        });
     }
 
     private final class PhotoHandler extends PhotoSelectionHandler {
-        private PhotoActionListener mListener;
+        private final PhotoActionListener mListener;
 
         private PhotoHandler(
                 Context context, View photoView, int photoMode, EntityDeltaList state) {
@@ -494,17 +484,6 @@ public class PhotoSelectionActivity extends Activity {
                     finish();
                 }
             }
-        }
-    }
-
-    private static class PendingPhotoResult {
-        private int mRequestCode;
-        private int mResultCode;
-        private Intent mData;
-        private PendingPhotoResult(int requestCode, int resultCode, Intent data) {
-            mRequestCode = requestCode;
-            mResultCode = resultCode;
-            mData = data;
         }
     }
 }
