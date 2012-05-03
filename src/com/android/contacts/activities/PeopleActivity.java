@@ -343,7 +343,7 @@ public class PeopleActivity extends ContactsActivity
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         // Prepare the fragments which are used both on 1-pane and on 2-pane.
-        boolean isUsingTwoPanes = PhoneCapabilityTester.isUsingTwoPanes(this);
+        final boolean isUsingTwoPanes = PhoneCapabilityTester.isUsingTwoPanes(this);
         if (isUsingTwoPanes) {
             mFavoritesFragment = getFragment(R.id.favorites_fragment);
             mAllFragment = getFragment(R.id.all_fragment);
@@ -437,6 +437,9 @@ public class PeopleActivity extends ContactsActivity
             mFavoritesFragment.enableQuickContact(true);
             mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
         } else {
+            // For 2-pane in All and Groups but not in Favorites fragment, show the chevron
+            // for quick contact popup
+            mFavoritesFragment.enableQuickContact(isUsingTwoPanes);
             mFavoritesFragment.setDisplayType(DisplayType.STREQUENT);
         }
 
