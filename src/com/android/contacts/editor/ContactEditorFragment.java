@@ -1027,8 +1027,11 @@ public class ContactEditorFragment extends Fragment implements
         Intent intent = ContactSaveService.createSaveContactIntent(getActivity(), mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(), getActivity().getClass(),
                 ContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos);
-
         getActivity().startService(intent);
+
+        // Don't try to save the same photos twice.
+        mUpdatedPhotos = new Bundle();
+
         return true;
     }
 
