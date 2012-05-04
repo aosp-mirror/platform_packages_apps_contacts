@@ -19,6 +19,7 @@ package com.android.contacts.editor;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.interactions.GroupCreationDialogFragment;
+import com.android.contacts.interactions.GroupCreationDialogFragment.OnGroupCreatedListener;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -35,9 +36,11 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.ListView;
@@ -83,19 +86,61 @@ public class GroupMembershipView extends LinearLayout
         }
     }
 
+    /**
+     * Extends the array adapter to show checkmarks on all but the last list item for
+     * the group membership popup.  Note that this is highly specific to the fact that the
+     * group_membership_list_item.xml is a CheckedTextView object.
+     */
+    private class GroupMembershipAdapter<T> extends ArrayAdapter<T> {
+
+        public GroupMembershipAdapter(Context context, int textViewResourceId) {
+            super(context, textViewResourceId);
+        }
+
+        public boolean getItemIsCheckable(int position) {
+            // Item is checkable if it is NOT the last one in the list
+            return position != getCount()-1;
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return getItemIsCheckable(position) ? 0 : 1;
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return 2;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final View itemView = super.getView(position, convertView, parent);
+
+            // Hide the checkable drawable.  This assumes that the item views
+            // are CheckedTextView objects
+            final CheckedTextView checkedTextView = (CheckedTextView)itemView;
+            if (!getItemIsCheckable(position)) {
+                checkedTextView.setCheckMarkDrawable(null);
+            }
+
+            return checkedTextView;
+        }
+    }
+
     private EntityDelta mState;
     private Cursor mGroupMetaData;
     private String mAccountName;
     private String mAccountType;
     private String mDataSet;
     private TextView mGroupList;
-    private ArrayAdapter<GroupSelectionItem> mAdapter;
+    private GroupMembershipAdapter<GroupSelectionItem> mAdapter;
     private long mDefaultGroupId;
     private long mFavoritesGroupId;
     private ListPopupWindow mPopup;
     private DataKind mKind;
     private boolean mDefaultGroupVisibilityKnown;
     private boolean mDefaultGroupVisible;
+    private boolean mCreatedNewGroup;
 
     private String mNoGroupString;
     private int mPrimaryTextColor;
@@ -135,6 +180,21 @@ public class GroupMembershipView extends LinearLayout
     public void setGroupMetaData(Cursor groupMetaData) {
         this.mGroupMetaData = groupMetaData;
         updateView();
+        // Open up the list of groups if a new group was just created.
+        if (mCreatedNewGroup) {
+            mCreatedNewGroup = false;
+            onClick(this); // This causes the popup to open.
+            if (mPopup != null) {
+                // Ensure that the newly created group is checked.
+                int position = mAdapter.getCount() - 2;
+                ListView listView = mPopup.getListView();
+                if (!listView.isItemChecked(position)) {
+                    // Newly created group is not checked, so check it.
+                    listView.setItemChecked(position, true);
+                    onItemClick(listView, null, position, listView.getItemIdAtPosition(position));
+                }
+            }
+        }
     }
 
     public void setState(EntityDelta state) {
@@ -144,6 +204,7 @@ public class GroupMembershipView extends LinearLayout
         mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
         mDataSet = values.getAsString(RawContacts.DATA_SET);
         mDefaultGroupVisibilityKnown = false;
+        mCreatedNewGroup = false;
         updateView();
     }
 
@@ -226,7 +287,7 @@ public class GroupMembershipView extends LinearLayout
             return;
         }
 
-        mAdapter = new ArrayAdapter<GroupSelectionItem>(
+        mAdapter = new GroupMembershipAdapter<GroupSelectionItem>(
                 getContext(), R.layout.group_membership_list_item);
 
         mGroupMetaData.moveToPosition(-1);
@@ -356,7 +417,16 @@ public class GroupMembershipView extends LinearLayout
         }
 
         GroupCreationDialogFragment.show(
-                ((Activity) getContext()).getFragmentManager(), mAccountType, mAccountName,
-                mDataSet);
+                ((Activity) getContext()).getFragmentManager(),
+                mAccountType,
+                mAccountName,
+                mDataSet,
+                new OnGroupCreatedListener() {
+                    @Override
+                    public void onGroupCreated() {
+                        mCreatedNewGroup = true;
+                    }
+                });
     }
+
 }

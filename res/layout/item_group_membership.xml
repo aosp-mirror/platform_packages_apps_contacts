@@ -16,6 +16,7 @@
 
 <com.android.contacts.editor.GroupMembershipView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/group_membership_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
