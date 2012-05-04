@@ -110,12 +110,12 @@
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Změny skupiny nelze uložit."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 kontakt s telefonním číslem"</item>
-    <item quantity="other" msgid="3299954047880968205">"Počet kontaktů s telefonními čísly: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="other" msgid="3299954047880968205">"Kontakty s telefonními čísly: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Ke kontaktům nejsou přiřazena žádná telefonní čísla"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 kontakt"</item>
-    <item quantity="other" msgid="3578469907265375314">"Počet kontaktů: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="other" msgid="3578469907265375314">"Kontakty: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Žádné kontakty."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Žádné kontakty nejsou viditelné."</string>
@@ -125,14 +125,14 @@
     <string name="listSingleContact" msgid="6067813698903535563">"Jeden kontakt"</string>
     <string name="listCustomView" msgid="6950713892532194050">"Kontakty ve vlastním zobrazení"</string>
   <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"Počet nalezených položek: 1"</item>
-    <item quantity="other" msgid="3852668542926965042">"Počet nalezených položek: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="one" msgid="5517063038754171134">"Nalezeno: 1"</item>
+    <item quantity="other" msgid="3852668542926965042">"Nalezeno: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Nalezeno více kontaktů než <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Nebyl nalezen žádný kontakt."</string>
   <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"Počet nalezených položek: 1"</item>
-    <item quantity="other" msgid="7988132539476575389">"Počet nalezených položek: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="one" msgid="4826918429708286628">"Nalezeno: 1"</item>
+    <item quantity="other" msgid="7988132539476575389">"Nalezeno: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="contactsAllLabel" msgid="6178225597569649305">"Vše"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Skupiny"</string>
@@ -278,11 +278,9 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Jména vašich kontaktů"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Přidat 2s pauzu"</string>
     <string name="add_wait" msgid="3360818652790319634">"Přidat čekání"</string>
-    <!-- no translation found for call_disambig_title (4392886850104795739) -->
-    <skip />
+    <string name="call_disambig_title" msgid="4392886850104795739">"Zvolte číslo"</string>
     <string name="call_settings" msgid="7666474782093693667">"Nastavení"</string>
-    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
-    <skip />
+    <string name="sms_disambig_title" msgid="5846266399240630846">"Zvolte číslo"</string>
     <string name="make_primary" msgid="5829291915305113983">"Zapamatovat tuto volbu"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikace potřebná k provedení této akce nebyla nalezena."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Žádné jméno)"</string>
@@ -501,7 +499,7 @@
     <string name="view_updates_from_group" msgid="1782685984905600034">"Zobrazit aktualizace"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Hlasová schránka"</item>
-    <item quantity="other" msgid="5513481419205061254">"Počet hlasových zpráv: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
+    <item quantity="other" msgid="5513481419205061254">"Hlasové zprávy: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nová hlasová zpráva – <xliff:g id="CALLER">%1$s</xliff:g>"</string>
