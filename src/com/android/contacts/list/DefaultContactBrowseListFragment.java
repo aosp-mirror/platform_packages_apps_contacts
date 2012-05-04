@@ -56,8 +56,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mSearchProgress;
     private TextView mSearchProgressText;
 
-    private View mPaddingView;
-
     private class FilterHeaderClickListener implements OnClickListener {
         @Override
         public void onClick(View view) {
@@ -258,8 +256,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mProfileTitle.setVisibility(show ? View.VISIBLE : View.GONE);
         mMessageContainer.setVisibility(show ? View.VISIBLE : View.GONE);
         mProfileMessage.setVisibility(show ? View.VISIBLE : View.GONE);
-
-        mPaddingView.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -295,11 +291,5 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 startActivity(intent);
             }
         });
-
-        View paddingViewContainer =
-                inflater.inflate(R.layout.contact_detail_list_padding, null, false);
-        mPaddingView = paddingViewContainer.findViewById(R.id.contact_detail_list_padding);
-        mPaddingView.setVisibility(View.GONE);
-        getListView().addHeaderView(paddingViewContainer);
     }
 }

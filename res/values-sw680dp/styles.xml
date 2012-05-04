@@ -39,7 +39,7 @@
         <item name="list_item_prefix_highlight_color">@color/people_app_theme_color</item>
         <item name="list_item_header_text_indent">8dip</item>
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
-        <item name="list_item_header_height">24dip</item>
+        <item name="list_item_header_height">32dip</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
         <item name="list_item_header_underline_height">1dip</item>
