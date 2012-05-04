@@ -1505,7 +1505,7 @@
     <string name="create_group_dialog_title">Create new group</string>
 
     <!-- An item in the popup list of groups that triggers creation of a contact group [CHAR LIMIT=128] -->
-    <string name="create_group_item_label">[Create new group]</string>
+    <string name="create_group_item_label">Create new group</string>
 
     <!-- Shows how many groups are from the specified account [CHAR LIMIT=15] -->
     <plurals name="num_groups_in_account">

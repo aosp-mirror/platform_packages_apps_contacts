@@ -33,16 +33,38 @@ public class GroupCreationDialogFragment extends GroupNameDialogFragment {
     private static final String ARG_ACCOUNT_NAME = "accountName";
     private static final String ARG_DATA_SET = "dataSet";
 
+    public static final String FRAGMENT_TAG = "createGroupDialog";
+
+    private final OnGroupCreatedListener mListener;
+
+    public interface OnGroupCreatedListener {
+        public void onGroupCreated();
+    }
+
     public static void show(
             FragmentManager fragmentManager, String accountType, String accountName,
-            String dataSet) {
-        GroupCreationDialogFragment dialog = new GroupCreationDialogFragment();
+            String dataSet, OnGroupCreatedListener listener) {
+        GroupCreationDialogFragment dialog = new GroupCreationDialogFragment(listener);
         Bundle args = new Bundle();
         args.putString(ARG_ACCOUNT_TYPE, accountType);
         args.putString(ARG_ACCOUNT_NAME, accountName);
         args.putString(ARG_DATA_SET, dataSet);
         dialog.setArguments(args);
-        dialog.show(fragmentManager, "createGroup");
+        dialog.show(fragmentManager, FRAGMENT_TAG);
+    }
+
+    public GroupCreationDialogFragment() {
+        super();
+        mListener = null;
+    }
+
+    private GroupCreationDialogFragment(OnGroupCreatedListener listener) {
+        super();
+        mListener = listener;
+    }
+
+    public OnGroupCreatedListener getOnGroupCreatedListener() {
+        return mListener;
     }
 
     @Override
@@ -60,6 +82,13 @@ public class GroupCreationDialogFragment extends GroupNameDialogFragment {
         String accountType = arguments.getString(ARG_ACCOUNT_TYPE);
         String accountName = arguments.getString(ARG_ACCOUNT_NAME);
         String dataSet = arguments.getString(ARG_DATA_SET);
+
+        // Indicate to the listener that a new group will be created.
+        // If the device is rotated, mListener will become null, so that the
+        // popup from GroupMembershipView will not be shown.
+        if (mListener != null) {
+            mListener.onGroupCreated();
+        }
 
         Activity activity = getActivity();
         activity.startService(ContactSaveService.createNewGroupIntent(activity,
