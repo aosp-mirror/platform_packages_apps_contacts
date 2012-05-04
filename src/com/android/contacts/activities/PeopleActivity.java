@@ -854,9 +854,13 @@ public class PeopleActivity extends ContactsActivity
 
         private Fragment getFragment(int position) {
             if (mTabPagerAdapterSearchMode) {
-                if (position == 0) {
-                    return mAllFragment;
+                if (position != 0) {
+                    // This has only been observed in monkey tests.
+                    // Let's log this issue, but not crash
+                    Log.w(TAG, "Request fragment at position=" + position + ", eventhough we " +
+                            "are in search mode");
                 }
+                return mAllFragment;
             } else {
                 if (position == TabState.FAVORITES) {
                     return mFavoritesFragment;
