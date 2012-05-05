@@ -21,6 +21,7 @@ import com.android.contacts.R;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.PhotoActionPopup;
 import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.SchedulingUtils;
 
 import android.animation.Animator;
@@ -42,7 +43,6 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
 
-import java.io.File;
 
 /**
  * Popup activity for choosing a contact photo within the Contacts app.
@@ -59,6 +59,12 @@ public class PhotoSelectionActivity extends Activity {
 
     /** Number of ms for the animation to hide the backdrop on finish. */
     private static final int BACKDROP_FADEOUT_DURATION = 100;
+
+    /** Key used to persist photo-filename (NOT full file-path). */
+    private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
+
+    /** Key used to persist whether a sub-activity is currently in progress. */
+    private static final String KEY_SUB_ACTIVITY_IN_PROGRESS = "subinprogress";
 
     /** Intent extra to get the photo URI. */
     public static final String PHOTO_URI = "photo_uri";
@@ -132,14 +138,23 @@ public class PhotoSelectionActivity extends Activity {
     private boolean mCloseActivityWhenCameBackFromSubActivity;
 
     /**
+     * A photo result received by the activity, persisted across activity lifecycle.
+     */
+    private PendingPhotoResult mPendingPhotoResult;
+
+    /**
      * The photo file being interacted with, if any.  Saved/restored between activity instances.
      */
-    private File mCurrentPhotoFile;
+    private String mCurrentPhotoFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photoselection_activity);
+        if (savedInstanceState != null) {
+            mCurrentPhotoFile = savedInstanceState.getString(KEY_CURRENT_PHOTO_FILE);
+            mSubActivityInProgress = savedInstanceState.getBoolean(KEY_SUB_ACTIVITY_IN_PROGRESS);
+        }
 
         // Pull data out of the intent.
         final Intent intent = getIntent();
@@ -395,11 +410,19 @@ public class PhotoSelectionActivity extends Activity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile);
+        outState.putBoolean(KEY_SUB_ACTIVITY_IN_PROGRESS, mSubActivityInProgress);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (mPhotoHandler != null) {
             mSubActivityInProgress = false;
             if (mPhotoHandler.handlePhotoActivityResult(requestCode, resultCode, data)) {
-                // Result was handled.  We'll get a callback later.
+                // Clear out any pending photo result.
+                mPendingPhotoResult = null;
             } else {
                 // User cancelled the sub-activity and returning to the photo selection activity.
                 if (mCloseActivityWhenCameBackFromSubActivity) {
@@ -410,8 +433,8 @@ public class PhotoSelectionActivity extends Activity {
                 }
             }
         } else {
-            // The result comes back before we prepare the handler?  This activity won't get
-            // re-created for orientation changes, so this shouldn't happen.
+            // Create a pending photo result to be handled when the photo handler is created.
+            mPendingPhotoResult = new PendingPhotoResult(requestCode, resultCode, data);
         }
     }
 
@@ -428,14 +451,20 @@ public class PhotoSelectionActivity extends Activity {
 
         mPhotoHandler = new PhotoHandler(this, mPhotoView, mode, mState);
 
-        // Setting the photo in displayPhoto() resulted in a relayout
-        // request... to avoid jank, wait until this layout has happened.
-        SchedulingUtils.doAfterLayout(mBackdrop, new Runnable() {
-            @Override
-            public void run() {
-                animatePhotoOpen();
-            }
-        });
+        if (mPendingPhotoResult != null) {
+            mPhotoHandler.handlePhotoActivityResult(mPendingPhotoResult.mRequestCode,
+                    mPendingPhotoResult.mResultCode, mPendingPhotoResult.mData);
+            mPendingPhotoResult = null;
+        } else {
+            // Setting the photo in displayPhoto() resulted in a relayout
+            // request... to avoid jank, wait until this layout has happened.
+            SchedulingUtils.doAfterLayout(mBackdrop, new Runnable() {
+                @Override
+                public void run() {
+                    animatePhotoOpen();
+                }
+            });
+        }
     }
 
     private final class PhotoHandler extends PhotoSelectionHandler {
@@ -454,27 +483,27 @@ public class PhotoSelectionActivity extends Activity {
         }
 
         @Override
-        public void startPhotoActivity(Intent intent, int requestCode, File photoFile) {
+        public void startPhotoActivity(Intent intent, int requestCode, String photoFile) {
             mSubActivityInProgress = true;
             mCurrentPhotoFile = photoFile;
             PhotoSelectionActivity.this.startActivityForResult(intent, requestCode);
         }
 
         private final class PhotoListener extends PhotoActionListener {
-
             @Override
             public void onPhotoSelected(Bitmap bitmap) {
                 EntityDeltaList delta = getDeltaForAttachingPhotoToContact();
                 long rawContactId = getWritableEntityId();
-                String filePath = mCurrentPhotoFile.getAbsolutePath();
+                final String croppedPath = ContactPhotoUtils.pathForCroppedPhoto(
+                        PhotoSelectionActivity.this, mCurrentPhotoFile);
                 Intent intent = ContactSaveService.createSaveContactIntent(
-                        mContext, delta, "", 0, mIsProfile, null, null, rawContactId, filePath);
+                        mContext, delta, "", 0, mIsProfile, null, null, rawContactId, croppedPath);
                 startService(intent);
                 finish();
             }
 
             @Override
-            public File getCurrentPhotoFile() {
+            public String getCurrentPhotoFile() {
                 return mCurrentPhotoFile;
             }
 
@@ -484,6 +513,17 @@ public class PhotoSelectionActivity extends Activity {
                     finish();
                 }
             }
+        }
+    }
+
+    private static class PendingPhotoResult {
+        final private int mRequestCode;
+        final private int mResultCode;
+        final private Intent mData;
+        private PendingPhotoResult(int requestCode, int resultCode, Intent data) {
+            mRequestCode = requestCode;
+            mResultCode = resultCode;
+            mData = data;
         }
     }
 }

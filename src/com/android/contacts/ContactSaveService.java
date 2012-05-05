@@ -506,6 +506,7 @@ public class ContactSaveService extends IntentService {
                 }
             } finally {
                 outputStream.close();
+                photoFile.delete();
             }
         } catch (IOException e) {
             Log.e(TAG, "Failed to write photo: " + photoFile.toString() + " because: " + e);

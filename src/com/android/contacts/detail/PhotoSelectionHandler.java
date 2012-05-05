@@ -115,12 +115,15 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         final PhotoActionListener listener = getListener();
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
+                // Photo was chosen (either new or existing from gallery), and cropped.
                 case REQUEST_CODE_PHOTO_PICKED_WITH_DATA: {
-                    Bitmap bitmap = BitmapFactory.decodeFile(
-                            listener.getCurrentPhotoFile().getAbsolutePath());
+                    final String path = ContactPhotoUtils.pathForCroppedPhoto(
+                            mContext, listener.getCurrentPhotoFile());
+                    Bitmap bitmap = BitmapFactory.decodeFile(path);
                     listener.onPhotoSelected(bitmap);
                     return true;
                 }
+                // Photo was successfully taken, now crop it.
                 case REQUEST_CODE_CAMERA_WITH_DATA: {
                     doCropPhoto(listener.getCurrentPhotoFile());
                     return true;
@@ -183,23 +186,28 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     }
 
     /** Used by subclasses to delegate to their enclosing Activity or Fragment. */
-    protected abstract void startPhotoActivity(Intent intent, int requestCode, File photoFile);
+    protected abstract void startPhotoActivity(Intent intent, int requestCode, String photoFile);
 
     /**
      * Sends a newly acquired photo to Gallery for cropping
      */
-    private void doCropPhoto(File f) {
+    private void doCropPhoto(String fileName) {
         try {
+            // Obtain the absolute paths for the newly-taken photo, and the destination
+            // for the soon-to-be-cropped photo.
+            final String newPath = ContactPhotoUtils.pathForNewCameraPhoto(fileName);
+            final String croppedPath = ContactPhotoUtils.pathForCroppedPhoto(mContext, fileName);
+
             // Add the image to the media store
             MediaScannerConnection.scanFile(
                     mContext,
-                    new String[] { f.getAbsolutePath() },
+                    new String[] { newPath },
                     new String[] { null },
                     null);
 
             // Launch gallery to crop the photo
-            final Intent intent = getCropImageIntent(f);
-            startPhotoActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, f);
+            final Intent intent = getCropImageIntent(newPath, croppedPath);
+            startPhotoActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, fileName);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
             Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
@@ -212,7 +220,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      *     what should be returned by
      *     {@link PhotoSelectionHandler.PhotoActionListener#getCurrentPhotoFile()}.
      */
-    private void startTakePhotoActivity(File photoFile) {
+    private void startTakePhotoActivity(String photoFile) {
         final Intent intent = getTakePhotoIntent(photoFile);
         startPhotoActivity(intent, REQUEST_CODE_CAMERA_WITH_DATA, photoFile);
     }
@@ -223,7 +231,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      *     stored by the content-provider.
      *     {@link PhotoSelectionHandler#handlePhotoActivityResult(int, int, Intent)}.
      */
-    private void startPickFromGalleryActivity(File photoFile) {
+    private void startPickFromGalleryActivity(String photoFile) {
         final Intent intent = getPhotoPickIntent(photoFile);
         startPhotoActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, photoFile);
     }
@@ -243,41 +251,44 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     /**
      * Constructs an intent for picking a photo from Gallery, cropping it and returning the bitmap.
      */
-    private Intent getPhotoPickIntent(File photoFile) {
-        Uri photoUri = Uri.fromFile(photoFile);
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+    private Intent getPhotoPickIntent(String photoFile) {
+        final String croppedPhotoPath = ContactPhotoUtils.pathForCroppedPhoto(mContext, photoFile);
+        final Uri croppedPhotoUri = Uri.fromFile(new File(croppedPhotoPath));
+        final Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         intent.putExtra("outputX", mPhotoPickSize);
         intent.putExtra("outputY", mPhotoPickSize);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri);
         return intent;
     }
 
     /**
      * Constructs an intent for image cropping.
      */
-    private Intent getCropImageIntent(File photoFile) {
-        Uri photoUri = Uri.fromFile(photoFile);
+    private Intent getCropImageIntent(String inputPhotoPath, String croppedPhotoPath) {
+        final Uri inputPhotoUri = Uri.fromFile(new File(inputPhotoPath));
+        final Uri croppedPhotoUri = Uri.fromFile(new File(croppedPhotoPath));
         Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(photoUri, "image/*");
+        intent.setDataAndType(inputPhotoUri, "image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         intent.putExtra("outputX", mPhotoPickSize);
         intent.putExtra("outputY", mPhotoPickSize);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri);
         return intent;
     }
 
     /**
      * Constructs an intent for capturing a photo and storing it in a temporary file.
      */
-    public static Intent getTakePhotoIntent(File f) {
+    private static Intent getTakePhotoIntent(String fileName) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE, null);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+        final String newPhotoPath = ContactPhotoUtils.pathForNewCameraPhoto(fileName);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(newPhotoPath)));
         return intent;
     }
 
@@ -296,10 +307,10 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         public void onTakePhotoChosen() {
             try {
                 // Launch camera to take photo for selected contact
-                startTakePhotoActivity(ContactPhotoUtils.generateTempPhotoFile());
+                startTakePhotoActivity(ContactPhotoUtils.generateTempPhotoFileName());
             } catch (ActivityNotFoundException e) {
-                Toast.makeText(mContext, R.string.photoPickerNotFoundText,
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(
+                        mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
             }
         }
 
@@ -307,10 +318,10 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         public void onPickFromGalleryChosen() {
             try {
                 // Launch picker to choose photo for selected contact
-                startPickFromGalleryActivity(ContactPhotoUtils.generateTempPhotoFile());
+                startPickFromGalleryActivity(ContactPhotoUtils.generateTempPhotoFileName());
             } catch (ActivityNotFoundException e) {
-                Toast.makeText(mContext, R.string.photoPickerNotFoundText,
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(
+                        mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
             }
         }
 
@@ -325,7 +336,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
          * fragment's responsibility to maintain this in saved state, since this handler instance
          * will not survive rotation.
          */
-        public abstract File getCurrentPhotoFile();
+        public abstract String getCurrentPhotoFile();
 
         /**
          * Called when the photo selection dialog is dismissed.
