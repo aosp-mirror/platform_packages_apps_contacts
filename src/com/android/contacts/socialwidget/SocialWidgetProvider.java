@@ -18,8 +18,10 @@ package com.android.contacts.socialwidget;
 
 import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
+import com.android.contacts.list.ShortcutIntentBuilder;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.quickcontact.QuickContactBroadcastReceiver;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.HtmlUtils;
 import com.android.contacts.util.StreamItemEntry;
@@ -27,6 +29,7 @@ import com.android.contacts.util.StreamItemEntry;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -145,20 +148,10 @@ public class SocialWidgetProvider extends AppWidgetProvider {
 
             // TODO: Rotate between all the stream items?
 
-            // OnClick launch QuickContact
-            final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
-
-            // When starting from the launcher, start in a new, cleared task.
-            // CLEAR_WHEN_TASK_RESET cannot reset the root of a task, so we
-            // clear the whole thing preemptively here since QuickContactActivity will
-            // finish itself when launching other detail activities.
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
+            final Intent intent = new Intent(context, QuickContactBroadcastReceiver.class);
             intent.setData(contactData.getLookupUri());
-            intent.putExtra(QuickContact.EXTRA_MODE, QuickContact.MODE_SMALL);
-
-            final PendingIntent pendingIntent = PendingIntent.getActivity(context,
-                    0, intent, 0);
+            final PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             views.setOnClickPendingIntent(R.id.border, pendingIntent);
 
             setDisplayNameAndSnippet(context, views, contactData.getDisplayName(),

@@ -418,6 +418,10 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".quickcontact.QuickContactBroadcastReceiver"
+            android:exported="false" />
+
         <activity-alias android:name="ContactShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutContact"
