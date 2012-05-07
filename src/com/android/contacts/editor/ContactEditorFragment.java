@@ -23,6 +23,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.JoinContactActivity;
+import com.android.contacts.activities.PhotoSelectionActivity;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.Editor.EditorListener;
@@ -35,6 +36,7 @@ import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.util.AccountsListAdapter;
+import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.HelpUtils;
 
@@ -195,7 +197,7 @@ public class ContactEditorFragment extends Fragment implements
 
     private Cursor mGroupMetaData;
 
-    private File mCurrentPhotoFile;
+    private String mCurrentPhotoFile;
     private Bundle mUpdatedPhotos = new Bundle();
 
     private Context mContext;
@@ -410,10 +412,7 @@ public class ContactEditorFragment extends Fragment implements
             mRawContactIdRequestingPhoto = savedState.getLong(
                     KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mViewIdGenerator = savedState.getParcelable(KEY_VIEW_ID_GENERATOR);
-            String fileName = savedState.getString(KEY_CURRENT_PHOTO_FILE);
-            if (fileName != null) {
-                mCurrentPhotoFile = new File(fileName);
-            }
+            mCurrentPhotoFile = savedState.getString(KEY_CURRENT_PHOTO_FILE);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
             mContactWritableForJoin = savedState.getBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN);
             mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
@@ -918,10 +917,10 @@ public class ContactEditorFragment extends Fragment implements
         // help menu depending on whether this is inserting or editing
         if (Intent.ACTION_INSERT.equals(mAction)) {
             // inserting
-            HelpUtils.prepareHelpMenuItem(getActivity(), helpMenu, R.string.help_url_people_add);
+            HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
         } else if (Intent.ACTION_EDIT.equals(mAction)) {
             // editing
-            HelpUtils.prepareHelpMenuItem(getActivity(), helpMenu, R.string.help_url_people_edit);
+            HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
         } else {
             // something else, so don't show the help menu
             helpMenu.setVisible(false);
@@ -966,7 +965,7 @@ public class ContactEditorFragment extends Fragment implements
         // If we just started creating a new contact and haven't added any data, it's too
         // early to do a join
         if (mState.size() == 1 && mState.get(0).isContactInsert() && !hasPendingChanges()) {
-            Toast.makeText(getActivity(), R.string.toast_join_with_empty_contact,
+            Toast.makeText(mContext, R.string.toast_join_with_empty_contact,
                             Toast.LENGTH_LONG).show();
             return true;
         }
@@ -1024,10 +1023,11 @@ public class ContactEditorFragment extends Fragment implements
         saveDefaultAccountIfNecessary();
 
         // Save contact
-        Intent intent = ContactSaveService.createSaveContactIntent(getActivity(), mState,
-                SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(), getActivity().getClass(),
-                ContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos);
-        getActivity().startService(intent);
+        Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
+                SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
+                ((Activity)mContext).getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED,
+                mUpdatedPhotos);
+        mContext.startService(intent);
 
         // Don't try to save the same photos twice.
         mUpdatedPhotos = new Bundle();
@@ -1543,9 +1543,7 @@ public class ContactEditorFragment extends Fragment implements
 
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
-        if (mCurrentPhotoFile != null) {
-            outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile.toString());
-        }
+        outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         outState.putBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN, mContactWritableForJoin);
         outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
@@ -1606,7 +1604,7 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Sets the photo stored in mPhoto and writes it to the RawContact with the given id
      */
-    private void setPhoto(long rawContact, Bitmap photo, File photoFile) {
+    private void setPhoto(long rawContact, Bitmap photo, String photoFile) {
         BaseRawContactEditorView requestingEditor = getRawContactEditorView(rawContact);
 
         if (photo == null || photo.getHeight() < 0 || photo.getWidth() < 0) {
@@ -1620,7 +1618,9 @@ public class ContactEditorFragment extends Fragment implements
             Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
 
-        mUpdatedPhotos.putString(String.valueOf(rawContact), photoFile.getAbsolutePath());
+        final String croppedPhotoPath =
+                ContactPhotoUtils.pathForCroppedPhoto(mContext, mCurrentPhotoFile);
+        mUpdatedPhotos.putString(String.valueOf(rawContact), croppedPhotoPath);
     }
 
     /**
@@ -1757,7 +1757,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         @Override
-        public void startPhotoActivity(Intent intent, int requestCode, File photoFile) {
+        public void startPhotoActivity(Intent intent, int requestCode, String photoFile) {
             mRawContactIdRequestingPhoto = mEditor.getRawContactId();
             mStatus = Status.SUB_ACTIVITY;
             mCurrentPhotoFile = photoFile;
@@ -1819,7 +1819,7 @@ public class ContactEditorFragment extends Fragment implements
             }
 
             @Override
-            public File getCurrentPhotoFile() {
+            public String getCurrentPhotoFile() {
                 return mCurrentPhotoFile;
             }
 

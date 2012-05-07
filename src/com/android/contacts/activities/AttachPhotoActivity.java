@@ -80,7 +80,7 @@ public class AttachPhotoActivity extends ContactsActivity {
             mTempPhotoUri = Uri.parse(icicle.getString(KEY_TEMP_PHOTO_URI));
             mTempPhotoFile = new File(mTempPhotoUri.getPath());
         } else {
-            mTempPhotoFile = ContactPhotoUtils.generateTempPhotoFile();
+            mTempPhotoFile = ContactPhotoUtils.generateTempPhotoFile(this);
             mTempPhotoUri = Uri.fromFile(mTempPhotoFile);
 
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);

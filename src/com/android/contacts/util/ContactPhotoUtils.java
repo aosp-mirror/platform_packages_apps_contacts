@@ -17,6 +17,7 @@
 
 package com.android.contacts.util;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.util.Log;
@@ -35,11 +36,9 @@ public class ContactPhotoUtils {
     private static final String TAG = "ContactPhotoUtils";
 
     private static final String PHOTO_DATE_FORMAT = "'IMG'_yyyyMMdd_HHmmss";
+    private static final String NEW_PHOTO_DIR_PATH =
+            Environment.getExternalStorageDirectory() + "/DCIM/Camera";
 
-    // TODO: /DCIM/Camera isn't the ideal place to stash cropped contact photos.
-    //       Where is the right place?
-    private static final File PHOTO_DIR = new File(
-            Environment.getExternalStorageDirectory() + "/DCIM/Camera");
 
     /**
      * Generate a new, unique file to be used as an out-of-band communication
@@ -47,15 +46,28 @@ public class ContactPhotoUtils {
      * This file will be passed to other activities (such as the gallery/camera/cropper/etc.),
      * and read by us once they are finished writing it.
      */
-    public static File generateTempPhotoFile() {
-        PHOTO_DIR.mkdirs();
-        return new File(PHOTO_DIR, generateTempPhotoFileName());
+    public static File generateTempPhotoFile(Context context) {
+        return new File(pathForCroppedPhoto(context, generateTempPhotoFileName()));
     }
 
-    private static String generateTempPhotoFileName() {
+    public static String pathForCroppedPhoto(Context context, String fileName) {
+        final File dir = new File(context.getExternalCacheDir() + "/tmp");
+        dir.mkdirs();
+        final File f = new File(dir, fileName);
+        return f.getAbsolutePath();
+    }
+
+    public static String pathForNewCameraPhoto(String fileName) {
+        final File dir = new File(NEW_PHOTO_DIR_PATH);
+        dir.mkdirs();
+        final File f = new File(dir, fileName);
+        return f.getAbsolutePath();
+    }
+
+    public static String generateTempPhotoFileName() {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormat = new SimpleDateFormat(PHOTO_DATE_FORMAT);
-        return dateFormat.format(date) + ".jpg";
+        return "ContactPhoto-" + dateFormat.format(date) + ".jpg";
     }
 
     /**
