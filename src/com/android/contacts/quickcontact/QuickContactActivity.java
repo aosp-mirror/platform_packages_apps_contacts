@@ -214,9 +214,9 @@ public class QuickContactActivity extends Activity {
         mLookupUri = Preconditions.checkNotNull(lookupUri, "missing lookupUri");
 
         // Read requested parameters for displaying
-        final Rect targetScreen = intent.getSourceBounds();
-        Preconditions.checkNotNull(targetScreen, "missing targetScreen");
-        mFloatingLayout.setChildTargetScreen(targetScreen);
+        final Rect sourceBounds = intent.getSourceBounds();
+        Preconditions.checkNotNull(sourceBounds, "missing sourceBounds");
+        mFloatingLayout.setChildTargetScreen(sourceBounds);
 
         mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
 

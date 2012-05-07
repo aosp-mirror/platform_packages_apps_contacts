@@ -86,6 +86,13 @@ public class ShortcutIntentBuilder {
     private final int mBorderColor;
 
     /**
+     * This is a hidden API of the launcher in JellyBean that allows us to disable the animation
+     * that it would usually do, because it interferes with our own animation for QuickContact
+     */
+    public static final String INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION =
+            "com.android.launcher.intent.extra.shortcut.INGORE_LAUNCH_ANIMATION";
+
+    /**
      * Listener interface.
      */
     public interface OnShortcutIntentCreatedListener {
@@ -245,15 +252,16 @@ public class ShortcutIntentBuilder {
             byte[] bitmapData) {
         Bitmap bitmap = getPhotoBitmap(bitmapData);
 
-        Intent shortcutIntent;
-        // This is a simple shortcut to view a contact.
-        shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
+        Intent shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
 
         // When starting from the launcher, start in a new, cleared task.
         // CLEAR_WHEN_TASK_RESET cannot reset the root of a task, so we
         // clear the whole thing preemptively here since QuickContactActivity will
         // finish itself when launching other detail activities.
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        // Tell the launcher to not do its animation, because we are doing our own
+        shortcutIntent.putExtra(INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION, true);
 
         shortcutIntent.setData(contactUri);
         shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
