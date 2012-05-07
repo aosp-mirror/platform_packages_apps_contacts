@@ -75,9 +75,18 @@ public class ContactDetailActivity extends ContactsActivity {
             Intent intent = new Intent();
             intent.setAction(originalIntent.getAction());
             intent.setDataAndType(originalIntent.getData(), originalIntent.getType());
-            intent.setFlags(
-                    Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_FORWARD_RESULT
-                            | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            // If we are launched from the outside, we should create a new task, because the user
+            // can freely navigate the app (this is different from phones, where only the UP button
+            // kicks the user into the full app)
+            if (shouldUpRecreateTask(intent)) {
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+            } else {
+                intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS |
+                        Intent.FLAG_ACTIVITY_FORWARD_RESULT | Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
 
             intent.setClass(this, PeopleActivity.class);
             startActivity(intent);
