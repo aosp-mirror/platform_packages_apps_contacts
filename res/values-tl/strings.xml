@@ -473,7 +473,8 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Mag-sign in sa isang account"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Mag-import ng mga contact"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Lumikha ng bagong pangkat"</string>
-    <string name="create_group_item_label" msgid="5218022006186243310">"[Lumikha ng bagong pangkat]"</string>
+    <!-- no translation found for create_group_item_label (4411981763169654825) -->
+    <skip />
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 pangkat"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> (na) pangkat"</item>
