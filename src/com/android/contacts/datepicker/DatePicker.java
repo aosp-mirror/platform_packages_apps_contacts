@@ -21,6 +21,7 @@ package com.android.contacts.datepicker;
 
 import com.android.contacts.R;
 
+import android.animation.LayoutTransition;
 import android.annotation.Widget;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -58,6 +59,7 @@ public class DatePicker extends FrameLayout {
     private static final int DEFAULT_END_YEAR = 2100;
 
     /* UI Components */
+    private final LinearLayout mPickerContainer;
     private final CheckBox mYearToggle;
     private final NumberPicker mDayPicker;
     private final NumberPicker mMonthPicker;
@@ -104,6 +106,7 @@ public class DatePicker extends FrameLayout {
                 Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.date_picker, this, true);
 
+        mPickerContainer = (LinearLayout) findViewById(R.id.parent);
         mDayPicker = (NumberPicker) findViewById(R.id.day);
         mDayPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
         mDayPicker.setOnLongPressUpdateInterval(100);
@@ -195,6 +198,7 @@ public class DatePicker extends FrameLayout {
         // re-order the number pickers to match the current date format
         reorderPickers(months);
 
+        mPickerContainer.setLayoutTransition(new LayoutTransition());
         if (!isEnabled()) {
             setEnabled(false);
         }
@@ -235,8 +239,7 @@ public class DatePicker extends FrameLayout {
         /* Remove the 3 pickers from their parent and then add them back in the
          * required order.
          */
-        LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
-        parent.removeAllViews();
+        mPickerContainer.removeAllViews();
 
         boolean quoted = false;
         boolean didDay = false, didMonth = false, didYear = false;
@@ -250,13 +253,13 @@ public class DatePicker extends FrameLayout {
 
             if (!quoted) {
                 if (c == DateFormat.DATE && !didDay) {
-                    parent.addView(mDayPicker);
+                    mPickerContainer.addView(mDayPicker);
                     didDay = true;
                 } else if ((c == DateFormat.MONTH || c == 'L') && !didMonth) {
-                    parent.addView(mMonthPicker);
+                    mPickerContainer.addView(mMonthPicker);
                     didMonth = true;
                 } else if (c == DateFormat.YEAR && !didYear) {
-                    parent.addView (mYearPicker);
+                    mPickerContainer.addView (mYearPicker);
                     didYear = true;
                 }
             }
@@ -264,13 +267,13 @@ public class DatePicker extends FrameLayout {
 
         // Shouldn't happen, but just in case.
         if (!didMonth) {
-            parent.addView(mMonthPicker);
+            mPickerContainer.addView(mMonthPicker);
         }
         if (!didDay) {
-            parent.addView(mDayPicker);
+            mPickerContainer.addView(mDayPicker);
         }
         if (!didYear) {
-            parent.addView(mYearPicker);
+            mPickerContainer.addView(mYearPicker);
         }
     }
 
