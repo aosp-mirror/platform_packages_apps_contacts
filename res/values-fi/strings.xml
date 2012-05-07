@@ -278,11 +278,9 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Yhteystietojen nimet"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Lisää 2 sekunnin tauko"</string>
     <string name="add_wait" msgid="3360818652790319634">"Lisää tauko"</string>
-    <!-- no translation found for call_disambig_title (4392886850104795739) -->
-    <skip />
+    <string name="call_disambig_title" msgid="4392886850104795739">"Valitse numero"</string>
     <string name="call_settings" msgid="7666474782093693667">"Asetukset"</string>
-    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
-    <skip />
+    <string name="sms_disambig_title" msgid="5846266399240630846">"Valitse numero"</string>
     <string name="make_primary" msgid="5829291915305113983">"Muista valinta"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Tätä toimintoa käsittelevää sovellusta ei löydy."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Ei nimeä)"</string>
@@ -475,7 +473,8 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Kirjaudu tiliin"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Tuo yhteystietoja"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Luo uusi ryhmä"</string>
-    <string name="create_group_item_label" msgid="5218022006186243310">"[Luo uusi ryhmä]"</string>
+    <!-- no translation found for create_group_item_label (4411981763169654825) -->
+    <skip />
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 ryhmä"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> ryhmää"</item>

@@ -278,11 +278,9 @@
     <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"新增 2 秒暫停功能"</string>
     <string name="add_wait" msgid="3360818652790319634">"新增插播功能"</string>
-    <!-- no translation found for call_disambig_title (4392886850104795739) -->
-    <skip />
+    <string name="call_disambig_title" msgid="4392886850104795739">"選擇號碼"</string>
     <string name="call_settings" msgid="7666474782093693667">"設定"</string>
-    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
-    <skip />
+    <string name="sms_disambig_title" msgid="5846266399240630846">"選擇號碼"</string>
     <string name="make_primary" msgid="5829291915305113983">"記住這個選擇"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"找不到可以處理這個動作的應用程式。"</string>
     <string name="missing_name" msgid="8745511583852904385">"(無姓名)"</string>
@@ -475,7 +473,8 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"登入帳戶"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"匯入聯絡人"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"建立新群組"</string>
-    <string name="create_group_item_label" msgid="5218022006186243310">"[建立新群組]"</string>
+    <!-- no translation found for create_group_item_label (4411981763169654825) -->
+    <skip />
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 個群組"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> 個群組"</item>

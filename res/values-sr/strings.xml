@@ -278,11 +278,9 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Имена контаката"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Додај паузу од 2 секунде"</string>
     <string name="add_wait" msgid="3360818652790319634">"Додај чекање"</string>
-    <!-- no translation found for call_disambig_title (4392886850104795739) -->
-    <skip />
+    <string name="call_disambig_title" msgid="4392886850104795739">"Избор броја"</string>
     <string name="call_settings" msgid="7666474782093693667">"Подешавања"</string>
-    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
-    <skip />
+    <string name="sms_disambig_title" msgid="5846266399240630846">"Избор броја"</string>
     <string name="make_primary" msgid="5829291915305113983">"Запамти овај избор"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Није пронађена ниједна апликација која би могла да изврши ову радњу."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Без имена)"</string>
@@ -475,7 +473,8 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Пријавите се на налог"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Увези контакте"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Прављење нове групе"</string>
-    <string name="create_group_item_label" msgid="5218022006186243310">"[Направи нову групу]"</string>
+    <!-- no translation found for create_group_item_label (4411981763169654825) -->
+    <skip />
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 група"</item>
     <item quantity="other" msgid="1276758425904917367">"Група: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
