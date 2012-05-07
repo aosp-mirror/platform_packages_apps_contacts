@@ -473,7 +473,8 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Увайсці ва ўліковы запіс"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Імпартаваць кантакты"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Стварыць новую групу"</string>
-    <string name="create_group_item_label" msgid="5218022006186243310">"[Стварыць новую групу]"</string>
+    <!-- no translation found for create_group_item_label (4411981763169654825) -->
+    <skip />
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 група"</item>
     <item quantity="other" msgid="1276758425904917367">"Груп: <xliff:g id="COUNT">%0$d</xliff:g>"</item>

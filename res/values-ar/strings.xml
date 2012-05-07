@@ -278,11 +278,9 @@
     <string name="search_settings_description" msgid="2675223022992445813">"أسماء جهات الاتصال"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"إضافة فترة إيقاف مؤقت مدتها ثانيتان"</string>
     <string name="add_wait" msgid="3360818652790319634">"إضافة انتظار"</string>
-    <!-- no translation found for call_disambig_title (4392886850104795739) -->
-    <skip />
+    <string name="call_disambig_title" msgid="4392886850104795739">"اختيار رقم"</string>
     <string name="call_settings" msgid="7666474782093693667">"الإعدادات"</string>
-    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
-    <skip />
+    <string name="sms_disambig_title" msgid="5846266399240630846">"اختيار رقم"</string>
     <string name="make_primary" msgid="5829291915305113983">"تذكر هذا الاختيار"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"لم يتم العثور على تطبيق يمكنه مباشرة هذا الإجراء."</string>
     <string name="missing_name" msgid="8745511583852904385">"(بلا اسم)"</string>
@@ -475,7 +473,7 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"تسجيل الدخول إلى حساب"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"استيراد جهات الاتصال"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"إنشاء مجموعة جديدة"</string>
-    <string name="create_group_item_label" msgid="5218022006186243310">"[إنشاء مجموعة جديدة]"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"إنشاء مجموعة جديدة"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"مجموعة واحدة"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> من المجموعات"</item>

@@ -473,7 +473,7 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Inicia la sessió a un compte"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importa contactes"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Creació d\'un grup nou"</string>
-    <string name="create_group_item_label" msgid="5218022006186243310">"[Crea un grup nou]"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"Crea un grup nou"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"Un grup"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> grups"</item>
