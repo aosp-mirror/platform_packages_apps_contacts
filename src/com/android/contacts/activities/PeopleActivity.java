@@ -150,7 +150,7 @@ public class PeopleActivity extends ContactsActivity
 
     private ContactsUnavailableFragment mContactsUnavailableFragment;
     private ProviderStatusWatcher mProviderStatusWatcher;
-    private int mProviderStatus = -1;
+    private int mProviderStatus;
 
     private boolean mOptionsMenuContactsAvailable;
 
@@ -490,8 +490,6 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onPause() {
         mOptionsMenuContactsAvailable = false;
-
-        mProviderStatus = -1;
         mProviderStatusWatcher.stop();
         super.onPause();
     }
@@ -499,8 +497,9 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onResume() {
         super.onResume();
+
         mProviderStatusWatcher.start();
-        showContactsUnavailableFragmentIfNecessary();
+        updateViewConfiguration(true);
 
         // Re-register the listener, which may have been cleared when onSaveInstanceState was
         // called.  See also: onSaveInstanceState
@@ -983,15 +982,12 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public void onProviderStatusChange() {
-        showContactsUnavailableFragmentIfNecessary();
+        updateViewConfiguration(false);
     }
 
-    private void showContactsUnavailableFragmentIfNecessary() {
+    private void updateViewConfiguration(boolean forceUpdate) {
         int providerStatus = mProviderStatusWatcher.getProviderStatus();
-        if (providerStatus == mProviderStatus) {
-            return;
-        }
-
+        if (!forceUpdate && (providerStatus == mProviderStatus)) return;
         mProviderStatus = providerStatus;
 
         View contactsUnavailableView = findViewById(R.id.contacts_unavailable_view);
