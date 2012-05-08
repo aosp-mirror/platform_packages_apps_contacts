@@ -31,8 +31,7 @@ import android.widget.HorizontalScrollView;
 /**
  * This is a horizontally scrolling carousel with 2 fragments: one to see info about the contact and
  * one to see updates from the contact. Depending on the scroll position and user selection of which
- * fragment to currently view, the alpha values and touch interceptors over each fragment are
- * configured accordingly.
+ * fragment to currently view, the touch interceptors over each fragment are configured accordingly.
  */
 public class ContactDetailFragmentCarousel extends HorizontalScrollView implements OnTouchListener {
 
@@ -60,12 +59,6 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
      * the width of one of the fragments).
      */
     private int mMinFragmentWidth = Integer.MIN_VALUE;
-
-    /**
-     * Maximum alpha value of the overlay on the fragment that is not currently selected
-     * (if there are 1+ fragments in the carousel).
-     */
-    private static final float MAX_ALPHA = 0.5f;
 
     /**
      * Fragment width (if there are 1+ fragments in the carousel) as defined as a fraction of the
@@ -147,11 +140,6 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     public void setCurrentPage(int pageIndex) {
         mCurrentPage = pageIndex;
 
-        if (mAboutFragment != null && mUpdatesFragment != null) {
-            mAboutFragment.setAlphaLayerValue(mCurrentPage == ABOUT_PAGE ? 0 : MAX_ALPHA);
-            mUpdatesFragment.setAlphaLayerValue(mCurrentPage == UPDATES_PAGE ? 0 : MAX_ALPHA);
-        }
-
         updateTouchInterceptors();
     }
 
@@ -215,12 +203,6 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         }
     }
 
-    private void updateAlphaLayers() {
-        float alpha = mLastScrollPosition * MAX_ALPHA / mAllowedHorizontalScrollLength;
-        mAboutFragment.setAlphaLayerValue(alpha);
-        mUpdatesFragment.setAlphaLayerValue(MAX_ALPHA - alpha);
-    }
-
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
@@ -228,7 +210,6 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             return;
         }
         mLastScrollPosition = l;
-        updateAlphaLayers();
     }
 
     private void snapToEdge() {

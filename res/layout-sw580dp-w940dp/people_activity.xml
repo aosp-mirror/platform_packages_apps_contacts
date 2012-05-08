@@ -67,10 +67,7 @@
                 android:id="@+id/contact_detail_container"
                 layout="@layout/contact_detail_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dip"
-                android:layout_marginTop="16dip"
-                android:layout_marginRight="16dip" />
+                android:layout_height="match_parent"/>
 
             <!-- This invisible worker fragment loads the contact's details -->
             <fragment
