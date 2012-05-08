@@ -207,7 +207,7 @@ public class ContactEditorActivity extends ContactsActivity
                     account.type, account.dataSet);
 
             Intent intent = new Intent();
-            intent.setClassName(accountType.resPackageName,
+            intent.setClassName(accountType.syncAdapterPackageName,
                     accountType.getCreateContactActivityClassName());
             intent.setAction(Intent.ACTION_INSERT);
             intent.setType(Contacts.CONTENT_ITEM_TYPE);
@@ -232,7 +232,7 @@ public class ContactEditorActivity extends ContactsActivity
                     account.type, account.dataSet);
 
             Intent intent = new Intent();
-            intent.setClassName(accountType.resPackageName,
+            intent.setClassName(accountType.syncAdapterPackageName,
                     accountType.getEditContactActivityClassName());
             intent.setAction(Intent.ACTION_EDIT);
             intent.setData(rawContactUri);

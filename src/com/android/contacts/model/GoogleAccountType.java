@@ -39,10 +39,10 @@ public class GoogleAccountType extends BaseAccountType {
     private static final List<String> mExtensionPackages =
             Lists.newArrayList("com.google.android.apps.plus");
 
-    public GoogleAccountType(Context context, String resPackageName) {
+    public GoogleAccountType(Context context, String authenticatorPackageName) {
         this.accountType = ACCOUNT_TYPE;
-        this.resPackageName = null;
-        this.summaryResPackageName = resPackageName;
+        this.resourcePackageName = null;
+        this.syncAdapterPackageName = authenticatorPackageName;
 
         try {
             addDataKindStructuredName(context);
@@ -182,5 +182,16 @@ public class GoogleAccountType extends BaseAccountType {
     @Override
     public boolean areContactsWritable() {
         return true;
+    }
+
+    @Override
+    public String getViewContactNotifyServiceClassName() {
+        return "com.google.android.syncadapters.contacts." +
+                "SyncHighResPhotoIntentService";
+    }
+
+    @Override
+    public String getViewContactNotifyServicePackageName() {
+        return "com.google.android.syncadapters.contacts";
     }
 }

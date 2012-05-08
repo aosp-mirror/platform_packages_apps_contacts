@@ -147,7 +147,8 @@ public class GroupDetailActivity extends ContactsActivity {
                 final Uri uri = ContentUris.withAppendedId(Groups.CONTENT_URI,
                         mFragment.getGroupId());
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                intent.setClassName(accountType.resPackageName, accountType.getViewGroupActivity());
+                intent.setClassName(accountType.syncAdapterPackageName,
+                        accountType.getViewGroupActivity());
                 startActivity(intent);
             }
         });

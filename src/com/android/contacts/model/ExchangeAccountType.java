@@ -43,10 +43,10 @@ public class ExchangeAccountType extends BaseAccountType {
 
     public static final String ACCOUNT_TYPE = "com.android.exchange";
 
-    public ExchangeAccountType(Context context, String resPackageName) {
+    public ExchangeAccountType(Context context, String authenticatorPackageName) {
         this.accountType = ACCOUNT_TYPE;
-        this.resPackageName = null;
-        this.summaryResPackageName = resPackageName;
+        this.resourcePackageName = null;
+        this.syncAdapterPackageName = authenticatorPackageName;
 
         try {
             addDataKindStructuredName(context);

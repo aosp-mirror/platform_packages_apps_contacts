@@ -66,8 +66,8 @@ public class AccountTypeTest extends AndroidTestCase {
 
         AccountType accountType = new AccountType() {
             {
-                resPackageName = packageName;
-                summaryResPackageName = packageName;
+                resourcePackageName = packageName;
+                syncAdapterPackageName = packageName;
             }
             @Override protected int getInviteContactActionResId() {
                 return externalResID;

@@ -101,17 +101,17 @@ public class ExternalAccountType extends BaseAccountType {
      * @param injectedMetadata If non-null, it'll be used to initialize the type.  Only set by
      *     tests.  If null, the metadata is loaded from the specified package.
      */
-    ExternalAccountType(Context context, String resPackageName, boolean isExtension,
+    ExternalAccountType(Context context, String packageName, boolean isExtension,
             XmlResourceParser injectedMetadata) {
         this.mIsExtension = isExtension;
-        this.resPackageName = resPackageName;
-        this.summaryResPackageName = resPackageName;
+        this.resourcePackageName = packageName;
+        this.syncAdapterPackageName = packageName;
 
         final PackageManager pm = context.getPackageManager();
         final XmlResourceParser parser;
         if (injectedMetadata == null) {
             try {
-                parser = loadContactsXml(context, resPackageName);
+                parser = loadContactsXml(context, packageName);
             } catch (NameNotFoundException e1) {
                 // If the package name is not found, we can't initialize this account type.
                 return;
@@ -147,7 +147,7 @@ public class ExternalAccountType extends BaseAccountType {
                 error.append(parser.getLineNumber());
             }
             error.append(" for external package ");
-            error.append(resPackageName);
+            error.append(packageName);
 
             Log.e(TAG, error.toString(), e);
             return;
@@ -159,13 +159,13 @@ public class ExternalAccountType extends BaseAccountType {
 
         mExtensionPackageNames = new ArrayList<String>();
         mInviteActionLabelResId = resolveExternalResId(context, mInviteActionLabelAttribute,
-                summaryResPackageName, ATTR_INVITE_CONTACT_ACTION_LABEL);
+                syncAdapterPackageName, ATTR_INVITE_CONTACT_ACTION_LABEL);
         mViewGroupLabelResId = resolveExternalResId(context, mViewGroupLabelAttribute,
-                summaryResPackageName, ATTR_VIEW_GROUP_ACTION_LABEL);
+                syncAdapterPackageName, ATTR_VIEW_GROUP_ACTION_LABEL);
         titleRes = resolveExternalResId(context, mAccountTypeLabelAttribute,
-                this.resPackageName, ATTR_ACCOUNT_LABEL);
+                syncAdapterPackageName, ATTR_ACCOUNT_LABEL);
         iconRes = resolveExternalResId(context, mAccountTypeIconAttribute,
-                this.resPackageName, ATTR_ACCOUNT_ICON);
+                syncAdapterPackageName, ATTR_ACCOUNT_ICON);
 
         // If we reach this point, the account type has been successfully initialized.
         mIsInitialized = true;
