@@ -290,12 +290,15 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     }
 
     private void update() {
+        boolean isIconifiedChanging = mSearchView.isIconified() == mSearchMode;
         if (mSearchMode) {
             setFocusOnSearchView();
             // Since we have the {@link SearchView} in a custom action bar, we must manually handle
             // expanding the {@link SearchView} when a search is initiated. Note that a side effect
             // of this method is that the {@link SearchView} query text is set to empty string.
-            mSearchView.onActionViewExpanded();
+            if (isIconifiedChanging) {
+                mSearchView.onActionViewExpanded();
+            }
             if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_STANDARD) {
                 mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             }
@@ -320,7 +323,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             mActionBar.setTitle(null);
             // Since we have the {@link SearchView} in a custom action bar, we must manually handle
             // collapsing the {@link SearchView} when search mode is exited.
-            mSearchView.onActionViewCollapsed();
+            if (isIconifiedChanging) {
+                mSearchView.onActionViewCollapsed();
+            }
             if (mListener != null) {
                 mListener.onAction(Action.STOP_SEARCH_MODE);
                 mListener.onSelectedTabChanged();
