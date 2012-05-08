@@ -126,8 +126,8 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
 
         // Create a fallback type with the same resource package name, and compare all the data
         // kinds to its.
-        final AccountType reference = FallbackAccountType.createForTest(
-                getContext(), type.resPackageName);
+        final AccountType reference = FallbackAccountType.createWithPackageNameForTest(
+                getContext(), type.resourcePackageName);
 
         assertsDataKindEquals(reference.getSortedDataKinds(), type.getSortedDataKinds());
     }

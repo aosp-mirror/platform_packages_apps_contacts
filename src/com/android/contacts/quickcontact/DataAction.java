@@ -283,13 +283,13 @@ public class DataAction implements Action {
     public Drawable getAlternateIcon() {
         if (mAlternateIconRes == 0) return null;
 
-        final String resPackageName = mKind.resPackageName;
-        if (resPackageName == null) {
+        final String resourcePackageName = mKind.resourcePackageName;
+        if (resourcePackageName == null) {
             return mContext.getResources().getDrawable(mAlternateIconRes);
         }
 
         final PackageManager pm = mContext.getPackageManager();
-        return pm.getDrawable(resPackageName, mAlternateIconRes, null);
+        return pm.getDrawable(resourcePackageName, mAlternateIconRes, null);
     }
 
     @Override

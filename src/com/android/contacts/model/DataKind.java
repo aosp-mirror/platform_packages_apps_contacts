@@ -40,7 +40,7 @@ public final class DataKind {
     public static final String PSEUDO_MIME_TYPE_PHONETIC_NAME = "#phoneticName";
     public static final String PSEUDO_COLUMN_PHONETIC_NAME = "#phoneticName";
 
-    public String resPackageName;
+    public String resourcePackageName;
     public String mimeType;
     public int titleRes;
     public int iconAltRes;
@@ -110,7 +110,7 @@ public final class DataKind {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("DataKind:");
-        sb.append(" resPackageName=").append(resPackageName);
+        sb.append(" resPackageName=").append(resourcePackageName);
         sb.append(" mimeType=").append(mimeType);
         sb.append(" titleRes=").append(titleRes);
         sb.append(" iconAltRes=").append(iconAltRes);

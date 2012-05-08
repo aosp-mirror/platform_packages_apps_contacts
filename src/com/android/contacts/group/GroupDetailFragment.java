@@ -375,7 +375,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                 public void onClick(View v) {
                     final Uri uri = ContentUris.withAppendedId(Groups.CONTENT_URI, mGroupId);
                     final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    intent.setClassName(accountType.resPackageName,
+                    intent.setClassName(accountType.syncAdapterPackageName,
                             accountType.getViewGroupActivity());
                     startActivity(intent);
                 }

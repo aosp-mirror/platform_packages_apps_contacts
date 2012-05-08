@@ -21,7 +21,6 @@ import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.common.annotations.VisibleForTesting;
 
-import android.accounts.Account;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -29,7 +28,6 @@ import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -62,11 +60,25 @@ public abstract class AccountType {
     public String dataSet = null;
 
     /**
-     * Package that resources should be loaded from, either defined through an
-     * {@link Account} or for matching against {@link Data#RES_PACKAGE}.
+     * Package that resources should be loaded from.  Will be null for embedded types, in which
+     * case resources are stored in this package itself.
+     *
+     * TODO Clean up {@link #resourcePackageName}, {@link #syncAdapterPackageName} and
+     * {@link #getViewContactNotifyServicePackageName()}.
+     *
+     * There's the following invariants:
+     * - {@link #syncAdapterPackageName} is always set to the actual sync adapter package name.
+     * - {@link #resourcePackageName} too is set to the same value, unless {@link #isEmbedded()},
+     *   in which case it'll be null.
+     * There's an unfortunate exception of {@link FallbackAccountType}.  Even though it
+     * {@link #isEmbedded()}, but we set non-null to {@link #resourcePackageName} for unit tests.
      */
-    public String resPackageName;
-    public String summaryResPackageName;
+    public String resourcePackageName;
+    /**
+     * The package name for the authenticator (for the embedded types, i.e. Google and Exchange)
+     * or the sync adapter (for external type, including extensions).
+     */
+    public String syncAdapterPackageName;
 
     public int titleRes;
     public int iconRes;
@@ -125,24 +137,33 @@ public abstract class AccountType {
     public abstract boolean areContactsWritable();
 
     /**
-     * Returns an optional custom edit activity.  The activity class should reside
-     * in the sync adapter package as determined by {@link #resPackageName}.
+     * Returns an optional custom edit activity.
+     *
+     * Only makes sense for non-embedded account types.
+     * The activity class should reside in the sync adapter package as determined by
+     * {@link #syncAdapterPackageName}.
      */
     public String getEditContactActivityClassName() {
         return null;
     }
 
     /**
-     * Returns an optional custom new contact activity. The activity class should reside
-     * in the sync adapter package as determined by {@link #resPackageName}.
+     * Returns an optional custom new contact activity.
+     *
+     * Only makes sense for non-embedded account types.
+     * The activity class should reside in the sync adapter package as determined by
+     * {@link #syncAdapterPackageName}.
      */
     public String getCreateContactActivityClassName() {
         return null;
     }
 
     /**
-     * Returns an optional custom invite contact activity. The activity class should reside
-     * in the sync adapter package as determined by {@link #resPackageName}.
+     * Returns an optional custom invite contact activity.
+     *
+     * Only makes sense for non-embedded account types.
+     * The activity class should reside in the sync adapter package as determined by
+     * {@link #syncAdapterPackageName}.
      */
     public String getInviteContactActivityClassName() {
         return null;
@@ -151,11 +172,23 @@ public abstract class AccountType {
     /**
      * Returns an optional service that can be launched whenever a contact is being looked at.
      * This allows the sync adapter to provide more up-to-date information.
+     *
      * The service class should reside in the sync adapter package as determined by
-     * {@link #resPackageName}.
+     * {@link #getViewContactNotifyServicePackageName()}.
      */
     public String getViewContactNotifyServiceClassName() {
         return null;
+    }
+
+    /**
+     * TODO This is way too hacky should be removed.
+     *
+     * This is introduced for {@link GoogleAccountType} where {@link #syncAdapterPackageName}
+     * is the authenticator package name but the notification service is in the sync adapter
+     * package.  See {@link #resourcePackageName} -- we should clean up those.
+     */
+    public String getViewContactNotifyServicePackageName() {
+        return syncAdapterPackageName;
     }
 
     /** Returns an optional Activity string that can be used to view the group. */
@@ -174,7 +207,8 @@ public abstract class AccountType {
     }
 
     public CharSequence getDisplayLabel(Context context) {
-        return getResourceText(context, summaryResPackageName, titleRes, accountType);
+        // Note this resource is defined in the sync adapter package, not resourcePackageName.
+        return getResourceText(context, syncAdapterPackageName, titleRes, accountType);
     }
 
     /**
@@ -213,7 +247,8 @@ public abstract class AccountType {
      * the contact card.  (If not defined, returns null.)
      */
     public CharSequence getInviteContactActionLabel(Context context) {
-        return getResourceText(context, summaryResPackageName, getInviteContactActionResId(), "");
+        // Note this resource is defined in the sync adapter package, not resourcePackageName.
+        return getResourceText(context, syncAdapterPackageName, getInviteContactActionResId(), "");
     }
 
     /**
@@ -221,8 +256,9 @@ public abstract class AccountType {
      * own "View Updates" string
      */
     public CharSequence getViewGroupLabel(Context context) {
+        // Note this resource is defined in the sync adapter package, not resourcePackageName.
         final CharSequence customTitle =
-                getResourceText(context, summaryResPackageName, getViewGroupLabelResId(), null);
+                getResourceText(context, syncAdapterPackageName, getViewGroupLabelResId(), null);
 
         return customTitle == null
                 ? context.getText(R.string.view_updates_from_group)
@@ -250,9 +286,9 @@ public abstract class AccountType {
     }
 
     public Drawable getDisplayIcon(Context context) {
-        if (this.titleRes != -1 && this.summaryResPackageName != null) {
+        if (this.titleRes != -1 && this.syncAdapterPackageName != null) {
             final PackageManager pm = context.getPackageManager();
-            return pm.getDrawable(this.summaryResPackageName, this.iconRes, null);
+            return pm.getDrawable(this.syncAdapterPackageName, this.iconRes, null);
         } else if (this.titleRes != -1) {
             return context.getResources().getDrawable(this.iconRes);
         } else {
@@ -306,7 +342,7 @@ public abstract class AccountType {
                     "mime type '" + kind.mimeType + "' is already registered");
         }
 
-        kind.resPackageName = this.resPackageName;
+        kind.resourcePackageName = this.resourcePackageName;
         this.mKinds.add(kind);
         this.mMimeKinds.put(kind.mimeType, kind);
         return kind;

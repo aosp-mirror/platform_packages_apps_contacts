@@ -1254,11 +1254,11 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             final AccountType accountType = AccountTypeManager.getInstance(context).getAccountType(
                     type, dataSet);
             final String serviceName = accountType.getViewContactNotifyServiceClassName();
-            final String resPackageName = accountType.resPackageName;
-            if (!TextUtils.isEmpty(serviceName) && !TextUtils.isEmpty(resPackageName)) {
+            final String servicePackageName = accountType.getViewContactNotifyServicePackageName();
+            if (!TextUtils.isEmpty(serviceName) && !TextUtils.isEmpty(servicePackageName)) {
                 final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
                 final Intent intent = new Intent();
-                intent.setClassName(resPackageName, serviceName);
+                intent.setClassName(servicePackageName, serviceName);
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setDataAndType(uri, RawContacts.CONTENT_ITEM_TYPE);
                 try {
