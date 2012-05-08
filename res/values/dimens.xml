@@ -80,7 +80,7 @@
     <dimen name="detail_contact_photo_margin">8dip</dimen>
 
     <!-- Width and height of the contact photo on the contact detail page -->
-    <dimen name="detail_contact_photo_size">256dip</dimen>
+    <dimen name="detail_contact_photo_size">128dip</dimen>
 
     <!-- Left and right padding for a contact detail item -->
     <dimen name="detail_item_icon_margin">8dip</dimen>
