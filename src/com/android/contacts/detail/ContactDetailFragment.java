@@ -50,8 +50,6 @@ import com.google.common.annotations.VisibleForTesting;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.SearchManager;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -85,7 +83,6 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
-import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StatusUpdates;
 import android.telephony.PhoneNumberUtils;
@@ -93,11 +90,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnDragListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -110,7 +111,6 @@ import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -213,6 +213,36 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private ListPopupWindow mPopup;
 
+    /**
+     * This is to forward touch events to the list view to enable users to scroll the list view
+     * from the blank area underneath the static photo when the layout with static photo is used.
+     */
+    private OnTouchListener mForwardTouchToListView = new OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (mListView != null) {
+                mListView.dispatchTouchEvent(event);
+                return true;
+            }
+            return false;
+        }
+    };
+
+    /**
+     * This is to forward drag events to the list view to enable users to scroll the list view
+     * from the blank area underneath the static photo when the layout with static photo is used.
+     */
+    private OnDragListener mForwardDragToListView = new OnDragListener() {
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            if (mListView != null) {
+                mListView.dispatchDragEvent(event);
+                return true;
+            }
+            return false;
+        }
+    };
+
     public ContactDetailFragment() {
         // Explicit constructor for inflation
     }
@@ -257,6 +287,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         mView = inflater.inflate(R.layout.contact_detail_fragment, container, false);
+        // Set the touch and drag listener to forward the event to the mListView so that
+        // vertical scrolling can happen from outside of the list view.
+        mView.setOnTouchListener(mForwardTouchToListView);
+        mView.setOnDragListener(mForwardDragToListView);
 
         mInflater = inflater;
 

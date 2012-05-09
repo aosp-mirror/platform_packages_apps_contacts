@@ -36,12 +36,13 @@
         android:layout_width="match_parent"
         android:layout_above="@id/contact_quick_fix"
         android:layout_height="match_parent"
-        android:baselineAligned="false" >
+        android:baselineAligned="false"
+        android:background="@android:color/white">
 
         <include android:id="@+id/static_photo_container"
             layout="@layout/photo_selector_view"
-            android:layout_width="128dip"
-            android:layout_height="128dip"
+            android:layout_width="@dimen/detail_contact_photo_size"
+            android:layout_height="@dimen/detail_contact_photo_size"
             android:layout_marginLeft="@dimen/detail_contact_photo_margin"
             android:layout_marginTop="@dimen/detail_contact_photo_margin" />
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!-- Copyright (C) 2012 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,11 +13,15 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-    <dimen name="group_detail_border_padding">32dip</dimen>
-    <dimen name="group_editor_side_padding">64dip</dimen>
-    <dimen name="contact_detail_list_top_padding">32dip</dimen>
-    <dimen name="contact_tile_list_padding_top">32dip</dimen>
-    <dimen name="list_visible_scrollbar_padding">48dip</dimen>
-    <dimen name="detail_contact_photo_size">256dip</dimen>
-</resources>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.android.contacts.detail.ContactDetailFragmentCarousel
+        android:id="@+id/fragment_carousel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dip"/>
+
+</FrameLayout>
