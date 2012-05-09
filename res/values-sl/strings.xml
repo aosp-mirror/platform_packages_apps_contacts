@@ -278,11 +278,9 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Imena stikov"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Dodaj 2 sekundi premora"</string>
     <string name="add_wait" msgid="3360818652790319634">"Dodaj premor"</string>
-    <!-- no translation found for call_disambig_title (4392886850104795739) -->
-    <skip />
+    <string name="call_disambig_title" msgid="4392886850104795739">"Izberite številko"</string>
     <string name="call_settings" msgid="7666474782093693667">"Nastavitve"</string>
-    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
-    <skip />
+    <string name="sms_disambig_title" msgid="5846266399240630846">"Izberite številko"</string>
     <string name="make_primary" msgid="5829291915305113983">"Zapomni si to izbiro"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Programa za obravnavo tega dejanja ni mogoče najti."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Ni imena)"</string>

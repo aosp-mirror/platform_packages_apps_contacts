@@ -278,11 +278,9 @@
     <string name="search_settings_description" msgid="2675223022992445813">"نام های مخاطبین شما"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"افزودن یک مکث 2 ثانیه ای"</string>
     <string name="add_wait" msgid="3360818652790319634">"افزودن انتظار"</string>
-    <!-- no translation found for call_disambig_title (4392886850104795739) -->
-    <skip />
+    <string name="call_disambig_title" msgid="4392886850104795739">"انتخاب شماره"</string>
     <string name="call_settings" msgid="7666474782093693667">"تنظیمات"</string>
-    <!-- no translation found for sms_disambig_title (5846266399240630846) -->
-    <skip />
+    <string name="sms_disambig_title" msgid="5846266399240630846">"انتخاب شماره"</string>
     <string name="make_primary" msgid="5829291915305113983">"این گزینه را به خاطر بسپار"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="missing_name" msgid="8745511583852904385">"(بدون نام)"</string>
@@ -475,8 +473,7 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"وارد شدن به یک حساب"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"وارد کردن مخاطبین"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"ایجاد گروه جدید"</string>
-    <!-- no translation found for create_group_item_label (4411981763169654825) -->
-    <skip />
+    <string name="create_group_item_label" msgid="4411981763169654825">"ایجاد گروه جدید"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 گروه"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> گروه"</item>
