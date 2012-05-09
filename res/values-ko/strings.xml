@@ -473,8 +473,7 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"계정에 로그인"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"주소록 가져오기"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"새 그룹 만들기"</string>
-    <!-- no translation found for create_group_item_label (4411981763169654825) -->
-    <skip />
+    <string name="create_group_item_label" msgid="4411981763169654825">"새 그룹 만들기"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"그룹 1개"</item>
     <item quantity="other" msgid="1276758425904917367">"그룹 <xliff:g id="COUNT">%0$d</xliff:g>개"</item>
