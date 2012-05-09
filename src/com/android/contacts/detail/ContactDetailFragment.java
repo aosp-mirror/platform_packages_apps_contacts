@@ -811,7 +811,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         for (AccountType accountType : mOtherEntriesMap.keySet()) {
 
             // Add a title for each third party app
-            mAllEntries.add(NetworkTitleViewEntry.fromAccountType(mContext, accountType));
+            mAllEntries.add(new NetworkTitleViewEntry(mContext, accountType));
 
             for (DetailViewEntry detailEntry : mOtherEntriesMap.get(accountType)) {
                 // Add indented separator
@@ -867,7 +867,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         };
 
         // Finally create the entry.
-        mAllEntries.add(NetworkTitleViewEntry.forMoreNetworks(mContext, onClickListener));
+        mAllEntries.add(new AddConnectionViewEntry(mContext, onClickListener));
     }
 
     /**
@@ -1124,35 +1124,43 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     /**
-     * A title for a section of contact details from a single 3rd party network.  It's also
-     * used for the "More networks" entry, which has the same layout.
+     * A title for a section of contact details from a single 3rd party network.
      */
     private static class NetworkTitleViewEntry extends ViewEntry {
         private final Drawable mIcon;
         private final CharSequence mLabel;
-        private final View.OnClickListener mOnClickListener;
 
-        private NetworkTitleViewEntry(Drawable icon, CharSequence label, View.OnClickListener
-                onClickListener) {
+        public NetworkTitleViewEntry(Context context, AccountType type) {
             super(ViewAdapter.VIEW_TYPE_NETWORK_TITLE_ENTRY);
-            this.mIcon = icon;
-            this.mLabel = label;
-            this.mOnClickListener = onClickListener;
+            this.mIcon = type.getDisplayIcon(context);
+            this.mLabel = type.getDisplayLabel(context);
             this.isEnabled = false;
         }
 
-        public static NetworkTitleViewEntry fromAccountType(Context context, AccountType type) {
-            return new NetworkTitleViewEntry(
-                    type.getDisplayIcon(context), type.getDisplayLabel(context), null);
+        public Drawable getIcon() {
+            return mIcon;
         }
 
-        public static NetworkTitleViewEntry forMoreNetworks(Context context, View.OnClickListener
-                onClickListener) {
-            // TODO Icon is temporary.  Need proper one.
-            return new NetworkTitleViewEntry(
-                    context.getResources().getDrawable(R.drawable.ic_menu_add_field_holo_light),
-                    context.getString(R.string.add_connection_button),
-                    onClickListener);
+        public CharSequence getLabel() {
+            return mLabel;
+        }
+    }
+
+    /**
+     * This is used for the "Add Connections" entry.
+     */
+    private static class AddConnectionViewEntry extends ViewEntry {
+        private final Drawable mIcon;
+        private final CharSequence mLabel;
+        private final View.OnClickListener mOnClickListener;
+
+        private AddConnectionViewEntry(Context context, View.OnClickListener onClickListener) {
+            super(ViewAdapter.VIEW_TYPE_ADD_CONNECTION_ENTRY);
+            this.mIcon = context.getResources().getDrawable(
+                    R.drawable.ic_menu_add_field_holo_light);
+            this.mLabel = context.getString(R.string.add_connection_button);
+            this.mOnClickListener = onClickListener;
+            this.isEnabled = true;
         }
 
         @Override
@@ -1349,6 +1357,14 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
     }
 
+    private static class KindTitleViewCache {
+        public final TextView titleView;
+
+        public KindTitleViewCache(View view) {
+            titleView = (TextView)view.findViewById(R.id.title);
+        }
+    }
+
     /**
      * Cache of the children views for a view that displays a {@link NetworkTitleViewEntry}
      */
@@ -1359,6 +1375,21 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public NetworkTitleViewCache(View view) {
             name = (TextView) view.findViewById(R.id.network_title);
             icon = (ImageView) view.findViewById(R.id.network_icon);
+        }
+    }
+
+    /**
+     * Cache of the children views for a view that displays a {@link AddConnectionViewEntry}
+     */
+    private static class AddConnectionViewCache {
+        public final TextView name;
+        public final ImageView icon;
+        public final View primaryActionView;
+
+        public AddConnectionViewCache(View view) {
+            name = (TextView) view.findViewById(R.id.add_connection_label);
+            icon = (ImageView) view.findViewById(R.id.add_connection_icon);
+            primaryActionView = view.findViewById(R.id.primary_action_view);
         }
     }
 
@@ -1406,8 +1437,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public static final int VIEW_TYPE_HEADER_ENTRY = 1;
         public static final int VIEW_TYPE_KIND_TITLE_ENTRY = 2;
         public static final int VIEW_TYPE_NETWORK_TITLE_ENTRY = 3;
-        public static final int VIEW_TYPE_SEPARATOR_ENTRY = 4;
-        private static final int VIEW_TYPE_COUNT = 5;
+        public static final int VIEW_TYPE_ADD_CONNECTION_ENTRY = 4;
+        public static final int VIEW_TYPE_SEPARATOR_ENTRY = 5;
+        private static final int VIEW_TYPE_COUNT = 6;
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -1422,6 +1454,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     return getDetailEntryView(position, convertView, parent);
                 case VIEW_TYPE_NETWORK_TITLE_ENTRY:
                     return getNetworkTitleEntryView(position, convertView, parent);
+                case VIEW_TYPE_ADD_CONNECTION_ENTRY:
+                    return getAddConnectionEntryView(position, convertView, parent);
                 default:
                     throw new IllegalStateException("Invalid view type ID " +
                             getItemViewType(position));
@@ -1519,11 +1553,19 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         private View getKindTitleEntryView(int position, View convertView, ViewGroup parent) {
             final KindTitleViewEntry entry = (KindTitleViewEntry) getItem(position);
+            final View result;
+            final KindTitleViewCache viewCache;
 
-            final View result = (convertView != null) ? convertView :
-                    mInflater.inflate(R.layout.list_separator, parent, false);
-            final TextView titleTextView = (TextView) result.findViewById(R.id.title);
-            titleTextView.setText(entry.getTitle());
+            if (convertView != null) {
+                result = convertView;
+                viewCache = (KindTitleViewCache)result.getTag();
+            } else {
+                result = mInflater.inflate(R.layout.list_separator, parent, false);
+                viewCache = new KindTitleViewCache(result);
+                result.setTag(viewCache);
+            }
+
+            viewCache.titleView.setText(entry.getTitle());
 
             return result;
         }
@@ -1541,12 +1583,31 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         parent, false);
                 viewCache = new NetworkTitleViewCache(result);
                 result.setTag(viewCache);
-                result.findViewById(R.id.primary_action_view).setOnClickListener(
-                        entry.mOnClickListener);
             }
 
             viewCache.name.setText(entry.getLabel());
             viewCache.icon.setImageDrawable(entry.getIcon());
+
+            return result;
+        }
+
+        private View getAddConnectionEntryView(int position, View convertView, ViewGroup parent) {
+            final AddConnectionViewEntry entry = (AddConnectionViewEntry) getItem(position);
+            final View result;
+            final AddConnectionViewCache viewCache;
+
+            if (convertView != null) {
+                result = convertView;
+                viewCache = (AddConnectionViewCache) result.getTag();
+            } else {
+                result = mInflater.inflate(R.layout.contact_detail_add_connection_entry_view,
+                        parent, false);
+                viewCache = new AddConnectionViewCache(result);
+                result.setTag(viewCache);
+            }
+            viewCache.name.setText(entry.getLabel());
+            viewCache.icon.setImageDrawable(entry.getIcon());
+            viewCache.primaryActionView.setOnClickListener(entry.mOnClickListener);
 
             return result;
         }
