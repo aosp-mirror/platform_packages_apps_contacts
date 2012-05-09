@@ -116,8 +116,10 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         if (mAccountFilterHeader == null || filter == null) {
             return;
         }
-        final boolean shouldShowHeader = AccountFilterUtil.updateAccountFilterTitleForPhone(
-                mAccountFilterHeader, filter, false);
+        final boolean shouldShowHeader =
+                !isSearchMode() &&
+                AccountFilterUtil.updateAccountFilterTitleForPhone(
+                        mAccountFilterHeader, filter, false);
         if (shouldShowHeader) {
             mPaddingView.setVisibility(View.GONE);
             mAccountFilterHeader.setVisibility(View.VISIBLE);

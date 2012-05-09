@@ -86,9 +86,17 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private String mContactsCount = "";
     private boolean mDarkTheme = false;
 
+    /** Resource used to provide header-text for default filter. */
+    private CharSequence mDefaultFilterHeaderText;
+
     public ContactEntryListAdapter(Context context) {
         super(context);
         addPartitions();
+        setDefaultFilterHeaderText(R.string.local_search_label);
+    }
+
+    protected void setDefaultFilterHeaderText(int resourceId) {
+        mDefaultFilterHeaderText = getContext().getResources().getText(resourceId);
     }
 
     @Override
@@ -532,7 +540,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         TextView labelTextView = (TextView)view.findViewById(R.id.label);
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
         if (directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE) {
-            labelTextView.setText(R.string.local_search_label);
+            labelTextView.setText(mDefaultFilterHeaderText);
             displayNameTextView.setText(null);
         } else {
             labelTextView.setText(R.string.directory_search_label);

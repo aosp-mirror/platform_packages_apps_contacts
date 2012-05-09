@@ -29,11 +29,12 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.contacts.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +91,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     public PhoneNumberListAdapter(Context context) {
         super(context);
-
+        setDefaultFilterHeaderText(R.string.list_filter_phones);
         mUnknownNameText = context.getText(android.R.string.unknownName);
     }
 
