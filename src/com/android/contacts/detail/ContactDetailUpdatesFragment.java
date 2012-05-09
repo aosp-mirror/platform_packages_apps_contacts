@@ -67,7 +67,7 @@ public class ContactDetailUpdatesFragment extends ListFragment implements Fragme
             final Uri uri = ContentUris.withAppendedId(StreamItems.CONTENT_URI,
                     streamItemEntry.getId());
             final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            intent.setClassName(accountType.resPackageName,
+            intent.setClassName(accountType.syncAdapterPackageName,
                     accountType.getViewStreamItemActivity());
             startActivity(intent);
         }
@@ -84,7 +84,7 @@ public class ContactDetailUpdatesFragment extends ListFragment implements Fragme
             final AccountType accountType = getAccountTypeForStreamItemEntry(tag.streamItem);
 
             final Intent intent = new Intent(Intent.ACTION_VIEW, tag.getStreamItemPhotoUri());
-            intent.setClassName(accountType.resPackageName,
+            intent.setClassName(accountType.syncAdapterPackageName,
                     accountType.getViewStreamItemPhotoActivity());
             startActivity(intent);
         }

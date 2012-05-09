@@ -224,7 +224,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
                 final Uri uri = ContentUris.withAppendedId(StreamItems.CONTENT_URI,
                         streamItem.getId());
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                intent.setClassName(accountType.resPackageName,
+                intent.setClassName(accountType.syncAdapterPackageName,
                         accountType.getViewStreamItemActivity());
                 views.setOnClickPendingIntent(R.id.name_and_snippet_container,
                         PendingIntent.getActivity(context, 0, intent, 0));

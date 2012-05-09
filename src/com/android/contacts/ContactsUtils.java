@@ -204,16 +204,16 @@ public class ContactsUtils {
      * Returns the intent to launch for the given invitable account type and contact lookup URI.
      * This will return null if the account type is not invitable (i.e. there is no
      * {@link AccountType#getInviteContactActivityClassName()} or
-     * {@link AccountType#resPackageName}).
+     * {@link AccountType#syncAdapterPackageName}).
      */
     public static Intent getInvitableIntent(AccountType accountType, Uri lookupUri) {
-        String resPackageName = accountType.resPackageName;
+        String syncAdapterPackageName = accountType.syncAdapterPackageName;
         String className = accountType.getInviteContactActivityClassName();
-        if (TextUtils.isEmpty(resPackageName) || TextUtils.isEmpty(className)) {
+        if (TextUtils.isEmpty(syncAdapterPackageName) || TextUtils.isEmpty(className)) {
             return null;
         }
         Intent intent = new Intent();
-        intent.setClassName(resPackageName, className);
+        intent.setClassName(syncAdapterPackageName, className);
 
         intent.setAction(ContactsContract.Intents.INVITE_CONTACT);
 

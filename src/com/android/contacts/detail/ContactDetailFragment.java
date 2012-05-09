@@ -1193,7 +1193,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public String mimetype;
 
         public Context context = null;
-        public String resPackageName = null;
         public boolean isPrimary = false;
         public int secondaryActionIcon = -1;
         public int secondaryActionDescription = -1;
@@ -1229,7 +1228,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             entry.kind = (kind.titleRes == -1 || kind.titleRes == 0) ? ""
                     : context.getString(kind.titleRes);
             entry.data = buildDataString(kind, values, context);
-            entry.resPackageName = kind.resPackageName;
 
             if (kind.typeColumn != null && values.containsKey(kind.typeColumn)) {
                 entry.type = values.getAsInteger(kind.typeColumn);
