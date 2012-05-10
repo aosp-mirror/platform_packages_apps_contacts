@@ -16,8 +16,6 @@
 <resources>
     <dimen name="account_selector_popup_width">400dip</dimen>
 
-    <dimen name="photo_action_popup_width">400dip</dimen>
-
     <!-- Top position of quick contact. If this is -1, the vertical position is determined
     based on the source of the request -->
     <dimen name="quick_contact_top_position">48dip</dimen>
@@ -81,6 +79,16 @@
 
     <!-- Width and height of the contact photo on the contact detail page -->
     <dimen name="detail_contact_photo_size">128dip</dimen>
+
+    <!-- Width and height of the expanded contact photo on the contact detail page -->
+    <dimen name="detail_contact_photo_expanded_size">400dip</dimen>
+
+    <!-- This is the minimum amount of space to leave underneath an expanded contact detail
+         photo -->
+    <dimen name="expanded_photo_height_offset">100dip</dimen>
+
+    <!-- Minimum width for the photo action popup options -->
+    <dimen name="photo_action_popup_min_width">300dip</dimen>
 
     <!-- Left and right padding for a contact detail item -->
     <dimen name="detail_item_icon_margin">8dip</dimen>

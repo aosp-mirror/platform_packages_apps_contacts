@@ -472,8 +472,8 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
         // TODO: Move this into the {@link CarouselTab} class when the updates
         // fragment code is more finalized.
-        final boolean expandOnClick = !PhoneCapabilityTester.isUsingTwoPanes(mContext);
-        OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
+        final boolean expandOnClick = contactData.getPhotoUri() != null;
+        final OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
                 mContext, contactData, mPhotoView, expandOnClick);
 
         if (expandOnClick || contactData.isWritableContact(mContext)) {

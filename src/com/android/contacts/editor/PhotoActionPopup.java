@@ -126,10 +126,13 @@ public class PhotoActionPopup {
         listPopupWindow.setAnchorView(anchorView);
         listPopupWindow.setAdapter(adapter);
         listPopupWindow.setOnItemClickListener(clickListener);
-        listPopupWindow.setWidth(context.getResources().getDimensionPixelSize(
-                R.dimen.photo_action_popup_width));
         listPopupWindow.setModal(true);
         listPopupWindow.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
+        final int minWidth = context.getResources().getDimensionPixelSize(
+                R.dimen.photo_action_popup_min_width);
+        if (anchorView.getWidth() < minWidth) {
+            listPopupWindow.setWidth(minWidth);
+        }
         return listPopupWindow;
     }
 
