@@ -591,6 +591,7 @@ public class ContactSelectionActivity extends ContactsActivity
 
     private void startCreateNewContactActivity() {
         Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+        intent.putExtra(ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
         startActivityAndForwardResult(intent);
     }
 
