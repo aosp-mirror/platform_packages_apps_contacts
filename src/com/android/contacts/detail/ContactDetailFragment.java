@@ -298,7 +298,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mPhotoTouchOverlay = mView.findViewById(R.id.photo_touch_intercept_overlay);
 
         mListView = (ListView) mView.findViewById(android.R.id.list);
-        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
         mListView.setItemsCanFocus(true);
         mListView.setOnScrollListener(mVerticalScrollListener);

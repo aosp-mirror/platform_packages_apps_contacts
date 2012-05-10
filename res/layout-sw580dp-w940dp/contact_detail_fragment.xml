@@ -20,8 +20,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_primary"
-    android:paddingRight="16dip">
+    android:background="@color/background_primary">
 
     <!-- Placeholder for empty list -->
     <include
@@ -51,7 +50,9 @@
             android:clipToPadding="false"
             android:fadingEdge="none"
             android:layout_weight="1"
-            android:divider="@null"/>
+            android:divider="@null"
+            android:scrollbarStyle="outsideOverlay"
+            android:paddingRight="16dip"/>
 
     </LinearLayout>
 
