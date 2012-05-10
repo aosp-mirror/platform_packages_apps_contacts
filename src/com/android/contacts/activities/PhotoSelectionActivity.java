@@ -37,7 +37,6 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.FrameLayout.LayoutParams;
@@ -105,6 +104,15 @@ public class PhotoSelectionActivity extends Activity {
     /** Whether to animate the photo to an expanded view covering more of the screen. */
     private boolean mExpandPhoto;
 
+    /**
+     * Side length (in pixels) of the expanded photo if to be expanded. Photos are expected to
+     * be square.
+     */
+    private int mExpandedPhotoSize;
+
+    /** Height (in pixels) to leave underneath the expanded photo to show the list popup */
+    private int mHeightOffset;
+
     /** The semi-transparent backdrop. */
     private View mBackdrop;
 
@@ -164,6 +172,12 @@ public class PhotoSelectionActivity extends Activity {
         mIsDirectoryContact = intent.getBooleanExtra(IS_DIRECTORY_CONTACT, false);
         mExpandPhoto = intent.getBooleanExtra(EXPAND_PHOTO, false);
 
+        // Pull out photo expansion properties from resources
+        mExpandedPhotoSize = getResources().getDimensionPixelSize(
+                R.dimen.detail_contact_photo_expanded_size);
+        mHeightOffset = getResources().getDimensionPixelOffset(
+                R.dimen.expanded_photo_height_offset);
+
         mBackdrop = findViewById(R.id.backdrop);
         mPhotoView = (ImageView) findViewById(R.id.photo);
         mSourceBounds = intent.getSourceBounds();
@@ -186,6 +200,30 @@ public class PhotoSelectionActivity extends Activity {
                 displayPhoto();
             }
         });
+    }
+
+    /**
+     * Compute the adjusted expanded photo size to fit within the enclosing view with the same
+     * aspect ratio.
+     * @param enclosingView This is the view that the photo must fit within.
+     * @param heightOffset This is the amount of height to leave open for the photo action popup.
+     */
+    private int getAdjustedExpandedPhotoSize(View enclosingView, int heightOffset) {
+        // pull out the bounds of the backdrop
+        final Rect bounds = new Rect();
+        enclosingView.getDrawingRect(bounds);
+        final int boundsWidth = bounds.width();
+        final int boundsHeight = bounds.height() - heightOffset;
+
+        // ensure that the new expanded photo size can fit within the backdrop
+        final float alpha = Math.min((float) boundsHeight / (float) mExpandedPhotoSize,
+                (float) boundsWidth / (float) mExpandedPhotoSize);
+        if (alpha < 1.0f) {
+            // need to shrink width and height while maintaining aspect ratio
+            return (int) (alpha * mExpandedPhotoSize);
+        } else {
+            return mExpandedPhotoSize;
+        }
     }
 
     @Override
@@ -279,7 +317,6 @@ public class PhotoSelectionActivity extends Activity {
 
         // Load the photo.
         int photoWidth = getPhotoEndParams().width;
-        Log.d(TAG, "Photo width: " + photoWidth);
         if (mPhotoUri != null) {
             // If we have a URI, the bitmap should be cached directly.
             ContactPhotoManager.getInstance(this).loadPhoto(mPhotoView, mPhotoUri, photoWidth,
@@ -317,25 +354,32 @@ public class PhotoSelectionActivity extends Activity {
         attachPhotoHandler();
     }
 
+    /**
+     * This sets the photo's layout params at the end of the animation.
+     * <p>
+     * The scheme is to enlarge the photo to the desired size with the enlarged photo shifted
+     * to the top left of the screen as much as possible while keeping the underlying smaller
+     * photo occluded.
+     */
     private LayoutParams getPhotoEndParams() {
         if (mPhotoEndParams == null) {
             mPhotoEndParams = new LayoutParams(mPhotoStartParams);
             if (mExpandPhoto) {
-                Rect bounds = new Rect();
-                mBackdrop.getDrawingRect(bounds);
-                if (bounds.height() > bounds.width()) {
-                    //Take up full width.
-                    mPhotoEndParams.width = bounds.width();
-                    mPhotoEndParams.height = bounds.width();
-                } else {
-                    // Take up full height, leaving space for the popup.
-                    mPhotoEndParams.height = bounds.height() - 150;
-                    mPhotoEndParams.width = bounds.height() - 150;
+                final int adjustedPhotoSize = getAdjustedExpandedPhotoSize(mBackdrop,
+                        mHeightOffset);
+                int widthDelta = adjustedPhotoSize - mPhotoStartParams.width;
+                int heightDelta = adjustedPhotoSize - mPhotoStartParams.height;
+                if (widthDelta >= 1 || heightDelta >= 1) {
+                    // This is an actual expansion.
+                    mPhotoEndParams.width = adjustedPhotoSize;
+                    mPhotoEndParams.height = adjustedPhotoSize;
+                    mPhotoEndParams.topMargin =
+                            Math.max(mPhotoStartParams.topMargin - heightDelta, 0);
+                    mPhotoEndParams.leftMargin =
+                            Math.max(mPhotoStartParams.leftMargin - widthDelta, 0);
+                    mPhotoEndParams.bottomMargin = 0;
+                    mPhotoEndParams.rightMargin = 0;
                 }
-                mPhotoEndParams.topMargin = 0;
-                mPhotoEndParams.leftMargin = 0;
-                mPhotoEndParams.bottomMargin = mPhotoEndParams.height;
-                mPhotoEndParams.rightMargin = mPhotoEndParams.width;
             }
         }
         return mPhotoEndParams;

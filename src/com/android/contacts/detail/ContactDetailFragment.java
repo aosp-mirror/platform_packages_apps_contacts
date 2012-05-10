@@ -425,12 +425,14 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             // updates or not.
             if (mShowStaticPhoto) {
                 mStaticPhotoContainer.setVisibility(View.VISIBLE);
-                ImageView photoView = (ImageView) mStaticPhotoContainer.findViewById(R.id.photo);
-                OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
-                        mContext, mContactData, photoView, false);
+                final ImageView photoView = (ImageView) mStaticPhotoContainer.findViewById(
+                        R.id.photo);
+                final boolean expandPhotoOnClick = mContactData.getPhotoUri() != null;
+                final OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
+                        mContext, mContactData, photoView, expandPhotoOnClick);
                 if (mPhotoTouchOverlay != null) {
                     mPhotoTouchOverlay.setVisibility(View.VISIBLE);
-                    if (mContactData.isWritableContact(mContext)) {
+                    if (expandPhotoOnClick || mContactData.isWritableContact(mContext)) {
                         mPhotoTouchOverlay.setOnClickListener(listener);
                     } else {
                         mPhotoTouchOverlay.setClickable(false);
@@ -1524,8 +1526,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
             // Set the photo if it should be displayed
             if (viewCache.photoView != null) {
-                final boolean expandOnClick = !PhoneCapabilityTester.isUsingTwoPanes(mContext);
-                OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
+                final boolean expandOnClick = mContactData.getPhotoUri() != null;
+                final OnClickListener listener = mPhotoSetter.setupContactPhotoForClick(
                         mContext, mContactData, viewCache.photoView, expandOnClick);
 
                 if (expandOnClick || mContactData.isWritableContact(mContext)) {
