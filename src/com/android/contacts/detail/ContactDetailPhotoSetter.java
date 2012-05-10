@@ -72,6 +72,7 @@ public class ContactDetailPhotoSetter extends ImageViewDrawableSetter {
             final int[] pos = new int[2];
             v.getLocationOnScreen(pos);
 
+            // rect is the bounds (in pixels) of the photo view in screen coordinates
             final Rect rect = new Rect();
             rect.left = (int) (pos[0] * appScale + 0.5f);
             rect.top = (int) (pos[1] * appScale + 0.5f);
