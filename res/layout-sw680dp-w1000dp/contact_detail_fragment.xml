@@ -21,8 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_primary"
-    android:paddingLeft="16dip"
-    android:paddingRight="16dip">
+    android:paddingLeft="16dip">
 
     <!-- Placeholder for empty list -->
     <include
@@ -52,7 +51,9 @@
             android:clipToPadding="false"
             android:fadingEdge="none"
             android:layout_weight="1"
-            android:divider="@null"/>
+            android:divider="@null"
+            android:paddingRight="16dip"
+            android:scrollbarStyle="outsideOverlay"/>
 
     </LinearLayout>
 

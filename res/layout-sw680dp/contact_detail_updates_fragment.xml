@@ -24,6 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadingEdge="none"
-        android:divider="@null"/>
+        android:divider="@null"
+        android:scrollbarStyle="outsideOverlay"
+        android:paddingRight="12dip" />
 
 </FrameLayout>
