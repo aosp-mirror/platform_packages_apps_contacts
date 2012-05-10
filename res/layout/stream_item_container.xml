@@ -29,6 +29,7 @@
         android:paddingLeft="@dimen/detail_update_section_item_horizontal_padding"
         android:paddingRight="@dimen/detail_update_section_item_horizontal_padding"
         android:paddingTop="@dimen/detail_update_section_item_vertical_padding"
+        android:paddingBottom="@dimen/detail_update_section_item_vertical_padding"
         android:background="?android:attr/selectableItemBackground"
         android:orientation="vertical"
         >
@@ -81,7 +82,6 @@
         android:id="@+id/horizontal_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="@dimen/detail_update_section_item_vertical_padding"
         android:background="?android:attr/dividerHorizontal"
         android:layout_gravity="bottom" />
 
