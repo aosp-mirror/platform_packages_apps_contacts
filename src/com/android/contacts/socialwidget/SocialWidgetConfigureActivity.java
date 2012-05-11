@@ -23,16 +23,31 @@ import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 
 public class SocialWidgetConfigureActivity extends Activity {
+    private static final String KEY_LAUNCHED = "already_launched_picker_activity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // If the user presses back, we want to cancel
         setResult(RESULT_CANCELED);
 
+        // Don't launch contact-picker if we already launched it (for example, if
+        // we launched it in a previous onCreate() and the device orientation changes
+        // before the picker returns its result, then this activity will be recreated).
+        if (savedInstanceState != null && savedInstanceState.getBoolean(KEY_LAUNCHED)) return;
+
         // Forward the Intent to the picker
         final Intent pickerIntent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
         pickerIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivityForResult(pickerIntent, 0);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        // We know for sure that we've launched the contact-picker... see onCreate()
+        savedInstanceState.putBoolean(KEY_LAUNCHED, true);
     }
 
     @Override
