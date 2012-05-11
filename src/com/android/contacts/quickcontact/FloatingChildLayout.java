@@ -23,15 +23,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
@@ -53,10 +51,29 @@ public class FloatingChildLayout extends FrameLayout {
     private static final String TAG = "FloatingChildLayout";
     private int mFixedTopPosition;
     private View mChild;
-    private boolean mIsShowingChild;
     private Rect mTargetScreen = new Rect();
     private final int mAnimationDuration;
     private final TransitionDrawable mBackground;
+
+    /** The phase of the background dim. This is one of the values of {@link BackgroundPhase}  */
+    private int mBackgroundPhase = BackgroundPhase.BEFORE;
+
+    private interface BackgroundPhase {
+        public static final int BEFORE = 0;
+        public static final int APPEARING_OR_VISIBLE = 1;
+        public static final int DISAPPEARING_OR_GONE = 3;
+    }
+
+    /** The phase of the contents window. This is one of the values of {@link ForegroundPhase}  */
+    private int mForegroundPhase = ForegroundPhase.BEFORE;
+
+    private interface ForegroundPhase {
+        public static final int BEFORE = 0;
+        public static final int APPEARING = 1;
+        public static final int IDLE = 2;
+        public static final int DISAPPEARING = 3;
+        public static final int AFTER = 4;
+    }
 
     // Black, 50% alpha as per the system default.
     private static final int DIM_BACKGROUND_COLOR = 0x7F000000;
@@ -83,8 +100,6 @@ public class FloatingChildLayout extends FrameLayout {
         mChild.setScaleX(0.5f);
         mChild.setScaleY(0.5f);
         mChild.setAlpha(0.0f);
-
-        mIsShowingChild = false;
     }
 
     public View getChild() {
@@ -163,43 +178,51 @@ public class FloatingChildLayout extends FrameLayout {
         child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
     }
 
-    /** Begin animating {@link #getChild()} visible. */
-    public void showChild(final Runnable onAnimationEndRunnable) {
-        if (mIsShowingChild) return;
-        mIsShowingChild = true;
-
-        // TODO: understand this.
-        // For some reason this needs wait a tick in order to avoid jank.
-        // Maybe because we set up a hardware layer in animateScale()?
-        // Probably not, since it should also be required in hideChild().
-        new Handler().post(new Runnable() {
-            @Override public void run() {
-                animateBackground(false);
-            }
-        });
-
-        animateScale(false, onAnimationEndRunnable);
-    }
-
-    /** Begin animating {@link #getChild()} invisible. */
-    public void hideChild(final Runnable onAnimationEndRunnable) {
-        if (!mIsShowingChild) return;
-        mIsShowingChild = false;
-
-        animateBackground(true);
-        animateScale(true, onAnimationEndRunnable);
-    }
-
-    private void animateBackground(boolean isExitAnimation) {
-        if (isExitAnimation) {
-            mBackground.reverseTransition(mAnimationDuration);
-        } else {
+    public void fadeInBackground() {
+        if (mBackgroundPhase == BackgroundPhase.BEFORE) {
+            mBackgroundPhase = BackgroundPhase.APPEARING_OR_VISIBLE;
             mBackground.startTransition(mAnimationDuration);
         }
     }
 
+    public void fadeOutBackground() {
+        if (mBackgroundPhase == BackgroundPhase.APPEARING_OR_VISIBLE) {
+            mBackgroundPhase = BackgroundPhase.DISAPPEARING_OR_GONE;
+            mBackground.reverseTransition(mAnimationDuration);
+        }
+    }
+
+    public boolean isContentFullyVisible() {
+        return mForegroundPhase == ForegroundPhase.IDLE;
+    }
+
+    /** Begin animating {@link #getChild()} visible. */
+    public void showContent(final Runnable onAnimationEndRunnable) {
+        if (mForegroundPhase == ForegroundPhase.BEFORE) {
+            mForegroundPhase = ForegroundPhase.APPEARING;
+            animateScale(false, onAnimationEndRunnable);
+        }
+    }
+
+    /**
+     * Begin animating {@link #getChild()} invisible. Returns false if animation is not valid in
+     * this state
+     */
+    public boolean hideContent(final Runnable onAnimationEndRunnable) {
+        if (mForegroundPhase == ForegroundPhase.APPEARING ||
+                mForegroundPhase == ForegroundPhase.IDLE) {
+            mForegroundPhase = ForegroundPhase.DISAPPEARING;
+            animateScale(true, onAnimationEndRunnable);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /** Creates the open/close animation */
-    private void animateScale(boolean isExitAnimation, final Runnable onAnimationEndRunnable) {
+    private void animateScale(
+            final boolean isExitAnimation,
+            final Runnable onAnimationEndRunnable) {
         mChild.setPivotX(mTargetScreen.centerX() - mChild.getLeft());
         mChild.setPivotY(mTargetScreen.centerY() - mChild.getTop());
 
@@ -208,7 +231,7 @@ public class FloatingChildLayout extends FrameLayout {
                 : android.R.interpolator.decelerate_quint;
         final float scaleTarget = isExitAnimation ? 0.5f : 1.0f;
 
-        ViewPropertyAnimator animator = mChild.animate().withLayer()
+        mChild.animate().withLayer()
                 .setDuration(mAnimationDuration)
                 .setInterpolator(AnimationUtils.loadInterpolator(getContext(), scaleInterpolator))
                 .scaleX(scaleTarget)
@@ -217,7 +240,17 @@ public class FloatingChildLayout extends FrameLayout {
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        if (onAnimationEndRunnable != null) onAnimationEndRunnable.run();
+                        if (isExitAnimation) {
+                            if (mForegroundPhase == ForegroundPhase.DISAPPEARING) {
+                                mForegroundPhase = ForegroundPhase.AFTER;
+                                if (onAnimationEndRunnable != null) onAnimationEndRunnable.run();
+                            }
+                        } else {
+                            if (mForegroundPhase == ForegroundPhase.APPEARING) {
+                                mForegroundPhase = ForegroundPhase.IDLE;
+                                if (onAnimationEndRunnable != null) onAnimationEndRunnable.run();
+                            }
+                        }
                     }
                 });
     }

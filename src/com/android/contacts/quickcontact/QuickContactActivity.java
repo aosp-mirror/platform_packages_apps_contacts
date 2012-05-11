@@ -98,9 +98,6 @@ public class QuickContactActivity extends Activity {
     private String[] mExcludeMimes;
     private List<String> mSortedActionMimeTypes = Lists.newArrayList();
 
-    private boolean mHasFinishedAnimatingIn = false;
-    private boolean mHasStartedAnimatingOut = false;
-
     private FloatingChildLayout mFloatingLayout;
 
     private View mPhotoContainer;
@@ -154,6 +151,8 @@ public class QuickContactActivity extends Activity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        if (TRACE_LAUNCH) android.os.Debug.startMethodTracing(TRACE_TAG);
+
         // Show QuickContact in front of soft input
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
                 WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
@@ -172,7 +171,8 @@ public class QuickContactActivity extends Activity {
         mFloatingLayout.setOnOutsideTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                return handleOutsideTouch();
+                handleOutsideTouch();
+                return true;
             }
         });
 
@@ -183,22 +183,13 @@ public class QuickContactActivity extends Activity {
                 mContactLoader.cacheResult();
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 startActivity(intent);
-                hide(false);
+                close(false);
             }
         };
         mOpenDetailsButton.setOnClickListener(openDetailsClickHandler);
         mOpenDetailsPushLayerButton.setOnClickListener(openDetailsClickHandler);
         mListPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mListPager.setOnPageChangeListener(new PageChangeListener());
-
-        show();
-    }
-
-    private void show() {
-
-        if (TRACE_LAUNCH) {
-            android.os.Debug.startMethodTracing(TRACE_TAG);
-        }
 
         final Intent intent = getIntent();
 
@@ -226,23 +217,23 @@ public class QuickContactActivity extends Activity {
 
         mContactLoader = (ContactLoader) getLoaderManager().initLoader(
                 LOADER_ID, null, mLoaderCallbacks);
+
+        mFloatingLayout.fadeInBackground();
     }
 
-    private boolean handleOutsideTouch() {
-        if (!mHasFinishedAnimatingIn) return false;
-        if (mHasStartedAnimatingOut) return false;
-
-        mHasStartedAnimatingOut = true;
-        hide(true);
-        return true;
+    private void handleOutsideTouch() {
+        if (mFloatingLayout.isContentFullyVisible()) {
+            close(true);
+        }
     }
 
-    private void hide(boolean withAnimation) {
+    private void close(boolean withAnimation) {
         // cancel any pending queries
         getLoaderManager().destroyLoader(LOADER_ID);
 
         if (withAnimation) {
-            mFloatingLayout.hideChild(new Runnable() {
+            mFloatingLayout.fadeOutBackground();
+            final boolean animated = mFloatingLayout.hideContent(new Runnable() {
                 @Override
                 public void run() {
                     // Wait until the final animation frame has been drawn, otherwise
@@ -266,15 +257,19 @@ public class QuickContactActivity extends Activity {
                     });
                 }
             });
+            if (!animated) {
+                // If we were in the wrong state, simply quit (this can happen for example
+                // if the user pushes BACK before anything has loaded)
+                finish();
+            }
         } else {
-            mFloatingLayout.hideChild(null);
             finish();
         }
     }
 
     @Override
     public void onBackPressed() {
-        hide(true);
+        close(true);
     }
 
     /** Assign this string to the view if it is not empty. */
@@ -480,7 +475,7 @@ public class QuickContactActivity extends Activity {
         @Override
         public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
             if (isFinishing()) {
-                hide(false);
+                close(false);
                 return;
             }
             if (data.isError()) {
@@ -492,25 +487,22 @@ public class QuickContactActivity extends Activity {
                 Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
                 Toast.makeText(QuickContactActivity.this, R.string.invalidContactMessage,
                         Toast.LENGTH_LONG).show();
-                hide(false);
+                close(false);
                 return;
             }
 
             bindData(data);
 
-            if (TRACE_LAUNCH) {
-                android.os.Debug.stopMethodTracing();
-            }
+            if (TRACE_LAUNCH) android.os.Debug.stopMethodTracing();
 
             // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
             // that the layout passes are completed
             SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
                 @Override
                 public void run() {
-                    mFloatingLayout.showChild(new Runnable() {
+                    mFloatingLayout.showContent(new Runnable() {
                         @Override
                         public void run() {
-                            mHasFinishedAnimatingIn = true;
                             mContactLoader.upgradeToFullContact();
                         }
                     });
@@ -599,7 +591,7 @@ public class QuickContactActivity extends Activity {
                                 Toast.LENGTH_SHORT).show();
                     }
 
-                    hide(false);
+                    close(false);
                 }
             };
             // Defer the action to make the window properly repaint
