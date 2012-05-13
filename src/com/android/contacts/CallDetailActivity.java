@@ -97,6 +97,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     public static final String EXTRA_VOICEMAIL_URI = "EXTRA_VOICEMAIL_URI";
     /** If we should immediately start playback of the voicemail, this extra will be set to true. */
     public static final String EXTRA_VOICEMAIL_START_PLAYBACK = "EXTRA_VOICEMAIL_START_PLAYBACK";
+    /** If the activity was triggered from a notification. */
+    public static final String EXTRA_FROM_NOTIFICATION = "EXTRA_FROM_NOTIFICATION";
 
     private CallTypeHelper mCallTypeHelper;
     private PhoneNumberHelper mPhoneNumberHelper;
@@ -273,6 +275,9 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
         mContactInfoHelper = new ContactInfoHelper(this, ContactsUtils.getCurrentCountryIso(this));
         configureActionBar();
         optionallyHandleVoicemail();
+        if (getIntent().getBooleanExtra(EXTRA_FROM_NOTIFICATION, false)) {
+            closeSystemDialogs();
+        }
     }
 
     @Override
@@ -877,6 +882,10 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
 
     private void startPhoneNumberSelectedActionMode(View targetView) {
         mPhoneNumberActionMode = startActionMode(new PhoneNumberActionModeCallback(targetView));
+    }
+
+    private void closeSystemDialogs() {
+        sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
     private class PhoneNumberActionModeCallback implements ActionMode.Callback {
