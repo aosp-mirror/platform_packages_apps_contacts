@@ -191,6 +191,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         @Override
         public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
             if (!mLookupUri.equals(data.getRequestedUri())) {
+                Log.e(TAG, "Different URI: requested=" + mLookupUri + "  actual=" + data);
                 return;
             }
 
