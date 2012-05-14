@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!-- Copyright (C) 2012 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
         <item name="list_item_padding_right">24dip</item>
         <item name="list_item_padding_bottom">0dip</item>
         <item name="list_item_padding_left">0dip</item>
-        <item name="list_item_gap_between_image_and_text">16dip</item>
+        <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">4dip</item>
@@ -39,11 +39,13 @@
         <item name="list_item_profile_photo_size">80dip</item>
         <item name="list_item_prefix_highlight_color">@color/people_app_theme_color</item>
         <item name="list_item_header_text_indent">8dip</item>
+        <item name="list_item_header_text_size">14sp</item>
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
         <item name="list_item_header_height">32dip</item>
-        <item name="list_item_header_text_size">14sp</item>
-        <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
         <item name="list_item_header_underline_height">1dip</item>
+        <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
+        <item name="list_item_data_width_weight">5</item>
+        <item name="list_item_label_width_weight">3</item>
         <item name="list_item_contacts_count_text_color">@color/contact_count_text_color</item>
         <item name="list_item_contacts_count_text_size">12sp</item>
         <item name="contact_browser_list_padding_left">0dip</item>
@@ -53,4 +55,5 @@
         <!-- Favorites -->
         <item name="favorites_padding_bottom">0dip</item>
     </style>
+
 </resources>

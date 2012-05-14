@@ -363,7 +363,7 @@
          This is especially valuable for views without textual representation like ImageView.
 
          [CHAR LIMIT=NONE] -->
-    <string name="contactsAllLabel">All</string>
+    <string name="contactsAllLabel">All contacts</string>
 
     <!-- The content description text for the groups tab.
 
