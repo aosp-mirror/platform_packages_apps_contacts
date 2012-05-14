@@ -45,6 +45,9 @@ public class ClearFrequentsDialog extends DialogFragment {
         final OnClickListener okListener = new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                final IndeterminateProgressDialog progressDialog = IndeterminateProgressDialog.show(
+                        getFragmentManager(), getString(R.string.clearFrequentsProgress_title),
+                        null, 500);
                 final AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
                     @Override
                     protected Void doInBackground(Void... params) {
@@ -52,8 +55,13 @@ public class ClearFrequentsDialog extends DialogFragment {
                                 null, null);
                         return null;
                     }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        progressDialog.dismiss();
+                    }
                 };
-                task.execute();
+                task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         };
         return new AlertDialog.Builder(getActivity())
