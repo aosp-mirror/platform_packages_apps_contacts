@@ -121,7 +121,7 @@
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
             android:icon="@mipmap/ic_launcher_phone"
-            android:screenOrientation="nosensor"
+            android:screenOrientation="portrait"
             android:enabled="@*android:bool/config_voice_capable"
             android:taskAffinity="android.task.contacts.phone"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing">
