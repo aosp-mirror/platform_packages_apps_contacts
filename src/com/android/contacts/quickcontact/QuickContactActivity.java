@@ -197,7 +197,7 @@ public class QuickContactActivity extends Activity {
         Uri lookupUri = intent.getData();
 
         // Check to see whether it comes from the old version.
-        if (LEGACY_AUTHORITY.equals(lookupUri.getAuthority())) {
+        if (lookupUri != null && LEGACY_AUTHORITY.equals(lookupUri.getAuthority())) {
             final long rawContactId = ContentUris.parseId(lookupUri);
             lookupUri = RawContacts.getContactLookupUri(getContentResolver(),
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
@@ -207,8 +207,9 @@ public class QuickContactActivity extends Activity {
 
         // Read requested parameters for displaying
         final Rect sourceBounds = intent.getSourceBounds();
-        Preconditions.checkNotNull(sourceBounds, "missing sourceBounds");
-        mFloatingLayout.setChildTargetScreen(sourceBounds);
+        if (sourceBounds != null) {
+            mFloatingLayout.setChildTargetScreen(sourceBounds);
+        }
 
         mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
 
