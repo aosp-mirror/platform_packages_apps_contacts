@@ -226,10 +226,11 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             mIsUserProfile = isUserProfile;
         }
 
-        private Result(Result from) {
+        private Result(Uri requestedUri, Result from) {
+            mRequestedUri = requestedUri;
+
             mStatus = from.mStatus;
             mException = from.mException;
-            mRequestedUri = from.mRequestedUri;
             mLookupUri = from.mLookupUri;
             mUri = from.mUri;
             mDirectoryId = from.mDirectoryId;
@@ -520,6 +521,12 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
         public boolean isUserProfile() {
             return mIsUserProfile;
         }
+
+        @Override
+        public String toString() {
+            return "{requested=" + mRequestedUri + ",lookupkey=" + mLookupKey +
+                    ",uri=" + mUri + ",status=" + mStatus + "}";
+        }
     }
 
     /**
@@ -730,13 +737,13 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                     UriUtils.areEqual(cachedResult.getLookupUri(), mLookupUri)) {
                 // We are using a cached result from earlier. Below, we should make sure
                 // we are not doing any more network or disc accesses
-                result = cachedResult;
+                result = new Result(mRequestedUri, cachedResult);
                 resultIsCached = true;
             } else {
                 result = loadContactEntity(resolver, uriCurrentFormat);
                 resultIsCached = false;
             }
-            if (!result.isNotFound()) {
+            if (result.isLoaded()) {
                 if (result.isDirectoryEntry()) {
                     if (!resultIsCached) {
                         loadDirectoryMetaData(result);
@@ -1345,10 +1352,10 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      * contact. If the next load is for a different contact, the cached result will be dropped
      */
     public void cacheResult() {
-        if (mContact == null) {
+        if (mContact == null || !mContact.isLoaded()) {
             sCachedResult = null;
         } else {
-            sCachedResult = new Result(mContact);
+            sCachedResult = mContact;
         }
     }
 }
