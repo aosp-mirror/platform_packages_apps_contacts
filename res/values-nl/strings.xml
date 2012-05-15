@@ -134,7 +134,8 @@
     <item quantity="one" msgid="4826918429708286628">"1 gevonden"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> gevonden"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6178225597569649305">"Alle"</string>
+    <!-- no translation found for contactsAllLabel (6479708629170672169) -->
+    <skip />
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groepen"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriet"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefoon"</string>
