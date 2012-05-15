@@ -26,10 +26,13 @@ import android.app.Application;
 import android.app.FragmentManager;
 import android.app.LoaderManager;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 
 public final class ContactsApplication extends Application {
@@ -120,10 +123,6 @@ public final class ContactsApplication extends Application {
             Log.d(Constants.PERFORMANCE_TAG, "ContactsApplication.onCreate start");
         }
 
-        // Priming caches to placate the StrictMode police
-        Context context = getApplicationContext();
-        PreferenceManager.getDefaultSharedPreferences(context);
-        AccountTypeManager.getInstance(context);
         if (ENABLE_FRAGMENT_LOG) FragmentManager.enableDebugLogging(true);
         if (ENABLE_LOADER_LOG) LoaderManager.enableDebugLogging(true);
 
@@ -132,8 +131,30 @@ public final class ContactsApplication extends Application {
                     new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
         }
 
+        // Perform the initialization that doesn't have to finish immediately.
+        // We use an async task here just to avoid creating a new thread.
+        (new DelayedInitializer()).execute();
+
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "ContactsApplication.onCreate finish");
+        }
+    }
+
+    private class DelayedInitializer extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            final Context context = ContactsApplication.this;
+
+            // Warm up the preferences, the account type manager and the contacts provider.
+            PreferenceManager.getDefaultSharedPreferences(context);
+            AccountTypeManager.getInstance(context);
+            getContentResolver().getType(ContentUris.withAppendedId(Contacts.CONTENT_URI, 1));
+            return null;
+        }
+
+        public void execute() {
+            executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
+                    (Void[]) null);
         }
     }
 }

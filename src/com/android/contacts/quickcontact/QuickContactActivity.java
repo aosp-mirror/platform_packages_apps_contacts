@@ -21,6 +21,7 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
+import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;
@@ -494,6 +495,9 @@ public class QuickContactActivity extends Activity {
             bindData(data);
 
             if (TRACE_LAUNCH) android.os.Debug.stopMethodTracing();
+            if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
+                Log.d(Constants.PERFORMANCE_TAG, "QuickContact shown");
+            }
 
             // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
             // that the layout passes are completed

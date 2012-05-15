@@ -137,6 +137,7 @@ public class ShortcutIntentBuilder {
      */
     private abstract class LoadingAsyncTask extends AsyncTask<Void, Void, Void> {
         protected Uri mUri;
+        protected String mContentType;
         protected String mDisplayName;
         protected byte[] mBitmapData;
         protected long mPhotoId;
@@ -147,6 +148,7 @@ public class ShortcutIntentBuilder {
 
         @Override
         protected Void doInBackground(Void... params) {
+            mContentType = mContext.getContentResolver().getType(mUri);
             loadData();
             loadPhoto();
             return null;
@@ -196,7 +198,7 @@ public class ShortcutIntentBuilder {
         }
         @Override
         protected void onPostExecute(Void result) {
-            createContactShortcutIntent(mUri, mDisplayName, mBitmapData);
+            createContactShortcutIntent(mUri, mContentType, mDisplayName, mBitmapData);
         }
     }
 
@@ -248,7 +250,7 @@ public class ShortcutIntentBuilder {
         return bitmap;
     }
 
-    private void createContactShortcutIntent(Uri contactUri, String displayName,
+    private void createContactShortcutIntent(Uri contactUri, String contentType, String displayName,
             byte[] bitmapData) {
         Bitmap bitmap = getPhotoBitmap(bitmapData);
 
@@ -263,7 +265,7 @@ public class ShortcutIntentBuilder {
         // Tell the launcher to not do its animation, because we are doing our own
         shortcutIntent.putExtra(INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION, true);
 
-        shortcutIntent.setData(contactUri);
+        shortcutIntent.setDataAndType(contactUri, contentType);
         shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
                 ContactsContract.QuickContact.MODE_LARGE);
         shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
