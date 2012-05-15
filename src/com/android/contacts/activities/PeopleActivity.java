@@ -560,6 +560,11 @@ public class PeopleActivity extends ContactsActivity
                 case ContactsRequest.ACTION_VIEW_CONTACT:
                     // We redirect this intent to the detail activity on 1-pane, so we don't get
                     // here.  It's only for 2-pane.
+                    Uri currentlyLoadedContactUri = mContactDetailFragment.getUri();
+                    if (currentlyLoadedContactUri != null
+                            && !mRequest.getContactUri().equals(currentlyLoadedContactUri)) {
+                        mContactDetailsView.setMaskVisibility(true);
+                    }
                     tabToOpen = TabState.ALL;
                     break;
                 case ContactsRequest.ACTION_GROUP:
@@ -612,7 +617,7 @@ public class PeopleActivity extends ContactsActivity
         // If we are switching from one group to another, do a cross-fade
         if (mGroupDetailFragment != null && mGroupDetailFragment.getGroupUri() != null &&
                 !UriUtils.areEqual(mGroupDetailFragment.getGroupUri(), groupUri)) {
-            mGroupDetailsView.startTransition(mGroupDetailFragment.getView(), false);
+            mGroupDetailsView.startMaskTransition(false);
         }
         mGroupDetailFragment.loadGroup(groupUri);
         invalidateOptionsMenuIfNeeded();
