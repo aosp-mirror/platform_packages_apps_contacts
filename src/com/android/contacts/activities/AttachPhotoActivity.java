@@ -83,8 +83,8 @@ public class AttachPhotoActivity extends ContactsActivity {
             mTempPhotoFile = ContactPhotoUtils.generateTempPhotoFile(this);
             mTempPhotoUri = Uri.fromFile(mTempPhotoFile);
 
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType(Contacts.CONTENT_ITEM_TYPE);
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType(Contacts.CONTENT_TYPE);
             startActivityForResult(intent, REQUEST_PICK_CONTACT);
         }
 
