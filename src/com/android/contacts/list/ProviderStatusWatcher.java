@@ -47,6 +47,19 @@ public class ProviderStatusWatcher extends ContentObserver {
         public void onProviderStatusChange();
     }
 
+    public static class Status {
+        /** See {@link ProviderStatus#STATUS} */
+        public final int status;
+
+        /** See {@link ProviderStatus#DATA1} */
+        public final String data;
+
+        public Status(int status, String data) {
+            this.status = status;
+            this.data = data;
+        }
+    }
+
     private static final String[] PROJECTION = new String[] {
         ProviderStatus.STATUS,
         ProviderStatus.DATA1
@@ -56,8 +69,6 @@ public class ProviderStatusWatcher extends ContentObserver {
      * We'll wait for this amount of time on the UI thread if the load hasn't finished.
      */
     private static final int LOAD_WAIT_TIMEOUT_MS = 1000;
-
-    private static final int STATUS_UNKNOWN = -1;
 
     private static ProviderStatusWatcher sInstance;
 
@@ -71,10 +82,7 @@ public class ProviderStatusWatcher extends ContentObserver {
     private LoaderTask mLoaderTask;
 
     /** Last known provider status.  This can be changed on a worker thread. */
-    private int mProviderStatus = STATUS_UNKNOWN;
-
-    /** Last known provider status data.  This can be changed on a worker thread. */
-    private String mProviderData;
+    private Status mProviderStatus;
 
     private final ArrayList<ProviderStatusListener> mListeners = Lists.newArrayList();
 
@@ -177,32 +185,18 @@ public class ProviderStatusWatcher extends ContentObserver {
      * (If {@link ProviderStatus#STATUS_UPGRADING} is returned, the app (should) shows an according
      * message, like "contacts are being updated".)
      */
-    public int getProviderStatus() {
+    public Status getProviderStatus() {
         waitForLoaded();
 
-        if (mProviderStatus == STATUS_UNKNOWN) {
-            return ProviderStatus.STATUS_UPGRADING;
+        if (mProviderStatus == null) {
+            return new Status(ProviderStatus.STATUS_UPGRADING, null);
         }
 
         return mProviderStatus;
     }
 
-    /**
-     * @return last known provider status data.  See also {@link #getProviderStatus()}.
-     */
-    public String getProviderStatusData() {
-        waitForLoaded();
-
-        if (mProviderStatus == STATUS_UNKNOWN) {
-            // STATUS_UPGRADING has no data.
-            return "";
-        }
-
-        return mProviderData;
-    }
-
     private void waitForLoaded() {
-        if (mProviderStatus == STATUS_UNKNOWN) {
+        if (mProviderStatus == null) {
             if (mLoaderTask == null) {
                 // For some reason the loader couldn't load the status.  Let's start it again.
                 startLoading();
@@ -238,8 +232,10 @@ public class ProviderStatusWatcher extends ContentObserver {
                 if (cursor != null) {
                     try {
                         if (cursor.moveToFirst()) {
-                            mProviderStatus = cursor.getInt(0);
-                            mProviderData = cursor.getString(1);
+                            // Note here we can't just say "Status", as AsyncTask has the "Status"
+                            // enum too.
+                            mProviderStatus = new ProviderStatusWatcher.Status(
+                                    cursor.getInt(0), cursor.getString(1));
                             return true;
                         }
                     } finally {
@@ -291,14 +287,14 @@ public class ProviderStatusWatcher extends ContentObserver {
     /**
      * Sends a provider status update, which will trigger a retry of database upgrade
      */
-    public void retryUpgrade() {
+    public static void retryUpgrade(final Context context) {
         Log.i(TAG, "retryUpgrade");
         final AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 ContentValues values = new ContentValues();
                 values.put(ProviderStatus.STATUS, ProviderStatus.STATUS_UPGRADING);
-                mContext.getContentResolver().update(ProviderStatus.CONTENT_URI, values,
+                context.getContentResolver().update(ProviderStatus.CONTENT_URI, values,
                         null, null);
                 return null;
             }
