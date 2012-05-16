@@ -173,6 +173,16 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         }
     }
 
+    /**
+     * Reset the fragment carousel to show the about page.
+     */
+    public void reset() {
+        if (mCurrentPage != ABOUT_PAGE) {
+            mCurrentPage = ABOUT_PAGE;
+            snapToEdge();
+        }
+    }
+
     public int getCurrentPage() {
         return mCurrentPage;
     }
