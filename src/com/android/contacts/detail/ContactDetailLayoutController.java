@@ -405,6 +405,9 @@ public class ContactDetailLayoutController {
             case LayoutMode.TWO_COLUMN_FRAGMENT_CAROUSEL: {
                 // Allow swiping between all fragments
                 mFragmentCarousel.enableSwipe(true);
+                if (isDifferentContact) {
+                    mFragmentCarousel.reset();
+                }
                 if (!isDifferentContact && animateStateChange) {
                     mFragmentCarousel.animateAppear();
                 }
