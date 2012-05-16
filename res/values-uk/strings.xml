@@ -134,7 +134,8 @@
     <item quantity="one" msgid="4826918429708286628">"Знайдено 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Знайдено <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6178225597569649305">"Усі"</string>
+    <!-- no translation found for contactsAllLabel (6479708629170672169) -->
+    <skip />
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Групи"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Вибране"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Тел."</string>
