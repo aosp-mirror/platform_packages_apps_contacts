@@ -134,7 +134,8 @@
     <item quantity="one" msgid="4826918429708286628">"พบ 1 รายการ"</item>
     <item quantity="other" msgid="7988132539476575389">"พบ <xliff:g id="COUNT">%d</xliff:g> รายการ"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6178225597569649305">"ทั้งหมด"</string>
+    <!-- no translation found for contactsAllLabel (6479708629170672169) -->
+    <skip />
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"กลุ่ม"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"รายการโปรด"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"โทรศัพท์"</string>

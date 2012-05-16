@@ -134,7 +134,7 @@
     <item quantity="one" msgid="4826918429708286628">"1 contact trouvé"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> contact(s) trouvé(s)"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6178225597569649305">"Tous"</string>
+    <string name="contactsAllLabel" msgid="6479708629170672169">"Tous les contacts"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groupes"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoris"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Tél."</string>
