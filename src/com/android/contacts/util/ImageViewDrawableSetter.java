@@ -39,10 +39,10 @@ public class ImageViewDrawableSetter {
     private ImageView mTarget;
     private byte[] mCompressed;
     private Drawable mPreviousDrawable;
+    private int mDurationInMillis = 0;
     private static final String TAG = "ImageViewDrawableSetter";
 
     public ImageViewDrawableSetter() {
-
     }
 
     public ImageViewDrawableSetter(ImageView target) {
@@ -52,6 +52,10 @@ public class ImageViewDrawableSetter {
     public void setupContactPhoto(Result contactData, ImageView photoView) {
         setTarget(photoView);
         setCompressedImage(contactData.getPhotoBinaryData());
+    }
+
+    public void setTransitionDuration(int durationInMillis) {
+        mDurationInMillis = durationInMillis;
     }
 
     public ImageView getTarget() {
@@ -97,7 +101,7 @@ public class ImageViewDrawableSetter {
         // If we don't have a new Drawable, something went wrong... bail out.
         if (newDrawable == null) return previousBitmap();
 
-        if (mPreviousDrawable == null) {
+        if (mPreviousDrawable == null || mDurationInMillis == 0) {
             // Set the new one immediately.
             mTarget.setImageDrawable(newDrawable);
         } else {
@@ -107,7 +111,7 @@ public class ImageViewDrawableSetter {
             beforeAndAfter[1] = newDrawable;
             final TransitionDrawable transition = new TransitionDrawable(beforeAndAfter);
             mTarget.setImageDrawable(transition);
-            transition.startTransition(200);
+            transition.startTransition(mDurationInMillis);
         }
 
         // Remember this for next time, so that we can transition from it to the

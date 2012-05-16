@@ -356,6 +356,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mShowStaticPhoto = showPhoto;
     }
 
+    /**
+     * Shows the contact detail with a message indicating there are no contact details.
+     */
     public void showEmptyState() {
         setData(null, null);
     }
@@ -406,6 +409,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         if (mContactData == null) {
             mView.setVisibility(View.INVISIBLE);
+            if (mStaticPhotoContainer != null) {
+                mStaticPhotoContainer.setVisibility(View.GONE);
+            }
             mAllEntries.clear();
             if (mAdapter != null) {
                 mAdapter.notifyDataSetChanged();
