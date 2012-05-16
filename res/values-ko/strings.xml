@@ -134,8 +134,7 @@
     <item quantity="one" msgid="4826918429708286628">"1개를 찾았습니다."</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g>개를 찾았습니다."</item>
   </plurals>
-    <!-- no translation found for contactsAllLabel (6479708629170672169) -->
-    <skip />
+    <string name="contactsAllLabel" msgid="6479708629170672169">"모든 연락처"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"그룹"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"즐겨찾기"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"휴대전화"</string>
