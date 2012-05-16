@@ -134,8 +134,7 @@
     <item quantity="one" msgid="4826918429708286628">"1 ang nakita"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ang nakita"</item>
   </plurals>
-    <!-- no translation found for contactsAllLabel (6479708629170672169) -->
-    <skip />
+    <string name="contactsAllLabel" msgid="6479708629170672169">"Lahat ng contact"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Mga Pangkat"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Mga Paborito"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telepono"</string>
