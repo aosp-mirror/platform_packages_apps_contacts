@@ -73,6 +73,7 @@ import com.android.contacts.SpecialCharSequenceMgr;
 import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.PhoneNumberFormatter;
+import com.android.contacts.util.StopWatch;
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
@@ -468,16 +469,24 @@ public class DialpadFragment extends Fragment
     public void onResume() {
         super.onResume();
 
+        final StopWatch stopWatch = StopWatch.start("Dialpad.onResume");
+
         // Query the last dialed number. Do it first because hitting
         // the DB is 'slow'. This call is asynchronous.
         queryLastOutgoingCall();
+
+        stopWatch.lap("qloc");
 
         // retrieve the DTMF tone play back setting.
         mDTMFToneEnabled = Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.DTMF_TONE_WHEN_DIALING, 1) == 1;
 
+        stopWatch.lap("dtwd");
+
         // Retrieve the haptic feedback setting.
         mHaptic.checkSystemSetting();
+
+        stopWatch.lap("hptc");
 
         // if the mToneGenerator creation fails, just continue without it.  It is
         // a local audio signal, and is not as important as the dtmf tone itself.
@@ -491,6 +500,7 @@ public class DialpadFragment extends Fragment
                 }
             }
         }
+        stopWatch.lap("tg");
         // Prevent unnecessary confusion. Reset the press count anyway.
         mDialpadPressCount = 0;
 
@@ -501,12 +511,16 @@ public class DialpadFragment extends Fragment
             fillDigitsIfNecessary(parent.getIntent());
         }
 
+        stopWatch.lap("fdin");
+
         // While we're in the foreground, listen for phone state changes,
         // purely so that we can take down the "dialpad chooser" if the
         // phone becomes idle while the chooser UI is visible.
         TelephonyManager telephonyManager =
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+
+        stopWatch.lap("tm");
 
         // Potentially show hint text in the mDigits field when the user
         // hasn't typed any digits yet.  (If there's already an active call,
@@ -531,7 +545,13 @@ public class DialpadFragment extends Fragment
             showDialpadChooser(false);
         }
 
+        stopWatch.lap("hnt");
+
         updateDialAndDeleteButtonEnabledState();
+
+        stopWatch.lap("bes");
+
+        stopWatch.stopAndLog(TAG, 50);
     }
 
     @Override
