@@ -54,6 +54,7 @@
         android:id="@+id/updates_fragment_container"
         android:layout_width="0dip"
         android:layout_weight="2"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </LinearLayout>
