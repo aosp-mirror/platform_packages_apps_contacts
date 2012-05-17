@@ -150,7 +150,7 @@ public class PeopleActivity extends ContactsActivity
 
     private ContactsUnavailableFragment mContactsUnavailableFragment;
     private ProviderStatusWatcher mProviderStatusWatcher;
-    private int mProviderStatus;
+    private ProviderStatusWatcher.Status mProviderStatus;
 
     private boolean mOptionsMenuContactsAvailable;
 
@@ -217,7 +217,8 @@ public class PeopleActivity extends ContactsActivity
     }
 
     public boolean areContactsAvailable() {
-        return mProviderStatus == ProviderStatus.STATUS_NORMAL;
+        return (mProviderStatus != null)
+                && mProviderStatus.status == ProviderStatus.STATUS_NORMAL;
     }
 
     private boolean areContactWritableAccountsAvailable() {
@@ -991,14 +992,15 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private void updateViewConfiguration(boolean forceUpdate) {
-        int providerStatus = mProviderStatusWatcher.getProviderStatus();
-        if (!forceUpdate && (providerStatus == mProviderStatus)) return;
+        ProviderStatusWatcher.Status providerStatus = mProviderStatusWatcher.getProviderStatus();
+        if (!forceUpdate && (mProviderStatus != null)
+                && (providerStatus.status == mProviderStatus.status)) return;
         mProviderStatus = providerStatus;
 
         View contactsUnavailableView = findViewById(R.id.contacts_unavailable_view);
         View mainView = findViewById(R.id.main_view);
 
-        if (mProviderStatus == ProviderStatus.STATUS_NORMAL) {
+        if (mProviderStatus.status == ProviderStatus.STATUS_NORMAL) {
             // Ensure that the mTabPager is visible; we may have made it invisible below.
             contactsUnavailableView.setVisibility(View.GONE);
             if (mTabPager != null) {
@@ -1033,9 +1035,8 @@ public class PeopleActivity extends ContactsActivity
                 getFragmentManager().beginTransaction()
                         .replace(R.id.contacts_unavailable_container, mContactsUnavailableFragment)
                         .commitAllowingStateLoss();
-            } else {
-                mContactsUnavailableFragment.update();
             }
+            mContactsUnavailableFragment.updateStatus(mProviderStatus);
 
             // Show the contactsUnavailableView, and hide the mTabPager so that we don't
             // see it sliding in underneath the contactsUnavailableView at the edges.
