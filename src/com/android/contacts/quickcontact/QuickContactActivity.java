@@ -218,7 +218,12 @@ public class QuickContactActivity extends Activity {
         mContactLoader = (ContactLoader) getLoaderManager().initLoader(
                 LOADER_ID, null, mLoaderCallbacks);
 
-        mFloatingLayout.fadeInBackground();
+        SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
+            @Override
+            public void run() {
+                mFloatingLayout.fadeInBackground();
+            }
+        });
     }
 
     private void handleOutsideTouch() {
