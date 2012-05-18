@@ -82,4 +82,29 @@ public class StopWatch {
         }
         Log.v(TAG, sb.toString());
     }
+
+    /**
+     * Return a dummy instance that does no operations.
+     */
+    public static StopWatch getNullStopWatch() {
+        return NullStopWatch.INSTANCE;
+    }
+
+    private static class NullStopWatch extends StopWatch {
+        public static final NullStopWatch INSTANCE = new NullStopWatch();
+
+        public NullStopWatch() {
+            super(null);
+        }
+
+        @Override
+        public void lap(String lapLabel) {
+            // noop
+        }
+
+        @Override
+        public void stopAndLog(String TAG, int timeThresholdToLog) {
+            // noop
+        }
+    }
 }
