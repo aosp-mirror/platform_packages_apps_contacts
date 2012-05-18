@@ -25,6 +25,7 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;
+import com.android.contacts.util.StopWatch;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -91,6 +92,8 @@ public class QuickContactActivity extends Activity {
     private static final boolean TRACE_LAUNCH = false;
     private static final String TRACE_TAG = "quickcontact";
     private static final int POST_DRAW_WAIT_DURATION = 60;
+    private static final boolean ENABLE_STOPWATCH = false;
+
 
     @SuppressWarnings("deprecation")
     private static final String LEGACY_AUTHORITY = android.provider.Contacts.AUTHORITY;
@@ -148,17 +151,48 @@ public class QuickContactActivity extends Activity {
     /** Id for the background loader */
     private static final int LOADER_ID = 0;
 
+    private StopWatch mStopWatch = ENABLE_STOPWATCH
+            ? StopWatch.start("QuickContact") : StopWatch.getNullStopWatch();
+
     @Override
     protected void onCreate(Bundle icicle) {
+        mStopWatch.lap("c"); // create start
         super.onCreate(icicle);
 
+        mStopWatch.lap("sc"); // super.onCreate
+
         if (TRACE_LAUNCH) android.os.Debug.startMethodTracing(TRACE_TAG);
+
+        // Parse intent
+        final Intent intent = getIntent();
+
+        Uri lookupUri = intent.getData();
+
+        // Check to see whether it comes from the old version.
+        if (lookupUri != null && LEGACY_AUTHORITY.equals(lookupUri.getAuthority())) {
+            final long rawContactId = ContentUris.parseId(lookupUri);
+            lookupUri = RawContacts.getContactLookupUri(getContentResolver(),
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
+        }
+
+        mLookupUri = Preconditions.checkNotNull(lookupUri, "missing lookupUri");
+
+        mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
+
+        mStopWatch.lap("i"); // intent parsed
+
+        mContactLoader = (ContactLoader) getLoaderManager().initLoader(
+                LOADER_ID, null, mLoaderCallbacks);
+
+        mStopWatch.lap("ld"); // loader started
 
         // Show QuickContact in front of soft input
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
                 WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
 
         setContentView(R.layout.quickcontact_activity);
+
+        mStopWatch.lap("l"); // layout inflated
 
         mFloatingLayout = (FloatingChildLayout) findViewById(R.id.floating_layout);
         mTrack = (ViewGroup) findViewById(R.id.track);
@@ -192,33 +226,16 @@ public class QuickContactActivity extends Activity {
         mListPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mListPager.setOnPageChangeListener(new PageChangeListener());
 
-        final Intent intent = getIntent();
-
-        Uri lookupUri = intent.getData();
-
-        // Check to see whether it comes from the old version.
-        if (lookupUri != null && LEGACY_AUTHORITY.equals(lookupUri.getAuthority())) {
-            final long rawContactId = ContentUris.parseId(lookupUri);
-            lookupUri = RawContacts.getContactLookupUri(getContentResolver(),
-                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
-        }
-
-        mLookupUri = Preconditions.checkNotNull(lookupUri, "missing lookupUri");
-
-        // Read requested parameters for displaying
         final Rect sourceBounds = intent.getSourceBounds();
         if (sourceBounds != null) {
             mFloatingLayout.setChildTargetScreen(sourceBounds);
         }
 
-        mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
-
         // find and prepare correct header view
         mPhotoContainer = findViewById(R.id.photo_container);
         setHeaderNameText(R.id.name, R.string.missing_name);
 
-        mContactLoader = (ContactLoader) getLoaderManager().initLoader(
-                LOADER_ID, null, mLoaderCallbacks);
+        mStopWatch.lap("v"); // view initialized
 
         SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
             @Override
@@ -226,6 +243,8 @@ public class QuickContactActivity extends Activity {
                 mFloatingLayout.fadeInBackground();
             }
         });
+
+        mStopWatch.lap("cf"); // onCreate finished
     }
 
     private void handleOutsideTouch() {
@@ -320,10 +339,15 @@ public class QuickContactActivity extends Activity {
 
         mDefaultsMap.clear();
 
+        mStopWatch.lap("atm"); // AccountTypeManager initialization start
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
                 context.getApplicationContext());
+        mStopWatch.lap("fatm"); // AccountTypeManager initialization finished
+
         final ImageView photoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
         mPhotoSetter.setupContactPhoto(data, photoView);
+
+        mStopWatch.lap("ph"); // Photo set
 
         for (Entity entity : data.getEntities()) {
             final ContentValues entityValues = entity.getEntityValues();
@@ -375,10 +399,14 @@ public class QuickContactActivity extends Activity {
             }
         }
 
+        mStopWatch.lap("e"); // Entities inflated
+
         // Collapse Action Lists (remove e.g. duplicate e-mail addresses from different sources)
         for (List<Action> actionChildren : mActions.values()) {
             Collapser.collapseList(actionChildren);
         }
+
+        mStopWatch.lap("c"); // List collapsed
 
         setHeaderNameText(R.id.name, data.getDisplayName());
 
@@ -409,12 +437,16 @@ public class QuickContactActivity extends Activity {
             }
         }
 
+        mStopWatch.lap("mt"); // Mime types initialized
+
         // Add buttons for each mimetype
         mTrack.removeAllViews();
         for (String mimeType : mSortedActionMimeTypes) {
             final View actionView = inflateAction(mimeType, cache, mTrack);
             mTrack.addView(actionView);
         }
+
+        mStopWatch.lap("mt"); // Buttons added
 
         final boolean hasData = !mSortedActionMimeTypes.isEmpty();
         mTrackScroller.setVisibility(hasData ? View.VISIBLE : View.GONE);
@@ -481,6 +513,7 @@ public class QuickContactActivity extends Activity {
 
         @Override
         public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
+            mStopWatch.lap("lf"); // onLoadFinished
             if (isFinishing()) {
                 close(false);
                 return;
@@ -500,6 +533,8 @@ public class QuickContactActivity extends Activity {
 
             bindData(data);
 
+            mStopWatch.lap("bd"); // bindData finished
+
             if (TRACE_LAUNCH) android.os.Debug.stopMethodTracing();
             if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
                 Log.d(Constants.PERFORMANCE_TAG, "QuickContact shown");
@@ -518,6 +553,8 @@ public class QuickContactActivity extends Activity {
                     });
                 }
             });
+            mStopWatch.stopAndLog(TAG, 0);
+            mStopWatch = StopWatch.getNullStopWatch(); // We're done with it.
         }
 
         @Override
