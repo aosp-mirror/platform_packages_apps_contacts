@@ -1573,6 +1573,9 @@
         <item quantity="other"><xliff:g id="count">%1$d</xliff:g> Voicemails</item>
     </plurals>
 
+    <!-- Used in the notification of a new voicemail for the action to play the voicemail. -->
+    <string name="notification_action_voicemail_play">Play</string>
+
     <!-- Used to build a list of names or phone numbers, to indicate the callers who left
          voicemails.
          The first argument may be one or more callers, the most recent ones.
