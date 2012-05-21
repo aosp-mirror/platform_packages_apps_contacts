@@ -152,14 +152,13 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
         // TODO: Use the photo of contact if all calls are from the same person.
         final int icon = android.R.drawable.stat_notify_voicemail;
 
-        Notification notification = new Notification.Builder(mContext)
+        Notification.Builder notificationBuilder = new Notification.Builder(mContext)
                 .setSmallIcon(icon)
                 .setContentTitle(title)
                 .setContentText(callers)
                 .setDefaults(callToNotify != null ? Notification.DEFAULT_ALL : 0)
                 .setDeleteIntent(createMarkNewVoicemailsAsOldIntent())
-                .setAutoCancel(true)
-                .getNotification();
+                .setAutoCancel(true);
 
         // Determine the intent to fire when the notification is clicked on.
         final Intent contentIntent;
@@ -169,19 +168,29 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
             contentIntent.setData(newCalls[0].callsUri);
             contentIntent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
                     newCalls[0].voicemailUri);
+            Intent playIntent = new Intent(mContext, CallDetailActivity.class);
+            playIntent.setData(newCalls[0].callsUri);
+            playIntent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
+                    newCalls[0].voicemailUri);
+            playIntent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, true);
+            playIntent.putExtra(CallDetailActivity.EXTRA_FROM_NOTIFICATION, true);
+            notificationBuilder.addAction(R.drawable.ic_play_holo_dark,
+                    resources.getString(R.string.notification_action_voicemail_play),
+                    PendingIntent.getActivity(mContext, 0, playIntent, 0));
         } else {
             // Open the call log.
             contentIntent = new Intent(Intent.ACTION_VIEW, Calls.CONTENT_URI);
         }
-        notification.contentIntent = PendingIntent.getActivity(mContext, 0, contentIntent, 0);
+        notificationBuilder.setContentIntent(
+                PendingIntent.getActivity(mContext, 0, contentIntent, 0));
 
         // The text to show in the ticker, describing the new event.
         if (callToNotify != null) {
-            notification.tickerText = resources.getString(
-                    R.string.notification_new_voicemail_ticker, names.get(callToNotify.number));
+            notificationBuilder.setTicker(resources.getString(
+                    R.string.notification_new_voicemail_ticker, names.get(callToNotify.number)));
         }
 
-        mNotificationManager.notify(NOTIFICATION_TAG, NOTIFICATION_ID, notification);
+        mNotificationManager.notify(NOTIFICATION_TAG, NOTIFICATION_ID, notificationBuilder.build());
     }
 
     /** Creates a pending intent that marks all new voicemails as old. */
