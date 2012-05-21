@@ -349,7 +349,7 @@
     <string name="foundTooManyContacts">More than <xliff:g id="count">%d</xliff:g> found.</string>
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts found when "Only contacts with phones" not selected. [CHAR LIMIT=30] -->
-    <string name="listFoundAllContactsZero">None found.</string>
+    <string name="listFoundAllContactsZero">No contacts</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts found when typing search query -->
     <plurals name="searchFoundContacts">
