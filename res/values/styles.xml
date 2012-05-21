@@ -176,6 +176,7 @@
     </style>
 
     <style name="ContactsActionBarDropDownStyle" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/ab_dropdown_navigation_item_background</item>
     </style>
 
     <style name="ContactsActionBarTheme" parent="@android:style/Theme.Holo">
@@ -351,14 +352,10 @@
     <style name="PeopleNavigationDropDownTextAppearance">
         <item name="android:textColor">#333333</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="PeopleNavigationDropDownHeaderTextAppearance">
-        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">#cdffffff</item>
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>
