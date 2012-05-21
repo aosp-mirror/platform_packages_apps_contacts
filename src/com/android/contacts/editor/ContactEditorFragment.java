@@ -1667,7 +1667,7 @@ public class ContactEditorFragment extends Fragment implements
         @Override
         public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
             mLoaderStartTime = SystemClock.elapsedRealtime();
-            return new ContactLoader(mContext, mLookupUri);
+            return new ContactLoader(mContext, mLookupUri, true);
         }
 
         @Override

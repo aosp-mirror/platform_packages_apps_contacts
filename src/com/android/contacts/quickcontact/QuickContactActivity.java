@@ -562,7 +562,7 @@ public class QuickContactActivity extends Activity {
             if (mLookupUri == null) {
                 Log.wtf(TAG, "Lookup uri wasn't initialized. Loader was started too early");
             }
-            return new ContactLoader(getApplicationContext(), mLookupUri);
+            return new ContactLoader(getApplicationContext(), mLookupUri, false);
         }
     };
 

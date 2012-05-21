@@ -75,7 +75,7 @@ public class ContactLoaderTest extends LoaderTestCase {
     }
 
     private ContactLoader.Result assertLoadContact(Uri uri) {
-        final ContactLoader loader = new ContactLoader(mMockContext, uri);
+        final ContactLoader loader = new ContactLoader(mMockContext, uri, true);
         return getLoaderResultSynchronously(loader);
     }
 
