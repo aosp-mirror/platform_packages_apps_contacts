@@ -16,9 +16,10 @@
 
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:id="@+id/totalContactsText"
     android:minHeight="@dimen/contact_filter_header_min_height"
-    android:paddingTop="10dip"
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:textColor="?android:attr/textColorTertiary"
-    android:textStyle="bold" />
+    android:paddingTop="24dip"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textColor="?android:attr/textColorTertiary" />
