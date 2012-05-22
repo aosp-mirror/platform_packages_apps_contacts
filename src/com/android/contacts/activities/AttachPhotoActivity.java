@@ -149,7 +149,7 @@ public class AttachPhotoActivity extends ContactsActivity {
     // although this is convenient, it isn't quite as robust as using LoaderManager... for
     // instance, the loader doesn't persist across Activity restarts.
     private void loadContact(Uri contactUri, final Listener listener) {
-        final ContactLoader loader = new ContactLoader(this, contactUri);
+        final ContactLoader loader = new ContactLoader(this, contactUri, true);
         loader.registerListener(0, new OnLoadCompleteListener<ContactLoader.Result>() {
             @Override
             public void onLoadComplete(
