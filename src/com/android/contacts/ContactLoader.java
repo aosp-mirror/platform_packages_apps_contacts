@@ -84,22 +84,25 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
     private boolean mLoadGroupMetaData;
     private boolean mLoadStreamItems;
     private boolean mLoadInvitableAccountTypes;
+    private boolean mPostViewNotification;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
     private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
 
-    public ContactLoader(Context context, Uri lookupUri) {
-        this(context, lookupUri, false, false, false);
+    public ContactLoader(Context context, Uri lookupUri, boolean postViewNotification) {
+        this(context, lookupUri, false, false, false, postViewNotification);
     }
 
     public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
-            boolean loadStreamItems, boolean loadInvitableAccountTypes) {
+            boolean loadStreamItems, boolean loadInvitableAccountTypes,
+            boolean postViewNotification) {
         super(context);
         mLookupUri = lookupUri;
         mRequestedUri = lookupUri;
         mLoadGroupMetaData = loadGroupMetaData;
         mLoadStreamItems = loadStreamItems;
         mLoadInvitableAccountTypes = loadInvitableAccountTypes;
+        mPostViewNotification = postViewNotification;
     }
 
     /**
@@ -1236,8 +1239,10 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                         mLookupUri, true, mObserver);
             }
 
-            // inform the source of the data that this contact is being looked at
-            postViewNotificationToSyncAdapter();
+            if (mPostViewNotification) {
+                // inform the source of the data that this contact is being looked at
+                postViewNotificationToSyncAdapter();
+            }
         }
 
         super.deliverResult(mContact);
@@ -1301,11 +1306,13 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      */
     public void upgradeToFullContact() {
         // Everything requested already? Nothing to do, so let's bail out
-        if (mLoadGroupMetaData && mLoadInvitableAccountTypes && mLoadStreamItems) return;
+        if (mLoadGroupMetaData && mLoadInvitableAccountTypes && mLoadStreamItems
+                && mPostViewNotification) return;
 
         mLoadGroupMetaData = true;
         mLoadInvitableAccountTypes = true;
         mLoadStreamItems = true;
+        mPostViewNotification = true;
 
         // Cache the current result, so that we only load the "missing" parts of the contact.
         cacheResult();

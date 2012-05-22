@@ -40,7 +40,7 @@ public class ViewNotificationService extends Service {
 
         // We simply need to start a Loader here. When its done, it will send out the
         // View-Notification automatically.
-        final ContactLoader contactLoader = new ContactLoader(this, intent.getData());
+        final ContactLoader contactLoader = new ContactLoader(this, intent.getData(), true);
         contactLoader.registerListener(0, new OnLoadCompleteListener<ContactLoader.Result>() {
             @Override
             public void onLoadComplete(Loader<Result> loader, Result data) {
