@@ -23,7 +23,6 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.JoinContactActivity;
-import com.android.contacts.activities.PhotoSelectionActivity;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.Editor.EditorListener;
@@ -66,6 +65,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
@@ -104,7 +104,6 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_URI = "uri";
     private static final String KEY_ACTION = "action";
     private static final String KEY_EDIT_STATE = "state";
-    private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
     private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
@@ -190,8 +189,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final int REQUEST_CODE_JOIN = 0;
     private static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
 
-    private long mRawContactIdRequestingPhoto = -1;
-    private PhotoSelectionHandler mPhotoSelectionHandler;
+    private PhotoHandler mCurrentPhotoHandler;
 
     private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
 
@@ -409,8 +407,6 @@ public class ContactEditorFragment extends Fragment implements
         } else {
             // Read state from savedState. No loading involved here
             mState = savedState.<EntityDeltaList> getParcelable(KEY_EDIT_STATE);
-            mRawContactIdRequestingPhoto = savedState.getLong(
-                    KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mViewIdGenerator = savedState.getParcelable(KEY_VIEW_ID_GENERATOR);
             mCurrentPhotoFile = savedState.getString(KEY_CURRENT_PHOTO_FILE);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
@@ -806,9 +802,9 @@ public class ContactEditorFragment extends Fragment implements
                 return;
             }
         }
-        mPhotoSelectionHandler = new PhotoHandler(mContext, editor, mode, state);
+        final PhotoHandler photoHandler = new PhotoHandler(mContext, editor, mode, state);
         editor.getPhotoEditor().setEditorListener(
-                (PhotoHandler.PhotoEditorListener) mPhotoSelectionHandler.getListener());
+                (PhotoHandler.PhotoEditorListener) photoHandler.getListener());
     }
 
     private void bindGroupMetaData() {
@@ -1087,7 +1083,6 @@ public class ContactEditorFragment extends Fragment implements
 
     public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
             Uri contactLookupUri) {
-        Log.d(TAG, "onSaveCompleted(" + saveMode + ", " + contactLookupUri);
         if (hadChanges) {
             if (saveSucceeded) {
                 if (saveMode != SaveMode.JOIN) {
@@ -1541,7 +1536,6 @@ public class ContactEditorFragment extends Fragment implements
             outState.putParcelable(KEY_EDIT_STATE, mState);
         }
 
-        outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
         outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
@@ -1563,7 +1557,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         // See if the photo selection handler handles this result.
-        if (mPhotoSelectionHandler != null && mPhotoSelectionHandler.handlePhotoActivityResult(
+        if (mCurrentPhotoHandler != null && mCurrentPhotoHandler.handlePhotoActivityResult(
                 requestCode, resultCode, data)) {
             return;
         }
@@ -1643,19 +1637,31 @@ public class ContactEditorFragment extends Fragment implements
      * Returns true if there is currently more than one photo on screen.
      */
     private boolean hasMoreThanOnePhoto() {
-        int count = mContent.getChildCount();
         int countWithPicture = 0;
-        for (int i = 0; i < count; i++) {
-            final View childView = mContent.getChildAt(i);
-            if (childView instanceof BaseRawContactEditorView) {
-                final BaseRawContactEditorView editor = (BaseRawContactEditorView) childView;
-                if (editor.hasSetPhoto()) {
+        final int numEntities = mState.size();
+        for (int i = 0; i < numEntities; i++) {
+            final EntityDelta entity = mState.get(i);
+            final ValuesDelta values = entity.getValues();
+            if (values.isVisible()) {
+                final ValuesDelta primary = entity.getPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
+                if (primary.getAsByteArray(Photo.PHOTO) != null) {
                     countWithPicture++;
-                    if (countWithPicture > 1) return true;
+                } else {
+                    final long rawContactId = values.getAsLong(RawContacts._ID);
+                    final String path = mUpdatedPhotos.getString(String.valueOf(rawContactId));
+                    if (path != null) {
+                        final File file = new File(path);
+                        if (file.exists()) {
+                            countWithPicture++;
+                        }
+                    }
+                }
+
+                if (countWithPicture > 1) {
+                    return true;
                 }
             }
         }
-
         return false;
     }
 
@@ -1758,7 +1764,7 @@ public class ContactEditorFragment extends Fragment implements
 
         @Override
         public void startPhotoActivity(Intent intent, int requestCode, String photoFile) {
-            mRawContactIdRequestingPhoto = mEditor.getRawContactId();
+            mCurrentPhotoHandler = this;
             mStatus = Status.SUB_ACTIVITY;
             mCurrentPhotoFile = photoFile;
             ContactEditorFragment.this.startActivityForResult(intent, requestCode);
@@ -1798,6 +1804,7 @@ public class ContactEditorFragment extends Fragment implements
                         photoEditor.setSuperPrimary(editor == mEditor);
                     }
                 }
+                bindEditors();
             }
 
             /**
@@ -1810,12 +1817,14 @@ public class ContactEditorFragment extends Fragment implements
                 // Prevent bitmap from being restored if rotate the device.
                 // (only if we first chose a new photo before removing it)
                 mUpdatedPhotos.remove(String.valueOf(mRawContactId));
+                bindEditors();
             }
 
             @Override
             public void onPhotoSelected(Bitmap bitmap) {
-                setPhoto(mRawContactIdRequestingPhoto, bitmap, mCurrentPhotoFile);
-                mRawContactIdRequestingPhoto = -1;
+                setPhoto(mCurrentPhotoHandler.mRawContactId, bitmap, mCurrentPhotoFile);
+                mCurrentPhotoHandler = null;
+                bindEditors();
             }
 
             @Override
