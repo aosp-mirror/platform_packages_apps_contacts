@@ -201,12 +201,16 @@ public class EditorAnimator {
     /**
      * Traverses up the view hierarchy and returns all views below this item. Stops
      * once a parent is not a vertical LinearLayout
+     *
+     * @return List of views that are below the given view. Empty list if parent of view is null.
      */
     private static List<View> getViewsBelowOf(View view) {
         final ViewGroup victimParent = (ViewGroup) view.getParent();
         final List<View> result = Lists.newArrayList();
-        final int index = victimParent.indexOfChild(view);
-        getViewsBelowOfRecursive(result, victimParent, index + 1);
+        if (victimParent != null) {
+            final int index = victimParent.indexOfChild(view);
+            getViewsBelowOfRecursive(result, victimParent, index + 1);
+        }
         return result;
     }
 
