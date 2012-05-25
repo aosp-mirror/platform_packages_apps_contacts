@@ -129,13 +129,13 @@
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> یافت شد"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"بیش از <xliff:g id="COUNT">%d</xliff:g> مورد پیدا شد."</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"چیزی پیدا نشد."</string>
+    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
+    <skip />
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 مورد پیدا شد"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> یافت شد"</item>
   </plurals>
-    <!-- no translation found for contactsAllLabel (6479708629170672169) -->
-    <skip />
+    <string name="contactsAllLabel" msgid="6479708629170672169">"همه مخاطبین"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"گروه ها"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"موارد دلخواه"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"تلفن"</string>
@@ -502,6 +502,8 @@
     <item quantity="one" msgid="1746619685488504230">"پست صوتی"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> پست صوتی"</item>
   </plurals>
+    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
+    <skip />
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>، <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"پست صوتی جدید از <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"پخش پست صوتی ممکن نیست."</string>

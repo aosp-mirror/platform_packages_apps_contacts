@@ -129,7 +129,8 @@
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> found"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"More than <xliff:g id="COUNT">%d</xliff:g> found."</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"None found."</string>
+    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
+    <skip />
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 found"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> found"</item>
@@ -292,7 +293,7 @@
     <string name="dialog_import" msgid="2431698729761448759">"Import contacts"</string>
     <string name="menu_share" msgid="943789700636542260">"Share"</string>
     <string name="share_via" msgid="563121028023030093">"Share contact via"</string>
-    <string name="share_error" msgid="948429331673358107">"This contact can\'t be shared."</string>
+    <string name="share_error" msgid="948429331673358107">"This contact cannot be shared."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Name"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Nickname"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisation"</string>
@@ -501,6 +502,8 @@
     <item quantity="one" msgid="1746619685488504230">"Voicemail"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> Voicemails"</item>
   </plurals>
+    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
+    <skip />
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"New voicemail from <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Couldn\'t play voicemail."</string>
@@ -557,6 +560,6 @@
     <string name="add_new_account" msgid="5748627740680940264">"Add new account"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Call not sent"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"To set up voicemail, go to Menu &gt; Settings."</string>
-    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"To call voicemail, first turn off Airplane mode."</string>
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"To call voicemail, first turn off Aeroplane mode."</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"More options"</string>
 </resources>

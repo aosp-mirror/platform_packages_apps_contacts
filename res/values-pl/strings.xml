@@ -129,7 +129,8 @@
     <item quantity="other" msgid="3852668542926965042">"Znaleziono: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Znaleziono więcej niż <xliff:g id="COUNT">%d</xliff:g>."</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Brak wyników"</string>
+    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
+    <skip />
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Znaleziono: 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Znaleziono: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -429,8 +430,8 @@
     <string name="add_organization" msgid="7311893231158291197">"Dodaj organizację"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Data"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Nazwa grupy"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"za pośrednictwem: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>, za pośrednictwem: <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"przez: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>, przez: <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"ulubione"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Edytuj kontakt"</string>
   <plurals name="merge_info">
@@ -501,6 +502,8 @@
     <item quantity="one" msgid="1746619685488504230">"Poczta głosowa"</item>
     <item quantity="other" msgid="5513481419205061254">"Wiadomości głosowe: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
   </plurals>
+    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
+    <skip />
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nowa poczta głosowa od: <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Nie można odtworzyć poczty głosowej."</string>
@@ -551,7 +554,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodaj konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kopia zapasowa nowego kontaktu nie zostanie utworzona. Dodać konto, na którym kopie zapasowe kontaktów będą tworzone online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nowy kontakt zostanie zsynchronizowany z kontem <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nowy kontakt możesz zsynchronizować z jednym z następujących kont. Którego z nich chcesz użyć?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nowy kontakt możesz zsynchronizować z dowolnym kontem. Którego chcesz użyć?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Przechowuj lokalnie"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nowe konto"</string>
