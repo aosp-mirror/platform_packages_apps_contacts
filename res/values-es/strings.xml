@@ -65,7 +65,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos los contactos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contactos agrupados"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Establecer tono"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Llamadas al buzón de voz"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Al buzón de voz"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"No puedes eliminar los contactos procedentes de las cuentas de solo lectura, pero puedes ocultarlos en las listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contiene información de varias cuentas. La información de las cuentas de solo lectura se ocultará en las listas de contactos, pero no se eliminará."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Si se elimina este contacto, se eliminará la información de varias cuentas."</string>
@@ -83,7 +83,7 @@
     <string name="pickerNewContactText" msgid="6166997164401048211">"Crear contacto nuevo"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Teléfono"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Correo"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"Nombre de chat"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Chat"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Dirección"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organización"</item>
@@ -92,7 +92,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"No hay ninguna imagen disponible en el tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"No hay ninguna imagen disponible en el teléfono."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacto"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre de etiqueta personalizada"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre de campo personalizado"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al buzón de voz"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"No hay ningún contacto."</string>
@@ -129,7 +129,8 @@
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Se han encontrado más de <xliff:g id="COUNT">%d</xliff:g> contactos."</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"No hay contactos."</string>
+    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
+    <skip />
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 encontrado"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
@@ -501,6 +502,8 @@
     <item quantity="one" msgid="1746619685488504230">"Mensaje de voz"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> mensajes de voz"</item>
   </plurals>
+    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
+    <skip />
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nuevo mensaje de voz de <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"No se ha podido reproducir el mensaje."</string>
@@ -554,7 +557,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puedes sincronizar tu nuevo contacto con una de las siguientes cuentas. ¿Cuál quieres usar?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Guardar localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Añadir cuenta"</string>
-    <string name="add_new_account" msgid="5748627740680940264">"Añadir una cuenta nueva"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Añadir una cuenta"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Llamada no enviada"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Para configurar el buzón de voz, toca la tecla de menú y, a continuación, toca Ajustes."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Para llamar al buzón de voz, debes desactivar el modo avión."</string>

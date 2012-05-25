@@ -172,7 +172,7 @@
   </plurals>
     <!-- no translation found for foundTooManyContacts (5163335650920020220) -->
     <skip />
-    <!-- no translation found for listFoundAllContactsZero (7132202364587656501) -->
+    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
     <skip />
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"chattà 1"</item>
@@ -705,6 +705,8 @@
     <skip />
     <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
     <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
+    <skip />
     <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
     <skip />
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->

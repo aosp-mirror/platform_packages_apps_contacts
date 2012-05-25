@@ -129,7 +129,8 @@
     <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"找到 <xliff:g id="COUNT">%d</xliff:g> 位以上的聯絡人。"</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"完全找不到。"</string>
+    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
+    <skip />
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"找到 1 位聯絡人"</item>
     <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
@@ -501,6 +502,8 @@
     <item quantity="one" msgid="1746619685488504230">"語音留言"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> 則語音留言"</item>
   </plurals>
+    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
+    <skip />
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>、<xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"最新語音留言者：<xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"無法播放語音留言。"</string>
