@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="launcherDialer" msgid="8636288196618486553">"電話"</string>
-    <string name="people" msgid="1048457247435785074">"ユーザー"</string>
+    <string name="people" msgid="1048457247435785074">"People"</string>
     <string name="contactsList" msgid="8661624236494819731">"連絡先"</string>
     <string name="shortcutContact" msgid="749243779392912958">"連絡先"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接発信"</string>
@@ -129,7 +129,8 @@
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g>件見つかりました"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g>件以上見つかりました。"</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"何も見つかりませんでした。"</string>
+    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
+    <skip />
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1件見つかりました"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g>件見つかりました"</item>
@@ -501,6 +502,8 @@
     <item quantity="one" msgid="1746619685488504230">"ボイスメール"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g>件のボイスメール"</item>
   </plurals>
+    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
+    <skip />
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>、<xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"<xliff:g id="CALLER">%1$s</xliff:g>から新着ボイスメール"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"ボイスメールを再生できませんでした。"</string>
