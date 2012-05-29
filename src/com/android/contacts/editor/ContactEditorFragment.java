@@ -1644,7 +1644,7 @@ public class ContactEditorFragment extends Fragment implements
             final ValuesDelta values = entity.getValues();
             if (values.isVisible()) {
                 final ValuesDelta primary = entity.getPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
-                if (primary.getAsByteArray(Photo.PHOTO) != null) {
+                if (primary != null && primary.getAsByteArray(Photo.PHOTO) != null) {
                     countWithPicture++;
                 } else {
                     final long rawContactId = values.getAsLong(RawContacts._ID);
