@@ -129,8 +129,7 @@
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> ተገኝቷል"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"ከ<xliff:g id="COUNT">%d</xliff:g> የበለጠ ተገኝቷል"</string>
-    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
-    <skip />
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"እውቅያዎች የሉም"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 ተገኝቷል"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ተገኝቷል"</item>
@@ -433,7 +432,7 @@
     <string name="contact_status_update_attribution" msgid="752179367353018597">"በ<xliff:g id="SOURCE">%1$s</xliff:g> በኩል"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>በ<xliff:g id="SOURCE">%2$s</xliff:g> በኩል"</string>
     <string name="description_star" msgid="2605854427360036550">"ተወዳጅ"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"እውቅያ አርትእ"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"እውቅያ አርትዕ"</string>
   <plurals name="merge_info">
     <item quantity="one" msgid="148365587896371969">"አልተዋሃደም"</item>
     <item quantity="other" msgid="425683718017380845">"ከ<xliff:g id="COUNT">%0$d</xliff:g> ምንጮች የተዋሃደ"</item>
@@ -502,8 +501,7 @@
     <item quantity="one" msgid="1746619685488504230">"የድምፅ መልዕክት"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> የድምፅ መልዕክቶች"</item>
   </plurals>
-    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
-    <skip />
+    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"አጫውት"</string>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>፤<xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"ከ<xliff:g id="CALLER">%1$s</xliff:g> አዲስ የድምፅመልዕክት"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"ድምፅ ደብዳቤን ማጫወት አልተቻለም፡፡"</string>

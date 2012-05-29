@@ -449,8 +449,8 @@
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Membuat salinan pribadi..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Semua kontak"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Yang berkilau bintangnya"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Ubahsuaian"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Ubahsuaian"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Khusus"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Khusus"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Semua kontak dengan nomor telepon"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontak"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan ubahsuaian"</string>
