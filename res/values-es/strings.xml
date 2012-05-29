@@ -129,8 +129,7 @@
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Se han encontrado más de <xliff:g id="COUNT">%d</xliff:g> contactos."</string>
-    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
-    <skip />
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hay contactos."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 encontrado"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
@@ -502,8 +501,7 @@
     <item quantity="one" msgid="1746619685488504230">"Mensaje de voz"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> mensajes de voz"</item>
   </plurals>
-    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
-    <skip />
+    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"Reproducir"</string>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nuevo mensaje de voz de <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"No se ha podido reproducir el mensaje."</string>
