@@ -284,7 +284,8 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
     }
 
     public boolean isContactCanCreateShortcut() {
-        return mContactData != null && !mContactData.isUserProfile();
+        return mContactData != null && !mContactData.isUserProfile()
+                && !mContactData.isDirectoryEntry();
     }
 
     @Override
