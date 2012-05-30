@@ -92,7 +92,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tidak ada gambar yang tersedia pada tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tidak ada gambar pada ponsel."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto kontak"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label ubahsuaian"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label khusus"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Kirim panggilan ke kotak pesan secara langsung"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Hapus foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"Tidak ada kontak."</string>
@@ -123,14 +123,13 @@
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Tidak ada kontak di <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontak di <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"Kontak tunggal"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Kontak dalam tampilan ubahsuaian"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Kontak dalam tampilan khusus"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Ada 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Ada <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Ditemukan lebih dari <xliff:g id="COUNT">%d</xliff:g>."</string>
-    <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
-    <skip />
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Tidak ada kontak"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Ada 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Ada <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -453,7 +452,7 @@
     <string name="list_filter_customize" msgid="4789963356004169321">"Khusus"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Semua kontak dengan nomor telepon"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontak"</string>
-    <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan ubahsuaian"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan khusus"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Memuat..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setelan"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontak untuk ditampilkan"</string>
@@ -502,8 +501,7 @@
     <item quantity="one" msgid="1746619685488504230">"Pesan suara"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> Pesan suara"</item>
   </plurals>
-    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
-    <skip />
+    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"Putar"</string>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Pesan suara baru dari <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Tidak dapat memutar pesan suara."</string>
