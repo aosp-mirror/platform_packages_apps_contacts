@@ -18,23 +18,20 @@
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_ab_search_holo_dark"
         android:title="@string/menu_search"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_add_contact"
         android:icon="@drawable/ic_add_contact_holo_dark"
-        android:title="@string/menu_new_contact_action_bar" />
+        android:title="@string/menu_new_contact_action_bar"
+        android:showAsAction="always" />
 
     <item
-        android:id="@+id/menu_add_group"
+        android:id="@+id/menu_custom_add_group"
         android:icon="@drawable/ic_add_group_holo_dark"
-        android:title="@string/menu_new_group_action_bar" />
+        android:title="@string/menu_new_group_action_bar"
+        android:showAsAction="always" />
 
-    <!-- Added orderInCategory to keep the following buttons at the end of the menu
-         Buttons will be added in the order added/inflated. Ordered buttons will be added
-         at the end according to the orderInCategory. This setup insures that the buttons below
-         will be the last buttons in the menu regardless of how many buttons are added
-    -->
     <item
         android:id="@+id/menu_contacts_filter"
         android:orderInCategory="1"

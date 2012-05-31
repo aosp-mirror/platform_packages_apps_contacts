@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2009 The Android Open Source Project
+<!-- Copyright (C) 2011 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -16,22 +16,13 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_edit"
+        android:id="@+id/menu_edit_group"
         android:icon="@drawable/ic_menu_compose_holo_dark"
-        android:title="@string/menu_editContact"
-        android:alphabeticShortcut="e" />
+        android:title="@string/menu_editGroup"
+        android:alphabeticShortcut="e"
+        android:showAsAction="always" />
 
     <item
-        android:id="@+id/menu_share"
-        android:title="@string/menu_share"
-        android:alphabeticShortcut="s" />
-
-    <item
-        android:id="@+id/menu_delete"
-        android:title="@string/menu_deleteContact" />
-
-    <item
-        android:id="@+id/menu_create_contact_shortcut"
-        android:title="@string/menu_create_contact_shortcut" />
-
+        android:id="@+id/menu_delete_group"
+        android:title="@string/menu_deleteGroup" />
 </menu>

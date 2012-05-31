@@ -19,7 +19,8 @@
         android:id="@+id/menu_edit"
         android:icon="@drawable/ic_menu_compose_holo_dark"
         android:title="@string/menu_editContact"
-        android:alphabeticShortcut="e" />
+        android:alphabeticShortcut="e"
+        android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_share"
