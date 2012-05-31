@@ -50,19 +50,16 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.AccountPromptUtils;
-import com.android.contacts.util.AccountsListAdapter;
-import com.android.contacts.util.HelpUtils;
-import com.android.contacts.util.UriUtils;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.UriUtils;
 import com.android.contacts.widget.TransitionAnimationView;
 
 import android.app.Fragment;
@@ -79,7 +76,6 @@ import android.os.Parcelable;
 import android.preference.PreferenceActivity;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
@@ -94,15 +90,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -166,8 +157,6 @@ public class PeopleActivity extends ContactsActivity
     private View mBrowserView;
     private TransitionAnimationView mContactDetailsView;
     private TransitionAnimationView mGroupDetailsView;
-
-    private View mAddGroupImageView;
 
     /** ViewPager for swipe, used only on the phone (i.e. one-pane mode) */
     private ViewPager mTabPager;
@@ -771,6 +760,21 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private class TabPagerListener implements ViewPager.OnPageChangeListener {
+
+        // This package-protected constructor is here because of a possible compiler bug.
+        // PeopleActivity$1.class should be generated due to the private outer/inner class access
+        // needed here.  But for some reason, PeopleActivity$1.class is missing.
+        // Since $1 class is needed as a jvm work around to get access to the inner class,
+        // changing the constructor to package-protected or public will solve the problem.
+        // To verify whether $1 class is needed, javap PeopleActivity$TabPagerListener and look for
+        // references to PeopleActivity$1.
+        //
+        // When the constructor is private and PeopleActivity$1.class is missing, proguard will
+        // correctly catch this and throw warnings and error out the build on user/userdebug builds.
+        //
+        // All private inner classes below also need this fix.
+        TabPagerListener() {}
+
         @Override
         public void onPageScrollStateChanged(int state) {
         }
@@ -1056,6 +1060,7 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
+        ContactBrowserActionListener() {}
 
         @Override
         public void onSelectionChange() {
@@ -1149,6 +1154,8 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private class ContactDetailLoaderFragmentListener implements ContactLoaderFragmentListener {
+        ContactDetailLoaderFragmentListener() {}
+
         @Override
         public void onContactNotFound() {
             // Nothing needs to be done here
@@ -1217,6 +1224,7 @@ public class PeopleActivity extends ContactsActivity
 
     private class ContactsUnavailableFragmentListener
             implements OnContactsUnavailableActionListener {
+        ContactsUnavailableFragmentListener() {}
 
         @Override
         public void onCreateNewContactAction() {
@@ -1245,6 +1253,8 @@ public class PeopleActivity extends ContactsActivity
 
     private final class StrequentContactListFragmentListener
             implements ContactTileListFragment.Listener {
+        StrequentContactListFragmentListener() {}
+
         @Override
         public void onContactSelected(Uri contactUri, Rect targetRect) {
             if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
@@ -1263,6 +1273,8 @@ public class PeopleActivity extends ContactsActivity
 
     private final class GroupBrowserActionListener implements OnGroupBrowserActionListener {
 
+        GroupBrowserActionListener() {}
+
         @Override
         public void onViewGroupAction(Uri groupUri) {
             if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
@@ -1276,6 +1288,9 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private class GroupDetailFragmentListener implements GroupDetailFragment.Listener {
+
+        GroupDetailFragmentListener() {}
+
         @Override
         public void onGroupSizeUpdated(String size) {
             // Nothing needs to be done here because the size will be displayed in the detail
@@ -1331,22 +1346,6 @@ public class PeopleActivity extends ContactsActivity
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.people_options, menu);
-
-        // On narrow screens we specify a NEW group button in the {@link ActionBar}, so that
-        // it can be in the overflow menu. On wide screens, we use a custom view because we need
-        // its location for anchoring the account-selector popup.
-        final MenuItem addGroup = menu.findItem(R.id.menu_custom_add_group);
-        if (addGroup != null) {
-            mAddGroupImageView = getLayoutInflater().inflate(
-                    R.layout.add_group_menu_item, null, false);
-            mAddGroupImageView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    createNewGroupWithAccountDisambiguation();
-                }
-            });
-            addGroup.setActionView(mAddGroupImageView);
-        }
 
         if (DEBUG_TRANSITIONS && mContactDetailLoaderFragment != null) {
             final MenuItem toggleSocial =
@@ -1404,9 +1403,6 @@ public class PeopleActivity extends ContactsActivity
         final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
 
         MenuItem addGroupMenu = menu.findItem(R.id.menu_add_group);
-        if (addGroupMenu == null) {
-            addGroupMenu = menu.findItem(R.id.menu_custom_add_group);
-        }
 
         final MenuItem clearFrequentsMenu = menu.findItem(R.id.menu_clear_frequents);
         final MenuItem helpMenu = menu.findItem(R.id.menu_help);
@@ -1518,7 +1514,8 @@ public class PeopleActivity extends ContactsActivity
                 // to this activity to display the new contact.
                 if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
                     intent.putExtra(
-                        ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
+                            ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED,
+                            true);
                     startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
                 } else {
                     // Otherwise, on 1-pane UI, we need the editor to launch the view contact
@@ -1528,7 +1525,7 @@ public class PeopleActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_add_group: {
-                createNewGroupWithAccountDisambiguation();
+                createNewGroup();
                 return true;
             }
             case R.id.menu_import_export: {
@@ -1552,40 +1549,10 @@ public class PeopleActivity extends ContactsActivity
         return false;
     }
 
-    private void createNewGroupWithAccountDisambiguation() {
-        final List<AccountWithDataSet> accounts =
-                AccountTypeManager.getInstance(this).getAccounts(true);
-        if (accounts.size() <= 1 || mAddGroupImageView == null) {
-            // No account to choose or no control to anchor the popup-menu to
-            // ==> just go straight to the editor which will disambig if necessary
-            final Intent intent = new Intent(this, GroupEditorActivity.class);
-            intent.setAction(Intent.ACTION_INSERT);
-            startActivityForResult(intent, SUBACTIVITY_NEW_GROUP);
-            return;
-        }
-
-        final ListPopupWindow popup = new ListPopupWindow(this, null);
-        popup.setWidth(getResources().getDimensionPixelSize(R.dimen.account_selector_popup_width));
-        popup.setAnchorView(mAddGroupImageView);
-        // Create a list adapter with all writeable accounts (assume that the writeable accounts all
-        // allow group creation).
-        final AccountsListAdapter adapter = new AccountsListAdapter(this,
-                AccountListFilter.ACCOUNTS_GROUP_WRITABLE);
-        popup.setAdapter(adapter);
-        popup.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                popup.dismiss();
-                AccountWithDataSet account = adapter.getItem(position);
-                final Intent intent = new Intent(PeopleActivity.this, GroupEditorActivity.class);
-                intent.setAction(Intent.ACTION_INSERT);
-                intent.putExtra(Intents.Insert.ACCOUNT, account);
-                intent.putExtra(Intents.Insert.DATA_SET, account.dataSet);
-                startActivityForResult(intent, SUBACTIVITY_NEW_GROUP);
-            }
-        });
-        popup.setModal(true);
-        popup.show();
+    private void createNewGroup() {
+        final Intent intent = new Intent(this, GroupEditorActivity.class);
+        intent.setAction(Intent.ACTION_INSERT);
+        startActivityForResult(intent, SUBACTIVITY_NEW_GROUP);
     }
 
     @Override
