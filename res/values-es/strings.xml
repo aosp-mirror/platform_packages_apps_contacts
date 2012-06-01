@@ -76,7 +76,7 @@
     <string name="label_notes" msgid="8337354953278341042">"Notas"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Llamada por Internet"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Empresa"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"Título"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"Cargo"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Este contacto no existe."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"El widget de contactos se ha añadido al escritorio."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crear contacto nuevo"</string>
