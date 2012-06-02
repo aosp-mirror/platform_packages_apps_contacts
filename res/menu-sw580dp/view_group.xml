@@ -19,7 +19,8 @@
         android:id="@+id/menu_edit_group"
         android:icon="@drawable/ic_menu_compose_holo_dark"
         android:title="@string/menu_editGroup"
-        android:alphabeticShortcut="e" />
+        android:alphabeticShortcut="e"
+        android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_delete_group"
