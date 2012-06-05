@@ -129,7 +129,7 @@
     <item quantity="other" msgid="3852668542926965042">"Найдено: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Найдено более <xliff:g id="COUNT">%d</xliff:g>."</string>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Контактов нет"</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Нет контактов"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Найдено: 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Найдено: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -501,7 +501,7 @@
     <item quantity="one" msgid="1746619685488504230">"Голосовая почта"</item>
     <item quantity="other" msgid="5513481419205061254">"Голосовые сообщения: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
   </plurals>
-    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"Воспроизведение"</string>
+    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"Прослушать"</string>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Новое гол. сообщение: <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Не удалось воспроизвести сообщение."</string>
