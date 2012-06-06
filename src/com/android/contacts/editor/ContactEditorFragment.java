@@ -104,6 +104,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_URI = "uri";
     private static final String KEY_ACTION = "action";
     private static final String KEY_EDIT_STATE = "state";
+    private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
     private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
@@ -189,6 +190,19 @@ public class ContactEditorFragment extends Fragment implements
     private static final int REQUEST_CODE_JOIN = 0;
     private static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
 
+    /**
+     * The raw contact for which we started "take photo" or "choose photo from gallery" most
+     * recently.  Used to restore {@link #mCurrentPhotoHandler} after orientation change.
+     */
+    private long mRawContactIdRequestingPhoto;
+    /**
+     * The {@link PhotoHandler} for the photo editor for the {@link #mRawContactIdRequestingPhoto}
+     * raw contact.
+     *
+     * A {@link PhotoHandler} is created for each photo editor in {@link #bindPhotoHandler}, but
+     * the only "active" one should get the activity result.  This member represents the active
+     * one.
+     */
     private PhotoHandler mCurrentPhotoHandler;
 
     private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
@@ -407,6 +421,8 @@ public class ContactEditorFragment extends Fragment implements
         } else {
             // Read state from savedState. No loading involved here
             mState = savedState.<EntityDeltaList> getParcelable(KEY_EDIT_STATE);
+            mRawContactIdRequestingPhoto = savedState.getLong(
+                    KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mViewIdGenerator = savedState.getParcelable(KEY_VIEW_ID_GENERATOR);
             mCurrentPhotoFile = savedState.getString(KEY_CURRENT_PHOTO_FILE);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
@@ -805,6 +821,12 @@ public class ContactEditorFragment extends Fragment implements
         final PhotoHandler photoHandler = new PhotoHandler(mContext, editor, mode, state);
         editor.getPhotoEditor().setEditorListener(
                 (PhotoHandler.PhotoEditorListener) photoHandler.getListener());
+
+        // Note a newly created raw contact gets some random negative ID, so any value is valid
+        // here. (i.e. don't check against -1 or anything.)
+        if (mRawContactIdRequestingPhoto == editor.getRawContactId()) {
+            mCurrentPhotoHandler = photoHandler;
+        }
     }
 
     private void bindGroupMetaData() {
@@ -1535,7 +1557,7 @@ public class ContactEditorFragment extends Fragment implements
             // Store entities with modifications
             outState.putParcelable(KEY_EDIT_STATE, mState);
         }
-
+        outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
         outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
@@ -1747,7 +1769,7 @@ public class ContactEditorFragment extends Fragment implements
 
         final long mRawContactId;
         private final BaseRawContactEditorView mEditor;
-        private PhotoActionListener mPhotoEditorListener;
+        private final PhotoActionListener mPhotoEditorListener;
 
         public PhotoHandler(Context context, BaseRawContactEditorView editor, int photoMode,
                 EntityDeltaList state) {
@@ -1764,6 +1786,7 @@ public class ContactEditorFragment extends Fragment implements
 
         @Override
         public void startPhotoActivity(Intent intent, int requestCode, String photoFile) {
+            mRawContactIdRequestingPhoto = mEditor.getRawContactId();
             mCurrentPhotoHandler = this;
             mStatus = Status.SUB_ACTIVITY;
             mCurrentPhotoFile = photoFile;
@@ -1822,7 +1845,7 @@ public class ContactEditorFragment extends Fragment implements
 
             @Override
             public void onPhotoSelected(Bitmap bitmap) {
-                setPhoto(mCurrentPhotoHandler.mRawContactId, bitmap, mCurrentPhotoFile);
+                setPhoto(mRawContactId, bitmap, mCurrentPhotoFile);
                 mCurrentPhotoHandler = null;
                 bindEditors();
             }
