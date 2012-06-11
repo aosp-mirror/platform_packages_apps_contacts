@@ -18,7 +18,7 @@ package com.android.contacts.calllog;
 
 import com.android.common.io.MoreCloseables;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;

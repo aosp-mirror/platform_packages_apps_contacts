@@ -31,7 +31,7 @@ import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
-import com.google.android.collect.Sets;
+import com.google.common.collect.Sets;
 
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;

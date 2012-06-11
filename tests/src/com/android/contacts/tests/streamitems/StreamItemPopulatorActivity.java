@@ -18,7 +18,7 @@ package com.android.contacts.tests.streamitems;
 
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.tests.R;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.app.Activity;
 import android.content.ContentProviderOperation;

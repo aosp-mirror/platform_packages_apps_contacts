@@ -17,9 +17,9 @@
 package com.android.contacts.model;
 
 import com.android.contacts.test.NeededForTesting;
-import com.google.android.collect.Lists;
-import com.google.android.collect.Maps;
-import com.google.android.collect.Sets;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;

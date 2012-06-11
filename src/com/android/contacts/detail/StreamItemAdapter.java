@@ -20,7 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.StreamItemEntry;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.view.LayoutInflater;

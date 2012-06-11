@@ -15,7 +15,7 @@
  */
 package com.android.contacts.list;
 
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.content.CursorLoader;

@@ -21,7 +21,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.app.ActionBar;
 import android.app.Activity;

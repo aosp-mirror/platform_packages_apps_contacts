@@ -33,7 +33,7 @@ import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;

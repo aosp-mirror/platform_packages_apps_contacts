@@ -26,7 +26,7 @@ import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.app.ActionBar;
 import android.app.Activity;
