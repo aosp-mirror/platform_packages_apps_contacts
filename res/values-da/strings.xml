@@ -70,7 +70,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Denne kontakt indeholder oplysninger fra flere konti. Oplysningerne fra skrivebeskyttede konti vil blive skjult i dine lister over kontakter, men ikke slettet."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Sletning af denne kontakt sletter oplysninger fra flere konti."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Denne kontakt slettes."</string>
-    <string name="menu_done" msgid="796017761764190697">"Udfør"</string>
+    <string name="menu_done" msgid="796017761764190697">"Gem"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Annuller"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Kassér"</string>
     <string name="label_notes" msgid="8337354953278341042">"Noter"</string>
