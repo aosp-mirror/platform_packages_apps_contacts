@@ -28,5 +28,7 @@
         android:cacheColorHint="@null"
         android:layout_alignParentTop="true"
     />
-    <include layout="@layout/quickcontact_list_fragment_bottom"/>
+    <View
+        android:layout_alignBottom="@+id/list"
+        style="@style/QuickContactListBottomStyle"/>
 </RelativeLayout>

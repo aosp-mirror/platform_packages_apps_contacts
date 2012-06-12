@@ -21,7 +21,6 @@
     <bool name="config_use_two_panes">true</bool>
     <bool name="config_use_two_panes_in_favorites">false</bool>
     <bool name="show_home_icon">true</bool>
-    <bool name="config_show_group_action_in_action_bar">false</bool>
     <bool name="config_browse_list_show_images">false</bool>
     <item name="tab_width_screen_width_percentage" type="fraction">66.67%</item>
     <item name="tab_height_screen_width_percentage" type="fraction">66.67%</item>
