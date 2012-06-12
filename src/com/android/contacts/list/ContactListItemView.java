@@ -72,7 +72,6 @@ public class ContactListItemView extends ViewGroup
 
     // Style values for layout and appearance
     private final int mPreferredHeight;
-    private final int mVerticalDividerMargin;
     private final int mGapBetweenImageAndText;
     private final int mGapBetweenLabelAndData;
     private final int mPresenceIconMargin;
@@ -115,11 +114,6 @@ public class ContactListItemView extends ViewGroup
     public static final PhotoPosition DEFAULT_PHOTO_POSITION = PhotoPosition.RIGHT;
     private PhotoPosition mPhotoPosition = DEFAULT_PHOTO_POSITION;
 
-    // Vertical divider between the call icon and the text.
-    private boolean mVerticalDividerVisible;
-    private Drawable mVerticalDividerDrawable;
-    private int mVerticalDividerWidth;
-
     // Header layout data
     private boolean mHeaderVisible;
     private View mHeaderDivider;
@@ -132,7 +126,6 @@ public class ContactListItemView extends ViewGroup
     private ImageView mPhotoView;
     private TextView mNameTextView;
     private TextView mPhoneticNameTextView;
-    private DontPressWithParentImageView mCallButton;
     private TextView mLabelView;
     private TextView mDataView;
     private TextView mSnippetView;
@@ -200,27 +193,6 @@ public class ContactListItemView extends ViewGroup
     private PrefixHighlighter mPrefixHighlighter;
     private CharSequence mUnknownNameText;
 
-    /**
-     * Special class to allow the parent to be pressed without being pressed itself.
-     * This way the line of a tab can be pressed, but the image itself is not.
-     */
-    // TODO: understand this
-    private static class DontPressWithParentImageView extends ImageView {
-
-        public DontPressWithParentImageView(Context context, AttributeSet attrs) {
-            super(context, attrs);
-        }
-
-        @Override
-        public void setPressed(boolean pressed) {
-            // If the parent is pressed, do not set to pressed.
-            if (pressed && ((View) getParent()).isPressed()) {
-                return;
-            }
-            super.setPressed(pressed);
-        }
-    }
-
     public ContactListItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
@@ -233,8 +205,6 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_activated_background);
         mHorizontalDividerDrawable = a.getDrawable(
                 R.styleable.ContactListItemView_list_item_divider);
-        mVerticalDividerMargin = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_vertical_divider_margin, 0);
 
         mGapBetweenImageAndText = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_gap_between_image_and_text, 0);
@@ -428,11 +398,6 @@ public class ContactListItemView extends ViewGroup
                 mLabelAndDataViewMaxHeight +
                 mSnippetTextViewHeight + mStatusTextViewHeight);
 
-        if (isVisible(mCallButton)) {
-            mCallButton.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-        }
-
         // Make sure the height is at least as high as the photo
         height = Math.max(height, mPhotoViewHeight + getPaddingBottom() + getPaddingTop());
 
@@ -541,9 +506,6 @@ public class ContactListItemView extends ViewGroup
             leftBound += mTextIndent;
         }
 
-        // Layout the call button.
-        rightBound = layoutRightSide(height, topBound, bottomBound, rightBound);
-
         // Center text vertically
         final int totalTextHeight = mNameTextViewHeight + mPhoneticNameTextViewHeight +
                 mLabelAndDataViewMaxHeight + mSnippetTextViewHeight + mStatusTextViewHeight;
@@ -630,36 +592,6 @@ public class ContactListItemView extends ViewGroup
         }
     }
 
-    /**
-     * Performs layout of the right side of the view
-     *
-     * @return new right boundary
-     */
-    protected int layoutRightSide(int height, int topBound, int bottomBound, int rightBound) {
-        // Put call button and vertical divider
-        if (isVisible(mCallButton)) {
-            int buttonWidth = mCallButton.getMeasuredWidth();
-            rightBound -= buttonWidth;
-            mCallButton.layout(
-                    rightBound,
-                    topBound,
-                    rightBound + buttonWidth,
-                    height - mHorizontalDividerHeight);
-            mVerticalDividerVisible = true;
-            ensureVerticalDivider();
-            rightBound -= mVerticalDividerWidth;
-            mVerticalDividerDrawable.setBounds(
-                    rightBound,
-                    topBound + mVerticalDividerMargin,
-                    rightBound + mVerticalDividerWidth,
-                    height - mVerticalDividerMargin);
-        } else {
-            mVerticalDividerVisible = false;
-        }
-
-        return rightBound;
-    }
-
     @Override
     public void adjustListItemSelectionBounds(Rect bounds) {
         bounds.top += mBoundsWithoutHeader.top;
@@ -670,17 +602,6 @@ public class ContactListItemView extends ViewGroup
 
     protected boolean isVisible(View view) {
         return view != null && view.getVisibility() == View.VISIBLE;
-    }
-
-    /**
-     * Loads the drawable for the vertical divider if it has not yet been loaded.
-     */
-    private void ensureVerticalDivider() {
-        if (mVerticalDividerDrawable == null) {
-            mVerticalDividerDrawable = mContext.getResources().getDrawable(
-                    R.drawable.divider_vertical_dark);
-            mVerticalDividerWidth = mVerticalDividerDrawable.getIntrinsicWidth();
-        }
     }
 
     /**
@@ -747,9 +668,6 @@ public class ContactListItemView extends ViewGroup
         }
         if (mHorizontalDividerVisible) {
             mHorizontalDividerDrawable.draw(canvas);
-        }
-        if (mVerticalDividerVisible) {
-            mVerticalDividerDrawable.draw(canvas);
         }
 
         super.dispatchDraw(canvas);

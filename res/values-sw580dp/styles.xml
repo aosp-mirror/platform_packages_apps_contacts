@@ -33,7 +33,6 @@
         <item name="list_item_padding_left">0dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
-        <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">4dip</item>
         <item name="list_item_presence_icon_size">16dip</item>
         <item name="list_item_photo_size">64dip</item>
@@ -69,7 +68,6 @@
         <item name="list_item_padding_left">0dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
-        <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">18dip</item>
         <item name="list_item_photo_size">64dip</item>
         <item name="list_item_profile_photo_size">80dip</item>
