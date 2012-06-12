@@ -19,7 +19,7 @@ package com.android.contacts.model;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType.DefinitionException;
 import com.android.contacts.util.DateUtils;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.content.ContentValues;
 import android.content.Context;

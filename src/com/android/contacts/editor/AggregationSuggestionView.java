@@ -21,7 +21,7 @@ import com.android.contacts.editor.AggregationSuggestionEngine.RawContact;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;

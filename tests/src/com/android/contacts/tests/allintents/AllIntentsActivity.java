@@ -17,7 +17,7 @@
 package com.android.contacts.tests.allintents;
 
 import com.android.contacts.tests.R;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.accounts.Account;
 import android.app.ListActivity;

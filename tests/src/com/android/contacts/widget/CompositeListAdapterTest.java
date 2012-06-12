@@ -15,7 +15,7 @@
  */
 package com.android.contacts.widget;
 
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.database.DataSetObserver;

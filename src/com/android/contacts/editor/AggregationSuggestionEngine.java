@@ -17,7 +17,7 @@
 package com.android.contacts.editor;
 
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import android.content.ContentResolver;
 import android.content.Context;

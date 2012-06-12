@@ -17,7 +17,7 @@
 package com.android.contacts.quickcontact;
 
 import com.android.contacts.util.PhoneCapabilityTester;
-import com.google.android.collect.Sets;
+import com.google.common.collect.Sets;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

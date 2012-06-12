@@ -16,8 +16,8 @@
 
 package com.android.contacts.tests.mocks;
 
-import com.google.android.collect.Lists;
-import com.google.android.collect.Maps;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

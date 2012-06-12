@@ -22,8 +22,8 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.util.CallerInfoCacheUtils;
-import com.google.android.collect.Lists;
-import com.google.android.collect.Sets;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import android.app.Activity;
 import android.app.IntentService;

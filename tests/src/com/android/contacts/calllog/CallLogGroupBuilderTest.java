@@ -16,7 +16,7 @@
 
 package com.android.contacts.calllog;
 
-import static com.google.android.collect.Lists.newArrayList;
+import static com.google.common.collect.Lists.newArrayList;
 
 import android.database.MatrixCursor;
 import android.provider.CallLog.Calls;

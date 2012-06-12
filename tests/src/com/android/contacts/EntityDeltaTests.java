@@ -18,7 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.google.android.collect.Lists;
+import com.google.common.collect.Lists;
 
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;

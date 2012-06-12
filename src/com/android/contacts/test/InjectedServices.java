@@ -16,7 +16,7 @@
 
 package com.android.contacts.test;
 
-import com.google.android.collect.Maps;
+import com.google.common.collect.Maps;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.content.ContentResolver;
