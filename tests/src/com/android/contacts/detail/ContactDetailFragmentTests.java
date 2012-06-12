@@ -16,8 +16,6 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.detail.ContactDetailFragment.DetailViewEntry;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +23,8 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.android.contacts.detail.ContactDetailFragment.DetailViewEntry;
 
 /**
  * Tests for {@link ContactDetailFragment}.

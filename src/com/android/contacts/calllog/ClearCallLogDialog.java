@@ -16,8 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.R;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -29,6 +27,8 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.CallLog.Calls;
+
+import com.android.contacts.R;
 
 /**
  * Dialog that clears the call log after confirming with the user

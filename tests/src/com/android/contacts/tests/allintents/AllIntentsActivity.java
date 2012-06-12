@@ -16,9 +16,6 @@
 
 package com.android.contacts.tests.allintents;
 
-import com.android.contacts.tests.R;
-import com.google.common.collect.Lists;
-
 import android.accounts.Account;
 import android.app.ListActivity;
 import android.app.SearchManager;
@@ -47,6 +44,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.android.contacts.tests.R;
+import com.google.common.collect.Lists;
 
 /**
  * An activity that provides access to various modes of the contacts application.

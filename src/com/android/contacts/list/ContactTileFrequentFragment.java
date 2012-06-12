@@ -15,13 +15,13 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.R;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
 
 /**
  * Fragment containing a list of frequently contacted people.

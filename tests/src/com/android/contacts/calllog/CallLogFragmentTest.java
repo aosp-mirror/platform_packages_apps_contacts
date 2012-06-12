@@ -16,11 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.CallDetailActivity;
-import com.android.contacts.R;
-import com.android.contacts.test.FragmentTestActivity;
-import com.android.internal.telephony.CallerInfo;
-
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ComponentName;
@@ -41,6 +36,11 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.android.contacts.CallDetailActivity;
+import com.android.contacts.R;
+import com.android.contacts.test.FragmentTestActivity;
+import com.android.internal.telephony.CallerInfo;
 
 import java.util.Date;
 import java.util.Formatter;

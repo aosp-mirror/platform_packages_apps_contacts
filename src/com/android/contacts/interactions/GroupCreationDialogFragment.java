@@ -15,15 +15,15 @@
  */
 package com.android.contacts.interactions;
 
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.R;
-import com.android.contacts.model.AccountWithDataSet;
-
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountWithDataSet;
 
 /**
  * A dialog for creating a new group.

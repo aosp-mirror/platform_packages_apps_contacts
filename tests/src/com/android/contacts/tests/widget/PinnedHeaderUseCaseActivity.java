@@ -16,9 +16,6 @@
 
 package com.android.contacts.tests.widget;
 
-import com.android.contacts.tests.R;
-import com.android.contacts.widget.PinnedHeaderListView;
-
 import android.app.ListActivity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -26,6 +23,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.android.contacts.tests.R;
+import com.android.contacts.widget.PinnedHeaderListView;
 
 /**
  * An activity that demonstrates various use cases for the {@link PinnedHeaderListView}.

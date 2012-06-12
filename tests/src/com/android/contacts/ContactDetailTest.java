@@ -16,12 +16,12 @@
 
 package com.android.contacts;
 
+import android.test.ActivityUnitTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.android.contacts.activities.ContactDetailActivity;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
-
-import android.test.ActivityUnitTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
 
 @SmallTest
 public class ContactDetailTest extends ActivityUnitTestCase<ContactDetailActivity> {

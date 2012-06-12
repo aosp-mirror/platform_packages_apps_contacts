@@ -16,10 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.util.Constants;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -32,6 +28,10 @@ import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
+
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.util.Constants;
 
 /**
  * Activity that intercepts DIAL and VIEW intents for phone numbers for devices that can not

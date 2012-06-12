@@ -16,8 +16,6 @@
 
 package com.android.contacts.preference;
 
-import com.android.contacts.R;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
@@ -25,6 +23,8 @@ import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
+
+import com.android.contacts.R;
 
 /**
  * Manages user preferences for contacts.

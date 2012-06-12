@@ -16,9 +16,6 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.R;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.Html;
@@ -29,6 +26,9 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.text.style.QuoteSpan;
+
+import com.android.contacts.R;
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * Provides static functions to perform custom HTML to text conversions.

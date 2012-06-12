@@ -16,12 +16,6 @@
 
 package com.android.contacts.interactions;
 
-import com.android.contacts.interactions.PhoneNumberInteraction.InteractionType;
-import com.android.contacts.interactions.PhoneNumberInteraction.PhoneItem;
-import com.android.contacts.tests.mocks.ContactsMockContext;
-import com.android.contacts.tests.mocks.MockContentProvider;
-import com.android.contacts.tests.mocks.MockContentProvider.Query;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface.OnDismissListener;
@@ -35,6 +29,12 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.android.contacts.interactions.PhoneNumberInteraction.InteractionType;
+import com.android.contacts.interactions.PhoneNumberInteraction.PhoneItem;
+import com.android.contacts.tests.mocks.ContactsMockContext;
+import com.android.contacts.tests.mocks.MockContentProvider;
+import com.android.contacts.tests.mocks.MockContentProvider.Query;
 
 import java.util.ArrayList;
 import java.util.List;

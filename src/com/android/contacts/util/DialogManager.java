@@ -16,14 +16,14 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.R;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
 import android.view.View;
+
+import com.android.contacts.R;
 
 /**
  * Manages creation and destruction of Dialogs that are to be shown by Views. Unlike how Dialogs

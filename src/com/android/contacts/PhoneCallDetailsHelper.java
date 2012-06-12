@@ -16,10 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.calllog.CallTypeHelper;
-import com.android.contacts.calllog.PhoneNumberHelper;
-import com.android.contacts.test.NeededForTesting;
-
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -32,6 +28,10 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.TextView;
+
+import com.android.contacts.calllog.CallTypeHelper;
+import com.android.contacts.calllog.PhoneNumberHelper;
+import com.android.contacts.test.NeededForTesting;
 
 /**
  * Helper class to fill in the views in {@link PhoneCallDetailsViews}.

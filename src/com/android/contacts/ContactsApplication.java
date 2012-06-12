@@ -16,12 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.list.ContactListFilterController;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.test.InjectedServices;
-import com.android.contacts.util.Constants;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.app.Application;
 import android.app.FragmentManager;
 import android.app.LoaderManager;
@@ -34,6 +28,12 @@ import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract.Contacts;
 import android.util.Log;
+
+import com.android.contacts.list.ContactListFilterController;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.test.InjectedServices;
+import com.android.contacts.util.Constants;
+import com.google.common.annotations.VisibleForTesting;
 
 public final class ContactsApplication extends Application {
     private static final boolean ENABLE_LOADER_LOG = false; // Don't submit with true

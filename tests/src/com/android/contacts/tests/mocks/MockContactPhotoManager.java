@@ -16,11 +16,11 @@
 
 package com.android.contacts.tests.mocks;
 
-import com.android.contacts.ContactPhotoManager;
-
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.widget.ImageView;
+
+import com.android.contacts.ContactPhotoManager;
 
 /**
  * A photo preloader that always uses the "no contact" picture and never executes any real

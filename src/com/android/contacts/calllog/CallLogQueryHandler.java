@@ -16,10 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import com.android.common.io.MoreCloseables;
-import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
-import com.google.common.collect.Lists;
-
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -36,6 +32,10 @@ import android.os.Message;
 import android.provider.CallLog.Calls;
 import android.provider.VoicemailContract.Status;
 import android.util.Log;
+
+import com.android.common.io.MoreCloseables;
+import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
+import com.google.common.collect.Lists;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

@@ -16,20 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountTypeWithDataSet;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.util.ContactLoaderUtils;
-import com.android.contacts.util.DataStatus;
-import com.android.contacts.util.StreamItemEntry;
-import com.android.contacts.util.StreamItemPhotoEntry;
-import com.android.contacts.util.UriUtils;
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-
 import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -58,6 +44,20 @@ import android.provider.ContactsContract.StreamItems;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
+
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountTypeWithDataSet;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.util.ContactLoaderUtils;
+import com.android.contacts.util.DataStatus;
+import com.android.contacts.util.StreamItemEntry;
+import com.android.contacts.util.StreamItemPhotoEntry;
+import com.android.contacts.util.UriUtils;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;

@@ -16,8 +16,6 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,6 +23,8 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.net.sip.SipManager;
 import android.telephony.TelephonyManager;
+
+import com.android.contacts.R;
 
 import java.util.List;
 

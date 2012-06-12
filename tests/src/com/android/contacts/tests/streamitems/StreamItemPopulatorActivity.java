@@ -16,10 +16,6 @@
 
 package com.android.contacts.tests.streamitems;
 
-import com.android.contacts.model.GoogleAccountType;
-import com.android.contacts.tests.R;
-import com.google.common.collect.Lists;
-
 import android.app.Activity;
 import android.content.ContentProviderOperation;
 import android.content.ContentUris;
@@ -35,6 +31,10 @@ import android.provider.ContactsContract.StreamItems;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.tests.R;
+import com.google.common.collect.Lists;
 
 import java.io.IOException;
 import java.io.InputStream;

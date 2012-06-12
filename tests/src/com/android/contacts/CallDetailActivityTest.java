@@ -20,13 +20,6 @@ import static com.android.contacts.CallDetailActivity.Tasks.UPDATE_PHONE_CALL_DE
 import static com.android.contacts.voicemail.VoicemailPlaybackPresenter.Tasks.CHECK_FOR_CONTENT;
 import static com.android.contacts.voicemail.VoicemailPlaybackPresenter.Tasks.PREPARE_MEDIA_PLAYER;
 
-import com.android.contacts.util.AsyncTaskExecutors;
-import com.android.contacts.util.FakeAsyncTaskExecutor;
-import com.android.contacts.util.IntegrationTestUtils;
-import com.android.contacts.util.LocaleTestUtils;
-import com.android.internal.view.menu.ContextMenuBuilder;
-import com.google.common.io.Closeables;
-
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -40,6 +33,13 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.Suppress;
 import android.view.Menu;
 import android.widget.TextView;
+
+import com.android.contacts.util.AsyncTaskExecutors;
+import com.android.contacts.util.FakeAsyncTaskExecutor;
+import com.android.contacts.util.IntegrationTestUtils;
+import com.android.contacts.util.LocaleTestUtils;
+import com.android.internal.view.menu.ContextMenuBuilder;
+import com.google.common.io.Closeables;
 
 import java.io.IOException;
 import java.io.InputStream;

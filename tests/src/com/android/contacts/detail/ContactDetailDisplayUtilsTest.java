@@ -16,10 +16,6 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.R;
-import com.android.contacts.util.StreamItemEntry;
-import com.android.contacts.util.StreamItemEntryBuilder;
-
 import android.content.Context;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
@@ -28,6 +24,10 @@ import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.util.StreamItemEntry;
+import com.android.contacts.util.StreamItemEntryBuilder;
 
 /**
  * Unit tests for {@link ContactDetailDisplayUtils}.

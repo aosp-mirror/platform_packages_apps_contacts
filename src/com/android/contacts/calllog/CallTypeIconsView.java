@@ -16,16 +16,16 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.R;
-import com.android.contacts.test.NeededForTesting;
-import com.google.common.collect.Lists;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.provider.CallLog.Calls;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.android.contacts.R;
+import com.android.contacts.test.NeededForTesting;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 

@@ -16,12 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.group.GroupEditorFragment;
-import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.PhoneCapabilityTester;
-
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
@@ -32,6 +26,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.group.GroupEditorFragment;
+import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.PhoneCapabilityTester;
 
 public class GroupEditorActivity extends ContactsActivity
         implements DialogManager.DialogShowingViewActivity {

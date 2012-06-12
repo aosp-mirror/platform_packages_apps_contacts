@@ -15,11 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.common.widget.CompositeCursorAdapter.Partition;
-import com.android.contacts.R;
-import com.android.contacts.util.ContactLoaderUtils;
-import com.android.contacts.widget.AutoScrollListView;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -38,6 +33,11 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.common.widget.CompositeCursorAdapter.Partition;
+import com.android.contacts.R;
+import com.android.contacts.util.ContactLoaderUtils;
+import com.android.contacts.widget.AutoScrollListView;
 
 import java.util.List;
 

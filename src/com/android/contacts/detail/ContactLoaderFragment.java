@@ -16,15 +16,6 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.R;
-import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
-import com.android.contacts.list.ShortcutIntentBuilder;
-import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
-import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.internal.util.Objects;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -47,6 +38,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.R;
+import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.list.ShortcutIntentBuilder;
+import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
+import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.internal.util.Objects;
 
 /**
  * This is an invisible worker {@link Fragment} that loads the contact details for the contact card.

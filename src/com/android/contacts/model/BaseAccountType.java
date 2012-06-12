@@ -16,12 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.R;
-import com.android.contacts.test.NeededForTesting;
-import com.android.contacts.util.DateUtils;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
@@ -43,6 +37,12 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
+
+import com.android.contacts.R;
+import com.android.contacts.test.NeededForTesting;
+import com.android.contacts.util.DateUtils;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

@@ -15,9 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.R;
-import com.android.contacts.list.JoinContactLoader.JoinContactLoaderResult;
-
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentUris;
@@ -33,6 +30,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.list.JoinContactLoader.JoinContactLoaderResult;
 
 /**
  * Fragment for the Join Contact list.

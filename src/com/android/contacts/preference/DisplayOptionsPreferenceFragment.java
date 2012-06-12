@@ -16,10 +16,10 @@
 
 package com.android.contacts.preference;
 
-import com.android.contacts.R;
-
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+
+import com.android.contacts.R;
 
 /**
  * This fragment shows the preferences for the first header.

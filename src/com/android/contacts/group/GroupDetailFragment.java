@@ -16,17 +16,6 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.GroupMemberLoader;
-import com.android.contacts.GroupMetaDataLoader;
-import com.android.contacts.R;
-import com.android.contacts.interactions.GroupDeletionDialogFragment;
-import com.android.contacts.list.ContactTileAdapter;
-import com.android.contacts.list.ContactTileAdapter.DisplayType;
-import com.android.contacts.list.ContactTileView;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -55,6 +44,17 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.GroupMemberLoader;
+import com.android.contacts.GroupMetaDataLoader;
+import com.android.contacts.R;
+import com.android.contacts.interactions.GroupDeletionDialogFragment;
+import com.android.contacts.list.ContactTileAdapter;
+import com.android.contacts.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.list.ContactTileView;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 
 /**
  * Displays the details of a group and shows a list of actions possible for the group.

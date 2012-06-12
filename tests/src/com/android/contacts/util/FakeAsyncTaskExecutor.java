@@ -16,10 +16,10 @@
 
 package com.android.contacts.util;
 
-import com.google.common.collect.Lists;
-
 import android.app.Instrumentation;
 import android.os.AsyncTask;
+
+import com.google.common.collect.Lists;
 
 import junit.framework.Assert;
 

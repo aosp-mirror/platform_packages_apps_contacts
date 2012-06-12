@@ -18,13 +18,6 @@ package com.android.contacts.voicemail;
 
 import static android.util.MathUtils.constrain;
 
-import com.android.contacts.R;
-import com.android.contacts.util.AsyncTaskExecutor;
-import com.android.ex.variablespeed.MediaPlayerProxy;
-import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Preconditions;
-
 import android.content.Context;
 import android.database.ContentObserver;
 import android.media.AudioManager;
@@ -36,6 +29,13 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.view.View;
 import android.widget.SeekBar;
+
+import com.android.contacts.R;
+import com.android.contacts.util.AsyncTaskExecutor;
+import com.android.ex.variablespeed.MediaPlayerProxy;
+import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Preconditions;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;

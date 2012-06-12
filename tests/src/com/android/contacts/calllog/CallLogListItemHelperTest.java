@@ -16,15 +16,15 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.PhoneCallDetails;
-import com.android.contacts.PhoneCallDetailsHelper;
-import com.android.internal.telephony.CallerInfo;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
 import android.view.View;
+
+import com.android.contacts.PhoneCallDetails;
+import com.android.contacts.PhoneCallDetailsHelper;
+import com.android.internal.telephony.CallerInfo;
 
 /**
  * Unit tests for {@link CallLogListItemHelper}.

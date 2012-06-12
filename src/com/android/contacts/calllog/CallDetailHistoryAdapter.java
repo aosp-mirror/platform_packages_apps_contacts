@@ -16,9 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.PhoneCallDetails;
-import com.android.contacts.R;
-
 import android.content.Context;
 import android.provider.CallLog.Calls;
 import android.text.format.DateUtils;
@@ -27,6 +24,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.android.contacts.PhoneCallDetails;
+import com.android.contacts.R;
 
 /**
  * Adapter for a ListView containing history items from the details of a call.

@@ -16,16 +16,6 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.ContactLoader;
-
-import com.android.contacts.NfcHandler;
-import com.android.contacts.R;
-import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
-import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.util.UriUtils;
-import com.android.contacts.widget.FrameLayoutWithOverlay;
-import com.android.contacts.widget.TransitionAnimationView;
-
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
@@ -43,6 +33,15 @@ import android.view.ViewPropertyAnimator;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+
+import com.android.contacts.ContactLoader;
+import com.android.contacts.NfcHandler;
+import com.android.contacts.R;
+import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.UriUtils;
+import com.android.contacts.widget.FrameLayoutWithOverlay;
+import com.android.contacts.widget.TransitionAnimationView;
 
 /**
  * Determines the layout of the contact card.

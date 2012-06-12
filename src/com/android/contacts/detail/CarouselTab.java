@@ -16,14 +16,14 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.R;
-import com.android.contacts.widget.FrameLayoutWithOverlay;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.widget.FrameLayoutWithOverlay;
 
 /**
  * This is a tab in the {@link ContactDetailTabCarousel}.

@@ -16,9 +16,6 @@
 
 package com.android.contacts.quickcontact;
 
-import com.android.contacts.util.PhoneCapabilityTester;
-import com.google.common.collect.Sets;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +26,9 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.text.TextUtils;
+
+import com.android.contacts.util.PhoneCapabilityTester;
+import com.google.common.collect.Sets;
 
 import java.lang.ref.SoftReference;
 import java.util.HashMap;

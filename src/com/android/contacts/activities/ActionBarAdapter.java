@@ -16,17 +16,12 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.R;
-import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
-import com.android.contacts.list.ContactsRequest;
-
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -39,6 +34,10 @@ import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
+import com.android.contacts.list.ContactsRequest;
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.

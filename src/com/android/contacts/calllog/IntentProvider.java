@@ -16,16 +16,15 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.CallDetailActivity;
-import com.android.contacts.ContactsUtils;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
-import android.telephony.PhoneNumberUtils;
+
+import com.android.contacts.CallDetailActivity;
+import com.android.contacts.ContactsUtils;
 
 /**
  * Used to create an intent to attach to an action in the call log.

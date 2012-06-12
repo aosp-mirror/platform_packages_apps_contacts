@@ -16,9 +16,6 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.R;
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -28,6 +25,9 @@ import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.R;
 
 /**
  * Provides static functions to extract summary information for aggregate contacts

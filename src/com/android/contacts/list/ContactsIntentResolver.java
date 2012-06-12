@@ -16,10 +16,6 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.CallContactActivity;
-import com.android.contacts.ContactsSearchManager;
-import com.android.contacts.ContactsUtils;
-
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -38,6 +34,10 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.contacts.CallContactActivity;
+import com.android.contacts.ContactsSearchManager;
+import com.android.contacts.ContactsUtils;
 
 /**
  * Parses a Contacts intent, extracting all relevant parts and packaging them

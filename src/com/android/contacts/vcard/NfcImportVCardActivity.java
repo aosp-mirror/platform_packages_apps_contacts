@@ -16,19 +16,6 @@
 
 package com.android.contacts.vcard;
 
-import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.vcard.VCardEntry;
-import com.android.vcard.VCardEntryCounter;
-import com.android.vcard.VCardParser;
-import com.android.vcard.VCardParser_V21;
-import com.android.vcard.VCardParser_V30;
-import com.android.vcard.VCardSourceDetector;
-import com.android.vcard.exception.VCardException;
-import com.android.vcard.exception.VCardNestedException;
-import com.android.vcard.exception.VCardVersionException;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -44,9 +31,21 @@ import android.os.IBinder;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
+import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.vcard.VCardEntry;
+import com.android.vcard.VCardEntryCounter;
+import com.android.vcard.VCardParser;
+import com.android.vcard.VCardParser_V21;
+import com.android.vcard.VCardParser_V30;
+import com.android.vcard.VCardSourceDetector;
+import com.android.vcard.exception.VCardException;
+import com.android.vcard.exception.VCardNestedException;
+import com.android.vcard.exception.VCardVersionException;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 

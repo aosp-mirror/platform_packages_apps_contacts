@@ -16,25 +16,25 @@
 
 package com.android.contacts;
 
+import static android.content.ContentProviderOperation.TYPE_ASSERT;
+import static android.content.ContentProviderOperation.TYPE_DELETE;
+import static android.content.ContentProviderOperation.TYPE_INSERT;
+import static android.content.ContentProviderOperation.TYPE_UPDATE;
+
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderOperation.Builder;
+import android.content.ContentValues;
+import android.content.Entity;
+import android.os.Parcel;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
+import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.LargeTest;
+
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.google.common.collect.Lists;
-
-import static android.content.ContentProviderOperation.TYPE_INSERT;
-import static android.content.ContentProviderOperation.TYPE_UPDATE;
-import static android.content.ContentProviderOperation.TYPE_DELETE;
-import static android.content.ContentProviderOperation.TYPE_ASSERT;
-
-import android.content.ContentProviderOperation;
-import android.content.ContentValues;
-import android.content.Entity;
-import android.content.ContentProviderOperation.Builder;
-import android.os.Parcel;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.LargeTest;
 
 import java.util.ArrayList;
 

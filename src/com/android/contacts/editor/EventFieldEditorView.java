@@ -16,6 +16,15 @@
 
 package com.android.contacts.editor;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.Button;
+
 import com.android.contacts.R;
 import com.android.contacts.datepicker.DatePicker;
 import com.android.contacts.datepicker.DatePickerDialog;
@@ -26,15 +35,6 @@ import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.util.DateUtils;
-
-import android.app.Dialog;
-import android.content.Context;
-import android.content.res.Resources;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Button;
 
 import java.text.ParsePosition;
 import java.util.Calendar;

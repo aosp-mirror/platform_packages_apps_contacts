@@ -16,13 +16,13 @@
 
 package com.android.contacts.calllog;
 
-import com.google.common.collect.Lists;
-
 import android.content.Context;
 import android.database.MatrixCursor;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.view.View;
+
+import com.google.common.collect.Lists;
 
 import java.util.List;
 

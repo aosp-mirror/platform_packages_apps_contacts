@@ -16,13 +16,13 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 /**
  * A class that provides unique view ids for {@link ContentEditorView}, {@link KindSectionView},

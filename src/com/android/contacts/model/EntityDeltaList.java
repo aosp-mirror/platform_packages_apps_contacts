@@ -16,9 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.google.common.collect.Lists;
-
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;
 import android.content.ContentResolver;
@@ -32,6 +29,9 @@ import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.Arrays;

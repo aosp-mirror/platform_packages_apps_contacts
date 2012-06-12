@@ -16,16 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.editor.EventFieldEditorView;
-import com.android.contacts.util.NameConverter;
-import com.android.contacts.editor.PhoneticNameEditorView;
-import com.android.contacts.model.AccountType.EditField;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.AccountType.EventEditType;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.util.DateUtils;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -55,6 +45,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
+
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.editor.EventFieldEditorView;
+import com.android.contacts.editor.PhoneticNameEditorView;
+import com.android.contacts.model.AccountType.EditField;
+import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.AccountType.EventEditType;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.util.DateUtils;
+import com.android.contacts.util.NameConverter;
 
 import java.text.ParsePosition;
 import java.util.ArrayList;

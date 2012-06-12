@@ -16,14 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.R;
-import com.android.contacts.model.AccountType.EditField;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.util.PhoneNumberFormatter;
-
 import android.content.Context;
 import android.content.Entity;
 import android.graphics.Rect;
@@ -43,6 +35,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountType.EditField;
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.util.PhoneNumberFormatter;
 
 /**
  * Simple editor that handles labels and any {@link EditField} defined for the

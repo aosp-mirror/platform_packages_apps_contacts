@@ -16,12 +16,12 @@
 
 package com.android.contacts.model;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
 import android.content.Context;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import java.util.Collection;
 import java.util.HashMap;

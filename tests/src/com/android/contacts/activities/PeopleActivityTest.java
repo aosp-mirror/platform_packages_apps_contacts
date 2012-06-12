@@ -16,6 +16,22 @@
 
 package com.android.contacts.activities;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.content.Loader;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.ContactCounts;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Directory;
+import android.provider.ContactsContract.Groups;
+import android.provider.ContactsContract.ProviderStatus;
+import android.provider.Settings;
+import android.test.ActivityInstrumentationTestCase2;
+import android.test.suitebuilder.annotation.SmallTest;
+import android.widget.TextView;
+
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
@@ -34,22 +50,6 @@ import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
 import com.android.contacts.tests.mocks.MockSharedPreferences;
 import com.android.contacts.util.PhoneCapabilityTester;
-
-import android.content.ContentValues;
-import android.content.Intent;
-import android.content.Loader;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.ContactCounts;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.Groups;
-import android.provider.ContactsContract.ProviderStatus;
-import android.provider.Settings;
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.SmallTest;
-import android.widget.TextView;
 
 /**
  * This test is so outdated that it's disabled temporarily.  TODO Update the test and re-enable it.

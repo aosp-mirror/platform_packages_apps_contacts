@@ -15,14 +15,14 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.list.ContactTileAdapter.ContactEntry;
-import com.android.contacts.util.ViewUtil;
-
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.list.ContactTileAdapter.ContactEntry;
+import com.android.contacts.util.ViewUtil;
 
 /**
  * A dark version of the {@link ContactTileView} that is used in Dialtacts

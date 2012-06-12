@@ -19,14 +19,6 @@ package com.android.contacts.voicemail;
 import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK;
 import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_URI;
 
-import com.android.common.io.MoreCloseables;
-import com.android.contacts.ProximitySensorAware;
-import com.android.contacts.R;
-import com.android.contacts.util.AsyncTaskExecutors;
-import com.android.ex.variablespeed.MediaPlayerProxy;
-import com.android.ex.variablespeed.VariableSpeed;
-import com.google.common.base.Preconditions;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ContentResolver;
@@ -46,6 +38,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.android.common.io.MoreCloseables;
+import com.android.contacts.ProximitySensorAware;
+import com.android.contacts.R;
+import com.android.contacts.util.AsyncTaskExecutors;
+import com.android.ex.variablespeed.MediaPlayerProxy;
+import com.android.ex.variablespeed.VariableSpeed;
+import com.google.common.base.Preconditions;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

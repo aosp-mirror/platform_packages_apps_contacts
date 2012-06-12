@@ -15,9 +15,6 @@
  */
 package com.android.contacts.widget;
 
-import com.android.contacts.format.FormatUtils;
-import com.android.internal.R;
-
 import android.database.CharArrayBuffer;
 import android.graphics.Color;
 import android.os.Handler;
@@ -25,6 +22,9 @@ import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+
+import com.android.contacts.format.FormatUtils;
+import com.android.internal.R;
 
 /**
  * An animation that alternately dims and brightens the non-highlighted portion of text.

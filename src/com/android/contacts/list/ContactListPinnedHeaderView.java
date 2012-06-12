@@ -16,8 +16,6 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -29,6 +27,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.android.contacts.R;
 
 /**
  * A custom view for the pinned section header shown at the top of the contact list.

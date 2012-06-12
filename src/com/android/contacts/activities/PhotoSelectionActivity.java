@@ -15,15 +15,6 @@
  */
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.R;
-import com.android.contacts.detail.PhotoSelectionHandler;
-import com.android.contacts.editor.PhotoActionPopup;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.util.ContactPhotoUtils;
-import com.android.contacts.util.SchedulingUtils;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -41,6 +32,15 @@ import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.R;
+import com.android.contacts.detail.PhotoSelectionHandler;
+import com.android.contacts.editor.PhotoActionPopup;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contacts.util.SchedulingUtils;
 
 
 /**

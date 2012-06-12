@@ -15,10 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsSearchManager;
-import com.android.contacts.R;
-import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +22,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+
+import com.android.contacts.R;
+import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
 /**
  * Fragment for the contact list used for browsing contacts (as compared to

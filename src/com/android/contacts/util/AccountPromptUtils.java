@@ -16,9 +16,6 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.R;
-import com.android.contacts.model.GoogleAccountType;
-
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
@@ -31,6 +28,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
+import com.android.contacts.R;
+import com.android.contacts.model.GoogleAccountType;
 
 import java.io.IOException;
 

@@ -15,11 +15,11 @@
  */
 package com.android.contacts.widget;
 
-import com.android.common.widget.CompositeCursorAdapter;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.common.widget.CompositeCursorAdapter;
 
 /**
  * A subclass of {@link CompositeCursorAdapter} that manages pinned partition headers.

@@ -15,10 +15,10 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.widget.TextHighlightingAnimation;
-
 import android.view.View;
 import android.widget.ListView;
+
+import com.android.contacts.widget.TextHighlightingAnimation;
 
 /**
  * A {@link TextHighlightingAnimation} that redraws just the contact display name in a

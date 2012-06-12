@@ -16,9 +16,9 @@
 
 package com.android.contacts.util;
 
-import com.google.common.collect.Lists;
-
 import android.util.Log;
+
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 

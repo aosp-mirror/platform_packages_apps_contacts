@@ -16,16 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.GroupMetaDataLoader;
-import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityModifier;
-import com.android.internal.util.Objects;
-
 import android.content.Context;
 import android.content.Entity;
 import android.database.Cursor;
@@ -47,6 +37,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import com.android.contacts.GroupMetaDataLoader;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityModifier;
+import com.android.internal.util.Objects;
 
 import java.util.ArrayList;
 

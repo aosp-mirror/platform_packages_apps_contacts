@@ -16,11 +16,11 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.tests.R;
-
 import android.content.Context;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.android.contacts.tests.R;
 
 /**
  * Test case for {@link AccountType}.

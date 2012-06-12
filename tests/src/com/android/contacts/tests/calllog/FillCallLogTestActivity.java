@@ -16,8 +16,6 @@
 
 package com.android.contacts.tests.calllog;
 
-import com.android.contacts.tests.R;
-
 import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.ContentProviderClient;
@@ -36,6 +34,8 @@ import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.contacts.tests.R;
 
 import java.util.Random;
 

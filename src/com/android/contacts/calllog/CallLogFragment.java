@@ -16,18 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import com.android.common.io.MoreCloseables;
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.R;
-import com.android.contacts.util.Constants;
-import com.android.contacts.util.EmptyLoader;
-import com.android.contacts.voicemail.VoicemailStatusHelper;
-import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
-import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
-import com.android.internal.telephony.CallerInfo;
-import com.android.internal.telephony.ITelephony;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.ListFragment;
@@ -41,8 +29,8 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.CallLog;
-import android.provider.ContactsContract;
 import android.provider.CallLog.Calls;
+import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -54,6 +42,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.common.io.MoreCloseables;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
+import com.android.contacts.util.Constants;
+import com.android.contacts.util.EmptyLoader;
+import com.android.contacts.voicemail.VoicemailStatusHelper;
+import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
+import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
+import com.android.internal.telephony.CallerInfo;
+import com.android.internal.telephony.ITelephony;
+import com.google.common.annotations.VisibleForTesting;
 
 import java.util.List;
 

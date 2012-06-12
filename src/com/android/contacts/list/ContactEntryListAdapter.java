@@ -15,10 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.R;
-import com.android.contacts.widget.IndexerListAdapter;
-
 import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
@@ -36,6 +32,10 @@ import android.view.ViewGroup;
 import android.widget.QuickContactBadge;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.R;
+import com.android.contacts.widget.IndexerListAdapter;
 
 import java.util.HashSet;
 

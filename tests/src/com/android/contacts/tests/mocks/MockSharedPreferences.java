@@ -16,9 +16,9 @@
 
 package com.android.contacts.tests.mocks;
 
-import com.google.common.collect.Maps;
-
 import android.content.SharedPreferences;
+
+import com.google.common.collect.Maps;
 
 import java.util.HashMap;
 import java.util.Map;

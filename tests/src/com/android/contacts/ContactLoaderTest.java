@@ -16,14 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.model.BaseAccountType;
-import com.android.contacts.test.InjectedServices;
-import com.android.contacts.tests.mocks.ContactsMockContext;
-import com.android.contacts.tests.mocks.MockAccountTypeManager;
-import com.android.contacts.tests.mocks.MockContentProvider;
-
 import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -35,6 +27,14 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StatusUpdates;
 import android.test.LoaderTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
+
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.test.InjectedServices;
+import com.android.contacts.tests.mocks.ContactsMockContext;
+import com.android.contacts.tests.mocks.MockAccountTypeManager;
+import com.android.contacts.tests.mocks.MockContentProvider;
 
 /**
  * Runs ContactLoader tests for the the contact-detail and editor view.

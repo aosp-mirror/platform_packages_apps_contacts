@@ -16,15 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.util.CallerInfoCacheUtils;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
@@ -54,6 +45,15 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.CallerInfoCacheUtils;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import java.io.File;
 import java.io.FileInputStream;

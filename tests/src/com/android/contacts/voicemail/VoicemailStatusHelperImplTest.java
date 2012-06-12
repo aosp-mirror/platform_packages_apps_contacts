@@ -27,15 +27,15 @@ import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STA
 import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION;
 import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK;
 
-import com.android.contacts.R;
-import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.VoicemailContract.Status;
 import android.test.AndroidTestCase;
+
+import com.android.contacts.R;
+import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
 
 import java.util.List;
 

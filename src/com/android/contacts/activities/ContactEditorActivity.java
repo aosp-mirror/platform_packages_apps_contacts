@@ -16,16 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.editor.ContactEditorFragment;
-import com.android.contacts.editor.ContactEditorFragment.SaveMode;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.util.DialogManager;
-
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.ContentValues;
@@ -40,6 +30,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.editor.ContactEditorFragment;
+import com.android.contacts.editor.ContactEditorFragment.SaveMode;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.util.DialogManager;
 
 import java.util.ArrayList;
 

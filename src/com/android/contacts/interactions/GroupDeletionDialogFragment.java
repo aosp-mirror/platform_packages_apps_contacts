@@ -15,15 +15,15 @@
  */
 package com.android.contacts.interactions;
 
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.R;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
+
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.R;
 
 /**
  * A dialog for deleting a group.

@@ -16,11 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.R;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -31,6 +26,11 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+
+import com.android.contacts.R;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import java.text.Collator;
 import java.util.ArrayList;

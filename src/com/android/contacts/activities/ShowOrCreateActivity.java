@@ -16,11 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.util.Constants;
-import com.android.contacts.util.NotifyingAsyncQueryHandler;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -36,6 +31,11 @@ import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.util.Constants;
+import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
 /**
  * Handle several edge cases around showing or possibly creating contacts in

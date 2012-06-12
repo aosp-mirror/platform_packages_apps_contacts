@@ -16,29 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.GroupMetaDataLoader;
-import com.android.contacts.R;
-import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
-import com.android.contacts.activities.ContactEditorActivity;
-import com.android.contacts.activities.JoinContactActivity;
-import com.android.contacts.detail.PhotoSelectionHandler;
-import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.editor.Editor.EditorListener;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.GoogleAccountType;
-import com.android.contacts.util.AccountsListAdapter;
-import com.android.contacts.util.ContactPhotoUtils;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.util.HelpUtils;
-
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -84,6 +61,29 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
+
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.GroupMetaDataLoader;
+import com.android.contacts.R;
+import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
+import com.android.contacts.activities.ContactEditorActivity;
+import com.android.contacts.activities.JoinContactActivity;
+import com.android.contacts.detail.PhotoSelectionHandler;
+import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.editor.Editor.EditorListener;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.util.AccountsListAdapter;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contacts.util.HelpUtils;
 
 import java.io.File;
 import java.util.ArrayList;

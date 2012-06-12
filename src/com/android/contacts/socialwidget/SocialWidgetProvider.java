@@ -16,20 +16,9 @@
 
 package com.android.contacts.socialwidget;
 
-import com.android.contacts.ContactLoader;
-import com.android.contacts.R;
-import com.android.contacts.list.ShortcutIntentBuilder;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.quickcontact.QuickContactBroadcastReceiver;
-import com.android.contacts.util.ContactBadgeUtil;
-import com.android.contacts.util.HtmlUtils;
-import com.android.contacts.util.StreamItemEntry;
-
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -38,7 +27,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.StreamItems;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -48,6 +36,15 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import com.android.contacts.ContactLoader;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.quickcontact.QuickContactBroadcastReceiver;
+import com.android.contacts.util.ContactBadgeUtil;
+import com.android.contacts.util.HtmlUtils;
+import com.android.contacts.util.StreamItemEntry;
 
 import java.util.List;
 

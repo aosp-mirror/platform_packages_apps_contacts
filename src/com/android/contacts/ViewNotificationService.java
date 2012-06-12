@@ -16,14 +16,14 @@
 
 package com.android.contacts;
 
-import com.android.contacts.ContactLoader.Result;
-
 import android.app.Service;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.Loader.OnLoadCompleteListener;
 import android.os.IBinder;
 import android.util.Log;
+
+import com.android.contacts.ContactLoader.Result;
 
 /**
  * Service that sends out a view notification for a contact. At the moment, this is only

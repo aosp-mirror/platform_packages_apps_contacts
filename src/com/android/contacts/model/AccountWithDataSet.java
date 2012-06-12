@@ -16,19 +16,18 @@
 
 package com.android.contacts.model;
 
-import com.android.internal.util.Objects;
-import com.google.common.collect.Lists;
-
 import android.accounts.Account;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcel;
-import android.os.Parcelable.Creator;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
+
+import com.android.internal.util.Objects;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;

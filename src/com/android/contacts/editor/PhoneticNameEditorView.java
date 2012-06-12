@@ -16,15 +16,15 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
 
 /**
  * A dedicated editor for phonetic name. It is similar to {@link StructuredNameEditorView}.

@@ -16,13 +16,13 @@
 
 package com.android.contacts;
 
-import com.android.contacts.interactions.PhoneNumberInteraction;
-
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+
+import com.android.contacts.interactions.PhoneNumberInteraction;
 
 /**
  * An interstitial activity used when the user selects a QSB search suggestion using

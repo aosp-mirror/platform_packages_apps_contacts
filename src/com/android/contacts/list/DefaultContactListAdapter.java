@@ -15,8 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.preference.ContactsPreferences;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -28,10 +26,11 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.text.TextUtils;
 import android.view.View;
+
+import com.android.contacts.preference.ContactsPreferences;
 
 import java.util.ArrayList;
 import java.util.List;

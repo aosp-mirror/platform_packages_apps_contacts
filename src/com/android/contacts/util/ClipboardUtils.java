@@ -16,13 +16,13 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.R;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
+
+import com.android.contacts.R;
 
 public class ClipboardUtils {
     private static final String TAG = "ClipboardUtils";

@@ -16,10 +16,10 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.R;
-
 import android.content.res.Resources;
 import android.provider.CallLog.Calls;
+
+import com.android.contacts.R;
 
 /**
  * Helper class to perform operations related to call types.

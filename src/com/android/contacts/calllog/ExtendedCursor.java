@@ -16,12 +16,12 @@
 
 package com.android.contacts.calllog;
 
-import com.android.common.io.MoreCloseables;
-
 import android.database.AbstractCursor;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.DataSetObserver;
+
+import com.android.common.io.MoreCloseables;
 
 /**
  * Wraps a cursor to add an additional column with the same value for all rows.

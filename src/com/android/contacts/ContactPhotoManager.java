@@ -16,13 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.util.BitmapUtil;
-import com.android.contacts.util.MemoryUtils;
-import com.android.contacts.util.UriUtils;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 import android.content.ComponentCallbacks2;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -54,6 +47,13 @@ import android.util.Log;
 import android.util.LruCache;
 import android.util.TypedValue;
 import android.widget.ImageView;
+
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.util.BitmapUtil;
+import com.android.contacts.util.MemoryUtils;
+import com.android.contacts.util.UriUtils;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

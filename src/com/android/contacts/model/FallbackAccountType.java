@@ -16,11 +16,11 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.R;
-import com.android.contacts.test.NeededForTesting;
-
 import android.content.Context;
 import android.util.Log;
+
+import com.android.contacts.R;
+import com.android.contacts.test.NeededForTesting;
 
 public class FallbackAccountType extends BaseAccountType {
     private static final String TAG = "FallbackAccountType";

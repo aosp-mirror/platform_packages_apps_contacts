@@ -19,8 +19,6 @@ package com.android.contacts.datepicker;
 // This is a fork of the standard Android DatePicker that additionally allows toggling the year
 // on/off. It uses some private API so that not everything has to be copied.
 
-import com.android.contacts.R;
-
 import android.animation.LayoutTransition;
 import android.annotation.Widget;
 import android.content.Context;
@@ -39,6 +37,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.NumberPicker.OnValueChangeListener;
+
+import com.android.contacts.R;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;

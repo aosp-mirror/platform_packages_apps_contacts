@@ -16,8 +16,6 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.util.HtmlUtils.StreamItemQuoteSpan;
-
 import android.graphics.drawable.ColorDrawable;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
@@ -26,6 +24,8 @@ import android.text.Spanned;
 import android.text.SpannedString;
 import android.text.style.ImageSpan;
 import android.text.style.QuoteSpan;
+
+import com.android.contacts.util.HtmlUtils.StreamItemQuoteSpan;
 
 /**
  * Tests for {@link HtmlUtils}.

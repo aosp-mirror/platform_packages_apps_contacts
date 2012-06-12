@@ -16,22 +16,16 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts.Data;
-import android.util.Log;
+import android.provider.ContactsContract.RawContacts;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +34,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 
 import java.util.ArrayList;
 import java.util.Collections;

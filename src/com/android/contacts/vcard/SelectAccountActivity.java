@@ -15,17 +15,17 @@
  */
 package com.android.contacts.vcard;
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.util.AccountSelectionUtil;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.util.AccountSelectionUtil;
 
 import java.util.List;
 

@@ -16,16 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.GroupMetaDataLoader;
-import com.android.contacts.R;
-import com.android.contacts.interactions.GroupCreationDialogFragment;
-import com.android.contacts.interactions.GroupCreationDialogFragment.OnGroupCreatedListener;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityModifier;
-import com.android.internal.util.Objects;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -45,6 +35,16 @@ import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.GroupMetaDataLoader;
+import com.android.contacts.R;
+import com.android.contacts.interactions.GroupCreationDialogFragment;
+import com.android.contacts.interactions.GroupCreationDialogFragment.OnGroupCreatedListener;
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityModifier;
+import com.android.internal.util.Objects;
 
 import java.util.ArrayList;
 

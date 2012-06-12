@@ -16,11 +16,11 @@
 
 package com.android.contacts;
 
-import com.android.contacts.calllog.CallTypeIconsView;
-
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
+
+import com.android.contacts.calllog.CallTypeIconsView;
 
 /**
  * Encapsulates the views that are used to display the details of a phone call in the call log.

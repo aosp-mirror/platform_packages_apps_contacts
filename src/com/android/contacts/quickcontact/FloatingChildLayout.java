@@ -16,10 +16,6 @@
 
 package com.android.contacts.quickcontact;
 
-import com.android.contacts.R;
-import com.android.contacts.test.NeededForReflection;
-import com.android.contacts.util.SchedulingUtils;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -35,6 +31,10 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
+
+import com.android.contacts.R;
+import com.android.contacts.test.NeededForReflection;
+import com.android.contacts.util.SchedulingUtils;
 
 /**
  * Layout containing single child {@link View} which it attempts to center

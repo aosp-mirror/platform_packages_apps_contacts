@@ -16,16 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.list.ContactListFilterController;
-import com.android.contacts.util.Constants;
-import com.android.i18n.phonenumbers.PhoneNumberUtil;
-import com.android.internal.util.Objects;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
@@ -53,12 +43,20 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TimingLogger;
 
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.list.ContactListFilterController;
+import com.android.contacts.util.Constants;
+import com.android.internal.util.Objects;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
