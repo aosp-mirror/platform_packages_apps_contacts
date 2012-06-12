@@ -16,9 +16,6 @@
 
 package com.android.contacts.tests.mocks;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -26,12 +23,15 @@ import android.database.MatrixCursor;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
+import junit.framework.Assert;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-
-import junit.framework.Assert;
 
 /**
  * A programmable mock content provider.

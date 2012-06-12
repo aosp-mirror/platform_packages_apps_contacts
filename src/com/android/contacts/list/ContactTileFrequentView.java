@@ -15,10 +15,10 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.util.ViewUtil;
-
 import android.content.Context;
 import android.util.AttributeSet;
+
+import com.android.contacts.util.ViewUtil;
 
 /**
  * A {@link ContactTileView} that is used for most frequently contacted in the People app

@@ -16,21 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.R;
-import com.android.contacts.calllog.CallLogFragment;
-import com.android.contacts.dialpad.DialpadFragment;
-import com.android.contacts.interactions.PhoneNumberInteraction;
-import com.android.contacts.list.ContactListFilterController;
-import com.android.contacts.list.ContactListFilterController.ContactListFilterListener;
-import com.android.contacts.list.ContactListItemView;
-import com.android.contacts.list.OnPhoneNumberPickerActionListener;
-import com.android.contacts.list.PhoneFavoriteFragment;
-import com.android.contacts.list.PhoneNumberPickerFragment;
-import com.android.contacts.util.AccountFilterUtil;
-import com.android.contacts.util.Constants;
-import com.android.internal.telephony.ITelephony;
-
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.app.ActionBar.Tab;
@@ -70,6 +55,21 @@ import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
+
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
+import com.android.contacts.calllog.CallLogFragment;
+import com.android.contacts.dialpad.DialpadFragment;
+import com.android.contacts.interactions.PhoneNumberInteraction;
+import com.android.contacts.list.ContactListFilterController;
+import com.android.contacts.list.ContactListFilterController.ContactListFilterListener;
+import com.android.contacts.list.ContactListItemView;
+import com.android.contacts.list.OnPhoneNumberPickerActionListener;
+import com.android.contacts.list.PhoneFavoriteFragment;
+import com.android.contacts.list.PhoneNumberPickerFragment;
+import com.android.contacts.util.AccountFilterUtil;
+import com.android.contacts.util.Constants;
+import com.android.internal.telephony.ITelephony;
 
 /**
  * The dialer activity that has one tab with the virtual 12key

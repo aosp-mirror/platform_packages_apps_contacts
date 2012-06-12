@@ -15,15 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactPresenceIconUtil;
-import com.android.contacts.ContactStatusUtil;
-import com.android.contacts.ContactTileLoaderFactory;
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.GroupMemberLoader;
-import com.android.contacts.GroupMemberLoader.GroupDetailQuery;
-import com.android.contacts.R;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Resources;
@@ -36,6 +27,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.ContactStatusUtil;
+import com.android.contacts.ContactTileLoaderFactory;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.GroupMemberLoader;
+import com.android.contacts.GroupMemberLoader.GroupDetailQuery;
+import com.android.contacts.R;
 
 import java.util.ArrayList;
 

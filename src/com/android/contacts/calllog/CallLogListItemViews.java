@@ -16,15 +16,15 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.PhoneCallDetailsViews;
-import com.android.contacts.R;
-import com.android.contacts.test.NeededForTesting;
-
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
+
+import com.android.contacts.PhoneCallDetailsViews;
+import com.android.contacts.R;
+import com.android.contacts.test.NeededForTesting;
 
 /**
  * Simple value object containing the various views within a call log entry.

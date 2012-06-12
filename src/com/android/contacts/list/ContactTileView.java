@@ -15,11 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.R;
-import com.android.contacts.list.ContactTileAdapter.ContactEntry;
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -30,6 +25,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
+import com.android.contacts.list.ContactTileAdapter.ContactEntry;
 
 /**
  * A ContactTile displays a contact's picture and name

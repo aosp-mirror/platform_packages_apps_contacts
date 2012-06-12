@@ -16,13 +16,6 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.GroupListLoader;
-import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.internal.util.Objects;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
@@ -33,6 +26,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.android.contacts.GroupListLoader;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.internal.util.Objects;
 
 /**
  * Adapter to populate the list of groups.

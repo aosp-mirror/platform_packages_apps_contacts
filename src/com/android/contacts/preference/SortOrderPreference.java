@@ -16,13 +16,13 @@
 
 package com.android.contacts.preference;
 
-import com.android.contacts.R;
-
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.preference.ListPreference;
 import android.provider.ContactsContract;
 import android.util.AttributeSet;
+
+import com.android.contacts.R;
 
 /**
  * Custom preference: sort-by.

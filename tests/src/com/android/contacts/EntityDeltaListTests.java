@@ -21,26 +21,26 @@ import static android.content.ContentProviderOperation.TYPE_DELETE;
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
-import com.android.contacts.EntityModifierTests.MockContactsSource;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.google.common.collect.Lists;
-
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Entity;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract.AggregationExceptions;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
+
+import com.android.contacts.EntityModifierTests.MockContactsSource;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.google.common.collect.Lists;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

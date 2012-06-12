@@ -16,15 +16,15 @@
 
 package com.android.contacts;
 
-import com.android.common.io.MoreCloseables;
-import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
-
 import android.content.AsyncQueryHandler;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.VoicemailContract.Status;
 import android.provider.VoicemailContract.Voicemails;
 import android.util.Log;
+
+import com.android.common.io.MoreCloseables;
+import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 
 /**
  * Class used by {@link CallDetailActivity} to fire async content resolver queries.

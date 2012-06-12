@@ -16,9 +16,6 @@
 
 package com.android.contacts.quickcontact;
 
-import com.android.contacts.ContactPresenceIconUtil;
-import com.android.contacts.R;
-
 import android.app.Fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -31,9 +28,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.R;
 
 import java.util.List;
 

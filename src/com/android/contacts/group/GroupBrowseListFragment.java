@@ -16,12 +16,6 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.GroupListLoader;
-import com.android.contacts.R;
-import com.android.contacts.group.GroupBrowseListAdapter.GroupListItemViewCache;
-import com.android.contacts.widget.AutoScrollListView;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -33,10 +27,8 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,6 +41,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.GroupListLoader;
+import com.android.contacts.R;
+import com.android.contacts.group.GroupBrowseListAdapter.GroupListItemViewCache;
+import com.android.contacts.widget.AutoScrollListView;
 
 /**
  * Fragment to display the list of groups.

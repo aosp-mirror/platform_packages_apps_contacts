@@ -15,12 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactTileLoaderFactory;
-import com.android.contacts.R;
-import com.android.contacts.list.ContactTileAdapter.DisplayType;
-import com.android.contacts.util.PhoneCapabilityTester;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -32,12 +26,16 @@ import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactTileLoaderFactory;
+import com.android.contacts.R;
+import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
 /**
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.

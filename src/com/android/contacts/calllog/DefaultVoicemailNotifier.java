@@ -16,11 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import com.android.common.io.MoreCloseables;
-import com.android.contacts.CallDetailActivity;
-import com.android.contacts.R;
-import com.google.common.collect.Maps;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -35,6 +30,11 @@ import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.PhoneLookup;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.common.io.MoreCloseables;
+import com.android.contacts.CallDetailActivity;
+import com.android.contacts.R;
+import com.google.common.collect.Maps;
 
 import java.util.Map;
 

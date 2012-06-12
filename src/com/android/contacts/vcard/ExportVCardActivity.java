@@ -15,9 +15,6 @@
  */
 package com.android.contacts.vcard;
 
-import com.android.contacts.R;
-import com.android.vcard.VCardComposer;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -32,9 +29,10 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
-import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.contacts.R;
 
 import java.io.File;
 

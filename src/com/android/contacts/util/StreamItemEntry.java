@@ -16,13 +16,13 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.detail.ContactDetailDisplayUtils;
-import com.android.contacts.test.NeededForTesting;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.StreamItems;
 import android.text.Html;
+
+import com.android.contacts.detail.ContactDetailDisplayUtils;
+import com.android.contacts.test.NeededForTesting;
 
 import java.util.ArrayList;
 import java.util.Collections;

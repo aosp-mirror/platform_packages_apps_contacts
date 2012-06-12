@@ -20,8 +20,6 @@ import static android.os.PowerManager.ACQUIRE_CAUSES_WAKEUP;
 import static android.os.PowerManager.FULL_WAKE_LOCK;
 import static android.os.PowerManager.ON_AFTER_RELEASE;
 
-import com.google.common.base.Preconditions;
-
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
@@ -29,6 +27,8 @@ import android.os.PowerManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.google.common.base.Preconditions;
 
 import junit.framework.Assert;
 

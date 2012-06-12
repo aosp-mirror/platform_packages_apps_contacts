@@ -19,10 +19,6 @@ package com.android.contacts.datepicker;
 // This is a fork of the standard Android DatePicker that additionally allows toggling the year
 // on/off. It uses some private API so that not everything has to be copied.
 
-import com.android.contacts.R;
-import com.android.contacts.datepicker.DatePicker.OnDateChangedListener;
-import com.android.contacts.util.DateUtils;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,6 +29,10 @@ import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.datepicker.DatePicker.OnDateChangedListener;
+import com.android.contacts.util.DateUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

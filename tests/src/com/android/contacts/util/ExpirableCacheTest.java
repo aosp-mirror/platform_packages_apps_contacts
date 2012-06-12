@@ -16,11 +16,11 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.util.ExpirableCache.CachedValue;
-
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.LruCache;
+
+import com.android.contacts.util.ExpirableCache.CachedValue;
 
 /**
  * Unit tests for {@link ExpirableCache}.

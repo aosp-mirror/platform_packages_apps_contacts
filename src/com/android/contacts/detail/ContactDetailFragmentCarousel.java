@@ -16,17 +16,17 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.R;
-import com.android.contacts.widget.FrameLayoutWithOverlay;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.view.View.OnTouchListener;
+import android.view.ViewPropertyAnimator;
 import android.widget.HorizontalScrollView;
+
+import com.android.contacts.R;
+import com.android.contacts.widget.FrameLayoutWithOverlay;
 
 /**
  * This is a horizontally scrolling carousel with 2 fragments: one to see info about the contact and

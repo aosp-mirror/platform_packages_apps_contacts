@@ -16,13 +16,6 @@
 
 package com.android.contacts.list;
 
-import com.android.common.widget.CompositeCursorAdapter.Partition;
-import com.android.contacts.ContactListEmptyView;
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.R;
-import com.android.contacts.preference.ContactsPreferences;
-import com.android.contacts.widget.ContextMenuAdapter;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -59,6 +52,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.common.widget.CompositeCursorAdapter.Partition;
+import com.android.contacts.ContactListEmptyView;
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.R;
+import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.widget.ContextMenuAdapter;
 
 /**
  * Common base class for various contact-related list fragments.

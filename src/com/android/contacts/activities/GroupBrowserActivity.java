@@ -16,11 +16,11 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
 
 /**
  * Displays a list to browse groups.

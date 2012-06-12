@@ -16,14 +16,14 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.PhoneCallDetails;
-import com.android.contacts.PhoneCallDetailsHelper;
-import com.android.contacts.R;
-
 import android.content.res.Resources;
 import android.provider.CallLog.Calls;
 import android.text.TextUtils;
 import android.view.View;
+
+import com.android.contacts.PhoneCallDetails;
+import com.android.contacts.PhoneCallDetailsHelper;
+import com.android.contacts.R;
 
 /**
  * Helper class to fill in the views of a call log entry.

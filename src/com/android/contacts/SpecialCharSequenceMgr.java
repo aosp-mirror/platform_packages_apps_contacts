@@ -16,9 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.internal.telephony.ITelephony;
-import com.android.internal.telephony.TelephonyCapabilities;
-
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.app.ProgressDialog;
@@ -39,6 +36,9 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.android.internal.telephony.ITelephony;
+import com.android.internal.telephony.TelephonyCapabilities;
 
 /**
  * Helper class to listen for some magic character sequences

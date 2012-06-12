@@ -16,11 +16,11 @@
 
 package com.android.contacts.test;
 
-import com.google.common.collect.Maps;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.content.ContentResolver;
 import android.content.SharedPreferences;
+
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Maps;
 
 import java.util.HashMap;
 

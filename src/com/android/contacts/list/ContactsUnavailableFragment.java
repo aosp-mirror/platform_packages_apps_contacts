@@ -15,8 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.R;
-
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -29,6 +27,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.android.contacts.R;
 
 /**
  * Fragment shown when contacts are unavailable. It contains provider status

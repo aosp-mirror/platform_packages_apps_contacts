@@ -16,22 +16,6 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.GroupMemberLoader;
-import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
-import com.android.contacts.GroupMetaDataLoader;
-import com.android.contacts.R;
-import com.android.contacts.activities.GroupEditorActivity;
-import com.android.contacts.editor.SelectAccountDialogFragment;
-import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.util.ViewUtil;
-import com.android.internal.util.Objects;
-
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -72,6 +56,22 @@ import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.GroupMemberLoader;
+import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
+import com.android.contacts.GroupMetaDataLoader;
+import com.android.contacts.R;
+import com.android.contacts.activities.GroupEditorActivity;
+import com.android.contacts.editor.SelectAccountDialogFragment;
+import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.util.ViewUtil;
+import com.android.internal.util.Objects;
 
 import java.util.ArrayList;
 import java.util.List;

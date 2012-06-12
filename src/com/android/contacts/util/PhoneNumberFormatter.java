@@ -16,12 +16,12 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.ContactsUtils;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.TextView;
+
+import com.android.contacts.ContactsUtils;
 
 public final class PhoneNumberFormatter {
     private PhoneNumberFormatter() {}

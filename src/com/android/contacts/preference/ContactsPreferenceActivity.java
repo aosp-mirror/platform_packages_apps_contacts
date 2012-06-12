@@ -16,15 +16,15 @@
 
 package com.android.contacts.preference;
 
-import com.android.contacts.R;
-import com.android.contacts.activities.PeopleActivity;
-
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
+
+import com.android.contacts.R;
+import com.android.contacts.activities.PeopleActivity;
 
 import java.util.List;
 

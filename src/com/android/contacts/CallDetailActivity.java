@@ -16,22 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.BackScrollManager.ScrollableHeader;
-import com.android.contacts.calllog.CallDetailHistoryAdapter;
-import com.android.contacts.calllog.CallTypeHelper;
-import com.android.contacts.calllog.ContactInfo;
-import com.android.contacts.calllog.ContactInfoHelper;
-import com.android.contacts.calllog.PhoneNumberHelper;
-import com.android.contacts.format.FormatUtils;
-import com.android.contacts.util.AsyncTaskExecutor;
-import com.android.contacts.util.AsyncTaskExecutors;
-import com.android.contacts.util.ClipboardUtils;
-import com.android.contacts.util.Constants;
-import com.android.contacts.voicemail.VoicemailPlaybackFragment;
-import com.android.contacts.voicemail.VoicemailStatusHelper;
-import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
-import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -66,6 +50,22 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.contacts.BackScrollManager.ScrollableHeader;
+import com.android.contacts.calllog.CallDetailHistoryAdapter;
+import com.android.contacts.calllog.CallTypeHelper;
+import com.android.contacts.calllog.ContactInfo;
+import com.android.contacts.calllog.ContactInfoHelper;
+import com.android.contacts.calllog.PhoneNumberHelper;
+import com.android.contacts.format.FormatUtils;
+import com.android.contacts.util.AsyncTaskExecutor;
+import com.android.contacts.util.AsyncTaskExecutors;
+import com.android.contacts.util.ClipboardUtils;
+import com.android.contacts.util.Constants;
+import com.android.contacts.voicemail.VoicemailPlaybackFragment;
+import com.android.contacts.voicemail.VoicemailStatusHelper;
+import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
+import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 
 import java.util.List;
 

@@ -16,8 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.util.UriUtils;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -25,6 +23,8 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+
+import com.android.contacts.util.UriUtils;
 
 /**
  * Utility class to look up the contact information for a given number.

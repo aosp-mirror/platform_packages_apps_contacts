@@ -15,13 +15,13 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.android.contacts.R;
 
 /**
  * Displays the contact's picture overlayed with their name

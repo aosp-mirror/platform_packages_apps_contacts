@@ -16,14 +16,6 @@
 
 package com.android.contacts.quickcontact;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.R;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.util.Constants;
-import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.util.StructuredPostalUtils;
-
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -41,6 +33,14 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.DataKind;
+import com.android.contacts.util.Constants;
+import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.StructuredPostalUtils;
 
 /**
  * Description of a specific {@link Data#_ID} item, with style information

@@ -16,13 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.R;
-import com.android.contacts.editor.AggregationSuggestionEngine.RawContact;
-import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.google.common.collect.Lists;
-
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -31,6 +24,13 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.editor.AggregationSuggestionEngine.RawContact;
+import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;

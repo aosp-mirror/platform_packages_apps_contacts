@@ -16,12 +16,12 @@
 
 package com.android.contacts.widget;
 
-import com.android.contacts.detail.ContactDetailDisplayUtils;
-import com.android.contacts.util.ThemeUtils;
-
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.android.contacts.detail.ContactDetailDisplayUtils;
+import com.android.contacts.util.ThemeUtils;
 
 /**
  * A View that other Views can use to create a touch-interceptor layer above

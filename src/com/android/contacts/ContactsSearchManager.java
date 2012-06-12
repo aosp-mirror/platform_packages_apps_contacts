@@ -16,13 +16,13 @@
 
 package com.android.contacts;
 
-import com.android.contacts.list.ContactsRequest;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents.UI;
+
+import com.android.contacts.list.ContactsRequest;
 
 /**
  * A convenience class that helps launch contact search from within the app.

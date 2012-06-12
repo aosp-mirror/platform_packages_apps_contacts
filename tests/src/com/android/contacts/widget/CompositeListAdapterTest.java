@@ -15,14 +15,14 @@
  */
 package com.android.contacts.widget;
 
-import com.google.common.collect.Lists;
-
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.test.AndroidTestCase;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.HashMap;

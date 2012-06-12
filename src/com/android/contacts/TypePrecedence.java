@@ -16,15 +16,15 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.util.Constants;
-
 import android.accounts.Account;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.Constants;
 
 /**
  * This class contains utility functions for determining the precedence of

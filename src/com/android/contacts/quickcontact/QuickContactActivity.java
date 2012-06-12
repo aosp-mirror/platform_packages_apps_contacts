@@ -16,19 +16,6 @@
 
 package com.android.contacts.quickcontact;
 
-import com.android.contacts.Collapser;
-import com.android.contacts.ContactLoader;
-import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.util.Constants;
-import com.android.contacts.util.DataStatus;
-import com.android.contacts.util.ImageViewDrawableSetter;
-import com.android.contacts.util.SchedulingUtils;
-import com.android.contacts.util.StopWatch;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -73,6 +60,19 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.contacts.Collapser;
+import com.android.contacts.ContactLoader;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.DataKind;
+import com.android.contacts.util.Constants;
+import com.android.contacts.util.DataStatus;
+import com.android.contacts.util.ImageViewDrawableSetter;
+import com.android.contacts.util.SchedulingUtils;
+import com.android.contacts.util.StopWatch;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -16,16 +16,16 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.activities.PeopleActivity;
-import com.android.contacts.format.SpannedTestUtils;
-import com.android.contacts.util.IntegrationTestUtils;
-
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.provider.ContactsContract;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.TextView;
+
+import com.android.contacts.activities.PeopleActivity;
+import com.android.contacts.format.SpannedTestUtils;
+import com.android.contacts.util.IntegrationTestUtils;
 
 /**
  * Unit tests for {@link ContactListItemView}.

@@ -16,20 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.R;
-import com.android.contacts.editor.Editor;
-import com.android.contacts.editor.ViewIdGenerator;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.EmptyService;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -72,6 +58,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.contacts.R;
+import com.android.contacts.editor.Editor;
+import com.android.contacts.editor.ViewIdGenerator;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.EmptyService;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

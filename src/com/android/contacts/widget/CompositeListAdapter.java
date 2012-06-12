@@ -15,14 +15,14 @@
  */
 package com.android.contacts.widget;
 
-import com.android.contacts.test.NeededForTesting;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
+
+import com.android.contacts.test.NeededForTesting;
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * A general purpose adapter that is composed of multiple sub-adapters. It just

@@ -16,11 +16,11 @@
 
 package com.android.contacts.editor;
 
+import android.provider.ContactsContract.Data;
+
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-
-import android.provider.ContactsContract.Data;
 
 /**
  * Generic definition of something that edits a {@link Data} row through an

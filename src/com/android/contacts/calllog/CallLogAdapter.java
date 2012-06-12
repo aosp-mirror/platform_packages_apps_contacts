@@ -16,15 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import com.android.common.widget.GroupingListAdapter;
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.PhoneCallDetails;
-import com.android.contacts.PhoneCallDetailsHelper;
-import com.android.contacts.R;
-import com.android.contacts.util.ExpirableCache;
-import com.android.contacts.util.UriUtils;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
@@ -39,6 +30,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+
+import com.android.common.widget.GroupingListAdapter;
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.PhoneCallDetails;
+import com.android.contacts.PhoneCallDetailsHelper;
+import com.android.contacts.R;
+import com.android.contacts.util.ExpirableCache;
+import com.android.contacts.util.UriUtils;
+import com.google.common.annotations.VisibleForTesting;
 
 import java.util.LinkedList;
 

@@ -16,8 +16,6 @@
 
 package com.android.contacts.interactions;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
@@ -25,13 +23,15 @@ import android.content.Loader;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.common.annotations.VisibleForTesting;
+
+import junit.framework.Assert;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
-import junit.framework.Assert;
 
 /**
  * A {@link LoaderManager} that records which loaders have been completed.

@@ -16,13 +16,13 @@
 
 package com.android.contacts.widget;
 
-import com.android.contacts.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.contacts.R;
 
 /**
  * Layout that calculates its height based on its width, or vice versa (depending on the set

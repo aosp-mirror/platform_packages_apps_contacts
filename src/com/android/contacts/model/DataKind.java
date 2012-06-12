@@ -16,14 +16,14 @@
 
 package com.android.contacts.model;
 
+import android.content.ContentValues;
+import android.provider.ContactsContract.Data;
+
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType.EditField;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountType.StringInflater;
 import com.google.common.collect.Iterators;
-
-import android.content.ContentValues;
-import android.provider.ContactsContract.Data;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

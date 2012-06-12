@@ -16,9 +16,6 @@
 
 package com.android.contacts.vcard;
 
-import com.android.contacts.R;
-import com.android.vcard.VCardEntry;
-
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -30,8 +27,10 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract.RawContacts;
-import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import com.android.contacts.R;
+import com.android.vcard.VCardEntry;
 
 public class NotificationImportExportListener implements VCardImportExportListener,
         Handler.Callback {

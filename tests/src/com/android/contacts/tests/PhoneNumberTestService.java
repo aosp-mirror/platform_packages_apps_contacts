@@ -16,17 +16,17 @@
 
 package com.android.contacts.tests;
 
-import com.android.i18n.phonenumbers.NumberParseException;
-import com.android.i18n.phonenumbers.PhoneNumberUtil;
-import com.android.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
-import com.android.i18n.phonenumbers.Phonenumber.PhoneNumber;
-
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.location.CountryDetector;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
+
+import com.android.i18n.phonenumbers.NumberParseException;
+import com.android.i18n.phonenumbers.PhoneNumberUtil;
+import com.android.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
+import com.android.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

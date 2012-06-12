@@ -16,13 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.R;
-import com.android.contacts.editor.Editor.EditorListener;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityModifier;
-
 import android.content.Context;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
@@ -32,6 +25,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.editor.Editor.EditorListener;
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityModifier;
 
 import java.util.ArrayList;
 import java.util.List;

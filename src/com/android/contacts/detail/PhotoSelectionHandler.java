@@ -16,16 +16,6 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.R;
-import com.android.contacts.editor.PhotoActionPopup;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.util.ContactPhotoUtils;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
@@ -46,6 +36,17 @@ import android.view.View.OnClickListener;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.Toast;
+
+import com.android.contacts.R;
+import com.android.contacts.editor.PhotoActionPopup;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.ContactPhotoUtils;
+
 import java.io.File;
 
 /**

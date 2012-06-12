@@ -15,14 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactTileLoaderFactory;
-import com.android.contacts.R;
-import com.android.contacts.dialog.ClearFrequentsDialog;
-import com.android.contacts.interactions.ImportExportDialogFragment;
-import com.android.contacts.preference.ContactsPreferences;
-import com.android.contacts.util.AccountFilterUtil;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -52,6 +44,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactTileLoaderFactory;
+import com.android.contacts.R;
+import com.android.contacts.dialog.ClearFrequentsDialog;
+import com.android.contacts.interactions.ImportExportDialogFragment;
+import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.util.AccountFilterUtil;
 
 /**
  * Fragment for Phone UI's favorite screen.

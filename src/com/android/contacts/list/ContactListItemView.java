@@ -16,11 +16,6 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPresenceIconUtil;
-import com.android.contacts.ContactStatusUtil;
-import com.android.contacts.R;
-import com.android.contacts.format.PrefixHighlighter;
-
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -48,6 +43,11 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
+
+import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.ContactStatusUtil;
+import com.android.contacts.R;
+import com.android.contacts.format.PrefixHighlighter;
 
 /**
  * A custom view for an item in the contact list.

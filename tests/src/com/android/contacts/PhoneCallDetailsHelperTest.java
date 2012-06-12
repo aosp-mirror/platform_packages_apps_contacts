@@ -16,12 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.calllog.CallTypeHelper;
-import com.android.contacts.calllog.PhoneNumberHelper;
-import com.android.contacts.calllog.TestPhoneNumberHelper;
-import com.android.contacts.util.LocaleTestUtils;
-import com.android.internal.telephony.CallerInfo;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.provider.CallLog.Calls;
@@ -30,6 +24,12 @@ import android.text.Html;
 import android.text.Spanned;
 import android.view.View;
 import android.widget.TextView;
+
+import com.android.contacts.calllog.CallTypeHelper;
+import com.android.contacts.calllog.PhoneNumberHelper;
+import com.android.contacts.calllog.TestPhoneNumberHelper;
+import com.android.contacts.util.LocaleTestUtils;
+import com.android.internal.telephony.CallerInfo;
 
 import java.util.GregorianCalendar;
 import java.util.Locale;

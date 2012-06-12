@@ -16,10 +16,10 @@
 
 package com.android.contacts.test;
 
+import android.os.Bundle;
+
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-
-import android.os.Bundle;
 
 /**
  * An activity that is used for testing fragments.  A unit test starts this

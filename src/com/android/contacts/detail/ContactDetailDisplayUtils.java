@@ -16,18 +16,6 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactLoader.Result;
-import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.R;
-import com.android.contacts.preference.ContactsPreferences;
-import com.android.contacts.util.ContactBadgeUtil;
-import com.android.contacts.util.HtmlUtils;
-import com.android.contacts.util.MoreMath;
-import com.android.contacts.util.StreamItemEntry;
-import com.android.contacts.util.StreamItemPhotoEntry;
-import com.google.common.annotations.VisibleForTesting;
-
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -55,6 +43,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactLoader.Result;
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.R;
+import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.util.ContactBadgeUtil;
+import com.android.contacts.util.HtmlUtils;
+import com.android.contacts.util.MoreMath;
+import com.android.contacts.util.StreamItemEntry;
+import com.android.contacts.util.StreamItemPhotoEntry;
+import com.google.common.annotations.VisibleForTesting;
 
 import java.util.List;
 

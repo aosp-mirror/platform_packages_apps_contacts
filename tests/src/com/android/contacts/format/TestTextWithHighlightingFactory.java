@@ -16,14 +16,14 @@
 
 package com.android.contacts.format;
 
-import com.android.contacts.widget.TextWithHighlighting;
-import com.android.contacts.widget.TextWithHighlightingFactory;
-
 import android.database.CharArrayBuffer;
 import android.graphics.Typeface;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
+
+import com.android.contacts.widget.TextWithHighlighting;
+import com.android.contacts.widget.TextWithHighlightingFactory;
 
 /** A factory for {@link TextWithHighlighting} that wraps its parts in italics. */
 @SmallTest

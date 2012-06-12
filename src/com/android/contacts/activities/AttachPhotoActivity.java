@@ -16,17 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactLoader.Result;
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.util.ContactPhotoUtils;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Loader;
@@ -41,6 +30,17 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactLoader.Result;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.ContactPhotoUtils;
 
 import java.io.File;
 

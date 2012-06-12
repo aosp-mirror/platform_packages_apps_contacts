@@ -15,10 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.R;
-import com.android.contacts.editor.ContactEditorFragment;
-import com.android.contacts.util.AccountFilterUtil;
-
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
@@ -28,13 +24,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLayoutChangeListener;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.editor.ContactEditorFragment;
+import com.android.contacts.util.AccountFilterUtil;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to

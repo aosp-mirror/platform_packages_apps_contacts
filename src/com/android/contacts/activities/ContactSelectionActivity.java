@@ -16,23 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.list.ContactEntryListFragment;
-import com.android.contacts.list.ContactPickerFragment;
-import com.android.contacts.list.ContactsIntentResolver;
-import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.list.DirectoryListLoader;
-import com.android.contacts.list.EmailAddressPickerFragment;
-import com.android.contacts.list.OnContactPickerActionListener;
-import com.android.contacts.list.OnEmailAddressPickerActionListener;
-import com.android.contacts.list.OnPhoneNumberPickerActionListener;
-import com.android.contacts.list.OnPostalAddressPickerActionListener;
-import com.android.contacts.list.PhoneNumberPickerFragment;
-import com.android.contacts.list.PostalAddressPickerFragment;
-import com.android.contacts.widget.ContextMenuAdapter;
-import com.google.common.collect.Sets;
-
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
@@ -53,10 +36,26 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
+
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.list.ContactEntryListFragment;
+import com.android.contacts.list.ContactPickerFragment;
+import com.android.contacts.list.ContactsIntentResolver;
+import com.android.contacts.list.ContactsRequest;
+import com.android.contacts.list.DirectoryListLoader;
+import com.android.contacts.list.EmailAddressPickerFragment;
+import com.android.contacts.list.OnContactPickerActionListener;
+import com.android.contacts.list.OnEmailAddressPickerActionListener;
+import com.android.contacts.list.OnPhoneNumberPickerActionListener;
+import com.android.contacts.list.OnPostalAddressPickerActionListener;
+import com.android.contacts.list.PhoneNumberPickerFragment;
+import com.android.contacts.list.PostalAddressPickerFragment;
+import com.android.contacts.widget.ContextMenuAdapter;
+import com.google.common.collect.Sets;
 
 import java.util.Set;
 

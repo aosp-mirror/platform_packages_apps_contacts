@@ -16,8 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.R;
-
 import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +23,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
+
+import com.android.contacts.R;
 
 import java.util.ArrayList;
 

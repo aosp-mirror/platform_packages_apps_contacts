@@ -16,10 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.util.SchedulingUtils;
-
-import com.google.common.collect.Lists;
-
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorListenerAdapter;
@@ -29,6 +25,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
+
+import com.android.contacts.util.SchedulingUtils;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 

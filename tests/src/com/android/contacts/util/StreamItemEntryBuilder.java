@@ -16,8 +16,6 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.util.StreamItemEntry;
-
 import android.content.Context;
 
 /**

@@ -15,9 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.R;
-import com.android.contacts.util.Constants;
-
 import android.app.ActivityManager;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -42,6 +39,9 @@ import android.provider.ContactsContract.Data;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+
+import com.android.contacts.R;
+import com.android.contacts.util.Constants;
 
 /**
  * Constructs shortcut intents.

@@ -16,8 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.google.common.base.Objects;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -25,6 +23,8 @@ import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
+
+import com.google.common.base.Objects;
 
 
 /**

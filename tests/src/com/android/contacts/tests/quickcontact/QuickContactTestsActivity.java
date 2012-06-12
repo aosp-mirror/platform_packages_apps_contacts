@@ -16,8 +16,6 @@
 
 package com.android.contacts.tests.quickcontact;
 
-import com.android.contacts.tests.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +29,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
+
+import com.android.contacts.tests.R;
 
 public class QuickContactTestsActivity extends Activity {
     private static final int REQUEST_CODE_PICK = 1;

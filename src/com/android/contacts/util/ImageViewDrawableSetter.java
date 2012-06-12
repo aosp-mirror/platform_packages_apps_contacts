@@ -16,9 +16,6 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.ContactLoader.Result;
-import com.android.contacts.ContactPhotoManager;
-
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
@@ -28,6 +25,9 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.util.Log;
 import android.widget.ImageView;
+
+import com.android.contacts.ContactLoader.Result;
+import com.android.contacts.ContactPhotoManager;
 
 import java.util.Arrays;
 

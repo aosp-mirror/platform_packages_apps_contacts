@@ -16,8 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.tests.R;
-
 import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
@@ -32,6 +30,8 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.android.contacts.tests.R;
 
 import java.util.List;
 

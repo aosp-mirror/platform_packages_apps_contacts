@@ -15,14 +15,14 @@
  */
 package com.android.contacts;
 
-import com.android.contacts.list.ContactTileView;
-
 import android.content.Context;
 import android.content.CursorLoader;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
+
+import com.android.contacts.list.ContactTileView;
 
 /**
  * Used to create {@link CursorLoader}s to load different groups of {@link ContactTileView}s

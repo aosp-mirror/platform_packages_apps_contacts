@@ -15,12 +15,12 @@
  */
 package com.android.contacts.format;
 
-import com.android.contacts.test.NeededForTesting;
-
 import android.database.CharArrayBuffer;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+
+import com.android.contacts.test.NeededForTesting;
 
 import java.util.Arrays;
 

@@ -16,8 +16,6 @@
 
 package com.android.contacts.tests.allintents;
 
-import com.android.contacts.tests.R;
-
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -28,16 +26,18 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
+
+import com.android.contacts.tests.R;
 
 import java.util.Arrays;
 

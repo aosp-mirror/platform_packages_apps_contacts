@@ -16,19 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.detail.ContactDetailDisplayUtils;
-import com.android.contacts.detail.ContactDetailFragment;
-import com.android.contacts.detail.ContactDetailLayoutController;
-import com.android.contacts.detail.ContactLoaderFragment;
-import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
-import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.util.PhoneCapabilityTester;
-
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
@@ -48,6 +35,19 @@ import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
+
+import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.detail.ContactDetailDisplayUtils;
+import com.android.contacts.detail.ContactDetailFragment;
+import com.android.contacts.detail.ContactDetailLayoutController;
+import com.android.contacts.detail.ContactLoaderFragment;
+import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
+import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.util.PhoneCapabilityTester;
 
 import java.util.ArrayList;
 

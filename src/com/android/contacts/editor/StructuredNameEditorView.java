@@ -16,11 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.util.NameConverter;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
@@ -29,6 +24,11 @@ import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.util.NameConverter;
 
 import java.util.HashMap;
 import java.util.Map;

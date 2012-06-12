@@ -16,8 +16,6 @@
 
 package com.android.contacts.dialog;
 
-import com.android.contacts.R;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -28,6 +26,8 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+
+import com.android.contacts.R;
 
 /**
  * Dialog that clears the frequently contacted list after confirming with the user.

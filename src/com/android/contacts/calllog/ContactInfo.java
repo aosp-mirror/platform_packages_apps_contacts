@@ -16,10 +16,10 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.util.UriUtils;
-
 import android.net.Uri;
 import android.text.TextUtils;
+
+import com.android.contacts.util.UriUtils;
 
 /**
  * Information for a contact as needed by the Call Log.

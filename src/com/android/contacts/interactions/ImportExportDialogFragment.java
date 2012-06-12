@@ -16,14 +16,6 @@
 
 package com.android.contacts.interactions;
 
-import com.android.contacts.R;
-import com.android.contacts.editor.SelectAccountDialogFragment;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.util.AccountSelectionUtil;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.vcard.ExportVCardActivity;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -44,6 +36,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.contacts.R;
+import com.android.contacts.editor.SelectAccountDialogFragment;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.util.AccountSelectionUtil;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.vcard.ExportVCardActivity;
 
 import java.util.List;
 

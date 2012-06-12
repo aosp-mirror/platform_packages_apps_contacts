@@ -16,8 +16,6 @@
 
 package com.android.contacts.tests.mocks;
 
-import com.android.contacts.model.AccountTypeManager;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -27,6 +25,8 @@ import android.content.pm.ProviderInfo;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.test.mock.MockContentResolver;
+
+import com.android.contacts.model.AccountTypeManager;
 
 /**
  * A mock context for contacts unit tests. Forwards everything to

@@ -17,12 +17,6 @@
 package com.android.contacts.activities;
 
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.list.ContactEntryListFragment;
-import com.android.contacts.list.JoinContactListFragment;
-import com.android.contacts.list.OnContactPickerActionListener;
-
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.app.Fragment;
@@ -41,6 +35,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
+
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.list.ContactEntryListFragment;
+import com.android.contacts.list.JoinContactListFragment;
+import com.android.contacts.list.OnContactPickerActionListener;
 
 /**
  * An activity that shows a list of contacts that can be joined with the target contact.

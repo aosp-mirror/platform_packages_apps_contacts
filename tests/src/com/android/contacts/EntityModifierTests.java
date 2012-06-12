@@ -20,21 +20,6 @@ import static android.content.ContentProviderOperation.TYPE_DELETE;
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.ExchangeAccountType;
-import com.android.contacts.model.GoogleAccountType;
-import com.android.contacts.tests.mocks.ContactsMockContext;
-import com.android.contacts.tests.mocks.MockAccountTypeManager;
-import com.android.contacts.tests.mocks.MockContentProvider;
-import com.google.common.collect.Lists;
-
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Entity;
@@ -53,6 +38,21 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
+
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.ExchangeAccountType;
+import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.tests.mocks.ContactsMockContext;
+import com.android.contacts.tests.mocks.MockAccountTypeManager;
+import com.android.contacts.tests.mocks.MockContentProvider;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;

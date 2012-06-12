@@ -16,11 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.R;
-import com.android.contacts.model.AccountType.DefinitionException;
-import com.android.contacts.util.DateUtils;
-import com.google.common.collect.Lists;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -28,6 +23,10 @@ import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.util.Log;
+
+import com.android.contacts.R;
+import com.android.contacts.util.DateUtils;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 
