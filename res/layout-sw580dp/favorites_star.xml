@@ -15,11 +15,14 @@
 -->
 
 <!-- The favorite star, shown outside of the ActionBar -->
-<ImageView
+<!-- The content description is set in code -->
+<ImageButton
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/star"
     android:layout_width="48dip"
     android:layout_height="48dip"
     android:scaleType="center"
     android:background="?android:attr/selectableItemBackground"
-    android:src="@drawable/btn_star_off_normal_holo_light" />
+    android:src="@drawable/btn_star_off_normal_holo_light"
+    tools:ignore="ContentDescription" />
