@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="launcherDialer" msgid="8636288196618486553">"電話"</string>
-    <string name="people" msgid="1048457247435785074">"People"</string>
+    <string name="people" msgid="1048457247435785074">"連絡帳"</string>
     <string name="contactsList" msgid="8661624236494819731">"連絡先"</string>
     <string name="shortcutContact" msgid="749243779392912958">"連絡先"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接発信"</string>
@@ -152,7 +152,7 @@
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"すべての通話記録は削除されます。"</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"通話履歴を消去しています..."</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"よく使う連絡先をクリアしますか？"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Peopleアプリや電話アプリのよく使う連絡先リストをクリアし、メールアプリがアドレス設定を初めから保存していくようにします。"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"連絡帳アプリや電話アプリのよく使う連絡先リストをクリアし、メールアプリがアドレス設定を初めから保存していくようにします。"</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"よく使う連絡先をクリアしています…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI（端末識別番号）"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
