@@ -16,16 +16,6 @@
 
 package com.android.contacts.detail;
 
-import com.android.contacts.R;
-import com.android.contacts.editor.PhotoActionPopup;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.util.ContactPhotoUtils;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
@@ -46,6 +36,17 @@ import android.view.View.OnClickListener;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.Toast;
+
+import com.android.contacts.R;
+import com.android.contacts.editor.PhotoActionPopup;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.ContactPhotoUtils;
+
 import java.io.File;
 
 /**
@@ -256,12 +257,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         final Uri croppedPhotoUri = Uri.fromFile(new File(croppedPhotoPath));
         final Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", mPhotoPickSize);
-        intent.putExtra("outputY", mPhotoPickSize);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri);
+        ContactPhotoUtils.addGalleryIntentExtras(intent, croppedPhotoUri, mPhotoPickSize);
         return intent;
     }
 
@@ -273,12 +269,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         final Uri croppedPhotoUri = Uri.fromFile(new File(croppedPhotoPath));
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(inputPhotoUri, "image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", mPhotoPickSize);
-        intent.putExtra("outputY", mPhotoPickSize);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri);
+        ContactPhotoUtils.addGalleryIntentExtras(intent, croppedPhotoUri, mPhotoPickSize);
         return intent;
     }
 
