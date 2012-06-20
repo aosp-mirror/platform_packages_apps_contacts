@@ -18,8 +18,11 @@
 package com.android.contacts.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -86,6 +89,24 @@ public class ContactPhotoUtils {
             Log.w(TAG, "Unable to serialize photo: " + e.toString());
             return null;
         }
+    }
+
+    /**
+     * Adds common extras to gallery intents.
+     *
+     * @param intent The intent to add extras to.
+     * @param croppedPhotoUri The uri of the file to save the image to.
+     * @param photoSize The size of the photo to scale to.
+     */
+    public static void addGalleryIntentExtras(Intent intent, Uri croppedPhotoUri, int photoSize) {
+        intent.putExtra("crop", "true");
+        intent.putExtra("scale", true);
+        intent.putExtra("scaleUpIfNeeded", true);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", photoSize);
+        intent.putExtra("outputY", photoSize);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri);
     }
 }
 

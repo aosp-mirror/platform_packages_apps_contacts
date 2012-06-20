@@ -257,12 +257,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         final Uri croppedPhotoUri = Uri.fromFile(new File(croppedPhotoPath));
         final Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", mPhotoPickSize);
-        intent.putExtra("outputY", mPhotoPickSize);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri);
+        ContactPhotoUtils.addGalleryIntentExtras(intent, croppedPhotoUri, mPhotoPickSize);
         return intent;
     }
 
@@ -274,12 +269,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         final Uri croppedPhotoUri = Uri.fromFile(new File(croppedPhotoPath));
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(inputPhotoUri, "image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", mPhotoPickSize);
-        intent.putExtra("outputY", mPhotoPickSize);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri);
+        ContactPhotoUtils.addGalleryIntentExtras(intent, croppedPhotoUri, mPhotoPickSize);
         return intent;
     }
 
