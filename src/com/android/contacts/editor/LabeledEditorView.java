@@ -21,7 +21,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnShowListener;
-import android.content.Entity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -47,11 +46,11 @@ import android.widget.TextView;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.account.AccountType.EditType;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
 
@@ -59,7 +58,7 @@ import java.util.List;
 
 /**
  * Base class for editors that handles labels and values. Uses
- * {@link ValuesDelta} to read any existing {@link Entity} values, and to
+ * {@link ValuesDelta} to read any existing {@link RawContact} values, and to
  * correctly write any changes values.
  */
 public abstract class LabeledEditorView extends LinearLayout implements Editor, DialogShowingView {
@@ -76,7 +75,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
     private DataKind mKind;
     private ValuesDelta mEntry;
-    private EntityDelta mState;
+    private RawContactDelta mState;
     private boolean mReadOnly;
     private boolean mWasEmpty = true;
     private boolean mIsDeletable = true;
@@ -342,7 +341,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
      * structure and {@link ValuesDelta} describing the content to edit.
      */
     @Override
-    public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state, boolean readOnly,
+    public void setValues(DataKind kind, ValuesDelta entry, RawContactDelta state, boolean readOnly,
             ViewIdGenerator vig) {
         mKind = kind;
         mEntry = entry;
@@ -359,11 +358,11 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         setVisibility(View.VISIBLE);
 
         // Display label selector if multiple types available
-        final boolean hasTypes = EntityModifier.hasEditTypes(kind);
+        final boolean hasTypes = RawContactModifier.hasEditTypes(kind);
         setupLabelButton(hasTypes);
         mLabel.setEnabled(!readOnly && isEnabled());
         if (hasTypes) {
-            mType = EntityModifier.getCurrentType(entry, kind);
+            mType = RawContactModifier.getCurrentType(entry, kind);
             rebuildLabel();
         }
     }
@@ -398,7 +397,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 final String customText = editText.getText().toString().trim();
                 if (ContactsUtils.isGraphic(customText)) {
                     final List<EditType> allTypes =
-                            EntityModifier.getValidTypes(mState, mKind, null);
+                            RawContactModifier.getValidTypes(mState, mKind, null);
                     mType = null;
                     for (EditType editType : allTypes) {
                         if (editType.customColumn != null) {
@@ -534,7 +533,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 }
             }
 
-            addAll(EntityModifier.getValidTypes(mState, mKind, mType));
+            addAll(RawContactModifier.getValidTypes(mState, mKind, mType));
         }
 
         public boolean hasCustomSelection() {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.model;
 
 import android.content.ContentUris;
 import android.net.Uri;
@@ -28,9 +28,10 @@ import android.provider.ContactsContract.StatusUpdates;
 import android.test.LoaderTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.BaseAccountType;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
@@ -74,23 +75,23 @@ public class ContactLoaderTest extends LoaderTestCase {
         super.tearDown();
     }
 
-    private ContactLoader.Result assertLoadContact(Uri uri) {
+    private Contact assertLoadContact(Uri uri) {
         final ContactLoader loader = new ContactLoader(mMockContext, uri, true);
         return getLoaderResultSynchronously(loader);
     }
 
     public void testNullUri() {
-        ContactLoader.Result result = assertLoadContact(null);
+        Contact result = assertLoadContact(null);
         assertTrue(result.isError());
     }
 
     public void testEmptyUri() {
-        ContactLoader.Result result = assertLoadContact(Uri.EMPTY);
+        Contact result = assertLoadContact(Uri.EMPTY);
         assertTrue(result.isError());
     }
 
     public void testInvalidUri() {
-        ContactLoader.Result result = assertLoadContact(Uri.parse("content://wtf"));
+        Contact result = assertLoadContact(Uri.parse("content://wtf"));
         assertTrue(result.isError());
     }
 
@@ -111,14 +112,14 @@ public class ContactLoaderTest extends LoaderTestCase {
         mContactsProvider.expectTypeQuery(baseUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchAllData(entityUri, contactId, rawContactId, dataId, lookupKey);
 
-        ContactLoader.Result contact = assertLoadContact(baseUri);
+        Contact contact = assertLoadContact(baseUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
         assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
         assertEquals(lookupKey, contact.getLookupKey());
         assertEquals(lookupUri, contact.getLookupUri());
-        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getRawContacts().size());
         assertEquals(1, contact.getStatuses().size());
         mContactsProvider.verify();
     }
@@ -143,14 +144,14 @@ public class ContactLoaderTest extends LoaderTestCase {
         queries.fetchContactIdAndLookupFromRawContactUri(rawContactUri, contactId, lookupKey);
         queries.fetchAllData(entityUri, contactId, rawContactId, dataId, lookupKey);
 
-        ContactLoader.Result contact = assertLoadContact(legacyUri);
+        Contact contact = assertLoadContact(legacyUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
         assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
         assertEquals(lookupKey, contact.getLookupKey());
         assertEquals(lookupUri, contact.getLookupUri());
-        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getRawContacts().size());
         assertEquals(1, contact.getStatuses().size());
         mContactsProvider.verify();
     }
@@ -174,14 +175,14 @@ public class ContactLoaderTest extends LoaderTestCase {
         queries.fetchContactIdAndLookupFromRawContactUri(rawContactUri, contactId, lookupKey);
         queries.fetchAllData(entityUri, contactId, rawContactId, dataId, lookupKey);
 
-        ContactLoader.Result contact = assertLoadContact(rawContactUri);
+        Contact contact = assertLoadContact(rawContactUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
         assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
         assertEquals(lookupKey, contact.getLookupKey());
         assertEquals(lookupUri, contact.getLookupUri());
-        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getRawContacts().size());
         assertEquals(1, contact.getStatuses().size());
         mContactsProvider.verify();
     }
@@ -203,14 +204,14 @@ public class ContactLoaderTest extends LoaderTestCase {
         mContactsProvider.expectTypeQuery(lookupNoIdUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchAllData(entityUri, contactId, rawContactId, dataId, lookupKey);
 
-        ContactLoader.Result contact = assertLoadContact(lookupNoIdUri);
+        Contact contact = assertLoadContact(lookupNoIdUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
         assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
         assertEquals(lookupKey, contact.getLookupKey());
         assertEquals(lookupUri, contact.getLookupUri());
-        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getRawContacts().size());
         assertEquals(1, contact.getStatuses().size());
         mContactsProvider.verify();
     }
@@ -232,14 +233,14 @@ public class ContactLoaderTest extends LoaderTestCase {
         mContactsProvider.expectTypeQuery(lookupUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchAllData(entityUri, contactId, rawContactId, dataId, lookupKey);
 
-        ContactLoader.Result contact = assertLoadContact(lookupUri);
+        Contact contact = assertLoadContact(lookupUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
         assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
         assertEquals(lookupKey, contact.getLookupKey());
         assertEquals(lookupUri, contact.getLookupUri());
-        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getRawContacts().size());
         assertEquals(1, contact.getStatuses().size());
         mContactsProvider.verify();
     }
@@ -271,14 +272,14 @@ public class ContactLoaderTest extends LoaderTestCase {
         mContactsProvider.expectTypeQuery(lookupWithWrongIdUri, Contacts.CONTENT_ITEM_TYPE);
         queries.fetchAllData(entityUri, contactId, rawContactId, dataId, lookupKey);
 
-        ContactLoader.Result contact = assertLoadContact(lookupWithWrongIdUri);
+        Contact contact = assertLoadContact(lookupWithWrongIdUri);
 
         assertEquals(contactId, contact.getId());
         assertEquals(rawContactId, contact.getNameRawContactId());
         assertEquals(DisplayNameSources.STRUCTURED_NAME, contact.getDisplayNameSource());
         assertEquals(lookupKey, contact.getLookupKey());
         assertEquals(lookupUri, contact.getLookupUri());
-        assertEquals(1, contact.getEntities().size());
+        assertEquals(1, contact.getRawContacts().size());
         assertEquals(1, contact.getStatuses().size());
 
         mContactsProvider.verify();

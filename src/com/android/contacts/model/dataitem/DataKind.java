@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.android.contacts.model;
+package com.android.contacts.model.dataitem;
 
 import android.content.ContentValues;
 import android.provider.ContactsContract.Data;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType.EditField;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.AccountType.StringInflater;
+import com.android.contacts.model.account.AccountType.EditField;
+import com.android.contacts.model.account.AccountType.EditType;
+import com.android.contacts.model.account.AccountType.StringInflater;
 import com.google.common.collect.Iterators;
 
 import java.text.SimpleDateFormat;

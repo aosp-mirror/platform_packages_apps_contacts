@@ -35,8 +35,8 @@ import android.provider.ContactsContract.Contacts.Entity;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountType;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 

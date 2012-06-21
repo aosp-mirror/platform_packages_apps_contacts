@@ -53,10 +53,10 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.activities.TransactionSafeActivity;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountType.StringInflater;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountType.StringInflater;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.DataKind;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.util.ArrayList;

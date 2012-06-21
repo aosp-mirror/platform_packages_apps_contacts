@@ -17,7 +17,6 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
-import android.content.Entity;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -38,15 +37,15 @@ import android.widget.LinearLayout;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType.EditField;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.account.AccountType.EditField;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.PhoneNumberFormatter;
 
 /**
  * Simple editor that handles labels and any {@link EditField} defined for the
- * entry. Uses {@link ValuesDelta} to read any existing {@link Entity} values,
+ * entry. Uses {@link ValuesDelta} to read any existing {@link RawContact} values,
  * and to correctly write any changes values.
  */
 public class TextFieldsEditorView extends LabeledEditorView {
@@ -171,7 +170,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
     }
 
     @Override
-    public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state, boolean readOnly,
+    public void setValues(DataKind kind, ValuesDelta entry, RawContactDelta state, boolean readOnly,
             ViewIdGenerator vig) {
         super.setValues(kind, entry, state, readOnly, vig);
         // Remove edit texts that we currently have

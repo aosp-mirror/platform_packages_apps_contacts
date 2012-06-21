@@ -20,18 +20,22 @@ import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Entity;
-import android.content.Entity.NamedContentValues;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.test.NeededForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -42,21 +46,20 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 /**
- * Contains an {@link Entity} and records any modifications separately so the
- * original {@link Entity} can be swapped out with a newer version and the
+ * Contains a {@link RawContact} and records any modifications separately so the
+ * original {@link RawContact} can be swapped out with a newer version and the
  * changes still cleanly applied.
  * <p>
  * One benefit of this approach is that we can build changes entirely on an
- * empty {@link Entity}, which then becomes an insert {@link RawContacts} case.
+ * empty {@link RawContact}, which then becomes an insert {@link RawContacts} case.
  * <p>
- * When applying modifications over an {@link Entity}, we try finding the
+ * When applying modifications over an {@link RawContact}, we try finding the
  * original {@link Data#_ID} rows where the modifications took place. If those
- * rows are missing from the new {@link Entity}, we know the original data must
+ * rows are missing from the new {@link RawContact}, we know the original data must
  * be deleted, but to preserve the user modifications we treat as an insert.
  */
-public class EntityDelta implements Parcelable {
+public class RawContactDelta implements Parcelable {
     // TODO: optimize by using contentvalues pool, since we allocate so many of them
 
     private static final String TAG = "EntityDelta";
@@ -79,40 +82,40 @@ public class EntityDelta implements Parcelable {
      */
     private final HashMap<String, ArrayList<ValuesDelta>> mEntries = Maps.newHashMap();
 
-    public EntityDelta() {
+    public RawContactDelta() {
     }
 
-    public EntityDelta(ValuesDelta values) {
+    public RawContactDelta(ValuesDelta values) {
         mValues = values;
     }
 
     /**
-     * Build an {@link EntityDelta} using the given {@link Entity} as a
+     * Build an {@link RawContactDelta} using the given {@link RawContact} as a
      * starting point; the "before" snapshot.
      */
-    public static EntityDelta fromBefore(Entity before) {
-        final EntityDelta entity = new EntityDelta();
-        entity.mValues = ValuesDelta.fromBefore(before.getEntityValues());
-        entity.mValues.setIdColumn(RawContacts._ID);
-        for (NamedContentValues namedValues : before.getSubValues()) {
-            entity.addEntry(ValuesDelta.fromBefore(namedValues.values));
+    public static RawContactDelta fromBefore(RawContact before) {
+        final RawContactDelta rawContactDelta = new RawContactDelta();
+        rawContactDelta.mValues = ValuesDelta.fromBefore(before.getValues());
+        rawContactDelta.mValues.setIdColumn(RawContacts._ID);
+        for (DataItem dataItem : before.getDataItems()) {
+            rawContactDelta.addEntry(ValuesDelta.fromBefore(dataItem.getContentValues()));
         }
-        return entity;
+        return rawContactDelta;
     }
 
     /**
-     * Merge the "after" values from the given {@link EntityDelta} onto the
-     * "before" state represented by this {@link EntityDelta}, discarding any
+     * Merge the "after" values from the given {@link RawContactDelta} onto the
+     * "before" state represented by this {@link RawContactDelta}, discarding any
      * existing "after" states. This is typically used when re-parenting changes
      * onto an updated {@link Entity}.
      */
-    public static EntityDelta mergeAfter(EntityDelta local, EntityDelta remote) {
+    public static RawContactDelta mergeAfter(RawContactDelta local, RawContactDelta remote) {
         // Bail early if trying to merge delete with missing local
         final ValuesDelta remoteValues = remote.mValues;
         if (local == null && (remoteValues.isDelete() || remoteValues.isTransient())) return null;
 
         // Create local version if none exists yet
-        if (local == null) local = new EntityDelta();
+        if (local == null) local = new RawContactDelta();
 
         if (LOGV) {
             final Long localVersion = (local.mValues == null) ? null : local.mValues
@@ -223,6 +226,26 @@ public class EntityDelta implements Parcelable {
         return getValues().getAsLong(RawContacts._ID);
     }
 
+    public String getAccountName() {
+        return getValues().getAsString(RawContacts.ACCOUNT_NAME);
+    }
+
+    public String getAccountType() {
+        return getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+    }
+
+    public String getDataSet() {
+        return getValues().getAsString(RawContacts.DATA_SET);
+    }
+
+    public AccountType getAccountType(AccountTypeManager manager) {
+        return manager.getAccountType(getAccountType(), getDataSet());
+    }
+
+    public boolean isVisible() {
+        return getValues().isVisible();
+    }
+
     /**
      * Return the list of child {@link ValuesDelta} from our optimized map,
      * creating the list if requested.
@@ -308,8 +331,8 @@ public class EntityDelta implements Parcelable {
 
     @Override
     public boolean equals(Object object) {
-        if (object instanceof EntityDelta) {
-            final EntityDelta other = (EntityDelta)object;
+        if (object instanceof RawContactDelta) {
+            final RawContactDelta other = (RawContactDelta)object;
 
             // Equality failed if parent values different
             if (!other.mValues.equals(mValues)) return false;
@@ -403,7 +426,7 @@ public class EntityDelta implements Parcelable {
     /**
      * Build a list of {@link ContentProviderOperation} that will transform the
      * current "before" {@link Entity} state into the modified state which this
-     * {@link EntityDelta} represents.
+     * {@link RawContactDelta} represents.
      */
     public void buildDiff(ArrayList<ContentProviderOperation> buildInto) {
         final int firstIndex = buildInto.size();
@@ -524,15 +547,16 @@ public class EntityDelta implements Parcelable {
         mContactsQueryUri = Profile.CONTENT_RAW_CONTACTS_URI;
     }
 
-    public static final Parcelable.Creator<EntityDelta> CREATOR = new Parcelable.Creator<EntityDelta>() {
-        public EntityDelta createFromParcel(Parcel in) {
-            final EntityDelta state = new EntityDelta();
+    public static final Parcelable.Creator<RawContactDelta> CREATOR =
+            new Parcelable.Creator<RawContactDelta>() {
+        public RawContactDelta createFromParcel(Parcel in) {
+            final RawContactDelta state = new RawContactDelta();
             state.readFromParcel(in);
             return state;
         }
 
-        public EntityDelta[] newArray(int size) {
-            return new EntityDelta[size];
+        public RawContactDelta[] newArray(int size) {
+            return new RawContactDelta[size];
         }
     };
 
@@ -962,5 +986,118 @@ public class EntityDelta implements Parcelable {
                 return new ValuesDelta[size];
             }
         };
+
+        public void setGroupRowId(long groupId) {
+            put(GroupMembership.GROUP_ROW_ID, groupId);
+        }
+
+        public Long getGroupRowId() {
+            return getAsLong(GroupMembership.GROUP_ROW_ID);
+        }
+
+        public void setPhoto(byte[] value) {
+            put(Photo.PHOTO, value);
+        }
+
+        public byte[] getPhoto() {
+            return getAsByteArray(Photo.PHOTO);
+        }
+
+        public void setSuperPrimary(boolean val) {
+            if (val) {
+                put(Data.IS_SUPER_PRIMARY, 1);
+            } else {
+                put(Data.IS_SUPER_PRIMARY, 0);
+            }
+        }
+
+        public void setPhoneticFamilyName(String value) {
+            put(StructuredName.PHONETIC_FAMILY_NAME, value);
+        }
+
+        public void setPhoneticMiddleName(String value) {
+            put(StructuredName.PHONETIC_MIDDLE_NAME, value);
+        }
+
+        public void setPhoneticGivenName(String value) {
+            put(StructuredName.PHONETIC_GIVEN_NAME, value);
+        }
+
+        public String getPhoneticFamilyName() {
+            return getAsString(StructuredName.PHONETIC_FAMILY_NAME);
+        }
+
+        public String getPhoneticMiddleName() {
+            return getAsString(StructuredName.PHONETIC_MIDDLE_NAME);
+        }
+
+        public String getPhoneticGivenName() {
+            return getAsString(StructuredName.PHONETIC_GIVEN_NAME);
+        }
+
+        public String getDisplayName() {
+            return getAsString(StructuredName.DISPLAY_NAME);
+        }
+
+        public void setDisplayName(String name) {
+            if (name == null) {
+                putNull(StructuredName.DISPLAY_NAME);
+            } else {
+                put(StructuredName.DISPLAY_NAME, name);
+            }
+        }
+
+        public void copyStructuredNameFieldsFrom(ValuesDelta name) {
+            copyStringFrom(name, StructuredName.DISPLAY_NAME);
+
+            copyStringFrom(name, StructuredName.GIVEN_NAME);
+            copyStringFrom(name, StructuredName.FAMILY_NAME);
+            copyStringFrom(name, StructuredName.PREFIX);
+            copyStringFrom(name, StructuredName.MIDDLE_NAME);
+            copyStringFrom(name, StructuredName.SUFFIX);
+
+            copyStringFrom(name, StructuredName.PHONETIC_GIVEN_NAME);
+            copyStringFrom(name, StructuredName.PHONETIC_MIDDLE_NAME);
+            copyStringFrom(name, StructuredName.PHONETIC_FAMILY_NAME);
+
+            copyStringFrom(name, StructuredName.FULL_NAME_STYLE);
+            copyStringFrom(name, StructuredName.PHONETIC_NAME_STYLE);
+        }
+
+        public String getPhoneNumber() {
+            return getAsString(Phone.NUMBER);
+        }
+
+        public String getPhoneNormalizedNumber() {
+            return getAsString(Phone.NORMALIZED_NUMBER);
+        }
+
+        public boolean phoneHasType() {
+            return containsKey(Phone.TYPE);
+        }
+
+        public int getPhoneType() {
+            return getAsInteger(Phone.TYPE);
+        }
+
+        public String getPhoneLabel() {
+            return getAsString(Phone.LABEL);
+        }
+
+        public String getEmailData() {
+            return getAsString(Email.DATA);
+        }
+
+        public boolean emailHasType() {
+            return containsKey(Email.TYPE);
+        }
+
+        public int getEmailType() {
+            return getAsInteger(Email.TYPE);
+        }
+
+        public String getEmailLabel() {
+            return getAsString(Email.LABEL);
+        }
     }
 }

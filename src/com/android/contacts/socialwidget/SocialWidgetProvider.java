@@ -37,10 +37,11 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.ContactLoader;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.quickcontact.QuickContactBroadcastReceiver;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.HtmlUtils;
@@ -115,10 +116,10 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         final ContactLoader contactLoader = new ContactLoader(context, contactUri, false, true,
                 false, true);
         contactLoader.registerListener(0,
-                new ContactLoader.OnLoadCompleteListener<ContactLoader.Result>() {
+                new ContactLoader.OnLoadCompleteListener<Contact>() {
                     @Override
-                    public void onLoadComplete(Loader<ContactLoader.Result> loader,
-                            ContactLoader.Result contactData) {
+                    public void onLoadComplete(Loader<Contact> loader,
+                            Contact contactData) {
                         bindRemoteViews(context, widgetId, appWidgetManager, contactData);
                     }
                 });
@@ -127,7 +128,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
     }
 
     private static void bindRemoteViews(final Context context, final int widgetId,
-            final AppWidgetManager widgetManager, ContactLoader.Result contactData) {
+            final AppWidgetManager widgetManager, Contact contactData) {
         Log.d(TAG, "Loaded " + contactData.getLookupKey()
                 + " for widget with id=" + widgetId);
         final RemoteViews views = new RemoteViews(context.getPackageName(),

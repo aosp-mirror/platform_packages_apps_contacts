@@ -29,11 +29,11 @@ import com.android.contacts.R;
 import com.android.contacts.datepicker.DatePicker;
 import com.android.contacts.datepicker.DatePickerDialog;
 import com.android.contacts.datepicker.DatePickerDialog.OnDateSetListener;
-import com.android.contacts.model.AccountType.EditField;
-import com.android.contacts.model.AccountType.EventEditType;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.account.AccountType.EditField;
+import com.android.contacts.model.account.AccountType.EventEditType;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.DateUtils;
 
 import java.text.ParsePosition;
@@ -108,7 +108,7 @@ public class EventFieldEditorView extends LabeledEditorView {
     }
 
     @Override
-    public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state, boolean readOnly,
+    public void setValues(DataKind kind, ValuesDelta entry, RawContactDelta state, boolean readOnly,
             ViewIdGenerator vig) {
         if (kind.fieldList.size() != 1) throw new IllegalStateException("kind must have 1 field");
         super.setValues(kind, entry, state, readOnly, vig);

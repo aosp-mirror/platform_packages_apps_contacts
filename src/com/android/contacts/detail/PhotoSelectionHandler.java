@@ -39,12 +39,12 @@ import android.widget.Toast;
 
 import com.android.contacts.R;
 import com.android.contacts.editor.PhotoActionPopup;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import java.io.File;
@@ -64,12 +64,12 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     private final View mPhotoView;
     private final int mPhotoMode;
     private final int mPhotoPickSize;
-    private final EntityDeltaList mState;
+    private final RawContactDeltaList mState;
     private final boolean mIsDirectoryContact;
     private ListPopupWindow mPopup;
 
     public PhotoSelectionHandler(Context context, View photoView, int photoMode,
-            boolean isDirectoryContact, EntityDeltaList state) {
+            boolean isDirectoryContact, RawContactDeltaList state) {
         mContext = context;
         mPhotoView = photoView;
         mPhotoMode = photoMode;
@@ -162,12 +162,12 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      *     or null if the photo could not be parsed or none of the accounts associated with the
      *     contact are writable.
      */
-    public EntityDeltaList getDeltaForAttachingPhotoToContact() {
+    public RawContactDeltaList getDeltaForAttachingPhotoToContact() {
         // Find the first writable entity.
         int writableEntityIndex = getWritableEntityIndex();
         if (writableEntityIndex != -1) {
             // We are guaranteed to have contact data if we have a writable entity index.
-            final EntityDelta delta = mState.get(writableEntityIndex);
+            final RawContactDelta delta = mState.get(writableEntityIndex);
 
             // Need to find the right account so that EntityModifier knows which fields to add
             final ContentValues entityValues = delta.getValues().getCompleteValues();
@@ -176,10 +176,10 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
             final AccountType accountType = AccountTypeManager.getInstance(mContext).getAccountType(
                         type, dataSet);
 
-            final ValuesDelta child = EntityModifier.ensureKindExists(
+            final ValuesDelta child = RawContactModifier.ensureKindExists(
                     delta, accountType, Photo.CONTENT_ITEM_TYPE);
             child.setFromTemplate(false);
-            child.put(Photo.IS_SUPER_PRIMARY, 1);
+            child.setSuperPrimary(true);
 
             return mState;
         }

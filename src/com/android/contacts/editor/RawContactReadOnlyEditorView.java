@@ -39,12 +39,12 @@ import android.widget.Toast;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.dataitem.DataKind;
 
 import java.util.ArrayList;
 
@@ -108,11 +108,11 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
 
     /**
      * Set the internal state for this view, given a current
-     * {@link EntityDelta} state and the {@link AccountType} that
+     * {@link RawContactDelta} state and the {@link AccountType} that
      * apply to that state.
      */
     @Override
-    public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig,
+    public void setState(RawContactDelta state, AccountType type, ViewIdGenerator vig,
             boolean isProfile) {
         // Remove any existing sections
         mGeneral.removeAllViews();
@@ -121,13 +121,12 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         if (state == null || type == null) return;
 
         // Make sure we have StructuredName
-        EntityModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
 
         // Fill in the header info
-        ValuesDelta values = state.getValues();
-        mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-        mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-        mDataSet = values.getAsString(RawContacts.DATA_SET);
+        mAccountName = state.getAccountName();
+        mAccountType = state.getAccountType();
+        mDataSet = state.getDataSet();
 
         if (isProfile) {
             if (TextUtils.isEmpty(mAccountName)) {
@@ -162,14 +161,14 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
 
         mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
-        mRawContactId = values.getAsLong(RawContacts._ID);
+        mRawContactId = state.getRawContactId();
 
         ValuesDelta primary;
 
         // Photo
         DataKind kind = type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
         if (kind != null) {
-            EntityModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);
+            RawContactModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);
             boolean hasPhotoEditor = type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null;
             setHasPhotoEditor(hasPhotoEditor);
             primary = state.getPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
@@ -203,13 +202,13 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
             for (int i = 0; i < phones.size(); i++) {
                 ValuesDelta phone = phones.get(i);
                 final String phoneNumber = PhoneNumberUtils.formatNumber(
-                        phone.getAsString(Phone.NUMBER),
-                        phone.getAsString(Phone.NORMALIZED_NUMBER),
+                        phone.getPhoneNumber(),
+                        phone.getPhoneNormalizedNumber(),
                         ContactsUtils.getCurrentCountryIso(getContext()));
                 final CharSequence phoneType;
-                if (phone.containsKey(Phone.TYPE)) {
+                if (phone.phoneHasType()) {
                     phoneType = Phone.getTypeLabel(
-                            res, phone.getAsInteger(Phone.TYPE), phone.getAsString(Phone.LABEL));
+                            res, phone.getPhoneType(), phone.getPhoneLabel());
                 } else {
                     phoneType = null;
                 }
@@ -223,11 +222,11 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         if (emails != null) {
             for (int i = 0; i < emails.size(); i++) {
                 ValuesDelta email = emails.get(i);
-                final String emailAddress = email.getAsString(Email.DATA);
+                final String emailAddress = email.getEmailData();
                 final CharSequence emailType;
-                if (email.containsKey(Email.TYPE)) {
+                if (email.emailHasType()) {
                     emailType = Email.getTypeLabel(
-                            res, email.getAsInteger(Email.TYPE), email.getAsString(Email.LABEL));
+                            res, email.getEmailType(), email.getEmailLabel());
                 } else {
                     emailType = null;
                 }

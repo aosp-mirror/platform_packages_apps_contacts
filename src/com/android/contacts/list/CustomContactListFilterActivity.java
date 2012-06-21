@@ -27,7 +27,6 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.EntityIterator;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.OperationApplicationException;
@@ -56,11 +55,11 @@ import android.widget.TextView;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
@@ -146,7 +145,8 @@ public class CustomContactListFilterActivity extends ContactsActivity
                 if (account.dataSet != null) {
                     groupsUri.appendQueryParameter(Groups.DATA_SET, account.dataSet).build();
                 }
-                EntityIterator iterator = ContactsContract.Groups.newEntityIterator(resolver.query(
+                android.content.EntityIterator iterator =
+                        ContactsContract.Groups.newEntityIterator(resolver.query(
                         groupsUri.build(), null, null, null, null));
                 try {
                     boolean hasGroups = false;

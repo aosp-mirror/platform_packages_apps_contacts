@@ -45,6 +45,14 @@ import android.util.TimingLogger;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.list.ContactListFilterController;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountTypeWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.ExchangeAccountType;
+import com.android.contacts.model.account.ExternalAccountType;
+import com.android.contacts.model.account.FallbackAccountType;
+import com.android.contacts.model.account.GoogleAccountType;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.Constants;
 import com.android.internal.util.Objects;
 import com.google.common.annotations.VisibleForTesting;

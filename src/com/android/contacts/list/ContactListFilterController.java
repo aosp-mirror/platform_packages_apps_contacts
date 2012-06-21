@@ -20,7 +20,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
 import java.util.List;

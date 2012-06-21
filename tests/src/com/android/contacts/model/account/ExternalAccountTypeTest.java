@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.model;
+package com.android.contacts.model.account;
 
 import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -31,6 +31,11 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.BaseAccountType;
+import com.android.contacts.model.account.ExternalAccountType;
+import com.android.contacts.model.account.FallbackAccountType;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.tests.R;
 
 import java.util.List;

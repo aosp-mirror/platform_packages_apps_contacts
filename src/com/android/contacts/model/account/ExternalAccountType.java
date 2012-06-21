@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.model;
+package com.android.contacts.model.account;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -31,6 +31,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
 
+import com.android.contacts.model.dataitem.DataKind;
 import com.google.common.annotations.VisibleForTesting;
 
 import org.xmlpull.v1.XmlPullParser;

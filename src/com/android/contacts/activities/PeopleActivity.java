@@ -47,7 +47,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsUtils;
@@ -81,7 +80,8 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
-import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountFilterUtil;
@@ -1162,7 +1162,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void onDetailsLoaded(final ContactLoader.Result result) {
+        public void onDetailsLoaded(final Contact result) {
             if (result == null) {
                 // Nothing is loaded. Show empty state.
                 mContactDetailLayoutController.showEmptyState();

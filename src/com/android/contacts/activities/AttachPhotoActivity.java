@@ -30,15 +30,15 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.util.Log;
 
-import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactLoader.Result;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsUtils;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.ContactLoader;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import java.io.File;
@@ -131,7 +131,7 @@ public class AttachPhotoActivity extends ContactsActivity {
         } else if (requestCode == REQUEST_CROP_PHOTO) {
             loadContact(mContactUri, new Listener() {
                 @Override
-                public void onContactLoaded(ContactLoader.Result contact) {
+                public void onContactLoaded(Contact contact) {
                     saveContact(contact);
                 }
             });
@@ -144,10 +144,10 @@ public class AttachPhotoActivity extends ContactsActivity {
     // instance, the loader doesn't persist across Activity restarts.
     private void loadContact(Uri contactUri, final Listener listener) {
         final ContactLoader loader = new ContactLoader(this, contactUri, true);
-        loader.registerListener(0, new OnLoadCompleteListener<ContactLoader.Result>() {
+        loader.registerListener(0, new OnLoadCompleteListener<Contact>() {
             @Override
             public void onLoadComplete(
-                    Loader<ContactLoader.Result> loader, ContactLoader.Result contact) {
+                    Loader<Contact> loader, Contact contact) {
                 try {
                     loader.reset();
                 }
@@ -161,7 +161,7 @@ public class AttachPhotoActivity extends ContactsActivity {
     }
 
     private interface Listener {
-        public void onContactLoaded(Result contact);
+        public void onContactLoaded(Contact contact);
     }
 
     /**
@@ -170,11 +170,11 @@ public class AttachPhotoActivity extends ContactsActivity {
      * - photo has been cropped
      * - contact has been loaded
      */
-    private void saveContact(ContactLoader.Result contact) {
+    private void saveContact(Contact contact) {
 
         // Obtain the raw-contact that we will save to.
-        EntityDeltaList deltaList = contact.createEntityDeltaList();
-        EntityDelta raw = deltaList.getFirstWritableRawContact(this);
+        RawContactDeltaList deltaList = contact.createRawContactDeltaList();
+        RawContactDelta raw = deltaList.getFirstWritableRawContact(this);
         if (raw == null) {
             Log.w(TAG, "no writable raw-contact found");
             return;
@@ -195,13 +195,13 @@ public class AttachPhotoActivity extends ContactsActivity {
         // the ContactSaveService would not create the new contact, and the
         // full-res photo would fail to be saved to the non-existent contact.
         AccountType account = raw.getRawContactAccountType(this);
-        EntityDelta.ValuesDelta values =
-                EntityModifier.ensureKindExists(raw, account, Photo.CONTENT_ITEM_TYPE);
+        RawContactDelta.ValuesDelta values =
+                RawContactModifier.ensureKindExists(raw, account, Photo.CONTENT_ITEM_TYPE);
         if (values == null) {
             Log.w(TAG, "cannot attach photo to this account type");
             return;
         }
-        values.put(Photo.PHOTO, compressed);
+        values.setPhoto(compressed);
 
         // Finally, invoke the ContactSaveService.
         Log.v(TAG, "all prerequisites met, about to save photo to contact");

@@ -22,10 +22,7 @@ import android.app.FragmentManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.Entity;
-import android.content.Entity.NamedContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -35,13 +32,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -62,10 +57,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.contacts.Collapser;
-import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.DataKind;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.ContactLoader;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.model.dataitem.EmailDataItem;
+import com.android.contacts.model.dataitem.ImDataItem;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.ImageViewDrawableSetter;
@@ -330,7 +329,7 @@ public class QuickContactActivity extends Activity {
     /**
      * Handle the result from the ContactLoader
      */
-    private void bindData(ContactLoader.Result data) {
+    private void bindData(Contact data) {
         final ResolveCache cache = ResolveCache.getInstance(this);
         final Context context = this;
 
@@ -339,42 +338,29 @@ public class QuickContactActivity extends Activity {
 
         mDefaultsMap.clear();
 
-        mStopWatch.lap("atm"); // AccountTypeManager initialization start
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
-                context.getApplicationContext());
-        mStopWatch.lap("fatm"); // AccountTypeManager initialization finished
+        mStopWatch.lap("sph"); // Start photo setting
 
         final ImageView photoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
         mPhotoSetter.setupContactPhoto(data, photoView);
 
         mStopWatch.lap("ph"); // Photo set
 
-        for (Entity entity : data.getEntities()) {
-            final ContentValues entityValues = entity.getEntityValues();
-            final String accountType = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
-            final String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
-            for (NamedContentValues subValue : entity.getSubValues()) {
-                final ContentValues entryValues = subValue.values;
-                final String mimeType = entryValues.getAsString(Data.MIMETYPE);
+        for (RawContact rawContact : data.getRawContacts()) {
+            for (DataItem dataItem : rawContact.getDataItems()) {
+                final String mimeType = dataItem.getMimeType();
 
                 // Skip this data item if MIME-type excluded
                 if (isMimeExcluded(mimeType)) continue;
 
-                final long dataId = entryValues.getAsLong(Data._ID);
-                final Integer primary = entryValues.getAsInteger(Data.IS_PRIMARY);
-                final boolean isPrimary = primary != null && primary != 0;
-                final Integer superPrimary = entryValues.getAsInteger(Data.IS_SUPER_PRIMARY);
-                final boolean isSuperPrimary = superPrimary != null && superPrimary != 0;
+                final long dataId = dataItem.getId();
+                final boolean isPrimary = dataItem.isPrimary();
+                final boolean isSuperPrimary = dataItem.isSuperPrimary();
 
-                final DataKind kind =
-                        accountTypes.getKindOrFallback(accountType, dataSet, mimeType);
-
-                if (kind != null) {
+                if (dataItem.getDataKind() != null) {
                     // Build an action for this data entry, find a mapping to a UI
                     // element, build its summary from the cursor, and collect it
                     // along with all others of this MIME-type.
-                    final Action action = new DataAction(context, mimeType, kind, dataId,
-                            entryValues);
+                    final Action action = new DataAction(context, dataItem);
                     final boolean wasAdded = considerAdd(action, cache, isSuperPrimary);
                     if (wasAdded) {
                         // Remember the default
@@ -386,12 +372,11 @@ public class QuickContactActivity extends Activity {
 
                 // Handle Email rows with presence data as Im entry
                 final DataStatus status = data.getStatuses().get(dataId);
-                if (status != null && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final DataKind imKind = accountTypes.getKindOrFallback(accountType, dataSet,
-                            Im.CONTENT_ITEM_TYPE);
-                    if (imKind != null) {
-                        final DataAction action = new DataAction(context, Im.CONTENT_ITEM_TYPE,
-                                imKind, dataId, entryValues);
+                if (status != null && dataItem instanceof EmailDataItem) {
+                    final EmailDataItem email = (EmailDataItem) dataItem;
+                    final ImDataItem im = ImDataItem.createFromEmail(email);
+                    if (im.getDataKind() != null) {
+                        final DataAction action = new DataAction(context, im);
                         action.setPresence(status.getPresence());
                         considerAdd(action, cache, isSuperPrimary);
                     }
@@ -505,14 +490,14 @@ public class QuickContactActivity extends Activity {
         listFragment.setListener(mListFragmentListener);
     }
 
-    private LoaderCallbacks<ContactLoader.Result> mLoaderCallbacks =
-            new LoaderCallbacks<ContactLoader.Result>() {
+    private LoaderCallbacks<Contact> mLoaderCallbacks =
+            new LoaderCallbacks<Contact>() {
         @Override
-        public void onLoaderReset(Loader<ContactLoader.Result> loader) {
+        public void onLoaderReset(Loader<Contact> loader) {
         }
 
         @Override
-        public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
+        public void onLoadFinished(Loader<Contact> loader, Contact data) {
             mStopWatch.lap("lf"); // onLoadFinished
             if (isFinishing()) {
                 close(false);
@@ -558,7 +543,7 @@ public class QuickContactActivity extends Activity {
         }
 
         @Override
-        public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
+        public Loader<Contact> onCreateLoader(int id, Bundle args) {
             if (mLookupUri == null) {
                 Log.wtf(TAG, "Lookup uri wasn't initialized. Loader was started too early");
             }

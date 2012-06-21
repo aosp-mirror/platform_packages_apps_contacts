@@ -17,10 +17,7 @@
 package com.android.contacts.detail;
 
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.Entity;
-import android.content.Entity.NamedContentValues;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
@@ -28,8 +25,6 @@ import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.Organization;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.StreamItems;
 import android.text.Html;
@@ -44,10 +39,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactLoader.Result;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.OrganizationDataItem;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.HtmlUtils;
@@ -55,13 +52,14 @@ import com.android.contacts.util.MoreMath;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Iterables;
 
 import java.util.List;
 
 /**
  * This class contains utility methods to bind high-level contact details
  * (meaning name, phonetic name, job, and attribution) from a
- * {@link ContactLoader.Result} data object to appropriate {@link View}s.
+ * {@link Contact} data object to appropriate {@link View}s.
  */
 public class ContactDetailDisplayUtils {
     private static final String TAG = "ContactDetailDisplayUtils";
@@ -95,7 +93,7 @@ public class ContactDetailDisplayUtils {
      * Returns the display name of the contact, using the current display order setting.
      * Returns res/string/missing_name if there is no display name.
      */
-    public static CharSequence getDisplayName(Context context, Result contactData) {
+    public static CharSequence getDisplayName(Context context, Contact contactData) {
         CharSequence displayName = contactData.getDisplayName();
         CharSequence altDisplayName = contactData.getAltDisplayName();
         ContactsPreferences prefs = new ContactsPreferences(context);
@@ -115,7 +113,7 @@ public class ContactDetailDisplayUtils {
     /**
      * Returns the phonetic name of the contact or null if there isn't one.
      */
-    public static String getPhoneticName(Context context, Result contactData) {
+    public static String getPhoneticName(Context context, Contact contactData) {
         String phoneticName = contactData.getPhoneticName();
         if (!TextUtils.isEmpty(phoneticName)) {
             return phoneticName;
@@ -127,7 +125,7 @@ public class ContactDetailDisplayUtils {
      * Returns the attribution string for the contact, which may specify the contact directory that
      * the contact came from. Returns null if there is none applicable.
      */
-    public static String getAttribution(Context context, Result contactData) {
+    public static String getAttribution(Context context, Contact contactData) {
         if (contactData.isDirectoryEntry()) {
             String directoryDisplayName = contactData.getDirectoryDisplayName();
             String directoryType = contactData.getDirectoryType();
@@ -143,40 +141,37 @@ public class ContactDetailDisplayUtils {
      * Returns the organization of the contact. If several organizations are given,
      * the first one is used. Returns null if not applicable.
      */
-    public static String getCompany(Context context, Result contactData) {
+    public static String getCompany(Context context, Contact contactData) {
         final boolean displayNameIsOrganization = contactData.getDisplayNameSource()
                 == DisplayNameSources.ORGANIZATION;
-        for (Entity entity : contactData.getEntities()) {
-            for (NamedContentValues subValue : entity.getSubValues()) {
-                final ContentValues entryValues = subValue.values;
-                final String mimeType = entryValues.getAsString(Data.MIMETYPE);
-
-                if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final String company = entryValues.getAsString(Organization.COMPANY);
-                    final String title = entryValues.getAsString(Organization.TITLE);
-                    final String combined;
-                    // We need to show company and title in a combined string. However, if the
-                    // DisplayName is already the organization, it mirrors company or (if company
-                    // is empty title). Make sure we don't show what's already shown as DisplayName
-                    if (TextUtils.isEmpty(company)) {
-                        combined = displayNameIsOrganization ? null : title;
+        for (RawContact rawContact : contactData.getRawContacts()) {
+            for (DataItem dataItem : Iterables.filter(
+                    rawContact.getDataItems(), OrganizationDataItem.class)) {
+                OrganizationDataItem organization = (OrganizationDataItem) dataItem;
+                final String company = organization.getCompany();
+                final String title = organization.getTitle();
+                final String combined;
+                // We need to show company and title in a combined string. However, if the
+                // DisplayName is already the organization, it mirrors company or (if company
+                // is empty title). Make sure we don't show what's already shown as DisplayName
+                if (TextUtils.isEmpty(company)) {
+                    combined = displayNameIsOrganization ? null : title;
+                } else {
+                    if (TextUtils.isEmpty(title)) {
+                        combined = displayNameIsOrganization ? null : company;
                     } else {
-                        if (TextUtils.isEmpty(title)) {
-                            combined = displayNameIsOrganization ? null : company;
+                        if (displayNameIsOrganization) {
+                            combined = title;
                         } else {
-                            if (displayNameIsOrganization) {
-                                combined = title;
-                            } else {
-                                combined = context.getString(
-                                        R.string.organization_company_and_title,
-                                        company, title);
-                            }
+                            combined = context.getString(
+                                    R.string.organization_company_and_title,
+                                    company, title);
                         }
                     }
+                }
 
-                    if (!TextUtils.isEmpty(combined)) {
-                        return combined;
-                    }
+                if (!TextUtils.isEmpty(combined)) {
+                    return combined;
                 }
             }
         }
@@ -225,7 +220,7 @@ public class ContactDetailDisplayUtils {
     /**
      * Set the social snippet text. If there isn't one, then set the view to gone.
      */
-    public static void setSocialSnippet(Context context, Result contactData, TextView statusView,
+    public static void setSocialSnippet(Context context, Contact contactData, TextView statusView,
             ImageView statusPhotoView) {
         if (statusView == null) {
             return;
@@ -378,7 +373,7 @@ public class ContactDetailDisplayUtils {
      * Sets the display name of this contact to the given {@link TextView}. If
      * there is none, then set the view to gone.
      */
-    public static void setDisplayName(Context context, Result contactData, TextView textView) {
+    public static void setDisplayName(Context context, Contact contactData, TextView textView) {
         if (textView == null) {
             return;
         }
@@ -389,7 +384,7 @@ public class ContactDetailDisplayUtils {
      * Sets the company and job title of this contact to the given {@link TextView}. If
      * there is none, then set the view to gone.
      */
-    public static void setCompanyName(Context context, Result contactData, TextView textView) {
+    public static void setCompanyName(Context context, Contact contactData, TextView textView) {
         if (textView == null) {
             return;
         }
@@ -400,7 +395,7 @@ public class ContactDetailDisplayUtils {
      * Sets the phonetic name of this contact to the given {@link TextView}. If
      * there is none, then set the view to gone.
      */
-    public static void setPhoneticName(Context context, Result contactData, TextView textView) {
+    public static void setPhoneticName(Context context, Contact contactData, TextView textView) {
         if (textView == null) {
             return;
         }
@@ -411,7 +406,7 @@ public class ContactDetailDisplayUtils {
      * Sets the attribution contact to the given {@link TextView}. If
      * there is none, then set the view to gone.
      */
-    public static void setAttribution(Context context, Result contactData, TextView textView) {
+    public static void setAttribution(Context context, Contact contactData, TextView textView) {
         if (textView == null) {
             return;
         }

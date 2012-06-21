@@ -33,8 +33,8 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.group.GroupDetailDisplayUtils;
 import com.android.contacts.group.GroupDetailFragment;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountType;
 
 public class GroupDetailActivity extends ContactsActivity {
 

@@ -23,7 +23,7 @@ import android.widget.EditText;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
 
 /**
  * A dialog for creating a new group.

@@ -17,7 +17,6 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
-import android.content.Entity;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
@@ -25,7 +24,6 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -40,26 +38,26 @@ import android.widget.TextView;
 
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountType.EditType;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.internal.util.Objects;
 
 import java.util.ArrayList;
 
 /**
  * Custom view that provides all the editor interaction for a specific
- * {@link Contacts} represented through an {@link EntityDelta}. Callers can
+ * {@link Contacts} represented through an {@link RawContactDelta}. Callers can
  * reuse this view and quickly rebuild its contents through
- * {@link #setState(EntityDelta, AccountType, ViewIdGenerator)}.
+ * {@link #setState(RawContactDelta, AccountType, ViewIdGenerator)}.
  * <p>
  * Internal updates are performed against {@link ValuesDelta} so that the
- * source {@link Entity} can be swapped out. Any state-based changes, such as
+ * source {@link RawContact} can be swapped out. Any state-based changes, such as
  * adding {@link Data} rows or changing {@link EditType}, are performed through
- * {@link EntityModifier} to ensure that {@link AccountType} are enforced.
+ * {@link RawContactModifier} to ensure that {@link AccountType} are enforced.
  */
 public class RawContactEditorView extends BaseRawContactEditorView {
     private LayoutInflater mInflater;
@@ -80,7 +78,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
     private boolean mAutoAddToDefaultGroup = true;
     private Cursor mGroupMetaData;
     private DataKind mGroupMembershipKind;
-    private EntityDelta mState;
+    private RawContactDelta mState;
 
     private boolean mPhoneticNameAdded;
 
@@ -152,11 +150,11 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     /**
      * Set the internal state for this view, given a current
-     * {@link EntityDelta} state and the {@link AccountType} that
+     * {@link RawContactDelta} state and the {@link AccountType} that
      * apply to that state.
      */
     @Override
-    public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig,
+    public void setState(RawContactDelta state, AccountType type, ViewIdGenerator vig,
             boolean isProfile) {
 
         mState = state;
@@ -170,15 +168,14 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         setId(vig.getId(state, null, null, ViewIdGenerator.NO_VIEW_INDEX));
 
         // Make sure we have a StructuredName and Organization
-        EntityModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(state, type, Organization.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(state, type, Organization.CONTENT_ITEM_TYPE);
 
-        ValuesDelta values = state.getValues();
-        mRawContactId = values.getAsLong(RawContacts._ID);
+        mRawContactId = state.getRawContactId();
 
         // Fill in the account info
         if (isProfile) {
-            String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+            String accountName = state.getAccountName();
             if (TextUtils.isEmpty(accountName)) {
                 mAccountNameTextView.setVisibility(View.GONE);
                 mAccountTypeTextView.setText(R.string.local_profile_title);
@@ -189,7 +186,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 mAccountNameTextView.setText(accountName);
             }
         } else {
-            String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+            String accountName = state.getAccountName();
             CharSequence accountType = type.getDisplayLabel(mContext);
             if (TextUtils.isEmpty(accountType)) {
                 accountType = mContext.getString(R.string.account_phone);
@@ -208,7 +205,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
         // Show photo editor when supported
-        EntityModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);
         setHasPhotoEditor((type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null));
         getPhotoEditor().setEnabled(isEnabled());
         mName.setEnabled(isEnabled());
@@ -341,7 +338,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         ArrayList<ValuesDelta> entries = mState.getMimeEntries(GroupMembership.CONTENT_ITEM_TYPE);
         if (entries != null) {
             for (ValuesDelta values : entries) {
-                Long id = values.getAsLong(GroupMembership.GROUP_ROW_ID);
+                Long id = values.getGroupRowId();
                 if (id != null && id.longValue() != 0) {
                     hasGroupMembership = true;
                     break;
@@ -352,8 +349,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         if (!hasGroupMembership) {
             long defaultGroupId = getDefaultGroupId();
             if (defaultGroupId != -1) {
-                ValuesDelta entry = EntityModifier.insertChild(mState, mGroupMembershipKind);
-                entry.put(GroupMembership.GROUP_ROW_ID, defaultGroupId);
+                ValuesDelta entry = RawContactModifier.insertChild(mState, mGroupMembershipKind);
+                entry.setGroupRowId(defaultGroupId);
             }
         }
     }
@@ -363,9 +360,9 @@ public class RawContactEditorView extends BaseRawContactEditorView {
      * account.  Returns -1 if there is no such group.
      */
     private long getDefaultGroupId() {
-        String accountType = mState.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-        String accountName = mState.getValues().getAsString(RawContacts.ACCOUNT_NAME);
-        String accountDataSet = mState.getValues().getAsString(RawContacts.DATA_SET);
+        String accountType = mState.getAccountType();
+        String accountName = mState.getAccountName();
+        String accountDataSet = mState.getDataSet();
         mGroupMetaData.moveToPosition(-1);
         while (mGroupMetaData.moveToNext()) {
             String name = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_NAME);

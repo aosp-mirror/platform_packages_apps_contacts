@@ -24,7 +24,7 @@ import static android.content.ContentProviderOperation.TYPE_UPDATE;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
-import android.content.Entity;
+import android.content.Context;
 import android.os.Parcel;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
@@ -32,19 +32,20 @@ import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 
 /**
- * Tests for {@link EntityDelta} and {@link ValuesDelta}. These tests
+ * Tests for {@link RawContactDelta} and {@link ValuesDelta}. These tests
  * focus on passing changes across {@link Parcel}, and verifying that they
  * correctly build expected "diff" operations.
  */
 @LargeTest
-public class EntityDeltaTests extends AndroidTestCase {
+public class RawContactDeltaTests extends AndroidTestCase {
     public static final String TAG = "EntityDeltaTests";
 
     public static final long TEST_CONTACT_ID = 12;
@@ -55,7 +56,7 @@ public class EntityDeltaTests extends AndroidTestCase {
 
     public static final String TEST_ACCOUNT_NAME = "TEST";
 
-    public EntityDeltaTests() {
+    public RawContactDeltaTests() {
         super();
     }
 
@@ -64,7 +65,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         mContext = getContext();
     }
 
-    public static Entity getEntity(long contactId, long phoneId) {
+    public static RawContact getRawContact(Context context, long contactId, long phoneId) {
         // Build an existing contact read from database
         final ContentValues contact = new ContentValues();
         contact.put(RawContacts.VERSION, 43);
@@ -76,31 +77,31 @@ public class EntityDeltaTests extends AndroidTestCase {
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_1);
         phone.put(Phone.TYPE, Phone.TYPE_HOME);
 
-        final Entity before = new Entity(contact);
-        before.addSubValue(Data.CONTENT_URI, phone);
+        final RawContact before = new RawContact(context, contact);
+        before.addDataItemValues(phone);
         return before;
     }
 
     /**
-     * Test that {@link EntityDelta#mergeAfter(EntityDelta)} correctly passes
+     * Test that {@link RawContactDelta#mergeAfter(RawContactDelta)} correctly passes
      * any changes through the {@link Parcel} object. This enforces that
-     * {@link EntityDelta} should be identical when serialized against the same
-     * "before" {@link Entity}.
+     * {@link RawContactDelta} should be identical when serialized against the same
+     * "before" {@link RawContact}.
      */
     public void testParcelChangesNone() {
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
-        final EntityDelta dest = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
+        final RawContactDelta dest = RawContactDelta.fromBefore(before);
 
         // Merge modified values and assert they match
-        final EntityDelta merged = EntityDelta.mergeAfter(dest, source);
+        final RawContactDelta merged = RawContactDelta.mergeAfter(dest, source);
         assertEquals("Unexpected change when merging", source, merged);
     }
 
     public void testParcelChangesInsert() {
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
-        final EntityDelta dest = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
+        final RawContactDelta dest = RawContactDelta.fromBefore(before);
 
         // Add a new row and pass across parcel, should be same
         final ContentValues phone = new ContentValues();
@@ -110,35 +111,35 @@ public class EntityDeltaTests extends AndroidTestCase {
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Merge modified values and assert they match
-        final EntityDelta merged = EntityDelta.mergeAfter(dest, source);
+        final RawContactDelta merged = RawContactDelta.mergeAfter(dest, source);
         assertEquals("Unexpected change when merging", source, merged);
     }
 
     public void testParcelChangesUpdate() {
         // Update existing row and pass across parcel, should be same
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
-        final EntityDelta dest = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
+        final RawContactDelta dest = RawContactDelta.fromBefore(before);
 
         final ValuesDelta child = source.getEntry(TEST_PHONE_ID);
         child.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
         // Merge modified values and assert they match
-        final EntityDelta merged = EntityDelta.mergeAfter(dest, source);
+        final RawContactDelta merged = RawContactDelta.mergeAfter(dest, source);
         assertEquals("Unexpected change when merging", source, merged);
     }
 
     public void testParcelChangesDelete() {
         // Delete a row and pass across parcel, should be same
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
-        final EntityDelta dest = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
+        final RawContactDelta dest = RawContactDelta.fromBefore(before);
 
         final ValuesDelta child = source.getEntry(TEST_PHONE_ID);
         child.markDeleted();
 
         // Merge modified values and assert they match
-        final EntityDelta merged = EntityDelta.mergeAfter(dest, source);
+        final RawContactDelta merged = RawContactDelta.mergeAfter(dest, source);
         assertEquals("Unexpected change when merging", source, merged);
     }
 
@@ -200,13 +201,13 @@ public class EntityDeltaTests extends AndroidTestCase {
     }
 
     /**
-     * Test that {@link EntityDelta#buildDiff(ArrayList)} is correctly built for
+     * Test that {@link RawContactDelta#buildDiff(ArrayList)} is correctly built for
      * insert, update, and delete cases. This only tests a subset of possible
      * {@link Data} row changes.
      */
     public void testEntityDiffNone() {
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
 
         // Assert that writing unchanged produces few operations
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -216,8 +217,8 @@ public class EntityDeltaTests extends AndroidTestCase {
     }
 
     public void testEntityDiffNoneInsert() {
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
 
         // Insert a new phone number
         final ContentValues phone = new ContentValues();
@@ -253,8 +254,8 @@ public class EntityDeltaTests extends AndroidTestCase {
     }
 
     public void testEntityDiffUpdateInsert() {
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
 
         // Update parent contact values
         source.getValues().put(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_DISABLED);
@@ -298,8 +299,8 @@ public class EntityDeltaTests extends AndroidTestCase {
     }
 
     public void testEntityDiffNoneUpdate() {
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
 
         // Update existing phone number
         final ValuesDelta child = source.getEntry(TEST_PHONE_ID);
@@ -332,8 +333,8 @@ public class EntityDeltaTests extends AndroidTestCase {
     }
 
     public void testEntityDiffDelete() {
-        final Entity before = getEntity(TEST_CONTACT_ID, TEST_PHONE_ID);
-        final EntityDelta source = EntityDelta.fromBefore(before);
+        final RawContact before = getRawContact(mContext, TEST_CONTACT_ID, TEST_PHONE_ID);
+        final RawContactDelta source = RawContactDelta.fromBefore(before);
 
         // Delete entire entity
         source.getValues().markDeleted();
@@ -361,7 +362,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         after.put(RawContacts.SEND_TO_VOICEMAIL, 1);
 
         final ValuesDelta values = ValuesDelta.fromAfter(after);
-        final EntityDelta source = new EntityDelta(values);
+        final RawContactDelta source = new RawContactDelta(values);
 
         // Assert two operations: delete Contact and enforce version
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -382,7 +383,7 @@ public class EntityDeltaTests extends AndroidTestCase {
         after.put(RawContacts.SEND_TO_VOICEMAIL, 1);
 
         final ValuesDelta values = ValuesDelta.fromAfter(after);
-        final EntityDelta source = new EntityDelta(values);
+        final RawContactDelta source = new RawContactDelta(values);
 
         // Insert a new phone number
         final ContentValues phone = new ContentValues();
