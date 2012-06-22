@@ -25,6 +25,9 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.detail.ContactDetailFragment.DetailViewEntry;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.EmailDataItem;
+import com.android.contacts.model.dataitem.ImDataItem;
 
 /**
  * Tests for {@link ContactDetailFragment}.
@@ -41,9 +44,10 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Im.TYPE, Im.TYPE_HOME);
         values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
         values.put(Im.DATA, TEST_ADDRESS);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(null, values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
-        ContactDetailFragment.buildImActions(mContext, entry, values);
+        ContactDetailFragment.buildImActions(mContext, entry, im);
         assertEquals(Intent.ACTION_SENDTO, entry.intent.getAction());
         assertEquals("xmpp:" + TEST_ADDRESS + "?message", entry.intent.getData().toString());
 
@@ -58,9 +62,10 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
         values.put(Im.DATA, TEST_ADDRESS);
         values.put(Im.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(null, values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
-        ContactDetailFragment.buildImActions(mContext, entry, values);
+        ContactDetailFragment.buildImActions(mContext, entry, im);
         assertEquals(Intent.ACTION_SENDTO, entry.intent.getAction());
         assertEquals("xmpp:" + TEST_ADDRESS + "?message", entry.intent.getData().toString());
 
@@ -77,9 +82,10 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Im.DATA, TEST_ADDRESS);
         values.put(Im.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO |
                 Im.CAPABILITY_HAS_VOICE);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(null, values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
-        ContactDetailFragment.buildImActions(mContext, entry, values);
+        ContactDetailFragment.buildImActions(mContext, entry, im);
         assertEquals(Intent.ACTION_SENDTO, entry.intent.getAction());
         assertEquals("xmpp:" + TEST_ADDRESS + "?message", entry.intent.getData().toString());
 
@@ -96,9 +102,10 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Im.PROTOCOL, Im.PROTOCOL_CUSTOM);
         values.put(Im.CUSTOM_PROTOCOL, TEST_PROTOCOL);
         values.put(Im.DATA, TEST_ADDRESS);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(null, values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
-        ContactDetailFragment.buildImActions(mContext, entry, values);
+        ContactDetailFragment.buildImActions(mContext, entry, im);
         assertEquals(Intent.ACTION_SENDTO, entry.intent.getAction());
 
         final Uri data = entry.intent.getData();
@@ -119,9 +126,11 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Email.DATA, TEST_ADDRESS);
         values.put(Email.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO |
                 Im.CAPABILITY_HAS_VOICE);
+        ImDataItem im = ImDataItem.createFromEmail(
+                (EmailDataItem) DataItem.createFrom(null, values));
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
-        ContactDetailFragment.buildImActions(mContext, entry, values);
+        ContactDetailFragment.buildImActions(mContext, entry, im);
         assertEquals(Intent.ACTION_SENDTO, entry.intent.getAction());
         assertEquals("xmpp:" + TEST_ADDRESS + "?message", entry.intent.getData().toString());
 

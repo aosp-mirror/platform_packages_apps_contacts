@@ -26,9 +26,9 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.test.NeededForTesting;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;

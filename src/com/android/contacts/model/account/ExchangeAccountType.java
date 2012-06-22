@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.model;
+package com.android.contacts.model.account;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -32,6 +32,7 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.util.Log;
 
 import com.android.contacts.R;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.DateUtils;
 import com.google.common.collect.Lists;
 

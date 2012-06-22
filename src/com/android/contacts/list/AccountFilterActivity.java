@@ -36,9 +36,9 @@ import android.widget.ListView;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;

@@ -17,7 +17,6 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
-import android.content.Entity;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
@@ -29,20 +28,20 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountType.EditType;
 
 /**
  * Base view that provides common code for the editor interaction for a specific
- * RawContact represented through an {@link EntityDelta}.
+ * RawContact represented through an {@link RawContactDelta}.
  * <p>
  * Internal updates are performed against {@link ValuesDelta} so that the
- * source {@link Entity} can be swapped out. Any state-based changes, such as
+ * source {@link RawContact} can be swapped out. Any state-based changes, such as
  * adding {@link Data} rows or changing {@link EditType}, are performed through
- * {@link EntityModifier} to ensure that {@link AccountType} are enforced.
+ * {@link RawContactModifier} to ensure that {@link AccountType} are enforced.
  */
 public abstract class BaseRawContactEditorView extends LinearLayout {
 
@@ -78,7 +77,7 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
     /**
      * Assign the given {@link Bitmap} to the internal {@link PhotoEditorView}
-     * for the {@link EntityDelta} currently being edited.
+     * for the {@link RawContactDelta} currently being edited.
      */
     public void setPhotoBitmap(Bitmap bitmap) {
         mPhoto.setPhotoBitmap(bitmap);
@@ -115,10 +114,10 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
     /**
      * Set the internal state for this view, given a current
-     * {@link EntityDelta} state and the {@link AccountType} that
+     * {@link RawContactDelta} state and the {@link AccountType} that
      * apply to that state.
      */
-    public abstract void setState(EntityDelta state, AccountType source, ViewIdGenerator vig,
+    public abstract void setState(RawContactDelta state, AccountType source, ViewIdGenerator vig,
             boolean isProfile);
 
     /* package */ void setExpanded(boolean value) {

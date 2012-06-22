@@ -22,7 +22,6 @@ import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
-import android.content.Entity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -39,16 +38,17 @@ import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.ExchangeAccountType;
-import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountType.EditType;
+import com.android.contacts.model.account.ExchangeAccountType;
+import com.android.contacts.model.account.GoogleAccountType;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
@@ -58,11 +58,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Tests for {@link EntityModifier} to verify that {@link AccountType}
+ * Tests for {@link RawContactModifier} to verify that {@link AccountType}
  * constraints are being enforced correctly.
  */
 @LargeTest
-public class EntityModifierTests extends AndroidTestCase {
+public class RawContactModifierTests extends AndroidTestCase {
     public static final String TAG = "EntityModifierTests";
 
     public static final long VER_FIRST = 100;
@@ -168,9 +168,9 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     /**
-     * Build an {@link Entity} with the requested set of phone numbers.
+     * Build an {@link RawContact} with the requested set of phone numbers.
      */
-    protected EntityDelta getEntity(Long existingId, ContentValues... entries) {
+    protected RawContactDelta getRawContact(Long existingId, ContentValues... entries) {
         final ContentValues contact = new ContentValues();
         if (existingId != null) {
             contact.put(RawContacts._ID, existingId);
@@ -178,11 +178,11 @@ public class EntityModifierTests extends AndroidTestCase {
         contact.put(RawContacts.ACCOUNT_NAME, TEST_ACCOUNT_NAME);
         contact.put(RawContacts.ACCOUNT_TYPE, TEST_ACCOUNT_TYPE);
 
-        final Entity before = new Entity(contact);
+        final RawContact before = new RawContact(mContext, contact);
         for (ContentValues values : entries) {
-            before.addSubValue(Data.CONTENT_URI, values);
+            before.addDataItemValues(values);
         }
-        return EntityDelta.fromBefore(before);
+        return RawContactDelta.fromBefore(before);
     }
 
     /**
@@ -201,116 +201,116 @@ public class EntityModifierTests extends AndroidTestCase {
 
     /**
      * Insert various rows to test
-     * {@link EntityModifier#getValidTypes(EntityDelta, DataKind, EditType)}
+     * {@link RawContactModifier#getValidTypes(RawContactDelta, DataKind, EditType)}
      */
     public void testValidTypes() {
         // Build a source and pull specific types
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
-        final EditType typeWork = EntityModifier.getType(kindPhone, Phone.TYPE_WORK);
-        final EditType typeOther = EntityModifier.getType(kindPhone, Phone.TYPE_OTHER);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeWork = RawContactModifier.getType(kindPhone, Phone.TYPE_WORK);
+        final EditType typeOther = RawContactModifier.getType(kindPhone, Phone.TYPE_OTHER);
 
         List<EditType> validTypes;
 
         // Add first home, first work
-        final EntityDelta state = getEntity(TEST_ID);
-        EntityModifier.insertChild(state, kindPhone, typeHome);
-        EntityModifier.insertChild(state, kindPhone, typeWork);
+        final RawContactDelta state = getRawContact(TEST_ID);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
+        RawContactModifier.insertChild(state, kindPhone, typeWork);
 
         // Expecting home, other
-        validTypes = EntityModifier.getValidTypes(state, kindPhone, null);
+        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null);
         assertContains(validTypes, typeHome);
         assertNotContains(validTypes, typeWork);
         assertContains(validTypes, typeOther);
 
         // Add second home
-        EntityModifier.insertChild(state, kindPhone, typeHome);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
 
         // Expecting other
-        validTypes = EntityModifier.getValidTypes(state, kindPhone, null);
+        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null);
         assertNotContains(validTypes, typeHome);
         assertNotContains(validTypes, typeWork);
         assertContains(validTypes, typeOther);
 
         // Add third and fourth home (invalid, but possible)
-        EntityModifier.insertChild(state, kindPhone, typeHome);
-        EntityModifier.insertChild(state, kindPhone, typeHome);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
 
         // Expecting none
-        validTypes = EntityModifier.getValidTypes(state, kindPhone, null);
+        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null);
         assertNotContains(validTypes, typeHome);
         assertNotContains(validTypes, typeWork);
         assertNotContains(validTypes, typeOther);
     }
 
     /**
-     * Test {@link EntityModifier#canInsert(EntityDelta, DataKind)} by
+     * Test {@link RawContactModifier#canInsert(RawContactDelta, DataKind)} by
      * inserting various rows.
      */
     public void testCanInsert() {
         // Build a source and pull specific types
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
-        final EditType typeWork = EntityModifier.getType(kindPhone, Phone.TYPE_WORK);
-        final EditType typeOther = EntityModifier.getType(kindPhone, Phone.TYPE_OTHER);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeWork = RawContactModifier.getType(kindPhone, Phone.TYPE_WORK);
+        final EditType typeOther = RawContactModifier.getType(kindPhone, Phone.TYPE_OTHER);
 
         // Add first home, first work
-        final EntityDelta state = getEntity(TEST_ID);
-        EntityModifier.insertChild(state, kindPhone, typeHome);
-        EntityModifier.insertChild(state, kindPhone, typeWork);
-        assertTrue("Unable to insert", EntityModifier.canInsert(state, kindPhone));
+        final RawContactDelta state = getRawContact(TEST_ID);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
+        RawContactModifier.insertChild(state, kindPhone, typeWork);
+        assertTrue("Unable to insert", RawContactModifier.canInsert(state, kindPhone));
 
         // Add two other, which puts us just under "5" overall limit
-        EntityModifier.insertChild(state, kindPhone, typeOther);
-        EntityModifier.insertChild(state, kindPhone, typeOther);
-        assertTrue("Unable to insert", EntityModifier.canInsert(state, kindPhone));
+        RawContactModifier.insertChild(state, kindPhone, typeOther);
+        RawContactModifier.insertChild(state, kindPhone, typeOther);
+        assertTrue("Unable to insert", RawContactModifier.canInsert(state, kindPhone));
 
         // Add second home, which should push to snug limit
-        EntityModifier.insertChild(state, kindPhone, typeHome);
-        assertFalse("Able to insert", EntityModifier.canInsert(state, kindPhone));
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
+        assertFalse("Able to insert", RawContactModifier.canInsert(state, kindPhone));
     }
 
     /**
      * Test
-     * {@link EntityModifier#getBestValidType(EntityDelta, DataKind, boolean, int)}
+     * {@link RawContactModifier#getBestValidType(RawContactDelta, DataKind, boolean, int)}
      * by asserting expected best options in various states.
      */
     public void testBestValidType() {
         // Build a source and pull specific types
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
-        final EditType typeWork = EntityModifier.getType(kindPhone, Phone.TYPE_WORK);
-        final EditType typeFaxWork = EntityModifier.getType(kindPhone, Phone.TYPE_FAX_WORK);
-        final EditType typeOther = EntityModifier.getType(kindPhone, Phone.TYPE_OTHER);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeWork = RawContactModifier.getType(kindPhone, Phone.TYPE_WORK);
+        final EditType typeFaxWork = RawContactModifier.getType(kindPhone, Phone.TYPE_FAX_WORK);
+        final EditType typeOther = RawContactModifier.getType(kindPhone, Phone.TYPE_OTHER);
 
         EditType suggested;
 
         // Default suggestion should be home
-        final EntityDelta state = getEntity(TEST_ID);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
+        final RawContactDelta state = getRawContact(TEST_ID);
+        suggested = RawContactModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeHome, suggested);
 
         // Add first home, should now suggest work
-        EntityModifier.insertChild(state, kindPhone, typeHome);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
+        suggested = RawContactModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeWork, suggested);
 
         // Add work fax, should still suggest work
-        EntityModifier.insertChild(state, kindPhone, typeFaxWork);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
+        RawContactModifier.insertChild(state, kindPhone, typeFaxWork);
+        suggested = RawContactModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeWork, suggested);
 
         // Add other, should still suggest work
-        EntityModifier.insertChild(state, kindPhone, typeOther);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
+        RawContactModifier.insertChild(state, kindPhone, typeOther);
+        suggested = RawContactModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeWork, suggested);
 
         // Add work, now should suggest other
-        EntityModifier.insertChild(state, kindPhone, typeWork);
-        suggested = EntityModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
+        RawContactModifier.insertChild(state, kindPhone, typeWork);
+        suggested = RawContactModifier.getBestValidType(state, kindPhone, false, Integer.MIN_VALUE);
         assertEquals("Unexpected suggestion", typeOther, suggested);
     }
 
@@ -322,34 +322,34 @@ public class EntityModifierTests extends AndroidTestCase {
         final ContentValues after = new ContentValues();
         final ValuesDelta values = ValuesDelta.fromAfter(after);
 
-        assertTrue("Expected empty", EntityModifier.isEmpty(values, kindPhone));
+        assertTrue("Expected empty", RawContactModifier.isEmpty(values, kindPhone));
     }
 
     public void testIsEmptyDirectFields() {
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Test row that has type values, but core fields are empty
-        final EntityDelta state = getEntity(TEST_ID);
-        final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
+        final RawContactDelta state = getRawContact(TEST_ID);
+        final ValuesDelta values = RawContactModifier.insertChild(state, kindPhone, typeHome);
 
-        assertTrue("Expected empty", EntityModifier.isEmpty(values, kindPhone));
+        assertTrue("Expected empty", RawContactModifier.isEmpty(values, kindPhone));
 
         // Insert some data to trigger non-empty state
         values.put(Phone.NUMBER, TEST_PHONE);
 
-        assertFalse("Expected non-empty", EntityModifier.isEmpty(values, kindPhone));
+        assertFalse("Expected non-empty", RawContactModifier.isEmpty(values, kindPhone));
     }
 
     public void testTrimEmptySingle() {
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Test row that has type values, but core fields are empty
-        final EntityDelta state = getEntity(TEST_ID);
-        EntityModifier.insertChild(state, kindPhone, typeHome);
+        final RawContactDelta state = getRawContact(TEST_ID);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
 
         // Build diff, expecting insert for data row and update enforcement
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -372,7 +372,7 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Trim empty rows and try again, expecting delete of overall contact
-        EntityModifier.trimEmpty(state, source);
+        RawContactModifier.trimEmpty(state, source);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 1, diff.size());
@@ -386,63 +386,65 @@ public class EntityModifierTests extends AndroidTestCase {
     public void testTrimEmptySpaces() {
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Test row that has type values, but values are spaces
-        final EntityDelta state = EntityDeltaListTests.buildBeforeEntity(TEST_ID, VER_FIRST);
-        final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
+        final RawContactDelta state = RawContactDeltaListTests.buildBeforeEntity(mContext, TEST_ID,
+                VER_FIRST);
+        final ValuesDelta values = RawContactModifier.insertChild(state, kindPhone, typeHome);
         values.put(Phone.NUMBER, "   ");
 
         // Build diff, expecting insert for data row and update enforcement
-        EntityDeltaListTests.assertDiffPattern(state,
-                EntityDeltaListTests.buildAssertVersion(VER_FIRST),
-                EntityDeltaListTests.buildUpdateAggregationSuspended(),
-                EntityDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
-                        EntityDeltaListTests.buildDataInsert(values, TEST_ID)),
-                EntityDeltaListTests.buildUpdateAggregationDefault());
+        RawContactDeltaListTests.assertDiffPattern(state,
+                RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
+                RawContactDeltaListTests.buildUpdateAggregationSuspended(),
+                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
+                RawContactDeltaListTests.buildUpdateAggregationDefault());
 
         // Trim empty rows and try again, expecting delete of overall contact
-        EntityModifier.trimEmpty(state, source);
-        EntityDeltaListTests.assertDiffPattern(state,
-                EntityDeltaListTests.buildAssertVersion(VER_FIRST),
-                EntityDeltaListTests.buildDelete(RawContacts.CONTENT_URI));
+        RawContactModifier.trimEmpty(state, source);
+        RawContactDeltaListTests.assertDiffPattern(state,
+                RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
+                RawContactDeltaListTests.buildDelete(RawContacts.CONTENT_URI));
     }
 
     public void testTrimLeaveValid() {
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Test row that has type values with valid number
-        final EntityDelta state = EntityDeltaListTests.buildBeforeEntity(TEST_ID, VER_FIRST);
-        final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
+        final RawContactDelta state = RawContactDeltaListTests.buildBeforeEntity(mContext, TEST_ID,
+                VER_FIRST);
+        final ValuesDelta values = RawContactModifier.insertChild(state, kindPhone, typeHome);
         values.put(Phone.NUMBER, TEST_PHONE);
 
         // Build diff, expecting insert for data row and update enforcement
-        EntityDeltaListTests.assertDiffPattern(state,
-                EntityDeltaListTests.buildAssertVersion(VER_FIRST),
-                EntityDeltaListTests.buildUpdateAggregationSuspended(),
-                EntityDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
-                        EntityDeltaListTests.buildDataInsert(values, TEST_ID)),
-                EntityDeltaListTests.buildUpdateAggregationDefault());
+        RawContactDeltaListTests.assertDiffPattern(state,
+                RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
+                RawContactDeltaListTests.buildUpdateAggregationSuspended(),
+                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
+                RawContactDeltaListTests.buildUpdateAggregationDefault());
 
         // Trim empty rows and try again, expecting no differences
-        EntityModifier.trimEmpty(state, source);
-        EntityDeltaListTests.assertDiffPattern(state,
-                EntityDeltaListTests.buildAssertVersion(VER_FIRST),
-                EntityDeltaListTests.buildUpdateAggregationSuspended(),
-                EntityDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
-                        EntityDeltaListTests.buildDataInsert(values, TEST_ID)),
-                EntityDeltaListTests.buildUpdateAggregationDefault());
+        RawContactModifier.trimEmpty(state, source);
+        RawContactDeltaListTests.assertDiffPattern(state,
+                RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
+                RawContactDeltaListTests.buildUpdateAggregationSuspended(),
+                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                        RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
+                RawContactDeltaListTests.buildUpdateAggregationDefault());
     }
 
     public void testTrimEmptyUntouched() {
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Build "before" that has empty row
-        final EntityDelta state = getEntity(TEST_ID);
+        final RawContactDelta state = getRawContact(TEST_ID);
         final ContentValues before = new ContentValues();
         before.put(Data._ID, TEST_ID);
         before.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
@@ -454,7 +456,7 @@ public class EntityModifierTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 0, diff.size());
 
         // Try trimming existing empty, which we shouldn't touch
-        EntityModifier.trimEmpty(state, source);
+        RawContactModifier.trimEmpty(state, source);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
@@ -463,7 +465,7 @@ public class EntityModifierTests extends AndroidTestCase {
     public void testTrimEmptyAfterUpdate() {
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Build "before" that has row with some phone number
         final ContentValues before = new ContentValues();
@@ -471,7 +473,7 @@ public class EntityModifierTests extends AndroidTestCase {
         before.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         before.put(kindPhone.typeColumn, typeHome.rawValue);
         before.put(Phone.NUMBER, TEST_PHONE);
-        final EntityDelta state = getEntity(TEST_ID, before);
+        final RawContactDelta state = getRawContact(TEST_ID, before);
 
         // Build diff, expecting no changes
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -501,7 +503,7 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Now run trim, which should turn that update into delete
-        EntityModifier.trimEmpty(state, source);
+        RawContactModifier.trimEmpty(state, source);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 1, diff.size());
@@ -516,11 +518,11 @@ public class EntityModifierTests extends AndroidTestCase {
         final AccountType accountType = getAccountType();
         final AccountTypeManager accountTypes = getAccountTypes(accountType);
         final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Try creating a contact without any child entries
-        final EntityDelta state = getEntity(null);
-        final EntityDeltaList set = EntityDeltaList.fromSingle(state);
+        final RawContactDelta state = getRawContact(null);
+        final RawContactDeltaList set = RawContactDeltaList.fromSingle(state);
 
         // Build diff, expecting single insert
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -533,7 +535,7 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Trim empty rows and try again, expecting no insert
-        EntityModifier.trimEmpty(set, accountTypes);
+        RawContactModifier.trimEmpty(set, accountTypes);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
@@ -543,12 +545,12 @@ public class EntityModifierTests extends AndroidTestCase {
         final AccountType accountType = getAccountType();
         final AccountTypeManager accountTypes = getAccountTypes(accountType);
         final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Try creating a contact with single empty entry
-        final EntityDelta state = getEntity(null);
-        EntityModifier.insertChild(state, kindPhone, typeHome);
-        final EntityDeltaList set = EntityDeltaList.fromSingle(state);
+        final RawContactDelta state = getRawContact(null);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
+        final RawContactDeltaList set = RawContactDeltaList.fromSingle(state);
 
         // Build diff, expecting two insert operations
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -566,7 +568,7 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Trim empty rows and try again, expecting silence
-        EntityModifier.trimEmpty(set, accountTypes);
+        RawContactModifier.trimEmpty(set, accountTypes);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
@@ -576,7 +578,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final AccountType accountType = getAccountType();
         final AccountTypeManager accountTypes = getAccountTypes(accountType);
         final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Build "before" with two phone numbers
         final ContentValues first = new ContentValues();
@@ -591,8 +593,8 @@ public class EntityModifierTests extends AndroidTestCase {
         second.put(kindPhone.typeColumn, typeHome.rawValue);
         second.put(Phone.NUMBER, TEST_PHONE);
 
-        final EntityDelta state = getEntity(TEST_ID, first, second);
-        final EntityDeltaList set = EntityDeltaList.fromSingle(state);
+        final RawContactDelta state = getRawContact(TEST_ID, first, second);
+        final RawContactDeltaList set = RawContactDeltaList.fromSingle(state);
 
         // Build diff, expecting no changes
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -622,7 +624,7 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Now run trim, which should turn that update into delete
-        EntityModifier.trimEmpty(set, accountTypes);
+        RawContactModifier.trimEmpty(set, accountTypes);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
@@ -647,7 +649,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final AccountType accountType = getAccountType();
         final AccountTypeManager accountTypes = getAccountTypes(accountType);
         final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Build "before" with two phone numbers
         final ContentValues first = new ContentValues();
@@ -656,8 +658,8 @@ public class EntityModifierTests extends AndroidTestCase {
         first.put(kindPhone.typeColumn, typeHome.rawValue);
         first.put(Phone.NUMBER, TEST_PHONE);
 
-        final EntityDelta state = getEntity(TEST_ID, first);
-        final EntityDeltaList set = EntityDeltaList.fromSingle(state);
+        final RawContactDelta state = getRawContact(TEST_ID, first);
+        final RawContactDeltaList set = RawContactDeltaList.fromSingle(state);
 
         // Build diff, expecting no changes
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -687,7 +689,7 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Now run trim, which should turn into deleting the whole contact
-        EntityModifier.trimEmpty(set, accountTypes);
+        RawContactModifier.trimEmpty(set, accountTypes);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 1, diff.size());
@@ -708,10 +710,10 @@ public class EntityModifierTests extends AndroidTestCase {
         first.put(StructuredName.GIVEN_NAME, TEST_NAME);
 
         // Parse extras, making sure we keep single name
-        final EntityDelta state = getEntity(TEST_ID, first);
+        final RawContactDelta state = getRawContact(TEST_ID, first);
         final Bundle extras = new Bundle();
         extras.putString(Insert.NAME, TEST_NAME2);
-        EntityModifier.parseExtras(mContext, accountType, state, extras);
+        RawContactModifier.parseExtras(mContext, accountType, state, extras);
 
         final int nameCount = state.getMimeEntriesCount(StructuredName.CONTENT_ITEM_TYPE, true);
         assertEquals("Unexpected names", 1, nameCount);
@@ -726,7 +728,7 @@ public class EntityModifierTests extends AndroidTestCase {
         first.put(Data.MIMETYPE, Im.CONTENT_ITEM_TYPE);
         first.put(Im.DATA, TEST_IM);
 
-        final EntityDelta state = getEntity(TEST_ID, first);
+        final RawContactDelta state = getRawContact(TEST_ID, first);
         final int beforeCount = state.getMimeEntries(Im.CONTENT_ITEM_TYPE).size();
 
         // We should ignore data that doesn't fit account type rules, since account type
@@ -734,7 +736,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final Bundle extras = new Bundle();
         extras.putInt(Insert.IM_PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
         extras.putString(Insert.IM_HANDLE, TEST_IM);
-        EntityModifier.parseExtras(mContext, accountType, state, extras);
+        RawContactModifier.parseExtras(mContext, accountType, state, extras);
 
         final int afterCount = state.getMimeEntries(Im.CONTENT_ITEM_TYPE).size();
         assertEquals("Broke account type rules", beforeCount, afterCount);
@@ -742,12 +744,12 @@ public class EntityModifierTests extends AndroidTestCase {
 
     public void testParseExtrasIgnoreUnhandled() {
         final AccountType accountType = getAccountType();
-        final EntityDelta state = getEntity(TEST_ID);
+        final RawContactDelta state = getRawContact(TEST_ID);
 
         // We should silently ignore types unsupported by account type
         final Bundle extras = new Bundle();
         extras.putString(Insert.POSTAL, TEST_POSTAL);
-        EntityModifier.parseExtras(mContext, accountType, state, extras);
+        RawContactModifier.parseExtras(mContext, accountType, state, extras);
 
         assertNull("Broke accoun type rules",
                 state.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE));
@@ -755,12 +757,12 @@ public class EntityModifierTests extends AndroidTestCase {
 
     public void testParseExtrasJobTitle() {
         final AccountType accountType = getAccountType();
-        final EntityDelta state = getEntity(TEST_ID);
+        final RawContactDelta state = getRawContact(TEST_ID);
 
         // Make sure that we create partial Organizations
         final Bundle extras = new Bundle();
         extras.putString(Insert.JOB_TITLE, TEST_NAME);
-        EntityModifier.parseExtras(mContext, accountType, state, extras);
+        RawContactModifier.parseExtras(mContext, accountType, state, extras);
 
         final int count = state.getMimeEntries(Organization.CONTENT_ITEM_TYPE).size();
         assertEquals("Expected to create organization", 1, count);
@@ -773,7 +775,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
         ContactsMockContext context = new ContactsMockContext(getContext());
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
         mockNameValues.put(StructuredName.PREFIX, "prefix");
@@ -786,8 +788,8 @@ public class EntityModifierTests extends AndroidTestCase {
         mockNameValues.put(StructuredName.PHONETIC_GIVEN_NAME, "PHONETIC_GIVEN");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateStructuredName(context, oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateStructuredName(context, oldState, newState, kind);
         List<ValuesDelta> list = newState.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
         assertEquals(1, list.size());
 
@@ -824,14 +826,14 @@ public class EntityModifierTests extends AndroidTestCase {
                         StructuredName.MIDDLE_NAME, StructuredName.FAMILY_NAME,
                         StructuredName.SUFFIX);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
         mockNameValues.put(StructuredName.DISPLAY_NAME, inputDisplayName);
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateStructuredName(context, oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateStructuredName(context, oldState, newState, kind);
         List<ValuesDelta> list = newState.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
         assertEquals(1, list.size());
 
@@ -866,7 +868,7 @@ public class EntityModifierTests extends AndroidTestCase {
                 .returnRow("prefix given middle family suffix")
                 .withProjection(StructuredName.DISPLAY_NAME);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
         mockNameValues.put(StructuredName.PREFIX, "prefix");
@@ -876,8 +878,8 @@ public class EntityModifierTests extends AndroidTestCase {
         mockNameValues.put(StructuredName.SUFFIX, "suffix");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateStructuredName(context, oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateStructuredName(context, oldState, newState, kind);
 
         List<ValuesDelta> list = newState.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
         assertNotNull(list);
@@ -892,14 +894,14 @@ public class EntityModifierTests extends AndroidTestCase {
         AccountType newAccountType = new ExchangeAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, StructuredPostal.CONTENT_ITEM_TYPE);
         mockNameValues.put(StructuredPostal.FORMATTED_ADDRESS, "formatted_address");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migratePostal(oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migratePostal(oldState, newState, kind);
 
         List<ValuesDelta> list = newState.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE);
         assertNotNull(list);
@@ -915,7 +917,7 @@ public class EntityModifierTests extends AndroidTestCase {
         AccountType newAccountType = new GoogleAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, StructuredPostal.CONTENT_ITEM_TYPE);
         mockNameValues.put(StructuredPostal.COUNTRY, "country");
@@ -925,8 +927,8 @@ public class EntityModifierTests extends AndroidTestCase {
         mockNameValues.put(StructuredPostal.STREET, "street");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migratePostal(oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migratePostal(oldState, newState, kind);
 
         List<ValuesDelta> list = newState.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE);
         assertNotNull(list);
@@ -957,15 +959,15 @@ public class EntityModifierTests extends AndroidTestCase {
     private void testMigrateEventCommon(AccountType oldAccountType, AccountType newAccountType) {
         DataKind kind = newAccountType.getKindForMimetype(Event.CONTENT_ITEM_TYPE);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Event.CONTENT_ITEM_TYPE);
         mockNameValues.put(Event.START_DATE, "1972-02-08");
         mockNameValues.put(Event.TYPE, Event.TYPE_BIRTHDAY);
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateEvent(oldState, newState, kind, 1990);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateEvent(oldState, newState, kind, 1990);
 
         List<ValuesDelta> list = newState.getMimeEntries(Event.CONTENT_ITEM_TYPE);
         assertNotNull(list);
@@ -981,7 +983,7 @@ public class EntityModifierTests extends AndroidTestCase {
         AccountType newAccountType = new ExchangeAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(Event.CONTENT_ITEM_TYPE);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Event.CONTENT_ITEM_TYPE);
         // No year format is not supported by Exchange.
@@ -995,8 +997,8 @@ public class EntityModifierTests extends AndroidTestCase {
         mockNameValues.put(Event.TYPE, Event.TYPE_ANNIVERSARY);
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateEvent(oldState, newState, kind, 1990);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateEvent(oldState, newState, kind, 1990);
 
         List<ValuesDelta> list = newState.getMimeEntries(Event.CONTENT_ITEM_TYPE);
         assertNotNull(list);
@@ -1013,7 +1015,7 @@ public class EntityModifierTests extends AndroidTestCase {
         AccountType newAccountType = new ExchangeAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(Email.CONTENT_ITEM_TYPE);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
         mockNameValues.put(Email.TYPE, Email.TYPE_CUSTOM);
@@ -1037,8 +1039,8 @@ public class EntityModifierTests extends AndroidTestCase {
         mockNameValues.put(Email.ADDRESS, "address4");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
 
         List<ValuesDelta> list = newState.getMimeEntries(Email.CONTENT_ITEM_TYPE);
         assertNotNull(list);
@@ -1063,7 +1065,7 @@ public class EntityModifierTests extends AndroidTestCase {
         AccountType newAccountType = new ExchangeAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Im.CONTENT_ITEM_TYPE);
         // Exchange doesn't support TYPE_HOME
@@ -1096,8 +1098,8 @@ public class EntityModifierTests extends AndroidTestCase {
         mockNameValues.put(Im.DATA, "im4");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
 
         List<ValuesDelta> list = newState.getMimeEntries(Im.CONTENT_ITEM_TYPE);
         assertNotNull(list);
@@ -1149,7 +1151,7 @@ public class EntityModifierTests extends AndroidTestCase {
         // - "3" -- MOBILE
         // - "4" -- WORK
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         mockNameValues.put(Phone.TYPE, Phone.TYPE_HOME);
@@ -1179,8 +1181,8 @@ public class EntityModifierTests extends AndroidTestCase {
         mockNameValues.put(Phone.NUMBER, "5");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
 
         List<ValuesDelta> list = newState.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
         assertNotNull(list);
@@ -1208,15 +1210,15 @@ public class EntityModifierTests extends AndroidTestCase {
         AccountType newAccountType = new ExchangeAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
 
-        EntityDelta oldState = new EntityDelta();
+        RawContactDelta oldState = new RawContactDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
         mockNameValues.put(Organization.COMPANY, "company1");
         mockNameValues.put(Organization.DEPARTMENT, "department1");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
 
-        EntityDelta newState = new EntityDelta();
-        EntityModifier.migrateGenericWithoutTypeColumn(oldState, newState, kind);
+        RawContactDelta newState = new RawContactDelta();
+        RawContactModifier.migrateGenericWithoutTypeColumn(oldState, newState, kind);
 
         List<ValuesDelta> list = newState.getMimeEntries(Organization.CONTENT_ITEM_TYPE);
         assertNotNull(list);

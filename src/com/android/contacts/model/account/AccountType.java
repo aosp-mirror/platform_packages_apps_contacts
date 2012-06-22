@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.model;
+package com.android.contacts.model.account;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,6 +28,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.dataitem.DataKind;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

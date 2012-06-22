@@ -26,9 +26,9 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.BaseAccountType;
 import com.android.contacts.test.FragmentTestActivity;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;

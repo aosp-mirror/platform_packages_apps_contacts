@@ -49,10 +49,14 @@ import android.util.SparseIntArray;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.editor.EventFieldEditorView;
 import com.android.contacts.editor.PhoneticNameEditorView;
-import com.android.contacts.model.AccountType.EditField;
-import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.AccountType.EventEditType;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountType.EditField;
+import com.android.contacts.model.account.AccountType.EditType;
+import com.android.contacts.model.account.AccountType.EventEditType;
+import com.android.contacts.model.account.GoogleAccountType;
+import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.NameConverter;
 
@@ -68,21 +72,21 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
- * Helper methods for modifying an {@link EntityDelta}, such as inserting
+ * Helper methods for modifying an {@link RawContactDelta}, such as inserting
  * new rows, or enforcing {@link AccountType}.
  */
-public class EntityModifier {
-    private static final String TAG = "EntityModifier";
+public class RawContactModifier {
+    private static final String TAG = RawContactModifier.class.getSimpleName();
 
     /** Set to true in order to view logs on entity operations */
     private static final boolean DEBUG = false;
 
     /**
-     * For the given {@link EntityDelta}, determine if the given
+     * For the given {@link RawContactDelta}, determine if the given
      * {@link DataKind} could be inserted under specific
      * {@link AccountType}.
      */
-    public static boolean canInsert(EntityDelta state, DataKind kind) {
+    public static boolean canInsert(RawContactDelta state, DataKind kind) {
         // Insert possible when have valid types and under overall maximum
         final int visibleCount = state.getMimeEntriesCount(kind.mimeType, true);
         final boolean validTypes = hasValidTypes(state, kind);
@@ -91,8 +95,8 @@ public class EntityModifier {
         return (validTypes && validOverall);
     }
 
-    public static boolean hasValidTypes(EntityDelta state, DataKind kind) {
-        if (EntityModifier.hasEditTypes(kind)) {
+    public static boolean hasValidTypes(RawContactDelta state, DataKind kind) {
+        if (RawContactModifier.hasEditTypes(kind)) {
             return (getValidTypes(state, kind).size() > 0);
         } else {
             return true;
@@ -101,12 +105,12 @@ public class EntityModifier {
 
     /**
      * Ensure that at least one of the given {@link DataKind} exists in the
-     * given {@link EntityDelta} state, and try creating one if none exist.
+     * given {@link RawContactDelta} state, and try creating one if none exist.
      * @return The child (either newly created or the first existing one), or null if the
      *     account doesn't support this {@link DataKind}.
      */
     public static ValuesDelta ensureKindExists(
-            EntityDelta state, AccountType accountType, String mimeType) {
+            RawContactDelta state, AccountType accountType, String mimeType) {
         final DataKind kind = accountType.getKindForMimetype(mimeType);
         final boolean hasChild = state.getMimeEntriesCount(mimeType, true) > 0;
 
@@ -127,16 +131,16 @@ public class EntityModifier {
     }
 
     /**
-     * For the given {@link EntityDelta} and {@link DataKind}, return the
+     * For the given {@link RawContactDelta} and {@link DataKind}, return the
      * list possible {@link EditType} options available based on
      * {@link AccountType}.
      */
-    public static ArrayList<EditType> getValidTypes(EntityDelta state, DataKind kind) {
+    public static ArrayList<EditType> getValidTypes(RawContactDelta state, DataKind kind) {
         return getValidTypes(state, kind, null, true, null);
     }
 
     /**
-     * For the given {@link EntityDelta} and {@link DataKind}, return the
+     * For the given {@link RawContactDelta} and {@link DataKind}, return the
      * list possible {@link EditType} options available based on
      * {@link AccountType}.
      *
@@ -144,13 +148,13 @@ public class EntityModifier {
      *            list, even when an otherwise-invalid choice. This is useful
      *            when showing a dialog that includes the current type.
      */
-    public static ArrayList<EditType> getValidTypes(EntityDelta state, DataKind kind,
+    public static ArrayList<EditType> getValidTypes(RawContactDelta state, DataKind kind,
             EditType forceInclude) {
         return getValidTypes(state, kind, forceInclude, true, null);
     }
 
     /**
-     * For the given {@link EntityDelta} and {@link DataKind}, return the
+     * For the given {@link RawContactDelta} and {@link DataKind}, return the
      * list possible {@link EditType} options available based on
      * {@link AccountType}.
      *
@@ -161,9 +165,9 @@ public class EntityModifier {
      *            {@link EditType#secondary}.
      * @param typeCount When provided, will be used for the frequency count of
      *            each {@link EditType}, otherwise built using
-     *            {@link #getTypeFrequencies(EntityDelta, DataKind)}.
+     *            {@link #getTypeFrequencies(RawContactDelta, DataKind)}.
      */
-    private static ArrayList<EditType> getValidTypes(EntityDelta state, DataKind kind,
+    private static ArrayList<EditType> getValidTypes(RawContactDelta state, DataKind kind,
             EditType forceInclude, boolean includeSecondary, SparseIntArray typeCount) {
         final ArrayList<EditType> validTypes = new ArrayList<EditType>();
 
@@ -197,11 +201,11 @@ public class EntityModifier {
 
     /**
      * Count up the frequency that each {@link EditType} appears in the given
-     * {@link EntityDelta}. The returned {@link SparseIntArray} maps from
+     * {@link RawContactDelta}. The returned {@link SparseIntArray} maps from
      * {@link EditType#rawValue} to counts, with the total overall count stored
      * as {@link #FREQUENCY_TOTAL}.
      */
-    private static SparseIntArray getTypeFrequencies(EntityDelta state, DataKind kind) {
+    private static SparseIntArray getTypeFrequencies(RawContactDelta state, DataKind kind) {
         final SparseIntArray typeCount = new SparseIntArray();
 
         // Find all entries for this kind, bailing early if none found
@@ -297,7 +301,7 @@ public class EntityModifier {
      * first primary type that doesn't already exist. When all valid types
      * exist, we pick the last valid option.
      */
-    public static EditType getBestValidType(EntityDelta state, DataKind kind,
+    public static EditType getBestValidType(RawContactDelta state, DataKind kind,
             boolean includeSecondary, int exactValue) {
         // Shortcut when no types
         if (kind.typeColumn == null) return null;
@@ -338,10 +342,10 @@ public class EntityModifier {
 
     /**
      * Insert a new child of kind {@link DataKind} into the given
-     * {@link EntityDelta}. Tries using the best {@link EditType} found using
-     * {@link #getBestValidType(EntityDelta, DataKind, boolean, int)}.
+     * {@link RawContactDelta}. Tries using the best {@link EditType} found using
+     * {@link #getBestValidType(RawContactDelta, DataKind, boolean, int)}.
      */
-    public static ValuesDelta insertChild(EntityDelta state, DataKind kind) {
+    public static ValuesDelta insertChild(RawContactDelta state, DataKind kind) {
         // First try finding a valid primary
         EditType bestType = getBestValidType(state, kind, false, Integer.MIN_VALUE);
         if (bestType == null) {
@@ -353,9 +357,9 @@ public class EntityModifier {
 
     /**
      * Insert a new child of kind {@link DataKind} into the given
-     * {@link EntityDelta}, marked with the given {@link EditType}.
+     * {@link RawContactDelta}, marked with the given {@link EditType}.
      */
-    public static ValuesDelta insertChild(EntityDelta state, DataKind kind, EditType type) {
+    public static ValuesDelta insertChild(RawContactDelta state, DataKind kind, EditType type) {
         // Bail early if invalid kind
         if (kind == null) return null;
         final ContentValues after = new ContentValues();
@@ -379,13 +383,13 @@ public class EntityModifier {
     }
 
     /**
-     * Processing to trim any empty {@link ValuesDelta} and {@link EntityDelta}
-     * from the given {@link EntityDeltaList}, assuming the given {@link AccountTypeManager}
+     * Processing to trim any empty {@link ValuesDelta} and {@link RawContactDelta}
+     * from the given {@link RawContactDeltaList}, assuming the given {@link AccountTypeManager}
      * dictates the structure for various fields. This method ignores rows not
      * described by the {@link AccountType}.
      */
-    public static void trimEmpty(EntityDeltaList set, AccountTypeManager accountTypes) {
-        for (EntityDelta state : set) {
+    public static void trimEmpty(RawContactDeltaList set, AccountTypeManager accountTypes) {
+        for (RawContactDelta state : set) {
             ValuesDelta values = state.getValues();
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
             final String dataSet = values.getAsString(RawContacts.DATA_SET);
@@ -394,12 +398,12 @@ public class EntityModifier {
         }
     }
 
-    public static boolean hasChanges(EntityDeltaList set, AccountTypeManager accountTypes) {
+    public static boolean hasChanges(RawContactDeltaList set, AccountTypeManager accountTypes) {
         if (set.isMarkedForSplitting() || set.isMarkedForJoining()) {
             return true;
         }
 
-        for (EntityDelta state : set) {
+        for (RawContactDelta state : set) {
             ValuesDelta values = state.getValues();
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
             final String dataSet = values.getAsString(RawContacts.DATA_SET);
@@ -413,11 +417,11 @@ public class EntityModifier {
 
     /**
      * Processing to trim any empty {@link ValuesDelta} rows from the given
-     * {@link EntityDelta}, assuming the given {@link AccountType} dictates
+     * {@link RawContactDelta}, assuming the given {@link AccountType} dictates
      * the structure for various fields. This method ignores rows not described
      * by the {@link AccountType}.
      */
-    public static void trimEmpty(EntityDelta state, AccountType accountType) {
+    public static void trimEmpty(RawContactDelta state, AccountType accountType) {
         boolean hasValues = false;
 
         // Walk through entries for each well-known kind
@@ -440,7 +444,7 @@ public class EntityModifier {
                 final boolean isPhoto = TextUtils.equals(Photo.CONTENT_ITEM_TYPE, kind.mimeType);
                 final boolean isGooglePhoto = isPhoto && isGoogleAccount;
 
-                if (EntityModifier.isEmpty(entry, kind) && !isGooglePhoto) {
+                if (RawContactModifier.isEmpty(entry, kind) && !isGooglePhoto) {
                     if (DEBUG) {
                         Log.v(TAG, "Trimming: " + entry.toString());
                     }
@@ -456,7 +460,7 @@ public class EntityModifier {
         }
     }
 
-    private static boolean hasChanges(EntityDelta state, AccountType accountType) {
+    private static boolean hasChanges(RawContactDelta state, AccountType accountType) {
         for (DataKind kind : accountType.getSortedDataKinds()) {
             final String mimeType = kind.mimeType;
             final ArrayList<ValuesDelta> entries = state.getMimeEntries(mimeType);
@@ -516,10 +520,10 @@ public class EntityModifier {
     }
 
     /**
-     * Parse the given {@link Bundle} into the given {@link EntityDelta} state,
+     * Parse the given {@link Bundle} into the given {@link RawContactDelta} state,
      * assuming the extras defined through {@link Intents}.
      */
-    public static void parseExtras(Context context, AccountType accountType, EntityDelta state,
+    public static void parseExtras(Context context, AccountType accountType, RawContactDelta state,
             Bundle extras) {
         if (extras == null || extras.size() == 0) {
             // Bail early if no useful data
@@ -560,8 +564,8 @@ public class EntityModifier {
         final boolean hasOrg = extras.containsKey(Insert.COMPANY)
                 || extras.containsKey(Insert.JOB_TITLE);
         final DataKind kindOrg = accountType.getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
-        if (hasOrg && EntityModifier.canInsert(state, kindOrg)) {
-            final ValuesDelta child = EntityModifier.insertChild(state, kindOrg);
+        if (hasOrg && RawContactModifier.canInsert(state, kindOrg)) {
+            final ValuesDelta child = RawContactModifier.insertChild(state, kindOrg);
 
             final String company = extras.getString(Insert.COMPANY);
             if (ContactsUtils.isGraphic(company)) {
@@ -577,8 +581,8 @@ public class EntityModifier {
         // Notes
         final boolean hasNotes = extras.containsKey(Insert.NOTES);
         final DataKind kindNotes = accountType.getKindForMimetype(Note.CONTENT_ITEM_TYPE);
-        if (hasNotes && EntityModifier.canInsert(state, kindNotes)) {
-            final ValuesDelta child = EntityModifier.insertChild(state, kindNotes);
+        if (hasNotes && RawContactModifier.canInsert(state, kindNotes)) {
+            final ValuesDelta child = RawContactModifier.insertChild(state, kindNotes);
 
             final String notes = extras.getString(Insert.NOTES);
             if (ContactsUtils.isGraphic(notes)) {
@@ -594,9 +598,9 @@ public class EntityModifier {
     }
 
     private static void parseStructuredNameExtra(
-            Context context, AccountType accountType, EntityDelta state, Bundle extras) {
+            Context context, AccountType accountType, RawContactDelta state, Bundle extras) {
         // StructuredName
-        EntityModifier.ensureKindExists(state, accountType, StructuredName.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(state, accountType, StructuredName.CONTENT_ITEM_TYPE);
         final ValuesDelta child = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
 
         final String name = extras.getString(Insert.NAME);
@@ -649,7 +653,7 @@ public class EntityModifier {
     }
 
     private static void parseStructuredPostalExtra(
-            AccountType accountType, EntityDelta state, Bundle extras) {
+            AccountType accountType, RawContactDelta state, Bundle extras) {
         // StructuredPostal
         final DataKind kind = accountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
         final ValuesDelta child = parseExtras(state, kind, extras, Insert.POSTAL_TYPE,
@@ -675,7 +679,8 @@ public class EntityModifier {
     }
 
     private static void parseValues(
-            EntityDelta state, AccountType accountType, ArrayList<ContentValues> dataValueList) {
+            RawContactDelta state, AccountType accountType,
+            ArrayList<ContentValues> dataValueList) {
         for (ContentValues values : dataValueList) {
             String mimeType = values.getAsString(Data.MIMETYPE);
             if (TextUtils.isEmpty(mimeType)) {
@@ -873,7 +878,7 @@ public class EntityModifier {
 
     /**
      * Parse a specific entry from the given {@link Bundle} and insert into the
-     * given {@link EntityDelta}. Silently skips the insert when missing value
+     * given {@link RawContactDelta}. Silently skips the insert when missing value
      * or no valid {@link EditType} found.
      *
      * @param typeExtra {@link Bundle} key that holds the incoming
@@ -881,7 +886,7 @@ public class EntityModifier {
      * @param valueExtra {@link Bundle} key that holds the incoming value.
      * @param valueColumn Column to write value into {@link ValuesDelta}.
      */
-    public static ValuesDelta parseExtras(EntityDelta state, DataKind kind, Bundle extras,
+    public static ValuesDelta parseExtras(RawContactDelta state, DataKind kind, Bundle extras,
             String typeExtra, String valueExtra, String valueColumn) {
         final CharSequence value = extras.getCharSequence(valueExtra);
 
@@ -889,7 +894,7 @@ public class EntityModifier {
         if (kind == null) return null;
 
         // Bail when can't insert type, or value missing
-        final boolean canInsert = EntityModifier.canInsert(state, kind);
+        final boolean canInsert = RawContactModifier.canInsert(state, kind);
         final boolean validValue = (value != null && TextUtils.isGraphic(value));
         if (!validValue || !canInsert) return null;
 
@@ -897,10 +902,10 @@ public class EntityModifier {
         final boolean hasType = extras.containsKey(typeExtra);
         final int typeValue = extras.getInt(typeExtra, hasType ? BaseTypes.TYPE_CUSTOM
                 : Integer.MIN_VALUE);
-        final EditType editType = EntityModifier.getBestValidType(state, kind, true, typeValue);
+        final EditType editType = RawContactModifier.getBestValidType(state, kind, true, typeValue);
 
         // Create data row and fill with value
-        final ValuesDelta child = EntityModifier.insertChild(state, kind, editType);
+        final ValuesDelta child = RawContactModifier.insertChild(state, kind, editType);
         child.put(valueColumn, value.toString());
 
         if (editType != null && editType.customColumn != null) {
@@ -937,13 +942,13 @@ public class EntityModifier {
     private static final int TYPE_CUSTOM = Phone.TYPE_CUSTOM;
 
     /**
-     * Migrates old EntityDelta to newly created one with a new restriction supplied from
+     * Migrates old RawContactDelta to newly created one with a new restriction supplied from
      * newAccountType.
      *
      * This is only for account switch during account creation (which must be insert operation).
      */
     public static void migrateStateForNewContact(Context context,
-            EntityDelta oldState, EntityDelta newState,
+            RawContactDelta oldState, RawContactDelta newState,
             AccountType oldAccountType, AccountType newAccountType) {
         if (newAccountType == oldAccountType) {
             // Just copying all data in oldState isn't enough, but we can still rely on a lot of
@@ -996,8 +1001,8 @@ public class EntityModifier {
      * Checks {@link DataKind#isList} and {@link DataKind#typeOverallMax}, and restricts
      * the number of entries (ValuesDelta) inside newState.
      */
-    private static ArrayList<ValuesDelta> ensureEntryMaxSize(EntityDelta newState, DataKind kind,
-            ArrayList<ValuesDelta> mimeEntries) {
+    private static ArrayList<ValuesDelta> ensureEntryMaxSize(RawContactDelta newState,
+            DataKind kind, ArrayList<ValuesDelta> mimeEntries) {
         if (mimeEntries == null) {
             return null;
         }
@@ -1015,7 +1020,8 @@ public class EntityModifier {
 
     /** @hide Public only for testing. */
     public static void migrateStructuredName(
-            Context context, EntityDelta oldState, EntityDelta newState, DataKind newDataKind) {
+            Context context, RawContactDelta oldState, RawContactDelta newState,
+            DataKind newDataKind) {
         final ContentValues values =
                 oldState.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE).getAfter();
         if (values == null) {
@@ -1071,24 +1077,24 @@ public class EntityModifier {
         if (!TextUtils.isEmpty(phoneticFullName)) {
             if (!supportPhoneticFullName) {
                 // Old data has a phonetic (full) name, while the new account doesn't allow it.
-                final ContentValues tmpValues =
+                final StructuredNameDataItem tmpItem =
                         PhoneticNameEditorView.parsePhoneticName(phoneticFullName, null);
                 values.remove(DataKind.PSEUDO_COLUMN_PHONETIC_NAME);
                 if (supportPhoneticFamilyName) {
                     values.put(StructuredName.PHONETIC_FAMILY_NAME,
-                            tmpValues.getAsString(StructuredName.PHONETIC_FAMILY_NAME));
+                            tmpItem.getPhoneticFamilyName());
                 } else {
                     values.remove(StructuredName.PHONETIC_FAMILY_NAME);
                 }
                 if (supportPhoneticMiddleName) {
                     values.put(StructuredName.PHONETIC_MIDDLE_NAME,
-                            tmpValues.getAsString(StructuredName.PHONETIC_MIDDLE_NAME));
+                            tmpItem.getPhoneticMiddleName());
                 } else {
                     values.remove(StructuredName.PHONETIC_MIDDLE_NAME);
                 }
                 if (supportPhoneticGivenName) {
                     values.put(StructuredName.PHONETIC_GIVEN_NAME,
-                            tmpValues.getAsString(StructuredName.PHONETIC_GIVEN_NAME));
+                            tmpItem.getPhoneticGivenName());
                 } else {
                     values.remove(StructuredName.PHONETIC_GIVEN_NAME);
                 }
@@ -1117,7 +1123,7 @@ public class EntityModifier {
     }
 
     /** @hide Public only for testing. */
-    public static void migratePostal(EntityDelta oldState, EntityDelta newState,
+    public static void migratePostal(RawContactDelta oldState, RawContactDelta newState,
             DataKind newDataKind) {
         final ArrayList<ValuesDelta> mimeEntries = ensureEntryMaxSize(newState, newDataKind,
                 oldState.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE));
@@ -1228,7 +1234,7 @@ public class EntityModifier {
     }
 
     /** @hide Public only for testing. */
-    public static void migrateEvent(EntityDelta oldState, EntityDelta newState,
+    public static void migrateEvent(RawContactDelta oldState, RawContactDelta newState,
             DataKind newDataKind, Integer defaultYear) {
         final ArrayList<ValuesDelta> mimeEntries = ensureEntryMaxSize(newState, newDataKind,
                 oldState.getMimeEntries(Event.CONTENT_ITEM_TYPE));
@@ -1285,7 +1291,7 @@ public class EntityModifier {
 
     /** @hide Public only for testing. */
     public static void migrateGenericWithoutTypeColumn(
-            EntityDelta oldState, EntityDelta newState, DataKind newDataKind) {
+            RawContactDelta oldState, RawContactDelta newState, DataKind newDataKind) {
         final ArrayList<ValuesDelta> mimeEntries = ensureEntryMaxSize(newState, newDataKind,
                 oldState.getMimeEntries(newDataKind.mimeType));
         if (mimeEntries == null || mimeEntries.isEmpty()) {
@@ -1302,7 +1308,7 @@ public class EntityModifier {
 
     /** @hide Public only for testing. */
     public static void migrateGenericWithTypeColumn(
-            EntityDelta oldState, EntityDelta newState, DataKind newDataKind) {
+            RawContactDelta oldState, RawContactDelta newState, DataKind newDataKind) {
         final ArrayList<ValuesDelta> mimeEntries = oldState.getMimeEntries(newDataKind.mimeType);
         if (mimeEntries == null || mimeEntries.isEmpty()) {
             return;

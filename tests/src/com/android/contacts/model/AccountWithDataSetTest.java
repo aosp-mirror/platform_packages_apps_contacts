@@ -21,6 +21,7 @@ import android.test.AndroidTestCase;
 import android.test.MoreAsserts;
 import android.test.suitebuilder.annotation.SmallTest;
 
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.google.common.collect.Lists;
 
 import java.util.List;

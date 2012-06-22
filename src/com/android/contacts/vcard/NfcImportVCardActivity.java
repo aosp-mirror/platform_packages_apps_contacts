@@ -33,7 +33,7 @@ import android.util.Log;
 
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryCounter;
 import com.android.vcard.VCardParser;

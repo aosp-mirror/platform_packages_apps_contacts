@@ -34,10 +34,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.model.Contact;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UriUtils;
 import com.android.contacts.widget.FrameLayoutWithOverlay;
@@ -102,7 +102,7 @@ public class ContactDetailLayoutController {
 
     private final ContactDetailFragment.Listener mContactDetailFragmentListener;
 
-    private ContactLoader.Result mContactData;
+    private Contact mContactData;
     private Uri mContactUri;
 
     private boolean mTabCarouselIsAnimating;
@@ -270,7 +270,7 @@ public class ContactDetailLayoutController {
         }
     }
 
-    public void setContactData(ContactLoader.Result data) {
+    public void setContactData(Contact data) {
         final boolean contactWasLoaded;
         final boolean contactHadUpdates;
         final boolean isDifferentContact;

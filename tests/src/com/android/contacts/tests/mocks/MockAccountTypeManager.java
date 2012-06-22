@@ -15,10 +15,10 @@
  */
 package com.android.contacts.tests.mocks;
 
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountTypeWithDataSet;
-import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountTypeWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 

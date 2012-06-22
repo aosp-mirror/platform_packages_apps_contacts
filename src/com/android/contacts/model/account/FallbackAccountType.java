@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.contacts.model;
+package com.android.contacts.model.account;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.android.contacts.R;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.test.NeededForTesting;
 
 public class FallbackAccountType extends BaseAccountType {

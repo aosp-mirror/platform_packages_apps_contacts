@@ -24,7 +24,6 @@ import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.OperationApplicationException;
@@ -62,14 +61,15 @@ import android.widget.Toast;
 import com.android.contacts.R;
 import com.android.contacts.editor.Editor;
 import com.android.contacts.editor.ViewIdGenerator;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.EmptyService;
 
@@ -124,11 +124,11 @@ public class ConfirmAddDetailActivity extends Activity implements
 
     private QueryHandler mQueryHandler;
 
-    /** {@link EntityDeltaList} for the entire selected contact. */
-    private EntityDeltaList mEntityDeltaList;
+    /** {@link RawContactDeltaList} for the entire selected contact. */
+    private RawContactDeltaList mEntityDeltaList;
 
-    /** {@link EntityDeltaList} for the editable account */
-    private EntityDelta mEntityDelta;
+    /** {@link RawContactDeltaList} for the editable account */
+    private RawContactDelta mRawContactDelta;
 
     private String mMimetype = Phone.CONTENT_ITEM_TYPE;
 
@@ -357,7 +357,7 @@ public class ConfirmAddDetailActivity extends Activity implements
                 new String[] { String.valueOf(mContactId) }, null);
     }
 
-    private static class QueryEntitiesTask extends AsyncTask<Intent, Void, EntityDeltaList> {
+    private static class QueryEntitiesTask extends AsyncTask<Intent, Void, RawContactDeltaList> {
 
         private ConfirmAddDetailActivity activityTarget;
         private String mSelection;
@@ -367,7 +367,7 @@ public class ConfirmAddDetailActivity extends Activity implements
         }
 
         @Override
-        protected EntityDeltaList doInBackground(Intent... params) {
+        protected RawContactDeltaList doInBackground(Intent... params) {
 
             final Intent intent = params[0];
 
@@ -400,7 +400,7 @@ public class ConfirmAddDetailActivity extends Activity implements
 
             // Note that this query does not need to concern itself with whether the contact is
             // the user's profile, since the profile does not show up in the picker.
-            return EntityDeltaList.fromQuery(RawContactsEntity.CONTENT_URI,
+            return RawContactDeltaList.fromQuery(RawContactsEntity.CONTENT_URI,
                     activityTarget.getContentResolver(), mSelection,
                     new String[] { selectionArg }, null);
         }
@@ -425,7 +425,7 @@ public class ConfirmAddDetailActivity extends Activity implements
         }
 
         @Override
-        protected void onPostExecute(EntityDeltaList entityList) {
+        protected void onPostExecute(RawContactDeltaList entityList) {
             if (activityTarget.isFinishing()) {
                 return;
             }
@@ -567,7 +567,7 @@ public class ConfirmAddDetailActivity extends Activity implements
         }
     }
 
-    private void setEntityDeltaList(EntityDeltaList entityList) {
+    private void setEntityDeltaList(RawContactDeltaList entityList) {
         if (entityList == null) {
             throw new IllegalStateException();
         }
@@ -578,31 +578,33 @@ public class ConfirmAddDetailActivity extends Activity implements
         mEntityDeltaList = entityList;
 
         // Find the editable raw_contact.
-        mEntityDelta = mEntityDeltaList.getFirstWritableRawContact(this);
+        mRawContactDelta = mEntityDeltaList.getFirstWritableRawContact(this);
 
         // If no editable raw_contacts are found, create one.
-        if (mEntityDelta == null) {
-            mEntityDelta = addEditableRawContact(this, mEntityDeltaList);
+        if (mRawContactDelta == null) {
+            mRawContactDelta = addEditableRawContact(this, mEntityDeltaList);
 
-            if ((mEntityDelta != null) && VERBOSE_LOGGING) {
+            if ((mRawContactDelta != null) && VERBOSE_LOGGING) {
                 Log.v(TAG, "setEntityDeltaList: created editable raw_contact " + entityList);
             }
         }
 
-        if (mEntityDelta == null) {
+        if (mRawContactDelta == null) {
             // Selected contact is read-only, and there's no editable account.
             mIsReadOnly = true;
             mEditableAccountType = null;
         } else {
             mIsReadOnly = false;
 
-            mEditableAccountType = mEntityDelta.getRawContactAccountType(this);
+            mEditableAccountType = mRawContactDelta.getRawContactAccountType(this);
 
             // Handle any incoming values that should be inserted
             final Bundle extras = getIntent().getExtras();
             if (extras != null && extras.size() > 0) {
-                // If there are any intent extras, add them as additional fields in the EntityDelta.
-                EntityModifier.parseExtras(this, mEditableAccountType, mEntityDelta, extras);
+                // If there are any intent extras, add them as additional fields in the
+                // RawContactDelta.
+                RawContactModifier.parseExtras(this, mEditableAccountType, mRawContactDelta,
+                        extras);
             }
         }
 
@@ -610,12 +612,12 @@ public class ConfirmAddDetailActivity extends Activity implements
     }
 
     /**
-     * Create an {@link EntityDelta} for a raw_contact on the first editable account found, and add
+     * Create an {@link RawContactDelta} for a raw_contact on the first editable account found, and add
      * to the list.  Also copy the structured name from an existing (read-only) raw_contact to the
      * new one, if any of the read-only contacts has a name.
      */
-    private static EntityDelta addEditableRawContact(Context context,
-            EntityDeltaList entityDeltaList) {
+    private static RawContactDelta addEditableRawContact(Context context,
+            RawContactDeltaList entityDeltaList) {
         // First, see if there's an editable account.
         final AccountTypeManager accounts = AccountTypeManager.getInstance(context);
         final List<AccountWithDataSet> editableAccounts = accounts.getAccounts(true);
@@ -627,44 +629,29 @@ public class ConfirmAddDetailActivity extends Activity implements
         final AccountType accountType = accounts.getAccountType(
                 editableAccount.type, editableAccount.dataSet);
 
-        // Create a new EntityDelta for the new raw_contact.
-        final ContentValues values = new ContentValues();
-        values.put(RawContacts.ACCOUNT_NAME, editableAccount.name);
-        values.put(RawContacts.ACCOUNT_TYPE, editableAccount.type);
-        values.put(RawContacts.DATA_SET, editableAccount.dataSet);
+        // Create a new RawContactDelta for the new raw_contact.
+        final RawContact rawContact = new RawContact(context);
+        rawContact.setAccount(editableAccount);
 
-        final EntityDelta entityDelta = new EntityDelta(ValuesDelta.fromAfter(values));
+        final RawContactDelta entityDelta = new RawContactDelta(ValuesDelta.fromAfter(
+                rawContact.getValues()));
 
         // Then, copy the structure name from an existing (read-only) raw_contact.
-        for (EntityDelta entity : entityDeltaList) {
+        for (RawContactDelta entity : entityDeltaList) {
             final ArrayList<ValuesDelta> readOnlyNames =
                     entity.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
             if ((readOnlyNames != null) && (readOnlyNames.size() > 0)) {
                 final ValuesDelta readOnlyName = readOnlyNames.get(0);
-
-                final ValuesDelta newName = EntityModifier.ensureKindExists(entityDelta,
+                final ValuesDelta newName = RawContactModifier.ensureKindExists(entityDelta,
                         accountType, StructuredName.CONTENT_ITEM_TYPE);
 
                 // Copy all the data fields.
-                newName.copyStringFrom(readOnlyName, StructuredName.DISPLAY_NAME);
-
-                newName.copyStringFrom(readOnlyName, StructuredName.GIVEN_NAME);
-                newName.copyStringFrom(readOnlyName, StructuredName.FAMILY_NAME);
-                newName.copyStringFrom(readOnlyName, StructuredName.PREFIX);
-                newName.copyStringFrom(readOnlyName, StructuredName.MIDDLE_NAME);
-                newName.copyStringFrom(readOnlyName, StructuredName.SUFFIX);
-
-                newName.copyStringFrom(readOnlyName, StructuredName.PHONETIC_GIVEN_NAME);
-                newName.copyStringFrom(readOnlyName, StructuredName.PHONETIC_MIDDLE_NAME);
-                newName.copyStringFrom(readOnlyName, StructuredName.PHONETIC_FAMILY_NAME);
-
-                newName.copyStringFrom(readOnlyName, StructuredName.FULL_NAME_STYLE);
-                newName.copyStringFrom(readOnlyName, StructuredName.PHONETIC_NAME_STYLE);
+                newName.copyStructuredNameFieldsFrom(readOnlyName);
                 break;
             }
         }
 
-        // Add the new EntityDelta to the list.
+        // Add the new RawContactDelta to the list.
         entityDeltaList.add(entityDelta);
 
         return entityDelta;
@@ -695,11 +682,11 @@ public class ConfirmAddDetailActivity extends Activity implements
             // Skip kind that are not editable
             if (!kind.editable) continue;
             if (mMimetype.equals(kind.mimeType)) {
-                for (ValuesDelta valuesDelta : mEntityDelta.getMimeEntries(mMimetype)) {
+                for (ValuesDelta valuesDelta : mRawContactDelta.getMimeEntries(mMimetype)) {
                     // Skip entries that aren't visible
                     if (!valuesDelta.isVisible()) continue;
                     if (valuesDelta.isInsert()) {
-                        inflateEditorView(kind, valuesDelta, mEntityDelta);
+                        inflateEditorView(kind, valuesDelta, mRawContactDelta);
                         return;
                     }
                 }
@@ -712,7 +699,7 @@ public class ConfirmAddDetailActivity extends Activity implements
      * the views corresponding to the the object-model. The resulting EditorView is also added
      * to the end of mEditors
      */
-    private void inflateEditorView(DataKind dataKind, ValuesDelta valuesDelta, EntityDelta state) {
+    private void inflateEditorView(DataKind dataKind, ValuesDelta valuesDelta, RawContactDelta state) {
         final View view = mInflater.inflate(dataKind.editorLayoutResourceId, mEditorContainerView,
                 false);
 
@@ -765,11 +752,11 @@ public class ConfirmAddDetailActivity extends Activity implements
 
     /**
      * Background task for persisting edited contact data, using the changes
-     * defined by a set of {@link EntityDelta}. This task starts
+     * defined by a set of {@link RawContactDelta}. This task starts
      * {@link EmptyService} to make sure the background thread can finish
      * persisting in cases where the system wants to reclaim our process.
      */
-    private static class PersistTask extends AsyncTask<EntityDeltaList, Void, Integer> {
+    private static class PersistTask extends AsyncTask<RawContactDeltaList, Void, Integer> {
         // In the future, use ContactSaver instead of WeakAsyncTask because of
         // the danger of the activity being null during a save action
         private static final int PERSIST_TRIES = 3;
@@ -799,18 +786,18 @@ public class ConfirmAddDetailActivity extends Activity implements
         }
 
         @Override
-        protected Integer doInBackground(EntityDeltaList... params) {
+        protected Integer doInBackground(RawContactDeltaList... params) {
             final Context context = activityTarget;
             final ContentResolver resolver = context.getContentResolver();
 
-            EntityDeltaList state = params[0];
+            RawContactDeltaList state = params[0];
 
             if (state == null) {
                 return RESULT_FAILURE;
             }
 
             // Trim any empty fields, and RawContacts, before persisting
-            EntityModifier.trimEmpty(state, mAccountTypeManager);
+            RawContactModifier.trimEmpty(state, mAccountTypeManager);
 
             // Attempt to persist changes
             int tries = 0;

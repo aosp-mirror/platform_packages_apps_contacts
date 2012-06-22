@@ -29,8 +29,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
+import com.android.contacts.model.Contact;
 import com.android.contacts.util.MoreMath;
 import com.android.contacts.util.SchedulingUtils;
 
@@ -464,7 +464,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
      * Loads the data from the Loader-Result. This is the only function that has to be called
      * from the outside to fully setup the View
      */
-    public void loadData(ContactLoader.Result contactData) {
+    public void loadData(Contact contactData) {
         if (contactData == null) return;
 
         // TODO: Move this into the {@link CarouselTab} class when the updates

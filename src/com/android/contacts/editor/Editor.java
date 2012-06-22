@@ -18,9 +18,9 @@ package com.android.contacts.editor;
 
 import android.provider.ContactsContract.Data;
 
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.dataitem.DataKind;
 
 /**
  * Generic definition of something that edits a {@link Data} row through an
@@ -60,7 +60,7 @@ public interface Editor {
      * builds any needed views. Any changes performed by the user will be
      * written back to that same object.
      */
-    public void setValues(DataKind kind, ValuesDelta values, EntityDelta state, boolean readOnly,
+    public void setValues(DataKind kind, ValuesDelta values, RawContactDelta state, boolean readOnly,
             ViewIdGenerator vig);
 
     public void setDeletable(boolean deletable);

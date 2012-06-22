@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.contacts.model;
+package com.android.contacts.model.account;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.tests.R;
 
 /**

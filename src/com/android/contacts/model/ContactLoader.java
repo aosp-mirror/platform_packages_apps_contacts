@@ -14,15 +14,13 @@
  * limitations under the License
  */
 
-package com.android.contacts;
+package com.android.contacts.model;
 
 import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Entity;
-import android.content.Entity.NamedContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -32,11 +30,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StreamItemPhotos;
@@ -45,17 +41,18 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
 
-import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountTypeWithDataSet;
-import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.GroupMetaData;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountTypeWithDataSet;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.PhotoDataItem;
 import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.android.contacts.util.UriUtils;
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Lists;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
@@ -64,20 +61,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /**
  * Loads a single Contact and all it constituent RawContacts.
  */
-public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
+public class ContactLoader extends AsyncTaskLoader<Contact> {
     private static final String TAG = ContactLoader.class.getSimpleName();
 
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     /** A short-lived cache that can be set by {@link #cacheResult()} */
-    private static Result sCachedResult = null;
+    private static Contact sCachedResult = null;
 
     private final Uri mRequestedUri;
     private Uri mLookupUri;
@@ -85,7 +81,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
     private boolean mLoadStreamItems;
     private boolean mLoadInvitableAccountTypes;
     private boolean mPostViewNotification;
-    private Result mContact;
+    private Contact mContact;
     private ForceLoadContentObserver mObserver;
     private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
 
@@ -103,433 +99,6 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
         mLoadStreamItems = loadStreamItems;
         mLoadInvitableAccountTypes = loadInvitableAccountTypes;
         mPostViewNotification = postViewNotification;
-    }
-
-    /**
-     * The result of a load operation. Contains all data necessary to display the contact.
-     */
-    public static final class Result {
-        private enum Status {
-            /** Contact is successfully loaded */
-            LOADED,
-            /** There was an error loading the contact */
-            ERROR,
-            /** Contact is not found */
-            NOT_FOUND,
-        }
-
-        private final Uri mRequestedUri;
-        private final Uri mLookupUri;
-        private final Uri mUri;
-        private final long mDirectoryId;
-        private final String mLookupKey;
-        private final long mId;
-        private final long mNameRawContactId;
-        private final int mDisplayNameSource;
-        private final long mPhotoId;
-        private final String mPhotoUri;
-        private final String mDisplayName;
-        private final String mAltDisplayName;
-        private final String mPhoneticName;
-        private final boolean mStarred;
-        private final Integer mPresence;
-        private final ArrayList<Entity> mEntities;
-        private ArrayList<StreamItemEntry> mStreamItems;
-        private final LongSparseArray<DataStatus> mStatuses;
-        private ArrayList<AccountType> mInvitableAccountTypes;
-
-        private String mDirectoryDisplayName;
-        private String mDirectoryType;
-        private String mDirectoryAccountType;
-        private String mDirectoryAccountName;
-        private int mDirectoryExportSupport;
-
-        private ArrayList<GroupMetaData> mGroups;
-
-        private byte[] mPhotoBinaryData;
-        private final boolean mSendToVoicemail;
-        private final String mCustomRingtone;
-        private final boolean mIsUserProfile;
-
-        private final Status mStatus;
-        private final Exception mException;
-
-        /**
-         * Constructor for special results, namely "no contact found" and "error".
-         */
-        private Result(Uri requestedUri, Status status, Exception exception) {
-            if (status == Status.ERROR && exception == null) {
-                throw new IllegalArgumentException("ERROR result must have exception");
-            }
-            mStatus = status;
-            mException = exception;
-            mRequestedUri = requestedUri;
-            mLookupUri = null;
-            mUri = null;
-            mDirectoryId = -1;
-            mLookupKey = null;
-            mId = -1;
-            mEntities = null;
-            mStreamItems = null;
-            mStatuses = null;
-            mNameRawContactId = -1;
-            mDisplayNameSource = DisplayNameSources.UNDEFINED;
-            mPhotoId = -1;
-            mPhotoUri = null;
-            mDisplayName = null;
-            mAltDisplayName = null;
-            mPhoneticName = null;
-            mStarred = false;
-            mPresence = null;
-            mInvitableAccountTypes = null;
-            mSendToVoicemail = false;
-            mCustomRingtone = null;
-            mIsUserProfile = false;
-        }
-
-        private static Result forError(Uri requestedUri, Exception exception) {
-            return new Result(requestedUri, Status.ERROR, exception);
-        }
-
-        private static Result forNotFound(Uri requestedUri) {
-            return new Result(requestedUri, Status.NOT_FOUND, null);
-        }
-
-        /**
-         * Constructor to call when contact was found
-         */
-        private Result(Uri requestedUri, Uri uri, Uri lookupUri, long directoryId, String lookupKey,
-                long id, long nameRawContactId, int displayNameSource, long photoId,
-                String photoUri, String displayName, String altDisplayName, String phoneticName,
-                boolean starred, Integer presence, boolean sendToVoicemail, String customRingtone,
-                boolean isUserProfile) {
-            mStatus = Status.LOADED;
-            mException = null;
-            mRequestedUri = requestedUri;
-            mLookupUri = lookupUri;
-            mUri = uri;
-            mDirectoryId = directoryId;
-            mLookupKey = lookupKey;
-            mId = id;
-            mEntities = new ArrayList<Entity>();
-            mStreamItems = null;
-            mStatuses = new LongSparseArray<DataStatus>();
-            mNameRawContactId = nameRawContactId;
-            mDisplayNameSource = displayNameSource;
-            mPhotoId = photoId;
-            mPhotoUri = photoUri;
-            mDisplayName = displayName;
-            mAltDisplayName = altDisplayName;
-            mPhoneticName = phoneticName;
-            mStarred = starred;
-            mPresence = presence;
-            mInvitableAccountTypes = null;
-            mSendToVoicemail = sendToVoicemail;
-            mCustomRingtone = customRingtone;
-            mIsUserProfile = isUserProfile;
-        }
-
-        private Result(Uri requestedUri, Result from) {
-            mRequestedUri = requestedUri;
-
-            mStatus = from.mStatus;
-            mException = from.mException;
-            mLookupUri = from.mLookupUri;
-            mUri = from.mUri;
-            mDirectoryId = from.mDirectoryId;
-            mLookupKey = from.mLookupKey;
-            mId = from.mId;
-            mNameRawContactId = from.mNameRawContactId;
-            mDisplayNameSource = from.mDisplayNameSource;
-            mPhotoId = from.mPhotoId;
-            mPhotoUri = from.mPhotoUri;
-            mDisplayName = from.mDisplayName;
-            mAltDisplayName = from.mAltDisplayName;
-            mPhoneticName = from.mPhoneticName;
-            mStarred = from.mStarred;
-            mPresence = from.mPresence;
-            mEntities = from.mEntities;
-            mStreamItems = from.mStreamItems;
-            mStatuses = from.mStatuses;
-            mInvitableAccountTypes = from.mInvitableAccountTypes;
-
-            mDirectoryDisplayName = from.mDirectoryDisplayName;
-            mDirectoryType = from.mDirectoryType;
-            mDirectoryAccountType = from.mDirectoryAccountType;
-            mDirectoryAccountName = from.mDirectoryAccountName;
-            mDirectoryExportSupport = from.mDirectoryExportSupport;
-
-            mGroups = from.mGroups;
-
-            mPhotoBinaryData = from.mPhotoBinaryData;
-            mSendToVoicemail = from.mSendToVoicemail;
-            mCustomRingtone = from.mCustomRingtone;
-            mIsUserProfile = from.mIsUserProfile;
-        }
-
-        /**
-         * @param exportSupport See {@link Directory#EXPORT_SUPPORT}.
-         */
-        private void setDirectoryMetaData(String displayName, String directoryType,
-                String accountType, String accountName, int exportSupport) {
-            mDirectoryDisplayName = displayName;
-            mDirectoryType = directoryType;
-            mDirectoryAccountType = accountType;
-            mDirectoryAccountName = accountName;
-            mDirectoryExportSupport = exportSupport;
-        }
-
-        private void setPhotoBinaryData(byte[] photoBinaryData) {
-            mPhotoBinaryData = photoBinaryData;
-        }
-
-        /**
-         * Returns the URI for the contact that contains both the lookup key and the ID. This is
-         * the best URI to reference a contact.
-         * For directory contacts, this is the same a the URI as returned by {@link #getUri()}
-         */
-        public Uri getLookupUri() {
-            return mLookupUri;
-        }
-
-        public String getLookupKey() {
-            return mLookupKey;
-        }
-
-        /**
-         * Returns the contact Uri that was passed to the provider to make the query. This is
-         * the same as the requested Uri, unless the requested Uri doesn't specify a Contact:
-         * If it either references a Raw-Contact or a Person (a pre-Eclair style Uri), this Uri will
-         * always reference the full aggregate contact.
-         */
-        public Uri getUri() {
-            return mUri;
-        }
-
-        /**
-         * Returns the URI for which this {@link ContactLoader) was initially requested.
-         */
-        public Uri getRequestedUri() {
-            return mRequestedUri;
-        }
-
-        /**
-         * Instantiate a new EntityDeltaList for this contact.
-         */
-        public EntityDeltaList createEntityDeltaList() {
-            return EntityDeltaList.fromIterator(getEntities().iterator());
-        }
-
-        /**
-         * Returns the contact ID.
-         */
-        @VisibleForTesting
-        /* package */ long getId() {
-            return mId;
-        }
-
-        /**
-         * @return true when an exception happened during loading, in which case
-         *     {@link #getException} returns the actual exception object.
-         *     Note {@link #isNotFound()} and {@link #isError()} are mutually exclusive; If
-         *     {@link #isError()} is {@code true}, {@link #isNotFound()} is always {@code false},
-         *     and vice versa.
-         */
-        public boolean isError() {
-            return mStatus == Status.ERROR;
-        }
-
-        public Exception getException() {
-            return mException;
-        }
-
-        /**
-         * @return true when the specified contact is not found.
-         *     Note {@link #isNotFound()} and {@link #isError()} are mutually exclusive; If
-         *     {@link #isError()} is {@code true}, {@link #isNotFound()} is always {@code false},
-         *     and vice versa.
-         */
-        public boolean isNotFound() {
-            return mStatus == Status.NOT_FOUND;
-        }
-
-        /**
-         * @return true if the specified contact is successfully loaded.
-         *     i.e. neither {@link #isError()} nor {@link #isNotFound()}.
-         */
-        public boolean isLoaded() {
-            return mStatus == Status.LOADED;
-        }
-
-        public long getNameRawContactId() {
-            return mNameRawContactId;
-        }
-
-        public int getDisplayNameSource() {
-            return mDisplayNameSource;
-        }
-
-        public long getPhotoId() {
-            return mPhotoId;
-        }
-
-        public String getPhotoUri() {
-            return mPhotoUri;
-        }
-
-        public String getDisplayName() {
-            return mDisplayName;
-        }
-
-        public String getAltDisplayName() {
-            return mAltDisplayName;
-        }
-
-        public String getPhoneticName() {
-            return mPhoneticName;
-        }
-
-        public boolean getStarred() {
-            return mStarred;
-        }
-
-        public Integer getPresence() {
-            return mPresence;
-        }
-
-        public ArrayList<AccountType> getInvitableAccountTypes() {
-            return mInvitableAccountTypes;
-        }
-
-        public ArrayList<Entity> getEntities() {
-            return mEntities;
-        }
-
-        public ArrayList<StreamItemEntry> getStreamItems() {
-            return mStreamItems;
-        }
-
-        public LongSparseArray<DataStatus> getStatuses() {
-            return mStatuses;
-        }
-
-        public long getDirectoryId() {
-            return mDirectoryId;
-        }
-
-        public boolean isDirectoryEntry() {
-            return mDirectoryId != -1 && mDirectoryId != Directory.DEFAULT
-                    && mDirectoryId != Directory.LOCAL_INVISIBLE;
-        }
-
-        /**
-         * @return true if this is a contact (not group, etc.) with at least one
-         *         writable raw-contact, and false otherwise.
-         */
-        public boolean isWritableContact(final Context context) {
-            return getFirstWritableRawContactId(context) != -1;
-        }
-
-        /**
-         * Return the ID of the first raw-contact in the contact data that belongs to a
-         * contact-writable account, or -1 if no such entity exists.
-         */
-        public long getFirstWritableRawContactId(final Context context) {
-            // Directory entries are non-writable
-            if (isDirectoryEntry()) return -1;
-
-            // Iterate through raw-contacts; if we find a writable on, return its ID.
-            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
-            for (Entity entity : getEntities()) {
-                ContentValues values = entity.getEntityValues();
-                String type = values.getAsString(RawContacts.ACCOUNT_TYPE);
-                String dataSet = values.getAsString(RawContacts.DATA_SET);
-
-                AccountType accountType = accountTypes.getAccountType(type, dataSet);
-                if (accountType != null && accountType.areContactsWritable()) {
-                    return values.getAsLong(RawContacts._ID);
-                }
-            }
-            // No writable raw-contact was found.
-            return -1;
-        }
-
-        public int getDirectoryExportSupport() {
-            return mDirectoryExportSupport;
-        }
-
-        public String getDirectoryDisplayName() {
-            return mDirectoryDisplayName;
-        }
-
-        public String getDirectoryType() {
-            return mDirectoryType;
-        }
-
-        public String getDirectoryAccountType() {
-            return mDirectoryAccountType;
-        }
-
-        public String getDirectoryAccountName() {
-            return mDirectoryAccountName;
-        }
-
-        public byte[] getPhotoBinaryData() {
-            return mPhotoBinaryData;
-        }
-
-        public ArrayList<ContentValues> getContentValues() {
-            if (mEntities.size() != 1) {
-                throw new IllegalStateException(
-                        "Cannot extract content values from an aggregated contact");
-            }
-
-            Entity entity = mEntities.get(0);
-            ArrayList<ContentValues> result = new ArrayList<ContentValues>();
-            ArrayList<NamedContentValues> subValues = entity.getSubValues();
-            if (subValues != null) {
-                int size = subValues.size();
-                for (int i = 0; i < size; i++) {
-                    NamedContentValues pair = subValues.get(i);
-                    if (Data.CONTENT_URI.equals(pair.uri)) {
-                        result.add(pair.values);
-                    }
-                }
-            }
-
-            // If the photo was loaded using the URI, create an entry for the photo
-            // binary data.
-            if (mPhotoId == 0 && mPhotoBinaryData != null) {
-                ContentValues photo = new ContentValues();
-                photo.put(Data.MIMETYPE, Photo.CONTENT_ITEM_TYPE);
-                photo.put(Photo.PHOTO, mPhotoBinaryData);
-                result.add(photo);
-            }
-
-            return result;
-        }
-
-        public List<GroupMetaData> getGroupMetaData() {
-            return mGroups;
-        }
-
-        public boolean isSendToVoicemail() {
-            return mSendToVoicemail;
-        }
-
-        public String getCustomRingtone() {
-            return mCustomRingtone;
-        }
-
-        public boolean isUserProfile() {
-            return mIsUserProfile;
-        }
-
-        @Override
-        public String toString() {
-            return "{requested=" + mRequestedUri + ",lookupkey=" + mLookupKey +
-                    ",uri=" + mUri + ",status=" + mStatus + "}";
-        }
     }
 
     /**
@@ -726,21 +295,21 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
     }
 
     @Override
-    public Result loadInBackground() {
+    public Contact loadInBackground() {
         try {
             final ContentResolver resolver = getContext().getContentResolver();
             final Uri uriCurrentFormat = ContactLoaderUtils.ensureIsContactUri(
                     resolver, mLookupUri);
-            final Result cachedResult = sCachedResult;
+            final Contact cachedResult = sCachedResult;
             sCachedResult = null;
             // Is this the same Uri as what we had before already? In that case, reuse that result
-            final Result result;
+            final Contact result;
             final boolean resultIsCached;
             if (cachedResult != null &&
                     UriUtils.areEqual(cachedResult.getLookupUri(), mLookupUri)) {
                 // We are using a cached result from earlier. Below, we should make sure
                 // we are not doing any more network or disc accesses
-                result = new Result(mRequestedUri, cachedResult);
+                result = new Contact(mRequestedUri, cachedResult);
                 resultIsCached = true;
             } else {
                 result = loadContactEntity(resolver, uriCurrentFormat);
@@ -769,57 +338,62 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             return result;
         } catch (Exception e) {
             Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
-            return Result.forError(mRequestedUri, e);
+            return Contact.forError(mRequestedUri, e);
         }
     }
 
-    private Result loadContactEntity(ContentResolver resolver, Uri contactUri) {
+    private Contact loadContactEntity(ContentResolver resolver, Uri contactUri) {
         Uri entityUri = Uri.withAppendedPath(contactUri, Contacts.Entity.CONTENT_DIRECTORY);
         Cursor cursor = resolver.query(entityUri, ContactQuery.COLUMNS, null, null,
                 Contacts.Entity.RAW_CONTACT_ID);
         if (cursor == null) {
             Log.e(TAG, "No cursor returned in loadContactEntity");
-            return Result.forNotFound(mRequestedUri);
+            return Contact.forNotFound(mRequestedUri);
         }
 
         try {
             if (!cursor.moveToFirst()) {
                 cursor.close();
-                return Result.forNotFound(mRequestedUri);
+                return Contact.forNotFound(mRequestedUri);
             }
 
-            // Create the loaded result starting with the Contact data.
-            Result result = loadContactHeaderData(cursor, contactUri);
+            // Create the loaded contact starting with the header data.
+            Contact contact = loadContactHeaderData(cursor, contactUri);
 
             // Fill in the raw contacts, which is wrapped in an Entity and any
             // status data.  Initially, result has empty entities and statuses.
             long currentRawContactId = -1;
-            Entity entity = null;
-            ArrayList<Entity> entities = result.getEntities();
-            LongSparseArray<DataStatus> statuses = result.getStatuses();
-            for (; !cursor.isAfterLast(); cursor.moveToNext()) {
+            RawContact rawContact = null;
+            ImmutableList.Builder<RawContact> rawContactsBuilder =
+                    new ImmutableList.Builder<RawContact>();
+            ImmutableMap.Builder<Long, DataStatus> statusesBuilder =
+                    new ImmutableMap.Builder<Long, DataStatus>();
+            do {
                 long rawContactId = cursor.getLong(ContactQuery.RAW_CONTACT_ID);
                 if (rawContactId != currentRawContactId) {
                     // First time to see this raw contact id, so create a new entity, and
                     // add it to the result's entities.
                     currentRawContactId = rawContactId;
-                    entity = new android.content.Entity(loadRawContact(cursor));
-                    entities.add(entity);
+                    rawContact = new RawContact(getContext(), loadRawContactValues(cursor));
+                    rawContactsBuilder.add(rawContact);
                 }
                 if (!cursor.isNull(ContactQuery.DATA_ID)) {
-                    ContentValues data = loadData(cursor);
-                    entity.addSubValue(ContactsContract.Data.CONTENT_URI, data);
+                    ContentValues data = loadDataValues(cursor);
+                    rawContact.addDataItemValues(data);
 
                     if (!cursor.isNull(ContactQuery.PRESENCE)
                             || !cursor.isNull(ContactQuery.STATUS)) {
                         final DataStatus status = new DataStatus(cursor);
                         final long dataId = cursor.getLong(ContactQuery.DATA_ID);
-                        statuses.put(dataId, status);
+                        statusesBuilder.put(dataId, status);
                     }
                 }
-            }
+            } while (cursor.moveToNext());
 
-            return result;
+            contact.setRawContacts(rawContactsBuilder.build());
+            contact.setStatuses(statusesBuilder.build());
+
+            return contact;
         } finally {
             cursor.close();
         }
@@ -829,7 +403,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      * Looks for the photo data item in entities. If found, creates a new Bitmap instance. If
      * not found, returns null
      */
-    private void loadPhotoBinaryData(Result contactData) {
+    private void loadPhotoBinaryData(Contact contactData) {
 
         // If we have a photo URI, try loading that first.
         String photoUri = contactData.getPhotoUri();
@@ -863,17 +437,15 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             return;
         }
 
-        for (Entity entity : contactData.getEntities()) {
-            for (NamedContentValues subValue : entity.getSubValues()) {
-                final ContentValues entryValues = subValue.values;
-                final long dataId = entryValues.getAsLong(Data._ID);
-                if (dataId == photoId) {
-                    final String mimeType = entryValues.getAsString(Data.MIMETYPE);
-                    // Correct Data Id but incorrect MimeType? Don't load
-                    if (!Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                        return;
+        for (RawContact rawContact : contactData.getRawContacts()) {
+            for (DataItem dataItem : rawContact.getDataItems()) {
+                if (dataItem.getId() == photoId) {
+                    if (!(dataItem instanceof PhotoDataItem)) {
+                        break;
                     }
-                    contactData.setPhotoBinaryData(entryValues.getAsByteArray(Photo.PHOTO));
+
+                    final PhotoDataItem photo = (PhotoDataItem) dataItem;
+                    contactData.setPhotoBinaryData(photo.getPhoto());
                     break;
                 }
             }
@@ -881,10 +453,11 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
     }
 
     /**
-     * Sets the "invitable" account types to {@link Result#mInvitableAccountTypes}.
+     * Sets the "invitable" account types to {@link Contact#mInvitableAccountTypes}.
      */
-    private void loadInvitableAccountTypes(Result contactData) {
-        final ArrayList<AccountType> resultList = Lists.newArrayList();
+    private void loadInvitableAccountTypes(Contact contactData) {
+        final ImmutableList.Builder<AccountType> resultListBuilder =
+                new ImmutableList.Builder<AccountType>();
         if (!contactData.isUserProfile()) {
             Map<AccountTypeWithDataSet, AccountType> invitables =
                     AccountTypeManager.getInstance(getContext()).getUsableInvitableAccountTypes();
@@ -893,26 +466,25 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                         Maps.newHashMap(invitables);
 
                 // Remove the ones that already have a raw contact in the current contact
-                for (Entity entity : contactData.getEntities()) {
-                    final ContentValues values = entity.getEntityValues();
+                for (RawContact rawContact : contactData.getRawContacts()) {
                     final AccountTypeWithDataSet type = AccountTypeWithDataSet.get(
-                            values.getAsString(RawContacts.ACCOUNT_TYPE),
-                            values.getAsString(RawContacts.DATA_SET));
+                            rawContact.getAccountTypeString(),
+                            rawContact.getDataSet());
                     resultMap.remove(type);
                 }
 
-                resultList.addAll(resultMap.values());
+                resultListBuilder.addAll(resultMap.values());
             }
         }
 
         // Set to mInvitableAccountTypes
-        contactData.mInvitableAccountTypes = resultList;
+        contactData.setInvitableAccountTypes(resultListBuilder.build());
     }
 
     /**
      * Extracts Contact level columns from the cursor.
      */
-    private Result loadContactHeaderData(final Cursor cursor, Uri contactUri) {
+    private Contact loadContactHeaderData(final Cursor cursor, Uri contactUri) {
         final String directoryParameter =
                 contactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
         final long directoryId = directoryParameter == null
@@ -943,7 +515,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
             lookupUri = contactUri;
         }
 
-        return new Result(mRequestedUri, contactUri, lookupUri, directoryId, lookupKey,
+        return new Contact(mRequestedUri, contactUri, lookupUri, directoryId, lookupKey,
                 contactId, nameRawContactId, displayNameSource, photoId, photoUri, displayName,
                 altDisplayName, phoneticName, starred, presence, sendToVoicemail,
                 customRingtone, isUserProfile);
@@ -952,7 +524,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
     /**
      * Extracts RawContact level columns from the cursor.
      */
-    private ContentValues loadRawContact(Cursor cursor) {
+    private ContentValues loadRawContactValues(Cursor cursor) {
         ContentValues cv = new ContentValues();
 
         cv.put(RawContacts._ID, cursor.getLong(ContactQuery.RAW_CONTACT_ID));
@@ -979,7 +551,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
     /**
      * Extracts Data level columns from the cursor.
      */
-    private ContentValues loadData(Cursor cursor) {
+    private ContentValues loadDataValues(Cursor cursor) {
         ContentValues cv = new ContentValues();
 
         cv.put(Data._ID, cursor.getLong(ContactQuery.DATA_ID));
@@ -1034,7 +606,7 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
         }
     }
 
-    private void loadDirectoryMetaData(Result result) {
+    private void loadDirectoryMetaData(Contact result) {
         long directoryId = result.getDirectoryId();
 
         Cursor cursor = getContext().getContentResolver().query(
@@ -1075,14 +647,13 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      * Loads groups meta-data for all groups associated with all constituent raw contacts'
      * accounts.
      */
-    private void loadGroupMetaData(Result result) {
+    private void loadGroupMetaData(Contact result) {
         StringBuilder selection = new StringBuilder();
         ArrayList<String> selectionArgs = new ArrayList<String>();
-        for (Entity entity : result.mEntities) {
-            ContentValues values = entity.getEntityValues();
-            String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-            String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            String dataSet = values.getAsString(RawContacts.DATA_SET);
+        for (RawContact rawContact : result.getRawContacts()) {
+            final String accountName = rawContact.getAccountName();
+            final String accountType = rawContact.getAccountTypeString();
+            final String dataSet = rawContact.getDataSet();
             if (accountName != null && accountType != null) {
                 if (selection.length() != 0) {
                     selection.append(" OR ");
@@ -1101,7 +672,8 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                 selection.append(")");
             }
         }
-        final ArrayList<GroupMetaData> groupList = new ArrayList<GroupMetaData>();
+        final ImmutableList.Builder<GroupMetaData> groupListBuilder =
+                new ImmutableList.Builder<GroupMetaData>();
         final Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
                 GroupQuery.COLUMNS, selection.toString(), selectionArgs.toArray(new String[0]),
                 null);
@@ -1119,28 +691,28 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
                         ? false
                         : cursor.getInt(GroupQuery.FAVORITES) != 0;
 
-                groupList.add(new GroupMetaData(
+                groupListBuilder.add(new GroupMetaData(
                         accountName, accountType, dataSet, groupId, title, defaultGroup,
                         favorites));
             }
         } finally {
             cursor.close();
         }
-        result.mGroups = groupList;
+        result.setGroupMetaData(groupListBuilder.build());
     }
 
     /**
      * Loads all stream items and stream item photos belonging to this contact.
      */
-    private void loadStreamItems(Result result) {
-        Cursor cursor = getContext().getContentResolver().query(
+    private void loadStreamItems(Contact result) {
+        final Cursor cursor = getContext().getContentResolver().query(
                 Contacts.CONTENT_LOOKUP_URI.buildUpon()
                         .appendPath(result.getLookupKey())
                         .appendPath(Contacts.StreamItems.CONTENT_DIRECTORY).build(),
                 null, null, null, null);
-        LongSparseArray<StreamItemEntry> streamItemsById =
+        final LongSparseArray<StreamItemEntry> streamItemsById =
                 new LongSparseArray<StreamItemEntry>();
-        ArrayList<StreamItemEntry> streamItems = new ArrayList<StreamItemEntry>();
+        final ArrayList<StreamItemEntry> streamItems = new ArrayList<StreamItemEntry>();
         try {
             while (cursor.moveToNext()) {
                 StreamItemEntry streamItem = new StreamItemEntry(cursor);
@@ -1213,11 +785,13 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
 
         // Set the sorted stream items on the result.
         Collections.sort(streamItems);
-        result.mStreamItems = streamItems;
+        result.setStreamItems(new ImmutableList.Builder<StreamItemEntry>()
+                .addAll(streamItems.iterator())
+                .build());
     }
 
     @Override
-    public void deliverResult(Result result) {
+    public void deliverResult(Contact result) {
         unregisterObserver();
 
         // The creator isn't interested in any further updates
@@ -1254,17 +828,13 @@ public class ContactLoader extends AsyncTaskLoader<ContactLoader.Result> {
      */
     private void postViewNotificationToSyncAdapter() {
         Context context = getContext();
-        for (Entity entity : mContact.getEntities()) {
-            final ContentValues entityValues = entity.getEntityValues();
-            final long rawContactId = entityValues.getAsLong(RawContacts.Entity._ID);
+        for (RawContact rawContact : mContact.getRawContacts()) {
+            final long rawContactId = rawContact.getId();
             if (mNotifiedRawContactIds.contains(rawContactId)) {
                 continue; // Already notified for this raw contact.
             }
             mNotifiedRawContactIds.add(rawContactId);
-            final String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
-            final String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
-            final AccountType accountType = AccountTypeManager.getInstance(context).getAccountType(
-                    type, dataSet);
+            final AccountType accountType = rawContact.getAccountType();
             final String serviceName = accountType.getViewContactNotifyServiceClassName();
             final String servicePackageName = accountType.getViewContactNotifyServicePackageName();
             if (!TextUtils.isEmpty(serviceName) && !TextUtils.isEmpty(servicePackageName)) {

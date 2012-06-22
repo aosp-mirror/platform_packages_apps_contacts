@@ -38,7 +38,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.PhotoActionPopup;
-import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.SchedulingUtils;
 
@@ -93,7 +93,7 @@ public class PhotoSelectionActivity extends Activity {
     private Uri mPhotoUri;
 
     /** Entity delta list of the contact. */
-    private EntityDeltaList mState;
+    private RawContactDeltaList mState;
 
     /** Whether the contact is the user's profile. */
     private boolean mIsProfile;
@@ -167,7 +167,7 @@ public class PhotoSelectionActivity extends Activity {
         // Pull data out of the intent.
         final Intent intent = getIntent();
         mPhotoUri = intent.getParcelableExtra(PHOTO_URI);
-        mState = (EntityDeltaList) intent.getParcelableExtra(ENTITY_DELTA_LIST);
+        mState = (RawContactDeltaList) intent.getParcelableExtra(ENTITY_DELTA_LIST);
         mIsProfile = intent.getBooleanExtra(IS_PROFILE, false);
         mIsDirectoryContact = intent.getBooleanExtra(IS_DIRECTORY_CONTACT, false);
         mExpandPhoto = intent.getBooleanExtra(EXPAND_PHOTO, false);
@@ -268,7 +268,7 @@ public class PhotoSelectionActivity extends Activity {
      * @return An intent that can be used to invoke the photo selection activity.
      */
     public static Intent buildIntent(Context context, Uri photoUri, Bitmap photoBitmap,
-            byte[] photoBytes, Rect photoBounds, EntityDeltaList delta, boolean isProfile,
+            byte[] photoBytes, Rect photoBounds, RawContactDeltaList delta, boolean isProfile,
             boolean isDirectoryContact, boolean expandPhotoOnClick) {
         Intent intent = new Intent(context, PhotoSelectionActivity.class);
         if (photoUri != null && photoBitmap != null && photoBytes != null) {
@@ -515,7 +515,7 @@ public class PhotoSelectionActivity extends Activity {
         private final PhotoActionListener mListener;
 
         private PhotoHandler(
-                Context context, View photoView, int photoMode, EntityDeltaList state) {
+                Context context, View photoView, int photoMode, RawContactDeltaList state) {
             super(context, photoView, photoMode, PhotoSelectionActivity.this.mIsDirectoryContact,
                     state);
             mListener = new PhotoListener();
@@ -536,7 +536,7 @@ public class PhotoSelectionActivity extends Activity {
         private final class PhotoListener extends PhotoActionListener {
             @Override
             public void onPhotoSelected(Bitmap bitmap) {
-                EntityDeltaList delta = getDeltaForAttachingPhotoToContact();
+                RawContactDeltaList delta = getDeltaForAttachingPhotoToContact();
                 long rawContactId = getWritableEntityId();
                 final String croppedPath = ContactPhotoUtils.pathForCroppedPhoto(
                         PhotoSelectionActivity.this, mCurrentPhotoFile);

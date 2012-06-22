@@ -21,7 +21,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
-import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -40,10 +39,10 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.interactions.GroupCreationDialogFragment;
 import com.android.contacts.interactions.GroupCreationDialogFragment.OnGroupCreatedListener;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.internal.util.Objects;
 
 import java.util.ArrayList;
@@ -127,7 +126,7 @@ public class GroupMembershipView extends LinearLayout
         }
     }
 
-    private EntityDelta mState;
+    private RawContactDelta mState;
     private Cursor mGroupMetaData;
     private String mAccountName;
     private String mAccountType;
@@ -197,12 +196,11 @@ public class GroupMembershipView extends LinearLayout
         }
     }
 
-    public void setState(EntityDelta state) {
+    public void setState(RawContactDelta state) {
         mState = state;
-        ValuesDelta values = state.getValues();
-        mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-        mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-        mDataSet = values.getAsString(RawContacts.DATA_SET);
+        mAccountType = mState.getAccountType();
+        mAccountName = mState.getAccountName();
+        mDataSet = mState.getDataSet();
         mDefaultGroupVisibilityKnown = false;
         mCreatedNewGroup = false;
         updateView();
@@ -357,7 +355,7 @@ public class GroupMembershipView extends LinearLayout
         if (entries != null) {
             for (ValuesDelta entry : entries) {
                 if (!entry.isDelete()) {
-                    Long groupId = entry.getAsLong(GroupMembership.GROUP_ROW_ID);
+                    Long groupId = entry.getGroupRowId();
                     if (groupId != null && groupId != mFavoritesGroupId
                             && (groupId != mDefaultGroupId || mDefaultGroupVisible)
                             && !isGroupChecked(groupId)) {
@@ -372,8 +370,8 @@ public class GroupMembershipView extends LinearLayout
             GroupSelectionItem item = mAdapter.getItem(i);
             long groupId = item.getGroupId();
             if (item.isChecked() && !hasMembership(groupId)) {
-                ValuesDelta entry = EntityModifier.insertChild(mState, mKind);
-                entry.put(GroupMembership.GROUP_ROW_ID, groupId);
+                ValuesDelta entry = RawContactModifier.insertChild(mState, mKind);
+                entry.setGroupRowId(groupId);
             }
         }
 
@@ -400,7 +398,7 @@ public class GroupMembershipView extends LinearLayout
         if (entries != null) {
             for (ValuesDelta values : entries) {
                 if (!values.isDelete()) {
-                    Long id = values.getAsLong(GroupMembership.GROUP_ROW_ID);
+                    Long id = values.getGroupRowId();
                     if (id != null && id == groupId) {
                         return true;
                     }

@@ -26,8 +26,8 @@ import android.graphics.drawable.TransitionDrawable;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.android.contacts.ContactLoader.Result;
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.model.Contact;
 
 import java.util.Arrays;
 
@@ -49,7 +49,7 @@ public class ImageViewDrawableSetter {
         mTarget = target;
     }
 
-    public void setupContactPhoto(Result contactData, ImageView photoView) {
+    public void setupContactPhoto(Contact contactData, ImageView photoView) {
         setTarget(photoView);
         setCompressedImage(contactData.getPhotoBinaryData());
     }

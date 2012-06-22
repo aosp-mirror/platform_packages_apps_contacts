@@ -53,8 +53,8 @@ import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactTileAdapter;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.list.ContactTileView;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountType;
 
 /**
  * Displays the details of a group and shows a list of actions possible for the group.

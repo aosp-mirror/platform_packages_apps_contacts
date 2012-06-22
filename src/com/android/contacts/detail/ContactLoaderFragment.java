@@ -39,12 +39,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.list.ShortcutIntentBuilder;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.ContactLoader;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.internal.util.Objects;
 
@@ -84,7 +85,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         /**
          * Contact details have finished loading.
          */
-        public void onDetailsLoaded(ContactLoader.Result result);
+        public void onDetailsLoaded(Contact result);
 
         /**
          * User decided to go to Edit-Mode
@@ -107,7 +108,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
     private Uri mLookupUri;
     private ContactLoaderFragmentListener mListener;
 
-    private ContactLoader.Result mContactData;
+    private Contact mContactData;
 
     public ContactLoaderFragment() {
     }
@@ -179,10 +180,10 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
     /**
      * The listener for the detail loader
      */
-    private final LoaderManager.LoaderCallbacks<ContactLoader.Result> mDetailLoaderListener =
-            new LoaderCallbacks<ContactLoader.Result>() {
+    private final LoaderManager.LoaderCallbacks<Contact> mDetailLoaderListener =
+            new LoaderCallbacks<Contact>() {
         @Override
-        public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
+        public Loader<Contact> onCreateLoader(int id, Bundle args) {
             Uri lookupUri = args.getParcelable(LOADER_ARG_CONTACT_URI);
             return new ContactLoader(mContext, lookupUri, true /* loadGroupMetaData */,
                     true /* loadStreamItems */, true /* load invitable account types */,
@@ -190,7 +191,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         }
 
         @Override
-        public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
+        public void onLoadFinished(Loader<Contact> loader, Contact data) {
             if (!mLookupUri.equals(data.getRequestedUri())) {
                 Log.e(TAG, "Different URI: requested=" + mLookupUri + "  actual=" + data);
                 return;
@@ -219,7 +220,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         }
 
         @Override
-        public void onLoaderReset(Loader<ContactLoader.Result> loader) {}
+        public void onLoaderReset(Loader<Contact> loader) {}
     };
 
     @Override
@@ -461,14 +462,14 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
 
     /** Toggles whether to load stream items. Just for debugging */
     public void toggleLoadStreamItems() {
-        Loader<ContactLoader.Result> loaderObj = getLoaderManager().getLoader(LOADER_DETAILS);
+        Loader<Contact> loaderObj = getLoaderManager().getLoader(LOADER_DETAILS);
         ContactLoader loader = (ContactLoader) loaderObj;
         loader.setLoadStreamItems(!loader.getLoadStreamItems());
     }
 
     /** Returns whether to load stream items. Just for debugging */
     public boolean getLoadStreamItems() {
-        Loader<ContactLoader.Result> loaderObj = getLoaderManager().getLoader(LOADER_DETAILS);
+        Loader<Contact> loaderObj = getLoaderManager().getLoader(LOADER_DETAILS);
         ContactLoader loader = (ContactLoader) loaderObj;
         return loader != null && loader.getLoadStreamItems();
     }

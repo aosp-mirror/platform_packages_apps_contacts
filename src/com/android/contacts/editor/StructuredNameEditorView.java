@@ -25,9 +25,11 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.util.NameConverter;
 
 import java.util.HashMap;
@@ -45,7 +47,7 @@ import java.util.Map;
  */
 public class StructuredNameEditorView extends TextFieldsEditorView {
 
-    private ContentValues mSnapshot;
+    private StructuredNameDataItem mSnapshot;
     private boolean mChanged;
 
     public StructuredNameEditorView(Context context) {
@@ -61,11 +63,12 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
     }
 
     @Override
-    public void setValues(DataKind kind, ValuesDelta entry, EntityDelta state, boolean readOnly,
+    public void setValues(DataKind kind, ValuesDelta entry, RawContactDelta state, boolean readOnly,
             ViewIdGenerator vig) {
         super.setValues(kind, entry, state, readOnly, vig);
         if (mSnapshot == null) {
-            mSnapshot = new ContentValues(getValues().getCompleteValues());
+            mSnapshot = (StructuredNameDataItem) DataItem.createFrom(null,
+                    new ContentValues(getValues().getCompleteValues()));
             mChanged = entry.isInsert();
         } else {
             mChanged = false;
@@ -114,12 +117,12 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
 
         if (!mChanged) {
             for (String field : NameConverter.STRUCTURED_NAME_FIELDS) {
-                values.put(field, mSnapshot.getAsString(field));
+                values.put(field, mSnapshot.getContentValues().getAsString(field));
             }
             return;
         }
 
-        String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
+        String displayName = values.getDisplayName();
         Map<String, String> structuredNameMap = NameConverter.displayNameToStructuredName(
                 getContext(), displayName);
         if (!structuredNameMap.isEmpty()) {
@@ -129,17 +132,16 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
             }
         }
 
-        mSnapshot.clear();
-        mSnapshot.putAll(values.getCompleteValues());
-        mSnapshot.put(StructuredName.DISPLAY_NAME, displayName);
+        mSnapshot.getContentValues().clear();
+        mSnapshot.getContentValues().putAll(values.getCompleteValues());
+        mSnapshot.setDisplayName(displayName);
     }
 
     private void switchFromStructuredNameToFullName() {
         ValuesDelta values = getValues();
 
         if (!mChanged) {
-            values.put(StructuredName.DISPLAY_NAME,
-                    mSnapshot.getAsString(StructuredName.DISPLAY_NAME));
+            values.setDisplayName(mSnapshot.getDisplayName());
             return;
         }
 
@@ -151,10 +153,10 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
             values.put(StructuredName.DISPLAY_NAME, displayName);
         }
 
-        mSnapshot.clear();
-        mSnapshot.put(StructuredName.DISPLAY_NAME, values.getAsString(StructuredName.DISPLAY_NAME));
+        mSnapshot.getContentValues().clear();
+        mSnapshot.setDisplayName(values.getDisplayName());
         for (String field : structuredNameMap.keySet()) {
-            mSnapshot.put(field, structuredNameMap.get(field));
+            mSnapshot.getContentValues().put(field, structuredNameMap.get(field));
         }
     }
 
@@ -167,14 +169,14 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
     }
 
     private void eraseFullName(ValuesDelta values) {
-        values.putNull(StructuredName.DISPLAY_NAME);
+        values.setDisplayName(null);
     }
 
     private void rebuildFullName(ValuesDelta values) {
         Map<String, String> structuredNameMap = valuesToStructuredNameMap(values);
         String displayName = NameConverter.structuredNameToDisplayName(getContext(),
                 structuredNameMap);
-        values.put(StructuredName.DISPLAY_NAME, displayName);
+        values.setDisplayName(displayName);
     }
 
     private void eraseStructuredName(ValuesDelta values) {
@@ -184,7 +186,7 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
     }
 
     private void rebuildStructuredName(ValuesDelta values) {
-        String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
+        String displayName = values.getDisplayName();
         Map<String, String> structuredNameMap = NameConverter.displayNameToStructuredName(
                 getContext(), displayName);
         for (String field : structuredNameMap.keySet()) {
@@ -202,7 +204,7 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
     protected Parcelable onSaveInstanceState() {
         SavedState state = new SavedState(super.onSaveInstanceState());
         state.mChanged = mChanged;
-        state.mSnapshot = mSnapshot;
+        state.mSnapshot = mSnapshot.getContentValues();
         return state;
     }
 
@@ -212,7 +214,7 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         super.onRestoreInstanceState(ss.mSuperState);
 
         mChanged = ss.mChanged;
-        mSnapshot = ss.mSnapshot;
+        mSnapshot = (StructuredNameDataItem) DataItem.createFrom(null, ss.mSnapshot);
     }
 
     private static class SavedState implements Parcelable {

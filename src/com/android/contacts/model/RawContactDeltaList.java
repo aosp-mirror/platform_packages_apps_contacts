@@ -30,7 +30,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
-import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.RawContactDelta.ValuesDelta;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -38,40 +38,39 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * Container for multiple {@link EntityDelta} objects, usually when editing
+ * Container for multiple {@link RawContactDelta} objects, usually when editing
  * together as an entire aggregate. Provides convenience methods for parceling
- * and applying another {@link EntityDeltaList} over it.
+ * and applying another {@link RawContactDeltaList} over it.
  */
-public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelable {
-    private static final String TAG = "EntityDeltaList";
+public class RawContactDeltaList extends ArrayList<RawContactDelta> implements Parcelable {
+    private static final String TAG = RawContactDeltaList.class.getSimpleName();
     private static final boolean VERBOSE_LOGGING = Log.isLoggable(TAG, Log.VERBOSE);
 
     private boolean mSplitRawContacts;
     private long[] mJoinWithRawContactIds;
 
-    private EntityDeltaList() {
+    private RawContactDeltaList() {
     }
 
     /**
-     * Create an {@link EntityDeltaList} that contains the given {@link EntityDelta},
+     * Create an {@link RawContactDeltaList} that contains the given {@link RawContactDelta},
      * usually when inserting a new {@link Contacts} entry.
      */
-    public static EntityDeltaList fromSingle(EntityDelta delta) {
-        final EntityDeltaList state = new EntityDeltaList();
+    public static RawContactDeltaList fromSingle(RawContactDelta delta) {
+        final RawContactDeltaList state = new RawContactDeltaList();
         state.add(delta);
         return state;
     }
 
     /**
-     * Create an {@link EntityDeltaList} based on {@link Contacts} specified by the
+     * Create an {@link RawContactDeltaList} based on {@link Contacts} specified by the
      * given query parameters. This closes the {@link EntityIterator} when
      * finished, so it doesn't subscribe to updates.
      */
-    public static EntityDeltaList fromQuery(Uri entityUri, ContentResolver resolver,
+    public static RawContactDeltaList fromQuery(Uri entityUri, ContentResolver resolver,
             String selection, String[] selectionArgs, String sortOrder) {
-        final EntityIterator iterator = RawContacts.newEntityIterator(resolver.query(
-                entityUri, null, selection, selectionArgs,
-                sortOrder));
+        final EntityIterator iterator = RawContacts.newEntityIterator(
+                resolver.query(entityUri, null, selection, selectionArgs, sortOrder));
         try {
             return fromIterator(iterator);
         } finally {
@@ -80,36 +79,41 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
     }
 
     /**
-     * Create an {@link EntityDeltaList} that contains the entities of the Iterator as before
-     * values.
+     * Create an {@link RawContactDeltaList} that contains the entities of the Iterator as before
+     * values.  This function can be passed an iterator of Entity objects or an iterator of
+     * RawContact objects.
      */
-    public static EntityDeltaList fromIterator(Iterator<Entity> iterator) {
-        final EntityDeltaList state = new EntityDeltaList();
+    public static RawContactDeltaList fromIterator(Iterator<?> iterator) {
+        final RawContactDeltaList state = new RawContactDeltaList();
         // Perform background query to pull contact details
         while (iterator.hasNext()) {
             // Read all contacts into local deltas to prepare for edits
-            final Entity before = iterator.next();
-            final EntityDelta entity = EntityDelta.fromBefore(before);
-            state.add(entity);
+            Object nextObject = iterator.next();
+            final RawContact before = nextObject instanceof Entity
+                    ? RawContact.createFrom((Entity) nextObject)
+                    : (RawContact) nextObject;
+            final RawContactDelta rawContactDelta = RawContactDelta.fromBefore(before);
+            state.add(rawContactDelta);
         }
         return state;
     }
 
     /**
-     * Merge the "after" values from the given {@link EntityDeltaList}, discarding any
+     * Merge the "after" values from the given {@link RawContactDeltaList}, discarding any
      * previous "after" states. This is typically used when re-parenting user
-     * edits onto an updated {@link EntityDeltaList}.
+     * edits onto an updated {@link RawContactDeltaList}.
      */
-    public static EntityDeltaList mergeAfter(EntityDeltaList local, EntityDeltaList remote) {
-        if (local == null) local = new EntityDeltaList();
+    public static RawContactDeltaList mergeAfter(RawContactDeltaList local,
+            RawContactDeltaList remote) {
+        if (local == null) local = new RawContactDeltaList();
 
         // For each entity in the remote set, try matching over existing
-        for (EntityDelta remoteEntity : remote) {
+        for (RawContactDelta remoteEntity : remote) {
             final Long rawContactId = remoteEntity.getValues().getId();
 
             // Find or create local match and merge
-            final EntityDelta localEntity = local.getByRawContactId(rawContactId);
-            final EntityDelta merged = EntityDelta.mergeAfter(localEntity, remoteEntity);
+            final RawContactDelta localEntity = local.getByRawContactId(rawContactId);
+            final RawContactDelta merged = RawContactDelta.mergeAfter(localEntity, remoteEntity);
 
             if (localEntity == null && merged != null) {
                 // No local entry before, so insert
@@ -123,7 +127,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
     /**
      * Build a list of {@link ContentProviderOperation} that will transform all
      * the "before" {@link Entity} states into the modified state which all
-     * {@link EntityDelta} objects represent. This method specifically creates
+     * {@link RawContactDelta} objects represent. This method specifically creates
      * any {@link AggregationExceptions} rules needed to groups edits together.
      */
     public ArrayList<ContentProviderOperation> buildDiff() {
@@ -136,7 +140,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         int firstInsertRow = -1;
 
         // First pass enforces versions remain consistent
-        for (EntityDelta delta : this) {
+        for (RawContactDelta delta : this) {
             delta.buildAssert(diff);
         }
 
@@ -146,7 +150,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         int rawContactIndex = 0;
 
         // Second pass builds actual operations
-        for (EntityDelta delta : this) {
+        for (RawContactDelta delta : this) {
             final int firstBatch = diff.size();
             final boolean isInsert = delta.isContactInsert();
             backRefs[rawContactIndex++] = isInsert ? firstBatch : -1;
@@ -281,12 +285,12 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
     }
 
     /**
-     * Search all contained {@link EntityDelta} for the first one with an
+     * Search all contained {@link RawContactDelta} for the first one with an
      * existing {@link RawContacts#_ID} value. Usually used when creating
      * {@link AggregationExceptions} during an update.
      */
     public long findRawContactId() {
-        for (EntityDelta delta : this) {
+        for (RawContactDelta delta : this) {
             final Long rawContactId = delta.getValues().getAsLong(RawContacts._ID);
             if (rawContactId != null && rawContactId >= 0) {
                 return rawContactId;
@@ -296,11 +300,11 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
     }
 
     /**
-     * Find {@link RawContacts#_ID} of the requested {@link EntityDelta}.
+     * Find {@link RawContacts#_ID} of the requested {@link RawContactDelta}.
      */
     public Long getRawContactId(int index) {
         if (index >= 0 && index < this.size()) {
-            final EntityDelta delta = this.get(index);
+            final RawContactDelta delta = this.get(index);
             final ValuesDelta values = delta.getValues();
             if (values.isVisible()) {
                 return values.getAsLong(RawContacts._ID);
@@ -310,9 +314,9 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
     }
 
     /**
-     * Find the raw-contact (an {@link EntityDelta}) with the specified ID.
+     * Find the raw-contact (an {@link RawContactDelta}) with the specified ID.
      */
-    public EntityDelta getByRawContactId(Long rawContactId) {
+    public RawContactDelta getByRawContactId(Long rawContactId) {
         final int index = this.indexOfRawContactId(rawContactId);
         return (index == -1) ? null : this.get(index);
     }
@@ -332,19 +336,21 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         return -1;
     }
 
-    /** Return the index of the first EntityDelta corresponding to a writable raw-contact, or -1. */
+    /**
+     * Return the index of the first RawContactDelta corresponding to a writable raw-contact, or -1.
+     * */
     public int indexOfFirstWritableRawContact(Context context) {
         // Find the first writable entity.
         int entityIndex = 0;
-        for (EntityDelta delta : this) {
+        for (RawContactDelta delta : this) {
             if (delta.getRawContactAccountType(context).areContactsWritable()) return entityIndex;
             entityIndex++;
         }
         return -1;
     }
 
-    /**  Return the first EntityDelta corresponding to a writable raw-contact, or null. */
-    public EntityDelta getFirstWritableRawContact(Context context) {
+    /**  Return the first RawContactDelta corresponding to a writable raw-contact, or null. */
+    public RawContactDelta getFirstWritableRawContact(Context context) {
         final int index = indexOfFirstWritableRawContact(context);
         return (index == -1) ? null : get(index);
     }
@@ -352,7 +358,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
     public ValuesDelta getSuperPrimaryEntry(final String mimeType) {
         ValuesDelta primary = null;
         ValuesDelta randomEntry = null;
-        for (EntityDelta delta : this) {
+        for (RawContactDelta delta : this) {
             final ArrayList<ValuesDelta> mimeEntries = delta.getMimeEntries(mimeType);
             if (mimeEntries == null) return null;
 
@@ -404,7 +410,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
     public void writeToParcel(Parcel dest, int flags) {
         final int size = this.size();
         dest.writeInt(size);
-        for (EntityDelta delta : this) {
+        for (RawContactDelta delta : this) {
             dest.writeParcelable(delta, flags);
         }
         dest.writeLongArray(mJoinWithRawContactIds);
@@ -416,24 +422,24 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         final ClassLoader loader = getClass().getClassLoader();
         final int size = source.readInt();
         for (int i = 0; i < size; i++) {
-            this.add(source.<EntityDelta> readParcelable(loader));
+            this.add(source.<RawContactDelta> readParcelable(loader));
         }
         mJoinWithRawContactIds = source.createLongArray();
         mSplitRawContacts = source.readInt() != 0;
     }
 
-    public static final Parcelable.Creator<EntityDeltaList> CREATOR =
-            new Parcelable.Creator<EntityDeltaList>() {
+    public static final Parcelable.Creator<RawContactDeltaList> CREATOR =
+            new Parcelable.Creator<RawContactDeltaList>() {
         @Override
-        public EntityDeltaList createFromParcel(Parcel in) {
-            final EntityDeltaList state = new EntityDeltaList();
+        public RawContactDeltaList createFromParcel(Parcel in) {
+            final RawContactDeltaList state = new RawContactDeltaList();
             state.readFromParcel(in);
             return state;
         }
 
         @Override
-        public EntityDeltaList[] newArray(int size) {
-            return new EntityDeltaList[size];
+        public RawContactDeltaList[] newArray(int size) {
+            return new RawContactDeltaList[size];
         }
     };
 
