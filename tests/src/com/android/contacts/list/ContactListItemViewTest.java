@@ -36,7 +36,7 @@ import com.android.contacts.util.IntegrationTestUtils;
 @LargeTest
 public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<PeopleActivity> {
     /** The HTML code used to mark the start of the highlighted part. */
-    private static final String START = "<font color =\"#99cc00\">";
+    private static final String START = "<font color =\"#33b5e5\">";
     /** The HTML code used to mark the end of the highlighted part. */
     private static final String END = "</font>";
 
