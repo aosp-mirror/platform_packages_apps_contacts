@@ -185,7 +185,7 @@
     <string name="type_missed" msgid="2720502601640509542">"Llamada perdida"</string>
     <string name="type_voicemail" msgid="5153139450668549908">"Buzón de voz"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"Llamadas entrantes"</string>
-    <string name="callBack" msgid="5498224409038809224">"Volver a llamar"</string>
+    <string name="callBack" msgid="5498224409038809224">"Llamar"</string>
     <string name="callAgain" msgid="3197312117049874778">"Volver a llamar"</string>
     <string name="returnCall" msgid="8171961914203617813">"Devolver llamada"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min. y <xliff:g id="SECONDS">%s</xliff:g> seg."</string>
