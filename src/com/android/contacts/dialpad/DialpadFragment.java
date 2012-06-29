@@ -194,9 +194,12 @@ public class DialpadFragment extends Fragment
     /**
      * This field is set to true while processing an incoming DIAL intent, in order to make sure
      * that SpecialCharSequenceMgr actions can be triggered by user input but *not* by a
-     * tel: URI passed by some other app
+     * tel: URI passed by some other app. It will be cleared once the user manually interected
+     * with the dialer.
      */
-    private boolean mSkipSpecialCharSequenceHandling;
+    private boolean mDigitsFilledByIntent;
+
+    private static final String PREF_DIGITS_FILLED_BY_INTENT = "pref_digits_filled_by_intent";
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -221,7 +224,7 @@ public class DialpadFragment extends Fragment
         // When DTMF dialpad buttons are being pressed, we delay SpecialCharSequencMgr sequence,
         // since some of SpecialCharSequenceMgr's behavior is too abrupt for the "touch-down"
         // behavior.
-        if (!mSkipSpecialCharSequenceHandling &&
+        if (!mDigitsFilledByIntent &&
                 SpecialCharSequenceMgr.handleChars(getActivity(), input.toString(), mDigits)) {
             // A special sequence was entered, clear the digits
             mDigits.getText().clear();
@@ -251,6 +254,10 @@ public class DialpadFragment extends Fragment
 
         mProhibitedPhoneNumberRegexp = getResources().getString(
                 R.string.config_prohibited_phone_number_regexp);
+
+        if (state != null) {
+            mDigitsFilledByIntent = state.getBoolean(PREF_DIGITS_FILLED_BY_INTENT);
+        }
     }
 
     @Override
@@ -338,6 +345,8 @@ public class DialpadFragment extends Fragment
                 if (Constants.SCHEME_TEL.equals(uri.getScheme())) {
                     // Put the requested number into the input area
                     String data = uri.getSchemeSpecificPart();
+                    // Remember it is filled via Intent.
+                    mDigitsFilledByIntent = true;
                     setFormattedDigits(data, null);
                     return true;
                 } else {
@@ -351,6 +360,8 @@ public class DialpadFragment extends Fragment
                         if (c != null) {
                             try {
                                 if (c.moveToFirst()) {
+                                    // Remember it is filled via Intent.
+                                    mDigitsFilledByIntent = true;
                                     // Put the number into the input area
                                     setFormattedDigits(c.getString(0), c.getString(1));
                                     return true;
@@ -446,27 +457,18 @@ public class DialpadFragment extends Fragment
 
     /**
      * Sets formatted digits to digits field.
-     *
-     * Watch out: this method assumes it is used only for loading the digits widget based on data
-     * in a DIAL or VIEW intent, and *not* ever called for digits typed by the user.
      */
     private void setFormattedDigits(String data, String normalizedNumber) {
-        try {
-            mSkipSpecialCharSequenceHandling = true;
-
-            // strip the non-dialable numbers out of the data string.
-            String dialString = PhoneNumberUtils.extractNetworkPortion(data);
-            dialString =
-                    PhoneNumberUtils.formatNumber(dialString, normalizedNumber, mCurrentCountryIso);
-            if (!TextUtils.isEmpty(dialString)) {
-                Editable digits = mDigits.getText();
-                digits.replace(0, digits.length(), dialString);
-                // for some reason this isn't getting called in the digits.replace call above..
-                // but in any case, this will make sure the background drawable looks right
-                afterTextChanged(digits);
-            }
-        } finally {
-            mSkipSpecialCharSequenceHandling = false;
+        // strip the non-dialable numbers out of the data string.
+        String dialString = PhoneNumberUtils.extractNetworkPortion(data);
+        dialString =
+                PhoneNumberUtils.formatNumber(dialString, normalizedNumber, mCurrentCountryIso);
+        if (!TextUtils.isEmpty(dialString)) {
+            Editable digits = mDigits.getText();
+            digits.replace(0, digits.length(), dialString);
+            // for some reason this isn't getting called in the digits.replace call above..
+            // but in any case, this will make sure the background drawable looks right
+            afterTextChanged(digits);
         }
     }
 
@@ -611,6 +613,12 @@ public class DialpadFragment extends Fragment
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(PREF_DIGITS_FILLED_BY_INTENT, mDigitsFilledByIntent);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
@@ -708,6 +716,7 @@ public class DialpadFragment extends Fragment
     }
 
     private void keyPressed(int keyCode) {
+        mDigitsFilledByIntent = false;
         switch (keyCode) {
             case KeyEvent.KEYCODE_1:
                 playTone(ToneGenerator.TONE_DTMF_1, TONE_LENGTH_INFINITE);
@@ -858,6 +867,7 @@ public class DialpadFragment extends Fragment
 
     @Override
     public void onClick(View view) {
+        mDigitsFilledByIntent = false;
         switch (view.getId()) {
             case R.id.deleteButton: {
                 keyPressed(KeyEvent.KEYCODE_DEL);
@@ -896,6 +906,7 @@ public class DialpadFragment extends Fragment
 
     @Override
     public boolean onLongClick(View view) {
+        mDigitsFilledByIntent = false;
         final Editable digits = mDigits.getText();
         final int id = view.getId();
         switch (id) {
@@ -1058,6 +1069,7 @@ public class DialpadFragment extends Fragment
      * case described above).
      */
     public void dialButtonPressed() {
+        mDigitsFilledByIntent = false;
         if (isDigitsEmpty()) { // No number entered.
             handleDialButtonClickWithEmptyDigits();
         } else {
