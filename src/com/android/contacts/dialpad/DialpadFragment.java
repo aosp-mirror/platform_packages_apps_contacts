@@ -194,8 +194,7 @@ public class DialpadFragment extends Fragment
     /**
      * This field is set to true while processing an incoming DIAL intent, in order to make sure
      * that SpecialCharSequenceMgr actions can be triggered by user input but *not* by a
-     * tel: URI passed by some other app. It will be cleared once the user manually interected
-     * with the dialer.
+     * tel: URI passed by some other app.  It will be set to false when all digits are cleared.
      */
     private boolean mDigitsFilledByIntent;
 
@@ -231,6 +230,7 @@ public class DialpadFragment extends Fragment
         }
 
         if (isDigitsEmpty()) {
+            mDigitsFilledByIntent = false;
             mDigits.setCursorVisible(false);
         }
 
@@ -716,7 +716,6 @@ public class DialpadFragment extends Fragment
     }
 
     private void keyPressed(int keyCode) {
-        mDigitsFilledByIntent = false;
         switch (keyCode) {
             case KeyEvent.KEYCODE_1:
                 playTone(ToneGenerator.TONE_DTMF_1, TONE_LENGTH_INFINITE);
@@ -867,7 +866,6 @@ public class DialpadFragment extends Fragment
 
     @Override
     public void onClick(View view) {
-        mDigitsFilledByIntent = false;
         switch (view.getId()) {
             case R.id.deleteButton: {
                 keyPressed(KeyEvent.KEYCODE_DEL);
@@ -906,7 +904,6 @@ public class DialpadFragment extends Fragment
 
     @Override
     public boolean onLongClick(View view) {
-        mDigitsFilledByIntent = false;
         final Editable digits = mDigits.getText();
         final int id = view.getId();
         switch (id) {
@@ -1069,7 +1066,6 @@ public class DialpadFragment extends Fragment
      * case described above).
      */
     public void dialButtonPressed() {
-        mDigitsFilledByIntent = false;
         if (isDigitsEmpty()) { // No number entered.
             handleDialButtonClickWithEmptyDigits();
         } else {
