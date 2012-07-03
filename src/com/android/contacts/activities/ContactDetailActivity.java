@@ -20,6 +20,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -259,11 +260,14 @@ public class ContactDetailActivity extends ContactsActivity {
         actionBar.setTitle(displayName);
         actionBar.setSubtitle(company);
 
-        if (!TextUtils.isEmpty(displayName) &&
-                AccessibilityManager.getInstance(this).isEnabled()) {
-            View decorView = getWindow().getDecorView();
-            decorView.setContentDescription(displayName);
-            decorView.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+        if (!TextUtils.isEmpty(displayName)) {
+            AccessibilityManager accessibilityManager =
+                    (AccessibilityManager) this.getSystemService(Context.ACCESSIBILITY_SERVICE);
+            if (accessibilityManager.isEnabled()) {
+                View decorView = getWindow().getDecorView();
+                decorView.setContentDescription(displayName);
+                decorView.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+            }
         }
     }
 
