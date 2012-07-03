@@ -67,9 +67,6 @@ import com.android.contacts.format.PrefixHighlighter;
 public class ContactListItemView extends ViewGroup
         implements SelectionBoundsAdjuster {
 
-    private static final int QUICK_CONTACT_BADGE_STYLE =
-            com.android.internal.R.attr.quickContactBadgeStyleWindowMedium;
-
     // Style values for layout and appearance
     private final int mPreferredHeight;
     private final int mGapBetweenImageAndText;
@@ -609,23 +606,14 @@ public class ContactListItemView extends ViewGroup
      */
     private void ensurePhotoViewSize() {
         if (!mPhotoViewWidthAndHeightAreReady) {
-            if (mQuickContactEnabled) {
-                TypedArray a = mContext.obtainStyledAttributes(null,
-                        com.android.internal.R.styleable.ViewGroup_Layout,
-                        QUICK_CONTACT_BADGE_STYLE, 0);
-                mPhotoViewWidth = a.getLayoutDimension(
-                        android.R.styleable.ViewGroup_Layout_layout_width,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-                mPhotoViewHeight = a.getLayoutDimension(
-                        android.R.styleable.ViewGroup_Layout_layout_height,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-                a.recycle();
-            } else if (mPhotoView != null) {
-                mPhotoViewWidth = mPhotoViewHeight = getDefaultPhotoViewSize();
-            } else {
-                final int defaultPhotoViewSize = getDefaultPhotoViewSize();
-                mPhotoViewWidth = mKeepHorizontalPaddingForPhotoView ? defaultPhotoViewSize : 0;
-                mPhotoViewHeight = mKeepVerticalPaddingForPhotoView ? defaultPhotoViewSize : 0;
+            mPhotoViewWidth = mPhotoViewHeight = getDefaultPhotoViewSize();
+            if (!mQuickContactEnabled && mPhotoView == null) {
+                if (!mKeepHorizontalPaddingForPhotoView) {
+                    mPhotoViewWidth = 0;
+                }
+                if (!mKeepVerticalPaddingForPhotoView) {
+                    mPhotoViewHeight = 0;
+                }
             }
 
             mPhotoViewWidthAndHeightAreReady = true;
@@ -638,6 +626,18 @@ public class ContactListItemView extends ViewGroup
 
     protected int getDefaultPhotoViewSize() {
         return mDefaultPhotoViewSize;
+    }
+
+    /**
+     * Gets a LayoutParam that corresponds to the default photo size.
+     *
+     * @return A new LayoutParam.
+     */
+    private LayoutParams getDefaultPhotoLayoutParams() {
+        LayoutParams params = generateDefaultLayoutParams();
+        params.width = getDefaultPhotoViewSize();
+        params.height = params.width;
+        return params;
     }
 
     @Override
@@ -723,7 +723,8 @@ public class ContactListItemView extends ViewGroup
             throw new IllegalStateException("QuickContact is disabled for this view");
         }
         if (mQuickContact == null) {
-            mQuickContact = new QuickContactBadge(mContext, null, QUICK_CONTACT_BADGE_STYLE);
+            mQuickContact = new QuickContactBadge(mContext);
+            mQuickContact.setLayoutParams(getDefaultPhotoLayoutParams());
             if (mNameTextView != null) {
                 mQuickContact.setContentDescription(mContext.getString(
                         R.string.description_quick_contact_for, mNameTextView.getText()));
@@ -740,11 +741,8 @@ public class ContactListItemView extends ViewGroup
      */
     public ImageView getPhotoView() {
         if (mPhotoView == null) {
-            if (mQuickContactEnabled) {
-                mPhotoView = new ImageView(mContext, null, QUICK_CONTACT_BADGE_STYLE);
-            } else {
-                mPhotoView = new ImageView(mContext);
-            }
+            mPhotoView = new ImageView(mContext);
+            mPhotoView.setLayoutParams(getDefaultPhotoLayoutParams());
             // Quick contact style used above will set a background - remove it
             mPhotoView.setBackground(null);
             addView(mPhotoView);
