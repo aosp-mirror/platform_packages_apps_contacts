@@ -744,7 +744,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                     "'android.R.id.list'");
         }
 
-        View emptyView = mView.findViewById(com.android.internal.R.id.empty);
+        View emptyView = mView.findViewById(android.R.id.empty);
         if (emptyView != null) {
             mListView.setEmptyView(emptyView);
             if (emptyView instanceof ContactListEmptyView) {
