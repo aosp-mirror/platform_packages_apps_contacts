@@ -39,10 +39,9 @@ import com.android.contacts.R;
 import com.android.contacts.util.ExpirableCache;
 import com.android.contacts.util.UriUtils;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Objects;
 
 import java.util.LinkedList;
-
-import libcore.util.Objects;
 
 /**
  * Adapter class to fill in data for the Call Log.
