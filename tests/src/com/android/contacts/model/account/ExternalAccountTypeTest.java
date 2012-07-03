@@ -31,16 +31,11 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.BaseAccountType;
-import com.android.contacts.model.account.ExternalAccountType;
-import com.android.contacts.model.account.FallbackAccountType;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.tests.R;
+import com.google.common.base.Objects;
 
 import java.util.List;
-
-import libcore.util.Objects;
 
 /**
  * Test case for {@link ExternalAccountType}.
