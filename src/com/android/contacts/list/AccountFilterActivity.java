@@ -69,7 +69,7 @@ public class AccountFilterActivity extends ContactsActivity
         super.onCreate(icicle);
         setContentView(R.layout.contact_list_filter);
 
-        mListView = (ListView) findViewById(com.android.internal.R.id.list);
+        mListView = (ListView) findViewById(android.R.id.list);
         mListView.setOnItemClickListener(this);
 
         ActionBar actionBar = getActionBar();

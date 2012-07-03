@@ -92,7 +92,7 @@ public class CustomContactListFilterActivity extends ContactsActivity
         super.onCreate(icicle);
         setContentView(R.layout.contact_list_filter_custom);
 
-        mList = (ExpandableListView) findViewById(com.android.internal.R.id.list);
+        mList = (ExpandableListView) findViewById(android.R.id.list);
         mList.setOnChildClickListener(this);
         mList.setHeaderDividersEnabled(true);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
