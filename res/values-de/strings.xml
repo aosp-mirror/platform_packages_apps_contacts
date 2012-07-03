@@ -281,7 +281,7 @@
     <string name="call_disambig_title" msgid="4392886850104795739">"Nummer auswählen"</string>
     <string name="call_settings" msgid="7666474782093693667">"Einstellungen"</string>
     <string name="sms_disambig_title" msgid="5846266399240630846">"Nummer auswählen"</string>
-    <string name="make_primary" msgid="5829291915305113983">"Diese Auswahl speichern"</string>
+    <string name="make_primary" msgid="5829291915305113983">"Auswahl speichern"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Für diese Aktion wurde keine App gefunden."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Kein Name)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konten"</string>
