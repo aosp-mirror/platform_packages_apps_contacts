@@ -38,6 +38,9 @@ import com.android.contacts.util.Constants;
  * be used as a phone. This allows the user to see the phone number
  */
 public class NonPhoneActivity extends ContactsActivity {
+
+    private static final String PHONE_NUMBER_KEY = "PHONE_NUMBER";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +51,9 @@ public class NonPhoneActivity extends ContactsActivity {
         }
 
         final NonPhoneDialogFragment fragment = new NonPhoneDialogFragment();
-        fragment.setArguments(Bundle.forPair("PHONE_NUMBER", phoneNumber));
+        Bundle bundle = new Bundle();
+        bundle.putString(PHONE_NUMBER_KEY, phoneNumber);
+        fragment.setArguments(bundle);
         getFragmentManager().beginTransaction().add(fragment, "Fragment").commitAllowingStateLoss();
     }
 
@@ -89,7 +94,7 @@ public class NonPhoneActivity extends ContactsActivity {
         }
 
         private String getArgumentPhoneNumber() {
-            return getArguments().getPairValue();
+            return getArguments().getString(PHONE_NUMBER_KEY);
         }
 
         @Override
