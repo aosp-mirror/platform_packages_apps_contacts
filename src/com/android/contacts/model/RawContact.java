@@ -213,6 +213,7 @@ public class RawContact {
                 } else {
                     values.put(RawContacts.DATA_SET, dataSet);
                 }
+                return;
             }
         }
         throw new IllegalArgumentException(
