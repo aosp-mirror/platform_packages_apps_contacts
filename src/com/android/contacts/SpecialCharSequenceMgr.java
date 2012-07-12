@@ -16,6 +16,10 @@
 
 package com.android.contacts;
 
+import com.android.internal.telephony.ITelephony;
+import com.android.internal.telephony.TelephonyCapabilities;
+import com.android.internal.telephony.TelephonyIntents;
+
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.app.ProgressDialog;
@@ -29,16 +33,12 @@ import android.net.Uri;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.provider.Telephony.Intents;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.android.internal.telephony.ITelephony;
-import com.android.internal.telephony.TelephonyCapabilities;
 
 /**
  * Helper class to listen for some magic character sequences
@@ -131,7 +131,7 @@ public class SpecialCharSequenceMgr {
         // Secret codes are in the form *#*#<code>#*#*
         int len = input.length();
         if (len > 8 && input.startsWith("*#*#") && input.endsWith("#*#*")) {
-            Intent intent = new Intent(Intents.SECRET_CODE_ACTION,
+            Intent intent = new Intent(TelephonyIntents.SECRET_CODE_ACTION,
                     Uri.parse("android_secret_code://" + input.substring(4, len - 4)));
             context.sendBroadcast(intent);
             return true;
