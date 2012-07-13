@@ -74,7 +74,7 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"取消"</string>
     <string name="menu_discard" msgid="6456087569315685632">"舍弃"</string>
     <string name="label_notes" msgid="8337354953278341042">"备注"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"互联网通话"</string>
+    <string name="label_sip_address" msgid="124073911714324974">"互联网电话"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"职位"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"该联系人不存在。"</string>
@@ -82,8 +82,8 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"新建联系人"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"创建新联系人"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"电话"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"发送电子邮件"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"即时消息"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"电子邮件"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"即时聊天工具"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"地址"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"组织"</item>
@@ -297,7 +297,7 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"昵称"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"组织"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"网站"</string>
-    <string name="eventLabelsGroup" msgid="3695433812142818803">"活动"</string>
+    <string name="eventLabelsGroup" msgid="3695433812142818803">"重要日子"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"关系"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"群组"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"在帐户下创建联系人"</string>
@@ -385,15 +385,15 @@
     <string name="full_name" msgid="6602579550613988977">"姓名"</string>
     <string name="name_given" msgid="1687286314106019813">"名字"</string>
     <string name="name_family" msgid="3416695586119999058">"姓氏"</string>
-    <string name="name_prefix" msgid="59756378548779822">"名称前缀"</string>
+    <string name="name_prefix" msgid="59756378548779822">"姓名前缀"</string>
     <string name="name_middle" msgid="8467433655992690326">"中间名"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"名称后缀"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"姓名后缀"</string>
     <string name="name_phonetic_given" msgid="6853570431394449191">"名字拼音"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"中间名拼音"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"姓氏拼音"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
-    <string name="connections" msgid="8098440723172028350">"联系"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"加强联系"</string>
+    <string name="connections" msgid="8098440723172028350">"社交网络"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"添加社交网络"</string>
     <string name="recent" msgid="2659189233141493004">"最新"</string>
     <string name="recent_updates" msgid="4267258535615860710">"最新动态"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人"</string>

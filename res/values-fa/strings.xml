@@ -67,9 +67,9 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"تنظیم آهنگ زنگ"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"همه تماس‌ها به پست صوتی"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"شما نمی‌توانید مخاطبین را از حساب‌های فقط خواندنی حذف کنید اما می‌توانید آن‌ها را در لیست‌های مخاطبین خود پنهان کنید."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"این مخاطب دارای اطلاعاتی از چند حساب است. اطلاعات حساب های فقط خواندنی در لیست های مخاطبین پنهان می شوند اما حذف نمی شوند."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"حذف این مخاطب اطلاعات را از حساب های متعدد حذف می کند."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"این مخاطب حذف می شود."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"این مخاطب دارای اطلاعاتی از چند حساب است. اطلاعات حساب‌های فقط خواندنی در لیست های مخاطبین پنهان می‌شوند اما حذف نمی‌شوند."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"حذف این مخاطب اطلاعات را از حساب‌های متعدد حذف می‌کند."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"این مخاطب حذف می‌شود."</string>
     <string name="menu_done" msgid="796017761764190697">"انجام شد"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"لغو"</string>
     <string name="menu_discard" msgid="6456087569315685632">"صرفنظر"</string>
@@ -164,7 +164,7 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"شماره گیری برای افزودن یک تماس"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"در حال بارگیری سیم کارت..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"مخاطبین سیم کارت"</string>
-    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب را اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"</string>
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب را اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می‌کشد.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"شما مخاطبی برای نمایش ندارید."</string>
     <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را لمس کرده و سپس این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب‌ها"</b></font>" برای افزودن یا تنظیم یک حساب با مخاطبینی که می‌توانید با رایانه لوحی همگام‌سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" برای ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از سیم کارت یا کارت SD شما"\n</li></string>
     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را لمس کرده و سپس این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب‌ها"</b></font>" برای افزودن یا تنظیم یک حساب با مخاطبینی که می‌توانید با گوشی همگام‌سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" برای ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از سیم کارت یا کارت SD شما"\n</li></string>
@@ -174,7 +174,7 @@
     <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را لمس کرده و سپس این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب‌ها"</b></font>" برای افزودن یا تنظیم یک حساب با مخاطبینی که می‌توانید با گوشی همگام‌سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" برای ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD شما"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کرده‌اید، همگام‌سازی مخاطبین چند دقیقه طول می‌کشد.)"\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را لمس کرده و سپس این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب‌ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می‌توانید در رایانه لوحی همگام‌سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه‌های نمایش"</b></font>" برای تغییر مخاطبینی که قابل مشاهده هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" برای ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD شما"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کرده‌اید، همگام‌سازی مخاطبین چند دقیقه طول می‌کشد.)"\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را لمس کرده و سپس این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب‌ها"</b></font>" برای افزودن یا تنظیم یک حساب با مخاطبینی که می‌توانید با گوشی همگام‌سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه‌های نمایش"</b></font>" برای تغییر مخاطبینی که قابل مشاهده هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" برای ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD شما"\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"شما هیچ مورد دلخواهی ندارید."\n\n"برای افزودن یک مخاطب به لیست موارد دلخواه خود: "\n\n"        "<li>"برگه "<b>"مخاطبین"</b>\n</li>" را لمس کنید"\n<li>"مخاطبی را که می خواهید به لیست موارد دلخواه خود اضافه کنید لمس کنید"\n</li>" "\n<li>"ستاره واقع در کنار نام مخاطب را لمس کنید"\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"شما هیچ مورد دلخواهی ندارید."\n\n"برای افزودن یک مخاطب به لیست موارد دلخواه خود: "\n\n"        "<li>"برگه "<b>"مخاطبین"</b>\n</li>" را لمس کنید"\n<li>"مخاطبی را که می‌خواهید به لیست موارد دلخواه خود اضافه کنید لمس کنید"\n</li>" "\n<li>"ستاره واقع در کنار نام مخاطب را لمس کنید"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"استفاده از صفحه کلید لمسی"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"برگشت به تماس در حال انجام"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"افزودن تماس"</string>
@@ -184,7 +184,7 @@
     <string name="type_outgoing" msgid="343108709599392641">"تماس خروجی"</string>
     <string name="type_missed" msgid="2720502601640509542">"تماس بی پاسخ"</string>
     <string name="type_voicemail" msgid="5153139450668549908">"پست صوتی"</string>
-    <string name="actionIncomingCall" msgid="6028930669817038600">"تماس های ورودی"</string>
+    <string name="actionIncomingCall" msgid="6028930669817038600">"تماس‌های ورودی"</string>
     <string name="callBack" msgid="5498224409038809224">"بازگرداندن تماس"</string>
     <string name="callAgain" msgid="3197312117049874778">"تماس مجدد"</string>
     <string name="returnCall" msgid="8171961914203617813">"برگشت تماس"</string>
@@ -223,7 +223,7 @@
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"وارد کردن چند فایل کارت ویزیت"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"وارد کردن همه فایل های کارت ویزیت"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"جستجوی داده کارت ویزیت در دستگاه ذخیره..."</string>
-    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"درحال جستجوی داده‌های کارت ویزیت در کارت SD..."</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"در حال جستجوی داده‌های کارت ویزیت در کارت SD..."</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"دستگاه ذخیره نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"کارت SD نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"خطای ورودی/خروجی"</string>
@@ -245,10 +245,10 @@
     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"خواندن داده کارت ویزیت لغو شد"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"وارد کردن کارت ویزیت <xliff:g id="FILENAME">%s</xliff:g> پایان یافت"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"واردکردن <xliff:g id="FILENAME">%s</xliff:g> لغو شد"</string>
-    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> به زودی وارد می شود."</string>
-    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"فایل پس از مدت کوتاهی وارد می شود."</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> به زودی وارد می‌شود."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"فایل پس از مدت کوتاهی وارد می‌شود."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"درخواست وارد کردن کارت ویزیت رد شد. لطفاً بعداً امتحان کنید."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> به زودی صادر می شود."</string>
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> به زودی صادر می‌شود."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"درخواست صدور کارت ویزیت رد شد. لطفاً بعداً امتحان کنید."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"مخاطب"</string>
     <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
@@ -275,8 +275,8 @@
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"وارد کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"نمی‌توان وارد کردن/ صادر کردن کارت ویزیت را لغو کرد"</string>
-    <string name="search_settings_description" msgid="2675223022992445813">"نام های مخاطبین شما"</string>
-    <string name="add_2sec_pause" msgid="9214012315201040129">"افزودن یک مکث 2 ثانیه ای"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"نام‌های مخاطبین شما"</string>
+    <string name="add_2sec_pause" msgid="9214012315201040129">"افزودن یک مکث ۲ ثانیه ای"</string>
     <string name="add_wait" msgid="3360818652790319634">"افزودن انتظار"</string>
     <string name="call_disambig_title" msgid="4392886850104795739">"انتخاب شماره"</string>
     <string name="call_settings" msgid="7666474782093693667">"تنظیمات"</string>
@@ -373,7 +373,7 @@
     <string name="chat_jabber" msgid="7561444230307829609">"گپ با استفاده از Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"گپ"</string>
     <string name="audio_chat" msgid="2535716629358298691">"گپ صوتی"</string>
-    <string name="video_chat" msgid="1872255818640336072">"گپ ویدیویی"</string>
+    <string name="video_chat" msgid="1872255818640336072">"گپ ویدئویی"</string>
     <string name="postal_address" msgid="8765560217149624536">"آدرس"</string>
     <string name="postal_street" msgid="8133143961580058972">"خیابان"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"صندوق پستی"</string>
@@ -406,16 +406,16 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"مرتب سازی لیست بر اساس"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"نام"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"نام خانوادگی"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"مشاهده نام های مخاطب بعنوان"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"مشاهده نام‌های مخاطب به‌عنوان"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"ابتدا نام"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"ابتدا نام خانوادگی"</string>
     <string name="take_photo" msgid="7496128293167402354">"عکسبرداری"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"گرفتن عکس جدید"</string>
     <string name="pick_photo" msgid="3746334626214970837">"انتخاب عکس از گالری"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"انتخاب عکس جدید از گالری"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"لیست مخاطبین در حال به روزرسانی برای منعکس کردن تغییرات زبان است."</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"لیست مخاطبین در حال به روزرسانی است."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"مخاطبین در حال ارتقا هستند. "\n\n"فرآیند ارتقا به تقریباً <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> مگابایت از حافظه داخلی نیاز دارد. "\n\n"یکی از گزینه‌های زیر را انتخاب کنید:"</string>
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"لیست مخاطبین در حال به‌روزرسانی برای منعکس کردن تغییرات زبان است."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"لیست مخاطبین در حال به‌روزرسانی است."</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"مخاطبین در حال ارتقا هستند. "\n\n"فرآیند ارتقا به تقریباً <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> مگابایت از حافظهٔ داخلی نیاز دارد. "\n\n"یکی از گزینه‌های زیر را انتخاب کنید:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"حذف نصب برخی از برنامه های کاربردی"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"امتحان مجدد برای ارتقا"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"در حال جستجو..."</string>
@@ -453,7 +453,7 @@
     <string name="list_filter_phones" msgid="735313795643493365">"همه مخاطبین دارای شماره تلفن"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"مخاطب"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"تعیین نمای سفارشی"</string>
-    <string name="contact_list_loading" msgid="5488620820563977329">"درحال بارگیری..."</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"در حال بارگیری..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"تنظیمات"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"مخاطبین جهت نمایش"</string>
     <string name="menu_settings" msgid="377929915873428211">"تنظیمات"</string>
@@ -468,7 +468,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"یک سال وارد کنید"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"مخاطب"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"درحال بارگیری..."</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"در حال بارگیری..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ایجاد مخاطب جدید"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"وارد شدن به یک حساب"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"وارد کردن مخاطبین"</string>
@@ -489,7 +489,7 @@
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"لطفاً قبل از ادغام با مخاطب دیگر، نام مخاطب را وارد کنید."</string>
     <string name="copy_text" msgid="3257145021583508761">"کپی به کلیپ بورد"</string>
-    <string name="set_default" msgid="4417505153468300351">"تنظیم پیش فرض"</string>
+    <string name="set_default" msgid="4417505153468300351">"تنظیم پیش‌فرض"</string>
     <string name="clear_default" msgid="7193185801596678067">"پاک کردن پیش فرض‌ها"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"متن کپی شده"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"از تغییرات شما صرفنظر شود؟"</string>
@@ -505,7 +505,7 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>، <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"پست صوتی جدید از <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"پخش پست صوتی ممکن نیست."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"درحال بافر کردن؟؟؟"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"در حال بافر کردن؟؟؟"</string>
     <string name="voicemail_fetching_content" msgid="877911315738258780">"در حال واکشی پست صوتی؟؟؟"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"واکشی پست صوتی ممکن نیست."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"جدید"</string>
@@ -550,10 +550,10 @@
     <string name="no_account_prompt" msgid="7061052512446855192">"People با یک حساب Google بهتر کار می‌کند."\n\n"• از هر مرورگر وب به آن دسترسی دارید"\n"• از رویدادهای خود به طور امن پشتیبان تهیه کنید"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"مخاطبین خود را ایمن نگهدارید حتی اگر گوشی شما گم شود: با یک سرویس آنلاین همگام‌سازی کنید."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"افزودن یک حساب"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدید شما نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه میکنید که از مخاطبین بصورت آنلاین نسخه پشتبان تهیه کند؟"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدید شما نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتبان تهیه کند؟"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"مخاطب جدید شما با <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> همگام‌سازی خواهد شد."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"شما می‌توانید مخاطب جدید خود را با یکی از حساب‌های زیر همگام‌سازی کنید. از کدام‌یک می‌خواهید استفاده کنید؟"</string>
-    <string name="keep_local" msgid="1258761699192993322">"ذخیره بصورت محلی"</string>
+    <string name="keep_local" msgid="1258761699192993322">"ذخیره به‌صورت محلی"</string>
     <string name="add_account" msgid="8201790677994503186">"افزودن حساب"</string>
     <string name="add_new_account" msgid="5748627740680940264">"اافزودن حساب جدید"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"تماس ارسال نشد"</string>
