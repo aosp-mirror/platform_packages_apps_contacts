@@ -439,7 +439,7 @@
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"سایر موارد"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"پیوستن به مخاطب فعلی با مخاطب انتخابی؟"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"به ویرایش مخاطب انتخابی می‌روید؟ اطلاعاتی که تا حال وارد کرده اید کپی خواهد شد."</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"به ویرایش مخاطب انتخابی می‌روید؟ اطلاعاتی که تا حال وارد کرده‌اید کپی خواهد شد."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"کپی در مخاطبین من"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"افزودن به مخاطبین من"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"دایرکتوری <xliff:g id="TYPE">%1$s</xliff:g>"</string>
