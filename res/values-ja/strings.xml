@@ -72,7 +72,7 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"この連絡先を削除します。"</string>
     <string name="menu_done" msgid="796017761764190697">"完了"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"キャンセル"</string>
-    <string name="menu_discard" msgid="6456087569315685632">"破棄"</string>
+    <string name="menu_discard" msgid="6456087569315685632">"キャンセル"</string>
     <string name="label_notes" msgid="8337354953278341042">"メモ"</string>
     <string name="label_sip_address" msgid="124073911714324974">"インターネット通話"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"会社"</string>
