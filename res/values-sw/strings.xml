@@ -79,7 +79,7 @@
     <string name="ghostData_title" msgid="7496735200318496110">"Jina la heshima"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Mwasiliani hayupo."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Wijeti ya mawasiliano imeongezwa kwenye skrini ya Nyumbani."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Unda akaunti mpya"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Weka anwani mpya"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Anzisha mwasiliani mpya"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Simu"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Barua pepe"</string>
@@ -302,7 +302,7 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Matukio"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Uhusiano"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Vikundi"</string>
-    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Unda anwani chini ya akaunti"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Weka anwani chini ya akaunti"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Unda kikundi chini ya akaunti"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Ondoa kikundi cha usawazishaji"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Ongeza kikundi cha usawazishaji"</string>
@@ -471,7 +471,7 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"Bainisha mwaka"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Anwani"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Inapakia…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Unda akaunti mpya"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Fungua akaunti mpya"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Ingia katika akaunti"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Ingiza wasiliani"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Unda kikundi kipya"</string>

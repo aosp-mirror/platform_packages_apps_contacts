@@ -276,7 +276,7 @@
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"نمی‌توان وارد کردن/ صادر کردن کارت ویزیت را لغو کرد"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"نام‌های مخاطبین شما"</string>
-    <string name="add_2sec_pause" msgid="9214012315201040129">"افزودن یک مکث ۲ ثانیه ای"</string>
+    <string name="add_2sec_pause" msgid="9214012315201040129">"افزودن یک مکث ۲ ثانیه‌ای"</string>
     <string name="add_wait" msgid="3360818652790319634">"افزودن انتظار"</string>
     <string name="call_disambig_title" msgid="4392886850104795739">"انتخاب شماره"</string>
     <string name="call_settings" msgid="7666474782093693667">"تنظیمات"</string>
@@ -305,7 +305,7 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"حذف گروه همگام سازی"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"افزودن گروه همگام سازی"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"گروه‌های بیشتر..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"کلیه مخاطبین دیگر"</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"همهٔ مخاطبین دیگر"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"همه مخاطبین"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"حذف \"<xliff:g id="GROUP">%s</xliff:g>\" از همگام‌سازی نیز هر گونه مخاطب گروه‌بندی نشده‌ای را از همگام‌سازی حذف می‌کند."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"فقط رایانه لوحی، همگام سازی نشده"</string>
