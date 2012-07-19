@@ -55,4 +55,10 @@
     <item
         android:id="@+id/menu_help"
         android:title="@string/menu_help" />
+
+    <item
+        android:id="@+id/export_database"
+        android:title="@string/menu_export_database"
+        android:visible="false"
+        android:showAsAction="never" />
 </menu>

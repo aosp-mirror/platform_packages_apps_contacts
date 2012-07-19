@@ -1818,6 +1818,9 @@
          voicemail service in Airplane mode. [CHAR LIMI=NONE] -->
     <string name="dialog_voicemail_airplane_mode_message">To call voicemail, first turn off Airplane mode.</string>
 
+    <!-- Menu item shown only when the special debug mode is enabled, which is used to send all contacts database files via email.  [CHAR LIMI=NONE] -->
+    <string name="menu_export_database">Export database files</string>
+
     <!-- Content description for the fake action menu overflow button.
          This should be same as the description for the real action menu
          overflow button available in ActionBar.
