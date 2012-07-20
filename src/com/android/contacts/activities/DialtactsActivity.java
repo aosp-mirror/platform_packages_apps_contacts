@@ -751,7 +751,8 @@ public class DialtactsActivity extends TransactionSafeActivity
     }
 
     /**
-     * Returns true if the intent is due to hitting the green send key while in a call.
+     * Returns true if the intent is due to hitting the green send key (hardware call button:
+     * KEYCODE_CALL) while in a call.
      *
      * @param intent the intent that launched this activity
      * @param recentCallsRequest true if the intent is requesting to view recent calls
@@ -783,7 +784,8 @@ public class DialtactsActivity extends TransactionSafeActivity
      */
     private void setCurrentTab(Intent intent) {
         // If we got here by hitting send and we're in call forward along to the in-call activity
-        final boolean recentCallsRequest = Calls.CONTENT_TYPE.equals(intent.getType());
+        boolean recentCallsRequest = Calls.CONTENT_TYPE.equals(intent.resolveType(
+            getContentResolver()));
         if (isSendKeyWhileInCall(intent, recentCallsRequest)) {
             finish();
             return;
