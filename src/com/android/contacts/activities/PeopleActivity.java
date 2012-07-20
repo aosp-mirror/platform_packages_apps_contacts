@@ -110,6 +110,8 @@ public class PeopleActivity extends ContactsActivity
     /** Shows a toogle button for hiding/showing updates. Don't submit with true */
     private static final boolean DEBUG_TRANSITIONS = false;
 
+    private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
+
     // These values needs to start at 2. See {@link ContactEntryListFragment}.
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
     private static final int SUBACTIVITY_EDIT_CONTACT = 3;
@@ -164,6 +166,8 @@ public class PeopleActivity extends ContactsActivity
     private final TabPagerListener mTabPagerListener = new TabPagerListener();
 
     private ContactDetailLayoutController mContactDetailLayoutController;
+
+    private boolean mEnableDebugMenuOptions;
 
     private final Handler mHandler = new Handler();
 
@@ -631,7 +635,10 @@ public class PeopleActivity extends ContactsActivity
                 invalidateOptionsMenu();
                 break;
             case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
-                setQueryTextToFragment(mActionBarAdapter.getQueryString());
+                final String queryString = mActionBarAdapter.getQueryString();
+                setQueryTextToFragment(queryString);
+                updateDebugOptionsVisibility(
+                        ENABLE_DEBUG_OPTIONS_HIDDEN_CODE.equals(queryString));
                 break;
             default:
                 throw new IllegalStateException("Unkonwn ActionBarAdapter action: " + action);
@@ -641,6 +648,13 @@ public class PeopleActivity extends ContactsActivity
     @Override
     public void onSelectedTabChanged() {
         updateFragmentsVisibility();
+    }
+
+    private void updateDebugOptionsVisibility(boolean visible) {
+        if (mEnableDebugMenuOptions != visible) {
+            mEnableDebugMenuOptions = visible;
+            invalidateOptionsMenu();
+        }
     }
 
     /**
@@ -1449,6 +1463,9 @@ public class PeopleActivity extends ContactsActivity
         makeMenuItemVisible(menu, R.id.menu_settings,
                 showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
 
+        // Debug options need to be visible even in search mode.
+        makeMenuItemVisible(menu, R.id.export_database, mEnableDebugMenuOptions);
+
         return true;
     }
 
@@ -1541,6 +1558,12 @@ public class PeopleActivity extends ContactsActivity
                 intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
                     ContactsContract.AUTHORITY
                 });
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.export_database: {
+                final Intent intent = new Intent("com.android.providers.contacts.DUMP_DATABASE");
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 startActivity(intent);
                 return true;
