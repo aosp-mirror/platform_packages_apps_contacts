@@ -559,5 +559,7 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Çağrı yapılamadı"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Sesli mesajı yapılandırmak için Menü &gt; Ayarlar\'a gidin."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Sesli mesaja çağrı yapmak için öncelikle Uçak modunu kapatın."</string>
+    <!-- no translation found for menu_export_database (2659719297530170820) -->
+    <skip />
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Diğer seçenekler"</string>
 </resources>

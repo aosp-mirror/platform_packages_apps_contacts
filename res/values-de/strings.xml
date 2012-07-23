@@ -559,5 +559,6 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Anruf nicht verbunden"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Konfigurieren Sie Ihre Mailbox unter \"Menü\" &gt; \"Einstellungen\"."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Deaktivieren Sie zunächst den Flugmodus, um die Mailbox anzurufen."</string>
+    <string name="menu_export_database" msgid="2659719297530170820">"Datenbankdateien exportieren"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Mehr Optionen"</string>
 </resources>

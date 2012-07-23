@@ -559,5 +559,7 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"전화를 걸 수 없음"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"음성사서함을 설정하려면 메뉴 &gt; 설정으로 이동하세요."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"음성사서함에 메시지를 남기려면 먼저 비행기 모드를 해제하세요."</string>
+    <!-- no translation found for menu_export_database (2659719297530170820) -->
+    <skip />
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"옵션 더보기"</string>
 </resources>
