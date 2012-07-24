@@ -728,8 +728,10 @@
     <!-- String describing the Contact Editor Minus button
 
          Used by AccessibilityService to announce the purpose of the button.
+
+         [CHAR LIMIT=NONE]
     -->
-    <string name="description_minus_button">minus</string>
+    <string name="description_minus_button">delete</string>
 
     <!-- String describing the Contact Editor Plus button
 
