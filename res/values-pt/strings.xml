@@ -559,7 +559,6 @@
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Chamada não realizada"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Para configurar o correio de voz, vá para Menu &gt; Configurações."</string>
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Para chamar o correio de voz, primeiro desative o modo avião."</string>
-    <!-- no translation found for menu_export_database (2659719297530170820) -->
-    <skip />
+    <string name="menu_export_database" msgid="2659719297530170820">"Exportar arquivos do banco de dados"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Mais opções"</string>
 </resources>
