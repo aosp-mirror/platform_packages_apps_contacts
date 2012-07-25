@@ -21,12 +21,14 @@ import static com.google.common.collect.Lists.newArrayList;
 import android.database.MatrixCursor;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import java.util.List;
 
 /**
  * Unit tests for {@link CallLogGroupBuilder}
  */
+@SmallTest
 public class CallLogGroupBuilderTest extends AndroidTestCase {
     /** A phone number for testing. */
     private static final String TEST_NUMBER1 = "14125551234";
@@ -106,10 +108,9 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
     }
 
     public void testAddGroups_Voicemail() {
-        // Groups with one or more missed calls.
-        assertCallsAreGrouped(Calls.VOICEMAIL_TYPE, Calls.MISSED_TYPE);
-        assertCallsAreGrouped(Calls.VOICEMAIL_TYPE, Calls.MISSED_TYPE, Calls.MISSED_TYPE);
         // Does not group with other types of calls, include voicemail themselves.
+        assertCallsAreNotGrouped(Calls.VOICEMAIL_TYPE, Calls.MISSED_TYPE);
+        //assertCallsAreNotGrouped(Calls.VOICEMAIL_TYPE, Calls.MISSED_TYPE, Calls.MISSED_TYPE);
         assertCallsAreNotGrouped(Calls.VOICEMAIL_TYPE, Calls.VOICEMAIL_TYPE);
         assertCallsAreNotGrouped(Calls.VOICEMAIL_TYPE, Calls.INCOMING_TYPE);
         assertCallsAreNotGrouped(Calls.VOICEMAIL_TYPE, Calls.OUTGOING_TYPE);
@@ -121,8 +122,8 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         assertCallsAreGrouped(Calls.MISSED_TYPE, Calls.MISSED_TYPE, Calls.MISSED_TYPE);
         // Does not group with other types of calls.
         assertCallsAreNotGrouped(Calls.MISSED_TYPE, Calls.VOICEMAIL_TYPE);
-        assertCallsAreNotGrouped(Calls.MISSED_TYPE, Calls.INCOMING_TYPE);
-        assertCallsAreNotGrouped(Calls.MISSED_TYPE, Calls.OUTGOING_TYPE);
+        assertCallsAreGrouped(Calls.MISSED_TYPE, Calls.INCOMING_TYPE);
+        assertCallsAreGrouped(Calls.MISSED_TYPE, Calls.OUTGOING_TYPE);
     }
 
     public void testAddGroups_Incoming() {
@@ -131,9 +132,9 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
         assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
         assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE, Calls.INCOMING_TYPE);
+        assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.MISSED_TYPE);
         // Does not group with voicemail and missed calls.
         assertCallsAreNotGrouped(Calls.INCOMING_TYPE, Calls.VOICEMAIL_TYPE);
-        assertCallsAreNotGrouped(Calls.INCOMING_TYPE, Calls.MISSED_TYPE);
     }
 
     public void testAddGroups_Outgoing() {
@@ -142,29 +143,28 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         assertCallsAreGrouped(Calls.OUTGOING_TYPE, Calls.OUTGOING_TYPE);
         assertCallsAreGrouped(Calls.OUTGOING_TYPE, Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
         assertCallsAreGrouped(Calls.OUTGOING_TYPE, Calls.OUTGOING_TYPE, Calls.INCOMING_TYPE);
+        assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.MISSED_TYPE);
         // Does not group with voicemail and missed calls.
         assertCallsAreNotGrouped(Calls.INCOMING_TYPE, Calls.VOICEMAIL_TYPE);
-        assertCallsAreNotGrouped(Calls.INCOMING_TYPE, Calls.MISSED_TYPE);
     }
 
     public void testAddGroups_Mixed() {
         addMultipleOldCallLogEntries(TEST_NUMBER1,
                 Calls.VOICEMAIL_TYPE,  // Stand-alone
-                Calls.INCOMING_TYPE,  // Group 1: 1-2
+                Calls.INCOMING_TYPE,  // Group 1: 1-4
                 Calls.OUTGOING_TYPE,
-                Calls.MISSED_TYPE,  // Group 2: 3-4
+                Calls.MISSED_TYPE,
                 Calls.MISSED_TYPE,
                 Calls.VOICEMAIL_TYPE,  // Stand-alone
                 Calls.INCOMING_TYPE,  // Stand-alone
-                Calls.VOICEMAIL_TYPE,  // Group 3: 7-9
+                Calls.VOICEMAIL_TYPE,  // Stand-alone
+                Calls.MISSED_TYPE, // Group 2: 8-10
                 Calls.MISSED_TYPE,
-                Calls.MISSED_TYPE,
-                Calls.OUTGOING_TYPE);  // Stand-alone
+                Calls.OUTGOING_TYPE);
         mBuilder.addGroups(mCursor);
-        assertEquals(3, mFakeGroupCreator.groups.size());
-        assertGroupIs(1, 2, false, mFakeGroupCreator.groups.get(0));
-        assertGroupIs(3, 2, false, mFakeGroupCreator.groups.get(1));
-        assertGroupIs(7, 3, false, mFakeGroupCreator.groups.get(2));
+        assertEquals(2, mFakeGroupCreator.groups.size());
+        assertGroupIs(1, 4, false, mFakeGroupCreator.groups.get(0));
+        assertGroupIs(8, 3, false, mFakeGroupCreator.groups.get(1));
     }
 
     public void testEqualPhoneNumbers() {
