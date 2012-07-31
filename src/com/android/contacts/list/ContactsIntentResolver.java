@@ -124,18 +124,8 @@ public class ContactsIntentResolver {
         } else if (Intent.ACTION_INSERT_OR_EDIT.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT);
         } else if (Intent.ACTION_SEARCH.equals(action)) {
-            // See if the suggestion was clicked with a search action key (call button)
-            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG))) {
-                String query = intent.getStringExtra(SearchManager.QUERY);
-                if (!TextUtils.isEmpty(query)) {
-                    Intent newIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts("tel", query, null));
-                    request.setRedirectIntent(newIntent);
-                }
-            } else {
-                request.setQueryString(intent.getStringExtra(SearchManager.QUERY));
-                request.setSearchMode(true);
-            }
+            request.setQueryString(intent.getStringExtra(SearchManager.QUERY));
+            request.setSearchMode(true);
         } else if (Intent.ACTION_VIEW.equals(action)) {
             final String resolvedType = intent.resolveType(mContext);
             if (ContactsContract.Contacts.CONTENT_TYPE.equals(resolvedType)
@@ -170,19 +160,12 @@ public class ContactsIntentResolver {
         // so we need to re-dispatch from here to the intended target.
         } else if (Intents.SEARCH_SUGGESTION_CLICKED.equals(action)) {
             Uri data = intent.getData();
-            // See if the suggestion was clicked with a search action key (call button)
-            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG))) {
-                Intent newIntent = new Intent(mContext, CallContactActivity.class);
-                newIntent.setData(data);
-                request.setRedirectIntent(newIntent);
-            } else {
-                request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
-                request.setContactUri(data);
-                intent.setAction(Intent.ACTION_DEFAULT);
-                intent.setData(null);
-            }
+            request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
+            request.setContactUri(data);
+            intent.setAction(Intent.ACTION_DEFAULT);
+            intent.setData(null);
         } else if (Intents.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED.equals(action)) {
-            request.setRedirectIntent(new Intent(Intent.ACTION_CALL_PRIVILEGED, intent.getData()));
+            request.setRedirectIntent(new Intent(Intent.ACTION_DIAL, intent.getData()));
         } else if (Intents.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED.equals(action)) {
             // TODO actually support this in EditContactActivity.
             String number = intent.getData().getSchemeSpecificPart();
