@@ -16,9 +16,7 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.CallContactActivity;
 import com.android.contacts.ContactsSearchManager;
-import com.android.contacts.ContactsUtils;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -127,23 +125,16 @@ public class ContactsIntentResolver {
             request.setActionCode(ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT);
         } else if (Intent.ACTION_SEARCH.equals(action)) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            // See if the suggestion was clicked with a search action key (call button)
-            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG))) {
-                if (!TextUtils.isEmpty(query)) {
-                    request.setRedirectIntent(ContactsUtils.getCallIntent(query));
-                }
-            } else {
-                // If the {@link SearchManager.QUERY} is empty, then check if a phone number
-                // or email is specified, in that priority.
-                if (TextUtils.isEmpty(query)) {
-                    query = intent.getStringExtra(Insert.PHONE);
-                }
-                if (TextUtils.isEmpty(query)) {
-                    query = intent.getStringExtra(Insert.EMAIL);
-                }
-                request.setQueryString(query);
-                request.setSearchMode(true);
+            // If the {@link SearchManager.QUERY} is empty, then check if a phone number
+            // or email is specified, in that priority.
+            if (TextUtils.isEmpty(query)) {
+                query = intent.getStringExtra(Insert.PHONE);
             }
+            if (TextUtils.isEmpty(query)) {
+                query = intent.getStringExtra(Insert.EMAIL);
+            }
+            request.setQueryString(query);
+            request.setSearchMode(true);
         } else if (Intent.ACTION_VIEW.equals(action)) {
             final String resolvedType = intent.resolveType(mContext);
             if (ContactsContract.Contacts.CONTENT_TYPE.equals(resolvedType)
@@ -178,26 +169,10 @@ public class ContactsIntentResolver {
         // so we need to re-dispatch from here to the intended target.
         } else if (Intents.SEARCH_SUGGESTION_CLICKED.equals(action)) {
             Uri data = intent.getData();
-            // See if the suggestion was clicked with a search action key (call button)
-            if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG))) {
-                Intent newIntent = new Intent(mContext, CallContactActivity.class);
-                newIntent.setData(data);
-                request.setRedirectIntent(newIntent);
-            } else {
-                request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
-                request.setContactUri(data);
-                intent.setAction(Intent.ACTION_DEFAULT);
-                intent.setData(null);
-            }
-        } else if (Intents.SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED.equals(action)) {
-            request.setRedirectIntent(ContactsUtils.getCallIntent(intent.getData()));
-        } else if (Intents.SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED.equals(action)) {
-            // TODO actually support this in EditContactActivity.
-            String number = intent.getData().getSchemeSpecificPart();
-            Intent newIntent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-            newIntent.putExtra(Intents.Insert.PHONE, number);
-            request.setRedirectIntent(newIntent);
-
+            request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
+            request.setContactUri(data);
+            intent.setAction(Intent.ACTION_DEFAULT);
+            intent.setData(null);
         }
         // Allow the title to be set to a custom String using an extra on the intent
         String title = intent.getStringExtra(UI.TITLE_EXTRA_KEY);
