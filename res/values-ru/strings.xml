@@ -344,7 +344,7 @@
     <string name="sms_company_main" msgid="118970873419678087">"SMS: тел. офиса"</string>
     <string name="sms_isdn" msgid="8153785037515047845">"SMS: номер ISDN"</string>
     <string name="sms_main" msgid="8621625784504541679">"SMS:основ. тел."</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"Отправить SMS·на номер факса"</string>
+    <string name="sms_other_fax" msgid="3888842199855843152">"Отправить SMS на номер факса"</string>
     <string name="sms_radio" msgid="3329166673433967820">"SMS:радиотелефон"</string>
     <string name="sms_telex" msgid="9034802430065267848">"SMS: телекс"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"SMS: телетайп"</string>
