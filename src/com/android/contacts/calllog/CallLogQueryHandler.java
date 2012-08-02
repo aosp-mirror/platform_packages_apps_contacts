@@ -29,6 +29,7 @@ import android.database.sqlite.SQLiteFullException;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.VoicemailContract.Status;
 import android.util.Log;
@@ -159,8 +160,8 @@ import javax.annotation.concurrent.GuardedBy;
     public void fetchAllCalls() {
         cancelFetch();
         int requestId = newCallsRequest();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, false /*voicemailOnly*/);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, false /*voicemailOnly*/);
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, -1 /*callType*/);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, -1 /*callType*/);
     }
 
     /**
@@ -171,10 +172,30 @@ import javax.annotation.concurrent.GuardedBy;
     public void fetchVoicemailOnly() {
         cancelFetch();
         int requestId = newCallsRequest();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, true /*voicemailOnly*/);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, true /*voicemailOnly*/);
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, Calls.VOICEMAIL_TYPE);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, Calls.VOICEMAIL_TYPE);
     }
 
+    public void fetchOutgoing() {
+        cancelFetch();
+        int requestId = newCallsRequest();
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, Calls.OUTGOING_TYPE);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, Calls.OUTGOING_TYPE);
+    }
+
+    public void fetchIncoming() {
+        cancelFetch();
+        int requestId = newCallsRequest();
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, Calls.INCOMING_TYPE);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, Calls.INCOMING_TYPE);
+    }
+
+    public void fetchMissed() {
+        cancelFetch();
+        int requestId = newCallsRequest();
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, Calls.MISSED_TYPE);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, Calls.MISSED_TYPE);
+    }
 
     public void fetchVoicemailStatus() {
         startQuery(QUERY_VOICEMAIL_STATUS_TOKEN, null, Status.CONTENT_URI,
@@ -182,7 +203,7 @@ import javax.annotation.concurrent.GuardedBy;
     }
 
     /** Fetches the list of calls in the call log, either the new one or the old ones. */
-    private void fetchCalls(int token, int requestId, boolean isNew, boolean voicemailOnly) {
+    private void fetchCalls(int token, int requestId, boolean isNew, int callType) {
         // We need to check for NULL explicitly otherwise entries with where READ is NULL
         // may not match either the query or its negation.
         // We consider the calls that are not yet consumed (i.e. IS_READ = 0) as "new".
@@ -194,10 +215,10 @@ import javax.annotation.concurrent.GuardedBy;
             // Negate the query.
             selection = String.format("NOT (%s)", selection);
         }
-        if (voicemailOnly) {
+        if (callType > 0) {
             // Add a clause to fetch only items of type voicemail.
             selection = String.format("(%s) AND (%s = ?)", selection, Calls.TYPE);
-            selectionArgs.add(Integer.toString(Calls.VOICEMAIL_TYPE));
+            selectionArgs.add(Integer.toString(callType));
         }
         startQuery(token, requestId, Calls.CONTENT_URI_WITH_VOICEMAIL,
                 CallLogQuery._PROJECTION, selection, selectionArgs.toArray(EMPTY_STRING_ARRAY),

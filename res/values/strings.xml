@@ -1651,6 +1651,15 @@
     <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=16] -->
     <string name="nfc_vcard_file_name">Contact received over NFC</string>
 
+    <!-- Menu item used to show only outgoing in the call log. [CHAR LIMIT=30] -->
+    <string name="menu_show_outgoing_only">Show outgoing only</string>
+
+    <!-- Menu item used to show only incoming in the call log. [CHAR LIMIT=30] -->
+    <string name="menu_show_incoming_only">Show incoming only</string>
+
+    <!-- Menu item used to show only missed in the call log. [CHAR LIMIT=30] -->
+    <string name="menu_show_missed_only">Show missed only</string>
+
     <!-- Menu item used to show only voicemails in the call log. [CHAR LIMIT=30] -->
     <string name="menu_show_voicemails_only">Show voicemails only</string>
 
