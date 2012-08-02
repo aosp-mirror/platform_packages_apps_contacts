@@ -331,10 +331,7 @@ public class CallLogFragment extends ListFragment
         // menu items are ready if the first item is non-null.
         if (itemDeleteAll != null) {
             itemDeleteAll.setEnabled(mAdapter != null && !mAdapter.isEmpty());
-            menu.findItem(R.id.show_voicemails_only).setVisible(
-                    mVoicemailSourcesAvailable && !mShowingVoicemailOnly);
-            menu.findItem(R.id.show_all_calls).setVisible(
-                    mVoicemailSourcesAvailable && mShowingVoicemailOnly);
+            menu.findItem(R.id.show_voicemails_only).setVisible(mVoicemailSourcesAvailable);
         }
     }
 
@@ -343,6 +340,21 @@ public class CallLogFragment extends ListFragment
         switch (item.getItemId()) {
             case R.id.delete_all:
                 ClearCallLogDialog.show(getFragmentManager());
+                return true;
+
+            case R.id.show_outgoing_only:
+                mCallLogQueryHandler.fetchOutgoing();
+
+                return true;
+
+            case R.id.show_incoming_only:
+                mCallLogQueryHandler.fetchIncoming();
+
+                return true;
+
+            case R.id.show_missed_only:
+                mCallLogQueryHandler.fetchMissed();
+
                 return true;
 
             case R.id.show_voicemails_only:
