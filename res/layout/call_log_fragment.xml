@@ -33,6 +33,30 @@
         <include layout="@layout/call_log_voicemail_status"
     />
     </FrameLayout>
+
+    <FrameLayout>
+        <TextView
+            android:id="@+id/filter_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/call_log_outer_margin"
+            android:paddingRight="@dimen/call_log_outer_margin"
+            android:paddingTop="@dimen/call_log_inner_margin"
+            android:paddingBottom="@dimen/call_log_inner_margin"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            />
+        <View
+            android:id="@+id/call_log_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/call_log_outer_margin"
+            android:layout_marginRight="@dimen/call_log_outer_margin"
+            android:layout_gravity="bottom"
+            android:background="#55ffffff"
+            />
+    </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

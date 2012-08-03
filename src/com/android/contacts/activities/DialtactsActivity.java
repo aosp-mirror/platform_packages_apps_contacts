@@ -1017,7 +1017,7 @@ public class DialtactsActivity extends TransactionSafeActivity
             // When there is a permanent menu key, there is no overflow icon on the right of
             // the action bar which would force the search menu item (if it is visible) to the
             // left.  This is the purpose of showing the emptyRightMenuItem.
-            emptyRightMenuItem.setVisible(false);
+            emptyRightMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
         } else {
             // This is when the user is looking at the dialer pad.  In this case, the real
             // ActionBar is hidden and fake menu items are shown.
@@ -1038,11 +1038,11 @@ public class DialtactsActivity extends TransactionSafeActivity
         final MenuItem emptyRightMenuItem = menu.findItem(R.id.empty_right_menu_item);
 
         // prepare the menu items
-        searchMenuItem.setVisible(false);
+        searchMenuItem.setVisible(true);
         filterOptionMenuItem.setVisible(false);
         addContactOptionMenuItem.setVisible(false);
         callSettingsMenuItem.setVisible(true);
-        emptyRightMenuItem.setVisible(false);
+        emptyRightMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
     }
 
     private void prepareOptionsMenuForFavoritesTab(Menu menu) {

@@ -1609,9 +1609,21 @@
     <!-- The header in the call log used to identify items that have been already consumed [CHAR LIMIT=10] -->
     <string name="call_log_old_header">Older</string>
 
+    <!-- The header to show that call log is only showing voicemail calls. [CHAR LIMIT=40] -->
+    <string name="call_log_voicemail_header">Calls with voicemail</string>
+
+    <!-- The header to show that call log is only showing incoming calls. [CHAR LIMIT=40] -->
+    <string name="call_log_incoming_header">Incoming calls</string>
+
+    <!-- The header to show that call log is only showing outgoing calls. [CHAR LIMIT=40] -->
+    <string name="call_log_outgoing_header">Outgoing calls</string>
+
+    <!-- The header to show that call log is only showing missed calls. [CHAR LIMIT=40] -->
+    <string name="call_log_missed_header">Missed calls</string>
+
     <!--  Voicemail status message shown at the top of call log to notify the user that no new
-      voicemails are currently available. This can happen when both notification as well as data
-      connection to the voicemail server is lost. [CHAR LIMIT=64] -->
+voicemails are currently available. This can happen when both notification as well as data
+connection to the voicemail server is lost. [CHAR LIMIT=64] -->
     <string name="voicemail_status_voicemail_not_available">Can\'t connect to voicemail server.</string>
     <!--  Voicemail status message shown at the top of call log to notify the user that there is no
       data connection to the voicemail server, but there are new voicemails waiting on the server.
