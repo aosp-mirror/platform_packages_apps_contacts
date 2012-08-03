@@ -524,6 +524,12 @@
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Grupės pavadinimas"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Gauta per ALR"</string>
+    <!-- no translation found for menu_show_outgoing_only (1965570298133301970) -->
+    <skip />
+    <!-- no translation found for menu_show_incoming_only (7534206815238877417) -->
+    <skip />
+    <!-- no translation found for menu_show_missed_only (154473166059743996) -->
+    <skip />
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Rodyti tik balso pšt. praneš."</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Rodyti visus skambučius"</string>
     <string name="status_available" msgid="5586870015822828392">"Pasiekiamas"</string>
