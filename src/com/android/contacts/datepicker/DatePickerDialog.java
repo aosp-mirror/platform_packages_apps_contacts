@@ -47,6 +47,9 @@ import java.util.Calendar;
 public class DatePickerDialog extends AlertDialog implements OnClickListener,
         OnDateChangedListener {
 
+    /** Magic year that represents "no year" */
+    public static int NO_YEAR = DatePicker.NO_YEAR;
+
     private static final String YEAR = "year";
     private static final String MONTH = "month";
     private static final String DAY = "day";
@@ -54,7 +57,6 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
 
     private final DatePicker mDatePicker;
     private final OnDateSetListener mCallBack;
-    private final Calendar mCalendar;
     private final DateFormat mTitleDateFormat;
     private final DateFormat mTitleNoYearDateFormat;
 
@@ -68,7 +70,8 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
     public interface OnDateSetListener {
         /**
          * @param view The view associated with this listener.
-         * @param year The year that was set or 0 if the user has not specified a year
+         * @param year The year that was set or {@link DatePickerDialog#NO_YEAR} if the user has
+         *  not specified a year
          * @param monthOfYear The month that was set (0-11) for compatibility
          *  with {@link java.util.Calendar}.
          * @param dayOfMonth The day of the month that was set.
@@ -94,7 +97,8 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
     /**
      * @param context The context the dialog is to run in.
      * @param callBack How the parent is notified that the date is set.
-     * @param year The initial year of the dialog or 0 if no year has been specified
+     * @param year The initial year of the dialog or {@link DatePickerDialog#NO_YEAR} if no year
+     *  has been specified
      * @param monthOfYear The initial month of the dialog.
      * @param dayOfMonth The initial day of the dialog.
      * @param yearOptional Whether the year can be toggled by the user
@@ -115,7 +119,8 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
      * @param context The context the dialog is to run in.
      * @param theme the theme to apply to this dialog
      * @param callBack How the parent is notified that the date is set.
-     * @param year The initial year of the dialog or 0 if no year has been specified
+     * @param year The initial year of the dialog or {@link DatePickerDialog#NO_YEAR} if no year
+     *  has been specified
      * @param monthOfYear The initial month of the dialog.
      * @param dayOfMonth The initial day of the dialog.
      */
@@ -132,7 +137,8 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
      * @param context The context the dialog is to run in.
      * @param theme the theme to apply to this dialog
      * @param callBack How the parent is notified that the date is set.
-     * @param year The initial year of the dialog.
+     * @param year The initial year of the dialog or {@link DatePickerDialog#NO_YEAR} if no
+     *  year has been specified.
      * @param monthOfYear The initial month of the dialog.
      * @param dayOfMonth The initial day of the dialog.
      * @param yearOptional Whether the year can be toggled by the user
@@ -154,7 +160,6 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
         mTitleDateFormat = DateFormat.getDateInstance(DateFormat.FULL);
         mTitleNoYearDateFormat = new SimpleDateFormat(
                 DateUtils.isMonthBeforeDay(getContext()) ? "MMMM dd" : "dd MMMM");
-        mCalendar = Calendar.getInstance();
         updateTitle(mInitialYear, mInitialMonth, mInitialDay);
 
         setButton(BUTTON_POSITIVE, context.getText(com.android.internal.R.string.date_time_set),
@@ -205,12 +210,13 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
     }
 
     private void updateTitle(int year, int month, int day) {
-        mCalendar.set(Calendar.YEAR, year);
-        mCalendar.set(Calendar.MONTH, month);
-        mCalendar.set(Calendar.DAY_OF_MONTH, day);
+        final Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
         final DateFormat dateFormat =
-                year == 0 ? mTitleNoYearDateFormat : mTitleDateFormat;
-        setTitle(dateFormat.format(mCalendar.getTime()));
+                year == NO_YEAR ? mTitleNoYearDateFormat : mTitleDateFormat;
+        setTitle(dateFormat.format(calendar.getTime()));
     }
 
     @Override
