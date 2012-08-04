@@ -203,7 +203,7 @@ public class EventFieldEditorView extends LabeledEditorView {
 
         final int oldYear, oldMonth, oldDay;
         if (TextUtils.isEmpty(oldValue)) {
-            // Default to January first, 30 years ago
+            // Default to January first of this year
             oldYear = defaultYear;
             oldMonth = 0;
             oldDay = 1;
@@ -221,13 +221,25 @@ public class EventFieldEditorView extends LabeledEditorView {
                 oldMonth = calendar.get(Calendar.MONTH);
                 oldDay = calendar.get(Calendar.DAY_OF_MONTH);
             } else {
-                final Date date2 = kind.dateFormatWithoutYear.parse(oldValue, position);
-                // Don't understand the date, lets not change it
-                if (date2 == null) return null;
-                calendar.setTime(date2);
-                oldYear = isYearOptional ? 0 : defaultYear;
-                oldMonth = calendar.get(Calendar.MONTH);
-                oldDay = calendar.get(Calendar.DAY_OF_MONTH);
+                // Unfortunately, we need a one-off hack for February 29th, because
+                // the parse functions assume 1970, which wasn't a leap year
+                // Caveat here: This won't catch AccountTypes that allow omitting the year but
+                // require a time of the day. But as we don't have any of those at the moment,
+                // this shouldn't be an issue
+                if (DateUtils.NO_YEAR_DATE_FEB29TH.equals(oldValue)) {
+                    oldYear = isYearOptional ? DatePickerDialog.NO_YEAR : defaultYear;
+                    oldMonth = Calendar.FEBRUARY;
+                    oldDay = 29;
+                } else {
+                    final Date date2 = kind.dateFormatWithoutYear.parse(oldValue, position);
+                    // Don't understand the date? Let's not show any dialog
+                    if (date2 == null) return null;
+
+                    calendar.setTime(date2);
+                    oldYear = isYearOptional ? DatePickerDialog.NO_YEAR : defaultYear;
+                    oldMonth = calendar.get(Calendar.MONTH);
+                    oldDay = calendar.get(Calendar.DAY_OF_MONTH);
+                }
             }
         }
         final OnDateSetListener callBack = new OnDateSetListener() {
@@ -241,8 +253,8 @@ public class EventFieldEditorView extends LabeledEditorView {
                 // The format string will ignore that year.
                 // For formats other than Exchange, the time of the day is ignored
                 outCalendar.clear();
-                outCalendar.set(year == 0 ? 2000 : year, monthOfYear, dayOfMonth,
-                        DEFAULT_HOUR, 0, 0);
+                outCalendar.set(year == DatePickerDialog.NO_YEAR ? 2000 : year, monthOfYear,
+                        dayOfMonth, DEFAULT_HOUR, 0, 0);
 
                 final String resultString;
                 if (year == 0) {
