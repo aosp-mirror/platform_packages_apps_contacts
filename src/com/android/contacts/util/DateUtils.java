@@ -21,6 +21,7 @@ import android.text.format.DateFormat;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -34,6 +35,11 @@ public class DateUtils {
     // All the SimpleDateFormats in this class use the UTC timezone
     public static final SimpleDateFormat NO_YEAR_DATE_FORMAT =
             new SimpleDateFormat("--MM-dd", Locale.US);
+    /**
+     * When parsing a date without a year, the system assumes 1970, which wasn't a leap-year.
+     * Let's add a one-off hack for that day of the year
+     */
+    public static final String NO_YEAR_DATE_FEB29TH = "--02-29";
     public static final SimpleDateFormat FULL_DATE_FORMAT =
             new SimpleDateFormat("yyyy-MM-dd", Locale.US);
     public static final SimpleDateFormat DATE_AND_TIME_FORMAT =
@@ -88,6 +94,14 @@ public class DateUtils {
         return null;
     }
 
+    private static final Date getUtcDate(int year, int month, int dayOfMonth) {
+        final Calendar calendar = Calendar.getInstance(UTC_TIMEZONE, Locale.US);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        return calendar.getTime();
+    }
+
     /**
      * Parses the supplied string to see if it looks like a date. If so,
      * returns the same date in a cleaned-up format for the user.  Otherwise, returns
@@ -105,13 +119,21 @@ public class DateUtils {
 
         ParsePosition parsePosition = new ParsePosition(0);
 
+        final boolean noYearParsed;
         Date date;
 
-        synchronized (NO_YEAR_DATE_FORMAT) {
-            date = NO_YEAR_DATE_FORMAT.parse(string, parsePosition);
+        // Unfortunately, we can't parse Feb 29th correctly, so let's handle this day seperately
+        if (NO_YEAR_DATE_FEB29TH.equals(string)) {
+            date = getUtcDate(0, Calendar.FEBRUARY, 29);
+            noYearParsed = true;
+        } else {
+            synchronized (NO_YEAR_DATE_FORMAT) {
+                date = NO_YEAR_DATE_FORMAT.parse(string, parsePosition);
+            }
+            noYearParsed = parsePosition.getIndex() == string.length();
         }
 
-        if (parsePosition.getIndex() == string.length()) {
+        if (noYearParsed) {
             java.text.DateFormat outFormat = isMonthBeforeDay(context)
                     ? FORMAT_WITHOUT_YEAR_MONTH_FIRST
                     : FORMAT_WITHOUT_YEAR_DAY_FIRST;
