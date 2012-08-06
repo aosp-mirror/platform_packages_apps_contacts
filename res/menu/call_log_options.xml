@@ -16,44 +16,39 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/show_all_calls"
-            android:title="@string/menu_show_all_calls"
-            android:icon="@drawable/quickcon_background_texture"
-            android:showAsAction="ifRoom"
-            android:orderInCategory="1"/>
+        android:id="@+id/show_all_calls"
+        android:title="@string/menu_show_all_calls"
+        android:showAsAction="never"
+        android:orderInCategory="1"/>
 
     <item
-            android:id="@+id/show_voicemails_only"
-            android:title="@string/menu_show_voicemails_only"
-            android:icon="@drawable/ic_call_voicemail_holo_dark"
-            android:showAsAction="ifRoom"
-            android:orderInCategory="1"/>
+        android:id="@+id/show_voicemails_only"
+        android:title="@string/menu_show_voicemails_only"
+        android:showAsAction="never"
+        android:orderInCategory="1"/>
 
     <item
-            android:id="@+id/show_missed_only"
-            android:title="@string/menu_show_missed_only"
-            android:icon="@drawable/ic_call_missed_holo_dark"
-            android:showAsAction="ifRoom"
-            android:orderInCategory="1"/>
+        android:id="@+id/show_missed_only"
+        android:title="@string/menu_show_missed_only"
+        android:showAsAction="never"
+        android:orderInCategory="1"/>
 
     <item
-            android:id="@+id/show_outgoing_only"
-            android:title="@string/menu_show_outgoing_only"
-            android:icon="@drawable/ic_call_outgoing_holo_dark"
-            android:showAsAction="ifRoom"
-            android:orderInCategory="1"/>
+        android:id="@+id/show_outgoing_only"
+        android:title="@string/menu_show_outgoing_only"
+        android:showAsAction="never"
+        android:orderInCategory="1"/>
 
     <item
-            android:id="@+id/show_incoming_only"
-            android:title="@string/menu_show_incoming_only"
-            android:icon="@drawable/ic_call_incoming_holo_dark"
-            android:showAsAction="ifRoom"
-            android:orderInCategory="1"/>
+        android:id="@+id/show_incoming_only"
+        android:title="@string/menu_show_incoming_only"
+        android:showAsAction="never"
+        android:orderInCategory="1"/>
 
 
     <item
-            android:id="@+id/delete_all"
-            android:title="@string/recentCalls_deleteAll"
-            android:showAsAction="withText"
-            android:orderInCategory="1"/>
+        android:id="@+id/delete_all"
+        android:title="@string/recentCalls_deleteAll"
+        android:showAsAction="never"
+        android:orderInCategory="1"/>
 </menu>

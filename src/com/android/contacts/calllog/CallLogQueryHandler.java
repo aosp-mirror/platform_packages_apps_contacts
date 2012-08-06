@@ -64,6 +64,12 @@ import javax.annotation.concurrent.GuardedBy;
     private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 58;
 
     /**
+     * Call type similar to Calls.INCOMING_TYPE used to specify all types instead of one particular
+     * type.
+     */
+    public static final int CALL_TYPE_ALL = -1;
+
+    /**
      * The time window from the current time within which an unread entry will be added to the new
      * section.
      */
@@ -153,48 +159,15 @@ import javax.annotation.concurrent.GuardedBy;
     }
 
     /**
-     * Fetches the list of calls from the call log.
+     * Fetches the list of calls from the call log for a given type.
      * <p>
      * It will asynchronously update the content of the list view when the fetch completes.
      */
-    public void fetchAllCalls() {
+    public void fetchCalls(int callType) {
         cancelFetch();
         int requestId = newCallsRequest();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, -1 /*callType*/);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, -1 /*callType*/);
-    }
-
-    /**
-     * Fetches the list of calls from the call log but include only the voicemail.
-     * <p>
-     * It will asynchronously update the content of the list view when the fetch completes.
-     */
-    public void fetchVoicemailOnly() {
-        cancelFetch();
-        int requestId = newCallsRequest();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, Calls.VOICEMAIL_TYPE);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, Calls.VOICEMAIL_TYPE);
-    }
-
-    public void fetchOutgoing() {
-        cancelFetch();
-        int requestId = newCallsRequest();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, Calls.OUTGOING_TYPE);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, Calls.OUTGOING_TYPE);
-    }
-
-    public void fetchIncoming() {
-        cancelFetch();
-        int requestId = newCallsRequest();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, Calls.INCOMING_TYPE);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, Calls.INCOMING_TYPE);
-    }
-
-    public void fetchMissed() {
-        cancelFetch();
-        int requestId = newCallsRequest();
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, Calls.MISSED_TYPE);
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, Calls.MISSED_TYPE);
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, requestId, true /*isNew*/, callType);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, requestId, false /*isNew*/, callType);
     }
 
     public void fetchVoicemailStatus() {
@@ -215,7 +188,7 @@ import javax.annotation.concurrent.GuardedBy;
             // Negate the query.
             selection = String.format("NOT (%s)", selection);
         }
-        if (callType > 0) {
+        if (callType > CALL_TYPE_ALL) {
             // Add a clause to fetch only items of type voicemail.
             selection = String.format("(%s) AND (%s = ?)", selection, Calls.TYPE);
             selectionArgs.add(Integer.toString(callType));
@@ -380,8 +353,7 @@ import javax.annotation.concurrent.GuardedBy;
         void onVoicemailStatusFetched(Cursor statusCursor);
 
         /**
-         * Called when {@link CallLogQueryHandler#fetchAllCalls()} or
-         * {@link CallLogQueryHandler#fetchVoicemailOnly()} complete.
+         * Called when {@link CallLogQueryHandler#fetchCalls(int)}complete.
          */
         void onCallsFetched(Cursor combinedCursor);
     }
