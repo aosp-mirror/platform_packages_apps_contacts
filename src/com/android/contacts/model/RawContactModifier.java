@@ -840,15 +840,19 @@ public class RawContactModifier {
 
     /**
      * Counts occurrences of the specified type in the supplied entry list.
+     *
+     * @return The count of occurrences of the type in the entry list. 0 if entries is
+     * {@literal null}
      */
-    private static int getEntryCountByType(
-            ArrayList<ValuesDelta> entries, String typeColumn, int type) {
+    private static int getEntryCountByType(ArrayList<ValuesDelta> entries, String typeColumn,
+            int type) {
         int count = 0;
-        int size = entries.size();
-        for (int i = 0; i < size; i++) {
-            Integer typeInteger = entries.get(i).getAsInteger(typeColumn);
-            if (typeInteger != null && typeInteger == type) {
-                count++;
+        if (entries != null) {
+            for (ValuesDelta entry : entries) {
+                Integer typeInteger = entry.getAsInteger(typeColumn);
+                if (typeInteger != null && typeInteger == type) {
+                    count++;
+                }
             }
         }
         return count;
