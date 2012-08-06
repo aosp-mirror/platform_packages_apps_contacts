@@ -17,10 +17,10 @@
 <!-- Use LinearLayout + FrameLayout, just to rely on android:divider and android:showDividers -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/FragmentActionBarPadding"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="?android:attr/actionBarSize"
     android:divider="?android:attr/dividerHorizontal"
     android:showDividers="end">
     <FrameLayout

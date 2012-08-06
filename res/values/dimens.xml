@@ -168,6 +168,10 @@
     <!-- Just used in landscape mode -->
     <dimen name="dialpad_digits_height">0px</dimen>
     <dimen name="dialpad_digits_margin_bottom">0px</dimen>
+    <dimen name="dialpad_center_margin">3dp</dimen>
+    <dimen name="dialpad_button_margin">2dp</dimen>
+    <!-- Match call_button_height to Phone's dimens/in_call_end_button_height -->
+    <dimen name="call_button_height">74dp</dimen>
 
     <!-- Width of search view in action bar.  Use 0dip for MATCH_PARENT -->
     <dimen name="search_view_width">0dip</dimen>

@@ -356,4 +356,8 @@
         <item name="android:textColor">#cdffffff</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="FragmentActionBarPadding">
+        <item name="android:paddingBottom">?android:attr/actionBarSize</item>
+    </style>
 </resources>
