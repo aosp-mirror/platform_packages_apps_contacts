@@ -52,10 +52,7 @@
         <item>ACTION_SEARCH: contact</item>
         <item>ACTION_SEARCH: email</item>
         <item>ACTION_SEARCH: phone</item>
-        <item>SEARCH_SUGGESTION_CLICKED (call button)</item>
         <item>SEARCH_SUGGESTION_CLICKED: contact</item>
-        <item>SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED</item>
-        <item>SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED</item>
         <item>TODO: JOIN_CONTACT</item>
 
         <!-- Edit Contact -->
