@@ -525,7 +525,7 @@
     <string name="group_name_hint" msgid="238359485263401293">"Igama leqemnbu"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Othintana naye utholakale nge-NFC"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Bonisa eziphumayo kuphela"</string>
-    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Bonsia okungenayo kuphela"</string>
+    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Bonisa okungenayo kuphela"</string>
     <string name="menu_show_missed_only" msgid="154473166059743996">"Bonisa okugejiwe kuphela"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Bonisa ama-imeyli ezwi kuphela"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Bonisa zonke izingcingo ezenziwe"</string>
