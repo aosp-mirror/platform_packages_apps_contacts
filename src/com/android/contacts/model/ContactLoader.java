@@ -106,7 +106,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
      * social stream items).
      */
     private static class ContactQuery {
-        final static String[] COLUMNS = new String[] {
+        static final String[] COLUMNS = new String[] {
                 Contacts.NAME_RAW_CONTACT_ID,
                 Contacts.DISPLAY_NAME_SOURCE,
                 Contacts.LOOKUP_KEY,
@@ -179,83 +179,83 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 Contacts.IS_USER_PROFILE,
         };
 
-        public final static int NAME_RAW_CONTACT_ID = 0;
-        public final static int DISPLAY_NAME_SOURCE = 1;
-        public final static int LOOKUP_KEY = 2;
-        public final static int DISPLAY_NAME = 3;
-        public final static int ALT_DISPLAY_NAME = 4;
-        public final static int PHONETIC_NAME = 5;
-        public final static int PHOTO_ID = 6;
-        public final static int STARRED = 7;
-        public final static int CONTACT_PRESENCE = 8;
-        public final static int CONTACT_STATUS = 9;
-        public final static int CONTACT_STATUS_TIMESTAMP = 10;
-        public final static int CONTACT_STATUS_RES_PACKAGE = 11;
-        public final static int CONTACT_STATUS_LABEL = 12;
-        public final static int CONTACT_ID = 13;
-        public final static int RAW_CONTACT_ID = 14;
+        public static final int NAME_RAW_CONTACT_ID = 0;
+        public static final int DISPLAY_NAME_SOURCE = 1;
+        public static final int LOOKUP_KEY = 2;
+        public static final int DISPLAY_NAME = 3;
+        public static final int ALT_DISPLAY_NAME = 4;
+        public static final int PHONETIC_NAME = 5;
+        public static final int PHOTO_ID = 6;
+        public static final int STARRED = 7;
+        public static final int CONTACT_PRESENCE = 8;
+        public static final int CONTACT_STATUS = 9;
+        public static final int CONTACT_STATUS_TIMESTAMP = 10;
+        public static final int CONTACT_STATUS_RES_PACKAGE = 11;
+        public static final int CONTACT_STATUS_LABEL = 12;
+        public static final int CONTACT_ID = 13;
+        public static final int RAW_CONTACT_ID = 14;
 
-        public final static int ACCOUNT_NAME = 15;
-        public final static int ACCOUNT_TYPE = 16;
-        public final static int DATA_SET = 17;
-        public final static int ACCOUNT_TYPE_AND_DATA_SET = 18;
-        public final static int DIRTY = 19;
-        public final static int VERSION = 20;
-        public final static int SOURCE_ID = 21;
-        public final static int SYNC1 = 22;
-        public final static int SYNC2 = 23;
-        public final static int SYNC3 = 24;
-        public final static int SYNC4 = 25;
-        public final static int DELETED = 26;
-        public final static int NAME_VERIFIED = 27;
+        public static final int ACCOUNT_NAME = 15;
+        public static final int ACCOUNT_TYPE = 16;
+        public static final int DATA_SET = 17;
+        public static final int ACCOUNT_TYPE_AND_DATA_SET = 18;
+        public static final int DIRTY = 19;
+        public static final int VERSION = 20;
+        public static final int SOURCE_ID = 21;
+        public static final int SYNC1 = 22;
+        public static final int SYNC2 = 23;
+        public static final int SYNC3 = 24;
+        public static final int SYNC4 = 25;
+        public static final int DELETED = 26;
+        public static final int NAME_VERIFIED = 27;
 
-        public final static int DATA_ID = 28;
-        public final static int DATA1 = 29;
-        public final static int DATA2 = 30;
-        public final static int DATA3 = 31;
-        public final static int DATA4 = 32;
-        public final static int DATA5 = 33;
-        public final static int DATA6 = 34;
-        public final static int DATA7 = 35;
-        public final static int DATA8 = 36;
-        public final static int DATA9 = 37;
-        public final static int DATA10 = 38;
-        public final static int DATA11 = 39;
-        public final static int DATA12 = 40;
-        public final static int DATA13 = 41;
-        public final static int DATA14 = 42;
-        public final static int DATA15 = 43;
-        public final static int DATA_SYNC1 = 44;
-        public final static int DATA_SYNC2 = 45;
-        public final static int DATA_SYNC3 = 46;
-        public final static int DATA_SYNC4 = 47;
-        public final static int DATA_VERSION = 48;
-        public final static int IS_PRIMARY = 49;
-        public final static int IS_SUPERPRIMARY = 50;
-        public final static int MIMETYPE = 51;
-        public final static int RES_PACKAGE = 52;
+        public static final int DATA_ID = 28;
+        public static final int DATA1 = 29;
+        public static final int DATA2 = 30;
+        public static final int DATA3 = 31;
+        public static final int DATA4 = 32;
+        public static final int DATA5 = 33;
+        public static final int DATA6 = 34;
+        public static final int DATA7 = 35;
+        public static final int DATA8 = 36;
+        public static final int DATA9 = 37;
+        public static final int DATA10 = 38;
+        public static final int DATA11 = 39;
+        public static final int DATA12 = 40;
+        public static final int DATA13 = 41;
+        public static final int DATA14 = 42;
+        public static final int DATA15 = 43;
+        public static final int DATA_SYNC1 = 44;
+        public static final int DATA_SYNC2 = 45;
+        public static final int DATA_SYNC3 = 46;
+        public static final int DATA_SYNC4 = 47;
+        public static final int DATA_VERSION = 48;
+        public static final int IS_PRIMARY = 49;
+        public static final int IS_SUPERPRIMARY = 50;
+        public static final int MIMETYPE = 51;
+        public static final int RES_PACKAGE = 52;
 
-        public final static int GROUP_SOURCE_ID = 53;
+        public static final int GROUP_SOURCE_ID = 53;
 
-        public final static int PRESENCE = 54;
-        public final static int CHAT_CAPABILITY = 55;
-        public final static int STATUS = 56;
-        public final static int STATUS_RES_PACKAGE = 57;
-        public final static int STATUS_ICON = 58;
-        public final static int STATUS_LABEL = 59;
-        public final static int STATUS_TIMESTAMP = 60;
+        public static final int PRESENCE = 54;
+        public static final int CHAT_CAPABILITY = 55;
+        public static final int STATUS = 56;
+        public static final int STATUS_RES_PACKAGE = 57;
+        public static final int STATUS_ICON = 58;
+        public static final int STATUS_LABEL = 59;
+        public static final int STATUS_TIMESTAMP = 60;
 
-        public final static int PHOTO_URI = 61;
-        public final static int SEND_TO_VOICEMAIL = 62;
-        public final static int CUSTOM_RINGTONE = 63;
-        public final static int IS_USER_PROFILE = 64;
+        public static final int PHOTO_URI = 61;
+        public static final int SEND_TO_VOICEMAIL = 62;
+        public static final int CUSTOM_RINGTONE = 63;
+        public static final int IS_USER_PROFILE = 64;
     }
 
     /**
      * Projection used for the query that loads all data for the entire contact.
      */
     private static class DirectoryQuery {
-        final static String[] COLUMNS = new String[] {
+        static final String[] COLUMNS = new String[] {
             Directory.DISPLAY_NAME,
             Directory.PACKAGE_NAME,
             Directory.TYPE_RESOURCE_ID,
@@ -264,16 +264,16 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
             Directory.EXPORT_SUPPORT,
         };
 
-        public final static int DISPLAY_NAME = 0;
-        public final static int PACKAGE_NAME = 1;
-        public final static int TYPE_RESOURCE_ID = 2;
-        public final static int ACCOUNT_TYPE = 3;
-        public final static int ACCOUNT_NAME = 4;
-        public final static int EXPORT_SUPPORT = 5;
+        public static final int DISPLAY_NAME = 0;
+        public static final int PACKAGE_NAME = 1;
+        public static final int TYPE_RESOURCE_ID = 2;
+        public static final int ACCOUNT_TYPE = 3;
+        public static final int ACCOUNT_NAME = 4;
+        public static final int EXPORT_SUPPORT = 5;
     }
 
     private static class GroupQuery {
-        final static String[] COLUMNS = new String[] {
+        static final String[] COLUMNS = new String[] {
             Groups.ACCOUNT_NAME,
             Groups.ACCOUNT_TYPE,
             Groups.DATA_SET,
@@ -284,14 +284,14 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
             Groups.FAVORITES,
         };
 
-        public final static int ACCOUNT_NAME = 0;
-        public final static int ACCOUNT_TYPE = 1;
-        public final static int DATA_SET = 2;
-        public final static int ACCOUNT_TYPE_AND_DATA_SET = 3;
-        public final static int ID = 4;
-        public final static int TITLE = 5;
-        public final static int AUTO_ADD = 6;
-        public final static int FAVORITES = 7;
+        public static final int ACCOUNT_NAME = 0;
+        public static final int ACCOUNT_TYPE = 1;
+        public static final int DATA_SET = 2;
+        public static final int ACCOUNT_TYPE_AND_DATA_SET = 3;
+        public static final int ID = 4;
+        public static final int TITLE = 5;
+        public static final int AUTO_ADD = 6;
+        public static final int FAVORITES = 7;
     }
 
     @Override
