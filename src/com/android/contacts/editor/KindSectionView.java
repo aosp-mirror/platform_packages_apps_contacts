@@ -113,18 +113,12 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     public void onDeleteRequested(Editor editor) {
         // If there is only 1 editor in the section, then don't allow the user to delete it.
         // Just clear the fields in the editor.
-        final boolean animate;
         if (getEditorCount() == 1) {
             editor.clearAllFields();
-            animate = true;
         } else {
             // Otherwise it's okay to delete this {@link Editor}
             editor.deleteEditor();
-
-            // This is already animated, don't do anything further here
-            animate = false;
         }
-        updateAddFooterVisible(animate);
     }
 
     @Override
