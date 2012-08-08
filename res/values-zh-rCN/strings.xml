@@ -510,6 +510,14 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"无法抓取语音邮件。"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"新记录"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"旧记录"</string>
+    <!-- no translation found for call_log_voicemail_header (4484032064803446806) -->
+    <skip />
+    <!-- no translation found for call_log_incoming_header (297542827180501480) -->
+    <skip />
+    <!-- no translation found for call_log_outgoing_header (9017138725495067284) -->
+    <skip />
+    <!-- no translation found for call_log_missed_header (2168865291934970151) -->
+    <skip />
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"无法连接到语音信箱服务器。"</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"无法连接到语音信箱服务器。新的语音邮件正在等待接收。"</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"设置您的语音信箱。"</string>
@@ -524,12 +532,9 @@
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"群组名称"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"已通过 NFC 收到联系人信息"</string>
-    <!-- no translation found for menu_show_outgoing_only (1965570298133301970) -->
-    <skip />
-    <!-- no translation found for menu_show_incoming_only (7534206815238877417) -->
-    <skip />
-    <!-- no translation found for menu_show_missed_only (154473166059743996) -->
-    <skip />
+    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"仅显示外拨电话"</string>
+    <string name="menu_show_incoming_only" msgid="7534206815238877417">"仅显示来电"</string>
+    <string name="menu_show_missed_only" msgid="154473166059743996">"仅显示未接来电"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"只显示语音邮件"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"显示所有通话"</string>
     <string name="status_available" msgid="5586870015822828392">"在线"</string>
