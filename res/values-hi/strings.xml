@@ -412,7 +412,7 @@
     <string name="take_photo" msgid="7496128293167402354">"फ़ोटो लें"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"नया फ़ोटो लें"</string>
     <string name="pick_photo" msgid="3746334626214970837">"गैलरी से फ़ोटो चुनें"</string>
-    <string name="pick_new_photo" msgid="7962368009197147617">"गैलरी से नए फ़ोटो का चयन करें"</string>
+    <string name="pick_new_photo" msgid="7962368009197147617">"गैलरी से नए फ़ोटो को चुनें"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषा के परिवर्तन दिखाने के लिए संपर्क सूची को अपडेट किया जा रहा है."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची अपडेट की जा रही है."</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. "\n\n"अपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB आंतरिक संग्रहण की आवश्‍यकता होती है."\n\n"निम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
@@ -421,7 +421,7 @@
     <string name="search_results_searching" msgid="3984833028938569930">"खोज रहा है…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"चयनित दिखाएं"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"सभी दिखाएं"</string>
-    <string name="menu_select_all" msgid="621719255150713545">"सभी का चयन करें"</string>
+    <string name="menu_select_all" msgid="621719255150713545">"सभी को चुनें"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"सभी का चयन रद्द करें"</string>
     <string name="no_contacts_selected" msgid="5877803471037324613">"कोई भी संपर्क नहीं चुने गए."</string>
     <string name="add_field" msgid="2384260056674995230">"दूसरा फ़ील्ड जोड़ें"</string>
