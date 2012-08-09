@@ -510,14 +510,10 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Telefonsvarerbeskeden kunne ikke hentes."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nye"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Ældre"</string>
-    <!-- no translation found for call_log_voicemail_header (4484032064803446806) -->
-    <skip />
-    <!-- no translation found for call_log_incoming_header (297542827180501480) -->
-    <skip />
-    <!-- no translation found for call_log_outgoing_header (9017138725495067284) -->
-    <skip />
-    <!-- no translation found for call_log_missed_header (2168865291934970151) -->
-    <skip />
+    <string name="call_log_voicemail_header" msgid="4484032064803446806">"Opkald med telefonsvarer"</string>
+    <string name="call_log_incoming_header" msgid="297542827180501480">"Indgående opkald"</string>
+    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Udgående opkald"</string>
+    <string name="call_log_missed_header" msgid="2168865291934970151">"Ubesvarede opkald"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Der kan ikke oprettes forbindelse til telefonsvarerserveren."</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Der kan ikke oprettes forbindelse til telefonsvarerserveren. Du har nye beskeder."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Konfigurer din telefonsvarer."</string>
