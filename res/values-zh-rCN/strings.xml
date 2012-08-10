@@ -510,14 +510,10 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"无法抓取语音邮件。"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"新记录"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"旧记录"</string>
-    <!-- no translation found for call_log_voicemail_header (4484032064803446806) -->
-    <skip />
-    <!-- no translation found for call_log_incoming_header (297542827180501480) -->
-    <skip />
-    <!-- no translation found for call_log_outgoing_header (9017138725495067284) -->
-    <skip />
-    <!-- no translation found for call_log_missed_header (2168865291934970151) -->
-    <skip />
+    <string name="call_log_voicemail_header" msgid="4484032064803446806">"通过语音信箱接听的电话"</string>
+    <string name="call_log_incoming_header" msgid="297542827180501480">"来电"</string>
+    <string name="call_log_outgoing_header" msgid="9017138725495067284">"外拨电话"</string>
+    <string name="call_log_missed_header" msgid="2168865291934970151">"未接来电"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"无法连接到语音信箱服务器。"</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"无法连接到语音信箱服务器。新的语音邮件正在等待接收。"</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"设置您的语音信箱。"</string>
