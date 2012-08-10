@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Rect;
 import android.location.CountryDetector;
@@ -330,5 +331,13 @@ public class ContactsUtils {
             }
         }
         return sThumbnailSize;
+    }
+
+    /**
+     * @return if the context is in landscape orientation.
+     */
+    public static boolean isLandscape(Context context) {
+        return context.getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE;
     }
 }

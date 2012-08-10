@@ -16,10 +16,10 @@
 
 <!-- Layout parameters are set programmatically. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/FragmentActionBarPadding"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="?android:attr/actionBarSize"
     android:divider="?android:attr/dividerHorizontal"
     android:showDividers="end">
 
@@ -27,8 +27,6 @@
         android:id="@+id/voicemail_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
         android:visibility="gone">
         <include layout="@layout/call_log_voicemail_status"
     />
