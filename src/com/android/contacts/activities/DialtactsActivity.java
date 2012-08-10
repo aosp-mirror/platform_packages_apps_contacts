@@ -1021,7 +1021,8 @@ public class DialtactsActivity extends TransactionSafeActivity
         } else {
             // This is when the user is looking at the dialer pad.  In this case, the real
             // ActionBar is hidden and fake menu items are shown.
-            searchMenuItem.setVisible(false);
+            // Except in landscape, in which case the real search menu item is shown.
+            searchMenuItem.setVisible(ContactsUtils.isLandscape(this));
             // If a permanent menu key is available, then we need to show the call settings item
             // so that the call settings item can be invoked by the permanent menu key.
             callSettingsMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
@@ -1224,6 +1225,7 @@ public class DialtactsActivity extends TransactionSafeActivity
      * @param visible True when visible.
      */
     private void updateFakeMenuButtonsVisibility(boolean visible) {
+        // Note: Landscape mode does not have the fake menu and search buttons.
         if (DEBUG) {
             Log.d(TAG, "updateFakeMenuButtonVisibility(" + visible + ")");
         }
