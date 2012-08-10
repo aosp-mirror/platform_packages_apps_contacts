@@ -512,14 +512,10 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Tidak dapat mengambil mel suara."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Baru"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Lebih lama"</string>
-    <!-- no translation found for call_log_voicemail_header (4484032064803446806) -->
-    <skip />
-    <!-- no translation found for call_log_incoming_header (297542827180501480) -->
-    <skip />
-    <!-- no translation found for call_log_outgoing_header (9017138725495067284) -->
-    <skip />
-    <!-- no translation found for call_log_missed_header (2168865291934970151) -->
-    <skip />
+    <string name="call_log_voicemail_header" msgid="4484032064803446806">"Panggilan dengan mel suara"</string>
+    <string name="call_log_incoming_header" msgid="297542827180501480">"Panggilan masuk"</string>
+    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Panggilan keluar"</string>
+    <string name="call_log_missed_header" msgid="2168865291934970151">"Panggilan tidak dijawab"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Tidak boleh bersambung kepada pelayan mel suara."</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Tak boleh brsmbg kpd pelayan mel suara. Mel suara baru menunggu."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Sediakan mel suara anda."</string>
@@ -534,9 +530,9 @@
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nama kumpulan"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Knln melalui NFC"</string>
-    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Tunjukkan panggilan keluar shj"</string>
-    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Tunjukkan panggilan masuk shj"</string>
-    <string name="menu_show_missed_only" msgid="154473166059743996">"Tujukkan pgln terlepas shj"</string>
+    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Tunjuk panggilan keluar shj"</string>
+    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Tunjuk panggilan masuk shj"</string>
+    <string name="menu_show_missed_only" msgid="154473166059743996">"Tunjuk panggilan terlepas shj"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Tunjukkan mel suara sahaja"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Tunjukkan semua panggilan"</string>
     <string name="status_available" msgid="5586870015822828392">"Ada"</string>
