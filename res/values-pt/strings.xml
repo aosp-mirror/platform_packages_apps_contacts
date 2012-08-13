@@ -512,7 +512,7 @@
     <string name="call_log_old_header" msgid="6262205894314263629">"Antigas"</string>
     <string name="call_log_voicemail_header" msgid="4484032064803446806">"Chamadas com correio de voz"</string>
     <string name="call_log_incoming_header" msgid="297542827180501480">"Chamadas recebidas"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Chamada de saída"</string>
+    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Chamadas de saída"</string>
     <string name="call_log_missed_header" msgid="2168865291934970151">"Chamadas perdidas"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Não é possível se conectar ao servidor de correio de voz."</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Impossível conect. ao serv. correio voz. Novas mensagens de voz."</string>
