@@ -19,6 +19,7 @@ package com.android.contacts.model.dataitem;
 import android.content.ContentValues;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.telephony.PhoneNumberUtils;
 
 import com.android.contacts.model.RawContact;
 
@@ -27,6 +28,8 @@ import com.android.contacts.model.RawContact;
  * {@link ContactsContract.CommonDataKinds.Phone}.
  */
 public class PhoneDataItem extends DataItem {
+
+    public static final String KEY_FORMATTED_PHONE_NUMBER = "formattedPhoneNumber";
 
     /* package */ PhoneDataItem(RawContact rawContact, ContentValues values) {
         super(rawContact, values);
@@ -43,6 +46,10 @@ public class PhoneDataItem extends DataItem {
         return getContentValues().getAsString(Phone.NORMALIZED_NUMBER);
     }
 
+    public String getFormattedPhoneNumber() {
+        return getContentValues().getAsString(KEY_FORMATTED_PHONE_NUMBER);
+    }
+
     /**
      * Values are Phone.TYPE_*
      */
@@ -52,6 +59,15 @@ public class PhoneDataItem extends DataItem {
 
     public String getLabel() {
         return getContentValues().getAsString(Phone.LABEL);
+    }
+
+    public void computeFormattedPhoneNumber(String defaultCountryIso) {
+        final String phoneNumber = getNumber();
+        if (phoneNumber != null) {
+            final String formattedPhoneNumber = PhoneNumberUtils.formatNumber(phoneNumber,
+                    getNormalizedNumber(), defaultCountryIso);
+            getContentValues().put(KEY_FORMATTED_PHONE_NUMBER, formattedPhoneNumber);
+        }
     }
 
 }

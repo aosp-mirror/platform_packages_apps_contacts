@@ -114,7 +114,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             return;
         }
         final ContactLoader contactLoader = new ContactLoader(context, contactUri, false, true,
-                false, true);
+                false, true, false);
         contactLoader.registerListener(0,
                 new ContactLoader.OnLoadCompleteListener<Contact>() {
                     @Override
