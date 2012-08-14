@@ -26,6 +26,7 @@ import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.database.sqlite.SQLiteDiskIOException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteFullException;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -49,6 +50,7 @@ import javax.annotation.concurrent.GuardedBy;
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     private static final String TAG = "CallLogQueryHandler";
+    private static final int NUM_LOGS_TO_DISPLAY = 1000;
 
     /** The token for the query to fetch the new entries from the call log. */
     private static final int QUERY_NEW_CALLS_TOKEN = 53;
@@ -193,7 +195,10 @@ import javax.annotation.concurrent.GuardedBy;
             selection = String.format("(%s) AND (%s = ?)", selection, Calls.TYPE);
             selectionArgs.add(Integer.toString(callType));
         }
-        startQuery(token, requestId, Calls.CONTENT_URI_WITH_VOICEMAIL,
+        Uri uri = Calls.CONTENT_URI_WITH_VOICEMAIL.buildUpon()
+                .appendQueryParameter(Calls.LIMIT_PARAM_KEY, Integer.toString(NUM_LOGS_TO_DISPLAY))
+                .build();
+        startQuery(token, requestId, uri,
                 CallLogQuery._PROJECTION, selection, selectionArgs.toArray(EMPTY_STRING_ARRAY),
                 Calls.DEFAULT_SORT_ORDER);
     }
