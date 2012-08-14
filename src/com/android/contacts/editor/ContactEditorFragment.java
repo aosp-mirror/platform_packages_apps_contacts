@@ -675,6 +675,12 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private void bindEditors() {
+        // bindEditors() can only bind views if there is data in mState, so immediately return
+        // if mState is null
+        if (mState == null) {
+            return;
+        }
+
         // Sort the editors
         Collections.sort(mState, mComparator);
 
