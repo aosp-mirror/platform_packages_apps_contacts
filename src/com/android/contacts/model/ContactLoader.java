@@ -41,10 +41,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountTypeWithDataSet;
 import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.PhoneDataItem;
 import com.android.contacts.model.dataitem.PhotoDataItem;
 import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.util.DataStatus;
@@ -81,17 +83,18 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     private boolean mLoadStreamItems;
     private boolean mLoadInvitableAccountTypes;
     private boolean mPostViewNotification;
+    private boolean mComputeFormattedPhoneNumber;
     private Contact mContact;
     private ForceLoadContentObserver mObserver;
     private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
 
     public ContactLoader(Context context, Uri lookupUri, boolean postViewNotification) {
-        this(context, lookupUri, false, false, false, postViewNotification);
+        this(context, lookupUri, false, false, false, postViewNotification, false);
     }
 
     public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
             boolean loadStreamItems, boolean loadInvitableAccountTypes,
-            boolean postViewNotification) {
+            boolean postViewNotification, boolean computeFormattedPhoneNumber) {
         super(context);
         mLookupUri = lookupUri;
         mRequestedUri = lookupUri;
@@ -99,6 +102,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         mLoadStreamItems = loadStreamItems;
         mLoadInvitableAccountTypes = loadInvitableAccountTypes;
         mPostViewNotification = postViewNotification;
+        mComputeFormattedPhoneNumber = computeFormattedPhoneNumber;
     }
 
     /**
@@ -379,7 +383,8 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 }
                 if (!cursor.isNull(ContactQuery.DATA_ID)) {
                     ContentValues data = loadDataValues(cursor);
-                    rawContact.addDataItemValues(data);
+                    final DataItem item = rawContact.addDataItemValues(data);
+                    processDataItem(item);
 
                     if (!cursor.isNull(ContactQuery.PRESENCE)
                             || !cursor.isNull(ContactQuery.STATUS)) {
@@ -396,6 +401,19 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
             return contact;
         } finally {
             cursor.close();
+        }
+    }
+
+    /**
+     * Performs any further computations on the data item
+     */
+    private void processDataItem(DataItem dataItem) {
+        if (dataItem instanceof PhoneDataItem) {
+            if (mComputeFormattedPhoneNumber) {
+                final PhoneDataItem phoneDataItem = (PhoneDataItem) dataItem;
+                final String defaultCountryIso = ContactsUtils.getCurrentCountryIso(getContext());
+                phoneDataItem.computeFormattedPhoneNumber(defaultCountryIso);
+            }
         }
     }
 

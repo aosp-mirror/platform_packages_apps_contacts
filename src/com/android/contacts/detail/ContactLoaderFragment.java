@@ -187,7 +187,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
             Uri lookupUri = args.getParcelable(LOADER_ARG_CONTACT_URI);
             return new ContactLoader(mContext, lookupUri, true /* loadGroupMetaData */,
                     true /* loadStreamItems */, true /* load invitable account types */,
-                    true /* postViewNotification */);
+                    true /* postViewNotification */, true /* computeFormattedPhoneNumber */);
         }
 
         @Override
