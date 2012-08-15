@@ -228,12 +228,18 @@ public class RawContact {
         setAccount(null, null, null);
     }
 
-    public void addDataItemValues(ContentValues values) {
-        addNamedDataItemValues(Data.CONTENT_URI, values);
+    /**
+     * Creates and inserts a DataItem object that wraps the content values, and returns it.
+     */
+    public DataItem addDataItemValues(ContentValues values) {
+        final NamedDataItem namedItem = addNamedDataItemValues(Data.CONTENT_URI, values);
+        return namedItem.dataItem;
     }
 
-    public void addNamedDataItemValues(Uri uri, ContentValues values) {
-        mDataItems.add(new NamedDataItem(uri, DataItem.createFrom(this, values)));
+    public NamedDataItem addNamedDataItemValues(Uri uri, ContentValues values) {
+        final NamedDataItem namedItem = new NamedDataItem(uri, DataItem.createFrom(this, values));
+        mDataItems.add(namedItem);
+        return namedItem;
     }
 
     public List<DataItem> getDataItems() {
