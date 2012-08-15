@@ -42,7 +42,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.StatusUpdates;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -573,9 +572,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 } else if (dataItem instanceof PhoneDataItem && hasData) {
                     PhoneDataItem phone = (PhoneDataItem) dataItem;
                     // Build phone entries
-                    String phoneNumberE164 = phone.getNormalizedNumber();
-                    entry.data = PhoneNumberUtils.formatNumber(
-                            entry.data, phoneNumberE164, mDefaultCountryIso);
+                    entry.data = phone.getFormattedPhoneNumber();
                     final Intent phoneIntent = mHasPhone ?
                             ContactsUtils.getCallIntent(entry.data) : null;
                     final Intent smsIntent = mHasSms ? new Intent(Intent.ACTION_SENDTO,
