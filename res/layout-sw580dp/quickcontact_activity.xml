@@ -15,7 +15,7 @@
 -->
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
+    xmlns:ex="http://schemas.android.com/apk/res-auto"
     class="com.android.contacts.quickcontact.FloatingChildLayout"
     android:id="@+id/floating_layout"
     android:layout_width="match_parent"
