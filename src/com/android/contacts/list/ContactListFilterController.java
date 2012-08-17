@@ -30,20 +30,19 @@ import java.util.List;
  */
 public abstract class ContactListFilterController {
 
-    public static final String CONTACT_LIST_FILTER_SERVICE = "contactListFilter";
+    // singleton to cache the filter controller
+    private static ContactListFilterControllerImpl sFilterController = null;
 
     public interface ContactListFilterListener {
         void onContactListFilterChanged();
     }
 
     public static ContactListFilterController getInstance(Context context) {
-        return (ContactListFilterController)
-                context.getApplicationContext().getSystemService(CONTACT_LIST_FILTER_SERVICE);
-    }
-
-    public static ContactListFilterController
-            createContactListFilterController(Context context) {
-        return new ContactListFilterControllerImpl(context);
+        // We may need to synchronize this in the future if background task will call this.
+        if (sFilterController == null) {
+            sFilterController = new ContactListFilterControllerImpl(context);
+        }
+        return sFilterController;
     }
 
     public abstract void addListener(ContactListFilterListener listener);

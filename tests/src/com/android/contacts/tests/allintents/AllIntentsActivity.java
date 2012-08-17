@@ -512,7 +512,7 @@ public class AllIntentsActivity extends ListActivity
                 }
                 final Intent intent = new Intent("android.intent.action.VIEW");
                 intent.setData(uri);
-                bindIntentToClass(intent, "com.android.contacts.CallDetailActivity");
+                bindIntentToClass(intent, "com.android.dialer.CallDetailActivity");
                 startActivity(intent);
                 break;
             }

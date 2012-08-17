@@ -33,12 +33,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.util.Constants;
+import com.android.phone.common.PhoneConstants;
 
 import java.util.List;
 
@@ -269,7 +269,7 @@ public class ContactsUtils {
         final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (callOrigin != null) {
-            intent.putExtra(DialtactsActivity.EXTRA_CALL_ORIGIN, callOrigin);
+            intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
         }
         return intent;
     }

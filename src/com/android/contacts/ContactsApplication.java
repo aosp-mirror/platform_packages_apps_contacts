@@ -104,14 +104,6 @@ public final class ContactsApplication extends Application {
             return mContactPhotoManager;
         }
 
-        if (ContactListFilterController.CONTACT_LIST_FILTER_SERVICE.equals(name)) {
-            if (mContactListFilterController == null) {
-                mContactListFilterController =
-                        ContactListFilterController.createContactListFilterController(this);
-            }
-            return mContactListFilterController;
-        }
-
         return super.getSystemService(name);
     }
 
