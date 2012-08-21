@@ -573,6 +573,15 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     PhoneDataItem phone = (PhoneDataItem) dataItem;
                     // Build phone entries
                     entry.data = phone.getFormattedPhoneNumber();
+                    if (entry.data == null) {
+                        // This case happens when the quick contact was opened from the contact
+                        // list, and then, the user touches the quick contact image and brings the
+                        // user to the detail card.  In this case, the Contact object that was
+                        // loaded from quick contacts does not contain the formatted phone number,
+                        // so it must be loaded here.
+                        phone.computeFormattedPhoneNumber(mDefaultCountryIso);
+                        entry.data = phone.getFormattedPhoneNumber();
+                    }
                     final Intent phoneIntent = mHasPhone ?
                             ContactsUtils.getCallIntent(entry.data) : null;
                     final Intent smsIntent = mHasSms ? new Intent(Intent.ACTION_SENDTO,
