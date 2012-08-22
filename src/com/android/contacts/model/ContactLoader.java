@@ -63,6 +63,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -332,6 +333,9 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 if (mLoadStreamItems && result.getStreamItems() == null) {
                     loadStreamItems(result);
                 }
+                if (mComputeFormattedPhoneNumber) {
+                    computeFormattedPhoneNumbers(result);
+                }
                 if (!resultIsCached) loadPhotoBinaryData(result);
 
                 // Note ME profile should never have "Add connection"
@@ -384,7 +388,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 if (!cursor.isNull(ContactQuery.DATA_ID)) {
                     ContentValues data = loadDataValues(cursor);
                     final DataItem item = rawContact.addDataItemValues(data);
-                    processDataItem(item);
 
                     if (!cursor.isNull(ContactQuery.PRESENCE)
                             || !cursor.isNull(ContactQuery.STATUS)) {
@@ -401,19 +404,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
             return contact;
         } finally {
             cursor.close();
-        }
-    }
-
-    /**
-     * Performs any further computations on the data item
-     */
-    private void processDataItem(DataItem dataItem) {
-        if (dataItem instanceof PhoneDataItem) {
-            if (mComputeFormattedPhoneNumber) {
-                final PhoneDataItem phoneDataItem = (PhoneDataItem) dataItem;
-                final String defaultCountryIso = ContactsUtils.getCurrentCountryIso(getContext());
-                phoneDataItem.computeFormattedPhoneNumber(defaultCountryIso);
-            }
         }
     }
 
@@ -808,6 +798,29 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 .build());
     }
 
+    /**
+     * Iterates over all data items that represent phone numbers are tries to calculate a formatted
+     * number. This function can safely be called several times as no unformatted data is
+     * overwritten
+     */
+    private void computeFormattedPhoneNumbers(Contact contactData) {
+        final String countryIso = ContactsUtils.getCurrentCountryIso(getContext());
+        final ImmutableList<RawContact> rawContacts = contactData.getRawContacts();
+        final int rawContactCount = rawContacts.size();
+        for (int rawContactIndex = 0; rawContactIndex < rawContactCount; rawContactIndex++) {
+            final RawContact rawContact = rawContacts.get(rawContactIndex);
+            final List<DataItem> dataItems = rawContact.getDataItems();
+            final int dataCount = dataItems.size();
+            for (int dataIndex = 0; dataIndex < dataCount; dataIndex++) {
+                final DataItem dataItem = dataItems.get(dataIndex);
+                if (dataItem instanceof PhoneDataItem) {
+                    final PhoneDataItem phoneDataItem = (PhoneDataItem) dataItem;
+                    phoneDataItem.computeFormattedPhoneNumber(countryIso);
+                }
+            }
+        }
+    }
+
     @Override
     public void deliverResult(Contact result) {
         unregisterObserver();
@@ -895,12 +908,13 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     public void upgradeToFullContact() {
         // Everything requested already? Nothing to do, so let's bail out
         if (mLoadGroupMetaData && mLoadInvitableAccountTypes && mLoadStreamItems
-                && mPostViewNotification) return;
+                && mPostViewNotification && mComputeFormattedPhoneNumber) return;
 
         mLoadGroupMetaData = true;
         mLoadInvitableAccountTypes = true;
         mLoadStreamItems = true;
         mPostViewNotification = true;
+        mComputeFormattedPhoneNumber = true;
 
         // Cache the current result, so that we only load the "missing" parts of the contact.
         cacheResult();
