@@ -458,6 +458,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         Collapser.collapseList(mEmailEntries);
         Collapser.collapseList(mPostalEntries);
         Collapser.collapseList(mImEntries);
+        Collapser.collapseList(mEventEntries);
 
         mIsUniqueNumber = mPhoneEntries.size() == 1;
         mIsUniqueEmail = mEmailEntries.size() == 1;
