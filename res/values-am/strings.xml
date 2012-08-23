@@ -401,7 +401,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"ይህን ፎቶ ተጠቀም"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"ከዚህ መተግበሪያ አርትዕ ሊደረግ አይችልም፡፡"</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"ለዚህ ዕውቂያ ምንም ተጨማሪ መረጃ የለም"</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"ለእዚህ ዕውቂያ ምንም ተጨማሪ መረጃ የለም"</string>
     <string name="group_read_only" msgid="1061762906115697637">"በዚህ መሣሪያ ላይ አርትዕ መደረግ የሚችል አይደለም።"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"ዝርዝር በ  ለይ"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"መጠሪያ ስም"</string>
