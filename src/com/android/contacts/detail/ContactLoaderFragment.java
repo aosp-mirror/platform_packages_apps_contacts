@@ -216,7 +216,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 }
             }
             // Make sure the options menu is setup correctly with the loaded data.
-            getActivity().invalidateOptionsMenu();
+            if (getActivity() != null) getActivity().invalidateOptionsMenu();
         }
 
         @Override
