@@ -76,16 +76,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".calllog.FillCallLogTestActivity"
-            android:label="@string/fillCallLogTest"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".streamitems.StreamItemPopulatorActivity"
             android:label="@string/streamItemPopulator"
             >
@@ -137,11 +127,6 @@
     <instrumentation android:name="com.android.contacts.ContactsLaunchPerformance"
         android:targetPackage="com.android.contacts"
         android:label="Contacts launch performance">
-    </instrumentation>
-
-    <instrumentation android:name="com.android.contacts.DialerLaunchPerformance"
-        android:targetPackage="com.android.contacts"
-        android:label="Dialer launch performance">
     </instrumentation>
 
 </manifest>

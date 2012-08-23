@@ -51,7 +51,6 @@ import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.activities.TransactionSafeActivity;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountType.StringInflater;
@@ -456,7 +455,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * @param activity that is calling this interaction. This must be of type
      * {@link TransactionSafeActivity} because we need to check on the activity state after the
      * phone numbers have been queried for.
-     * @param callOrigin If non null, {@link DialtactsActivity#EXTRA_CALL_ORIGIN} will be
+     * @param callOrigin If non null, {@link PhoneConstants#EXTRA_CALL_ORIGIN} will be
      * appended to the Intent initiating phone call. See comments in Phone package (PhoneApp)
      * for more detail.
      */

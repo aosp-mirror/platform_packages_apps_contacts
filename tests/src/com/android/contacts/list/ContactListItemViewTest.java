@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.format.SpannedTestUtils;
-import com.android.contacts.util.IntegrationTestUtils;
+import com.android.contacts.common.test.IntegrationTestUtils;
 
 /**
  * Unit tests for {@link ContactListItemView}.
