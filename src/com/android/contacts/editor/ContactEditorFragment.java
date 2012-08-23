@@ -1149,7 +1149,7 @@ public class ContactEditorFragment extends Fragment implements
             case SaveMode.JOIN:
                 if (saveSucceeded && contactLookupUri != null) {
                     // If it was a JOIN, we are now ready to bring up the join activity.
-                    if (saveMode == SaveMode.JOIN) {
+                    if (saveMode == SaveMode.JOIN && hasValidState()) {
                         showJoinAggregateActivity(contactLookupUri);
                     }
 
