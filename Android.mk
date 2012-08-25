@@ -7,7 +7,6 @@ LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
 LOCAL_JAVA_LIBRARIES := telephony-common
 LOCAL_STATIC_JAVA_LIBRARIES := \
-    com.android.phone.common \
     com.android.phone.shared \
     com.android.vcard \
     android-common \
