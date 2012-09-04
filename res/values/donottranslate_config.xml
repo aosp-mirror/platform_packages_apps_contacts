@@ -37,13 +37,6 @@
     <!-- Flag indicating whether Contacts app is allowed to share contacts with devices outside -->
     <bool name="config_allow_share_visible_contacts">true</bool>
 
-    <!-- If true, enable vibration (haptic feedback) for dialer key presses.
-         The pattern is set on a per-platform basis using config_virtualKeyVibePattern.
-         TODO: If enough users are annoyed by this, we might eventually
-         need to make it a user preference rather than a per-platform
-         resource. -->
-    <bool name="config_enable_dialer_key_vibration">true</bool>
-
     <!-- Flag indicating whether to show images in browse list -->
     <bool name="config_browse_list_show_images">true</bool>
 
@@ -75,12 +68,6 @@
      exist in a target directory, 00003.vcf becomes a next file name candidate.
      Without this configuration, 00002.vcf becomes the candidate.-->
     <string name="config_export_extensions_to_consider" translatable="false"></string>
-
-    <!-- If true, show an onscreen "Dial" button in the dialer.
-         In practice this is used on all platforms even the ones with hard SEND/END
-         keys, but for maximum flexibility it's controlled by a flag here
-         (which can be overridden on a per-product basis.) -->
-    <bool name="config_show_onscreen_dial_button">true</bool>
 
     <!-- If true, an option is shown in Display Options UI to choose a sort order -->
     <bool name="config_sort_order_user_changeable">true</bool>
@@ -126,10 +113,6 @@
     <!-- Height of the tab carousel as a percentage of the current screen width on the
          contact detail page -->
     <item name="tab_height_screen_width_percentage" type="fraction">50%</item>
-
-    <!-- Regular expression for prohibiting certain phone numbers in dialpad.
-         Ignored if empty. -->
-    <string name="config_prohibited_phone_number_regexp"></string>
 
     <!-- If true, enable the "import contacts from SIM" feature if the device
          has an appropriate SIM or ICC card.

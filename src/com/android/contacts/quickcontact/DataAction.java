@@ -28,6 +28,7 @@ import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.contacts.common.CallUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.account.AccountType.EditType;
@@ -39,7 +40,6 @@ import com.android.contacts.model.dataitem.PhoneDataItem;
 import com.android.contacts.model.dataitem.SipAddressDataItem;
 import com.android.contacts.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.model.dataitem.WebsiteDataItem;
-import com.android.contacts.util.Constants;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
 
@@ -110,10 +110,10 @@ public class DataAction implements Action {
                 final String number = phone.getNumber();
                 if (!TextUtils.isEmpty(number)) {
 
-                    final Intent phoneIntent = hasPhone ? ContactsUtils.getCallIntent(number)
+                    final Intent phoneIntent = hasPhone ? CallUtil.getCallIntent(number)
                             : null;
                     final Intent smsIntent = hasSms ? new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts(Constants.SCHEME_SMSTO, number, null)) : null;
+                            Uri.fromParts(CallUtil.SCHEME_SMSTO, number, null)) : null;
 
                     // Configure Icons and Intents. Notice actionIcon is already set to the phone
                     if (hasPhone && hasSms) {
@@ -133,8 +133,8 @@ public class DataAction implements Action {
                 final SipAddressDataItem sip = (SipAddressDataItem) item;
                 final String address = sip.getSipAddress();
                 if (!TextUtils.isEmpty(address)) {
-                    final Uri callUri = Uri.fromParts(Constants.SCHEME_SIP, address, null);
-                    mIntent = ContactsUtils.getCallIntent(callUri);
+                    final Uri callUri = Uri.fromParts(CallUtil.SCHEME_SIP, address, null);
+                    mIntent = CallUtil.getCallIntent(callUri);
                     // Note that this item will get a SIP-specific variant
                     // of the "call phone" icon, rather than the standard
                     // app icon for the Phone app (which we show for
@@ -147,7 +147,7 @@ public class DataAction implements Action {
             final EmailDataItem email = (EmailDataItem) item;
             final String address = email.getData();
             if (!TextUtils.isEmpty(address)) {
-                final Uri mailUri = Uri.fromParts(Constants.SCHEME_MAILTO, address, null);
+                final Uri mailUri = Uri.fromParts(CallUtil.SCHEME_MAILTO, address, null);
                 mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
             }
 
@@ -182,7 +182,7 @@ public class DataAction implements Action {
 
                 if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
                     final String authority = host.toLowerCase();
-                    final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
+                    final Uri imUri = new Uri.Builder().scheme(CallUtil.SCHEME_IMTO).authority(
                             authority).appendPath(data).build();
                     mIntent = new Intent(Intent.ACTION_SENDTO, imUri);
 

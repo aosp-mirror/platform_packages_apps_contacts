@@ -68,6 +68,7 @@ import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.contacts.common.CallUtil;
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactPresenceIconUtil;
@@ -77,6 +78,7 @@ import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
@@ -104,8 +106,6 @@ import com.android.contacts.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.model.dataitem.WebsiteDataItem;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.util.ClipboardUtils;
-import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -575,9 +575,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     // Build phone entries
                     entry.data = phone.getFormattedPhoneNumber();
                     final Intent phoneIntent = mHasPhone ?
-                            ContactsUtils.getCallIntent(entry.data) : null;
+                            CallUtil.getCallIntent(entry.data) : null;
                     final Intent smsIntent = mHasSms ? new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null)) : null;
+                            Uri.fromParts(CallUtil.SCHEME_SMSTO, entry.data, null)) : null;
 
                     // Configure Icons and Intents.
                     if (mHasPhone && mHasSms) {
@@ -609,7 +609,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 } else if (dataItem instanceof EmailDataItem && hasData) {
                     // Build email entries
                     entry.intent = new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts(Constants.SCHEME_MAILTO, entry.data, null));
+                            Uri.fromParts(CallUtil.SCHEME_MAILTO, entry.data, null));
                     entry.isPrimary = isSuperPrimary;
                     // If entry is a primary entry, then render it first in the view.
                     if (entry.isPrimary) {
@@ -680,8 +680,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     // Build SipAddress entries
                     entry.uri = null;
                     if (mHasSip) {
-                        entry.intent = ContactsUtils.getCallIntent(
-                                Uri.fromParts(Constants.SCHEME_SIP, entry.data, null));
+                        entry.intent = CallUtil.getCallIntent(
+                                Uri.fromParts(CallUtil.SCHEME_SIP, entry.data, null));
                     } else {
                         entry.intent = null;
                     }
@@ -990,7 +990,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
             if (!TextUtils.isEmpty(host)) {
                 final String authority = host.toLowerCase();
-                final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
+                final Uri imUri = new Uri.Builder().scheme(CallUtil.SCHEME_IMTO).authority(
                         authority).appendPath(data).build();
                 entry.intent = new Intent(Intent.ACTION_SENDTO, imUri);
             }
@@ -1955,7 +1955,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     }
                 } else if (mPrimaryPhoneUri != null) {
                     // There isn't anything selected, call the default number
-                    mContext.startActivity(ContactsUtils.getCallIntent(mPrimaryPhoneUri));
+                    mContext.startActivity(CallUtil.getCallIntent(mPrimaryPhoneUri));
                     return true;
                 }
                 return false;

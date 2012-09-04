@@ -37,8 +37,6 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.test.NeededForTesting;
-import com.android.contacts.util.Constants;
-import com.android.phone.common.PhoneConstants;
 
 import java.util.List;
 
@@ -220,57 +218,6 @@ public class ContactsUtils {
 
         // Data is the lookup URI.
         intent.setData(lookupUri);
-        return intent;
-    }
-
-    /**
-     * Return Uri with an appropriate scheme, accepting Voicemail, SIP, and usual phone call
-     * numbers.
-     */
-    public static Uri getCallUri(String number) {
-        if (PhoneNumberUtils.isVoiceMailNumber(number)) {
-            return Uri.parse("voicemail:");
-        }
-        if (PhoneNumberUtils.isUriNumber(number)) {
-             return Uri.fromParts(Constants.SCHEME_SIP, number, null);
-        }
-        return Uri.fromParts(Constants.SCHEME_TEL, number, null);
-     }
-
-    /**
-     * Return an Intent for making a phone call. Scheme (e.g. tel, sip) will be determined
-     * automatically.
-     */
-    public static Intent getCallIntent(String number) {
-        return getCallIntent(number, null);
-    }
-
-    /**
-     * Return an Intent for making a phone call. A given Uri will be used as is (without any
-     * sanity check).
-     */
-    public static Intent getCallIntent(Uri uri) {
-        return getCallIntent(uri, null);
-    }
-
-    /**
-     * A variant of {@link #getCallIntent(String)} but also accept a call origin. For more
-     * information about call origin, see comments in Phone package (PhoneApp).
-     */
-    public static Intent getCallIntent(String number, String callOrigin) {
-        return getCallIntent(getCallUri(number), callOrigin);
-    }
-
-    /**
-     * A variant of {@link #getCallIntent(Uri)} but also accept a call origin. For more
-     * information about call origin, see comments in Phone package (PhoneApp).
-     */
-    public static Intent getCallIntent(Uri uri, String callOrigin) {
-        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (callOrigin != null) {
-            intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
-        }
         return intent;
     }
 

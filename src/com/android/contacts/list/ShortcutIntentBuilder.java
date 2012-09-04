@@ -40,8 +40,8 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 
+import com.android.contacts.common.CallUtil;
 import com.android.contacts.R;
-import com.android.contacts.util.Constants;
 
 /**
  * Constructs shortcut intents.
@@ -293,11 +293,11 @@ public class ShortcutIntentBuilder {
         Uri phoneUri;
         if (Intent.ACTION_CALL.equals(shortcutAction)) {
             // Make the URI a direct tel: URI so that it will always continue to work
-            phoneUri = Uri.fromParts(Constants.SCHEME_TEL, phoneNumber, null);
+            phoneUri = Uri.fromParts(CallUtil.SCHEME_TEL, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(bitmap, phoneType, phoneLabel,
                     R.drawable.badge_action_call);
         } else {
-            phoneUri = Uri.fromParts(Constants.SCHEME_SMSTO, phoneNumber, null);
+            phoneUri = Uri.fromParts(CallUtil.SCHEME_SMSTO, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(bitmap, phoneType, phoneLabel,
                     R.drawable.badge_action_sms);
         }

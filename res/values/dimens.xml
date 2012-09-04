@@ -160,19 +160,6 @@
     <!-- Height of the quick contact photo container (for screens that are too large to use the screen width/height as a constraint)-->
     <dimen name="quick_contact_photo_container_height">180dip</dimen>
 
-    <!-- Height of edit text in dialpad fragment -->
-    <dimen name="dialpad_horizontal_margin">0dip</dimen>
-    <dimen name="dialpad_vertical_margin">2dip</dimen>
-    <dimen name="dialpad_digits_text_size">35sp</dimen>
-
-    <!-- Just used in landscape mode -->
-    <dimen name="dialpad_digits_height">0px</dimen>
-    <dimen name="dialpad_digits_margin_bottom">0px</dimen>
-    <dimen name="dialpad_center_margin">3dp</dimen>
-    <dimen name="dialpad_button_margin">2dp</dimen>
-    <!-- Match call_button_height to Phone's dimens/in_call_end_button_height -->
-    <dimen name="call_button_height">74dp</dimen>
-
     <!-- Width of search view in action bar.  Use 0dip for MATCH_PARENT -->
     <dimen name="search_view_width">0dip</dimen>
 
@@ -202,18 +189,6 @@
     <!-- Top padding of the ListView in the contact tile list -->
     <dimen name="contact_tile_list_padding_top">0dip</dimen>
 
-    <!-- Call Log -->
-    <dimen name="call_log_call_action_size">32dip</dimen>
-    <dimen name="call_log_call_action_width">48dip</dimen>
-    <dimen name="call_log_icon_margin">4dip</dimen>
-    <dimen name="call_log_inner_margin">8dip</dimen>
-    <dimen name="call_log_outer_margin">16dip</dimen>
-    <dimen name="call_log_indent_margin">24dip</dimen>
-    <dimen name="call_log_list_item_height">56dip</dimen>
-    <dimen name="call_log_list_contact_photo_size">64dip</dimen>
-    <dimen name="call_detail_contact_name_margin">24dip</dimen>
-    <dimen name="call_detail_button_spacing">2dip</dimen>
-
     <!-- Empty message margins -->
     <dimen name="empty_message_top_margin">48dip</dimen>
     <dimen name="no_accounts_message_margin">20dip</dimen>
@@ -231,13 +206,6 @@
     <!--  Width of the lead margin on the left of a block quote inside a stream item -->
     <dimen name="stream_item_stripe_width">8dip</dimen>
 
-    <!-- Layout weight values for dialpad screen. These layouts will be used in one
-         LinearLayout (dialpad_fragment.xml), configuring dialpad screen's vertical
-         ratio. -->
-    <integer name="dialpad_layout_weight_digits">20</integer>
-    <integer name="dialpad_layout_weight_dialpad">65</integer>
-    <integer name="dialpad_layout_weight_additional_buttons">15</integer>
-
     <!-- Minimum height used with @drawable/list_section_divider_holo_custom.
          Right now the drawable has implicit 32dip minimal height, which is confusing.
          This value is for making the hidden configuration explicit in xml. -->
@@ -251,6 +219,4 @@
         wide screen devices). -->
     <dimen name="contact_picker_contact_list_min_height">550dip</dimen>
 
-    <!-- Min with of fake menu buttons, which should be same as ActionBar's one -->
-    <dimen name="fake_menu_button_min_width">56dip</dimen>
 </resources>

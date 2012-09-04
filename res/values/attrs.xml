@@ -92,21 +92,6 @@
         <attr name="list_item_label_width_weight" format="integer" />
     </declare-styleable>
 
-    <declare-styleable name="CallLog">
-        <attr name="call_log_primary_text_color" format="color" />
-        <attr name="call_log_primary_background_color" format="color" />
-        <attr name="call_log_secondary_text_color" format="color" />
-        <attr name="call_log_secondary_background_color" format="color" />
-        <attr name="call_log_header_color" format="color" />
-    </declare-styleable>
-
-    <declare-styleable name="VoicemailStatus">
-        <attr name="call_log_voicemail_status_height" format="dimension" />
-        <attr name="call_log_voicemail_status_background_color" format="color" />
-        <attr name="call_log_voicemail_status_text_color" format="color" />
-        <attr name="call_log_voicemail_status_action_text_color" format="color" />
-    </declare-styleable>
-
     <declare-styleable name="Favorites">
         <attr name="favorites_padding_bottom" format="dimension" />
     </declare-styleable>

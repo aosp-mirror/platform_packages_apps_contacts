@@ -3,7 +3,17 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SRC_FILES := $(call all-java-files-under, src)
+contacts_common_dir := ../ContactsCommon
+
+src_dirs := src $(contacts_common_dir)/src
+res_dirs := res $(contacts_common_dir)/res
+
+LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
+LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs))
+
+LOCAL_AAPT_FLAGS := \
+    --auto-add-overlay \
+    --extra-packages com.android.contacts.common
 
 LOCAL_JAVA_LIBRARIES := telephony-common
 LOCAL_STATIC_JAVA_LIBRARIES := \

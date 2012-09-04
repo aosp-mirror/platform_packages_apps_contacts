@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 
+import com.android.contacts.common.CallUtil;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 
 /**
@@ -48,7 +49,7 @@ public class CallContactActivity extends ContactsActivity implements OnDismissLi
         if (Contacts.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(contactUri))) {
             PhoneNumberInteraction.startInteractionForPhoneCall(this, contactUri);
         } else {
-            startActivity(ContactsUtils.getCallIntent(contactUri));
+            startActivity(CallUtil.getCallIntent(contactUri));
             finish();
         }
     }
