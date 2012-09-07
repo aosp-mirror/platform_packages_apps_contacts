@@ -118,7 +118,11 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_IS_USER_PROFILE = "isUserProfile";
     private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
 
+    private static final String[] VALID_ACTIONS = {Intent.ACTION_EDIT, Intent.ACTION_INSERT,
+            ContactEditorActivity.ACTION_SAVE_COMPLETED};
+
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
+
 
     /**
      * An intent extra that forces the editor to add the edited contact
@@ -347,11 +351,6 @@ public class ContactEditorFragment extends Fragment implements
 
         setHasOptionsMenu(true);
 
-        // If we are in an orientation change, we already have mState (it was loaded by onCreate)
-        if (mState != null) {
-            bindEditors();
-        }
-
         return view;
     }
 
@@ -359,13 +358,29 @@ public class ContactEditorFragment extends Fragment implements
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        validateAction(mAction);
+
         // Handle initial actions only when existing state missing
         final boolean hasIncomingState = savedInstanceState != null;
 
-        if (!hasIncomingState) {
+        if (mState == null) {
+            // The delta list may not have finished loading before orientation change happens.
+            // In this case, there will be a saved state but deltas will be missing.  Reload from
+            // database.
             if (Intent.ACTION_EDIT.equals(mAction)) {
+                // Either...
+                // 1) orientation change but load never finished.
+                // or
+                // 2) not an orientation change.  data needs to be loaded for first time.
                 getLoaderManager().initLoader(LOADER_DATA, null, mDataLoaderListener);
-            } else if (Intent.ACTION_INSERT.equals(mAction)) {
+            }
+        } else {
+            // Orientation change, we already have mState, it was loaded by onCreate
+            bindEditors();
+        }
+
+        if (!hasIncomingState) {
+            if (Intent.ACTION_INSERT.equals(mAction)) {
                 final Account account = mIntentExtras == null ? null :
                         (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
                 final String dataSet = mIntentExtras == null ? null :
@@ -379,11 +394,24 @@ public class ContactEditorFragment extends Fragment implements
                     // Load Accounts async so that we can present them
                     selectAccountAndCreateContact();
                 }
-            } else if (ContactEditorActivity.ACTION_SAVE_COMPLETED.equals(mAction)) {
-                // do nothing
-            } else throw new IllegalArgumentException("Unknown Action String " + mAction +
-                    ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
+            }
         }
+    }
+
+    /**
+     * Checks if the requested action is valid.
+     *
+     * @param action The action to test.
+     * @throws IllegalArgumentException when the action is invalid.
+     */
+    private void validateAction(String action) {
+        for (String validAction : VALID_ACTIONS) {
+            if (validAction.equals(action)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Unknown Action String " + mAction +
+                ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
     }
 
     @Override
