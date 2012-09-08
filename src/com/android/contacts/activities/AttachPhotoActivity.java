@@ -35,9 +35,9 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.ContactLoader;
-import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.util.ContactPhotoUtils;
 

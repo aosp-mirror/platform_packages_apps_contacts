@@ -47,9 +47,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.CallerInfoCacheUtils;
 import com.google.common.collect.Lists;

@@ -21,8 +21,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 
-import com.android.contacts.model.RawContact;
-
 /**
  * Represents a phone data item, wrapping the columns in
  * {@link ContactsContract.CommonDataKinds.Phone}.
@@ -31,8 +29,8 @@ public class PhoneDataItem extends DataItem {
 
     public static final String KEY_FORMATTED_PHONE_NUMBER = "formattedPhoneNumber";
 
-    /* package */ PhoneDataItem(RawContact rawContact, ContentValues values) {
-        super(rawContact, values);
+    /* package */ PhoneDataItem(ContentValues values) {
+        super(values);
     }
 
     public String getNumber() {

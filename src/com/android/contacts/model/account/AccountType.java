@@ -28,7 +28,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.dataitem.DataKind;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
@@ -325,8 +324,7 @@ public abstract class AccountType {
 
     /**
      * Find the {@link DataKind} for a specific MIME-type, if it's handled by
-     * this data source. If you may need a fallback {@link DataKind}, use
-     * {@link AccountTypeManager#getKindOrFallback(String, String, String)}.
+     * this data source.
      */
     public DataKind getKindForMimetype(String mimeType) {
         return this.mMimeKinds.get(mimeType);

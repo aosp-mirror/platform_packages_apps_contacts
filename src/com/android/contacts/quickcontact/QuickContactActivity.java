@@ -58,9 +58,11 @@ import android.widget.Toast;
 
 import com.android.contacts.Collapser;
 import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.ContactLoader;
 import com.android.contacts.model.RawContact;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.model.dataitem.EmailDataItem;
@@ -348,6 +350,9 @@ public class QuickContactActivity extends Activity {
         for (RawContact rawContact : data.getRawContacts()) {
             for (DataItem dataItem : rawContact.getDataItems()) {
                 final String mimeType = dataItem.getMimeType();
+                final AccountType accountType = rawContact.getAccountType(this);
+                final DataKind dataKind = AccountTypeManager.getInstance(this)
+                        .getKindOrFallback(accountType, mimeType);
 
                 // Skip this data item if MIME-type excluded
                 if (isMimeExcluded(mimeType)) continue;
@@ -356,11 +361,11 @@ public class QuickContactActivity extends Activity {
                 final boolean isPrimary = dataItem.isPrimary();
                 final boolean isSuperPrimary = dataItem.isSuperPrimary();
 
-                if (dataItem.getDataKind() != null) {
+                if (dataKind != null) {
                     // Build an action for this data entry, find a mapping to a UI
                     // element, build its summary from the cursor, and collect it
                     // along with all others of this MIME-type.
-                    final Action action = new DataAction(context, dataItem);
+                    final Action action = new DataAction(context, dataItem, dataKind);
                     final boolean wasAdded = considerAdd(action, cache, isSuperPrimary);
                     if (wasAdded) {
                         // Remember the default
@@ -375,8 +380,8 @@ public class QuickContactActivity extends Activity {
                 if (status != null && dataItem instanceof EmailDataItem) {
                     final EmailDataItem email = (EmailDataItem) dataItem;
                     final ImDataItem im = ImDataItem.createFromEmail(email);
-                    if (im.getDataKind() != null) {
-                        final DataAction action = new DataAction(context, im);
+                    if (dataKind != null) {
+                        final DataAction action = new DataAction(context, im, dataKind);
                         action.setPresence(status.getPresence());
                         considerAdd(action, cache, isSuperPrimary);
                     }

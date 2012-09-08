@@ -178,7 +178,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         contact.put(RawContacts.ACCOUNT_NAME, TEST_ACCOUNT_NAME);
         contact.put(RawContacts.ACCOUNT_TYPE, TEST_ACCOUNT_TYPE);
 
-        final RawContact before = new RawContact(mContext, contact);
+        final RawContact before = new RawContact(contact);
         for (ContentValues values : entries) {
             before.addDataItemValues(values);
         }

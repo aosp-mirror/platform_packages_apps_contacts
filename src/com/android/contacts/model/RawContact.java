@@ -20,6 +20,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -27,6 +29,8 @@ import android.provider.ContactsContract.RawContacts;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.dataitem.DataItem;
+import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,20 +46,76 @@ import java.util.List;
  * DataItem objects that represent contact information elements (like phone
  * numbers, email, address, etc.).
  */
-public class RawContact {
+final public class RawContact implements Parcelable {
 
-    private final Context mContext;
     private AccountTypeManager mAccountTypeManager;
     private final ContentValues mValues;
     private final ArrayList<NamedDataItem> mDataItems;
 
-    public static class NamedDataItem {
-        public final Uri uri;
-        public final DataItem dataItem;
+    final public static class NamedDataItem implements Parcelable {
+        public final Uri mUri;
 
-        public NamedDataItem(Uri uri, DataItem dataItem) {
-            this.uri = uri;
-            this.dataItem = dataItem;
+        // This use to be a DataItem. DataItem creation is now delayed until the point of request
+        // since there is no benefit to storing them here due to the multiple inheritance.
+        // Eventually instanceof still has to be used anyways to determine which sub-class of
+        // DataItem it is. And having parent DataItem's here makes it very difficult to serialize or
+        // parcelable.
+        //
+        // Instead of having a common DataItem super class, we should refactor this to be a generic
+        // Object where the object is a concrete class that no longer relies on ContentValues.
+        // (this will also make the classes easier to use).
+        // Since instanceof is used later anyways, having a list of Objects won't hurt and is no
+        // worse than having a DataItem.
+        public final ContentValues mContentValues;
+
+        public NamedDataItem(Uri uri, ContentValues values) {
+            this.mUri = uri;
+            this.mContentValues = values;
+        }
+
+        public NamedDataItem(Parcel parcel) {
+            this.mUri = parcel.readParcelable(Uri.class.getClassLoader());
+            this.mContentValues = parcel.readParcelable(ContentValues.class.getClassLoader());
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeParcelable(mUri, i);
+            parcel.writeParcelable(mContentValues, i);
+        }
+
+        public static final Parcelable.Creator<NamedDataItem> CREATOR
+                = new Parcelable.Creator<NamedDataItem>() {
+
+            @Override
+            public NamedDataItem createFromParcel(Parcel parcel) {
+                return new NamedDataItem(parcel);
+            }
+
+            @Override
+            public NamedDataItem[] newArray(int i) {
+                return new NamedDataItem[i];
+            }
+        };
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(mUri, mContentValues);
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) return false;
+            if (getClass() != obj.getClass()) return false;
+
+            final NamedDataItem other = (NamedDataItem) obj;
+            return Objects.equal(mUri, other.mUri) &&
+                    Objects.equal(mContentValues, other.mContentValues);
         }
     }
 
@@ -63,7 +123,7 @@ public class RawContact {
         final ContentValues values = entity.getEntityValues();
         final ArrayList<Entity.NamedContentValues> subValues = entity.getSubValues();
 
-        RawContact rawContact = new RawContact(null, values);
+        RawContact rawContact = new RawContact(values);
         for (Entity.NamedContentValues subValue : subValues) {
             rawContact.addNamedDataItemValues(subValue.uri, subValue.values);
         }
@@ -72,31 +132,60 @@ public class RawContact {
 
     /**
      * A RawContact object can be created with or without a context.
-     *
-     * The context is used for the buildString() member function in DataItem objects,
-     * specifically for retrieving an instance of AccountTypeManager.  It is okay to
-     * pass in null for the context in which case, you will not be able to call buildString(),
-     * getDataKind(), or getAccountType() from a DataItem object.
      */
-    public RawContact(Context context) {
-        this(context, new ContentValues());
+    public RawContact() {
+        this(new ContentValues());
     }
 
-    public RawContact(Context context, ContentValues values) {
-        mContext = context;
+    public RawContact(ContentValues values) {
         mValues = values;
         mDataItems = new ArrayList<NamedDataItem>();
     }
 
-    public AccountTypeManager getAccountTypeManager() {
-        if (mAccountTypeManager == null) {
-            mAccountTypeManager = AccountTypeManager.getInstance(mContext);
-        }
-        return mAccountTypeManager;
+    /**
+     * Constructor for the parcelable.
+     *
+     * @param parcel The parcel to de-serialize from.
+     */
+    private RawContact(Parcel parcel) {
+        mValues = parcel.readParcelable(ContentValues.class.getClassLoader());
+        mDataItems = Lists.newArrayList();
+        parcel.readTypedList(mDataItems, NamedDataItem.CREATOR);
     }
 
-    public Context getContext() {
-        return mContext;
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeParcelable(mValues, i);
+        parcel.writeTypedList(mDataItems);
+    }
+
+    /**
+     * Create for building the parcelable.
+     */
+    public static final Parcelable.Creator<RawContact> CREATOR
+            = new Parcelable.Creator<RawContact>() {
+
+        @Override
+        public RawContact createFromParcel(Parcel parcel) {
+            return new RawContact(parcel);
+        }
+
+        @Override
+        public RawContact[] newArray(int i) {
+            return new RawContact[i];
+        }
+    };
+
+    public AccountTypeManager getAccountTypeManager(Context context) {
+        if (mAccountTypeManager == null) {
+            mAccountTypeManager = AccountTypeManager.getInstance(context);
+        }
+        return mAccountTypeManager;
     }
 
     public ContentValues getValues() {
@@ -182,8 +271,8 @@ public class RawContact {
         return getValues().getAsBoolean(Contacts.STARRED);
     }
 
-    public AccountType getAccountType() {
-        return getAccountTypeManager().getAccountType(getAccountTypeString(), getDataSet());
+    public AccountType getAccountType(Context context) {
+        return getAccountTypeManager(context).getAccountType(getAccountTypeString(), getDataSet());
     }
 
     /**
@@ -231,38 +320,58 @@ public class RawContact {
     /**
      * Creates and inserts a DataItem object that wraps the content values, and returns it.
      */
-    public DataItem addDataItemValues(ContentValues values) {
-        final NamedDataItem namedItem = addNamedDataItemValues(Data.CONTENT_URI, values);
-        return namedItem.dataItem;
+    public void addDataItemValues(ContentValues values) {
+        addNamedDataItemValues(Data.CONTENT_URI, values);
     }
 
     public NamedDataItem addNamedDataItemValues(Uri uri, ContentValues values) {
-        final NamedDataItem namedItem = new NamedDataItem(uri, DataItem.createFrom(this, values));
+        final NamedDataItem namedItem = new NamedDataItem(uri, values);
         mDataItems.add(namedItem);
         return namedItem;
     }
 
-    public List<DataItem> getDataItems() {
-        final ArrayList<DataItem> list = new ArrayList<DataItem>();
+    public ArrayList<ContentValues> getContentValues() {
+        final ArrayList<ContentValues> list = Lists.newArrayListWithCapacity(mDataItems.size());
         for (NamedDataItem dataItem : mDataItems) {
-            if (Data.CONTENT_URI.equals(dataItem.uri)) {
-                list.add(dataItem.dataItem);
+            if (Data.CONTENT_URI.equals(dataItem.mUri)) {
+                list.add(dataItem.mContentValues);
             }
         }
         return list;
     }
 
-    public List<NamedDataItem> getNamedDataItems() {
-        return mDataItems;
+    public List<DataItem> getDataItems() {
+        final ArrayList<DataItem> list = Lists.newArrayListWithCapacity(mDataItems.size());
+        for (NamedDataItem dataItem : mDataItems) {
+            if (Data.CONTENT_URI.equals(dataItem.mUri)) {
+                list.add(DataItem.createFrom(dataItem.mContentValues));
+            }
+        }
+        return list;
     }
 
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("RawContact: ").append(mValues);
         for (RawContact.NamedDataItem namedDataItem : mDataItems) {
-            sb.append("\n  ").append(namedDataItem.uri);
-            sb.append("\n  -> ").append(namedDataItem.dataItem.getContentValues());
+            sb.append("\n  ").append(namedDataItem.mUri);
+            sb.append("\n  -> ").append(namedDataItem.mContentValues);
         }
         return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(mValues, mDataItems);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+
+        RawContact other = (RawContact) obj;
+        return Objects.equal(mValues, other.mValues) &&
+                Objects.equal(mDataItems, other.mDataItems);
     }
 }

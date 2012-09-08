@@ -20,16 +20,14 @@ import android.content.ContentValues;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 
-import com.android.contacts.model.RawContact;
-
 /**
  * Represents a sip address data item, wrapping the columns in
  * {@link ContactsContract.CommonDataKinds.SipAddress}.
  */
 public class SipAddressDataItem extends DataItem {
 
-    /* package */ SipAddressDataItem(RawContact rawContact, ContentValues values) {
-        super(rawContact, values);
+    /* package */ SipAddressDataItem(ContentValues values) {
+        super(values);
     }
 
     public String getSipAddress() {

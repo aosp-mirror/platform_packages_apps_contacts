@@ -21,8 +21,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 
-import com.android.contacts.model.RawContact;
-
 /**
  * Represents an IM data item, wrapping the columns in
  * {@link ContactsContract.CommonDataKinds.Im}.
@@ -31,20 +29,18 @@ public class ImDataItem extends DataItem {
 
     private final boolean mCreatedFromEmail;
 
-    /* package */ ImDataItem(RawContact rawContact, ContentValues values) {
-        super(rawContact, values);
+    /* package */ ImDataItem(ContentValues values) {
+        super(values);
         mCreatedFromEmail = false;
     }
 
-    private ImDataItem(RawContact rawContact, ContentValues values,
-            boolean createdFromEmail) {
-        super(rawContact, values);
+    private ImDataItem(ContentValues values, boolean createdFromEmail) {
+        super(values);
         mCreatedFromEmail = createdFromEmail;
     }
 
     public static ImDataItem createFromEmail(EmailDataItem item) {
-        ImDataItem im = new ImDataItem(item.getRawContact(),
-                new ContentValues(item.getContentValues()), true);
+        ImDataItem im = new ImDataItem(new ContentValues(item.getContentValues()), true);
         im.setMimeType(Im.CONTENT_ITEM_TYPE);
         return im;
     }

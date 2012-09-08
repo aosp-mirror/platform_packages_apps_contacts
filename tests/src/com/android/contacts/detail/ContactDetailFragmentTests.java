@@ -44,7 +44,7 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Im.TYPE, Im.TYPE_HOME);
         values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
         values.put(Im.DATA, TEST_ADDRESS);
-        ImDataItem im = (ImDataItem) DataItem.createFrom(null, values);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
         ContactDetailFragment.buildImActions(mContext, entry, im);
@@ -62,7 +62,7 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
         values.put(Im.DATA, TEST_ADDRESS);
         values.put(Im.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO);
-        ImDataItem im = (ImDataItem) DataItem.createFrom(null, values);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
         ContactDetailFragment.buildImActions(mContext, entry, im);
@@ -82,7 +82,7 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Im.DATA, TEST_ADDRESS);
         values.put(Im.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO |
                 Im.CAPABILITY_HAS_VOICE);
-        ImDataItem im = (ImDataItem) DataItem.createFrom(null, values);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
         ContactDetailFragment.buildImActions(mContext, entry, im);
@@ -102,7 +102,7 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Im.PROTOCOL, Im.PROTOCOL_CUSTOM);
         values.put(Im.CUSTOM_PROTOCOL, TEST_PROTOCOL);
         values.put(Im.DATA, TEST_ADDRESS);
-        ImDataItem im = (ImDataItem) DataItem.createFrom(null, values);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
         ContactDetailFragment.buildImActions(mContext, entry, im);
@@ -127,7 +127,7 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         values.put(Email.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO |
                 Im.CAPABILITY_HAS_VOICE);
         ImDataItem im = ImDataItem.createFromEmail(
-                (EmailDataItem) DataItem.createFrom(null, values));
+                (EmailDataItem) DataItem.createFrom(values));
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
         ContactDetailFragment.buildImActions(mContext, entry, im);

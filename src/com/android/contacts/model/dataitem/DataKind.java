@@ -17,6 +17,7 @@
 package com.android.contacts.model.dataitem;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.provider.ContactsContract.Data;
 
 import com.android.contacts.R;
@@ -104,6 +105,10 @@ public final class DataKind {
         this.typeOverallMax = -1;
         this.editorLayoutResourceId = editorLayoutResourceId;
         maxLinesForDisplay = 1;
+    }
+
+    public String getKindString(Context context) {
+        return (titleRes == -1 || titleRes == 0) ? "" : context.getString(titleRes);
     }
 
     @Override

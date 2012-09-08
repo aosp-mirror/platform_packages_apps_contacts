@@ -140,8 +140,7 @@ public abstract class AccountTypeManager {
      * {@link AccountType#accountType}, {@link AccountType#dataSet}, and {@link DataKind#mimeType}.
      * If no direct match found, we try searching {@link FallbackAccountType}.
      */
-    public DataKind getKindOrFallback(String accountType, String dataSet, String mimeType) {
-        final AccountType type = getAccountType(accountType, dataSet);
+    public DataKind getKindOrFallback(AccountType type, String mimeType) {
         return type == null ? null : type.getKindForMimetype(mimeType);
     }
 
@@ -588,13 +587,11 @@ class AccountTypeManagerImpl extends AccountTypeManager
      * If no direct match found, we try searching {@link FallbackAccountType}.
      */
     @Override
-    public DataKind getKindOrFallback(String accountType, String dataSet, String mimeType) {
+    public DataKind getKindOrFallback(AccountType type, String mimeType) {
         ensureAccountsLoaded();
         DataKind kind = null;
 
         // Try finding account type and kind matching request
-        final AccountType type = mAccountTypesWithDataSets.get(
-                AccountTypeWithDataSet.get(accountType, dataSet));
         if (type != null) {
             kind = type.getKindForMimetype(mimeType);
         }
@@ -605,7 +602,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         }
 
         if (kind == null) {
-            Log.w(TAG, "Unknown type=" + accountType + ", mime=" + mimeType);
+            Log.w(TAG, "Unknown type=" + type + ", mime=" + mimeType);
         }
 
         return kind;

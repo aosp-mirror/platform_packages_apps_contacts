@@ -17,6 +17,7 @@
 package com.android.contacts.model.dataitem;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -34,10 +35,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
 
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.RawContact;
-import com.android.contacts.model.account.AccountType;
-
 /**
  * This is the base class for data items, which represents a row from the Data table.
  */
@@ -45,65 +42,54 @@ public class DataItem {
 
     private final ContentValues mContentValues;
 
-    /**
-     * The raw contact that this data item is associated with.  This can be null.
-     */
-    private final RawContact mRawContact;
-    private DataKind mDataKind;
-
-    protected DataItem(RawContact rawContact, ContentValues values) {
+    protected DataItem(ContentValues values) {
         mContentValues = values;
-        mRawContact = rawContact;
     }
 
     /**
      * Factory for creating subclasses of DataItem objects based on the mimetype in the
      * content values.  Raw contact is the raw contact that this data item is associated with.
      */
-    public static DataItem createFrom(RawContact rawContact, ContentValues values) {
+    public static DataItem createFrom(ContentValues values) {
         final String mimeType = values.getAsString(Data.MIMETYPE);
         if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new GroupMembershipDataItem(rawContact, values);
+            return new GroupMembershipDataItem(values);
         } else if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new StructuredNameDataItem(rawContact, values);
+            return new StructuredNameDataItem(values);
         } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new PhoneDataItem(rawContact, values);
+            return new PhoneDataItem(values);
         } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new EmailDataItem(rawContact, values);
+            return new EmailDataItem(values);
         } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new StructuredPostalDataItem(rawContact, values);
+            return new StructuredPostalDataItem(values);
         } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new ImDataItem(rawContact, values);
+            return new ImDataItem(values);
         } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new OrganizationDataItem(rawContact, values);
+            return new OrganizationDataItem(values);
         } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new NicknameDataItem(rawContact, values);
+            return new NicknameDataItem(values);
         } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new NoteDataItem(rawContact, values);
+            return new NoteDataItem(values);
         } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new WebsiteDataItem(rawContact, values);
+            return new WebsiteDataItem(values);
         } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new SipAddressDataItem(rawContact, values);
+            return new SipAddressDataItem(values);
         } else if (Event.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new EventDataItem(rawContact, values);
+            return new EventDataItem(values);
         } else if (Relation.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new RelationDataItem(rawContact, values);
+            return new RelationDataItem(values);
         } else if (Identity.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new IdentityDataItem(rawContact, values);
+            return new IdentityDataItem(values);
         } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return new PhotoDataItem(rawContact, values);
+            return new PhotoDataItem(values);
         }
 
         // generic
-        return new DataItem(rawContact, values);
+        return new DataItem(values);
     }
 
     public ContentValues getContentValues() {
         return mContentValues;
-    }
-
-    protected RawContact getRawContact() {
-        return mRawContact;
     }
 
     public void setRawContactId(long rawContactId) {
@@ -145,70 +131,25 @@ public class DataItem {
         return mContentValues.getAsInteger(Data.DATA_VERSION);
     }
 
-    public AccountTypeManager getAccountTypeManager() {
-        if (mRawContact == null) {
-            return null;
-        } else {
-            return mRawContact.getAccountTypeManager();
-        }
-    }
-
-    public AccountType getAccountType() {
-        if (mRawContact == null) {
-            return null;
-        } else {
-            return mRawContact.getAccountType();
-        }
-    }
-
-    /**
-     * This method can only be invoked if the raw contact is non-null.
-     */
-    public DataKind getDataKind() {
-        if (mRawContact == null) {
-            throw new IllegalStateException("mRawContact must be non-null to call getDataKind()");
-        }
-
-        if (mDataKind == null) {
-            mDataKind = getAccountTypeManager().getKindOrFallback(
-                    mRawContact.getAccountTypeString(), mRawContact.getDataSet(), getMimeType());
-        }
-
-        return mDataKind;
-    }
-
-    public boolean hasKindTypeColumn() {
-        final String key = getDataKind().typeColumn;
+    public boolean hasKindTypeColumn(DataKind kind) {
+        final String key = kind.typeColumn;
         return key != null && mContentValues.containsKey(key);
     }
 
-    public int getKindTypeColumn() {
-        final String key = getDataKind().typeColumn;
+    public int getKindTypeColumn(DataKind kind) {
+        final String key = kind.typeColumn;
         return mContentValues.getAsInteger(key);
     }
 
     /**
      * This builds the data string depending on the type of data item by using the generic
-     * DataKind object underneath.  This DataItem object must be associated with a raw contact
-     * for this function to work.
+     * DataKind object underneath.
      */
-    public String buildDataString() {
-        if (mRawContact == null) {
-            throw new IllegalStateException("mRawContact must be non-null to call getDataKind()");
-        }
-        final DataKind kind = getDataKind();
-
+    public String buildDataString(Context context, DataKind kind) {
         if (kind.actionBody == null) {
             return null;
         }
-        CharSequence actionBody = kind.actionBody.inflateUsing(mRawContact.getContext(),
-                mContentValues);
+        CharSequence actionBody = kind.actionBody.inflateUsing(context, mContentValues);
         return actionBody == null ? null : actionBody.toString();
-    }
-
-    public String getKindString() {
-        final DataKind kind = getDataKind();
-        return (kind.titleRes == -1 || kind.titleRes == 0) ? ""
-                : mRawContact.getContext().getString(kind.titleRes);
     }
 }

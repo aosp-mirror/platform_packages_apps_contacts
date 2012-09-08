@@ -630,7 +630,7 @@ public class ConfirmAddDetailActivity extends Activity implements
                 editableAccount.type, editableAccount.dataSet);
 
         // Create a new RawContactDelta for the new raw_contact.
-        final RawContact rawContact = new RawContact(context);
+        final RawContact rawContact = new RawContact();
         rawContact.setAccount(editableAccount);
 
         final RawContactDelta entityDelta = new RawContactDelta(ValuesDelta.fromAfter(

@@ -543,6 +543,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         ArrayList<String> groups = new ArrayList<String>();
         for (RawContact rawContact: mContactData.getRawContacts()) {
             final long rawContactId = rawContact.getId();
+            final AccountType accountType = rawContact.getAccountType(mContext);
             for (DataItem dataItem : rawContact.getDataItems()) {
                 dataItem.setRawContactId(rawContactId);
 
@@ -558,11 +559,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     continue;
                 }
 
-                final DataKind kind = dataItem.getDataKind();
+                final DataKind kind = AccountTypeManager.getInstance(mContext)
+                        .getKindOrFallback(accountType, dataItem.getMimeType());
                 if (kind == null) continue;
 
                 final DetailViewEntry entry = DetailViewEntry.fromValues(mContext, dataItem,
-                        mContactData.isDirectoryEntry(), mContactData.getDirectoryId());
+                        mContactData.isDirectoryEntry(), mContactData.getDirectoryId(), kind);
                 entry.maxLines = kind.maxLinesForDisplay;
 
                 final boolean hasData = !TextUtils.isEmpty(entry.data);
@@ -625,7 +627,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         ImDataItem im = ImDataItem.createFromEmail(email);
 
                         final DetailViewEntry imEntry = DetailViewEntry.fromValues(mContext, im,
-                                mContactData.isDirectoryEntry(), mContactData.getDirectoryId());
+                                mContactData.isDirectoryEntry(), mContactData.getDirectoryId(),
+                                kind);
                         buildImActions(mContext, imEntry, im);
                         imEntry.setPresence(status.getPresence());
                         imEntry.maxLines = kind.maxLinesForDisplay;
@@ -706,20 +709,19 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     entry.intent = new Intent(Intent.ACTION_VIEW);
                     entry.intent.setDataAndType(entry.uri, entry.mimetype);
 
-                    entry.data = dataItem.buildDataString();
+                    entry.data = dataItem.buildDataString(getContext(), kind);
 
                     if (!TextUtils.isEmpty(entry.data)) {
                         // If the account type exists in the hash map, add it as another entry for
                         // that account type
-                        AccountType type = dataItem.getAccountType();
-                        if (mOtherEntriesMap.containsKey(type)) {
-                            List<DetailViewEntry> listEntries = mOtherEntriesMap.get(type);
+                        if (mOtherEntriesMap.containsKey(accountType)) {
+                            List<DetailViewEntry> listEntries = mOtherEntriesMap.get(accountType);
                             listEntries.add(entry);
                         } else {
                             // Otherwise create a new list with the entry and add it to the hash map
                             List<DetailViewEntry> listEntries = new ArrayList<DetailViewEntry>();
                             listEntries.add(entry);
-                            mOtherEntriesMap.put(type, listEntries);
+                            mOtherEntriesMap.put(accountType, listEntries);
                         }
                     }
                 }
@@ -1244,7 +1246,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
          * Build new {@link DetailViewEntry} and populate from the given values.
          */
         public static DetailViewEntry fromValues(Context context, DataItem item,
-                boolean isDirectoryEntry, long directoryId) {
+                boolean isDirectoryEntry, long directoryId, DataKind dataKind) {
             final DetailViewEntry entry = new DetailViewEntry();
             entry.id = item.getId();
             entry.context = context;
@@ -1254,15 +1256,15 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
             }
             entry.mimetype = item.getMimeType();
-            entry.kind = item.getKindString();
-            entry.data = item.buildDataString();
+            entry.kind = dataKind.getKindString(context);
+            entry.data = item.buildDataString(context, dataKind);
 
-            if (item.hasKindTypeColumn()) {
-                entry.type = item.getKindTypeColumn();
+            if (item.hasKindTypeColumn(dataKind)) {
+                entry.type = item.getKindTypeColumn(dataKind);
 
                 // get type string
                 entry.typeString = "";
-                for (EditType type : item.getDataKind().typeList) {
+                for (EditType type : dataKind.typeList) {
                     if (type.rawValue == entry.type) {
                         if (type.customColumn == null) {
                             // Non-custom type. Get its description from the resource
@@ -1998,7 +2000,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             if (defaultGroupId == -1) return false;
 
             final RawContact rawContact = (RawContact) mContactData.getRawContacts().get(0);
-            final AccountType type = rawContact.getAccountType();
+            final AccountType type = rawContact.getAccountType(getContext());
             // Offline or non-writeable account? Nothing to fix
             if (type == null || !type.areContactsWritable()) return false;
 

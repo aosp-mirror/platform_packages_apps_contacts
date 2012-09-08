@@ -35,7 +35,6 @@ import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
 import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.test.NeededForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -97,8 +96,8 @@ public class RawContactDelta implements Parcelable {
         final RawContactDelta rawContactDelta = new RawContactDelta();
         rawContactDelta.mValues = ValuesDelta.fromBefore(before.getValues());
         rawContactDelta.mValues.setIdColumn(RawContacts._ID);
-        for (DataItem dataItem : before.getDataItems()) {
-            rawContactDelta.addEntry(ValuesDelta.fromBefore(dataItem.getContentValues()));
+        for (final ContentValues values : before.getContentValues()) {
+            rawContactDelta.addEntry(ValuesDelta.fromBefore(values));
         }
         return rawContactDelta;
     }

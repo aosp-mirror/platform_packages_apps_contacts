@@ -125,7 +125,7 @@ public class RawContactDeltaListTests extends AndroidTestCase {
         final ContentValues contact = new ContentValues();
         contact.put(RawContacts.VERSION, version);
         contact.put(RawContacts._ID, rawContactId);
-        final RawContact before = new RawContact(context, contact);
+        final RawContact before = new RawContact(contact);
         for (ContentValues entry : entries) {
             before.addDataItemValues(entry);
         }
