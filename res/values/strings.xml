@@ -14,9 +14,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Title for the activity that dials the phone.  This is the name
-         used in the Launcher icon. -->
-    <string name="launcherDialer">Phone</string>
 
     <!-- Title for the activity that opens the People app.  This is the name
          used in the Launcher icon. -->
@@ -380,67 +377,6 @@
 
          [CHAR LIMIT=NONE] -->
     <string name="contactsFavoritesLabel">Favorites</string>
-
-    <!-- The description text for the dialer tab.
-
-         Note: AccessibilityServices use this attribute to announce what the view represents.
-         This is especially valuable for views without textual representation like ImageView.
-
-         [CHAR LIMIT=NONE] -->
-    <string name="dialerIconLabel">Phone</string>
-
-    <!-- The description text for the call log tab.
-
-         Note: AccessibilityServices use this attribute to announce what the view represents.
-         This is especially valuable for views without textual representation like ImageView.
-
-         [CHAR LIMIT=NONE] -->
-    <string name="recentCallsIconLabel">Call log</string>
-
-    <!-- Menu item used to send an SMS or MMS message to a phone number  -->
-    <string name="menu_sendTextMessage">Send text message</string>
-
-    <!-- Menu item used to call a contact from the call log -->
-    <string name="recentCalls_callNumber">Call <xliff:g id="name">%s</xliff:g></string>
-
-    <!-- Menu item used to copy a number from the call log to the dialer so it can be edited before calling it -->
-    <string name="recentCalls_editNumberBeforeCall">Edit number before call</string>
-
-    <!-- Menu item used to add a number from the call log to contacts -->
-    <string name="recentCalls_addToContact">Add to contacts</string>
-
-    <!-- Menu item used to remove a single call from the call log -->
-    <string name="recentCalls_removeFromRecentList">Remove from call log</string>
-
-    <!-- Menu item used to remove all calls from the call log -->
-    <string name="recentCalls_deleteAll">Clear call log</string>
-
-    <!-- Menu item used to delete a voicemail. [CHAR LIMIT=30] -->
-    <string name="recentCalls_trashVoicemail">Delete voicemail</string>
-
-    <!-- Menu item used to share a voicemail. [CHAR LIMIT=30] -->
-    <string name="recentCalls_shareVoicemail">Share voicemail</string>
-
-    <!-- Text displayed when the call log is empty -->
-    <string name="recentCalls_empty">Call log is empty.</string>
-
-    <!-- Title of the confirmation dialog for clearing the call log. [CHAR LIMIT=37]  -->
-    <string name="clearCallLogConfirmation_title">Clear call log?</string>
-
-    <!-- Confirmation dialog for clearing the call log. [CHAR LIMIT=NONE]  -->
-    <string name="clearCallLogConfirmation">All your call records will be deleted.</string>
-
-    <!-- Title of the "Clearing call log" progress-dialog [CHAR LIMIT=35] -->
-    <string name="clearCallLogProgress_title">Clearing call log\u2026</string>
-
-    <!-- Title of the confirmation dialog for clearing frequents. [CHAR LIMIT=37] -->
-    <string name="clearFrequentsConfirmation_title">Clear frequently contacted?</string>
-
-    <!-- Confirmation dialog for clearing frequents. [CHAR LIMIT=NONE] -->
-    <string name="clearFrequentsConfirmation">You\'ll clear the frequently contacted list in the People and Phone apps, and force email apps to learn your addressing preferences from scratch.</string>
-
-    <!-- Title of the "Clearing frequently contacted" progress-dialog [CHAR LIMIT=35] -->
-    <string name="clearFrequentsProgress_title">Clearing frequently contacted\u2026</string>
 
     <!-- The title of a dialog that displays the IMEI of the phone -->
     <string name="imei">IMEI</string>
@@ -1568,94 +1504,6 @@
 
     <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=25] -->
     <string name="view_updates_from_group">View updates</string>
-
-    <!-- Title of the notification of new voicemails. [CHAR LIMIT=30] -->
-    <plurals name="notification_voicemail_title">
-        <item quantity="one">Voicemail</item>
-        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> Voicemails</item>
-    </plurals>
-
-    <!-- Used in the notification of a new voicemail for the action to play the voicemail. -->
-    <string name="notification_action_voicemail_play">Play</string>
-
-    <!-- Used to build a list of names or phone numbers, to indicate the callers who left
-         voicemails.
-         The first argument may be one or more callers, the most recent ones.
-         The second argument is an additional callers.
-         This string is used to build a list of callers.
-
-         [CHAR LIMIT=10]
-     -->
-    <string name="notification_voicemail_callers_list"><xliff:g id="newer_callers">%1$s</xliff:g>, <xliff:g id="older_caller">%2$s</xliff:g></string>
-
-    <!-- Text used in the ticker to notify the user of the latest voicemail. [CHAR LIMIT=30] -->
-    <string name="notification_new_voicemail_ticker">New voicemail from <xliff:g id="caller">%1$s</xliff:g></string>
-
-    <!-- Message to show when there is an error playing back the voicemail. [CHAR LIMIT=40] -->
-    <string name="voicemail_playback_error">Couldn\'t play voicemail.</string>
-
-    <!-- Message to display before we have prepared the media player, i.e. before we know duration. [CHAR LIMIT=40] -->
-    <string name="voicemail_buffering">Buffering\u2026</string>
-
-    <!-- Message to display whilst we are waiting for the content to be fetched. [CHAR LIMIT=40] -->
-    <string name="voicemail_fetching_content">Fetching voicemail\u2026</string>
-
-    <!-- Message to display if we fail to get content within a suitable time period. [CHAR LIMIT=40] -->
-    <string name="voicemail_fetching_timout">Couldn\'t fetch voicemail.</string>
-
-    <!-- The header in the call log used to identify missed calls and voicemail that have not yet been consumed [CHAR LIMIT=10] -->
-    <string name="call_log_new_header">New</string>
-
-    <!-- The header in the call log used to identify items that have been already consumed [CHAR LIMIT=10] -->
-    <string name="call_log_old_header">Older</string>
-
-    <!-- The header to show that call log is only showing voicemail calls. [CHAR LIMIT=40] -->
-    <string name="call_log_voicemail_header">Calls with voicemail</string>
-
-    <!-- The header to show that call log is only showing incoming calls. [CHAR LIMIT=40] -->
-    <string name="call_log_incoming_header">Incoming calls</string>
-
-    <!-- The header to show that call log is only showing outgoing calls. [CHAR LIMIT=40] -->
-    <string name="call_log_outgoing_header">Outgoing calls</string>
-
-    <!-- The header to show that call log is only showing missed calls. [CHAR LIMIT=40] -->
-    <string name="call_log_missed_header">Missed calls</string>
-
-    <!--  Voicemail status message shown at the top of call log to notify the user that no new
-voicemails are currently available. This can happen when both notification as well as data
-connection to the voicemail server is lost. [CHAR LIMIT=64] -->
-    <string name="voicemail_status_voicemail_not_available">Can\'t connect to voicemail server.</string>
-    <!--  Voicemail status message shown at the top of call log to notify the user that there is no
-      data connection to the voicemail server, but there are new voicemails waiting on the server.
-      [CHAR LIMIT=64] -->
-    <string name="voicemail_status_messages_waiting">Can\'t connect to voicemail server. New voicemails are waiting.</string>
-   <!--  Voicemail status message shown at the top of call log to invite the user to configure
-      visual voicemail. [CHAR LIMIT=64] -->
-    <string name="voicemail_status_configure_voicemail">Set up your voicemail.</string>
-   <!--  Voicemail status message shown at the top of call details screen to notify the user that
-      the audio of this voicemail is not available. [CHAR LIMIT=64] -->
-    <string name="voicemail_status_audio_not_available">Audio not available.</string>
-
-   <!--  User action prompt shown next to a voicemail status message to let the user configure
-   visual voicemail. [CHAR LIMIT=20] -->
-    <string name="voicemail_status_action_configure">Set up</string>
-   <!--  User action prompt shown next to a voicemail status message to let the user call voicemail
-   server directly to listen to the voicemails. [CHAR LIMIT=20] -->
-    <string name="voicemail_status_action_call_server">Call voicemail</string>
-
-    <!-- The slowest voicemail playback speed. [CHAR LIMIT=30] -->
-    <string name="voicemail_speed_slowest">Slowest speed</string>
-    <!-- Slower than normal voicemail playback speed. [CHAR LIMIT=30] -->
-    <string name="voicemail_speed_slower">Slow speed</string>
-    <!--  Normal voicemail playback speed. [CHAR LIMIT=30] -->
-    <string name="voicemail_speed_normal">Normal speed</string>
-    <!--  Faster than normal pvoicemail playback speed. [CHAR LIMIT=30] -->
-    <string name="voicemail_speed_faster">Fast speed</string>
-    <!--  Fastest voicemail playback speed. [CHAR LIMIT=30] -->
-    <string name="voicemail_speed_fastest">Fastest speed</string>
-
-    <!-- The counter for calls in a group and the date of the latest call as shown in the call log [CHAR LIMIT=15] -->
-    <string name="call_log_item_count_and_date">(<xliff:g id="count">%1$d</xliff:g>) <xliff:g id="date">%2$s</xliff:g></string>
 
     <!-- Hint text in the group name box in the edit group view. [CHAR LIMIT=20]-->
     <string name="group_name_hint">Group\'s name</string>

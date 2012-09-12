@@ -46,6 +46,7 @@ import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.android.contacts.common.CallUtil;
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactSaveService;
@@ -330,7 +331,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
                         Intent.ACTION_SENDTO, Uri.fromParts("sms", phoneNumber, null));
                 break;
             default:
-                intent = ContactsUtils.getCallIntent(phoneNumber, callOrigin);
+                intent = CallUtil.getCallIntent(phoneNumber, callOrigin);
                 break;
         }
         context.startActivity(intent);

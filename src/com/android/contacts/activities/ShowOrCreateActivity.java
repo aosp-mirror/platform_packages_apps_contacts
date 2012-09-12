@@ -32,9 +32,9 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
+import com.android.contacts.common.CallUtil;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
 /**
@@ -119,13 +119,13 @@ public final class ShowOrCreateActivity extends ContactsActivity
         mCreateForce = intent.getBooleanExtra(Intents.EXTRA_FORCE_CREATE, false);
 
         // Handle specific query request
-        if (Constants.SCHEME_MAILTO.equals(scheme)) {
+        if (CallUtil.SCHEME_MAILTO.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
 
             Uri uri = Uri.withAppendedPath(Email.CONTENT_FILTER_URI, Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri, CONTACTS_PROJECTION, null, null, null);
 
-        } else if (Constants.SCHEME_TEL.equals(scheme)) {
+        } else if (CallUtil.SCHEME_TEL.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.PHONE, ssp);
 
             Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, ssp);
