@@ -50,7 +50,7 @@ public class AccountTypeTest extends AndroidTestCase {
                 AccountType.getResourceText(c, packageName, externalResID, DEFAULT));
 
         // Load from the contacts package itself.
-        final int internalResId = com.android.contacts.R.string.launcherDialer;
+        final int internalResId = com.android.contacts.R.string.people;
         assertEquals(c.getString(internalResId),
                 AccountType.getResourceText(c, null, internalResId, DEFAULT));
     }
