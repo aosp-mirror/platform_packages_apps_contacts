@@ -228,9 +228,6 @@ public class ContactsUtils {
      * numbers.
      */
     public static Uri getCallUri(String number) {
-        if (PhoneNumberUtils.isVoiceMailNumber(number)) {
-            return Uri.parse("voicemail:");
-        }
         if (PhoneNumberUtils.isUriNumber(number)) {
              return Uri.fromParts(Constants.SCHEME_SIP, number, null);
         }
