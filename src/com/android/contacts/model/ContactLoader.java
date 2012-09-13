@@ -382,12 +382,12 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                     // First time to see this raw contact id, so create a new entity, and
                     // add it to the result's entities.
                     currentRawContactId = rawContactId;
-                    rawContact = new RawContact(getContext(), loadRawContactValues(cursor));
+                    rawContact = new RawContact(loadRawContactValues(cursor));
                     rawContactsBuilder.add(rawContact);
                 }
                 if (!cursor.isNull(ContactQuery.DATA_ID)) {
                     ContentValues data = loadDataValues(cursor);
-                    final DataItem item = rawContact.addDataItemValues(data);
+                    rawContact.addDataItemValues(data);
 
                     if (!cursor.isNull(ContactQuery.PRESENCE)
                             || !cursor.isNull(ContactQuery.STATUS)) {
@@ -865,7 +865,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 continue; // Already notified for this raw contact.
             }
             mNotifiedRawContactIds.add(rawContactId);
-            final AccountType accountType = rawContact.getAccountType();
+            final AccountType accountType = rawContact.getAccountType(context);
             final String serviceName = accountType.getViewContactNotifyServiceClassName();
             final String servicePackageName = accountType.getViewContactNotifyServicePackageName();
             if (!TextUtils.isEmpty(serviceName) && !TextUtils.isEmpty(servicePackageName)) {

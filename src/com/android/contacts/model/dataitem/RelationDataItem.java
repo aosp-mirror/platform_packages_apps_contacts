@@ -20,16 +20,14 @@ import android.content.ContentValues;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
 
-import com.android.contacts.model.RawContact;
-
 /**
  * Represents a relation data item, wrapping the columns in
  * {@link ContactsContract.CommonDataKinds.Relation}.
  */
 public class RelationDataItem extends DataItem {
 
-    /* package */ RelationDataItem(RawContact rawContact, ContentValues values) {
-        super(rawContact, values);
+    /* package */ RelationDataItem(ContentValues values) {
+        super(values);
     }
 
     public String getName() {

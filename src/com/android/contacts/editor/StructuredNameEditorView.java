@@ -67,7 +67,7 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
             ViewIdGenerator vig) {
         super.setValues(kind, entry, state, readOnly, vig);
         if (mSnapshot == null) {
-            mSnapshot = (StructuredNameDataItem) DataItem.createFrom(null,
+            mSnapshot = (StructuredNameDataItem) DataItem.createFrom(
                     new ContentValues(getValues().getCompleteValues()));
             mChanged = entry.isInsert();
         } else {
@@ -214,7 +214,7 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         super.onRestoreInstanceState(ss.mSuperState);
 
         mChanged = ss.mChanged;
-        mSnapshot = (StructuredNameDataItem) DataItem.createFrom(null, ss.mSnapshot);
+        mSnapshot = (StructuredNameDataItem) DataItem.createFrom(ss.mSnapshot);
     }
 
     private static class SavedState implements Parcelable {

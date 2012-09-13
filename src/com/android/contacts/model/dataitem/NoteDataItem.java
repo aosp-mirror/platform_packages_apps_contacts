@@ -20,16 +20,14 @@ import android.content.ContentValues;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 
-import com.android.contacts.model.RawContact;
-
 /**
  * Represents a note data item, wrapping the columns in
  * {@link ContactsContract.CommonDataKinds.Note}.
  */
 public class NoteDataItem extends DataItem {
 
-    /* package */ NoteDataItem(RawContact rawContact, ContentValues values) {
-        super(rawContact, values);
+    /* package */ NoteDataItem(ContentValues values) {
+        super(values);
     }
 
     public String getNote() {

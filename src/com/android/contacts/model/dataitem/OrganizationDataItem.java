@@ -20,16 +20,14 @@ import android.content.ContentValues;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 
-import com.android.contacts.model.RawContact;
-
 /**
  * Represents an organization data item, wrapping the columns in
  * {@link ContactsContract.CommonDataKinds.Organization}.
  */
 public class OrganizationDataItem extends DataItem {
 
-    /* package */ OrganizationDataItem(RawContact rawContact, ContentValues values) {
-        super(rawContact, values);
+    /* package */ OrganizationDataItem(ContentValues values) {
+        super(values);
     }
 
     public String getCompany() {

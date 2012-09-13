@@ -77,7 +77,7 @@ public class RawContactDeltaTests extends AndroidTestCase {
         phone.put(Phone.NUMBER, TEST_PHONE_NUMBER_1);
         phone.put(Phone.TYPE, Phone.TYPE_HOME);
 
-        final RawContact before = new RawContact(context, contact);
+        final RawContact before = new RawContact(contact);
         before.addDataItemValues(phone);
         return before;
     }

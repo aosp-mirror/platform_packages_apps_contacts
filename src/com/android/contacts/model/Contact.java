@@ -26,7 +26,6 @@ import android.provider.ContactsContract.DisplayNameSources;
 
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 import com.google.common.annotations.VisibleForTesting;
@@ -389,7 +388,7 @@ public class Contact {
 
         // Iterate through raw-contacts; if we find a writable on, return its ID.
         for (RawContact rawContact : getRawContacts()) {
-            AccountType accountType = rawContact.getAccountType();
+            AccountType accountType = rawContact.getAccountType(context);
             if (accountType != null && accountType.areContactsWritable()) {
                 return rawContact.getId();
             }
@@ -429,10 +428,7 @@ public class Contact {
         }
 
         RawContact rawContact = mRawContacts.get(0);
-        ArrayList<ContentValues> result = new ArrayList<ContentValues>();
-        for (DataItem dataItem : rawContact.getDataItems()) {
-            result.add(dataItem.getContentValues());
-        }
+        ArrayList<ContentValues> result = rawContact.getContentValues();
 
         // If the photo was loaded using the URI, create an entry for the photo
         // binary data.

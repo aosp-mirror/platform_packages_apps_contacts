@@ -69,18 +69,18 @@ public class DataAction implements Action {
     /**
      * Create an action from common {@link Data} elements.
      */
-    public DataAction(Context context, DataItem item) {
+    public DataAction(Context context, DataItem item, DataKind kind) {
         mContext = context;
-        mKind = item.getDataKind();
+        mKind = kind;
         mMimeType = item.getMimeType();
 
         // Determine type for subtitle
         mSubtitle = "";
-        if (item.hasKindTypeColumn()) {
-            final int typeValue = item.getKindTypeColumn();
+        if (item.hasKindTypeColumn(kind)) {
+            final int typeValue = item.getKindTypeColumn(kind);
 
             // get type string
-            for (EditType type : item.getDataKind().typeList) {
+            for (EditType type : kind.typeList) {
                 if (type.rawValue == typeValue) {
                     if (type.customColumn == null) {
                         // Non-custom type. Get its description from the resource
@@ -95,7 +95,7 @@ public class DataAction implements Action {
         }
 
         mIsPrimary = item.isSuperPrimary();
-        mBody = item.buildDataString();
+        mBody = item.buildDataString(context, kind);
 
         mDataId = item.getId();
         mDataUri = ContentUris.withAppendedId(Data.CONTENT_URI, mDataId);
@@ -119,8 +119,8 @@ public class DataAction implements Action {
                     if (hasPhone && hasSms) {
                         mIntent = phoneIntent;
                         mAlternateIntent = smsIntent;
-                        mAlternateIconRes = phone.getDataKind().iconAltRes;
-                        mAlternateIconDescriptionRes = phone.getDataKind().iconAltDescriptionRes;
+                        mAlternateIconRes = kind.iconAltRes;
+                        mAlternateIconDescriptionRes = kind.iconAltDescriptionRes;
                     } else if (hasPhone) {
                         mIntent = phoneIntent;
                     } else if (hasSms) {

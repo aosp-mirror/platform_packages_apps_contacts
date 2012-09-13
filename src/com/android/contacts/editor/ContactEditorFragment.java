@@ -479,7 +479,7 @@ public class ContactEditorFragment extends Fragment implements
             RawContact rawContact = rawContacts.get(0);
             String type = rawContact.getAccountTypeString();
             String dataSet = rawContact.getDataSet();
-            AccountType accountType = rawContact.getAccountType();
+            AccountType accountType = rawContact.getAccountType(mContext);
             if (accountType.getEditContactActivityClassName() != null &&
                     !accountType.areContactsWritable()) {
                 if (mListener != null) {
@@ -524,7 +524,7 @@ public class ContactEditorFragment extends Fragment implements
             }
             // Editor should always present a local profile for editing
             if (!localProfileExists) {
-                final RawContact rawContact = new RawContact(mContext);
+                final RawContact rawContact = new RawContact();
                 rawContact.setAccountToLocal();
 
                 RawContactDelta insert = new RawContactDelta(ValuesDelta.fromAfter(
@@ -659,7 +659,7 @@ public class ContactEditorFragment extends Fragment implements
             AccountType oldAccountType) {
         mStatus = Status.EDITING;
 
-        final RawContact rawContact = new RawContact(mContext);
+        final RawContact rawContact = new RawContact();
         if (newAccount != null) {
             rawContact.setAccount(newAccount);
         } else {

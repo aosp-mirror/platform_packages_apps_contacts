@@ -20,16 +20,14 @@ import android.content.ContentValues;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 
-import com.android.contacts.model.RawContact;
-
 /**
  * Represents a nickname data item, wrapping the columns in
  * {@link ContactsContract.CommonDataKinds.Nickname}.
  */
 public class NicknameDataItem extends DataItem {
 
-    public NicknameDataItem(RawContact rawContact, ContentValues values) {
-        super(rawContact, values);
+    public NicknameDataItem(ContentValues values) {
+        super(values);
     }
 
     public String getName() {
