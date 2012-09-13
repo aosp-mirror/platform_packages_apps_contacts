@@ -45,6 +45,7 @@ import com.google.common.collect.Lists;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Tests for {@link RawContactDeltaList} which focus on "diff" operations that should
@@ -112,10 +113,8 @@ public class RawContactDeltaListTests extends AndroidTestCase {
     }
 
     static RawContactDeltaList buildSet(RawContactDelta... deltas) {
-        final RawContactDeltaList set = RawContactDeltaList.fromSingle(deltas[0]);
-        for (int i = 1; i < deltas.length; i++) {
-            set.add(deltas[i]);
-        }
+        final RawContactDeltaList set = new RawContactDeltaList();
+        Collections.addAll(set, deltas);
         return set;
     }
 

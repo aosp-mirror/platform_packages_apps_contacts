@@ -174,6 +174,10 @@ public class TextFieldsEditorView extends LabeledEditorView {
         }
     }
 
+    public void setValue(int field, String value) {
+        mFieldEditTexts[field].setText(value);
+    }
+
     @Override
     public void setValues(DataKind kind, ValuesDelta entry, RawContactDelta state, boolean readOnly,
             ViewIdGenerator vig) {

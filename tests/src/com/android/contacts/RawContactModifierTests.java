@@ -521,7 +521,9 @@ public class RawContactModifierTests extends AndroidTestCase {
 
         // Try creating a contact without any child entries
         final RawContactDelta state = getRawContact(null);
-        final RawContactDeltaList set = RawContactDeltaList.fromSingle(state);
+        final RawContactDeltaList set = new RawContactDeltaList();
+        set.add(state);
+
 
         // Build diff, expecting single insert
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -549,7 +551,8 @@ public class RawContactModifierTests extends AndroidTestCase {
         // Try creating a contact with single empty entry
         final RawContactDelta state = getRawContact(null);
         RawContactModifier.insertChild(state, kindPhone, typeHome);
-        final RawContactDeltaList set = RawContactDeltaList.fromSingle(state);
+        final RawContactDeltaList set = new RawContactDeltaList();
+        set.add(state);
 
         // Build diff, expecting two insert operations
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -593,7 +596,8 @@ public class RawContactModifierTests extends AndroidTestCase {
         second.put(Phone.NUMBER, TEST_PHONE);
 
         final RawContactDelta state = getRawContact(TEST_ID, first, second);
-        final RawContactDeltaList set = RawContactDeltaList.fromSingle(state);
+        final RawContactDeltaList set = new RawContactDeltaList();
+        set.add(state);
 
         // Build diff, expecting no changes
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -658,7 +662,8 @@ public class RawContactModifierTests extends AndroidTestCase {
         first.put(Phone.NUMBER, TEST_PHONE);
 
         final RawContactDelta state = getRawContact(TEST_ID, first);
-        final RawContactDeltaList set = RawContactDeltaList.fromSingle(state);
+        final RawContactDeltaList set = new RawContactDeltaList();
+        set.add(state);
 
         // Build diff, expecting no changes
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();

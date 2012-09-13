@@ -49,17 +49,7 @@ public class RawContactDeltaList extends ArrayList<RawContactDelta> implements P
     private boolean mSplitRawContacts;
     private long[] mJoinWithRawContactIds;
 
-    private RawContactDeltaList() {
-    }
-
-    /**
-     * Create an {@link RawContactDeltaList} that contains the given {@link RawContactDelta},
-     * usually when inserting a new {@link Contacts} entry.
-     */
-    public static RawContactDeltaList fromSingle(RawContactDelta delta) {
-        final RawContactDeltaList state = new RawContactDeltaList();
-        state.add(delta);
-        return state;
+    public RawContactDeltaList() {
     }
 
     /**
@@ -85,6 +75,11 @@ public class RawContactDeltaList extends ArrayList<RawContactDelta> implements P
      */
     public static RawContactDeltaList fromIterator(Iterator<?> iterator) {
         final RawContactDeltaList state = new RawContactDeltaList();
+        state.addAll(iterator);
+        return state;
+    }
+
+    public void addAll(Iterator<?> iterator) {
         // Perform background query to pull contact details
         while (iterator.hasNext()) {
             // Read all contacts into local deltas to prepare for edits
@@ -93,9 +88,8 @@ public class RawContactDeltaList extends ArrayList<RawContactDelta> implements P
                     ? RawContact.createFrom((Entity) nextObject)
                     : (RawContact) nextObject;
             final RawContactDelta rawContactDelta = RawContactDelta.fromBefore(before);
-            state.add(rawContactDelta);
+            add(rawContactDelta);
         }
-        return state;
     }
 
     /**

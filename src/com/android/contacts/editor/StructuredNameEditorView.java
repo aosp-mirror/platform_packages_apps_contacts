@@ -200,6 +200,18 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         }
     }
 
+    /**
+     * Set the display name onto the text field directly.  This does not affect the underlying
+     * data structure so it is similar to the user typing the value in on the field directly.
+     *
+     * @param name The name to set on the text field.
+     */
+    public void setDisplayName(String name) {
+        // For now, assume the first text field is the name.
+        // TODO: Find a better way to get a hold of the name field.
+        super.setValue(0, name);
+    }
+
     @Override
     protected Parcelable onSaveInstanceState() {
         SavedState state = new SavedState(super.onSaveInstanceState());

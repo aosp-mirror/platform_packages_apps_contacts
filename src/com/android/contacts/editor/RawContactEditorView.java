@@ -418,7 +418,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         return -1;
     }
 
-    public TextFieldsEditorView getNameEditor() {
+    public StructuredNameEditorView getNameEditor() {
         return mName;
     }
 
