@@ -410,8 +410,8 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 AccountType accountType;
                 if (GoogleAccountType.ACCOUNT_TYPE.equals(type)) {
                     accountType = new GoogleAccountType(mContext, auth.packageName);
-                } else if (ExchangeAccountType.ACCOUNT_TYPE.equals(type)) {
-                    accountType = new ExchangeAccountType(mContext, auth.packageName);
+                } else if (ExchangeAccountType.isExchangeType(type)) {
+                    accountType = new ExchangeAccountType(mContext, auth.packageName, type);
                 } else {
                     // TODO: use syncadapter package instead, since it provides resources
                     Log.d(TAG, "Registering external account type=" + type
