@@ -77,6 +77,8 @@ public class RawContactModifierTests extends AndroidTestCase {
     private static final String TEST_ACCOUNT_NAME = "unittest@example.com";
     private static final String TEST_ACCOUNT_TYPE = "com.example.unittest";
 
+    private static final String EXCHANGE_ACCT_TYPE = "com.android.exchange";
+
     @Override
     public void setUp() {
         mContext = getContext();
@@ -770,7 +772,7 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigrateWithDisplayNameFromGoogleToExchange1() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
 
         ContactsMockContext context = new ContactsMockContext(getContext());
@@ -806,7 +808,7 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigrateWithDisplayNameFromGoogleToExchange2() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
 
         ContactsMockContext context = new ContactsMockContext(getContext());
@@ -846,7 +848,7 @@ public class RawContactModifierTests extends AndroidTestCase {
     }
 
     public void testMigrateWithStructuredNameFromExchangeToGoogle() {
-        AccountType oldAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType oldAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         AccountType newAccountType = new GoogleAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
 
@@ -891,7 +893,7 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigratePostalFromGoogleToExchange() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
 
         RawContactDelta oldState = new RawContactDelta();
@@ -913,7 +915,7 @@ public class RawContactModifierTests extends AndroidTestCase {
     }
 
     public void testMigratePostalFromExchangeToGoogle() {
-        AccountType oldAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType oldAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         AccountType newAccountType = new GoogleAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
 
@@ -948,11 +950,11 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigrateEventFromGoogleToExchange1() {
         testMigrateEventCommon(new GoogleAccountType(getContext(), ""),
-                new ExchangeAccountType(getContext(), ""));
+                new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE));
     }
 
     public void testMigrateEventFromExchangeToGoogle() {
-        testMigrateEventCommon(new ExchangeAccountType(getContext(), ""),
+        testMigrateEventCommon(new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE),
                 new GoogleAccountType(getContext(), ""));
     }
 
@@ -980,7 +982,7 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigrateEventFromGoogleToExchange2() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(Event.CONTENT_ITEM_TYPE);
 
         RawContactDelta oldState = new RawContactDelta();
@@ -1012,7 +1014,7 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigrateEmailFromGoogleToExchange() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(Email.CONTENT_ITEM_TYPE);
 
         RawContactDelta oldState = new RawContactDelta();
@@ -1062,7 +1064,7 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigrateImFromGoogleToExchange() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
 
         RawContactDelta oldState = new RawContactDelta();
@@ -1129,7 +1131,7 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigratePhoneFromGoogleToExchange() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
 
         // Create 5 numbers.
@@ -1207,7 +1209,7 @@ public class RawContactModifierTests extends AndroidTestCase {
 
     public void testMigrateOrganizationFromGoogleToExchange() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
 
         RawContactDelta oldState = new RawContactDelta();

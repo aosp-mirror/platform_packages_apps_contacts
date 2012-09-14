@@ -41,10 +41,11 @@ import java.util.Locale;
 public class ExchangeAccountType extends BaseAccountType {
     private static final String TAG = "ExchangeAccountType";
 
-    public static final String ACCOUNT_TYPE = "com.android.exchange";
+    public static final String ACCOUNT_TYPE_AOSP = "com.android.exchange";
+    public static final String ACCOUNT_TYPE_GOOGLE = "com.google.android.exchange";
 
-    public ExchangeAccountType(Context context, String authenticatorPackageName) {
-        this.accountType = ACCOUNT_TYPE;
+    public ExchangeAccountType(Context context, String authenticatorPackageName, String type) {
+        this.accountType = type;
         this.resourcePackageName = null;
         this.syncAdapterPackageName = authenticatorPackageName;
 
@@ -68,6 +69,10 @@ public class ExchangeAccountType extends BaseAccountType {
         } catch (DefinitionException e) {
             Log.e(TAG, "Problem building account type", e);
         }
+    }
+
+    public static boolean isExchangeType(String type) {
+        return ACCOUNT_TYPE_AOSP.equals(type) || ACCOUNT_TYPE_GOOGLE.equals(type);
     }
 
     @Override
