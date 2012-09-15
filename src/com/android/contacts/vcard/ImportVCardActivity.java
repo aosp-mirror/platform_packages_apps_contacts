@@ -760,9 +760,11 @@ public class ImportVCardActivity extends ContactsActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mVCardCacheThread = new VCardCacheThread(uris);
-                mListener = new NotificationImportExportListener(ImportVCardActivity.this);
-                showDialog(R.id.dialog_cache_vcard);
+                if (!isFinishing()) {
+                    mVCardCacheThread = new VCardCacheThread(uris);
+                    mListener = new NotificationImportExportListener(ImportVCardActivity.this);
+                    showDialog(R.id.dialog_cache_vcard);
+                }
             }
         });
     }
