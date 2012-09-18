@@ -1610,16 +1610,16 @@
     <string name="call_log_old_header">Older</string>
 
     <!-- The header to show that call log is only showing voicemail calls. [CHAR LIMIT=40] -->
-    <string name="call_log_voicemail_header">Calls with voicemail</string>
+    <string name="call_log_voicemail_header">Calls with voicemail only</string>
 
     <!-- The header to show that call log is only showing incoming calls. [CHAR LIMIT=40] -->
-    <string name="call_log_incoming_header">Incoming calls</string>
+    <string name="call_log_incoming_header">Incoming calls only</string>
 
     <!-- The header to show that call log is only showing outgoing calls. [CHAR LIMIT=40] -->
-    <string name="call_log_outgoing_header">Outgoing calls</string>
+    <string name="call_log_outgoing_header">Outgoing calls only</string>
 
     <!-- The header to show that call log is only showing missed calls. [CHAR LIMIT=40] -->
-    <string name="call_log_missed_header">Missed calls</string>
+    <string name="call_log_missed_header">Missed calls only</string>
 
     <!--  Voicemail status message shown at the top of call log to notify the user that no new
 voicemails are currently available. This can happen when both notification as well as data
