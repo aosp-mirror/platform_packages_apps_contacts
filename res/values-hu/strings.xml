@@ -510,10 +510,14 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"A hangposta nem hívható le."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Új"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Régebbi"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"Hangpostahívások"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"Beérkező hívások"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Kimenő hívások"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"Nem fogadott hívások"</string>
+    <!-- no translation found for call_log_voicemail_header (3945407886667089173) -->
+    <skip />
+    <!-- no translation found for call_log_incoming_header (2787722299753674684) -->
+    <skip />
+    <!-- no translation found for call_log_outgoing_header (761009180766735769) -->
+    <skip />
+    <!-- no translation found for call_log_missed_header (8017148056610855956) -->
+    <skip />
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Nem lehet csatlakozni a hangpostaszerverhez."</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"A hangposta nem érhető el. Új hangüzenetek várakoznak."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Állítsa be a hangpostát."</string>

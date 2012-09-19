@@ -102,8 +102,8 @@
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"沒有包含電話號碼的聯絡人資訊。"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"這個群組中沒有成員。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"如要新增成員，請編輯群組。"</string>
-    <string name="savingContact" msgid="4075751076741924939">"正在儲存聯絡人..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"正在儲存顯示選項..."</string>
+    <string name="savingContact" msgid="4075751076741924939">"正在儲存聯絡人…"</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"正在儲存顯示選項…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"聯絡人已儲存。"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"無法儲存聯絡人變更。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"群組已儲存。"</string>
@@ -304,7 +304,7 @@
     <string name="dialog_new_group_account" msgid="2318032089273496830">"選擇帳戶以建立群組"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"移除同步處理群組"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"新增同步處理群組"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"更多群組..."</string>
+    <string name="display_more_groups" msgid="2682547080423434170">"更多群組…"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"所有其他聯絡人"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"所有聯絡人"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"如果停用「<xliff:g id="GROUP">%s</xliff:g>」群組的同步處理設定，也會停止同步處理任何未分組的聯絡人。"</string>
@@ -506,14 +506,18 @@
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"最新語音留言者：<xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"無法播放語音留言。"</string>
     <string name="voicemail_buffering" msgid="738287747618697097">"緩衝處理中…"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"正在擷取語音留言…"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"正在擷取語音留言..."</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"無法擷取語音留言。"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"最新"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"較舊"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"語音信箱留言"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"來電"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"撥出通話"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"未接來電"</string>
+    <!-- no translation found for call_log_voicemail_header (3945407886667089173) -->
+    <skip />
+    <!-- no translation found for call_log_incoming_header (2787722299753674684) -->
+    <skip />
+    <!-- no translation found for call_log_outgoing_header (761009180766735769) -->
+    <skip />
+    <!-- no translation found for call_log_missed_header (8017148056610855956) -->
+    <skip />
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"無法連線至語音信箱伺服器。"</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"無法連線至語音信箱伺服器，新的語音留言仍待聽取。"</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"設定您的語音信箱。"</string>

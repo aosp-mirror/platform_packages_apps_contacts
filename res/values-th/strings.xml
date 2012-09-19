@@ -510,10 +510,14 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"ไม่สามารถดึงข้อความเสียง"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"ใหม่"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"เก่ากว่า"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"สายที่ฝากข้อความเสียง"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"สายเรียกเข้า"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"สายโทรออก"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"สายที่ไม่ได้รับ"</string>
+    <!-- no translation found for call_log_voicemail_header (3945407886667089173) -->
+    <skip />
+    <!-- no translation found for call_log_incoming_header (2787722299753674684) -->
+    <skip />
+    <!-- no translation found for call_log_outgoing_header (761009180766735769) -->
+    <skip />
+    <!-- no translation found for call_log_missed_header (8017148056610855956) -->
+    <skip />
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ข้อความเสียง"</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ข้อความเสียง มีข้อความเสียงใหม่"</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"ตั้งค่าข้อความเสียงของคุณ"</string>
