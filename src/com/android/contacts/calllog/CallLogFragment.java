@@ -21,7 +21,6 @@ import android.app.KeyguardManager;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
@@ -29,7 +28,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.preference.PreferenceManager;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract;
@@ -70,8 +68,6 @@ public class CallLogFragment extends ListFragment
      * ID of the empty loader to defer other fragments.
      */
     private static final int EMPTY_LOADER_ID = 0;
-
-    private static final String PREF_CALL_LOG_FILTER_LAST_CALL_TYPE = "CallLogFragment_last_filter";
 
     private CallLogAdapter mAdapter;
     private CallLogQueryHandler mCallLogQueryHandler;
@@ -128,11 +124,6 @@ public class CallLogFragment extends ListFragment
         getActivity().getContentResolver().registerContentObserver(
                 ContactsContract.Contacts.CONTENT_URI, true, mContactsObserver);
         setHasOptionsMenu(true);
-
-        // Load the last filter used.
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mCallTypeFilter = prefs.getInt(PREF_CALL_LOG_FILTER_LAST_CALL_TYPE,
-                CallLogQueryHandler.CALL_TYPE_ALL);
     }
 
     /** Called by the CallLogQueryHandler when the list of calls has been fetched or updated. */
@@ -297,11 +288,6 @@ public class CallLogFragment extends ListFragment
         super.onPause();
         // Kill the requests thread
         mAdapter.stopRequestProcessing();
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        prefs.edit()
-                .putInt(PREF_CALL_LOG_FILTER_LAST_CALL_TYPE, mCallTypeFilter)
-                .apply();
     }
 
     @Override
