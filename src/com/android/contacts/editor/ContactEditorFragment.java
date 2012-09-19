@@ -1423,7 +1423,9 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onAggregationSuggestionChange() {
-        if (!isAdded() || mState == null || mStatus != Status.EDITING) {
+        Activity activity = getActivity();
+        if ((activity != null && activity.isFinishing())
+                || !isVisible() || mState == null || mStatus != Status.EDITING) {
             return;
         }
 
