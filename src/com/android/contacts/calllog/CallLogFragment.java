@@ -32,6 +32,8 @@ import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -90,6 +92,9 @@ public class CallLogFragment extends ListFragment
     private boolean mVoicemailStatusFetched;
 
     private final Handler mHandler = new Handler();
+
+    private TelephonyManager mTelephonyManager;
+    private PhoneStateListener mPhoneStateListener;
 
     private class CustomContentObserver extends ContentObserver {
         public CustomContentObserver() {
@@ -220,8 +225,6 @@ public class CallLogFragment extends ListFragment
                 new ContactInfoHelper(getActivity(), currentCountryIso));
         setListAdapter(mAdapter);
         getListView().setItemsCanFocus(true);
-
-        updateFilterHeader();
     }
 
     /**
@@ -303,6 +306,7 @@ public class CallLogFragment extends ListFragment
         mAdapter.changeCursor(null);
         getActivity().getContentResolver().unregisterContentObserver(mCallLogObserver);
         getActivity().getContentResolver().unregisterContentObserver(mContactsObserver);
+        unregisterPhoneCallReceiver();
     }
 
     @Override
@@ -348,34 +352,37 @@ public class CallLogFragment extends ListFragment
                 return true;
 
             case R.id.show_outgoing_only:
+                // We only need the phone call receiver when there is an active call type filter.
+                // Not many people may use the filters so don't register the receiver until now .
+                registerPhoneCallReceiver();
                 mCallLogQueryHandler.fetchCalls(Calls.OUTGOING_TYPE);
-                mCallTypeFilter = Calls.OUTGOING_TYPE;
-                updateFilterHeader();
+                updateFilterTypeAndHeader(Calls.OUTGOING_TYPE);
                 return true;
 
             case R.id.show_incoming_only:
+                registerPhoneCallReceiver();
                 mCallLogQueryHandler.fetchCalls(Calls.INCOMING_TYPE);
-                mCallTypeFilter = Calls.INCOMING_TYPE;
-                updateFilterHeader();
+                updateFilterTypeAndHeader(Calls.INCOMING_TYPE);
                 return true;
 
             case R.id.show_missed_only:
+                registerPhoneCallReceiver();
                 mCallLogQueryHandler.fetchCalls(Calls.MISSED_TYPE);
-                mCallTypeFilter = Calls.MISSED_TYPE;
-                updateFilterHeader();
+                updateFilterTypeAndHeader(Calls.MISSED_TYPE);
                 return true;
 
             case R.id.show_voicemails_only:
+                registerPhoneCallReceiver();
                 mCallLogQueryHandler.fetchCalls(Calls.VOICEMAIL_TYPE);
-                mCallTypeFilter = Calls.VOICEMAIL_TYPE;
-                updateFilterHeader();
+                updateFilterTypeAndHeader(Calls.VOICEMAIL_TYPE);
                 mShowingVoicemailOnly = true;
                 return true;
 
             case R.id.show_all_calls:
+                // Filter is being turned off, receiver no longer needed.
+                unregisterPhoneCallReceiver();
                 mCallLogQueryHandler.fetchCalls(CallLogQueryHandler.CALL_TYPE_ALL);
-                mCallTypeFilter = CallLogQueryHandler.CALL_TYPE_ALL;
-                updateFilterHeader();
+                updateFilterTypeAndHeader(CallLogQueryHandler.CALL_TYPE_ALL);
                 mShowingVoicemailOnly = false;
                 return true;
 
@@ -384,8 +391,10 @@ public class CallLogFragment extends ListFragment
         }
     }
 
-    private void updateFilterHeader() {
-        switch (mCallTypeFilter) {
+    private void updateFilterTypeAndHeader(int filterType) {
+        mCallTypeFilter = filterType;
+
+        switch (filterType) {
             case CallLogQueryHandler.CALL_TYPE_ALL:
                 mFilterStatusView.setVisibility(View.GONE);
                 break;
@@ -531,5 +540,32 @@ public class CallLogFragment extends ListFragment
         Intent serviceIntent = new Intent(getActivity(), CallLogNotificationsService.class);
         serviceIntent.setAction(CallLogNotificationsService.ACTION_UPDATE_NOTIFICATIONS);
         getActivity().startService(serviceIntent);
+    }
+
+    /**
+     * Register a phone call filter to reset the call type when a phone call is place.
+     */
+    private void registerPhoneCallReceiver() {
+        mTelephonyManager = (TelephonyManager) getActivity().getSystemService(
+                Context.TELEPHONY_SERVICE);
+        mPhoneStateListener = new PhoneStateListener() {
+            @Override
+            public void onCallStateChanged(int state, String incomingNumber) {
+                if (state == TelephonyManager.CALL_STATE_OFFHOOK ||
+                        state == TelephonyManager.CALL_STATE_RINGING) {
+                    updateFilterTypeAndHeader(CallLogQueryHandler.CALL_TYPE_ALL);
+                }
+            }
+        };
+        mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+    }
+
+    /**
+     * Un-registers the phone call receiver.
+     */
+    private void unregisterPhoneCallReceiver() {
+        if (mPhoneStateListener != null) {
+            mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
     }
 }
