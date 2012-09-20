@@ -374,7 +374,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Piga gumzo kwa kutumia ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Piga gumzo kwa kutumia Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Gumzo"</string>
-    <string name="audio_chat" msgid="2535716629358298691">"Soga ya sauti"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Gumzo la sauti"</string>
     <string name="video_chat" msgid="1872255818640336072">"Sogoa ya video"</string>
     <string name="postal_address" msgid="8765560217149624536">"Anwani"</string>
     <string name="postal_street" msgid="8133143961580058972">"Barabara"</string>
@@ -512,10 +512,14 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Haikuweza kuleta barua ya sauti."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Mpya"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Nzee zaidi"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"Simu zilizo na ujumbe wa sauti"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"Simu zinazoingia"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Simu zinazotoka"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"Simu ambazo hazikujibiwa"</string>
+    <!-- no translation found for call_log_voicemail_header (3945407886667089173) -->
+    <skip />
+    <!-- no translation found for call_log_incoming_header (2787722299753674684) -->
+    <skip />
+    <!-- no translation found for call_log_outgoing_header (761009180766735769) -->
+    <skip />
+    <!-- no translation found for call_log_missed_header (8017148056610855956) -->
+    <skip />
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Haiwezi kuunganisha kwa seva ya ujumbe wa sauti."</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Haiwezi kuunganishwa kwenye seva ya ujumbe wa sauti. Jumbe mpya za sauti zinasubiri."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Sanidi ujumbe wako wa sauti."</string>
