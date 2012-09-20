@@ -546,15 +546,27 @@ public class CallLogFragment extends ListFragment
      * Register a phone call filter to reset the call type when a phone call is place.
      */
     private void registerPhoneCallReceiver() {
+        if (mPhoneStateListener != null) {
+            return; // Already registered.
+        }
         mTelephonyManager = (TelephonyManager) getActivity().getSystemService(
                 Context.TELEPHONY_SERVICE);
         mPhoneStateListener = new PhoneStateListener() {
             @Override
             public void onCallStateChanged(int state, String incomingNumber) {
-                if (state == TelephonyManager.CALL_STATE_OFFHOOK ||
-                        state == TelephonyManager.CALL_STATE_RINGING) {
-                    updateFilterTypeAndHeader(CallLogQueryHandler.CALL_TYPE_ALL);
+                if (state != TelephonyManager.CALL_STATE_OFFHOOK &&
+                        state != TelephonyManager.CALL_STATE_RINGING) {
+                    return;
                 }
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (getActivity() == null || getActivity().isFinishing()) {
+                            return;
+                        }
+                        updateFilterTypeAndHeader(CallLogQueryHandler.CALL_TYPE_ALL);
+                    }
+                 });
             }
         };
         mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
@@ -566,6 +578,7 @@ public class CallLogFragment extends ListFragment
     private void unregisterPhoneCallReceiver() {
         if (mPhoneStateListener != null) {
             mTelephonyManager.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+            mPhoneStateListener = null;
         }
     }
 }
