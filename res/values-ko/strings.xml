@@ -16,7 +16,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="launcherDialer" msgid="8636288196618486553">"휴대전화"</string>
     <string name="people" msgid="1048457247435785074">"피플"</string>
     <string name="contactsList" msgid="8661624236494819731">"주소록"</string>
     <string name="shortcutContact" msgid="749243779392912958">"연락처"</string>
@@ -137,23 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"모든 연락처"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"그룹"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"즐겨찾기"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"휴대전화"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"통화기록"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"문자 메시지 보내기"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"전화걸기: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"통화하기 전에 번호 수정"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"주소록에 추가"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"통화기록에서 삭제"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"통화기록 지우기"</string>
-    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"음성사서함 삭제"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"음성사서함 공유"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"통화기록이 없습니다."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"통화기록을 지우시겠습니까?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"모든 통화 기록을 삭제합니다."</string>
-    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"통화기록을 지우는 중..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"피플 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"음성사서함"</string>
@@ -497,35 +479,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"내 프로필 설정"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"이름 입력"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"업데이트 보기"</string>
-  <plurals name="notification_voicemail_title">
-    <item quantity="one" msgid="1746619685488504230">"음성사서함"</item>
-    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g>개의 음성사서함"</item>
-  </plurals>
-    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"재생"</string>
-    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
-    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"<xliff:g id="CALLER">%1$s</xliff:g>님이 보낸 새 음성사서함"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"음성메시지를 재생할 수 없습니다."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"버퍼링 중..."</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"음성메시지를 가져오는 중..."</string>
-    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"음성메시지 가져오지 못했습니다."</string>
-    <string name="call_log_new_header" msgid="846546437517724715">"신규"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"이전"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"음성사서함 메시지"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"수신전화"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"발신전화"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"부재중 통화"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"음성사서함 서버에 연결할 수 없습니다."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"음성사서함 서버에 연결할 수 없습니다. 대기 중인 새 음성사서함이 있습니다."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"음성사서함을 설정합니다."</string>
-    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"오디오를 사용할 수 없습니다."</string>
-    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"설정"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"음성사서함 연결"</string>
-    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"가장 느린 속도"</string>
-    <string name="voicemail_speed_slower" msgid="1508601287347216244">"느린 속도"</string>
-    <string name="voicemail_speed_normal" msgid="9033988544627228892">"보통 속도"</string>
-    <string name="voicemail_speed_faster" msgid="2019965121475935488">"빠른 속도"</string>
-    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"가장 빠른 속도"</string>
-    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"<xliff:g id="DATE">%2$s</xliff:g>에 통화 <xliff:g id="COUNT">%1$d</xliff:g>통"</string>
     <string name="group_name_hint" msgid="238359485263401293">"그룹 이름"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC를 통해 받은 연락처"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"발신 전화만 표시"</string>

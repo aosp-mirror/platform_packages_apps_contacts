@@ -16,7 +16,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="launcherDialer" msgid="8636288196618486553">"الهاتف"</string>
     <string name="people" msgid="1048457247435785074">"أشخاص"</string>
     <string name="contactsList" msgid="8661624236494819731">"جهات الاتصال"</string>
     <string name="shortcutContact" msgid="749243779392912958">"الاتصال بـ"</string>
@@ -137,23 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"جميع جهات الاتصال"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"المجموعات"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"المفضلة"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"الهاتف"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"سجل المكالمات"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"إرسال رسالة نصية"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"الاتصال بـ <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"تعديل الرقم قبل الاتصال"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"إضافة إلى جهات الاتصال"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"إزالة من سجل المكالمات"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"محو سجل المكالمات"</string>
-    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"حذف بريد صوتي"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"مشاركة البريد الصوتي"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"سجل المكالمات فارغ."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"محو سجل المكالمات؟"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"سيتم حذف جميع سجلات المكالمات."</string>
-    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"جارٍ محو سجل المكالمات..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"هل تريد محو قائمة من يُتصل بهم كثيرًا؟"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"ستمحو قائمة من يتم الاتصال بهم كثيرًا في تطبيقي الأشخاص والهاتف، وستفرض على تطبيقات البريد الإلكتروني التعرف على تفضيلات توجيه الرسائل من البداية."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"جارٍ محو قائمة المُتصل بهم كثيرًا…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"البريد الصوتي"</string>
@@ -497,35 +479,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"إعداد الملف الشخصي"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"اكتب اسم الشخص"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"عرض التحديثات"</string>
-  <plurals name="notification_voicemail_title">
-    <item quantity="one" msgid="1746619685488504230">"البريد الصوتي"</item>
-    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> من رسائل البريد الصوتي"</item>
-  </plurals>
-    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"تشغيل"</string>
-    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>، <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
-    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"بريد صوتي جديد من <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"تعذر تشغيل البريد الصوتي."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"جارٍ التخزين مؤقتًا..."</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"جارٍ جلب البريد الصوتي..."</string>
-    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"تعذر جلب البريد الصوتي."</string>
-    <string name="call_log_new_header" msgid="846546437517724715">"جديد"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"أقدم"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"مكالمات تشتمل على بريد صوتي"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"المكالمات الواردة"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"المكالمات الصادرة"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"المكالمات الفائتة"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"لا يمكن الاتصال بخادم البريد الصوتي."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"لا يمكن الاتصال بخادم البريد الصوتي. بريد صوتي جديد في انتظارك."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"إعداد البريد الصوتي."</string>
-    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"الصوت غير متوفر."</string>
-    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"إعداد"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"اتصال ببريد صوتي..."</string>
-    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"أبطأ سرعة"</string>
-    <string name="voicemail_speed_slower" msgid="1508601287347216244">"سرعة بطيئة"</string>
-    <string name="voicemail_speed_normal" msgid="9033988544627228892">"سرعة عادية"</string>
-    <string name="voicemail_speed_faster" msgid="2019965121475935488">"سرعة عالية"</string>
-    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"أعلى سرعة"</string>
-    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"اسم المجموعة"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"استلام ج اتص.NFC"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"عرض الصادر فقط"</string>

@@ -16,7 +16,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
     <string name="people" msgid="1048457247435785074">"Inimesed"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontaktid"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
@@ -137,23 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Kõik kontaktid"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Grupid"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Lemmikud"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Kõnelogi"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"Tekstsõnumi saatmine"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Helista kasutajale <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Muuda enne helistamist numbrit"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"Lisa kontaktidesse"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Eemalda kõnelogist"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Kustuta kõnelogi"</string>
-    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Kustuta kõnepost"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Jaga kõneposti"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"Kõnelogi on tühi."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Kustutada kõnelogi?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Kõik teie kõnesalvestised kustutatakse."</string>
-    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Kõnelogi kustutamine ..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Kas kustutada sagedased kontaktid?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Kustutate jaotistes Inimesed ja Telefonirakendused loendi Sagedased kontaktid ning meilirakendused peavad teie adresseerimiseelistused uuesti omandama."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Saged. kontaktide kustutamine ..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Kõnepost"</string>
@@ -497,35 +479,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"Minu profiili seadistamine"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Sisestage isiku nimi"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Kuva värskendused"</string>
-  <plurals name="notification_voicemail_title">
-    <item quantity="one" msgid="1746619685488504230">"Kõnepost"</item>
-    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> kõnepostisõnumit"</item>
-  </plurals>
-    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"Esitamine"</string>
-    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
-    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Uus kõnepostisõnum kasutajalt <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"Kõnepostisõnumi esitamine ebaõnnestus."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Puhverdamine ..."</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Kõneposti toomine ..."</string>
-    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Kõneposti toomine ebaõnnestus."</string>
-    <string name="call_log_new_header" msgid="846546437517724715">"Uued"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"Vanemad"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"Kõnepostiga kõned"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"Sissetulevad kõned"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Väljuvad kõned"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"Vastamata kõned"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Kõnepostiserveriga ei saa ühendust."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Kõnepostiserveriga ei saa ühendust. Uued kõnepostisõnumid ootel."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Seadistage oma kõnepost."</string>
-    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Heli pole saadaval."</string>
-    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Seadistamine"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Helista kõneposti"</string>
-    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Aeglaseim kiirus"</string>
-    <string name="voicemail_speed_slower" msgid="1508601287347216244">"Aeglane kiirus"</string>
-    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Tavaline kiirus"</string>
-    <string name="voicemail_speed_faster" msgid="2019965121475935488">"Kiire kiirus"</string>
-    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Kiireim kiirus"</string>
-    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Rühma nimi"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt võeti vastu  NFC kaudu"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Kuva ainult väljuvad"</string>

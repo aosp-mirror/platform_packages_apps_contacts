@@ -16,7 +16,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="launcherDialer" msgid="8636288196618486553">"拨号"</string>
     <string name="people" msgid="1048457247435785074">"联系人"</string>
     <string name="contactsList" msgid="8661624236494819731">"联系人"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
@@ -137,23 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"所有联系人"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"群组"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"收藏"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"拨号"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"通话记录"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"发送短信"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"呼叫<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"呼叫之前编辑号码"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"添加到“联系人”"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"从通话记录中删除"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"清除通话记录"</string>
-    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"删除语音邮件"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"分享语音邮件"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"通话记录为空。"</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"要清除通话记录吗？"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"系统将删除您的所有通话记录。"</string>
-    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"正在清除通话记录..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"是否清除常用联系人？"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"此操作会清除“联系人”和“拨号”应用中的常用联系人列表，并强制电子邮件应用重新获取您最常使用的联系地址。"</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"正在清除常用联系人…"</string>
     <string name="imei" msgid="3045126336951684285">"移动通信国际识别码"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"语音信箱"</string>
@@ -497,35 +479,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"设置我的个人资料"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"键入联系人的姓名"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"查看更新"</string>
-  <plurals name="notification_voicemail_title">
-    <item quantity="one" msgid="1746619685488504230">"语音邮件"</item>
-    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> 封语音邮件"</item>
-  </plurals>
-    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"播放"</string>
-    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>，<xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
-    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"来自<xliff:g id="CALLER">%1$s</xliff:g>的新语音邮件"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"无法播放语音邮件。"</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"正在缓冲…"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"正在抓取语​​音邮件…"</string>
-    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"无法抓取语音邮件。"</string>
-    <string name="call_log_new_header" msgid="846546437517724715">"新记录"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"旧记录"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"通过语音信箱接到的电话"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"来电"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"外拨电话"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"未接来电"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"无法连接到语音信箱服务器。"</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"无法连接到语音信箱服务器。新的语音邮件正在等待接收。"</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"设置您的语音信箱。"</string>
-    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"音频不可用。"</string>
-    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"设置"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"呼叫语音信箱"</string>
-    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"最慢"</string>
-    <string name="voicemail_speed_slower" msgid="1508601287347216244">"慢速"</string>
-    <string name="voicemail_speed_normal" msgid="9033988544627228892">"正常速度"</string>
-    <string name="voicemail_speed_faster" msgid="2019965121475935488">"快速"</string>
-    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"最快"</string>
-    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"群组名称"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"已通过 NFC 收到联系人信息"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"仅显示外拨电话"</string>

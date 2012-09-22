@@ -16,7 +16,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="launcherDialer" msgid="8636288196618486553">"تلفن"</string>
     <string name="people" msgid="1048457247435785074">"افراد"</string>
     <string name="contactsList" msgid="8661624236494819731">"مخاطبین"</string>
     <string name="shortcutContact" msgid="749243779392912958">"مخاطب"</string>
@@ -137,23 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"همه مخاطبین"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"گروه‌ها"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"موارد دلخواه"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"تلفن"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"گزارش تماس"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"ارسال پیام متنی"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"تماس با <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"ویرایش شماره قبل از تماس"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"افزودن به مخاطبین"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"حذف از گزارش تماس"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"پاک کردن گزارش تماس"</string>
-    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"حذف پست صوتی"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"اشتراک‌گذاری پست صوتی"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"گزارش تماس خالی است."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"گزارش تماس پاک شود؟"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"تمام سابقه تماس شما حذف خواهد شد."</string>
-    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"در حال پاک کردن گزارش تماس..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"لیست تماس مکرر با مخاطب پاک شود؟"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"با این کار شما در برنامه «افراد» و «تلفن»، لیست افرادی را که با آن‌ها بیشترین تماس را داشته‌اید پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"در حال پاک کردن لیست تماس مکرر..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"پست صوتی"</string>
@@ -497,35 +479,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"راه‌اندازی نمایه من"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"نام شخص را تایپ کنید"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"مشاهده به‌روزرسانی‌ها"</string>
-  <plurals name="notification_voicemail_title">
-    <item quantity="one" msgid="1746619685488504230">"پست صوتی"</item>
-    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> پست صوتی"</item>
-  </plurals>
-    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"پخش"</string>
-    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>، <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
-    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"پست صوتی جدید از <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"پخش پست صوتی ممکن نیست."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"در حال بافر کردن؟؟؟"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"در حال واکشی پست صوتی؟؟؟"</string>
-    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"واکشی پست صوتی ممکن نیست."</string>
-    <string name="call_log_new_header" msgid="846546437517724715">"جدید"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"قدیمی‌تر"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"تماس با پست صوتی"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"تماس‌های ورودی"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"تماس‌های خروجی"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"تماس‌های بی‌پاسخ"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"اتصال به سرور پست صوتی امکان‌پذیر نیست."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"اتصال به سرور پست صوتی امکان‌پذیر نیست. پست‌های صوتی جدید در انتظارند."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"پست صوتی خود را تنظیم کنید."</string>
-    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"صدا موجود نیست."</string>
-    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"راه‌اندازی"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"تماس با پست صوتی"</string>
-    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"کمترین سرعت"</string>
-    <string name="voicemail_speed_slower" msgid="1508601287347216244">"سرعت کم"</string>
-    <string name="voicemail_speed_normal" msgid="9033988544627228892">"سرعت عادی"</string>
-    <string name="voicemail_speed_faster" msgid="2019965121475935488">"سرعت زیاد"</string>
-    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"بیشترین سرعت"</string>
-    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"نام گروه"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"مخاطب از طریق NFC رسید"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"فقط نمایش خروجی"</string>

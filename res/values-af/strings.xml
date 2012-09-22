@@ -16,7 +16,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="launcherDialer" msgid="8636288196618486553">"Foon"</string>
     <string name="people" msgid="1048457247435785074">"Mense"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakte"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontak"</string>
@@ -137,23 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Alle kontakte"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groepe"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Gunstelinge"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"Foon"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Oproeprekord"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"Stuur teksboodskap"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Bel <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Redigeer nommer voor oproep"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"Voeg by kontakte"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Verwyder uit oproeprekord"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Maak oproeprekord skoon"</string>
-    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Vee stemboodskap uit"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Deel stemboodskap"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"Oproeprekord is leeg."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Vee oproeprekord uit?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Al jou oproeprekords sal uitgevee word."</string>
-    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Vee tans oproeprekord uit..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vee dikwels-gebruikte kontakte uit?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Jy gaan die lys van dikwels-gebruikte kontakte in die Mense- en Foonprogramme uitvee, en e-posprogramme dwing om jou adresvoorkeure van nuuts af te leer."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Vee tans dikwels-gebruikte kontakte uit..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Stemboodskap"</string>
@@ -497,35 +479,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"Stel my profiel op"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Voer persoon se naam in"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Sien opdaterings"</string>
-  <plurals name="notification_voicemail_title">
-    <item quantity="one" msgid="1746619685488504230">"Stemboodskap"</item>
-    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> stemboodskappe"</item>
-  </plurals>
-    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"Speel"</string>
-    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
-    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nuwe stemboodskap van <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"Kon nie stemboodskap speel nie."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Buffering…"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Haal stemboodskappe…"</string>
-    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Kon nie stemboodskap haal nie."</string>
-    <string name="call_log_new_header" msgid="846546437517724715">"Nuut"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"Ouer"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"Oproepe met stemboodskappe"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"Inkomende oproepe"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Uitgaande oproepe"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"Verbeurde oproepe"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Kan nie aan stemboodskapsbediener koppel nie."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Kan nie aan stemboodskapbediener koppel nie. Nuwe stemboodskappe wag."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Stel jou stemboodskapdiens op."</string>
-    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Oudio nie beskikbaar nie."</string>
-    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Stel op"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Bel stemboodskap"</string>
-    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Stadigste spoed"</string>
-    <string name="voicemail_speed_slower" msgid="1508601287347216244">"Stadige spoed"</string>
-    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Normale spoed"</string>
-    <string name="voicemail_speed_faster" msgid="2019965121475935488">"Vinnige spoed"</string>
-    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Vinnigste spoed"</string>
-    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>)<xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Groep se naam"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontak ontvang via NFC"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Wys slegs uitgaande"</string>

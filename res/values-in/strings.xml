@@ -16,7 +16,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="launcherDialer" msgid="8636288196618486553">"Telepon"</string>
     <string name="people" msgid="1048457247435785074">"Orang"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontak"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontak"</string>
@@ -137,23 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Semua kontak"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Grup"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favorit"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"Telepon"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Log panggilan"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"Kirim SMS"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Panggil <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Edit nomor sebelum memanggil"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"Tambahkan ke kontak"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Hapus dari log panggilan"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Hapus log panggilan"</string>
-    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Hapus pesan suara"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Bagikan kotak pesan"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"Log panggilan kosong."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Hapus log panggilan?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Semua catatan panggilan Anda akan dihapus."</string>
-    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Menghapus log panggilan..."</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Hapus yang sering dihubungi?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Anda akan menghapus daftar yang sering dihubungi pada aplikasi Orang dan Ponsel, serta memaksa aplikasi email untuk mempelajari preferensi penanganan Anda dari awal."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Menghapus yang sering dihubungi..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Kotak Pesan"</string>
@@ -497,35 +479,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"Siapkan profil saya"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Ketik nama seseorang"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Lihat pembaruan"</string>
-  <plurals name="notification_voicemail_title">
-    <item quantity="one" msgid="1746619685488504230">"Pesan suara"</item>
-    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> Pesan suara"</item>
-  </plurals>
-    <string name="notification_action_voicemail_play" msgid="6113133136977996863">"Putar"</string>
-    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
-    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Pesan suara baru dari <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"Tidak dapat memutar pesan suara."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Menyangga…"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Mengambil pesan suara…"</string>
-    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Tidak dapat mengambil pesan suara."</string>
-    <string name="call_log_new_header" msgid="846546437517724715">"Baru"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"Lawas"</string>
-    <string name="call_log_voicemail_header" msgid="4484032064803446806">"Panggilan dengan pesan suara"</string>
-    <string name="call_log_incoming_header" msgid="297542827180501480">"Panggilan masuk"</string>
-    <string name="call_log_outgoing_header" msgid="9017138725495067284">"Panggilan keluar"</string>
-    <string name="call_log_missed_header" msgid="2168865291934970151">"Panggilan tak terjawab"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Tidak dapat tersambung ke server kotak pesan."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Tak dpt trsmbung ke srvr ktk pesan. Ktk pesan baru sdg menunggu."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Siapkan kotak pesan Anda."</string>
-    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Audio tidak tersedia."</string>
-    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Siapkan"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Panggil pesan suara"</string>
-    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Kecepatan paling rendah"</string>
-    <string name="voicemail_speed_slower" msgid="1508601287347216244">"Kecepatan rendah"</string>
-    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Kecepatan normal"</string>
-    <string name="voicemail_speed_faster" msgid="2019965121475935488">"Kecepatan tinggi"</string>
-    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Kecepatan tertinggi"</string>
-    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nama grup"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontak yang diterima lewat NFC"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Tampilkan panggilan keluar"</string>

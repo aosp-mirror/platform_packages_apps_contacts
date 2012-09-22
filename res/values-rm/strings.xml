@@ -16,7 +16,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
     <!-- no translation found for people (1048457247435785074) -->
     <skip />
     <string name="contactsList" msgid="8661624236494819731">"Contacts"</string>
@@ -183,31 +182,6 @@
     <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
     <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favurits"</string>
-    <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
-    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Cloms"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"Trametter in SMS"</string>
-    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Telefonar a(d) <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Modifitgar il numer avant che telefonar"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"Agiuntar als contacts"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Allontanar da la glista da cloms"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Stizzar la glista da cloms"</string>
-    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
-    <skip />
-    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
-    <skip />
-    <string name="recentCalls_empty" msgid="247053222448663107">"La glista da cloms e vida"</string>
-    <!-- no translation found for clearCallLogConfirmation_title (6427524640461816332) -->
-    <skip />
-    <!-- no translation found for clearCallLogConfirmation (5043563133171583152) -->
-    <skip />
-    <!-- no translation found for clearCallLogProgress_title (8365943000154295771) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Mailbox"</string>
@@ -703,58 +677,6 @@
     <!-- no translation found for enter_contact_name (1738391320566349924) -->
     <skip />
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
-    <skip />
-    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
-    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
-    <!-- no translation found for notification_action_voicemail_play (6113133136977996863) -->
-    <skip />
-    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
-    <skip />
-    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
-    <skip />
-    <!-- no translation found for voicemail_playback_error (1811242131549854624) -->
-    <skip />
-    <!-- no translation found for voicemail_buffering (738287747618697097) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
-    <skip />
-    <!-- no translation found for call_log_new_header (846546437517724715) -->
-    <skip />
-    <!-- no translation found for call_log_old_header (6262205894314263629) -->
-    <skip />
-    <!-- no translation found for call_log_voicemail_header (4484032064803446806) -->
-    <skip />
-    <!-- no translation found for call_log_incoming_header (297542827180501480) -->
-    <skip />
-    <!-- no translation found for call_log_outgoing_header (9017138725495067284) -->
-    <skip />
-    <!-- no translation found for call_log_missed_header (2168865291934970151) -->
-    <skip />
-    <!-- no translation found for voicemail_status_voicemail_not_available (3021980206152528883) -->
-    <skip />
-    <!-- no translation found for voicemail_status_messages_waiting (7113421459602803605) -->
-    <skip />
-    <!-- no translation found for voicemail_status_configure_voicemail (3738537770636895689) -->
-    <skip />
-    <!-- no translation found for voicemail_status_audio_not_available (3369618334553341626) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_configure (8671796489912239589) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_call_server (1824816252288551794) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slowest (1733460666177707312) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slower (1508601287347216244) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_normal (9033988544627228892) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_faster (2019965121475935488) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_fastest (5758712343491183292) -->
-    <skip />
-    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
     <skip />
     <!-- no translation found for group_name_hint (238359485263401293) -->
     <skip />
