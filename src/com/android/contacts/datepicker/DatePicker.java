@@ -110,7 +110,7 @@ public class DatePicker extends FrameLayout {
 
         mPickerContainer = (LinearLayout) findViewById(R.id.parent);
         mDayPicker = (NumberPicker) findViewById(R.id.day);
-        mDayPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
+        mDayPicker.setFormatter(NumberPicker.getTwoDigitFormatter());
         mDayPicker.setOnLongPressUpdateInterval(100);
         mDayPicker.setOnValueChangedListener(new OnValueChangeListener() {
             @Override
@@ -120,7 +120,7 @@ public class DatePicker extends FrameLayout {
             }
         });
         mMonthPicker = (NumberPicker) findViewById(R.id.month);
-        mMonthPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
+        mMonthPicker.setFormatter(NumberPicker.getTwoDigitFormatter());
         DateFormatSymbols dfs = new DateFormatSymbols();
         String[] months = dfs.getShortMonths();
 
