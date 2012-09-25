@@ -17,5 +17,5 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="toast_text_copied" msgid="8327159932780920627">"نوشتار کپی شده"</string>
+    <string name="toast_text_copied" msgid="8327159932780920627">"نوشتار کپی شد"</string>
 </resources>
