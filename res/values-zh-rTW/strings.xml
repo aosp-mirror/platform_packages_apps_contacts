@@ -510,14 +510,10 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"無法擷取語音留言。"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"最新"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"較舊"</string>
-    <!-- no translation found for call_log_voicemail_header (3945407886667089173) -->
-    <skip />
-    <!-- no translation found for call_log_incoming_header (2787722299753674684) -->
-    <skip />
-    <!-- no translation found for call_log_outgoing_header (761009180766735769) -->
-    <skip />
-    <!-- no translation found for call_log_missed_header (8017148056610855956) -->
-    <skip />
+    <string name="call_log_voicemail_header" msgid="3945407886667089173">"僅顯示語音信箱留言"</string>
+    <string name="call_log_incoming_header" msgid="2787722299753674684">"僅顯示來電"</string>
+    <string name="call_log_outgoing_header" msgid="761009180766735769">"僅顯示已撥電話"</string>
+    <string name="call_log_missed_header" msgid="8017148056610855956">"僅顯示未接來電"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"無法連線至語音信箱伺服器。"</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"無法連線至語音信箱伺服器，新的語音留言仍待聽取。"</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"設定您的語音信箱。"</string>
