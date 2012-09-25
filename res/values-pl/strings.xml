@@ -510,14 +510,10 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Nie można pobrać poczty głosowej."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nowe"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Starsze"</string>
-    <!-- no translation found for call_log_voicemail_header (3945407886667089173) -->
-    <skip />
-    <!-- no translation found for call_log_incoming_header (2787722299753674684) -->
-    <skip />
-    <!-- no translation found for call_log_outgoing_header (761009180766735769) -->
-    <skip />
-    <!-- no translation found for call_log_missed_header (8017148056610855956) -->
-    <skip />
+    <string name="call_log_voicemail_header" msgid="3945407886667089173">"Tylko połączenia z pocztą głosową"</string>
+    <string name="call_log_incoming_header" msgid="2787722299753674684">"Tylko połączenia przychodzące"</string>
+    <string name="call_log_outgoing_header" msgid="761009180766735769">"Tylko połączenia wychodzące"</string>
+    <string name="call_log_missed_header" msgid="8017148056610855956">"Tylko połączenia nieodebrane"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Nie można połączyć z serwerem poczty głosowej."</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Nie można połączyć z pocztą głosową. Masz nowe wiadomości."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Skonfiguruj pocztę głosową."</string>
