@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Усе кантакты"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Групы"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Выбранае"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Выдалiць частыя кантакты?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Вы выдалiце найбольш частыя кантакты ў прыкладаннях \"Кантакты\" i \"Тэлефон\" i прымусiце прыкладаннi па працы з электроннай поштай вывучыць вашы налады адрасацыi з нуля."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Выдаленне частых кантактаў..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Галасавая пошта"</string>

@@ -182,6 +182,12 @@
     <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
     <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favurits"</string>
+    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (3254215748990281318) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
+    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Mailbox"</string>

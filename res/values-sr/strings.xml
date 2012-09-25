@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Сви контакти"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Групе"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Омиљено"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Брисање често контактираних?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Обрисаћете листу често контактираних у апликацијама Људи и Телефон, па ће апликације е-поште морати из почетка да сакупе информације о адресирању."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Брисање често контактираних..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Говорна пошта"</string>

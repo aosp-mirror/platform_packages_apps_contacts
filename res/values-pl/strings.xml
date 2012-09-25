@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Wszystkie kontakty"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Grupy"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Ulubione"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Wyczyścić częste kontakty?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Wyczyścisz listę częstych kontaktów w aplikacjach Osoby i Telefon. Aplikacje pocztowe będą musiały od nowa poznawać Twoje preferencje adresowe."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Czyszczę częste kontakty…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"Numer MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Poczta głosowa"</string>

@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"सभी संपर्क"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"समूह"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"पसंदीदा"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"अक्‍सर किए जाने वाले संपर्क साफ करें?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"आपको लोग और फ़ोन एप्‍लिकेशन में अक्‍सर संपर्क करने की सूची साफ़ करनी होगी, और अपने ईमेल एप्लिकेशन को आपकी प्राथमिकताओं को प्रारंभ से जानने के लिए बाध्‍य करना होगा."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"अक्‍सर किए जाने वाले संपर्क साफ़ कर रहा है…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"ध्वनिमेल"</string>

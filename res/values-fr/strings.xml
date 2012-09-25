@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Tous les contacts"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groupes"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoris"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Effacer les contacts fréquents ?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Cette opération efface la liste des personnes que vous contactez le plus souvent dans les applications Contacts et Téléphone, et oblige vos applications de messagerie électronique à apprendre à nouveau les adresses que vous utilisez le plus souvent."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Suppression des contacts fréquents"</string>
     <string name="imei" msgid="3045126336951684285">"Code IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Messagerie vocale"</string>

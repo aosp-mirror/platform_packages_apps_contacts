@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"모든 연락처"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"그룹"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"즐겨찾기"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"피플 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"음성사서함"</string>

@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Alle kontakte"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groepe"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Gunstelinge"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vee dikwels-gebruikte kontakte uit?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Jy gaan die lys van dikwels-gebruikte kontakte in die Mense- en Foonprogramme uitvee, en e-posprogramme dwing om jou adresvoorkeure van nuuts af te leer."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Vee tans dikwels-gebruikte kontakte uit..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Stemboodskap"</string>

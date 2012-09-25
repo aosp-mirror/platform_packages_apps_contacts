@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Tots els contactes"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Grups"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Preferits"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vols esborrar contac. més freqüents?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"S\'esborrarà la llista de contactes més freqüents a les aplicacions de contactes i del telèfon i es forçarà les aplicacions de correu electrònic a obtenir informació sobre les preferències de direccionament des de zero."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"S\'està esb. cont. més freqüents..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Correu de veu"</string>

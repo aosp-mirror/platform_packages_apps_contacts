@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Alle Kontakte"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Gruppen"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriten"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Liste \"Häufig kontaktiert\" löschen?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Sie löschen die Liste \"Häufig kontaktiert\" in den Apps \"Kontakte\" und \"Telefon\" und geben Ihre Adresseinstellungen für E-Mail-Apps neu ein."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"\"Häufig kontaktiert\" wird gelöscht…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Mailbox"</string>

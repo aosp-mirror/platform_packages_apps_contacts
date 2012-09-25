@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Anwani zote"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Vikundi"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Vipendwa"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Futa uliowasiliana nao mara kwa mara?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Utafuta orodha ya unaowasiliana nao mara kwa mara katika programu ya Watu na Simu, na ulazimishe programu za barua pepe kujifunza mapendeleo yako ya anwani kutoka mwanzo."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Inafuta uliowasiliana nao mara kwa mara..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Barua ya sauti"</string>

@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Lahat ng contact"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Mga Pangkat"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Mga Paborito"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"I-clear ang mga madalas tinatawagan?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Iki-clear mo ang listahan ng mga madalas na tinatawagan sa Mga Tao at Telepono na mga app, at pilitin ang mga email app na matutunan ang iyong mga kagustuhan sa pag-address mula sa umpisa."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Kini-clear ang mga madalas tinatawagan…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Voicemail"</string>

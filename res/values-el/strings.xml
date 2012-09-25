@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Όλες οι επαφές"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Ομάδες"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Αγαπ."</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Διαγραφή ατόμων με συχνή επικοινωνία;"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Θα διαγράψετε τη λίστα ατόμων με τα οποία είχατε συχνή επικοινωνία στις εφαρμογές \"Άτομα\" και \"Τηλέφωνο\" και θα κάνετε τις εφαρμογές ηλεκτρονικού ταχυδρομείου να μάθουν τις προτιμήσεις επικοινωνίας σας από την αρχή."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Διαγρ. ατόμων με συχνή επικοινωνία…"</string>
     <string name="imei" msgid="3045126336951684285">"Αριθμός ΙΜΕΙ"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Αυτόματος τηλεφωνητής"</string>

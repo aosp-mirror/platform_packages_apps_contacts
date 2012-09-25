@@ -136,6 +136,9 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Alle kontaktpersoner"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Grupper"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favorit"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vil du rydde de ofte kontaktede?"</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Hvis du gør dette, rydder du listen over personer, som du ofte kontakter, i appene Personer og Telefon. Du vil samtidig tvinge e-mailapps til at lære dine adressepræferencer fra bunden."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Rydder ofte kontaktede personer…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI-nummer"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Voicemail"</string>
