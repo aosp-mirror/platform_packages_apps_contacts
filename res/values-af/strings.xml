@@ -510,14 +510,10 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Kon nie stemboodskap haal nie."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nuut"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Ouer"</string>
-    <!-- no translation found for call_log_voicemail_header (3945407886667089173) -->
-    <skip />
-    <!-- no translation found for call_log_incoming_header (2787722299753674684) -->
-    <skip />
-    <!-- no translation found for call_log_outgoing_header (761009180766735769) -->
-    <skip />
-    <!-- no translation found for call_log_missed_header (8017148056610855956) -->
-    <skip />
+    <string name="call_log_voicemail_header" msgid="3945407886667089173">"Slegs oproepe met stemboodskappe"</string>
+    <string name="call_log_incoming_header" msgid="2787722299753674684">"Slegs inkomende oproepe"</string>
+    <string name="call_log_outgoing_header" msgid="761009180766735769">"Slegs uitgaande oproepe"</string>
+    <string name="call_log_missed_header" msgid="8017148056610855956">"Slegs gemisde oproepe"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Kan nie aan stemboodskapsbediener koppel nie."</string>
     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Kan nie aan stemboodskapbediener koppel nie. Nuwe stemboodskappe wag."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Stel jou stemboodskapdiens op."</string>
