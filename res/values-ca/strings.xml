@@ -484,9 +484,9 @@
     <string name="view_updates_from_group" msgid="1782685984905600034">"Mostra actualitzac."</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nom del grup"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contac. reb. NFC"</string>
-    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Mostra només les sortints"</string>
-    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Mostra només les entrants"</string>
-    <string name="menu_show_missed_only" msgid="154473166059743996">"Mostra només les perdudes"</string>
+    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Mostra només les trucades sortints"</string>
+    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Mostra només les trucades entrants"</string>
+    <string name="menu_show_missed_only" msgid="154473166059743996">"Mostra només trucades perdudes"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Mostra només missatges de veu"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Mostra totes les trucades"</string>
     <string name="status_available" msgid="5586870015822828392">"Disponible"</string>
