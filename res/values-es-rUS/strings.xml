@@ -26,7 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Seleccionar un número para la llamada"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Seleccionar un número para el mensaje"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Seleccionar un contacto"</string>
-    <string name="starredList" msgid="4817256136413959463">"Marcado con asterisco"</string>
+    <string name="starredList" msgid="4817256136413959463">"Destacados"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frecuente"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favoritos"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Detalles de contacto"</string>
