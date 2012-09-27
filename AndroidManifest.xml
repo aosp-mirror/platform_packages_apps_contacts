@@ -666,5 +666,6 @@
                 <data android:mimeType="vnd.android.cursor.item/contact" />
             </intent-filter>
         </service>
+        <meta-data android:name="android.nfc.disable_beam_default" android:value="true" />
     </application>
 </manifest>
