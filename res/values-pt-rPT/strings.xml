@@ -81,7 +81,7 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Criar novo contacto"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Criar novo contacto"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefone"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Email"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"MI"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Endereço"</string>
   <string-array name="otherLabels">
@@ -341,9 +341,9 @@
     <string name="email_home" msgid="8573740658148184279">"Enviar e-mail para residência"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Enviar e-mail para telemóvel"</string>
     <string name="email_work" msgid="2807430017302722689">"Enviar e-mail para emprego"</string>
-    <string name="email_other" msgid="3454004077967657109">"E-mail"</string>
+    <string name="email_other" msgid="3454004077967657109">"Email"</string>
     <string name="email_custom" msgid="7548003991586214105">"Enviar e-mail a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"E-mail"</string>
+    <string name="email" msgid="5668400997660065897">"Email"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver endereço da residência"</string>
     <string name="map_work" msgid="1360474076921878088">"Ver endereço do emprego"</string>
     <string name="map_other" msgid="3817820803587012641">"Ver endereço"</string>
