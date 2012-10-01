@@ -306,8 +306,13 @@ public class ContactListItemView extends ViewGroup
         // Also calculate their heights to get the total height for this entire view.
 
         if (isVisible(mNameTextView)) {
+            // Caculate width for name text - this parallels similar measurement in onLayout.
+            int nameTextWidth = effectiveWidth;
+            if (mPhotoPosition != PhotoPosition.LEFT) {
+                nameTextWidth -= mTextIndent;
+            }
             mNameTextView.measure(
-                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(nameTextWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mNameTextViewHeight = mNameTextView.getMeasuredHeight();
         }
