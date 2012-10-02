@@ -510,7 +510,7 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Yehlulekile ukulanda i-voicemail."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Okusha"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Okudadlana"</string>
-    <string name="call_log_voicemail_header" msgid="3945407886667089173">"Amakholi ane-voicemail kuphela"</string>
+    <string name="call_log_voicemail_header" msgid="3945407886667089173">"Amakholi anevoyisimeyili kuphela"</string>
     <string name="call_log_incoming_header" msgid="2787722299753674684">"Amakholi angenayo kuphela"</string>
     <string name="call_log_outgoing_header" msgid="761009180766735769">"Amakholi aphumayo kuphela"</string>
     <string name="call_log_missed_header" msgid="8017148056610855956">"Amakholi agejiwe kuphela"</string>

@@ -496,7 +496,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Maandishi yamenakiliwa"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Tupa mabadiliko yako?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Sanidi maelezo yangu mafupi"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Unda wasifu wangu"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Charaza jina la mtu"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Tazama visasisho"</string>
   <plurals name="notification_voicemail_title">
@@ -512,7 +512,7 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Haikuweza kuleta barua ya sauti."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Mpya"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Nzee zaidi"</string>
-    <string name="call_log_voicemail_header" msgid="3945407886667089173">"Simu zilizo na barua ya sauti tu"</string>
+    <string name="call_log_voicemail_header" msgid="3945407886667089173">"Simu zilizo na ujumbe wa sauti tu"</string>
     <string name="call_log_incoming_header" msgid="2787722299753674684">"Simu zinazoingia tu"</string>
     <string name="call_log_outgoing_header" msgid="761009180766735769">"Simu zinazotoka tu"</string>
     <string name="call_log_missed_header" msgid="8017148056610855956">"Simu zisizojibiwa tu"</string>
@@ -553,8 +553,8 @@
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Mwasiliani wa haraka wa <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Mimi"</string>
-    <string name="local_profile_title" msgid="2021416826991393684">"Maelezo yangu mafupi ya ndani."</string>
-    <string name="external_profile_title" msgid="8034998767621359438">"Maelezo yangu mafupi ya <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
+    <string name="local_profile_title" msgid="2021416826991393684">"Wasifu wangu wa ndani."</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"Wasifu wangu wa <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Inaonyesha anwani zote"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Watu wanafanya kazi vizuri wakiwa na Akaunti ya Google. "\n" "\n" • Iangalie kwa kutumia kivinjari chochote. "\n" • Tunza mawasiliano yako kwa usalama."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka wasiliani wako salama hata ukipoteza simu yako: landanisha na huduma ya tovuti."</string>
