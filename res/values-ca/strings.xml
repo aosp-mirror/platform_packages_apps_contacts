@@ -528,8 +528,8 @@
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nom del grup"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contac. reb. NFC"</string>
-    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Mostra només les trucades sortints"</string>
-    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Mostra només les trucades entrants"</string>
+    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Mostra només trucades sortints"</string>
+    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Mostra només trucades entrants"</string>
     <string name="menu_show_missed_only" msgid="154473166059743996">"Mostra només trucades perdudes"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Mostra només missatges de veu"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Mostra totes les trucades"</string>
@@ -556,7 +556,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Contactes funciona millor amb un Compte de Google."\n\n"• Accedeix-hi des de qualsevol navegador web."\n"• Fes una còpia de seguretat dels teus contactes."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén els contactes segurs encara que perdis el telèfon: sincronitza\'ls amb un servidor en línia."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Addició d\'un compte"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Afegeix un compte"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte que faci còpies de seguretat dels contactes en línia?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"El teu contacte nou se sincronitzarà amb <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pots sincronitzar el teu contacte nou amb un dels comptes següents. Quin vols utilitzar?"</string>
