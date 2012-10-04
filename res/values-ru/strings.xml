@@ -144,7 +144,7 @@
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Изменить номер и вызвать"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Добавить в контакты"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Удалить из списка вызовов"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Очистить список вызовов"</string>
+    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Очистить список"</string>
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Удалить голосовое сообщение"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Поделиться"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Список вызовов пуст."</string>
@@ -532,7 +532,7 @@
     <string name="menu_show_incoming_only" msgid="7534206815238877417">"Входящие"</string>
     <string name="menu_show_missed_only" msgid="154473166059743996">"Пропущенные"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Показать голосовые сообщения"</string>
-    <string name="menu_show_all_calls" msgid="7560347482073345885">"Показать все вызовы"</string>
+    <string name="menu_show_all_calls" msgid="7560347482073345885">"Все вызовы"</string>
     <string name="status_available" msgid="5586870015822828392">"На месте"</string>
     <string name="status_away" msgid="1838861100379804730">"Отсутствует"</string>
     <string name="status_busy" msgid="9147992455450257136">"Не беспокоить"</string>
