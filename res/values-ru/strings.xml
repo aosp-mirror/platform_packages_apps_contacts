@@ -488,7 +488,7 @@
     <string name="menu_show_incoming_only" msgid="7534206815238877417">"Входящие"</string>
     <string name="menu_show_missed_only" msgid="154473166059743996">"Пропущенные"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Показать голосовые сообщения"</string>
-    <string name="menu_show_all_calls" msgid="7560347482073345885">"Показать все вызовы"</string>
+    <string name="menu_show_all_calls" msgid="7560347482073345885">"Все вызовы"</string>
     <string name="status_available" msgid="5586870015822828392">"На месте"</string>
     <string name="status_away" msgid="1838861100379804730">"Отсутствует"</string>
     <string name="status_busy" msgid="9147992455450257136">"Не беспокоить"</string>
