@@ -554,7 +554,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"O meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"O meu perfil do <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"A apresentar todos os contactos"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"A aplicação Pessoas funciona melhor com uma Conta Google."\n\n"• Aceda à Conta Google a partir de qualquer navegador de internet."\n"• Faça uma cópia de segurança dos seus contatos de forma segura."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"A aplicação Pessoas funciona melhor com uma Conta Google."\n\n"• Aceda à Conta Google a partir de qualquer navegador de Internet."\n"• Faça uma cópia de segurança dos seus contactos de forma segura."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantenha os seus contactos em segurança, mesmo em caso de perda do telemóvel: sincronize com um serviço on-line."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adicionar uma conta"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Adicionar uma conta que efetua a cópia de segurança dos contactos on-line?"</string>
