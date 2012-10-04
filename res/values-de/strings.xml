@@ -286,7 +286,7 @@
     <string name="missing_name" msgid="8745511583852904385">"(Kein Name)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konten"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"\"Häufig kontaktiert\" löschen"</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakte zum Anzeigen"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakte zur Ansicht"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importieren/Exportieren"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Import/Export von Kontakten"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Kontakte importieren"</string>
@@ -455,7 +455,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Ansicht festlegen"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Wird geladen…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Einstellungen"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakte zum Anzeigen"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakte zur Ansicht"</string>
     <string name="menu_settings" msgid="377929915873428211">"Einstellungen"</string>
     <string name="menu_help" msgid="5123887102216637725">"Hilfe"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Anzeigeoptionen"</string>
