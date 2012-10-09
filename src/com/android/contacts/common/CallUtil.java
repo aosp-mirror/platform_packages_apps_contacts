@@ -75,9 +75,6 @@ public class CallUtil {
      * numbers.
      */
     public static Uri getCallUri(String number) {
-        if (PhoneNumberUtils.isVoiceMailNumber(number)) {
-            return Uri.parse("voicemail:");
-        }
         if (PhoneNumberUtils.isUriNumber(number)) {
              return Uri.fromParts(SCHEME_SIP, number, null);
         }
