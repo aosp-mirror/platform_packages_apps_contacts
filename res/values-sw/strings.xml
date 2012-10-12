@@ -360,7 +360,7 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Piga gumzo kwa kutumia Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Gumzo"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Gumzo la sauti"</string>
-    <string name="video_chat" msgid="1872255818640336072">"Sogoa ya video"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Piga gumzo la video"</string>
     <string name="postal_address" msgid="8765560217149624536">"Anwani"</string>
     <string name="postal_street" msgid="8133143961580058972">"Barabara"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Sanduku la posta"</string>
