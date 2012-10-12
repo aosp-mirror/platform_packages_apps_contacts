@@ -303,7 +303,7 @@
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Uhusiano"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Vikundi"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Weka anwani chini ya akaunti"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"Unda kikundi chini ya akaunti"</string>
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"Buni kikundi chini ya akaunti"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Ondoa kikundi cha usawazishaji"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Ongeza kikundi cha usawazishaji"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Vikundi zaidi..."</string>
