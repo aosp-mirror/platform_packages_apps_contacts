@@ -18,10 +18,8 @@ package com.android.contacts;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Rect;
-import android.location.CountryDetector;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -177,16 +175,6 @@ public class ContactsUtils {
         return TextUtils.equals(a.getAction(), b.getAction());
     }
 
-    /**
-     * @return The ISO 3166-1 two letters country code of the country the user
-     *         is in.
-     */
-    public static final String getCurrentCountryIso(Context context) {
-        CountryDetector detector =
-                (CountryDetector) context.getSystemService(Context.COUNTRY_DETECTOR);
-        return detector.detectCountry().getCountryIso();
-    }
-
     public static boolean areContactWritableAccountsAvailable(Context context) {
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(context).getAccounts(true /* writeable */);
@@ -218,16 +206,6 @@ public class ContactsUtils {
 
         // Data is the lookup URI.
         intent.setData(lookupUri);
-        return intent;
-    }
-
-    /**
-     * Return an Intent for launching voicemail screen.
-     */
-    public static Intent getVoicemailIntent() {
-        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                Uri.fromParts("voicemail", "", null));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
     }
 
@@ -280,11 +258,4 @@ public class ContactsUtils {
         return sThumbnailSize;
     }
 
-    /**
-     * @return if the context is in landscape orientation.
-     */
-    public static boolean isLandscape(Context context) {
-        return context.getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE;
-    }
 }

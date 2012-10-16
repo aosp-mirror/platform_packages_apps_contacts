@@ -41,8 +41,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
 
-import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaData;
+import com.android.contacts.common.GeoUtil;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountTypeWithDataSet;
 import com.android.contacts.model.dataitem.DataItem;
@@ -52,7 +52,7 @@ import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
-import com.android.contacts.util.UriUtils;
+import com.android.contacts.common.util.UriUtils;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -804,7 +804,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
      * overwritten
      */
     private void computeFormattedPhoneNumbers(Contact contactData) {
-        final String countryIso = ContactsUtils.getCurrentCountryIso(getContext());
+        final String countryIso = GeoUtil.getCurrentCountryIso(getContext());
         final ImmutableList<RawContact> rawContacts = contactData.getRawContacts();
         final int rawContactCount = rawContacts.size();
         for (int rawContactIndex = 0; rawContactIndex < rawContactCount; rawContactIndex++) {

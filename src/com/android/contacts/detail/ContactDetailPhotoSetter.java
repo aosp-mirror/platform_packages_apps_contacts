@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.activities.PhotoSelectionActivity;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.RawContactDeltaList;

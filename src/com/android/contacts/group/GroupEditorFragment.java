@@ -57,7 +57,7 @@ import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMemberLoader.GroupEditorQuery;

@@ -29,6 +29,7 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;

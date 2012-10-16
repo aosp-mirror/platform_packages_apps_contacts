@@ -20,7 +20,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.widget.ImageView;
 
-import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager;
 
 /**
  * A photo preloader that always uses the "no contact" picture and never executes any real

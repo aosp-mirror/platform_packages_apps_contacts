@@ -33,7 +33,7 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
 
-import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.detail.PhotoSelectionHandler;
