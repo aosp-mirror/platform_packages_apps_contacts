@@ -21,11 +21,14 @@ import android.database.MatrixCursor;
 import android.provider.ContactsContract;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.widget.TextView;
 
 import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.format.SpannedTestUtils;
 import com.android.contacts.util.IntegrationTestUtils;
+
 
 /**
  * Unit tests for {@link ContactListItemView}.
@@ -66,7 +69,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
 
         view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
-        SpannedTestUtils.checkHtmlText("John Doe", view.getNameTextView());
+        assertEquals(view.getNameTextView().getText().toString(), "John Doe");
     }
 
     public void testShowDisplayName_Unknown() {
@@ -76,7 +79,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         view.setUnknownNameText("unknown");
         view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
-        SpannedTestUtils.checkHtmlText("unknown", view.getNameTextView());
+        assertEquals(view.getNameTextView().getText().toString(), "unknown");
     }
 
     public void testShowDisplayName_WithPrefix() {
@@ -86,8 +89,9 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         view.setHighlightedPrefix("DOE".toCharArray());
         view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
-        SpannedTestUtils.checkHtmlText("John " + START + "Doe" + END,
-                view.getNameTextView());
+        CharSequence seq = view.getNameTextView().getText();
+        assertEquals("John Doe", seq.toString());
+        SpannedTestUtils.assertPrefixSpan(seq, 5, 7);
     }
 
     public void testShowDisplayName_WithPrefixReversed() {
@@ -97,16 +101,20 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         view.setHighlightedPrefix("DOE".toCharArray());
         view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE);
 
-        SpannedTestUtils.checkHtmlText("John " + START + "Doe" + END,
-                view.getNameTextView());
+        CharSequence seq = view.getNameTextView().getText();
+        assertEquals("John Doe", seq.toString());
+        SpannedTestUtils.assertPrefixSpan(seq, 5, 7);
     }
 
     public void testSetSnippet_Prefix() {
         ContactListItemView view = createView();
         view.setHighlightedPrefix("TEST".toCharArray());
         view.setSnippet("This is a test");
-        SpannedTestUtils.checkHtmlText("This is a " + START + "test" + END,
-                view.getSnippetView());
+
+        CharSequence seq = view.getSnippetView().getText();
+
+        assertEquals("This is a test", seq.toString());
+        SpannedTestUtils.assertPrefixSpan(seq, 10, 13);
     }
 
     /** Creates the view to be tested. */
