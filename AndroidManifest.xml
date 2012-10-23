@@ -484,10 +484,72 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".calllog.CallLogNotificationsService"
-            android:exported="false"
-        />
+        <!-- Intercept Dialer Intents for devices without a phone.
+             This activity should have the same intent filters as the DialtactsActivity,
+             so that its capturing the same events. Omit android.intent.category.LAUNCHER, because
+             we don't want this to show up in the Launcher. The priorities of the intent-filters
+             are set lower, so that the user does not see a disambig dialog -->
+        <activity
+            android:name="com.android.contacts.NonPhoneActivity"
+            android:theme="@style/NonPhoneActivityTheme"
+            >
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.DIAL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:mimeType="vnd.android.cursor.item/phone"/>
+                <data android:mimeType="vnd.android.cursor.item/person"/>
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.DIAL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="voicemail"/>
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.DIAL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.DIAL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="tel"/>
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:mimeType="vnd.android.cursor.dir/calls"/>
+            </intent-filter>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.CALL_BUTTON"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Service that is exclusively for the Phone application that sends out a view
+             notification. This service might be removed in future versions of the app.
+
+             This is called explicitly by the phone app via package name and class.
+             (PhoneUtils.sendViewNotificationAsync()).  If this service moves, then phone
+             needs to be changed as well.
+        -->
+        <service android:name=".ViewNotificationService"
+                 android:permission="android.permission.WRITE_CONTACTS"
+                 android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.contacts.VIEW_NOTIFICATION"/>
+                <data android:mimeType="vnd.android.cursor.item/contact"/>
+            </intent-filter>
+        </service>
 
         <meta-data android:name="android.nfc.disable_beam_default" android:value="true" />
     </application>
