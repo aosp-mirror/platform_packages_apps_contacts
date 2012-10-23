@@ -73,9 +73,6 @@
     <!--  Color of the vertical stripe that goes on the left of a block quote inside a stream item -->
     <color name="stream_item_stripe_color">#CCCCCC</color>
 
-    <!-- Color of image view placeholder. -->
-    <color name="image_placeholder">#DDDDDD</color>
-
     <!-- Standard color for selected items. -->
     <color name="item_selected">#660099cc</color>
 

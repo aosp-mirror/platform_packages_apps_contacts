@@ -79,6 +79,7 @@ import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.common.ClipboardUtils;
+import com.android.contacts.common.GeoUtil;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
@@ -281,7 +282,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
-        mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(mContext);
+        mDefaultCountryIso = GeoUtil.getCurrentCountryIso(mContext);
         mViewEntryDimensions = new ViewEntryDimensions(mContext.getResources());
     }
 

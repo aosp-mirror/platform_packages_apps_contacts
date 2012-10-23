@@ -37,8 +37,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.common.GeoUtil;
 import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;
@@ -204,7 +204,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
                 final String phoneNumber = PhoneNumberUtils.formatNumber(
                         phone.getPhoneNumber(),
                         phone.getPhoneNormalizedNumber(),
-                        ContactsUtils.getCurrentCountryIso(getContext()));
+                        GeoUtil.getCurrentCountryIso(getContext()));
                 final CharSequence phoneType;
                 if (phone.phoneHasType()) {
                     phoneType = Phone.getTypeLabel(

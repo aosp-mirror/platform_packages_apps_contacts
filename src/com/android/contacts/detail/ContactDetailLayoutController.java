@@ -39,7 +39,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.model.Contact;
 import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.util.UriUtils;
+import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.widget.FrameLayoutWithOverlay;
 import com.android.contacts.widget.TransitionAnimationView;
 

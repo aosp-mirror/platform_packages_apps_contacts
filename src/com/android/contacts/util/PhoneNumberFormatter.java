@@ -21,7 +21,7 @@ import android.os.AsyncTask;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.TextView;
 
-import com.android.contacts.ContactsUtils;
+import com.android.contacts.common.GeoUtil;
 
 public final class PhoneNumberFormatter {
     private PhoneNumberFormatter() {}
@@ -67,7 +67,7 @@ public final class PhoneNumberFormatter {
      */
     public static final void setPhoneNumberFormattingTextWatcher(Context context,
             TextView textView) {
-        new TextWatcherLoadAsyncTask(ContactsUtils.getCurrentCountryIso(context), textView)
+        new TextWatcherLoadAsyncTask(GeoUtil.getCurrentCountryIso(context), textView)
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[]) null);
     }
 }

@@ -26,7 +26,7 @@ import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 
-import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.R;
 
 /**

@@ -32,7 +32,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.R;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;

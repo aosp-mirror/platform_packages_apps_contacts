@@ -90,7 +90,7 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.util.UriUtils;
+import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.widget.TransitionAnimationView;
 
 import java.util.ArrayList;

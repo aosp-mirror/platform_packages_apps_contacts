@@ -45,7 +45,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;

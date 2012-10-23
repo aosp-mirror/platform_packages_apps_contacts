@@ -55,7 +55,7 @@ import android.widget.TextView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.ContactListEmptyView;
-import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
