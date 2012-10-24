@@ -46,17 +46,17 @@ import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.android.contacts.common.CallUtil;
-import com.android.contacts.Collapser;
-import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.activities.TransactionSafeActivity;
+import com.android.contacts.common.CallUtil;
+import com.android.contacts.common.Collapser;
+import com.android.contacts.common.Collapser.Collapsible;
+import com.android.contacts.common.MoreContactUtils;
+import com.android.contacts.common.activity.TransactionSafeActivity;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountType.StringInflater;
 import com.android.contacts.model.dataitem.DataKind;
-import com.android.contacts.model.AccountTypeManager;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
@@ -135,7 +135,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
 
         @Override
         public boolean shouldCollapseWith(PhoneItem phoneItem) {
-            return ContactsUtils.shouldCollapse(Phone.CONTENT_ITEM_TYPE, phoneNumber,
+            return MoreContactUtils.shouldCollapse(Phone.CONTENT_ITEM_TYPE, phoneNumber,
                     Phone.CONTENT_ITEM_TYPE, phoneItem.phoneNumber);
         }
 

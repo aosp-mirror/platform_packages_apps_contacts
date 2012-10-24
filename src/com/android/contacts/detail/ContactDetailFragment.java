@@ -68,9 +68,6 @@ import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.common.CallUtil;
-import com.android.contacts.Collapser;
-import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
@@ -78,8 +75,12 @@ import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
+import com.android.contacts.common.Collapser;
+import com.android.contacts.common.Collapser.Collapsible;
 import com.android.contacts.common.GeoUtil;
+import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
@@ -1338,7 +1339,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 return false;
             }
 
-            if (!ContactsUtils.shouldCollapse(mimetype, data, entry.mimetype, entry.data)) {
+            if (!MoreContactUtils.shouldCollapse(mimetype, data, entry.mimetype, entry.data)) {
                 return false;
             }
 

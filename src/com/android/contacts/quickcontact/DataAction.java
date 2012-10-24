@@ -31,6 +31,7 @@ import android.util.Log;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.model.account.AccountType.EditType;
 import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.model.dataitem.DataKind;
@@ -309,7 +310,7 @@ public class DataAction implements Action {
             return false;
         }
         DataAction that = (DataAction)t;
-        if (!ContactsUtils.shouldCollapse(mMimeType, mBody, that.mMimeType, that.mBody)) {
+        if (!MoreContactUtils.shouldCollapse(mMimeType, mBody, that.mMimeType, that.mBody)) {
             return false;
         }
         if (!TextUtils.equals(mMimeType, that.mMimeType)
