@@ -63,7 +63,6 @@ import com.android.contacts.group.GroupBrowseListFragment.OnGroupBrowserActionLi
 import com.android.contacts.group.GroupDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ImportExportDialogFragment;
-import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactListFilter;
@@ -1127,16 +1126,6 @@ public class PeopleActivity extends ContactsActivity
             ContentValues values = new ContentValues(1);
             values.put(Contacts.STARRED, 0);
             getContentResolver().update(contactUri, values, null, null);
-        }
-
-        @Override
-        public void onCallContactAction(Uri contactUri) {
-            PhoneNumberInteraction.startInteractionForPhoneCall(PeopleActivity.this, contactUri);
-        }
-
-        @Override
-        public void onSmsContactAction(Uri contactUri) {
-            PhoneNumberInteraction.startInteractionForTextMessage(PeopleActivity.this, contactUri);
         }
 
         @Override

@@ -631,14 +631,6 @@ public abstract class ContactBrowseListFragment extends
         if (mListener != null) mListener.onRemoveFromFavoritesAction(contactUri);
     }
 
-    public void callContact(Uri contactUri) {
-        if (mListener != null) mListener.onCallContactAction(contactUri);
-    }
-
-    public void smsContact(Uri contactUri) {
-        if (mListener != null) mListener.onSmsContactAction(contactUri);
-    }
-
     private void notifyInvalidSelection() {
         if (mListener != null) mListener.onInvalidSelection();
     }

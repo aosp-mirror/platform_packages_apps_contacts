@@ -61,16 +61,6 @@ public interface OnContactBrowserActionListener  {
     void onRemoveFromFavoritesAction(Uri contactUri);
 
     /**
-     * Places a call to the specified contact.
-     */
-    void onCallContactAction(Uri contactUri);
-
-    /**
-     * Initiates a text message to the specified contact.
-     */
-    void onSmsContactAction(Uri contactUri);
-
-    /**
      * Closes the contact browser.
      */
     void onFinishAction();
