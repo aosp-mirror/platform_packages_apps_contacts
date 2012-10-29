@@ -291,7 +291,7 @@
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Anwani za kuonyesha"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Leta/hamisha"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Leta/Hamisha wawasiliani"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"Ingiza anwani"</string>
+    <string name="dialog_import" msgid="2431698729761448759">"Ingiza wasiliani"</string>
     <string name="menu_share" msgid="943789700636542260">"Shiriki"</string>
     <string name="share_via" msgid="563121028023030093">"Shiriki anwani kupitia"</string>
     <string name="share_error" msgid="948429331673358107">"Mwasiliani huyu hawezi kushirikishwa."</string>
@@ -452,7 +452,7 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Zenye Nyota"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Maalum"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Geuza kukufaa"</string>
-    <string name="list_filter_phones" msgid="735313795643493365">"Anwani zote zilizo na nambari za simu"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Wasiliani wote walio na nambari ya simu"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Anwani"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Bainisha mwonekano maalum"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Inapakia…"</string>
@@ -473,7 +473,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Inapakia…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Fungua akaunti mpya"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Ingia katika akaunti"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Ingiza anwani"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Ingiza wasiliani"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Unda kikundi kipya"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Unda kikundi kipya"</string>
   <plurals name="num_groups_in_account">
@@ -557,9 +557,9 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Wasifu wangu wa <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Inaonyesha anwani zote"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Watu wanafanya kazi vizuri wakiwa na Akaunti ya Google. "\n" "\n" • Iangalie kwa kutumia kivinjari chochote. "\n" • Tunza mawasiliano yako kwa usalama."</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka anwani za unaowasiliana nao salama hata ukipoteza simu yako: sawazisha kwa huduma iliyo mtandaoni."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka wasiliani wako salama hata ukipoteza simu yako: landanisha na huduma ya tovuti."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitahifadhiwa. Je, ungetaka kuongeza akaunti ambayo inahifadhi nakala ya anwani katika mtandao?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Mwasiliani wako mpya hatahifadhiwa. Ongeza akaunti ambayo inahifadhi wasiliani katika mtandao?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Mwasiliani wako mpya atalandanishwa na <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Unaweza kulandanisha mwasiliani mpya aliye na moja ya zifuatazo. Ni gani ambayo unataka kutumia?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Weka karibu"</string>
