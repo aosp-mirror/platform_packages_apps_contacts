@@ -26,7 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Pilih nomor untuk dipanggil"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Pilih nomor untuk dikirimi pesan"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Pilih kontak"</string>
-    <string name="starredList" msgid="4817256136413959463">"Yang berbintang"</string>
+    <string name="starredList" msgid="4817256136413959463">"Yang berkilau bintangnya"</string>
     <string name="frequentList" msgid="7154768136473953056">"Sering"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favorit"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Detail kontak"</string>
@@ -201,7 +201,7 @@
     <string name="description_image_button_seven" msgid="2450357020447676481">"tujuh"</string>
     <string name="description_image_button_eight" msgid="6969435115163287801">"delapan"</string>
     <string name="description_image_button_nine" msgid="7857248695662558323">"sembilan"</string>
-    <string name="description_image_button_star" msgid="3365919907520767866">"bintangi"</string>
+    <string name="description_image_button_star" msgid="3365919907520767866">"kilaukan bintang"</string>
     <string name="description_image_button_zero" msgid="4133108949401820710">"nol"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"pound"</string>
     <string name="description_voicemail_button" msgid="3402506823655455591">"kotak pesan"</string>
@@ -447,7 +447,7 @@
     <string name="local_search_label" msgid="2551177578246113614">"Semua kontak"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Membuat salinan pribadi..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Semua kontak"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Yang berbintang"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"Yang berkilau bintangnya"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Khusus"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Khusus"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Semua kontak dengan nomor telepon"</string>
