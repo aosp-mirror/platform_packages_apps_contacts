@@ -415,11 +415,6 @@
             >
         </activity>
 
-        <!-- Interstitial activity that shows a phone disambig dialog -->
-        <activity android:name="CallContactActivity"
-            android:theme="@android:style/Theme.Translucent">
-        </activity>
-
         <!-- vCard related -->
         <activity android:name=".vcard.ImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
