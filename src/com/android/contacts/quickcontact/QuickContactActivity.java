@@ -56,7 +56,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.contacts.Collapser;
+import com.android.contacts.common.Collapser;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;

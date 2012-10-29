@@ -21,6 +21,8 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
+import com.android.contacts.common.MoreContactUtils;
+
 /**
  * Tests for {@link ContactsUtils}.
  */
@@ -183,9 +185,9 @@ public class ContactsUtilsTests extends AndroidTestCase {
     private void assertCollapses(String message, boolean expected, CharSequence mimetype1,
             CharSequence data1, CharSequence mimetype2, CharSequence data2) {
         assertEquals(message, expected,
-                ContactsUtils.shouldCollapse(mimetype1, data1, mimetype2, data2));
+                MoreContactUtils.shouldCollapse(mimetype1, data1, mimetype2, data2));
         assertEquals(message, expected,
-                ContactsUtils.shouldCollapse(mimetype2, data2, mimetype1, data1));
+                MoreContactUtils.shouldCollapse(mimetype2, data2, mimetype1, data1));
 
         // If data1 and data2 are the same instance, make sure the same test passes with different
         // instances.
@@ -201,11 +203,11 @@ public class ContactsUtilsTests extends AndroidTestCase {
 
             // we have two different instances, now make sure we get the same result as before
             assertEquals(message, expected,
-                    ContactsUtils.shouldCollapse(mimetype1, data1, mimetype2,
-                    data2_newref));
+                    MoreContactUtils.shouldCollapse(mimetype1, data1, mimetype2,
+                            data2_newref));
             assertEquals(message, expected,
-                    ContactsUtils.shouldCollapse(mimetype2, data2_newref, mimetype1,
-                    data1));
+                    MoreContactUtils.shouldCollapse(mimetype2, data2_newref, mimetype1,
+                            data1));
         }
     }
 

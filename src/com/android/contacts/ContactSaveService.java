@@ -46,6 +46,7 @@ import android.provider.ContactsContract.RawContactsEntity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.contacts.common.database.ContactUpdateUtils;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDeltaList;
@@ -903,13 +904,7 @@ public class ContactSaveService extends IntentService {
             return;
         }
 
-        // Update the primary values in the data record.
-        ContentValues values = new ContentValues(1);
-        values.put(Data.IS_SUPER_PRIMARY, 1);
-        values.put(Data.IS_PRIMARY, 1);
-
-        getContentResolver().update(ContentUris.withAppendedId(Data.CONTENT_URI, dataId),
-                values, null, null);
+        ContactUpdateUtils.setSuperPrimary(this, dataId);
     }
 
     /**
