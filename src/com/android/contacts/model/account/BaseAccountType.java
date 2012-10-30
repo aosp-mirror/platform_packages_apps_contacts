@@ -39,6 +39,7 @@ import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
 import com.android.contacts.R;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.util.DateUtils;
@@ -540,70 +541,24 @@ public abstract class BaseAccountType extends AccountType {
     public static class PhoneActionInflater extends CommonInflater {
         @Override
         protected boolean isCustom(Integer type) {
-            return type == Phone.TYPE_CUSTOM || type == Phone.TYPE_ASSISTANT;
+            return ContactDisplayUtils.isCustomPhoneType(type);
         }
 
         @Override
         protected int getTypeLabelResource(Integer type) {
-            if (type == null) return R.string.call_other;
-            switch (type) {
-                case Phone.TYPE_HOME: return R.string.call_home;
-                case Phone.TYPE_MOBILE: return R.string.call_mobile;
-                case Phone.TYPE_WORK: return R.string.call_work;
-                case Phone.TYPE_FAX_WORK: return R.string.call_fax_work;
-                case Phone.TYPE_FAX_HOME: return R.string.call_fax_home;
-                case Phone.TYPE_PAGER: return R.string.call_pager;
-                case Phone.TYPE_OTHER: return R.string.call_other;
-                case Phone.TYPE_CALLBACK: return R.string.call_callback;
-                case Phone.TYPE_CAR: return R.string.call_car;
-                case Phone.TYPE_COMPANY_MAIN: return R.string.call_company_main;
-                case Phone.TYPE_ISDN: return R.string.call_isdn;
-                case Phone.TYPE_MAIN: return R.string.call_main;
-                case Phone.TYPE_OTHER_FAX: return R.string.call_other_fax;
-                case Phone.TYPE_RADIO: return R.string.call_radio;
-                case Phone.TYPE_TELEX: return R.string.call_telex;
-                case Phone.TYPE_TTY_TDD: return R.string.call_tty_tdd;
-                case Phone.TYPE_WORK_MOBILE: return R.string.call_work_mobile;
-                case Phone.TYPE_WORK_PAGER: return R.string.call_work_pager;
-                case Phone.TYPE_ASSISTANT: return R.string.call_assistant;
-                case Phone.TYPE_MMS: return R.string.call_mms;
-                default: return R.string.call_custom;
-            }
+            return ContactDisplayUtils.getPhoneLabelResourceId(type);
         }
     }
 
     public static class PhoneActionAltInflater extends CommonInflater {
         @Override
         protected boolean isCustom(Integer type) {
-            return (type == Phone.TYPE_CUSTOM || type == Phone.TYPE_ASSISTANT);
+            return ContactDisplayUtils.isCustomPhoneType(type);
         }
 
         @Override
         protected int getTypeLabelResource(Integer type) {
-            if (type == null) return R.string.sms_other;
-            switch (type) {
-                case Phone.TYPE_HOME: return R.string.sms_home;
-                case Phone.TYPE_MOBILE: return R.string.sms_mobile;
-                case Phone.TYPE_WORK: return R.string.sms_work;
-                case Phone.TYPE_FAX_WORK: return R.string.sms_fax_work;
-                case Phone.TYPE_FAX_HOME: return R.string.sms_fax_home;
-                case Phone.TYPE_PAGER: return R.string.sms_pager;
-                case Phone.TYPE_OTHER: return R.string.sms_other;
-                case Phone.TYPE_CALLBACK: return R.string.sms_callback;
-                case Phone.TYPE_CAR: return R.string.sms_car;
-                case Phone.TYPE_COMPANY_MAIN: return R.string.sms_company_main;
-                case Phone.TYPE_ISDN: return R.string.sms_isdn;
-                case Phone.TYPE_MAIN: return R.string.sms_main;
-                case Phone.TYPE_OTHER_FAX: return R.string.sms_other_fax;
-                case Phone.TYPE_RADIO: return R.string.sms_radio;
-                case Phone.TYPE_TELEX: return R.string.sms_telex;
-                case Phone.TYPE_TTY_TDD: return R.string.sms_tty_tdd;
-                case Phone.TYPE_WORK_MOBILE: return R.string.sms_work_mobile;
-                case Phone.TYPE_WORK_PAGER: return R.string.sms_work_pager;
-                case Phone.TYPE_ASSISTANT: return R.string.sms_assistant;
-                case Phone.TYPE_MMS: return R.string.sms_mms;
-                default: return R.string.sms_custom;
-            }
+            return ContactDisplayUtils.getSmsLabelResourceId(type);
         }
     }
 

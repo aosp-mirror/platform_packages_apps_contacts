@@ -20,7 +20,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
@@ -53,10 +52,7 @@ import com.android.contacts.common.Collapser;
 import com.android.contacts.common.Collapser.Collapsible;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.activity.TransactionSafeActivity;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountType.StringInflater;
-import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
@@ -74,12 +70,6 @@ import java.util.List;
  */
 public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
     private static final String TAG = PhoneNumberInteraction.class.getSimpleName();
-
-    @VisibleForTesting
-    /* package */ enum InteractionType {
-        PHONE_CALL,
-        SMS
-    }
 
     /**
      * A model object for capturing a phone number for a given contact.
@@ -162,14 +152,12 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * A list adapter that populates the list of contact's phone numbers.
      */
     private static class PhoneItemAdapter extends ArrayAdapter<PhoneItem> {
-        private final InteractionType mInteractionType;
-        private final AccountTypeManager mAccountTypeManager;
+        private final int mInteractionType;
 
         public PhoneItemAdapter(Context context, List<PhoneItem> list,
-                InteractionType interactionType) {
+                int interactionType) {
             super(context, R.layout.phone_disambig_item, android.R.id.text2, list);
             mInteractionType = interactionType;
-            mAccountTypeManager = AccountTypeManager.getInstance(context);
         }
 
         @Override
@@ -177,20 +165,11 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             final View view = super.getView(position, convertView, parent);
 
             final PhoneItem item = getItem(position);
-            final AccountType accountType = mAccountTypeManager.getAccountType(
-                    item.accountType, item.dataSet);
             final TextView typeView = (TextView) view.findViewById(android.R.id.text1);
-            final DataKind kind = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-            if (kind != null) {
-                ContentValues values = new ContentValues();
-                values.put(Phone.TYPE, item.type);
-                values.put(Phone.LABEL, item.label);
-                StringInflater header = (mInteractionType == InteractionType.SMS)
-                        ? kind.actionAltHeader : kind.actionHeader;
-                typeView.setText(header.inflateUsing(getContext(), values));
-            } else {
-                typeView.setText(R.string.call_other);
-            }
+            CharSequence value = ContactDisplayUtils.getLabelForCallOrSms((int) item.type,
+                    item.label, mInteractionType, getContext());
+
+            typeView.setText(value);
             return view;
         }
     }
@@ -213,13 +192,13 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         private static final String ARG_INTERACTION_TYPE = "interactionType";
         private static final String ARG_CALL_ORIGIN = "callOrigin";
 
-        private InteractionType mInteractionType;
+        private int mInteractionType;
         private ListAdapter mPhonesAdapter;
         private List<PhoneItem> mPhoneList;
         private String mCallOrigin;
 
         public static void show(FragmentManager fragmentManager,
-                ArrayList<PhoneItem> phoneList, InteractionType interactionType,
+                ArrayList<PhoneItem> phoneList, int interactionType,
                 String callOrigin) {
             PhoneDisambiguationDialogFragment fragment = new PhoneDisambiguationDialogFragment();
             Bundle bundle = new Bundle();
@@ -234,8 +213,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Activity activity = getActivity();
             mPhoneList = getArguments().getParcelableArrayList(ARG_PHONE_LIST);
-            mInteractionType =
-                    (InteractionType) getArguments().getSerializable(ARG_INTERACTION_TYPE);
+            mInteractionType = getArguments().getInt(ARG_INTERACTION_TYPE);
             mCallOrigin = getArguments().getString(ARG_CALL_ORIGIN);
 
             mPhonesAdapter = new PhoneItemAdapter(activity, mPhoneList, mInteractionType);
@@ -243,7 +221,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             final View setPrimaryView = inflater.inflate(R.layout.set_primary_checkbox, null);
             return new AlertDialog.Builder(activity)
                     .setAdapter(mPhonesAdapter, this)
-                    .setTitle(mInteractionType == InteractionType.SMS
+                    .setTitle(mInteractionType == ContactDisplayUtils.INTERACTION_SMS
                             ? R.string.sms_disambig_title : R.string.call_disambig_title)
                     .setView(setPrimaryView)
                     .create();
@@ -291,7 +269,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
 
     private final Context mContext;
     private final OnDismissListener mDismissListener;
-    private final InteractionType mInteractionType;
+    private final int mInteractionType;
 
     private final String mCallOrigin;
 
@@ -304,12 +282,12 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * require a {@link TransactionSafeActivity} (i.e. see {@link #startInteractionForPhoneCall}).
      */
     @VisibleForTesting
-    /* package */ PhoneNumberInteraction(Context context, InteractionType interactionType,
+    /* package */ PhoneNumberInteraction(Context context, int interactionType,
             DialogInterface.OnDismissListener dismissListener) {
         this(context, interactionType, dismissListener, null);
     }
 
-    private PhoneNumberInteraction(Context context, InteractionType interactionType,
+    private PhoneNumberInteraction(Context context, int interactionType,
             DialogInterface.OnDismissListener dismissListener, String callOrigin) {
         mContext = context;
         mInteractionType = interactionType;
@@ -322,11 +300,11 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
     }
 
     private static void performAction(
-            Context context, String phoneNumber, InteractionType interactionType,
+            Context context, String phoneNumber, int interactionType,
             String callOrigin) {
         Intent intent;
         switch (interactionType) {
-            case SMS:
+            case ContactDisplayUtils.INTERACTION_SMS:
                 intent = new Intent(
                         Intent.ACTION_SENDTO, Uri.fromParts("sms", phoneNumber, null));
                 break;
@@ -448,7 +426,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * data Uri won't.
      */
     public static void startInteractionForPhoneCall(TransactionSafeActivity activity, Uri uri) {
-        (new PhoneNumberInteraction(activity, InteractionType.PHONE_CALL, null))
+        (new PhoneNumberInteraction(activity, ContactDisplayUtils.INTERACTION_CALL, null))
                 .startInteraction(uri);
     }
 
@@ -462,7 +440,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      */
     public static void startInteractionForPhoneCall(TransactionSafeActivity activity, Uri uri,
             String callOrigin) {
-        (new PhoneNumberInteraction(activity, InteractionType.PHONE_CALL, null, callOrigin))
+        (new PhoneNumberInteraction(activity, ContactDisplayUtils.INTERACTION_CALL, null, callOrigin))
                 .startInteraction(uri);
     }
 
@@ -479,7 +457,8 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * data Uri won't.
      */
     public static void startInteractionForTextMessage(TransactionSafeActivity activity, Uri uri) {
-        (new PhoneNumberInteraction(activity, InteractionType.SMS, null)).startInteraction(uri);
+        (new PhoneNumberInteraction(activity, ContactDisplayUtils.INTERACTION_SMS, null))
+                .startInteraction(uri);
     }
 
     @VisibleForTesting
