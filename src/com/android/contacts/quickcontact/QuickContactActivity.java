@@ -71,7 +71,7 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;
-import com.android.contacts.util.StopWatch;
+import com.android.contacts.common.util.StopWatch;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
