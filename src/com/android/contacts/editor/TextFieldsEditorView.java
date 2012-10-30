@@ -41,7 +41,7 @@ import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;
 import com.android.contacts.model.account.AccountType.EditField;
 import com.android.contacts.model.dataitem.DataKind;
-import com.android.contacts.util.PhoneNumberFormatter;
+import com.android.contacts.common.util.PhoneNumberFormatter;
 
 /**
  * Simple editor that handles labels and any {@link EditField} defined for the
