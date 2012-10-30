@@ -22,10 +22,9 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 
-import com.android.contacts.list.ContactTileView;
-
 /**
- * Used to create {@link CursorLoader}s to load different groups of {@link ContactTileView}s
+ * Used to create {@link CursorLoader}s to load different groups of
+ * {@link com.android.contacts.list.ContactTileView}.
  */
 public final class ContactTileLoaderFactory {
 
