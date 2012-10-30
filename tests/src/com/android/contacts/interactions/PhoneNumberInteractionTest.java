@@ -30,7 +30,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.interactions.PhoneNumberInteraction.InteractionType;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.interactions.PhoneNumberInteraction.PhoneItem;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
@@ -60,7 +60,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
     private final static class TestPhoneNumberInteraction extends PhoneNumberInteraction {
         private ArrayList<PhoneItem> mPhoneList;
 
-        public TestPhoneNumberInteraction(Context context, InteractionType interactionType,
+        public TestPhoneNumberInteraction(Context context, int interactionType,
                 OnDismissListener dismissListener) {
             super(context, interactionType, dismissListener);
         }
@@ -94,7 +94,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                         Phone.CONTENT_ITEM_TYPE);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, InteractionType.SMS, null);
+                mContext, ContactDisplayUtils.INTERACTION_SMS, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
@@ -113,7 +113,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                         Phone.CONTENT_ITEM_TYPE);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, InteractionType.SMS, null);
+                mContext, ContactDisplayUtils.INTERACTION_SMS, null);
 
         interaction.startInteraction(dataUri);
         interaction.getLoader().waitForLoader();
@@ -134,7 +134,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                         2, "456", 1, null, null, Phone.TYPE_HOME, null, Phone.CONTENT_ITEM_TYPE);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, InteractionType.SMS, null);
+                mContext, ContactDisplayUtils.INTERACTION_SMS, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
@@ -175,7 +175,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                         Phone.CONTENT_ITEM_TYPE);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, InteractionType.PHONE_CALL, null);
+                mContext, ContactDisplayUtils.INTERACTION_CALL, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
@@ -193,7 +193,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 .returnRow(1, "example@example.com", 0, null, null, Phone.TYPE_HOME, null,
                         SipAddress.CONTENT_ITEM_TYPE);
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, InteractionType.PHONE_CALL, null);
+                mContext, ContactDisplayUtils.INTERACTION_CALL, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
@@ -214,7 +214,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                         Phone.CONTENT_ITEM_TYPE);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, InteractionType.PHONE_CALL, null);
+                mContext, ContactDisplayUtils.INTERACTION_CALL, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
