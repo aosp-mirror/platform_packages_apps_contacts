@@ -378,18 +378,6 @@
          [CHAR LIMIT=NONE] -->
     <string name="contactsFavoritesLabel">Favorites</string>
 
-    <!-- Title of the confirmation dialog for clearing frequents. [CHAR LIMIT=37] -->
-    <string name="clearFrequentsConfirmation_title">Clear frequently contacted?</string>
-
-    <!-- Confirmation dialog for clearing frequents. [CHAR LIMIT=NONE] -->
-    <string name="clearFrequentsConfirmation">You\'ll clear the frequently contacted list in the
-        People and Phone apps, and force email apps to learn your addressing preferences from
-        scratch.
-    </string>
-
-    <!-- Title of the "Clearing frequently contacted" progress-dialog [CHAR LIMIT=35] -->
-    <string name="clearFrequentsProgress_title">Clearing frequently contacted\u2026</string>
-
     <!-- The title of a dialog that displays the IMEI of the phone -->
     <string name="imei">IMEI</string>
 
@@ -1442,15 +1430,6 @@
 
     <!-- Menu item used to show all calls in the call log. [CHAR LIMIT=30] -->
     <string name="menu_show_all_calls">Show all calls</string>
-
-    <!--  Used to display as default status when the contact is available for chat [CHAR LIMIT=19] -->
-    <string name="status_available">Available</string>
-
-    <!--  Used to display as default status when the contact is away or idle for chat [CHAR LIMIT=19] -->
-    <string name="status_away">Away</string>
-
-    <!--  Used to display as default status when the contact is busy or Do not disturb for chat [CHAR LIMIT=19] -->
-    <string name="status_busy">Busy</string>
 
     <!-- String describing the icon in the call log used to play a voicemail.
 

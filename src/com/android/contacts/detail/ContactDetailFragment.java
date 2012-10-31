@@ -68,7 +68,7 @@ import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaData;

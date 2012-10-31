@@ -57,7 +57,7 @@ import com.android.contacts.detail.ContactDetailLayoutController;
 import com.android.contacts.detail.ContactDetailUpdatesFragment;
 import com.android.contacts.detail.ContactLoaderFragment;
 import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
-import com.android.contacts.dialog.ClearFrequentsDialog;
+import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.group.GroupBrowseListFragment;
 import com.android.contacts.group.GroupBrowseListFragment.OnGroupBrowserActionListener;
 import com.android.contacts.group.GroupDetailFragment;

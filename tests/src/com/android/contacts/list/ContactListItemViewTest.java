@@ -21,13 +21,11 @@ import android.database.MatrixCursor;
 import android.provider.ContactsContract;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.widget.TextView;
 
 import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.test.IntegrationTestUtils;
-import com.android.contacts.format.SpannedTestUtils;
+import com.android.contacts.common.format.SpannedTestUtils;
 
 /**
  * Unit tests for {@link ContactListItemView}.

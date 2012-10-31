@@ -23,7 +23,7 @@ import android.text.style.CharacterStyle;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
-import com.android.contacts.format.FormatUtils;
+import com.android.contacts.common.format.FormatUtils;
 import com.android.internal.R;
 
 /**

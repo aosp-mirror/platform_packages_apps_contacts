@@ -44,10 +44,10 @@ import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
-import com.android.contacts.ContactPresenceIconUtil;
-import com.android.contacts.ContactStatusUtil;
+import com.android.contacts.common.ContactPresenceIconUtil;
+import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.R;
-import com.android.contacts.format.PrefixHighlighter;
+import com.android.contacts.common.format.PrefixHighlighter;
 
 /**
  * A custom view for an item in the contact list.

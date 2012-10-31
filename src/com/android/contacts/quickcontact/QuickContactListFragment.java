@@ -32,7 +32,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.R;
 
 import java.util.List;

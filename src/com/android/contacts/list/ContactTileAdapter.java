@@ -29,9 +29,9 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 
 import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.ContactPresenceIconUtil;
-import com.android.contacts.ContactStatusUtil;
-import com.android.contacts.ContactTileLoaderFactory;
+import com.android.contacts.common.ContactPresenceIconUtil;
+import com.android.contacts.common.ContactStatusUtil;
+import com.android.contacts.common.ContactTileLoaderFactory;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMemberLoader.GroupDetailQuery;
