@@ -49,9 +49,9 @@ import com.android.contacts.model.account.AccountType.EditType;
 import com.android.contacts.model.account.ExchangeAccountType;
 import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.model.dataitem.DataKind;
-import com.android.contacts.tests.mocks.ContactsMockContext;
+import com.android.contacts.common.test.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
-import com.android.contacts.tests.mocks.MockContentProvider;
+import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;

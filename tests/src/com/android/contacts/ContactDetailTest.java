@@ -20,8 +20,8 @@ import android.test.ActivityUnitTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.activities.ContactDetailActivity;
-import com.android.contacts.tests.mocks.ContactsMockContext;
-import com.android.contacts.tests.mocks.MockContentProvider;
+import com.android.contacts.common.test.mocks.ContactsMockContext;
+import com.android.contacts.common.test.mocks.MockContentProvider;
 
 @SmallTest
 public class ContactDetailTest extends ActivityUnitTestCase<ContactDetailActivity> {
