@@ -28,9 +28,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.list.PinnedHeaderListAdapter;
 
 /**
- * An activity that demonstrates various use cases for the {@link PinnedHeaderListView}.
+ * An activity that demonstrates various use cases for the {@link com.android.contacts.common.list.PinnedHeaderListView}.
  * If we decide to move PinnedHeaderListView to the framework, this class could go
  * to API demos.
  */

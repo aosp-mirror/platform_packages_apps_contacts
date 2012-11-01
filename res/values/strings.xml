@@ -342,9 +342,6 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g> found</item>
     </plurals>
 
-    <!-- Displayed at the top of search results indicating that more contacts were found than shown [CHAR LIMIT=64] -->
-    <string name="foundTooManyContacts">More than <xliff:g id="count">%d</xliff:g> found.</string>
-
     <!-- Displayed at the top of the contacts showing the zero total number of contacts found when "Only contacts with phones" not selected. [CHAR LIMIT=30] -->
     <string name="listFoundAllContactsZero">No contacts</string>
 
@@ -934,9 +931,6 @@
          was found that could perform the selected action. [CHAR LIMIT=NONE] -->
     <string name="quickcontact_missing_app">No app was found to handle this action.</string>
 
-    <!-- Shown as the display name for a person when the name is missing or unknown. [CHAR LIMIT=18]-->
-    <string name="missing_name">(No name)</string>
-
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>
 
@@ -1228,9 +1222,6 @@
         <item quantity="other">merged from <xliff:g id="count">%0$d</xliff:g> sources</item>
     </plurals>
 
-    <!-- The name of the invisible local contact directory -->
-    <string name="local_invisible_directory">Other</string>
-
     <!-- The message in a confirmation dialog shown when the user selects a
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
     <string name="aggregation_suggestion_join_dialog_message">Join
@@ -1252,12 +1243,6 @@
 
     <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
     <string name="contact_directory_description">Directory <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g></string>
-
-    <!-- The label in section header in the contact list for a contact directory [CHAR LIMIT=128] -->
-    <string name="directory_search_label">Directory</string>
-
-    <!-- The label in section header in the contact list for a local contacts [CHAR LIMIT=128] -->
-    <string name="local_search_label">All contacts</string>
 
     <!-- Toast shown when creating a personal copy of a contact [CHAR LIMIT=100] -->
     <string name="toast_making_personal_copy">Creating a personal copy\u2026</string>
@@ -1521,19 +1506,8 @@
     -->
     <string name="description_dial_phone_number">Dial phone <xliff:g id="name">%1$s</xliff:g></string>
 
-    <!-- String describing the text for photo of a contact in a contacts list.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_quick_contact_for">Quick contact for <xliff:g id="name">%1$s</xliff:g></string>
-
     <!-- The string used to represent an unknown location for a phone number in the call log [CHAR LIMIT=3] -->
     <string name="call_log_empty_gecode">-</string>
-
-    <!-- String describing the text on the header of the profile contact in the contacts list
-         This may be programatically capitalized. [CHAR LIMIT=20] -->
-    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">Me</string>
 
     <!-- Header label in the contact editor for a profile that is local to the device only (and not associated with any account) [CHAR LIMIT=25] -->
     <string name="local_profile_title">My local profile</string>

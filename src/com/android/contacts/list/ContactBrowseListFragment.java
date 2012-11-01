@@ -36,8 +36,11 @@ import android.util.Log;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.R;
+import com.android.contacts.common.list.ContactListAdapter;
+import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.DirectoryPartition;
 import com.android.contacts.util.ContactLoaderUtils;
-import com.android.contacts.widget.AutoScrollListView;
+import com.android.contacts.common.list.AutoScrollListView;
 
 import java.util.List;
 

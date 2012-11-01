@@ -25,7 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.android.contacts.tests.R;
-import com.android.contacts.widget.PinnedHeaderListView;
+import com.android.contacts.common.list.PinnedHeaderListView;
 
 /**
  * An activity that demonstrates various use cases for the {@link PinnedHeaderListView}.

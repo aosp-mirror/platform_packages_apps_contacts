@@ -21,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.R;
+import com.android.contacts.common.list.ContactEntryListAdapter;
+import com.android.contacts.common.list.DirectoryListLoader;
 
 /**
  * Fragment containing an email list for picking.

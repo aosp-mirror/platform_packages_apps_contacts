@@ -175,10 +175,6 @@
     <dimen name="join_header_top_margin">16dip</dimen>
     <dimen name="join_header_bottom_margin">0dip</dimen>
 
-    <!-- Padding between the action bar's bottom edge and the first header
-         in contacts/group lists. -->
-    <dimen name="list_header_extra_top_padding">0dip</dimen>
-
     <!-- ContactTile Layouts -->
     <!--
       Use sp instead of dip so that the shadowbox heights can all scale uniformly
@@ -205,11 +201,6 @@
 
     <!--  Width of the lead margin on the left of a block quote inside a stream item -->
     <dimen name="stream_item_stripe_width">8dip</dimen>
-
-    <!-- Minimum height used with @drawable/list_section_divider_holo_custom.
-         Right now the drawable has implicit 32dip minimal height, which is confusing.
-         This value is for making the hidden configuration explicit in xml. -->
-    <dimen name="list_section_divider_min_height">32dip</dimen>
 
     <!-- Max width of the SearchView when the contact picker is a dialog (on wide
          screen devices). -->

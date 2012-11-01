@@ -24,6 +24,9 @@ import android.provider.Contacts.People;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.contacts.common.list.ContactEntryListAdapter;
+import com.android.contacts.common.list.ContactListItemView;
+
 /**
  * A cursor adapter for the People.CONTENT_TYPE content type.
  */

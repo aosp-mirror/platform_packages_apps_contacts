@@ -55,9 +55,12 @@ import android.widget.TextView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.ContactListEmptyView;
-import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.R;
-import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.list.ContactEntryListAdapter;
+import com.android.contacts.common.list.DirectoryListLoader;
+import com.android.contacts.common.list.DirectoryPartition;
+import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 /**
@@ -328,7 +331,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (id == DIRECTORY_LOADER_ID) {
             DirectoryListLoader loader = new DirectoryListLoader(mContext);
-            mAdapter.configureDirectoryLoader(loader);
+            loader.setDirectorySearchMode(mAdapter.getDirectorySearchMode());
+            loader.setLocalInvisibleDirectoryEnabled(
+                    ContactEntryListAdapter.LOCAL_INVISIBLE_DIRECTORY_ENABLED);
             return loader;
         } else {
             CursorLoader loader = createCursorLoader();
