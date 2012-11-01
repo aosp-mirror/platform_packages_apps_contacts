@@ -16,13 +16,7 @@
 
 <resources>
 
-    <!-- Colors in the contact browser list -->
-    <color name="contact_count_text_color">#AAAAAA</color>
-
-    <!-- Color of the theme of the People app -->
-    <color name="people_app_theme_color">#33B5E5</color>
-
-    <!-- Color of image view placeholder. -->
-    <color name="image_placeholder">#DDDDDD</color>
-
+    <style name="DirectoryHeader">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>
