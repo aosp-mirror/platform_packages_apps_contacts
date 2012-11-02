@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Alle Kontakte"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Gruppen"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriten"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Liste \"Häufig kontaktiert\" löschen?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Sie löschen die Liste \"Häufig kontaktiert\" in den Apps \"Kontakte\" und \"Telefon\" und geben Ihre Adresseinstellungen für E-Mail-Apps neu ein."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"\"Häufig kontaktiert\" wird gelöscht…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Mailbox"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Namen meiner Kontakte"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 Sekunden Pause hinzufügen"</string>
     <string name="add_wait" msgid="3360818652790319634">"Warten hinzufügen"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"Nummer auswählen"</string>
     <string name="call_settings" msgid="7666474782093693667">"Einstellungen"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"Nummer auswählen"</string>
-    <string name="make_primary" msgid="5829291915305113983">"Auswahl speichern"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Für diese Aktion wurde keine App gefunden."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Kein Name)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konten"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Wenn \"<xliff:g id="GROUP">%s</xliff:g>\" aus der Synchronisierung entfernt wird, werden auch alle nicht gruppierten Kontakte aus der Synchronisierung entfernt."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Nur Tablet, keine Synchronisierung"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Nur Telefon, nicht synchronisiert"</string>
-    <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> anrufen"</string>
-    <string name="call_home" msgid="1990519474420545392">"Anruf (privat)"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Anruf (mobil)"</string>
-    <string name="call_work" msgid="5328785911463744028">"Anruf (geschäftl.)"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Anruf (Fax, geschäftl.)"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"Anruf Fax (privat)"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Anruf (Pager)"</string>
-    <string name="call_other" msgid="8563753966926932052">"Anruf"</string>
-    <string name="call_callback" msgid="1910165691349426858">"Rückrufnummer anrufen"</string>
-    <string name="call_car" msgid="3280537320306436445">"Anruf (Auto)"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"Anruf (Firmenhauptnummer)"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"ISDN-Nummer anrufen"</string>
-    <string name="call_main" msgid="6082900571803441339">"Hauptnummer anrufen"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"Anruf an Fax"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Anruf (Funktelefon)"</string>
-    <string name="call_telex" msgid="2223170774548648114">"Telexnummer anrufen"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDD anrufen"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Anruf Handy (geschäftl.)"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Anruf Pager (geschäftl.)"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"<xliff:g id="ASSISTANT">%s</xliff:g> anrufen"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Anruf (MMS)"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Text <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"SMS (privat)"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"Text (mobil)"</string>
-    <string name="sms_work" msgid="2269624156655267740">"SMS (geschäftl.)"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"SMS an Fax (geschäftl.)"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"SMS an Fax (privat)"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"Text-Pager"</string>
-    <string name="sms_other" msgid="806127844607642331">"SMS an"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"SMS an Rückrufnummer"</string>
-    <string name="sms_car" msgid="7444227058437359641">"Text (Auto)"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Text (Firmenhauptnummer)"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"SMS an ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"SMS an Hauptnummer"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"SMS an Fax"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"Text (Funktelefon)"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"SMS an Telex"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"SMS an TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"SMS an Handy (geschäftl.)"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"SMS an Pager (geschäftl.)"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"SMS an <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"Text (MMS)"</string>
     <string name="sms" msgid="1756857139634224222">"SMS"</string>
     <string name="email_home" msgid="8573740658148184279">"E-Mail (privat)"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-Mail (mobil)"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"Nur entgangene Anrufe anzeigen"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Nur Mailbox-Nachr. anzeigen"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Alle Anrufe anzeigen"</string>
-    <string name="status_available" msgid="5586870015822828392">"Verfügbar"</string>
-    <string name="status_away" msgid="1838861100379804730">"Abwesend"</string>
-    <string name="status_busy" msgid="9147992455450257136">"Beschäftigt"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Mailbox abhören"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Eingehender Anruf"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Ausgehender Anruf"</string>

@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Svi kontakti"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Grupe"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriti"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Brisati podatke o čestim kontaktima?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Obrisat ćete popis osoba s kojima često kontaktirate u aplikacijama Osobe i Telefoni tako da će aplikacije e-pošte morati naučiti vaše preference adresiranja od početka."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Brisanje često kontaktiranih..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Govorna pošta"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Nazivi vaših kontakata"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Dodaj pauzu od 2 sek."</string>
     <string name="add_wait" msgid="3360818652790319634">"Dodaj čekanje"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"Odaberite broj"</string>
     <string name="call_settings" msgid="7666474782093693667">"Postavke"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"Odaberite broj"</string>
-    <string name="make_primary" msgid="5829291915305113983">"Zapamti ovaj izbor"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Nije pronađena nijedna aplikacija koja može provesti ovu radnju."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Bez imena)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Računi"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Uklanjanje grupe \"<xliff:g id="GROUP">%s</xliff:g>\" iz sinkronizacije uklonit će i sve negrupirane kontakte iz sinkronizacije."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Samo tabletni uređaj, bez sinkronizacije"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Samo mobitel, bez sinkronizacije"</string>
-    <string name="call_custom" msgid="7756571794763171802">"Nazovi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Nazovi kućni"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Nazovi mobitel"</string>
-    <string name="call_work" msgid="5328785911463744028">"Nazovi poslovni"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Nazovi poslovni faks"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"Nazovi faks kod kuće"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Nazovi dojavljivač"</string>
-    <string name="call_other" msgid="8563753966926932052">"Pozovi"</string>
-    <string name="call_callback" msgid="1910165691349426858">"Pozovi povratno"</string>
-    <string name="call_car" msgid="3280537320306436445">"Nazovi automobil"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"Nazovi glavni u tvrtki"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"Nazovi ISDN"</string>
-    <string name="call_main" msgid="6082900571803441339">"Pozovi glavni"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"Pozovi faks"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Nazovi radio"</string>
-    <string name="call_telex" msgid="2223170774548648114">"Nazovi teleks"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"Nazovi TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Nazovi poslovni mobitel"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Nazovi poslovni dojavljivač"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"Nazovi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Nazovi MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Poruka za <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"Poruka na kućni"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"Poruka na mobitel"</string>
-    <string name="sms_work" msgid="2269624156655267740">"Poruka na poslovni"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"Poruka na poslovni faks"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"Poruka na kućni faks"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"Poruka na dojavljivač"</string>
-    <string name="sms_other" msgid="806127844607642331">"Tekst"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"Poruka za povratni poziv"</string>
-    <string name="sms_car" msgid="7444227058437359641">"Poruka u automobil"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Poruka na glavni u tvrtki"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"Poruka na ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"Poruka na glavni"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"Poruka na faks"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"Poruka na radio"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"Poruka na teleks"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"Poruka za TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Poruka na poslovni mobitel"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"Poruka na poslovni dojavljivač"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"Poruka za <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"Poruka na MMS"</string>
     <string name="sms" msgid="1756857139634224222">"Tekstualna poruka"</string>
     <string name="email_home" msgid="8573740658148184279">"E-pošta - Početna stranica"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-pošta na mobitel"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"Prikaži samo propuštene"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Prikaži samo govorne pošte"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Prikaz svih poziva"</string>
-    <string name="status_available" msgid="5586870015822828392">"Dostupan"</string>
-    <string name="status_away" msgid="1838861100379804730">"Odsutan"</string>
-    <string name="status_busy" msgid="9147992455450257136">"Zauzet"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Reprodukcija govorne pošte"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Dolazni poziv"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Odlazni poziv"</string>

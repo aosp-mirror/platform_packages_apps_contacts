@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"所有聯絡人"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"群組"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"我的最愛"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"清除常用聯絡人？"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"您將清除「使用者」應用程式和「電話」應用程式中的常用聯絡人清單，並強制電子郵件應用程式重新瞭解您的寄件偏好設定。"</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"正在清除常用聯絡人…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"語音留言"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"新增 2 秒暫停功能"</string>
     <string name="add_wait" msgid="3360818652790319634">"新增插播功能"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"選擇號碼"</string>
     <string name="call_settings" msgid="7666474782093693667">"設定"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"選擇號碼"</string>
-    <string name="make_primary" msgid="5829291915305113983">"記住這個選擇"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"找不到可以處理這個動作的應用程式。"</string>
     <string name="missing_name" msgid="8745511583852904385">"(無姓名)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"帳戶"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"如果停用「<xliff:g id="GROUP">%s</xliff:g>」群組的同步處理設定，也會停止同步處理任何未分組的聯絡人。"</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"僅限平板電腦，不會同步處理"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"僅儲存於手機 (不會同步處理)"</string>
-    <string name="call_custom" msgid="7756571794763171802">"去電<xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"去電住家電話"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"去電行動裝置"</string>
-    <string name="call_work" msgid="5328785911463744028">"去電公司電話"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"去電公司傳真"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"去電住家傳真"</string>
-    <string name="call_pager" msgid="9003902812293983281">"去電呼叫器"</string>
-    <string name="call_other" msgid="8563753966926932052">"通話"</string>
-    <string name="call_callback" msgid="1910165691349426858">"去電回撥號碼"</string>
-    <string name="call_car" msgid="3280537320306436445">"去電汽車電話"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"去電公司代表號"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"去電 ISDN"</string>
-    <string name="call_main" msgid="6082900571803441339">"去電代表號"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"撥打傳真"</string>
-    <string name="call_radio" msgid="8296755876398357063">"去電無線電"</string>
-    <string name="call_telex" msgid="2223170774548648114">"去電 Telex"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"去電 TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"去電公司行動電話"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"去電公司呼叫器"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"去電<xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"去電 MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"傳送簡訊至<xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"傳送簡訊至住家電話"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"傳送簡訊至行動裝置"</string>
-    <string name="sms_work" msgid="2269624156655267740">"傳送簡訊至公司電話"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"傳送簡訊至公司傳真"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"傳送簡訊至住家傳真"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"傳送簡訊至呼叫器"</string>
-    <string name="sms_other" msgid="806127844607642331">"傳送簡訊"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"傳送簡訊至回撥號碼"</string>
-    <string name="sms_car" msgid="7444227058437359641">"傳送簡訊至汽車電話"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"傳送簡訊至公司代表號"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"傳送簡訊至 ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"傳送簡訊至代表號"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"傳送簡訊至傳真"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"傳送簡訊至無線電"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"傳送簡訊至 Telex"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"傳送簡訊至 TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"傳送簡訊至公司行動電話"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"傳送簡訊至公司呼叫器"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"傳送簡訊至<xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"傳送 MMS 簡訊"</string>
     <string name="sms" msgid="1756857139634224222">"簡訊"</string>
     <string name="email_home" msgid="8573740658148184279">"傳送電子郵件至住家電子郵件地址"</string>
     <string name="email_mobile" msgid="2042889209787989814">"傳送電子郵件至行動裝置"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"僅顯示未接來電"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"僅顯示語音留言"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"顯示所有通話"</string>
-    <string name="status_available" msgid="5586870015822828392">"線上"</string>
-    <string name="status_away" msgid="1838861100379804730">"離開"</string>
-    <string name="status_busy" msgid="9147992455450257136">"忙碌"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"播放語音留言"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"來電"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"已撥電話"</string>

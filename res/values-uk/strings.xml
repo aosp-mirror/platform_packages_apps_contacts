@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Усі контакти"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Групи"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Вибране"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Очистити список частих контактів?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Ви очистите список користувачів, з якими часто спілкувалися, у програмах \"Телефон\" і \"Люди\" та примусите програми електронної пошти заново запам’ятовувати нові адреси."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Очищення списку частих контактів…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Голос. пошта"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Імена ваших контактів"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Дод. 2-сек. паузу"</string>
     <string name="add_wait" msgid="3360818652790319634">"Дод. очікув."</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"Вибрати номер"</string>
     <string name="call_settings" msgid="7666474782093693667">"Налаштування"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"Вибрати номер"</string>
-    <string name="make_primary" msgid="5829291915305113983">"Пам\'ятати цей вибір"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не знайдено програму для обробки цієї дії."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Без імені)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Обл. записи"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Видалення групи \"<xliff:g id="GROUP">%s</xliff:g>\" із синхронізації призведе до припинення синхронізації незгрупованих контактів."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Лише в пристр., несинхр."</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Лише в тел., несинхр."</string>
-    <string name="call_custom" msgid="7756571794763171802">"Набрати <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Набрати дом. ном."</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Набрати моб."</string>
-    <string name="call_work" msgid="5328785911463744028">"Набрати роб."</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Набрати роб. факс"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"Набрати дом. факс"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Набрати пейдж."</string>
-    <string name="call_other" msgid="8563753966926932052">"Набрати"</string>
-    <string name="call_callback" msgid="1910165691349426858">"Набрати зворот. виклик"</string>
-    <string name="call_car" msgid="3280537320306436445">"Набрати ном. в авто"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"Набрати осн. роб. тел."</string>
-    <string name="call_isdn" msgid="1541590690193403411">"Набрати ном. ISDN"</string>
-    <string name="call_main" msgid="6082900571803441339">"Набрати осн. тел."</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"Набрати факс"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Набрати радіотел."</string>
-    <string name="call_telex" msgid="2223170774548648114">"Набрати телекс"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"Набрати ном. TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Набрати роб. моб."</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Двон. на роб. пейдж."</string>
-    <string name="call_assistant" msgid="2141641383068514308">"Набрати <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Набрати ном. MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"SMS на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"SMS на дом. тел."</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"SMS на моб."</string>
-    <string name="sms_work" msgid="2269624156655267740">"SMS на роб. ном."</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"SMS на роб. факс"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"SMS на дом. факс"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"SMS на пейдж."</string>
-    <string name="sms_other" msgid="806127844607642331">"SMS"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"SMS на зворот. викл."</string>
-    <string name="sms_car" msgid="7444227058437359641">"SMS на ном. в авто"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"SMS на осн. роб. тел."</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"SMS на ном. ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"SMS на осн. ном."</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"SMS на факс"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"SMS на радіотел."</string>
-    <string name="sms_telex" msgid="9034802430065267848">"SMS на телекс"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"SMS на TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"SMS на роб. моб."</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"SMS на роб. пейдж."</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"SMS на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"SMS на ном. MMS"</string>
     <string name="sms" msgid="1756857139634224222">"Текстове повідомлення"</string>
     <string name="email_home" msgid="8573740658148184279">"Написати на дом. адр."</string>
     <string name="email_mobile" msgid="2042889209787989814">"Напис. на моб."</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"Показувати лише пропущені"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Показувати лише голосову пошту"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Показувати всі виклики"</string>
-    <string name="status_available" msgid="5586870015822828392">"Доступний"</string>
-    <string name="status_away" msgid="1838861100379804730">"Не на місці"</string>
-    <string name="status_busy" msgid="9147992455450257136">"Зайнятий"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Відтворити голосову пошту"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Вхідний дзвінок"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Вихідний дзвінок"</string>

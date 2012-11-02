@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"모든 연락처"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"그룹"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"즐겨찾기"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"피플 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"음성사서함"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2초 간 일시 정지 추가"</string>
     <string name="add_wait" msgid="3360818652790319634">"대기 시간 추가"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"번호 선택"</string>
     <string name="call_settings" msgid="7666474782093693667">"설정"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"번호 선택"</string>
-    <string name="make_primary" msgid="5829291915305113983">"이 선택사항 저장"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
     <string name="missing_name" msgid="8745511583852904385">"(이름 없음)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"계정"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"\'<xliff:g id="GROUP">%s</xliff:g>\'을(를) 동기화에서 제거하면 그룹화되지 않은 연락처도 동기화에서 제거됩니다."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"태블릿 전용, 동기화되지 않음"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"휴대전화 전용(동기화되지 않음)"</string>
-    <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g>(으)로 전화걸기"</string>
-    <string name="call_home" msgid="1990519474420545392">"집으로 전화걸기"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"휴대전화로 전화걸기"</string>
-    <string name="call_work" msgid="5328785911463744028">"직장으로 전화걸기"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"직장 팩스로 전화걸기"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"집 팩스로 전화걸기"</string>
-    <string name="call_pager" msgid="9003902812293983281">"호출기로 전화걸기"</string>
-    <string name="call_other" msgid="8563753966926932052">"전화걸기"</string>
-    <string name="call_callback" msgid="1910165691349426858">"콜백 번호로 전화 걸기"</string>
-    <string name="call_car" msgid="3280537320306436445">"카폰으로 전화걸기"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"회사로 전화걸기"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"ISDN으로 전화걸기"</string>
-    <string name="call_main" msgid="6082900571803441339">"기본 번호로 전화 걸기"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"팩스로 전화하기"</string>
-    <string name="call_radio" msgid="8296755876398357063">"무선통신으로 전화걸기"</string>
-    <string name="call_telex" msgid="2223170774548648114">"텔렉스 통화"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDD 통화"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"직장 휴대전화로 전화걸기"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"직장 호출기로 전화 걸기"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"<xliff:g id="ASSISTANT">%s</xliff:g>에게 전화"</string>
-    <string name="call_mms" msgid="6274041545876221437">"MMS로 전화걸기"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"문자(<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
-    <string name="sms_home" msgid="7524332261493162995">"집으로 문자 보내기"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"휴대전화로 문자 보내기"</string>
-    <string name="sms_work" msgid="2269624156655267740">"직장으로 문자 보내기"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"직장 팩스로 문자 보내기"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"집 팩스로 문자 보내기"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"호출기로 문자 보내기"</string>
-    <string name="sms_other" msgid="806127844607642331">"문자 보내기"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"콜백 번호로 문자 보내기"</string>
-    <string name="sms_car" msgid="7444227058437359641">"카폰으로 문자 보내기"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"회사 기본전화로 문자 보내기"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"ISDN에 문자 보내기"</string>
-    <string name="sms_main" msgid="8621625784504541679">"기본 번호로 문자 보내기"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"팩스로 문자 보내기"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"무선통신으로 문자 보내기"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"텔렉스로 문자 보내기"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"TTY/TDD에 문자 보내기"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"직장 휴대전화로 문자 보내기"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"직장 호출기로 문자 보내기"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g>(으)로 문자 보내기"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"MMS로 문자 보내기"</string>
     <string name="sms" msgid="1756857139634224222">"문자 메시지"</string>
     <string name="email_home" msgid="8573740658148184279">"집으로 이메일 보내기"</string>
     <string name="email_mobile" msgid="2042889209787989814">"모바일로 이메일 보내기"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"부재중 전화만 표시"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"음성사서함만 표시"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"모든 통화 표시"</string>
-    <string name="status_available" msgid="5586870015822828392">"대화 가능"</string>
-    <string name="status_away" msgid="1838861100379804730">"자리 비움"</string>
-    <string name="status_busy" msgid="9147992455450257136">"다른 용무 중"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"음성사서함 재생"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"수신 전화"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"발신 전화"</string>

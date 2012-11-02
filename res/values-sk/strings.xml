@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Všetky kontakty"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Skupiny"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Obľúbené"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vymazať často kontaktované osoby?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Vymažete zoznam často kontaktovaných osôb v aplikáciách Ľudia a Telefón a použijete odznova predvoľby adresátov v e-mailových aplikáciách."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Mazanie často kontaktovaných osôb."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Hlasová schránka"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Mená vašich kontaktov"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pridať dvojsekundovú pauzu"</string>
     <string name="add_wait" msgid="3360818652790319634">"Pridať čakanie"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"Zvoľte číslo"</string>
     <string name="call_settings" msgid="7666474782093693667">"Nastavenia"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"Zvoľte číslo"</string>
-    <string name="make_primary" msgid="5829291915305113983">"Zapamätať si túto voľbu"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikácia potrebná na spracovanie tejto akcie sa nenašla."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Bez mena)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Účty"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Ak zo synchronizácie odstránite skupinu „<xliff:g id="GROUP">%s</xliff:g>“, odstránite zo synchronizácie aj všetky kontakty, ktoré nie sú zaradené do žiadnej skupiny."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Iba v tablete, nesynchronizované"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Iba v telefóne, nesynchronizované"</string>
-    <string name="call_custom" msgid="7756571794763171802">"Zavolať kontakt <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Zavolať domov"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Zavolať na mobil"</string>
-    <string name="call_work" msgid="5328785911463744028">"Zavolať do práce"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Zavolať na pracovný fax"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"Zavolať na domáci fax"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Zavolať na pager"</string>
-    <string name="call_other" msgid="8563753966926932052">"Zavolať"</string>
-    <string name="call_callback" msgid="1910165691349426858">"Zavolať na číslo spätného volania"</string>
-    <string name="call_car" msgid="3280537320306436445">"Zavolať do auta"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"Zavolať firme (hlavné číslo)"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"Zavolať na číslo ISDN"</string>
-    <string name="call_main" msgid="6082900571803441339">"Zavolať na hlavné číslo"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"Zavolať na fax"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Zavolať rádiostanicu"</string>
-    <string name="call_telex" msgid="2223170774548648114">"Zavolať na číslo Telex"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"Zavolať na číslo TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Zavolať na pracovný mobil"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Zavolať na pracovný pager"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"Zavolať kontaktu <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Zavolať na číslo MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Poslať správu kontaktu <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"SMS domov"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"SMS na mobil"</string>
-    <string name="sms_work" msgid="2269624156655267740">"SMS do práce"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"SMS na pracovný fax"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"SMS na domáci fax"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"SMS na pager"</string>
-    <string name="sms_other" msgid="806127844607642331">"Text"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"Poslať správu na číslo spätného volania"</string>
-    <string name="sms_car" msgid="7444227058437359641">"SMS do auta"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Odoslať správu do firmy (hlavné)"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"Poslať správu na číslo ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"Odoslať správu na hlavné číslo"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"SMS na fax"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"SMS na rádiotelefón"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"Poslať správu na číslo Telex"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"Odoslať správu na číslo TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Odoslať správu na pracovný mobil"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"Odoslať správu na pracovný pager"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"Poslať správu kontaktu <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"SMS na číslo MMS"</string>
     <string name="sms" msgid="1756857139634224222">"Textová správa"</string>
     <string name="email_home" msgid="8573740658148184279">"E-mail domov"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-mail na mobil"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"Zobraziť len zmeškané"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Zobraziť len hlasové správy"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Zobraziť všetky hovory"</string>
-    <string name="status_available" msgid="5586870015822828392">"K dispozícii"</string>
-    <string name="status_away" msgid="1838861100379804730">"Preč"</string>
-    <string name="status_busy" msgid="9147992455450257136">"Zaneprázdnený"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Prehrať hlasovú správu"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Prichádzajúci hovor"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Odchádzajúci hovor"</string>

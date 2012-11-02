@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Усе кантакты"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Групы"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Выбранае"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Выдалiць частыя кантакты?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Вы выдалiце найбольш частыя кантакты ў прыкладаннях \"Кантакты\" i \"Тэлефон\" i прымусiце прыкладаннi па працы з электроннай поштай вывучыць вашы налады адрасацыi з нуля."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Выдаленне частых кантактаў..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Галасавая пошта"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Імёны вашых кантактаў"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Дадаць 2-секундную паўзу"</string>
     <string name="add_wait" msgid="3360818652790319634">"Дадаецца, чакайце"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"Выбар нумару"</string>
     <string name="call_settings" msgid="7666474782093693667">"Налады"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"Выбар нумару"</string>
-    <string name="make_primary" msgid="5829291915305113983">"Запомніць гэты выбар"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не знойдзена прыкладанне для гэтага дзеяння."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Без назвы)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Уліковыя запісы"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Выдаленне групы \"<xliff:g id="GROUP">%s</xliff:g>\" з сінхранізацыі таксама выдаліць любыя разгрупаваныя кантакты з сінхранізацыі."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Толькі планшэт, несінхранізаваны"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Толькі тэлефон, несінхранізаваны"</string>
-    <string name="call_custom" msgid="7756571794763171802">"Выклікаць <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Патэлефанаваць на хатні нумар"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Набраць нумар мабільнага тэлефону"</string>
-    <string name="call_work" msgid="5328785911463744028">"Выклікаць працоўны нумар тэлефона"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Набраць нумар працоўнага факса"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"Патэлефанаваць на хатні факс"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Выклікаць пэйджар"</string>
-    <string name="call_other" msgid="8563753966926932052">"Выклікаць"</string>
-    <string name="call_callback" msgid="1910165691349426858">"Зрабіць зваротны выклік"</string>
-    <string name="call_car" msgid="3280537320306436445">"Выклікаць нумар у машыне"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"Выклікаць асноўны нумар кампаніі"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"Выклік ISDN"</string>
-    <string name="call_main" msgid="6082900571803441339">"Выклікаць асноўны нумар"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"Выклік факса"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Патэлефанаваць на радыётэлефон"</string>
-    <string name="call_telex" msgid="2223170774548648114">"Выклік на тэлекс"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"Выклікаць TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Патэлефанаваць на працоўны мабільны"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Выклікаць працоўны пэйджар"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"Выклікаць <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Выклік MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Тэкставае паведамленне на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"Тэкставае паведамленне на хатні тэлефон"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"Тэкставае паведамленне на мабільны тэлефон"</string>
-    <string name="sms_work" msgid="2269624156655267740">"Тэкставае паведамленне на працоўны тэлефон"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"Тэкставае паведамленне на працоўны факс"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"Тэкставае паведамленне на хатні факс"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"Тэкставае паведамленне на пэйджар"</string>
-    <string name="sms_other" msgid="806127844607642331">"Тэкст"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"Тэкст на нумар зваротнага выкліку"</string>
-    <string name="sms_car" msgid="7444227058437359641">"Тэкставае паведамленне ў аўтамабіль"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Паведамленне на асноўны нумар кампаніі"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"Тэкст ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"Паведамленне на асноўны нумар"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"Тэкставае паведамленне на факс"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"Тэкставае паведамленее на радыётэлефон"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"Тэкставае паведамленне на тэлекс"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"Тэкставае паведамленне на TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Тэкставае паведамленне на працоўны мабільны тэлефон"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"Тэкставае паведамленне на працоўны пэйджар"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"Напiсаць тэкставае паведамленне: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"Паведамленне MMS"</string>
     <string name="sms" msgid="1756857139634224222">"Тэкставае паведамленне"</string>
     <string name="email_home" msgid="8573740658148184279">"Паведамленне на хатні адрас электроннай пошты"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Адправіць электронную пошту на мабільны адрас"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"Паказаць толькі прапушчаныя"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Паказаць толькі галас. пошту"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Паказаць усе выклікі"</string>
-    <string name="status_available" msgid="5586870015822828392">"Даступны"</string>
-    <string name="status_away" msgid="1838861100379804730">"Адсутнічае"</string>
-    <string name="status_busy" msgid="9147992455450257136">"Заняты"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Прайграць паведамленне галасавой пошты"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Уваходныя выклікі"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Выходны выклік"</string>

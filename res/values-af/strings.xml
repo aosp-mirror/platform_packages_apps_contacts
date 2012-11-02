@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Alle kontakte"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groepe"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Gunstelinge"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vee dikwels-gebruikte kontakte uit?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Jy gaan die lys van dikwels-gebruikte kontakte in die Mense- en Foonprogramme uitvee, en e-posprogramme dwing om jou adresvoorkeure van nuuts af te leer."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Vee tans dikwels-gebruikte kontakte uit..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Stemboodskap"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Name van jou kontakte"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Voeg 2-sek.-pouse by"</string>
     <string name="add_wait" msgid="3360818652790319634">"Voeg wagtyd by"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"Kies nommer"</string>
     <string name="call_settings" msgid="7666474782093693667">"Instellings"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"Kies nommer"</string>
-    <string name="make_primary" msgid="5829291915305113983">"Onthou hierdie keuse"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Geen program is gevind om hierdie aksie te hanteer nie."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Geen naam nie)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Rekeninge"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"As jy \'<xliff:g id="GROUP">%s</xliff:g>\' uit sinkronisering verwyder, sal dit ook enige ongegroepeerde kontakte uit sinkronisering verwyder."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Net tablet, ongesinkroniseer"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Net foon, ongesinkroniseer"</string>
-    <string name="call_custom" msgid="7756571794763171802">"Bel <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Bel tuis"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Bel selfoon"</string>
-    <string name="call_work" msgid="5328785911463744028">"Bel werk"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Bel werkfaks"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"Bel huisfaks"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Bel roeper"</string>
-    <string name="call_other" msgid="8563753966926932052">"Bel"</string>
-    <string name="call_callback" msgid="1910165691349426858">"Bel - terugbel"</string>
-    <string name="call_car" msgid="3280537320306436445">"Bel motor"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"Bel maatskappy, hoof"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"Bel ISDN"</string>
-    <string name="call_main" msgid="6082900571803441339">"Bel hoof"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"Bel faks"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Bel radio"</string>
-    <string name="call_telex" msgid="2223170774548648114">"Bel teleks"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"Oproep-TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Bel werkselfoon"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Bel werkroeper"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"Bel <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Bel MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Teks <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"Teks - tuis"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"Teks - selfoon"</string>
-    <string name="sms_work" msgid="2269624156655267740">"Teks - werk"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"Teks - werkfaks"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"Teks - huisfaks"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"Teks - roeper"</string>
-    <string name="sms_other" msgid="806127844607642331">"Teks"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"Teks-terugbel"</string>
-    <string name="sms_car" msgid="7444227058437359641">"Teks - motor"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Teks - maatskappy, hoof"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"Teks - ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"Teks - hoof"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"Teksfaks"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"Teks - radio"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"Teks - teleks"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"Teks - TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Teks - werkselfoon"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"Teks - werkroeper"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"Teks <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"Teks - MMS"</string>
     <string name="sms" msgid="1756857139634224222">"Teksboodskap"</string>
     <string name="email_home" msgid="8573740658148184279">"E-postuis"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-pos - mobiel"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"Wys slegs misgeloop"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Wys net stemboodskappe"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Wys alle oproepe"</string>
-    <string name="status_available" msgid="5586870015822828392">"Beskikbaar"</string>
-    <string name="status_away" msgid="1838861100379804730">"Weg"</string>
-    <string name="status_busy" msgid="9147992455450257136">"Besig"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Speel stemboodskap"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Inkomende oproep"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Uitgaande oproep"</string>

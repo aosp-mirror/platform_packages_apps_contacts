@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Tất cả liên hệ"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Nhóm"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Mục ưa thích"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Xóa danh sách liên hệ thường xuyên?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"Bạn sẽ xóa danh sách liên hệ thường xuyên trong ứng dụng Liên hệ và điện thoại cũng như buộc các ứng dụng email phải tìm hiểu các tùy chọn gửi của bạn lại từ đầu."</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Đang xóa DS liên hệ thường xuyên…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Thư thoại"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Tên danh bạ của bạn"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Thêm 2 giây dừng"</string>
     <string name="add_wait" msgid="3360818652790319634">"Thêm chờ"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"Chọn số"</string>
     <string name="call_settings" msgid="7666474782093693667">"Cài đặt"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"Chọn số"</string>
-    <string name="make_primary" msgid="5829291915305113983">"Nhớ lựa chọn này"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Không tìm thấy ứng dụng nào để xử lý tác vụ này."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Không có tên)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Tài khoản"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Xóa \"<xliff:g id="GROUP">%s</xliff:g>\" khỏi đồng bộ hóa cũng sẽ xóa bất kỳ địa chỉ liên hệ nào đã được tách nhóm khỏi đồng bộ hóa."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Chỉ trên máy tính bảng, chưa được đồng bộ hóa"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Chỉ trên điện thoại, chưa đồng bộ hóa"</string>
-    <string name="call_custom" msgid="7756571794763171802">"Gọi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Gọi số điện thoại nhà riêng"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"Gọi số điện thoại di động"</string>
-    <string name="call_work" msgid="5328785911463744028">"Gọi số điện thoại cơ quan"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"Gọi số fax cơ quan"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"Gọi số fax nhà riêng"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Gọi số máy nhắn tin"</string>
-    <string name="call_other" msgid="8563753966926932052">"Gọi"</string>
-    <string name="call_callback" msgid="1910165691349426858">"Gọi số gọi lại"</string>
-    <string name="call_car" msgid="3280537320306436445">"Gọi số điện thoại trên ô tô"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"Gọi số điện thoại chính của công ty"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"Gọi ISDN"</string>
-    <string name="call_main" msgid="6082900571803441339">"Gọi số điện thoại chính"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"Gọi số fax"</string>
-    <string name="call_radio" msgid="8296755876398357063">"Gọi số điện thoại radio"</string>
-    <string name="call_telex" msgid="2223170774548648114">"Gọi số telex"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"Gọi số điện thoại TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Gọi số điện thoại di động tại cơ quan"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Gọi số máy nhắn tin tại cơ quan"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"Gọi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"Gọi MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Nhắn tin <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"Nhắn tin tới số điện thoại nhà riêng"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"Nhắn tin tới số điện thoại di động"</string>
-    <string name="sms_work" msgid="2269624156655267740">"Nhắn tin tới số điện thoại cơ quan"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"Nhắn tin tới số fax cơ quan"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"Nhắn tin tới số fax nhà riêng"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"Nhắn tin tới số máy nhắn tin"</string>
-    <string name="sms_other" msgid="806127844607642331">"Nhắn tin"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"Nhắn tin tới số gọi lại"</string>
-    <string name="sms_car" msgid="7444227058437359641">"Nhắn tin tới số điện thoại trên ô tô"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Nhắn tin tới số điện thoại chính của công ty"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"Nhắn tin tới số điện thoại ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"Nhắn tin tới số điện thoại chính"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"Nhắn tin tới số fax"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"Nhắn tin tới số điện thoại radio"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"Nhắn tin tới số telex"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"Nhắn tới số TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Nhắn tới số điện thoại di động tại cơ quan"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"Nhắn tin tới số máy nhắn tin tại cơ quan"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"Nhắn tin <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"Nhắn tin tới số điện thoại MMS"</string>
     <string name="sms" msgid="1756857139634224222">"Tin nhắn văn bản"</string>
     <string name="email_home" msgid="8573740658148184279">"Gửi email tới địa chỉ email nhà riêng"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Gửi email tới địa chỉ email điện thoại di động"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"Chỉ hiển thị cuộc gọi nhỡ"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Chỉ hiển thị thư thoại"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Hiển thị tất cả cuộc gọi"</string>
-    <string name="status_available" msgid="5586870015822828392">"Có mặt"</string>
-    <string name="status_away" msgid="1838861100379804730">"Vắng mặt"</string>
-    <string name="status_busy" msgid="9147992455450257136">"Bận"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Phát thư thoại"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Cuộc gọi đến"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Cuộc gọi đi"</string>

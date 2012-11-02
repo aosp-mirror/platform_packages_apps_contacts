@@ -136,9 +136,6 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"ที่อยู่ติดต่อทั้งหมด"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"กลุ่ม"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"รายการโปรด"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ หรือไม่"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอป People and Phone และบังคับให้แอปอีเมลเรียนรู้การกำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
-    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"กำลังล้างผู้ที่คุณติดต่อด้วยบ่อยๆ…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"ข้อความเสียง"</string>
@@ -263,10 +260,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"ชื่อของรายชื่อในสมุดโทรศัพท์ของคุณ"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"เพิ่มช่วงคั่น 2 วินาที"</string>
     <string name="add_wait" msgid="3360818652790319634">"เพิ่มการรอ"</string>
-    <string name="call_disambig_title" msgid="4392886850104795739">"เลือกหมายเลข"</string>
     <string name="call_settings" msgid="7666474782093693667">"การตั้งค่า"</string>
-    <string name="sms_disambig_title" msgid="5846266399240630846">"เลือกหมายเลข"</string>
-    <string name="make_primary" msgid="5829291915305113983">"จำตัวเลือกนี้"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ไม่พบแอปพลิเคชันสำหรับการทำงานนี้"</string>
     <string name="missing_name" msgid="8745511583852904385">"(ไม่มีชื่อ)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"บัญชี"</string>
@@ -295,48 +289,6 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"การนำ \"<xliff:g id="GROUP">%s</xliff:g>\" ออกจากการซิงค์จะนำรายชื่อติดต่อที่ไม่ได้จัดกลุ่มไว้ออกจากการซิงค์ด้วย"</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"แท็บเล็ตเท่านั้น ไม่ซิงค์"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"โทรศัพท์เท่านั้น ไม่ซิงค์"</string>
-    <string name="call_custom" msgid="7756571794763171802">"โทรหา <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"โทรเข้าบ้าน"</string>
-    <string name="call_mobile" msgid="7502236805487609178">"โทรเข้ามือถือ"</string>
-    <string name="call_work" msgid="5328785911463744028">"โทรหาที่ทำงาน"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"โทรหาแฟกซ์ที่ทำงาน"</string>
-    <string name="call_fax_home" msgid="8342175628887571876">"โทรเข้าหมายเลขแฟกซ์ที่บ้าน"</string>
-    <string name="call_pager" msgid="9003902812293983281">"โทรหาเพจเจอร์"</string>
-    <string name="call_other" msgid="8563753966926932052">"โทร"</string>
-    <string name="call_callback" msgid="1910165691349426858">"โทรหาหมายเลขติดต่อกลับ"</string>
-    <string name="call_car" msgid="3280537320306436445">"โทรเข้าโทรศัพท์ในรถ"</string>
-    <string name="call_company_main" msgid="6105120947138711257">"โทรหาโทรศัพท์หลักของบริษัท"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"โทรหา ISDN"</string>
-    <string name="call_main" msgid="6082900571803441339">"โทรเข้าโทรศัพท์หลัก"</string>
-    <string name="call_other_fax" msgid="5745314124619636674">"โทรเข้าหมายเลขแฟกซ์"</string>
-    <string name="call_radio" msgid="8296755876398357063">"โทรเข้าวิทยุ"</string>
-    <string name="call_telex" msgid="2223170774548648114">"โทรเข้าหมายเลขเทเล็กซ์"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"โทรหา TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"โทรเข้ามือถือที่ทำงาน"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"โทรเข้าเพจเจอร์ที่ทำงาน"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"โทรหา <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="6274041545876221437">"โทรหา MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"ส่งข้อความถึง <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"ส่งข้อความเข้าโทรศัพท์บ้าน"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"ส่งข้อความเข้ามือถือ"</string>
-    <string name="sms_work" msgid="2269624156655267740">"ส่งข้อความถึงโทรศัพท์ที่ทำงาน"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"ส่งข้อความถึงแฟกซ์ที่ทำงาน"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"ส่งข้อความเข้าหมายเลขแฟกซ์บ้าน"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"ส่งข้อความถึงเพจเจอร์"</string>
-    <string name="sms_other" msgid="806127844607642331">"ข้อความ"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"ส่งข้อความถึงหมายเลขติดต่อกลับ"</string>
-    <string name="sms_car" msgid="7444227058437359641">"ส่งข้อความถึงรถยนต์"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"ส่งข้อความเข้าโทรศัพท์หลักของบริษัท"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"ส่งข้อความถึง ISDN"</string>
-    <string name="sms_main" msgid="8621625784504541679">"ส่งข้อความถึงโทรศัพท์หลัก"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"ส่งข้อความถึงหมายเลขแฟกซ์"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"ส่งข้อความถึงวิทยุ"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"ส่งข้อความถึงเทเล็กซ์"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"ส่งข้อความถึง TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"ส่งข้อความถึงโทรศัพท์มือถือที่ทำงาน"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"ส่งข้อความเข้าเพจเจอร์ที่ทำงาน"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"ส่งข้อความถึง MMS"</string>
     <string name="sms" msgid="1756857139634224222">"ข้อความตัวอักษร"</string>
     <string name="email_home" msgid="8573740658148184279">"ส่งไปที่อีเมลส่วนตัว"</string>
     <string name="email_mobile" msgid="2042889209787989814">"ส่งอีเมลเข้ามือถือ"</string>
@@ -489,9 +441,6 @@
     <string name="menu_show_missed_only" msgid="154473166059743996">"แสดงสายที่ไม่ได้รับเท่านั้น"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"แสดงเฉพาะข้อความเสียง"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"แสดงการโทรทั้งหมด"</string>
-    <string name="status_available" msgid="5586870015822828392">"ว่าง"</string>
-    <string name="status_away" msgid="1838861100379804730">"ไม่อยู่"</string>
-    <string name="status_busy" msgid="9147992455450257136">"ไม่ว่าง"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"เล่นข้อความเสียง"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"สายเรียกเข้า"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"สายโทรออก"</string>
