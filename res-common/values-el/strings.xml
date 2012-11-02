@@ -18,4 +18,58 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Το κείμενο αντιγράφηκε"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Κλήση <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Κλήση οικίας"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Κλήση κινητής συσκευής"</string>
+    <string name="call_work" msgid="8299062439076337075">"Κλήση εργασίας"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Κλήση φαξ εργασίας"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Κλήση φαξ οικίας"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Κλήση βομβητή"</string>
+    <string name="call_other" msgid="4472141328347894937">"Κλήση"</string>
+    <string name="call_callback" msgid="687494744634190411">"Κλήση αριθμού επανάκλησης"</string>
+    <string name="call_car" msgid="9078083109758282133">"Κλήση τηλεφώνου αυτοκινήτου"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Κλήση κύριας εταιρικής γραμμής"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Κλήση ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"Κλήση κύριου αριθμού"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Κλήση φαξ"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Κλήση πομπού"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Κλήση σε τηλέτυπο"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Κλήση σε τηλέφωνο TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Κλήση κινητού τηλεφώνου εργασίας"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Κλήση βομβητή εργασίας"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Κλήση <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Κλήση MMS"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Αποστολή μηνύματος κειμένου προς <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Αποστολή μηνύματος κειμένου προς οικία"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Αποστολή μηνύματος κειμένου προς κινητή συσκευή"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Αποστολή μηνύματος κειμένου προς εργασία"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Αποστολή μηνύματος κειμένου προς φαξ εργασίας"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Αποστολή μηνύματος κειμένου προς φαξ οικίας"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Αποστολή μηνύματος κειμένου προς βομβητή"</string>
+    <string name="sms_other" msgid="910895193552957097">"Κείμενο"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Αποστολή μηνύματος κειμένου σε αριθμό επανάκλησης"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Αποστολή μηνύματος κειμένου προς τηλέφωνο αυτοκινήτου"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Αποστολή μηνύματος κειμένου προς κύρια εταιρική γραμμή"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Αποστολή κειμένου σε ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Αποστολή μηνύματος κειμένου προς κύριο αριθμό"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Αποστολή μηνύματος κειμένου σε φαξ"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Αποστολή μηνύματος κειμένου προς πομπό"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Αποστολή μηνύματος κειμένου σε τηλέτυπο"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Αποστολή μηνύματος κειμένου προς τηλέφωνο TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Αποστολή μηνύματος κειμένου προς κινητό τηλέφωνο εργασίας"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Αποστολή μηνύματος κειμένου προς βομβητή εργασίας"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"Αποστολή μηνύματος προς <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Αποστολή μηνύματος κειμένου ως MMS"</string>
+    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <skip />
+    <!-- no translation found for status_available (4832569677396634846) -->
+    <skip />
+    <!-- no translation found for status_away (6267905184545881094) -->
+    <skip />
+    <!-- no translation found for status_busy (7111912905211403545) -->
+    <skip />
 </resources>

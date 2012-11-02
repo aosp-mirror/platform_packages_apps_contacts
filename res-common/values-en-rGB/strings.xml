@@ -18,4 +18,58 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Text copied"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Call <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Call home"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Call mobile"</string>
+    <string name="call_work" msgid="8299062439076337075">"Call work"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Call work fax"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Call home fax"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Call pager"</string>
+    <string name="call_other" msgid="4472141328347894937">"Call"</string>
+    <string name="call_callback" msgid="687494744634190411">"Call callback"</string>
+    <string name="call_car" msgid="9078083109758282133">"Call car"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Call company main"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Call ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"Call main"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Call fax"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Call radio"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Call telex"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Call TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Call work mobile"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Call work pager"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Call <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Call MMS"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Text <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Text home"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Text mobile"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Text work"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Text work fax"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Text home fax"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Text pager"</string>
+    <string name="sms_other" msgid="910895193552957097">"Text"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Text callback"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Text car"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Text company main"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Text ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Text main"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Text fax"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Text radio"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Text telex"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Text TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Text work mobile"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Text work pager"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"Text <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Text MMS"</string>
+    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <skip />
+    <!-- no translation found for status_available (4832569677396634846) -->
+    <skip />
+    <!-- no translation found for status_away (6267905184545881094) -->
+    <skip />
+    <!-- no translation found for status_busy (7111912905211403545) -->
+    <skip />
 </resources>

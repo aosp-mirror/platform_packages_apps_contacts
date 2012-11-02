@@ -18,4 +18,100 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Текст скопирован"</string>
+    <!-- no translation found for call_custom (2786306789889210756) -->
+    <skip />
+    <!-- no translation found for call_home (1479549630992276827) -->
+    <skip />
+    <!-- no translation found for call_mobile (8618334085824709009) -->
+    <skip />
+    <!-- no translation found for call_work (8299062439076337075) -->
+    <skip />
+    <!-- no translation found for call_fax_work (3770754834467992571) -->
+    <skip />
+    <!-- no translation found for call_fax_home (6219051113573396065) -->
+    <skip />
+    <!-- no translation found for call_pager (3038080882899955112) -->
+    <skip />
+    <!-- no translation found for call_other (4472141328347894937) -->
+    <skip />
+    <!-- no translation found for call_callback (687494744634190411) -->
+    <skip />
+    <!-- no translation found for call_car (9078083109758282133) -->
+    <skip />
+    <!-- no translation found for call_company_main (8768047233970315359) -->
+    <skip />
+    <!-- no translation found for call_isdn (3342482563847537747) -->
+    <skip />
+    <!-- no translation found for call_main (4640261071249938558) -->
+    <skip />
+    <!-- no translation found for call_other_fax (2536328553125487877) -->
+    <skip />
+    <!-- no translation found for call_radio (9055749313292712021) -->
+    <skip />
+    <!-- no translation found for call_telex (2909886619224843563) -->
+    <skip />
+    <!-- no translation found for call_tty_tdd (6704940636171078852) -->
+    <skip />
+    <!-- no translation found for call_work_mobile (4408630608955148641) -->
+    <skip />
+    <!-- no translation found for call_work_pager (3036932765279753793) -->
+    <skip />
+    <!-- no translation found for call_assistant (5188990854852312696) -->
+    <skip />
+    <!-- no translation found for call_mms (8998771923464696960) -->
+    <skip />
+    <!-- no translation found for sms_custom (4601748252470175865) -->
+    <skip />
+    <!-- no translation found for sms_home (7765831490534280540) -->
+    <skip />
+    <!-- no translation found for sms_mobile (8387632124165893103) -->
+    <skip />
+    <!-- no translation found for sms_work (3910570578912367742) -->
+    <skip />
+    <!-- no translation found for sms_fax_work (909086167151248212) -->
+    <skip />
+    <!-- no translation found for sms_fax_home (4145442497939634875) -->
+    <skip />
+    <!-- no translation found for sms_pager (5664381349583724906) -->
+    <skip />
+    <!-- no translation found for sms_other (910895193552957097) -->
+    <skip />
+    <!-- no translation found for sms_callback (728414485478941361) -->
+    <skip />
+    <!-- no translation found for sms_car (8543669230270954512) -->
+    <skip />
+    <!-- no translation found for sms_company_main (5441902128445061862) -->
+    <skip />
+    <!-- no translation found for sms_isdn (7142483128948042667) -->
+    <skip />
+    <!-- no translation found for sms_main (6815987840926184815) -->
+    <skip />
+    <!-- no translation found for sms_other_fax (8649822154879781466) -->
+    <skip />
+    <!-- no translation found for sms_radio (8750339218480745940) -->
+    <skip />
+    <!-- no translation found for sms_telex (5469333785775443999) -->
+    <skip />
+    <!-- no translation found for sms_tty_tdd (5057886576150816002) -->
+    <skip />
+    <!-- no translation found for sms_work_mobile (8426872094268475047) -->
+    <skip />
+    <!-- no translation found for sms_work_pager (499303540738557836) -->
+    <skip />
+    <!-- no translation found for sms_assistant (2677586547377136683) -->
+    <skip />
+    <!-- no translation found for sms_mms (4887206338311086612) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <skip />
+    <!-- no translation found for status_available (4832569677396634846) -->
+    <skip />
+    <!-- no translation found for status_away (6267905184545881094) -->
+    <skip />
+    <!-- no translation found for status_busy (7111912905211403545) -->
+    <skip />
 </resources>
