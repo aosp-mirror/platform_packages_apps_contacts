@@ -28,26 +28,26 @@ import android.provider.ContactsContract.StatusUpdates;
 import android.test.LoaderTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import com.android.contacts.common.test.mocks.ContactsMockContext;
+import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.BaseAccountType;
 import com.android.contacts.test.InjectedServices;
-import com.android.contacts.tests.mocks.ContactsAccountManagerMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
-import com.android.contacts.common.test.mocks.MockContentProvider;
 
 /**
  * Runs ContactLoader tests for the the contact-detail and editor view.
  */
 @LargeTest
 public class ContactLoaderTest extends LoaderTestCase {
-    private ContactsAccountManagerMockContext mMockContext;
+    private ContactsMockContext mMockContext;
     private MockContentProvider mContactsProvider;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        mMockContext = new ContactsAccountManagerMockContext(getContext());
+        mMockContext = new ContactsMockContext(getContext());
         mContactsProvider = mMockContext.getContactsProvider();
 
         InjectedServices services = new InjectedServices();
@@ -62,7 +62,7 @@ public class ContactLoaderTest extends LoaderTestCase {
         AccountWithDataSet account =
                 new AccountWithDataSet("mockAccountName", "mockAccountType", null);
 
-        mMockContext.setMockAccountTypeManager(
+        AccountTypeManager.setInstanceForTest(
                 new MockAccountTypeManager(
                         new AccountType[]{accountType}, new AccountWithDataSet[]{account}));
     }

@@ -41,7 +41,6 @@ public final class ContactsApplication extends Application {
     private static final boolean ENABLE_FRAGMENT_LOG = false; // Don't submit with true
 
     private static InjectedServices sInjectedServices;
-    private AccountTypeManager mAccountTypeManager;
     private ContactPhotoManager mContactPhotoManager;
     private ContactListFilterController mContactListFilterController;
 
@@ -87,13 +86,6 @@ public final class ContactsApplication extends Application {
             if (service != null) {
                 return service;
             }
-        }
-
-        if (AccountTypeManager.ACCOUNT_TYPE_SERVICE.equals(name)) {
-            if (mAccountTypeManager == null) {
-                mAccountTypeManager = AccountTypeManager.createAccountTypeManager(this);
-            }
-            return mAccountTypeManager;
         }
 
         if (ContactPhotoManager.CONTACT_PHOTO_SERVICE.equals(name)) {
