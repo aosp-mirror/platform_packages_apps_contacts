@@ -16,13 +16,12 @@
 
 <resources>
 
-    <!-- Colors in the contact browser list -->
-    <color name="contact_count_text_color">#AAAAAA</color>
+    <!-- Padding between the action bar's bottom edge and the first header
+         in contacts/group lists. -->
+    <dimen name="list_header_extra_top_padding">0dip</dimen>
 
-    <!-- Color of the theme of the People app -->
-    <color name="people_app_theme_color">#33B5E5</color>
-
-    <!-- Color of image view placeholder. -->
-    <color name="image_placeholder">#DDDDDD</color>
-
+    <!-- Minimum height used with @drawable/list_section_divider_holo_custom.
+         Right now the drawable has implicit 32dip minimal height, which is confusing.
+         This value is for making the hidden configuration explicit in xml. -->
+    <dimen name="list_section_divider_min_height">32dip</dimen>
 </resources>
