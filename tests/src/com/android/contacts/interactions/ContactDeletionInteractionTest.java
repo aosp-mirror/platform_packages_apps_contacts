@@ -26,17 +26,16 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
+import com.android.contacts.common.test.FragmentTestActivity;
+import com.android.contacts.common.test.IntegrationTestUtils;
+import com.android.contacts.common.test.mocks.ContactsMockContext;
+import com.android.contacts.common.test.mocks.MockContentProvider;
+import com.android.contacts.common.test.mocks.MockContentProvider.Query;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.BaseAccountType;
-import com.android.contacts.common.test.FragmentTestActivity;
 import com.android.contacts.test.InjectedServices;
-import com.android.contacts.tests.mocks.ContactsAccountManagerMockContext;
-import com.android.contacts.common.test.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
-import com.android.contacts.common.test.mocks.MockContentProvider;
-import com.android.contacts.common.test.mocks.MockContentProvider.Query;
-import com.android.contacts.common.test.IntegrationTestUtils;
 
 /**
  * Tests for {@link ContactDeletionInteraction}.
@@ -80,7 +79,7 @@ public class ContactDeletionInteractionTest
         mUtils = new IntegrationTestUtils(getInstrumentation());
         mUtils.acquireScreenWakeLock(getInstrumentation().getTargetContext());
 
-        mContext = new ContactsAccountManagerMockContext(getInstrumentation().getTargetContext());
+        mContext = new ContactsMockContext(getInstrumentation().getTargetContext());
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
 
@@ -99,11 +98,11 @@ public class ContactDeletionInteractionTest
             }
         };
         writableAccountType.accountType = WRITABLE_ACCOUNT_TYPE;
-
-        services.setSystemService(AccountTypeManager.ACCOUNT_TYPE_SERVICE,
-                new MockAccountTypeManager(
-                        new AccountType[]{writableAccountType, readOnlyAccountType}, null));
         ContactsApplication.injectServices(services);
+
+        final MockAccountTypeManager mockManager = new MockAccountTypeManager(
+                new AccountType[] { writableAccountType, readOnlyAccountType }, null);
+        AccountTypeManager.setInstanceForTest(mockManager);
         mContactsProvider = mContext.getContactsProvider();
     }
 

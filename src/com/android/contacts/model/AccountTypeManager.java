@@ -53,6 +53,7 @@ import com.android.contacts.model.account.ExternalAccountType;
 import com.android.contacts.model.account.FallbackAccountType;
 import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.util.Constants;
 import com.android.internal.util.Objects;
 import com.google.common.annotations.VisibleForTesting;
@@ -77,25 +78,35 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class AccountTypeManager {
     static final String TAG = "AccountTypeManager";
 
-    public static final String ACCOUNT_TYPE_SERVICE = "contactAccountTypes";
+    private static final Object mInitializationLock = new Object();
+    private static AccountTypeManager mAccountTypeManager;
 
     /**
      * Requests the singleton instance of {@link AccountTypeManager} with data bound from
      * the available authenticators. This method can safely be called from the UI thread.
      */
     public static AccountTypeManager getInstance(Context context) {
-        context = context.getApplicationContext();
-        AccountTypeManager service =
-                (AccountTypeManager) context.getSystemService(ACCOUNT_TYPE_SERVICE);
-        if (service == null) {
-            service = createAccountTypeManager(context);
-            Log.e(TAG, "No account type service in context: " + context);
+        synchronized (mInitializationLock) {
+            if (mAccountTypeManager == null) {
+                context = context.getApplicationContext();
+                mAccountTypeManager = new AccountTypeManagerImpl(context);
+            }
         }
-        return service;
+        return mAccountTypeManager;
     }
 
-    public static synchronized AccountTypeManager createAccountTypeManager(Context context) {
-        return new AccountTypeManagerImpl(context);
+    /**
+     * Set the instance of account type manager.  This is only for and should only be used by unit
+     * tests.  While having this method is not ideal, it's simpler than the alternative of
+     * holding this as a service in the ContactsApplication context class.
+     *
+     * @param mockManager The mock AccountTypeManager.
+     */
+    @NeededForTesting
+    public static void setInstanceForTest(AccountTypeManager mockManager) {
+        synchronized (mInitializationLock) {
+            mAccountTypeManager = mockManager;
+        }
     }
 
     /**
