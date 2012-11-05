@@ -153,10 +153,6 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="DirectoryHeader" parent="PeopleTheme">
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent.NoTitleBar">
     </style>
 

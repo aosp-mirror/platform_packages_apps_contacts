@@ -24,7 +24,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 
-import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.common.preference.ContactsPreferences;
 
 import java.util.ArrayList;
 import java.util.List;

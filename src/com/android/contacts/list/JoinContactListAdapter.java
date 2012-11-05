@@ -31,6 +31,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.list.ContactListAdapter;
+import com.android.contacts.common.list.ContactListItemView;
+import com.android.contacts.common.list.DirectoryListLoader;
 
 public class JoinContactListAdapter extends ContactListAdapter {
 

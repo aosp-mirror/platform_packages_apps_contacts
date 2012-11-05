@@ -49,14 +49,8 @@
     <!-- Colour of voicemail progress bar to the left of position indicator. -->
     <color name="voicemail_playback_seek_bar_already_played">#ccffffff</color>
 
-    <!-- Color of the theme of the People app -->
-    <color name="people_app_theme_color">#33B5E5</color>
-
     <!-- Secondary text color in the Phone app -->
     <color name="dialtacts_secondary_text_color">#888888</color>
-
-    <!-- Colors in the contact browser list -->
-    <color name="contact_count_text_color">#AAAAAA</color>
 
     <!-- Color of the text of the tab carousel in the contact details  -->
     <color name="detail_tab_carousel_tab_label_color">#EEEEEE</color>

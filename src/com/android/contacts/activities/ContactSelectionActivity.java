@@ -46,7 +46,7 @@ import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.list.DirectoryListLoader;
+import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.list.EmailAddressPickerFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnEmailAddressPickerActionListener;

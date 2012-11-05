@@ -23,7 +23,7 @@
     <!-- See group_browse_list_item.xml for the reason for the transparent android:listSelector -->
     <view
       android:id="@+id/list"
-      class="com.android.contacts.widget.AutoScrollListView"
+      class="com.android.contacts.common.list.AutoScrollListView"
       android:layout_width="match_parent"
       android:layout_height="0dip"
       android:paddingLeft="16dip"

@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountWithDataSet;
 
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Manages {@link ContactListFilter}. All methods must be called from UI thread.
+ * Manages {@link com.android.contacts.common.list.ContactListFilter}. All methods must be called from UI thread.
  */
 public abstract class ContactListFilterController {
 

@@ -26,6 +26,9 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.contacts.common.list.ContactEntryListAdapter;
+import com.android.contacts.common.list.ContactListItemView;
+
 /**
  * A cursor adapter for the ContactMethods.CONTENT_TYPE content type.
  */

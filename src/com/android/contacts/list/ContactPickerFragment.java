@@ -24,6 +24,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.list.ContactEntryListAdapter;
+import com.android.contacts.common.list.ContactListAdapter;
+import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.DefaultContactListAdapter;
+import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
 /**

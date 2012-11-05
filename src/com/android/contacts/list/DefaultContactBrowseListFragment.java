@@ -32,6 +32,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.list.ContactListAdapter;
+import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.DefaultContactListAdapter;
+import com.android.contacts.common.list.ProfileAndContactsLoader;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.util.AccountFilterUtil;
 
