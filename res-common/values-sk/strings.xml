@@ -34,7 +34,7 @@
     <string name="call_other_fax" msgid="2536328553125487877">"Volať na fax"</string>
     <string name="call_radio" msgid="9055749313292712021">"Volať na rádiostanicu"</string>
     <string name="call_telex" msgid="2909886619224843563">"Volať na číslo Telex"</string>
-    <string name="call_tty_tdd" msgid="6704940636171078852">"Volať na číslo TTY / TDD"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Volať na číslo TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"Volať na pracovný mobil"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"Volať na pracovný pager"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Volať kontakt <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
@@ -49,27 +49,42 @@
     <string name="sms_other" msgid="910895193552957097">"Poslať správu"</string>
     <string name="sms_callback" msgid="728414485478941361">"Poslať správu na číslo spätného volania"</string>
     <string name="sms_car" msgid="8543669230270954512">"Poslať správu na telefón v aute"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"Poslať správu do firmy (hlavné)"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Poslať správu do firmy (hlavné číslo)"</string>
     <string name="sms_isdn" msgid="7142483128948042667">"Poslať správu na číslo ISDN"</string>
     <string name="sms_main" msgid="6815987840926184815">"Poslať správu na hlavné číslo"</string>
     <string name="sms_other_fax" msgid="8649822154879781466">"Poslať správu na fax"</string>
     <string name="sms_radio" msgid="8750339218480745940">"Poslať správu na rádiostanicu"</string>
     <string name="sms_telex" msgid="5469333785775443999">"Poslať správu na číslo Telex"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"Poslať správu na číslo TTY / TDD"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Poslať správu na číslo TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"Poslať správu na pracovný mobil"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"Poslať správu na pracovný pager"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Poslať správu kontaktu <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Poslať správu na číslo MMS"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vymazať často kontaktované osoby?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Vymažete zoznam často kontaktovaných osôb v aplikáciách Ľudia a Telefón a e-mailové aplikácie budú musieť vytvoriť predvoľby adresátov znova."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Mazanie často kontaktov. osôb..."</string>
+    <string name="status_available" msgid="4832569677396634846">"Som tu"</string>
+    <string name="status_away" msgid="6267905184545881094">"Som preč"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Nemám čas"</string>
+    <!-- no translation found for contactsList (7140022347217602605) -->
     <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
     <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <!-- no translation found for directory_search_label (4484648822765516947) -->
     <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
+    <!-- no translation found for local_search_label (9094584931063745728) -->
     <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"JA"</string>
+    <!-- no translation found for search_results_searching (9022794597388306615) -->
     <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
+    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
+    <skip />
+    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
+    <skip />
+    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
+    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
+    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
+    <skip />
+    <!-- no translation found for missing_name (2633118852693000081) -->
     <skip />
 </resources>

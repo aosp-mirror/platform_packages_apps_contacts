@@ -60,16 +60,24 @@
     <string name="sms_work_pager" msgid="499303540738557836">"שלח הודעת טקסט לזימונית של עבודה"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"שלח הודעת טקסט אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"שלח הודעת טקסט ל-MMS"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
-    <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
-    <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
-    <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"האם למחוק אנשי קשר קבועים?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"פעולה זו תמחק את רשימת אנשי הקשר הקבועים ביישומים \'אנשים\' ו\'טלפון\' ותאלץ את יישומי הדוא\"ל ללמוד מהתחלה את העדפות הכתובות שלך."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"מוחק אנשי קשר קבועים…"</string>
+    <string name="status_available" msgid="4832569677396634846">"זמין"</string>
+    <string name="status_away" msgid="6267905184545881094">"לא נמצא"</string>
+    <string name="status_busy" msgid="7111912905211403545">"לא פנוי"</string>
+    <string name="contactsList" msgid="7140022347217602605">"אנשי קשר"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"אחר"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"ספריה"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"כל אנשי הקשר"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"אני"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"מחפש…"</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"נמצאו יותר מ-<xliff:g id="COUNT">%d</xliff:g>."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"אין אנשי קשר"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="1013734912609351182">"נמצא אחד"</item>
+    <item quantity="other" msgid="4649647748678161594">"נמצאו <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"קשר מהיר עבור <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(ללא שם)"</string>
 </resources>

@@ -60,16 +60,24 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Напiсаць тэкставае паведамленне на працоўны пэйджар"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Напiсаць тэкставае паведамленне <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Тэкставае паведамленне MMS"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
-    <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
-    <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
-    <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
-    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Выдалiць частыя кантакты?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Вы выдалiце найбольш частыя кантакты ў прыкладаннях \"Кантакты\" i \"Тэлефон\" i прымусiце прыкладаннi па працы з электроннай поштай вывучыць вашы налады адрасацыi з нуля."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Выдаленне частых кантактаў..."</string>
+    <string name="status_available" msgid="4832569677396634846">"Даступны"</string>
+    <string name="status_away" msgid="6267905184545881094">"Адсутнічае"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Заняты"</string>
+    <string name="contactsList" msgid="7140022347217602605">"Кантакты"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Іншае"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Дырэкторыя"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Усе кантакты"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Я"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Ідзе пошук..."</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"Знойдзена вынікаў: больш за <xliff:g id="COUNT">%d</xliff:g>."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Кантактаў няма"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="1013734912609351182">"знойдзены 1"</item>
+    <item quantity="other" msgid="4649647748678161594">"Знойдзена: <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Хуткі кантакт для карыстальніка \"<xliff:g id="NAME">%1$s</xliff:g>\""</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Без назвы)"</string>
 </resources>

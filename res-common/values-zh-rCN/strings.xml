@@ -39,37 +39,52 @@
     <string name="call_work_pager" msgid="3036932765279753793">"拨打公司寻呼机号码"</string>
     <string name="call_assistant" msgid="5188990854852312696">"拨打<xliff:g id="ASSISTANT">%s</xliff:g>的电话号码"</string>
     <string name="call_mms" msgid="8998771923464696960">"拨打彩信电话号码"</string>
-    <string name="sms_custom" msgid="4601748252470175865">"向<xliff:g id="CUSTOM">%s</xliff:g>的电话号码发送短信"</string>
-    <string name="sms_home" msgid="7765831490534280540">"向家庭电话号码发送短信"</string>
-    <string name="sms_mobile" msgid="8387632124165893103">"向手机发送短信"</string>
-    <string name="sms_work" msgid="3910570578912367742">"向公司电话号码发送短信"</string>
-    <string name="sms_fax_work" msgid="909086167151248212">"向公司传真号码发送短信"</string>
-    <string name="sms_fax_home" msgid="4145442497939634875">"向家庭传真号码发送短信"</string>
-    <string name="sms_pager" msgid="5664381349583724906">"向寻呼机号码发送短信"</string>
-    <string name="sms_other" msgid="910895193552957097">"发送短信"</string>
-    <string name="sms_callback" msgid="728414485478941361">"向回拨号码发送短信"</string>
-    <string name="sms_car" msgid="8543669230270954512">"向车载电话号码发送短信"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"向公司总机号码发送短信"</string>
-    <string name="sms_isdn" msgid="7142483128948042667">"向 ISDN 电话号码发送短信"</string>
-    <string name="sms_main" msgid="6815987840926184815">"向主电话号码发送短信"</string>
-    <string name="sms_other_fax" msgid="8649822154879781466">"向传真号码发送短信"</string>
-    <string name="sms_radio" msgid="8750339218480745940">"向无线通讯电话号码发送短信"</string>
-    <string name="sms_telex" msgid="5469333785775443999">"向电报号码发送短信"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"向 TTY/TDD 电话号码发送短信"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"向公司手机发送短信"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"向公司寻呼机号码发送短信"</string>
-    <string name="sms_assistant" msgid="2677586547377136683">"向<xliff:g id="ASSISTANT">%s</xliff:g>的手机发送短信"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"向彩信电话号码发送短信"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <string name="sms_custom" msgid="4601748252470175865">"向<xliff:g id="CUSTOM">%s</xliff:g>的电话号码发短信"</string>
+    <string name="sms_home" msgid="7765831490534280540">"向家庭电话号码发短信"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"向手机发短信"</string>
+    <string name="sms_work" msgid="3910570578912367742">"向公司电话号码发短信"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"向公司传真号码发短信"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"向家庭传真号码发短信"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"向寻呼机号码发短信"</string>
+    <string name="sms_other" msgid="910895193552957097">"发短信"</string>
+    <string name="sms_callback" msgid="728414485478941361">"向回拨号码发短信"</string>
+    <string name="sms_car" msgid="8543669230270954512">"向车载电话号码发短信"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"向公司总机号码发短信"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"向 ISDN 电话号码发短信"</string>
+    <string name="sms_main" msgid="6815987840926184815">"向主电话号码发短信"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"向传真号码发短信"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"向无线通讯电话号码发短信"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"向电报号码发短信"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"向 TTY/TDD 电话号码发短信"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"向公司手机发短信"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"向公司寻呼机号码发短信"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"向<xliff:g id="ASSISTANT">%s</xliff:g>发短信"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"向彩信电话号码发短信"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"是否清除常用联系人？"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"此操作会清除“联系人”和“拨号”应用中的常用联系人列表，并强制电子邮件应用重新获取您最常使用的联系地址。"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"正在清除常用联系人…"</string>
+    <string name="status_available" msgid="4832569677396634846">"在线"</string>
+    <string name="status_away" msgid="6267905184545881094">"离开"</string>
+    <string name="status_busy" msgid="7111912905211403545">"忙碌"</string>
+    <!-- no translation found for contactsList (7140022347217602605) -->
     <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
     <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <!-- no translation found for directory_search_label (4484648822765516947) -->
     <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
+    <!-- no translation found for local_search_label (9094584931063745728) -->
     <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"我"</string>
+    <!-- no translation found for search_results_searching (9022794597388306615) -->
     <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
+    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
+    <skip />
+    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
+    <skip />
+    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
+    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
+    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
+    <skip />
+    <!-- no translation found for missing_name (2633118852693000081) -->
     <skip />
 </resources>

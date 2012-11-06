@@ -60,16 +60,31 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ส่งข้อความเข้าเพจเจอร์ที่ทำงาน"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"ส่งข้อความถึง MMS"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ หรือไม่"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอปพลิเคชัน People และ Phone และบังคับให้แอปพลิเคชันอีเมลเรียนรู้ค่ากำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"กำลังล้างผู้ที่คุณติดต่อด้วยบ่อยๆ…"</string>
+    <string name="status_available" msgid="4832569677396634846">"พร้อมใช้งาน"</string>
+    <string name="status_away" msgid="6267905184545881094">"ไม่อยู่"</string>
+    <string name="status_busy" msgid="7111912905211403545">"ไม่ว่าง"</string>
+    <!-- no translation found for contactsList (7140022347217602605) -->
     <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
     <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <!-- no translation found for directory_search_label (4484648822765516947) -->
     <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
+    <!-- no translation found for local_search_label (9094584931063745728) -->
     <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"ฉัน"</string>
+    <!-- no translation found for search_results_searching (9022794597388306615) -->
     <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
+    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
+    <skip />
+    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
+    <skip />
+    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
+    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
+    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
+    <skip />
+    <!-- no translation found for missing_name (2633118852693000081) -->
     <skip />
 </resources>

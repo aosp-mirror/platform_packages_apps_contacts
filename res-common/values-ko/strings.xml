@@ -33,7 +33,7 @@
     <string name="call_main" msgid="4640261071249938558">"기본전화로 전화걸기"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"팩스로 전화걸기"</string>
     <string name="call_radio" msgid="9055749313292712021">"무선통신으로 전화걸기"</string>
-    <string name="call_telex" msgid="2909886619224843563">"텔렉스 통화"</string>
+    <string name="call_telex" msgid="2909886619224843563">"텔렉스로 전화걸기"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"TTY/TDD로 전화걸기"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"직장 휴대전화로 전화걸기"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"직장 호출기로 전화 걸기"</string>
@@ -60,16 +60,31 @@
     <string name="sms_work_pager" msgid="499303540738557836">"직장 호출기로 문자 보내기"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>(으)로 문자 보내기"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS로 문자 보내기"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"피플 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
+    <string name="status_available" msgid="4832569677396634846">"대화 가능"</string>
+    <string name="status_away" msgid="6267905184545881094">"자리 비움"</string>
+    <string name="status_busy" msgid="7111912905211403545">"다른 용무 중"</string>
+    <!-- no translation found for contactsList (7140022347217602605) -->
     <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
     <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <!-- no translation found for directory_search_label (4484648822765516947) -->
     <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
+    <!-- no translation found for local_search_label (9094584931063745728) -->
     <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"나"</string>
+    <!-- no translation found for search_results_searching (9022794597388306615) -->
     <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
+    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
+    <skip />
+    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
+    <skip />
+    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
+    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
+    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
+    <skip />
+    <!-- no translation found for missing_name (2633118852693000081) -->
     <skip />
 </resources>

@@ -19,9 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Teks disalin"</string>
     <string name="call_custom" msgid="2786306789889210756">"Hubungi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1479549630992276827">"Hubungi nomor telepon rumah"</string>
+    <string name="call_home" msgid="1479549630992276827">"Hubungi rumah"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Hubungi nomor seluler"</string>
-    <string name="call_work" msgid="8299062439076337075">"Hubungi nomor kantor"</string>
+    <string name="call_work" msgid="8299062439076337075">"Hubungi kantor"</string>
     <string name="call_fax_work" msgid="3770754834467992571">"Hubungi faks kantor"</string>
     <string name="call_fax_home" msgid="6219051113573396065">"Hubungi faks rumah"</string>
     <string name="call_pager" msgid="3038080882899955112">"Hubungi pager"</string>
@@ -40,7 +40,7 @@
     <string name="call_assistant" msgid="5188990854852312696">"Hubungi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Hubungi MMS"</string>
     <string name="sms_custom" msgid="4601748252470175865">"SMS <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7765831490534280540">"SMS nomor rumah"</string>
+    <string name="sms_home" msgid="7765831490534280540">"SMS rumah"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"SMS nomor seluler"</string>
     <string name="sms_work" msgid="3910570578912367742">"SMS kantor"</string>
     <string name="sms_fax_work" msgid="909086167151248212">"SMS faks kantor"</string>
@@ -48,28 +48,43 @@
     <string name="sms_pager" msgid="5664381349583724906">"SMS pager"</string>
     <string name="sms_other" msgid="910895193552957097">"Teks"</string>
     <string name="sms_callback" msgid="728414485478941361">"SMS panggilan balik"</string>
-    <string name="sms_car" msgid="8543669230270954512">"SMS nomor telepon mobil"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"SMS nomor telepon utama perusahaan"</string>
+    <string name="sms_car" msgid="8543669230270954512">"SMS mobil"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"SMS nomor utama perusahaan"</string>
     <string name="sms_isdn" msgid="7142483128948042667">"SMS ISDN"</string>
     <string name="sms_main" msgid="6815987840926184815">"SMS nomor utama"</string>
     <string name="sms_other_fax" msgid="8649822154879781466">"SMS faks"</string>
     <string name="sms_radio" msgid="8750339218480745940">"SMS radio"</string>
     <string name="sms_telex" msgid="5469333785775443999">"SMS teleks"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"SMS TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"SMS seluler kantor"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"SMS nomor seluler kantor"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"SMS pager kantor"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"SMS <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"SMS MMS"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Hapus yang sering dihubungi?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Anda akan menghapus daftar yang sering dihubungi pada aplikasi Orang dan Ponsel, serta memaksa aplikasi email untuk mempelajari preferensi penanganan Anda dari awal."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Menghapus yang sering dihubungi..."</string>
+    <string name="status_available" msgid="4832569677396634846">"Tersedia"</string>
+    <string name="status_away" msgid="6267905184545881094">"Keluar"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Sibuk"</string>
+    <!-- no translation found for contactsList (7140022347217602605) -->
     <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
     <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <!-- no translation found for directory_search_label (4484648822765516947) -->
     <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
+    <!-- no translation found for local_search_label (9094584931063745728) -->
     <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"SAYA"</string>
+    <!-- no translation found for search_results_searching (9022794597388306615) -->
     <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
+    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
+    <skip />
+    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
+    <skip />
+    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
+    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
+    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
+    <skip />
+    <!-- no translation found for missing_name (2633118852693000081) -->
     <skip />
 </resources>

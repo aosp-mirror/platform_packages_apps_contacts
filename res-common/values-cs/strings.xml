@@ -46,7 +46,7 @@
     <string name="sms_fax_work" msgid="909086167151248212">"Poslat SMS na pracovní fax"</string>
     <string name="sms_fax_home" msgid="4145442497939634875">"Poslat SMS na domácí fax"</string>
     <string name="sms_pager" msgid="5664381349583724906">"Poslat SMS na pager"</string>
-    <string name="sms_other" msgid="910895193552957097">"Text"</string>
+    <string name="sms_other" msgid="910895193552957097">"Poslat SMS"</string>
     <string name="sms_callback" msgid="728414485478941361">"Poslat SMS na číslo zpětného volání"</string>
     <string name="sms_car" msgid="8543669230270954512">"Poslat SMS do auta"</string>
     <string name="sms_company_main" msgid="5441902128445061862">"Poslat SMS do firmy (hlavní)"</string>
@@ -60,16 +60,31 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Poslat SMS na pracovní pager"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Poslat SMS na kontakt <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Poslat SMS na číslo MMS"</string>
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vymazat často kontaktované osoby?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Vymažete seznam často kontaktovaných osob v aplikacích Lidé a Telefon a e-mailové aplikace budou muset nastavení adresátů vytvořit znovu."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Mazání často kontaktovaných osob..."</string>
+    <string name="status_available" msgid="4832569677396634846">"Jsem tady"</string>
+    <string name="status_away" msgid="6267905184545881094">"Pryč"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Nemám čas"</string>
+    <!-- no translation found for contactsList (7140022347217602605) -->
     <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
     <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <!-- no translation found for directory_search_label (4484648822765516947) -->
     <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
+    <!-- no translation found for local_search_label (9094584931063745728) -->
     <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"JÁ"</string>
+    <!-- no translation found for search_results_searching (9022794597388306615) -->
     <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
+    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
+    <skip />
+    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
+    <skip />
+    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
+    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
+    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
+    <skip />
+    <!-- no translation found for missing_name (2633118852693000081) -->
     <skip />
 </resources>
