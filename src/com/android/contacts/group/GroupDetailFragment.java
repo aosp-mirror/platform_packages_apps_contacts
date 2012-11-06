@@ -45,14 +45,14 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactTileAdapter;
-import com.android.contacts.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.list.ContactTileView;
+import com.android.contacts.list.GroupMemberTileAdapter;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 
@@ -133,8 +133,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         Resources res = getResources();
         int columnCount = res.getInteger(R.integer.contact_tile_column_count);
 
-        mAdapter = new ContactTileAdapter(activity, mContactTileListener, columnCount,
-                DisplayType.GROUP_MEMBERS);
+        mAdapter = new GroupMemberTileAdapter(activity, mContactTileListener, columnCount);
 
         configurePhotoLoader();
     }
