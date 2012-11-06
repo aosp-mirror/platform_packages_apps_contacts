@@ -527,12 +527,6 @@
     <!-- A nicely formatted call duration displayed when viewing call details. For example "42 mins 28 secs" -->
     <string name="callDetailsDurationFormat"><xliff:g id="minutes" example="42">%s</xliff:g> mins <xliff:g id="seconds" example="28">%s</xliff:g> secs</string>
 
-    <!-- The text displayed on the divider for the Favorites tab in People app indicating that items below it are frequently contacted [CHAR LIMIT = 39] -->
-    <string name="favoritesFrequentContacted">Frequently contacted</string>
-
-    <!-- The text displayed on the divider for the Favorites tab in Phone app indicating that items below it are frequently called as opposed to starred contacts [CHAR LIMIT = 39] -->
-    <string name="favoritesFrequentCalled">Frequently called</string>
-
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
@@ -671,14 +665,6 @@
          Used by AccessibilityService to announce the purpose of the button.
     -->
     <string name="description_plus_button">plus</string>
-
-    <!-- String describing a contact picture that introduces users to the contact detail screen.
-
-         Used by AccessibilityService to announce the purpose of the button.
-
-         [CHAR LIMIT=NONE]
-      -->
-    <string name="description_view_contact_detail" msgid="2795575601596468581">View contact</string>
 
     <!-- Dialog message shown when (USB) storage does not exist [CHAR LIMIT=30] -->
     <string name="no_sdcard_message" product="nosdcard">No storage was found.</string>
@@ -1258,9 +1244,6 @@
 
     <!-- Contact list filter selection indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
     <string name="list_filter_customize">Customize</string>
-
-    <!-- Contact list filter selection indicating that the list shows all contacts with phone numbers [CHAR LIMIT=64] -->
-    <string name="list_filter_phones">All contacts with phone numbers</string>
 
     <!-- Contact list filter selection indicating that the list shows only the selected contact [CHAR LIMIT=64] -->
     <string name="list_filter_single">Contact</string>

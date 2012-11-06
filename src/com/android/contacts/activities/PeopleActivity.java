@@ -67,7 +67,7 @@ import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
-import com.android.contacts.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.list.ContactTileFrequentFragment;
 import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.list.ContactsIntentResolver;

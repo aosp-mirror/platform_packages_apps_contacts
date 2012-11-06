@@ -20,8 +20,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.common.MoreContactUtils;
 
 /**
  * Fragment containing a list of frequently contacted people.
@@ -34,7 +34,7 @@ public class ContactTileFrequentFragment extends ContactTileListFragment {
             Bundle savedInstanceState) {
         View listLayout = inflateAndSetupView(inflater, container, savedInstanceState,
                 R.layout.contact_tile_list_frequent);
-        View headerView = ContactsUtils.createHeaderView(getActivity(),
+        View headerView = MoreContactUtils.createHeaderView(getActivity(),
                 R.string.favoritesFrequentContacted);
         ViewGroup headerContainer = (ViewGroup) listLayout.findViewById(R.id.header_container);
         headerContainer.addView(headerView);

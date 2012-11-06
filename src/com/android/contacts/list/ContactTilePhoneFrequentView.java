@@ -20,12 +20,13 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.list.ContactTileAdapter.ContactEntry;
+import com.android.contacts.common.MoreContactUtils;
+import com.android.contacts.common.list.ContactTileView;
+import com.android.contacts.common.list.ContactTileAdapter.ContactEntry;
 import com.android.contacts.util.ViewUtil;
 
 /**
- * A dark version of the {@link ContactTileView} that is used in Dialtacts
+ * A dark version of the {@link com.android.contacts.common.list.ContactTileView} that is used in Dialtacts
  * for frequently called contacts. Slightly different behavior from superclass...
  * when you tap it, you want to call the frequently-called number for the
  * contact, even if that is not the default number for that contact.
@@ -65,8 +66,9 @@ public class ContactTilePhoneFrequentView extends ContactTileView {
                 if (mListener == null) return;
                 if (TextUtils.isEmpty(mPhoneNumberString)) {
                     // Copy "superclass" implementation
-                    mListener.onContactSelected(getLookupUri(), ContactsUtils.getTargetRectFromView(
-                            mContext, ContactTilePhoneFrequentView.this));
+                    mListener.onContactSelected(getLookupUri(), MoreContactUtils
+                            .getTargetRectFromView(
+                                    mContext, ContactTilePhoneFrequentView.this));
                 } else {
                     // When you tap a frequently-called contact, you want to
                     // call them at the number that you usually talk to them

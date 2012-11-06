@@ -93,9 +93,6 @@
     <!-- Left and right padding for a contact detail item -->
     <dimen name="detail_item_icon_margin">8dip</dimen>
 
-    <!-- Left and right padding for a contact detail item -->
-    <dimen name="detail_item_side_margin">16dip</dimen>
-
     <!-- Top and bottom padding for a contact detail item -->
     <dimen name="detail_item_vertical_margin">8dip</dimen>
 
@@ -175,16 +172,6 @@
     <dimen name="join_header_top_margin">16dip</dimen>
     <dimen name="join_header_bottom_margin">0dip</dimen>
 
-    <!-- ContactTile Layouts -->
-    <!--
-      Use sp instead of dip so that the shadowbox heights can all scale uniformly
-      when the font size is scaled for accessibility purposes
-    -->
-    <dimen name="contact_tile_shadowbox_height">48sp</dimen>
-
-    <!-- Top padding of the ListView in the contact tile list -->
-    <dimen name="contact_tile_list_padding_top">0dip</dimen>
-
     <!-- Empty message margins -->
     <dimen name="empty_message_top_margin">48dip</dimen>
     <dimen name="no_accounts_message_margin">20dip</dimen>
@@ -195,9 +182,6 @@
     <dimen name="contact_filter_item_min_height">48dip</dimen>
     <dimen name="contact_filter_icon_size">32dip</dimen>
     <dimen name="contact_filter_header_min_height">24dip</dimen>
-
-    <!--  Vertical and horizontal padding in between contact tiles -->
-    <dimen name="contact_tile_divider_padding">1dip</dimen>
 
     <!--  Width of the lead margin on the left of a block quote inside a stream item -->
     <dimen name="stream_item_stripe_width">8dip</dimen>

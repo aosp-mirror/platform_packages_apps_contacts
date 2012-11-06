@@ -32,6 +32,7 @@ import com.android.contacts.common.list.ContactEntryListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DirectoryListLoader;
+import com.android.contacts.common.list.PhoneNumberListAdapter;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 import com.android.contacts.util.AccountFilterUtil;
 

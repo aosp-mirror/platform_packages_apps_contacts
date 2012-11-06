@@ -49,20 +49,11 @@
     <!-- Colour of voicemail progress bar to the left of position indicator. -->
     <color name="voicemail_playback_seek_bar_already_played">#ccffffff</color>
 
-    <!-- Secondary text color in the Phone app -->
-    <color name="dialtacts_secondary_text_color">#888888</color>
-
     <!-- Color of the text of the tab carousel in the contact details  -->
     <color name="detail_tab_carousel_tab_label_color">#EEEEEE</color>
 
     <!-- Color of the text for buttons in the action bar  -->
     <color name="action_bar_button_text_color">#FFFFFF</color>
-
-    <!--  Color of the status message for starred contacts in the People app -->
-    <color name="people_contact_tile_status_color">#CCCCCC</color>
-
-    <!--  Color of the semi-transparent shadow box on contact tiles -->
-    <color name="contact_tile_shadow_box_color">#7F000000</color>
 
     <!--  Color of the vertical stripe that goes on the left of a block quote inside a stream item -->
     <color name="stream_item_stripe_color">#CCCCCC</color>

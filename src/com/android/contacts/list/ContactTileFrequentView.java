@@ -18,10 +18,11 @@ package com.android.contacts.list;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.android.contacts.common.list.ContactTileView;
 import com.android.contacts.util.ViewUtil;
 
 /**
- * A {@link ContactTileView} that is used for most frequently contacted in the People app
+ * A {@link com.android.contacts.common.list.ContactTileView} that is used for most frequently contacted in the People app
  */
 public class ContactTileFrequentView extends ContactTileView {
     public ContactTileFrequentView(Context context, AttributeSet attrs) {

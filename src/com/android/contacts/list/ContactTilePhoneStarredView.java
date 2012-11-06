@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.contacts.R;
+import com.android.contacts.common.list.ContactTileView;
 
 /**
  * Displays the contact's picture overlayed with their name

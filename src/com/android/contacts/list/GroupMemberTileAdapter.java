@@ -20,6 +20,8 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.android.contacts.GroupMemberLoader;
+import com.android.contacts.common.list.ContactTileAdapter;
+import com.android.contacts.common.list.ContactTileView;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;

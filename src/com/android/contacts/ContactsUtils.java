@@ -19,16 +19,12 @@ package com.android.contacts;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.DisplayPhoto;
-import android.provider.ContactsContract.QuickContact;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
@@ -149,35 +145,6 @@ public class ContactsUtils {
         // Data is the lookup URI.
         intent.setData(lookupUri);
         return intent;
-    }
-
-    /**
-     * Returns a header view based on the R.layout.list_separator, where the
-     * containing {@link TextView} is set using the given textResourceId.
-     */
-    public static View createHeaderView(Context context, int textResourceId) {
-        View view = View.inflate(context, R.layout.list_separator, null);
-        TextView textView = (TextView) view.findViewById(R.id.title);
-        textView.setText(context.getString(textResourceId));
-        return view;
-    }
-
-    /**
-     * Returns the {@link Rect} with left, top, right, and bottom coordinates
-     * that are equivalent to the given {@link View}'s bounds. This is equivalent to how the
-     * target {@link Rect} is calculated in {@link QuickContact#showQuickContact}.
-     */
-    public static Rect getTargetRectFromView(Context context, View view) {
-        final float appScale = context.getResources().getCompatibilityInfo().applicationScale;
-        final int[] pos = new int[2];
-        view.getLocationOnScreen(pos);
-
-        final Rect rect = new Rect();
-        rect.left = (int) (pos[0] * appScale + 0.5f);
-        rect.top = (int) (pos[1] * appScale + 0.5f);
-        rect.right = (int) ((pos[0] + view.getWidth()) * appScale + 0.5f);
-        rect.bottom = (int) ((pos[1] + view.getHeight()) * appScale + 0.5f);
-        return rect;
     }
 
     /**

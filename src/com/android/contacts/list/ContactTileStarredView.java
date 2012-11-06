@@ -18,10 +18,12 @@ package com.android.contacts.list;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.android.contacts.common.list.ContactTileView;
+
 /**
  * A {@link ContactTileStarredView} displays the contact's picture overlayed with their name
  * in a square. The actual dimensions are set by
- * {@link com.android.contacts.list.ContactTileAdapter.ContactTileRow}.
+ * {@link com.android.contacts.common.list.ContactTileAdapter.ContactTileRow}.
  */
 public class ContactTileStarredView extends ContactTileView {
     public ContactTileStarredView(Context context, AttributeSet attrs) {
