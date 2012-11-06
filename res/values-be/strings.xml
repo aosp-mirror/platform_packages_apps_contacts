@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"знойдзены 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Знойдзеныя: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Знойдзена вынікаў: больш за <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Кантактаў няма"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"знойдзены 1"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"Дадаецца, чакайце"</string>
     <string name="call_settings" msgid="7666474782093693667">"Налады"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не знойдзена прыкладанне для гэтага дзеяння."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(Без назвы)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Уліковыя запісы"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Выдалiць частыя кантакты"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Паказаць кантакты"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"не аб\'яднаны"</item>
     <item quantity="other" msgid="425683718017380845">"аб\'яднаныя з розных крыніц (<xliff:g id="COUNT">%0$d</xliff:g>)"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Іншае"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Аб\'яднаць бягучы кантакт з выбраным кантактам?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Пераключыцца ў рэжым рэдагавання выбранага кантакту? Інфармацыя, якую вы ўвялі да гэтага часу, будзе скапіявана."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Капіяваць у мае кантакты"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Дадаць да Маіх кантактаў"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Каталог <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"Дырэкторыя"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"Усе кантакты"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Стварэнне асабістай копіі..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Усе кантакты"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Пазначана"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Непраслуханая галасавая пошта"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Адправіць паведамленне карыстальніку <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Патэлефанаваць карыстальніку <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Хуткі кантакт для карыстальніка <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Я"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой лакальны профіль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профіль у <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Адлюстраванне ўсіх кантактаў"</string>

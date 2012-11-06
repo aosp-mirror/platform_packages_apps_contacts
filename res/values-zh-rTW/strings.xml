@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"找到 1 位聯絡人"</item>
     <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"找到 <xliff:g id="COUNT">%d</xliff:g> 位以上的聯絡人。"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"沒有聯絡人"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"找到 1 位聯絡人"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"新增插播功能"</string>
     <string name="call_settings" msgid="7666474782093693667">"設定"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"找不到可以處理這個動作的應用程式。"</string>
-    <string name="missing_name" msgid="8745511583852904385">"(無姓名)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"帳戶"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"清除常用聯絡人"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"要顯示的聯絡人"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"未合併"</item>
     <item quantity="other" msgid="425683718017380845">"從 <xliff:g id="COUNT">%0$d</xliff:g> 個來源合併"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"其他"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"要將目前聯絡人與所選聯絡人合併嗎？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？系統會為您複製目前已輸入的資訊。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"複製到我的通訊錄"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"新增至我的聯絡人"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"目錄：<xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"目錄"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"所有聯絡人"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"正在建立個人副本…"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"所有聯絡人"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"已加星號"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"未聽取的語音留言"</string>
     <string name="description_send_message" msgid="6046623392322890962">"傳送訊息給<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"撥打 <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>的快速聯絡人相片"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"我自己"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>

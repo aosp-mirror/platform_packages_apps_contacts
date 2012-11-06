@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"1개를 찾았습니다."</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g>개를 찾았습니다."</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g>개 이상 찾았습니다."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"주소록 없음"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1개를 찾았습니다."</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"대기 시간 추가"</string>
     <string name="call_settings" msgid="7666474782093693667">"설정"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(이름 없음)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"계정"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"자주 연락하는 사람들 목록 삭제"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"표시할 연락처"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"병합되지 않았습니다."</item>
     <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g>개 출처에서 병합했습니다."</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"기타"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"이 연락처와 선택한 연락처를 통합하시겠습니까?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"선택한 연락처를 수정하시겠습니까? 지금까지 입력하신 정보는 복사됩니다."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"내 주소록에 복사"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"내 주소록에 추가"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"디렉토리 <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"디렉토리"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"모든 연락처"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"개인 사본 작성 중..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"모든 연락처"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"별표"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"듣지 않은 음성사서함"</string>
     <string name="description_send_message" msgid="6046623392322890962">"<xliff:g id="NAME">%1$s</xliff:g>님에게 메시지 보내기"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"전화하기:<xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>님의 빠른 주소록"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"나"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"내 로컬 프로필"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"내 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 프로필"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>

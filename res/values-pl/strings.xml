@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"Znaleziono: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Znaleziono: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Znaleziono więcej niż <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Brak kontaktów"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Znaleziono: 1"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"Dodaj oczekiwanie"</string>
     <string name="call_settings" msgid="7666474782093693667">"Ustawienia"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Nie znaleziono aplikacji do obsługi tego działania."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(Bez nazwy)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konta"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Wyczyść częste kontakty"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty do wyświetlenia"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"nie scalono"</item>
     <item quantity="other" msgid="425683718017380845">"scalono z <xliff:g id="COUNT">%0$d</xliff:g> źródeł"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Inne"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Czy połączyć bieżący kontakt z wybranym?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Czy chcesz edytować wybrany kontakt? Wprowadzone dotąd informacje zostaną skopiowane."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiuj do moich kontaktów"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Dodaj do moich kontaktów"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Katalog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"Katalog"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"Wszystkie kontakty"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Tworzenie kopii osobistej…"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Wszystkie kontakty"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Oznaczone gwiazdką"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nieodsłuchana poczta głosowa"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Wyślij wiadomość do: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Zadzwoń: <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Szybki kontakt: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"–"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Ja"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mój profil lokalny"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mój profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Wyświetlanie wszystkich kontaktów"</string>

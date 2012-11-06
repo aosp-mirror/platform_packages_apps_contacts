@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"Nalezeno: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Nalezeno: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Nalezeno více kontaktů než <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Žádné kontakty"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Nalezeno: 1"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"Přidat čekání"</string>
     <string name="call_settings" msgid="7666474782093693667">"Nastavení"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikace potřebná k provedení této akce nebyla nalezena."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(Žádné jméno)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Účty"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Vymazat často kontaktované os."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty k zobrazení"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"sloučení se nezdařilo"</item>
     <item quantity="other" msgid="425683718017380845">"sloučeno ze <xliff:g id="COUNT">%0$d</xliff:g> zdrojů"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Ostatní"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Spojit aktuální kontakt s vybraným kontaktem?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Přepnout do režimu úpravy vybraného kontaktu? Doposud zadané informace budou zkopírovány."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Zkopírovat do kontaktů"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Přidat do skupiny Moje kontakty"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Adresář <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"Adresář"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"Všechny kontakty"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Vytváření osobní kopie..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Všechny kontakty"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Označené hvězdičkou"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nevyslechnutá hlasová zpráva"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Odeslat zprávu kontaktu <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Vytočit číslo kontaktu <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Rychlý kontakt <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"–"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Já"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Můj místní profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Můj profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Zobrazují se všechny kontakty"</string>

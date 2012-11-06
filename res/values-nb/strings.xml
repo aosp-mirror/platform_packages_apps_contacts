@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"1 funnet"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> funnet"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Fant over <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ingen kontakter"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 funnet"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"Legg til Vent"</string>
     <string name="call_settings" msgid="7666474782093693667">"Innstillinger"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Det ble ikke funnet noen app som kan håndtere denne handlingen."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(Uten navn)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Kontoer"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Fjern ofte kontaktede personer"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakter i visning"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"ikke slått sammen"</item>
     <item quantity="other" msgid="425683718017380845">"sammenslått fra <xliff:g id="COUNT">%0$d</xliff:g> kilder"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Andre"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Slå sammen gjeldende kontakt med valgt kontakt?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Bytt til redigering av gjeldende kontakt? Informasjonen du har lagt til så langt blir kopiert."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiér til mine kontakter"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Legg til i Mine kontakter"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Katalog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"Katalog"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"Alle kontakter"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Oppretter personlig kopi …"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Alle kontakter"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Stjernemerket"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Ikke avspilt talepost"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Send melding til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Ring <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Hurtigkontakt for <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"–"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Meg"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Min profil for <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontakter"</string>

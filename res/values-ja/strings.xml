@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"1件見つかりました"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g>件見つかりました"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g>件以上見つかりました。"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"連絡先はありません"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1件見つかりました"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"待機を追加"</string>
     <string name="call_settings" msgid="7666474782093693667">"設定"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"この操作を行うアプリが見つかりませんでした。"</string>
-    <string name="missing_name" msgid="8745511583852904385">"（名前なし）"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"アカウント"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"よく使う連絡先のクリア"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"表示する連絡先"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"結合する連絡先はありません"</item>
     <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g>件の連絡先が結合されました"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"その他"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"現在の連絡先を選択した連絡先に統合しますか？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"選択した連絡先の編集に切り替えますか？これまでに入力した情報はコピーされます。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Myコンタクトにコピー"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Myコンタクトに追加"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ディレクトリ<xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"ディレクトリ"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"すべての連絡先"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"個人用コピーを作成しています..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"すべての連絡先"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"スター付き"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"未再生のボイスメール"</string>
     <string name="description_send_message" msgid="6046623392322890962">"<xliff:g id="NAME">%1$s</xliff:g>さんにメッセージを送信"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g>さんの電話"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>さんのクイックコンタクト"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"自分"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ローカルプロフィール"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>のプロフィール"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"すべての連絡先を表示しています"</string>

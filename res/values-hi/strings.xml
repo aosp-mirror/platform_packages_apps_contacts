@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"1 मिला"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> मिले"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g> से अधिक मिले."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"कोई संपर्क नहीं"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 मिला"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"प्रतीक्षा का समय बढ़ाएं"</string>
     <string name="call_settings" msgid="7666474782093693667">"सेटिंग"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"यह कार्यवाही प्रबंधित करने के लिए कोई एप्लिकेशन नहीं मिला."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(कोई नाम नहीं)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"खाते"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"अक्सर किए जाने वाले साफ़ करें"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"प्रदर्शन के लिए संपर्क"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"मर्ज नहीं किए गए"</item>
     <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g> स्रोतों से मर्ज किया गया"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"अन्य"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"वर्तमान संपर्क को चयनित संपर्क से जोड़ें?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपके द्वारा अभी तक दर्ज की गई जानकारी की प्रतिलिपि बनाई जाएगी."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"मेरे संपर्क में प्रतिलिपि बनाएं"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"मेरे संपर्क में जोड़ें"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"निर्देशिका"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"सभी संपर्क"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"एक व्‍यक्तिगत प्रतिलिपि बना रहा है…"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"सभी संपर्क"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"तारांकित"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"नहीं सुना गया ध्वनिमेल"</string>
     <string name="description_send_message" msgid="6046623392322890962">"<xliff:g id="NAME">%1$s</xliff:g> को संदेश भेजें"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g> का फ़ोन डायल करें"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> के लिए त्‍वरित संपर्क"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"मुझे"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"मेरी स्थानीय प्रोफ़ाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"मेरी <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफ़ाइल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सभी संपर्क प्रदर्शित कर रहा है"</string>

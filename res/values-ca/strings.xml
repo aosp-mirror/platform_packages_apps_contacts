@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"1 contacte"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> contactes"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Se n\'han trobat més de <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hi ha cap contacte"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 contacte"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"Afegeix espera"</string>
     <string name="call_settings" msgid="7666474782093693667">"Configuració"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"No s\'ha trobat cap aplicació per processar aquesta acció."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(Sense nom)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Comptes"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Esborra els freqüents"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contactes per mostrar"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"no combinat"</item>
     <item quantity="other" msgid="425683718017380845">"combinat de <xliff:g id="COUNT">%0$d</xliff:g> fonts"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Altres"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Vols ajuntar el contacte actual amb el contacte seleccionat?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vols canviar per editar el contacte seleccionat? Es copiarà la informació que hagis introduït fins ara."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copia a Els meus contactes"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Afegeix a Els meus contactes"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directori <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">" Directori"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"Tots els contactes"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"S\'està creant una còpia personal..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tots els contactes"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Destacats"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Missatge de veu no escoltat"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Envia un missatge a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Marca el telèfon <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Contacte ràpid per a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Usuari"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
