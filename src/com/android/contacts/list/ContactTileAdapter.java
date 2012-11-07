@@ -28,14 +28,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.common.ContactTileLoaderFactory;
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.GroupMemberLoader;
-import com.android.contacts.GroupMemberLoader.GroupDetailQuery;
-import com.android.contacts.R;
 
 import java.util.ArrayList;
 
@@ -51,23 +49,24 @@ public class ContactTileAdapter extends BaseAdapter {
     private ContactTileView.Listener mListener;
     private Context mContext;
     private Resources mResources;
-    private Cursor mContactCursor = null;
+    protected Cursor mContactCursor = null;
     private ContactPhotoManager mPhotoManager;
-    private int mNumFrequents;
+    protected int mNumFrequents;
 
     /**
      * Index of the first NON starred contact in the {@link Cursor}
      * Only valid when {@link DisplayType#STREQUENT} is true
      */
     private int mDividerPosition;
-    private int mColumnCount;
-    private int mIdIndex;
-    private int mLookupIndex;
-    private int mPhotoUriIndex;
-    private int mNameIndex;
+    protected int mColumnCount;
     private int mStarredIndex;
-    private int mPresenceIndex;
-    private int mStatusIndex;
+
+    protected int mIdIndex;
+    protected int mLookupIndex;
+    protected int mPhotoUriIndex;
+    protected int mNameIndex;
+    protected int mPresenceIndex;
+    protected int mStatusIndex;
 
     /**
      * Only valid when {@link DisplayType#STREQUENT_PHONE_ONLY} is true
@@ -107,8 +106,11 @@ public class ContactTileAdapter extends BaseAdapter {
 
         /**
          * Display all contacts from a group in the cursor
-         * Use {@link GroupMemberLoader}
+         * Use {@link com.android.contacts.GroupMemberLoader}
          * when passing {@link Cursor} into loadFromCusor method.
+         *
+         * Group member logic has been moved into GroupMemberTileAdapter.  This constant is still
+         * needed by calling classes.
          */
         GROUP_MEMBERS
     }
@@ -149,60 +151,56 @@ public class ContactTileAdapter extends BaseAdapter {
      * Sets the column indices for expected {@link Cursor}
      * based on {@link DisplayType}.
      */
-    private void bindColumnIndices() {
-        /**
-         * Need to check for {@link DisplayType#GROUP_MEMBERS} because
-         * it has different projections than all other {@link DisplayType}s
-         * By using {@link GroupMemberLoader} and {@link ContactTileLoaderFactory}
-         * the correct {@link Cursor}s will be given.
-         */
-        if (mDisplayType == DisplayType.GROUP_MEMBERS) {
-            mIdIndex = GroupDetailQuery.CONTACT_ID;
-            mLookupIndex = GroupDetailQuery.CONTACT_LOOKUP_KEY;
-            mPhotoUriIndex = GroupDetailQuery.CONTACT_PHOTO_URI;
-            mNameIndex = GroupDetailQuery.CONTACT_DISPLAY_NAME_PRIMARY;
-            mPresenceIndex = GroupDetailQuery.CONTACT_PRESENCE_STATUS;
-            mStatusIndex = GroupDetailQuery.CONTACT_STATUS;
-        } else {
-            mIdIndex = ContactTileLoaderFactory.CONTACT_ID;
-            mLookupIndex = ContactTileLoaderFactory.LOOKUP_KEY;
-            mPhotoUriIndex = ContactTileLoaderFactory.PHOTO_URI;
-            mNameIndex = ContactTileLoaderFactory.DISPLAY_NAME;
-            mStarredIndex = ContactTileLoaderFactory.STARRED;
-            mPresenceIndex = ContactTileLoaderFactory.CONTACT_PRESENCE;
-            mStatusIndex = ContactTileLoaderFactory.CONTACT_STATUS;
+    protected void bindColumnIndices() {
+        mIdIndex = ContactTileLoaderFactory.CONTACT_ID;
+        mLookupIndex = ContactTileLoaderFactory.LOOKUP_KEY;
+        mPhotoUriIndex = ContactTileLoaderFactory.PHOTO_URI;
+        mNameIndex = ContactTileLoaderFactory.DISPLAY_NAME;
+        mStarredIndex = ContactTileLoaderFactory.STARRED;
+        mPresenceIndex = ContactTileLoaderFactory.CONTACT_PRESENCE;
+        mStatusIndex = ContactTileLoaderFactory.CONTACT_STATUS;
 
-            mPhoneNumberIndex = ContactTileLoaderFactory.PHONE_NUMBER;
-            mPhoneNumberTypeIndex = ContactTileLoaderFactory.PHONE_NUMBER_TYPE;
-            mPhoneNumberLabelIndex = ContactTileLoaderFactory.PHONE_NUMBER_LABEL;
+        mPhoneNumberIndex = ContactTileLoaderFactory.PHONE_NUMBER;
+        mPhoneNumberTypeIndex = ContactTileLoaderFactory.PHONE_NUMBER_TYPE;
+        mPhoneNumberLabelIndex = ContactTileLoaderFactory.PHONE_NUMBER_LABEL;
+    }
+
+    /**
+     * Gets the number of frequents from the passed in cursor.
+     *
+     * This methods is needed so the GroupMemberTileAdapter can override this.
+     *
+     * @param cursor The cursor to get number of frequents from.
+     */
+    protected void saveNumFrequentsFromCursor(Cursor cursor) {
+
+        // count the number of frequents
+        switch (mDisplayType) {
+            case STARRED_ONLY:
+                mNumFrequents = 0;
+                break;
+            case STREQUENT:
+            case STREQUENT_PHONE_ONLY:
+                mNumFrequents = cursor.getCount() - mDividerPosition;
+                break;
+            case FREQUENT_ONLY:
+                mNumFrequents = cursor.getCount();
+                break;
+            default:
+                throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
         }
     }
 
     /**
      * Creates {@link ContactTileView}s for each item in {@link Cursor}.
-     * If {@link DisplayType} is {@link DisplayType#GROUP_MEMBERS} use {@link GroupMemberLoader}
+     *
      * Else use {@link ContactTileLoaderFactory}
      */
     public void setContactCursor(Cursor cursor) {
         mContactCursor = cursor;
         mDividerPosition = getDividerPosition(cursor);
 
-        // count the number of frequents
-        switch (mDisplayType) {
-            case STARRED_ONLY:
-            case GROUP_MEMBERS:
-                mNumFrequents = 0;
-                break;
-            case STREQUENT:
-            case STREQUENT_PHONE_ONLY:
-                mNumFrequents = mContactCursor.getCount() - mDividerPosition;
-                break;
-            case FREQUENT_ONLY:
-                mNumFrequents = mContactCursor.getCount();
-                break;
-            default:
-                throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
-        }
+        saveNumFrequentsFromCursor(cursor);
 
         // cause a refresh of any views that rely on this data
         notifyDataSetChanged();
@@ -211,10 +209,10 @@ public class ContactTileAdapter extends BaseAdapter {
     /**
      * Iterates over the {@link Cursor}
      * Returns position of the first NON Starred Contact
-     * Returns -1 if {@link DisplayType#STARRED_ONLY} or {@link DisplayType#GROUP_MEMBERS}
+     * Returns -1 if {@link DisplayType#STARRED_ONLY}
      * Returns 0 if {@link DisplayType#FREQUENT_ONLY}
      */
-    private int getDividerPosition(Cursor cursor) {
+    protected int getDividerPosition(Cursor cursor) {
         if (cursor == null || cursor.isClosed()) {
             throw new IllegalStateException("Unable to access cursor");
         }
@@ -229,7 +227,6 @@ public class ContactTileAdapter extends BaseAdapter {
                     }
                 }
                 break;
-            case GROUP_MEMBERS:
             case STARRED_ONLY:
                 // There is no divider
                 return -1;
@@ -245,7 +242,7 @@ public class ContactTileAdapter extends BaseAdapter {
         return cursor.getCount();
     }
 
-    private ContactEntry createContactEntryFromCursor(Cursor cursor, int position) {
+    protected ContactEntry createContactEntryFromCursor(Cursor cursor, int position) {
         // If the loader was canceled we will be given a null cursor.
         // In that case, show an empty list of contacts.
         if (cursor == null || cursor.isClosed() || cursor.getCount() <= position) return null;
@@ -310,7 +307,6 @@ public class ContactTileAdapter extends BaseAdapter {
 
         switch (mDisplayType) {
             case STARRED_ONLY:
-            case GROUP_MEMBERS:
                 return getRowCount(mContactCursor.getCount());
             case STREQUENT:
             case STREQUENT_PHONE_ONLY:
@@ -335,7 +331,7 @@ public class ContactTileAdapter extends BaseAdapter {
      * Returns the number of rows required to show the provided number of entries
      * with the current number of columns.
      */
-    private int getRowCount(int entryCount) {
+    protected int getRowCount(int entryCount) {
         return entryCount == 0 ? 0 : ((entryCount - 1) / mColumnCount) + 1;
     }
 
@@ -357,7 +353,6 @@ public class ContactTileAdapter extends BaseAdapter {
                 resultList.add(createContactEntryFromCursor(mContactCursor, position));
                 break;
             case STARRED_ONLY:
-            case GROUP_MEMBERS:
                 for (int columnCounter = 0; columnCounter < mColumnCount; columnCounter++) {
                     resultList.add(createContactEntryFromCursor(mContactCursor, contactIndex));
                     contactIndex++;
@@ -485,7 +480,6 @@ public class ContactTileAdapter extends BaseAdapter {
                     return ViewTypes.FREQUENT;
                 }
             case STARRED_ONLY:
-            case GROUP_MEMBERS:
                 return ViewTypes.STARRED;
             case FREQUENT_ONLY:
                 return ViewTypes.FREQUENT;
@@ -677,7 +671,7 @@ public class ContactTileAdapter extends BaseAdapter {
         public Drawable presenceIcon;
     }
 
-    private static class ViewTypes {
+    protected static class ViewTypes {
         public static final int COUNT = 4;
         public static final int STARRED = 0;
         public static final int DIVIDER = 1;
