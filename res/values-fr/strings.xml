@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"1 contact trouvé"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> contact(s) trouvé(s)"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Plus de <xliff:g id="COUNT">%d</xliff:g> résultats trouvés."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Aucun contact"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 contact trouvé"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"Ajouter Attendre"</string>
     <string name="call_settings" msgid="7666474782093693667">"Paramètres"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Aucune application pouvant gérer cette action n\'a été trouvée."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(Sans nom)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Comptes"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Effacer les contacts fréquents"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contacts à afficher"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"1 contact non fusionné"</item>
     <item quantity="other" msgid="425683718017380845">"1 contact fusionné à partir de <xliff:g id="COUNT">%0$d</xliff:g> sources"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Autre"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Associer ce contact au contact sélectionné ?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Modifier le contact sélectionné ? Les informations saisies jusqu\'ici seront copiées."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copier dans \"Mes contacts\""</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Ajouter à \"Mes contacts\""</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Annuaire <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"Annuaire"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"Tous les contacts"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Création d\'une copie personnelle…"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tous les contacts"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Contacts favoris"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nouveau message vocal"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Envoyer un message à <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Composer le numéro de <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Liens rapides vers <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Moi"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mon profil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mon profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Affichage de tous les contacts"</string>

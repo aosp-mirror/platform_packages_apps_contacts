@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"1 okutholakele"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> tholakele"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"kutholakele <xliff:g id="COUNT">%d</xliff:g>edlula"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Abekho oxhumana nabo"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"otholakele ongu-1"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"Yengeza ukulinda"</string>
     <string name="call_settings" msgid="7666474782093693667">"Izilungiselelo"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Ayikho insiza etholakele ukubhekana nalengxenye."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(alikho igama)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Ama-akhawunti"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Sula oxhumana nabo njalo"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Othintana nabo abazoboniswa"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"akuhlanganisiwe"</item>
     <item quantity="other" msgid="425683718017380845">"ihlanganiswe kusuka emithombeni engu-<xliff:g id="COUNT">%0$d</xliff:g>"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Okunye"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Joyina othintana naye wamanje nothintana naye okhethiwe?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Shintshela ekuhleleni othintana naye okhethiwe? Ulwazi olufakile kuze kube manje luzokopishwa."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopisha kwengithintana nabo"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Faka Kothintana Nabo"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Uhla lwemibhalo <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"Uhla lwemibhalo"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"Bonke oxhumana nabo"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Idala ikhophi yomuntu siqu"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Bonke othintana nabo"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Okunenkanyezi"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"I-imeyli yezwi engazwakalanga"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Thumela imiyalezo ku <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Shayela ucingo <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Oxhumene naye ngokushesha ku <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Mina"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Imininingwane yami yakuleli"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Imininingwane <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> yami"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ibonisa bonke abathintwayo"</string>

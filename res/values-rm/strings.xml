@@ -169,8 +169,6 @@
     <item quantity="one" msgid="5517063038754171134">"chattà 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Chattà <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <!-- no translation found for foundTooManyContacts (5163335650920020220) -->
-    <skip />
     <!-- no translation found for listFoundAllContactsZero (922980883593159444) -->
     <skip />
   <plurals name="searchFoundContacts">
@@ -376,8 +374,6 @@
     <skip />
     <!-- no translation found for quickcontact_missing_app (358168575340921552) -->
     <skip />
-    <!-- no translation found for missing_name (8745511583852904385) -->
-    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Contos"</string>
     <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
     <skip />
@@ -529,7 +525,6 @@
     <item quantity="one" msgid="148365587896371969">"betg fusiunà"</item>
     <item quantity="other" msgid="425683718017380845">"1 contact fusiunà ord <xliff:g id="COUNT">%0$d</xliff:g> funtaunas"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Auter"</string>
     <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
     <skip />
     <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
@@ -539,10 +534,6 @@
     <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
     <skip />
     <!-- no translation found for contact_directory_description (683398073603909119) -->
-    <skip />
-    <!-- no translation found for directory_search_label (1887759056597975053) -->
-    <skip />
-    <!-- no translation found for local_search_label (2551177578246113614) -->
     <skip />
     <!-- no translation found for toast_making_personal_copy (288549957278065542) -->
     <skip />
@@ -669,12 +660,7 @@
     <skip />
     <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
     <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
     <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
-    <skip />
-    <!-- no translation found for user_profile_contacts_list_header (5582421742835006940) -->
-    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
     <skip />
     <!-- no translation found for local_profile_title (2021416826991393684) -->
     <skip />

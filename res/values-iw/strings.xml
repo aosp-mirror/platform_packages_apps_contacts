@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"נמצא אחד"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> נמצאו"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"נמצאו יותר מ-<xliff:g id="COUNT">%d</xliff:g> פריטים."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"אין אנשי קשר"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"נמצא אחד"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"הוסף המתנה"</string>
     <string name="call_settings" msgid="7666474782093693667">"הגדרות"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"לא נמצא יישום שיכול לטפל בפעולה זו."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(ללא שם)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"חשבונות Google"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"מחק אנשי קשר קבועים"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"אנשי קשר להצגה"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"לא מוזגו"</item>
     <item quantity="other" msgid="425683718017380845">"מוזגו מ-<xliff:g id="COUNT">%0$d</xliff:g> מקורות"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"אחר"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"לצרף את איש הקשר הנוכחי לאיש הקשר שנבחר?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"לעבור לעריכה של איש הקשר שנבחר? המידע שהזנת עד עכשיו יועתק."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"העתק אל \'אנשי הקשר שלי\'"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"הוסף ל\'אנשי הקשר שלי\'"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> ספריה"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"ספריה"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"כל אנשי הקשר"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"יוצר עותק אישי..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"כל אנשי הקשר"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"מסומן בכוכב"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"דואר קולי שעדיין לא נשמע"</string>
     <string name="description_send_message" msgid="6046623392322890962">"שלח הודעה אל <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"חייג לטלפון <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"קשר מהיר עבור <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"אני"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"הפרופיל המקומי שלי"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"פרופיל <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> שלי"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"מציג את כל אנשי הקשר"</string>

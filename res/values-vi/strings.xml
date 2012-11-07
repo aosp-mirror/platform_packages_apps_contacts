@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"Đã tìm thấy 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Đã tìm thấy hơn <xliff:g id="COUNT">%d</xliff:g> địa chỉ liên hệ."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Không có địa chỉ liên hệ nào"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Đã tìm thấy 1"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"Thêm chờ"</string>
     <string name="call_settings" msgid="7666474782093693667">"Cài đặt"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Không tìm thấy ứng dụng nào để xử lý tác vụ này."</string>
-    <string name="missing_name" msgid="8745511583852904385">"(Không có tên)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Tài khoản"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Xóa DS liên hệ thường xuyên"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Danh sách liên hệ để hiển thị"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"chưa được hợp nhất"</item>
     <item quantity="other" msgid="425683718017380845">"được hợp nhất từ <xliff:g id="COUNT">%0$d</xliff:g> nguồn"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"Khác"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Kết hợp địa chỉ liên hệ hiện tại với địa chỉ liên hệ đã chọn?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Chuyển sang chỉnh sửa liên hệ đã chọn? Thông tin bạn đã nhập đến giờ sẽ được sao chép."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Sao chép vào Danh bạ của tôi"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Thêm vào Danh bạ của tôi"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Thư mục <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">"Thư mục"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"Tất cả địa chỉ liên hệ"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Đang tạo bản sao cá nhân..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tất cả địa chỉ liên hệ"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Được gắn dấu sao"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Thư thoại chưa nghe"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Gửi tin nhắn tới <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Quay số điện thoại <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Liên hệ nhanh cho <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Tôi"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"T.sử cục bộ của tôi"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Tiểu sử <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> của tôi"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Đang hiển thị tất cả liên hệ"</string>

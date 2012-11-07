@@ -127,7 +127,6 @@
     <item quantity="one" msgid="5517063038754171134">"1 ተገኝቷል"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> ተገኝቷል"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"ከ<xliff:g id="COUNT">%d</xliff:g> የበለጠ ተገኝቷል"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"እውቅያዎች የሉም"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 ተገኝቷል"</item>
@@ -262,7 +261,6 @@
     <string name="add_wait" msgid="3360818652790319634">"ጠብቅአክል"</string>
     <string name="call_settings" msgid="7666474782093693667">"ቅንብሮች"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ይህን እርምጃ ለማስተናገድ ምንም መተግበሪያ አልተገኘም፡፡"</string>
-    <string name="missing_name" msgid="8745511583852904385">"(ስም የለም)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"መለያዎች"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"ተደጋጋሚዎችን ጥረግ"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ዕውቂያዎች አሳይ"</string>
@@ -374,14 +372,11 @@
     <item quantity="one" msgid="148365587896371969">"አልተዋሃደም"</item>
     <item quantity="other" msgid="425683718017380845">"ከ<xliff:g id="COUNT">%0$d</xliff:g> ምንጮች የተዋሃደ"</item>
   </plurals>
-    <string name="local_invisible_directory" msgid="6046691709127661065">"ሌላ"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"የአሁኑ ዕውቂያ ከተመረጠው ዕውቂያ ጋር ይገናኝ?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"የተመረጠው ዕውቂያ ወደ አርትዕ ይቀየር? እስከ አሁን ያስገቡት መረጃ ይገለበጣል።"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"ወደ ዕውቂያዎቼ ቅዳ"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"ወደ እኔ ዕውቂያዎች አክል"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ማውጫ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="directory_search_label" msgid="1887759056597975053">" ማውጫ"</string>
-    <string name="local_search_label" msgid="2551177578246113614">"ሁሉም እውቅያዎች"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"የግል ቅጂ በመፍጠር ላይ..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"ሁሉም እውቅያዎች"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ኮከብ የተደረገባቸው"</string>
@@ -453,9 +448,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"ያልተሰማ የድምፅመልዕክት"</string>
     <string name="description_send_message" msgid="6046623392322890962">"ለ<xliff:g id="NAME">%1$s</xliff:g> መልዕክት ላክ"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g> ስልክ ደውል"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"ለ <xliff:g id="NAME">%1$s</xliff:g> ፈጣን ዕውቂያ"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"እኔ"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"በአካባቢው ምንም መገለጫ የለም"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"የእኔ የ<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> መገለጫ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ሁሉንም ዕውቂያዎች በማሳየት ላይ"</string>
