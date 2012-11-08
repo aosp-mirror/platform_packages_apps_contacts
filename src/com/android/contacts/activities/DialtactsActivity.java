@@ -833,7 +833,7 @@ public class DialtactsActivity extends TransactionSafeActivity
 
         if (mViewPager.getCurrentItem() == TAB_INDEX_DIALER) {
             if (mDialpadFragment != null) {
-                mDialpadFragment.configureScreenFromIntent(newIntent);
+                mDialpadFragment.setStartedFromNewIntent(true);
             } else {
                 Log.e(TAG, "DialpadFragment isn't ready yet when the tab is already selected.");
             }
