@@ -177,4 +177,21 @@
 
     <!-- Shown as the display name for a person when the name is missing or unknown. [CHAR LIMIT=18]-->
     <string name="missing_name">(No name)</string>
+
+    <!-- The text displayed on the divider for the Favorites tab in Phone app indicating that items below it are frequently called as opposed to starred contacts [CHAR LIMIT = 39] -->
+    <string name="favoritesFrequentCalled">Frequently called</string>
+
+    <!-- The text displayed on the divider for the Favorites tab in People app indicating that items below it are frequently contacted [CHAR LIMIT = 39] -->
+    <string name="favoritesFrequentContacted">Frequently contacted</string>
+
+    <!-- String describing a contact picture that introduces users to the contact detail screen.
+
+       Used by AccessibilityService to announce the purpose of the button.
+
+       [CHAR LIMIT=NONE]
+    -->
+    <string name="description_view_contact_detail" msgid="2795575601596468581">View contact</string>
+
+    <!-- Contact list filter selection indicating that the list shows all contacts with phone numbers [CHAR LIMIT=64] -->
+    <string name="list_filter_phones">All contacts with phone numbers</string>
 </resources>
