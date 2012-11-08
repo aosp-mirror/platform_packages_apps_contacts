@@ -16,9 +16,13 @@
 
 package com.android.contacts.common;
 
+import android.content.Context;
+import android.graphics.Rect;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
 
 /**
  * Shared static contact utility methods.
@@ -84,5 +88,35 @@ public class MoreContactUtils {
             index1++;
             index2++;
         }
+    }
+
+    /**
+     * Returns the {@link android.graphics.Rect} with left, top, right, and bottom coordinates
+     * that are equivalent to the given {@link android.view.View}'s bounds. This is equivalent to
+     * how the target {@link android.graphics.Rect} is calculated in
+     * {@link android.provider.ContactsContract.QuickContact#showQuickContact}.
+     */
+    public static Rect getTargetRectFromView(Context context, View view) {
+        final float appScale = context.getResources().getCompatibilityInfo().applicationScale;
+        final int[] pos = new int[2];
+        view.getLocationOnScreen(pos);
+
+        final Rect rect = new Rect();
+        rect.left = (int) (pos[0] * appScale + 0.5f);
+        rect.top = (int) (pos[1] * appScale + 0.5f);
+        rect.right = (int) ((pos[0] + view.getWidth()) * appScale + 0.5f);
+        rect.bottom = (int) ((pos[1] + view.getHeight()) * appScale + 0.5f);
+        return rect;
+    }
+
+    /**
+     * Returns a header view based on the R.layout.list_separator, where the
+     * containing {@link android.widget.TextView} is set using the given textResourceId.
+     */
+    public static View createHeaderView(Context context, int textResourceId) {
+        View view = View.inflate(context, R.layout.list_separator, null);
+        TextView textView = (TextView) view.findViewById(R.id.title);
+        textView.setText(context.getString(textResourceId));
+        return view;
     }
 }
