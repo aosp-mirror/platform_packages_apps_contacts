@@ -111,7 +111,7 @@ public class QuickContactActivity extends Activity {
     private View mSelectedTabRectangle;
     private View mLineAfterTrack;
 
-    private ImageButton mOpenDetailsButton;
+    private ImageView mOpenDetailsImage;
     private ImageButton mOpenDetailsPushLayerButton;
     private ViewPager mListPager;
 
@@ -198,7 +198,7 @@ public class QuickContactActivity extends Activity {
         mFloatingLayout = (FloatingChildLayout) findViewById(R.id.floating_layout);
         mTrack = (ViewGroup) findViewById(R.id.track);
         mTrackScroller = (HorizontalScrollView) findViewById(R.id.track_scroller);
-        mOpenDetailsButton = (ImageButton) findViewById(R.id.open_details_button);
+        mOpenDetailsImage = (ImageView) findViewById(R.id.contact_details_image);
         mOpenDetailsPushLayerButton = (ImageButton) findViewById(R.id.open_details_push_layer);
         mListPager = (ViewPager) findViewById(R.id.item_list_pager);
         mSelectedTabRectangle = findViewById(R.id.selected_tab_rectangle);
@@ -222,7 +222,6 @@ public class QuickContactActivity extends Activity {
                 close(false);
             }
         };
-        mOpenDetailsButton.setOnClickListener(openDetailsClickHandler);
         mOpenDetailsPushLayerButton.setOnClickListener(openDetailsClickHandler);
         mListPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mListPager.setOnPageChangeListener(new PageChangeListener());
@@ -335,7 +334,7 @@ public class QuickContactActivity extends Activity {
         final ResolveCache cache = ResolveCache.getInstance(this);
         final Context context = this;
 
-        mOpenDetailsButton.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ? View.GONE
+        mOpenDetailsImage.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ? View.GONE
                 : View.VISIBLE);
 
         mDefaultsMap.clear();
