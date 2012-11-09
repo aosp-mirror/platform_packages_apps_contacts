@@ -66,25 +66,18 @@
     <string name="status_available" msgid="4832569677396634846">"Disponible"</string>
     <string name="status_away" msgid="6267905184545881094">"Absent"</string>
     <string name="status_busy" msgid="7111912905211403545">"Ocupat"</string>
-    <!-- no translation found for contactsList (7140022347217602605) -->
-    <skip />
-    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
-    <skip />
-    <!-- no translation found for directory_search_label (4484648822765516947) -->
-    <skip />
-    <!-- no translation found for local_search_label (9094584931063745728) -->
-    <skip />
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"USUARI"</string>
-    <!-- no translation found for search_results_searching (9022794597388306615) -->
-    <skip />
-    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
-    <skip />
-    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
-    <skip />
-    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
-    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
-    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
-    <skip />
-    <!-- no translation found for missing_name (2633118852693000081) -->
-    <skip />
+    <string name="contactsList" msgid="7140022347217602605">"Contactes"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Altres"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Directori"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Tots els contactes"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Jo"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"S\'està cercant..."</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"Se n\'han trobat més de <xliff:g id="COUNT">%d</xliff:g>."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"No hi ha cap contacte"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="1013734912609351182">"1 contacte"</item>
+    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> contactes"</item>
+  </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacte ràpid per a <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Sense nom)"</string>
 </resources>

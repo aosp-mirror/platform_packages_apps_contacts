@@ -63,28 +63,21 @@
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"피플 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
-    <string name="status_available" msgid="4832569677396634846">"대화 가능"</string>
+    <string name="status_available" msgid="4832569677396634846">"온라인"</string>
     <string name="status_away" msgid="6267905184545881094">"자리 비움"</string>
     <string name="status_busy" msgid="7111912905211403545">"다른 용무 중"</string>
-    <!-- no translation found for contactsList (7140022347217602605) -->
-    <skip />
-    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
-    <skip />
-    <!-- no translation found for directory_search_label (4484648822765516947) -->
-    <skip />
-    <!-- no translation found for local_search_label (9094584931063745728) -->
-    <skip />
+    <string name="contactsList" msgid="7140022347217602605">"주소록"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"기타"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"디렉토리"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"모든 주소록"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"나"</string>
-    <!-- no translation found for search_results_searching (9022794597388306615) -->
-    <skip />
-    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
-    <skip />
-    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
-    <skip />
-    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
-    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
-    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
-    <skip />
-    <!-- no translation found for missing_name (2633118852693000081) -->
-    <skip />
+    <string name="search_results_searching" msgid="9022794597388306615">"검색 중…"</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>개 이상 찾았습니다."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"주소록 없음"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="1013734912609351182">"1개를 찾았습니다."</item>
+    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g>개를 찾았습니다."</item>
+  </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>님의 빠른 주소록"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(이름 없음)"</string>
 </resources>

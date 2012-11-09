@@ -33,58 +33,51 @@
     <string name="call_main" msgid="4640261071249938558">"Panggil nombor utama"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"Panggil faks"</string>
     <string name="call_radio" msgid="9055749313292712021">"Panggil radio"</string>
-    <string name="call_telex" msgid="2909886619224843563">"Panggil telex"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Panggil teleks"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"Panggil TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"Panggil telefon mudah alih tempat kerja"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"Panggil alat kelui tempat kerja"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Panggil <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Panggil MMS"</string>
-    <string name="sms_custom" msgid="4601748252470175865">"SMS ke <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7765831490534280540">"SMS ke rumah"</string>
-    <string name="sms_mobile" msgid="8387632124165893103">"SMS ke telefon mudah alih"</string>
-    <string name="sms_work" msgid="3910570578912367742">"SMS ke nombor tempat kerja"</string>
-    <string name="sms_fax_work" msgid="909086167151248212">"SMS ke faks tempat kerja"</string>
-    <string name="sms_fax_home" msgid="4145442497939634875">"SMS ke faks rumah"</string>
-    <string name="sms_pager" msgid="5664381349583724906">"SMS ke alat kelui"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"SMS <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"SMS rumah"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"SMS telefon mudah alih"</string>
+    <string name="sms_work" msgid="3910570578912367742">"SMS nombor tempat kerja"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"SMS faks tempat kerja"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"SMS faks rumah"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"SMS alat kelui"</string>
     <string name="sms_other" msgid="910895193552957097">"SMS"</string>
-    <string name="sms_callback" msgid="728414485478941361">"SMS ke nombor panggil balik"</string>
-    <string name="sms_car" msgid="8543669230270954512">"SMS ke kereta"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"SMS ke nombor utama syarikat"</string>
-    <string name="sms_isdn" msgid="7142483128948042667">"SMS ke ISDN"</string>
-    <string name="sms_main" msgid="6815987840926184815">"SMS ke nombor utama"</string>
-    <string name="sms_other_fax" msgid="8649822154879781466">"SMS ke nombor faks"</string>
-    <string name="sms_radio" msgid="8750339218480745940">"SMS ke radio"</string>
-    <string name="sms_telex" msgid="5469333785775443999">"SMS ke nombor teleks"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"SMS ke TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"SMS ke telefon mudah alih tempat kerja"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"SMS ke alat kelui tempat kerja"</string>
-    <string name="sms_assistant" msgid="2677586547377136683">"SMS ke <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"SMS ke nombor MMS"</string>
+    <string name="sms_callback" msgid="728414485478941361">"SMS nombor panggil balik"</string>
+    <string name="sms_car" msgid="8543669230270954512">"SMS kereta"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"SMS nombor utama syarikat"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"SMS ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"SMS nombor utama"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"SMS nombor faks"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"SMS radio"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"SMS nombor teleks"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"SMS TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"SMS telefon mudah alih tempat kerja"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"SMS alat kelui tempat kerja"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"SMS <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"SMS nombor MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Padam bersih senarai kerap dihubungi?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Anda akan memadam bersih senarai yang kerap dihubungi dalam apl Orang dan Telefon dan memaksa apl e-mel untuk mempelajari pilihan alamat anda dari awal."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Memadam bersih senarai kerap dihubungi..."</string>
     <string name="status_available" msgid="4832569677396634846">"Ada"</string>
     <string name="status_away" msgid="6267905184545881094">"Tiada"</string>
     <string name="status_busy" msgid="7111912905211403545">"Sibuk"</string>
-    <!-- no translation found for contactsList (7140022347217602605) -->
-    <skip />
-    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
-    <skip />
-    <!-- no translation found for directory_search_label (4484648822765516947) -->
-    <skip />
-    <!-- no translation found for local_search_label (9094584931063745728) -->
-    <skip />
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"SAYA"</string>
-    <!-- no translation found for search_results_searching (9022794597388306615) -->
-    <skip />
-    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
-    <skip />
-    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
-    <skip />
-    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
-    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
-    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
-    <skip />
-    <!-- no translation found for missing_name (2633118852693000081) -->
-    <skip />
+    <string name="contactsList" msgid="7140022347217602605">"Kenalan"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Lain-lain"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Direktori"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Semua kenalan"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Saya"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Mencari..."</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"lebih daripada <xliff:g id="COUNT">%d</xliff:g> ditemui"</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Tiada kenalan"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="1013734912609351182">"1 ditemui"</item>
+    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ditemui"</item>
+  </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Kenalan pantas untuk <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Tiada nama)"</string>
 </resources>

@@ -63,28 +63,21 @@
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Xóa danh sách liên hệ thường xuyên?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Bạn sẽ xóa danh sách liên hệ thường xuyên trong ứng dụng Liên hệ và điện thoại cũng như buộc các ứng dụng email phải tìm hiểu các tùy chọn gửi của bạn từ đầu."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Đang xóa DS liên hệ thường xuyên…"</string>
-    <string name="status_available" msgid="4832569677396634846">"Có sẵn"</string>
+    <string name="status_available" msgid="4832569677396634846">"Có mặt"</string>
     <string name="status_away" msgid="6267905184545881094">"Đã ra ngoài"</string>
     <string name="status_busy" msgid="7111912905211403545">"Bận"</string>
-    <!-- no translation found for contactsList (7140022347217602605) -->
-    <skip />
-    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
-    <skip />
-    <!-- no translation found for directory_search_label (4484648822765516947) -->
-    <skip />
-    <!-- no translation found for local_search_label (9094584931063745728) -->
-    <skip />
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"TÔI"</string>
-    <!-- no translation found for search_results_searching (9022794597388306615) -->
-    <skip />
-    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
-    <skip />
-    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
-    <skip />
-    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
-    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
-    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
-    <skip />
-    <!-- no translation found for missing_name (2633118852693000081) -->
-    <skip />
+    <string name="contactsList" msgid="7140022347217602605">"Danh sách liên hệ"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Khác"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Thư mục"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Tất cả người liên hệ"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Tôi"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Đang tìm kiếm…"</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"Đã tìm thấy hơn <xliff:g id="COUNT">%d</xliff:g> người liên hệ."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Không có người liên hệ nào"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="1013734912609351182">"Đã tìm thấy 1 người liên hệ"</item>
+    <item quantity="other" msgid="4649647748678161594">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g> người liên hệ"</item>
+  </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Liên hệ nhanh của <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Không có tên)"</string>
 </resources>
