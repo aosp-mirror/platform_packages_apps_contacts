@@ -78,6 +78,6 @@
     <item quantity="one" msgid="1013734912609351182">"Знайдено 1"</item>
     <item quantity="other" msgid="4649647748678161594">"Знайдено <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="description_quick_contact_for" msgid="6355240770807101947">"Швидкий контакт із користувачем <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Швидкий зв’язок, контакт <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Без імені)"</string>
 </resources>

@@ -75,8 +75,8 @@
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Пронађено је више од <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Нема контаката"</string>
   <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"пронађен је 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"пронађених: <xliff:g id="COUNT">%d</xliff:g>"</item>
+    <item quantity="one" msgid="1013734912609351182">"1 је пронађен"</item>
+    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> је пронађено"</item>
   </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Брзи контакт за корисника <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Нема имена)"</string>
