@@ -40,7 +40,7 @@
 
         <include
             android:id="@+id/expansion_view_container"
-            layout="@layout/edit_expansion_view"
+            layout="@layout/name_edit_expansion_view"
             android:visibility="gone" />
 
         <include
