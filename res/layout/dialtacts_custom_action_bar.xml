@@ -36,6 +36,8 @@
         android:paddingRight="4dip"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
+        android:contentDescription="@string/action_menu_overflow_description"
+        android:importantForAccessibility="yes"
         android:src="@drawable/ic_menu_overflow"
         android:background="?android:attr/selectableItemBackground"
         android:visibility="gone" />
