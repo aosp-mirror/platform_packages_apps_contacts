@@ -24,4 +24,20 @@
          Right now the drawable has implicit 32dip minimal height, which is confusing.
          This value is for making the hidden configuration explicit in xml. -->
     <dimen name="list_section_divider_min_height">32dip</dimen>
+
+    <!--  Vertical and horizontal padding in between contact tiles -->
+    <dimen name="contact_tile_divider_padding">1dip</dimen>
+
+    <!-- Left and right padding for a contact detail item -->
+    <dimen name="detail_item_side_margin">16dip</dimen>
+
+    <!-- ContactTile Layouts -->
+    <!--
+      Use sp instead of dip so that the shadowbox heights can all scale uniformly
+      when the font size is scaled for accessibility purposes
+    -->
+    <dimen name="contact_tile_shadowbox_height">48sp</dimen>
+
+    <!-- Top padding of the ListView in the contact tile list -->
+    <dimen name="contact_tile_list_padding_top">0dip</dimen>
 </resources>
