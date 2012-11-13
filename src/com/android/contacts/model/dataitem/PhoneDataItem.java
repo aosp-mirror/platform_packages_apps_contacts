@@ -70,4 +70,17 @@ public class PhoneDataItem extends DataItem {
         }
     }
 
+    /**
+     * Returns the formatted phone number (if already computed using {@link
+     * #computeFormattedPhoneNumber}). Otherwise this method returns the unformatted phone number.
+     */
+    @Override
+    public String buildDataStringForDisplay() {
+        final String formatted = getFormattedPhoneNumber();
+        if (formatted != null) {
+            return formatted;
+        } else {
+            return getNumber();
+        }
+    }
 }

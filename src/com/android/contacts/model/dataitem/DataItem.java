@@ -206,6 +206,17 @@ public class DataItem {
         return actionBody == null ? null : actionBody.toString();
     }
 
+    /**
+     * This builds the data string(intended for display) depending on the type of data item. It
+     * returns the same value as {@link #buildDataString} by default, but certain data items can
+     * override it to provide their version of formatted data strings.
+     *
+     * @return Data string representing the data item, possibly formatted for display
+     */
+    public String buildDataStringForDisplay() {
+        return buildDataString();
+    }
+
     public String getKindString() {
         final DataKind kind = getDataKind();
         return (kind.titleRes == -1 || kind.titleRes == 0) ? ""
