@@ -224,10 +224,6 @@
     <string name="callAgain" msgid="3197312117049874778">"Telefonar anc ina giada"</string>
     <string name="returnCall" msgid="8171961914203617813">"Telefonar enavos"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sec"</string>
-    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
-    <skip />
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Agiuntar «<xliff:g id="EMAIL">%s</xliff:g>» als contacts?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"in"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"dus"</string>
@@ -251,7 +247,6 @@
     <!-- no translation found for description_minus_button (6908099247930477551) -->
     <skip />
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <string name="description_view_contact_detail" msgid="9133251213656414807">"Mussar il contact"</string>
     <!-- no translation found for no_sdcard_message (5242558018442357189) -->
     <skip />
     <!-- no translation found for no_sdcard_message (3357810406684913482) -->
@@ -545,8 +540,6 @@
     <skip />
     <!-- no translation found for list_filter_customize (4789963356004169321) -->
     <skip />
-    <!-- no translation found for list_filter_phones (735313795643493365) -->
-    <skip />
     <!-- no translation found for list_filter_single (5871400283515893087) -->
     <skip />
     <!-- no translation found for custom_list_filter (7836035257402013957) -->
@@ -695,5 +688,7 @@
     <skip />
     <!-- no translation found for action_menu_overflow_description (2303272250613084574) -->
     <!-- no translation found for action_menu_overflow_description (2295659037509008453) -->
+    <skip />
+    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
     <skip />
 </resources>
