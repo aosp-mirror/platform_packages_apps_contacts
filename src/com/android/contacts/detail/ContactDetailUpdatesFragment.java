@@ -33,7 +33,7 @@ import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener
 import com.android.contacts.detail.ContactDetailDisplayUtils.StreamPhotoTag;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
-import com.android.contacts.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.util.StreamItemEntry;
 
 public class ContactDetailUpdatesFragment extends ListFragment implements FragmentKeyListener {

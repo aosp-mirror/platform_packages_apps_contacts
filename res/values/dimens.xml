@@ -23,26 +23,8 @@
     <!-- Top padding of the entire contact editor  -->
     <dimen name="editor_padding_top">0dip</dimen>
 
-    <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
-    <dimen name="editor_round_button_padding_left">8dip</dimen>
-    <dimen name="editor_round_button_padding_right">8dip</dimen>
-    <dimen name="editor_round_button_padding_top">8dip</dimen>
-    <dimen name="editor_round_button_padding_bottom">8dip</dimen>
-
     <!-- Left padding of the label in the add field button for the contact editor -->
     <dimen name="editor_add_field_label_left_padding">16dip</dimen>
-
-    <!-- Width of the Type-Label in the Editor -->
-    <dimen name="editor_type_label_width">100dip</dimen>
-
-    <!-- Left padding of a field in the Editor -->
-    <dimen name="editor_field_left_padding">4dip</dimen>
-
-    <!-- Right padding of a field in the Editor -->
-    <dimen name="editor_field_right_padding">4dip</dimen>
-
-    <!-- Minimum height of a row in the Editor -->
-    <dimen name="editor_min_line_item_height">48dip</dimen>
 
     <!-- Height of the shadow asset under the photo on the contact detail page -->
     <dimen name="detail_contact_photo_shadow_height">10dip</dimen>

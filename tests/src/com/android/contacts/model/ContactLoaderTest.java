@@ -30,9 +30,9 @@ import android.test.suitebuilder.annotation.LargeTest;
 
 import com.android.contacts.common.test.mocks.ContactsMockContext;
 import com.android.contacts.common.test.mocks.MockContentProvider;
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountWithDataSet;
-import com.android.contacts.model.account.BaseAccountType;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.BaseAccountType;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
 

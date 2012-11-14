@@ -41,7 +41,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.ContactLoader;
-import com.android.contacts.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.quickcontact.QuickContactBroadcastReceiver;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.HtmlUtils;

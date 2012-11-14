@@ -34,8 +34,8 @@ import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.test.NeededForTesting;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.test.NeededForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;

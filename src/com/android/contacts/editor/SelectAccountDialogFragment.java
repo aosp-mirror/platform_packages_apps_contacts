@@ -24,7 +24,7 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 

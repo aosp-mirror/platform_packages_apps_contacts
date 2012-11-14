@@ -16,9 +16,9 @@
 package com.android.contacts.tests.mocks;
 
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountTypeWithDataSet;
-import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountTypeWithDataSet;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

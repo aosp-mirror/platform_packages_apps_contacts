@@ -35,6 +35,8 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
 
+import com.android.contacts.common.model.dataitem.DataKind;
+
 /**
  * This is the base class for data items, which represents a row from the Data table.
  */

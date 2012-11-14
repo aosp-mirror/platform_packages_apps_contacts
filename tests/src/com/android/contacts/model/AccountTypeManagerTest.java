@@ -20,9 +20,9 @@ import android.content.Context;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountTypeWithDataSet;
-import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountTypeWithDataSet;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 

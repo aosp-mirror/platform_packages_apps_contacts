@@ -20,7 +20,7 @@ import android.provider.ContactsContract.Data;
 
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;
-import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.common.model.dataitem.DataKind;
 
 /**
  * Generic definition of something that edits a {@link Data} row through an

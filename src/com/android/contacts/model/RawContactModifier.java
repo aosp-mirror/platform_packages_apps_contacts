@@ -47,15 +47,16 @@ import android.util.SparseArray;
 import android.util.SparseIntArray;
 
 import com.android.contacts.ContactsUtils;
+import com.android.contacts.common.util.CommonDateUtils;
 import com.android.contacts.editor.EventFieldEditorView;
 import com.android.contacts.editor.PhoneticNameEditorView;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountType.EditField;
-import com.android.contacts.model.account.AccountType.EditType;
-import com.android.contacts.model.account.AccountType.EventEditType;
-import com.android.contacts.model.account.GoogleAccountType;
-import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountType.EditField;
+import com.android.contacts.common.model.account.AccountType.EditType;
+import com.android.contacts.common.model.account.AccountType.EventEditType;
+import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.NameConverter;
@@ -1263,10 +1264,10 @@ public class RawContactModifier {
 
                 final ParsePosition position = new ParsePosition(0);
                 boolean yearOptional = false;
-                Date date = DateUtils.DATE_AND_TIME_FORMAT.parse(dateString, position);
+                Date date = CommonDateUtils.DATE_AND_TIME_FORMAT.parse(dateString, position);
                 if (date == null) {
                     yearOptional = true;
-                    date = DateUtils.NO_YEAR_DATE_FORMAT.parse(dateString, position);
+                    date = CommonDateUtils.NO_YEAR_DATE_FORMAT.parse(dateString, position);
                 }
                 if (date != null) {
                     if (yearOptional && !suitableType.isYearOptional()) {
@@ -1283,7 +1284,7 @@ public class RawContactModifier {
                         calendar.set(defaultYear, month, day,
                                 EventFieldEditorView.getDefaultHourForBirthday(), 0, 0);
                         values.put(Event.START_DATE,
-                                DateUtils.FULL_DATE_FORMAT.format(calendar.getTime()));
+                                CommonDateUtils.FULL_DATE_FORMAT.format(calendar.getTime()));
                     }
                 }
                 newState.addEntry(ValuesDelta.fromAfter(values));

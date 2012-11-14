@@ -193,18 +193,6 @@
     <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=12] -->
     <string name="menu_discard">Discard</string>
 
-    <!-- The label describing the Notes field of a contact. This field allows free form text entry about a contact -->
-    <string name="label_notes">Notes</string>
-
-    <!-- The label describing the SIP address field of a contact. [CHAR LIMIT=20] -->
-    <string name="label_sip_address">Internet call</string>
-
-    <!-- Hint text for the organization name when editing -->
-    <string name="ghostData_company">Company</string>
-
-    <!-- Hint text for the organization title when editing -->
-    <string name="ghostData_title">Title</string>
-
     <!-- Message displayed in a toast when you try to view the details of a contact that
          for some reason doesn't exist anymore. [CHAR LIMIT=NONE]-->
     <string name="invalidContactMessage">The contact doesn\'t exist.</string>
@@ -220,18 +208,6 @@
          The text will be all capitalized.
          [CHAR LIMIT=30] -->
     <string name="pickerNewContactText">Create new contact</string>
-
-    <!-- Header that expands to list all of the types of phone numbers when editing or creating a phone number for a contact [CHAR LIMIT=20] -->
-    <string name="phoneLabelsGroup">Phone</string>
-
-    <!-- Header that expands to list all of the types of email addresses when editing or creating an email address for a contact [CHAR LIMIT=20] -->
-    <string name="emailLabelsGroup">Email</string>
-
-    <!-- Header that expands to list all of the types of IM account when editing or creating an IM account for a contact [CHAR LIMIT=20] -->
-    <string name="imLabelsGroup">IM</string>
-
-    <!-- Header that expands to list all of the types of postal addresses when editing or creating an postal address for a contact [CHAR LIMIT=20] -->
-    <string name="postalLabelsGroup">Address</string>
 
     <!-- The order of the items below is important, don't reorder without changing EditContactActivity.java -->
     <skip/>
@@ -652,14 +628,6 @@
     -->
     <string name="description_contact_photo">contact photo</string>
 
-    <!-- String describing the Contact Editor Minus button
-
-         Used by AccessibilityService to announce the purpose of the button.
-
-         [CHAR LIMIT=NONE]
-    -->
-    <string name="description_minus_button">delete</string>
-
     <!-- String describing the Contact Editor Plus button
 
          Used by AccessibilityService to announce the purpose of the button.
@@ -944,21 +912,6 @@
     <!-- Toast indicating that sharing a contact has failed. [CHAR LIMIT=NONE]  -->
     <string name="share_error">This contact can\'t be shared.</string>
 
-    <!-- Header that expands to list all name types when editing a structured name of a contact [CHAR LIMIT=20] -->
-    <string name="nameLabelsGroup">Name</string>
-    <!-- Header that expands to list all nickname types when editing a nickname of a contact [CHAR LIMIT=20] -->
-    <string name="nicknameLabelsGroup">Nickname</string>
-    <!-- Header that expands to list all organization types when editing an organization of a contact [CHAR LIMIT=20] -->
-    <string name="organizationLabelsGroup">Organization</string>
-    <!-- Header that expands to list all website types when editing a website of a contact [CHAR LIMIT=20] -->
-    <string name="websiteLabelsGroup">Website</string>
-    <!-- Header that expands to list all event types when editing an event of a contact [CHAR LIMIT=20] -->
-    <string name="eventLabelsGroup">Events</string>
-    <!-- Header for the list of all relationships for a contact [CHAR LIMIT=20] -->
-    <string name="relationLabelsGroup">Relationship</string>
-    <!-- Header for the list of all groups for a contact [CHAR LIMIT=20] -->
-    <string name="groupsLabel">Groups</string>
-
     <string name="dialog_new_contact_account">Create contact under account</string>
 
     <!-- Title for the disambiguation dialog that requests the user choose an account for the new group to be created under [CHAR LIMIT=NONE] -->
@@ -979,102 +932,10 @@
          group that would also cause all ungrouped contacts to stop syncing.  [CHAR LIMIT=NONE] -->
     <string name="display_warn_remove_ungrouped">Removing \"<xliff:g id="group" example="Starred">%s</xliff:g>\" from sync will also remove any ungrouped contacts from sync.</string>
 
-    <!-- Title for data source when creating or editing a contact that doesn't
-         belong to a specific account.  This contact will only exist on the phone
-         and will not be synced. -->
-    <string name="account_phone" product="tablet">Tablet-only, unsynced</string>
-    <!-- Title for data source when creating or editing a contact that doesn't
-         belong to a specific account.  This contact will only exist on the phone
-         and will not be synced. -->
-    <string name="account_phone" product="default">Phone-only, unsynced</string>
-
-    <!-- Generic action string for text messaging a contact. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
-    <string name="sms">Text message</string>
-
-    <!-- Action string for sending an email to a home email address -->
-    <string name="email_home">Email home</string>
-    <!-- Action string for sending an email to a mobile email address -->
-    <string name="email_mobile">Email mobile</string>
-    <!-- Action string for sending an email to a work email address -->
-    <string name="email_work">Email work</string>
-    <!-- Action string for sending an email to an other email address -->
-    <string name="email_other">Email</string>
-    <!-- Action string for sending an email to a custom email address -->
-    <string name="email_custom">Email <xliff:g id="custom">%s</xliff:g></string>
-
-    <!-- Generic action string for sending an email -->
-    <string name="email">Email</string>
-
-    <!-- Action string for viewing a home postal address -->
-    <string name="map_home">View home address</string>
-    <!-- Action string for viewing a work postal address -->
-    <string name="map_work">View work address</string>
-    <!-- Action string for viewing an other postal address -->
-    <string name="map_other">View address</string>
-    <!-- Action string for viewing a custom postal address -->
-    <string name="map_custom">View <xliff:g id="custom">%s</xliff:g> address</string>
-
-    <!-- Action string for starting an IM chat with the AIM protocol -->
-    <string name="chat_aim">Chat using AIM</string>
-    <!-- Action string for starting an IM chat with the MSN or Windows Live protocol -->
-    <string name="chat_msn">Chat using Windows Live</string>
-    <!-- Action string for starting an IM chat with the Yahoo protocol -->
-    <string name="chat_yahoo">Chat using Yahoo</string>
-    <!-- Action string for starting an IM chat with the Skype protocol -->
-    <string name="chat_skype">Chat using Skype</string>
-    <!-- Action string for starting an IM chat with the QQ protocol -->
-    <string name="chat_qq">Chat using QQ</string>
-    <!-- Action string for starting an IM chat with the Google Talk protocol -->
-    <string name="chat_gtalk">Chat using Google Talk</string>
-    <!-- Action string for starting an IM chat with the ICQ protocol -->
-    <string name="chat_icq">Chat using ICQ</string>
-    <!-- Action string for starting an IM chat with the Jabber protocol -->
-    <string name="chat_jabber">Chat using Jabber</string>
-
-    <!-- Generic action string for starting an IM chat -->
-    <string name="chat">Chat</string>
     <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="audio_chat">Voice chat</string>
     <!-- Generic action string for starting a video chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="video_chat">Video chat</string>
-
-    <!-- Field title for the full postal address of a contact [CHAR LIMIT=64]-->
-    <string name="postal_address">Address</string>
-    <!-- Field title for the street of a structured postal address of a contact -->
-    <string name="postal_street">Street</string>
-    <!-- Field title for the PO box of a structured postal address of a contact -->
-    <string name="postal_pobox">PO box</string>
-    <!-- Field title for the neighborhood of a structured postal address of a contact -->
-    <string name="postal_neighborhood">Neighborhood</string>
-    <!-- Field title for the city of a structured postal address of a contact -->
-    <string name="postal_city">City</string>
-    <!-- Field title for the region, or state, of a structured postal address of a contact -->
-    <string name="postal_region">State</string>
-    <!-- Field title for the postal code of a structured postal address of a contact -->
-    <string name="postal_postcode">ZIP code</string>
-    <!-- Field title for the country of a structured postal address of a contact -->
-    <string name="postal_country">Country</string>
-
-    <!-- Field title for the full name of a contact [CHAR LIMIT=64]-->
-    <string name="full_name">Name</string>
-    <!-- Field title for the given name of a contact -->
-    <string name="name_given">Given name</string>
-    <!-- Field title for the family name of a contact -->
-    <string name="name_family">Family name</string>
-    <!-- Field title for the prefix name of a contact -->
-    <string name="name_prefix">Name prefix</string>
-    <!-- Field title for the middle name of a contact -->
-    <string name="name_middle">Middle name</string>
-    <!-- Field title for the suffix name of a contact -->
-    <string name="name_suffix">Name suffix</string>
-    <!-- Field title for the phonetic given name of a contact -->
-    <string name="name_phonetic_given">Phonetic given name</string>
-    <!-- Field title for the phonetic middle name of a contact -->
-    <string name="name_phonetic_middle">Phonetic middle name</string>
-    <!-- Field title for the phonetic family name of a contact -->
-    <string name="name_phonetic_family">Phonetic family name</string>
-    <!-- Field title for the phonetic name of a contact [CHAR LIMIT=64]-->
-    <string name="name_phonetic">Phonetic name</string>
 
     <!-- Title for the list of all contact details that come from third-party sources (including a corporate directory) [CHAR LIMIT=20] -->
     <string name="connections">Connections</string>
@@ -1375,9 +1236,6 @@
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
     <string name="enter_contact_name">Type person\'s name</string>
 
-    <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=25] -->
-    <string name="view_updates_from_group">View updates</string>
-
     <!-- Hint text in the group name box in the edit group view. [CHAR LIMIT=20]-->
     <string name="group_name_hint">Group\'s name</string>
 
@@ -1551,11 +1409,4 @@
          [CHAR LIMIT=NONE] -->
     <string name="action_menu_overflow_description" msgid="2295659037509008453">More options</string>
 
-    <!-- Content description for the expand or collapse name fields button.
-         Clicking this button causes the name editor to toggle between showing
-         a single field where the entire name is edited at once, or multiple
-         fields corresponding to each part of the name (Name Prefix, First Name,
-         Middle Name, Last Name, Name Suffix).
-         [CHAR LIMIT=NONE] -->
-    <string name="expand_collapse_name_fields_description">Expand or collapse name fields</string>
 </resources>

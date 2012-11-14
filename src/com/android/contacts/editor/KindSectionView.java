@@ -31,7 +31,7 @@ import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;
-import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.common.model.dataitem.DataKind;
 
 import java.util.ArrayList;
 import java.util.List;

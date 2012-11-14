@@ -21,7 +21,7 @@ import android.preference.PreferenceManager;
 
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
 import java.util.List;

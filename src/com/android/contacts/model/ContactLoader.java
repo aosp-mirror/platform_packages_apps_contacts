@@ -43,8 +43,8 @@ import android.util.LongSparseArray;
 
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.common.GeoUtil;
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountTypeWithDataSet;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.model.dataitem.PhoneDataItem;
 import com.android.contacts.model.dataitem.PhotoDataItem;

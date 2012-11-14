@@ -22,7 +22,7 @@ import android.provider.ContactsContract.StreamItems;
 import android.text.Html;
 
 import com.android.contacts.detail.ContactDetailDisplayUtils;
-import com.android.contacts.test.NeededForTesting;
+import com.android.contacts.common.test.NeededForTesting;
 
 import java.util.ArrayList;
 import java.util.Collections;

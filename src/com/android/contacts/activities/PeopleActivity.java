@@ -80,7 +80,7 @@ import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.model.Contact;
-import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountFilterUtil;

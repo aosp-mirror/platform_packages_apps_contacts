@@ -19,5 +19,4 @@
     <dimen name="dialpad_digits_margin_bottom">50dip</dimen>
     <!-- Center vertically -->
     <dimen name="quick_contact_top_position">-1px</dimen>
-    <dimen name="editor_type_label_width">120dip</dimen>
 </resources>

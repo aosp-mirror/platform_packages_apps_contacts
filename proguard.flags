@@ -10,10 +10,10 @@
 }
 
 # Any class or method annotated with NeededForTesting or NeededForReflection.
--keep @com.android.contacts.test.NeededForTesting class *
+-keep @com.android.contacts.common.test.NeededForTesting class *
 -keep @com.android.contacts.test.NeededForReflection class *
 -keepclassmembers class * {
-@com.android.contacts.test.NeededForTesting *;
+@com.android.contacts.common.test.NeededForTesting *;
 @com.android.contacts.test.NeededForReflection *;
 }
 

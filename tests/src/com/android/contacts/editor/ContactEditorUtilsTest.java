@@ -20,8 +20,8 @@ import android.test.AndroidTestCase;
 import android.test.MoreAsserts;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.google.common.collect.Sets;
 

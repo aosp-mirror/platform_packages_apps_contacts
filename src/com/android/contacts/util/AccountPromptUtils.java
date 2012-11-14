@@ -30,7 +30,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.android.contacts.R;
-import com.android.contacts.model.account.GoogleAccountType;
+import com.android.contacts.common.model.account.GoogleAccountType;
 
 import java.io.IOException;
 

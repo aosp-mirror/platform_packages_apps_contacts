@@ -69,9 +69,6 @@
      Without this configuration, 00002.vcf becomes the candidate.-->
     <string name="config_export_extensions_to_consider" translatable="false"></string>
 
-    <!-- If true, the order of name fields in the editor is primary (i.e. given name first) -->
-    <bool name="config_editor_field_order_primary">true</bool>
-
     <!-- If true, phonetic name is included in the contact editor by default -->
     <bool name="config_editor_include_phonetic_name">false</bool>
 

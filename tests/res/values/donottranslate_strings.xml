@@ -17,7 +17,6 @@
 
     <string name="contactsIntents">Contacts Intents</string>
     <string name="result">Result returned by activity</string>
-    <string name="test_string">TEST STRING</string>
 
     <string-array name="allIntents">
         <!-- List modes -->

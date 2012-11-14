@@ -21,7 +21,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 
-import com.android.contacts.test.NeededForTesting;
+import com.android.contacts.common.test.NeededForTesting;
 import com.google.common.annotations.VisibleForTesting;
 
 /**

@@ -19,6 +19,8 @@ package com.android.contacts.util;
 import android.content.Context;
 import android.text.format.DateFormat;
 
+import com.android.contacts.common.util.CommonDateUtils;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,26 +34,17 @@ import java.util.TimeZone;
 public class DateUtils {
     public static final TimeZone UTC_TIMEZONE = TimeZone.getTimeZone("UTC");
 
-    // All the SimpleDateFormats in this class use the UTC timezone
-    public static final SimpleDateFormat NO_YEAR_DATE_FORMAT =
-            new SimpleDateFormat("--MM-dd", Locale.US);
     /**
      * When parsing a date without a year, the system assumes 1970, which wasn't a leap-year.
      * Let's add a one-off hack for that day of the year
      */
     public static final String NO_YEAR_DATE_FEB29TH = "--02-29";
-    public static final SimpleDateFormat FULL_DATE_FORMAT =
-            new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-    public static final SimpleDateFormat DATE_AND_TIME_FORMAT =
-            new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-    public static final SimpleDateFormat NO_YEAR_DATE_AND_TIME_FORMAT =
-            new SimpleDateFormat("--MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
 
     // Variations of ISO 8601 date format.  Do not change the order - it does affect the
     // result in ambiguous cases.
     private static final SimpleDateFormat[] DATE_FORMATS = {
-        FULL_DATE_FORMAT,
-        DATE_AND_TIME_FORMAT,
+        CommonDateUtils.FULL_DATE_FORMAT,
+        CommonDateUtils.DATE_AND_TIME_FORMAT,
         new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'", Locale.US),
         new SimpleDateFormat("yyyyMMdd", Locale.US),
         new SimpleDateFormat("yyyyMMdd'T'HHmmssSSS'Z'", Locale.US),
@@ -70,7 +63,7 @@ public class DateUtils {
             format.setLenient(true);
             format.setTimeZone(UTC_TIMEZONE);
         }
-        NO_YEAR_DATE_FORMAT.setTimeZone(UTC_TIMEZONE);
+        CommonDateUtils.NO_YEAR_DATE_FORMAT.setTimeZone(UTC_TIMEZONE);
         FORMAT_WITHOUT_YEAR_MONTH_FIRST.setTimeZone(UTC_TIMEZONE);
         FORMAT_WITHOUT_YEAR_DAY_FIRST.setTimeZone(UTC_TIMEZONE);
     }
@@ -127,8 +120,8 @@ public class DateUtils {
             date = getUtcDate(0, Calendar.FEBRUARY, 29);
             noYearParsed = true;
         } else {
-            synchronized (NO_YEAR_DATE_FORMAT) {
-                date = NO_YEAR_DATE_FORMAT.parse(string, parsePosition);
+            synchronized (CommonDateUtils.NO_YEAR_DATE_FORMAT) {
+                date = CommonDateUtils.NO_YEAR_DATE_FORMAT.parse(string, parsePosition);
             }
             noYearParsed = parsePosition.getIndex() == string.length();
         }

@@ -25,7 +25,7 @@ import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 
 import com.android.contacts.GroupMetaData;
-import com.android.contacts.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 import com.google.common.annotations.VisibleForTesting;

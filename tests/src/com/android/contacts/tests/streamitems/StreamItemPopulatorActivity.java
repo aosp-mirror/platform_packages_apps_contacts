@@ -32,7 +32,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.android.contacts.model.account.GoogleAccountType;
+import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.tests.R;
 import com.google.common.collect.Lists;
 

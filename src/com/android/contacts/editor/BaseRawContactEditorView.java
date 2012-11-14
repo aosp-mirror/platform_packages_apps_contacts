@@ -31,8 +31,8 @@ import com.android.contacts.R;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;
 import com.android.contacts.model.RawContactModifier;
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountType.EditType;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountType.EditType;
 
 /**
  * Base view that provides common code for the editor interaction for a specific
