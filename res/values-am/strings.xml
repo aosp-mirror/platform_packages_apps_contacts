@@ -568,4 +568,6 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"የድምጽ መልዕክት ጥሪ ለማድረግ፣ በመጀመሪያ የአውሮፕላን ሁነታን አጥፋ።"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"የውሂብ ጎታ ፋይሎችን ወደ ውጭ ላክ"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"ተጨማሪ አማራጮች"</string>
+    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
+    <skip />
 </resources>
