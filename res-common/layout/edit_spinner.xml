@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2012 The Android Open Source Project
   ~
@@ -14,11 +15,14 @@
   ~ limitations under the License
   -->
 
-<resources>
-    <dimen name="detail_item_side_margin">0dip</dimen>
+<!-- Spinner for a field in the contact editor. -->
 
-    <dimen name="editor_round_button_padding_left">16dip</dimen>
-    <dimen name="editor_round_button_padding_right">16dip</dimen>
-
-    <dimen name="editor_type_label_width">122dip</dimen>
-</resources>
+<!-- Note: explicitly override the default left and right padding on spinner -->
+<Spinner
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spinner"
+    android:layout_gravity="bottom"
+    android:layout_width="@dimen/editor_type_label_width"
+    android:layout_height="@dimen/editor_min_line_item_height"
+    android:paddingLeft="0dip"
+    android:paddingRight="10dip"/>

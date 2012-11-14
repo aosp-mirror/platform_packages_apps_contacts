@@ -15,10 +15,8 @@
   -->
 
 <resources>
-    <dimen name="detail_item_side_margin">0dip</dimen>
+    <dimen name="editor_round_button_padding_left">8dip</dimen>
+    <dimen name="editor_round_button_padding_right">8dip</dimen>
 
-    <dimen name="editor_round_button_padding_left">16dip</dimen>
-    <dimen name="editor_round_button_padding_right">16dip</dimen>
-
-    <dimen name="editor_type_label_width">122dip</dimen>
+    <dimen name="editor_type_label_width">180dip</dimen>
 </resources>

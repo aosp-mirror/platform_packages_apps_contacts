@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2012 The Android Open Source Project
   ~
@@ -14,11 +15,17 @@
   ~ limitations under the License
   -->
 
-<resources>
-    <dimen name="detail_item_side_margin">0dip</dimen>
+<!-- Button to select a date in the contact editor. -->
 
-    <dimen name="editor_round_button_padding_left">16dip</dimen>
-    <dimen name="editor_round_button_padding_right">16dip</dimen>
-
-    <dimen name="editor_type_label_width">122dip</dimen>
-</resources>
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/date_view"
+    style="?android:attr/spinnerStyle"
+    android:layout_width="0dip"
+    android:layout_height="@dimen/editor_min_line_item_height"
+    android:layout_weight="1"
+    android:gravity="center_vertical"
+    android:layout_marginLeft="@dimen/editor_field_left_padding"
+    android:layout_marginRight="@dimen/editor_field_right_padding"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:paddingLeft="12dip" />

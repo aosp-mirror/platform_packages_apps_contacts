@@ -15,10 +15,7 @@
   -->
 
 <resources>
-    <dimen name="detail_item_side_margin">0dip</dimen>
+    <string name="test_string">TEST STRING</string>
 
-    <dimen name="editor_round_button_padding_left">16dip</dimen>
-    <dimen name="editor_round_button_padding_right">16dip</dimen>
-
-    <dimen name="editor_type_label_width">122dip</dimen>
+    <string name="authenticator_basic_label">Test adapter</string>
 </resources>
