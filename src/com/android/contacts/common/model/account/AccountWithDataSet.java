@@ -26,7 +26,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
-import com.android.internal.util.Objects;
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
