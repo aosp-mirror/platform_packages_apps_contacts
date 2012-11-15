@@ -170,8 +170,6 @@
     <string name="callAgain" msgid="3197312117049874778">"다시 걸기"</string>
     <string name="returnCall" msgid="8171961914203617813">"전화 걸기"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g>분 <xliff:g id="SECONDS">%s</xliff:g>초"</string>
-    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"자주 연락하는 사람들의 연락처"</string>
-    <string name="favoritesFrequentCalled" msgid="6128306889600696124">"자주 통화한 목록"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\'<xliff:g id="EMAIL">%s</xliff:g>\'을(를) 주소록에 추가하겠습니까?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"1"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"2"</string>
@@ -193,7 +191,6 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"주소록 사진"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"삭제"</string>
     <string name="description_plus_button" msgid="515164827856229880">"더하기"</string>
-    <string name="description_view_contact_detail" msgid="9133251213656414807">"연락처 보기"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"저장공간을 찾을 수 없습니다."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"SD 카드가 없습니다."</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIM 카드에서 가져오기"</string>
@@ -382,7 +379,6 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"별표"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"사용자 설정"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"맞춤설정"</string>
-    <string name="list_filter_phones" msgid="735313795643493365">"전화번호가 포함된 모든 연락처"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"연락처"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"사용자 설정"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"로드 중…"</string>
@@ -466,4 +462,6 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"음성사서함에 메시지를 남기려면 먼저 비행기 모드를 해제하세요."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"데이터베이스 파일 내보내기"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"옵션 더보기"</string>
+    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
+    <skip />
 </resources>
