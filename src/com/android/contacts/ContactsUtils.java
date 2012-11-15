@@ -19,17 +19,14 @@ package com.android.contacts;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.test.NeededForTesting;
+import com.android.contacts.model.AccountTypeManager;
 
 import java.util.List;
 
@@ -123,28 +120,6 @@ public class ContactsUtils {
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(context).getGroupWritableAccounts();
         return !accounts.isEmpty();
-    }
-
-    /**
-     * Returns the intent to launch for the given invitable account type and contact lookup URI.
-     * This will return null if the account type is not invitable (i.e. there is no
-     * {@link AccountType#getInviteContactActivityClassName()} or
-     * {@link AccountType#syncAdapterPackageName}).
-     */
-    public static Intent getInvitableIntent(AccountType accountType, Uri lookupUri) {
-        String syncAdapterPackageName = accountType.syncAdapterPackageName;
-        String className = accountType.getInviteContactActivityClassName();
-        if (TextUtils.isEmpty(syncAdapterPackageName) || TextUtils.isEmpty(className)) {
-            return null;
-        }
-        Intent intent = new Intent();
-        intent.setClassName(syncAdapterPackageName, className);
-
-        intent.setAction(ContactsContract.Intents.INVITE_CONTACT);
-
-        // Data is the lookup URI.
-        intent.setData(lookupUri);
-        return intent;
     }
 
     /**

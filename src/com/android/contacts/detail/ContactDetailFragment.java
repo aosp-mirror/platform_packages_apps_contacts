@@ -875,7 +875,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             public void onItemClick(AdapterView<?> parent, View view, int position,
                     long id) {
                 if (mListener != null && mContactData != null) {
-                    mListener.onItemClicked(ContactsUtils.getInvitableIntent(
+                    mListener.onItemClicked(MoreContactUtils.getInvitableIntent(
                             popupAdapter.getItem(position) /* account type */,
                             mContactData.getLookupUri()));
                 }
