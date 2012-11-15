@@ -118,9 +118,6 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_IS_USER_PROFILE = "isUserProfile";
     private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
 
-    private static final String[] VALID_ACTIONS = {Intent.ACTION_EDIT, Intent.ACTION_INSERT,
-            ContactEditorActivity.ACTION_SAVE_COMPLETED};
-
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
 
@@ -405,13 +402,13 @@ public class ContactEditorFragment extends Fragment implements
      * @throws IllegalArgumentException when the action is invalid.
      */
     private void validateAction(String action) {
-        for (String validAction : VALID_ACTIONS) {
-            if (validAction.equals(action)) {
-                return;
-            }
+        if (Intent.ACTION_EDIT.equals(action) || Intent.ACTION_INSERT.equals(action) ||
+                ContactEditorActivity.ACTION_SAVE_COMPLETED.equals(action)) {
+            return;
         }
         throw new IllegalArgumentException("Unknown Action String " + mAction +
-                ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
+                ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT + " or " +
+                ContactEditorActivity.ACTION_SAVE_COMPLETED);
     }
 
     @Override
