@@ -37,13 +37,13 @@ import android.widget.TextView;
 
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.interactions.GroupCreationDialogFragment;
 import com.android.contacts.interactions.GroupCreationDialogFragment.OnGroupCreatedListener;
-import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;
-import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.internal.util.Objects;
+import com.android.contacts.model.RawContactModifier;
+import com.google.common.base.Objects;
 
 import java.util.ArrayList;
 

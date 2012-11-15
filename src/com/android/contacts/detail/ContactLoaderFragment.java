@@ -47,7 +47,7 @@ import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedLi
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.ContactLoader;
 import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.internal.util.Objects;
+import com.google.common.base.Objects;
 
 /**
  * This is an invisible worker {@link Fragment} that loads the contact details for the contact card.
