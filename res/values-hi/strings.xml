@@ -218,7 +218,7 @@
     <string name="import_from_sim" msgid="3859272228033941659">"सिम कार्ड से आयात करें"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"संग्रहण से आयात करें"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"संग्रहण में निर्यात करें"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"दिखाई देने वाले संपर्क शेयर करें"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"दिखाई देने वाले संपर्क साझा करें"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"एक vCard फ़ाइल आयात करें"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"एकाधिक vCard फ़ाइलें आयात करें"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"सभी vCard फ़ाइलें आयात करें"</string>
@@ -290,8 +290,8 @@
     <string name="menu_import_export" msgid="26217871113229507">"आयात करें/निर्यात करें"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"संपर्क आयात/निर्यात करें"</string>
     <string name="dialog_import" msgid="2431698729761448759">"संपर्क आयात करें"</string>
-    <string name="menu_share" msgid="943789700636542260">"शेयर करें"</string>
-    <string name="share_via" msgid="563121028023030093">"इसके द्वारा संपर्क शेयर करें"</string>
+    <string name="menu_share" msgid="943789700636542260">"साझा करें"</string>
+    <string name="share_via" msgid="563121028023030093">"इसके द्वारा संपर्क साझा करें"</string>
     <string name="share_error" msgid="948429331673358107">"यह संपर्क साझा नहीं किया जा सकता."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"नाम"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"प्रचलित नाम"</string>
@@ -568,4 +568,6 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"ध्‍वनिमेल कॉल करने के लिए, पहले हवाई जहाज़ मोड बंद करें."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फ़ाइलें निर्यात करें"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"अधिक विकल्प"</string>
+    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
+    <skip />
 </resources>
