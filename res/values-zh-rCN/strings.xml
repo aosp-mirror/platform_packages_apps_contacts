@@ -78,7 +78,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"职位"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"该联系人不存在。"</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"“联系人”窗口小部件已添加到主屏幕。"</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"联系人小部件已添加到主屏幕。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"新建联系人"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"创建新联系人"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"电话"</string>
@@ -568,4 +568,6 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"要呼叫语音信箱，请先关闭飞行模式。"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"导出数据库文件"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"更多选项"</string>
+    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
+    <skip />
 </resources>

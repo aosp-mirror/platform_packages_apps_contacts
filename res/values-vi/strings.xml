@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="launcherDialer" msgid="8636288196618486553">"Điện thoại"</string>
-    <string name="people" msgid="1048457247435785074">"Mọi người"</string>
+    <string name="people" msgid="1048457247435785074">"Danh bạ"</string>
     <string name="contactsList" msgid="8661624236494819731">"Danh bạ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Liên hệ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Quay số trực tiếp"</string>
@@ -568,4 +568,6 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Để gọi thư thoại, trước tiên hãy tắt chế độ trên Máy bay."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Xuất các tệp cơ sở dữ liệu"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Tùy chọn khác"</string>
+    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
+    <skip />
 </resources>
