@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- no translation found for toast_text_copied (8327159932780920627) -->
+    <skip />
+    <!-- no translation found for call_custom (2786306789889210756) -->
+    <skip />
+    <!-- no translation found for call_home (1479549630992276827) -->
+    <skip />
+    <!-- no translation found for call_mobile (8618334085824709009) -->
+    <skip />
+    <!-- no translation found for call_work (8299062439076337075) -->
+    <skip />
+    <!-- no translation found for call_fax_work (3770754834467992571) -->
+    <skip />
+    <!-- no translation found for call_fax_home (6219051113573396065) -->
+    <skip />
+    <!-- no translation found for call_pager (3038080882899955112) -->
+    <skip />
+    <!-- no translation found for call_other (4472141328347894937) -->
+    <skip />
+    <!-- no translation found for call_callback (687494744634190411) -->
+    <skip />
+    <!-- no translation found for call_car (9078083109758282133) -->
+    <skip />
+    <!-- no translation found for call_company_main (8768047233970315359) -->
+    <skip />
+    <!-- no translation found for call_isdn (3342482563847537747) -->
+    <skip />
+    <!-- no translation found for call_main (4640261071249938558) -->
+    <skip />
+    <!-- no translation found for call_other_fax (2536328553125487877) -->
+    <skip />
+    <!-- no translation found for call_radio (9055749313292712021) -->
+    <skip />
+    <!-- no translation found for call_telex (2909886619224843563) -->
+    <skip />
+    <!-- no translation found for call_tty_tdd (6704940636171078852) -->
+    <skip />
+    <!-- no translation found for call_work_mobile (4408630608955148641) -->
+    <skip />
+    <!-- no translation found for call_work_pager (3036932765279753793) -->
+    <skip />
+    <!-- no translation found for call_assistant (5188990854852312696) -->
+    <skip />
+    <!-- no translation found for call_mms (8998771923464696960) -->
+    <skip />
+    <!-- no translation found for sms_custom (4601748252470175865) -->
+    <skip />
+    <!-- no translation found for sms_home (7765831490534280540) -->
+    <skip />
+    <!-- no translation found for sms_mobile (8387632124165893103) -->
+    <skip />
+    <!-- no translation found for sms_work (3910570578912367742) -->
+    <skip />
+    <!-- no translation found for sms_fax_work (909086167151248212) -->
+    <skip />
+    <!-- no translation found for sms_fax_home (4145442497939634875) -->
+    <skip />
+    <!-- no translation found for sms_pager (5664381349583724906) -->
+    <skip />
+    <!-- no translation found for sms_other (910895193552957097) -->
+    <skip />
+    <!-- no translation found for sms_callback (728414485478941361) -->
+    <skip />
+    <!-- no translation found for sms_car (8543669230270954512) -->
+    <skip />
+    <!-- no translation found for sms_company_main (5441902128445061862) -->
+    <skip />
+    <!-- no translation found for sms_isdn (7142483128948042667) -->
+    <skip />
+    <!-- no translation found for sms_main (6815987840926184815) -->
+    <skip />
+    <!-- no translation found for sms_other_fax (8649822154879781466) -->
+    <skip />
+    <!-- no translation found for sms_radio (8750339218480745940) -->
+    <skip />
+    <!-- no translation found for sms_telex (5469333785775443999) -->
+    <skip />
+    <!-- no translation found for sms_tty_tdd (5057886576150816002) -->
+    <skip />
+    <!-- no translation found for sms_work_mobile (8426872094268475047) -->
+    <skip />
+    <!-- no translation found for sms_work_pager (499303540738557836) -->
+    <skip />
+    <!-- no translation found for sms_assistant (2677586547377136683) -->
+    <skip />
+    <!-- no translation found for sms_mms (4887206338311086612) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
+    <skip />
+    <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
+    <skip />
+    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
+    <skip />
+    <!-- no translation found for status_available (4832569677396634846) -->
+    <skip />
+    <!-- no translation found for status_away (6267905184545881094) -->
+    <skip />
+    <!-- no translation found for status_busy (7111912905211403545) -->
+    <skip />
+    <!-- no translation found for contactsList (7140022347217602605) -->
+    <skip />
+    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
+    <skip />
+    <!-- no translation found for directory_search_label (4484648822765516947) -->
+    <skip />
+    <!-- no translation found for local_search_label (9094584931063745728) -->
+    <skip />
+    <!-- no translation found for user_profile_contacts_list_header (8436133790234197565) -->
+    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
+    <skip />
+    <!-- no translation found for search_results_searching (9022794597388306615) -->
+    <skip />
+    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
+    <skip />
+    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
+    <skip />
+    <!-- no translation found for searchFoundContacts:one (1013734912609351182) -->
+    <!-- no translation found for searchFoundContacts:other (4649647748678161594) -->
+    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
+    <skip />
+    <!-- no translation found for missing_name (2633118852693000081) -->
+    <skip />
+    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
+    <skip />
+    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
+    <skip />
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Mussar il contact"</string>
+    <!-- no translation found for list_filter_phones (3692815632088465422) -->
+    <skip />
+</resources>
