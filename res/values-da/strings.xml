@@ -568,4 +568,6 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Hvis du vil ringe til telefonsvareren, skal du først slå Flytilstand fra."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksportér databasefiler"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Flere valgmuligheder"</string>
+    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
+    <skip />
 </resources>
