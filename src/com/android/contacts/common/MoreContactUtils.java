@@ -17,12 +17,16 @@
 package com.android.contacts.common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
+
+import com.android.contacts.common.model.account.AccountType;
 
 /**
  * Shared static contact utility methods.
@@ -118,5 +122,27 @@ public class MoreContactUtils {
         TextView textView = (TextView) view.findViewById(R.id.title);
         textView.setText(context.getString(textResourceId));
         return view;
+    }
+
+    /**
+     * Returns the intent to launch for the given invitable account type and contact lookup URI.
+     * This will return null if the account type is not invitable (i.e. there is no
+     * {@link AccountType#getInviteContactActivityClassName()} or
+     * {@link AccountType#syncAdapterPackageName}).
+     */
+    public static Intent getInvitableIntent(AccountType accountType, Uri lookupUri) {
+        String syncAdapterPackageName = accountType.syncAdapterPackageName;
+        String className = accountType.getInviteContactActivityClassName();
+        if (TextUtils.isEmpty(syncAdapterPackageName) || TextUtils.isEmpty(className)) {
+            return null;
+        }
+        Intent intent = new Intent();
+        intent.setClassName(syncAdapterPackageName, className);
+
+        intent.setAction(ContactsContract.Intents.INVITE_CONTACT);
+
+        // Data is the lookup URI.
+        intent.setData(lookupUri);
+        return intent;
     }
 }
