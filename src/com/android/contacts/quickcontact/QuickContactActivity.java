@@ -587,13 +587,18 @@ public class QuickContactActivity extends Activity {
             final CheckableImageView actionView = getActionViewAt(position);
             mTrackScroller.requestChildRectangleOnScreen(actionView,
                     new Rect(0, 0, actionView.getWidth(), actionView.getHeight()), false);
+            renderSelectedRectangle(position, 0);
         }
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            renderSelectedRectangle(position, positionOffset);
+        }
+
+        private void renderSelectedRectangle(int position, float positionOffset) {
             final RelativeLayout.LayoutParams layoutParams =
                     (RelativeLayout.LayoutParams) mSelectedTabRectangle.getLayoutParams();
-            final int width = mSelectedTabRectangle.getWidth();
+            final int width = layoutParams.width;
             layoutParams.leftMargin = (int) ((position + positionOffset) * width);
             mSelectedTabRectangle.setLayoutParams(layoutParams);
         }
