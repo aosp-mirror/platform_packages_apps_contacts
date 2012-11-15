@@ -155,6 +155,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                 R.id.group_source_view_container);
         mEmptyView = mRootView.findViewById(android.R.id.empty);
         mMemberListView = (ListView) mRootView.findViewById(android.R.id.list);
+        mMemberListView.setItemsCanFocus(true);
         mMemberListView.setAdapter(mAdapter);
 
         return mRootView;
