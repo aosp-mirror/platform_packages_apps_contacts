@@ -53,8 +53,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Dela upp"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Redigera"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ta bort"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ny"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Ny"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Lägg till kontakt"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Lägg till grupp"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Dela upp kontakten?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Kontakten kommer att delas upp i flera kontakter."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Slå ihop"</string>
@@ -89,7 +89,7 @@
     <item msgid="8287841928119937597">"Organisation"</item>
     <item msgid="7196592230748086755">"Anteckning"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Det finns inga bilder på pekdatorn."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Det finns inga bilder på surfplattan."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Det finns inga bilder på telefonen."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktbild"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Anpassat etikettsnamn"</string>
@@ -267,7 +267,7 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Det gick inte att starta exportverktyget: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Ett fel inträffade under exporten: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Det gick inte att hämta databasinformation."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Det finns inga kontakter att exportera. Om du har kontakter på pekdatorn kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från pekdatorn."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Det finns inga kontakter att exportera. Om du har kontakter på surfplattan kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från surfplattan."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Det finns inga kontakter att exportera. Om du har kontakter på mobilen kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från mobilen."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard-kompositören initierades inte korrekt."</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Det gick inte att öppna <xliff:g id="FILE_NAME">%s</xliff:g>: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
@@ -568,6 +568,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Om du vill ringa röstbrevlådan måste du först inaktivera flygplansläget."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportera databasfiler"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Fler alternativ"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Expandera eller komprimera namnfält"</string>
 </resources>

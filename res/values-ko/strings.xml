@@ -53,8 +53,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"분리"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"수정"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"삭제"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"새 연락처"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"새 그룹"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"연락처 추가"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"그룹 추가"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"주소록을 분리하시겠습니까?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"연락처가 여러 주소록으로 분리됩니다."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"통합"</string>
@@ -568,6 +568,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"음성사서함에 메시지를 남기려면 먼저 비행기 모드를 해제하세요."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"데이터베이스 파일 내보내기"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"옵션 더보기"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"이름 입력란 펼치기/접기"</string>
 </resources>

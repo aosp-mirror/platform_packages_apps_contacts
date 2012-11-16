@@ -53,8 +53,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"拆分"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"修改"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"删除"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"新建"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"新建群组"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"添加联系人"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"添加群组"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"要拆分联系人吗？"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"系统会将此联系人拆分成多个联系人。"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"合并"</string>
@@ -568,6 +568,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"要呼叫语音信箱，请先关闭飞行模式。"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"导出数据库文件"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"更多选项"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"展开或折叠姓名字段"</string>
 </resources>
