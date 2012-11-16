@@ -80,11 +80,66 @@
   </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Rýchly kontakt pre osobu <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Bez mena)"</string>
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
-    <skip />
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Najčastejšie volané kontakty"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Najčastejšie používané kontakty"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Zobraziť kontakt"</string>
-    <!-- no translation found for list_filter_phones (3692815632088465422) -->
-    <skip />
+    <string name="list_filter_phones" msgid="3692815632088465422">"Všetky kontakty s telefónnymi číslami"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Zobraziť aktualizácie"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Iba v tablete, nesynchronizované"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Iba v telefóne, nesynchronizované"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Meno"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Prezývka"</string>
+    <string name="full_name" msgid="885420216812981202">"Meno"</string>
+    <string name="name_given" msgid="1560204576305608571">"Krstné meno"</string>
+    <string name="name_family" msgid="1267097554034721002">"Priezvisko"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Prefix priezviska"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Druhé meno"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Prímeno"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Meno (foneticky)"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"Krstné meno (foneticky)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Druhé meno (foneticky)"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Priezvisko (foneticky)"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefón"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"E-mail"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresa"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizácia"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Vzťah"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"Udalosti"</string>
+    <string name="sms" msgid="8086289395154598654">"Textová správa"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Adresa"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Spoločnosť"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Názov"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Poznámky"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"Internetový hovor"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webové stránky"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"Skupiny"</string>
+    <string name="email_home" msgid="2230967805906450693">"E-mail domov"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"E-mail na mobil"</string>
+    <string name="email_work" msgid="7065971921227432400">"E-mail do práce"</string>
+    <string name="email_other" msgid="4601881243553289615">"E-mail"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Poslať e-mail na adresu <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"E-mail"</string>
+    <string name="postal_street" msgid="881349814077356134">"Ulica"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Číslo poštovej schránky"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Štvrť"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Mesto"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Štát"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"PSČ"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Krajina"</string>
+    <string name="map_home" msgid="1221397355014741634">"Zobraziť adresu domov"</string>
+    <string name="map_work" msgid="9015981646907637207">"Zobraziť pracovnú adresu"</string>
+    <string name="map_other" msgid="55098598855607997">"Zobraziť adresu"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Zobraziť adresu <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Zhovárať sa pomocou služby AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Zhovárať sa pomocou služby Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Zhovárať sa pomocou služby Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Zhovárať sa pomocou služby Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Zhovárať sa pomocou služby QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Zhovárať sa pomocou aplikácie Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Zhovárať sa pomocou služby ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Zhovárať sa pomocou služby Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Rozhovor"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"odstrániť"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Rozbaliť alebo zbaliť polia mien"</string>
 </resources>

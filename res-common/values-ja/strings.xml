@@ -80,11 +80,66 @@
   </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>さんのクイックコンタクト"</string>
     <string name="missing_name" msgid="2633118852693000081">"（名前なし）"</string>
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
-    <skip />
-    <string name="description_view_contact_detail" msgid="2756753096193839285">"連絡先詳細"</string>
-    <!-- no translation found for list_filter_phones (3692815632088465422) -->
-    <skip />
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"よく使う連絡先"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"よく使う連絡先"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"連絡先を表示"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"電話番号のあるすべての連絡先"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"更新情報を表示"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"タブレットのみ（非同期）"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"電話のみ（非同期）"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"名前"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ニックネーム"</string>
+    <string name="full_name" msgid="885420216812981202">"名前"</string>
+    <string name="name_given" msgid="1560204576305608571">"名"</string>
+    <string name="name_family" msgid="1267097554034721002">"姓"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"敬称（名前の前）"</string>
+    <string name="name_middle" msgid="3951610314424632183">"ミドルネーム"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"敬称（名前の後）"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"よみがな"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"名のよみがな"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"ミドルネームのよみがな"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"姓のよみがな"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"電話"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"メール"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"住所"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"組織"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"関係"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"予定"</string>
+    <string name="sms" msgid="8086289395154598654">"テキストメッセージ"</string>
+    <string name="postal_address" msgid="7692926530081579786">"住所"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"会社"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"役職"</string>
+    <string name="label_notes" msgid="3997277594846722699">"メモ"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"インターネット通話"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"ウェブサイト"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"グループ"</string>
+    <string name="email_home" msgid="2230967805906450693">"自宅にメール"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"携帯端末にメール"</string>
+    <string name="email_work" msgid="7065971921227432400">"勤務先にメール"</string>
+    <string name="email_other" msgid="4601881243553289615">"メール"</string>
+    <string name="email_custom" msgid="5777583741581538870">"<xliff:g id="CUSTOM">%s</xliff:g>にメール"</string>
+    <string name="email" msgid="5624424151176351591">"メール"</string>
+    <string name="postal_street" msgid="881349814077356134">"番地"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"私書箱"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"街区（中国等で使用）"</string>
+    <string name="postal_city" msgid="3173008531169519309">"市区町村"</string>
+    <string name="postal_region" msgid="1695206048198921115">"都道府県"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"郵便番号"</string>
+    <string name="postal_country" msgid="3988452247038791892">"国"</string>
+    <string name="map_home" msgid="1221397355014741634">"自宅の住所を表示"</string>
+    <string name="map_work" msgid="9015981646907637207">"勤務先の住所を表示"</string>
+    <string name="map_other" msgid="55098598855607997">"住所を表示"</string>
+    <string name="map_custom" msgid="4943554530347163288">"<xliff:g id="CUSTOM">%s</xliff:g>の住所を表示"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"AIMでチャット"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Windows Liveでチャット"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Yahooでチャット"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Skypeでチャット"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"QQでチャット"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Googleトークでチャット"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"ICQでチャット"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Jabberでチャット"</string>
+    <string name="chat" msgid="6297650784873558837">"チャット"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"削除"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"名前フィールドの展開/折りたたみ"</string>
 </resources>

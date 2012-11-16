@@ -145,4 +145,120 @@
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Mussar il contact"</string>
     <!-- no translation found for list_filter_phones (3692815632088465422) -->
     <skip />
+    <!-- no translation found for view_updates_from_group (3310864388165884352) -->
+    <skip />
+    <!-- no translation found for account_phone (1143884271396601338) -->
+    <skip />
+    <!-- no translation found for account_phone (6104157990869081962) -->
+    <skip />
+    <!-- no translation found for nameLabelsGroup (1817502703362057154) -->
+    <skip />
+    <!-- no translation found for nicknameLabelsGroup (6312795212164843246) -->
+    <skip />
+    <!-- no translation found for full_name (885420216812981202) -->
+    <skip />
+    <!-- no translation found for name_given (1560204576305608571) -->
+    <skip />
+    <!-- no translation found for name_family (1267097554034721002) -->
+    <skip />
+    <!-- no translation found for name_prefix (8219879405071462309) -->
+    <skip />
+    <!-- no translation found for name_middle (3951610314424632183) -->
+    <skip />
+    <!-- no translation found for name_suffix (5436984808550075931) -->
+    <skip />
+    <!-- no translation found for name_phonetic (2249169131785620210) -->
+    <skip />
+    <!-- no translation found for name_phonetic_given (993707744185923412) -->
+    <skip />
+    <!-- no translation found for name_phonetic_middle (5970174427249235577) -->
+    <skip />
+    <!-- no translation found for name_phonetic_family (8617732497578358951) -->
+    <skip />
+    <!-- no translation found for phoneLabelsGroup (7913782787902007482) -->
+    <skip />
+    <!-- no translation found for emailLabelsGroup (4696310712601184208) -->
+    <skip />
+    <!-- no translation found for postalLabelsGroup (3727124282406728557) -->
+    <skip />
+    <!-- no translation found for imLabelsGroup (8733603247535725786) -->
+    <skip />
+    <!-- no translation found for organizationLabelsGroup (961008074745871784) -->
+    <skip />
+    <!-- no translation found for relationLabelsGroup (3585294036166325520) -->
+    <skip />
+    <!-- no translation found for eventLabelsGroup (536444452517449685) -->
+    <skip />
+    <!-- no translation found for sms (8086289395154598654) -->
+    <skip />
+    <!-- no translation found for postal_address (7692926530081579786) -->
+    <skip />
+    <!-- no translation found for ghostData_company (22470841482615409) -->
+    <skip />
+    <!-- no translation found for ghostData_title (6221293237772204604) -->
+    <skip />
+    <!-- no translation found for label_notes (3997277594846722699) -->
+    <skip />
+    <!-- no translation found for label_sip_address (5849843867753601973) -->
+    <skip />
+    <!-- no translation found for websiteLabelsGroup (8620657380165071493) -->
+    <skip />
+    <!-- no translation found for groupsLabel (3574316547053047551) -->
+    <skip />
+    <!-- no translation found for email_home (2230967805906450693) -->
+    <skip />
+    <!-- no translation found for email_mobile (7532438378678903685) -->
+    <skip />
+    <!-- no translation found for email_work (7065971921227432400) -->
+    <skip />
+    <!-- no translation found for email_other (4601881243553289615) -->
+    <skip />
+    <!-- no translation found for email_custom (5777583741581538870) -->
+    <skip />
+    <!-- no translation found for email (5624424151176351591) -->
+    <skip />
+    <!-- no translation found for postal_street (881349814077356134) -->
+    <skip />
+    <!-- no translation found for postal_pobox (1799978742074885091) -->
+    <skip />
+    <!-- no translation found for postal_neighborhood (3721092668038527674) -->
+    <skip />
+    <!-- no translation found for postal_city (3173008531169519309) -->
+    <skip />
+    <!-- no translation found for postal_region (1695206048198921115) -->
+    <skip />
+    <!-- no translation found for postal_postcode (6542806670034753265) -->
+    <skip />
+    <!-- no translation found for postal_country (3988452247038791892) -->
+    <skip />
+    <!-- no translation found for map_home (1221397355014741634) -->
+    <skip />
+    <!-- no translation found for map_work (9015981646907637207) -->
+    <skip />
+    <!-- no translation found for map_other (55098598855607997) -->
+    <skip />
+    <!-- no translation found for map_custom (4943554530347163288) -->
+    <skip />
+    <!-- no translation found for chat_aim (6479001490307452172) -->
+    <skip />
+    <!-- no translation found for chat_msn (627481952525245054) -->
+    <skip />
+    <!-- no translation found for chat_yahoo (5542489454092719897) -->
+    <skip />
+    <!-- no translation found for chat_skype (3145166404699830256) -->
+    <skip />
+    <!-- no translation found for chat_qq (2811762660890755082) -->
+    <skip />
+    <!-- no translation found for chat_gtalk (6043734883347741789) -->
+    <skip />
+    <!-- no translation found for chat_icq (7538190395602030726) -->
+    <skip />
+    <!-- no translation found for chat_jabber (4525546665986350869) -->
+    <skip />
+    <!-- no translation found for chat (6297650784873558837) -->
+    <skip />
+    <!-- no translation found for description_minus_button (2142439445814730827) -->
+    <skip />
+    <!-- no translation found for expand_collapse_name_fields_description (5073419090665464541) -->
+    <skip />
 </resources>

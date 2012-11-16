@@ -80,11 +80,66 @@
   </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Хуткі кантакт для карыстальніка \"<xliff:g id="NAME">%1$s</xliff:g>\""</string>
     <string name="missing_name" msgid="2633118852693000081">"(Без назвы)"</string>
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
-    <skip />
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Часта выкліканыя"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Часта выкарыстаныя кантакты"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Прагледзець кантакт"</string>
-    <!-- no translation found for list_filter_phones (3692815632088465422) -->
-    <skip />
+    <string name="list_filter_phones" msgid="3692815632088465422">"Усе кантакты з нумарамі тэлефонаў"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Прагляд абнаўленняў"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Толькі планшэт, несінхранізаваны"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Толькі тэлефон, несінхранізаваны"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Імя"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псеўданiм"</string>
+    <string name="full_name" msgid="885420216812981202">"Імя"</string>
+    <string name="name_given" msgid="1560204576305608571">"Імя"</string>
+    <string name="name_family" msgid="1267097554034721002">"Прозвішча"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Прэфікс імені"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Імя па бацьку"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Суфікс да імені"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Фанетычнае імя"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"Фанетычны запіс імя"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Фанетычны запіс імя па бацьку"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Фанетычны запіс прозвішча"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Тэлефон"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Электронная пошта"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Адрас"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Iмгненныя паведамленнi"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Установа"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Сувязі"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"Мерапрыемствы"</string>
+    <string name="sms" msgid="8086289395154598654">"Тэкставае паведамленне"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Адрас"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Кампанія"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Назва"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Нататкі"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"Iнтэрнэт-выклік"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Вэб-сайт"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"Групы"</string>
+    <string name="email_home" msgid="2230967805906450693">"Паведамленне на хатні адрас электроннай пошты"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Адправіць электронную пошту на мабільны адрас"</string>
+    <string name="email_work" msgid="7065971921227432400">"Паведамленне на працоўную электронную пошту"</string>
+    <string name="email_other" msgid="4601881243553289615">"Электронная пошта"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Адправiць лiст на адрас: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"Электронная пошта"</string>
+    <string name="postal_street" msgid="881349814077356134">"Вуліца"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Паштовая скрыня"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Наваколле"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Горад"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Шт"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Паштовы індэкс"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Краіна"</string>
+    <string name="map_home" msgid="1221397355014741634">"Прагледзець хатні адрас"</string>
+    <string name="map_work" msgid="9015981646907637207">"Паглядзець працоўны адрас"</string>
+    <string name="map_other" msgid="55098598855607997">"Прагледзець адрас"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Паглядзець адрас \"<xliff:g id="CUSTOM">%s</xliff:g>\""</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Чат у AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Чат у Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Чат у Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Чат у Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Чат у QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Чат у Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Чат праз ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Чат у Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Гутарка"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"выдаліць"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Разгарнуць ці згарнуць назвы палёў"</string>
 </resources>

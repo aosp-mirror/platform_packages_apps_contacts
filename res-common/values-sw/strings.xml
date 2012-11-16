@@ -80,11 +80,66 @@
   </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Anwani ya haraka ya  <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Hakuna jina)"</string>
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
-    <skip />
-    <string name="description_view_contact_detail" msgid="2756753096193839285">"Tazama anwani"</string>
-    <!-- no translation found for list_filter_phones (3692815632088465422) -->
-    <skip />
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Zinazopigwa mara kwa mara"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Unaowasiliana nao zaidi"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Ona anwani"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Anwani zote zilizo na nambari ya simu"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Ona sasisho"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Kompyuta ndogo pekee, haijalandanishwa"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Simu pekee, haijalandanishwa"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Jina"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Lakabu"</string>
+    <string name="full_name" msgid="885420216812981202">"Jina"</string>
+    <string name="name_given" msgid="1560204576305608571">"Jina la kupewa"</string>
+    <string name="name_family" msgid="1267097554034721002">"Jina la familia"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Kiambishi awali cha jina"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Jina la kati"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Kiambishi tamati cha jina"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Jina la fonetiki"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"Jina la kupewa la fonetiki"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Jina la kat la fonetiki"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Jina la fonetiki la familia"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Simu"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Barua pepe"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Anwani"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Ujumbe wa Papo Hapo"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Shirika"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Uhusiano"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"Matukio"</string>
+    <string name="sms" msgid="8086289395154598654">"SMS, (Ujumbe wa maandishi)"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Anwani"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Kampuni"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Kichwa"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Madokezo"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"Simu ya intaneti"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Tovuti"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"Vikundi"</string>
+    <string name="email_home" msgid="2230967805906450693">"Tuma barua pepe nyumbani"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Tuma barua pepe kwenye simu ya mkononi"</string>
+    <string name="email_work" msgid="7065971921227432400">"Tuma barua pepe kazini"</string>
+    <string name="email_other" msgid="4601881243553289615">"Tuma barua pepe"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Tuma barua pepe kwenye <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"Barua pepe"</string>
+    <string name="postal_street" msgid="881349814077356134">"Barabara"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Sanduku la posta"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Mtaa"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Mji"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Jimbo"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Msimbo wa posta"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Nchi"</string>
+    <string name="map_home" msgid="1221397355014741634">"Ona anwani ya nyumbani"</string>
+    <string name="map_work" msgid="9015981646907637207">"Ona anwani ya kazini"</string>
+    <string name="map_other" msgid="55098598855607997">"Ona anwani"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Ona anwani ya <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Piga gumzo kwa kutumia AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Piga gumzo kwa kutumia Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Piga gumzo kwa kutumia Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Piga gumzo kwa kutumia Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Piga gumzo kwa kutumia QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Piga gumzo kwa kutumia Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Piga gumzo kwa kutumia ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Piga gumzo kwa kutumia Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Gumzo"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"futa"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Panua au angusha nyuga za jina"</string>
 </resources>

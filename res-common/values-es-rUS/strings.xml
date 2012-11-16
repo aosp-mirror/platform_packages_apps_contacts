@@ -80,11 +80,66 @@
   </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sin nombre)"</string>
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
-    <skip />
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Llamados con frecuencia"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactados con frecuencia"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
-    <!-- no translation found for list_filter_phones (3692815632088465422) -->
-    <skip />
+    <string name="list_filter_phones" msgid="3692815632088465422">"Todos los contactos con número de teléfono"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizaciones"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Sólo en Tablet, sin sincronizar"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Sólo telefónicamente, no sincronizado"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Nombre"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Apodo"</string>
+    <string name="full_name" msgid="885420216812981202">"Nombre"</string>
+    <string name="name_given" msgid="1560204576305608571">"Nombre"</string>
+    <string name="name_family" msgid="1267097554034721002">"Apellido"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Prefijo del nombre"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Segundo nombre"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Sufijo del nombre"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Nombre fonético"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"Nombre fonético"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Segundo nombre fonético"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Apellido fonético"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Teléfono"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Dirección de correo"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Dirección"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Organización"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Relación"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"Eventos"</string>
+    <string name="sms" msgid="8086289395154598654">"Mensaje de texto"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Dirección"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Empresa"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Título"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Notas"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"Llamada por Internet"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Sitio web"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"Grupos"</string>
+    <string name="email_home" msgid="2230967805906450693">"Correo personal"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Correo móvil"</string>
+    <string name="email_work" msgid="7065971921227432400">"Correo laboral"</string>
+    <string name="email_other" msgid="4601881243553289615">"Enviar correo a"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Enviar correo a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"Enviar correo"</string>
+    <string name="postal_street" msgid="881349814077356134">"Calle"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Apartado postal"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Barrio"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Ciudad"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Estado"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Código postal"</string>
+    <string name="postal_country" msgid="3988452247038791892">"País"</string>
+    <string name="map_home" msgid="1221397355014741634">"Ver dirección personal"</string>
+    <string name="map_work" msgid="9015981646907637207">"Ver dirección laboral"</string>
+    <string name="map_other" msgid="55098598855607997">"Ver dirección"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Ver dirección <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Chat mediante AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Chat mediante Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Chat mediante Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Chat mediante Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Chat mediante QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Chat mediante Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Chat mediante ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Chat mediante Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Chatear"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"eliminar"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Expandir o contraer campos de nombre"</string>
 </resources>
