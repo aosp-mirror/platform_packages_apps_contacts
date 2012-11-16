@@ -52,8 +52,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Подели"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Измени"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Избриши"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ново"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Нова"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Додај контакт"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Додај групу"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Раздвојити контакт?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Овај контакт ће бити раздвојен у више контаката."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Придружи"</string>
@@ -72,18 +72,10 @@
     <string name="menu_done" msgid="796017761764190697">"Готово"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Откажи"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Одбаци"</string>
-    <string name="label_notes" msgid="8337354953278341042">"Белешке"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"Интернет позив"</string>
-    <string name="ghostData_company" msgid="5414421120553765775">"Предузеће"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"Наслов"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Контакт не постоји."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Виџет за контакте је додат на Почетни екран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Направите нови контакт"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Направи нови контакт"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Пошаљи е-поштом"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"Размена тренутних порука"</string>
-    <string name="postalLabelsGroup" msgid="3487738141112589324">"Адреса"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Организација"</item>
     <item msgid="7196592230748086755">"Напомена"</item>
@@ -189,7 +181,6 @@
     <string name="description_delete_button" msgid="6263102114033407382">"backspace"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"број за бирање"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"фотографија контакта"</string>
-    <string name="description_minus_button" msgid="6908099247930477551">"избриши"</string>
     <string name="description_plus_button" msgid="515164827856229880">"плус"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Није пронађена меморија."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Није пронађена ниједна SD картица."</string>
@@ -267,13 +258,6 @@
     <string name="menu_share" msgid="943789700636542260">"Дели"</string>
     <string name="share_via" msgid="563121028023030093">"Дели контакт преко"</string>
     <string name="share_error" msgid="948429331673358107">"Овај контакт не може да се дели."</string>
-    <string name="nameLabelsGroup" msgid="2034640839640477827">"Име"</string>
-    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Надимак"</string>
-    <string name="organizationLabelsGroup" msgid="2478611760751832035">"Организација"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Веб сајт"</string>
-    <string name="eventLabelsGroup" msgid="3695433812142818803">"Догађаји"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"Однос"</string>
-    <string name="groupsLabel" msgid="8573535366319059326">"Групе"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Направи контакт у оквиру налога"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Прављење групе на налогу"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Уклони групу за синхронизацију"</string>
@@ -282,48 +266,8 @@
     <string name="display_ungrouped" msgid="6885954210243119591">"Сви други контакти"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Сви контакти"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Уклањањем групе „<xliff:g id="GROUP">%s</xliff:g>“ са листе за синхронизацију уклонићете и све негруписане контакте са те листе."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Само таблет, није синхронизовано"</string>
-    <string name="account_phone" product="default" msgid="3682950835276226870">"Само телефон, није синхронизовано"</string>
-    <string name="sms" msgid="1756857139634224222">"Текстуална порука"</string>
-    <string name="email_home" msgid="8573740658148184279">"Пошаљи поруку е-поште на кућну адресу е-поште"</string>
-    <string name="email_mobile" msgid="2042889209787989814">"Пошаљи поруку е-поште на број мобилног телефона"</string>
-    <string name="email_work" msgid="2807430017302722689">"Пошаљи поруку е-поште на пословни број телефона"</string>
-    <string name="email_other" msgid="3454004077967657109">"Пошаљи е-поштом"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Пошаљи поруку е-поште на адресу <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"Пошаљи е-поштом"</string>
-    <string name="map_home" msgid="1243547733423343982">"Прикажи кућну адресу"</string>
-    <string name="map_work" msgid="1360474076921878088">"Прикажи пословну адресу"</string>
-    <string name="map_other" msgid="3817820803587012641">"Прикажи адресу"</string>
-    <string name="map_custom" msgid="6184363799976265281">"Прикажи адресу <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"Започни ћаскање преко AIM-а"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"Започни ћаскање преко Windows Live-а"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"Започни ћаскање преко Yahoo-а"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"Започни ћаскање преко Skype-а"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"Започни ћаскање преко QQ-а"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"Ћаскај преко Google Talk-а"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"Започни ћаскање преко ICQ-а"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"Започни ћаскање преко Jabber-а"</string>
-    <string name="chat" msgid="9025361898797412245">"Ћаскање"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Аудио ћаскање"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видео ћаскање"</string>
-    <string name="postal_address" msgid="8765560217149624536">"Адреса"</string>
-    <string name="postal_street" msgid="8133143961580058972">"Улица"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"Поштанско сандуче"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Комшилук"</string>
-    <string name="postal_city" msgid="6597491300084895548">"Град"</string>
-    <string name="postal_region" msgid="6045263193478437672">"Држава"</string>
-    <string name="postal_postcode" msgid="572136414136673751">"Поштански број"</string>
-    <string name="postal_country" msgid="7638264508416368690">"Земља"</string>
-    <string name="full_name" msgid="6602579550613988977">"Назив"</string>
-    <string name="name_given" msgid="1687286314106019813">"Име"</string>
-    <string name="name_family" msgid="3416695586119999058">"Презиме"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Префикс за име"</string>
-    <string name="name_middle" msgid="8467433655992690326">"Средње слово"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Суфикс имена"</string>
-    <string name="name_phonetic_given" msgid="6853570431394449191">"Име – фонетски"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Средње име – фонетски"</string>
-    <string name="name_phonetic_family" msgid="462095502140180305">"Презиме – фонетски"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"Име – фонетски"</string>
     <string name="connections" msgid="8098440723172028350">"Везе"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Додај везу"</string>
     <string name="recent" msgid="2659189233141493004">"Недавно"</string>
@@ -424,7 +368,6 @@
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Подеси мој профил"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Унесите име особе"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"Прикажи ажурирања"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Назив групе"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Контакт преко NFC-а"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Прикажи само одлазне"</string>
@@ -462,6 +405,4 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Да бисте позвали говорну пошту, прво искључите режим авионa."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Извези датотеке базе података"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Још опција"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
 </resources>

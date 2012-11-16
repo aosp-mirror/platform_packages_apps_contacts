@@ -52,8 +52,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separa"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Modifica"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Elimina"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nuovo"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nuovo"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Aggiungi contatto"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Aggiungi gruppo"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Separare contatto?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Questo contatto verrà diviso in più contatti."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unisci"</string>
@@ -72,18 +72,10 @@
     <string name="menu_done" msgid="796017761764190697">"Salva"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Annulla"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Ignora"</string>
-    <string name="label_notes" msgid="8337354953278341042">"Note"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"Chiamata Internet"</string>
-    <string name="ghostData_company" msgid="5414421120553765775">"Società"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"Titolo"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Contatto non esistente."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget del contatto aggiunto alla schermata Home."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crea nuovo contatto"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Crea nuovo contatto"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefono"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Email"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"Chat"</string>
-    <string name="postalLabelsGroup" msgid="3487738141112589324">"Indirizzo"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organizzazione"</item>
     <item msgid="7196592230748086755">"Nota"</item>
@@ -189,7 +181,6 @@
     <string name="description_delete_button" msgid="6263102114033407382">"backspace"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"numero da comporre"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"foto contatto"</string>
-    <string name="description_minus_button" msgid="6908099247930477551">"elimina"</string>
     <string name="description_plus_button" msgid="515164827856229880">"più"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Nessun archivio trovato."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Nessuna scheda SD trovata."</string>
@@ -267,13 +258,6 @@
     <string name="menu_share" msgid="943789700636542260">"Condividi"</string>
     <string name="share_via" msgid="563121028023030093">"Condividi contatto tramite"</string>
     <string name="share_error" msgid="948429331673358107">"Questo contatto non può essere condiviso."</string>
-    <string name="nameLabelsGroup" msgid="2034640839640477827">"Nome"</string>
-    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Nickname"</string>
-    <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizzazione"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Sito web"</string>
-    <string name="eventLabelsGroup" msgid="3695433812142818803">"Eventi"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"Relazione"</string>
-    <string name="groupsLabel" msgid="8573535366319059326">"Gruppi"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crea contatto sotto account"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Crea un gruppo nell\'account"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Rimuovi gruppo sinc."</string>
@@ -282,48 +266,8 @@
     <string name="display_ungrouped" msgid="6885954210243119591">"Tutti gli altri contatti"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Tutti i contatti"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Se rimuovi \"<xliff:g id="GROUP">%s</xliff:g>\" dalla sincronizzazione, verranno rimossi anche gli eventuali contatti separati."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Solo su tablet, non sincronizzato"</string>
-    <string name="account_phone" product="default" msgid="3682950835276226870">"Solo su telefono, non sincronizzato"</string>
-    <string name="sms" msgid="1756857139634224222">"Messaggio di testo"</string>
-    <string name="email_home" msgid="8573740658148184279">"Invia email a ind. casa"</string>
-    <string name="email_mobile" msgid="2042889209787989814">"Invia email a ind. cellulare"</string>
-    <string name="email_work" msgid="2807430017302722689">"Invia email a ind. lavoro"</string>
-    <string name="email_other" msgid="3454004077967657109">"Invia email"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Invia email a ind. <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"Email"</string>
-    <string name="map_home" msgid="1243547733423343982">"Visualizza indirizzo casa"</string>
-    <string name="map_work" msgid="1360474076921878088">"Visualizza indirizzo lavoro"</string>
-    <string name="map_other" msgid="3817820803587012641">"Visualizza indirizzo"</string>
-    <string name="map_custom" msgid="6184363799976265281">"Visualizza indirizzo <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"Chatta su AIM"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"Chatta su Windows Live"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"Chatta su Yahoo"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"Chatta su Skype"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"Chatta su QQ"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"Chatta su Google Talk"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"Chatta su ICQ"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"Chatta su Jabber"</string>
-    <string name="chat" msgid="9025361898797412245">"Chatta"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat vocale"</string>
     <string name="video_chat" msgid="1872255818640336072">"Chat video"</string>
-    <string name="postal_address" msgid="8765560217149624536">"Indirizzo"</string>
-    <string name="postal_street" msgid="8133143961580058972">"Indirizzo postale"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"Casella postale"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Zona"</string>
-    <string name="postal_city" msgid="6597491300084895548">"Città"</string>
-    <string name="postal_region" msgid="6045263193478437672">"Provincia"</string>
-    <string name="postal_postcode" msgid="572136414136673751">"Codice postale"</string>
-    <string name="postal_country" msgid="7638264508416368690">"Paese"</string>
-    <string name="full_name" msgid="6602579550613988977">"Nome"</string>
-    <string name="name_given" msgid="1687286314106019813">"Nome fornito"</string>
-    <string name="name_family" msgid="3416695586119999058">"Cognome"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Prefisso nome"</string>
-    <string name="name_middle" msgid="8467433655992690326">"Secondo nome"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Suffisso nome"</string>
-    <string name="name_phonetic_given" msgid="6853570431394449191">"Nome fonetico fornito"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Secondo nome fonetico"</string>
-    <string name="name_phonetic_family" msgid="462095502140180305">"Cognome fonetico"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"Nome fonetico"</string>
     <string name="connections" msgid="8098440723172028350">"Connessioni"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Aggiungi connessione"</string>
     <string name="recent" msgid="2659189233141493004">"Recenti"</string>
@@ -424,7 +368,6 @@
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Imposta il mio profilo"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Digita il nome della persona"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"Visualizza aggiornamenti"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nome del gruppo"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contatto ricevuto via NFC"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Mostra solo in uscita"</string>
@@ -462,6 +405,4 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Per chiamare la segreteria, disattiva la modalità aereo."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Esporta file database"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Altre opzioni"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
 </resources>
