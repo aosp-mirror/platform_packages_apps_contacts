@@ -33,7 +33,7 @@ import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;
-import com.android.contacts.util.Constants;
+import com.android.contacts.common.util.Constants;
 import com.google.common.annotations.VisibleForTesting;
 
 public final class ContactsApplication extends Application {
@@ -41,6 +41,11 @@ public final class ContactsApplication extends Application {
     private static final boolean ENABLE_FRAGMENT_LOG = false; // Don't submit with true
 
     private static InjectedServices sInjectedServices;
+    /**
+     * Log tag for enabling/disabling StrictMode violation log.
+     * To enable: adb shell setprop log.tag.ContactsStrictMode DEBUG
+     */
+    public static final String STRICT_MODE_TAG = "ContactsStrictMode";
     private ContactPhotoManager mContactPhotoManager;
     private ContactListFilterController mContactListFilterController;
 
@@ -111,7 +116,7 @@ public final class ContactsApplication extends Application {
         if (ENABLE_FRAGMENT_LOG) FragmentManager.enableDebugLogging(true);
         if (ENABLE_LOADER_LOG) LoaderManager.enableDebugLogging(true);
 
-        if (Log.isLoggable(Constants.STRICT_MODE_TAG, Log.DEBUG)) {
+        if (Log.isLoggable(STRICT_MODE_TAG, Log.DEBUG)) {
             StrictMode.setThreadPolicy(
                     new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
         }

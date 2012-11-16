@@ -67,7 +67,7 @@ import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.model.dataitem.EmailDataItem;
 import com.android.contacts.model.dataitem.ImDataItem;
-import com.android.contacts.util.Constants;
+import com.android.contacts.common.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;

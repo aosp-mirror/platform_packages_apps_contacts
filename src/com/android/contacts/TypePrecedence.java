@@ -24,7 +24,6 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 
 import com.android.contacts.model.RawContactModifier;
-import com.android.contacts.util.Constants;
 
 /**
  * This class contains utility functions for determining the precedence of
@@ -35,6 +34,8 @@ import com.android.contacts.util.Constants;
  */
 @Deprecated
 public final class TypePrecedence {
+
+    public static final String MIME_TYPE_VIDEO_CHAT = "vnd.android.cursor.item/video-chat-address";
 
     /* This utility class has cannot be instantiated.*/
     private TypePrecedence() {}
@@ -106,7 +107,7 @@ public final class TypePrecedence {
             return TYPE_PRECEDENCE_POSTAL;
         } else if (mimetype.equals(Im.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_IM;
-        } else if (mimetype.equals(Constants.MIME_TYPE_VIDEO_CHAT)) {
+        } else if (mimetype.equals(MIME_TYPE_VIDEO_CHAT)) {
             return TYPE_PRECEDENCE_IM;
         } else if (mimetype.equals(Organization.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_ORG;

@@ -43,7 +43,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TimingLogger;
 
-import com.android.contacts.ContactsUtils;
+import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -53,8 +53,8 @@ import com.android.contacts.common.model.account.FallbackAccountType;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.test.NeededForTesting;
+import com.android.contacts.common.util.Constants;
 import com.android.contacts.list.ContactListFilterController;
-import com.android.contacts.util.Constants;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
@@ -723,7 +723,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
             AccountType accountType = allInvitables.get(accountTypeWithDataSet);
 
             // Make sure that account types don't come from apps that are disabled.
-            Intent invitableIntent = ContactsUtils.getInvitableIntent(accountType,
+            Intent invitableIntent = MoreContactUtils.getInvitableIntent(accountType,
                     SAMPLE_CONTACT_URI);
             if (invitableIntent == null) {
                 result.remove(accountTypeWithDataSet);
