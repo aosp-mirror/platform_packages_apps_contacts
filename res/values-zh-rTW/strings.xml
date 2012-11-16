@@ -53,8 +53,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"分割"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"編輯"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"刪除"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"新增"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"新建群組"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"新增聯絡人"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"新增群組"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"確定要分割聯絡人？"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"這位聯絡人即將分割成多份聯絡人資料。"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"合併"</string>
@@ -568,6 +568,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"如要聽語音留言，請先關閉飛行模式。"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"匯出資料庫檔案"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"更多選項"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"展開或收合名稱欄位"</string>
 </resources>

@@ -53,8 +53,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"अलग करें"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"संपादित करें"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"हटाएं"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"नया"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"नया"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"संपर्क जोड़ें"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"समूह जोड़ें"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"संपर्क अलग करें?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"यह संपर्क एकाधिक संपर्कों में अलग कर दिया जाएगा."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"जुड़ें"</string>
@@ -568,6 +568,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"ध्‍वनिमेल कॉल करने के लिए, पहले हवाई जहाज़ मोड बंद करें."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फ़ाइलें निर्यात करें"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"अधिक विकल्प"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"नाम फ़ील्ड विस्तृत या संक्षिप्त करें"</string>
 </resources>
