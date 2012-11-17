@@ -53,8 +53,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Skei"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Redigeer"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Vee uit"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nuut"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nuut"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Voeg kontak by"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Voeg groep by"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Skei kontak?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Hierdie kontak sal geskei word in verskeie kontakte."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Voeg saam"</string>
@@ -568,6 +568,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Om stemboodskapdiens te bel, skakel eers vliegtuigmodus af."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Voer databasislêers uit"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Meer opsies"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Vou naamvelde uit of in"</string>
 </resources>

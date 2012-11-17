@@ -53,8 +53,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Διαχωρισμός"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Επεξεργασία"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Διαγραφή"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Νέα"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Νέα"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Προσθήκη επαφής"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Προσθήκη ομάδας"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Διαχωρισμός επαφής;"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Αυτή η επαφή θα διαχωριστεί σε πολλαπλές επαφές."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Σύνδεση"</string>
@@ -568,6 +568,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Για κλήση αυτόματου τηλεφωνητή, πρώτα απενεργοποιήστε τη λειτουργία πτήσης."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Εξαγωγή αρχείων βάσης δεδομένων"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Περισσότερες επιλογές"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Ανάπτυξη ή σύμπτυξη πεδίων ονομάτων"</string>
 </resources>
