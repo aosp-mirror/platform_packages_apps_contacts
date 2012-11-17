@@ -52,8 +52,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"分割"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"編輯"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"刪除"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"新增"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"新建群組"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"新增聯絡人"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"新增群組"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"確定要分割聯絡人？"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"這位聯絡人即將分割成多份聯絡人資料。"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"合併"</string>
@@ -72,18 +72,10 @@
     <string name="menu_done" msgid="796017761764190697">"完成"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"取消"</string>
     <string name="menu_discard" msgid="6456087569315685632">"捨棄"</string>
-    <string name="label_notes" msgid="8337354953278341042">"附註"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"網路電話"</string>
-    <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"職稱"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"聯絡人不存在。"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"聯絡人小工具已新增到主螢幕上。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"建立新聯絡人"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"電子郵件"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"即時訊息"</string>
-    <string name="postalLabelsGroup" msgid="3487738141112589324">"地址"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"機構"</item>
     <item msgid="7196592230748086755">"附註"</item>
@@ -189,7 +181,6 @@
     <string name="description_delete_button" msgid="6263102114033407382">"Backspace"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"撥號號碼"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"聯絡人相片"</string>
-    <string name="description_minus_button" msgid="6908099247930477551">"刪除"</string>
     <string name="description_plus_button" msgid="515164827856229880">"加號"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"找不到任何儲存裝置。"</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"找不到 SD 卡。"</string>
@@ -267,13 +258,6 @@
     <string name="menu_share" msgid="943789700636542260">"分享"</string>
     <string name="share_via" msgid="563121028023030093">"使用下列應用程式分享聯絡人資訊："</string>
     <string name="share_error" msgid="948429331673358107">"無法分享這位聯絡人。"</string>
-    <string name="nameLabelsGroup" msgid="2034640839640477827">"姓名"</string>
-    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"暱稱"</string>
-    <string name="organizationLabelsGroup" msgid="2478611760751832035">"機構"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"網站"</string>
-    <string name="eventLabelsGroup" msgid="3695433812142818803">"活動"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"關係"</string>
-    <string name="groupsLabel" msgid="8573535366319059326">"群組"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"在帳戶下建立聯絡人"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"選擇帳戶以建立群組"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"移除同步處理群組"</string>
@@ -282,48 +266,8 @@
     <string name="display_ungrouped" msgid="6885954210243119591">"所有其他聯絡人"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"所有聯絡人"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"如果停用「<xliff:g id="GROUP">%s</xliff:g>」群組的同步處理設定，也會停止同步處理任何未分組的聯絡人。"</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"僅限平板電腦，不會同步處理"</string>
-    <string name="account_phone" product="default" msgid="3682950835276226870">"僅儲存於手機 (不會同步處理)"</string>
-    <string name="sms" msgid="1756857139634224222">"簡訊"</string>
-    <string name="email_home" msgid="8573740658148184279">"傳送電子郵件至住家電子郵件地址"</string>
-    <string name="email_mobile" msgid="2042889209787989814">"傳送電子郵件至行動裝置"</string>
-    <string name="email_work" msgid="2807430017302722689">"傳送電子郵件至公司電子郵件地址"</string>
-    <string name="email_other" msgid="3454004077967657109">"傳送電子郵件"</string>
-    <string name="email_custom" msgid="7548003991586214105">"傳送電子郵件至<xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"傳送電子郵件"</string>
-    <string name="map_home" msgid="1243547733423343982">"檢視住家地址"</string>
-    <string name="map_work" msgid="1360474076921878088">"檢視公司地址"</string>
-    <string name="map_other" msgid="3817820803587012641">"檢視地址"</string>
-    <string name="map_custom" msgid="6184363799976265281">"檢視<xliff:g id="CUSTOM">%s</xliff:g>地址"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"使用 AIM 進行即時通訊"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"使用 Windows Live 進行即時通訊"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"使用 Yahoo 進行即時通訊"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"使用 Skype 進行即時通訊"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"使用 QQ 進行即時通訊"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"使用 Google Talk 進行即時通訊"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"使用 ICQ 進行即時通訊"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"使用 Jabber 進行即時通訊"</string>
-    <string name="chat" msgid="9025361898797412245">"即時通訊"</string>
     <string name="audio_chat" msgid="2535716629358298691">"語音通訊"</string>
     <string name="video_chat" msgid="1872255818640336072">"語音通訊"</string>
-    <string name="postal_address" msgid="8765560217149624536">"地址"</string>
-    <string name="postal_street" msgid="8133143961580058972">"街道"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"郵政信箱"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"鄰"</string>
-    <string name="postal_city" msgid="6597491300084895548">"鄉/鎮/市/區"</string>
-    <string name="postal_region" msgid="6045263193478437672">"州/省"</string>
-    <string name="postal_postcode" msgid="572136414136673751">"郵遞區號"</string>
-    <string name="postal_country" msgid="7638264508416368690">"國家/地區"</string>
-    <string name="full_name" msgid="6602579550613988977">"姓名"</string>
-    <string name="name_given" msgid="1687286314106019813">"名字"</string>
-    <string name="name_family" msgid="3416695586119999058">"姓氏"</string>
-    <string name="name_prefix" msgid="59756378548779822">"姓名前稱銜"</string>
-    <string name="name_middle" msgid="8467433655992690326">"中間名"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"姓名後稱銜"</string>
-    <string name="name_phonetic_given" msgid="6853570431394449191">"名字 (拼音)"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"中間名 (拼音)"</string>
-    <string name="name_phonetic_family" msgid="462095502140180305">"姓氏 (拼音)"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
     <string name="connections" msgid="8098440723172028350">"聯絡方式"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"加入聯絡方式"</string>
     <string name="recent" msgid="2659189233141493004">"最新"</string>
@@ -424,7 +368,6 @@
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"設定我的個人資料"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"輸入聯絡人的名稱"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"查看更新"</string>
     <string name="group_name_hint" msgid="238359485263401293">"群組名稱"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"已透過 NFC 收到聯絡人資訊"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"僅顯示撥出電話"</string>
@@ -462,6 +405,4 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"如要聽語音留言，請先關閉飛行模式。"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"匯出資料庫檔案"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"更多選項"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
 </resources>

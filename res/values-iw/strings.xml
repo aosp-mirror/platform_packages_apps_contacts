@@ -52,8 +52,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"הפרד"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"ערוך"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"מחק"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"חדש"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"קבוצה חדשה"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"הוסף איש קשר"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"הוסף קבוצה"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"לפצל את איש הקשר?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"איש קשר זה יפוצל למספר אנשי קשר."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"צרף"</string>
@@ -72,18 +72,10 @@
     <string name="menu_done" msgid="796017761764190697">"סיום"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"בטל"</string>
     <string name="menu_discard" msgid="6456087569315685632">"מחק"</string>
-    <string name="label_notes" msgid="8337354953278341042">"הערות"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"שיחת אינטרנט"</string>
-    <string name="ghostData_company" msgid="5414421120553765775">"חברה"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"שם"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"איש הקשר לא קיים."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"widget של אנשי קשר נוסף למסך הבית."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"צור איש קשר חדש"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"צור איש קשר חדש"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"טלפון"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"דוא\"ל"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"הודעה מיידית"</string>
-    <string name="postalLabelsGroup" msgid="3487738141112589324">"כתובת"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"ארגון"</item>
     <item msgid="7196592230748086755">"הערה"</item>
@@ -189,7 +181,6 @@
     <string name="description_delete_button" msgid="6263102114033407382">"Backspace"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"מספר לחיוג"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"תמונה של איש קשר"</string>
-    <string name="description_minus_button" msgid="6908099247930477551">"מחק"</string>
     <string name="description_plus_button" msgid="515164827856229880">"חיבור"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"לא נמצאו התקני אחסון."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"לא נמצא כרטיס SD."</string>
@@ -267,13 +258,6 @@
     <string name="menu_share" msgid="943789700636542260">"שתף"</string>
     <string name="share_via" msgid="563121028023030093">"שתף איש קשר באמצעות"</string>
     <string name="share_error" msgid="948429331673358107">"לא ניתן לשתף איש קשר זה."</string>
-    <string name="nameLabelsGroup" msgid="2034640839640477827">"שם"</string>
-    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"כינוי"</string>
-    <string name="organizationLabelsGroup" msgid="2478611760751832035">"ארגון"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"אתר"</string>
-    <string name="eventLabelsGroup" msgid="3695433812142818803">"אירועים"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"קשר"</string>
-    <string name="groupsLabel" msgid="8573535366319059326">"קבוצות"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"צור איש קשר בחשבון"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"צור קבוצה עבור חשבון"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"הסר קבוצת סינכרון"</string>
@@ -282,48 +266,8 @@
     <string name="display_ungrouped" msgid="6885954210243119591">"כל אנשי הקשר האחרים"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"כל אנשי הקשר"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"הסרת \"<xliff:g id="GROUP">%s</xliff:g>\" מהסנכרון תסיר מהסנכרון גם אנשי קשר שאינם מקובצים."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"טאבלט בלבד, לא מסונכרן"</string>
-    <string name="account_phone" product="default" msgid="3682950835276226870">"טלפון בלבד, לא מסונכרן"</string>
-    <string name="sms" msgid="1756857139634224222">"הודעת טקסט"</string>
-    <string name="email_home" msgid="8573740658148184279">"שלח דוא\"ל לבית"</string>
-    <string name="email_mobile" msgid="2042889209787989814">"שלח דוא\"ל לנייד"</string>
-    <string name="email_work" msgid="2807430017302722689">"שלח דוא\"ל לעבודה"</string>
-    <string name="email_other" msgid="3454004077967657109">"דוא\"ל"</string>
-    <string name="email_custom" msgid="7548003991586214105">"שלח דוא\"ל אל <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"דוא\"ל"</string>
-    <string name="map_home" msgid="1243547733423343982">"הצג כתובת בית"</string>
-    <string name="map_work" msgid="1360474076921878088">"הצג כתובת עבודה"</string>
-    <string name="map_other" msgid="3817820803587012641">"הצג כתובת"</string>
-    <string name="map_custom" msgid="6184363799976265281">"הצג כתובת <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"שוחח בצ\'אט באמצעות AIM"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"שוחח בצ\'אט באמצעות Windows Live"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"שוחח בצ\'אט באמצעות Yahoo"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"שוחח בצ\'אט באמצעות Skype"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"שוחח בצ\'אט באמצעות QQ"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"שוחח בצ\'אט באמצעות Google Talk"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"שוחח בצ\'אט באמצעות ICQ"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"שוחח בצ\'אט באמצעות Jabber"</string>
-    <string name="chat" msgid="9025361898797412245">"שוחח בצ\'אט"</string>
     <string name="audio_chat" msgid="2535716629358298691">"צ\'אט קולי"</string>
     <string name="video_chat" msgid="1872255818640336072">"וידאו צ\'אט"</string>
-    <string name="postal_address" msgid="8765560217149624536">"כתובת"</string>
-    <string name="postal_street" msgid="8133143961580058972">"רחוב"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"תא דואר"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"שכונה"</string>
-    <string name="postal_city" msgid="6597491300084895548">"עיר"</string>
-    <string name="postal_region" msgid="6045263193478437672">"מדינה"</string>
-    <string name="postal_postcode" msgid="572136414136673751">"מיקוד"</string>
-    <string name="postal_country" msgid="7638264508416368690">"ארץ"</string>
-    <string name="full_name" msgid="6602579550613988977">"שם"</string>
-    <string name="name_given" msgid="1687286314106019813">"שם פרטי"</string>
-    <string name="name_family" msgid="3416695586119999058">"שם משפחה"</string>
-    <string name="name_prefix" msgid="59756378548779822">"קידומת שם"</string>
-    <string name="name_middle" msgid="8467433655992690326">"שם אמצעי"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"סיומת שם"</string>
-    <string name="name_phonetic_given" msgid="6853570431394449191">"שם פרטי פונטי"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"שם אמצעי פונטי"</string>
-    <string name="name_phonetic_family" msgid="462095502140180305">"שם משפחה פונטי"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"שם פונטי"</string>
     <string name="connections" msgid="8098440723172028350">"חיבורים"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"הוסף חיבור"</string>
     <string name="recent" msgid="2659189233141493004">"פריטים אחרונים"</string>
@@ -424,7 +368,6 @@
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"הגדר את הפרופיל שלי"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"הקלד שם של אדם"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"הצג עדכונים"</string>
     <string name="group_name_hint" msgid="238359485263401293">"שם הקבוצה"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"איש הקשר התקבל באמצעות NFC"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"הצג רק שיחות יוצאות"</string>
@@ -462,6 +405,4 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"כדי להתקשר לדואר קולי, ראשית כבה את מצב הטיסה."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ייצוא קובצי מסד נתונים"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"אפשרויות נוספות"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
 </resources>

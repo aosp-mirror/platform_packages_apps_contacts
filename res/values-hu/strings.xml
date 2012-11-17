@@ -52,8 +52,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Szétválasztás"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Szerkesztés"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Törlés"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Új"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Új"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Névjegy hozzáadása"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Csoport hozzáadása"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Szétválasztja?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ezt a névjegyet több névjegyre osztja."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Összekapcsolás"</string>
@@ -72,18 +72,10 @@
     <string name="menu_done" msgid="796017761764190697">"Kész"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Mégse"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Elvetés"</string>
-    <string name="label_notes" msgid="8337354953278341042">"Jegyzetek"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"Internetes hívás"</string>
-    <string name="ghostData_company" msgid="5414421120553765775">"Cég"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"Beosztás"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"A névjegy nem létezik."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"A Névjegy modul felkerült a kezdőképernyőre."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Új névjegy létrehozása"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Új névjegy létrehozása"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail cím"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"Azonnali üzenetküldés"</string>
-    <string name="postalLabelsGroup" msgid="3487738141112589324">"Cím"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Szervezet"</item>
     <item msgid="7196592230748086755">"Jegyzet"</item>
@@ -189,7 +181,6 @@
     <string name="description_delete_button" msgid="6263102114033407382">"Backspace"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"a tárcsázandó szám"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"fotó a névjegyhez"</string>
-    <string name="description_minus_button" msgid="6908099247930477551">"törlés"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plusz"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Nem található tárhely."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Nem található SD-kártya."</string>
@@ -267,13 +258,6 @@
     <string name="menu_share" msgid="943789700636542260">"Megosztás"</string>
     <string name="share_via" msgid="563121028023030093">"Névjegy megosztása a következőn:"</string>
     <string name="share_error" msgid="948429331673358107">"Ez a névjegy nem osztható meg."</string>
-    <string name="nameLabelsGroup" msgid="2034640839640477827">"Név"</string>
-    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Becenév"</string>
-    <string name="organizationLabelsGroup" msgid="2478611760751832035">"Szervezet"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Webhely"</string>
-    <string name="eventLabelsGroup" msgid="3695433812142818803">"Események"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"Kapcsolat"</string>
-    <string name="groupsLabel" msgid="8573535366319059326">"Csoportok"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Névjegy létrehozása a következő fiókban"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Csoport létrehozása a fiókban"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Szinkronizálási csoport eltávolítása"</string>
@@ -282,48 +266,8 @@
     <string name="display_ungrouped" msgid="6885954210243119591">"Az összes többi névjegy"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Összes névjegy"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Ha leállítja a(z) \"<xliff:g id="GROUP">%s</xliff:g>\" csoport szinkronizálását, ugyanez történik a nem csoportosított névjegyekkel is."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Csak a táblagépen, nem szinkronizált"</string>
-    <string name="account_phone" product="default" msgid="3682950835276226870">"Csak a telefonon, nem szinkronizált"</string>
-    <string name="sms" msgid="1756857139634224222">"Szöveges üzenet"</string>
-    <string name="email_home" msgid="8573740658148184279">"E-mail küldése haza"</string>
-    <string name="email_mobile" msgid="2042889209787989814">"E-mail küldése mobiltelefonra"</string>
-    <string name="email_work" msgid="2807430017302722689">"E-mail küldése munkahelyi címre"</string>
-    <string name="email_other" msgid="3454004077967657109">"E-mail küldése"</string>
-    <string name="email_custom" msgid="7548003991586214105">"E-mail küldése a(z) <xliff:g id="CUSTOM">%s</xliff:g> címre"</string>
-    <string name="email" msgid="5668400997660065897">"E-mail küldése"</string>
-    <string name="map_home" msgid="1243547733423343982">"Otthoni cím megtekintése"</string>
-    <string name="map_work" msgid="1360474076921878088">"Munkahelyi cím megtekintése"</string>
-    <string name="map_other" msgid="3817820803587012641">"Cím megtekintése"</string>
-    <string name="map_custom" msgid="6184363799976265281">"<xliff:g id="CUSTOM">%s</xliff:g> cím megtekintése"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"Csevegés AIM-on"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"Csevegés a Windows Live-on"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"Csevegés a Yahoon"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"Csevegés Skype használatával"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"Csevegés a QQ-n"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"Csevegés a Google Csevegő használatával"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"Csevegés az ICQ-n"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"Csevegés Jabberen"</string>
-    <string name="chat" msgid="9025361898797412245">"Csevegés"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Audiocsevegés"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videocsevegés"</string>
-    <string name="postal_address" msgid="8765560217149624536">"Cím"</string>
-    <string name="postal_street" msgid="8133143961580058972">"Utca"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"Postafiók"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Környék"</string>
-    <string name="postal_city" msgid="6597491300084895548">"Település"</string>
-    <string name="postal_region" msgid="6045263193478437672">"Állapot"</string>
-    <string name="postal_postcode" msgid="572136414136673751">"Irányítószám"</string>
-    <string name="postal_country" msgid="7638264508416368690">"Ország"</string>
-    <string name="full_name" msgid="6602579550613988977">"Név"</string>
-    <string name="name_given" msgid="1687286314106019813">"Utónév"</string>
-    <string name="name_family" msgid="3416695586119999058">"Vezetéknév"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Név előtagja"</string>
-    <string name="name_middle" msgid="8467433655992690326">"Második név"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Név utótagja"</string>
-    <string name="name_phonetic_given" msgid="6853570431394449191">"Utónév fonetikusan"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Második utónév fonetikusan"</string>
-    <string name="name_phonetic_family" msgid="462095502140180305">"Vezetéknév fonetikusan"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"Név fonetikusan"</string>
     <string name="connections" msgid="8098440723172028350">"Kapcsolatok"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Kapcsolat hozzáadása"</string>
     <string name="recent" msgid="2659189233141493004">"Legújabbak"</string>
@@ -424,7 +368,6 @@
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> -- <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Saját profil beállítása"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Írja be a személy nevét"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"Frissítések"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Csoport neve"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC-n kapott névjegy"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Csak a kimenők megjelenítése"</string>
@@ -462,6 +405,4 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Hangposta hívásához kapcsolja ki a Repülőgép üzemmódot."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Adatbázisfájlok exportálása"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"További beállítások"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
 </resources>

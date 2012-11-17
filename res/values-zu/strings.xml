@@ -52,8 +52,8 @@
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Hlukanisa"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Hlela"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Susa"</string>
-    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Okusha"</string>
-    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Okusha"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Faka oxhumana naye"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Engeza iqembu"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Oxhumana naye oseceleni"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Lona oxhumana naye uyocazwa abe oxhumana nabo bningi."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Hlanganisa"</string>
@@ -72,18 +72,10 @@
     <string name="menu_done" msgid="796017761764190697">"Kwenziwe"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Khansela"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Lahla"</string>
-    <string name="label_notes" msgid="8337354953278341042">"Imibhalo"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"Ikholi le-Inthanethi"</string>
-    <string name="ghostData_company" msgid="5414421120553765775">"Inkampani"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"Isihloko"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Oxhumana naye akekho."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"isinqunjwana soxhumana nabo singeziwe esikrinini sekhaya."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Dala othintana naye omusha"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Dala othintana naye omusha"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Ifoni"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"I-imeyli"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
-    <string name="postalLabelsGroup" msgid="3487738141112589324">"Ikheli"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Inhlangano"</item>
     <item msgid="7196592230748086755">"Yazi"</item>
@@ -189,7 +181,6 @@
     <string name="description_delete_button" msgid="6263102114033407382">"i-backspace"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"inombolo okumele uyidayele"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"isithombe sothintana naye"</string>
-    <string name="description_minus_button" msgid="6908099247930477551">"susa"</string>
     <string name="description_plus_button" msgid="515164827856229880">"kuhlanganise"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Ayikho indawo yokulondoloza etholakele."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Alikho ikhadi le-SD elitholakele."</string>
@@ -267,13 +258,6 @@
     <string name="menu_share" msgid="943789700636542260">"Yabelana"</string>
     <string name="share_via" msgid="563121028023030093">"Abelana nothintana naye nge"</string>
     <string name="share_error" msgid="948429331673358107">"Lona oxhumana naye ngeke ukwazi ukwabelana ngaye."</string>
-    <string name="nameLabelsGroup" msgid="2034640839640477827">"Igama"</string>
-    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Igama lokudlala"</string>
-    <string name="organizationLabelsGroup" msgid="2478611760751832035">"Inhlangano"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Iwebhusayithi"</string>
-    <string name="eventLabelsGroup" msgid="3695433812142818803">"Izehlakalo"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"Ubudlelwano"</string>
-    <string name="groupsLabel" msgid="8573535366319059326">"Amaqembu"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Yenza othintana naye ngaphansi kwe-akhawunti"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Yenza isigcawu ngaphansi kwe-akhawunti"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Khipha iqembu lokuvumelanisa"</string>
@@ -282,48 +266,8 @@
     <string name="display_ungrouped" msgid="6885954210243119591">"Bonke Abanye Othintana Nabo"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Bonke oxhumana nabo"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Iyasusa \"<xliff:g id="GROUP">%s</xliff:g>\" kokuvumelanisiwe izophinde isuse nanoma ibaphi oxhumana nabo abangelona iqoqo."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Ithebhulethi kuphela, ayivumelanisiwe"</string>
-    <string name="account_phone" product="default" msgid="3682950835276226870">"Ifoni kuphela, ayivumelanisiwe"</string>
-    <string name="sms" msgid="1756857139634224222">"Umlayezo wombhalo"</string>
-    <string name="email_home" msgid="8573740658148184279">"Ikhaya le-imeyili"</string>
-    <string name="email_mobile" msgid="2042889209787989814">"Imeyla ifoni"</string>
-    <string name="email_work" msgid="2807430017302722689">"Imeyila emsebenzini"</string>
-    <string name="email_other" msgid="3454004077967657109">"I-imeyli"</string>
-    <string name="email_custom" msgid="7548003991586214105">"I-imeyili<xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"I-imeyili"</string>
-    <string name="map_home" msgid="1243547733423343982">"Vuka ikheli lasekhaya"</string>
-    <string name="map_work" msgid="1360474076921878088">"Buka ikheli lasemsebenzini"</string>
-    <string name="map_other" msgid="3817820803587012641">"Buka ikheli"</string>
-    <string name="map_custom" msgid="6184363799976265281">"Buka <xliff:g id="CUSTOM">%s</xliff:g> ikheli"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"Xoxa usebenzisa i-AIM"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"Xoxa usebenzisa i-Windows Live"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"Xoxa usebenzisa i-Yahoo"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"Xoxa usebenzisa i-Skype"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"Xoxa usebenzisa i-QQ"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"Xoxa usebenzisa i-Google Talk"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"Xoxa usebenzisa i-ICQ"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"Xoxa usebenzisa i-Jabber"</string>
-    <string name="chat" msgid="9025361898797412245">"Xoxa"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Ingxoxo yezw"</string>
     <string name="video_chat" msgid="1872255818640336072">"Ingxoxo yevidiyo"</string>
-    <string name="postal_address" msgid="8765560217149624536">"Ikheli"</string>
-    <string name="postal_street" msgid="8133143961580058972">"Isitaladi"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"PO box"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Indawo yasekhaya"</string>
-    <string name="postal_city" msgid="6597491300084895548">"Idolobha"</string>
-    <string name="postal_region" msgid="6045263193478437672">"Idolobha"</string>
-    <string name="postal_postcode" msgid="572136414136673751">"Ikhodi ye-ZIP"</string>
-    <string name="postal_country" msgid="7638264508416368690">"Izwe"</string>
-    <string name="full_name" msgid="6602579550613988977">"Igama"</string>
-    <string name="name_given" msgid="1687286314106019813">"Igama elinikeziwe"</string>
-    <string name="name_family" msgid="3416695586119999058">"Igama lomkhaya"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Qamba isiqalo"</string>
-    <string name="name_middle" msgid="8467433655992690326">"Igama"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Qamba isijobelelo"</string>
-    <string name="name_phonetic_given" msgid="6853570431394449191">"Igama elinikeziwe lefonethikhi"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Igama lefonethikhi"</string>
-    <string name="name_phonetic_family" msgid="462095502140180305">"Igama lomkhaya wefonethikhi"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"Igama leFonethikhi"</string>
     <string name="connections" msgid="8098440723172028350">"Oxhumana nabo"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Yengeza oxhumana nabo"</string>
     <string name="recent" msgid="2659189233141493004">"Okwakamuva"</string>
@@ -424,7 +368,6 @@
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Misa iphrofayli yami"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Thayipha igama lomuntu"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"Buka Okwenziwe Kabusha"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Igama leqemnbu"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Othintana naye utholakale nge-NFC"</string>
     <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Bonisa eziphumayo kuphela"</string>
@@ -462,6 +405,4 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Ukushayela i-voicemail, vala kuqala imodi Yendiza."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Khipha amafayela emininingo egciniwe"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Izinketho eziningi"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
 </resources>
