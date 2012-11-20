@@ -381,6 +381,10 @@
          [CHAR LIMIT=NONE] -->
     <string name="contactsFavoritesLabel">Favorites</string>
 
+    <!-- The description text for the favorites and all contacts tab in the phone app.
+         [CHAR LIMIT=NONE] -->
+    <string name="dialerAllContactsLabel">Favorites and all contacts</string>
+
     <!-- The description text for the dialer tab.
 
          Note: AccessibilityServices use this attribute to announce what the view represents.
