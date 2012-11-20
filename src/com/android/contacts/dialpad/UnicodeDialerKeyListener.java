@@ -31,7 +31,8 @@ public class UnicodeDialerKeyListener extends DialerKeyListener {
     @Override
     public CharSequence filter(CharSequence source, int start, int end,
             Spanned dest, int dstart, int dend) {
-        CharSequence converted = PhoneNumberUtils.replaceUnicodeDigits(source.toString());
+        final String converted = PhoneNumberUtils.convertKeypadLettersToDigits(
+                PhoneNumberUtils.replaceUnicodeDigits(source.toString()));
         // PhoneNumberUtils.replaceUnicodeDigits performs a character for character replacement,
         // so we can assume that start and end positions should remain unchanged.
         CharSequence result = super.filter(converted, start, end, dest, dstart, dend);

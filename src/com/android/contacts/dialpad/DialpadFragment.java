@@ -347,7 +347,9 @@ public class DialpadFragment extends Fragment
                     String data = uri.getSchemeSpecificPart();
                     // Remember it is filled via Intent.
                     mDigitsFilledByIntent = true;
-                    setFormattedDigits(data, null);
+                    final String converted = PhoneNumberUtils.convertKeypadLettersToDigits(
+                            PhoneNumberUtils.replaceUnicodeDigits(data));
+                    setFormattedDigits(converted, null);
                     return true;
                 } else {
                     String type = intent.getType();
