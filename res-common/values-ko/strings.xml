@@ -92,7 +92,7 @@
     <string name="full_name" msgid="885420216812981202">"이름"</string>
     <string name="name_given" msgid="1560204576305608571">"이름"</string>
     <string name="name_family" msgid="1267097554034721002">"성"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"이름 접두어"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"경칭"</string>
     <string name="name_middle" msgid="3951610314424632183">"중간 이름"</string>
     <string name="name_suffix" msgid="5436984808550075931">"이름 접미어"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"이름(소리나는 대로)"</string>

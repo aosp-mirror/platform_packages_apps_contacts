@@ -141,5 +141,5 @@
     <string name="chat_jabber" msgid="4525546665986350869">"Über Jabber chatten"</string>
     <string name="chat" msgid="6297650784873558837">"Chatten"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"löschen"</string>
-    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Namensfelder maximieren oder minimieren"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Namensfelder minimieren oder maximieren"</string>
 </resources>

@@ -102,7 +102,7 @@
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Адреса е-поште"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Адреса"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Размена тренутних порука"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Организација"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Однос"</string>
     <string name="eventLabelsGroup" msgid="536444452517449685">"Догађаји"</string>
@@ -122,7 +122,7 @@
     <string name="email" msgid="5624424151176351591">"Пошаљи поруку е-поште"</string>
     <string name="postal_street" msgid="881349814077356134">"Улица"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"Поштански фах"</string>
-    <string name="postal_neighborhood" msgid="3721092668038527674">"Део града"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Крај"</string>
     <string name="postal_city" msgid="3173008531169519309">"Град"</string>
     <string name="postal_region" msgid="1695206048198921115">"Држава"</string>
     <string name="postal_postcode" msgid="6542806670034753265">"Поштански број"</string>

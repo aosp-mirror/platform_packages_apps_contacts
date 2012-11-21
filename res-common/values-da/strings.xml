@@ -81,7 +81,7 @@
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Hurtig kontakt til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Intet navn)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Ofte ringet til"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Jævnligt kontaktet"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Ofte kontaktet"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Vis kontaktperson"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Alle kontaktpersoner med telefonnumre"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Se opdateringer"</string>
@@ -130,7 +130,7 @@
     <string name="map_home" msgid="1221397355014741634">"Vis hjemmeadresse"</string>
     <string name="map_work" msgid="9015981646907637207">"Vis arbejdsadresse"</string>
     <string name="map_other" msgid="55098598855607997">"Vis adresse"</string>
-    <string name="map_custom" msgid="4943554530347163288">"Vis <xliff:g id="CUSTOM">%s</xliff:g> adresse"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Vis <xliff:g id="CUSTOM">%s</xliff:g>-adresse"</string>
     <string name="chat_aim" msgid="6479001490307452172">"Chat ved hjælp af AIM"</string>
     <string name="chat_msn" msgid="627481952525245054">"Chat ved hjælp af Windows Live"</string>
     <string name="chat_yahoo" msgid="5542489454092719897">"Chat ved hjælp af Yahoo"</string>

@@ -110,7 +110,7 @@
     <string name="postal_address" msgid="7692926530081579786">"Adresse"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Firma"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Stilling"</string>
-    <string name="label_notes" msgid="3997277594846722699">"Merknader"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Notater"</string>
     <string name="label_sip_address" msgid="5849843867753601973">"Internett-anrop"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Nettsted"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Grupper"</string>

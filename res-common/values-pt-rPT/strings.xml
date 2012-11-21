@@ -114,11 +114,11 @@
     <string name="label_sip_address" msgid="5849843867753601973">"Chamada por Internet"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Website"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Grupos"</string>
-    <string name="email_home" msgid="2230967805906450693">"Enviar e-mail para residência"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"Enviar e-mail para dispositivo móvel"</string>
-    <string name="email_work" msgid="7065971921227432400">"Enviar e-mail para emprego"</string>
+    <string name="email_home" msgid="2230967805906450693">"Enviar email para residência"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Enviar email para dispositivo móvel"</string>
+    <string name="email_work" msgid="7065971921227432400">"Enviar email para emprego"</string>
     <string name="email_other" msgid="4601881243553289615">"Enviar email"</string>
-    <string name="email_custom" msgid="5777583741581538870">"Enviar e-mail a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Enviar email a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5624424151176351591">"Enviar email"</string>
     <string name="postal_street" msgid="881349814077356134">"Rua"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"Apartado"</string>

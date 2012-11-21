@@ -93,11 +93,11 @@
     <string name="name_given" msgid="1560204576305608571">"Krstné meno"</string>
     <string name="name_family" msgid="1267097554034721002">"Priezvisko"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Prefix priezviska"</string>
-    <string name="name_middle" msgid="3951610314424632183">"Druhé meno"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Stredné meno"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Prímeno"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Meno (foneticky)"</string>
     <string name="name_phonetic_given" msgid="993707744185923412">"Krstné meno (foneticky)"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Druhé meno (foneticky)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Stredné meno (foneticky)"</string>
     <string name="name_phonetic_family" msgid="8617732497578358951">"Priezvisko (foneticky)"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefón"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-mail"</string>
@@ -121,7 +121,7 @@
     <string name="email_custom" msgid="5777583741581538870">"Poslať e-mail na adresu <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5624424151176351591">"E-mail"</string>
     <string name="postal_street" msgid="881349814077356134">"Ulica"</string>
-    <string name="postal_pobox" msgid="1799978742074885091">"Číslo poštovej schránky"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"PO box"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"Štvrť"</string>
     <string name="postal_city" msgid="3173008531169519309">"Mesto"</string>
     <string name="postal_region" msgid="1695206048198921115">"Štát"</string>

@@ -118,7 +118,7 @@
     <string name="email_mobile" msgid="7532438378678903685">"Написати на мобільну електронну адресу"</string>
     <string name="email_work" msgid="7065971921227432400">"Написати на робочу електронну адресу"</string>
     <string name="email_other" msgid="4601881243553289615">"Написати"</string>
-    <string name="email_custom" msgid="5777583741581538870">"Електронний лист на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Написати на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5624424151176351591">"Написати"</string>
     <string name="postal_street" msgid="881349814077356134">"Вулиця"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"Поштова скринька"</string>

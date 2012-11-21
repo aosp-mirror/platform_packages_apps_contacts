@@ -88,7 +88,7 @@
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Tablet saja, tidak disinkronkan"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Ponsel saja, tidak disinkronkan"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nama"</string>
-    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nickname"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nama julukan"</string>
     <string name="full_name" msgid="885420216812981202">"Nama"</string>
     <string name="name_given" msgid="1560204576305608571">"Nama depan"</string>
     <string name="name_family" msgid="1267097554034721002">"Nama keluarga"</string>
@@ -124,7 +124,7 @@
     <string name="postal_pobox" msgid="1799978742074885091">"Kotak pos"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"Lingkungan"</string>
     <string name="postal_city" msgid="3173008531169519309">"Kota"</string>
-    <string name="postal_region" msgid="1695206048198921115">"State"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Negara Bagian"</string>
     <string name="postal_postcode" msgid="6542806670034753265">"Kode pos"</string>
     <string name="postal_country" msgid="3988452247038791892">"Negara"</string>
     <string name="map_home" msgid="1221397355014741634">"Tampilkan alamat rumah"</string>

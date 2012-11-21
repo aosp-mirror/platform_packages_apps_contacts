@@ -84,9 +84,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"經常聯絡"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"查看聯絡人"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"所有包含電話號碼的聯絡人資訊"</string>
-    <string name="view_updates_from_group" msgid="3310864388165884352">"查看更新"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"僅限平板電腦 (不同步處理)"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"僅限手機 (不同步處理)"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"查看最新動態"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"僅儲存在平板電腦中 (不同步處理)"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"僅儲存在手機中 (不同步處理)"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"姓名"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"暱稱"</string>
     <string name="full_name" msgid="885420216812981202">"姓名"</string>
@@ -119,7 +119,7 @@
     <string name="email_work" msgid="7065971921227432400">"傳送電子郵件至公司電子郵件地址"</string>
     <string name="email_other" msgid="4601881243553289615">"電子郵件"</string>
     <string name="email_custom" msgid="5777583741581538870">"傳送電子郵件至「<xliff:g id="CUSTOM">%s</xliff:g>」"</string>
-    <string name="email" msgid="5624424151176351591">"電子郵件"</string>
+    <string name="email" msgid="5624424151176351591">"傳送電子郵件"</string>
     <string name="postal_street" msgid="881349814077356134">"街"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"郵政信箱"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"鄰"</string>
@@ -130,7 +130,7 @@
     <string name="map_home" msgid="1221397355014741634">"檢視住家地址"</string>
     <string name="map_work" msgid="9015981646907637207">"檢視公司地址"</string>
     <string name="map_other" msgid="55098598855607997">"檢視地址"</string>
-    <string name="map_custom" msgid="4943554530347163288">"檢視「<xliff:g id="CUSTOM">%s</xliff:g>」地址"</string>
+    <string name="map_custom" msgid="4943554530347163288">"檢視<xliff:g id="CUSTOM">%s</xliff:g>地址"</string>
     <string name="chat_aim" msgid="6479001490307452172">"使用 AIM 進行即時通訊"</string>
     <string name="chat_msn" msgid="627481952525245054">"使用 Windows Live 進行即時通訊"</string>
     <string name="chat_yahoo" msgid="5542489454092719897">"使用 Yahoo 進行即時通訊"</string>
