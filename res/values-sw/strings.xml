@@ -570,5 +570,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Kupigia simu ujumbe wa sauti, kwanza zima hali ya ndege."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Hamisha faili za hifadhidata"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Chaguo zaidi"</string>
-    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Panua au angusha nyuga za jina"</string>
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Panua au ukunje nyuga za jina"</string>
 </resources>

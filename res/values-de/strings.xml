@@ -363,14 +363,14 @@
     <string name="map_work" msgid="1360474076921878088">"Geschäftsadresse anzeigen"</string>
     <string name="map_other" msgid="3817820803587012641">"Adresse anzeigen"</string>
     <string name="map_custom" msgid="6184363799976265281">"<xliff:g id="CUSTOM">%s</xliff:g>-Adresse anzeigen"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"Chat über AIM"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"Chat über Windows Live"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"Chat über Yahoo!"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"Chat über Skype"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"Chat über QQ"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"Chat über Google Talk"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"Chat über ICQ"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"Chat über Jabber"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"Über AIM chatten"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"Über Windows Live chatten"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Über Yahoo! chatten"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"Über Skype chatten"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"Über QQ chatten"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"Über Google Talk chatten"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"Über ICQ chatten"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"Über Jabber chatten"</string>
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Sprach-Chat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Video-Chat"</string>
