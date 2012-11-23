@@ -268,7 +268,7 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Вместе с группой \"<xliff:g id="GROUP">%s</xliff:g>\" перестанут синхронизироваться контакты, не добавленные в группы."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Голосовой чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видеочат"</string>
-    <string name="connections" msgid="8098440723172028350">"Связи"</string>
+    <string name="connections" msgid="8098440723172028350">"Соцсети"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Добавить соцсеть"</string>
     <string name="recent" msgid="2659189233141493004">"Недавние"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Недавние обновления"</string>
