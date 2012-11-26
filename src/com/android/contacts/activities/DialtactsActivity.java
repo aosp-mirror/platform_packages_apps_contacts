@@ -744,7 +744,7 @@ public class DialtactsActivity extends TransactionSafeActivity
 
     private void setupFavorites() {
         final Tab tab = getActionBar().newTab();
-        tab.setContentDescription(R.string.contactsFavoritesLabel);
+        tab.setContentDescription(R.string.dialerAllContactsLabel);
         tab.setIcon(R.drawable.ic_tab_all);
         tab.setTabListener(mTabListener);
         getActionBar().addTab(tab);
