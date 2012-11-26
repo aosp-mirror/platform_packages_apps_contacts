@@ -23,7 +23,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.util.StreamItemEntry;
 import com.google.common.collect.Lists;

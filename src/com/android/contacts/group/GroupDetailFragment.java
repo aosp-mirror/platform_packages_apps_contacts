@@ -53,7 +53,7 @@ import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.common.list.ContactTileAdapter;
 import com.android.contacts.common.list.ContactTileView;
 import com.android.contacts.list.GroupMemberTileAdapter;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 
 /**

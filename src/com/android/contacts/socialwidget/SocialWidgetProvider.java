@@ -38,7 +38,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.ContactLoader;
 import com.android.contacts.common.model.account.AccountType;

@@ -36,7 +36,7 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.ContactEditorFragment.SaveMode;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.util.DialogManager;

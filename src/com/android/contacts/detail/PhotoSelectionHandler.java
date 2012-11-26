@@ -39,7 +39,7 @@ import android.widget.Toast;
 
 import com.android.contacts.R;
 import com.android.contacts.editor.PhotoActionPopup;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;

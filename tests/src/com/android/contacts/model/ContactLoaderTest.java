@@ -28,6 +28,7 @@ import android.provider.ContactsContract.StatusUpdates;
 import android.test.LoaderTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.test.mocks.ContactsMockContext;
 import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.android.contacts.common.model.account.AccountType;

@@ -30,7 +30,7 @@ import android.widget.TextView;
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
 import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.google.common.base.Objects;
 
 /**

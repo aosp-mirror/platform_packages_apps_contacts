@@ -82,7 +82,7 @@ import com.android.contacts.common.Collapser.Collapsible;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.editor.SelectAccountDialogFragment;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.RawContact;
 import com.android.contacts.model.RawContactDelta;

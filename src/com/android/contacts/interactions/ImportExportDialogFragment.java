@@ -39,7 +39,7 @@ import android.widget.Toast;
 
 import com.android.contacts.R;
 import com.android.contacts.editor.SelectAccountDialogFragment;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;

@@ -61,7 +61,7 @@ import android.widget.Toast;
 import com.android.contacts.R;
 import com.android.contacts.editor.Editor;
 import com.android.contacts.editor.ViewIdGenerator;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.model.RawContact;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDelta.ValuesDelta;

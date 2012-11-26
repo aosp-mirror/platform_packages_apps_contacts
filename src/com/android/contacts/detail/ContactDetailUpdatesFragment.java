@@ -31,7 +31,7 @@ import android.widget.ListView;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.detail.ContactDetailDisplayUtils.StreamPhotoTag;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.util.StreamItemEntry;

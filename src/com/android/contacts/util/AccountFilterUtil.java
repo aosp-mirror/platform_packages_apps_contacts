@@ -27,7 +27,7 @@ import android.widget.TextView;
 import com.android.contacts.R;
 import com.android.contacts.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
-import com.android.contacts.list.ContactListFilterController;
+import com.android.contacts.common.list.ContactListFilterController;
 
 /**
  * Utility class for account filter manipulation.
