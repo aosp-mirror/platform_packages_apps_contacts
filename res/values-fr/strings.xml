@@ -137,6 +137,8 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Tous les contacts"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groupes"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoris"</string>
+    <!-- no translation found for dialerAllContactsLabel (1025920923112988336) -->
+    <skip />
     <string name="dialerIconLabel" msgid="6500826552823403796">"Tél."</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Appels"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Envoyer un SMS"</string>
