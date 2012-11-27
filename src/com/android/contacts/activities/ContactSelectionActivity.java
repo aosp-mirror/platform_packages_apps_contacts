@@ -250,7 +250,7 @@ public class ContactSelectionActivity extends ContactsActivity
     }
 
     private void configureActivityTitle() {
-        if (mRequest.getActivityTitle() != null) {
+        if (!TextUtils.isEmpty(mRequest.getActivityTitle())) {
             setTitle(mRequest.getActivityTitle());
             return;
         }
