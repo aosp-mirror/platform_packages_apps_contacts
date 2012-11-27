@@ -47,6 +47,7 @@ import android.util.SparseArray;
 import android.util.SparseIntArray;
 
 import com.android.contacts.ContactsUtils;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.CommonDateUtils;
 import com.android.contacts.editor.EventFieldEditorView;
 import com.android.contacts.editor.PhoneticNameEditorView;

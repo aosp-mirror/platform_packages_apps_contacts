@@ -26,7 +26,7 @@ import android.text.TextUtils;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.test.NeededForTesting;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 
 import java.util.List;
 

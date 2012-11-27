@@ -31,7 +31,7 @@ import com.android.contacts.common.test.IntegrationTestUtils;
 import com.android.contacts.common.test.mocks.ContactsMockContext;
 import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.android.contacts.common.test.mocks.MockContentProvider.Query;
-import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.BaseAccountType;
 import com.android.contacts.test.InjectedServices;
