@@ -137,6 +137,8 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"모든 연락처"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"그룹"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"즐겨찾기"</string>
+    <!-- no translation found for dialerAllContactsLabel (1025920923112988336) -->
+    <skip />
     <string name="dialerIconLabel" msgid="6500826552823403796">"휴대전화"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"통화기록"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"문자 메시지 보내기"</string>
@@ -410,7 +412,7 @@
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"이름 먼저 표시"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"성 먼저 표시"</string>
     <string name="take_photo" msgid="7496128293167402354">"사진 찍기"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"새 사진 가져오기"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"새 사진 찍기"</string>
     <string name="pick_photo" msgid="3746334626214970837">"갤러리에서 사진 선택"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"갤러리에서 새 사진 선택"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"변경된 언어를 반영하도록 주소록을 업데이트하는 중입니다. 잠시 기다려 주세요."</string>
