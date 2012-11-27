@@ -137,6 +137,8 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"所有聯絡人"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"群組"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"我的最愛"</string>
+    <!-- no translation found for dialerAllContactsLabel (1025920923112988336) -->
+    <skip />
     <string name="dialerIconLabel" msgid="6500826552823403796">"電話"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"通話記錄"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"傳送簡訊"</string>

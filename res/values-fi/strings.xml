@@ -137,6 +137,8 @@
     <string name="contactsAllLabel" msgid="6479708629170672169">"Kaikki kontaktit"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Ryhmät"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Suosikit"</string>
+    <!-- no translation found for dialerAllContactsLabel (1025920923112988336) -->
+    <skip />
     <string name="dialerIconLabel" msgid="6500826552823403796">"Puhelin"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Puheluloki"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Lähetä tekstiviesti"</string>
