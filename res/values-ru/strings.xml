@@ -392,7 +392,7 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Отчество (транскрипция)"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Фамилия (транскрипция)"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Транскрипция имени"</string>
-    <string name="connections" msgid="8098440723172028350">"Связи"</string>
+    <string name="connections" msgid="8098440723172028350">"Соцсети"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Добавить соцсеть"</string>
     <string name="recent" msgid="2659189233141493004">"Недавние"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Недавние обновления"</string>
