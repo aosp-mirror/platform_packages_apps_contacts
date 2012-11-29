@@ -16,77 +16,70 @@
 
 package com.android.contacts.format;
 
-import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
-import android.widget.TextView;
+
+import junit.framework.TestCase;
 
 /**
  * Unit tests for {@link PrefixHighlighter}.
  */
 @SmallTest
-public class PrefixHighligherTest extends AndroidTestCase {
+public class PrefixHighligherTest extends TestCase {
     private static final int TEST_PREFIX_HIGHLIGHT_COLOR = 0xFF0000;
-    /** The HTML code used to mark the start of the highlighted part. */
-    private static final String START = "<font color =\"#1ff0000\">";
-    /** The HTML code used to mark the end of the highlighted part. */
-    private static final String END = "</font>";
 
     /** The object under test. */
     private PrefixHighlighter mPrefixHighlighter;
-    /** The view to on which the text is set. */
-    private TextView mView;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         mPrefixHighlighter = new PrefixHighlighter(TEST_PREFIX_HIGHLIGHT_COLOR);
-        mView = new TextView(getContext());
-        // This guarantees that the text will be stored as a spannable so that we can determine
-        // which styles have been applied to it.
-        mView.setText("", TextView.BufferType.SPANNABLE);
     }
 
-    public void testSetText_EmptyPrefix() {
-        mPrefixHighlighter.setText(mView, "", new char[0]);
-        SpannedTestUtils.checkHtmlText("", mView);
+    public void testApply_EmptyPrefix() {
+        CharSequence seq = mPrefixHighlighter.apply("", new char[0]);
+        SpannedTestUtils.assertNotSpanned(seq, "");
 
-        mPrefixHighlighter.setText(mView, "test", new char[0]);
-        SpannedTestUtils.checkHtmlText("test", mView);
+        seq = mPrefixHighlighter.apply("test", new char[0]);
+        SpannedTestUtils.assertNotSpanned(seq, "test");
     }
 
     public void testSetText_MatchingPrefix() {
-        mPrefixHighlighter.setText(mView, "test", "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText(START + "te" + END + "st", mView);
+        final char[] charArray = "TE".toCharArray();
 
-        mPrefixHighlighter.setText(mView, "Test", "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText(START + "Te" + END + "st", mView);
+        CharSequence seq = mPrefixHighlighter.apply("test", charArray);
+        SpannedTestUtils.assertPrefixSpan(seq, 0, 1);
 
-        mPrefixHighlighter.setText(mView, "TEst", "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText(START + "TE" + END + "st", mView);
+        seq = mPrefixHighlighter.apply("Test", charArray);
+        SpannedTestUtils.assertPrefixSpan(seq, 0, 1);
 
-        mPrefixHighlighter.setText(mView, "a test", "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText("a " + START + "te" + END + "st", mView);
+        seq = mPrefixHighlighter.apply("TEst", charArray);
+        SpannedTestUtils.assertPrefixSpan(seq, 0, 1);
+
+        seq = mPrefixHighlighter.apply("a test", charArray);
+        SpannedTestUtils.assertPrefixSpan(seq, 2, 3);
     }
 
     public void testSetText_NotMatchingPrefix() {
-        mPrefixHighlighter.setText(mView, "test", "TA".toCharArray());
-        SpannedTestUtils.checkHtmlText("test", mView);
+        final CharSequence seq = mPrefixHighlighter.apply("test", "TA".toCharArray());
+        SpannedTestUtils.assertNotSpanned(seq, "test");
     }
 
     public void testSetText_FirstMatch() {
-        mPrefixHighlighter.setText(mView, "a test's tests are not tests", "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText("a " +START + "te" + END + "st's tests are not tests",
-                mView);
+        final CharSequence seq = mPrefixHighlighter.apply("a test's tests are not tests",
+                "TE".toCharArray());
+        SpannedTestUtils.assertPrefixSpan(seq, 2, 3);
     }
 
     public void testSetText_NoMatchingMiddleOfWord() {
-        mPrefixHighlighter.setText(mView, "atest", "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText("atest", mView);
+        final char[] charArray = "TE".toCharArray();
+        CharSequence seq = mPrefixHighlighter.apply("atest", charArray);
+        SpannedTestUtils.assertNotSpanned(seq, "atest");
 
-        mPrefixHighlighter.setText(mView, "atest otest", "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText("atest otest", mView);
+        seq = mPrefixHighlighter.apply("atest otest", charArray);
+        SpannedTestUtils.assertNotSpanned(seq, "atest otest");
 
-        mPrefixHighlighter.setText(mView, "atest test", "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText("atest " + START + "te" + END + "st", mView);
+        seq = mPrefixHighlighter.apply("atest test", charArray);
+        SpannedTestUtils.assertPrefixSpan(seq, 6, 7);
     }
 }
