@@ -58,4 +58,29 @@
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">100dip</dimen>
+
+    <!-- For contact filter setting screens -->
+    <dimen name="contact_filter_left_margin">16dip</dimen>
+    <dimen name="contact_filter_right_margin">16dip</dimen>
+    <dimen name="contact_filter_item_min_height">48dip</dimen>
+    <dimen name="contact_filter_icon_size">32dip</dimen>
+
+    <!-- Padding to be used between a visible scrollbar and the contact list -->
+    <dimen name="list_visible_scrollbar_padding">32dip</dimen>
+
+    <dimen name="contact_browser_list_header_left_margin">16dip</dimen>
+    <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
+    <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
+
+    <!-- Size of the shortcut icon. 0dip means: use the system default -->
+    <dimen name="shortcut_icon_size">0dip</dimen>
+
+    <!-- Width of darkened border for shortcut icon -->
+    <dimen name="shortcut_icon_border_width">1dp</dimen>
+
+    <!-- Text size of shortcut icon overlay text -->
+    <dimen name="shortcut_overlay_text_size">12dp</dimen>
+
+    <!-- Extra vertical padding for darkened background behind shortcut icon overlay text -->
+    <dimen name="shortcut_overlay_text_background_padding">1dp</dimen>
 </resources>
