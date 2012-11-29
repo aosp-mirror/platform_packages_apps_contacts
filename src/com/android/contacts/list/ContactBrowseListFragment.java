@@ -490,8 +490,15 @@ public abstract class ContactBrowseListFragment extends
                 mSelectionRequired = false;
 
                 // If we were looking at a different specific contact, just reload
+                // FILTER_TYPE_ALL_ACCOUNTS is needed for the case where a new contact is added
+                // on a tablet and the loader is returning a stale list.  In this case, the contact
+                // will not be found until the next load. b/7621855 This will only fix the most
+                // common case where all accounts are shown. It will not fix the one account case.
+                // TODO: we may want to add more FILTER_TYPEs or relax this check to fix all other
+                // FILTER_TYPE cases.
                 if (mFilter != null
-                        && mFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
+                        && (mFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT
+                        || mFilter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS)) {
                     reloadData();
                 } else {
                     // Otherwise, call the listener, which will adjust the filter.
