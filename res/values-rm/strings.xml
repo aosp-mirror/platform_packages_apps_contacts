@@ -833,7 +833,9 @@
     <skip />
     <!-- no translation found for add_new_account (5748627740680940264) -->
     <skip />
-    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Il clom n\'è betg vegnì exequì."</string>
+    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
+    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
+    <skip />
     <!-- no translation found for dialog_voicemail_not_ready_message (4384716252789515378) -->
     <skip />
     <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->
