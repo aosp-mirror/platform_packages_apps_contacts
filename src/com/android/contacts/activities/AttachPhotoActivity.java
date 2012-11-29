@@ -39,6 +39,7 @@ import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import java.io.File;
@@ -195,7 +196,7 @@ public class AttachPhotoActivity extends ContactsActivity {
         // the ContactSaveService would not create the new contact, and the
         // full-res photo would fail to be saved to the non-existent contact.
         AccountType account = raw.getRawContactAccountType(this);
-        RawContactDelta.ValuesDelta values =
+        ValuesDelta values =
                 RawContactModifier.ensureKindExists(raw, account, Photo.CONTENT_ITEM_TYPE);
         if (values == null) {
             Log.w(TAG, "cannot attach photo to this account type");
