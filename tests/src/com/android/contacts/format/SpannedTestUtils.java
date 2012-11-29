@@ -20,6 +20,7 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 import junit.framework.Assert;
@@ -45,4 +46,38 @@ public class SpannedTestUtils {
         }
     }
 
+
+    /**
+     * Assert span exists in the correct location.
+     *
+     * @param seq The spannable string to check.
+     * @param start The starting index.
+     * @param end The ending index.
+     */
+    public static void assertPrefixSpan(CharSequence seq, int start, int end) {
+        Assert.assertTrue(seq instanceof Spanned);
+        Spanned spannable = (Spanned) seq;
+
+        if (start > 0) {
+            Assert.assertEquals(0, getNumForegroundColorSpansBetween(spannable, 0, start - 1));
+        }
+        Assert.assertEquals(1, getNumForegroundColorSpansBetween(spannable, start, end));
+        Assert.assertEquals(0, getNumForegroundColorSpansBetween(spannable, end + 1,
+                spannable.length() - 1));
+    }
+
+    private static int getNumForegroundColorSpansBetween(Spanned value, int start, int end) {
+        return value.getSpans(start, end, ForegroundColorSpan.class).length;
+    }
+
+    /**
+     * Asserts that the given character sequence is not a Spanned object and text is correct.
+     *
+     * @param seq The sequence to check.
+     * @param expected The expected text.
+     */
+    public static void assertNotSpanned(CharSequence seq, String expected) {
+        Assert.assertFalse(seq instanceof Spanned);
+        Assert.assertEquals(expected, seq);
+    }
 }
