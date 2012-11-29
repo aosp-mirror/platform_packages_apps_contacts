@@ -1862,6 +1862,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         menu.add(ContextMenu.NONE, ContextMenuIds.COPY_TEXT,
                 ContextMenu.NONE, getString(R.string.copy_text));
 
+        // Don't allow setting or clearing of defaults for directory contacts
+        if (mContactData.isDirectoryEntry()) {
+            return;
+        }
+
         String selectedMimeType = selectedEntry.mimetype;
 
         // Defaults to true will only enable the detail to be copied to the clipboard.
