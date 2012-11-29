@@ -60,7 +60,7 @@ public class BitmapUtilTests extends AndroidTestCase {
     }
 
     public void testFindOptimalSampleSizeSmaller3() throws Exception {
-        assertEquals(2, BitmapUtil.findOptimalSampleSize(512, 129));
+        assertEquals(4, BitmapUtil.findOptimalSampleSize(512, 129));
     }
 
     public void testFindOptimalSampleSizeSmaller4() throws Exception {
