@@ -323,7 +323,6 @@ public class PeopleActivity extends ContactsActivity
             startActivity(redirect);
             return false;
         }
-        setTitle(mRequest.getActivityTitle());
         return true;
     }
 
