@@ -184,12 +184,6 @@
     <!-- Confirmation dialog contents after users selects to delete a Writable contact. -->
     <string name="deleteConfirmation">This contact will be deleted.</string>
 
-    <!-- Menu item to indicate you are done editing a contact and want to save the changes you've made -->
-    <string name="menu_done">Done</string>
-
-    <!-- Menu item to indicate you want to cancel the current editing process and NOT save the changes you've made [CHAR LIMIT=12] -->
-    <string name="menu_doNotSave">Cancel</string>
-
     <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=12] -->
     <string name="menu_discard">Discard</string>
 
@@ -255,9 +249,6 @@
     <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
     <string name="savingContact">Saving contact\u2026</string>
 
-    <!-- Displayed in a spinner dialog as user changes to display options are saved -->
-    <string name="savingDisplayGroups">Saving display options\u2026</string>
-
     <!-- Toast displayed when a contact is saved [CHAR LIMIT=NONE] -->
     <string name="contactSavedToast">Contact saved.</string>
 
@@ -296,15 +287,6 @@
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when a group or account is selected  [CHAR LIMIT=64]-->
     <string name="listTotalAllContactsZeroGroup">No contacts in <xliff:g id="name" example="Friends">%s</xliff:g></string>
-
-    <!-- Displayed at the top of the contacts showing the account filter selected  [CHAR LIMIT=64] -->
-    <string name="listAllContactsInAccount">Contacts in <xliff:g id="name" example="abc@gmail.com">%s</xliff:g></string>
-
-    <!-- Displayed at the top of the contacts showing single contact. [CHAR LIMIT=64] -->
-    <string name="listSingleContact">Single contact</string>
-
-    <!-- Displayed at the top of the contacts showing single contact. [CHAR LIMIT=64] -->
-    <string name="listCustomView">Contacts in custom view</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts found when "Only contacts with phones" not selected [CHAR LIMIT=30] -->
     <plurals name="listFoundAllContacts">
@@ -842,21 +824,6 @@
     <!-- Title for the disambiguation dialog that requests the user choose an account for the new group to be created under [CHAR LIMIT=NONE] -->
     <string name="dialog_new_group_account">Create group under account</string>
 
-    <string name="menu_sync_remove">Remove sync group</string>
-    <string name="dialog_sync_add">Add sync group</string>
-    <string name="display_more_groups">More groups\u2026</string>
-
-    <!-- List title for a special contacts group that covers all contacts. [CHAR LIMIT=25] -->
-    <string name="display_ungrouped">All other contacts</string>
-
-    <!-- List title for a special contacts group that covers all contacts that
-         aren't members of any other group. [CHAR LIMIT=25] -->
-    <string name="display_all_contacts">All contacts</string>
-
-    <!-- Warning message given to users just before they remove a currently syncing
-         group that would also cause all ungrouped contacts to stop syncing.  [CHAR LIMIT=NONE] -->
-    <string name="display_warn_remove_ungrouped">Removing \"<xliff:g id="group" example="Starred">%s</xliff:g>\" from sync will also remove any ungrouped contacts from sync.</string>
-
     <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="audio_chat">Voice chat</string>
     <!-- Generic action string for starting a video chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
@@ -1016,20 +983,8 @@
     <!-- Toast shown when creating a personal copy of a contact [CHAR LIMIT=100] -->
     <string name="toast_making_personal_copy">Creating a personal copy\u2026</string>
 
-    <!-- Contact list filter label indicating that the list is showing all available accounts [CHAR LIMIT=64] -->
-    <string name="list_filter_all_accounts">All contacts</string>
-
-    <!-- Contact list filter label indicating that the list is showing all starred contacts [CHAR LIMIT=64] -->
-    <string name="list_filter_all_starred">Starred</string>
-
     <!-- Contact list filter indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
     <string name="list_filter_custom">Custom</string>
-
-    <!-- Contact list filter selection indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
-    <string name="list_filter_customize">Customize</string>
-
-    <!-- Contact list filter selection indicating that the list shows only the selected contact [CHAR LIMIT=64] -->
-    <string name="list_filter_single">Contact</string>
 
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
     <string name="custom_list_filter">Define custom view</string>

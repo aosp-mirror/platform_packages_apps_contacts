@@ -38,7 +38,7 @@ import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.ProfileAndContactsLoader;
 import com.android.contacts.editor.ContactEditorFragment;
-import com.android.contacts.util.AccountFilterUtil;
+import com.android.contacts.common.util.AccountFilterUtil;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to

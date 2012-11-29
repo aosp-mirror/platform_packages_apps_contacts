@@ -91,26 +91,11 @@
          (phone number, email, etc.) and a secondary action button -->
     <dimen name="detail_vertical_divider_vertical_margin">16dip</dimen>
 
-    <!-- Padding to be used between a visible scrollbar and the contact list -->
-    <dimen name="list_visible_scrollbar_padding">32dip</dimen>
-
     <!-- Font size used for the contact name in the widget -->
     <dimen name="widget_text_size_name">14sp</dimen>
 
     <!-- Font size used for the social status in the widget -->
     <dimen name="widget_text_size_snippet">13sp</dimen>
-
-    <!-- Size of the shortcut icon. 0dip means: use the system default -->
-    <dimen name="shortcut_icon_size">0dip</dimen>
-
-    <!-- Width of darkened border for shortcut icon -->
-    <dimen name="shortcut_icon_border_width">1dp</dimen>
-
-    <!-- Text size of shortcut icon overlay text -->
-    <dimen name="shortcut_overlay_text_size">12dp</dimen>
-
-    <!-- Extra vertical padding for darkened background behind shortcut icon overlay text -->
-    <dimen name="shortcut_overlay_text_background_padding">1dp</dimen>
 
     <!-- Height of list sections (A, B, C) that show the first character of the contacts -->
     <dimen name="list_section_height">25dip</dimen>
@@ -143,10 +128,7 @@
     <dimen name="search_view_width">0dip</dimen>
 
     <!-- contact browser list margins -->
-    <dimen name="contact_browser_list_header_left_margin">16dip</dimen>
-    <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_item_photo_size">64dip</dimen>
-    <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
     <dimen name="contact_browser_list_top_margin">8dip</dimen>
     <!-- For join screen. Mainly for tablet. -->
     <dimen name="join_header_left_margin">@dimen/contact_browser_list_header_left_margin</dimen>
@@ -158,11 +140,6 @@
     <dimen name="empty_message_top_margin">48dip</dimen>
     <dimen name="no_accounts_message_margin">20dip</dimen>
 
-    <!-- For contact filter setting screens -->
-    <dimen name="contact_filter_left_margin">16dip</dimen>
-    <dimen name="contact_filter_right_margin">16dip</dimen>
-    <dimen name="contact_filter_item_min_height">48dip</dimen>
-    <dimen name="contact_filter_icon_size">32dip</dimen>
     <dimen name="contact_filter_header_min_height">24dip</dimen>
 
     <!--  Width of the lead margin on the left of a block quote inside a stream item -->

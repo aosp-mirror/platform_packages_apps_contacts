@@ -34,8 +34,9 @@ import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.PhoneNumberListAdapter;
-import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
-import com.android.contacts.util.AccountFilterUtil;
+import com.android.contacts.common.list.ShortcutIntentBuilder;
+import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
+import com.android.contacts.common.util.AccountFilterUtil;
 
 /**
  * Fragment containing a phone number list for picking.

@@ -126,10 +126,6 @@
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
-    <style name="ListViewStyle" parent="@android:style/Widget.Holo.Light.ListView">
-        <item name="android:overScrollMode">always</item>
-    </style>
-
     <style name="ContactPickerTheme" parent="@style/PeopleTheme" />
 
     <style name="ContactPickerLayout" parent="ContactPickerTheme">
@@ -146,11 +142,6 @@
 
     <style name="ContactListFilterTheme" parent="@android:Theme.Holo.Light">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
-    </style>
-
-    <style name="CustomContactListFilterView" parent="ContactListFilterTheme">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
     </style>
 
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent.NoTitleBar">
