@@ -75,10 +75,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
         mEditMode = flag;
     }
 
-    public boolean isShortcutRequested() {
-        return mShortcutRequested;
-    }
-
     public void setShortcutRequested(boolean flag) {
         mShortcutRequested = flag;
     }
@@ -182,31 +178,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.contact_picker_content, null);
-    }
-
-    @Override
-    protected void prepareEmptyView() {
-        if (isSearchMode()) {
-            return;
-        } else if (isSyncActive()) {
-            if (mShortcutRequested) {
-                // Help text is the same no matter whether there is SIM or not.
-                setEmptyText(R.string.noContactsHelpTextWithSyncForCreateShortcut);
-            } else if (hasIccCard()) {
-                setEmptyText(R.string.noContactsHelpTextWithSync);
-            } else {
-                setEmptyText(R.string.noContactsNoSimHelpTextWithSync);
-            }
-        } else {
-            if (mShortcutRequested) {
-                // Help text is the same no matter whether there is SIM or not.
-                setEmptyText(R.string.noContactsHelpTextWithSyncForCreateShortcut);
-            } else if (hasIccCard()) {
-                setEmptyText(R.string.noContactsHelpText);
-            } else {
-                setEmptyText(R.string.noContactsNoSimHelpText);
-            }
-        }
     }
 
     @Override
