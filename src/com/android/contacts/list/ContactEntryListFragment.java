@@ -61,7 +61,6 @@ import com.android.contacts.common.list.ContactEntryListAdapter;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.DirectoryPartition;
 import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.widget.ContextMenuAdapter;
 
 /**
  * Common base class for various contact-related list fragments.
@@ -128,7 +127,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private int mSortOrder;
     private int mDirectoryResultLimit = DEFAULT_DIRECTORY_RESULT_LIMIT;
 
-    private ContextMenuAdapter mContextMenuAdapter;
     private ContactPhotoManager mPhotoManager;
     private ContactListEmptyView mEmptyView;
     private ContactsPreferences mContactsPrefs;
@@ -692,17 +690,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mDirectoryResultLimit = limit;
     }
 
-    public void setContextMenuAdapter(ContextMenuAdapter adapter) {
-        mContextMenuAdapter = adapter;
-        if (mListView != null) {
-            mListView.setOnCreateContextMenuListener(adapter);
-        }
-    }
-
-    public ContextMenuAdapter getContextMenuAdapter() {
-        return mContextMenuAdapter;
-    }
-
     protected boolean loadPreferences() {
         boolean changed = false;
         if (getContactNameDisplayOrder() != mContactsPrefs.getDisplayOrder()) {
@@ -768,10 +755,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         // We manually save/restore the listview state
         mListView.setSaveEnabled(false);
-
-        if (mContextMenuAdapter != null) {
-            mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
-        }
 
         configureVerticalScrollbar();
         configurePhotoLoader();

@@ -527,16 +527,6 @@ public class ContactSelectionActivity extends ContactsActivity
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        ContextMenuAdapter menuAdapter = mListFragment.getContextMenuAdapter();
-        if (menuAdapter != null) {
-            return menuAdapter.onContextItemSelected(item);
-        }
-
-        return super.onContextItemSelected(item);
-    }
-
-    @Override
     public boolean onQueryTextChange(String newText) {
         mListFragment.setQueryString(newText, true);
         return false;
