@@ -34,7 +34,7 @@ import android.test.suitebuilder.annotation.LargeTest;
 
 import com.android.contacts.model.RawContact;
 import com.android.contacts.model.RawContactDelta;
-import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.ValuesDelta;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -141,49 +141,6 @@ public class RawContactDeltaTests extends AndroidTestCase {
         // Merge modified values and assert they match
         final RawContactDelta merged = RawContactDelta.mergeAfter(dest, source);
         assertEquals("Unexpected change when merging", source, merged);
-    }
-
-    /**
-     * Test that {@link ValuesDelta#buildDiff(android.net.Uri)} is correctly
-     * built for insert, update, and delete cases. Note this only tests behavior
-     * for individual {@link Data} rows.
-     */
-    public void testValuesDiffNone() {
-        final ContentValues before = new ContentValues();
-        before.put(Data._ID, TEST_PHONE_ID);
-        before.put(Phone.NUMBER, TEST_PHONE_NUMBER_1);
-
-        final ValuesDelta values = ValuesDelta.fromBefore(before);
-
-        // None action shouldn't produce a builder
-        final Builder builder = values.buildDiff(Data.CONTENT_URI);
-        assertNull("None action produced a builder", builder);
-    }
-
-    public void testValuesDiffInsert() {
-        final ContentValues after = new ContentValues();
-        after.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
-
-        final ValuesDelta values = ValuesDelta.fromAfter(after);
-
-        // Should produce an insert action
-        final Builder builder = values.buildDiff(Data.CONTENT_URI);
-        final int type = builder.build().getType();
-        assertEquals("Didn't produce insert action", TYPE_INSERT, type);
-    }
-
-    public void testValuesDiffUpdate() {
-        final ContentValues before = new ContentValues();
-        before.put(Data._ID, TEST_PHONE_ID);
-        before.put(Phone.NUMBER, TEST_PHONE_NUMBER_1);
-
-        final ValuesDelta values = ValuesDelta.fromBefore(before);
-        values.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
-
-        // Should produce an update action
-        final Builder builder = values.buildDiff(Data.CONTENT_URI);
-        final int type = builder.build().getType();
-        assertEquals("Didn't produce update action", TYPE_UPDATE, type);
     }
 
     public void testValuesDiffDelete() {

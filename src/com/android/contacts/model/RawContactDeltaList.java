@@ -30,7 +30,6 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
-import com.android.contacts.model.RawContactDelta.ValuesDelta;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;

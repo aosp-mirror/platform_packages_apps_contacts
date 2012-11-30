@@ -51,7 +51,6 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.CommonDateUtils;
 import com.android.contacts.editor.EventFieldEditorView;
 import com.android.contacts.editor.PhoneticNameEditorView;
-import com.android.contacts.model.RawContactDelta.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.account.AccountType.EditType;

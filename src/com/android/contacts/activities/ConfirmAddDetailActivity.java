@@ -64,7 +64,7 @@ import com.android.contacts.editor.ViewIdGenerator;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.model.RawContact;
 import com.android.contacts.model.RawContactDelta;
-import com.android.contacts.model.RawContactDelta.ValuesDelta;
+import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountType;
