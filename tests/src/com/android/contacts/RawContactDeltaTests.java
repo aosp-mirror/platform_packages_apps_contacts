@@ -34,7 +34,7 @@ import android.test.suitebuilder.annotation.LargeTest;
 
 import com.android.contacts.model.RawContact;
 import com.android.contacts.model.RawContactDelta;
-import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.common.model.ValuesDelta;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;

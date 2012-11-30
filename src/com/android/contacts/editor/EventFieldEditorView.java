@@ -30,7 +30,7 @@ import com.android.contacts.datepicker.DatePicker;
 import com.android.contacts.datepicker.DatePickerDialog;
 import com.android.contacts.datepicker.DatePickerDialog.OnDateSetListener;
 import com.android.contacts.model.RawContactDelta;
-import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.account.AccountType.EventEditType;
 import com.android.contacts.common.model.dataitem.DataKind;
