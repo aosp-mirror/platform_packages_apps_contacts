@@ -16,16 +16,12 @@
 
 package com.android.contacts.list;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.CursorLoader;
-import android.content.IContentService;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -33,12 +29,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
-import android.os.RemoteException;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -51,10 +43,8 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
-import com.android.contacts.ContactListEmptyView;
 import com.android.contacts.R;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.list.ContactEntryListAdapter;
@@ -128,7 +118,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private int mDirectoryResultLimit = DEFAULT_DIRECTORY_RESULT_LIMIT;
 
     private ContactPhotoManager mPhotoManager;
-    private ContactListEmptyView mEmptyView;
     private ContactsPreferences mContactsPrefs;
 
     private boolean mForceLoad;
@@ -227,10 +216,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public ListView getListView() {
         return mListView;
-    }
-
-    public ContactListEmptyView getEmptyView() {
-        return mEmptyView;
     }
 
     @Override
@@ -472,13 +457,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mLoadPriorityDirectoriesOnly = true;
         mForceLoad = true;
         startLoading();
-    }
-
-    /**
-     * Configures the empty view. It is called when we are about to populate
-     * the list with an empty cursor.
-     */
-    protected void prepareEmptyView() {
     }
 
     /**
@@ -739,9 +717,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         View emptyView = mView.findViewById(android.R.id.empty);
         if (emptyView != null) {
             mListView.setEmptyView(emptyView);
-            if (emptyView instanceof ContactListEmptyView) {
-                mEmptyView = (ContactListEmptyView)emptyView;
-            }
         }
 
         mListView.setOnItemClickListener(this);
@@ -851,14 +826,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     /**
-     * Dismisses the search UI along with the keyboard if the filter text is empty.
-     */
-    public void onClose() {
-        hideSoftKeyboard();
-        finish();
-    }
-
-    /**
      * Restore the list state after the adapter is populated.
      */
     protected void completeRestoreInstanceState() {
@@ -866,36 +833,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.onRestoreInstanceState(mListState);
             mListState = null;
         }
-    }
-
-    protected void setEmptyText(int resourceId) {
-        TextView empty = (TextView) getEmptyView().findViewById(R.id.emptyText);
-        empty.setText(mContext.getText(resourceId));
-        empty.setVisibility(View.VISIBLE);
-    }
-
-    // TODO redesign into an async task or loader
-    protected boolean isSyncActive() {
-        Account[] accounts = AccountManager.get(mContext).getAccounts();
-        if (accounts != null && accounts.length > 0) {
-            IContentService contentService = ContentResolver.getContentService();
-            for (Account account : accounts) {
-                try {
-                    if (contentService.isSyncActive(account, ContactsContract.AUTHORITY)) {
-                        return true;
-                    }
-                } catch (RemoteException e) {
-                    Log.e(TAG, "Could not get the sync status");
-                }
-            }
-        }
-        return false;
-    }
-
-    protected boolean hasIccCard() {
-        TelephonyManager telephonyManager =
-                (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
-        return telephonyManager.hasIccCard();
     }
 
     public void setDarkTheme(boolean value) {

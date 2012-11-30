@@ -246,12 +246,6 @@
     <!-- The text displayed when the groups list is empty and no accounts are set on the device while displaying all groups [CHAR LIMIT=NONE] -->
     <string name="noAccounts">To create groups you need an account.</string>
 
-    <!-- The text displayed when the contacts list is empty while displaying results after searching contacts -->
-    <string name="noMatchingContacts">No matching contacts found.</string>
-
-    <!-- The text displayed when the contacts list is empty while displaying only contacts that have phone numbers -->
-    <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
-
     <!-- The text displayed when there are no members in the group while displaying the group detail page [CHAR LIMIT=40] -->
     <string name="emptyGroup">No people in this group.</string>
 
@@ -385,75 +379,6 @@
 
     <!-- Dialog title displayed when loading a phone number from the SIM card for speed dial -->
     <string name="simContacts_title">SIM card contacts</string>
-
-    <!-- Displayed full screen when the user want to create a shortcut, but there is no contacts, and contact syncing is enabled -->
-    <string name="noContactsHelpTextWithSyncForCreateShortcut">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)"</string>
-
-    <!-- Displayed full screen when the user want to create a shortcut, but there is no contacts -->
-    <string name="noContactsHelpTextForCreateShortcut">"You don't have any contacts to display."</string>
-
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled.  [CHAR LIMIT=NONE] -->
-    <string name="noContactsHelpText" product="tablet">"You don't have any contacts to display.\n\nTo add contacts, touch <font fgcolor="#ffffffff"><b>Menu</b></font>, then touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or set up an account with contacts you can sync to the tablet\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/export</b></font> to import contacts from your SIM or SD card\n</li>"
-    </string>
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled.  [CHAR LIMIT=NONE] -->
-    <string name="noContactsHelpText" product="default">"You don't have any contacts to display.\n\nTo add contacts, touch <font fgcolor="#ffffffff"><b>Menu</b></font>, then touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or set up an account with contacts you can sync to the phone\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
-    </string>
-
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled.  [CHAR LIMIT=NONE] -->
-    <string name="noContactsHelpTextWithSync" product="tablet">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, touch <font fgcolor="#ffffffff"><b>Menu</b></font>, then touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or set up an account with contacts you can sync to the tablet\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
-    </string>
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled.  [CHAR LIMIT=NONE] -->
-    <string name="noContactsHelpTextWithSync" product="default">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, touch <font fgcolor="#ffffffff"><b>Menu</b></font>, then touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or set up an account with contacts you can sync to the phone\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SIM or SD card\n</li>"
-    </string>
-
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma).  [CHAR LIMIT=NONE]-->
-    <string name="noContactsNoSimHelpText" product="tablet">"You don't have any contacts to display.\n\nTo add contacts, touch <font fgcolor="#ffffffff"><b>Menu</b></font>, then touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or set up an account with contacts you can sync to the tablet\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
-    </string>
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is disabled, and there is no sim card (cdma).  [CHAR LIMIT=NONE]-->
-    <string name="noContactsNoSimHelpText" product="default">"You don't have any contacts to display.\n\nTo add contacts, touch <font fgcolor="#ffffffff"><b>Menu</b></font>, then touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or set up an account with contacts you can sync to the phone\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
-    </string>
-
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma).  [CHAR LIMIT=NONE] -->
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, touch <font fgcolor="#ffffffff"><b>Menu</b></font>, then touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or set up an account with contacts you can sync to the tablet\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
-    </string>
-    <!-- Displayed full screen when the user has no contacts and they are displaying the My Contacts group, and contact syncing is enabled, and there is no sim card (cdma).  [CHAR LIMIT=NONE] -->
-    <string name="noContactsNoSimHelpTextWithSync" product="default">"You don't have any contacts to display. (If you just added an account, it can take a few minutes to sync contacts.)\n\nTo add contacts, touch <font fgcolor="#ffffffff"><b>Menu</b></font>, then touch:\n
-        \n<li><font fgcolor="#ffffffff"><b>Accounts</b></font> to add or set up an account with contacts you can sync to the phone\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Display options</b></font> to change which contacts are visible\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>New contact</b></font> to create a new contact from scratch\n</li>
-        \n<li><font fgcolor="#ffffffff"><b>Import/Export</b></font> to import contacts from your SD card\n</li>"
-    </string>
-
-    <!-- Displayed full screen when the user has no favorites and they are displaying the favorites tab. [CHAR LIMIT=NONE] -->
-    <string name="noFavoritesHelpText">"You don't have any favorites.\n\nTo add a contact to your list of favorites:\n
-        <li>Touch the <b>Contacts</b> tab\n</li>
-        \n<li>Touch the contact you want to add to your favorites\n</li>
-        \n<li>Touch the star next to the contact\'s name\n</li>"
-    </string>
 
     <!-- Item label: jump to the in-call DTMF dialpad.
          (Part of a list of options shown in the dialer when another call
@@ -1028,9 +953,6 @@
 
     <!-- Label to clear all selection in multiple picker -->
     <string name="menu_select_none">"Unselect all"</string>
-
-    <!-- The text displayed when the contacts list is empty while displaying only selected contacts in multiple picker -->
-    <string name="no_contacts_selected">"No contacts selected."</string>
 
     <!-- The add field button shown in the editor under each editable Raw Contact [CHAR LIMIT=30] -->
     <string name="add_field">Add another field</string>
