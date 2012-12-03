@@ -17,9 +17,12 @@
 package com.android.contacts.model.dataitem;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
+
+import com.android.contacts.common.model.dataitem.DataKind;
 
 /**
  * Represents a phone data item, wrapping the columns in
@@ -68,4 +71,17 @@ public class PhoneDataItem extends DataItem {
         }
     }
 
+    /**
+     * Returns the formatted phone number (if already computed using {@link
+     * #computeFormattedPhoneNumber}). Otherwise this method returns the unformatted phone number.
+     */
+    @Override
+    public String buildDataStringForDisplay(Context context, DataKind kind) {
+        final String formatted = getFormattedPhoneNumber();
+        if (formatted != null) {
+            return formatted;
+        } else {
+            return getNumber();
+        }
+    }
 }

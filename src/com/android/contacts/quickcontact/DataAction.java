@@ -96,7 +96,7 @@ public class DataAction implements Action {
         }
 
         mIsPrimary = item.isSuperPrimary();
-        mBody = item.buildDataString(context, kind);
+        mBody = item.buildDataStringForDisplay(context, kind);
 
         mDataId = item.getId();
         mDataUri = ContentUris.withAppendedId(Data.CONTENT_URI, mDataId);
