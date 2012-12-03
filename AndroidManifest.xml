@@ -418,7 +418,6 @@
         <!-- vCard related -->
         <activity android:name=".vcard.ImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="nosensor"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
