@@ -998,14 +998,6 @@ public class ImportVCardActivity extends ContactsActivity {
         }
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // This Activity should finish itself on orientation change, and give the main screen back
-        // to the caller Activity.
-        finish();
-    }
-
     /**
      * Scans vCard in external storage (typically SDCard) and tries to import it.
      * - When there's no SDCard available, an error dialog is shown.
