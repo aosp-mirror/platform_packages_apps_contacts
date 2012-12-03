@@ -89,8 +89,6 @@
     <string name="noContacts" msgid="8579310973261953559">"沒有聯絡人。"</string>
     <string name="noGroups" msgid="8614664663561385253">"沒有群組。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"必須要有帳戶才能建立群組。"</string>
-    <string name="noMatchingContacts" msgid="4266283206853990471">"找不到符合的聯絡人。"</string>
-    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"沒有包含電話號碼的聯絡人資訊。"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"這個群組中沒有成員。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"如要新增成員，請編輯群組。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在儲存聯絡人…"</string>
@@ -137,17 +135,6 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"撥號即可新增通話"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"從  SIM 卡讀取中…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"SIM 卡聯絡人"</string>
-    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"您沒有任何聯絡人可供顯示 (如果您剛剛才新增帳戶，系統需要幾分鐘的時間才能同步聯絡人資訊)。"</string>
-    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"您沒有任何聯絡人可供顯示。"</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"您沒有任何聯絡人可供顯示。"\n\n"如要新增聯絡人，請輕觸"<font fgcolor="#ffffffff"><b>"選單鍵"</b></font>"，然後輕觸："\n\n<li><font fgcolor="#ffffffff">"[帳戶]"<b></b></font>" 新增或設定帳戶，其中含有可和平板電腦保持同步的聯絡人資料"\n</li>" "\n<li><font fgcolor="#ffffffff">"[新增聯絡人]"<b></b></font>" 從頭開始建立新的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[匯入/匯出]"<b></b></font>" 從 SIM 卡或 SD 卡匯入聯絡人"\n</li></string>
-    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"您沒有任何聯絡人可供顯示。"\n\n"如要新增聯絡人，請輕觸"<font fgcolor="#ffffffff"><b>"選單鍵"</b></font>"，然後輕觸："\n\n<li><font fgcolor="#ffffffff">"[帳戶]"<b></b></font>" 新增或設定帳戶，其中含有可和手機保持同步的聯絡人資料"\n</li>" "\n<li><font fgcolor="#ffffffff">"[新增聯絡人]"<b></b></font>" 從頭開始建立新的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[匯入/匯出]"<b></b></font>" 從 SIM 卡或 SD 卡匯入聯絡人"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"您沒有任何聯絡人可供顯示 (如果您剛新增帳戶，系統可能需要幾分鐘同步處理通訊錄)。"\n\n"如要新增聯絡人，請輕觸"<font fgcolor="#ffffffff"><b>"選單鍵"</b></font>"，然後輕觸："\n\n<li><font fgcolor="#ffffffff">"[帳戶]"<b></b></font>" 新增或設定帳戶，其中含有可和平板電腦保持同步的聯絡人資料"\n</li>" "\n<li><font fgcolor="#ffffffff">"[顯示選項]"<b></b></font>" 變更所要顯示的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[新增聯絡人]"<b></b></font>" 從頭開始建立新的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[匯入/匯出]"<b></b></font>" 從 SIM 卡或 SD 卡匯入聯絡人"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"您沒有任何聯絡人可供顯示 (如果您剛新增帳戶，系統可能需要幾分鐘同步處理處理通訊錄)。"\n\n"如要新增聯絡人，請輕觸"<font fgcolor="#ffffffff"><b>"選單鍵"</b></font>"，然後輕觸："\n\n<li><font fgcolor="#ffffffff">"[帳戶]"<b></b></font>" 新增或設定帳戶，其中含有可和手機保持同步的聯絡人資料"\n</li>" "\n<li><font fgcolor="#ffffffff">"[顯示選項]"<b></b></font>" 變更所要顯示的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[新增聯絡人]"<b></b></font>" 從頭開始建立新的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[匯入/匯出]"<b></b></font>" 從 SIM 卡或 SD 卡匯入聯絡人"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"您沒有任何聯絡人可供顯示。"\n\n"如要新增聯絡人，請輕觸"<font fgcolor="#ffffffff"><b>"選單鍵"</b></font>"，然後輕觸："\n\n<li><font fgcolor="#ffffffff">"[帳戶]"<b></b></font>" 新增或設定帳戶，其中含有可和平板電腦保持同步的聯絡人資料"\n</li>" "\n<li><font fgcolor="#ffffffff">"[新增聯絡人]"<b></b></font>" 從頭開始建立新的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[匯入/匯出]"<b></b></font>" 從 SD 卡匯入聯絡人"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"您沒有任何聯絡人可供顯示。"\n\n"如要新增聯絡人，請輕觸"<font fgcolor="#ffffffff"><b>"選單鍵"</b></font>"，然後輕觸："\n\n<li><font fgcolor="#ffffffff">"[帳戶]"<b></b></font>" 新增或設定帳戶，其中含有可和手機保持同步的聯絡人資料"\n</li>" "\n<li><font fgcolor="#ffffffff">"[新增聯絡人]"<b></b></font>" 從頭開始建立新的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[匯入/匯出]"<b></b></font>" 從 SD 卡匯入聯絡人"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"您沒有任何聯絡人可供顯示 (如果您剛新增帳戶，系統可能需要幾分鐘同步處理通訊錄)。"\n\n"如要新增聯絡人，請輕觸"<font fgcolor="#ffffffff"><b>"選單鍵"</b></font>"，然後輕觸："\n\n<li><font fgcolor="#ffffffff">"[帳戶]"<b></b></font>" 新增或設定帳戶，其中含有可和平板電腦保持同步的聯絡人資料"\n</li>" "\n<li><font fgcolor="#ffffffff">"[顯示選項]"<b></b></font>" 變更所要顯示的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[新增聯絡人]"<b></b></font>" 從頭開始建立新的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[匯入/匯出]"<b></b></font>" 從 SD 卡匯入聯絡人"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"您沒有任何聯絡人可供顯示 (如果您剛新增帳戶，系統可能需要幾分鐘同步處理通訊錄)。"\n\n"如要新增聯絡人，請輕觸"<font fgcolor="#ffffffff"><b>"選單鍵"</b></font>"，然後輕觸："\n\n<li><font fgcolor="#ffffffff">"[帳戶]"<b></b></font>" 新增或設定帳戶，其中含有可和手機保持同步的聯絡人資料"\n</li>" "\n<li><font fgcolor="#ffffffff">"[顯示選項]"<b></b></font>" 變更所要顯示的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[新增聯絡人]"<b></b></font>" 從頭開始建立新的聯絡人"\n</li>" "\n<li><font fgcolor="#ffffffff">"[匯入/匯出]"<b></b></font>" 從 SD 卡匯入聯絡人"\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"您沒有任何最愛。"\n\n"如要將聯絡人新增至最愛清單："\n\n<li>"輕觸 [聯絡人"<b></b>"] 標籤"\n</li>" "\n<li>"輕觸要新增至最愛的聯絡人"\n</li>" "\n<li>"輕觸聯絡人名稱旁邊的星號圖示"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"使用觸控音按鍵"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"返回進行中的通話"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"新增通話"</string>
@@ -299,7 +286,6 @@
     <string name="menu_display_all" msgid="8887488642609786198">"全部顯示"</string>
     <string name="menu_select_all" msgid="621719255150713545">"全選"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"全部取消選取"</string>
-    <string name="no_contacts_selected" msgid="5877803471037324613">"未選取任何聯絡人。"</string>
     <string name="add_field" msgid="2384260056674995230">"新增其他欄位"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"新增"</string>
     <string name="add_organization" msgid="7311893231158291197">"新增機構"</string>
