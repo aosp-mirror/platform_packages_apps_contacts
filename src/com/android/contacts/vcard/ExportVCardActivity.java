@@ -165,7 +165,10 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
             return;
         }
 
+        final String callingActivity = getIntent().getExtras()
+                .getString(VCardCommonArguments.ARG_CALLING_ACTIVITY);
         Intent intent = new Intent(this, VCardService.class);
+        intent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY, callingActivity);
 
         if (startService(intent) == null) {
             Log.e(LOG_TAG, "Failed to start vCard service");

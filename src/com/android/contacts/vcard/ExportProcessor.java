@@ -28,7 +28,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.PeopleActivity;
 import com.android.vcard.VCardComposer;
 import com.android.vcard.VCardConfig;
 
@@ -52,17 +51,21 @@ public class ExportProcessor extends ProcessorBase {
     private final NotificationManager mNotificationManager;
     private final ExportRequest mExportRequest;
     private final int mJobId;
+    private final String mCallingActivity;
+
 
     private volatile boolean mCanceled;
     private volatile boolean mDone;
 
-    public ExportProcessor(VCardService service, ExportRequest exportRequest, int jobId) {
+    public ExportProcessor(VCardService service, ExportRequest exportRequest, int jobId,
+            String callingActivity) {
         mService = service;
         mResolver = service.getContentResolver();
         mNotificationManager =
                 (NotificationManager)mService.getSystemService(Context.NOTIFICATION_SERVICE);
         mExportRequest = exportRequest;
         mJobId = jobId;
+        mCallingActivity = callingActivity;
     }
 
     @Override
@@ -254,7 +257,8 @@ public class ExportProcessor extends ProcessorBase {
 
     private void doFinishNotification(final String title, final String description) {
         if (DEBUG) Log.d(LOG_TAG, "send finish notification: " + title + ", " + description);
-        final Intent intent = new Intent(mService, PeopleActivity.class);
+        final Intent intent = new Intent();
+        intent.setClassName(mService, mCallingActivity);
         final Notification notification =
                 NotificationImportExportListener.constructFinishNotification(mService, title,
                         description, intent);

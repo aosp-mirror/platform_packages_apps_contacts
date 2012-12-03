@@ -44,6 +44,7 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.vcard.ExportVCardActivity;
+import com.android.contacts.vcard.VCardCommonArguments;
 
 import java.util.List;
 
@@ -62,10 +63,12 @@ public class ImportExportDialogFragment extends DialogFragment
     };
 
     /** Preferred way to show this dialog */
-    public static void show(FragmentManager fragmentManager, boolean contactsAreAvailable) {
+    public static void show(FragmentManager fragmentManager, boolean contactsAreAvailable,
+            Class callingActivity) {
         final ImportExportDialogFragment fragment = new ImportExportDialogFragment();
         Bundle args = new Bundle();
         args.putBoolean(ARG_CONTACTS_ARE_AVAILABLE, contactsAreAvailable);
+        args.putString(VCardCommonArguments.ARG_CALLING_ACTIVITY, callingActivity.getName());
         fragment.setArguments(args);
         fragment.show(fragmentManager, ImportExportDialogFragment.TAG);
     }
@@ -77,6 +80,8 @@ public class ImportExportDialogFragment extends DialogFragment
         final LayoutInflater dialogInflater = (LayoutInflater)getActivity()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final boolean contactsAreAvailable = getArguments().getBoolean(ARG_CONTACTS_ARE_AVAILABLE);
+        final String callingActivity = getArguments().getString(
+                VCardCommonArguments.ARG_CALLING_ACTIVITY);
 
         // Adapter that shows a list of string resources
         final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getActivity(),
@@ -125,6 +130,8 @@ public class ImportExportDialogFragment extends DialogFragment
                     case R.string.export_to_sdcard: {
                         dismissDialog = true;
                         Intent exportIntent = new Intent(getActivity(), ExportVCardActivity.class);
+                        exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,
+                                callingActivity);
                         getActivity().startActivity(exportIntent);
                         break;
                     }
