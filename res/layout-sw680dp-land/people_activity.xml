@@ -64,6 +64,7 @@
             ex:layout_wideParentWidth="1280dip"
             ex:layout_wideMarginLeft="0dip"
             ex:layout_wideMarginRight="0dip"
+            android:background="@color/background_primary"
             android:visibility="gone">
 
             <!-- This layout includes all possible views needed for a contact detail page -->
@@ -146,6 +147,7 @@
         android:id="@+id/contacts_unavailable_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background_holo_light"
         android:visibility="gone">
 
         <FrameLayout
