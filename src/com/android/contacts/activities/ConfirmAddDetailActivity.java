@@ -71,7 +71,7 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.EmptyService;
+import com.android.contacts.common.util.EmptyService;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

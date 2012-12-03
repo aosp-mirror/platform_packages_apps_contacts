@@ -220,13 +220,13 @@
 
         <!-- Used to filter contacts list by account -->
         <activity
-            android:name=".list.AccountFilterActivity"
+            android:name=".common.list.AccountFilterActivity"
             android:label="@string/activity_title_contacts_filter"
             android:theme="@style/ContactListFilterTheme" />
 
         <!-- Used to select display and sync groups -->
         <activity
-            android:name=".list.CustomContactListFilterActivity"
+            android:name=".common.list.CustomContactListFilterActivity"
             android:label="@string/custom_list_filter"
             android:theme="@style/ContactListFilterTheme" />
 
@@ -384,7 +384,7 @@
         <!-- Stub service used to keep our process alive long enough for
              background threads to finish their operations. -->
         <service
-            android:name=".util.EmptyService"
+            android:name=".common.util.EmptyService"
             android:exported="false" />
 
         <!-- Service to save a contact -->

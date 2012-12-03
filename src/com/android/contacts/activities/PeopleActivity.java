@@ -83,7 +83,7 @@ import com.android.contacts.model.Contact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
-import com.android.contacts.util.AccountFilterUtil;
+import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.util.DialogManager;
