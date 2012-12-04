@@ -454,6 +454,42 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          Some exact reason must follow this. [CHAR LIMIT=NONE] -->
     <string name="fail_reason_error_occurred_during_export">An error occurred during export: \"<xliff:g id="exact_reason">%s</xliff:g>\".</string>
 
+    <!-- The failed reason shown when the given file name is too long for the system.
+         The length limit of each file is different in each Android device, so we don't need to
+         mention it here. [CHAR LIMIT=NONE] -->
+    <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\").</string>
+
+    <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
+         there are too many files relevant to vCard. [CHAR LIMIT=NONE] -->
+    <string name="fail_reason_too_many_vcard" product="nosdcard">Too many vCard files are in the storage.</string>
+    <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
+         there are too many files relevant to vCard. -->
+    <string name="fail_reason_too_many_vcard" product="default">Too many vCard files are on the SD card.</string>
+
+    <!-- The failed reason shown when Contacts app (especially vCard importer/exporter)
+         emitted some I/O error. Exact reason will be appended by the system. [CHAR LIMIT=NONE] -->
+    <string name="fail_reason_io_error">I/O error</string>
+
+    <!-- Failure reason show when Contacts app (especially vCard importer) encountered
+         low memory problem and could not proceed its import procedure. [CHAR LIMIT=NONE] -->
+    <string name="fail_reason_low_memory_during_import">Not enough memory. The file may be too large.</string>
+
+    <!-- The failed reason shown when vCard parser was not able to be parsed by the current vCard
+         implementation. This might happen even when the input vCard is completely valid, though
+         we believe it is rather rare in the actual world. [CHAR LIMIT=NONE] -->
+    <string name="fail_reason_vcard_parse_error">Couldn\'t parse vCard for an unexpected reason.</string>
+
+    <!-- The failed reason shown when vCard importer doesn't support the format.
+         This may be shown when the vCard is corrupted [CHAR LIMIT=40] -->
+    <string name="fail_reason_not_supported">The format isn\'t supported.</string>
+
+    <!-- Fail reason shown when vCard importer failed to look over meta information stored in vCard file(s). -->
+    <string name="fail_reason_failed_to_collect_vcard_meta_info">Couldn\'t collect meta information of given vCard file(s).</string>
+
+    <!-- The failed reason shown when the import of some of vCard files failed during multiple vCard
+         files import. It includes the case where all files were failed to be imported. -->
+    <string name="fail_reason_failed_to_read_files">One or more files couldn\'t be imported (%s).</string>
+
     <!-- The title shown when exporting vCard is successfuly finished [CHAR LIMIT=40] -->
     <string name="exporting_vcard_finished_title">Finished exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g>.</string>
 
@@ -565,5 +601,49 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=16] -->
     <string name="nfc_vcard_file_name">Contact received over NFC</string>
+
+    <!-- Dialog title shown when a user confirms whether he/she export Contact data. [CHAR LIMIT=32] -->
+    <string name="confirm_export_title">Export contacts?</string>
+
+    <!-- Dialog title shown when a user is asked to select vCard file. [CHAR LIMIT=25] -->
+    <string name="select_vcard_title">Choose vCard file</string>
+
+    <!-- One of alternatives shown when the system allows a user to select how many vCard files
+         should be imported. This message shows only when the system is certain that there's more
+         than one vCard files available in the system. -->
+    <string name="import_one_vcard_string">Import one vCard file</string>
+
+    <!-- One of alternatives shown when the system allows a user to select how many vCard files
+         should be imported. This message shows only when the system is certain that there's more
+         than one vCard files available in the system. -->
+    <string name="import_multiple_vcard_string">Import multiple vCard files</string>
+
+    <!-- One of alternatives shown when the system allows a user to select how many vCard files
+         should be imported. This message shows only when the system is certain that there's more
+         than one vCard files available in the system. -->
+    <string name="import_all_vcard_string">Import all vCard files</string>
+
+    <!-- Dialog message shown when searching VCard data from (USB) storage [CHAR LIMIT=NONE] -->
+    <string name="searching_vcard_message" product="nosdcard">Searching for vCard data in storage\u2026</string>
+    <!-- Dialog message shown when searching VCard data from SD Card. [CHAR LIMIT=NONE] -->
+    <string name="searching_vcard_message" product="default">Searching for vCard data on SD card\u2026</string>
+
+    <!-- The title shown when vCard importer is caching files to be imported into local temporary
+         data storage.  [CHAR LIMIT=40] -->
+    <string name="caching_vcard_title">Caching</string>
+
+    <!-- Dialog message shown when searching VCard data failed.
+         An exact reason for the failure should [CHAR LIMIT=NONE] -->
+    <string name="scanning_sdcard_failed_message" product="nosdcard">The storage couldn\'t be scanned. (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+    <!-- Dialog message shown when searching VCard data failed.
+         An exact reason for the failure should [CHAR LIMIT=NONE] -->
+    <string name="scanning_sdcard_failed_message" product="default">The SD card couldn\'t be scanned. (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+
+    <!-- The message shown while importing vCard(s).
+         First argument is current index of contacts to be imported.
+         Second argument is the total number of contacts.
+         Third argument is the name of a contact which is being read.
+         [CHAR LIMIT=20] -->
+    <string name="progress_notifier_message">Importing <xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
 
 </resources>
