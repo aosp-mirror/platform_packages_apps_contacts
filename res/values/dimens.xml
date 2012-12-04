@@ -81,9 +81,6 @@
     <!-- Minimum height of a row in the contact detail -->
     <dimen name="detail_min_line_item_height">48dip</dimen>
 
-    <!-- Width of height of an icon from a third-party app in the networks section of the contact card. -->
-    <dimen name="detail_network_icon_size">32dip</dimen>
-
     <!-- Font size for the display name in header of the contact detail page -->
     <dimen name="detail_header_name_text_size">36sp</dimen>
 
