@@ -30,4 +30,33 @@
 
     <!-- If true, the order of name fields in the editor is primary (i.e. given name first) -->
     <bool name="config_editor_field_order_primary">true</bool>
+
+    <!-- The type of VCard for export. If you want to let the app emit vCard which is
+    specific to some vendor (like DoCoMo), specify this type (e.g. "docomo") -->
+    <string name="config_export_vcard_type" translatable="false">default</string>
+
+    <!-- The type of vcard for improt. If the vcard importer cannot guess the exact type
+    of a vCard type, the improter uses this type. -->
+    <string name="config_import_vcard_type" translatable="false">default</string>
+
+    <!-- Prefix of exported VCard file -->
+    <string name="config_export_file_prefix" translatable="false"></string>
+
+    <!-- Suffix of exported VCard file. Attached before an extension -->
+    <string name="config_export_file_suffix" translatable="false"></string>
+
+    <!-- Extension for exported VCard files -->
+    <string name="config_export_file_extension" translatable="false">vcf</string>
+
+    <!-- Minimum number of exported VCard file index -->
+    <integer name="config_export_file_min_index">1</integer>
+
+    <!-- Maximum number of exported VCard file index -->
+    <integer name="config_export_file_max_index">99999</integer>
+
+    <!-- The list (separated by ',') of extensions should be checked in addition to
+     config_export_extension. e.g. If "aaa" is added to here and 00001.vcf and 00002.aaa
+     exist in a target directory, 00003.vcf becomes a next file name candidate.
+     Without this configuration, 00002.vcf becomes the candidate.-->
+    <string name="config_export_extensions_to_consider" translatable="false"></string>
 </resources>
