@@ -62,7 +62,7 @@ import com.android.contacts.group.GroupBrowseListFragment;
 import com.android.contacts.group.GroupBrowseListFragment.OnGroupBrowserActionListener;
 import com.android.contacts.group.GroupDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.interactions.ImportExportDialogFragment;
+import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;

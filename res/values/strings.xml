@@ -541,12 +541,6 @@
     -->
     <string name="description_plus_button">plus</string>
 
-    <!-- Action that exports all contacts to (USB) storage [CHAR LIMIT=25] -->
-    <string name="export_to_sdcard" product="default">Export to storage</string>
-
-    <!-- Action that shares visible contacts -->
-    <string name="share_visible_contacts">Share visible contacts</string>
-
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
 
@@ -576,20 +570,11 @@
     <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
     <string name="menu_import_export">Import/export</string>
 
-    <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=36] -->
-    <string name="dialog_import_export">Import/export contacts</string>
-
-    <!-- Dialog title when importing contacts from an external source. [CHAR LIMIT=36] -->
-    <string name="dialog_import">Import contacts</string>
-
     <!-- The menu item to share the currently viewed contact [CHAR LIMIT=30] -->
     <string name="menu_share">Share</string>
 
     <!-- Dialog title when picking the application to share a contact with. -->
     <string name="share_via">Share contact via</string>
-
-    <!-- Toast indicating that sharing a contact has failed. [CHAR LIMIT=NONE]  -->
-    <string name="share_error">This contact can\'t be shared.</string>
 
     <!-- Title for the disambiguation dialog that requests the user choose an account for the new group to be created under [CHAR LIMIT=NONE] -->
     <string name="dialog_new_group_account">Create group under account</string>
