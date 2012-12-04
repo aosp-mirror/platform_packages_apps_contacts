@@ -646,4 +646,19 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          [CHAR LIMIT=20] -->
     <string name="progress_notifier_message">Importing <xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
 
+    <!-- Action that exports all contacts to (USB) storage [CHAR LIMIT=25] -->
+    <string name="export_to_sdcard" product="default">Export to storage</string>
+
+    <!-- Action that shares visible contacts -->
+    <string name="share_visible_contacts">Share visible contacts</string>
+
+    <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=36] -->
+    <string name="dialog_import_export">Import/export contacts</string>
+
+    <!-- Dialog title when importing contacts from an external source. [CHAR LIMIT=36] -->
+    <string name="dialog_import">Import contacts</string>
+
+    <!-- Toast indicating that sharing a contact has failed. [CHAR LIMIT=NONE]  -->
+    <string name="share_error">This contact can\'t be shared.</string>
+
 </resources>
