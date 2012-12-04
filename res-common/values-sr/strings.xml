@@ -142,4 +142,36 @@
     <string name="chat" msgid="6297650784873558837">"Ћаскање"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"избриши"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Проширивање или скупљање поља за називе"</string>
+    <!-- no translation found for list_filter_all_accounts (4265359896628915784) -->
+    <skip />
+    <!-- no translation found for list_filter_all_starred (9060325494254507806) -->
+    <skip />
+    <!-- no translation found for list_filter_customize (2352794292558465089) -->
+    <skip />
+    <!-- no translation found for list_filter_single (4553809449379139446) -->
+    <skip />
+    <!-- no translation found for display_ungrouped (3669471582032440138) -->
+    <skip />
+    <!-- no translation found for display_all_contacts (7251385818740728862) -->
+    <skip />
+    <!-- no translation found for menu_sync_remove (6581565236520430269) -->
+    <skip />
+    <!-- no translation found for dialog_sync_add (1795682729089027675) -->
+    <skip />
+    <!-- no translation found for display_more_groups (6304997485733158224) -->
+    <skip />
+    <!-- no translation found for display_warn_remove_ungrouped (7297678747857509619) -->
+    <skip />
+    <!-- no translation found for savingDisplayGroups (6863012138107446030) -->
+    <skip />
+    <!-- no translation found for menu_done (32470053723443112) -->
+    <skip />
+    <!-- no translation found for menu_doNotSave (6012426160993364871) -->
+    <skip />
+    <!-- no translation found for listAllContactsInAccount (755499980092808715) -->
+    <skip />
+    <!-- no translation found for listCustomView (1915154113477432033) -->
+    <skip />
+    <!-- no translation found for listSingleContact (8525131203887307088) -->
+    <skip />
 </resources>
