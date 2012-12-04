@@ -41,10 +41,10 @@ import com.android.contacts.R;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.util.AccountSelectionUtil;
+import com.android.contacts.common.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.vcard.ExportVCardActivity;
-import com.android.contacts.vcard.VCardCommonArguments;
+import com.android.contacts.common.vcard.ExportVCardActivity;
+import com.android.contacts.common.vcard.VCardCommonArguments;
 
 import java.util.List;
 

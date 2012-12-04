@@ -541,17 +541,6 @@
     -->
     <string name="description_plus_button">plus</string>
 
-    <!-- Dialog message shown when (USB) storage does not exist [CHAR LIMIT=30] -->
-    <string name="no_sdcard_message" product="nosdcard">No storage was found.</string>
-    <!-- Dialog message shown when SDcard does not exist. [CHAR LIMIT=30] -->
-    <string name="no_sdcard_message" product="default">No SD card was found.</string>
-
-    <!-- Action string for selecting SIM for importing contacts -->
-    <string name="import_from_sim">Import from SIM card</string>
-
-    <!-- Action string for selecting (USB) storage for importing contacts [CHAR LIMIT=25] -->
-    <string name="import_from_sdcard" product="default">Import from storage</string>
-
     <!-- Action that exports all contacts to (USB) storage [CHAR LIMIT=25] -->
     <string name="export_to_sdcard" product="default">Export to storage</string>
 
@@ -602,27 +591,12 @@
          This may be shown when the vCard is corrupted [CHAR LIMIT=40] -->
     <string name="fail_reason_not_supported">The format isn\'t supported.</string>
 
-    <!-- Message used when vCard import has failed. [CHAR LIMIT=40] -->
-    <string name="vcard_import_failed">Couldn\'t import vCard.</string>
-
-    <!-- The failure message shown when the system could not find any vCard file.
-         (with extension ".vcf" in (USB) storage.)
-         [CHAR LIMIT=128] -->
-    <string name="import_failure_no_vcard_file" product="nosdcard">No vCard file found in storage.</string>
-    <!-- The failure message shown when the system could not find any vCard file.
-         (with extension ".vcf" in SDCard.)
-         [CHAR LIMIT=128] -->
-    <string name="import_failure_no_vcard_file" product="default">No vCard file found on the SD card.</string>
-
     <!-- Fail reason shown when vCard importer failed to look over meta information stored in vCard file(s). -->
     <string name="fail_reason_failed_to_collect_vcard_meta_info">Couldn\'t collect meta information of given vCard file(s).</string>
 
     <!-- The failed reason shown when the import of some of vCard files failed during multiple vCard
          files import. It includes the case where all files were failed to be imported. -->
     <string name="fail_reason_failed_to_read_files">One or more files couldn\'t be imported (%s).</string>
-
-    <!-- The failed reason which should not be shown but it may in some buggy condition. [CHAR LIMIT=40] -->
-    <string name="fail_reason_unknown">Unknown error.</string>
 
     <!-- Dialog title shown when a user is asked to select vCard file. [CHAR LIMIT=25] -->
     <string name="select_vcard_title">Choose vCard file</string>
@@ -631,80 +605,8 @@
          data storage.  [CHAR LIMIT=40] -->
     <string name="caching_vcard_title">Caching</string>
 
-    <!-- The message shown when vCard importer is caching files to be imported into local temporary
-         data storage. [CHAR LIMIT=NONE] -->
-    <string name="caching_vcard_message">Caching vCard(s) to local temporary storage. The actual import will start soon.</string>
-
-    <!-- The message shown while importing vCard(s).
-         First argument is current index of contacts to be imported.
-         Second argument is the total number of contacts.
-         Third argument is the name of a contact which is being read.
-         [CHAR LIMIT=20] -->
-    <string name="progress_notifier_message">Importing <xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
-
-    <!-- Description shown when importing vCard data.
-         The argument is the name of a contact which is being read.
-         [CHAR LIMIT=20] -->
-    <string name="importing_vcard_description">Importing <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
-
-    <!-- Dialog title shown when reading vCard data failed [CHAR LIMIT=40] -->
-    <string name="reading_vcard_failed_title">Couldn\'t read vCard data</string>
-
-    <!-- The title shown when reading vCard is canceled (probably by a user)
-         [CHAR LIMIT=40] -->
-    <string name="reading_vcard_canceled_title">Reading vCard data canceled</string>
-
-    <!-- The title shown when reading vCard finished
-         The argument is file name the user imported.
-         [CHAR LIMIT=40] -->
-    <string name="importing_vcard_finished_title">Finished importing vCard <xliff:g id="filename" example="import.vcf">%s</xliff:g></string>
-
-    <!-- The title shown when importing vCard is canceled (probably by a user)
-         The argument is file name the user canceled importing.
-         [CHAR LIMIT=40] -->
-    <string name="importing_vcard_canceled_title">Importing <xliff:g id="filename" example="import.vcf">%s</xliff:g> canceled</string>
-
-    <!-- The message shown when vCard import request is accepted. The system may start that work soon, or do it later
-         when there are already other import/export requests.
-         The argument is file name the user imported.
-         [CHAR LIMIT=40] -->
-    <string name="vcard_import_will_start_message"><xliff:g id="filename" example="import.vcf">%s</xliff:g> will be imported shortly.</string>
-    <!-- The message shown when vCard import request is accepted. The system may start that work soon, or do it later when there are already other import/export requests.
-         "The file" is what a user selected for importing.
-         [CHAR LIMIT=40] -->
-    <string name="vcard_import_will_start_message_with_default_name">The file will be imported shortly.</string>
-    <!-- The message shown when a given vCard import request is rejected by the system. [CHAR LIMIT=NONE] -->
-    <string name="vcard_import_request_rejected_message">vCard import request was rejected. Try again later.</string>
-    <!-- The message shown when vCard export request is accepted. The system may start that work soon, or do it later
-         when there are already other import/export requests.
-         The argument is file name the user exported.
-         [CHAR LIMIT=40] -->
-    <string name="vcard_export_will_start_message"><xliff:g id="filename" example="import.vcf">%s</xliff:g> will be exported shortly.</string>
-    <!-- The message shown when a given vCard export request is rejected by the system. [CHAR LIMIT=NONE] -->
-    <string name="vcard_export_request_rejected_message">vCard export request was rejected. Try again later.</string>
-    <!-- Used when file name is unknown in vCard processing. It typically happens
-         when the file is given outside the Contacts app. [CHAR LIMIT=30] -->
-    <string name="vcard_unknown_filename">contact</string>
-
-    <!-- The percentage, used for expressing the progress of vCard import/export. -->
-    <string name="percentage"><xliff:g id="percentage" example="50">%s</xliff:g><xliff:g id="percentsign" example="%">%%</xliff:g></string>
-
     <!-- Dialog title shown when a user confirms whether he/she export Contact data. [CHAR LIMIT=32] -->
     <string name="confirm_export_title">Export contacts?</string>
-
-    <!-- Dialog message shown when a user confirms whether he/she export Contact data [CHAR LIMIT=NONE] -->
-    <string name="confirm_export_message">Your contact list will be exported to file: <xliff:g id="vcard_filename">%s</xliff:g>.</string>
-
-    <!-- Dialog title shown when exporting Contact data failed. [CHAR LIMIT=20] -->
-    <string name="exporting_contact_failed_title">Couldn\'t export</string>
-
-    <!-- Dialog message shown when exporting Contact data failed. [CHAR LIMIT=NONE] -->
-    <string name="exporting_contact_failed_message">The contact data wasn\'t exported.\nReason: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
-
-    <!-- The failed reason shown when there's no contact which is allowed to be exported.
-         Note that user may have contacts data but all of them are probably not allowed to be
-         exported because of security/permission reasons. [CHAR LIMIT=NONE] -->
-    <string name="fail_reason_no_exportable_contact">There is no exportable contact.</string>
 
     <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
          there are too many files relevant to vCard. [CHAR LIMIT=NONE] -->
@@ -718,65 +620,8 @@
          mention it here. [CHAR LIMIT=NONE] -->
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\").</string>
 
-    <!-- The title shown when exporting vCard is successfuly finished [CHAR LIMIT=40] -->
-    <string name="exporting_vcard_finished_title">Finished exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g>.</string>
-
-    <!-- The title shown when exporting vCard is canceled (probably by a user)
-         The argument is file name the user canceled importing.
-         [CHAR LIMIT=40] -->
-    <string name="exporting_vcard_canceled_title">Exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g> canceled.</string>
-
-    <!-- Dialog title shown when the application is exporting contact data outside. [CHAR LIMIT=NONE] -->
-    <string name="exporting_contact_list_title">Exporting contact data</string>
-
-    <!-- Message shown when the application is exporting contact data outside -->
-    <string name="exporting_contact_list_message">Your contact data is being exported to: <xliff:g id="file_name">%s</xliff:g>.</string>
-
-    <!-- The failed reason shown when contacts exporter fails to be initialized.
-         Some exact reason must follow this. [CHAR LIMIT=NONE]-->
-    <string name="fail_reason_could_not_initialize_exporter">Couldn\'t start the exporter: \"<xliff:g id="exact_reason">%s</xliff:g>\".</string>
-
-    <!-- The failed reason shown when some error happend during contacts export.
-         Some exact reason must follow this. [CHAR LIMIT=NONE] -->
-    <string name="fail_reason_error_occurred_during_export">An error occurred during export: \"<xliff:g id="exact_reason">%s</xliff:g>\".</string>
-
-    <!-- The error reason the vCard composer "may" emit when database is corrupted or
-         something is going wrong. Usually users should not see this text. [CHAR LIMIT=NONE] -->
-    <string name="composer_failed_to_get_database_infomation">Couldn\'t get database information.</string>
-
-    <!-- This error message shown when the user actually have no contact
-         (e.g. just after data-wiping), or, data providers of the contact list prohibits their
-         contacts from being exported to outside world via vcard exporter, etc. [CHAR LIMIT=NONE] -->
-    <string name="composer_has_no_exportable_contact" product="tablet">There are no exportable contacts. If you do have contacts on your tablet, some data providers may not allow the contacts to be exported from the tablet.</string>
-    <!-- This error message shown when the user actually have no contact
-         (e.g. just after data-wiping), or, data providers of the contact list prohibits their
-         contacts from being exported to outside world via vcard exporter, etc. [CHAR LIMIT=NONE] -->
-    <string name="composer_has_no_exportable_contact" product="default">There are no exportable contacts. If you do have contacts on your phone, some data providers may not allow the contacts to be exported from the phone.</string>
-
-    <!-- The error reason the vCard composer may emit when vCard composer is not initialized
-         even when needed.
-         Users should not usually see this error message. [CHAR LIMIT=NONE] -->
-    <string name="composer_not_initialized">The vCard composer didn\'t start properly.</string>
-
-    <!-- The failed reason shown when vCard importer/exporter could not open the file
-         specified by a user. The file name should be in the message. [CHAR LIMIT=NONE] -->
-    <string name="fail_reason_could_not_open_file">Couldn\'t open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g>.</string>
-
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
-
-    <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard import.
-         The argument is file name for the vCard import the user wants to cancel.
-         [CHAR LIMIT=128] -->
-    <string name="cancel_import_confirmation_message">Cancel import of <xliff:g id="filename" example="import.vcf">%s</xliff:g>?</string>
-
-    <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard export.
-         The argument is file name for the vCard export the user wants to cancel.
-         [CHAR LIMIT=128] -->
-    <string name="cancel_export_confirmation_message">Cancel export of <xliff:g id="filename" example="export.vcf">%s</xliff:g>?</string>
-
-    <!-- Title shown in a Dialog telling users cancel vCard import/export operation is failed. [CHAR LIMIT=40] -->
-    <string name="cancel_vcard_import_or_export_failed">Couldn\'t cancel vCard import/export</string>
 
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
     <string name="search_settings_description">Names of your contacts</string>
@@ -818,8 +663,6 @@
 
     <!-- Toast indicating that sharing a contact has failed. [CHAR LIMIT=NONE]  -->
     <string name="share_error">This contact can\'t be shared.</string>
-
-    <string name="dialog_new_contact_account">Create contact under account</string>
 
     <!-- Title for the disambiguation dialog that requests the user choose an account for the new group to be created under [CHAR LIMIT=NONE] -->
     <string name="dialog_new_group_account">Create group under account</string>
@@ -1115,9 +958,6 @@
 
     <!-- Hint text in the group name box in the edit group view. [CHAR LIMIT=20]-->
     <string name="group_name_hint">Group\'s name</string>
-
-    <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=16] -->
-    <string name="nfc_vcard_file_name">Contact received over NFC</string>
 
     <!-- Menu item used to show only outgoing in the call log. [CHAR LIMIT=30] -->
     <string name="menu_show_outgoing_only">Show outgoing only</string>

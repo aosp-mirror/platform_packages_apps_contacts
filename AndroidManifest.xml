@@ -416,7 +416,7 @@
         </activity>
 
         <!-- vCard related -->
-        <activity android:name=".vcard.ImportVCardActivity"
+        <activity android:name=".common.vcard.ImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
@@ -428,7 +428,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".vcard.NfcImportVCardActivity"
+        <activity android:name=".common.vcard.NfcImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
@@ -439,17 +439,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".vcard.CancelActivity"
+        <activity android:name=".common.vcard.CancelActivity"
             android:theme="@style/BackgroundOnlyTheme" />
 
-        <activity android:name=".vcard.SelectAccountActivity"
+        <activity android:name=".common.vcard.SelectAccountActivity"
             android:theme="@style/BackgroundOnlyTheme" />
 
-        <activity android:name=".vcard.ExportVCardActivity"
+        <activity android:name=".common.vcard.ExportVCardActivity"
             android:theme="@style/BackgroundOnlyTheme" />
 
         <service
-            android:name=".vcard.VCardService"
+            android:name=".common.vcard.VCardService"
             android:exported="false" />
 
         <!-- Pinned header list demo -->
