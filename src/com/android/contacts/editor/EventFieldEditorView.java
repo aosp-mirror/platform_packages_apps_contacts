@@ -203,10 +203,10 @@ public class EventFieldEditorView extends LabeledEditorView {
 
         final int oldYear, oldMonth, oldDay;
         if (TextUtils.isEmpty(oldValue)) {
-            // Default to January first of this year
+            // Default to the current date
             oldYear = defaultYear;
-            oldMonth = 0;
-            oldDay = 1;
+            oldMonth = calendar.get(Calendar.MONTH);
+            oldDay = calendar.get(Calendar.DAY_OF_MONTH);
         } else {
             final ParsePosition position = new ParsePosition(0);
             // Try parsing with year
