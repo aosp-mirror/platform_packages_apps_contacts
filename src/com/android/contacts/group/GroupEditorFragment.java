@@ -66,10 +66,10 @@ import com.android.contacts.activities.GroupEditorActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.editor.SelectAccountDialogFragment;
+import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.ViewUtil;
 import com.google.common.base.Objects;
 
