@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Šiam adresatui priskirta kelių paskyrų informacija. Tik skaitomų paskyrų informacija bus paslėpta adresatų sąrašuose; ji nebus ištrinta."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ištrynus šią informaciją, bus ištrinta kelių paskyrų informacija."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Šis adresatas bus ištrintas."</string>
-    <string name="menu_done" msgid="796017761764190697">"Atlikta"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Atšaukti"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Atmesti"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontaktas neegzistuoja."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktų valdiklis pridėtas prie pagrindinio ekrano."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Šioje grupėje nėra žmonių."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Jei norite jų pridėti, redaguokite grupę."</string>
     <string name="savingContact" msgid="4075751076741924939">"Išsaugomas adresatas..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Išsaugomos pateikties parinktys..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Adresatas išsaugotas."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nepavyko išsaugoti kontakto pakeitimų."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupė išsaugota."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Nėra matomų kontaktų."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Į adresyną nieko neįtraukta."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"„<xliff:g id="NAME">%s</xliff:g>“ kontaktų nėra"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g> kontaktai"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"Vienas kontaktas"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Kontaktai priskirtame rodinyje"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"rastas 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Rasta <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"Šio kontakto negalima bendrinti."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Kurti adresatą paskyroje"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Kurti grupę paskyroje"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Pašalinti sinchronizuojamą grupę"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Pridėti sinchronizuotą grupę"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Daugiau grupių..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Visi kiti kontaktai"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Visi kontaktai"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Iš sinchronizavimo pašalinus „<xliff:g id="GROUP">%s</xliff:g>“, bus pašalinti ir nesugrupuoti kontaktai."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Balso pokalbis"</string>
     <string name="video_chat" msgid="1872255818640336072">"Vaizdo pokalbis"</string>
     <string name="connections" msgid="8098440723172028350">"Ryšiai"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Pridėti prie „Mano kontaktų“"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"„<xliff:g id="TYPE">%1$s</xliff:g>“ katalogas"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Kuriama asmeninė kopija..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Visi kontaktai"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Pažymėta žvaigždute"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Priskirtas"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Tinkinti"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Kontaktas"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Nustatyti priskirtą rodinį"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Įkeliama..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nustatymai"</string>

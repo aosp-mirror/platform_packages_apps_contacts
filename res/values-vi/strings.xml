@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Liên hệ này chứa thông tin từ nhiều tài khoản. Thông tin từ các tài khoản ở chế độ chỉ đọc sẽ bị ẩn trong danh sách liên hệ của bạn, chứ không bị xóa."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Xóa liên hệ này sẽ xóa thông tin khỏi nhiều tài khoản."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Liên hệ này sẽ bị xóa."</string>
-    <string name="menu_done" msgid="796017761764190697">"Xong"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Hủy"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Hủy bỏ"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Địa chỉ liên hệ không tồn tại."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Đã thêm tiện ích liên hệ vào Màn hình chính."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Không có người nào trong nhóm này."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Để thêm thành viên, chỉnh sửa nhóm."</string>
     <string name="savingContact" msgid="4075751076741924939">"Đang lưu liên hệ…"</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Đang lưu tùy chọn hiển thị…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Đã lưu liên hệ."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Không thể lưu thay đổi của địa chỉ liên hệ."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Đã lưu nhóm."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Không có địa chỉ liên hệ nào hiển thị."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Không có địa chỉ liên hệ ưa thích nào"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Không có liên hệ nào trong <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Danh bạ trong <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"Một liên hệ"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Danh bạ ở chế độ xem tùy chỉnh"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Đã tìm thấy 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"Không thể chia sẻ địa chỉ liên hệ này."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Tạo liên hệ trong tài khoản"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Tạo nhóm trong tài khoản"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Xóa nhóm đồng bộ hóa"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Thêm nhóm đồng bộ hóa"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Nhóm khác…"</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Tất cả địa chỉ l.hệ khác"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Tất cả địa chỉ liên hệ"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Xóa \"<xliff:g id="GROUP">%s</xliff:g>\" khỏi đồng bộ hóa cũng sẽ xóa bất kỳ địa chỉ liên hệ nào đã được tách nhóm khỏi đồng bộ hóa."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Trò chuyện thoại"</string>
     <string name="video_chat" msgid="1872255818640336072">"Trò chuyện qua video"</string>
     <string name="connections" msgid="8098440723172028350">"Kết nối"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Thêm vào Danh bạ của tôi"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Thư mục <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Đang tạo bản sao cá nhân..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tất cả địa chỉ liên hệ"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Được gắn dấu sao"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Tùy chỉnh"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Tùy chỉnh"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Địa chỉ liên hệ"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Xác định chế độ xem tùy chỉnh"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Đang tải…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Cài đặt"</string>

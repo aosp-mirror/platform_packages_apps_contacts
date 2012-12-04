@@ -90,9 +90,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"\"Quest contact cuntegna infurmaziuns da plirs contos. Infurmaziuns da contos mo per lectura vegnan betg stizzadas, mabain zuppentadas en Vossas glistas da contacts.\""</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"\"Sche Vus stizzais quest contact, vegnan infurmaziuns en plirs contos stizzads.\""</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Quest contact vegn stizzà."</string>
-    <string name="menu_done" msgid="796017761764190697">"Finì"</string>
-    <!-- no translation found for menu_doNotSave (58593876893538465) -->
-    <skip />
     <!-- no translation found for menu_discard (6456087569315685632) -->
     <skip />
     <!-- no translation found for invalidContactMessage (8215051456181842274) -->
@@ -125,7 +122,6 @@
     <!-- no translation found for addPeopleToGroup (7879585947222263516) -->
     <skip />
     <string name="savingContact" msgid="4075751076741924939">"Il contact vegn memorisà…"</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Las opziuns da vista vegnan memorisadas…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contact memorisà."</string>
     <!-- no translation found for contactSavedErrorToast (3207250533172944892) -->
     <skip />
@@ -146,12 +142,6 @@
     <!-- no translation found for listTotalAllContactsZeroStarred (3173820905501592808) -->
     <skip />
     <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
-    <!-- no translation found for listAllContactsInAccount (7496143179265311758) -->
-    <skip />
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
-    <!-- no translation found for listCustomView (6950713892532194050) -->
     <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"chattà 1"</item>
@@ -354,15 +344,6 @@
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crear in contact sut il conto"</string>
     <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
     <skip />
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Allontanar la gruppa da sincronisaziun"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Agiuntar ina gruppa da sincronisaziun"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Ulteriuras gruppas…"</string>
-    <!-- no translation found for display_ungrouped (6885954210243119591) -->
-    <skip />
-    <!-- no translation found for display_all_contacts (2031647544742889505) -->
-    <skip />
-    <!-- no translation found for display_warn_remove_ungrouped (8872290721676651414) -->
-    <skip />
     <!-- no translation found for audio_chat (2535716629358298691) -->
     <skip />
     <!-- no translation found for video_chat (1872255818640336072) -->
@@ -444,15 +425,7 @@
     <skip />
     <!-- no translation found for toast_making_personal_copy (288549957278065542) -->
     <skip />
-    <!-- no translation found for list_filter_all_accounts (8908683398914322369) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
-    <skip />
     <!-- no translation found for list_filter_custom (8910173055702057002) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (4789963356004169321) -->
-    <skip />
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
     <skip />
     <!-- no translation found for custom_list_filter (7836035257402013957) -->
     <skip />

@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contém informações de várias contas. As informações de contas só de leitura serão ocultadas nas suas listas de contactos, mas não eliminadas."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"A eliminação deste contacto eliminará informações de várias contas."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Este contacto será eliminado."</string>
-    <string name="menu_done" msgid="796017761764190697">"Concluído"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Cancelar"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Rejeitar"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"O contacto não existe."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget de contacto adicionado ao seu Ecrã principal."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Sem pessoas neste grupo."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Para adicionar algumas, edite o grupo."</string>
     <string name="savingContact" msgid="4075751076741924939">"A guardar contacto..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"A guardar opções de visualização..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contacto guardado."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Não foi possível guardar as alterações do contacto."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupo guardado."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Sem contactos visíveis"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Sem favoritos."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Sem contactos em <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contactos em <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"Contacto único"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Contactos na vista personalizada"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 encontrado"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> encontrado(s)"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"Não é possível partilhar este contacto."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Criar contacto subordinado à conta"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Criar grupo na conta"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Remover grupo de sincronização"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Adicionar grupo de sincronização"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Mais grupos..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Todos os outros contactos"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Todos os contactos"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Ao remover \"<xliff:g id="GROUP">%s</xliff:g>\" da sincronização, removerá também quaisquer contactos não agrupados."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat de voz"</string>
     <string name="video_chat" msgid="1872255818640336072">"Chat de vídeo"</string>
     <string name="connections" msgid="8098440723172028350">"Ligações"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adicionar aos Meus Contactos"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directório <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"A criar uma cópia pessoal"</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Todos os contactos"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Marcado com estrela"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizado"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Personalizar"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Contacto"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definir vista personalizada"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"A carregar…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Definições"</string>

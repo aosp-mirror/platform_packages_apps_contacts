@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"این مخاطب دارای اطلاعاتی از چند حساب است. اطلاعات حساب‌های فقط خواندنی در لیست‌های مخاطبین پنهان می‌شوند اما حذف نمی‌شوند."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"حذف این مخاطب اطلاعات را از حساب‌های متعدد حذف می‌کند."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"این مخاطب حذف می‌شود."</string>
-    <string name="menu_done" msgid="796017761764190697">"انجام شد"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"لغو"</string>
     <string name="menu_discard" msgid="6456087569315685632">"صرفنظر"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"مخاطبی موجود نیست."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"ابزارک مخاطب به صفحهٔ اصلی شما اضافه شد."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"هیچ فردی در این گروه نیست."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"برای افزودن چند عضو، گروه را ویرایش کنید."</string>
     <string name="savingContact" msgid="4075751076741924939">"در حال ذخیره مخاطب..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"در حال ذخیره گزینه‌های نمایش..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"مخاطب ذخیره شد."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"تغییرات مخاطب ذخیره نمی‌شود."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"گروه ذخیره شد."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"مخاطب قابل مشاهده‌ای موجود نیست."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"بدون مورد دلخواه."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"هیچ مخاطبی در <xliff:g id="NAME">%s</xliff:g> موجود نیست"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"مخاطبین در <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"مخاطب تکی"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"مخاطبین موجود در نمای سفارشی"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 مورد پیدا شد"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> یافت شد"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"این مخاطب قابل اشتراک‌گذاری نیست."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"ایجاد مخاطبین تحت حساب"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ایجاد گروه تحت حساب کاربری"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"حذف گروه همگام‌سازی"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"افزودن گروه همگام‌سازی"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"گروه‌های بیشتر..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"همهٔ مخاطبین دیگر"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"همه مخاطبین"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"حذف \"<xliff:g id="GROUP">%s</xliff:g>\" از همگام‌سازی نیز هر گونه مخاطب گروه‌بندی نشده‌ای را از همگام‌سازی حذف می‌کند."</string>
     <string name="audio_chat" msgid="2535716629358298691">"گپ صوتی"</string>
     <string name="video_chat" msgid="1872255818640336072">"گپ ویدئویی"</string>
     <string name="connections" msgid="8098440723172028350">"اتصال‌ها"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"افزودن به مخاطبین من"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"دایرکتوری <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"ایجاد یک کپی شخصی..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"همه مخاطبین"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"ستاره‌دار"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"سفارشی"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"سفارشی کردن"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"مخاطب"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"تعیین نمای سفارشی"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"در حال بارگیری..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"تنظیمات"</string>

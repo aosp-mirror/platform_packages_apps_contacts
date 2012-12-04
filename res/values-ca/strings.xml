@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Aquest contacte inclou informació de diversos comptes. La informació dels comptes només de lectura s\'ocultarà a les llistes de contactes, però no se suprimirà."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Si suprimiu aquest contacte se suprimirà informació de diversos comptes."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Aquest contacte se suprimirà."</string>
-    <string name="menu_done" msgid="796017761764190697">"Fet"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Cancel·la"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Descarta"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"El contacte no existeix."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"El widget de contacte s\'ha afegit a la pantalla d\'inici."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"No hi ha persones en aquest grup."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Per afegir-ne, edita el grup."</string>
     <string name="savingContact" msgid="4075751076741924939">"S\'està desant el contacte..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"S\'estan desant les opcions de visualització..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"S\'ha desat el contacte."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No s\'han pogut desar els canvis al contacte."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grup desat."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"No hi ha cap contacte visible."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"No hi ha cap preferit."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"No hi ha cap contacte a <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contactes a <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"Un sol contacte"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Contactes a la visualització personalitzada"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 contacte"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> contactes"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"No es pot compartir aquest contacte."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crea el contacte en un compte"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Creació d\'un grup al compte"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Elimina el grup de sincronització"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Afegeix un grup de sincronització"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Més grups..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"La resta de contactes"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Tots els contactes"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Si s\'elimina \"<xliff:g id="GROUP">%s</xliff:g>\" de la sincronització, també se n\'eliminaran els contactes no agrupats."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Xat de veu"</string>
     <string name="video_chat" msgid="1872255818640336072">"Xat de vídeo"</string>
     <string name="connections" msgid="8098440723172028350">"Connexions"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Afegeix a Els meus contactes"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directori <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"S\'està creant una còpia personal..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tots els contactes"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Destacats"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalitzada"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Personalitza"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Contacte"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Defineix la visualització personalitzada"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"S\'està carregant…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configuració"</string>

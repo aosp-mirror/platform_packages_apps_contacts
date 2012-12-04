@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"该联系人的信息中包含来自多个帐户的信息。来自只读帐户的信息将在您的联系人列表中隐藏，但不会删除。"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"删除该联系人将会删除多个帐户中的信息。"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"将会删除此联系人。"</string>
-    <string name="menu_done" msgid="796017761764190697">"完成"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"取消"</string>
     <string name="menu_discard" msgid="6456087569315685632">"舍弃"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"该联系人不存在。"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"联系人小部件已添加到主屏幕。"</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"此组中没有联系人。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"要添加联系人，请修改该组。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在保存联系人…"</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"正在保存显示选项…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"此联系人已保存。"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"无法保存联系人更改。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"群组已保存。"</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"未发现任何联系人。"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"未收藏任何联系人。"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"“<xliff:g id="NAME">%s</xliff:g>”中没有联系人"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g> 帐户中的联系人"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"单个联系人"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"自定义视图中的联系人"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"找到 1 个联系人"</item>
     <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"无法分享此联系人。"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"在帐户下创建联系人"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"要在哪个帐户下创建群组？"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"删除同步群组"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"添加同步群组"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"更多群组…"</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"其他所有联系人"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"所有联系人"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"如果您停止同步“<xliff:g id="GROUP">%s</xliff:g>”，将同时停止同步所有未分组的联系人。"</string>
     <string name="audio_chat" msgid="2535716629358298691">"语音聊天"</string>
     <string name="video_chat" msgid="1872255818640336072">"视频聊天"</string>
     <string name="connections" msgid="8098440723172028350">"社交网络"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"添加到“我的联系人”"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"目录类型：<xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"正在创建个人副本..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"所有联系人"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"已加星标"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"自定义"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"自定义"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"联系人"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"定义自定义视图"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"正在加载..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"设置"</string>

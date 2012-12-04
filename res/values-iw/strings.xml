@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"איש קשר זה מכיל מידע מחשבונות מרובים. מידע מחשבונות לקריאה בלבד יוסתר ברשימות אנשי הקשר ולא יימחק."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"מחיקת איש קשר זה תמחק מידע מחשבונות מרובים."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"איש קשר זה יימחק."</string>
-    <string name="menu_done" msgid="796017761764190697">"סיום"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"בטל"</string>
     <string name="menu_discard" msgid="6456087569315685632">"מחק"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"איש הקשר לא קיים."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"widget של אנשי קשר נוסף למסך הבית."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"אין אנשים בקבוצה זו."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"כדי להוסיף, ערוך את הקבוצה."</string>
     <string name="savingContact" msgid="4075751076741924939">"שומר איש קשר…"</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"שומר אפשרויות תצוגה..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"איש הקשר נשמר."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"לא ניתן לשמור את השינויים באנשי הקשר."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"הקבוצה נשמרה."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"אין אנשי קשר גלויים."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"אין מועדפים."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"אין אנשי קשר ב<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"אנשי קשר ב-<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"איש קשר יחיד"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"אנשי קשר בתצוגה מותאמת אישית"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"נמצא אחד"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> נמצאו"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"לא ניתן לשתף איש קשר זה."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"צור איש קשר בחשבון"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"צור קבוצה עבור חשבון"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"הסר קבוצת סינכרון"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"הוסף קבוצת סינכרון"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"קבוצות נוספות…"</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"כל אנשי הקשר האחרים"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"כל אנשי הקשר"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"הסרת \"<xliff:g id="GROUP">%s</xliff:g>\" מהסנכרון תסיר מהסנכרון גם אנשי קשר שאינם מקובצים."</string>
     <string name="audio_chat" msgid="2535716629358298691">"צ\'אט קולי"</string>
     <string name="video_chat" msgid="1872255818640336072">"וידאו צ\'אט"</string>
     <string name="connections" msgid="8098440723172028350">"חיבורים"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"הוסף ל\'אנשי הקשר שלי\'"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> ספריה"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"יוצר עותק אישי..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"כל אנשי הקשר"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"מסומן בכוכב"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"מותאם אישית"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"התאם אישית"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"איש קשר"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"הגדר תצוגה מותאמת אישית"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"טוען..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"הגדרות"</string>

@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Lona othintana naye uqukethe ulwazi olusuka ema-akhawuntini amaningi. Ulwazi olusuka ema-akhawuntini okufunda kuphela kuzofihlwa ohlwini lwakho lothintana nabo, ngeke kususwe."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ukususa lona othintana naye kuzosusa ulwazi olusuka kuma-akhawuntini amaningi."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Lo na othintana naye uzosuswa."</string>
-    <string name="menu_done" msgid="796017761764190697">"Kwenziwe"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Khansela"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Lahla"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Oxhumana naye akekho."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"isinqunjwana soxhumana nabo singeziwe esikrinini sekhaya."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Akunabanti kuleli qembu."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Ukungeza okunye, hlela iqembu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Igcina othintana naye..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Ilondoloza izinketho zokubonisa"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Othintana naye ulondoloziwe"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Yehlulekile ukulondoloza izinguquko zoxhumana nabo."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Isigcawu silondiwe"</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Abekho othintana nabo ababonakalayo"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Azikho izintandokazi"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Abekho othintana nabo ku <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Oxhumana nabo ku-<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"Oxhumana naye oyedwa"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Ohlu loxhumana nabo olubukwa kokulungiselwe lokhu"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 okutholakele"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> tholakele"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"Lona oxhumana naye ngeke ukwazi ukwabelana ngaye."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Yenza othintana naye ngaphansi kwe-akhawunti"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Yenza isigcawu ngaphansi kwe-akhawunti"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Khipha iqembu lokuvumelanisa"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Ngeza iqembu lokuvumelanisa"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Amanye amaqembu..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Bonke Abanye Othintana Nabo"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Bonke oxhumana nabo"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Iyasusa \"<xliff:g id="GROUP">%s</xliff:g>\" kokuvumelanisiwe izophinde isuse nanoma ibaphi oxhumana nabo abangelona iqoqo."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Ingxoxo yezw"</string>
     <string name="video_chat" msgid="1872255818640336072">"Ingxoxo yevidiyo"</string>
     <string name="connections" msgid="8098440723172028350">"Oxhumana nabo"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Faka Kothintana Nabo"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Uhla lwemibhalo <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Idala ikhophi yomuntu siqu"</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Bonke othintana nabo"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Okunenkanyezi"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Ngokwezifiso"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Enza ngendlela oyifisayo"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Othintana nabo"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Cacisa ukubuka ngokwezifisio"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Iyalayisha…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Izilungiselelo"</string>

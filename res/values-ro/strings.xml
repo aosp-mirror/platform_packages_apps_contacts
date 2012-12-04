@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Informaţiile despre această persoană din agendă provin din mai multe conturi. Informaţiile provenite din conturile numai în citire nu vor fi şterse din lista dvs., ci doar ascunse."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ştergerea acestei persoane din agendă va elimina informaţii din mai multe conturi."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Această persoană va fi ştearsă din agendă."</string>
-    <string name="menu_done" msgid="796017761764190697">"Terminat"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Anulaţi"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Renunţaţi"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Persoana nu există în agendă."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widgetul Agendă a fost adăugat la ecranul de pornire."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Nu există persoane în acest grup."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Pentru a adăuga persoane, editaţi grupul."</string>
     <string name="savingContact" msgid="4075751076741924939">"Se salvează persoana din agendă..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Se salvează opţiunile de afişare..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Persoana din agendă a fost salvată."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nu s-au putut salva modificările aduse persoanei de contact."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupul a fost salvat."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Nicio persoană din agendă nu este vizibilă."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Nu există preferate."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nicio persoană din agendă în <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Agenda din <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"O singură persoană din agendă"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Agenda în afişarea personalizată"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="3852668542926965042">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"Această persoană de contact nu poate fi distribuită."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Creaţi o persoană în agendă, într-un cont"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Creaţi un grup în contul"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Eliminaţi grup de sincronizare"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Adăugaţi grup de sincronizare"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Mai multe grupuri..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Toate celelalte contacte"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Toată Agenda"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Eliminarea grupului „<xliff:g id="GROUP">%s</xliff:g>” din sincronizare va elimina, de asemenea, orice persoană din agendă care nu face parte dintr-un grup."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat vocal"</string>
     <string name="video_chat" msgid="1872255818640336072">"Chat video"</string>
     <string name="connections" msgid="8098440723172028350">"Conexiuni"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adăugaţi în Agendă"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Director <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Se creează o copie personală..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Toată agenda"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Cu stea"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizată"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Personalizaţi"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Persoană din agendă"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiţi afişarea personalizată"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Se încarcă..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setări"</string>

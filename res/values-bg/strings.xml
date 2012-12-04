@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Този контакт съдържа информация от няколко профила. Тази от профили само за четене ще бъде скрита, а не изтрита."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Изтриването на този контакт ще премахна информация от няколко профила."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Този контакт ще бъде изтрит."</string>
-    <string name="menu_done" msgid="796017761764190697">"Готово"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Отказ"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Отхвърляне"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Контактът не съществува."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Приспособлението за контакти е добавено към началния екран."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"В тази група няма хора."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"За да добавите, редактирайте групата."</string>
     <string name="savingContact" msgid="4075751076741924939">"Контактът се запазва..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Опциите за показване се запазват..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контактът е запазен."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Промените в контакта не можаха да бъдат запазени."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Групата е запазена."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Няма видими контакти."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Няма любими."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Няма контакти във: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Контакти във: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"Един контакт"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Контакти в персонализиран изглед"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 намерен"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> намерени"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"Този контакт не може да бъде споделен."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Създаване на контакт в профил"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Създаване на група в профил"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Премахване на група за синхронизиране"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Добавяне на група за синхронизиране"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Още групи..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Всички други контакти"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Всички контакти"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Ако синхронизирането на „<xliff:g id="GROUP">%s</xliff:g>“ спре, то ще спре и за негрупираните контакти."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Гласов разговор"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видеоразговор"</string>
     <string name="connections" msgid="8098440723172028350">"Връзки"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Добавяне в „Моите контакти“"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Директория „<xliff:g id="TYPE">%1$s</xliff:g>“"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Създава се лично копие..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Всички контакти"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Със звезда"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"По избор"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Персонализиране"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Контакт"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Определяне на персонализиран изглед"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Зарежда се…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Настройки"</string>

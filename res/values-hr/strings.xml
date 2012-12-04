@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ovaj kontakt sadrži informacije iz više računa. Informacije iz računa koji su samo za čitanje bit će skrivene na popise kontakata, a ne izbrisane."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Brisanjem ovog kontakta izbrisat ćete podatke s više računa."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Ovaj će kontakt biti izbrisan."</string>
-    <string name="menu_done" msgid="796017761764190697">"Gotovo"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Odustani"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Odbaci"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt ne postoji."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget za kontakte dodan je na vaš početni zaslon."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"U ovoj grupi nema osoba."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Da biste dodali neke članove, uredite grupu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Spremanje kontakta..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Spremanje opcija prikaza..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt je spremljen."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Promjene kontakta nije moguće spremiti."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Skupina spremljena."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Nema vidljivih kontakata"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Nema odabranih."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nema kontakata pod: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakti u <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"Jedan kontakt"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Kontakti u prilagođenom prikazu"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 pronađen"</item>
     <item quantity="other" msgid="3852668542926965042">"Pronađeno kontakata: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"Ovaj kontakt nije moguće dijeliti."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Izrada kontakta pod računom"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Napravite skupinu pod računom"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Ukloni grupu sinkronizacije"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Dodaj grupu sinkroniziranja"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Više grupa..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Svi ostali kontakti"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Svi kontakti"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Uklanjanje grupe \"<xliff:g id="GROUP">%s</xliff:g>\" iz sinkronizacije uklonit će i sve negrupirane kontakte iz sinkronizacije."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Glasovni chat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videochat"</string>
     <string name="connections" msgid="8098440723172028350">"Veze"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Dodaj u Moje kontakte"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktorij <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Stvaranje osobne kopije..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Svi kontakti"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Sa zvjezdicom"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Prilagođeno"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Prilagodi"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiranje prilagođenog prikaza"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Učitavanje..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Postavke"</string>

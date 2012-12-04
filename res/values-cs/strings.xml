@@ -69,8 +69,6 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Tento kontakt obsahuje informace z několika účtů. Informace z účtů pouze pro čtení budou v seznamech kontaktů skryty, ale nebudou smazány."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Smazáním tohoto kontaktu smažete informace z více účtů."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tento kontakt bude smazán."</string>
-    <string name="menu_done" msgid="796017761764190697">"Hotovo"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Zrušit"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Zahodit"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt neexistuje."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget Kontakt byl přidán na plochu."</string>
@@ -92,7 +90,6 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Skupina nemá žádné členy."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Chcete-li někoho přidat, upravte skupinu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Ukládání kontaktu…"</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Ukládání možností zobrazení…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt byl uložen."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Změny kontaktů nelze uložit."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Skupina byla uložena."</string>
@@ -110,9 +107,6 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Žádné kontakty nejsou viditelné."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Žádné oblíbené kontakty."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Žádné kontakty v položce <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakty v účtu <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listSingleContact" msgid="6067813698903535563">"Jeden kontakt"</string>
-    <string name="listCustomView" msgid="6950713892532194050">"Kontakty ve vlastním zobrazení"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Nalezeno: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Nalezeno: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -247,12 +241,6 @@
     <string name="share_error" msgid="948429331673358107">"Tento kontakt nelze sdílet."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Vytvořit kontakt na základě účtu"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Vytvořit skupinu v účtu"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Odstranit synchronizovanou skupinu"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Přidat synchronizovanou skupinu"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"Další skupiny…"</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Všechny ostatní kontakty"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Všechny kontakty"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Odebráním skupiny <xliff:g id="GROUP">%s</xliff:g> ze synchronizace odeberete ze synchronizace také všechny kontakty mimo skupinu."</string>
     <string name="audio_chat" msgid="2535716629358298691">"Hlasový chat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videochat"</string>
     <string name="connections" msgid="8098440723172028350">"Spojení"</string>
@@ -305,11 +293,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Přidat do skupiny Moje kontakty"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Adresář <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Vytváření osobní kopie..."</string>
-    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Všechny kontakty"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Označené hvězdičkou"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Vlastní"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Přizpůsobit"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definice vlastního zobrazení"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Načítá se..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nastavení"</string>
