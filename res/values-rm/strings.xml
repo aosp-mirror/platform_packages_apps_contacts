@@ -120,8 +120,6 @@
     <skip />
     <!-- no translation found for noAccounts (7768267764545265909) -->
     <skip />
-    <string name="noMatchingContacts" msgid="4266283206853990471">"Betg chattà in contact correspundent."</string>
-    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nagin contact dispona d\'in numer da telefon."</string>
     <!-- no translation found for emptyGroup (7502116218697177370) -->
     <skip />
     <!-- no translation found for addPeopleToGroup (7879585947222263516) -->
@@ -180,25 +178,6 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Cumponer il numer"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Chargiar da la carta SIM…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Contacts sin la carta SIM"</string>
-    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Vus n\'avais nagins contacts per mussar. (I po cuzzar in pèr minutas per sincronisar ils contacts en cas che Vus avais gist agiuntà in conto.)"</string>
-    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Vus n\'avais nagins contacts per mussar."</string>
-    <!-- no translation found for noContactsHelpText (6226271923423236696) -->
-    <skip />
-    <!-- no translation found for noContactsHelpText (4405064135698982080) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (6773195806404659174) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextWithSync (7016825676090327312) -->
-    <skip />
-    <!-- no translation found for noContactsNoSimHelpText (7823757505923033456) -->
-    <skip />
-    <!-- no translation found for noContactsNoSimHelpText (6224952277619986841) -->
-    <skip />
-    <!-- no translation found for noContactsNoSimHelpTextWithSync (5415762667445638265) -->
-    <skip />
-    <!-- no translation found for noContactsNoSimHelpTextWithSync (7443705129830284440) -->
-    <skip />
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vus n\'avais nagins favurits."\n\n"Per agiuntar in contact a la glista da favurits:"\n\n" "<li>"Smatgai sin il register "<b>"Contacts"</b>"."\n</li>" "\n<li>"Smatgai sin il contact che duai vegnir agiuntà a Voss favurits."\n</li>" "\n<li>"Smatgai sin la staila dal contact correspundent."\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Utilisar la tastatura dal telefon"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Enavos al clom actual"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Agiuntar in clom"</string>
@@ -435,7 +414,6 @@
     <string name="menu_display_all" msgid="8887488642609786198">"Mussar tuts"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Tscherner tut"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Deselecziunar tut"</string>
-    <string name="no_contacts_selected" msgid="5877803471037324613">"Betg tschernì in contact"</string>
     <!-- no translation found for add_field (2384260056674995230) -->
     <skip />
     <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->

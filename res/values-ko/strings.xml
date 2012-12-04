@@ -89,8 +89,6 @@
     <string name="noContacts" msgid="8579310973261953559">"주소록이 없습니다."</string>
     <string name="noGroups" msgid="8614664663561385253">"그룹 없음"</string>
     <string name="noAccounts" msgid="7768267764545265909">"그룹을 만들려면 계정이 필요합니다."</string>
-    <string name="noMatchingContacts" msgid="4266283206853990471">"일치하는 연락처가 없습니다."</string>
-    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"전화번호가 포함된 주소록이 없습니다."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"이 그룹에 사람이 없습니다."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"사람을 추가하려면 그룹을 수정하세요."</string>
     <string name="savingContact" msgid="4075751076741924939">"연락처 저장 중..."</string>
@@ -137,17 +135,6 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"전화번호를 눌러 통화 추가"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"SIM 카드에서 로딩 중..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"SIM 카드 주소록"</string>
-    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."</string>
-    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"표시할 연락처가 없습니다."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 터치하고 다음을 터치합니다. "\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 연락처가 있는 계정을 추가하거나 설정하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 주소록을 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 터치하고 다음을 터치합니다. "\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 주소록이 있는 계정을 추가하거나 설정하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 주소록을 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 주소록을 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 터치하고 다음을 터치합니다."\n\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 주소록이 있는 계정을 추가하거나 설정하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 주소록을 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 주소록을 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 터치하고 다음을 터치합니다."\n\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 주소록이 있는 계정을 추가하거나 설정하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 주소록을 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 터치하고 다음을 터치합니다. "\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 주소록이 있는 계정을 추가하거나 설정하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 주소록을 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 터치하고 다음을 터치합니다. "\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 주소록이 있는 계정을 추가하거나 설정하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 주소록을 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 주소록을 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 터치하고 다음을 터치합니다."\n\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 주소록이 있는 계정을 추가하거나 설정하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 주소록을 가져오려면 터치합니다."\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 주소록을 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 터치하고 다음을 터치합니다."\n\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 주소록이 있는 계정을 추가하거나 설정하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 주소록을 가져오려면 터치합니다."\n</li></string>
-    <string name="noFavoritesHelpText" msgid="3744655776704833277">"즐겨찾기가 없습니다. "\n\n"즐겨찾기 목록에 연락처를 추가하려면 "\n\n<li><b>"주소록"</b>" 탭을 터치하고"\n</li>" "\n<li>"즐겨찾기에 추가할 연락처를 터치하고"\n</li>" "\n<li>"연락처 이름 옆의 별표를 터치합니다."\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"터치톤 키패드 사용"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"진행 중인 통화로 돌아가기"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"통화 추가"</string>
@@ -299,7 +286,6 @@
     <string name="menu_display_all" msgid="8887488642609786198">"모두 표시"</string>
     <string name="menu_select_all" msgid="621719255150713545">"모두 선택"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"모두 선택취소"</string>
-    <string name="no_contacts_selected" msgid="5877803471037324613">"선택한 연락처가 없습니다."</string>
     <string name="add_field" msgid="2384260056674995230">"다른 입력란 추가"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"새로 추가"</string>
     <string name="add_organization" msgid="7311893231158291197">"조직 추가"</string>
