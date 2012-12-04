@@ -19,29 +19,9 @@
     <item type="id" name="header_phones"/>
     <item type="id" name="dialog_sync_add"/>
 
-    <!-- For vcard.ImportVCardActivity -->
-    <item type="id" name="dialog_searching_vcard"/>
-    <item type="id" name="dialog_sdcard_not_found"/>
-    <item type="id" name="dialog_vcard_not_found"/>
-    <item type="id" name="dialog_select_import_type"/>
-    <item type="id" name="dialog_select_one_vcard"/>
-    <item type="id" name="dialog_select_multiple_vcard"/>
-    <item type="id" name="dialog_cache_vcard"/>
-    <item type="id" name="dialog_io_exception"/>
-    <item type="id" name="dialog_error_with_message"/>
-
-    <!-- For vcard.CancelActivity -->
-    <item type="id" name="dialog_cancel_confirmation"/>
-    <item type="id" name="dialog_cancel_failed"/>
-
     <!-- For ContactDeletionInteraction -->
     <item type="id" name="dialog_delete_contact_confirmation"/>
     <item type="id" name="dialog_delete_contact_loader_id" />
-
-    <!-- For ExportVCardActivity -->
-    <item type="id" name="dialog_export_confirmation"/>
-    <item type="id" name="dialog_exporting_vcard"/>
-    <item type="id" name="dialog_fail_to_export_with_reason"/>
 
     <!-- For PhoneNumberInteraction -->
     <item type="id" name="dialog_phone_number_call_disambiguation"/>
