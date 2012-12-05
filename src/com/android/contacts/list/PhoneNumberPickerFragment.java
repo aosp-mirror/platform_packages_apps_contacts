@@ -108,7 +108,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         mAccountFilterHeader.setOnClickListener(mFilterHeaderClickListener);
         updateFilterHeaderView();
 
-        setVisibleScrollbarEnabled(!isLegacyCompatibilityMode());
+        setVisibleScrollbarEnabled(getVisibleScrollbarEnabled());
+    }
+
+    protected boolean getVisibleScrollbarEnabled() {
+        return true;
     }
 
     @Override
@@ -176,21 +180,18 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     @Override
     protected void onItemClick(int position, long id) {
-        final Uri phoneUri;
-        if (!isLegacyCompatibilityMode()) {
-            PhoneNumberListAdapter adapter = (PhoneNumberListAdapter) getAdapter();
-            phoneUri = adapter.getDataUri(position);
-
-        } else {
-            LegacyPhoneNumberListAdapter adapter = (LegacyPhoneNumberListAdapter) getAdapter();
-            phoneUri = adapter.getPhoneUri(position);
-        }
+        final Uri phoneUri = getPhoneUri(position);
 
         if (phoneUri != null) {
             pickPhoneNumber(phoneUri);
         } else {
             Log.w(TAG, "Item at " + position + " was clicked before adapter is ready. Ignoring");
         }
+    }
+
+    protected Uri getPhoneUri(int position) {
+        final PhoneNumberListAdapter adapter = (PhoneNumberListAdapter) getAdapter();
+        return adapter.getDataUri(position);
     }
 
     @Override
@@ -217,16 +218,10 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     @Override
     protected ContactEntryListAdapter createListAdapter() {
-        if (!isLegacyCompatibilityMode()) {
-            PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
-            adapter.setDisplayPhotos(true);
-            adapter.setUseCallableUri(mUseCallableUri);
-            return adapter;
-        } else {
-            LegacyPhoneNumberListAdapter adapter = new LegacyPhoneNumberListAdapter(getActivity());
-            adapter.setDisplayPhotos(true);
-            return adapter;
-        }
+        PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
+        adapter.setDisplayPhotos(true);
+        adapter.setUseCallableUri(mUseCallableUri);
+        return adapter;
     }
 
     @Override
@@ -242,9 +237,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             adapter.setFilter(mFilter);
         }
 
-        if (!isLegacyCompatibilityMode()) {
-            ((PhoneNumberListAdapter) adapter).setPhotoPosition(mPhotoPosition);
-        }
+        setPhotoPosition(adapter);
+    }
+
+    protected void setPhotoPosition(ContactEntryListAdapter adapter) {
+        ((PhoneNumberListAdapter) adapter).setPhotoPosition(mPhotoPosition);
     }
 
     @Override
@@ -256,12 +253,13 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         if (mShortcutAction == null) {
             mListener.onPickPhoneNumberAction(uri);
         } else {
-            if (isLegacyCompatibilityMode()) {
-                throw new UnsupportedOperationException();
-            }
-            ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
-            builder.createPhoneNumberShortcutIntent(uri, mShortcutAction);
+            startPhoneNumberShortcutIntent(uri);
         }
+    }
+
+    protected void startPhoneNumberShortcutIntent(Uri uri) {
+        ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
+        builder.createPhoneNumberShortcutIntent(uri, mShortcutAction);
     }
 
     public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
@@ -304,13 +302,10 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     public void setPhotoPosition(ContactListItemView.PhotoPosition photoPosition) {
         mPhotoPosition = photoPosition;
-        if (!isLegacyCompatibilityMode()) {
-            final PhoneNumberListAdapter adapter = (PhoneNumberListAdapter) getAdapter();
-            if (adapter != null) {
-                adapter.setPhotoPosition(photoPosition);
-            }
-        } else {
-            Log.w(TAG, "setPhotoPosition() is ignored in legacy compatibility mode.");
+
+        final PhoneNumberListAdapter adapter = (PhoneNumberListAdapter) getAdapter();
+        if (adapter != null) {
+            adapter.setPhotoPosition(photoPosition);
         }
     }
 }

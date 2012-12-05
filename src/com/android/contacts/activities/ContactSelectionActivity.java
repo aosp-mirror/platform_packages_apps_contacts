@@ -48,13 +48,13 @@ import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.list.EmailAddressPickerFragment;
+import com.android.contacts.list.LegacyPhoneNumberPickerFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnEmailAddressPickerActionListener;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
-import com.android.contacts.widget.ContextMenuAdapter;
 import com.google.common.collect.Sets;
 
 import java.util.Set;
@@ -338,7 +338,7 @@ public class ContactSelectionActivity extends ContactsActivity
             }
 
             case ContactsRequest.ACTION_PICK_PHONE: {
-                PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
+                PhoneNumberPickerFragment fragment = getPhoneNumberPickerFragment(mRequest);
                 mListFragment = fragment;
                 break;
             }
@@ -349,7 +349,7 @@ public class ContactSelectionActivity extends ContactsActivity
             }
 
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
-                PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
+                PhoneNumberPickerFragment fragment = getPhoneNumberPickerFragment(mRequest);
                 fragment.setShortcutAction(Intent.ACTION_CALL);
 
                 mListFragment = fragment;
@@ -357,7 +357,7 @@ public class ContactSelectionActivity extends ContactsActivity
             }
 
             case ContactsRequest.ACTION_CREATE_SHORTCUT_SMS: {
-                PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
+                PhoneNumberPickerFragment fragment = getPhoneNumberPickerFragment(mRequest);
                 fragment.setShortcutAction(Intent.ACTION_SENDTO);
 
                 mListFragment = fragment;
@@ -374,12 +374,23 @@ public class ContactSelectionActivity extends ContactsActivity
                 throw new IllegalStateException("Invalid action code: " + mActionCode);
         }
 
+        // Setting compatibility is no longer needed for PhoneNumberPickerFragment since that logic
+        // has been separated into LegacyPhoneNumberPickerFragment.  But we still need to set
+        // compatibility for other fragments.
         mListFragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
         mListFragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.list_container, mListFragment)
                 .commitAllowingStateLoss();
+    }
+
+    private PhoneNumberPickerFragment getPhoneNumberPickerFragment(ContactsRequest request) {
+        if (mRequest.isLegacyCompatibilityMode()) {
+            return new LegacyPhoneNumberPickerFragment();
+        } else {
+            return new PhoneNumberPickerFragment();
+        }
     }
 
     public void setupActionListener() {
