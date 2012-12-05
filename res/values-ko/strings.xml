@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="launcherDialer" msgid="8636288196618486553">"휴대전화"</string>
-    <string name="people" msgid="1048457247435785074">"피플"</string>
+    <string name="people" msgid="1048457247435785074">"주소록"</string>
     <string name="contactsList" msgid="8661624236494819731">"주소록"</string>
     <string name="shortcutContact" msgid="749243779392912958">"연락처"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"바로 전화 걸기"</string>
@@ -153,7 +153,7 @@
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"모든 통화 기록을 삭제합니다."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"통화기록을 지우는 중..."</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
-    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"피플 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
+    <string name="clearFrequentsConfirmation" msgid="3254215748990281318">"주소록 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
