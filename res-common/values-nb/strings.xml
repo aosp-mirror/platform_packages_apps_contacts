@@ -142,36 +142,86 @@
     <string name="chat" msgid="6297650784873558837">"Nettprat"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"slett"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Vis eller skjul navnefelt"</string>
-    <!-- no translation found for list_filter_all_accounts (4265359896628915784) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (9060325494254507806) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (2352794292558465089) -->
-    <skip />
-    <!-- no translation found for list_filter_single (4553809449379139446) -->
-    <skip />
-    <!-- no translation found for display_ungrouped (3669471582032440138) -->
-    <skip />
-    <!-- no translation found for display_all_contacts (7251385818740728862) -->
-    <skip />
-    <!-- no translation found for menu_sync_remove (6581565236520430269) -->
-    <skip />
-    <!-- no translation found for dialog_sync_add (1795682729089027675) -->
-    <skip />
-    <!-- no translation found for display_more_groups (6304997485733158224) -->
-    <skip />
-    <!-- no translation found for display_warn_remove_ungrouped (7297678747857509619) -->
-    <skip />
-    <!-- no translation found for savingDisplayGroups (6863012138107446030) -->
-    <skip />
-    <!-- no translation found for menu_done (32470053723443112) -->
-    <skip />
-    <!-- no translation found for menu_doNotSave (6012426160993364871) -->
-    <skip />
-    <!-- no translation found for listAllContactsInAccount (755499980092808715) -->
-    <skip />
-    <!-- no translation found for listCustomView (1915154113477432033) -->
-    <skip />
-    <!-- no translation found for listSingleContact (8525131203887307088) -->
-    <skip />
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Alle kontakter"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Med stjerne"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Tilpass"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Kontakt"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Alle andre kontakter"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Alle kontakter"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Fjern synkronisert gruppe"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Legg til synkronisert gruppe"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Flere grupper …"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Hvis du fjerner «<xliff:g id="GROUP">%s</xliff:g>» fra synkroniseringen, fjernes også alle ugrupperte kontakter fra synkroniseringen."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Lagrer visningsalternativer …"</string>
+    <string name="menu_done" msgid="32470053723443112">"Ferdig"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Avbryt"</string>
+    <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Kontakter i tilpasset visning"</string>
+    <string name="listSingleContact" msgid="8525131203887307088">"Enkeltkontakt"</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Opprett kontakt under konto"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Importer fra SIM-kort"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importer fra lagring"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vil du avbryte importeringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vil du avbryte eksporteringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Kunne ikke avbryte imp./eksp. av vCard"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"Ukjent feil."</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Kan ikke åpne «<xliff:g id="FILE_NAME">%s</xliff:g>»: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Kunne ikke starte eksporteringen: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Du har ingen kontakter som kan eksporteres."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Det oppsto en feil under eksporteringen: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Det obligatoriske filnavnet er for langt (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"For mange vCard-filer på lagringsenheten"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD-kortet inneholder for mange vCard-filer."</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"Inn-/ut-feil"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Ikke nok minne. Det er mulig at filen er for stor."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Kan ikke analysere vCard av uventet årsak."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Formatet støttes ikke."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Kunne ikke hente metainformasjon for aktuell(e) vCard-fil(er)."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"En eller flere filer kan ikke importeres (%s)."</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Eksporteringen av <xliff:g id="FILENAME">%s</xliff:g> er fullført."</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Eksporteringen av <xliff:g id="FILENAME">%s</xliff:g> ble avbrutt."</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"Eksporterer kontaktdata"</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Kontaktdataene dine eksporteres til: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Kunne ikke hente databaseinformasjon."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Du har ingen kontakter som kan eksporteres. Hvis du har kontakter på nettbrettet, kan det hende at dataleverandøren din ikke tillater at kontaktene eksporteres fra nettbrettet."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Du har ingen kontakter som kan eksporteres. Hvis du har kontakter på telefonen, kan det hende at dataleverandøren din ikke tillater at kontaktene eksporteres fra telefonen."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"vCard-oppretteren startet ikke som den skulle."</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Eksporten mislyktes"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kontaktdataene ble ikke eksportert."\n"Årsak: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Finner ikke lagringsplass."</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Finner ikke SD-kort."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Kontaktlisten din blir eksportert til: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"Importerer <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Kunne ikke lese vCard-dataene"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Lesingen av vCard-dataene ble avbrutt"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"Importen av vCard-filen <xliff:g id="FILENAME">%s</xliff:g> er fullført"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"Importeringen av <xliff:g id="FILENAME">%s</xliff:g> ble avbrutt"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"<xliff:g id="FILENAME">%s</xliff:g> blir snart importert."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Filen importeres snart."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Forespørselen om vCard-importering ble avvist. Prøv på nytt senere."</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> blir snart eksportert."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Forespørselen om eksport av vCard ble avvist. Prøv på nytt senere."</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Bufrer vCard for import til lokal, midlertidig lagring. Selve importeringen starter snart."</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g> <xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"Kunne ikke importere vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Finner ingen vCard-filer på lagringsenheten."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Fant ingen vCard-filer på SD-kortet."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt mottatt via NFC"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"Vil du eksportere kontaktene?"</string>
+    <string name="select_vcard_title" msgid="1536575036597557639">"Velg vCard-fil"</string>
+    <string name="import_one_vcard_string" msgid="6199149175802496361">"Importer én vCard-fil"</string>
+    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Importer flere vCard-filer"</string>
+    <string name="import_all_vcard_string" msgid="1037495558362397535">"Importer alle vCard-filer"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Søker etter vCard-data i lagringsenheten …"</string>
+    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Søker etter vCard-data på SD-kortet …"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Bufrer"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Lagringsenheten kunne ikke skannes. (Årsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD-kortet kan ikke skannes. (Årsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"Importerer <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Eksporter til lagring"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Del synlige kontakter"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Import og eksport av kontakter"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Importer kontakter"</string>
+    <string name="share_error" msgid="665756457151793108">"Denne kontakten kan ikke deles."</string>
 </resources>

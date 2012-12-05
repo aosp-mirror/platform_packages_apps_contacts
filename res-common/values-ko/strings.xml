@@ -61,7 +61,7 @@
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>(으)로 문자 보내기"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS로 문자 보내기"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"피플 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"주소록 및 휴대전화 앱에서 자주 연락하는 사람들 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"자주 연락하는 사람들 목록을 삭제하는 중…"</string>
     <string name="status_available" msgid="4832569677396634846">"온라인"</string>
     <string name="status_away" msgid="6267905184545881094">"자리 비움"</string>
@@ -173,5 +173,137 @@
     <!-- no translation found for listCustomView (1915154113477432033) -->
     <skip />
     <!-- no translation found for listSingleContact (8525131203887307088) -->
+    <skip />
+    <!-- no translation found for dialog_new_contact_account (4107520273478326011) -->
+    <skip />
+    <!-- no translation found for import_from_sim (4749894687871835873) -->
+    <skip />
+    <!-- no translation found for import_from_sdcard (6423964533801496764) -->
+    <skip />
+    <!-- no translation found for cancel_import_confirmation_message (7764915400478970495) -->
+    <skip />
+    <!-- no translation found for cancel_export_confirmation_message (4063783315931861656) -->
+    <skip />
+    <!-- no translation found for cancel_vcard_import_or_export_failed (7450212880694781527) -->
+    <skip />
+    <!-- no translation found for fail_reason_unknown (8541352164960008557) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_open_file (7041148341788958325) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_initialize_exporter (1231982631020480035) -->
+    <skip />
+    <!-- no translation found for fail_reason_no_exportable_contact (3717046989062541369) -->
+    <skip />
+    <!-- no translation found for fail_reason_error_occurred_during_export (8426833603664168716) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_long_filename (3996610741248972232) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_many_vcard (8720294715223591581) -->
+    <skip />
+    <!-- no translation found for fail_reason_too_many_vcard (3793454448838716962) -->
+    <skip />
+    <!-- no translation found for fail_reason_io_error (7736686553669161933) -->
+    <skip />
+    <!-- no translation found for fail_reason_low_memory_during_import (3277485820827338116) -->
+    <skip />
+    <!-- no translation found for fail_reason_vcard_parse_error (514012644716565082) -->
+    <skip />
+    <!-- no translation found for fail_reason_not_supported (388664373573337601) -->
+    <skip />
+    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (3179066075701123895) -->
+    <skip />
+    <!-- no translation found for fail_reason_failed_to_read_files (9213844535907986665) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_finished_title (3581883972188707378) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_canceled_title (6993607802553630980) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_title (5663945499580026953) -->
+    <skip />
+    <!-- no translation found for exporting_contact_list_message (3955619563572081300) -->
+    <skip />
+    <!-- no translation found for composer_failed_to_get_database_infomation (7801276776746351694) -->
+    <skip />
+    <!-- no translation found for composer_has_no_exportable_contact (1534625366506752907) -->
+    <skip />
+    <!-- no translation found for composer_has_no_exportable_contact (7063040740576745307) -->
+    <skip />
+    <!-- no translation found for composer_not_initialized (6514403866246950877) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_title (6059039606302373945) -->
+    <skip />
+    <!-- no translation found for exporting_contact_failed_message (3922498776695333328) -->
+    <skip />
+    <!-- no translation found for no_sdcard_message (5131553549320038333) -->
+    <skip />
+    <!-- no translation found for no_sdcard_message (3246805937562594626) -->
+    <skip />
+    <!-- no translation found for confirm_export_message (7234189779260525384) -->
+    <skip />
+    <!-- no translation found for importing_vcard_description (7206609625359484356) -->
+    <skip />
+    <!-- no translation found for reading_vcard_failed_title (4360989450476024034) -->
+    <skip />
+    <!-- no translation found for reading_vcard_canceled_title (1290217818311955708) -->
+    <skip />
+    <!-- no translation found for importing_vcard_finished_title (5590676758277628951) -->
+    <skip />
+    <!-- no translation found for importing_vcard_canceled_title (556913863250769870) -->
+    <skip />
+    <!-- no translation found for vcard_import_will_start_message (7184603116300604514) -->
+    <skip />
+    <!-- no translation found for vcard_import_will_start_message_with_default_name (2560192057642180334) -->
+    <skip />
+    <!-- no translation found for vcard_import_request_rejected_message (5209363425953891316) -->
+    <skip />
+    <!-- no translation found for vcard_export_will_start_message (2168853666316526278) -->
+    <skip />
+    <!-- no translation found for vcard_export_request_rejected_message (8044599716727705282) -->
+    <skip />
+    <!-- no translation found for vcard_unknown_filename (4832657686149881554) -->
+    <skip />
+    <!-- no translation found for caching_vcard_message (6635485116655518520) -->
+    <skip />
+    <!-- no translation found for percentage (6699653515463625488) -->
+    <skip />
+    <!-- no translation found for vcard_import_failed (4105296876768072508) -->
+    <skip />
+    <!-- no translation found for import_failure_no_vcard_file (2066107150525521097) -->
+    <skip />
+    <!-- no translation found for import_failure_no_vcard_file (1748300468382501403) -->
+    <skip />
+    <!-- no translation found for nfc_vcard_file_name (305679412445157370) -->
+    <skip />
+    <!-- no translation found for confirm_export_title (3240899428149018226) -->
+    <skip />
+    <!-- no translation found for select_vcard_title (1536575036597557639) -->
+    <skip />
+    <!-- no translation found for import_one_vcard_string (6199149175802496361) -->
+    <skip />
+    <!-- no translation found for import_multiple_vcard_string (8931879029943141122) -->
+    <skip />
+    <!-- no translation found for import_all_vcard_string (1037495558362397535) -->
+    <skip />
+    <!-- no translation found for searching_vcard_message (2703499592557555234) -->
+    <skip />
+    <!-- no translation found for searching_vcard_message (6108691847266062338) -->
+    <skip />
+    <!-- no translation found for caching_vcard_title (9185299351381102305) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (8442457519490864500) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (1409798274361146091) -->
+    <skip />
+    <!-- no translation found for progress_notifier_message (359931715339778107) -->
+    <skip />
+    <!-- no translation found for export_to_sdcard (3665618085563543169) -->
+    <skip />
+    <!-- no translation found for share_visible_contacts (2150662668080757107) -->
+    <skip />
+    <!-- no translation found for dialog_import_export (1125776851100740858) -->
+    <skip />
+    <!-- no translation found for dialog_import (5177004290082451296) -->
+    <skip />
+    <!-- no translation found for share_error (665756457151793108) -->
     <skip />
 </resources>
