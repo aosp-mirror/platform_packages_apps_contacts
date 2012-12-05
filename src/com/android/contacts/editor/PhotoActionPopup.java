@@ -25,6 +25,7 @@ import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
 
 import com.android.contacts.R;
+import com.android.contacts.util.PhoneCapabilityTester;
 
 import java.util.ArrayList;
 
@@ -92,7 +93,9 @@ public class PhotoActionPopup {
             final String takePhotoString = context.getString(takePhotoResId);
             final int pickPhotoResId = replace ? R.string.pick_new_photo : R.string.pick_photo;
             final String pickPhotoString = context.getString(pickPhotoResId);
-            choices.add(new ChoiceListItem(ChoiceListItem.ID_TAKE_PHOTO, takePhotoString));
+            if (PhoneCapabilityTester.isCameraIntentRegistered(context)) {
+                choices.add(new ChoiceListItem(ChoiceListItem.ID_TAKE_PHOTO, takePhotoString));
+            }
             choices.add(new ChoiceListItem(ChoiceListItem.ID_PICK_PHOTO, pickPhotoString));
         }
 
