@@ -124,17 +124,12 @@
     <!-- Width of search view in action bar.  Use 0dip for MATCH_PARENT -->
     <dimen name="search_view_width">0dip</dimen>
 
-    <!-- contact browser list margins -->
-    <dimen name="contact_browser_list_item_photo_size">64dip</dimen>
-    <dimen name="contact_browser_list_top_margin">8dip</dimen>
     <!-- For join screen. Mainly for tablet. -->
     <dimen name="join_header_left_margin">@dimen/contact_browser_list_header_left_margin</dimen>
     <dimen name="join_header_right_margin">@dimen/contact_browser_list_header_right_margin</dimen>
     <dimen name="join_header_top_margin">16dip</dimen>
     <dimen name="join_header_bottom_margin">0dip</dimen>
 
-    <!-- Empty message margins -->
-    <dimen name="empty_message_top_margin">48dip</dimen>
     <dimen name="no_accounts_message_margin">20dip</dimen>
 
     <dimen name="contact_filter_header_min_height">24dip</dimen>

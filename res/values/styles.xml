@@ -34,15 +34,6 @@
         <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
-    <style name="BackgroundOnlyTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:windowBackground">@null</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowNoDisplay">true</item>
-        <item name="android:windowIsFloating">true</item>
-    </style>
-
     <style name="Theme">
     </style>
 
@@ -232,7 +223,4 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="FragmentActionBarPadding">
-        <item name="android:paddingBottom">?android:attr/actionBarSize</item>
-    </style>
 </resources>

@@ -51,12 +51,4 @@
         <attr name="layout_widePaddingRight" format="dimension"/>
     </declare-styleable>
 
-    <declare-styleable name="ProportionalLayout">
-        <attr name="direction" format="string"/>
-        <attr name="ratio" format="float"/>
-    </declare-styleable>
-
-    <declare-styleable name="Favorites">
-        <attr name="favorites_padding_bottom" format="dimension" />
-    </declare-styleable>
 </resources>

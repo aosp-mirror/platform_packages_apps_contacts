@@ -88,17 +88,8 @@
     <!-- Hint text in the search box when the user hits the Search key while in the contacts app -->
     <string name="searchHint">Search contacts</string>
 
-    <!-- Menu item to search contacts -->
-    <string name="menu_search">Search</string>
-
-    <!-- Menu item to create a new contact -->
-    <string name="menu_newContact">New contact</string>
-
     <!-- Menu item used to view the details for a specific contact -->
     <string name="menu_viewContact">View contact</string>
-
-    <!-- Menu item used to call a contact, containing the number of the contact to call -->
-    <string name="menu_callNumber">Call <xliff:g id="number">%s</xliff:g></string>
 
     <!-- Menu item used to add a star to a contact, which makes that contact show up at the top of favorites -->
     <string name="menu_addStar">Add to favorites</string>
@@ -111,9 +102,6 @@
 
     <!-- Menu item used to delete a specific contact -->
     <string name="menu_deleteContact">Delete</string>
-
-    <!-- Menu item to copy something [CHAR_LIMIT=10] -->
-    <string name="menu_copy">Copy</string>
 
     <!-- Menu item used to create a contact shortcut when viewing contact details. [CHAR LIMIT=30] -->
     <string name="menu_create_contact_shortcut">Place on Home screen</string>
@@ -276,18 +264,6 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
     </plurals>
 
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "All contacts" is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZero">No contacts.</string>
-
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "Custom" is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZeroCustom">No visible contacts.</string>
-
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when starred contact list is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZeroStarred">No favorites.</string>
-
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when a group or account is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZeroGroup">No contacts in <xliff:g id="name" example="Friends">%s</xliff:g></string>
-
     <!-- Displayed at the top of the contacts showing the total number of contacts found when "Only contacts with phones" not selected [CHAR LIMIT=30] -->
     <plurals name="listFoundAllContacts">
         <item quantity="one">1 found</item>
@@ -319,85 +295,6 @@
          [CHAR LIMIT=NONE] -->
     <string name="contactsGroupsLabel">Groups</string>
 
-    <!-- The description text for the favorites tab.
-
-         Note: AccessibilityServices use this attribute to announce what the view represents.
-         This is especially valuable for views without textual representation like ImageView.
-
-         [CHAR LIMIT=NONE] -->
-    <string name="contactsFavoritesLabel">Favorites</string>
-
-    <!-- The title of a dialog that displays the IMEI of the phone -->
-    <string name="imei">IMEI</string>
-
-    <!-- The title of a dialog that displays the MEID of the CDMA phone -->
-    <string name="meid">MEID</string>
-
-    <!-- String used for displaying calls to the voicemail number in the call log -->
-    <string name="voicemail">Voicemail</string>
-
-    <!-- String used to display calls from unknown numbers in the call log -->
-    <string name="unknown">Unknown</string>
-
-    <!-- String used to display calls from private numbers in the call log -->
-    <string name="private_num">Private number</string>
-
-    <!-- String used to display calls from pay phone in the call log -->
-    <string name="payphone">Pay phone</string>
-
-    <!-- Displayed in the text entry box in the dialer when in landscape mode to guide the user
-         to dial using the physical keyboard -->
-    <string name="dialerKeyboardHintText">Use keyboard to dial</string>
-
-    <!-- Hint text displayed in the "digits" field above the dialer's
-         dialpad, if there's already a call in progress.  (This hint
-         reminds the user that the dialer will add a new call, as opposed
-         to sending DTMF tones over the current call.)
-         [CHAR LIMIT=40] -->
-    <string name="dialerDialpadHintText">Dial to add a call</string>
-
-    <!-- Dialog text displayed when loading a phone number from the SIM card for speed dial -->
-    <string name="simContacts_emptyLoading">Loading from SIM card\u2026</string>
-
-    <!-- Dialog title displayed when loading a phone number from the SIM card for speed dial -->
-    <string name="simContacts_title">SIM card contacts</string>
-
-    <!-- Item label: jump to the in-call DTMF dialpad.
-         (Part of a list of options shown in the dialer when another call
-         is already in progress.) -->
-    <string name="dialer_useDtmfDialpad">Use touch tone keypad</string>
-
-    <!-- Item label: jump to the in-call UI.
-         (Part of a list of options shown in the dialer when another call
-         is already in progress.) -->
-    <string name="dialer_returnToInCallScreen">Return to call in progress</string>
-
-    <!-- Item label: use the Dialer's dialpad to add another call.
-         (Part of a list of options shown in the dialer when another call
-         is already in progress.) -->
-    <string name="dialer_addAnotherCall">Add call</string>
-
-    <!-- Title bar for call detail screen -->
-    <string name="callDetailTitle">Call details</string>
-
-    <!-- Toast for call detail screen when couldn't read the requested details -->
-    <string name="toast_call_detail_error">Couldn\'t read details for the requested call.</string>
-
-    <!-- Title for incoming call details screen -->
-    <string name="type_incoming">Incoming call</string>
-
-    <!-- Title for outgoing call details screen -->
-    <string name="type_outgoing">Outgoing call</string>
-
-    <!-- Title for missed call details screen -->
-    <string name="type_missed">Missed call</string>
-
-    <!-- Title for voicemail details screen -->
-    <string name="type_voicemail">Voicemail</string>
-
-    <!-- Description for incoming calls going to voice mail vs. not -->
-    <string name="actionIncomingCall">Incoming calls</string>
-
     <!-- Action string for calling back a number in the call log -->
     <string name="callBack">Call back</string>
 
@@ -407,127 +304,9 @@
     <!-- Action string for returning a missed call in the call log -->
     <string name="returnCall">Return call</string>
 
-    <!-- A nicely formatted call duration displayed when viewing call details. For example "42 mins 28 secs" -->
-    <string name="callDetailsDurationFormat"><xliff:g id="minutes" example="42">%s</xliff:g> mins <xliff:g id="seconds" example="28">%s</xliff:g> secs</string>
-
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
-
-    <!-- String describing the image on ImageButton one
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_one">one</string>
-
-    <!-- String describing the image on ImageButton two
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_two">two</string>
-
-    <!-- String describing the image on ImageButton three
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_three">three</string>
-
-    <!-- String describing the image on ImageButton four
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_four">four</string>
-
-    <!-- String describing the image on ImageButton five
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_five">five</string>
-
-    <!-- String describing the image on ImageButton six
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_six">six</string>
-
-    <!-- String describing the image on ImageButton seven
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_seven">seven</string>
-
-    <!-- String describing the image on ImageButton eight
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_eight">eight</string>
-
-    <!-- String describing the image on ImageButton nine
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_nine">nine</string>
-
-    <!-- String describing the image on ImageButton star
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_star">star</string>
-
-    <!-- String describing the image on ImageButton zero
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_zero">zero</string>
-
-    <!-- String describing the image on ImageButton pound
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_image_button_pound">pound</string>
-
-    <!-- String describing the Voicemail ImageButton
-
-         Used by AccessibilityService to announce the purpose of the button.
-    -->
-    <string name="description_voicemail_button">voicemail</string>
-
-    <!-- String describing the Search ImageButton
-
-         Used by AccessibilityService to announce the purpose of the button.
-         [CHAR LIMIT=NONE]
-    -->
-    <string name="description_search_button">search</string>
-
-    <!-- String describing the Dial ImageButton
-
-         Used by AccessibilityService to announce the purpose of the button.
-    -->
-    <string name="description_dial_button">dial</string>
-
-    <!-- String describing the Delete/Backspace ImageButton
-
-         Used by AccessibilityService to announce the purpose of the button.
-    -->
-    <string name="description_delete_button">backspace</string>
-
-    <!-- String describing the digits text box containing the number to dial.
-
-         Used by AccessibilityService to announce the purpose of the view.
-    -->
-    <string name="description_digits_edittext">number to dial</string>
 
     <!-- String describing the Contact Photo Image
 
@@ -547,28 +326,9 @@
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
     <string name="search_settings_description">Names of your contacts</string>
 
-    <!-- Menu items for dialpad options as part of Pause and Wait ftr -->
-    <string name="add_2sec_pause">Add 2-sec pause</string>
-    <string name="add_wait">Add wait</string>
-
-    <!-- Menu item label for call settings [CHAR LIMIT=30] -->
-    <string name="call_settings">Settings</string>
-
     <!-- Shown as a toast when the user taps on a QuickContact icon, and no application
          was found that could perform the selected action. [CHAR LIMIT=NONE] -->
     <string name="quickcontact_missing_app">No app was found to handle this action.</string>
-
-    <!-- The menu item to open the list of accounts -->
-    <string name="menu_accounts">Accounts</string>
-
-    <!--  The menu item to clear frequents [CHAR LIMIT=30] -->
-    <string name="menu_clear_frequents">Clear frequents</string>
-
-    <!-- The menu item to filter the list of contacts displayed -->
-    <string name="menu_contacts_filter">Contacts to display</string>
-
-    <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
-    <string name="menu_import_export">Import/export</string>
 
     <!-- The menu item to share the currently viewed contact [CHAR LIMIT=30] -->
     <string name="menu_share">Share</string>
@@ -741,17 +501,8 @@
     <!-- Contact list filter indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
     <string name="list_filter_custom">Custom</string>
 
-    <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
-    <string name="custom_list_filter">Define custom view</string>
-
-    <!-- Message that appears in the favorites tab of the Phone app when the contact list has not fully loaded yet (below the favorite and frequent contacts) [CHAR LIMIT=20] -->
-    <string name="contact_list_loading">Loading\u2026</string>
-
     <!-- Title of the settings activity [CHAR LIMIT=64] -->
     <string name="activity_title_settings">Settings</string>
-
-    <!-- Title of the activity that allows the uesr to filter the list of contacts displayed according to account [CHAR LIMIT=25] -->
-    <string name="activity_title_contacts_filter">Contacts to display</string>
 
     <!-- Menu item for the settings activity [CHAR LIMIT=64] -->
     <string name="menu_settings" msgid="377929915873428211">Settings</string>
@@ -765,9 +516,6 @@
     <!-- Text used to show a organization that has both a company and title. This is used in the Detail-View
     of a Contact. This is mostly about the formatting of the two elements, so it should be kept small [CHAR LIMIT=79] -->
     <string name="organization_company_and_title"><xliff:g id="company" example="Technical Program Manager">%2$s</xliff:g>, <xliff:g id="company" example="Google Inc.">%1$s</xliff:g></string>
-
-    <!-- Query hint displayed inside the search field [CHAR LIMIT=64] -->
-    <string name="hint_findContacts">Find contacts</string>
 
     <!-- Title shown for the phone number when the number tries to call on a device that it not a phone [CHAR LIMIT=30] -->
     <string name="non_phone_caption">Phone number</string>
@@ -871,114 +619,6 @@
     <!-- Hint text in the group name box in the edit group view. [CHAR LIMIT=20]-->
     <string name="group_name_hint">Group\'s name</string>
 
-    <!-- Menu item used to show only outgoing in the call log. [CHAR LIMIT=30] -->
-    <string name="menu_show_outgoing_only">Show outgoing only</string>
-
-    <!-- Menu item used to show only incoming in the call log. [CHAR LIMIT=30] -->
-    <string name="menu_show_incoming_only">Show incoming only</string>
-
-    <!-- Menu item used to show only missed in the call log. [CHAR LIMIT=30] -->
-    <string name="menu_show_missed_only">Show missed only</string>
-
-    <!-- Menu item used to show only voicemails in the call log. [CHAR LIMIT=30] -->
-    <string name="menu_show_voicemails_only">Show voicemails only</string>
-
-    <!-- Menu item used to show all calls in the call log. [CHAR LIMIT=30] -->
-    <string name="menu_show_all_calls">Show all calls</string>
-
-    <!-- String describing the icon in the call log used to play a voicemail.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_call_log_play_button">Play voicemail</string>
-
-    <!-- String describing the icon in the call log used to represent an incoming call.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_call_log_incoming_call">Incoming call</string>
-
-    <!-- String describing the icon in the call log used to represent an outgoing call.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-
-    <string name="description_call_log_outgoing_call">Outgoing call</string>
-
-    <!-- String describing the icon in the call log used to represent a missed call.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-
-    <string name="description_call_log_missed_call">Missed call</string>
-
-    <!-- String describing the icon in the call log used to represent a voicemail left to the user.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_call_log_voicemail">Voicemail</string>
-
-    <!-- String describing the button to add a contact for the current number.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_add_contact">Add contact</string>
-
-    <!-- String describing the button to view the contact for the current number.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_view_contact">View contact <xliff:g id="name">%1$s</xliff:g></string>
-
-    <!-- String describing the button to call a number or contact.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_call">Call <xliff:g id="name">%1$s</xliff:g></string>
-
-    <!-- String describing the button to SMS a number or contact.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-              [CHAR LIMIT=NONE]
-    -->
-    <string name="description_send_text_message">Send text message to <xliff:g id="name">%1$s</xliff:g></string>
-
-    <!-- String describing the icon in the call log used to represent an unheard voicemail left to
-         the user.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-              [CHAR LIMIT=NONE]
-    -->
-    <string name="description_call_log_unheard_voicemail">Unheard voicemail</string>
-
-    <!-- String describing the button to send a text message on quick contact.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-              [CHAR LIMIT=NONE]
-    -->
-    <string name="description_send_message">Send message to <xliff:g id="name">%1$s</xliff:g></string>
-
-    <!-- String describing the text for a phone number in quick contact.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_dial_phone_number">Dial phone <xliff:g id="name">%1$s</xliff:g></string>
-
-    <!-- The string used to represent an unknown location for a phone number in the call log [CHAR LIMIT=3] -->
-    <string name="call_log_empty_gecode">-</string>
-
     <!-- Header label in the contact editor for a profile that is local to the device only (and not associated with any account) [CHAR LIMIT=25] -->
     <string name="local_profile_title">My local profile</string>
 
@@ -1016,26 +656,7 @@
     <!-- Button label to prompt the user to add another account (when there are already existing accounts on the device) [CHAR LIMIT=30] -->
     <string name="add_new_account">Add new account</string>
 
-    <!-- Dialog message which is shown when the user tries to make a phone call
-         to prohibited phone numbers [CHAR LIMIT=NONE] -->
-    <string name="dialog_phone_call_prohibited_message" msgid="4313552620858880999">Call not sent</string>
-
-    <!-- Dialog message which is shown when the user tries to check voicemail
-         while the system isn't ready for the access. [CHAR LIMIT=NONE] -->
-    <string name="dialog_voicemail_not_ready_message">To set up voicemail, go to Menu &gt; Settings.</string>
-
-    <!-- Dialog message which is shown when the user tries to check voicemail
-         while the system is in airplane mode. The user cannot access to
-         voicemail service in Airplane mode. [CHAR LIMI=NONE] -->
-    <string name="dialog_voicemail_airplane_mode_message">To call voicemail, first turn off Airplane mode.</string>
-
     <!-- Menu item shown only when the special debug mode is enabled, which is used to send all contacts database files via email.  [CHAR LIMI=NONE] -->
     <string name="menu_export_database">Export database files</string>
-
-    <!-- Content description for the fake action menu overflow button.
-         This should be same as the description for the real action menu
-         overflow button available in ActionBar.
-         [CHAR LIMIT=NONE] -->
-    <string name="action_menu_overflow_description" msgid="2295659037509008453">More options</string>
 
 </resources>

@@ -25,7 +25,4 @@
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="FragmentActionBarPadding">
-        <item name="android:paddingBottom">0dp</item>
-    </style>
 </resources>

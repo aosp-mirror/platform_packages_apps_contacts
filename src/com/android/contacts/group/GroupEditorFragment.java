@@ -70,7 +70,7 @@ import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.util.ViewUtil;
+import com.android.contacts.common.util.ViewUtil;
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;

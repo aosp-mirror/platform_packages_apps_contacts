@@ -30,21 +30,6 @@
     <!-- Color of the text in the updates tab in the tab carousel on the contact detail page -->
     <color name="detail_update_tab_text_color">#777777</color>
 
-    <!-- Color of the text describing an unconsumed missed call. -->
-    <color name="call_log_missed_call_highlight_color">#FF0000</color>
-
-    <!-- Color of the text describing an unconsumed voicemail. -->
-    <color name="call_log_voicemail_highlight_color">#33b5e5</color>
-
-    <!-- Colour background for the voicemail playback ui. -->
-    <color name="voicemail_playback_ui_background">@android:color/black</color>
-
-    <!-- Colour of voicemail progress bar to the right of position indicator. -->
-    <color name="voicemail_playback_seek_bar_yet_to_play">#44ffffff</color>
-
-    <!-- Colour of voicemail progress bar to the left of position indicator. -->
-    <color name="voicemail_playback_seek_bar_already_played">#ccffffff</color>
-
     <!-- Color of the text of the tab carousel in the contact details  -->
     <color name="detail_tab_carousel_tab_label_color">#EEEEEE</color>
 
@@ -53,8 +38,5 @@
 
     <!--  Color of the vertical stripe that goes on the left of a block quote inside a stream item -->
     <color name="stream_item_stripe_color">#CCCCCC</color>
-
-    <!-- Standard color for selected items. -->
-    <color name="item_selected">#660099cc</color>
 
 </resources>
