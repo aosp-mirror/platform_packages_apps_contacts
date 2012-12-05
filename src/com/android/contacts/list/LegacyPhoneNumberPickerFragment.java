@@ -21,6 +21,7 @@ import android.util.Log;
 
 import com.android.contacts.common.list.ContactEntryListAdapter;
 import com.android.contacts.common.list.ContactListItemView;
+import com.android.contacts.common.list.PhoneNumberPickerFragment;
 
 /**
  * Version of PhoneNumberPickerFragment used specifically for legacy support.

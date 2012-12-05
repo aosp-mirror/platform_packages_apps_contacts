@@ -42,7 +42,7 @@ import android.widget.SearchView.OnQueryTextListener;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-import com.android.contacts.list.ContactEntryListFragment;
+import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -51,9 +51,9 @@ import com.android.contacts.list.EmailAddressPickerFragment;
 import com.android.contacts.list.LegacyPhoneNumberPickerFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnEmailAddressPickerActionListener;
-import com.android.contacts.list.OnPhoneNumberPickerActionListener;
+import com.android.contacts.common.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.OnPostalAddressPickerActionListener;
-import com.android.contacts.list.PhoneNumberPickerFragment;
+import com.android.contacts.common.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.google.common.collect.Sets;
 

@@ -38,7 +38,7 @@ import android.widget.SearchView.OnQueryTextListener;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-import com.android.contacts.list.ContactEntryListFragment;
+import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 

@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.list.JoinContactLoader.JoinContactLoaderResult;
 
 /**

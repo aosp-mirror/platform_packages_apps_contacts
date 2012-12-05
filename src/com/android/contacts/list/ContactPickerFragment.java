@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListAdapter;
+import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.DefaultContactListAdapter;
