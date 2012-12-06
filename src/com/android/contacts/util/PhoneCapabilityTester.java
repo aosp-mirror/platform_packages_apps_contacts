@@ -22,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.net.sip.SipManager;
+import android.provider.MediaStore;
 import android.telephony.TelephonyManager;
 
 import com.android.contacts.common.CallUtil;
@@ -80,6 +81,14 @@ public final class PhoneCapabilityTester {
         // Don't cache the result as the user might install third party apps to send SMS
         final Intent intent = new Intent(Intent.ACTION_SENDTO,
                 Uri.fromParts(CallUtil.SCHEME_SMSTO, "", null));
+        return isIntentRegistered(context, intent);
+    }
+
+    /**
+     * Returns true if there is a camera on the device
+     */
+    public static boolean isCameraIntentRegistered(Context context) {
+        final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         return isIntentRegistered(context, intent);
     }
 
