@@ -20,7 +20,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.provider.ContactsContract.Data;
 
-import com.android.contacts.common.R;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.account.AccountType.EditType;
 import com.android.contacts.common.model.account.AccountType.StringInflater;
@@ -67,9 +66,6 @@ public final class DataKind {
 
     public ContentValues defaultValues;
 
-    /** Layout resource id for an editor view to edit this {@link DataKind}. */
-    public final int editorLayoutResourceId;
-
     /**
      * If this is a date field, this specifies the format of the date when saving. The
      * date includes year, month and day. If this is not a date field or the date field is not
@@ -91,18 +87,15 @@ public final class DataKind {
     public int maxLinesForDisplay;
 
     public DataKind() {
-        editorLayoutResourceId = R.layout.text_fields_editor_view;
         maxLinesForDisplay = 1;
     }
 
-    public DataKind(String mimeType, int titleRes, int weight, boolean editable,
-            int editorLayoutResourceId) {
+    public DataKind(String mimeType, int titleRes, int weight, boolean editable) {
         this.mimeType = mimeType;
         this.titleRes = titleRes;
         this.weight = weight;
         this.editable = editable;
         this.typeOverallMax = -1;
-        this.editorLayoutResourceId = editorLayoutResourceId;
         maxLinesForDisplay = 1;
     }
 
@@ -130,7 +123,6 @@ public final class DataKind {
         sb.append(" typeList=").append(toString(typeList));
         sb.append(" fieldList=").append(toString(fieldList));
         sb.append(" defaultValues=").append(defaultValues);
-        sb.append(" editorLayoutResourceId=").append(editorLayoutResourceId);
         sb.append(" dateFormatWithoutYear=").append(toString(dateFormatWithoutYear));
         sb.append(" dateFormatWithYear=").append(toString(dateFormatWithYear));
 
