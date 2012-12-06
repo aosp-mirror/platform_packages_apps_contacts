@@ -29,7 +29,7 @@
     <!-- Ensure that the contact photo for a contact WITHOUT social updates is the same width and
     height as a contact WITH social updates (where the photo is 2/3 of the screen width). -->
     <view
-        class="com.android.contacts.widget.ProportionalLayout"
+        class="com.android.contacts.common.widget.ProportionalLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         ex:ratio="0.6667"

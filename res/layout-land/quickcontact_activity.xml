@@ -30,7 +30,7 @@
         android:padding="32dip"
         android:orientation="horizontal">
         <view
-            class="com.android.contacts.widget.ProportionalLayout"
+            class="com.android.contacts.common.widget.ProportionalLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             ex:ratio="1.0"
