@@ -17,11 +17,6 @@
 <resources>
     <dimen name="detail_item_side_margin">0dip</dimen>
 
-    <dimen name="editor_round_button_padding_left">16dip</dimen>
-    <dimen name="editor_round_button_padding_right">16dip</dimen>
-
-    <dimen name="editor_type_label_width">122dip</dimen>
-
     <dimen name="contact_browser_list_header_left_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_header_right_margin">24dip</dimen>
     <dimen name="contact_browser_list_top_margin">16dip</dimen>
