@@ -186,12 +186,13 @@ public class KindSectionView extends LinearLayout implements EditorListener {
      */
     private View createEditorView(ValuesDelta entry) {
         final View view;
+        final int layoutResId = EditorUiUtils.getLayoutResourceId(mKind.mimeType);
         try {
-            view = mInflater.inflate(mKind.editorLayoutResourceId, mEditors, false);
+            view = mInflater.inflate(layoutResId, mEditors, false);
         } catch (Exception e) {
             throw new RuntimeException(
                     "Cannot allocate editor with layout resource ID " +
-                    mKind.editorLayoutResourceId + " for MIME type " + mKind.mimeType +
+                    layoutResId + " for MIME type " + mKind.mimeType +
                     " with error " + e.toString());
         }
 

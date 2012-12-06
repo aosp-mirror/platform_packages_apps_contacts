@@ -91,14 +91,14 @@ public class RawContactModifierTests extends AndroidTestCase {
                 this.accountType = TEST_ACCOUNT_TYPE;
 
                 final DataKind nameKind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                        R.string.nameLabelsGroup, -1, true, -1);
+                        R.string.nameLabelsGroup, -1, true);
                 nameKind.typeOverallMax = 1;
                 addKind(nameKind);
 
                 // Phone allows maximum 2 home, 1 work, and unlimited other, with
                 // constraint of 5 numbers maximum.
                 final DataKind phoneKind = new DataKind(
-                        Phone.CONTENT_ITEM_TYPE, -1, 10, true, -1);
+                        Phone.CONTENT_ITEM_TYPE, -1, 10, true);
 
                 phoneKind.typeOverallMax = 5;
                 phoneKind.typeColumn = Phone.TYPE;
@@ -115,24 +115,21 @@ public class RawContactModifierTests extends AndroidTestCase {
                 addKind(phoneKind);
 
                 // Email is unlimited
-                final DataKind emailKind = new DataKind(
-                        Email.CONTENT_ITEM_TYPE, -1, 10, true, -1);
+                final DataKind emailKind = new DataKind(Email.CONTENT_ITEM_TYPE, -1, 10, true);
                 emailKind.typeOverallMax = -1;
                 emailKind.fieldList = Lists.newArrayList();
                 emailKind.fieldList.add(new EditField(Email.DATA, -1, -1));
                 addKind(emailKind);
 
                 // IM is only one
-                final DataKind imKind = new DataKind(Im.CONTENT_ITEM_TYPE, -1, 10,
-                        true, -1);
+                final DataKind imKind = new DataKind(Im.CONTENT_ITEM_TYPE, -1, 10, true);
                 imKind.typeOverallMax = 1;
                 imKind.fieldList = Lists.newArrayList();
                 imKind.fieldList.add(new EditField(Im.DATA, -1, -1));
                 addKind(imKind);
 
                 // Organization is only one
-                final DataKind orgKind = new DataKind(
-                        Organization.CONTENT_ITEM_TYPE, -1, 10, true, -1);
+                final DataKind orgKind = new DataKind(Organization.CONTENT_ITEM_TYPE, -1, 10, true);
                 orgKind.typeOverallMax = 1;
                 orgKind.fieldList = Lists.newArrayList();
                 orgKind.fieldList.add(new EditField(Organization.COMPANY, -1, -1));
