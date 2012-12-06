@@ -242,14 +242,6 @@
             </intent-filter>
         </activity>
 
-        <!-- List of groups -->
-        <activity android:name=".activities.GroupBrowserActivity"
-            android:label="@string/contactsGroupsLabel"
-            android:theme="@style/PeopleTheme"
-            android:uiOptions="splitActionBarWhenNarrow"
-            android:launchMode="singleTop"
-            android:clearTaskOnLaunch="true"/>
-
         <!-- Views the details of a single group -->
         <activity android:name=".activities.GroupDetailActivity"
             android:label=""
