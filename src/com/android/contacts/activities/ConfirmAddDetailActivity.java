@@ -60,6 +60,7 @@ import android.widget.Toast;
 
 import com.android.contacts.R;
 import com.android.contacts.editor.Editor;
+import com.android.contacts.editor.EditorUiUtils;
 import com.android.contacts.editor.ViewIdGenerator;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.model.RawContact;
@@ -700,7 +701,8 @@ public class ConfirmAddDetailActivity extends Activity implements
      * to the end of mEditors
      */
     private void inflateEditorView(DataKind dataKind, ValuesDelta valuesDelta, RawContactDelta state) {
-        final View view = mInflater.inflate(dataKind.editorLayoutResourceId, mEditorContainerView,
+        final int layoutResId = EditorUiUtils.getLayoutResourceId(dataKind.mimeType);
+        final View view = mInflater.inflate(layoutResId, mEditorContainerView,
                 false);
 
         if (view instanceof Editor) {
