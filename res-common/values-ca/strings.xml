@@ -160,7 +160,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Un sol contacte"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Crea el contacte al compte"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importa des de la targeta SIM"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importa d\'emmagatzematge"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importa de l\'emmagatzematge"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vols cancel·lar la importació de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vols cancel·lar l\'exportació de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"No es pot cancel·lar la imp./exp. vCard"</string>
@@ -198,9 +198,9 @@
     <string name="importing_vcard_canceled_title" msgid="556913863250769870">"S\'ha cancel·lat la importació de: <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="vcard_import_will_start_message" msgid="7184603116300604514">"<xliff:g id="FILENAME">%s</xliff:g> s\'importarà d\'aquí a poc."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"D\'aquí a poc s\'importarà el fitxer."</string>
-    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"S\'ha rebutjat la sol·licitud per importar vCard. Torna-ho a provar més tard."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"S\'ha rebutjat la sol·licitud per importar la vCard. Torna-ho a provar més tard."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> s\'exportarà en breu."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"S\'ha rebutjat la sol·licitud per exportar vCard. Torna-ho a provar més tard."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"S\'ha rebutjat la sol·licitud per exportar la vCard. Torna-ho a provar més tard."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contacte"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"S\'estan desant les vCard a l\'emmagatzematge temporal local. La importació real començarà aviat."</string>
     <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
@@ -213,15 +213,45 @@
     <string name="import_one_vcard_string" msgid="6199149175802496361">"Importa un fitxer vCard"</string>
     <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Importa diversos fitxers vCard"</string>
     <string name="import_all_vcard_string" msgid="1037495558362397535">"Importa tots els fitxers vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"S\'estan cercant dades de vCard a l\'emmagatzematge..."</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"S\'estan cercant les dades de la vCard a l\'emmagatzematge..."</string>
     <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"S\'estan cercant les dades de vCard a la targeta SD..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Desament a la memòria cau"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"No s\'ha pogut explorar l\'emmagatzematge. (Motiu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"No s\'ha pogut explorar la targeta SD. (Motiu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"S\'està important <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exporta a emmagatzematge"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exporta a l\'emmagatzematge"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Comparteix els contactes visibles"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importació/exportació de contactes"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importa contactes"</string>
     <string name="share_error" msgid="665756457151793108">"No es pot compartir aquest contacte."</string>
+    <!-- no translation found for menu_search (7464453023659824700) -->
+    <skip />
+    <!-- no translation found for menu_contacts_filter (586356478145511794) -->
+    <skip />
+    <!-- no translation found for activity_title_contacts_filter (7689519428197855166) -->
+    <skip />
+    <!-- no translation found for custom_list_filter (582616656313514803) -->
+    <skip />
+    <!-- no translation found for hint_findContacts (28151707326753522) -->
+    <skip />
+    <!-- no translation found for contactsFavoritesLabel (1222038757062409949) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZero (6041341919823872732) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroCustom (5661794891640163617) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroStarred (4176827228429279164) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroGroup (7450331854661098879) -->
+    <skip />
+    <!-- no translation found for menu_clear_frequents (8492322695770647639) -->
+    <skip />
+    <!-- no translation found for menu_accounts (795417468541517082) -->
+    <skip />
+    <!-- no translation found for menu_import_export (6446229463809981669) -->
+    <skip />
+    <!-- no translation found for description_send_message (2630211225573754774) -->
+    <skip />
+    <!-- no translation found for description_dial_phone_number (7315580540586351853) -->
+    <skip />
 </resources>

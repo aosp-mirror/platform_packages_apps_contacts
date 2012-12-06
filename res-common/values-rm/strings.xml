@@ -425,4 +425,34 @@
     <skip />
     <!-- no translation found for share_error (665756457151793108) -->
     <skip />
+    <!-- no translation found for menu_search (7464453023659824700) -->
+    <skip />
+    <!-- no translation found for menu_contacts_filter (586356478145511794) -->
+    <skip />
+    <!-- no translation found for activity_title_contacts_filter (7689519428197855166) -->
+    <skip />
+    <!-- no translation found for custom_list_filter (582616656313514803) -->
+    <skip />
+    <!-- no translation found for hint_findContacts (28151707326753522) -->
+    <skip />
+    <!-- no translation found for contactsFavoritesLabel (1222038757062409949) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZero (6041341919823872732) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroCustom (5661794891640163617) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroStarred (4176827228429279164) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroGroup (7450331854661098879) -->
+    <skip />
+    <!-- no translation found for menu_clear_frequents (8492322695770647639) -->
+    <skip />
+    <!-- no translation found for menu_accounts (795417468541517082) -->
+    <skip />
+    <!-- no translation found for menu_import_export (6446229463809981669) -->
+    <skip />
+    <!-- no translation found for description_send_message (2630211225573754774) -->
+    <skip />
+    <!-- no translation found for description_dial_phone_number (7315580540586351853) -->
+    <skip />
 </resources>
