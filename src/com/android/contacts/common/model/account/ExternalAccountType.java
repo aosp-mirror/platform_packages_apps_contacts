@@ -377,14 +377,6 @@ public class ExternalAccountType extends BaseAccountType {
 
                     final String detailColumn = a.getString(
                             com.android.internal.R.styleable.ContactsDataKind_detailColumn);
-                    final boolean detailSocialSummary = a.getBoolean(
-                            com.android.internal.R.styleable.ContactsDataKind_detailSocialSummary,
-                            false);
-
-                    if (detailSocialSummary) {
-                        // Inflate social summary when requested
-                        kind.actionBodySocial = true;
-                    }
 
                     if (detailColumn != null) {
                         // Inflate specific column as summary

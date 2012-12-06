@@ -53,8 +53,6 @@ public final class DataKind {
     public StringInflater actionAltHeader;
     public StringInflater actionBody;
 
-    public boolean actionBodySocial = false;
-
     public String typeColumn;
 
     /**
@@ -124,7 +122,6 @@ public final class DataKind {
         sb.append(" actionHeader=").append(actionHeader);
         sb.append(" actionAltHeader=").append(actionAltHeader);
         sb.append(" actionBody=").append(actionBody);
-        sb.append(" actionBodySocial=").append(actionBodySocial);
         sb.append(" typeColumn=").append(typeColumn);
         sb.append(" typeOverallMax=").append(typeOverallMax);
         sb.append(" typeList=").append(toString(typeList));

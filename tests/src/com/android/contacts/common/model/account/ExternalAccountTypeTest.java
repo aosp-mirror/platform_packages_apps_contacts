@@ -188,7 +188,6 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
                 .getColumnNameForTest());
         assertEquals("data2", ((BaseAccountType.SimpleInflater) kind.actionBody)
                 .getColumnNameForTest());
-        assertEquals(true, kind.actionBodySocial);
 
         kind = type.getKindForMimetype("vnd.android.cursor.item/d.e.f");
         assertNotNull(kind);
@@ -196,7 +195,6 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
                 .getColumnNameForTest());
         assertEquals("data4", ((BaseAccountType.SimpleInflater) kind.actionBody)
                 .getColumnNameForTest());
-        assertEquals(false, kind.actionBodySocial);
 
         kind = type.getKindForMimetype("vnd.android.cursor.item/xyz");
         assertNotNull(kind);
@@ -204,7 +202,6 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
                 .getColumnNameForTest());
         assertEquals("data6", ((BaseAccountType.SimpleInflater) kind.actionBody)
                 .getColumnNameForTest());
-        assertEquals(true, kind.actionBodySocial);
     }
 
     private static void assertsDataKindEquals(List<DataKind> expectedKinds,
