@@ -37,15 +37,11 @@
     <string name="contactDetailAbout" msgid="5430408883907061400">"Vizitka"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Posodobitve"</string>
     <string name="searchHint" msgid="8482945356247760701">"Iskanje stikov"</string>
-    <string name="menu_search" msgid="9147752853603483719">"Iskanje"</string>
-    <string name="menu_newContact" msgid="1209922412763274638">"Nov stik"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Ogled stika"</string>
-    <string name="menu_callNumber" msgid="997146291983360266">"Pokliči <xliff:g id="NUMBER">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj k priljubljenim"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Odstrani iz priljubljenih"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Izbriši"</string>
-    <string name="menu_copy" msgid="6108677035381940698">"Kopiraj"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Postavi na začetni zaslon"</string>
     <string name="menu_call" msgid="3992595586042260618">"Pokliči stik"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Pošlji SMS stiku"</string>
@@ -103,10 +99,6 @@
     <item quantity="one" msgid="3405747744700823280">"1 stik"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> stikov"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Ni stikov."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Ni vidnih stikov."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Ni priljubljenih."</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Ni stikov v: <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 najden"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> najdenih"</item>
@@ -118,128 +110,17 @@
   </plurals>
     <string name="contactsAllLabel" msgid="6479708629170672169">"Vsi stiki"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Skupine"</string>
-    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Priljubljeno"</string>
-    <string name="imei" msgid="3045126336951684285">"IMEI"</string>
-    <string name="meid" msgid="6210568493746275750">"MEID"</string>
-    <string name="voicemail" msgid="3851469869202611441">"Glasovna pošta"</string>
-    <string name="unknown" msgid="740067747858270469">"Neznano"</string>
-    <string name="private_num" msgid="6374339738119166953">"Zasebna številka"</string>
-    <string name="payphone" msgid="4864313342828942922">"Telefonska govorilnica"</string>
-    <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Za klicanje uporabite tipkovnico"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Pokliči za dodajanje klica"</string>
-    <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Nalaganje s kartice SIM ..."</string>
-    <string name="simContacts_title" msgid="27341688347689769">"Stiki na kartici SIM"</string>
-    <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Uporabi številčnico za tonsko klicanje"</string>
-    <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Nazaj na klic, ki poteka"</string>
-    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Dodaj klic"</string>
-    <string name="callDetailTitle" msgid="5340227785196217938">"Podrobnosti klica"</string>
-    <string name="toast_call_detail_error" msgid="7200975244804730096">"Podrobnosti zahtevanega klica ni bilo mogoče prebrati."</string>
-    <string name="type_incoming" msgid="6502076603836088532">"Dohodni klic"</string>
-    <string name="type_outgoing" msgid="343108709599392641">"Odhodni klic"</string>
-    <string name="type_missed" msgid="2720502601640509542">"Neodgovorjeni klic"</string>
-    <string name="type_voicemail" msgid="5153139450668549908">"Odzivnik"</string>
-    <string name="actionIncomingCall" msgid="6028930669817038600">"Dohodni klici"</string>
     <string name="callBack" msgid="5498224409038809224">"Povratni klic"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ponovi klic"</string>
     <string name="returnCall" msgid="8171961914203617813">"Povratni klic"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min, <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Želite »<xliff:g id="EMAIL">%s</xliff:g>« dodati stikom?"</string>
-    <string name="description_image_button_one" msgid="1740638037139856139">"ena"</string>
-    <string name="description_image_button_two" msgid="5882638439003731308">"dva"</string>
-    <string name="description_image_button_three" msgid="8709731759376015180">"tri"</string>
-    <string name="description_image_button_four" msgid="3530239685642246130">"štiri"</string>
-    <string name="description_image_button_five" msgid="1182465427501188413">"pet"</string>
-    <string name="description_image_button_six" msgid="2093656269261415475">"šest"</string>
-    <string name="description_image_button_seven" msgid="2450357020447676481">"sedem"</string>
-    <string name="description_image_button_eight" msgid="6969435115163287801">"osem"</string>
-    <string name="description_image_button_nine" msgid="7857248695662558323">"devet"</string>
-    <string name="description_image_button_star" msgid="3365919907520767866">"zvezdica"</string>
-    <string name="description_image_button_zero" msgid="4133108949401820710">"nič"</string>
-    <string name="description_image_button_pound" msgid="3039765597595889230">"funt"</string>
-    <string name="description_voicemail_button" msgid="3402506823655455591">"glasovna pošta"</string>
-    <string name="description_search_button" msgid="3660807558587384889">"iskanje"</string>
-    <string name="description_dial_button" msgid="1274091017188142646">"pokliči"</string>
-    <string name="description_delete_button" msgid="6263102114033407382">"vračalka"</string>
-    <string name="description_digits_edittext" msgid="8760207516497016437">"številka, ki bo poklicana"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"fotografija stika"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Shrambe ni bilo mogoče najti."</string>
-    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Kartice SD ni mogoče najti"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"Uvozi s kartice SIM"</string>
-    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Uvoz iz pomnilnika"</string>
-    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Izvoz v pomnilnik"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Vidne stike deli z drugimi"</string>
-    <string name="import_one_vcard_string" msgid="9059163467020328433">"Uvozi eno datoteko z vizitko vCard"</string>
-    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Uvozi več datotek z vizitko vCard"</string>
-    <string name="import_all_vcard_string" msgid="5518136113853448474">"Uvozi vse datoteke vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Iskanje podatkov vCard v pomnilniku ..."</string>
-    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Iskanje podatkov vCard na kartici SD ..."</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Shrambe ni bilo mogoče pregledati. (Razlog: »<xliff:g id="FAIL_REASON">%s</xliff:g>«)"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Kartice SD ni bilo mogoče pregledati. (Razlog: »<xliff:g id="FAIL_REASON">%s</xliff:g>«)"</string>
-    <string name="fail_reason_io_error" msgid="6748358842976073255">"Napaka I/O"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Ni dovolj pomnilnika. Datoteka je morda prevelika."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Datoteke vCard iz neznanega razloga ni bilo mogoče razčleniti."</string>
-    <string name="fail_reason_not_supported" msgid="8219562769267148825">"Ta oblika ni podprta."</string>
-    <string name="vcard_import_failed" msgid="5223531255894842406">"Datoteke vCard ni bilo mogoče uvoziti."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Datotek vCard ni bilo mogoče najti v pomnilniku."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Na kartici SD ni mogoče najti datotek vCard."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Meta informacij za določene datoteke vCard ni bilo mogoče zbrati."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Ene ali več datotek ni bilo mogoče uvoziti (%s)."</string>
-    <string name="fail_reason_unknown" msgid="1714092345030570863">"Neznana napaka."</string>
-    <string name="select_vcard_title" msgid="7791371083694672861">"Izb. vel. dat. vCard"</string>
-    <string name="caching_vcard_title" msgid="1226272312940516605">"Predpomnjenje"</string>
-    <string name="caching_vcard_message" msgid="4926308675041506756">"Predpomnjenje datotek(e) vCARD v lokalno začasno shrambo. Dejanski uvoz se bo začel kmalu."</string>
-    <string name="progress_notifier_message" msgid="2311011466908220528">"Uvažanje <xliff:g id="CURRENT_NUMBER">%s</xliff:g>(<xliff:g id="TOTAL_NUMBER">%s</xliff:g>:<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="importing_vcard_description" msgid="4245275224298571351">"Uvažanje <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Podatkov vCard ni bilo mogoče prebrati"</string>
-    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Branje kartice vCard je preklicano"</string>
-    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Končan uvoz dat. vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Uvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je preklican"</string>
-    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Dat. <xliff:g id="FILENAME">%s</xliff:g> bo kmalu uvožena."</string>
-    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Datoteka bo kmalu uvožena."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Zahteva za uvoz datoteke vCard je bila zavrnjena. Poskusite znova pozneje."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Dat. <xliff:g id="FILENAME">%s</xliff:g> bo kmalu izvožena."</string>
-    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Zahteva za izvoz datoteke vCard je bila zavrnjena. Poskusite znova pozneje."</string>
-    <string name="vcard_unknown_filename" msgid="7171709890959915954">"stik"</string>
-    <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"Želite izvoz. stike?"</string>
-    <string name="confirm_export_message" msgid="2423421354816428708">"Seznam stikov bo izvožen v datoteko: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
-    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Izvoz ni mogoč"</string>
-    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Podatki stika niso bili izvoženi."\n"Razlog: »<xliff:g id="FAIL_REASON">%s</xliff:g>«"</string>
-    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Ni stikov za izvoz."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"V shrambi je preveč datotek vCard."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Na kartici SD je preveč datotek vCard."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Zahtevano ime datoteke je predolgo (»<xliff:g id="FILENAME">%s</xliff:g>«)."</string>
-    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je končan."</string>
-    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je preklican."</string>
-    <string name="exporting_contact_list_title" msgid="9072240631534457415">"Izvažanje podatkov o stiku"</string>
-    <string name="exporting_contact_list_message" msgid="7181663157672374569">"Podatki stikov se izvažajo v datoteko to: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Funkcije za izvoz ni bilo mogoče zagnati: »<xliff:g id="EXACT_REASON">%s</xliff:g>«"</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Pri izvozu je prišlo do napake: »<xliff:g id="EXACT_REASON">%s</xliff:g>«"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Informacij o zbirki podatkov ni bilo mogoče dobiti."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Na voljo ni noben stik za izvoz. Če imate v telefonu stike, nekateri ponudniki podatkov morda ne omogočajo izvoza stikov iz telefona."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Ni na voljo stikov za izvoz. Če imate v telefonu stike, nekateri ponudniki podatkov morda ne omogočajo izvoza stikov iz telefona."</string>
-    <string name="composer_not_initialized" msgid="2321648986367005254">"Urejevalnik za vCard se ni pravilno zagnal."</string>
-    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Datoteke »<xliff:g id="FILE_NAME">%s</xliff:g>« ni bilo mogoče odpreti: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> od <xliff:g id="TOTAL_NUMBER">%s</xliff:g> stikov"</string>
-    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Želite preklicati izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Želite preklicati izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Uvoza/izvoza vCard ni mogoče preklicati"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Imena stikov"</string>
-    <string name="add_2sec_pause" msgid="9214012315201040129">"Dodaj 2 sekundi premora"</string>
-    <string name="add_wait" msgid="3360818652790319634">"Dodaj premor"</string>
-    <string name="call_settings" msgid="7666474782093693667">"Nastavitve"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Programa za obravnavo tega dejanja ni mogoče najti."</string>
-    <string name="menu_accounts" msgid="8499114602017077970">"Računi"</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"Izbriši seznam pogostih stikov"</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Stiki, ki naj bodo prikazani"</string>
-    <string name="menu_import_export" msgid="26217871113229507">"Uvoz/izvoz"</string>
-    <string name="dialog_import_export" msgid="4360648034889921624">"Uvoz/izvoz stikov"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"Uvoz stikov"</string>
     <string name="menu_share" msgid="943789700636542260">"Skupna raba"</string>
     <string name="share_via" msgid="563121028023030093">"Deli stik z drugimi prek"</string>
-    <string name="share_error" msgid="948429331673358107">"Tega stika ni mogoče dati v skupno rabo."</string>
-    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Ustvari stik v računu"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Ustvari skupino v računu"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Glasovni klepet"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videoklepet"</string>
@@ -294,15 +175,11 @@
     <string name="contact_directory_description" msgid="683398073603909119">"Imenik <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Ustvarjanje osebne kopije ..."</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Po meri"</string>
-    <string name="custom_list_filter" msgid="7836035257402013957">"Določite pogled po meri"</string>
-    <string name="contact_list_loading" msgid="5488620820563977329">"Nalaganje …"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nastavitve"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Stiki za prikaz"</string>
     <string name="menu_settings" msgid="377929915873428211">"Nastavitve"</string>
     <string name="menu_help" msgid="5123887102216637725">"Pomoč"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Možnosti prikaza"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
-    <string name="hint_findContacts" msgid="1808681193458772072">"Najdi stike"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefonska številka"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Dodaj v stike"</string>
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Dodaj v stik"</string>
@@ -339,25 +216,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"Nastavi moj profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Vnesite ime osebe"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Ime skupine"</string>
-    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Stik prejet prek NFC"</string>
-    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"Pokaži samo odhodne"</string>
-    <string name="menu_show_incoming_only" msgid="7534206815238877417">"Pokaži samo dohodne"</string>
-    <string name="menu_show_missed_only" msgid="154473166059743996">"Pokaži samo neodgovorjene"</string>
-    <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Pokaži samo spor. glasovne pošte"</string>
-    <string name="menu_show_all_calls" msgid="7560347482073345885">"Pokaži vse klice"</string>
-    <string name="description_call_log_play_button" msgid="651182125650429846">"Predvajanje sporočil glasovne pošte"</string>
-    <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Dohodni klic"</string>
-    <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Odhodni klic"</string>
-    <string name="description_call_log_missed_call" msgid="2242805209983708825">"Neodgovorjeni klic"</string>
-    <string name="description_call_log_voicemail" msgid="4600798771975158948">"Sporočila glasovne pošte"</string>
-    <string name="description_add_contact" msgid="3103414772502485851">"Dodajanje stika"</string>
-    <string name="description_view_contact" msgid="5205669345700598415">"Ogled stika <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_call" msgid="3443678121983852666">"Klicanje osebe <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_send_text_message" msgid="7803126439934046891">"Pošlji SMS osebi <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Neodprta glasovna pošta"</string>
-    <string name="description_send_message" msgid="6046623392322890962">"Pošlji sporočilo stiku <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"Kliči: <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Moj lokalni profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Moj profil za <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Prikaz vseh stikov"</string>
@@ -370,9 +228,5 @@
     <string name="keep_local" msgid="1258761699192993322">"Ohrani lokalno"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nov račun"</string>
-    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Klic ni uspel"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Če želite nastaviti odzivnik, odprite Meni &gt; Nastavitve."</string>
-    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Če želite poklicati odzivnik, najprej izklopite način za letalo."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Izvoz datotek zbirke"</string>
-    <string name="action_menu_overflow_description" msgid="2303272250613084574">"Več možnosti"</string>
 </resources>

@@ -37,15 +37,11 @@
     <string name="contactDetailAbout" msgid="5430408883907061400">"इस बारे में"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"अपडेट"</string>
     <string name="searchHint" msgid="8482945356247760701">"संपर्क खोजें"</string>
-    <string name="menu_search" msgid="9147752853603483719">"खोज"</string>
-    <string name="menu_newContact" msgid="1209922412763274638">"नया संपर्क"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"संपर्क देखें"</string>
-    <string name="menu_callNumber" msgid="997146291983360266">"<xliff:g id="NUMBER">%s</xliff:g> पर कॉल करें"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"पसंदीदा में जोड़ें"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"पसंदीदा से निकालें"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"संपादित करें"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"हटाएं"</string>
-    <string name="menu_copy" msgid="6108677035381940698">"प्रतिलिपि"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुखपृष्ठ स्क्रीन पर रखें"</string>
     <string name="menu_call" msgid="3992595586042260618">"संपर्क को कॉल करें"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"इस संपर्क को SMS भेजें"</string>
@@ -103,10 +99,6 @@
     <item quantity="one" msgid="3405747744700823280">"1 संपर्क"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> संपर्क"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"कोई संपर्क नहीं."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"कोई दृश्यमान संपर्क नहीं."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"कोई पसंदीदा नहीं."</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"<xliff:g id="NAME">%s</xliff:g> में कोई संपर्क नहीं"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 मिला"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> मिले"</item>
@@ -118,128 +110,17 @@
   </plurals>
     <string name="contactsAllLabel" msgid="6479708629170672169">"सभी संपर्क"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"समूह"</string>
-    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"पसंदीदा"</string>
-    <string name="imei" msgid="3045126336951684285">"IMEI"</string>
-    <string name="meid" msgid="6210568493746275750">"MEID"</string>
-    <string name="voicemail" msgid="3851469869202611441">"ध्वनिमेल"</string>
-    <string name="unknown" msgid="740067747858270469">"अज्ञात"</string>
-    <string name="private_num" msgid="6374339738119166953">"निजी नंबर"</string>
-    <string name="payphone" msgid="4864313342828942922">"सशुल्क फ़ोन"</string>
-    <string name="dialerKeyboardHintText" msgid="5401660096579787344">"डायल करने के लिए कीबोर्ड का उपयोग करें"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"कोई कॉल जोड़ने के लिए डायल करें"</string>
-    <string name="simContacts_emptyLoading" msgid="6700035985448642408">"सिम कार्ड से लोड हो रहा है…"</string>
-    <string name="simContacts_title" msgid="27341688347689769">"सिम कार्ड के संपर्क"</string>
-    <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"टच टोन कीपैड का उपयोग करें"</string>
-    <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"कॉल पर लौटना प्रगति पर है"</string>
-    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"कॉल जोड़ें"</string>
-    <string name="callDetailTitle" msgid="5340227785196217938">"कॉल विवरण"</string>
-    <string name="toast_call_detail_error" msgid="7200975244804730096">"अनुरोध किए गए कॉल का विवरण नहीं पढ़ा जा सका."</string>
-    <string name="type_incoming" msgid="6502076603836088532">"इनकमिंग कॉल"</string>
-    <string name="type_outgoing" msgid="343108709599392641">"आउटगोइंग कॉल"</string>
-    <string name="type_missed" msgid="2720502601640509542">"छूटी कॉल"</string>
-    <string name="type_voicemail" msgid="5153139450668549908">"ध्वनिमेल"</string>
-    <string name="actionIncomingCall" msgid="6028930669817038600">"इनकमिंग कॉल"</string>
     <string name="callBack" msgid="5498224409038809224">"कॉल बैक करें"</string>
     <string name="callAgain" msgid="3197312117049874778">"फिर से कॉल करें"</string>
     <string name="returnCall" msgid="8171961914203617813">"रिटर्न कॉल"</string>
-    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> मिनट <xliff:g id="SECONDS">%s</xliff:g> सेकंड"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" को संपर्कों में जोड़ें?"</string>
-    <string name="description_image_button_one" msgid="1740638037139856139">"एक"</string>
-    <string name="description_image_button_two" msgid="5882638439003731308">"दो"</string>
-    <string name="description_image_button_three" msgid="8709731759376015180">"तीन"</string>
-    <string name="description_image_button_four" msgid="3530239685642246130">"चार"</string>
-    <string name="description_image_button_five" msgid="1182465427501188413">"पांच"</string>
-    <string name="description_image_button_six" msgid="2093656269261415475">"छ:"</string>
-    <string name="description_image_button_seven" msgid="2450357020447676481">"सात"</string>
-    <string name="description_image_button_eight" msgid="6969435115163287801">"आठ"</string>
-    <string name="description_image_button_nine" msgid="7857248695662558323">"नौ"</string>
-    <string name="description_image_button_star" msgid="3365919907520767866">"तारा"</string>
-    <string name="description_image_button_zero" msgid="4133108949401820710">"शून्य"</string>
-    <string name="description_image_button_pound" msgid="3039765597595889230">"पाउंड"</string>
-    <string name="description_voicemail_button" msgid="3402506823655455591">"ध्वनि मेल"</string>
-    <string name="description_search_button" msgid="3660807558587384889">"खोजें"</string>
-    <string name="description_dial_button" msgid="1274091017188142646">"डायल करें"</string>
-    <string name="description_delete_button" msgid="6263102114033407382">"हटाएं"</string>
-    <string name="description_digits_edittext" msgid="8760207516497016437">"डायल करने के लिए नंबर"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"संपर्क का फ़ोटो"</string>
     <string name="description_plus_button" msgid="515164827856229880">"जोड़ें"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"कोई संग्रहण नहीं मिला."</string>
-    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"कोई SD कार्ड नहीं मिला."</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"सिम कार्ड से आयात करें"</string>
-    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"संग्रहण से आयात करें"</string>
-    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"संग्रहण में निर्यात करें"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"दिखाई देने वाले संपर्क साझा करें"</string>
-    <string name="import_one_vcard_string" msgid="9059163467020328433">"एक vCard फ़ाइल आयात करें"</string>
-    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"एकाधिक vCard फ़ाइलें आयात करें"</string>
-    <string name="import_all_vcard_string" msgid="5518136113853448474">"सभी vCard फ़ाइलें आयात करें"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"संग्रहण में vCard डेटा खोज रहा है..."</string>
-    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"SD कार्ड पर vCard डेटा खोज रहा है…"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"संग्रहण स्‍कैन नहीं किया जा सका. (कारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"SD कार्ड स्कैन नहीं किया जा सका. (कारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O त्रुटि"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"स्‍मृति पर्याप्त नहीं है. हो सकता है फ़ाइल बहुत बड़ी हो."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"किसी अप्रत्‍याशित कारण से vCard पार्स नहीं किया जा सका."</string>
-    <string name="fail_reason_not_supported" msgid="8219562769267148825">"प्रारूप समर्थित नहीं है."</string>
-    <string name="vcard_import_failed" msgid="5223531255894842406">"vCard आयात नहीं कर सका."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"संग्रहण में कोई vCard फ़ाइल नहीं मिली."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"SD कार्ड पर कोई vCard फ़ाइल नहीं मिली."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"दी गई vCard फ़ाइल(फ़ाइलों) की मेटा जानकारी एकत्र नहीं की जा सकी."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"एक या अधिक फ़ाइलें आयात नहीं की जा सकीं (%s)."</string>
-    <string name="fail_reason_unknown" msgid="1714092345030570863">"अज्ञात त्रुटि‍."</string>
-    <string name="select_vcard_title" msgid="7791371083694672861">"vCard फ़ाइल चुनें"</string>
-    <string name="caching_vcard_title" msgid="1226272312940516605">"संचय कर रहा है"</string>
-    <string name="caching_vcard_message" msgid="4926308675041506756">"vCard को स्‍थानीय अस्‍थायी संग्रहण में संचित कर रहा है. वास्‍तविक आयात जल्‍दी ही प्रारंभ होगा."</string>
-    <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> आयात कर रहा है: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> आयात कर रहा है"</string>
-    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard डेटा नहीं पढ़ा जा सका"</string>
-    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard डेटा को पढ़ना रद्द किया गया"</string>
-    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> आयात करना पूर्ण"</string>
-    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> को आयात करना रद्द किया गया"</string>
-    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> को जल्‍दी ही आयात किया जाएगा."</string>
-    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"फ़ाइल शीघ्र ही आयात की जाएगी."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard आयात अनुरोध अस्‍वीकार हो गया था. बाद में पुन: प्रयास करें."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> को जल्‍दी ही निर्यात किया जाएगा."</string>
-    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard आयात अनुरोध अस्‍वीकार हो गया था. बाद में पुन: प्रयास करें."</string>
-    <string name="vcard_unknown_filename" msgid="7171709890959915954">"संपर्क"</string>
-    <string name="percentage" msgid="1044592438199055502">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"संपर्क निर्यात करें?"</string>
-    <string name="confirm_export_message" msgid="2423421354816428708">"आपकी संपर्क सूची इस फ़ाइल में निर्यात कर दी जाएगी: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
-    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"निर्यात नहीं कर सका"</string>
-    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"संपर्क डेटा निर्या‍त नहीं किया गया था."\n"कारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"कोई निर्यात-योग्‍य संपर्क नहीं है."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"संग्रहण में बहुत अधिक vCard फ़ाइलें हैं."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"SD कार्ड पर बहुत अधिक VCard फ़ाइलें हैं."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"आवश्‍यक फ़ाइल नाम बहुत बड़ा है (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
-    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात करना पूर्ण."</string>
-    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"<xliff:g id="FILENAME">%s</xliff:g> को निर्यात करना रद्द किया गया."</string>
-    <string name="exporting_contact_list_title" msgid="9072240631534457415">"संपर्क डेटा निर्यात हो रहा है"</string>
-    <string name="exporting_contact_list_message" msgid="7181663157672374569">"आपका संपर्क डेटा इस पर निर्यात किया जा रहा है: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"निर्यातकर्ता प्रारंभ नहीं किया जा सका: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"निर्यात करते समय कोई त्रुटि आई: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"डेटाबेस जानकारी नहीं मिल सकी."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"कोई भी निर्यात-योग्‍य संपर्क नहीं है. यदि आपके पास अपने टेबलेट पर संपर्क हों, तो हो सकता है कि कुछ डेटा प्रदाता संपर्कों को टेबलेट से निर्यात न करने दें."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"कोई भी निर्यात-योग्‍य संपर्क नहीं है. यदि आपके पास अपने फ़ोन पर संपर्क  हों, तो हो सकता है कि कुछ डेटा प्रदाता संपर्कों को फ़ोन से निर्यात न करने दें."</string>
-    <string name="composer_not_initialized" msgid="2321648986367005254">"vCard कंपोज़र ठीक से शुरू नहीं हुआ."</string>
-    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" नहीं खोली जा सकी: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g> में से <xliff:g id="CURRENT_NUMBER">%s</xliff:g> संपर्क"</string>
-    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> का आयात रद्द करें?"</string>
-    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात रद्द करें?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard आयात/निर्यात रद्द नहीं हो सका"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"आपके संपर्कों के नाम"</string>
-    <string name="add_2sec_pause" msgid="9214012315201040129">"2-सेकंड का विराम जोड़ें"</string>
-    <string name="add_wait" msgid="3360818652790319634">"प्रतीक्षा का समय बढ़ाएं"</string>
-    <string name="call_settings" msgid="7666474782093693667">"सेटिंग"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"यह कार्यवाही प्रबंधित करने के लिए कोई एप्लिकेशन नहीं मिला."</string>
-    <string name="menu_accounts" msgid="8499114602017077970">"खाते"</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"अक्सर किए जाने वाले साफ़ करें"</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"प्रदर्शन के लिए संपर्क"</string>
-    <string name="menu_import_export" msgid="26217871113229507">"आयात करें/निर्यात करें"</string>
-    <string name="dialog_import_export" msgid="4360648034889921624">"संपर्क आयात/निर्यात करें"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"संपर्क आयात करें"</string>
     <string name="menu_share" msgid="943789700636542260">"साझा करें"</string>
     <string name="share_via" msgid="563121028023030093">"इसके द्वारा संपर्क साझा करें"</string>
-    <string name="share_error" msgid="948429331673358107">"यह संपर्क साझा नहीं किया जा सकता."</string>
-    <string name="dialog_new_contact_account" msgid="9044704073286262197">"खाते के तहत संपर्क बनाएं"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"खाते के तहत समूह बनाएं"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ध्वनि चैट"</string>
     <string name="video_chat" msgid="1872255818640336072">"वीडियो चैट"</string>
@@ -294,15 +175,11 @@
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"एक व्‍यक्तिगत प्रतिलिपि बना रहा है…"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"कस्टम"</string>
-    <string name="custom_list_filter" msgid="7836035257402013957">"कस्टम दृश्य निर्धारित करें"</string>
-    <string name="contact_list_loading" msgid="5488620820563977329">"लोड हो रही है..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"प्रदर्शन के लिए संपर्क"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग"</string>
     <string name="menu_help" msgid="5123887102216637725">"सहायता"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"प्रदर्शन विकल्प"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
-    <string name="hint_findContacts" msgid="1808681193458772072">"संपर्क ढूंढें"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"फ़ोन नंबर"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"संपर्कों में जोड़ें"</string>
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"संपर्क में जोड़ें"</string>
@@ -339,25 +216,6 @@
     <string name="profile_display_name" msgid="4127389543625918771">"मेरी प्रोफ़ाइल सेट करें"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"व्‍यक्ति‍ का नाम लिखें"</string>
     <string name="group_name_hint" msgid="238359485263401293">"समूह का नाम"</string>
-    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC पर प्राप्त संपर्क"</string>
-    <string name="menu_show_outgoing_only" msgid="1965570298133301970">"केवल आउटगोइंग ही दिखाएं"</string>
-    <string name="menu_show_incoming_only" msgid="7534206815238877417">"केवल इनकमिंग ही दिखाएं"</string>
-    <string name="menu_show_missed_only" msgid="154473166059743996">"केवल छूटे हुए ही दिखाएं"</string>
-    <string name="menu_show_voicemails_only" msgid="1898421289561435703">"केवल ध्‍वनि‍मेल दि‍खाएं"</string>
-    <string name="menu_show_all_calls" msgid="7560347482073345885">"सभी कॉल दि‍खाएं"</string>
-    <string name="description_call_log_play_button" msgid="651182125650429846">"ध्‍वनिमेल चलाएं"</string>
-    <string name="description_call_log_incoming_call" msgid="4485427487637250143">"इनकमिंग कॉल"</string>
-    <string name="description_call_log_outgoing_call" msgid="604831756853471658">"आउटगोइंग कॉल"</string>
-    <string name="description_call_log_missed_call" msgid="2242805209983708825">"छूटी कॉल"</string>
-    <string name="description_call_log_voicemail" msgid="4600798771975158948">"ध्वनिमेल"</string>
-    <string name="description_add_contact" msgid="3103414772502485851">"संपर्क जोड़ें"</string>
-    <string name="description_view_contact" msgid="5205669345700598415">"<xliff:g id="NAME">%1$s</xliff:g> संपर्क देखें"</string>
-    <string name="description_call" msgid="3443678121983852666">"<xliff:g id="NAME">%1$s</xliff:g> को कॉल करें"</string>
-    <string name="description_send_text_message" msgid="7803126439934046891">"<xliff:g id="NAME">%1$s</xliff:g> को पाठ संदेश भेजें"</string>
-    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"नहीं सुना गया ध्वनिमेल"</string>
-    <string name="description_send_message" msgid="6046623392322890962">"<xliff:g id="NAME">%1$s</xliff:g> को संदेश भेजें"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g> का फ़ोन डायल करें"</string>
-    <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"मेरी स्थानीय प्रोफ़ाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"मेरी <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफ़ाइल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सभी संपर्क प्रदर्शित कर रहा है"</string>
@@ -370,9 +228,5 @@
     <string name="keep_local" msgid="1258761699192993322">"स्‍थानीय रखें"</string>
     <string name="add_account" msgid="8201790677994503186">"खाता जोड़ें"</string>
     <string name="add_new_account" msgid="5748627740680940264">"नया खाता जोड़ें"</string>
-    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"कॉल नहीं भेजा गया"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"ध्‍वनिमेल सेट करने के लिए, मेनू &gt; सेटिंग पर जाएं."</string>
-    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"ध्‍वनिमेल कॉल करने के लिए, पहले हवाई जहाज़ मोड बंद करें."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फ़ाइलें निर्यात करें"</string>
-    <string name="action_menu_overflow_description" msgid="2303272250613084574">"अधिक विकल्प"</string>
 </resources>
