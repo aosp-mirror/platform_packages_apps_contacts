@@ -31,7 +31,7 @@
 
     <!-- Add a first item that gives us enough space to show the carousel -->
     <view
-        class="com.android.contacts.widget.ProportionalLayout"
+        class="com.android.contacts.common.widget.ProportionalLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ex:ratio="0.6667"
