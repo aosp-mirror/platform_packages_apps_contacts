@@ -18,6 +18,8 @@ package com.android.contacts.editor;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
@@ -60,11 +62,18 @@ import java.util.ArrayList;
  * {@link RawContactModifier} to ensure that {@link AccountType} are enforced.
  */
 public class RawContactEditorView extends BaseRawContactEditorView {
+    private static final String KEY_ORGANIZATION_VIEW_EXPANDED = "organizationViewExpanded";
+    private static final String KEY_SUPER_INSTANCE_STATE = "superInstanceState";
+
     private LayoutInflater mInflater;
 
     private StructuredNameEditorView mName;
     private PhoneticNameEditorView mPhoneticName;
     private GroupMembershipView mGroupMembershipView;
+
+    private ViewGroup mOrganizationSectionViewContainer;
+    private View mAddOrganizationButton;
+    private boolean mOrganizationViewExpanded = false;
 
     private ViewGroup mFields;
 
@@ -146,6 +155,35 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 showAddInformationPopupWindow();
             }
         });
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(KEY_ORGANIZATION_VIEW_EXPANDED, mOrganizationViewExpanded);
+        // super implementation of onSaveInstanceState returns null
+        bundle.putParcelable(KEY_SUPER_INSTANCE_STATE, super.onSaveInstanceState());
+        return bundle;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof Bundle) {
+            Bundle bundle = (Bundle) state;
+            mOrganizationViewExpanded = bundle.getBoolean(KEY_ORGANIZATION_VIEW_EXPANDED);
+            if (mOrganizationViewExpanded) {
+                // we have to manually perform the expansion here because
+                // onRestoreInstanceState is called after setState. So at the point
+                // of the creation of the organization view, mOrganizationViewExpanded
+                // does not have the correct value yet.
+                mOrganizationSectionViewContainer.setVisibility(VISIBLE);
+                mAddOrganizationButton.setVisibility(GONE);
+            }
+            super.onRestoreInstanceState(bundle.getParcelable(KEY_SUPER_INSTANCE_STATE));
+            return;
+        }
+        super.onRestoreInstanceState(state);
+        return;
     }
 
     /**
@@ -264,21 +302,21 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                     // EditText fields only when clicked
                     final View organizationView = mInflater.inflate(
                             R.layout.organization_editor_view_switcher, mFields, false);
-                    final View addOrganizationButton = organizationView.findViewById(
+                    mAddOrganizationButton = organizationView.findViewById(
                             R.id.add_organization_button);
-                    final ViewGroup organizationSectionViewContainer =
+                    mOrganizationSectionViewContainer =
                             (ViewGroup) organizationView.findViewById(R.id.container);
-
-                    organizationSectionViewContainer.addView(section);
+                    mOrganizationSectionViewContainer.addView(section);
 
                     // Setup the click listener for the "add organization" button
-                    addOrganizationButton.setOnClickListener(new OnClickListener() {
+                    mAddOrganizationButton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             // Once the user expands the organization field, the user cannot
                             // collapse them again.
-                            EditorAnimator.getInstance().expandOrganization(addOrganizationButton,
-                                    organizationSectionViewContainer);
+                            EditorAnimator.getInstance().expandOrganization(mAddOrganizationButton,
+                                    mOrganizationSectionViewContainer);
+                            mOrganizationViewExpanded = true;
                         }
                     });
 
