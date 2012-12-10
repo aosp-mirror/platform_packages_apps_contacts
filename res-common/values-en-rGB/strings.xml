@@ -306,34 +306,19 @@
     <skip />
     <!-- no translation found for share_error (665756457151793108) -->
     <skip />
-    <!-- no translation found for menu_search (7464453023659824700) -->
-    <skip />
-    <!-- no translation found for menu_contacts_filter (586356478145511794) -->
-    <skip />
-    <!-- no translation found for activity_title_contacts_filter (7689519428197855166) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (582616656313514803) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (28151707326753522) -->
-    <skip />
-    <!-- no translation found for contactsFavoritesLabel (1222038757062409949) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZero (6041341919823872732) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroCustom (5661794891640163617) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (4176827228429279164) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (7450331854661098879) -->
-    <skip />
-    <!-- no translation found for menu_clear_frequents (8492322695770647639) -->
-    <skip />
-    <!-- no translation found for menu_accounts (795417468541517082) -->
-    <skip />
-    <!-- no translation found for menu_import_export (6446229463809981669) -->
-    <skip />
-    <!-- no translation found for description_send_message (2630211225573754774) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (7315580540586351853) -->
-    <skip />
+    <string name="menu_search" msgid="7464453023659824700">"Search"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Contacts to display"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contacts to display"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Define customised view"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Find contacts"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favourites"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No contacts."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"No visible contacts."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"No favourites."</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"No contacts in <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Clear frequents"</string>
+    <string name="menu_accounts" msgid="795417468541517082">"Accounts"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Import/export"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"Send message to <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"Dial phone <xliff:g id="NAME">%1$s</xliff:g>"</string>
 </resources>

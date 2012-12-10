@@ -142,198 +142,101 @@
     <string name="chat" msgid="6297650784873558837">"Chatten"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"löschen"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Namensfelder minimieren oder maximieren"</string>
-    <!-- no translation found for list_filter_all_accounts (4265359896628915784) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (9060325494254507806) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (2352794292558465089) -->
-    <skip />
-    <!-- no translation found for list_filter_single (4553809449379139446) -->
-    <skip />
-    <!-- no translation found for display_ungrouped (3669471582032440138) -->
-    <skip />
-    <!-- no translation found for display_all_contacts (7251385818740728862) -->
-    <skip />
-    <!-- no translation found for menu_sync_remove (6581565236520430269) -->
-    <skip />
-    <!-- no translation found for dialog_sync_add (1795682729089027675) -->
-    <skip />
-    <!-- no translation found for display_more_groups (6304997485733158224) -->
-    <skip />
-    <!-- no translation found for display_warn_remove_ungrouped (7297678747857509619) -->
-    <skip />
-    <!-- no translation found for savingDisplayGroups (6863012138107446030) -->
-    <skip />
-    <!-- no translation found for menu_done (32470053723443112) -->
-    <skip />
-    <!-- no translation found for menu_doNotSave (6012426160993364871) -->
-    <skip />
-    <!-- no translation found for listAllContactsInAccount (755499980092808715) -->
-    <skip />
-    <!-- no translation found for listCustomView (1915154113477432033) -->
-    <skip />
-    <!-- no translation found for listSingleContact (8525131203887307088) -->
-    <skip />
-    <!-- no translation found for dialog_new_contact_account (4107520273478326011) -->
-    <skip />
-    <!-- no translation found for import_from_sim (4749894687871835873) -->
-    <skip />
-    <!-- no translation found for import_from_sdcard (6423964533801496764) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (7764915400478970495) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (4063783315931861656) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7450212880694781527) -->
-    <skip />
-    <!-- no translation found for fail_reason_unknown (8541352164960008557) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_open_file (7041148341788958325) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (1231982631020480035) -->
-    <skip />
-    <!-- no translation found for fail_reason_no_exportable_contact (3717046989062541369) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (8426833603664168716) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_long_filename (3996610741248972232) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_many_vcard (8720294715223591581) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_many_vcard (3793454448838716962) -->
-    <skip />
-    <!-- no translation found for fail_reason_io_error (7736686553669161933) -->
-    <skip />
-    <!-- no translation found for fail_reason_low_memory_during_import (3277485820827338116) -->
-    <skip />
-    <!-- no translation found for fail_reason_vcard_parse_error (514012644716565082) -->
-    <skip />
-    <!-- no translation found for fail_reason_not_supported (388664373573337601) -->
-    <skip />
-    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (3179066075701123895) -->
-    <skip />
-    <!-- no translation found for fail_reason_failed_to_read_files (9213844535907986665) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title (3581883972188707378) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (6993607802553630980) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_title (5663945499580026953) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_message (3955619563572081300) -->
-    <skip />
-    <!-- no translation found for composer_failed_to_get_database_infomation (7801276776746351694) -->
-    <skip />
-    <!-- no translation found for composer_has_no_exportable_contact (1534625366506752907) -->
-    <skip />
-    <!-- no translation found for composer_has_no_exportable_contact (7063040740576745307) -->
-    <skip />
-    <!-- no translation found for composer_not_initialized (6514403866246950877) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_title (6059039606302373945) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_message (3922498776695333328) -->
-    <skip />
-    <!-- no translation found for no_sdcard_message (5131553549320038333) -->
-    <skip />
-    <!-- no translation found for no_sdcard_message (3246805937562594626) -->
-    <skip />
-    <!-- no translation found for confirm_export_message (7234189779260525384) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (7206609625359484356) -->
-    <skip />
-    <!-- no translation found for reading_vcard_failed_title (4360989450476024034) -->
-    <skip />
-    <!-- no translation found for reading_vcard_canceled_title (1290217818311955708) -->
-    <skip />
-    <!-- no translation found for importing_vcard_finished_title (5590676758277628951) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (556913863250769870) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (7184603116300604514) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message_with_default_name (2560192057642180334) -->
-    <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (5209363425953891316) -->
-    <skip />
-    <!-- no translation found for vcard_export_will_start_message (2168853666316526278) -->
-    <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8044599716727705282) -->
-    <skip />
-    <!-- no translation found for vcard_unknown_filename (4832657686149881554) -->
-    <skip />
-    <!-- no translation found for caching_vcard_message (6635485116655518520) -->
-    <skip />
-    <!-- no translation found for percentage (6699653515463625488) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (4105296876768072508) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (2066107150525521097) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (1748300468382501403) -->
-    <skip />
-    <!-- no translation found for nfc_vcard_file_name (305679412445157370) -->
-    <skip />
-    <!-- no translation found for confirm_export_title (3240899428149018226) -->
-    <skip />
-    <!-- no translation found for select_vcard_title (1536575036597557639) -->
-    <skip />
-    <!-- no translation found for import_one_vcard_string (6199149175802496361) -->
-    <skip />
-    <!-- no translation found for import_multiple_vcard_string (8931879029943141122) -->
-    <skip />
-    <!-- no translation found for import_all_vcard_string (1037495558362397535) -->
-    <skip />
-    <!-- no translation found for searching_vcard_message (2703499592557555234) -->
-    <skip />
-    <!-- no translation found for searching_vcard_message (6108691847266062338) -->
-    <skip />
-    <!-- no translation found for caching_vcard_title (9185299351381102305) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (8442457519490864500) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (1409798274361146091) -->
-    <skip />
-    <!-- no translation found for progress_notifier_message (359931715339778107) -->
-    <skip />
-    <!-- no translation found for export_to_sdcard (3665618085563543169) -->
-    <skip />
-    <!-- no translation found for share_visible_contacts (2150662668080757107) -->
-    <skip />
-    <!-- no translation found for dialog_import_export (1125776851100740858) -->
-    <skip />
-    <!-- no translation found for dialog_import (5177004290082451296) -->
-    <skip />
-    <!-- no translation found for share_error (665756457151793108) -->
-    <skip />
-    <!-- no translation found for menu_search (7464453023659824700) -->
-    <skip />
-    <!-- no translation found for menu_contacts_filter (586356478145511794) -->
-    <skip />
-    <!-- no translation found for activity_title_contacts_filter (7689519428197855166) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (582616656313514803) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (28151707326753522) -->
-    <skip />
-    <!-- no translation found for contactsFavoritesLabel (1222038757062409949) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZero (6041341919823872732) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroCustom (5661794891640163617) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (4176827228429279164) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (7450331854661098879) -->
-    <skip />
-    <!-- no translation found for menu_clear_frequents (8492322695770647639) -->
-    <skip />
-    <!-- no translation found for menu_accounts (795417468541517082) -->
-    <skip />
-    <!-- no translation found for menu_import_export (6446229463809981669) -->
-    <skip />
-    <!-- no translation found for description_send_message (2630211225573754774) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (7315580540586351853) -->
-    <skip />
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Alle Kontakte"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Markiert"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Personalisieren"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Kontakt"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Alle weiteren Kontakte"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Alle Kontakte"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Synchronisierungsgruppe entfernen"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Synchronisierungsgruppe hinzufügen"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Weitere Gruppen…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Wenn \"<xliff:g id="GROUP">%s</xliff:g>\" aus der Synchronisierung entfernt wird, werden auch alle nicht gruppierten Kontakte aus der Synchronisierung entfernt."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Anzeigeoptionen werden gespeichert…"</string>
+    <string name="menu_done" msgid="32470053723443112">"Fertig"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Abbrechen"</string>
+    <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakte in <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Kontakte in benutzerdefinierter Ansicht"</string>
+    <string name="listSingleContact" msgid="8525131203887307088">"Einzelner Kontakt"</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Neuen Kontakt unter Konto erstellen"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Von SIM-Karte importieren"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Aus Speicher importieren"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Import von <xliff:g id="FILENAME">%s</xliff:g> abbrechen?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Export von <xliff:g id="FILENAME">%s</xliff:g> abbrechen?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard-Import/-Export nicht abgebrochen"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"Unbekannter Fehler"</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" konnte nicht geöffnet werden. Grund: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Exportprogramm konnte nicht gestartet werden. Grund: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Es ist kein exportierbarer Kontakt vorhanden."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Beim Export ist ein Fehler aufgetreten: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Erforderlicher Dateiname ist zu lang (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Zu viele vCard-Dateien im Speicher"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"Zu viele vCard-Dateien auf der SD-Karte"</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"E/A-Fehler"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Nicht genügend Speicherplatz. Die Datei ist möglicherweise zu groß."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Die vCard konnte aus einem unerwarteten Grund nicht geparst werden."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Das Format wird nicht unterstützt."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Abrufen der Metadaten aus angegebenen vCards nicht möglich"</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Eine oder mehrere Dateien können nicht importiert werden (%s)."</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Export von <xliff:g id="FILENAME">%s</xliff:g> abgeschlossen"</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Export von <xliff:g id="FILENAME">%s</xliff:g> abgebrochen"</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktdaten werden exportiert..."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Ihre Kontaktdaten werden in \"<xliff:g id="FILE_NAME">%s</xliff:g>\" exportiert..."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Datenbankinformationen konnten nicht abgerufen werden."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf Ihrem Tablet befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf Ihrem Telefon befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Das Programm zum Erstellen der vCard wurde nicht richtig gestartet."</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Export nicht möglich"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Die Kontaktdaten wurden nicht exportiert."\n"Grund: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Kein Speicher gefunden"</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Keine SD-Karte gefunden"</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Ihre Kontaktliste wird in die Datei \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" exportiert."</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> wird importiert..."</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Lesen der vCard-Daten nicht möglich"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Lesen von vCard-Daten abgebrochen"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"Import der vCard <xliff:g id="FILENAME">%s</xliff:g> abgeschlossen"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"Import von <xliff:g id="FILENAME">%s</xliff:g> abgebrochen"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"<xliff:g id="FILENAME">%s</xliff:g> wird in Kürze importiert."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Die Datei wird in Kürze importiert."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Die vCard-Importanfrage wurde abgelehnt. Bitte versuchen Sie es später erneut."</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> wird in Kürze exportiert."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Die vCard-Exportanfrage wurde abgelehnt. Bitte versuchen Sie es später erneut."</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"Kontakt"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Caching der vCard(s) in lokalen temporären Speicher wird durchgeführt. Der eigentliche Import beginnt gleich."</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g> <xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"Importieren der vCard nicht möglich"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Im Speicher wurde keine vCard-Datei gefunden."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Auf der SD-Karte wurde keine vCard-Datei gefunden."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt per NFC erhalten"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"Kontakte exportieren?"</string>
+    <string name="select_vcard_title" msgid="1536575036597557639">"vCard-Datei auswählen"</string>
+    <string name="import_one_vcard_string" msgid="6199149175802496361">"vCard-Datei importieren"</string>
+    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Mehrere vCard-Dateien importieren"</string>
+    <string name="import_all_vcard_string" msgid="1037495558362397535">"Alle vCard-Dateien importieren"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Suche nach vCard-Daten im Speicher…"</string>
+    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Suche nach vCard-Daten auf der SD-Karte…"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Caching läuft..."</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Der Speicher konnte nicht gelesen werden. (Grund: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Die SD-Karte konnte nicht gelesen werden. (Grund: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> werden importiert: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"In Speicher exportieren"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Sichtbare Kontakte teilen"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Kontakten importieren/exportieren"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Kontakte importieren"</string>
+    <string name="share_error" msgid="665756457151793108">"Dieser Kontakt kann nicht geteilt werden."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Suchen"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakte zum Anzeigen"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakte zum Anzeigen"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Ansicht festlegen"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Kontakte suchen"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriten"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Keine Kontakte"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Keine sichtbaren Kontakte"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Keine Favoriten"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Keine Kontakte in <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"\"Häufig kontaktiert\" löschen"</string>
+    <string name="menu_accounts" msgid="795417468541517082">"Konten"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Importieren/Exportieren"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"Nachricht an <xliff:g id="NAME">%1$s</xliff:g> senden"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"Telefonnummer für <xliff:g id="NAME">%1$s</xliff:g>"</string>
 </resources>
