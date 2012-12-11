@@ -60,7 +60,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         // first group
         if (mSelectedGroupUri == null && cursor != null && cursor.getCount() > 0) {
             GroupListItem firstItem = getItem(0);
-            long groupId = (firstItem == null) ? null : firstItem.getGroupId();
+            long groupId = (firstItem == null) ? 0 : firstItem.getGroupId();
             mSelectedGroupUri = getGroupUriFromId(groupId);
         }
 
