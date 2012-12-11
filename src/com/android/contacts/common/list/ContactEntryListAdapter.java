@@ -76,7 +76,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private int mDirectorySearchMode;
     private int mDirectoryResultLimit = Integer.MAX_VALUE;
 
-    private boolean mLoading = true;
     private boolean mEmptyListEnabled = true;
 
     private boolean mSelectionVisible;
@@ -465,9 +464,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             return false;
         } else if (isSearchMode()) {
             return TextUtils.isEmpty(getQueryString());
-        } else if (mLoading) {
-            // We don't want the empty state to show when loading.
-            return false;
         } else {
             return super.isEmpty();
         }
