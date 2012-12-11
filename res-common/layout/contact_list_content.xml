@@ -55,10 +55,4 @@
             android:visibility="gone" />
     </FrameLayout>
 
-    <ViewStub
-        android:id="@+id/footer_stub"
-        android:layout="@layout/footer_panel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>
