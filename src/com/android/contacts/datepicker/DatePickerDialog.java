@@ -35,7 +35,6 @@ import com.android.contacts.datepicker.DatePicker.OnDateChangedListener;
 import com.android.contacts.util.DateUtils;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -158,8 +157,7 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
         mInitialDay = dayOfMonth;
 
         mTitleDateFormat = DateFormat.getDateInstance(DateFormat.FULL);
-        mTitleNoYearDateFormat = new SimpleDateFormat(
-                DateUtils.isMonthBeforeDay(getContext()) ? "MMMM dd" : "dd MMMM");
+        mTitleNoYearDateFormat = DateUtils.getLocalizedDateFormatWithoutYear(getContext());
         updateTitle(mInitialYear, mInitialMonth, mInitialDay);
 
         setButton(BUTTON_POSITIVE, context.getText(com.android.internal.R.string.date_time_set),
