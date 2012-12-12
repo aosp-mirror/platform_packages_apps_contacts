@@ -236,7 +236,7 @@
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"No hay contactos en <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Borrar contactos frecuentes"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Cuentas"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Importar/Exportar"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Importar/exportar"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Enviar un mensaje a <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"Discar el teléfono de <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"Marcar el teléfono de <xliff:g id="NAME">%1$s</xliff:g>"</string>
 </resources>

@@ -226,7 +226,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Ingiza/Hamisha anwani"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Ingiza anwani"</string>
     <string name="share_error" msgid="665756457151793108">"Anwani hii haiwezi kushirikiwa."</string>
-    <string name="menu_search" msgid="7464453023659824700">"Utafutaji"</string>
+    <string name="menu_search" msgid="7464453023659824700">"Tafuta"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Anwani za kuonyesha"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Anwani za kuonyesha"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Bainisha mwonekano maalum"</string>
@@ -236,7 +236,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Hakuna anwani zinazoonekana"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Hakuna vipendwa."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Hakuna anwani kwenye <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"Futa idadi ya mara kwa mara"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Futa za mara kwa mara"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Akaunti"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Ingiza/hamisha"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Tuma ujumbe kwa <xliff:g id="NAME">%1$s</xliff:g>"</string>

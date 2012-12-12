@@ -174,7 +174,7 @@
     <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD-kortet inneholder for mange vCard-filer."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Inn-/ut-feil"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Ikke nok minne. Det er mulig at filen er for stor."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Kan ikke analysere vCard av uventet årsak."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Kan ikke analysere vCard pga. uventet årsak."</string>
     <string name="fail_reason_not_supported" msgid="388664373573337601">"Formatet støttes ikke."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Kunne ikke hente metainformasjon for aktuell(e) vCard-fil(er)."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"En eller flere filer kan ikke importeres (%s)."</string>
