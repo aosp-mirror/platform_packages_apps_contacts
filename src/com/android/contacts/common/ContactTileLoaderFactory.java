@@ -68,8 +68,11 @@ public final class ContactTileLoaderFactory {
         Phone.LABEL // ............................................7
     };
 
+    private static final String STARRED_ORDER = Contacts.DISPLAY_NAME+" COLLATE NOCASE ASC";
+
     public static CursorLoader createStrequentLoader(Context context) {
-        return new CursorLoader(context, Contacts.CONTENT_STREQUENT_URI, COLUMNS, null, null, null);
+        return new CursorLoader(context, Contacts.CONTENT_STREQUENT_URI, COLUMNS, null, null,
+                STARRED_ORDER);
     }
 
     public static CursorLoader createStrequentPhoneOnlyLoader(Context context) {
@@ -80,8 +83,8 @@ public final class ContactTileLoaderFactory {
     }
 
     public static CursorLoader createStarredLoader(Context context) {
-        return new CursorLoader(context, Contacts.CONTENT_URI, COLUMNS,
-                Contacts.STARRED + "=?", new String[]{"1"}, Contacts.DISPLAY_NAME + " ASC");
+        return new CursorLoader(context, Contacts.CONTENT_URI, COLUMNS, Contacts.STARRED + "=?",
+                new String[]{"1"},  STARRED_ORDER);
     }
 
     public static CursorLoader createFrequentLoader(Context context) {
