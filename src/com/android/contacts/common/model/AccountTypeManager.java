@@ -613,7 +613,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
         }
 
         if (kind == null) {
-            Log.w(TAG, "Unknown type=" + type + ", mime=" + mimeType);
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Unknown type=" + type + ", mime=" + mimeType);
+            }
         }
 
         return kind;
