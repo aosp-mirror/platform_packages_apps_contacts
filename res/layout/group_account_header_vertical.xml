@@ -17,19 +17,17 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="?attr/list_item_header_height"
+    android:layout_height="?attr/list_item_header_height"
     android:layout_marginLeft="?attr/list_item_padding_left"
     android:layout_marginRight="?attr/list_item_padding_right"
-    android:paddingBottom="4dip"
     android:background="@drawable/list_section_divider_holo_custom"
+    android:gravity="center_vertical"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/account_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:paddingLeft="?attr/list_item_header_text_indent"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/people_app_theme_color"
@@ -43,7 +41,6 @@
         android:id="@+id/account_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:paddingLeft="?attr/list_item_header_text_indent"
         android:textColor="@color/contact_count_text_color"
         android:textSize="12sp"
