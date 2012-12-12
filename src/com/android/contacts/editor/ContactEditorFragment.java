@@ -330,13 +330,17 @@ public class ContactEditorFragment extends Fragment implements
     @Override
     public void onStop() {
         super.onStop();
-        if (mAggregationSuggestionEngine != null) {
-            mAggregationSuggestionEngine.quit();
-        }
-
         // If anything was left unsaved, save it now but keep the editor open.
         if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
             save(SaveMode.RELOAD);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mAggregationSuggestionEngine != null) {
+            mAggregationSuggestionEngine.quit();
         }
     }
 
