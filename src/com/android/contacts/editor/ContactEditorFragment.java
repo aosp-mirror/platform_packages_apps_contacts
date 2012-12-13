@@ -949,6 +949,7 @@ public class ContactEditorFragment extends Fragment implements
         final MenuItem splitMenu = menu.findItem(R.id.menu_split);
         final MenuItem joinMenu = menu.findItem(R.id.menu_join);
         final MenuItem helpMenu = menu.findItem(R.id.menu_help);
+        final MenuItem discardMenu = menu.findItem(R.id.menu_discard);
 
         // Set visibility of menus
         doneMenu.setVisible(false);
@@ -958,6 +959,10 @@ public class ContactEditorFragment extends Fragment implements
 
         // Cannot join a user profile
         joinMenu.setVisible(!isEditingUserProfile());
+
+        // Discard menu is only available if at least one raw contact is editable
+        discardMenu.setVisible(mState != null &&
+                mState.getFirstWritableRawContact(mContext) != null);
 
         // help menu depending on whether this is inserting or editing
         if (Intent.ACTION_INSERT.equals(mAction)) {
