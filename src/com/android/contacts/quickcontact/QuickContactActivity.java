@@ -590,12 +590,23 @@ public class QuickContactActivity extends Activity {
     }
 
     private class PageChangeListener extends SimpleOnPageChangeListener {
+        private int mScrollingState = ViewPager.SCROLL_STATE_IDLE;
+
         @Override
         public void onPageSelected(int position) {
             final CheckableImageView actionView = getActionViewAt(position);
             mTrackScroller.requestChildRectangleOnScreen(actionView,
                     new Rect(0, 0, actionView.getWidth(), actionView.getHeight()), false);
-            renderSelectedRectangle(position, 0);
+            // Don't render rectangle if we are currently scrolling to prevent it from flickering
+            if (mScrollingState == ViewPager.SCROLL_STATE_IDLE) {
+                renderSelectedRectangle(position, 0);
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            super.onPageScrollStateChanged(state);
+            mScrollingState = state;
         }
 
         @Override
