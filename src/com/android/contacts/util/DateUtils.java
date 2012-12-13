@@ -162,4 +162,30 @@ public class DateUtils {
         }
         return false;
     }
+
+    /**
+     * Returns a SimpleDateFormat object without the year fields by using a regular expression
+     * to eliminate the year in the string pattern. In the rare occurence that the resulting
+     * pattern cannot be reconverted into a SimpleDateFormat, it uses the provided context to
+     * determine whether the month field should be displayed before the day field, and returns
+     * either "MMMM dd" or "dd MMMM" converted into a SimpleDateFormat.
+     */
+    public static SimpleDateFormat getLocalizedDateFormatWithoutYear(Context context) {
+        final String pattern = ((SimpleDateFormat) SimpleDateFormat.getDateInstance(
+                java.text.DateFormat.LONG)).toPattern();
+        // Determine the correct regex pattern for year.
+        // Special case handling for Spanish locale by checking for "de"
+        final String yearPattern = pattern.contains(
+                "de") ? "[^Mm]*[Yy]+[^Mm]*" : "[^DdMm]*[Yy]+[^DdMm]*";
+        try {
+         // Eliminate the substring in pattern that matches the format for that of year
+            return new SimpleDateFormat(pattern.replaceAll(yearPattern, ""));
+        } catch (IllegalArgumentException e) {
+            // In case the new pattern isn't handled by SimpleDateFormat, fall back to the original
+            // method of constructing the SimpleDateFormat, which may not be appropriate for all
+            // locales (i.e. Germany)
+            return new SimpleDateFormat(
+                    DateUtils.isMonthBeforeDay(context) ? "MMMM dd" : "dd MMMM");
+        }
+    }
 }
