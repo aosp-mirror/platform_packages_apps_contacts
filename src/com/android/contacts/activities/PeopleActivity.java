@@ -1499,7 +1499,7 @@ public class PeopleActivity extends ContactsActivity
                     intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,
                             DisplayOptionsPreferenceFragment.class.getName());
                     intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,
-                            R.string.preference_displayOptions);
+                            R.string.activity_title_settings);
                 }
                 startActivity(intent);
                 return true;
