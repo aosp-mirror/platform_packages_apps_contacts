@@ -570,6 +570,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
      */
     public boolean save() {
         if (!hasValidGroupName() || mStatus != Status.EDITING) {
+            mStatus = Status.CLOSING;
+            if (mListener != null) {
+                mListener.onReverted();
+            }
             return false;
         }
 
