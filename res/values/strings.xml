@@ -383,8 +383,8 @@
     <!-- An allowable value for the "sort list by" contact display option  -->
     <string name="display_options_sort_by_family_name">Family name</string>
 
-    <!-- Label of the "view names as" display option -->
-    <string name="display_options_view_names_as">View contact names as</string>
+    <!-- Label of the "view names as" display option [CHAR LIMIT=64]-->
+    <string name="display_options_view_names_as">View contact names</string>
 
     <!-- An allowable value for the "view names as" contact display option  -->
     <string name="display_options_view_given_name_first">Given name first</string>
