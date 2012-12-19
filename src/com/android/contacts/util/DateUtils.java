@@ -52,20 +52,12 @@ public class DateUtils {
         new SimpleDateFormat("yyyyMMdd'T'HHmm'Z'", Locale.US),
     };
 
-    private static final java.text.DateFormat FORMAT_WITHOUT_YEAR_MONTH_FIRST =
-            new SimpleDateFormat("MMMM dd");
-
-    private static final java.text.DateFormat FORMAT_WITHOUT_YEAR_DAY_FIRST =
-            new SimpleDateFormat("dd MMMM");
-
     static {
         for (SimpleDateFormat format : DATE_FORMATS) {
             format.setLenient(true);
             format.setTimeZone(UTC_TIMEZONE);
         }
         CommonDateUtils.NO_YEAR_DATE_FORMAT.setTimeZone(UTC_TIMEZONE);
-        FORMAT_WITHOUT_YEAR_MONTH_FIRST.setTimeZone(UTC_TIMEZONE);
-        FORMAT_WITHOUT_YEAR_DAY_FIRST.setTimeZone(UTC_TIMEZONE);
     }
 
     /**
@@ -96,11 +88,30 @@ public class DateUtils {
     }
 
     /**
-     * Parses the supplied string to see if it looks like a date. If so,
-     * returns the same date in a cleaned-up format for the user.  Otherwise, returns
-     * the supplied string unchanged.
+     * Same as {@link #formatDate(Context context, String string, boolean longForm)}, with
+     * longForm set to {@code true} by default.
+     *
+     * @param context Valid context
+     * @param string String representation of a date to parse
+     * @return Returns the same date in a cleaned up format. If the supplied string does not look
+     * like a date, return it unchanged.
      */
+
     public static String formatDate(Context context, String string) {
+        return formatDate(context, string, true);
+    }
+
+    /**
+     * Parses the supplied string to see if it looks like a date.
+     *
+     * @param context Valid context
+     * @param string String representation of a date to parse
+     * @param longForm If true, return the date formatted into its long string representation.
+     * If false, return the date formatted using its short form representation (i.e. 12/11/2012)
+     * @return Returns the same date in a cleaned up format. If the supplied string does not look
+     * like a date, return it unchanged.
+     */
+    public static String formatDate(Context context, String string, boolean longForm) {
         if (string == null) {
             return null;
         }
@@ -127,10 +138,9 @@ public class DateUtils {
         }
 
         if (noYearParsed) {
-            java.text.DateFormat outFormat = isMonthBeforeDay(context)
-                    ? FORMAT_WITHOUT_YEAR_MONTH_FIRST
-                    : FORMAT_WITHOUT_YEAR_DAY_FIRST;
+            final java.text.DateFormat outFormat = getLocalizedDateFormatWithoutYear(context);
             synchronized (outFormat) {
+                outFormat.setTimeZone(UTC_TIMEZONE);
                 return outFormat.format(date);
             }
         }
@@ -141,9 +151,11 @@ public class DateUtils {
                 parsePosition.setIndex(0);
                 date = f.parse(string, parsePosition);
                 if (parsePosition.getIndex() == string.length()) {
-                    java.text.DateFormat outFormat = DateFormat.getDateFormat(context);
-                    outFormat.setTimeZone(UTC_TIMEZONE);
-                    return outFormat.format(date);
+                    final java.text.DateFormat outFormat =
+                            longForm ? DateFormat.getLongDateFormat(context) :
+                            DateFormat.getDateFormat(context);
+                        outFormat.setTimeZone(UTC_TIMEZONE);
+                        return outFormat.format(date);
                 }
             }
         }
@@ -170,7 +182,7 @@ public class DateUtils {
      * determine whether the month field should be displayed before the day field, and returns
      * either "MMMM dd" or "dd MMMM" converted into a SimpleDateFormat.
      */
-    public static SimpleDateFormat getLocalizedDateFormatWithoutYear(Context context) {
+    public static java.text.DateFormat getLocalizedDateFormatWithoutYear(Context context) {
         final String pattern = ((SimpleDateFormat) SimpleDateFormat.getDateInstance(
                 java.text.DateFormat.LONG)).toPattern();
         // Determine the correct regex pattern for year.
@@ -181,9 +193,6 @@ public class DateUtils {
          // Eliminate the substring in pattern that matches the format for that of year
             return new SimpleDateFormat(pattern.replaceAll(yearPattern, ""));
         } catch (IllegalArgumentException e) {
-            // In case the new pattern isn't handled by SimpleDateFormat, fall back to the original
-            // method of constructing the SimpleDateFormat, which may not be appropriate for all
-            // locales (i.e. Germany)
             return new SimpleDateFormat(
                     DateUtils.isMonthBeforeDay(context) ? "MMMM dd" : "dd MMMM");
         }

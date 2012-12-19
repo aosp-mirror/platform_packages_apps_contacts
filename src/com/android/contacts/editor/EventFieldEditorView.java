@@ -121,7 +121,8 @@ public class EventFieldEditorView extends LabeledEditorView {
     private void rebuildDateView() {
         final EditField editField = getKind().fieldList.get(0);
         final String column = editField.column;
-        String data = DateUtils.formatDate(getContext(), getEntry().getAsString(column));
+        String data = DateUtils.formatDate(getContext(), getEntry().getAsString(column),
+                false /*Use the short DateFormat to ensure that it fits inside the EditText*/);
         if (TextUtils.isEmpty(data)) {
             mDateView.setText(mNoDateString);
             mDateView.setTextColor(mSecondaryTextColor);
