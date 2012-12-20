@@ -26,6 +26,7 @@ import android.widget.ListPopupWindow;
 
 import com.android.contacts.R;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.UiClosables;
 
 import java.util.ArrayList;
 
@@ -122,7 +123,7 @@ public class PhotoActionPopup {
                         break;
                 }
 
-                listPopupWindow.dismiss();
+                UiClosables.closeQuietly(listPopupWindow);
             }
         };
 

@@ -43,6 +43,7 @@ import com.android.contacts.interactions.GroupCreationDialogFragment.OnGroupCrea
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.util.UiClosables;
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;
@@ -280,8 +281,7 @@ public class GroupMembershipView extends LinearLayout
 
     @Override
     public void onClick(View v) {
-        if (mPopup != null && mPopup.isShowing()) {
-            mPopup.dismiss();
+        if (UiClosables.closeQuietly(mPopup)) {
             return;
         }
 
@@ -329,10 +329,8 @@ public class GroupMembershipView extends LinearLayout
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (mPopup != null) {
-            mPopup.dismiss();
-            mPopup = null;
-        }
+        UiClosables.closeQuietly(mPopup);
+        mPopup = null;
     }
 
     @Override
@@ -409,10 +407,8 @@ public class GroupMembershipView extends LinearLayout
     }
 
     private void createNewGroup() {
-        if (mPopup != null) {
-            mPopup.dismiss();
-            mPopup = null;
-        }
+        UiClosables.closeQuietly(mPopup);
+        mPopup = null;
 
         GroupCreationDialogFragment.show(
                 ((Activity) getContext()).getFragmentManager(),

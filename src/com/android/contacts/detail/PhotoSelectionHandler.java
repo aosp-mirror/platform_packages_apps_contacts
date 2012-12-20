@@ -46,6 +46,7 @@ import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contacts.util.UiClosables;
 
 import java.io.File;
 
@@ -79,9 +80,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     }
 
     public void destroy() {
-        if (mPopup != null) {
-            mPopup.dismiss();
-        }
+        UiClosables.closeQuietly(mPopup);
     }
 
     public abstract PhotoActionListener getListener();

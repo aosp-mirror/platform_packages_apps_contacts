@@ -112,6 +112,7 @@ import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
+import com.android.contacts.util.UiClosables;
 import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterables;
@@ -1028,9 +1029,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     private void dismissPopupIfShown() {
-        if (mPopup != null && mPopup.isShowing()) {
-            mPopup.dismiss();
-        }
+        UiClosables.closeQuietly(mPopup);
         mPopup = null;
     }
 

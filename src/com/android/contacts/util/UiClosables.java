@@ -27,10 +27,13 @@ public class UiClosables {
      * Close a {@link ListPopupWindow}.
      *
      * @param popup The popup window to close.
+     * @return {@code true} if the popup was showing. {@code false} otherwise.
      */
-    public static void closeQuietly(ListPopupWindow popup) {
+    public static boolean closeQuietly(ListPopupWindow popup) {
         if (popup != null && popup.isShowing()) {
             popup.dismiss();
+            return true;
         }
+        return false;
     }
 }
