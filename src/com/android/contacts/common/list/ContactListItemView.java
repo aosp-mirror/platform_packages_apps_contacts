@@ -48,6 +48,12 @@ import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.common.R;
 import com.android.contacts.common.format.PrefixHighlighter;
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A custom view for an item in the contact list.
@@ -1140,56 +1146,90 @@ public class ContactListItemView extends ViewGroup
             setSnippet(null);
             return;
         }
-        String snippet;
-        String columnContent = cursor.getString(summarySnippetColumnIndex);
 
+        String snippet = cursor.getString(summarySnippetColumnIndex);
         // Do client side snippeting if provider didn't do it
-        Bundle extras = cursor.getExtras();
+        final Bundle extras = cursor.getExtras();
         if (extras.getBoolean(ContactsContract.DEFERRED_SNIPPETING)) {
-            int displayNameIndex = cursor.getColumnIndex(Contacts.DISPLAY_NAME);
 
-            snippet = ContactsContract.snippetize(columnContent,
-                    displayNameIndex < 0 ? null : cursor.getString(displayNameIndex),
-                            extras.getString(ContactsContract.DEFERRED_SNIPPETING_QUERY),
-                            DefaultContactListAdapter.SNIPPET_START_MATCH,
-                            DefaultContactListAdapter.SNIPPET_END_MATCH,
-                            DefaultContactListAdapter.SNIPPET_ELLIPSIS,
-                            DefaultContactListAdapter.SNIPPET_MAX_TOKENS);
-        } else {
-            snippet = columnContent;
-        }
-
-        if (snippet != null) {
-            int from = 0;
-            int to = snippet.length();
-            int start = snippet.indexOf(DefaultContactListAdapter.SNIPPET_START_MATCH);
-            if (start == -1) {
+            final String query = extras.getString(ContactsContract.DEFERRED_SNIPPETING_QUERY);
+            if (TextUtils.isEmpty(snippet) || TextUtils.isEmpty(query)) {
                 snippet = null;
             } else {
-                int firstNl = snippet.lastIndexOf('\n', start);
-                if (firstNl != -1) {
-                    from = firstNl + 1;
-                }
-                int end = snippet.lastIndexOf(DefaultContactListAdapter.SNIPPET_END_MATCH);
-                if (end != -1) {
-                    int lastNl = snippet.indexOf('\n', end);
-                    if (lastNl != -1) {
-                        to = lastNl;
-                    }
-                }
+                // If the name matches, don't show snippets.
+                int displayNameIndex = cursor.getColumnIndex(Contacts.DISPLAY_NAME);
+                if (displayNameIndex >= 0) {
 
-                StringBuilder sb = new StringBuilder();
-                for (int i = from; i < to; i++) {
-                    char c = snippet.charAt(i);
-                    if (c != DefaultContactListAdapter.SNIPPET_START_MATCH &&
-                            c != DefaultContactListAdapter.SNIPPET_END_MATCH) {
-                        sb.append(c);
+                    final String displayName = cursor.getString(displayNameIndex);
+                    if (TextUtils.isEmpty(displayName)) {
+                        snippet = null;
+                    } else {
+                        final String lowerQuery = query.toLowerCase();
+                        final String lowerDisplayName = displayName.toLowerCase();
+                        final List<String> nameTokens = split(lowerDisplayName);
+                        for (String nameToken : nameTokens) {
+                            if (nameToken.startsWith(lowerQuery)) {
+                                snippet = null;
+                            }
+                        }
                     }
                 }
-                snippet = sb.toString();
+            }
+        } else {
+
+            if (snippet != null) {
+                int from = 0;
+                int to = snippet.length();
+                int start = snippet.indexOf(DefaultContactListAdapter.SNIPPET_START_MATCH);
+                if (start == -1) {
+                    snippet = null;
+                } else {
+                    int firstNl = snippet.lastIndexOf('\n', start);
+                    if (firstNl != -1) {
+                        from = firstNl + 1;
+                    }
+                    int end = snippet.lastIndexOf(DefaultContactListAdapter.SNIPPET_END_MATCH);
+                    if (end != -1) {
+                        int lastNl = snippet.indexOf('\n', end);
+                        if (lastNl != -1) {
+                            to = lastNl;
+                        }
+                    }
+
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = from; i < to; i++) {
+                        char c = snippet.charAt(i);
+                        if (c != DefaultContactListAdapter.SNIPPET_START_MATCH &&
+                                c != DefaultContactListAdapter.SNIPPET_END_MATCH) {
+                            sb.append(c);
+                        }
+                    }
+                    snippet = sb.toString();
+                }
             }
         }
         setSnippet(snippet);
+    }
+
+    private static final Pattern SPLIT_PATTERN = Pattern.compile(
+            "([\\w-\\.]+)@((?:[\\w]+\\.)+)([a-zA-Z]{2,4})|[\\w]+");
+
+    /**
+     * Helper method for splitting a string into tokens.  The lists passed in are populated with
+     * the
+     * tokens and offsets into the content of each token.  The tokenization function parses e-mail
+     * addresses as a single token; otherwise it splits on any non-alphanumeric character.
+     *
+     * @param content Content to split.
+     * @return List of token strings.
+     */
+    private static List<String> split(String content) {
+        final Matcher matcher = SPLIT_PATTERN.matcher(content);
+        final ArrayList<String> tokens = Lists.newArrayList();
+        while (matcher.find()) {
+            tokens.add(matcher.group());
+        }
+        return tokens;
     }
 
     /**
