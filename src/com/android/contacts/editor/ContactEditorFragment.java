@@ -85,6 +85,7 @@ import com.android.contacts.common.util.AccountsListAdapter;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.HelpUtils;
+import com.android.contacts.util.UiClosables;
 import com.google.common.collect.ImmutableList;
 
 import java.io.File;
@@ -290,7 +291,7 @@ public class ContactEditorFragment extends Fragment implements
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             final AggregationSuggestionView suggestionView = (AggregationSuggestionView) view;
             suggestionView.handleItemClickEvent();
-            mAggregationSuggestionPopup.dismiss();
+            UiClosables.closeQuietly(mAggregationSuggestionPopup);
             mAggregationSuggestionPopup = null;
         }
     };
@@ -330,6 +331,9 @@ public class ContactEditorFragment extends Fragment implements
     @Override
     public void onStop() {
         super.onStop();
+
+        UiClosables.closeQuietly(mAggregationSuggestionPopup);
+
         // If anything was left unsaved, save it now but keep the editor open.
         if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
             save(SaveMode.RELOAD);
@@ -915,7 +919,7 @@ public class ContactEditorFragment extends Fragment implements
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
-                        popup.dismiss();
+                        UiClosables.closeQuietly(popup);
                         AccountWithDataSet newAccount = adapter.getItem(position);
                         if (!newAccount.equals(currentAccount)) {
                             rebindEditorsForNewContact(currentState, currentAccount, newAccount);
@@ -1435,9 +1439,7 @@ public class ContactEditorFragment extends Fragment implements
             return;
         }
 
-        if (mAggregationSuggestionPopup != null && mAggregationSuggestionPopup.isShowing()) {
-            mAggregationSuggestionPopup.dismiss();
-        }
+        UiClosables.closeQuietly(mAggregationSuggestionPopup);
 
         if (mAggregationSuggestionEngine.getSuggestedContactCount() == 0) {
             return;
