@@ -71,7 +71,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private ContactPhotoManager mPhotoLoader;
 
     private String mQueryString;
-    private char[] mUpperCaseQueryString;
+    private String mUpperCaseQueryString;
     private boolean mSearchMode;
     private int mDirectorySearchMode;
     private int mDirectoryResultLimit = Integer.MAX_VALUE;
@@ -225,11 +225,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         if (TextUtils.isEmpty(queryString)) {
             mUpperCaseQueryString = null;
         } else {
-            mUpperCaseQueryString = queryString.toUpperCase().toCharArray();
+            mUpperCaseQueryString = queryString.toUpperCase();
         }
     }
 
-    public char[] getUpperCaseQueryString() {
+    public String getUpperCaseQueryString() {
         return mUpperCaseQueryString;
     }
 

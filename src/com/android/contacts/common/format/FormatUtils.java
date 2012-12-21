@@ -138,13 +138,13 @@ public class FormatUtils {
      * @param text the text in which to search for the prefix
      * @param prefix the text to find, in upper case letters
      */
-    public static int indexOfWordPrefix(CharSequence text, char[] prefix) {
+    public static int indexOfWordPrefix(CharSequence text, String prefix) {
         if (prefix == null || text == null) {
             return -1;
         }
 
         int textLength = text.length();
-        int prefixLength = prefix.length;
+        int prefixLength = prefix.length();
 
         if (prefixLength == 0 || textLength < prefixLength) {
             return -1;
@@ -164,7 +164,7 @@ public class FormatUtils {
             // Compare the prefixes
             int j;
             for (j = 0; j < prefixLength; j++) {
-                if (Character.toUpperCase(text.charAt(i + j)) != prefix[j]) {
+                if (Character.toUpperCase(text.charAt(i + j)) != prefix.charAt(j)) {
                     break;
                 }
             }

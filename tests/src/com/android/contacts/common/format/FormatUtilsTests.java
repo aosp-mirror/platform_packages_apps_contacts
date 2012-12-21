@@ -76,7 +76,7 @@ public class FormatUtilsTests extends AndroidTestCase {
     }
 
     public void testIndexOfWordPrefix_NullText() {
-        assertEquals(-1, FormatUtils.indexOfWordPrefix(null, "TE".toCharArray()));
+        assertEquals(-1, FormatUtils.indexOfWordPrefix(null, "TE"));
     }
 
     public void testIndexOfWordPrefix_MatchingPrefix() {
@@ -109,6 +109,6 @@ public class FormatUtilsTests extends AndroidTestCase {
      * @param expectedIndex the expected value to be returned by the function
      */
     private void checkIndexOfWordPrefix(String text, String wordPrefix, int expectedIndex) {
-        assertEquals(expectedIndex, FormatUtils.indexOfWordPrefix(text, wordPrefix.toCharArray()));
+        assertEquals(expectedIndex, FormatUtils.indexOfWordPrefix(text, wordPrefix));
     }
 }

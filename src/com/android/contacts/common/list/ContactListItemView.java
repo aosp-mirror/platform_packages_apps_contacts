@@ -139,7 +139,7 @@ public class ContactListItemView extends ViewGroup
 
     private ColorStateList mSecondaryTextColor;
 
-    private char[] mHighlightedPrefix;
+    private String mHighlightedPrefix;
 
     private int mDefaultPhotoViewSize = 0;
     /**
@@ -813,7 +813,7 @@ public class ContactListItemView extends ViewGroup
      * <p>
      * NOTE: must be all upper-case
      */
-    public void setHighlightedPrefix(char[] upperCasePrefix) {
+    public void setHighlightedPrefix(String upperCasePrefix) {
         mHighlightedPrefix = upperCasePrefix;
     }
 
@@ -1176,7 +1176,6 @@ public class ContactListItemView extends ViewGroup
                 }
             }
         } else {
-
             if (snippet != null) {
                 int from = 0;
                 int to = snippet.length();

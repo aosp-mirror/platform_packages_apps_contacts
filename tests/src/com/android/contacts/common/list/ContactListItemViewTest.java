@@ -76,7 +76,7 @@ public class ContactListItemViewTest extends AndroidTestCase {
         Cursor cursor = createCursor("John Doe", "Doe John");
         ContactListItemView view = createView();
 
-        view.setHighlightedPrefix("DOE".toCharArray());
+        view.setHighlightedPrefix("DOE");
         view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
         CharSequence seq = view.getNameTextView().getText();
@@ -88,7 +88,7 @@ public class ContactListItemViewTest extends AndroidTestCase {
         Cursor cursor = createCursor("John Doe", "Doe John");
         ContactListItemView view = createView();
 
-        view.setHighlightedPrefix("DOE".toCharArray());
+        view.setHighlightedPrefix("DOE");
         view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE);
 
         CharSequence seq = view.getNameTextView().getText();
@@ -98,7 +98,7 @@ public class ContactListItemViewTest extends AndroidTestCase {
 
     public void testSetSnippet_Prefix() {
         ContactListItemView view = createView();
-        view.setHighlightedPrefix("TEST".toCharArray());
+        view.setHighlightedPrefix("TEST");
         view.setSnippet("This is a test");
 
         CharSequence seq = view.getSnippetView().getText();

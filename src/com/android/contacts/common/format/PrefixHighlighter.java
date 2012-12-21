@@ -39,7 +39,7 @@ public class PrefixHighlighter {
      * @param text the string to use as the text
      * @param prefix the prefix to look for
      */
-    public void setText(TextView view, String text, char[] prefix) {
+    public void setText(TextView view, String text, String prefix) {
         view.setText(apply(text, prefix));
     }
 
@@ -49,15 +49,27 @@ public class PrefixHighlighter {
      * @param text the text to which to apply the highlight
      * @param prefix the prefix to look for
      */
-    public CharSequence apply(CharSequence text, char[] prefix) {
-        int index = FormatUtils.indexOfWordPrefix(text, prefix);
+    public CharSequence apply(CharSequence text, String prefix) {
+        if (prefix == null) {
+            return text;
+        }
+
+        // Skip non-word characters at the beginning of prefix.
+        int prefixStart = 0;
+        while (prefixStart < prefix.length() &&
+                !Character.isLetterOrDigit(prefix.charAt(prefixStart))) {
+            prefixStart++;
+        }
+        final String trimmedPrefix = prefix.substring(prefixStart);
+
+        int index = FormatUtils.indexOfWordPrefix(text, trimmedPrefix);
         if (index != -1) {
             if (mPrefixColorSpan == null) {
                 mPrefixColorSpan = new ForegroundColorSpan(mPrefixHighlightColor);
             }
 
             SpannableString result = new SpannableString(text);
-            result.setSpan(mPrefixColorSpan, index, index + prefix.length, 0 /* flags */);
+            result.setSpan(mPrefixColorSpan, index, index + trimmedPrefix.length(), 0 /* flags */);
             return result;
         } else {
             return text;
