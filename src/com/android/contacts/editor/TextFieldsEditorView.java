@@ -58,6 +58,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
     private int mMinFieldHeight;
+    private int mPreviousViewHeight;
 
     public TextFieldsEditorView(Context context) {
         super(context);
@@ -87,6 +88,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
         mExpansionViewContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                mPreviousViewHeight = mFields.getHeight();
+
                 // Save focus
                 final View focusedChild = getFocusedChild();
                 final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
@@ -103,6 +106,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
                     newFocusView = TextFieldsEditorView.this;
                 }
                 newFocusView.requestFocus();
+
+                EditorAnimator.getInstance().slideAndFadeIn(mFields, mPreviousViewHeight);
             }
         });
     }
