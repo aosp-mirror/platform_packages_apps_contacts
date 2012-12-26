@@ -37,49 +37,48 @@ public class PrefixHighligherTest extends TestCase {
     }
 
     public void testApply_EmptyPrefix() {
-        CharSequence seq = mPrefixHighlighter.apply("", new char[0]);
+        CharSequence seq = mPrefixHighlighter.apply("", "");
         SpannedTestUtils.assertNotSpanned(seq, "");
 
-        seq = mPrefixHighlighter.apply("test", new char[0]);
+        seq = mPrefixHighlighter.apply("test", "");
         SpannedTestUtils.assertNotSpanned(seq, "test");
     }
 
     public void testSetText_MatchingPrefix() {
-        final char[] charArray = "TE".toCharArray();
+        final String prefix = "TE";
 
-        CharSequence seq = mPrefixHighlighter.apply("test", charArray);
+        CharSequence seq = mPrefixHighlighter.apply("test", prefix);
         SpannedTestUtils.assertPrefixSpan(seq, 0, 1);
 
-        seq = mPrefixHighlighter.apply("Test", charArray);
+        seq = mPrefixHighlighter.apply("Test", prefix);
         SpannedTestUtils.assertPrefixSpan(seq, 0, 1);
 
-        seq = mPrefixHighlighter.apply("TEst", charArray);
+        seq = mPrefixHighlighter.apply("TEst", prefix);
         SpannedTestUtils.assertPrefixSpan(seq, 0, 1);
 
-        seq = mPrefixHighlighter.apply("a test", charArray);
+        seq = mPrefixHighlighter.apply("a test", prefix);
         SpannedTestUtils.assertPrefixSpan(seq, 2, 3);
     }
 
     public void testSetText_NotMatchingPrefix() {
-        final CharSequence seq = mPrefixHighlighter.apply("test", "TA".toCharArray());
+        final CharSequence seq = mPrefixHighlighter.apply("test", "TA");
         SpannedTestUtils.assertNotSpanned(seq, "test");
     }
 
     public void testSetText_FirstMatch() {
-        final CharSequence seq = mPrefixHighlighter.apply("a test's tests are not tests",
-                "TE".toCharArray());
+        final CharSequence seq = mPrefixHighlighter.apply("a test's tests are not tests", "TE");
         SpannedTestUtils.assertPrefixSpan(seq, 2, 3);
     }
 
     public void testSetText_NoMatchingMiddleOfWord() {
-        final char[] charArray = "TE".toCharArray();
-        CharSequence seq = mPrefixHighlighter.apply("atest", charArray);
+        final String prefix = "TE";
+        CharSequence seq = mPrefixHighlighter.apply("atest", prefix);
         SpannedTestUtils.assertNotSpanned(seq, "atest");
 
-        seq = mPrefixHighlighter.apply("atest otest", charArray);
+        seq = mPrefixHighlighter.apply("atest otest", prefix);
         SpannedTestUtils.assertNotSpanned(seq, "atest otest");
 
-        seq = mPrefixHighlighter.apply("atest test", charArray);
+        seq = mPrefixHighlighter.apply("atest test", prefix);
         SpannedTestUtils.assertPrefixSpan(seq, 6, 7);
     }
 }
