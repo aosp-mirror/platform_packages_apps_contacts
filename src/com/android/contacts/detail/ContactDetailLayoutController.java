@@ -290,7 +290,7 @@ public class ContactDetailLayoutController {
         if (PhoneCapabilityTester.isUsingTwoPanes(mActivity)) {
             // Tablet: If we already showed data before, we want to cross-fade from screen to screen
             if (contactWasLoaded && mTransitionAnimationView != null && isDifferentContact) {
-                mTransitionAnimationView.startMaskTransition(mContactData == null);
+                mTransitionAnimationView.startMaskTransition(mContactData == null, -1);
             }
         } else {
             // Small screen: We are on our own screen. Fade the data in, but only the first time
@@ -365,7 +365,7 @@ public class ContactDetailLayoutController {
                     // This is screen is very hard to animate properly, because there is such a hard
                     // cut from the regular version. A proper animation would have to reflow text
                     // and move things around. Doing a simple cross-fade instead.
-                    mTransitionAnimationView.startMaskTransition(false);
+                    mTransitionAnimationView.startMaskTransition(false, -1);
                 }
 
                 // Set the contact data (hide the static photo because the photo will already be in

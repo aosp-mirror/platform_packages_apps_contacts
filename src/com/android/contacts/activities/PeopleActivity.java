@@ -109,6 +109,8 @@ public class PeopleActivity extends ContactsActivity
     /** Shows a toogle button for hiding/showing updates. Don't submit with true */
     private static final boolean DEBUG_TRANSITIONS = false;
 
+    private static final int TAB_FADE_IN_DURATION = 500;
+
     private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
 
     // These values needs to start at 2. See {@link ContactEntryListFragment}.
@@ -156,6 +158,7 @@ public class PeopleActivity extends ContactsActivity
 
     private View mFavoritesView;
     private View mBrowserView;
+    private TransitionAnimationView mPeopleActivityView;
     private TransitionAnimationView mContactDetailsView;
     private TransitionAnimationView mGroupDetailsView;
 
@@ -390,6 +393,7 @@ public class PeopleActivity extends ContactsActivity
             // Prepare 2-pane only fragments/views...
 
             // Container views for fragments
+            mPeopleActivityView = getView(R.id.people_view);
             mFavoritesView = getView(R.id.favorites_view);
             mContactDetailsView = getView(R.id.contact_details_view);
             mGroupDetailsView = getView(R.id.group_details_view);
@@ -609,7 +613,7 @@ public class PeopleActivity extends ContactsActivity
         // If we are switching from one group to another, do a cross-fade
         if (mGroupDetailFragment != null && mGroupDetailFragment.getGroupUri() != null &&
                 !UriUtils.areEqual(mGroupDetailFragment.getGroupUri(), groupUri)) {
-            mGroupDetailsView.startMaskTransition(false);
+            mGroupDetailsView.startMaskTransition(false, -1);
         }
         mGroupDetailFragment.loadGroup(groupUri);
         invalidateOptionsMenuIfNeeded();
@@ -688,6 +692,7 @@ public class PeopleActivity extends ContactsActivity
         if (mActionBarAdapter.isSearchMode()) {
             tab = TabState.ALL;
         }
+
         switch (tab) {
             case TabState.FAVORITES:
                 mFavoritesView.setVisibility(View.VISIBLE);
@@ -709,6 +714,7 @@ public class PeopleActivity extends ContactsActivity
                 mGroupDetailsView.setVisibility(View.GONE);
                 break;
         }
+        mPeopleActivityView.startMaskTransition(false, TAB_FADE_IN_DURATION);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
