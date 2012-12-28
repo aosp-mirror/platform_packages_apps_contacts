@@ -35,6 +35,7 @@ import android.widget.TextView;
 
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
+import com.android.contacts.common.util.SearchUtil;
 
 import java.util.HashSet;
 
@@ -225,7 +226,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         if (TextUtils.isEmpty(queryString)) {
             mUpperCaseQueryString = null;
         } else {
-            mUpperCaseQueryString = queryString.toUpperCase();
+            mUpperCaseQueryString = SearchUtil
+                    .cleanStartAndEndOfSearchQuery(queryString.toUpperCase()) ;
         }
     }
 
