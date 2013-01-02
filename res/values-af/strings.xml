@@ -138,7 +138,8 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Rangskik lys volgens"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Voornaam"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Van"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"Sien kontakname as"</string>
+    <!-- no translation found for display_options_view_names_as (4386932036180428374) -->
+    <skip />
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Voornaam eerste"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Van eerste"</string>
     <string name="take_photo" msgid="7496128293167402354">"Neem foto"</string>

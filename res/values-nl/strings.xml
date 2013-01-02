@@ -138,7 +138,8 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Lijst sorteren op"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Roepnaam"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Achternaam"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"Contactnamen weergeven als"</string>
+    <!-- no translation found for display_options_view_names_as (4386932036180428374) -->
+    <skip />
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Roepnaam eerst"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Achternaam eerst"</string>
     <string name="take_photo" msgid="7496128293167402354">"Foto maken"</string>
