@@ -224,34 +224,19 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Importació/exportació de contactes"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importa contactes"</string>
     <string name="share_error" msgid="665756457151793108">"No es pot compartir aquest contacte."</string>
-    <!-- no translation found for menu_search (7464453023659824700) -->
-    <skip />
-    <!-- no translation found for menu_contacts_filter (586356478145511794) -->
-    <skip />
-    <!-- no translation found for activity_title_contacts_filter (7689519428197855166) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (582616656313514803) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (28151707326753522) -->
-    <skip />
-    <!-- no translation found for contactsFavoritesLabel (1222038757062409949) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZero (6041341919823872732) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroCustom (5661794891640163617) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (4176827228429279164) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (7450331854661098879) -->
-    <skip />
-    <!-- no translation found for menu_clear_frequents (8492322695770647639) -->
-    <skip />
-    <!-- no translation found for menu_accounts (795417468541517082) -->
-    <skip />
-    <!-- no translation found for menu_import_export (6446229463809981669) -->
-    <skip />
-    <!-- no translation found for description_send_message (2630211225573754774) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (7315580540586351853) -->
-    <skip />
+    <string name="menu_search" msgid="7464453023659824700">"Cerca"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Contactes per mostrar"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contactes per mostrar"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Defineix la visualització personalitzada"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Cerca contactes"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferits"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No hi ha cap contacte."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"No hi ha cap contacte visible."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"No hi ha cap preferit."</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"No hi ha cap contacte a <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Esborra contactes freqüents"</string>
+    <string name="menu_accounts" msgid="795417468541517082">"Comptes"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Importa/exporta"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"Envia un missatge a <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"Marca el telèfon <xliff:g id="NAME">%1$s</xliff:g>"</string>
 </resources>
