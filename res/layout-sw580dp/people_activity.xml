@@ -14,7 +14,9 @@
      limitations under the License.
 -->
 
-<FrameLayout
+<view
+    class="com.android.contacts.widget.TransitionAnimationView"
+    android:id="@+id/people_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -138,4 +140,4 @@
             android:paddingBottom="20dip" />
 
     </com.android.contacts.widget.InterpolatingLayout>
-</FrameLayout>
+</view>
