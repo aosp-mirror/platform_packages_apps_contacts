@@ -138,7 +138,8 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sortuj listę według"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Imię"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Nazwisko"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"Wyświetl nazwy kontaktów jako"</string>
+    <!-- no translation found for display_options_view_names_as (4386932036180428374) -->
+    <skip />
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Najpierw imię"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Najpierw nazwisko"</string>
     <string name="take_photo" msgid="7496128293167402354">"Zrób zdjęcie"</string>
