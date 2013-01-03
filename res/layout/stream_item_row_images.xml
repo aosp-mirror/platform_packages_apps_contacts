@@ -41,6 +41,7 @@
         class="com.android.contacts.common.widget.ProportionalLayout"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/detail_update_section_between_items_padding"
         android:layout_weight="1"
         ex:ratio="1"
         ex:direction="widthToHeight">
