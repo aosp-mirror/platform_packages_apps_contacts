@@ -1680,6 +1680,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             views.data.setText(entry.data);
             setMaxLines(views.data, entry.maxLines);
 
+            // Gray out the data item if it does not perform an action when clicked
+            if (entry.intent == null) {
+                ((TextView) view.findViewById(R.id.data)).setTextColor(
+                        getResources().getColor(R.color.secondary_text_color));
+            }
+
             // Set the default contact method
             views.primaryIndicator.setVisibility(entry.isPrimary ? View.VISIBLE : View.GONE);
 
