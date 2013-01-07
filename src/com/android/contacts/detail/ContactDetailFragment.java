@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -118,7 +119,9 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterables;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -700,6 +703,15 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     // secondary=false for this field, and tweak the weight
                     // of its DataKind.)
                 } else if (dataItem instanceof EventDataItem && hasData) {
+                    final Calendar cal = DateUtils.parseDate(entry.data, false);
+                    if (cal != null) {
+                        final Date nextAnniversary =
+                                DateUtils.getNextAnnualDate(cal);
+                        final Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
+                        builder.appendPath("time");
+                        ContentUris.appendId(builder, nextAnniversary.getTime());
+                        entry.intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
+                    }
                     entry.data = DateUtils.formatDate(mContext, entry.data);
                     entry.uri = null;
                     mEventEntries.add(entry);

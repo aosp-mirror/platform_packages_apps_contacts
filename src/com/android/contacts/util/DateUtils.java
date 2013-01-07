@@ -25,6 +25,7 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -61,30 +62,69 @@ public class DateUtils {
     }
 
     /**
-     * Parses the supplied string to see if it looks like a date. If so,
-     * returns the date.  Otherwise, returns null.
+     * Parses the supplied string to see if it looks like a date.
+     *
+     * @param string The string representation of the provided date
+     * @param mustContainYear If true, the string is parsed as a date containing a year. If false,
+     * the string is parsed into a valid date even if the year field is missing.
+     * @return A Calendar object corresponding to the date if the string is successfully parsed.
+     * If not, null is returned.
      */
-    public static Date parseDate(String string) {
+    public static Calendar parseDate(String string, boolean mustContainYear) {
         ParsePosition parsePosition = new ParsePosition(0);
+        Date date;
+        if (!mustContainYear) {
+            final boolean noYearParsed;
+            // Unfortunately, we can't parse Feb 29th correctly, so let's handle this day seperately
+            if (NO_YEAR_DATE_FEB29TH.equals(string)) {
+                return getUtcDate(0, Calendar.FEBRUARY, 29);
+            } else {
+                synchronized (CommonDateUtils.NO_YEAR_DATE_FORMAT) {
+                    date = CommonDateUtils.NO_YEAR_DATE_FORMAT.parse(string, parsePosition);
+                }
+                noYearParsed = parsePosition.getIndex() == string.length();
+            }
+
+            if (noYearParsed) {
+                return getUtcDate(date, true);
+            }
+        }
         for (int i = 0; i < DATE_FORMATS.length; i++) {
             SimpleDateFormat f = DATE_FORMATS[i];
             synchronized (f) {
                 parsePosition.setIndex(0);
-                Date date = f.parse(string, parsePosition);
+                date = f.parse(string, parsePosition);
                 if (parsePosition.getIndex() == string.length()) {
-                    return date;
+                    return getUtcDate(date, false);
                 }
             }
         }
         return null;
     }
 
-    private static final Date getUtcDate(int year, int month, int dayOfMonth) {
+    private static final Calendar getUtcDate(Date date, boolean noYear) {
         final Calendar calendar = Calendar.getInstance(UTC_TIMEZONE, Locale.US);
+        calendar.setTime(date);
+        if (noYear) {
+            calendar.set(Calendar.YEAR, 0);
+        }
+        return calendar;
+    }
+
+    private static final Calendar getUtcDate(int year, int month, int dayOfMonth) {
+        final Calendar calendar = Calendar.getInstance(UTC_TIMEZONE, Locale.US);
+        calendar.clear();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        return calendar.getTime();
+        return calendar;
+    }
+
+    public static boolean isYearSet(Calendar cal) {
+        // use the Calendar.YEAR field to track whether or not the year is set instead of
+        // Calendar.isSet() because doing Calendar.get() causes Calendar.isSet() to become
+        // true irregardless of what the previous value was
+        return cal.get(Calendar.YEAR) > 1;
     }
 
     /**
@@ -120,46 +160,26 @@ public class DateUtils {
         if (string.length() == 0) {
             return string;
         }
+        final Calendar cal = parseDate(string, false);
 
-        ParsePosition parsePosition = new ParsePosition(0);
+        // we weren't able to parse the string successfully so just return it unchanged
+        if (cal == null) {
+            return string;
+        }
 
-        final boolean noYearParsed;
-        Date date;
-
-        // Unfortunately, we can't parse Feb 29th correctly, so let's handle this day seperately
-        if (NO_YEAR_DATE_FEB29TH.equals(string)) {
-            date = getUtcDate(0, Calendar.FEBRUARY, 29);
-            noYearParsed = true;
+        final boolean isYearSet = isYearSet(cal);
+        final java.text.DateFormat outFormat;
+        if (!isYearSet) {
+            outFormat = getLocalizedDateFormatWithoutYear(context);
         } else {
-            synchronized (CommonDateUtils.NO_YEAR_DATE_FORMAT) {
-                date = CommonDateUtils.NO_YEAR_DATE_FORMAT.parse(string, parsePosition);
-            }
-            noYearParsed = parsePosition.getIndex() == string.length();
+            outFormat =
+                    longForm ? DateFormat.getLongDateFormat(context) :
+                    DateFormat.getDateFormat(context);
         }
-
-        if (noYearParsed) {
-            final java.text.DateFormat outFormat = getLocalizedDateFormatWithoutYear(context);
-            synchronized (outFormat) {
-                outFormat.setTimeZone(UTC_TIMEZONE);
-                return outFormat.format(date);
-            }
+        synchronized (outFormat) {
+            outFormat.setTimeZone(UTC_TIMEZONE);
+            return outFormat.format(cal.getTime());
         }
-
-        for (int i = 0; i < DATE_FORMATS.length; i++) {
-            SimpleDateFormat f = DATE_FORMATS[i];
-            synchronized (f) {
-                parsePosition.setIndex(0);
-                date = f.parse(string, parsePosition);
-                if (parsePosition.getIndex() == string.length()) {
-                    final java.text.DateFormat outFormat =
-                            longForm ? DateFormat.getLongDateFormat(context) :
-                            DateFormat.getDateFormat(context);
-                        outFormat.setTimeZone(UTC_TIMEZONE);
-                        return outFormat.format(date);
-                }
-            }
-        }
-        return string;
     }
 
     public static boolean isMonthBeforeDay(Context context) {
@@ -196,5 +216,57 @@ public class DateUtils {
             return new SimpleDateFormat(
                     DateUtils.isMonthBeforeDay(context) ? "MMMM dd" : "dd MMMM");
         }
+    }
+
+    /**
+     * Given a calendar (possibly containing only a day of the year), returns the earliest possible
+     * anniversary of the date that is equal to or after the current point in time if the date
+     * does not contain a year, or the date converted to the local time zone (if the date contains
+     * a year.
+     *
+     * @param target The date we wish to convert(in the UTC time zone).
+     * @return If date does not contain a year (year < 1900), returns the next earliest anniversary
+     * that is after the current point in time (in the local time zone). Otherwise, returns the
+     * adjusted Date in the local time zone.
+     */
+    public static Date getNextAnnualDate(Calendar target) {
+        final Calendar today = Calendar.getInstance();
+        today.setTime(new Date());
+
+        // Round the current time to the exact start of today so that when we compare
+        // today against the target date, both dates are set to exactly 0000H.
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        today.set(Calendar.MILLISECOND, 0);
+
+        final boolean isYearSet = isYearSet(target);
+        final int targetYear = target.get(Calendar.YEAR);
+        final int targetMonth = target.get(Calendar.MONTH);
+        final int targetDay = target.get(Calendar.DAY_OF_MONTH);
+        final boolean isFeb29 = (targetMonth == Calendar.FEBRUARY && targetDay == 29);
+        final GregorianCalendar anniversary = new GregorianCalendar();
+        // Convert from the UTC date to the local date. Set the year to today's year if the
+        // there is no provided year (targetYear < 1900)
+        anniversary.set(!isYearSet ? today.get(Calendar.YEAR) : targetYear,
+                targetMonth, targetDay);
+        // If the anniversary's date is before the start of today and there is no year set,
+        // increment the year by 1 so that the returned date is always equal to or greater than
+        // today. If the day is a leap year, keep going until we get the next leap year anniversary
+        // Otherwise if there is already a year set, simply return the exact date.
+        if (!isYearSet) {
+            int anniversaryYear = today.get(Calendar.YEAR);
+            if (anniversary.before(today) ||
+                    (isFeb29 && !anniversary.isLeapYear(anniversaryYear))) {
+                // If the target date is not Feb 29, then set the anniversary to the next year.
+                // Otherwise, keep going until we find the next leap year (this is not guaranteed
+                // to be in 4 years time).
+                do {
+                    anniversaryYear +=1;
+                } while (isFeb29 && !anniversary.isLeapYear(anniversaryYear));
+                anniversary.set(anniversaryYear, targetMonth, targetDay);
+            }
+        }
+        return anniversary.getTime();
     }
 }
