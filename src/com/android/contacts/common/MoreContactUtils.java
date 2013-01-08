@@ -16,6 +16,9 @@
 
 package com.android.contacts.common;
 
+import com.android.i18n.phonenumbers.NumberParseException;
+import com.android.i18n.phonenumbers.PhoneNumberUtil;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -33,6 +36,8 @@ import com.android.contacts.common.model.account.AccountType;
  */
 public class MoreContactUtils {
 
+    private static final String WAIT_SYMBOL_AS_STRING = String.valueOf(PhoneNumberUtils.WAIT);
+
     /**
      * Returns true if two data with mimetypes which represent values in contact entries are
      * considered equal for collapsing in the GUI. For caller-id, use
@@ -40,7 +45,7 @@ public class MoreContactUtils {
      * instead
      */
     public static boolean shouldCollapse(CharSequence mimetype1, CharSequence data1,
-            CharSequence mimetype2, CharSequence data2) {
+              CharSequence mimetype2, CharSequence data2) {
         // different mimetypes? don't collapse
         if (!TextUtils.equals(mimetype1, mimetype2)) return false;
 
@@ -60,38 +65,50 @@ public class MoreContactUtils {
         return shouldCollapsePhoneNumbers(data1.toString(), data2.toString());
     }
 
-    private static boolean shouldCollapsePhoneNumbers(
-            String number1WithLetters, String number2WithLetters) {
-        final String number1 = PhoneNumberUtils.convertKeypadLettersToDigits(number1WithLetters);
-        final String number2 = PhoneNumberUtils.convertKeypadLettersToDigits(number2WithLetters);
+    private static boolean shouldCollapsePhoneNumbers(String number1, String number2) {
+        // Now do the full phone number thing. split into parts, separated by waiting symbol
+        // and compare them individually
+        final String[] dataParts1 = number1.split(WAIT_SYMBOL_AS_STRING);
+        final String[] dataParts2 = number2.split(WAIT_SYMBOL_AS_STRING);
+        if (dataParts1.length != dataParts2.length) return false;
+        final PhoneNumberUtil util = PhoneNumberUtil.getInstance();
+        for (int i = 0; i < dataParts1.length; i++) {
+            // Match phone numbers represented by keypad letters, in which case prefer the
+            // phone number with letters.
+            final String dataPart1 = PhoneNumberUtils.convertKeypadLettersToDigits(dataParts1[i]);
+            final String dataPart2 = dataParts2[i];
 
-        int index1 = 0;
-        int index2 = 0;
-        for (;;) {
-            // Skip formatting characters.
-            while (index1 < number1.length() &&
-                    !PhoneNumberUtils.isNonSeparator(number1.charAt(index1))) {
-                index1++;
-            }
-            while (index2 < number2.length() &&
-                    !PhoneNumberUtils.isNonSeparator(number2.charAt(index2))) {
-                index2++;
-            }
-            // If both have finished, match.  If only one has finished, not match.
-            final boolean number1End = (index1 == number1.length());
-            final boolean number2End = (index2 == number2.length());
-            if (number1End) {
-                return number2End;
-            }
-            if (number2End) return false;
+            // substrings equal? shortcut, don't parse
+            if (TextUtils.equals(dataPart1, dataPart2)) continue;
 
-            // If the non-formatting characters are different, not match.
-            if (number1.charAt(index1) != number2.charAt(index2)) return false;
-
-            // Go to the next characters.
-            index1++;
-            index2++;
+            // do a full parse of the numbers
+            switch (util.isNumberMatch(dataPart1, dataPart2)) {
+                case NOT_A_NUMBER:
+                    // don't understand the numbers? let's play it safe
+                    return false;
+                case NO_MATCH:
+                    return false;
+                case EXACT_MATCH:
+                    break;
+                case NSN_MATCH:
+                    try {
+                        // For NANP phone numbers, match when one has +1 and the other does not.
+                        // In this case, prefer the +1 version.
+                        if (util.parse(dataPart1, null).getCountryCode() == 1) {
+                            break;
+                        }
+                    } catch (NumberParseException e) {
+                        // Ignore
+                    }
+                    return false;
+                case SHORT_NSN_MATCH:
+                    return false;
+                default:
+                    throw new IllegalStateException("Unknown result value from phone number " +
+                            "library");
+            }
         }
+        return true;
     }
 
     /**
