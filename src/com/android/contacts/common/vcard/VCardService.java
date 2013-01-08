@@ -175,8 +175,12 @@ public class VCardService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int id) {
-        mCallingActivity = intent.getExtras().getString(
-                VCardCommonArguments.ARG_CALLING_ACTIVITY);
+        if (intent != null && intent.getExtras() != null) {
+            mCallingActivity = intent.getExtras().getString(
+                    VCardCommonArguments.ARG_CALLING_ACTIVITY);
+        } else {
+            mCallingActivity = null;
+        }
         return START_STICKY;
     }
 
