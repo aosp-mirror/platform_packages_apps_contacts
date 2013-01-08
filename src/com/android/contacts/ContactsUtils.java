@@ -32,7 +32,6 @@ import java.util.List;
 
 public class ContactsUtils {
     private static final String TAG = "ContactsUtils";
-    private static final String WAIT_SYMBOL_AS_STRING = String.valueOf(PhoneNumberUtils.WAIT);
 
     private static int sThumbnailSize = -1;
 
