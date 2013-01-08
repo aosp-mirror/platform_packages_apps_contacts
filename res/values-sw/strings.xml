@@ -35,7 +35,7 @@
     <string name="editGroupDescription" msgid="6321161304201540561">"Hariri kikundi"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Unda kikundi"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Kuhusu"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"Visasisho"</string>
+    <string name="contactDetailUpdates" msgid="3780588624763446941">"Masasisho"</string>
     <string name="searchHint" msgid="8482945356247760701">"Tafuta anwani"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Tazama anwani"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Ongeza kwa vipendwa"</string>
@@ -127,7 +127,7 @@
     <string name="connections" msgid="8098440723172028350">"Miunganisho"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Ongeza muunganisho"</string>
     <string name="recent" msgid="2659189233141493004">"Hivi karibuni"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"Visasisho vya hivi karibuni"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Masasisho vya hivi karibuni"</string>
     <string name="account_type_format" msgid="718948015590343010">"Anwani <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -138,8 +138,7 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Panga orodha kwa"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Jina la kwanza"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Jila la familia"</string>
-    <!-- no translation found for display_options_view_names_as (4386932036180428374) -->
-    <skip />
+    <string name="display_options_view_names_as" msgid="4386932036180428374">"Angalia majina ya anwani"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Jina ulilopewa kwanza"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Jina la familia kwanza"</string>
     <string name="take_photo" msgid="7496128293167402354">"Piga picha"</string>
