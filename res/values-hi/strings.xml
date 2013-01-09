@@ -138,8 +138,7 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"सूची को इसके अनुसार क्रमित करें"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"दिया गया नाम"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"उपनाम"</string>
-    <!-- no translation found for display_options_view_names_as (4386932036180428374) -->
-    <skip />
+    <string name="display_options_view_names_as" msgid="4386932036180428374">"संपर्क नामों को देखें"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"दिया गया नाम पहले"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"कुलनाम पहले"</string>
     <string name="take_photo" msgid="7496128293167402354">"फ़ोटो लें"</string>
