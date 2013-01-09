@@ -106,28 +106,19 @@ public class SearchUtil {
             i += Character.charCount(codePoint);
         }
 
-        int valueCodePoint = 0;
         for (int i = 0; i < value.length(); i = findNextTokenStart(value, i)) {
-            valueCodePoint = value.codePointAt(i);
-
             int numMatch = 0;
-
-            // As an optimization, we lower here instead of making the parent do it.
-            //int substringCodePoint = substring.codePointAt(numMatch);
-            int valueCpIndex = 0;
-            int cp = Character.toLowerCase(valueCodePoint);
-            while (numMatch < substringLength && cp == substringCodePoints[numMatch]) {
-                numMatch++;
-                if (numMatch == substringLength) {
-                    // Must exit loop here otherwise code below may cause IndexOutOfBoundsException.
-                    // When query string matches content exactly.
-                    return i;
+            for (int j = i; j < value.length() && numMatch < substringLength; ++numMatch) {
+                int valueCp = Character.toLowerCase(value.codePointAt(j));
+                int substringCp = substringCodePoints[numMatch];
+                if (valueCp != substringCp) {
+                    break;
                 }
-                valueCpIndex += Character.charCount(cp);
-                cp = Character.toLowerCase(value.codePointAt(i + valueCpIndex));
-
+                j += Character.charCount(valueCp);
             }
-
+            if (numMatch == substringLength) {
+                return i;
+            }
         }
         return -1;
     }

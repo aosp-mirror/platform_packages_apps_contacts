@@ -73,6 +73,9 @@ public class SearchUtilTest extends TestCase {
         assertEquals(-1, SearchUtil.contains(actual, "thisx"));
         assertEquals(-1, SearchUtil.contains(actual, "manyx"));
         assertEquals(-1, SearchUtil.contains(actual, "hellox"));
+
+        // Test for partial match of start of query to end of line
+        assertEquals(-1, SearchUtil.contains(actual, "punctual"));
     }
 
     public void testFindNextTokenStart() {
