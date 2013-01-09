@@ -37,7 +37,7 @@ public final class Collapser {
      * can be used for example to collapse similar contact data items into a single item.
      */
     public interface Collapsible<T> {
-        public boolean collapseWith(T t);
+        public void collapseWith(T t);
         public boolean shouldCollapseWith(T t);
     }
 
@@ -61,6 +61,10 @@ public final class Collapser {
                         if (iItem.shouldCollapseWith(jItem)) {
                             iItem.collapseWith(jItem);
                             list.set(j, null);
+                        } else if (jItem.shouldCollapseWith(iItem)) {
+                            jItem.collapseWith(iItem);
+                            list.set(i, null);
+                            break;
                         }
                     }
                 }
