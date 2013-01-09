@@ -293,11 +293,8 @@ public class DataAction implements Action {
     }
 
     @Override
-    public boolean collapseWith(Action other) {
-        if (!shouldCollapseWith(other)) {
-            return false;
-        }
-        return true;
+    public void collapseWith(Action other) {
+        // No-op
     }
 
     @Override

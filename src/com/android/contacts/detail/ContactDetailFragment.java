@@ -1311,12 +1311,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         @Override
-        public boolean collapseWith(DetailViewEntry entry) {
-            // assert equal collapse keys
-            if (!shouldCollapseWith(entry)) {
-                return false;
-            }
-
+        public void collapseWith(DetailViewEntry entry) {
             // Choose the label associated with the highest type precedence.
             if (TypePrecedence.getTypePrecedence(mimetype, type)
                     > TypePrecedence.getTypePrecedence(entry.mimetype, entry.type)) {
@@ -1342,7 +1337,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             // Keep track of all the ids that have been collapsed with this one.
             ids.add(entry.getId());
             collapseCount++;
-            return true;
         }
 
         @Override

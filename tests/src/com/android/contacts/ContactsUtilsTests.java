@@ -135,6 +135,22 @@ public class ContactsUtilsTests extends AndroidTestCase {
                 Phone.CONTENT_ITEM_TYPE, "+49 (89) 12345678",
                 Phone.CONTENT_ITEM_TYPE, "+49 (89) 12345679");
 
+        // test special handling of collapsing country code for NANP region only
+        // This is non symmetrical, because we prefer the number with the +1.
+        assertEquals("75", true,
+                     MoreContactUtils.shouldCollapse
+                     (Phone.CONTENT_ITEM_TYPE, "+1 (415) 555-1212",
+                      Phone.CONTENT_ITEM_TYPE, "(415) 555-1212"));
+        assertEquals("76", false,
+                     MoreContactUtils.shouldCollapse
+                     (Phone.CONTENT_ITEM_TYPE, "(415) 555-1212",
+                      Phone.CONTENT_ITEM_TYPE, "+1 (415) 555-1212"));
+        // Require explicit +1 country code declaration to collapse
+        assertEquals("77", false,
+                     MoreContactUtils.shouldCollapse
+                     (Phone.CONTENT_ITEM_TYPE, "1-415-555-1212",
+                      Phone.CONTENT_ITEM_TYPE, "415-555-1212"));
+
         // test some numbers with wait symbol and area code
         assertCollapses("80", true,
                 Phone.CONTENT_ITEM_TYPE, "+49 (8092) 1234;89321",
@@ -165,19 +181,26 @@ public class ContactsUtilsTests extends AndroidTestCase {
                 Phone.CONTENT_ITEM_TYPE, "---",
                 Phone.CONTENT_ITEM_TYPE, "---");
 
-        assertCollapses("90", true,
+        assertCollapses("90", false,
                 Phone.CONTENT_ITEM_TYPE, "1-/().",
                 Phone.CONTENT_ITEM_TYPE, "--$%1");
 
-        assertCollapses("91", true,
-                Phone.CONTENT_ITEM_TYPE, "abcdefghijklmnopqrstuvwxyz",
-                Phone.CONTENT_ITEM_TYPE, "22233344455566677778889999");
+        // Test numbers using keypad letters. This is non-symmetrical, because we prefer
+        // the version with letters.
+        assertEquals("91", true,
+                     MoreContactUtils.shouldCollapse
+                     (Phone.CONTENT_ITEM_TYPE, "abcdefghijklmnopqrstuvwxyz",
+                      Phone.CONTENT_ITEM_TYPE, "22233344455566677778889999"));
+        assertEquals("92", false,
+                     MoreContactUtils.shouldCollapse
+                     (Phone.CONTENT_ITEM_TYPE, "22233344455566677778889999",
+                      Phone.CONTENT_ITEM_TYPE, "abcdefghijklmnopqrstuvwxyz"));
 
-        assertCollapses("92", false,
+        assertCollapses("93", false,
                 Phone.CONTENT_ITEM_TYPE, "1;2",
                 Phone.CONTENT_ITEM_TYPE, "12");
 
-        assertCollapses("93", false,
+        assertCollapses("94", false,
                 Phone.CONTENT_ITEM_TYPE, "1,2",
                 Phone.CONTENT_ITEM_TYPE, "12");
     }
