@@ -1013,6 +1013,9 @@ public class ContactSaveService extends IntentService {
         long rawContactIds[];
         long verifiedNameRawContactId = -1;
         try {
+            if (c.getCount() == 0) {
+                return;
+            }
             int maxDisplayNameSource = -1;
             rawContactIds = new long[c.getCount()];
             for (int i = 0; i < rawContactIds.length; i++) {
