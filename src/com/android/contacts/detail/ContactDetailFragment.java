@@ -1010,7 +1010,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 final String authority = host.toLowerCase();
                 final Uri imUri = new Uri.Builder().scheme(CallUtil.SCHEME_IMTO).authority(
                         authority).appendPath(data).build();
-                entry.intent = new Intent(Intent.ACTION_SENDTO, imUri);
+                final Intent intent = new Intent(Intent.ACTION_SENDTO, imUri);
+                if (PhoneCapabilityTester.isIntentRegistered(context, intent)) {
+                    entry.intent = intent;
+                }
             }
         }
     }
