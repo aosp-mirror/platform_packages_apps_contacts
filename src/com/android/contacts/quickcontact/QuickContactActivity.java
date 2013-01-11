@@ -431,7 +431,7 @@ public class QuickContactActivity extends Activity {
         // Add buttons for each mimetype
         mTrack.removeAllViews();
         for (String mimeType : mSortedActionMimeTypes) {
-            final View actionView = inflateAction(mimeType, cache, mTrack);
+            final View actionView = inflateAction(mimeType, cache, mTrack, data.getDisplayName());
             mTrack.addView(actionView);
         }
 
@@ -465,7 +465,8 @@ public class QuickContactActivity extends Activity {
      * Inflate the in-track view for the action of the given MIME-type, collapsing duplicate values.
      * Will use the icon provided by the {@link DataKind}.
      */
-    private View inflateAction(String mimeType, ResolveCache resolveCache, ViewGroup root) {
+    private View inflateAction(String mimeType, ResolveCache resolveCache,
+                               ViewGroup root, String name) {
         final CheckableImageView typeView = (CheckableImageView) getLayoutInflater().inflate(
                 R.layout.quickcontact_track_button, root, false);
 
@@ -474,7 +475,7 @@ public class QuickContactActivity extends Activity {
         final Action firstInfo = children.get(0);
 
         // Set icon and listen for clicks
-        final CharSequence descrip = resolveCache.getDescription(firstInfo);
+        final CharSequence descrip = resolveCache.getDescription(firstInfo, name);
         final Drawable icon = resolveCache.getIcon(firstInfo);
         typeView.setChecked(false);
         typeView.setContentDescription(descrip);

@@ -206,16 +206,18 @@ public class ResolveCache {
      * Find the best description for the given {@link Action}, usually used
      * for accessibility purposes.
      */
-    public CharSequence getDescription(Action action) {
-        final CharSequence actionSubtitle = action.getSubtitle();
+    public CharSequence getDescription(Action action, String name) {
         final ResolveInfo info = getEntry(action).bestResolve;
-        if (info != null) {
-            return info.loadLabel(mPackageManager);
-        } else if (!TextUtils.isEmpty(actionSubtitle)) {
-            return actionSubtitle;
+        final CharSequence infoStr = info != null ? info.loadLabel(mPackageManager) : null;
+        CharSequence actionDesc = action.getSubtitle();
+        CharSequence strs[];
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(actionDesc)) {
+            strs = new CharSequence[]{infoStr, name, actionDesc};
         } else {
-            return null;
+            strs = new CharSequence[]{infoStr, action.getBody()};
         }
+        CharSequence desc = TextUtils.join(" ", strs);
+        return !TextUtils.isEmpty(desc) ? desc : null;
     }
 
     /**
