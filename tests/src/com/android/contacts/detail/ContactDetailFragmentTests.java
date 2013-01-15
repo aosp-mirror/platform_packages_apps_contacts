@@ -105,10 +105,11 @@ public class ContactDetailFragmentTests extends AndroidTestCase {
         ImDataItem im = (ImDataItem) DataItem.createFrom(values);
 
         DetailViewEntry entry = new ContactDetailFragment.DetailViewEntry();
-        ContactDetailFragment.buildImActions(mContext, entry, im);
-        assertEquals(Intent.ACTION_SENDTO, entry.intent.getAction());
+        final Intent imIntent =
+                ContactDetailFragment.getCustomIMIntent(im, Im.PROTOCOL_CUSTOM);
+        assertEquals(Intent.ACTION_SENDTO, imIntent.getAction());
 
-        final Uri data = entry.intent.getData();
+        final Uri data = imIntent.getData();
         assertEquals("imto", data.getScheme());
         assertEquals(TEST_PROTOCOL, data.getAuthority());
         assertEquals(TEST_ADDRESS, data.getPathSegments().get(0));
