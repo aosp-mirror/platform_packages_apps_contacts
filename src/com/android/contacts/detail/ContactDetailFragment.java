@@ -999,23 +999,33 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             }
         } else {
             // Build an IM Intent
-            String host = im.getCustomProtocol();
-
-            if (protocol != Im.PROTOCOL_CUSTOM) {
-                // Try bringing in a well-known host for specific protocols
-                host = ContactsUtils.lookupProviderNameFromId(protocol);
-            }
-
-            if (!TextUtils.isEmpty(host)) {
-                final String authority = host.toLowerCase();
-                final Uri imUri = new Uri.Builder().scheme(CallUtil.SCHEME_IMTO).authority(
-                        authority).appendPath(data).build();
-                final Intent intent = new Intent(Intent.ACTION_SENDTO, imUri);
-                if (PhoneCapabilityTester.isIntentRegistered(context, intent)) {
-                    entry.intent = intent;
-                }
+            final Intent imIntent = getCustomIMIntent(im, protocol);
+            if (imIntent != null &&
+                    PhoneCapabilityTester.isIntentRegistered(context, imIntent)) {
+                entry.intent = imIntent;
             }
         }
+    }
+
+    @VisibleForTesting
+    public static Intent getCustomIMIntent(ImDataItem im, int protocol) {
+        String host = im.getCustomProtocol();
+        final String data = im.getData();
+        if (TextUtils.isEmpty(data)) {
+            return null;
+        }
+        if (protocol != Im.PROTOCOL_CUSTOM) {
+            // Try bringing in a well-known host for specific protocols
+            host = ContactsUtils.lookupProviderNameFromId(protocol);
+        }
+        if (TextUtils.isEmpty(host)) {
+            return null;
+        }
+        final String authority = host.toLowerCase();
+        final Uri imUri = new Uri.Builder().scheme(CallUtil.SCHEME_IMTO).authority(
+                authority).appendPath(data).build();
+        final Intent intent = new Intent(Intent.ACTION_SENDTO, imUri);
+        return intent;
     }
 
     /**
