@@ -73,6 +73,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     private ViewGroup mOrganizationSectionViewContainer;
     private View mAddOrganizationButton;
+    private View mOrganizationView;
     private boolean mOrganizationViewExpanded = false;
 
     private ViewGroup mFields;
@@ -147,6 +148,13 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         mAccountIcon = (ImageView) findViewById(R.id.account_icon);
         mAccountTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountNameTextView = (TextView) findViewById(R.id.account_name);
+
+        mOrganizationView = mInflater.inflate(
+                R.layout.organization_editor_view_switcher, mFields, false);
+        mAddOrganizationButton = mOrganizationView.findViewById(
+                R.id.add_organization_button);
+        mOrganizationSectionViewContainer =
+                (ViewGroup) mOrganizationView.findViewById(R.id.container);
 
         mAddFieldButton = (Button) findViewById(R.id.button_add_field);
         mAddFieldButton.setOnClickListener(new OnClickListener() {
@@ -300,12 +308,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 } else {
                     // Otherwise provide the user with an "add organization" button that shows the
                     // EditText fields only when clicked
-                    final View organizationView = mInflater.inflate(
-                            R.layout.organization_editor_view_switcher, mFields, false);
-                    mAddOrganizationButton = organizationView.findViewById(
-                            R.id.add_organization_button);
-                    mOrganizationSectionViewContainer =
-                            (ViewGroup) organizationView.findViewById(R.id.container);
+                    mOrganizationSectionViewContainer.removeAllViews();
                     mOrganizationSectionViewContainer.addView(section);
 
                     // Setup the click listener for the "add organization" button
@@ -320,7 +323,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                         }
                     });
 
-                    mFields.addView(organizationView);
+                    mFields.addView(mOrganizationView);
                 }
             } else {
                 // Otherwise use generic section-based editors
