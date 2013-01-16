@@ -659,4 +659,6 @@
     <!-- Menu item shown only when the special debug mode is enabled, which is used to send all contacts database files via email.  [CHAR LIMI=NONE] -->
     <string name="menu_export_database">Export database files</string>
 
+    <!-- Description when picture in the contact detail view is selected. [CHAR LIMIT=NONE] -->
+    <string name="contact_detail_picture_description">Picture. Tap to change</string>
 </resources>
