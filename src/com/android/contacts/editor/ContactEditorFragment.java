@@ -1661,7 +1661,9 @@ public class ContactEditorFragment extends Fragment implements
         outState.putBoolean(KEY_IS_EDIT, mIsEdit);
         outState.putBoolean(KEY_NEW_CONTACT_READY, mNewContactDataReady);
         outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
-        outState.putParcelableArrayList(KEY_RAW_CONTACTS, Lists.newArrayList(mRawContacts));
+        outState.putParcelableArrayList(KEY_RAW_CONTACTS,
+                mRawContacts == null ?
+                Lists.<RawContact> newArrayList() :  Lists.newArrayList(mRawContacts));
 
         super.onSaveInstanceState(outState);
     }
