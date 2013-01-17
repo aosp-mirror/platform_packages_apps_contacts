@@ -22,7 +22,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dip">
+    android:paddingStart="16dip">
 
     <com.android.contacts.detail.ActionsViewContainer
         android:id="@+id/actions_view_container"
@@ -41,14 +41,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingLeft="8dip"
-            android:gravity="center_vertical">
+            android:paddingStart="8dip" >
 
             <TextView
                 android:id="@+id/data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <LinearLayout
@@ -97,8 +95,8 @@
             android:id="@+id/secondary_action_view_container"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="@dimen/detail_item_icon_margin"
-            android:paddingRight="@dimen/detail_item_icon_margin"
+            android:paddingStart="@dimen/detail_item_icon_margin"
+            android:paddingEnd="@dimen/detail_item_icon_margin"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground"
             android:nextFocusLeft="@id/actions_view_container">
