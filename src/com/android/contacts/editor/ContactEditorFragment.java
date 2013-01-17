@@ -47,6 +47,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -535,6 +536,7 @@ public class ContactEditorFragment extends Fragment implements
             }
         }
 
+        String displayName = null;
         // Check for writable raw contacts.  If there are none, then we need to create one so user
         // can edit.  For the user profile case, there is already an editable contact.
         if (!contact.isUserProfile() && !contact.isWritableContact(mContext)) {
@@ -542,10 +544,12 @@ public class ContactEditorFragment extends Fragment implements
 
             // This is potentially an asynchronous call and will add deltas to list.
             selectAccountAndCreateContact();
+            displayName = contact.getDisplayName();
         }
 
         // This also adds deltas to list
-        bindEditorsForExistingContact(contact.getDisplayName(), contact.isUserProfile(),
+        // If displayName is null at this point it is simply ignored later on by the editor.
+        bindEditorsForExistingContact(displayName, contact.isUserProfile(),
                 mRawContacts);
     }
 
@@ -851,7 +855,9 @@ public class ContactEditorFragment extends Fragment implements
                     mRequestFocus = false;
                 }
                 nameEditor.setEditorListener(listener);
-                nameEditor.setDisplayName(mDefaultDisplayName);
+                if (!TextUtils.isEmpty(mDefaultDisplayName)) {
+                    nameEditor.setDisplayName(mDefaultDisplayName);
+                }
 
                 final TextFieldsEditorView phoneticNameEditor =
                         rawContactEditor.getPhoneticNameEditor();
