@@ -416,7 +416,11 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             // expanding the {@link SearchView} when a search is initiated. Note that a side effect
             // of this method is that the {@link SearchView} query text is set to empty string.
             if (isIconifiedChanging) {
+                final CharSequence queryText = mSearchView.getQuery();
                 mSearchView.onActionViewExpanded();
+                if (!TextUtils.isEmpty(queryText)) {
+                    mSearchView.setQuery(queryText, false);
+                }
             }
             if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_STANDARD) {
                 mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
