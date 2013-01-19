@@ -25,9 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:focusable="true"
-        android:clickable="true">
+        android:gravity="center_vertical">
 
         <include
             android:id="@+id/editors"
