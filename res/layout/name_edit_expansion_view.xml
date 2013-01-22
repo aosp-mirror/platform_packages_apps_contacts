@@ -23,7 +23,9 @@
     android:layout_height="@dimen/editor_min_line_item_height"
     android:layout_gravity="top"
     android:contentDescription="@string/expand_collapse_name_fields_description"
-    android:importantForAccessibility="yes">
+    android:importantForAccessibility="yes"
+    android:focusable="true"
+    android:clickable="true">
     <ImageView
         android:id="@+id/expansion_view"
         android:layout_width="wrap_content"
