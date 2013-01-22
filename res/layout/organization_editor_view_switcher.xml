@@ -34,7 +34,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorSecondary"
         android:background="?android:attr/selectableItemBackground"
-        android:text="@string/add_organization"/>
+        android:text="@string/add_organization"
+        android:focusable="true"
+        android:clickable="true"/>
 
     <!-- This is later populated with the actual editable text fields for "organization" -->
     <FrameLayout
