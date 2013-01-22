@@ -26,7 +26,9 @@
         android:divider="?android:attr/dividerVertical"
         android:showDividers="end"
         android:dividerPadding="12dip"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:clickable="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
