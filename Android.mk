@@ -15,7 +15,7 @@ LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
     --extra-packages com.android.contacts.common
 
-LOCAL_JAVA_LIBRARIES := telephony-common
+LOCAL_JAVA_LIBRARIES := telephony-common voip-common
 LOCAL_STATIC_JAVA_LIBRARIES := \
     com.android.phone.shared \
     com.android.vcard \
