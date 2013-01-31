@@ -69,7 +69,6 @@ import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaData;
@@ -80,21 +79,23 @@ import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.common.Collapser.Collapsible;
+import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.model.Contact;
-import com.android.contacts.model.RawContact;
-import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.model.RawContactDeltaList;
-import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.model.dataitem.EmailDataItem;
 import com.android.contacts.model.dataitem.EventDataItem;
 import com.android.contacts.model.dataitem.GroupMembershipDataItem;
@@ -108,7 +109,6 @@ import com.android.contacts.model.dataitem.SipAddressDataItem;
 import com.android.contacts.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.model.dataitem.WebsiteDataItem;
-import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -116,6 +116,7 @@ import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.util.UiClosables;
 import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 
 import java.util.ArrayList;
@@ -1234,34 +1235,26 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         @Override
         public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append("== DetailViewEntry ==\n");
-            sb.append("  type: " + type + "\n");
-            sb.append("  kind: " + kind + "\n");
-            sb.append("  typeString: " + typeString + "\n");
-            sb.append("  data: " + data + "\n");
-            sb.append("  uri: " + uri.toString() + "\n");
-            sb.append("  maxLines: " + maxLines + "\n");
-            sb.append("  mimetype: " + mimetype + "\n");
-            sb.append("  isPrimary: " + (isPrimary ? "true" : "false") + "\n");
-            sb.append("  secondaryActionIcon: " + secondaryActionIcon + "\n");
-            sb.append("  secondaryActionDescription: " + secondaryActionDescription + "\n");
-            if (intent == null) {
-                sb.append("  intent: " + intent.toString() + "\n");
-            } else {
-                sb.append("  intent: " + intent.toString() + "\n");
-            }
-            if (secondaryIntent == null) {
-                sb.append("  secondaryIntent: (null)\n");
-            } else {
-                sb.append("  secondaryIntent: " + secondaryIntent.toString() + "\n");
-            }
-            sb.append("  ids: " + Iterables.toString(ids) + "\n");
-            sb.append("  collapseCount: " + collapseCount + "\n");
-            sb.append("  presence: " + presence + "\n");
-            sb.append("  chatCapability: " + chatCapability + "\n");
-            sb.append("  mIsInSubsection: " + (mIsInSubSection ? "true" : "false") + "\n");
-            return sb.toString();
+            return Objects.toStringHelper(this)
+                    .add("type", type)
+                    .add("kind", kind)
+                    .add("typeString", typeString)
+                    .add("data", data)
+                    .add("uri", uri)
+                    .add("maxLines", maxLines)
+                    .add("mimetype", mimetype)
+                    .add("context", context)
+                    .add("isPrimary", isPrimary)
+                    .add("secondaryActionIcon", secondaryActionIcon)
+                    .add("secondaryActionDescription", secondaryActionDescription)
+                    .add("intent", intent)
+                    .add("secondaryIntent", secondaryIntent)
+                    .add("ids", ids)
+                    .add("collapseCount", collapseCount)
+                    .add("presence", presence)
+                    .add("chatCapability", chatCapability)
+                    .add("mIsInSubSection", mIsInSubSection)
+                    .toString();
         }
 
         DetailViewEntry() {
