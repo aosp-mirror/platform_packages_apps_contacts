@@ -224,7 +224,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitahifadhiwa. Je, ungetaka kuongeza akaunti ambayo inahifadhi nakala ya anwani katika mtandao?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Mwasiliani wako mpya atalandanishwa na <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Unaweza kulandanisha mwasiliani mpya aliye na moja ya zifuatazo. Ni gani ambayo unataka kutumia?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Unaweza kusawazisha anwani yako mpya na mojawapo ya akaunti zifuatazo. Unataka kutumia gani?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Weka karibu"</string>
     <string name="add_account" msgid="8201790677994503186">"Ongeza akaunti"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ongeza akaunti mpya"</string>
