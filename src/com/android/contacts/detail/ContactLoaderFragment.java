@@ -416,8 +416,8 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
         // Show only ringtones
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
-        // Don't show 'Silent'
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
+        // Allow the user to pick a silent ringtone
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
 
         Uri ringtoneUri;
         if (mCustomRingtone != null) {
