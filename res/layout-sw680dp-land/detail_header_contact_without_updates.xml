@@ -23,14 +23,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="8dip"
+    android:paddingStart="8dip"
     android:paddingBottom="16dip"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="16dip">
+        android:paddingEnd="16dip">
 
         <TextView
             android:id="@+id/name"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/detail_header_name_text_size"
-            android:paddingRight="16dip" />
+            android:paddingStart="16dip" />
 
         <include
             layout="@layout/favorites_star" />
