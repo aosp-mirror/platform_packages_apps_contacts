@@ -463,6 +463,10 @@ public class ContactListItemView extends ViewGroup
         int leftBound = getPaddingLeft();
         int rightBound = width - getPaddingRight();
 
+        if (isLayoutRtl()) {
+            mPhotoPosition = PhotoPosition.LEFT;
+        }
+
         // Put the header in the top of the contact view (Text + underline view)
         if (mHeaderVisible) {
             mHeaderTextView.layout(leftBound + mHeaderTextIndent,
