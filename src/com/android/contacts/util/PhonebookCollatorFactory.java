@@ -25,19 +25,6 @@ import java.util.Locale;
  */
 public final class PhonebookCollatorFactory {
     public static final Collator getCollator() {
-        final Locale defaultLocale = Locale.getDefault();
-        final String defaultLocaleString = defaultLocale.toString();
-        // For Japanese we use a special collator that puts japanese characters before foreign
-        // ones (this is called a dictionary collator)
-        // Warning: This function has to match the behavior in sqlite3_android.cpp (located in
-        // the framework)
-        final Locale locale;
-        if ("ja".equals(defaultLocaleString) || "ja_JP".equals(defaultLocaleString)) {
-            locale = new Locale("ja@collation=phonebook");
-        } else {
-            locale = defaultLocale;
-        }
-
-        return Collator.getInstance(locale);
+        return Collator.getInstance(Locale.getDefault());
     }
 }
