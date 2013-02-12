@@ -40,6 +40,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
 import android.text.TextUtils;
@@ -114,6 +115,7 @@ public class QuickContactActivity extends Activity {
     private ImageView mOpenDetailsImage;
     private ImageButton mOpenDetailsPushLayerButton;
     private ViewPager mListPager;
+    private ViewPagerAdapter mPagerAdapter;
 
     private ContactLoader mContactLoader;
 
@@ -223,7 +225,8 @@ public class QuickContactActivity extends Activity {
             }
         };
         mOpenDetailsPushLayerButton.setOnClickListener(openDetailsClickHandler);
-        mListPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
+        mPagerAdapter = new ViewPagerAdapter(getFragmentManager());
+        mListPager.setAdapter(mPagerAdapter);
         mListPager.setOnPageChangeListener(new PageChangeListener());
 
         final Rect sourceBounds = intent.getSourceBounds();
@@ -425,6 +428,7 @@ public class QuickContactActivity extends Activity {
                 mSortedActionMimeTypes.add(mimeType);
             }
         }
+        mPagerAdapter.notifyDataSetChanged();
 
         mStopWatch.lap("mt"); // Mime types initialized
 
@@ -577,8 +581,8 @@ public class QuickContactActivity extends Activity {
 
         @Override
         public Fragment getItem(int position) {
-            QuickContactListFragment fragment = new QuickContactListFragment();
             final String mimeType = mSortedActionMimeTypes.get(position);
+            QuickContactListFragment fragment = new QuickContactListFragment(mimeType);
             final List<Action> actions = mActions.get(mimeType);
             fragment.setActions(actions);
             return fragment;
@@ -587,6 +591,18 @@ public class QuickContactActivity extends Activity {
         @Override
         public int getCount() {
             return mSortedActionMimeTypes.size();
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            final QuickContactListFragment fragment = (QuickContactListFragment) object;
+            final String mimeType = fragment.getMimeType();
+            for (int i = 0; i < mSortedActionMimeTypes.size(); i++) {
+                if (mimeType.equals(mSortedActionMimeTypes.get(i))) {
+                    return i;
+                }
+            }
+            return PagerAdapter.POSITION_NONE;
         }
     }
 
