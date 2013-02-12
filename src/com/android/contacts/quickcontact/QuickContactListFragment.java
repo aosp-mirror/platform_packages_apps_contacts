@@ -43,9 +43,11 @@ public class QuickContactListFragment extends Fragment {
     private List<Action> mActions;
     private RelativeLayout mFragmentContainer;
     private Listener mListener;
+    private String mMimeType;
 
-    public QuickContactListFragment() {
+    public QuickContactListFragment(String mimeType) {
         setRetainInstance(true);
+        this.mMimeType = mimeType;
     }
 
     @Override
@@ -58,6 +60,10 @@ public class QuickContactListFragment extends Fragment {
         mFragmentContainer.setOnClickListener(mOutsideClickListener);
         configureAdapter();
         return mFragmentContainer;
+    }
+
+    public String getMimeType() {
+        return mMimeType;
     }
 
     public void setActions(List<Action> actions) {
