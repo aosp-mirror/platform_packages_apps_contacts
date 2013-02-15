@@ -153,7 +153,7 @@
     <string name="display_more_groups" msgid="6304997485733158224">"Περισσότερες ομάδες…"</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Η κατάργηση της ομάδας \"<xliff:g id="GROUP">%s</xliff:g>\" από το συγχρονισμό θα καταργήσει επίσης και τις επαφές χωρίς ομαδοποίηση από το συγχρονισμό."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Αποθήκευση επιλογών προβολής…"</string>
-    <string name="menu_done" msgid="32470053723443112">"Ολοκληρώθηκε"</string>
+    <string name="menu_done" msgid="32470053723443112">"Τέλος"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Ακύρωση"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Επαφές στο <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Επαφές σε προσαρμοσμένη προβολή"</string>
