@@ -42,7 +42,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Ta bort från Favoriter"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Redigera"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Ta bort"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Placera på startsidan"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Placera på startskärmen"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring upp kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Skicka SMS till kontakt"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Dela upp"</string>
@@ -67,7 +67,7 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"Kontakten kommer att tas bort."</string>
     <string name="menu_discard" msgid="6456087569315685632">"Ignorera"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakten finns inte."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget för kontakt har lagts till på startsidan."</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget för kontakt har lagts till på startskärmen."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Skapa ny kontakt"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Skapa ny kontakt"</string>
   <string-array name="otherLabels">
