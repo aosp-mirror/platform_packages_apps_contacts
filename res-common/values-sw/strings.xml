@@ -146,7 +146,7 @@
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Yenye nyota"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Geuza kukufaa"</string>
     <string name="list_filter_single" msgid="4553809449379139446">"Anwani"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"Anwani nyingine zote"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Anwani zingine zote"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"Anwani zote"</string>
     <string name="menu_sync_remove" msgid="6581565236520430269">"Ondoa kikundi cha ulinganishaji"</string>
     <string name="dialog_sync_add" msgid="1795682729089027675">"Ongeza kikundi kilicholinganishwa"</string>
