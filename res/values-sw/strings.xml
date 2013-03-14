@@ -36,7 +36,7 @@
     <string name="editGroupDescription" msgid="6321161304201540561">"Hariri kikundi"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Unda kikundi"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Kuhusu"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"Visasisho"</string>
+    <string name="contactDetailUpdates" msgid="3780588624763446941">"Masasisho"</string>
     <string name="searchHint" msgid="8482945356247760701">"Tafuta anwani"</string>
     <string name="menu_search" msgid="9147752853603483719">"Tafuta"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Anwani mpya"</string>
@@ -167,12 +167,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Anwani za SIM kadi"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Huna anwani zozote ya kuonyesha. (Ikiwa umeongeza tu akaunti, inaweza kuchukua dakika chache ili kusawazisha anwani.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Hauna anwani zozote za kuonyesha."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Hauna anwani zozote za kuonyesha."\n\n"Kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>"Menyu "</b></font>", , kisha uguse: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti "</b></font>" kuongeza au kuanzisha akaunti yenye anwani unazoweza kulandanisha kwa kompyuta ndogo "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" Anwani Mpya "</b></font>" ili kuanzisha anwani mpya kutoka mwanzo {"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuhamisha anwani kutoka kwa kadi yako ya SD"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Huna anwani zozote za kuonyeshwa."\n\n"Kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>", kisha uguse:"\n\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kufungua akaunti yenye anwani unazoweza kusawazisha na kompyuta kibao"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kubuni anwani mpya kutoka mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ingiza/toa"</b></font>" ili uingize anwani kutoka kadi yako ya SIM au ya SD"\n</li></string>
     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Hauna anwani zozote za kuonyesha."\n\n"Ili kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>" Menyu"</b></font>", kisha uguse: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti yenye anwani unazoweza kulandanisha na simu {"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" Anwani mpya"</b></font>" kuunda anwani mpya kutoka mwanzo "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" Leta/Hamisha "</b></font>" ili kuleta anwani kutoka kwa kadi yako wa SIM au ya SD"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Hauna anwani zozote za kuonyesha. (Kama umeongeza akaunti saas hivi, inaweza kuchukua dakika chache kulandanisha anwani.)"\n\n"Kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>",kisha uguse:{"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kuanzisha akaunti yenye anwani unazoweza kulandanisha kwenye kompyuta ndogo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Onyesha chaguo"</b></font>" ili kubadilisha anwani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>"ili kuunda anwani mpya kutoka mwanzo"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Huna anwani zozote za kuonyeshwa. (ikiwa umeongeza akaunti sasa hivi, yaweza kuchukua dakika kadhaa kusawazisha anwani.)"\n\n"Ili kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>", kisha uguse:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kufungua akaunti yenye anwani unazoweza kusawazisha na kompyuta kibao"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Onyesha chaguo"</b></font>" ili kubadilisha anwani zinazoweza kuonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kubuni mpya kutoka mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ingiza/Toat"</b></font>" ili uingize anwani kutoka kadi yako ya SIM au ya SD"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Hauna anwani zozote za kuonyesha. (Kama umeongeza akaunti sasa hivi, inaweza kuchukua dakika chache kulandanisha anwani.)"\n\n"Kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>",kisha uguse:{"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kuanzisha akaunti yenye anwani unazoweza kulandanisha kwenye simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Onyesha uchaguzi"</b></font>" ili kubadilisha anwani gani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>"ili kuunda anwani mpya kutoka mwanzo"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Hauna anwani zozote za kuonyesha."\n\n"Ili kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>" Menyu "</b></font>", kisha uguse: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" kuongeza au kuanzisha akaunti yenye anwani unazoweza kulandanisha na kompyuta ndogo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" kuanzisha anwani mpya kutoka mwanzo "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" Leta/ Hamisha "</b></font>" ili kuhamisha anwani kutoka kwa kadi yako ya SD"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Hauna anwani zozote za kuonyesha."\n\n"Ili kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>" Menyu "</b></font>", kisha uguse: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" kuongeza au kusanidi akaunti yenye anwani unazoweza kulandanisha kwa simu "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" Ili kuunda anwani mpya kutoka mwanzo "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" Leta/Hamisha "</b></font>" ili kuhamisha anwani kutoka kwa kadi yako ya SD"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Huna anwani zozote za kuonyeshwa."\n\n"Kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>", kisha uguse:"\n\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kufungua akaunti yenye anwani unazoweza kusawazisha na simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kubuni anwani mpya kutoka mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ingiza/toa"</b></font>" ili uingize anwani kutoka kadi yako ya SIM au ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Hauna anwani zozote za kuonyesha. (Kama umeongeza akaunti sasa hivi tu, inaweza kuchukua dakika chache kulandanisha anwani.)"\n\n"Ili kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>",kisha uguse:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti na anwani unazoweza kulandanisha kwenye kompyuta ndogo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Onyesha chaguo"</b></font>" ili kubadilisha anwani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kutoka mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Hauna anwani zozote za kuonyesha. (Kama umeongeza akaunti sasa hivi, inaweza kuchukua dakika chache kulandanisha anwani.)"\n\n"Kuongeza anwani, gusa "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>",kisha uguse:{"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kuanzisha akaunti yenye anwani unazoweza kulandanisha kwenye simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Onyesha uchaguzi"</b></font>" kwa kubadilisha anwani gani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>"ili kuunda anwani mpya kutoka mwanzo"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Huna vipendwa vyovyote."\n\n" Ili kuongeza anwani kwenye orodha yako ya vipendwa:"\n\n" "<li>"Gusa kichupo cha "<b>"Anwani"</b>\n</li>\n<li>"2Gusa anwani unayotaka kuiongeza kwenye vipendwa vyako"\n</li>" "\n<li>"Gusa nyota iliyo kando ya jina la anwani hiyo"\n</li></string>
@@ -398,7 +398,7 @@
     <string name="connections" msgid="8098440723172028350">"Miunganisho"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Ongeza muunganisho"</string>
     <string name="recent" msgid="2659189233141493004">"Hivi karibuni"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"Visasisho vya hivi karibuni"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Masasisho vya hivi karibuni"</string>
     <string name="account_type_format" msgid="718948015590343010">"Anwani <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -427,7 +427,7 @@
     <string name="menu_select_all" msgid="621719255150713545">"Chagua zote"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Usichague zozote"</string>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Hakuna anwani zilizochaguliwa."</string>
-    <string name="add_field" msgid="2384260056674995230">"Ongeza uga nyingine"</string>
+    <string name="add_field" msgid="2384260056674995230">"Ongeza sehemu nyingine"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Ongeza mpya"</string>
     <string name="add_organization" msgid="7311893231158291197">"Ongeza shirikisho"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Tarehe"</string>
@@ -499,7 +499,7 @@
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Unda wasifu wangu"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Charaza jina la mtu"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"Tazama visasisho"</string>
+    <string name="view_updates_from_group" msgid="1782685984905600034">"Tazama masasisho"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Barua ya sauti"</item>
     <item quantity="other" msgid="5513481419205061254">"Barua za sauti <xliff:g id="COUNT">%1$d</xliff:g>"</item>
@@ -508,7 +508,7 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Barua mpya ya sauti kutoka <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Haikuweza kucheza barua ya sauti."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Inaakibisha…"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Inaakibisha..."</string>
     <string name="voicemail_fetching_content" msgid="877911315738258780">"Inaleta barua ya sauti…"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Haikuweza kuleta barua ya sauti."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Mpya"</string>
@@ -518,7 +518,7 @@
     <string name="call_log_outgoing_header" msgid="761009180766735769">"Simu zinazotoka tu"</string>
     <string name="call_log_missed_header" msgid="8017148056610855956">"Simu zisizojibiwa tu"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Haiwezi kuunganisha kwa seva ya ujumbe wa sauti."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Haiwezi kuunganishwa kwenye seva ya ujumbe wa sauti. Jumbe mpya za sauti zinasubiri."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Imeshindwa kuwasiliana na seva ya ujumbe wa sauti. Mawasiliano mapya ya sauti yanasubiri kusikilizwa."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Sanidi ujumbe wako wa sauti."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Sauti haipatikani."</string>
     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Sanidi"</string>
@@ -562,7 +562,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitahifadhiwa. Je, ungetaka kuongeza akaunti ambayo inahifadhi nakala ya anwani katika mtandao?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Mwasiliani wako mpya atalandanishwa na <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Unaweza kulandanisha mwasiliani mpya aliye na moja ya zifuatazo. Ni gani ambayo unataka kutumia?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Unaweza kusawazisha anwani yako mpya na mojawapo ya akaunti zifuatazo. Unataka kutumia gani?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Weka karibu"</string>
     <string name="add_account" msgid="8201790677994503186">"Ongeza akaunti"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ongeza akaunti mpya"</string>
@@ -571,5 +571,5 @@
     <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Kupigia simu ujumbe wa sauti, kwanza zima hali ya ndege."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Hamisha faili za hifadhidata"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Chaguo zaidi"</string>
-    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Panua au ukunje nyuga za jina"</string>
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Panua au ukunje sehemu za jina"</string>
 </resources>
