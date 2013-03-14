@@ -566,7 +566,7 @@
     <string name="add_new_account" msgid="5748627740680940264">"Agregar una cuenta nueva"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"No se realizó la llamada."</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Para configurar el buzón de voz, ve a a Menú &gt; Configuración."</string>
-    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Para escuchar los mensajes de tu buzón de voz, desactiva primero el modo de avión."</string>
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Para escuchar los mensajes de tu buzón de voz, desactiva primero el modo avión."</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportar archivos de base de datos"</string>
     <string name="action_menu_overflow_description" msgid="2303272250613084574">"Más opciones"</string>
     <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Expandir o contraer campos de nombre"</string>
