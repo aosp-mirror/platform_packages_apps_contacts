@@ -309,7 +309,7 @@
     <string name="display_ungrouped" msgid="6885954210243119591">"Alle andre kontaktpersoner"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Alle kontaktpersoner"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Hvis du fjerner \"<xliff:g id="GROUP">%s</xliff:g>\" fra synkroniseringen, fjernes alle ugrupperede kontaktpersoner fra synkroniseringen."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Kun tabletcomputer, ikke synkroniseret"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Kun tablet, ikke synkroniseret"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Kun telefon, ikke synkroniseret"</string>
     <string name="call_custom" msgid="7756571794763171802">"Ring til <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Ring hjem"</string>
