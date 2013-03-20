@@ -66,7 +66,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Удаление этого контакта приведет к потере данных из нескольких аккаунтов."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Этот контакт будет удален."</string>
     <string name="menu_discard" msgid="6456087569315685632">"Отменить"</string>
-    <string name="invalidContactMessage" msgid="8215051456181842274">"Контакт удален."</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"Нет такого контакта."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Виджет \"Контакты\" добавлен на главный экран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Добавить контакт"</string>
