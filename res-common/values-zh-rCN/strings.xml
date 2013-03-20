@@ -125,7 +125,7 @@
     <string name="postal_neighborhood" msgid="3721092668038527674">"社区"</string>
     <string name="postal_city" msgid="3173008531169519309">"城市"</string>
     <string name="postal_region" msgid="1695206048198921115">"省/自治区/直辖市"</string>
-    <string name="postal_postcode" msgid="6542806670034753265">"邮政编码"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"邮编"</string>
     <string name="postal_country" msgid="3988452247038791892">"国家/地区"</string>
     <string name="map_home" msgid="1221397355014741634">"查看住宅地址"</string>
     <string name="map_work" msgid="9015981646907637207">"查看工作地址"</string>
