@@ -229,5 +229,6 @@
     <string name="add_account" msgid="8201790677994503186">"Dodaj konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nowe konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksportuj pliki bazy danych"</string>
-    <string name="contact_detail_picture_description" msgid="2010468323127160847">"Zdjęcie. Kliknij, by je zmienić"</string>
+    <!-- no translation found for contact_detail_picture_description (6083230522651287030) -->
+    <skip />
 </resources>
