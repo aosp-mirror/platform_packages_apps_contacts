@@ -66,7 +66,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Удаление этого контакта приведет к потере данных из нескольких аккаунтов."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Этот контакт будет удален."</string>
     <string name="menu_discard" msgid="6456087569315685632">"Отменить"</string>
-    <string name="invalidContactMessage" msgid="8215051456181842274">"Контакт удален."</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"Нет такого контакта."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Виджет \"Контакты\" добавлен на главный экран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Добавить контакт"</string>
@@ -229,5 +229,6 @@
     <string name="add_account" msgid="8201790677994503186">"Добавить аккаунт"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавить аккаунт"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Экспорт файлов базы данных"</string>
-    <string name="contact_detail_picture_description" msgid="2010468323127160847">"Изображение (нажмите, чтобы изменить)"</string>
+    <!-- no translation found for contact_detail_picture_description (6083230522651287030) -->
+    <skip />
 </resources>

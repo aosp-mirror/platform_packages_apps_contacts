@@ -189,7 +189,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Contacten"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Laden..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Een nieuw contact maken"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Aanmelden bij een account"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Inloggen bij een account"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Contacten importeren"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Nieuwe groep maken"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Nieuwe groep maken"</string>
@@ -229,5 +229,6 @@
     <string name="add_account" msgid="8201790677994503186">"Account toevoegen"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Nieuw account toevoegen"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Databasebestanden exporteren"</string>
-    <string name="contact_detail_picture_description" msgid="2010468323127160847">"Foto. Tik om te wijzigen"</string>
+    <!-- no translation found for contact_detail_picture_description (6083230522651287030) -->
+    <skip />
 </resources>
