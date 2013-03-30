@@ -60,7 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Trimiteţi un mesaj text către un număr de pager de serviciu"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Trimiteţi un mesaj text către <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Trimiteţi un mesaj text către un număr MMS"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ştergeţi pers. frecvent contactate?"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ștergeţi pers. frecvent contactate?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Veţi şterge lista cu persoanele frecvent contactate din aplicaţiile Persoane şi Telefon şi veţi forţa aplicaţiile de e-mail să reţină preferinţele dvs. pentru adrese de la zero."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Se şterg pers. frecvent contactate…"</string>
     <string name="status_available" msgid="4832569677396634846">"Disponibil(ă)"</string>
