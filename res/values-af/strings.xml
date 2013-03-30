@@ -229,6 +229,5 @@
     <string name="add_account" msgid="8201790677994503186">"Voeg rekening by"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Voeg nuwe rekening by"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Voer databasislêers uit"</string>
-    <!-- no translation found for contact_detail_picture_description (6083230522651287030) -->
-    <skip />
+    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Foto. Kies om te verander"</string>
 </resources>
