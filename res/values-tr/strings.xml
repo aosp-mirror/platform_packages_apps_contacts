@@ -229,6 +229,5 @@
     <string name="add_account" msgid="8201790677994503186">"Hesap ekle"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Yeni hesap ekle"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Veritabanı dosyalarını dışarı aktar"</string>
-    <!-- no translation found for contact_detail_picture_description (6083230522651287030) -->
-    <skip />
+    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Resim. Değiştirmek için seçin"</string>
 </resources>
