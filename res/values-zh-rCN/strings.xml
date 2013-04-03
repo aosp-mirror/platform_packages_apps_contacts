@@ -229,5 +229,5 @@
     <string name="add_account" msgid="8201790677994503186">"添加帐户"</string>
     <string name="add_new_account" msgid="5748627740680940264">"添加新帐户"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"导出数据库文件"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"照片（选择即可更改）"</string>
+    <string name="contact_detail_picture_description" msgid="6083230522651287030">"照片（选择即可更换）"</string>
 </resources>
