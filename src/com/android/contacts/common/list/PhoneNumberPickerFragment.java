@@ -62,7 +62,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     private boolean mUseCallableUri;
 
     private ContactListItemView.PhotoPosition mPhotoPosition =
-            ContactListItemView.DEFAULT_PHOTO_POSITION;
+            ContactListItemView.getDefaultPhotoPosition(false /* normal/non opposite */);
 
     private class FilterHeaderClickListener implements OnClickListener {
         @Override

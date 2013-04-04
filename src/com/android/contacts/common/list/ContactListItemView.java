@@ -53,6 +53,7 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -111,13 +112,27 @@ public class ContactListItemView extends ViewGroup
 
     /**
      * Where to put contact photo. This affects the other Views' layout or look-and-feel.
+     *
+     * TODO: replace enum with int constants
      */
     public enum PhotoPosition {
         LEFT,
         RIGHT
     }
-    public static final PhotoPosition DEFAULT_PHOTO_POSITION = PhotoPosition.RIGHT;
-    private PhotoPosition mPhotoPosition = DEFAULT_PHOTO_POSITION;
+
+    static public final PhotoPosition getDefaultPhotoPosition(boolean opposite) {
+        final Locale locale = Locale.getDefault();
+        final int layoutDirection = TextUtils.getLayoutDirectionFromLocale(locale);
+        switch (layoutDirection) {
+            case View.LAYOUT_DIRECTION_RTL:
+                return (opposite ? PhotoPosition.RIGHT : PhotoPosition.LEFT);
+            case View.LAYOUT_DIRECTION_LTR:
+            default:
+                return (opposite ? PhotoPosition.LEFT : PhotoPosition.RIGHT);
+        }
+    }
+
+    private PhotoPosition mPhotoPosition = getDefaultPhotoPosition(false /* normal/non opposite */);
 
     // Header layout data
     private boolean mHeaderVisible;
@@ -259,7 +274,7 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_label_width_weight,
                 mLabelViewWidthWeight);
 
-        setPadding(
+        setPaddingRelative(
                 a.getDimensionPixelOffset(
                         R.styleable.ContactListItemView_list_item_padding_left, 0),
                 a.getDimensionPixelOffset(
@@ -436,12 +451,14 @@ public class ContactListItemView extends ViewGroup
 
         // Add the height of the header if visible
         if (mHeaderVisible) {
+            final int headerWidth = specWidth -
+                    getPaddingLeft() - getPaddingRight() - mHeaderTextIndent;
             mHeaderTextView.measure(
-                    MeasureSpec.makeMeasureSpec(specWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(headerWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
             if (mCountView != null) {
                 mCountView.measure(
-                        MeasureSpec.makeMeasureSpec(specWidth, MeasureSpec.AT_MOST),
+                        MeasureSpec.makeMeasureSpec(headerWidth, MeasureSpec.AT_MOST),
                         MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
             }
             mHeaderBackgroundHeight = Math.max(mHeaderBackgroundHeight,
@@ -463,15 +480,13 @@ public class ContactListItemView extends ViewGroup
         int leftBound = getPaddingLeft();
         int rightBound = width - getPaddingRight();
 
-        if (isLayoutRtl()) {
-            mPhotoPosition = PhotoPosition.LEFT;
-        }
+        final boolean isLayoutRtl = isLayoutRtl();
 
         // Put the header in the top of the contact view (Text + underline view)
         if (mHeaderVisible) {
-            mHeaderTextView.layout(leftBound + mHeaderTextIndent,
+            mHeaderTextView.layout(isLayoutRtl ? leftBound : leftBound + mHeaderTextIndent,
                     0,
-                    rightBound,
+                    isLayoutRtl ? rightBound - mHeaderTextIndent : rightBound,
                     mHeaderBackgroundHeight);
             if (mCountView != null) {
                 mCountView.layout(rightBound - mCountView.getMeasuredWidth(),
@@ -529,6 +544,9 @@ public class ContactListItemView extends ViewGroup
                         rightBound,
                         photoTop + mPhotoViewHeight);
                 rightBound -= (mPhotoViewWidth + mGapBetweenImageAndText);
+            } else if (mKeepHorizontalPaddingForPhotoView) {
+                // Draw nothing but keep the padding.
+                rightBound -= (mPhotoViewWidth + mGapBetweenImageAndText);
             }
 
             // Add indent between left-most padding and texts.
@@ -551,22 +569,42 @@ public class ContactListItemView extends ViewGroup
         }
 
         // Presence and status
-        int statusLeftBound = leftBound;
-        if (isVisible(mPresenceIcon)) {
-            int iconWidth = mPresenceIcon.getMeasuredWidth();
-            mPresenceIcon.layout(
-                    leftBound,
-                    textTopBound,
-                    leftBound + iconWidth,
-                    textTopBound + mStatusTextViewHeight);
-            statusLeftBound += (iconWidth + mPresenceIconMargin);
-        }
+        if (isLayoutRtl) {
+            int statusRightBound = rightBound;
+            if (isVisible(mPresenceIcon)) {
+                int iconWidth = mPresenceIcon.getMeasuredWidth();
+                mPresenceIcon.layout(
+                        rightBound - iconWidth,
+                        textTopBound,
+                        rightBound,
+                        textTopBound + mStatusTextViewHeight);
+                statusRightBound -= (iconWidth + mPresenceIconMargin);
+            }
 
-        if (isVisible(mStatusView)) {
-            mStatusView.layout(statusLeftBound,
-                    textTopBound,
-                    rightBound,
-                    textTopBound + mStatusTextViewHeight);
+            if (isVisible(mStatusView)) {
+                mStatusView.layout(leftBound,
+                        textTopBound,
+                        statusRightBound,
+                        textTopBound + mStatusTextViewHeight);
+            }
+        } else {
+            int statusLeftBound = leftBound;
+            if (isVisible(mPresenceIcon)) {
+                int iconWidth = mPresenceIcon.getMeasuredWidth();
+                mPresenceIcon.layout(
+                        leftBound,
+                        textTopBound,
+                        leftBound + iconWidth,
+                        textTopBound + mStatusTextViewHeight);
+                statusLeftBound += (iconWidth + mPresenceIconMargin);
+            }
+
+            if (isVisible(mStatusView)) {
+                mStatusView.layout(statusLeftBound,
+                        textTopBound,
+                        rightBound,
+                        textTopBound + mStatusTextViewHeight);
+            }
         }
 
         if (isVisible(mStatusView) || isVisible(mPresenceIcon)) {
@@ -724,6 +762,7 @@ public class ContactListItemView extends ViewGroup
                 mHeaderTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSize);
                 mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
                 mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
+                mHeaderTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                 addView(mHeaderTextView);
             }
             if (mHeaderDivider == null) {
@@ -835,6 +874,8 @@ public class ContactListItemView extends ViewGroup
             // setActivated() call toward this whole item view.
             mNameTextView.setActivated(isActivated());
             mNameTextView.setGravity(Gravity.CENTER_VERTICAL);
+            mNameTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            mNameTextView.setId(R.id.cliv_name_textview);
             addView(mNameTextView);
         }
         return mNameTextView;
@@ -866,6 +907,7 @@ public class ContactListItemView extends ViewGroup
             mPhoneticNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mPhoneticNameTextView.setTypeface(mPhoneticNameTextView.getTypeface(), Typeface.BOLD);
             mPhoneticNameTextView.setActivated(isActivated());
+            mPhoneticNameTextView.setId(R.id.cliv_phoneticname_textview);
             addView(mPhoneticNameTextView);
         }
         return mPhoneticNameTextView;
@@ -898,11 +940,12 @@ public class ContactListItemView extends ViewGroup
             if (mPhotoPosition == PhotoPosition.LEFT) {
                 mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
                 mLabelView.setAllCaps(true);
-                mLabelView.setGravity(Gravity.RIGHT);
+                mLabelView.setGravity(Gravity.END);
             } else {
                 mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);
             }
             mLabelView.setActivated(isActivated());
+            mLabelView.setId(R.id.cliv_label_textview);
             addView(mLabelView);
         }
         return mLabelView;
@@ -911,7 +954,7 @@ public class ContactListItemView extends ViewGroup
     /**
      * Adds or updates a text view for the data element.
      */
-    public void setData(char[] text, int size) {
+    public void setData(char[] text, int size, int dataColumnIndex) {
         if (text == null || size == 0) {
             if (mDataView != null) {
                 mDataView.setVisibility(View.GONE);
@@ -920,6 +963,14 @@ public class ContactListItemView extends ViewGroup
             getDataView();
             setMarqueeText(mDataView, text, size);
             mDataView.setVisibility(VISIBLE);
+            // Check if this is a phone number. This code works also for the legacy phone number
+            // coming from LegacyPhoneNumberListAdapter.PHONE_NUMBER_COLUMN_INDEX because they are
+            // the exact same constant value (3)
+            if (dataColumnIndex == PhoneNumberListAdapter.PhoneQuery.PHONE_NUMBER) {
+                // We have a phone number as "mDataView" so make it always LTR and VIEW_START
+                mDataView.setTextDirection(View.TEXT_DIRECTION_LTR);
+                mDataView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            }
         }
     }
 
@@ -954,6 +1005,7 @@ public class ContactListItemView extends ViewGroup
             mDataView.setEllipsize(getTextEllipsis());
             mDataView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mDataView.setActivated(isActivated());
+            mDataView.setId(R.id.cliv_data_view);
             addView(mDataView);
         }
         return mDataView;
@@ -1000,6 +1052,7 @@ public class ContactListItemView extends ViewGroup
             mStatusView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mStatusView.setTextColor(mSecondaryTextColor);
             mStatusView.setActivated(isActivated());
+            mStatusView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             addView(mStatusView);
         }
         return mStatusView;
@@ -1336,7 +1389,7 @@ public class ContactListItemView extends ViewGroup
      */
     public void showData(Cursor cursor, int dataColumnIndex) {
         cursor.copyStringToBuffer(dataColumnIndex, mDataBuffer);
-        setData(mDataBuffer.data, mDataBuffer.sizeCopied);
+        setData(mDataBuffer.data, mDataBuffer.sizeCopied, dataColumnIndex);
     }
 
     public void setActivatedStateSupported(boolean flag) {

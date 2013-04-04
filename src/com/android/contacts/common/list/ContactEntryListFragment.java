@@ -49,6 +49,8 @@ import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
 import com.android.contacts.common.preference.ContactsPreferences;
 
+import java.util.Locale;
+
 /**
  * Common base class for various contact-related list fragments.
  */
@@ -93,7 +95,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mIncludeProfile;
     private boolean mSearchMode;
     private boolean mVisibleScrollbarEnabled;
-    private int mVerticalScrollbarPosition = View.SCROLLBAR_POSITION_RIGHT;
+    private int mVerticalScrollbarPosition = getDefaultVerticalScrollbarPosition();
     private String mQueryString;
     private int mDirectorySearchMode = DirectoryListLoader.SEARCH_MODE_NONE;
     private boolean mSelectionVisible;
@@ -147,6 +149,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             }
         }
     };
+    private int defaultVerticalScrollbarPosition;
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
@@ -852,4 +855,16 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             reloadData();
         }
     };
+
+    private int getDefaultVerticalScrollbarPosition() {
+        final Locale locale = Locale.getDefault();
+        final int layoutDirection = TextUtils.getLayoutDirectionFromLocale(locale);
+        switch (layoutDirection) {
+            case View.LAYOUT_DIRECTION_RTL:
+                return View.SCROLLBAR_POSITION_LEFT;
+            case View.LAYOUT_DIRECTION_LTR:
+            default:
+                return View.SCROLLBAR_POSITION_RIGHT;
+        }
+    }
 }

@@ -556,7 +556,7 @@ public class ContactTileAdapter extends BaseAdapter {
                 case ViewTypes.STARRED_PHONE:
                 case ViewTypes.STARRED:
                     // Setting divider visibilities
-                    contactTile.setPadding(0, 0,
+                    contactTile.setPaddingRelative(0, 0,
                             childIndex >= mColumnCount - 1 ? 0 : mPaddingInPixels,
                             isLastRow ? 0 : mPaddingInPixels);
                     break;

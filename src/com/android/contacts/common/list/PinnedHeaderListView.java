@@ -103,7 +103,7 @@ public class PinnedHeaderListView extends AutoScrollListView
     private int mAnimationDuration = DEFAULT_ANIMATION_DURATION;
     private boolean mAnimating;
     private long mAnimationTargetTime;
-    private int mHeaderPaddingLeft;
+    private int mHeaderPaddingStart;
     private int mHeaderWidth;
 
     public PinnedHeaderListView(Context context) {
@@ -123,8 +123,8 @@ public class PinnedHeaderListView extends AutoScrollListView
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        mHeaderPaddingLeft = getPaddingLeft();
-        mHeaderWidth = r - l - mHeaderPaddingLeft - getPaddingRight();
+        mHeaderPaddingStart = getPaddingStart();
+        mHeaderWidth = r - l - mHeaderPaddingStart - getPaddingEnd();
     }
 
     public void setPinnedHeaderAnimationDuration(int duration) {
@@ -170,6 +170,7 @@ public class PinnedHeaderListView extends AutoScrollListView
                     mHeaders[i] = new PinnedHeader();
                 }
                 mHeaders[i].view = mAdapter.getPinnedHeaderView(i, mHeaders[i].view, this);
+                mHeaders[i].view.setLayoutDirection(getLayoutDirection());
             }
 
             mAnimationTargetTime = System.currentTimeMillis() + mAnimationDuration;
@@ -511,7 +512,9 @@ public class PinnedHeaderListView extends AutoScrollListView
         if (header.visible) {
             View view = header.view;
             int saveCount = canvas.save();
-            canvas.translate(mHeaderPaddingLeft, header.y);
+            canvas.translate(isLayoutRtl() ?
+                    getWidth() - mHeaderPaddingStart - mHeaderWidth : mHeaderPaddingStart,
+                    header.y);
             if (header.state == FADING) {
                 mBounds.set(0, 0, mHeaderWidth, view.getHeight());
                 canvas.saveLayerAlpha(mBounds, header.alpha, Canvas.ALL_SAVE_FLAG);

@@ -87,6 +87,7 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
         mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
         mHeaderTextView.setAllCaps(true);
+        mHeaderTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
         addView(mHeaderTextView);
         mHeaderDivider = new View(mContext);
         mHeaderDivider.setBackgroundColor(mHeaderUnderlineColor);
@@ -115,17 +116,40 @@ public class ContactListPinnedHeaderView extends ViewGroup {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         int width = right - left;
 
+        final int leftHeaderTextView;
+        final int rightHeaderTextView;
+        final int topTextView = 0;
+        final int bottomTextView = mHeaderBackgroundHeight;
+
+        int leftCountTextView = 0;
+        int rightCountTextView = 0;
+
+        if (isLayoutRtl()) {
+            rightHeaderTextView = width - mPaddingRight - mHeaderTextIndent;
+            leftHeaderTextView = rightHeaderTextView - mHeaderTextView.getMeasuredWidth();
+
+            leftCountTextView = mHeaderTextIndent + mPaddingLeft;
+            rightCountTextView = mCountTextView.getMeasuredWidth() + leftCountTextView;
+        } else {
+            leftHeaderTextView = mHeaderTextIndent + mPaddingLeft;
+            rightHeaderTextView = mHeaderTextView.getMeasuredWidth() + leftHeaderTextView;
+
+            // Order of statements matters
+            rightCountTextView = width - mPaddingRight;
+            leftCountTextView = rightCountTextView - mCountTextView.getMeasuredWidth();
+        }
+
         // Take into account left and right padding when laying out the below views.
-        mHeaderTextView.layout(mHeaderTextIndent + mPaddingLeft,
-                0,
-                mHeaderTextView.getMeasuredWidth() + mHeaderTextIndent + mPaddingLeft,
-                mHeaderBackgroundHeight);
+        mHeaderTextView.layout(leftHeaderTextView,
+                topTextView,
+                rightHeaderTextView,
+                bottomTextView);
 
         if (isViewMeasurable(mCountTextView)) {
-            mCountTextView.layout(width - mPaddingRight - mCountTextView.getMeasuredWidth(),
-                    0,
-                    width - mPaddingRight,
-                    mHeaderBackgroundHeight);
+            mCountTextView.layout(leftCountTextView,
+                    topTextView,
+                    rightCountTextView,
+                    bottomTextView);
         }
 
         mHeaderDivider.layout(mPaddingLeft,
