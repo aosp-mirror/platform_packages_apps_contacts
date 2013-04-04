@@ -32,6 +32,7 @@
             android:layout_width="64dip"
             android:layout_height="64dip"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:nextFocusRight="@id/contact_tile_frequent_phone"
             android:scaleType="centerCrop"
             android:focusable="true" />
@@ -41,13 +42,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
+            android:layout_marginStart="8dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="8dip"
             android:layout_toRightOf="@id/contact_tile_quick"
+            android:layout_toEndOf="@id/contact_tile_quick"
             android:singleLine="true"
             android:fadingEdge="horizontal"
             android:fadingEdgeLength="3dip"
-            android:ellipsize="marquee" />
+            android:ellipsize="marquee"
+            android:textAlignment="viewStart" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -55,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/contact_tile_name"
             android:layout_toRightOf="@id/contact_tile_quick"
+            android:layout_toEndOf="@id/contact_tile_quick"
             android:gravity="center_vertical">
 
             <TextView
@@ -66,8 +71,11 @@
                 android:ellipsize="marquee"
                 android:textColor="@color/dialtacts_secondary_text_color"
                 android:layout_marginLeft="8dip"
+                android:layout_marginStart="8dip"
                 android:singleLine="true"
-                android:layout_gravity="bottom" />
+                android:layout_gravity="bottom"
+                android:textDirection="ltr"
+                android:textAlignment="viewStart" />
 
             <TextView
                 android:id="@+id/contact_tile_phone_type"
@@ -80,7 +88,8 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dialtacts_secondary_text_color"
                 android:layout_marginLeft="8dip"
-                android:gravity="right"
+                android:layout_marginStart="8dip"
+                android:gravity="end"
                 android:layout_gravity="bottom" />
 
         </LinearLayout>

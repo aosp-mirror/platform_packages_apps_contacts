@@ -34,7 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_marginLeft="8dip">
+        android:layout_marginLeft="8dip"
+        android:layout_marginStart="8dip">
 
         <TextView
             android:id="@+id/accountType"
@@ -61,6 +62,6 @@
         android:layout_marginTop="1dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|center_vertical" />
+        android:layout_gravity="end|center_vertical" />
 </view>
 
