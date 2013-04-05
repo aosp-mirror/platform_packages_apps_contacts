@@ -17,6 +17,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingBottom="1dip"
     android:paddingRight="1dip"
+    android:paddingEnd="1dip"
     android:background="@null"
     class="com.android.contacts.common.list.ContactTileStarredView" >
 
@@ -37,8 +38,10 @@
             android:background="@color/contact_tile_shadow_box_color"
             android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
+            android:paddingLeft="8dip"
             android:paddingRight="8dip"
-            android:paddingLeft="8dip">
+            android:paddingStart="8dip"
+            android:paddingEnd="8dip">
 
             <TextView
                 android:id="@+id/contact_tile_name"
@@ -49,7 +52,8 @@
                 android:singleLine="true"
                 android:fadingEdge="horizontal"
                 android:fadingEdgeLength="3dip"
-                android:ellipsize="marquee" />
+                android:ellipsize="marquee"
+                android:textAlignment="viewStart" />
 
             <TextView
                 android:id="@+id/contact_tile_status"

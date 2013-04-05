@@ -18,6 +18,7 @@
     android:background="@null"
     android:paddingBottom="1dip"
     android:paddingRight="1dip"
+    android:paddingEnd="1dip"
     class="com.android.contacts.common.list.ContactTilePhoneStarredView" >
 
     <RelativeLayout
@@ -45,7 +46,11 @@
             android:layout_alignParentBottom="true"
             android:paddingLeft="8dip"
             android:paddingRight="47dip"
-            android:drawableRight="@drawable/ic_divider_dashed_holo_dark" />
+            android:paddingStart="8dip"
+            android:paddingEnd="47dip"
+            android:drawableRight="@drawable/ic_divider_dashed_holo_dark"
+            android:drawableEnd="@drawable/ic_divider_dashed_holo_dark"
+            android:textAlignment="viewStart" />
 
         <View
             android:id="@+id/contact_tile_push_state"
@@ -61,10 +66,13 @@
             android:background="?android:attr/selectableItemBackground"
             android:layout_height="@dimen/contact_tile_shadowbox_height"
             android:layout_width="48dip"
-            android:paddingRight="8dip"
             android:paddingLeft="8dip"
+            android:paddingRight="8dip"
+            android:paddingStart="8dip"
+            android:paddingEnd="8dip"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:contentDescription="@string/description_view_contact_detail" />
 
     </RelativeLayout>

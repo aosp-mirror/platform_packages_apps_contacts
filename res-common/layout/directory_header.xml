@@ -21,6 +21,8 @@
     android:id="@+id/directory_header"
     android:paddingLeft="?attr/list_item_padding_left"
     android:paddingRight="?attr/list_item_padding_right"
+    android:paddingStart="?attr/list_item_padding_left"
+    android:paddingEnd="?attr/list_item_padding_right"
     android:minHeight="@dimen/list_section_divider_min_height"
     android:layout_marginTop="@dimen/list_header_extra_top_padding"
     android:layout_width="match_parent"
@@ -37,29 +39,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
+            android:layout_marginStart="8dip"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/people_app_theme_color"
             android:singleLine="true"
             android:textStyle="bold"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            android:textAlignment="viewStart" />
         <TextView
             android:id="@+id/display_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
             android:layout_marginRight="8dip"
+            android:layout_marginStart="8dip"
+            android:layout_marginEnd="8dip"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/people_app_theme_color"
             android:singleLine="true"
             android:textStyle="bold"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            android:textAlignment="viewStart" />
         <TextView
             android:id="@+id/count"
             android:paddingTop="1dip"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="right"
+            android:gravity="end"
             android:singleLine="true"
             android:textSize="12sp"
             android:textColor="@color/contact_count_text_color" />

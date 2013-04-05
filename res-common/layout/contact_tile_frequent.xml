@@ -38,8 +38,10 @@
             android:orientation="vertical"
             android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
-            android:paddingEnd="80dip"
-            android:paddingStart="8dip">
+            android:paddingLeft="8dip"
+            android:paddingRight="80dip"
+            android:paddingStart="8dip"
+            android:paddingEnd="80dip">
 
             <TextView
                 android:id="@+id/contact_tile_name"
@@ -50,7 +52,8 @@
                 android:singleLine="true"
                 android:fadingEdge="horizontal"
                 android:fadingEdgeLength="3dip"
-                android:ellipsize="marquee" />
+                android:ellipsize="marquee"
+                android:textAlignment="viewStart" />
 
             <TextView
                 android:id="@+id/contact_tile_status"
