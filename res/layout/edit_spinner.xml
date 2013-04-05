@@ -25,4 +25,6 @@
     android:layout_width="@dimen/editor_type_label_width"
     android:layout_height="@dimen/editor_min_line_item_height"
     android:paddingLeft="0dip"
-    android:paddingRight="10dip"/>
+    android:paddingRight="10dip"
+    android:paddingStart="0dip"
+    android:paddingEnd="10dip" />

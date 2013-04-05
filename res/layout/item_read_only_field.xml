@@ -31,6 +31,8 @@
         android:layout_height="1px"
         android:layout_marginLeft="8dip"
         android:layout_marginRight="8dip"
+        android:layout_marginStart="8dip"
+        android:layout_marginEnd="8dip"
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
@@ -39,6 +41,8 @@
         android:minHeight="@dimen/editor_min_line_item_height"
         android:layout_marginLeft="16dip"
         android:layout_marginRight="16dip"
+        android:layout_marginStart="16dip"
+        android:layout_marginEnd="16dip"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/data"

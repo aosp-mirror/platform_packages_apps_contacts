@@ -19,6 +19,7 @@
     android:layout_height="wrap_content"
     android:minHeight="48dip"
     android:paddingLeft="@dimen/editor_add_field_label_left_padding"
+    android:paddingStart="@dimen/editor_add_field_label_left_padding"
     android:background="?android:attr/selectableItemBackground"
     android:focusable="true"
     android:clickable="true">

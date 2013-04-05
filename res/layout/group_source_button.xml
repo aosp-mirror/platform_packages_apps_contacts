@@ -27,7 +27,9 @@
     android:minHeight="48dip"
     android:background="@drawable/gray_action_bar_background"
     android:paddingLeft="16dip"
-    android:paddingRight="16dip" >
+    android:paddingRight="16dip"
+    android:paddingStart="16dip"
+    android:paddingEnd="16dip" >
 
     <TextView
         android:id="@android:id/title"

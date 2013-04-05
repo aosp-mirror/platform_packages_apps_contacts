@@ -27,6 +27,8 @@
         android:paddingTop="10dip"
         android:paddingLeft="10dip"
         android:paddingRight="10dip"
+        android:paddingStart="10dip"
+        android:paddingEnd="10dip"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="?android:attr/textColorTertiary"
         android:text="@string/group_read_only" />

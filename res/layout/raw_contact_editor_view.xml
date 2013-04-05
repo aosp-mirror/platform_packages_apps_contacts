@@ -55,6 +55,7 @@
             <include
                 android:id="@+id/edit_photo"
                 android:layout_marginRight="8dip"
+                android:layout_marginEnd="8dip"
                 layout="@layout/item_photo_editor" />
 
         </LinearLayout>

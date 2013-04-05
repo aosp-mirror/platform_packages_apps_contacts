@@ -30,6 +30,8 @@
         android:layout_height="48dip"
         android:paddingLeft="@dimen/editor_add_field_label_left_padding"
         android:paddingRight="16dip"
+        android:paddingStart="@dimen/editor_add_field_label_left_padding"
+        android:paddingEnd="16dip"
         android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorSecondary"

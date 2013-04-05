@@ -35,7 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dip"
         android:layout_marginRight="@dimen/list_visible_scrollbar_padding"
+        android:layout_marginStart="0dip"
+        android:layout_marginEnd="@dimen/list_visible_scrollbar_padding"
         android:paddingRight="0dip"
+        android:paddingEnd="0dip"
         android:iconifiedByDefault="false" />
     <!--
       This will contain an appropriate contacts list. Add a min height to prevent
@@ -57,7 +60,9 @@
         android:minHeight="48dip"
         android:background="@drawable/gray_action_bar_background"
         android:paddingLeft="16dip"
-        android:paddingRight="16dip">
+        android:paddingRight="16dip"
+        android:paddingStart="16dip"
+        android:paddingEnd="16dip">
         <TextView
             android:id="@android:id/title"
             android:layout_width="0dip"

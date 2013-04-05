@@ -36,6 +36,7 @@
                 android:layout_height="6dip"
                 android:layout_alignBottom="@id/track"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:background="@color/quickcontact_tab_indicator" />
         </RelativeLayout>
     </HorizontalScrollView>

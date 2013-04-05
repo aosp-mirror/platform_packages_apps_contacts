@@ -191,6 +191,8 @@
         <item name="android:layout_weight">1</item>
         <item name="android:paddingLeft">16dip</item>
         <item name="android:paddingRight">16dip</item>
+        <item name="android:paddingStart">16dip</item>
+        <item name="android:paddingEnd">16dip</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">vertical</item>
     </style>

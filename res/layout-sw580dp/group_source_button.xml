@@ -43,6 +43,7 @@
         android:layout_width="30dip"
         android:layout_height="30dip"
         android:layout_marginLeft="7dip"
+        android:layout_marginStart="7dip"
         android:layout_gravity="center_vertical"/>
 
 </LinearLayout>

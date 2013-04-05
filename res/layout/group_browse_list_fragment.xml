@@ -28,6 +28,8 @@
       android:layout_height="0dip"
       android:paddingLeft="16dip"
       android:paddingRight="16dip"
+      android:paddingStart="16dip"
+      android:paddingEnd="16dip"
       android:scrollbarStyle="outsideOverlay"
       android:layout_weight="1"
       android:fadingEdge="none"

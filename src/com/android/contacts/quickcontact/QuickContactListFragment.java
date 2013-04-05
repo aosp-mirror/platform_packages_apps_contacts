@@ -131,8 +131,11 @@ public class QuickContactListFragment extends Fragment {
                 alternateActionButton.setContentDescription(action.getAlternateIconDescription());
                 alternateActionButton.setVisibility(hasAlternateAction ? View.VISIBLE : View.GONE);
 
-                // Special case for phone numbers in accessibility mode
                 if (mimeType.equals(Phone.CONTENT_ITEM_TYPE)) {
+                    // Force LTR text direction for phone numbers
+                    text1.setTextDirection(View.TEXT_DIRECTION_LTR);
+
+                    // Special case for phone numbers in accessibility mode
                     text1.setContentDescription(getActivity().getString(
                             R.string.description_dial_phone_number, action.getBody()));
                     if (hasAlternateAction) {

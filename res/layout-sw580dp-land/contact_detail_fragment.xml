@@ -40,7 +40,8 @@
             android:layout_width="@dimen/detail_contact_photo_size"
             android:layout_height="@dimen/detail_contact_photo_size"
             android:layout_marginTop="@dimen/detail_contact_photo_margin"
-            android:layout_marginRight="@dimen/detail_contact_photo_margin" />
+            android:layout_marginRight="@dimen/detail_contact_photo_margin"
+            android:layout_marginEnd="@dimen/detail_contact_photo_margin" />
 
         <ListView android:id="@android:id/list"
             android:layout_width="0dip"
@@ -51,7 +52,8 @@
             android:layout_weight="1"
             android:divider="@null"
             android:scrollbarStyle="outsideOverlay"
-            android:paddingRight="16dip"/>
+            android:paddingRight="16dip"
+            android:paddingEnd="16dip"/>
 
     </LinearLayout>
 

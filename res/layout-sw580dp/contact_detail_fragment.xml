@@ -36,7 +36,8 @@
         android:cacheColorHint="#00000000"
         android:divider="@null"
         android:scrollbarStyle="outsideOverlay"
-        android:paddingRight="12dip" />
+        android:paddingRight="12dip"
+        android:paddingEnd="12dip" />
 
     <!-- "QuickFix"- button (Copy to local contact, add to group) -->
     <Button

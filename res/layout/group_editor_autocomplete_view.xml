@@ -25,4 +25,5 @@
     android:imeOptions="flagNoExtractUi|flagNoFullscreen"
     android:hint="@string/enter_contact_name"
     android:minHeight="48dip"
-    android:paddingLeft="@dimen/group_editor_autocomplete_left_padding"/>
+    android:paddingLeft="@dimen/group_editor_autocomplete_left_padding"
+    android:paddingStart="@dimen/group_editor_autocomplete_left_padding"/>
