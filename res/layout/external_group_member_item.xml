@@ -28,14 +28,18 @@
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:paddingRight="3dip"
+        android:paddingEnd="3dip"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:focusable="true"
-        android:paddingLeft="@dimen/group_member_item_left_padding" />
+        android:paddingLeft="@dimen/group_member_item_left_padding"
+        android:paddingStart="@dimen/group_member_item_left_padding" />
 
     <QuickContactBadge
         android:id="@+id/badge"
         android:layout_marginLeft="5dip"
         android:layout_marginRight="10dip"
+        android:layout_marginStart="5dip"
+        android:layout_marginEnd="10dip"
         android:layout_gravity="center_vertical"
         android:layout_width="50dip"
         android:layout_height="50dip"

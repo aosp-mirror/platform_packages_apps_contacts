@@ -42,6 +42,8 @@
             android:textColor="?android:attr/textColorSecondary"
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
+            android:paddingStart="10dip"
+            android:paddingEnd="10dip"
             android:paddingTop="10dip"
             android:lineSpacingMultiplier="0.92"/>
 

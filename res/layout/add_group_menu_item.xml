@@ -26,6 +26,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
     android:layout_marginRight="8dip"
+    android:layout_marginEnd="8dip"
     android:src="@drawable/ic_add_group_holo_dark"
     android:description="@string/menu_new_group_action_bar"
     style="?android:attr/actionButtonStyle" />

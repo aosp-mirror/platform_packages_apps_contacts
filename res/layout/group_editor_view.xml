@@ -28,6 +28,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="8dip"
         android:paddingRight="8dip"
+        android:paddingStart="8dip"
+        android:paddingEnd="8dip"
         android:orientation="vertical">
 
         <EditText
@@ -39,7 +41,8 @@
             android:imeOptions="flagNoExtractUi|flagNoFullscreen"
             android:hint="@string/group_name_hint"
             android:minHeight="48dip"
-            android:paddingLeft="8dip"/>
+            android:paddingLeft="8dip"
+            android:paddingStart="8dip"/>
 
         <include
             layout="@layout/group_editor_autocomplete_view"

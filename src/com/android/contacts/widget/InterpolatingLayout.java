@@ -290,7 +290,7 @@ public class InterpolatingLayout extends ViewGroup {
             LayoutParams params = (LayoutParams) child.getLayoutParams();
             int gravity = params.gravity;
             if (gravity == -1) {
-                gravity = Gravity.LEFT | Gravity.TOP;
+                gravity = Gravity.START | Gravity.TOP;
             }
 
             if (params.narrowPaddingLeft != -1 || params.narrowPaddingRight != -1) {

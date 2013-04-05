@@ -26,10 +26,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/join_header_left_margin"
-        android:layout_marginTop="@dimen/join_header_top_margin"
         android:layout_marginRight="@dimen/join_header_right_margin"
+        android:layout_marginStart="@dimen/join_header_left_margin"
+        android:layout_marginEnd="@dimen/join_header_right_margin"
+        android:layout_marginTop="@dimen/join_header_top_margin"
         android:layout_marginBottom="@dimen/join_header_bottom_margin"
         android:paddingLeft="?attr/list_item_header_text_indent"
+        android:paddingStart="?attr/list_item_header_text_indent"
         android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -44,6 +47,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="?attr/contact_browser_list_padding_left"
             android:layout_marginRight="?attr/contact_browser_list_padding_right"
+            android:layout_marginStart="?attr/contact_browser_list_padding_left"
+            android:layout_marginEnd="?attr/contact_browser_list_padding_right"
             android:fastScrollEnabled="true"
             android:scrollbarStyle="outsideOverlay" />
     </FrameLayout>

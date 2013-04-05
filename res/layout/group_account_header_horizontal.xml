@@ -21,6 +21,8 @@
     android:minHeight="?attr/list_item_header_height"
     android:layout_marginLeft="?attr/list_item_padding_left"
     android:layout_marginRight="?attr/list_item_padding_right"
+    android:layout_marginStart="?attr/list_item_padding_left"
+    android:layout_marginEnd="?attr/list_item_padding_right"
     android:background="@drawable/list_section_divider_holo_custom"
     android:orientation="horizontal">
 
@@ -31,11 +33,13 @@
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:paddingLeft="?attr/list_item_header_text_indent"
+        android:paddingStart="?attr/list_item_header_text_indent"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/people_app_theme_color"
         android:textStyle="bold"
         android:textAllCaps="true"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:textAlignment="viewStart" />
 
     <!-- TODO: Should use correct color with a correct name (content should be same).
          can use "?android:attr/textColorTertiary" -->
@@ -47,5 +51,6 @@
         android:textColor="@color/contact_count_text_color"
         android:textSize="12sp"
         android:singleLine="true"
-        android:ellipsize="middle" />
+        android:ellipsize="middle"
+        android:textDirection="ltr" />
 </LinearLayout>

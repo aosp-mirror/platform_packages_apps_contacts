@@ -22,6 +22,8 @@
     android:layout_height="?attr/list_item_header_height"
     android:paddingLeft="?attr/list_item_padding_left"
     android:paddingRight="?attr/list_item_padding_right"
+    android:paddingStart="?attr/list_item_padding_left"
+    android:paddingEnd="?attr/list_item_padding_right"
     android:background="@drawable/list_section_divider_holo_custom"
     android:gravity="center_vertical"
     >
@@ -38,6 +40,7 @@
         android:textAllCaps="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:paddingLeft="?attr/list_item_text_indent"
+        android:paddingStart="?attr/list_item_text_indent"
         android:textColor="@color/people_app_theme_color" />
 
     <TextView

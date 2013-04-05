@@ -23,4 +23,6 @@
     android:checkMark="?android:attr/listChoiceIndicatorMultiple"
     android:paddingLeft="6dip"
     android:paddingRight="6dip"
+    android:paddingStart="6dip"
+    android:paddingEnd="6dip"
 />

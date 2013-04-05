@@ -19,7 +19,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingLeft="@dimen/detail_update_section_side_padding"
-    android:paddingRight="@dimen/detail_update_section_side_padding">
+    android:paddingRight="@dimen/detail_update_section_side_padding"
+    android:paddingStart="@dimen/detail_update_section_side_padding"
+    android:paddingEnd="@dimen/detail_update_section_side_padding">
 
     <!-- Clickable area -->
     <LinearLayout
@@ -28,6 +30,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/detail_update_section_item_horizontal_padding"
         android:paddingRight="@dimen/detail_update_section_item_horizontal_padding"
+        android:paddingStart="@dimen/detail_update_section_item_horizontal_padding"
+        android:paddingEnd="@dimen/detail_update_section_item_horizontal_padding"
         android:paddingTop="@dimen/detail_update_section_item_vertical_padding"
         android:paddingBottom="@dimen/detail_update_section_item_vertical_padding"
         android:background="?android:attr/selectableItemBackground"
@@ -50,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="?android:attr/textColorPrimary" />
+            android:textColor="?android:attr/textColorPrimary"
+            android:textAlignment="viewStart" />
         <!--
         Attribution (e.g. timestamp) and comments (e.g. +1, like) should align horizontally.
         Can't merge this with the parent list view.
@@ -70,8 +75,8 @@
             <TextView android:id="@+id/stream_item_comments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft=
-                    "@dimen/detail_update_section_attribution_comments_padding"
+                android:layout_marginLeft="@dimen/detail_update_section_attribution_comments_padding"
+                android:layout_marginStart="@dimen/detail_update_section_attribution_comments_padding"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?android:attr/textColorSecondary"
                 android:maxLines="1"/>

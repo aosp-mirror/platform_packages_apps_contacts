@@ -132,7 +132,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 String message = getResources().getString(R.string.upgrade_out_of_memory,
                         new Object[] { providerStatus.data});
                 mMessageView.setText(message);
-                mMessageView.setGravity(Gravity.LEFT);
+                mMessageView.setGravity(Gravity.START);
                 mMessageView.setVisibility(View.VISIBLE);
                 mCreateContactButton.setVisibility(View.GONE);
                 mAddAccountButton.setVisibility(View.GONE);

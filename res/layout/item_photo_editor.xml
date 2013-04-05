@@ -32,7 +32,7 @@
             android:src="@drawable/ic_contact_picture_holo_light"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
-            android:gravity="left"
+            android:gravity="start"
         />
         <View
             android:id="@+id/frame"

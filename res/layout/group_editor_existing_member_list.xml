@@ -23,4 +23,6 @@
     android:layout_marginTop="5dip"
     android:layout_marginLeft="@dimen/group_editor_member_list_left_margin"
     android:layout_marginRight="@dimen/group_editor_member_list_right_margin"
+    android:layout_marginStart="@dimen/group_editor_member_list_left_margin"
+    android:layout_marginEnd="@dimen/group_editor_member_list_right_margin"
     android:cacheColorHint="@android:color/transparent" />

@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:textStyle="bold"
         android:textColor="@color/section_header_text_color"
         android:textSize="14sp"

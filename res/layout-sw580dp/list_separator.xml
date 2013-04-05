@@ -19,4 +19,6 @@
     android:id="@+id/title"
     style="@style/ContactListSeparatorTextViewStyle"
     android:paddingLeft="8dip"
-    android:paddingRight="8dip" />
+    android:paddingRight="8dip"
+    android:paddingStart="8dip"
+    android:paddingEnd="8dip" />

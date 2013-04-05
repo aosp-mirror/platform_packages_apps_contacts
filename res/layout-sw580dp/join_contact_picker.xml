@@ -27,7 +27,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dip"
         android:layout_marginRight="@dimen/list_visible_scrollbar_padding"
+        android:layout_marginStart="0dip"
+        android:layout_marginEnd="@dimen/list_visible_scrollbar_padding"
         android:paddingRight="0dip"
+        android:paddingEnd="0dip"
         android:iconifiedByDefault="false" />
 
     <FrameLayout

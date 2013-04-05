@@ -41,6 +41,8 @@
             android:layout_gravity="bottom"
             android:paddingLeft="0dip"
             android:paddingRight="10dip"
+            android:paddingStart="0dip"
+            android:paddingEnd="10dip"
             android:visibility="gone"/>
 
         <include
