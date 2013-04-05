@@ -21,6 +21,8 @@
     android:paddingTop="32dip"
     android:paddingLeft="@dimen/group_editor_side_padding"
     android:paddingRight="@dimen/group_editor_side_padding"
+    android:paddingStart="@dimen/group_editor_side_padding"
+    android:paddingEnd="@dimen/group_editor_side_padding"
     android:orientation="horizontal"
     android:background="@color/background_primary">
 
@@ -29,6 +31,7 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:layout_marginRight="30dip"
+        android:layout_marginEnd="30dip"
         android:orientation="vertical">
 
         <include
@@ -43,7 +46,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:inputType="textCapWords"
             android:hint="@string/group_name_hint"
-            android:paddingLeft="16dip"/>
+            android:paddingLeft="16dip"
+            android:paddingStart="16dip"/>
 
     </LinearLayout>
 

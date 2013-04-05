@@ -23,10 +23,14 @@
     android:layout_height="wrap_content"
     android:paddingLeft="8dip"
     android:paddingRight="8dip"
+    android:paddingStart="8dip"
+    android:paddingEnd="8dip"
     android:focusable="false">
     <TextView
         android:id="@+id/kind_title"
         style="@style/ContactListSeparatorTextViewStyle"
         android:paddingLeft="8dip"
-        android:paddingRight="8dip" />
+        android:paddingRight="8dip"
+        android:paddingStart="8dip"
+        android:paddingEnd="8dip" />
 </FrameLayout>

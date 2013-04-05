@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="8dip"
+                android:layout_marginEnd="8dip"
                 android:src="@drawable/ic_menu_done_holo_dark"
                 android:description="@string/menu_done" />
 
@@ -51,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dip"
+                android:layout_marginEnd="20dip"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/action_bar_button_text_color"
                 android:text="@string/menu_done"

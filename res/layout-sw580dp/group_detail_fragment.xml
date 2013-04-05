@@ -23,7 +23,9 @@
     android:layout_height="match_parent"
     android:background="@drawable/panel_content"
     android:paddingLeft="@dimen/group_detail_border_padding"
-    android:paddingRight="@dimen/group_detail_border_padding">
+    android:paddingRight="@dimen/group_detail_border_padding"
+    android:paddingStart="@dimen/group_detail_border_padding"
+    android:paddingEnd="@dimen/group_detail_border_padding">
 
     <!-- Static header containing the group title, size, and group source (if applicable) -->
     <LinearLayout
@@ -36,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="8dip"
+            android:paddingStart="8dip"
             android:orientation="vertical" >
 
             <TextView

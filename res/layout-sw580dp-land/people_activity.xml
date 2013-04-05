@@ -118,8 +118,10 @@
                     class="com.android.contacts.list.ContactTileListFragment"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
+                    android:layout_marginLeft="16dip"
                     android:layout_marginRight="16dip"
-                    android:layout_marginLeft="16dip"/>
+                    android:layout_marginStart="16dip"
+                    android:layout_marginEnd="16dip" />
 
             </FrameLayout>
 
@@ -131,7 +133,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_marginTop="16dip"
-                android:layout_marginRight="16dip"/>
+                android:layout_marginRight="16dip"
+                android:layout_marginEnd="16dip"/>
 
         </LinearLayout>
 

@@ -27,5 +27,8 @@
     android:gravity="center_vertical"
     android:layout_marginLeft="@dimen/editor_field_left_padding"
     android:layout_marginRight="@dimen/editor_field_right_padding"
+    android:layout_marginStart="@dimen/editor_field_left_padding"
+    android:layout_marginEnd="@dimen/editor_field_right_padding"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:paddingLeft="12dip" />
+    android:paddingLeft="12dip"
+    android:paddingStart="12dip" />

@@ -37,7 +37,9 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:paddingLeft="16dip"
-        android:paddingRight="4dip">
+        android:paddingRight="4dip"
+        android:paddingStart="16dip"
+        android:paddingEnd="4dip">
 
         <TextView
             android:id="@+id/name"

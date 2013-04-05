@@ -32,9 +32,12 @@
         android:minHeight="@dimen/editor_min_line_item_height"
         android:layout_marginLeft="@dimen/editor_field_left_padding"
         android:layout_marginRight="@dimen/editor_field_left_padding"
+        android:layout_marginStart="@dimen/editor_field_left_padding"
+        android:layout_marginEnd="@dimen/editor_field_left_padding"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:gravity="left|center_vertical"
+        android:gravity="start|center_vertical"
         android:focusable="true"
-        android:paddingLeft="12dip" />
+        android:paddingLeft="12dip"
+        android:paddingStart="12dip" />
 
 </com.android.contacts.editor.GroupMembershipView>

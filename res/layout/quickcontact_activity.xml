@@ -29,6 +29,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="15dip"
         android:paddingRight="15dip"
+        android:paddingStart="15dip"
+        android:paddingEnd="15dip"
         android:paddingTop="8dip"
         android:orientation="vertical">
         <view

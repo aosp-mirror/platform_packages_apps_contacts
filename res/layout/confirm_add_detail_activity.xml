@@ -43,6 +43,8 @@
             android:layout_alignBottom="@id/photo"
             android:layout_alignLeft="@id/photo"
             android:layout_alignRight="@id/photo"
+            android:layout_alignStart="@id/photo"
+            android:layout_alignEnd="@id/photo"
             android:background="#7F000000" />
 
         <ImageButton
@@ -52,9 +54,11 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_marginRight="16dip"
+            android:layout_marginEnd="16dip"
             android:layout_marginBottom="5dip"
             android:layout_alignBottom="@id/photo_text_bar"
-            android:layout_alignRight="@id/photo_text_bar" />
+            android:layout_alignRight="@id/photo_text_bar"
+            android:layout_alignEnd="@id/photo_text_bar" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,9 +66,13 @@
             android:orientation="vertical"
             android:layout_alignBottom="@id/photo"
             android:layout_alignLeft="@id/photo"
+            android:layout_alignStart="@id/photo"
             android:layout_toLeftOf="@id/open_details_button"
+            android:layout_toStartOf="@id/open_details_button"
+            android:paddingLeft="8dip"
             android:paddingRight="8dip"
-            android:paddingLeft="8dip">
+            android:paddingStart="8dip"
+            android:paddingEnd="8dip">
 
             <TextView
                 android:id="@+id/name"
@@ -72,6 +80,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="1"
                 android:paddingLeft="8dip"
+                android:paddingStart="8dip"
                 android:gravity="center_vertical"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
@@ -83,6 +92,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="1"
                 android:paddingLeft="8dip"
+                android:paddingStart="8dip"
                 android:gravity="center_vertical"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@android:color/white"
@@ -116,7 +126,8 @@
         android:layout_height="wrap_content"
         android:minHeight="60dip"
         android:layout_marginTop="4dip"
-        android:layout_marginRight="15dip"/>
+        android:layout_marginRight="15dip"
+        android:layout_marginEnd="15dip"/>
 
     <View
         android:id="@+id/divider"

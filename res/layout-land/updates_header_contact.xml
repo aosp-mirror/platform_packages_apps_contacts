@@ -23,12 +23,16 @@
     android:layout_height="32dip"
     android:paddingLeft="16dip"
     android:paddingRight="16dip"
+    android:paddingStart="16dip"
+    android:paddingEnd="16dip"
     android:focusable="false">
 
     <TextView
         style="?android:attr/listSeparatorTextViewStyle"
         android:paddingLeft="8dip"
         android:paddingRight="8dip"
+        android:paddingStart="8dip"
+        android:paddingEnd="8dip"
         android:background="@drawable/list_section_divider_holo_custom"
         android:text="@string/recent_updates"
         android:textColor="@color/people_app_theme_color"

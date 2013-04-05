@@ -24,4 +24,5 @@
     android:layout_weight="1"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/editor_field_left_padding"
+    android:paddingStart="@dimen/editor_field_left_padding"
     android:orientation="vertical" />

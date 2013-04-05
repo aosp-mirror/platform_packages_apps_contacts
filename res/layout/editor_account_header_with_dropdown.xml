@@ -24,7 +24,9 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:paddingLeft="@dimen/account_container_left_padding"
-    android:paddingRight="28dip">
+    android:paddingRight="28dip"
+    android:paddingStart="@dimen/account_container_left_padding"
+    android:paddingEnd="28dip">
 
     <LinearLayout
         android:id="@+id/account"
@@ -47,6 +49,7 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:paddingRight="8dip"
+             android:paddingEnd="8dip"
              android:textAppearance="?android:attr/textAppearanceSmall"
              android:textColor="?android:attr/textColorTertiary"
              android:singleLine="true"
@@ -57,7 +60,8 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dip">
+        android:layout_marginLeft="10dip"
+        android:layout_marginStart="10dip">
 
         <ImageView
              android:id="@+id/account_icon"

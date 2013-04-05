@@ -30,7 +30,8 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:paddingTop="8dip"
-        android:paddingLeft="16dip">
+        android:paddingLeft="16dip"
+        android:paddingStart="16dip">
 
         <TextView android:id="@+id/read_only_name"
             android:layout_width="0dip"
@@ -45,6 +46,7 @@
         <include
             android:id="@+id/edit_photo"
             android:layout_marginRight="8dip"
+            android:layout_marginEnd="8dip"
             layout="@layout/item_photo_editor" />
 
     </LinearLayout>
@@ -56,7 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dip"
         android:layout_marginBottom="13dip"
-        android:layout_marginLeft="13dip"/>
+        android:layout_marginLeft="13dip"
+        android:layout_marginStart="13dip"/>
 
     <LinearLayout android:id="@+id/sect_general"
         android:layout_width="match_parent"

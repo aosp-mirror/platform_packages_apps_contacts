@@ -53,6 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
+            android:layout_marginStart="1dip"
+            android:layout_marginEnd="1dip"
             android:focusable="true"
             android:focusableInTouchMode="true"
             />
@@ -64,6 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
+            android:layout_marginStart="1dip"
+            android:layout_marginEnd="1dip"
             android:focusable="true"
             android:focusableInTouchMode="true"
             />
@@ -75,6 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dip"
             android:layout_marginRight="1dip"
+            android:layout_marginStart="1dip"
+            android:layout_marginEnd="1dip"
             android:focusable="true"
             android:focusableInTouchMode="true"
             />

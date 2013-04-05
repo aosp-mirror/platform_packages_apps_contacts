@@ -22,6 +22,7 @@
     android:layout_width="wrap_content"
     android:layout_height="@dimen/editor_min_line_item_height"
     android:layout_marginRight="2dip"
+    android:layout_marginEnd="2dip"
     android:layout_gravity="bottom">
     <ImageView
         android:id="@+id/delete_button"
@@ -33,6 +34,8 @@
         android:src="@drawable/ic_menu_remove_field_holo_light"
         android:paddingLeft="@dimen/editor_round_button_padding_left"
         android:paddingRight="@dimen/editor_round_button_padding_right"
+        android:paddingStart="@dimen/editor_round_button_padding_left"
+        android:paddingEnd="@dimen/editor_round_button_padding_right"
         android:paddingTop="@dimen/editor_round_button_padding_top"
         android:paddingBottom="@dimen/editor_round_button_padding_bottom"
         android:contentDescription="@string/description_minus_button" />

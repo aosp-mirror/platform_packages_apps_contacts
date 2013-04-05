@@ -36,6 +36,7 @@ import android.provider.Settings;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
@@ -93,6 +94,7 @@ import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.widget.TransitionAnimationView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -991,10 +993,16 @@ public class PeopleActivity extends ContactsActivity
         mAllFragment.setFilter(mContactListFilterController.getFilter());
 
         final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
-        mAllFragment.setVerticalScrollbarPosition(
-                useTwoPane
-                        ? View.SCROLLBAR_POSITION_LEFT
-                        : View.SCROLLBAR_POSITION_RIGHT);
+        final Locale locale = Locale.getDefault();
+        final int layoutDirection = TextUtils.getLayoutDirectionFromLocale(locale);
+        final boolean isLayoutRtl = (layoutDirection == View.LAYOUT_DIRECTION_RTL);
+        final int position;
+        if (useTwoPane)  {
+            position = isLayoutRtl ? View.SCROLLBAR_POSITION_RIGHT : View.SCROLLBAR_POSITION_LEFT;
+        } else {
+            position = isLayoutRtl ? View.SCROLLBAR_POSITION_LEFT: View.SCROLLBAR_POSITION_RIGHT;
+        }
+        mAllFragment.setVerticalScrollbarPosition(position);
         mAllFragment.setSelectionVisible(useTwoPane);
         mAllFragment.setQuickContactEnabled(!useTwoPane);
     }
