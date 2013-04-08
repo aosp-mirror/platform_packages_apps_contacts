@@ -635,7 +635,12 @@ public class QuickContactActivity extends Activity {
             final RelativeLayout.LayoutParams layoutParams =
                     (RelativeLayout.LayoutParams) mSelectedTabRectangle.getLayoutParams();
             final int width = layoutParams.width;
-            layoutParams.leftMargin = (int) ((position + positionOffset) * width);
+            final int margin = (int) ((position + positionOffset) * width);
+            if (mSelectedTabRectangle.isLayoutRtl()) {
+                layoutParams.rightMargin = margin;
+            } else {
+                layoutParams.leftMargin = margin;
+            }
             mSelectedTabRectangle.setLayoutParams(layoutParams);
         }
     }
