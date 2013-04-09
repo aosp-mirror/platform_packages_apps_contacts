@@ -83,6 +83,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
                 view.setEnabled(false);
             }
             bindHeaderView(view, partition, getCursor(partition));
+            view.setLayoutDirection(parent.getLayoutDirection());
             return view;
         } else {
             return null;

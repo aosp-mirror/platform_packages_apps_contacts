@@ -170,7 +170,6 @@ public class PinnedHeaderListView extends AutoScrollListView
                     mHeaders[i] = new PinnedHeader();
                 }
                 mHeaders[i].view = mAdapter.getPinnedHeaderView(i, mHeaders[i].view, this);
-                mHeaders[i].view.setLayoutDirection(getLayoutDirection());
             }
 
             mAnimationTargetTime = System.currentTimeMillis() + mAnimationDuration;
