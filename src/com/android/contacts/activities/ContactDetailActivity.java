@@ -260,12 +260,23 @@ public class ContactDetailActivity extends ContactsActivity {
         actionBar.setTitle(displayName);
         actionBar.setSubtitle(company);
 
+        final StringBuilder talkback = new StringBuilder();
         if (!TextUtils.isEmpty(displayName)) {
+            talkback.append(displayName);
+        }
+        if (!TextUtils.isEmpty(company)) {
+            if (talkback.length() != 0) {
+                talkback.append(", ");
+            }
+            talkback.append(company);
+        }
+
+        if (talkback.length() != 0) {
             AccessibilityManager accessibilityManager =
                     (AccessibilityManager) this.getSystemService(Context.ACCESSIBILITY_SERVICE);
             if (accessibilityManager.isEnabled()) {
                 View decorView = getWindow().getDecorView();
-                decorView.setContentDescription(displayName);
+                decorView.setContentDescription(talkback);
                 decorView.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
             }
         }
