@@ -103,7 +103,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mCursor == null ? 0 : mCursor.getCount();
+        return (mCursor == null || mCursor.isClosed()) ? 0 : mCursor.getCount();
     }
 
     @Override
