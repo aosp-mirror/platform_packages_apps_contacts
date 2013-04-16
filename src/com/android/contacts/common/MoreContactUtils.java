@@ -82,7 +82,8 @@ public class MoreContactUtils {
             if (TextUtils.equals(dataPart1, dataPart2)) continue;
 
             // do a full parse of the numbers
-            switch (util.isNumberMatch(dataPart1, dataPart2)) {
+            final PhoneNumberUtil.MatchType result = util.isNumberMatch(dataPart1, dataPart2);
+            switch (result) {
                 case NOT_A_NUMBER:
                     // don't understand the numbers? let's play it safe
                     return false;
@@ -95,10 +96,61 @@ public class MoreContactUtils {
                         // For NANP phone numbers, match when one has +1 and the other does not.
                         // In this case, prefer the +1 version.
                         if (util.parse(dataPart1, null).getCountryCode() == 1) {
+                            // At this point, the numbers can be either case 1 or 2 below....
+                            //
+                            // case 1)
+                            // +14155551212    <--- country code 1
+                            //  14155551212    <--- 1 is trunk prefix, not country code
+                            //
+                            // and
+                            //
+                            // case 2)
+                            // +14155551212
+                            //   4155551212
+                            //
+                            // From b/7519057, case 2 needs to be equal.  But also that bug, case 3
+                            // below should not be equal.
+                            //
+                            // case 3)
+                            // 14155551212
+                            //  4155551212
+                            //
+                            // So in order to make sure transitive equality is valid, case 1 cannot
+                            // be equal.  Otherwise, transitive equality breaks and the following
+                            // would all be collapsed:
+                            //   4155551212  |
+                            //  14155551212  |---->   +14155551212
+                            // +14155551212  |
+                            //
+                            // With transitive equality, the collapsed values should be:
+                            //   4155551212  |         14155551212
+                            //  14155551212  |---->   +14155551212
+                            // +14155551212  |
+
+                            // Distinguish between case 1 and 2 by checking for trunk prefix '1'
+                            // at the start of number 2.
+                            if (dataPart2.trim().charAt(0) == '1') {
+                                // case 1
+                                return false;
+                            }
                             break;
                         }
                     } catch (NumberParseException e) {
-                        // Ignore
+                        // This is the case where the first number does not have a country code.
+                        // examples:
+                        // (123) 456-7890   &   123-456-7890  (collapse)
+                        // 0049 (8092) 1234   &   +49/80921234  (unit test says do not collapse)
+
+                        // Check the second number.  If it also does not have a country code, then
+                        // we should collapse.  If it has a country code, then it's a different
+                        // number and we should not collapse (this conclusion is based on an
+                        // existing unit test).
+                        try {
+                            util.parse(dataPart2, null);
+                        } catch (NumberParseException e2) {
+                            // Number 2 also does not have a country.  Collapse.
+                            break;
+                        }
                     }
                     return false;
                 case SHORT_NSN_MATCH:
