@@ -151,7 +151,8 @@
             android:theme="@style/ContactPickerTheme"
             android:launchMode="singleTop"
             android:clearTaskOnLaunch="true"
-            android:uiOptions="splitActionBarWhenNarrow">
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
