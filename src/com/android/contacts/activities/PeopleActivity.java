@@ -27,6 +27,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.os.UserManager;
 import android.preference.PreferenceActivity;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
@@ -1047,7 +1048,13 @@ public class PeopleActivity extends ContactsActivity
             // If there are no accounts on the device and we should show the "no account" prompt
             // (based on {@link SharedPreferences}), then launch the account setup activity so the
             // user can sign-in or create an account.
-            if (!areContactWritableAccountsAvailable() &&
+            //
+            // Also check for ability to modify accounts.  In limited user mode, you can't modify
+            // accounts so there is no point sending users to account setup activity.
+            final UserManager userManager = UserManager.get(this);
+            final boolean disallowModifyAccounts = userManager.getUserRestrictions().getBoolean(
+                    UserManager.DISALLOW_MODIFY_ACCOUNTS);
+            if (!disallowModifyAccounts && !areContactWritableAccountsAvailable() &&
                     AccountPromptUtils.shouldShowAccountPrompt(this)) {
                 AccountPromptUtils.launchAccountPrompt(this);
                 return;
