@@ -143,7 +143,7 @@
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Cognoms primer"</string>
     <string name="take_photo" msgid="7496128293167402354">"Fes una foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Fes una foto nova"</string>
-    <string name="pick_photo" msgid="3746334626214970837">"Tria una foto de la galeria"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"Selecciona una foto de la galeria"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Selecciona una foto nova de la galeria"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"S\'actualitza la llista de contactes per reflectir el canvi d\'idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"S\'actualitza la llista de contactes."</string>
@@ -217,7 +217,7 @@
     <string name="enter_contact_name" msgid="1738391320566349924">"Escriu el nom de la persona"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nom del grup"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
-    <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil de <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Contactes funciona millor amb un Compte de Google."\n\n"• Accedeix-hi des de qualsevol navegador web."\n"• Fes una còpia de seguretat dels teus contactes."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén els contactes segurs encara que perdis el telèfon: sincronitza\'ls amb un servidor en línia."</string>
