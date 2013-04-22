@@ -42,7 +42,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Ondoa kutoka kwa vipendwa vyako"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Hariri"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Futa"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Weka kwenye skrini ya Nyumbani"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Weka kwenye skrini ya Kwanza"</string>
     <string name="menu_call" msgid="3992595586042260618">"Mpigie"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Tuma ujumbe kwa anwani"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Kando"</string>
@@ -52,7 +52,7 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Ongeza Kikundi"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Tenganisha anwani?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Mwasiliani atatenganishwa kwa anwani kadha."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Jiunge"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Muunganishe"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unganisha anwani"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Chagua mwasiliani unayetaka kuugana naye kwa <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Onyesha anwani zote"</string>
@@ -60,7 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Anwani zote"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Anwani zimeunganishwa"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Weka mlio wa simu"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Simu zote kwa barua ya sauti"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Simu zote ziwekewe ujumbe wa sauti"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Huwezi kufuta anwani kutoka kwa akaunti ya kusoma-tu, lakini unaweza kuzificha katika orodha zako za anwani."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Anwani hii ina maelezo kutoka kwa akaunti nyingi. Maelezo kutoka kwa akaunti za soma-tu zitafichwa katika orodha zako za anwani, sio kufutwa."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Kufuta anwani hii kutafuta maelezo kutoka kwa akaunti nyingi."</string>
@@ -223,7 +223,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka anwani za unaowasiliana nao salama hata ukipoteza simu yako: sawazisha kwa huduma iliyo mtandaoni."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitahifadhiwa. Je, ungetaka kuongeza akaunti ambayo inahifadhi nakala ya anwani katika mtandao?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Mwasiliani wako mpya atalandanishwa na <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Mtu utakayemwongeza atasawazishwa na <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Unaweza kusawazisha anwani yako mpya na mojawapo ya akaunti zifuatazo. Unataka kutumia gani?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Weka karibu"</string>
     <string name="add_account" msgid="8201790677994503186">"Ongeza akaunti"</string>

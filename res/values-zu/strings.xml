@@ -180,7 +180,7 @@
     <string name="menu_help" msgid="5123887102216637725">"Usizo"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Izinketho zokubonisa"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
-    <string name="non_phone_caption" msgid="1541655052330027380">"Inombolo yocingo"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"Inombolo yefoni"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Yengeza kothintana nabo"</string>
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Faka koxhumana nabo"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Vala"</string>

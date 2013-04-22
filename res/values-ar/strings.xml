@@ -52,7 +52,7 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"إضافة مجموعة"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"فصل جهة الاتصال؟"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"سيتم فصل جهة الاتصال هذه إلى عدة جهات اتصال."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"ضم"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"إضافة"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ضم جهات الاتصال"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"اختر جهة الاتصال التي تريد ضمها إلى <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"عرض جميع جهات الاتصال"</string>
