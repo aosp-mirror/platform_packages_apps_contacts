@@ -43,6 +43,9 @@ import com.android.contacts.R;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
+
+import libcore.icu.ICU;
 
 /**
  * A view for selecting a month / year / day based on a calendar like layout.
@@ -198,7 +201,7 @@ public class DatePicker extends FrameLayout {
         init(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
 
         // re-order the number pickers to match the current date format
-        reorderPickers(months);
+        reorderPickers();
 
         mPickerContainer.setLayoutTransition(new LayoutTransition());
         if (!isEnabled()) {
@@ -214,68 +217,28 @@ public class DatePicker extends FrameLayout {
         mYearPicker.setEnabled(enabled);
     }
 
-    private void reorderPickers(String[] months) {
-        java.text.DateFormat format;
-        String order;
-
-        /*
-         * If the user is in a locale where the medium date format is
-         * still numeric (Japanese and Czech, for example), respect
-         * the date format order setting.  Otherwise, use the order
-         * that the locale says is appropriate for a spelled-out date.
-         */
-
-        if (months[0].startsWith("1")) {
-            format = DateFormat.getDateFormat(getContext());
-        } else {
-            format = DateFormat.getMediumDateFormat(getContext());
-        }
-
-        if (format instanceof SimpleDateFormat) {
-            order = ((SimpleDateFormat) format).toPattern();
-        } else {
-            // Shouldn't happen, but just in case.
-            order = new String(DateFormat.getDateFormatOrder(getContext()));
-        }
+    private void reorderPickers() {
+        // We use numeric spinners for year and day, but textual months. Ask icu4c what
+        // order the user's locale uses for that combination. http://b/7207103.
+        String skeleton = mHasYear ? "yyyyMMMdd" : "MMMdd";
+        String pattern = ICU.getBestDateTimePattern(skeleton, Locale.getDefault().toString());
+        char[] order = ICU.getDateFormatOrder(pattern);
 
         /* Remove the 3 pickers from their parent and then add them back in the
          * required order.
          */
         mPickerContainer.removeAllViews();
-
-        boolean quoted = false;
-        boolean didDay = false, didMonth = false, didYear = false;
-
-        for (int i = 0; i < order.length(); i++) {
-            char c = order.charAt(i);
-
-            if (c == '\'') {
-                quoted = !quoted;
+        for (char field : order) {
+            if (field == 'd') {
+                mPickerContainer.addView(mDayPicker);
+            } else if (field == 'M') {
+                mPickerContainer.addView(mMonthPicker);
+            } else {
+                // Either 'y' or '\u0000' depending on whether we're showing a year.
+                // If we're not showing a year, it doesn't matter where we put it,
+                // but the rest of this class assumes that it will be present (but GONE).
+                mPickerContainer.addView(mYearPicker);
             }
-
-            if (!quoted) {
-                if (c == DateFormat.DATE && !didDay) {
-                    mPickerContainer.addView(mDayPicker);
-                    didDay = true;
-                } else if ((c == DateFormat.MONTH || c == 'L') && !didMonth) {
-                    mPickerContainer.addView(mMonthPicker);
-                    didMonth = true;
-                } else if (c == DateFormat.YEAR && !didYear) {
-                    mPickerContainer.addView (mYearPicker);
-                    didYear = true;
-                }
-            }
-        }
-
-        // Shouldn't happen, but just in case.
-        if (!didMonth) {
-            mPickerContainer.addView(mMonthPicker);
-        }
-        if (!didDay) {
-            mPickerContainer.addView(mDayPicker);
-        }
-        if (!didYear) {
-            mPickerContainer.addView(mYearPicker);
         }
     }
 
@@ -285,7 +248,7 @@ public class DatePicker extends FrameLayout {
             mMonth = monthOfYear;
             mDay = dayOfMonth;
             updateSpinners();
-            reorderPickers(new DateFormatSymbols().getShortMonths());
+            reorderPickers();
             notifyDateChanged();
         }
     }
