@@ -212,8 +212,8 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
                 } else {
                     phoneType = null;
                 }
-                bindData(mContext.getText(R.string.phoneLabelsGroup),
-                        phoneNumber, phoneType, i == 0);
+                bindData(mContext.getText(R.string.phoneLabelsGroup), phoneNumber, phoneType,
+                        i == 0, true);
             }
         }
 
@@ -243,8 +243,13 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         }
     }
 
-    private void bindData(
-            CharSequence titleText, CharSequence data, CharSequence type, boolean isFirstEntry) {
+    private void bindData(CharSequence titleText, CharSequence data, CharSequence type,
+            boolean isFirstEntry) {
+        bindData(titleText, data, type, isFirstEntry, false);
+    }
+
+    private void bindData(CharSequence titleText, CharSequence data, CharSequence type,
+            boolean isFirstEntry, boolean forceLTR) {
         final View field = mInflater.inflate(R.layout.item_read_only_field, mGeneral, false);
         final View divider = field.findViewById(R.id.divider);
         if (isFirstEntry) {
@@ -258,6 +263,9 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         }
         final TextView dataView = (TextView) field.findViewById(R.id.data);
         dataView.setText(data);
+        if (forceLTR) {
+            dataView.setTextDirection(View.TEXT_DIRECTION_LTR);
+        }
         final TextView typeView = (TextView) field.findViewById(R.id.type);
         if (!TextUtils.isEmpty(type)) {
             typeView.setText(type);
