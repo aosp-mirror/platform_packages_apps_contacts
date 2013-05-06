@@ -132,6 +132,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private static final String TAG = "ContactDetailFragment";
 
+    private static final int TEXT_DIRECTION_UNDEFINED = -1;
+
     private interface ContextMenuIds {
         static final int COPY_TEXT = 0;
         static final int CLEAR_DEFAULT = 1;
@@ -616,6 +618,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         // add to end of list
                         mPhoneEntries.add(entry);
                     }
+
+                    // Configure the text direction. Phone numbers should be displayed LTR
+                    // regardless of what locale the device is in.
+                    entry.textDirection = View.TEXT_DIRECTION_LTR;
                 } else if (dataItem instanceof EmailDataItem && hasData) {
                     // Build email entries
                     entry.intent = new Intent(Intent.ACTION_SENDTO,
@@ -1217,6 +1223,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public String data;
         public Uri uri;
         public int maxLines = 1;
+        public int textDirection = TEXT_DIRECTION_UNDEFINED;
         public String mimetype;
 
         public Context context = null;
@@ -1766,6 +1773,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     mViewEntryDimensions.getPaddingTop(),
                     secondaryActionViewContainer.getPaddingRight(),
                     mViewEntryDimensions.getPaddingBottom());
+
+            // Set the text direction
+            if (entry.textDirection != TEXT_DIRECTION_UNDEFINED) {
+                views.data.setTextDirection(entry.textDirection);
+            }
         }
 
         private void setMaxLines(TextView textView, int maxLines) {
