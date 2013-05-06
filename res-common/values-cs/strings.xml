@@ -63,7 +63,7 @@
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vymazat často kontaktované osoby?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Vymažete seznam často kontaktovaných osob v aplikacích Lidé a Telefon a e-mailové aplikace budou muset nastavení adresátů vytvořit znovu."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Mazání často kontaktovaných osob..."</string>
-    <string name="status_available" msgid="4832569677396634846">"Jsem tady"</string>
+    <string name="status_available" msgid="4832569677396634846">"K dispozici"</string>
     <string name="status_away" msgid="6267905184545881094">"Pryč"</string>
     <string name="status_busy" msgid="7111912905211403545">"Nemám čas"</string>
     <string name="contactsList" msgid="7140022347217602605">"Kontakty"</string>
