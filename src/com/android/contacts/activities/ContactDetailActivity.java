@@ -81,14 +81,12 @@ public class ContactDetailActivity extends ContactsActivity {
             // can freely navigate the app (this is different from phones, where only the UP button
             // kicks the user into the full app)
             if (shouldUpRecreateTask(intent)) {
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             } else {
                 intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS |
                         Intent.FLAG_ACTIVITY_FORWARD_RESULT | Intent.FLAG_ACTIVITY_SINGLE_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TOP);
             }
-
             intent.setClass(this, PeopleActivity.class);
             startActivity(intent);
             finish();
