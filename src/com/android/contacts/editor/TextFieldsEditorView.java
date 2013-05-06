@@ -215,6 +215,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             fieldView.setInputType(inputType);
             if (inputType == InputType.TYPE_CLASS_PHONE) {
                 PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(mContext, fieldView);
+                fieldView.setTextDirection(View.TEXT_DIRECTION_LTR);
             }
 
             // Show the "next" button in IME to navigate between text fields
