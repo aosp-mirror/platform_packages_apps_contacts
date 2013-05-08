@@ -38,7 +38,7 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"更新"</string>
     <string name="searchHint" msgid="8482945356247760701">"搜尋聯絡人"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"檢視聯絡人"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"新增至我的最愛"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"加到我的收藏"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"從我的最愛中移除"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
