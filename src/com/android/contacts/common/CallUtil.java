@@ -16,6 +16,7 @@
 
 package com.android.contacts.common;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.telephony.PhoneNumberUtils;
@@ -32,6 +33,9 @@ public class CallUtil {
     public static final String SCHEME_MAILTO = "mailto";
     public static final String SCHEME_IMTO = "imto";
     public static final String SCHEME_SIP = "sip";
+
+    public static final ComponentName CALL_INTENT_DESTINATION = new ComponentName(
+            "com.android.phone", "com.android.phone.PrivilegedOutgoingCallBroadcaster");
 
     /**
      * Return an Intent for making a phone call. Scheme (e.g. tel, sip) will be determined
@@ -67,6 +71,12 @@ public class CallUtil {
         if (callOrigin != null) {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
         }
+
+        // Set phone as an explicit component of CALL_PRIVILEGED intent.
+        // Setting destination explicitly prevents other apps from capturing this Intent since,
+        // unlike SendBroadcast, there is no API for specifying a permission on startActivity.
+        intent.setComponent(CALL_INTENT_DESTINATION);
+
         return intent;
     }
 
