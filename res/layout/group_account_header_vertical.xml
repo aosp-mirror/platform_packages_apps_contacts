@@ -17,11 +17,13 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?attr/list_item_header_height"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/list_item_header_height"
     android:layout_marginLeft="?attr/list_item_padding_left"
     android:layout_marginRight="?attr/list_item_padding_right"
     android:layout_marginStart="?attr/list_item_padding_left"
     android:layout_marginEnd="?attr/list_item_padding_right"
+    android:paddingBottom="6dip"
     android:background="@drawable/list_section_divider_holo_custom"
     android:gravity="center_vertical"
     android:orientation="vertical">
