@@ -270,7 +270,7 @@ public class PeopleActivity extends ContactsActivity
 
         mIsRecreatedInstance = (savedState != null);
         createViewsAndFragments(savedState);
-        getWindow().setBackgroundDrawable(null);
+        getWindow().setBackgroundDrawableResource(R.color.background_primary);
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
         }
