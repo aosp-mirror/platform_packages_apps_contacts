@@ -33,6 +33,12 @@ public final class Collapser {
     private Collapser() {}
 
     /*
+     * The Collapser uses an n^2 algorithm so we don't want it to run on
+     * lists beyond a certain size. This specifies the maximum size to collapse.
+     */
+    private static final int MAX_LISTSIZE_TO_COLLAPSE = 20;
+
+    /*
      * Interface implemented by data types that can be collapsed into groups of similar data. This
      * can be used for example to collapse similar contact data items into a single item.
      */
@@ -51,6 +57,10 @@ public final class Collapser {
     public static <T extends Collapsible<T>> void collapseList(List<T> list) {
 
         int listSize = list.size();
+        // The algorithm below is n^2 so don't run on long lists
+        if (listSize > MAX_LISTSIZE_TO_COLLAPSE) {
+            return;
+        }
 
         for (int i = 0; i < listSize; i++) {
             T iItem = list.get(i);
