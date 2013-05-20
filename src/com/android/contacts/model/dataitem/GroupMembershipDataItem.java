@@ -30,7 +30,7 @@ public class GroupMembershipDataItem extends DataItem {
         super(values);
     }
 
-    public long getGroupRowId() {
+    public Long getGroupRowId() {
         return getContentValues().getAsLong(GroupMembership.GROUP_ROW_ID);
     }
 

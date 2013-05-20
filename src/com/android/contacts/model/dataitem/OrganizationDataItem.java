@@ -34,13 +34,6 @@ public class OrganizationDataItem extends DataItem {
         return getContentValues().getAsString(Organization.COMPANY);
     }
 
-    /**
-     * Values are one of Organization.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(Organization.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(Organization.LABEL);
     }

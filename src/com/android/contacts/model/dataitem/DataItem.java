@@ -105,9 +105,6 @@ public class DataItem {
         return mContentValues.getAsLong(Data._ID);
     }
 
-    public long getRawContactId() {
-        return mContentValues.getAsLong(Data.RAW_CONTACT_ID);
-    }
     /**
      * Returns the mimetype of the data.
      */
@@ -129,13 +126,10 @@ public class DataItem {
         return superPrimary != null && superPrimary != 0;
     }
 
-    public int getDataVersion() {
-        return mContentValues.getAsInteger(Data.DATA_VERSION);
-    }
-
     public boolean hasKindTypeColumn(DataKind kind) {
         final String key = kind.typeColumn;
-        return key != null && mContentValues.containsKey(key);
+        return key != null && mContentValues.containsKey(key) &&
+            mContentValues.getAsInteger(key) != null;
     }
 
     public int getKindTypeColumn(DataKind kind) {

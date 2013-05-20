@@ -34,13 +34,6 @@ public class SipAddressDataItem extends DataItem {
         return getContentValues().getAsString(SipAddress.SIP_ADDRESS);
     }
 
-    /**
-     * Value is one of SipAddress.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(SipAddress.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(SipAddress.LABEL);
     }

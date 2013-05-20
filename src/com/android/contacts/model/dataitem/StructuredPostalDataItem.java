@@ -34,13 +34,6 @@ public class StructuredPostalDataItem extends DataItem {
         return getContentValues().getAsString(StructuredPostal.FORMATTED_ADDRESS);
     }
 
-    /**
-     * Values are one of StructuredPostal.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(StructuredPostal.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(StructuredPostal.LABEL);
     }

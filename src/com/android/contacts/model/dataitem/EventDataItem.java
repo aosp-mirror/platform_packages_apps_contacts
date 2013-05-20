@@ -34,13 +34,6 @@ public class EventDataItem extends DataItem {
         return getContentValues().getAsString(Event.START_DATE);
     }
 
-    /**
-     * Values are one of Event.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(Event.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(Event.LABEL);
     }

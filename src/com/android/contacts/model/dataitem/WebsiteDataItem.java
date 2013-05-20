@@ -34,13 +34,6 @@ public class WebsiteDataItem extends DataItem {
         return getContentValues().getAsString(Website.URL);
     }
 
-    /**
-     * Value is one of Website.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(Website.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(Website.LABEL);
     }
