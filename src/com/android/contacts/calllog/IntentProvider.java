@@ -17,6 +17,7 @@
 package com.android.contacts.calllog;
 
 import com.android.contacts.CallDetailActivity;
+import com.android.contacts.ContactsUtils;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -47,7 +48,7 @@ public abstract class IntentProvider {
                 } else {
                     uri = Uri.fromParts("tel", number, null);
                 }
-                return new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
+                return ContactsUtils.getCallIntent(uri);
             }
         };
     }

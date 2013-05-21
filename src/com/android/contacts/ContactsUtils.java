@@ -22,6 +22,7 @@ import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.test.NeededForTesting;
 import com.android.i18n.phonenumbers.PhoneNumberUtil;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -40,6 +41,9 @@ import java.util.List;
 public class ContactsUtils {
     private static final String TAG = "ContactsUtils";
     private static final String WAIT_SYMBOL_AS_STRING = String.valueOf(PhoneNumberUtils.WAIT);
+
+    private static final ComponentName CALL_INTENT_DESTINATION = new ComponentName(
+            "com.android.phone", "com.android.phone.PrivilegedOutgoingCallBroadcaster");
 
 
     // TODO find a proper place for the canonical version of these
@@ -239,5 +243,19 @@ public class ContactsUtils {
         rect.right = (int) ((pos[0] + view.getWidth()) * appScale + 0.5f);
         rect.bottom = (int) ((pos[1] + view.getHeight()) * appScale + 0.5f);
         return rect;
+    }
+
+    /**
+     * Return an Intent for making a phone call.
+     */
+    public static Intent getCallIntent(Uri uri) {
+        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
+
+        // Set phone as an explicit component of CALL_PRIVILEGED intent.
+        // Setting destination explicitly prevents other apps from capturing this Intent since,
+        // unlike SendBroadcast, there is no API for specifying a permisison on startActivity.
+        intent.setComponent(CALL_INTENT_DESTINATION);
+
+        return intent;
     }
 }

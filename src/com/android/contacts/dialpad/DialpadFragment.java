@@ -1431,7 +1431,7 @@ public class DialpadFragment extends Fragment
 
     // Helpers for the call intents.
     private Intent newVoicemailIntent() {
-        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+        final Intent intent = ContactsUtils.getCallIntent(
                                          Uri.fromParts("voicemail", EMPTY_NUMBER, null));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
@@ -1444,7 +1444,7 @@ public class DialpadFragment extends Fragment
     }
 
     private Intent newDialNumberIntent(String number) {
-        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+        final Intent intent = ContactsUtils.getCallIntent(
                                          Uri.fromParts("tel", number, null));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;

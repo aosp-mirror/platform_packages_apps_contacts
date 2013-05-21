@@ -308,8 +308,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
                         Intent.ACTION_SENDTO, Uri.fromParts("sms", phoneNumber, null));
                 break;
             default:
-                intent = new Intent(
-                        Intent.ACTION_CALL_PRIVILEGED, Uri.fromParts("tel", phoneNumber, null));
+                intent = ContactsUtils.getCallIntent(Uri.fromParts("tel", phoneNumber, null));
                 if (callOrigin != null) {
                     intent.putExtra(DialtactsActivity.EXTRA_CALL_ORIGIN, callOrigin);
                 }

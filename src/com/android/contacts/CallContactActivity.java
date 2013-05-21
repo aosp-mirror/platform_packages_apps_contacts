@@ -50,7 +50,7 @@ public class CallContactActivity extends ContactsActivity implements OnDismissLi
         if (Contacts.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(contactUri))) {
             PhoneNumberInteraction.startInteractionForPhoneCall(this, contactUri);
         } else {
-            startActivity(new Intent(Intent.ACTION_CALL_PRIVILEGED, contactUri));
+            startActivity(ContactsUtils.getCallIntent(contactUri));
             finish();
         }
     }

@@ -331,7 +331,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                 TelephonyManager tm = (TelephonyManager)
                         getSystemService(Context.TELEPHONY_SERVICE);
                 if (tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) {
-                    Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                    Intent callIntent = ContactsUtils.getCallIntent(
                             Uri.fromParts("tel", mNumber, null));
                     startActivity(callIntent);
                     return true;
@@ -470,7 +470,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
 
                     ViewEntry entry = new ViewEntry(
                             getString(R.string.menu_callNumber, displayNumber),
-                            new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri),
+                            ContactsUtils.getCallIntent(numberCallUri),
                             getString(R.string.description_call, nameOrNumber));
 
                     // Only show a label if the number is shown and it is not a SIP address.
