@@ -51,13 +51,6 @@ public class PhoneDataItem extends DataItem {
         return getContentValues().getAsString(KEY_FORMATTED_PHONE_NUMBER);
     }
 
-    /**
-     * Values are Phone.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(Phone.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(Phone.LABEL);
     }

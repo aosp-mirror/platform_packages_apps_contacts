@@ -232,10 +232,6 @@ final public class RawContact implements Parcelable {
         return getValues().getAsBoolean(RawContacts.DIRTY);
     }
 
-    public long getVersion() {
-        return getValues().getAsLong(RawContacts.DIRTY);
-    }
-
     public String getSourceId() {
         return getValues().getAsString(RawContacts.SOURCE_ID);
     }

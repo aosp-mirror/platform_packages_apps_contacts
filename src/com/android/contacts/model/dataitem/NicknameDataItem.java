@@ -34,13 +34,6 @@ public class NicknameDataItem extends DataItem {
         return getContentValues().getAsString(Nickname.NAME);
     }
 
-    /**
-     * Types are defined as Nickname.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(Nickname.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(Nickname.LABEL);
     }

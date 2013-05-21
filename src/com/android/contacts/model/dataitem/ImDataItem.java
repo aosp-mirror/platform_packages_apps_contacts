@@ -53,13 +53,6 @@ public class ImDataItem extends DataItem {
         }
     }
 
-    /**
-     * Values are one of Im.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(Im.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(Im.LABEL);
     }

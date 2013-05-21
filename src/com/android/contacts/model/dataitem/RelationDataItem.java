@@ -34,13 +34,6 @@ public class RelationDataItem extends DataItem {
         return getContentValues().getAsString(Relation.NAME);
     }
 
-    /**
-     * Values are one of Relation.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(Relation.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(Relation.LABEL);
     }

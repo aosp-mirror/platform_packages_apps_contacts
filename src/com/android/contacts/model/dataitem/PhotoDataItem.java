@@ -30,7 +30,7 @@ public class PhotoDataItem extends DataItem {
         super(values);
     }
 
-    public long getPhotoFileId() {
+    public Long getPhotoFileId() {
         return getContentValues().getAsLong(Photo.PHOTO_FILE_ID);
     }
 

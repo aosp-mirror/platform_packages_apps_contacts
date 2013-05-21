@@ -42,13 +42,6 @@ public class EmailDataItem extends DataItem {
         return getContentValues().getAsString(Email.DATA);
     }
 
-    /**
-     * Values is one of Email.TYPE_*
-     */
-    public int getType() {
-        return getContentValues().getAsInteger(Email.TYPE);
-    }
-
     public String getLabel() {
         return getContentValues().getAsString(Email.LABEL);
     }
