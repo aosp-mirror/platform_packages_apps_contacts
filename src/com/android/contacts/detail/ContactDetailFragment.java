@@ -2048,7 +2048,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     rawContact.getDataItems(), GroupMembershipDataItem.class)) {
                 GroupMembershipDataItem groupMembership = (GroupMembershipDataItem) dataItem;
                 final Long groupId = groupMembership.getGroupRowId();
-                if (groupId == defaultGroupId) {
+                if (groupId != null && groupId == defaultGroupId) {
                     isInDefaultGroup = true;
                     break;
                 }
