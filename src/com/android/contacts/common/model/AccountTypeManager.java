@@ -23,7 +23,6 @@ import android.accounts.OnAccountsUpdateListener;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.IContentService;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SyncAdapterType;
@@ -395,102 +394,93 @@ class AccountTypeManagerImpl extends AccountTypeManager
         final Set<String> extensionPackages = Sets.newHashSet();
 
         final AccountManager am = mAccountManager;
-        final IContentService cs = ContentResolver.getContentService();
 
-        try {
-            final SyncAdapterType[] syncs = cs.getSyncAdapterTypes();
-            final AuthenticatorDescription[] auths = am.getAuthenticatorTypes();
+        final SyncAdapterType[] syncs = ContentResolver.getSyncAdapterTypes();
+        final AuthenticatorDescription[] auths = am.getAuthenticatorTypes();
 
-            // First process sync adapters to find any that provide contact data.
-            for (SyncAdapterType sync : syncs) {
-                if (!ContactsContract.AUTHORITY.equals(sync.authority)) {
-                    // Skip sync adapters that don't provide contact data.
-                    continue;
-                }
+        // First process sync adapters to find any that provide contact data.
+        for (SyncAdapterType sync : syncs) {
+            if (!ContactsContract.AUTHORITY.equals(sync.authority)) {
+                // Skip sync adapters that don't provide contact data.
+                continue;
+            }
 
-                // Look for the formatting details provided by each sync
-                // adapter, using the authenticator to find general resources.
-                final String type = sync.accountType;
-                final AuthenticatorDescription auth = findAuthenticator(auths, type);
-                if (auth == null) {
-                    Log.w(TAG, "No authenticator found for type=" + type + ", ignoring it.");
-                    continue;
-                }
+            // Look for the formatting details provided by each sync
+            // adapter, using the authenticator to find general resources.
+            final String type = sync.accountType;
+            final AuthenticatorDescription auth = findAuthenticator(auths, type);
+            if (auth == null) {
+                Log.w(TAG, "No authenticator found for type=" + type + ", ignoring it.");
+                continue;
+            }
 
-                AccountType accountType;
-                if (GoogleAccountType.ACCOUNT_TYPE.equals(type)) {
-                    accountType = new GoogleAccountType(mContext, auth.packageName);
-                } else if (ExchangeAccountType.isExchangeType(type)) {
-                    accountType = new ExchangeAccountType(mContext, auth.packageName, type);
+            AccountType accountType;
+            if (GoogleAccountType.ACCOUNT_TYPE.equals(type)) {
+                accountType = new GoogleAccountType(mContext, auth.packageName);
+            } else if (ExchangeAccountType.isExchangeType(type)) {
+                accountType = new ExchangeAccountType(mContext, auth.packageName, type);
+            } else {
+                // TODO: use syncadapter package instead, since it provides resources
+                Log.d(TAG, "Registering external account type=" + type
+                        + ", packageName=" + auth.packageName);
+                accountType = new ExternalAccountType(mContext, auth.packageName, false);
+            }
+            if (!accountType.isInitialized()) {
+                if (accountType.isEmbedded()) {
+                    throw new IllegalStateException("Problem initializing embedded type "
+                            + accountType.getClass().getCanonicalName());
                 } else {
-                    // TODO: use syncadapter package instead, since it provides resources
-                    Log.d(TAG, "Registering external account type=" + type
-                            + ", packageName=" + auth.packageName);
-                    accountType = new ExternalAccountType(mContext, auth.packageName, false);
+                    // Skip external account types that couldn't be initialized.
+                    continue;
                 }
-                if (!accountType.isInitialized()) {
-                    if (accountType.isEmbedded()) {
-                        throw new IllegalStateException("Problem initializing embedded type "
-                                + accountType.getClass().getCanonicalName());
-                    } else {
-                        // Skip external account types that couldn't be initialized.
-                        continue;
-                    }
-                }
+            }
 
-                accountType.accountType = auth.type;
-                accountType.titleRes = auth.labelId;
-                accountType.iconRes = auth.iconId;
+            accountType.accountType = auth.type;
+            accountType.titleRes = auth.labelId;
+            accountType.iconRes = auth.iconId;
+
+            addAccountType(accountType, accountTypesByTypeAndDataSet, accountTypesByType);
+
+            // Check to see if the account type knows of any other non-sync-adapter packages
+            // that may provide other data sets of contact data.
+            extensionPackages.addAll(accountType.getExtensionPackageNames());
+        }
+
+        // If any extension packages were specified, process them as well.
+        if (!extensionPackages.isEmpty()) {
+            Log.d(TAG, "Registering " + extensionPackages.size() + " extension packages");
+            for (String extensionPackage : extensionPackages) {
+                ExternalAccountType accountType =
+                    new ExternalAccountType(mContext, extensionPackage, true);
+                if (!accountType.isInitialized()) {
+                    // Skip external account types that couldn't be initialized.
+                    continue;
+                }
+                if (!accountType.hasContactsMetadata()) {
+                    Log.w(TAG, "Skipping extension package " + extensionPackage + " because"
+                            + " it doesn't have the CONTACTS_STRUCTURE metadata");
+                    continue;
+                }
+                if (TextUtils.isEmpty(accountType.accountType)) {
+                    Log.w(TAG, "Skipping extension package " + extensionPackage + " because"
+                            + " the CONTACTS_STRUCTURE metadata doesn't have the accountType"
+                            + " attribute");
+                    continue;
+                }
+                Log.d(TAG, "Registering extension package account type="
+                        + accountType.accountType + ", dataSet=" + accountType.dataSet
+                        + ", packageName=" + extensionPackage);
 
                 addAccountType(accountType, accountTypesByTypeAndDataSet, accountTypesByType);
-
-                // Check to see if the account type knows of any other non-sync-adapter packages
-                // that may provide other data sets of contact data.
-                extensionPackages.addAll(accountType.getExtensionPackageNames());
             }
-
-            // If any extension packages were specified, process them as well.
-            if (!extensionPackages.isEmpty()) {
-                Log.d(TAG, "Registering " + extensionPackages.size() + " extension packages");
-                for (String extensionPackage : extensionPackages) {
-                    ExternalAccountType accountType =
-                            new ExternalAccountType(mContext, extensionPackage, true);
-                    if (!accountType.isInitialized()) {
-                        // Skip external account types that couldn't be initialized.
-                        continue;
-                    }
-                    if (!accountType.hasContactsMetadata()) {
-                        Log.w(TAG, "Skipping extension package " + extensionPackage + " because"
-                                + " it doesn't have the CONTACTS_STRUCTURE metadata");
-                        continue;
-                    }
-                    if (TextUtils.isEmpty(accountType.accountType)) {
-                        Log.w(TAG, "Skipping extension package " + extensionPackage + " because"
-                                + " the CONTACTS_STRUCTURE metadata doesn't have the accountType"
-                                + " attribute");
-                        continue;
-                    }
-                    Log.d(TAG, "Registering extension package account type="
-                            + accountType.accountType + ", dataSet=" + accountType.dataSet
-                            + ", packageName=" + extensionPackage);
-
-                    addAccountType(accountType, accountTypesByTypeAndDataSet, accountTypesByType);
-                }
-            }
-        } catch (RemoteException e) {
-            Log.w(TAG, "Problem loading accounts: " + e.toString());
         }
         timings.addSplit("Loaded account types");
 
         // Map in accounts to associate the account names with each account type entry.
         Account[] accounts = mAccountManager.getAccounts();
         for (Account account : accounts) {
-            boolean syncable = false;
-            try {
-                syncable = cs.getIsSyncable(account, ContactsContract.AUTHORITY) > 0;
-            } catch (RemoteException e) {
-                Log.e(TAG, "Cannot obtain sync flag for account: " + account, e);
-            }
+            boolean syncable =
+                ContentResolver.getIsSyncable(account, ContactsContract.AUTHORITY) > 0;
 
             if (syncable) {
                 List<AccountType> accountTypes = accountTypesByType.get(account.type);
