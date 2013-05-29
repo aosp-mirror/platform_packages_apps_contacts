@@ -30,8 +30,6 @@ import android.net.Uri;
 import android.net.WebAddress;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -43,6 +41,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.StatusUpdates;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -114,7 +113,6 @@ import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.util.UiClosables;
-import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
@@ -1974,15 +1972,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     public boolean handleKeyDown(int keyCode) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
-                try {
-                    ITelephony phone = ITelephony.Stub.asInterface(
-                            ServiceManager.checkService("phone"));
-                    if (phone != null && !phone.isIdle()) {
-                        // Skip out and let the key be handled at a higher level
-                        break;
-                    }
-                } catch (RemoteException re) {
-                    // Fall through and try to call the contact
+                TelephonyManager telephonyManager =
+                    (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+                if (telephonyManager != null &&
+                        telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE) {
+                    // Skip out and let the key be handled at a higher level
+                    break;
                 }
 
                 int index = mListView.getSelectedItemPosition();
