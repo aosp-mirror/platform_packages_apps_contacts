@@ -22,21 +22,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.android.contacts.widget.InterpolatingLayout
+    <LinearLayout
         android:id="@+id/main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:splitMotionEvents="true">
 
         <FrameLayout
             android:id="@+id/browse_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:minWidth="100dip"
-            ex:layout_narrowParentWidth="1000dip"
-            ex:layout_narrowWidth="276dip"
-            ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideWidth="376dip"
             android:background="@drawable/list_background_holo"
             android:visibility="gone">
 
@@ -58,14 +56,9 @@
         <view
             class="com.android.contacts.widget.TransitionAnimationView"
             android:id="@+id/contact_details_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            ex:layout_narrowParentWidth="800dip"
-            ex:layout_narrowMarginLeft="0dip"
-            ex:layout_narrowMarginRight="0dip"
-            ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideMarginLeft="0dip"
-            ex:layout_wideMarginRight="0dip"
+            android:layout_weight="2"
             android:visibility="gone">
 
             <!-- This layout includes all possible views needed for a contact detail page -->
@@ -89,12 +82,6 @@
             android:id="@+id/group_details_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            ex:layout_narrowParentWidth="800dip"
-            ex:layout_narrowMarginLeft="0dip"
-            ex:layout_narrowMarginRight="0dip"
-            ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideMarginLeft="0dip"
-            ex:layout_wideMarginRight="0dip"
             android:visibility="gone">
 
             <!-- This is the group detail page -->
@@ -145,7 +132,7 @@
 
         </LinearLayout>
 
-    </com.android.contacts.widget.InterpolatingLayout>
+    </LinearLayout>
 
     <com.android.contacts.widget.InterpolatingLayout
         android:id="@+id/contacts_unavailable_view"
