@@ -34,7 +34,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:minWidth="100dip"
             android:background="@drawable/list_background_holo"
             android:visibility="gone">
 
@@ -80,8 +79,9 @@
         <view
             class="com.android.contacts.widget.TransitionAnimationView"
             android:id="@+id/group_details_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dip"
             android:layout_height="match_parent"
+            android:layout_weight="2"
             android:visibility="gone">
 
             <!-- This is the group detail page -->
