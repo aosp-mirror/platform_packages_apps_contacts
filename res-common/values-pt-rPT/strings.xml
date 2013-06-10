@@ -70,7 +70,7 @@
     <string name="local_invisible_directory" msgid="8934840494825588347">"Outro"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Diretório"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Todos os contactos"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Utilizador"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Eu"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"A pesquisar…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Foram encontrados mais de <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Sem contactos"</string>
