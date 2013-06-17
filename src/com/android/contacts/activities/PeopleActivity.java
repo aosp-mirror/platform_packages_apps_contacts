@@ -994,26 +994,31 @@ public class PeopleActivity extends ContactsActivity
         mAllFragment.setFilter(mContactListFilterController.getFilter());
 
         final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
-        final Locale locale = Locale.getDefault();
-        final int layoutDirection = TextUtils.getLayoutDirectionFromLocale(locale);
-        final boolean isLayoutRtl = (layoutDirection == View.LAYOUT_DIRECTION_RTL);
-        final int position;
-        if (useTwoPane)  {
-            position = isLayoutRtl ? View.SCROLLBAR_POSITION_RIGHT : View.SCROLLBAR_POSITION_LEFT;
-        } else {
-            position = isLayoutRtl ? View.SCROLLBAR_POSITION_LEFT: View.SCROLLBAR_POSITION_RIGHT;
-        }
-        mAllFragment.setVerticalScrollbarPosition(position);
+
+        mAllFragment.setVerticalScrollbarPosition(getScrollBarPosition(useTwoPane));
         mAllFragment.setSelectionVisible(useTwoPane);
         mAllFragment.setQuickContactEnabled(!useTwoPane);
     }
 
+    private int getScrollBarPosition(boolean useTwoPane) {
+        final boolean isLayoutRtl = isRTL();
+        final int position;
+        if (useTwoPane) {
+            position = isLayoutRtl ? View.SCROLLBAR_POSITION_RIGHT : View.SCROLLBAR_POSITION_LEFT;
+        } else {
+            position = isLayoutRtl ? View.SCROLLBAR_POSITION_LEFT : View.SCROLLBAR_POSITION_RIGHT;
+        }
+        return position;
+    }
+
+    private boolean isRTL() {
+        final Locale locale = Locale.getDefault();
+        return TextUtils.getLayoutDirectionFromLocale(locale) == View.LAYOUT_DIRECTION_RTL;
+    }
+
     private void configureGroupListFragment() {
         final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
-        mGroupsFragment.setVerticalScrollbarPosition(
-                useTwoPane
-                        ? View.SCROLLBAR_POSITION_LEFT
-                        : View.SCROLLBAR_POSITION_RIGHT);
+        mGroupsFragment.setVerticalScrollbarPosition(getScrollBarPosition(useTwoPane));
         mGroupsFragment.setSelectionVisible(useTwoPane);
     }
 

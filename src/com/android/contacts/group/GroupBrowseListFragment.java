@@ -148,10 +148,8 @@ public class GroupBrowseListFragment extends Fragment
     }
 
     public void setVerticalScrollbarPosition(int position) {
-        if (mVerticalScrollbarPosition != position) {
-            mVerticalScrollbarPosition = position;
-            configureVerticalScrollbar();
-        }
+        mVerticalScrollbarPosition = position;
+        configureVerticalScrollbar();
     }
 
     private void configureVerticalScrollbar() {
