@@ -118,7 +118,8 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             // width of all its children fragments.
             // Or the current page may already be set to something other than the first.  If so,
             // it also means there are multiple child fragments.
-            if (mEnableSwipe || mCurrentPage != 0) {
+            if (mEnableSwipe || mCurrentPage == 1 ||
+                    (mCurrentPage == 0 && getLayoutDirection() == View.LAYOUT_DIRECTION_RTL)) {
                 child.measure(MeasureSpec.makeMeasureSpec(
                         mMinFragmentWidth * MAX_FRAGMENT_VIEW_COUNT, MeasureSpec.EXACTLY),
                         MeasureSpec.makeMeasureSpec(screenHeight, MeasureSpec.EXACTLY));
@@ -237,7 +238,13 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     }
 
     private int calculateHorizontalOffset() {
-        return mCurrentPage == ABOUT_PAGE ? 0 : mAllowedHorizontalScrollLength;
+        int offset;
+        if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+            offset = (mCurrentPage == ABOUT_PAGE) ? mAllowedHorizontalScrollLength : 0;
+        } else {
+            offset = (mCurrentPage == ABOUT_PAGE) ? 0 : mAllowedHorizontalScrollLength;
+        }
+        return offset;
     }
 
     /**
@@ -247,13 +254,21 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private int getDesiredPage() {
         switch (mCurrentPage) {
             case ABOUT_PAGE:
-                // If the user is on the "about" page, and the scroll position exceeds the lower
-                // threshold, then we should switch to the "updates" page.
-                return (mLastScrollPosition > mLowerThreshold) ? UPDATES_PAGE : ABOUT_PAGE;
+                if (getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
+                    // If the user is on the "about" page, and the scroll position exceeds the lower
+                    // threshold, then we should switch to the "updates" page.
+                    return (mLastScrollPosition > mLowerThreshold) ? UPDATES_PAGE : ABOUT_PAGE;
+                } else {
+                    return (mLastScrollPosition < mUpperThreshold) ? UPDATES_PAGE : ABOUT_PAGE;
+                }
             case UPDATES_PAGE:
-                // If the user is on the "updates" page, and the scroll position goes below the
-                // upper threshold, then we should switch to the "about" page.
-                return (mLastScrollPosition < mUpperThreshold) ? ABOUT_PAGE : UPDATES_PAGE;
+                if (getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
+                    // If the user is on the "updates" page, and the scroll position goes below the
+                    // upper threshold, then we should switch to the "about" page.
+                    return (mLastScrollPosition < mUpperThreshold) ? ABOUT_PAGE : UPDATES_PAGE;
+                } else {
+                    return (mLastScrollPosition > mLowerThreshold) ? ABOUT_PAGE : UPDATES_PAGE;
+                }
         }
         throw new IllegalStateException("Invalid current page " + mCurrentPage);
     }
