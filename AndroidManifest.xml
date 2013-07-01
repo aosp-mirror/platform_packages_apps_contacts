@@ -481,23 +481,6 @@
             android:theme="@style/NonPhoneActivityTheme"
             >
             <intent-filter android:priority="-1">
-                <action android:name="android.intent.action.DIAL"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:mimeType="vnd.android.cursor.item/phone"/>
-                <data android:mimeType="vnd.android.cursor.item/person"/>
-            </intent-filter>
-            <intent-filter android:priority="-1">
-                <action android:name="android.intent.action.DIAL"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="voicemail"/>
-            </intent-filter>
-            <intent-filter android:priority="-1">
-                <action android:name="android.intent.action.DIAL"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <intent-filter android:priority="-1">
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -514,11 +497,6 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:mimeType="vnd.android.cursor.dir/calls"/>
-            </intent-filter>
-            <intent-filter android:priority="-1">
-                <action android:name="android.intent.action.CALL_BUTTON"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
         </activity>
 
