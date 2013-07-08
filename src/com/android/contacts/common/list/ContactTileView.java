@@ -18,6 +18,7 @@ package com.android.contacts.common.list;
 import android.content.Context;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.telephony.PhoneNumberUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -93,6 +94,8 @@ public abstract class ContactTileView extends FrameLayout {
     /**
      * Populates the data members to be displayed from the
      * fields in {@link com.android.contacts.common.list.ContactTileAdapter.ContactEntry}
+     *
+     * TODO yorke: Remove this redundant method once we get rid of NewContactTileAdapter
      */
     public void loadFromContact(ContactTileAdapter.ContactEntry entry) {
 
@@ -117,6 +120,64 @@ public abstract class ContactTileView extends FrameLayout {
 
             if (mPhoneNumber != null) {
                 // TODO: Format number correctly
+                mPhoneNumber.setText(entry.phoneNumber);
+            }
+
+            setVisibility(View.VISIBLE);
+
+            if (mPhotoManager != null) {
+                if (mPhoto != null) {
+                    mPhotoManager.loadPhoto(mPhoto, entry.photoUri, getApproximateImageSize(),
+                            isDarkTheme());
+
+                    if (mQuickContact != null) {
+                        mQuickContact.assignContactUri(mLookupUri);
+                    }
+                } else if (mQuickContact != null) {
+                    mQuickContact.assignContactUri(mLookupUri);
+                    mPhotoManager.loadPhoto(mQuickContact, entry.photoUri,
+                            getApproximateImageSize(), isDarkTheme());
+                }
+            } else {
+                Log.w(TAG, "contactPhotoManager not set");
+            }
+
+            if (mPushState != null) {
+                mPushState.setContentDescription(entry.name);
+            } else if (mQuickContact != null) {
+                mQuickContact.setContentDescription(entry.name);
+            }
+        } else {
+            setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * Populates the data members to be displayed from the
+     * fields in {@link com.android.contacts.common.list.ContactTileAdapter.ContactEntry}
+     */
+    public void loadFromContact(NewContactTileAdapter.ContactEntry entry) {
+
+        if (entry != null) {
+            mName.setText(entry.name);
+            mLookupUri = entry.lookupKey;
+
+            if (mStatus != null) {
+                if (entry.status == null) {
+                    mStatus.setVisibility(View.GONE);
+                } else {
+                    mStatus.setText(entry.status);
+                    mStatus.setCompoundDrawablesWithIntrinsicBounds(entry.presenceIcon,
+                            null, null, null);
+                    mStatus.setVisibility(View.VISIBLE);
+                }
+            }
+
+            if (mPhoneLabel != null) {
+                mPhoneLabel.setText(entry.phoneLabel);
+            }
+
+            if (mPhoneNumber != null) {
                 mPhoneNumber.setText(entry.phoneNumber);
             }
 

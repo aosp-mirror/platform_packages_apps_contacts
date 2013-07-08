@@ -58,7 +58,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
     }
 
     protected boolean isPinnedPartitionHeaderVisible(int partition) {
-        return mPinnedPartitionHeadersEnabled && hasHeader(partition)
+        return getPinnedPartitionHeadersEnabled() && hasHeader(partition)
                 && !isPartitionEmpty(partition);
     }
 
@@ -92,7 +92,7 @@ public abstract class PinnedHeaderListAdapter extends CompositeCursorAdapter
 
     @Override
     public void configurePinnedHeaders(PinnedHeaderListView listView) {
-        if (!mPinnedPartitionHeadersEnabled) {
+        if (!getPinnedPartitionHeadersEnabled()) {
             return;
         }
 
