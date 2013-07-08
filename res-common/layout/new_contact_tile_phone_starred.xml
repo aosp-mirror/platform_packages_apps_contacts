@@ -19,7 +19,7 @@
     android:paddingBottom="1dip"
     android:paddingRight="1dip"
     android:paddingEnd="1dip"
-    class="com.android.contacts.common.list.ContactTilePhoneStarredView" >
+    class="com.android.contacts.common.list.NewContactTilePhoneStarredView" >
 
     <RelativeLayout
         android:layout_width="match_parent"

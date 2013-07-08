@@ -19,6 +19,7 @@
 
     <!--  Determines the number of columns in a ContactTileRow in the favorites tab -->
     <integer name="contact_tile_column_count_in_favorites">2</integer>
+    <integer name="contact_tile_column_count_in_favorites_new">3</integer>
 
     <!-- The number of characters in the snippet before we need to tokenize and ellipse. -->
     <integer name="snippet_length_before_tokenize">30</integer>
