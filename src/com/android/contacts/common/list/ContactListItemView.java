@@ -47,7 +47,7 @@ import android.widget.TextView;
 import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.common.R;
-import com.android.contacts.common.format.PrefixHighlighter;
+import com.android.contacts.common.format.TextHighlighter;
 import com.android.contacts.common.util.SearchUtil;
 import com.google.common.collect.Lists;
 
@@ -110,6 +110,13 @@ public class ContactListItemView extends ViewGroup
     private Drawable mHorizontalDividerDrawable;
     private int mHorizontalDividerHeight;
 
+    // Highlighting Masks for the name and number.
+    private String mNameHighlightMask;
+    private String mNumberHighlightMask;
+
+    // Highlighting prefix for names.
+    private String mHighlightedPrefix;
+
     /**
      * Where to put contact photo. This affects the other Views' layout or look-and-feel.
      *
@@ -155,7 +162,7 @@ public class ContactListItemView extends ViewGroup
 
     private ColorStateList mSecondaryTextColor;
 
-    private String mHighlightedPrefix;
+
 
     private int mDefaultPhotoViewSize = 0;
     /**
@@ -210,14 +217,14 @@ public class ContactListItemView extends ViewGroup
     private Rect mBoundsWithoutHeader = new Rect();
 
     /** A helper used to highlight a prefix in a text field. */
-    private PrefixHighlighter mPrefixHighlighter;
+    private final TextHighlighter mTextHighlighter;
     private CharSequence mUnknownNameText;
 
     public ContactListItemView(Context context) {
         super(context);
         mContext = context;
 
-        mPrefixHighlighter = new PrefixHighlighter(Color.GREEN);
+        mTextHighlighter = new TextHighlighter(Color.GREEN);
     }
 
     public ContactListItemView(Context context, AttributeSet attrs) {
@@ -286,7 +293,7 @@ public class ContactListItemView extends ViewGroup
 
         final int prefixHighlightColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_prefix_highlight_color, Color.GREEN);
-        mPrefixHighlighter = new PrefixHighlighter(prefixHighlightColor);
+        mTextHighlighter = new TextHighlighter(prefixHighlightColor);
         a.recycle();
 
         a = getContext().obtainStyledAttributes(android.R.styleable.Theme);
@@ -853,12 +860,32 @@ public class ContactListItemView extends ViewGroup
 
     /**
      * Sets a word prefix that will be highlighted if encountered in fields like
-     * name and search snippet.
+     * name and search snippet. This will disable the mask highlighting for names.
      * <p>
      * NOTE: must be all upper-case
      */
     public void setHighlightedPrefix(String upperCasePrefix) {
         mHighlightedPrefix = upperCasePrefix;
+        mNameHighlightMask = null;
+    }
+
+    /**
+     * Sets a highlighting mask for names. This will disable the prefix highlighting.
+     *
+     * @param highlightMask A string of 0 and 1's to indicate which letter to highlight
+     */
+    public void setHighlightMask(String highlightMask) {
+        mNameHighlightMask = highlightMask;
+        mHighlightedPrefix = null;
+    }
+
+    /**
+     * Sets a highlighting mask for numbers.
+     *
+     * @param highlightMask A string of 0 and 1's to indicate which digit to highlight.
+     */
+    public void setNumberHighlightMask(String highlightMask) {
+        mNumberHighlightMask = highlightMask;
     }
 
     /**
@@ -954,7 +981,7 @@ public class ContactListItemView extends ViewGroup
     /**
      * Adds or updates a text view for the data element.
      */
-    public void setData(char[] text, int size, int dataColumnIndex) {
+    public void setData(char[] text, int size) {
         if (text == null || size == 0) {
             if (mDataView != null) {
                 mDataView.setVisibility(View.GONE);
@@ -963,14 +990,32 @@ public class ContactListItemView extends ViewGroup
             getDataView();
             setMarqueeText(mDataView, text, size);
             mDataView.setVisibility(VISIBLE);
-            // Check if this is a phone number. This code works also for the legacy phone number
-            // coming from LegacyPhoneNumberListAdapter.PHONE_NUMBER_COLUMN_INDEX because they are
-            // the exact same constant value (3)
-            if (dataColumnIndex == PhoneNumberListAdapter.PhoneQuery.PHONE_NUMBER) {
-                // We have a phone number as "mDataView" so make it always LTR and VIEW_START
-                mDataView.setTextDirection(View.TEXT_DIRECTION_LTR);
-                mDataView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+        }
+    }
+
+    /**
+     * Sets phone number for a list item. This takes care of number highlighting if the highlight
+     * mask exists.
+     */
+    public void setPhoneNumber(String text) {
+        if (text == null) {
+            if (mDataView != null) {
+                mDataView.setVisibility(View.GONE);
             }
+        } else {
+            getDataView();
+            // Sets phone number texts for display after highlighting it, if applicable.
+            CharSequence textToSet = text;
+            if (mNumberHighlightMask != null) {
+                textToSet = mTextHighlighter.applyMaskingHighlight(text,
+                        mNumberHighlightMask);
+            }
+            setMarqueeText(mDataView, textToSet);
+            mDataView.setVisibility(VISIBLE);
+
+            // We have a phone number as "mDataView" so make it always LTR and VIEW_START
+            mDataView.setTextDirection(View.TEXT_DIRECTION_LTR);
+            mDataView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
         }
     }
 
@@ -1020,7 +1065,12 @@ public class ContactListItemView extends ViewGroup
                 mSnippetView.setVisibility(View.GONE);
             }
         } else {
-            mPrefixHighlighter.setText(getSnippetView(), text, mHighlightedPrefix);
+            // Chooses a highlighting method for text highlighting.
+            if (mHighlightedPrefix != null) {
+                mTextHighlighter.setPrefixText(getSnippetView(), text, mHighlightedPrefix);
+            } else if (mNameHighlightMask != null) {
+                mTextHighlighter.setMaskingText(getSnippetView(), text, mNameHighlightMask);
+            }
             mSnippetView.setVisibility(VISIBLE);
         }
     }
@@ -1132,7 +1182,12 @@ public class ContactListItemView extends ViewGroup
     public void showDisplayName(Cursor cursor, int nameColumnIndex, int displayOrder) {
         CharSequence name = cursor.getString(nameColumnIndex);
         if (!TextUtils.isEmpty(name)) {
-            name = mPrefixHighlighter.apply(name, mHighlightedPrefix);
+            // Chooses the available highlighting method for highlighting.
+            if (mHighlightedPrefix != null) {
+                name = mTextHighlighter.applyPrefixHighlight(name, mHighlightedPrefix);
+            } else if (mNameHighlightMask != null) {
+                name = mTextHighlighter.applyMaskingHighlight(name, mNameHighlightMask);
+            }
         } else {
             name = mUnknownNameText;
         }
@@ -1389,7 +1444,15 @@ public class ContactListItemView extends ViewGroup
      */
     public void showData(Cursor cursor, int dataColumnIndex) {
         cursor.copyStringToBuffer(dataColumnIndex, mDataBuffer);
-        setData(mDataBuffer.data, mDataBuffer.sizeCopied, dataColumnIndex);
+        // Check if this is a phone number. This code works also for the legacy phone number
+        // coming from LegacyPhoneNumberListAdapter.PHONE_NUMBER_COLUMN_INDEX because they are
+        // the exact same constant value (3)
+        if (dataColumnIndex != PhoneNumberListAdapter.PhoneQuery.PHONE_NUMBER) {
+            setData(mDataBuffer.data, mDataBuffer.sizeCopied);
+        } else {
+            // If the data is phone number, highlights the number and aligns text before showing.
+            setPhoneNumber(cursor.getString(dataColumnIndex));
+        }
     }
 
     public void setActivatedStateSupported(boolean flag) {

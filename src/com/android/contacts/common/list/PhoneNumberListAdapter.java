@@ -50,8 +50,8 @@ import java.util.List;
 public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private static final String TAG = PhoneNumberListAdapter.class.getSimpleName();
 
-    protected static class PhoneQuery {
-        private static final String[] PROJECTION_PRIMARY = new String[] {
+    public static class PhoneQuery {
+        public static final String[] PROJECTION_PRIMARY = new String[] {
             Phone._ID,                          // 0
             Phone.TYPE,                         // 1
             Phone.LABEL,                        // 2
@@ -62,7 +62,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             Phone.DISPLAY_NAME_PRIMARY,         // 7
         };
 
-        private static final String[] PROJECTION_ALTERNATIVE = new String[] {
+        public static final String[] PROJECTION_ALTERNATIVE = new String[] {
             Phone._ID,                          // 0
             Phone.TYPE,                         // 1
             Phone.LABEL,                        // 2
@@ -217,11 +217,15 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         return view;
     }
 
+    protected void setHighlight(ContactListItemView view, Cursor cursor) {
+        view.setHighlightedPrefix(isSearchMode() ? getUpperCaseQueryString() : null);
+    }
+
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
 
-        view.setHighlightedPrefix(isSearchMode() ? getUpperCaseQueryString() : null);
+        setHighlight(view, cursor);
 
         // Look at elements before and after this position, checking if contact IDs are same.
         // If they have one same contact ID, it means they can be grouped.

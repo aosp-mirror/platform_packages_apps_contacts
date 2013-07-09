@@ -626,6 +626,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
+    public int getDirectoryLoaderId() {
+        return DIRECTORY_LOADER_ID;
+    }
+
     public int getDirectorySearchMode() {
         return mDirectorySearchMode;
     }

@@ -80,4 +80,11 @@ public class SpannedTestUtils {
         Assert.assertFalse(seq instanceof Spanned);
         Assert.assertEquals(expected, seq);
     }
+
+    public static int getNextTransition(CharSequence seq, int start) {
+        Assert.assertTrue(seq instanceof Spanned);
+        final Spanned spannable = (Spanned) seq;
+
+        return spannable.nextSpanTransition(start, seq.length(), ForegroundColorSpan.class);
+    }
 }
