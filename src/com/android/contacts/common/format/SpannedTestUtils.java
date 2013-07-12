@@ -18,6 +18,7 @@ package com.android.contacts.common.format;
 
 import android.test.suitebuilder.annotation.SmallTest;
 import android.text.Html;
+import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
@@ -81,10 +82,7 @@ public class SpannedTestUtils {
         Assert.assertEquals(expected, seq);
     }
 
-    public static int getNextTransition(CharSequence seq, int start) {
-        Assert.assertTrue(seq instanceof Spanned);
-        final Spanned spannable = (Spanned) seq;
-
-        return spannable.nextSpanTransition(start, seq.length(), ForegroundColorSpan.class);
+    public static int getNextTransition(SpannableString seq, int start) {
+        return seq.nextSpanTransition(start, seq.length(), ForegroundColorSpan.class);
     }
 }
