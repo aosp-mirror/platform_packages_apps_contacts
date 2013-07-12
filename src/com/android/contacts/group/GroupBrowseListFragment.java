@@ -130,6 +130,8 @@ public class GroupBrowseListFragment extends Fragment
         });
 
         mListView.setEmptyView(mEmptyView);
+        configureVerticalScrollbar();
+
         mAddAccountsView = mRootView.findViewById(R.id.add_accounts);
         mAddAccountButton = mRootView.findViewById(R.id.add_account_button);
         mAddAccountButton.setOnClickListener(new OnClickListener() {
@@ -149,7 +151,9 @@ public class GroupBrowseListFragment extends Fragment
 
     public void setVerticalScrollbarPosition(int position) {
         mVerticalScrollbarPosition = position;
-        configureVerticalScrollbar();
+        if (mListView != null) {
+            configureVerticalScrollbar();
+        }
     }
 
     private void configureVerticalScrollbar() {
