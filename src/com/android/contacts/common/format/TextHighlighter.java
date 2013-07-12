@@ -50,43 +50,14 @@ public class TextHighlighter {
     }
 
     /**
-     * Sets a mask for text highlighting. The mask should be a string of the same length as text,
-     * where each character is either 0 or 1. If the character is 1, the letter in text at the same
-     * position should be highlighted. Otherwise the letter should not be highlighted.
-     *
-     * @param view TextView where the highlighted text should go.
-     * @param text Text to be highlighted.
-     * @param mask Mask indicating which letter to highlight.
-     */
-    public void setMaskingText(TextView view, String text, String mask) {
-        view.setText(applyMaskingHighlight(text, mask));
-    }
-
-    /**
      * Applies highlight span to the text.
      * @param text Text sequence to be highlighted.
-     * @param mask Mask indicating where highlight should be.
-     * @return Highlighted text sequence.
+     * @param start Start position of the highlight sequence.
+     * @param end End position of the highlight sequence.
      */
-    public CharSequence applyMaskingHighlight(CharSequence text, String mask) {
-        Preconditions.checkNotNull(text);
-        Preconditions.checkNotNull(mask);
-
-        if (text.length() != mask.length() || text.length() == 0) {
-            if (DEBUG) {
-                Log.v(TAG, "Mask size mismatch or text length is 0" + text + " " + mask);
-            }
-            return text;
-        }
-
+    public void applyMaskingHighlight(SpannableString text, int start, int end) {
         /** Sets text color of the masked locations to be highlighted. */
-        final SpannableString result = new SpannableString(text);
-        for (int i = 0; i < mask.length(); ++i) {
-            if (mask.charAt(i) == '1') {
-                 result.setSpan(new ForegroundColorSpan(mTextHighlightColor), i, i + 1, 0);
-            }
-        }
-        return result;
+        text.setSpan(new ForegroundColorSpan(mTextHighlightColor), start, end, 0);
     }
 
     /**

@@ -34,6 +34,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -110,9 +111,18 @@ public class ContactListItemView extends ViewGroup
     private Drawable mHorizontalDividerDrawable;
     private int mHorizontalDividerHeight;
 
-    // Highlighting Masks for the name and number.
-    private String mNameHighlightMask;
-    private String mNumberHighlightMask;
+    protected static class HighlightSequence {
+        private final int start;
+        private final int end;
+
+        HighlightSequence(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
+
+    private ArrayList<HighlightSequence> mNameHighlightSequence;
+    private ArrayList<HighlightSequence> mNumberHighlightSequence;
 
     // Highlighting prefix for names.
     private String mHighlightedPrefix;
@@ -305,6 +315,9 @@ public class ContactListItemView extends ViewGroup
         if (mActivatedBackgroundDrawable != null) {
             mActivatedBackgroundDrawable.setCallback(this);
         }
+
+        mNameHighlightSequence = new ArrayList<HighlightSequence>();
+        mNumberHighlightSequence = new ArrayList<HighlightSequence>();
     }
 
     public void setUnknownNameText(CharSequence unknownNameText) {
@@ -866,26 +879,33 @@ public class ContactListItemView extends ViewGroup
      */
     public void setHighlightedPrefix(String upperCasePrefix) {
         mHighlightedPrefix = upperCasePrefix;
-        mNameHighlightMask = null;
     }
 
     /**
-     * Sets a highlighting mask for names. This will disable the prefix highlighting.
-     *
-     * @param highlightMask A string of 0 and 1's to indicate which letter to highlight
+     * Clears previously set highlight sequences for the view.
      */
-    public void setHighlightMask(String highlightMask) {
-        mNameHighlightMask = highlightMask;
+    public void clearHighlightSequences() {
+        mNameHighlightSequence.clear();
+        mNumberHighlightSequence.clear();
         mHighlightedPrefix = null;
     }
 
     /**
-     * Sets a highlighting mask for numbers.
-     *
-     * @param highlightMask A string of 0 and 1's to indicate which digit to highlight.
+     * Adds a highlight sequence to the name highlighter.
+     * @param start The start position of the highlight sequence.
+     * @param end The end position of the highlight sequence.
      */
-    public void setNumberHighlightMask(String highlightMask) {
-        mNumberHighlightMask = highlightMask;
+    public void addNameHighlightSequence(int start, int end) {
+        mNameHighlightSequence.add(new HighlightSequence(start, end));
+    }
+
+    /**
+     * Adds a highlight sequence to the number highlighter.
+     * @param start The start position of the highlight sequence.
+     * @param end The end position of the highlight sequence.
+     */
+    public void addNumberHighlightSequence(int start, int end) {
+        mNumberHighlightSequence.add(new HighlightSequence(start, end));
     }
 
     /**
@@ -1005,11 +1025,15 @@ public class ContactListItemView extends ViewGroup
         } else {
             getDataView();
             // Sets phone number texts for display after highlighting it, if applicable.
-            CharSequence textToSet = text;
-            if (mNumberHighlightMask != null) {
-                textToSet = mTextHighlighter.applyMaskingHighlight(text,
-                        mNumberHighlightMask);
+            //CharSequence textToSet = text;
+            final SpannableString textToSet = new SpannableString(text);
+
+            if (mNumberHighlightSequence.size() != 0) {
+                final HighlightSequence highlightSequence = mNumberHighlightSequence.get(0);
+                mTextHighlighter.applyMaskingHighlight(textToSet, highlightSequence.start,
+                        highlightSequence.end);
             }
+
             setMarqueeText(mDataView, textToSet);
             mDataView.setVisibility(VISIBLE);
 
@@ -1065,12 +1089,7 @@ public class ContactListItemView extends ViewGroup
                 mSnippetView.setVisibility(View.GONE);
             }
         } else {
-            // Chooses a highlighting method for text highlighting.
-            if (mHighlightedPrefix != null) {
-                mTextHighlighter.setPrefixText(getSnippetView(), text, mHighlightedPrefix);
-            } else if (mNameHighlightMask != null) {
-                mTextHighlighter.setMaskingText(getSnippetView(), text, mNameHighlightMask);
-            }
+            mTextHighlighter.setPrefixText(getSnippetView(), text, mHighlightedPrefix);
             mSnippetView.setVisibility(VISIBLE);
         }
     }
@@ -1185,8 +1204,13 @@ public class ContactListItemView extends ViewGroup
             // Chooses the available highlighting method for highlighting.
             if (mHighlightedPrefix != null) {
                 name = mTextHighlighter.applyPrefixHighlight(name, mHighlightedPrefix);
-            } else if (mNameHighlightMask != null) {
-                name = mTextHighlighter.applyMaskingHighlight(name, mNameHighlightMask);
+            } else if (mNameHighlightSequence.size() != 0) {
+                final SpannableString spannableName = new SpannableString(name);
+                for (HighlightSequence highlightSequence : mNameHighlightSequence) {
+                    mTextHighlighter.applyMaskingHighlight(spannableName, highlightSequence.start,
+                            highlightSequence.end);
+                }
+                name = spannableName;
             }
         } else {
             name = mUnknownNameText;
