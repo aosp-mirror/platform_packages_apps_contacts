@@ -21,7 +21,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.android.contacts.common.MoreContactUtils;
-import com.android.contacts.common.list.ContactTileAdapter.ContactEntry;
 import com.android.contacts.common.util.ViewUtil;
 
 /**

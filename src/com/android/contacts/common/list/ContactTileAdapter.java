@@ -652,19 +652,6 @@ public class ContactTileAdapter extends BaseAdapter {
         }
     }
 
-    /**
-     * Class to hold contact information
-     */
-    public static class ContactEntry {
-        public String name;
-        public String status;
-        public String phoneLabel;
-        public String phoneNumber;
-        public Uri photoUri;
-        public Uri lookupKey;
-        public Drawable presenceIcon;
-    }
-
     protected static class ViewTypes {
         public static final int COUNT = 4;
         public static final int STARRED = 0;
