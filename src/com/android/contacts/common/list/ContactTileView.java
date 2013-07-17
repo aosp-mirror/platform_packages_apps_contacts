@@ -66,12 +66,7 @@ public abstract class ContactTileView extends FrameLayout {
         mHorizontalDivider = findViewById(R.id.contact_tile_horizontal_divider);
 
         OnClickListener listener = createClickListener();
-
-        if(mPushState != null) {
-            mPushState.setOnClickListener(listener);
-        } else {
-            setOnClickListener(listener);
-        }
+        setOnClickListener(listener);
     }
 
     protected OnClickListener createClickListener() {
