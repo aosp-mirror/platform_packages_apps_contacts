@@ -18,11 +18,12 @@ package com.android.contacts.common.list;
 
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.provider.ContactsContract.PinnedPositions;
 
 /**
  * Class to hold contact information
  */
-public class ContactEntry {
+public class ContactEntry implements Comparable<ContactEntry> {
     public String name;
     public String status;
     public String phoneLabel;
@@ -30,4 +31,14 @@ public class ContactEntry {
     public Uri photoUri;
     public Uri lookupKey;
     public Drawable presenceIcon;
+    public long id;
+    public int pinned = PinnedPositions.UNPINNED;
+
+    /*
+     * This is implemented to allow sorting pinned contacts within the Dialer
+     */
+    @Override
+    public int compareTo(ContactEntry another) {
+        return this.pinned - another.pinned;
+    }
 }

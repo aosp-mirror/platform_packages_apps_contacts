@@ -40,6 +40,12 @@ public final class ContactTileLoaderFactory {
     public final static int PHONE_NUMBER = 5;
     public final static int PHONE_NUMBER_TYPE = 6;
     public final static int PHONE_NUMBER_LABEL = 7;
+    public final static int PINNED = 8;
+    // The _ID field returned for frequent items actually contains data._id instead of
+    // contacts._id because the query is performed on the data table. In order to obtain the
+    // contact id for frequent items (in order to pin/hide frequent contacts), we thus have
+    // to use Phone.contact_id instead.
+    public final static int CONTACT_ID_FOR_FREQUENT = 9;
 
     private static final String[] COLUMNS = new String[] {
         Contacts._ID, // ..........................................0
@@ -65,7 +71,9 @@ public final class ContactTileLoaderFactory {
         Contacts.LOOKUP_KEY, // ...................................4
         Phone.NUMBER, // ..........................................5
         Phone.TYPE, // ............................................6
-        Phone.LABEL // ............................................7
+        Phone.LABEL, // ...........................................7
+        Contacts.PINNED, // .......................................8
+        Phone.CONTACT_ID //........................................9
     };
 
     private static final String STARRED_ORDER = Contacts.DISPLAY_NAME+" COLLATE NOCASE ASC";
