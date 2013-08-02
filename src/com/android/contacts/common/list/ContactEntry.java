@@ -34,6 +34,8 @@ public class ContactEntry implements Comparable<ContactEntry> {
     public long id;
     public int pinned = PinnedPositions.UNPINNED;
 
+    public static final ContactEntry BLANK_ENTRY = new ContactEntry();
+
     /*
      * This is implemented to allow sorting pinned contacts within the Dialer
      */
