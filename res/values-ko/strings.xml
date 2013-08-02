@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"갤러리에서 새 사진 선택"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"변경된 언어를 반영하도록 주소록을 업데이트하는 중입니다. 잠시 기다려 주세요."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"주소록을 업데이트하고 있습니다."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"주소록을 업그레이드하는 중입니다. "\n\n"업그레이드 하려면 약 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>MB의 내부 저장공간이 필요합니다."\n\n"다음 옵션 중 하나를 선택하세요."</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"주소록을 업그레이드하는 중입니다. \n\n업그레이드 하려면 약 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>MB의 내부 저장공간이 필요합니다.\n\n다음 옵션 중 하나를 선택하세요."</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"일부 애플리케이션 제거"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"업그레이드 다시 시도"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"검색 중…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"내 로컬 프로필"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"내 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 프로필"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"인물 앱은 Google 계정에서 사용할 때 더 효과적입니다."\n\n"• 어떤 웹 브라우저에서든 액세스하세요."\n"• 주소록을 안전하게 백업하세요."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"인물 앱은 Google 계정에서 사용할 때 더 효과적입니다.\n\n• 어떤 웹 브라우저에서든 액세스하세요.\n• 주소록을 안전하게 백업하세요."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"온라인 서비스와 동기화되므로 휴대전화를 잃어버려도 주소록을 안전하게 유지할 수 있습니다."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"계정 추가"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"새 연락처는 백업되지 않습니다. 온라인에 주소록을 백업할 계정을 추가하시겠습니까?"</string>

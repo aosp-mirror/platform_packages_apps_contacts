@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Chọn ảnh mới từ Thư viện"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Danh sách liên hệ đang được cập nhật để phản ánh sự thay đổi ngôn ngữ."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Danh sách liên hệ đang được cập nhật."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Danh bạ đang được nâng cấp. "\n\n"Quá trình nâng cấp yêu cầu khoảng <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB bộ nhớ trong."\n\n"Chọn một trong các tùy chọn sau:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Danh bạ đang được nâng cấp. \n\nQuá trình nâng cấp yêu cầu khoảng <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB bộ nhớ trong.\n\nChọn một trong các tùy chọn sau:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Gỡ cài đặt một số ứng dụng"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Thử lại nâng cấp"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Đang tìm kiếm…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"T.sử cục bộ của tôi"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Tiểu sử <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> của tôi"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Đang hiển thị tất cả liên hệ"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Ứng dụng Người hoạt động tốt hơn với Tài khoản Google."\n\n"• Truy cập từ bất kỳ trình duyệt web nào."\n"• Sao lưu danh sách liên hệ của bạn một cách an toàn."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Ứng dụng Người hoạt động tốt hơn với Tài khoản Google.\n\n• Truy cập từ bất kỳ trình duyệt web nào.\n• Sao lưu danh sách liên hệ của bạn một cách an toàn."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Đảm bảo an toàn cho danh sách liên hệ của bạn ngay cả khi bạn mất điện thoại: hãy đồng bộ hóa với một dịch vụ trực tuyến."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Thêm tài khoản"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Địa chỉ liên hệ mới của bạn sẽ không được sao lưu. Thêm tài khoản sao lưu danh bạ trực tuyến?"</string>

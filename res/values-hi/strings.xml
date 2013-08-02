@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"गैलरी से नए फ़ोटो को चुनें"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषा के परिवर्तन दिखाने के लिए संपर्क सूची को अपडेट किया जा रहा है."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची अपडेट की जा रही है."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. "\n\n"अपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB आंतरिक संग्रहण की आवश्‍यकता होती है."\n\n"निम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. \n\nअपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB आंतरिक संग्रहण की आवश्‍यकता होती है.\n\nनिम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"कुछ एप्लिकेशन अनइंस्टॉल करें"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"अपग्रेड का पुन: प्रयास करें"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"खोज रहा है…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"मेरी स्थानीय प्रोफ़ाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"मेरी <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफ़ाइल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सभी संपर्क प्रदर्शित कर रहा है"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"लोग Google खाते के साथ बेहतर तरीके से कार्य करते हैं."\n\n"• किसी भी वेब ब्राउज़र से पहुंचें."\n"• सुरक्षि‍त रूप से अपने संपर्कों का बैकअप लें."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"लोग Google खाते के साथ बेहतर तरीके से कार्य करते हैं.\n\n• किसी भी वेब ब्राउज़र से पहुंचें.\n• सुरक्षि‍त रूप से अपने संपर्कों का बैकअप लें."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"अपना फ़ोन खो देने पर भी अपने संपर्क सुरक्षित रखें: किसी ऑनलाइन सेवा से समन्‍वयित करें."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"कोई खाता जोड़ें"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"आपके नए संपर्क का बैक अप नहीं लिया जाएगा. ऐसा खाता जोड़ें जो संपर्कों का ऑन‍लाइन बैक अप ले?"</string>

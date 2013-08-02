@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Vybrat novou fotografii z Galerie"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Probíhá aktualizace seznamu kontaktů související se změnou jazyka."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Probíhá aktualizace seznamu kontaktů."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Probíhá upgrade kontaktů. "\n\n"Upgrade vyžaduje přibližně <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB interní paměti."\n\n"Zvolte jednu z následujících možností:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Probíhá upgrade kontaktů. \n\nUpgrade vyžaduje přibližně <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB interní paměti.\n\nZvolte jednu z následujících možností:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Odinstalovat některé aplikace"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Zkusit upgradovat znovu"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Vyhledávání..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Můj místní profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Můj profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Zobrazují se všechny kontakty"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Služba Lidé funguje lépe s účtem Google."\n\n"• Můžete k ní přistupovat z libovolného webového prohlížeče"\n"• Kontakty lze bezpečně zálohovat."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Služba Lidé funguje lépe s účtem Google.\n\n• Můžete k ní přistupovat z libovolného webového prohlížeče\n• Kontakty lze bezpečně zálohovat."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mějte kontakty v bezpečí, i když telefon ztratíte: synchronizujte je s některou online službou."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Přidat účet"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nový kontakt nebude zálohován. Chcete přidat účet pro zálohování kontaktů online?"</string>

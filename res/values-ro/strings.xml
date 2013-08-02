@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Selectaţi o fotografie nouă din Galerie"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Se actualizează lista de persoane din agendă pentru a reflecta schimbarea limbii."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Se actualizează lista de persoane din agendă."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Agenda este în proces de trecere la o versiune superioară. "\n\n"Acest proces necesită aproximativ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MO din spaţiul de stocare intern."\n\n"Alegeţi una dintre următoarele opţiuni:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Agenda este în proces de trecere la o versiune superioară. \n\nAcest proces necesită aproximativ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MO din spaţiul de stocare intern.\n\nAlegeţi una dintre următoarele opţiuni:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Dezinstalaţi unele aplicaţii"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Încercaţi din nou trecerea la o versiune superioară"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Se caută..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Profilul meu local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profilul meu <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Se afişează toată agenda"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Aplicaţia Persoane funcţionează mai bine cu un Cont Google."\n\n"• Accesaţi aplicaţia din orice browser web."\n"• Creaţi în siguranţă copii de rezervă pentru agendă."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Aplicaţia Persoane funcţionează mai bine cu un Cont Google.\n\n• Accesaţi aplicaţia din orice browser web.\n• Creaţi în siguranţă copii de rezervă pentru agendă."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Păstraţi agenda dvs. în condiţii de siguranţă, chiar dacă pierdeţi telefonul, prin sincronizarea acesteia cu un serviciu online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adăugaţi un cont"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noul contact nu se va crea o copie de rezervă. Adăugați un cont care creează online copii de rezervă pentru contacte?"</string>

@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Atlasīt jaunu fotoattēlu no galerijas"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktpersonu saraksts tiek atjaunināts, lai atspoguļotu valodas maiņu."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktpersonu saraksts tiek atjaunināts."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Notiek kontaktpersonu jaunināšana."\n\n"Jaunināšanas procesam ir nepieciešami aptuveni <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB iekšējās atmiņas."\n\n"Izvēlieties vienu no tālāk norādītajām opcijām."</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Notiek kontaktpersonu jaunināšana.\n\nJaunināšanas procesam ir nepieciešami aptuveni <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB iekšējās atmiņas.\n\nIzvēlieties vienu no tālāk norādītajām opcijām."</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Atinstalēt dažas lietojumprogrammas"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Mēģināt jaunināt vēlreiz"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Notiek meklēšana..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mans vietējais profils"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mans <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profils"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Tiek attēlotas visas kontaktpersonas"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Lietotne People darbojas labāk ar Google kontu."\n\n"• Piekļuve no jebkuras tīmekļa pārlūkprogrammas"\n"• Droša kontaktinformācijas dublēšana"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Lietotne People darbojas labāk ar Google kontu.\n\n• Piekļuve no jebkuras tīmekļa pārlūkprogrammas\n• Droša kontaktinformācijas dublēšana"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Nodrošinieties pret kontaktpersonu zudumu pat tālruņa nozaudēšanas gadījumā — sinhronizējiet informāciju ar tiešsaistes pakalpojumu."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konta pievienošana"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Jaunā kontaktinformācija netiks dublēta. Vai pievienot kontu, kurā tiek tiešsaistē dublēta kontaktinformācija?"</string>

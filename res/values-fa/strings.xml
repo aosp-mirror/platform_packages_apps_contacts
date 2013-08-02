@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"انتخاب عکس جدید از گالری"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"لیست مخاطبین در حال به‌روزرسانی برای منعکس کردن تغییرات زبان است."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"لیست مخاطبین در حال به‌روزرسانی است."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"مخاطبین در حال ارتقا هستند. "\n\n"فرآیند ارتقا به تقریباً <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> مگابایت از حافظهٔ داخلی نیاز دارد. "\n\n"یکی از گزینه‌های زیر را انتخاب کنید:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"مخاطبین در حال ارتقا هستند. \n\nفرآیند ارتقا به تقریباً <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> مگابایت از حافظهٔ داخلی نیاز دارد. \n\nیکی از گزینه‌های زیر را انتخاب کنید:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"حذف نصب برخی از برنامه‌های کاربردی"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"امتحان مجدد برای ارتقا"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"در حال جستجو..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"نمایه محلی من"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"نمایه <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> من"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"نمایش همه مخاطبان"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"People با یک حساب Google بهتر کار می‌کند."\n\n"• از هر مرورگر وب به آن دسترسی دارید"\n"• از رویدادهای خود به طور امن پشتیبان تهیه کنید"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"People با یک حساب Google بهتر کار می‌کند.\n\n• از هر مرورگر وب به آن دسترسی دارید\n• از رویدادهای خود به طور امن پشتیبان تهیه کنید"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"مخاطبین خود را ایمن نگهدارید حتی اگر گوشی شما گم شود: با یک سرویس آنلاین همگام‌سازی کنید."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"افزودن یک حساب"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدید شما نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتبان تهیه کند؟"</string>

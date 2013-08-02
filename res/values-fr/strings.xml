@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Choisir dans la galerie"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Mise à jour de la liste des contacts en cours suite au changement de langue."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"La liste de contacts est en cours de mise à jour."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Les contacts font actuellement l\'objet d\'une mise à jour."\n\n"Cette opération nécessite environ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mo de mémoire de stockage interne."\n\n"Veuillez sélectionner l\'une des options suivantes :"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Les contacts font actuellement l\'objet d\'une mise à jour.\n\nCette opération nécessite environ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mo de mémoire de stockage interne.\n\nVeuillez sélectionner l\'une des options suivantes :"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Désinstaller certaines applications"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Réessayer la mise à niveau"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Recherche…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mon profil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mon profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Affichage de tous les contacts"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Tirez le meilleur parti de l\'application Contacts en utilisant un compte Google."\n\n"• Accédez-y depuis n\'importe quel navigateur Web."\n"• Sauvegardez vos contacts en toute sécurité."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Tirez le meilleur parti de l\'application Contacts en utilisant un compte Google.\n\n• Accédez-y depuis n\'importe quel navigateur Web.\n• Sauvegardez vos contacts en toute sécurité."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Assurez la sécurité de vos contacts, même si vous perdez votre téléphone en effectuant une synchronisation avec un service en ligne."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ajouter un compte"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Votre nouveau contact ne sera pas sauvegardé. Ajouter un compte permettant de sauvegarder les contacts en ligne ?"</string>

@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"ギャラリーから新しい写真を選ぶ"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"言語の変更に伴い連絡先リストを更新しています。"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"連絡先リストを更新しています。"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"連絡先をアップグレードしています。"\n\n"アップグレード処理には約<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>MBの内部ストレージが必要です。"\n\n"次のいずれかのオプションを選択してください:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"連絡先をアップグレードしています。\n\nアップグレード処理には約<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>MBの内部ストレージが必要です。\n\n次のいずれかのオプションを選択してください:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"一部のアプリケーションをアンインストール"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"アップグレードを再試行"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"検索しています..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"ローカルプロフィール"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>のプロフィール"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"すべての連絡先を表示しています"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Googleアカウントがあればユーザーアプリをもっと活用できます。"\n\n"• どのウェブブラウザからもアクセスできます。"\n"• 連絡先を安全にバックアップできます。"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Googleアカウントがあればユーザーアプリをもっと活用できます。\n\n• どのウェブブラウザからもアクセスできます。\n• 連絡先を安全にバックアップできます。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"携帯端末を紛失したときにも連絡先を保護するため、オンラインサービスと同期させます。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"アカウントの追加"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"新しい連絡先はバックアップされません。オンラインで連絡先をバックアップするアカウントを追加しますか？"</string>

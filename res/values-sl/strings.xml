@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Izberi novo fotografijo iz Galerije"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Seznam stikov se posodablja glede na izbrani jezik."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Seznam stikov se posodablja."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Stiki se nadgrajujejo."\n\n"Za nadgradnjo je potrebno približno <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB notranjega pomnilnika telefona."\n\n"Izberite eno od teh možnosti:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Stiki se nadgrajujejo.\n\nZa nadgradnjo je potrebno približno <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB notranjega pomnilnika telefona.\n\nIzberite eno od teh možnosti:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Odstranite nekaj aplikacij"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Znova poskusi nadgraditi"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Iskanje ..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Moj lokalni profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Moj profil za <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Prikaz vseh stikov"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Program Ljudje deluje bolje z Google Računom."\n\n"• Do njega lahko dostopate v katerem koli spletnem brskalniku."\n"• Varno varnostno kopiranje stikov."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Program Ljudje deluje bolje z Google Računom.\n\n• Do njega lahko dostopate v katerem koli spletnem brskalniku.\n• Varno varnostno kopiranje stikov."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Naj bodo vaš stiki na varnem, tudi če izgubite telefon: sinhronizirajte s spletno storitvijo."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodajanje računa"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nov stik ne bo varnostno kopiran. Želite dodati račun za varnostno kopiranje stikov v internetu?"</string>

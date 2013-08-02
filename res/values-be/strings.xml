@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Выберыце новую фатаграфію з Галерэі"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Абнаўляецца спіс кантактаў для адлюстравання змены мовы."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Спiс кантактаў абнаўляецца."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Кантакты зараз абнаўляюцца. "\n\n"Працэс абнаўлення патрабуе прыкладна <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Мб унутранай памяці."\n\n"Выберыце адзін з наступных варыянтаў."</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Кантакты зараз абнаўляюцца. \n\nПрацэс абнаўлення патрабуе прыкладна <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Мб унутранай памяці.\n\nВыберыце адзін з наступных варыянтаў."</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Выдаліць ​​некаторыя прыкладанні"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Паўтарыць абнаўленне"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Пошук..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Мой лакальны профіль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профіль у <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Адлюстраванне ўсіх кантактаў"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Прыкладанне People лепш працуе з уліковым запісам Google."\n\n"•Доступ да яго можна атрымаць з любога вэб-браўзэра"\n"•Выканайце рэзервовае капіяванне сваiх кантактаў."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Прыкладанне People лепш працуе з уліковым запісам Google.\n\n•Доступ да яго можна атрымаць з любога вэб-браўзэра\n•Выканайце рэзервовае капіяванне сваiх кантактаў."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Абаранiце свае кантакты, нават калі страціце тэлефон: сінхранізуйце iх з вэб-службай."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Дадаць уліковы запіс"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Рэзервовая копiя вашага новага кантакту не будзе створана. Дадаць улiковы запiс, у якiм будуць захоўвацца рэзервовыя копii кантактаў у Iнтэрнэце?"</string>

@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Избор на нова снимка от галерията"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Списъкът с контакти се актуализира, за да отрази промяната на езика."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Списъкът с контакти се актуализира."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Контактите се надстройват. "\n\n"Процесът се нуждае от приблизително <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> МБ вътрешно хранилище."\n\n"Изберете една от следните опции:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Контактите се надстройват. \n\nПроцесът се нуждае от приблизително <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> МБ вътрешно хранилище.\n\nИзберете една от следните опции:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Деинсталиране на някои приложения"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Повторен опит за надстройка"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Търси се..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Моят локален потр. профил"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Потр. ми профил <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Показват се всички контакти"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Приложението Хора работи по-добре с профил в Google."\n\n"• Осъществявайте достъп от всеки уеб браузър."\n"• Създавайте надеждни резервни копия на контактите си."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Приложението Хора работи по-добре с профил в Google.\n\n• Осъществявайте достъп от всеки уеб браузър.\n• Създавайте надеждни резервни копия на контактите си."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Погрижете се за безопасността на контактите си, ако загубите своя телефон: синхронизирайте с онлайн услуга."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Добавяне на профил"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"За новия ви контакт няма да бъде създадено резервно копие. Да се добави ли профил, в който да се създават такива копия на контактите онлайн?"</string>

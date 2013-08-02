@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Kies nuwe foto uit galery"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaklys word tans opgedateer om die taalverandering te weerspieël."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaklys word opgedateer."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte word tans opgradeer. "\n\n"Die opgraderingsproses benodig interne geheue van omtrent <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MG. "\n\n"Kies een van die volgende opsies:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte word tans opgradeer. \n\nDie opgraderingsproses benodig interne geheue van omtrent <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MG. \n\nKies een van die volgende opsies:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Deïnstalleer sekere programme"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Herprobeer opgradering"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Soek tans…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"My plaaslike profiel"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"My <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>profiel"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Vertoon alle kontakte"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"People werk beter met \'n Google-rekening."\n\n"•Verkry toegang vanaf enige webblaaier."\n"•Rugsteun jou kontakte veilig."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"People werk beter met \'n Google-rekening.\n\n•Verkry toegang vanaf enige webblaaier.\n•Rugsteun jou kontakte veilig."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hou jou kontakte veilig, selfs al verloor jy jou selfoon: sinkroniseer met \'n aanlyn diens."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Voeg \'n rekening by"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Jou nuwe kontak sal nie gerugsteun word nie. Voeg \'n rekening by wat kontakte aanlyn rugsteun?"</string>

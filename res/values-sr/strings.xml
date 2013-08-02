@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Изаберите нову фотографију из галерије"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Контакт листа се ажурира у складу са променом језика."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Контакт листа се ажурира."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"У току је надоградња контаката. "\n\n"Процес надоградње захтева око <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB интерне меморије."\n\n"Изаберите једну од следећих опција:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"У току је надоградња контаката. \n\nПроцес надоградње захтева око <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB интерне меморије.\n\nИзаберите једну од следећих опција:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Деинсталирајте неке апликације"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Поново покушај надоградњу"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Претраживање..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Мој локални профил"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мој <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профил"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Приказани су сви контакти"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Апликација Људи боље функционише са Google налогом."\n\n"• Приступајте из било ког веб прегледача."\n"• Безбедно направите резервне копије контаката."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Апликација Људи боље функционише са Google налогом.\n\n• Приступајте из било ког веб прегледача.\n• Безбедно направите резервне копије контаката."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Очувајте безбедност контаката чак и ако изгубите телефон – синхронизујте са услугом на мрежи."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додавање налога"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Неће бити направљена резервна копија новог контакта. Желите ли да додате налог који прави резервну копију контаката на мрежи?"</string>

@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Selecionar nova fotografia da Galeria"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"A lista de contactos está a ser atualizada para reflectir a alteração do idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"A lista de contactos está a ser atualizada."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Os contactos estão em processo de atualização. "\n\n"O processo de atualização requer aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB de armazenamento interno."\n\n"Escolha uma das seguintes opções:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Os contactos estão em processo de atualização. \n\nO processo de atualização requer aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB de armazenamento interno.\n\nEscolha uma das seguintes opções:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstalar algumas aplicações"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Repetir actualização"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"A pesquisar..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"O meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"O meu perfil do <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"A apresentar todos os contactos"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"A aplicação Pessoas funciona melhor com uma Conta Google."\n\n"• Aceda à Conta Google a partir de qualquer navegador de Internet."\n"• Faça uma cópia de segurança dos seus contactos de forma segura."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"A aplicação Pessoas funciona melhor com uma Conta Google.\n\n• Aceda à Conta Google a partir de qualquer navegador de Internet.\n• Faça uma cópia de segurança dos seus contactos de forma segura."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantenha os seus contactos em segurança, mesmo em caso de perda do telemóvel: sincronize com um serviço on-line."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adicionar uma conta"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Adicionar uma conta que efetua a cópia de segurança dos contactos on-line?"</string>

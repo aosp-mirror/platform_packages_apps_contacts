@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Pilih foto baru dari Galeri"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Daftar kontak sedang diperbarui untuk mencerminkan perubahan bahasa."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Daftar kontak sedang diperbarui."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontak sedang dalam proses peningkatan versi. "\n\n"Proses peningkatan versi memerlukan sekitar <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB dari penyimpanan internal."\n\n"Pilih salah satu opsi berikut:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontak sedang dalam proses peningkatan versi. \n\nProses peningkatan versi memerlukan sekitar <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB dari penyimpanan internal.\n\nPilih salah satu opsi berikut:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Copot pemasangan beberapa aplikasi"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Coba peningkatan versi sekali lagi"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Menelusuri..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Profil lokal saya"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> saya"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Menampilkan semua kontak"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Orang bekerja lebih baik dengan Akun Google."\n\n"• Akses dari browser web mana pun."\n"• Cadangkan kontak Anda dengan aman."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Orang bekerja lebih baik dengan Akun Google.\n\n• Akses dari browser web mana pun.\n• Cadangkan kontak Anda dengan aman."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tetap amankan kontak Anda jika kehilangan ponsel: sinkronkan dengan layanan online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tambahkan akun"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kontak baru Anda tidak akan dicadangkan. Tambahkan akun yang mencadangkan kontak secara online?"</string>

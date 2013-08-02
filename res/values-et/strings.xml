@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Valige galeriist uus foto"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktiloendit värskendatakse keele muutmise kajastamiseks."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktiloendit värskendatakse."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte uuendatakse. "\n\n"Uuendusprotsessiks on vaja umbes <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB sisemälu."\n\n"Valige üks järgmistest valikutest."</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte uuendatakse. \n\nUuendusprotsessiks on vaja umbes <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB sisemälu.\n\nValige üks järgmistest valikutest."</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstalli mõned rakendused"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Proovi uuesti uuendada"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Otsimine ..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Minu kohalik profiil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Minu profiil: <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kõigi kontaktide kuvamine"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Teenus People töötab Google\'i kontoga paremini."\n\n"• Pääsete selle juurde igast veebibrauserist."\n"• Varundage oma kontaktid turvaliselt."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Teenus People töötab Google\'i kontoga paremini.\n\n• Pääsete selle juurde igast veebibrauserist.\n• Varundage oma kontaktid turvaliselt."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hoidke oma kontaktid turvalisena ka siis, kui kaotate telefoni: sünkroonige need võrguteenusega."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto lisamine"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Teie uut kontakti ei varundata. Kas lisada konto, mis varundab kontakte veebis?"</string>

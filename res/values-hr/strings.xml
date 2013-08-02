@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Odaberite novu fotografiju iz galerije"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Popis kontakata ažurira se da bi se pokazala promjena jezika."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Popis kontakata ažurira se."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakti se nadograđuju. "\n\n"Za proces nadogradnje potrebno je približno <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB interne pohrane."\n\n"Odaberite jednu od sljedećih opcija:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakti se nadograđuju. \n\nZa proces nadogradnje potrebno je približno <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB interne pohrane.\n\nOdaberite jednu od sljedećih opcija:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Deinstaliraj neke aplikacije"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Pokušaj ponovo nadogradnju"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Pretraživanje..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Moj lokalni profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Moj <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Prikaz svih kontakata"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Značajka Osobe radi bolje s Google računom."\n\n"• Pristup iz bilo kojeg web-preglednika."\n"• Stvorite sigurnosnu kopiju kontakata."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Značajka Osobe radi bolje s Google računom.\n\n• Pristup iz bilo kojeg web-preglednika.\n• Stvorite sigurnosnu kopiju kontakata."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Očuvajte sigurnost svojih kontakata čak i ako izgubite telefon, sinkronizirajte ih mrežnom uslugom."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodajte račun"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Sigurnosna kopija novog kontakta neće biti napravljena. Želite li dodati račun za pravljenje sigurnosnih kopija kontakata na mreži?"</string>

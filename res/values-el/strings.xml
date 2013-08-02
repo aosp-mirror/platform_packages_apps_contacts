@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Επιλογή νέας φωτογραφίας από το Gallery"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Γίνεται ενημέρωση της λίστας επαφών για να αντικατοπτριστεί η αλλαγή γλώσσας."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Γίνεται ενημέρωση της λίστας επαφών."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Γίνεται αναβάθμιση των επαφών. "\n\n"Η διαδικασία αναβάθμισης απαιτεί περίπου <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB από τον εσωτερικό χώρο αποθήκευσης."\n\n"Ορίστε μία από τις παρακάτω επιλογές:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Γίνεται αναβάθμιση των επαφών. \n\nΗ διαδικασία αναβάθμισης απαιτεί περίπου <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB από τον εσωτερικό χώρο αποθήκευσης.\n\nΟρίστε μία από τις παρακάτω επιλογές:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Καταργήστε την εγκατάσταση ορισμένων εφαρμογών"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Επανάληψη αναβάθμισης"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Αναζήτηση…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Τοπικό προφίλ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Προφίλ μου <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Εμφάνιση όλων των επαφών"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Η εφαρμογή \"Άτομα\" λειτουργεί καλύτερα με έναν Λογαριασμό Google."\n\n"• Αποκτήστε πρόσβαση από οποιοδήποτε πρόγραμμα περιήγησης."\n"• Δημιουργήστε αντίγραφα ασφαλείας των επαφών σας."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Η εφαρμογή \"Άτομα\" λειτουργεί καλύτερα με έναν Λογαριασμό Google.\n\n• Αποκτήστε πρόσβαση από οποιοδήποτε πρόγραμμα περιήγησης.\n• Δημιουργήστε αντίγραφα ασφαλείας των επαφών σας."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Διατηρήστε τις επαφές σας ασφαλείς ακόμα και αν χάσετε το τηλέφωνό σας: συγχρονισμός με άλλη συσκευή στο διαδίκτυο."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Προσθήκη λογαριασμού"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Δεν θα δημιουργηθεί αντίγραφο ασφαλείας για τη νέα επαφή σας. Θέλετε να προσθέσετε ένα λογαριασμό που δημιουργεί αντίγραφα ασφαλείας επαφών στο διαδίκτυο;"</string>

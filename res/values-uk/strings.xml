@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Вибрати нове фото з Галереї"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Список контактів оновлено для відображення зміни мови."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Список контактів оновлюється."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Контакти проходять процес оновлення. "\n\n"Для процесу оновлення потрібно приблизно <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Мб внутрішньої пам’яті."\n\n"Виберіть один із поданих нижче варіантів."</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Контакти проходять процес оновлення. \n\nДля процесу оновлення потрібно приблизно <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Мб внутрішньої пам’яті.\n\nВиберіть один із поданих нижче варіантів."</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Видалити деякі програми"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Повтор. оновл."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Пошук..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Мій локальний профіль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мій профіль на <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Відображаються всі контакти"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Програма \"Люди\" пропонує більше можливостей, якщо у вас є обліковий запис Google."\n\n"•Отримуйте доступ із будь-якого веб-переглядача"\n"•Створюйте надійні резервні копії своїх контактів"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Програма \"Люди\" пропонує більше можливостей, якщо у вас є обліковий запис Google.\n\n•Отримуйте доступ із будь-якого веб-переглядача\n•Створюйте надійні резервні копії своїх контактів"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Збережіть свої контакти на випадок втрати свого телефону: синхронізуйте їх з онлайновою службою."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додати обліковий запис"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Для вашого нового контакта не буде створено резервні копії. Додати обліковий запис, у якому буде збережено резервні копії контактів в Інтернеті?"</string>

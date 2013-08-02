@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Nieuwe foto selecteren in Galerij"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Lijst met contacten wordt bijgewerkt om de gewijzigde taal te weerspiegelen."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Lijst met contactpersonen wordt bijgewerkt."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Contacten worden bijgewerkt. "\n\n"Voor het upgradeproces is ongeveer <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB interne opslagruimte vereist."\n\n"Kies een van de volgende opties:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Contacten worden bijgewerkt. \n\nVoor het upgradeproces is ongeveer <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB interne opslagruimte vereist.\n\nKies een van de volgende opties:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Verwijder enkele apps"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Upgrade opnieuw proberen"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Zoeken..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mijn lokale profiel"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mijn <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiel"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle contacten worden weergegeven"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Personen werkt beter met een Google-account."\n\n"• Toegang via elke webbrowser."\n"• Maak beveiligde back-ups van uw contacten."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Personen werkt beter met een Google-account.\n\n• Toegang via elke webbrowser.\n• Maak beveiligde back-ups van uw contacten."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Zorg dat uw contacten veilig zijn, zelfs wanneer u uw telefoon verliest: synchroniseer met een online service."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Account toevoegen"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Er wordt geen back-up van uw nieuwe contact gemaakt. Een account toevoegen waarmee online een back-up van contacten wordt gemaakt?"</string>

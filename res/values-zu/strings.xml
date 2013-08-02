@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Khetha isithombe esisha kwiGalari"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Uhlu lothintana naye luyabuyekezwa ukubonisa ushintsho lolimi."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Uhlu lothintana naye luyabuyekezwa."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Othintana nabo basenqubeni yokuthuthukiswa. "\n\n"Inqubo yokuthuthukisa idinga okungenani i-MB engu-<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> yesitoreji sangaphakathi."\n\n"Khetha okukodwa kokukhethwa kukho:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Othintana nabo basenqubeni yokuthuthukiswa. \n\nInqubo yokuthuthukisa idinga okungenani i-MB engu-<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> yesitoreji sangaphakathi.\n\nKhetha okukodwa kokukhethwa kukho:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Khipa ezinye izinhlelo zokusebenza"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Zama futhi ukuthuthukisa"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Iyasesha..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Imininingwane yami yakuleli"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Imininingwane <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> yami"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ibonisa bonke abathintwayo"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"I-People isebenza kangcono nge-akhawunti yakwa-Google. "\n\n"• Finyelela kuyo nganoma iluphi uhlobo lwesiphequluli."\n"• Londoloza oxhumana nabo ngokuphepha."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"I-People isebenza kangcono nge-akhawunti yakwa-Google. \n\n• Finyelela kuyo nganoma iluphi uhlobo lwesiphequluli.\n• Londoloza oxhumana nabo ngokuphepha."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Gcina oxhumana nabo bephephile noma ngabe ulahlekelwa yiselula yakho: lungelanisa nensiza yokusebenzisa i-inthanethi."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Yengeza i-akhawunti"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Umxhumani wakho omusha akalondolozeki. Yngeza i-akhawunti ekwazi ukulondoloza abaxhumani emoyeni?"</string>

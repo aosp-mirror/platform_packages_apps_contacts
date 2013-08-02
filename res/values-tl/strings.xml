@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Pumili ng bagong larawan mula sa Gallery"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Ina-update ang listahan ng contact upang maipakita ang pagbabago ng wika."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Ina-update ang listahan ng contact."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Nasa proseso ng pag-upgrade ang mga contact. "\n\n"Nangangailangan ng tinatayang <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ng panloob na storage ang proseso ng pag-upgrade."\n\n"Pumili ng isa sa mga sumusunod na pagpipilian:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Nasa proseso ng pag-upgrade ang mga contact. \n\nNangangailangan ng tinatayang <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ng panloob na storage ang proseso ng pag-upgrade.\n\nPumili ng isa sa mga sumusunod na pagpipilian:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"I-uninstall ang ilang application"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Muling subukan ang i-upgrade"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Naghahanap…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Aking lokal na profile"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Aking <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> na profile"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ipinapakita ang lahat ng contact"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Mas mahusay na nakakagawa ang mga tao gamit ang Google Account."\n\n"• I-access ito mula sa anumang web browser."\n"• I-back up nang secure ang iyong mga contact."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Mas mahusay na nakakagawa ang mga tao gamit ang Google Account.\n\n• I-access ito mula sa anumang web browser.\n• I-back up nang secure ang iyong mga contact."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Panatilihing ligtas ang iyong mga contact kahit na mawala mo ang iyong telepono: mag-synchronize sa isang online na serbisyo."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Magdagdag ng account"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Hindi maba-back up ang iyong bagong contact. Magdagdag ng account na nagba-back up ng mga contact online?"</string>

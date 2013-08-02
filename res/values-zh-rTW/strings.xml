@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"從圖片庫選取新相片"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"正在更新聯絡人清單以反映語言變更。"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"正在更新聯絡人清單。"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"正在升級通訊錄。"\n\n"升級程序大約需要 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB 的內部儲存空間。"\n\n"請選擇下列其中一個選項："</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"正在升級通訊錄。\n\n升級程序大約需要 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB 的內部儲存空間。\n\n請選擇下列其中一個選項："</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"解除安裝一些應用程式"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"重試升級"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"搜尋中…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"透過「Google 帳戶」使用「Google 人物搜尋」可獲得更佳的效益。"\n\n"• 透過任何瀏覽器都可存取。"\n"• 安全備份您的聯絡人。"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"透過「Google 帳戶」使用「Google 人物搜尋」可獲得更佳的效益。\n\n• 透過任何瀏覽器都可存取。\n• 安全備份您的聯絡人。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手機遺失，聯絡人資訊依然萬無一失：與線上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您新增的聯絡人資料。您是否要新建一個帳戶，將您的聯絡人資料另存在線上？"</string>

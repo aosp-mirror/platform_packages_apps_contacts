@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"เลือกภาพใหม่จากแกลเลอรี"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"กำลังอัปเดตรายการที่อยู่ติดต่อตามการเปลี่ยนภาษา"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"กำลังอัปเดตรายการที่อยู่ติดต่อ"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"กำลังดำเนินการอัปเกรดสมุดโทรศัพท์"\n\n"กระบวนการอัปเกรดจำเป็นต้องใช้พื้นที่ประมาณ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ของที่จัดเก็บข้อมูลภายใน"\n\n"เลือกหนึ่งในตัวเลือกต่อไปนี้:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"กำลังดำเนินการอัปเกรดสมุดโทรศัพท์\n\nกระบวนการอัปเกรดจำเป็นต้องใช้พื้นที่ประมาณ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ของที่จัดเก็บข้อมูลภายใน\n\nเลือกหนึ่งในตัวเลือกต่อไปนี้:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"ถอนการติดตั้งแอปพลิเคชันบางอย่าง"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"ลองอัปเกรดซ้ำ"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"กำลังค้นหา..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"โปรไฟล์ในอุปกรณ์ของฉัน"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"โปรไฟล์ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ของฉัน"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"แสดงที่อยู่ติดต่อทั้งหมด"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"People ทำงานได้ดีกว่าหากมีบัญชี Google"\n\n"•เข้าถึงจากทุกเว็บเบราว์เซอร์"\n"•สำรองข้อมูลสมุดโทรศัพท์ของคุณอย่างปลอดภัย"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"People ทำงานได้ดีกว่าหากมีบัญชี Google\n\n•เข้าถึงจากทุกเว็บเบราว์เซอร์\n•สำรองข้อมูลสมุดโทรศัพท์ของคุณอย่างปลอดภัย"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"เก็บที่อยู่ติดต่อของคุณไว้อย่างปลอดภัยด้วยการซิงค์กับบริการออนไลน์แม้ว่าคุณจะทำโทรศัพท์หาย"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ผู้ติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลผู้ติดต่อออนไลน์หรือไม่"</string>

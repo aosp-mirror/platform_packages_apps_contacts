@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Vælg nyt billede fra Galleri"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Listen over kontaktpersoner opdateres for at afspejle det nye sprog."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Listen over kontaktpersoner opdateres."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontaktpersonerne er ved at blive opgraderet. "\n\n"Opgraderingen kræver ca. <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB intern lagerplads."\n\n"Vælg et af følgende:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontaktpersonerne er ved at blive opgraderet. \n\nOpgraderingen kræver ca. <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB intern lagerplads.\n\nVælg et af følgende:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Afinstaller nogle applikationer"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Prøv at opgradere igen"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Søger..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Min <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontaktpersoner"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Personer fungerer bedre med en Google-konto."\n\n"• Få adgang fra enhver webbrowser."\n"• Sikkerhedskopier dine kontaktpersoner sikkert."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Personer fungerer bedre med en Google-konto.\n\n• Få adgang fra enhver webbrowser.\n• Sikkerhedskopier dine kontaktpersoner sikkert."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Behold dine kontaktpersoner, selv hvis du mister din telefon: Synkroniser med en onlinetjeneste."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tilføj en konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nye kontaktperson bliver ikke sikkerhedskopieret. Vil du tilføje en konto, der sikkerhedskopierer kontaktpersoner online?"</string>

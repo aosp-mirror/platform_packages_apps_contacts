@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Neues Foto aus Galerie auswählen"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktliste wird an die geänderte Sprache angepasst..."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktliste wird aktualisiert..."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte werden gerade aktualisiert. "\n\n"Das Upgrade erfordert etwa <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB des internen Speichers."\n\n"Wählen Sie eine der folgenden Optionen:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte werden gerade aktualisiert. \n\nDas Upgrade erfordert etwa <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB des internen Speichers.\n\nWählen Sie eine der folgenden Optionen:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Einige Apps deinstallieren"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Upgrade wiederholen"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Suche..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mein lokales Profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mein <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-Profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle Kontakte werden angezeigt."</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Die Personenfunktion funktioniert besser mit einem Google-Konto."\n\n"• Zugriff über einen beliebigen Browser"\n"• Sichern von Kontakten mit Schutzfunktion"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Die Personenfunktion funktioniert besser mit einem Google-Konto.\n\n• Zugriff über einen beliebigen Browser\n• Sichern von Kontakten mit Schutzfunktion"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Synchronisierung mit einem Online-Service: Ihre Kontakte sind dann auch sicher, wenn Sie Ihr Telefon verlieren."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto hinzufügen"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ihr neuer Kontakt wird nicht gesichert. Konto für die Online-Sicherung von Kontakten hinzufügen?"</string>

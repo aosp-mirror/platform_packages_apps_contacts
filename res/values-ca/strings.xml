@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Selecciona una foto nova de la galeria"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"S\'actualitza la llista de contactes per reflectir el canvi d\'idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"S\'actualitza la llista de contactes."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"S\'estan actualitzant els contactes. "\n\n"El procés d\'actualització requereix aproximadament <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB de l\'emmagatzematge intern."\n\n"Tria una de les opcions següents:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"S\'estan actualitzant els contactes. \n\nEl procés d\'actualització requereix aproximadament <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB de l\'emmagatzematge intern.\n\nTria una de les opcions següents:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstal·leu aplicacions"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Torna a provar d\'actualitzar"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"S\'està cercant..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil de <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Contactes funciona millor amb un Compte de Google."\n\n"• Accedeix-hi des de qualsevol navegador web."\n"• Fes una còpia de seguretat dels teus contactes."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Contactes funciona millor amb un Compte de Google.\n\n• Accedeix-hi des de qualsevol navegador web.\n• Fes una còpia de seguretat dels teus contactes."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén els contactes segurs encara que perdis el telèfon: sincronitza\'ls amb un servidor en línia."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Afegeix un compte"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte que faci còpies de seguretat dels contactes en línia?"</string>

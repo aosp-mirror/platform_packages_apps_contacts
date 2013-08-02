@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Selecionar nova foto da Galeria"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"A lista de contatos está sendo atualizada para incorporar a alteração do idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"A lista de contatos está sendo atualizada."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Os contatos estão sendo atualizados no momento. "\n\n"O processo de atualização requer aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB de armazenamento interno."\n\n"Escolha uma das seguintes opções:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Os contatos estão sendo atualizados no momento. \n\nO processo de atualização requer aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB de armazenamento interno.\n\nEscolha uma das seguintes opções:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstalar alguns aplicativos"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Tentar atualizar novamente"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Pesquisando..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Meu perfil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Exibindo todos os contatos"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"O aplicativo Pessoas funciona melhor com uma Conta do Google."\n\n"• Acesse-o a partir de qualquer navegador da web."\n"• Faça backup de seus contatos com segurança."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"O aplicativo Pessoas funciona melhor com uma Conta do Google.\n\n• Acesse-o a partir de qualquer navegador da web.\n• Faça backup de seus contatos com segurança."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantenha seus contatos seguros, mesmo se você perder seu telefone: sincronize com um serviço on-line."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adicionar uma conta"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será possível fazer backup de seu novo contato. Deseja adicionar uma conta que faça backup de contatos on-line?"</string>

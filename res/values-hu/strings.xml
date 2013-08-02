@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Új fotó kiválasztása a Galériából"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Az ismerőslista frissítése folyamatban van, hogy tükrözze a nyelv módosítását."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Az ismerőslista frissítése folyamatban van."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"A névjegyek frissítése folyamatban van. "\n\n"A frissítés elvégzéséhez megközelítőleg <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB belső tárhelyre lesz szükség."\n\n"Válasszon a következő lehetőségek közül:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"A névjegyek frissítése folyamatban van. \n\nA frissítés elvégzéséhez megközelítőleg <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB belső tárhelyre lesz szükség.\n\nVálasszon a következő lehetőségek közül:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Távolítson el néhány alkalmazást"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Verziófrissítés újrapróbálása"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Keresés..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Helyi profilom"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profilom"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Az összes névjegy megjelenítése"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"A Személyek alkalmazás jobban működik egy Google Fiókkal."\n\n"• Bármilyen bőngészőből elérheti"\n"• Biztonsági másolatot készíthet névjegyeiről."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"A Személyek alkalmazás jobban működik egy Google Fiókkal.\n\n• Bármilyen bőngészőből elérheti\n• Biztonsági másolatot készíthet névjegyeiről."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tartsa névjegyeit biztonságban akkor is, ha elveszíti a telefont: szinkronizáljon egy online szolgáltatással."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Fiók hozzáadása"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Az Ön új névjegyéről nem készül biztonsági másolat. Hozzáad egy olyan fiókot, amelyik online biztonsági másolatot készít a névjegyekről?"</string>

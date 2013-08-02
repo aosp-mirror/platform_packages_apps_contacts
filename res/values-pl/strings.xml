@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Wybierz nowe zdjęcie z galerii"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Lista kontaktów jest aktualizowana, aby odzwierciedlić zmianę języka."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Lista kontaktów jest aktualizowana."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Trwa proces uaktualniania kontaktów. "\n\n"Proces uaktualniania wymaga w przybliżeniu <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB pamięci wewnętrznej."\n\n"Wybierz jedną z następujących opcji:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Trwa proces uaktualniania kontaktów. \n\nProces uaktualniania wymaga w przybliżeniu <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB pamięci wewnętrznej.\n\nWybierz jedną z następujących opcji:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Odinstaluj część aplikacji"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Ponów próbę uaktualnienia"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Wyszukiwanie…"</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mój profil lokalny"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mój profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Wyświetlanie wszystkich kontaktów"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Aplikacja Ludzie działa lepiej z kontem Google."\n\n"• Używaj jej w dowolnej przeglądarce."\n"• Twórz kopie zapasowe kontaktów."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Aplikacja Ludzie działa lepiej z kontem Google.\n\n• Używaj jej w dowolnej przeglądarce.\n• Twórz kopie zapasowe kontaktów."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Zapewnij bezpieczeństwo swoich kontaktów nawet w przypadku utraty telefonu: włącz synchronizację z usługą online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodaj konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kopia zapasowa nowego kontaktu nie zostanie utworzona. Dodać konto, na którym kopie zapasowe kontaktów będą tworzone online?"</string>

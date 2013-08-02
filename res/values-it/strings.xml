@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Seleziona nuova foto da galleria"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Elenco contatti in fase di aggiornamento per l\'applicazione della modifica della lingua."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Elenco contatti in fase di aggiornamento."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Contatti in fase di upgrade. "\n\n"Il processo di upgrade richiede circa <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB di memoria interna."\n\n"Scegli una delle seguenti opzioni:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Contatti in fase di upgrade. \n\nIl processo di upgrade richiede circa <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB di memoria interna.\n\nScegli una delle seguenti opzioni:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Disinstalla alcune applicazioni"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Riprova l\'aggiornamento"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Ricerca..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Il mio profilo locale"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Il mio profilo <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Sono visualizzati tutti i contatti"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"L\'applicazione People funziona meglio con un account Google."\n\n"• Puoi accedervi da qualsiasi browser web."\n"• Effettua il backup dei tuoi contatti in modo sicuro."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"L\'applicazione People funziona meglio con un account Google.\n\n• Puoi accedervi da qualsiasi browser web.\n• Effettua il backup dei tuoi contatti in modo sicuro."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tieni al sicuro i tuoi contatti anche se perdi il telefono: sincronizzali con un servizio online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Aggiungi un account"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Non verrà effettuato il backup del nuovo contatto. Aggiungere un account che effettua il backup dei contatti online?"</string>
