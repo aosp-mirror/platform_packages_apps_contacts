@@ -187,7 +187,7 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Er zijn geen exporteerbare contacten. Als u wel contacten op uw telefoon heeft opgeslagen, staat uw gegevensprovider het exporteren van contacten van de telefoon mogelijk niet toe."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"De vCard-editor is niet correct gestart."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Kan niet exporteren"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"De contactgegevens zijn niet geëxporteerd."\n"Reden: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"De contactgegevens zijn niet geëxporteerd.\nReden: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Er is geen opslag gevonden."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Geen SD-kaart gevonden."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"Uw lijst met contacten wordt geëxporteerd naar het bestand: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>

@@ -187,7 +187,7 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Aucun contact ne peut être exporté. Si des contacts sont enregistrés sur votre téléphone, il est possible qu\'un fournisseur de données n\'autorise pas l\'exportation de contacts vers un autre appareil."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Le système de composition vCard n\'a pas démarré correctement."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Échec exportation"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Les données du contact n\'ont pas été exportées."\n"Motif : <xliff:g id="FAIL_REASON">%s</xliff:g>."</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Les données du contact n\'ont pas été exportées.\nMotif : <xliff:g id="FAIL_REASON">%s</xliff:g>."</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Aucune mémoire stock. trouvée."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Aucune carte SD trouvée."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"Votre liste de contacts va être exportée vers le fichier <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>

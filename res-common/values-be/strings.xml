@@ -187,7 +187,7 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Няма кантактаў, якiя можна экспартаваць. Калi ў вашым тэлефоне няма кантактаў, некаторыя пастаўшчыкi дадзеных могуць забараняць экспарт кантактаў з тэлефона."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Памылка запуску складальнiка файлаў vCard."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Не атрымалася экспартаваць"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Памылка экспарта кантактных дадзеных. "\n"Прычына: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Памылка экспарта кантактных дадзеных. \nПрычына: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Назапашвальнiк не знойдзены."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD-карта не знойдзена"</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"Спіс кантактаў будзе экспартавацца ў файл <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>

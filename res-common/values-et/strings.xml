@@ -187,7 +187,7 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Eksporditavaid kontakte pole. Kui teil siiski on telefonis kontakte, ei pruugi mõned andmesidepakkujad kontaktide eksportimist telefonist lubada."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCardi helilooja ei käivitunud korralikult."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Eksport ebaõnnestus"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kontaktandmeid ei eksporditud."\n"Põhjus: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kontaktandmeid ei eksporditud.\nPõhjus: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Mäluruumi ei leitud."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD-kaarti ei leitud."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"Teie kontaktide loend eksporditakse faili: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>

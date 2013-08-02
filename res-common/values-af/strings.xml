@@ -187,7 +187,7 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Daar is geen kontakte wat uitgevoer kan word nie. As jy kontakte op jou foon het, kan sommige dataverskaffers dalk nie toelaat dat die foon se kontakte uitgevoer word nie."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Die vCard-opsteller het nie behoorlik begin nie."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Kon nie uitvoer nie"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Die kontakdata is nie uitgevoer nie."\n"Rede: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Die kontakdata is nie uitgevoer nie.\nRede: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Geen berging gevind nie."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Geen SD-kaart gevind nie."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"Jou kontaklys sal uitgevoer word na die lêer: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>

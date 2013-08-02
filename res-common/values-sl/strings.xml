@@ -187,7 +187,7 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Ni stikov za izvoz. Če imate v telefonu stike, nekateri ponudniki podatkov morda ne omogočajo izvoza stikov iz telefona."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Urejevalnik za vCard se ni pravilno zagnal."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Izvoz ni mogoč"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Podatki stika niso bili izvoženi."\n"Razlog: »<xliff:g id="FAIL_REASON">%s</xliff:g>«"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Podatki stika niso bili izvoženi.\nRazlog: »<xliff:g id="FAIL_REASON">%s</xliff:g>«"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Shrambe ni mogoče najti."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Kartice SD ni mogoče najti."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"Seznam stikov bo izvožen v datoteko: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>

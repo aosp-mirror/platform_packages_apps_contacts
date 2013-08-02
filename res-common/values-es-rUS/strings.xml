@@ -187,7 +187,7 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"No hay contactos exportables. Si tienes contactos en el dispositivo, es posible que algunos proveedores de datos no permitan la exportación de contactos desde el dispositivo."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"El compositor de la vCard no se inició correctamente."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"No se pudo exportar"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"No se exportaron los datos del contacto."\n"Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"No se exportaron los datos del contacto.\nMotivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"No se encontró almacenamiento."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"No se encontró una tarjeta SD."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"Tu lista de contactos se exportará al archivo <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>

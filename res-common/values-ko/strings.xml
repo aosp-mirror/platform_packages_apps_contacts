@@ -187,7 +187,7 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 연락처가 있다면 일부 데이터 제공업체에서 연락처를 휴대전화에서 내보내지 못하도록 했기 때문일 수 있습니다."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard 작성기가 제대로 시작되지 않았습니다."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"내보내기 실패"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"주소록 데이터를 내보내지 못했습니다."\n"(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"주소록 데이터를 내보내지 못했습니다.\n(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"저장공간을 찾을 수 없습니다."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD 카드가 없습니다."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"연락처 목록을 <xliff:g id="VCARD_FILENAME">%s</xliff:g> 파일로 내보냅니다."</string>
