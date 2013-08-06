@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.CallUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             Phone.LOOKUP_KEY,                   // 5
             Phone.PHOTO_ID,                     // 6
             Phone.DISPLAY_NAME_PRIMARY,         // 7
+            Phone.PHOTO_THUMBNAIL_URI,          // 8
         };
 
         public static final String[] PROJECTION_ALTERNATIVE = new String[] {
@@ -71,16 +73,18 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             Phone.LOOKUP_KEY,                   // 5
             Phone.PHOTO_ID,                     // 6
             Phone.DISPLAY_NAME_ALTERNATIVE,     // 7
+            Phone.PHOTO_THUMBNAIL_URI,          // 8
         };
 
-        public static final int PHONE_ID           = 0;
-        public static final int PHONE_TYPE         = 1;
-        public static final int PHONE_LABEL        = 2;
-        public static final int PHONE_NUMBER       = 3;
-        public static final int PHONE_CONTACT_ID   = 4;
-        public static final int PHONE_LOOKUP_KEY   = 5;
-        public static final int PHONE_PHOTO_ID     = 6;
-        public static final int PHONE_DISPLAY_NAME = 7;
+        public static final int PHONE_ID                = 0;
+        public static final int PHONE_TYPE              = 1;
+        public static final int PHONE_LABEL             = 2;
+        public static final int PHONE_NUMBER            = 3;
+        public static final int CONTACT_ID              = 4;
+        public static final int LOOKUP_KEY              = 5;
+        public static final int PHOTO_ID                = 6;
+        public static final int DISPLAY_NAME            = 7;
+        public static final int PHOTO_URI               = 8;
     }
 
     private final CharSequence mUnknownNameText;
@@ -99,17 +103,24 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         return mUnknownNameText;
     }
 
+    private static boolean isRemoteDirectory(long directoryId) {
+        return directoryId != Directory.DEFAULT
+            && directoryId != Directory.LOCAL_INVISIBLE;
+    }
+
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        if (directoryId != Directory.DEFAULT) {
-            Log.w(TAG, "PhoneNumberListAdapter is not ready for non-default directory ID ("
-                    + "directoryId: " + directoryId + ")");
-        }
-
+        final boolean isRemoteDirectoryQuery = isRemoteDirectory(directoryId);
         final Builder builder;
         if (isSearchMode()) {
-            final Uri baseUri =
-                    mUseCallableUri ? Callable.CONTENT_FILTER_URI : Phone.CONTENT_FILTER_URI;
+            final Uri baseUri;
+            if (isRemoteDirectoryQuery) {
+                baseUri = Phone.CONTENT_FILTER_URI;
+            } else if (mUseCallableUri) {
+                baseUri = Callable.CONTENT_FILTER_URI;
+            } else {
+                baseUri = Phone.CONTENT_FILTER_URI;
+            }
             builder = baseUri.buildUpon();
             final String query = getQueryString();
             if (TextUtils.isEmpty(query)) {
@@ -119,6 +130,10 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             }
             builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                     String.valueOf(directoryId));
+            if (isRemoteDirectoryQuery) {
+                builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
+                        String.valueOf(getDirectoryResultLimit()));
+            }
         } else {
             final Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
             builder = baseUri.buildUpon().appendQueryParameter(
@@ -188,7 +203,12 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     @Override
     public String getContactDisplayName(int position) {
-        return ((Cursor) getItem(position)).getString(PhoneQuery.PHONE_DISPLAY_NAME);
+        return ((Cursor) getItem(position)).getString(PhoneQuery.DISPLAY_NAME);
+    }
+
+    public String getPhoneNumber(int position) {
+        final Cursor item = (Cursor)getItem(position);
+        return item != null ? item.getString(PhoneQuery.PHONE_NUMBER) : null;
     }
 
     /**
@@ -197,14 +217,18 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
      * @return Uri for the data. may be null if the cursor is not ready.
      */
     public Uri getDataUri(int position) {
-        Cursor cursor = ((Cursor)getItem(position));
-        if (cursor != null) {
-            long id = cursor.getLong(PhoneQuery.PHONE_ID);
-            return ContentUris.withAppendedId(Data.CONTENT_URI, id);
-        } else {
-            Log.w(TAG, "Cursor was null in getDataUri() call. Returning null instead.");
-            return null;
+        final int partitionIndex = getPartitionForPosition(position);
+        final Cursor item = (Cursor)getItem(position);
+        return item != null ? getDataUri(partitionIndex, item) : null;
+    }
+
+    public Uri getDataUri(int partitionIndex, Cursor cursor) {
+        final long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
+        if (!isRemoteDirectory(directoryId)) {
+            final long phoneId = cursor.getLong(PhoneQuery.PHONE_ID);
+            return ContentUris.withAppendedId(Data.CONTENT_URI, phoneId);
         }
+        return null;
     }
 
     @Override
@@ -235,16 +259,16 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         cursor.moveToPosition(position);
         boolean isFirstEntry = true;
         boolean showBottomDivider = true;
-        final long currentContactId = cursor.getLong(PhoneQuery.PHONE_CONTACT_ID);
+        final long currentContactId = cursor.getLong(PhoneQuery.CONTACT_ID);
         if (cursor.moveToPrevious() && !cursor.isBeforeFirst()) {
-            final long previousContactId = cursor.getLong(PhoneQuery.PHONE_CONTACT_ID);
+            final long previousContactId = cursor.getLong(PhoneQuery.CONTACT_ID);
             if (currentContactId == previousContactId) {
                 isFirstEntry = false;
             }
         }
         cursor.moveToPosition(position);
         if (cursor.moveToNext() && !cursor.isAfterLast()) {
-            final long nextContactId = cursor.getLong(PhoneQuery.PHONE_CONTACT_ID);
+            final long nextContactId = cursor.getLong(PhoneQuery.CONTACT_ID);
             if (currentContactId == nextContactId) {
                 // The following entry should be in the same group, which means we don't want a
                 // divider between them.
@@ -259,12 +283,13 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         if (isFirstEntry) {
             bindName(view, cursor);
             if (isQuickContactEnabled()) {
-                // No need for photo uri here, because we can not have directory results. If we
-                // ever do, we need to add photo uri to the query
-                bindQuickContact(view, partition, cursor, PhoneQuery.PHONE_PHOTO_ID, -1,
-                        PhoneQuery.PHONE_CONTACT_ID, PhoneQuery.PHONE_LOOKUP_KEY);
+                bindQuickContact(view, partition, cursor, PhoneQuery.PHOTO_ID,
+                        PhoneQuery.PHOTO_URI, PhoneQuery.CONTACT_ID,
+                        PhoneQuery.LOOKUP_KEY);
             } else {
-                bindPhoto(view, cursor);
+                if (getDisplayPhotos()) {
+                    bindPhoto(view, partition, cursor);
+                }
             }
         } else {
             unbindName(view);
@@ -285,7 +310,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             label = Phone.getTypeLabel(getContext().getResources(), type, customLabel);
         }
         view.setLabel(label);
-        view.showData(cursor, PhoneQuery.PHONE_NUMBER);
+        view.showPhoneNumber(cursor, PhoneQuery.PHONE_NUMBER);
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
@@ -300,7 +325,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, PhoneQuery.PHONE_DISPLAY_NAME, getContactNameDisplayOrder());
+        view.showDisplayName(cursor, PhoneQuery.DISPLAY_NAME, getContactNameDisplayOrder());
         // Note: we don't show phonetic names any more (see issue 5265330)
     }
 
@@ -308,13 +333,24 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         view.hideDisplayName();
     }
 
-    protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
-        long photoId = 0;
-        if (!cursor.isNull(PhoneQuery.PHONE_PHOTO_ID)) {
-            photoId = cursor.getLong(PhoneQuery.PHONE_PHOTO_ID);
+    protected void bindPhoto(final ContactListItemView view, int partitionIndex, Cursor cursor) {
+        if (!isPhotoSupported(partitionIndex)) {
+            view.removePhotoView();
+            return;
         }
 
-        getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false);
+        long photoId = 0;
+        if (!cursor.isNull(PhoneQuery.PHOTO_ID)) {
+            photoId = cursor.getLong(PhoneQuery.PHOTO_ID);
+        }
+
+        if (photoId != 0) {
+            getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false);
+        } else {
+            final String photoUriString = cursor.getString(PhoneQuery.PHOTO_URI);
+            final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
+            getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false);
+        }
     }
 
     public void setPhotoPosition(ContactListItemView.PhotoPosition photoPosition) {

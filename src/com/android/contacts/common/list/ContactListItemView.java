@@ -1464,19 +1464,16 @@ public class ContactListItemView extends ViewGroup
     }
 
     /**
-     * Shows data element (e.g. phone number).
+     * Shows data element.
      */
     public void showData(Cursor cursor, int dataColumnIndex) {
         cursor.copyStringToBuffer(dataColumnIndex, mDataBuffer);
-        // Check if this is a phone number. This code works also for the legacy phone number
-        // coming from LegacyPhoneNumberListAdapter.PHONE_NUMBER_COLUMN_INDEX because they are
-        // the exact same constant value (3)
-        if (dataColumnIndex != PhoneNumberListAdapter.PhoneQuery.PHONE_NUMBER) {
-            setData(mDataBuffer.data, mDataBuffer.sizeCopied);
-        } else {
-            // If the data is phone number, highlights the number and aligns text before showing.
-            setPhoneNumber(cursor.getString(dataColumnIndex));
-        }
+        setData(mDataBuffer.data, mDataBuffer.sizeCopied);
+    }
+
+    public void showPhoneNumber(Cursor cursor, int dataColumnIndex) {
+        // Highlights the number and aligns text before showing.
+        setPhoneNumber(cursor.getString(dataColumnIndex));
     }
 
     public void setActivatedStateSupported(boolean flag) {

@@ -29,6 +29,8 @@ public interface OnPhoneNumberPickerActionListener  {
      */
     void onPickPhoneNumberAction(Uri dataUri);
 
+    void onCallNumberDirectly(String phoneNumber);
+
     /**
      * Returns the selected number as a shortcut intent.
      */
