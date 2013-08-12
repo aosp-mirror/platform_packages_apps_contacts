@@ -58,7 +58,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Visa alla kontakter"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Föreslagna kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alla kontakter"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Deltagande kontakter"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakterna har slagits ihop"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ställ in ringsignal"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alla samtal till röstbrevlådan"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Du kan inte ta bort kontakter från skrivskyddade konton, men du kan dölja dem i kontaktlistorna."</string>
