@@ -17,7 +17,10 @@
 
     <color name="quickcontact_list_divider">#ffcdcdcd</color>
     <color name="quickcontact_list_background">#ffe2e2e2</color>
-    <color name="quickcontact_tab_indicator">#ff33b5e6</color>
+    <color name="quickcontact_tab_indicator">#ffc6c6c6</color>
+    <color name="quickcontact_track_background">#fff5f5f5</color>
+    <color name="quickcontact_activity_background">#fff5f5f5</color>
+    <color name="quickcontact_name_detail_background">#66000000</color>
 
     <!-- Color of the background of the contact detail and editor pages -->
     <color name="background_primary">#FFFFFF</color>
