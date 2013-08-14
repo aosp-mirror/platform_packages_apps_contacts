@@ -17,7 +17,10 @@
 package com.android.contacts.common;
 
 import android.content.Context;
+import android.location.Country;
 import android.location.CountryDetector;
+
+import java.util.Locale;
 
 /**
  * Static methods related to Geo.
@@ -29,8 +32,15 @@ public class GeoUtil {
      *         is in.
      */
     public static final String getCurrentCountryIso(Context context) {
-        CountryDetector detector =
+        final CountryDetector detector =
                 (CountryDetector) context.getSystemService(Context.COUNTRY_DETECTOR);
-        return detector.detectCountry().getCountryIso();
+        if (detector != null) {
+            final Country country = detector.detectCountry();
+            if (country != null) {
+                return country.getCountryIso();
+            }
+        }
+        // Fallback to Locale if have issues with CountryDetector
+        return Locale.getDefault().getCountry();
     }
 }
