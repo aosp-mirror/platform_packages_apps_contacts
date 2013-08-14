@@ -51,6 +51,6 @@
             android:id="@+id/item_list_pager"
             android:layout_width="match_parent"
             android:layout_height="156dip"
-            android:background="@drawable/quickcontact_track_background"/>
+            android:background="@color/quickcontact_activity_background"/>
     </LinearLayout>
 </view>

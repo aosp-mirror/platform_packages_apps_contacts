@@ -51,12 +51,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.R;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -113,7 +113,7 @@ public class QuickContactActivity extends Activity {
     private View mLineAfterTrack;
 
     private ImageView mOpenDetailsImage;
-    private ImageButton mOpenDetailsPushLayerButton;
+    private ImageView mStarImage;
     private ViewPager mListPager;
     private ViewPagerAdapter mPagerAdapter;
 
@@ -201,7 +201,7 @@ public class QuickContactActivity extends Activity {
         mTrack = (ViewGroup) findViewById(R.id.track);
         mTrackScroller = (HorizontalScrollView) findViewById(R.id.track_scroller);
         mOpenDetailsImage = (ImageView) findViewById(R.id.contact_details_image);
-        mOpenDetailsPushLayerButton = (ImageButton) findViewById(R.id.open_details_push_layer);
+        mStarImage = (ImageView) findViewById(R.id.quickcontact_star_button);
         mListPager = (ViewPager) findViewById(R.id.item_list_pager);
         mSelectedTabRectangle = findViewById(R.id.selected_tab_rectangle);
         mLineAfterTrack = findViewById(R.id.line_after_track);
@@ -224,7 +224,8 @@ public class QuickContactActivity extends Activity {
                 close(false);
             }
         };
-        mOpenDetailsPushLayerButton.setOnClickListener(openDetailsClickHandler);
+        mOpenDetailsImage.setOnClickListener(openDetailsClickHandler);
+
         mPagerAdapter = new ViewPagerAdapter(getFragmentManager());
         mListPager.setAdapter(mPagerAdapter);
         mListPager.setOnPageChangeListener(new PageChangeListener());
@@ -339,6 +340,33 @@ public class QuickContactActivity extends Activity {
 
         mOpenDetailsImage.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ? View.GONE
                 : View.VISIBLE);
+        final boolean isStarred = data.getStarred();
+        if (isStarred) {
+            mStarImage.setImageResource(R.drawable.ic_favorite_on_lt);
+        } else {
+            mStarImage.setImageResource(R.drawable.ic_favorite_off_lt);
+        }
+        final Uri lookupUri = data.getLookupUri();
+        mStarImage.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toggle "starred" state
+                // Make sure there is a contact
+                if (lookupUri != null) {
+                    // Changes the state of the image already before sending updates to the database
+                    if (isStarred) {
+                        mStarImage.setImageResource(R.drawable.ic_favorite_off_lt);
+                    } else {
+                        mStarImage.setImageResource(R.drawable.ic_favorite_on_lt);
+                    }
+
+                    // Now perform the real save
+                    final Intent intent = ContactSaveService.createSetStarredIntent(context,
+                            lookupUri, !isStarred);
+                    context.startService(intent);
+                }
+            }
+        });
 
         mDefaultsMap.clear();
 

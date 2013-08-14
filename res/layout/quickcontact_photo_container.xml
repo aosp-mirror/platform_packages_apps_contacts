@@ -39,7 +39,7 @@
             android:layout_alignRight="@id/photo"
             android:layout_alignStart="@id/photo"
             android:layout_alignEnd="@id/photo"
-            android:background="#7F000000" />
+            android:background="@color/quickcontact_name_detail_background"/>
         <ImageView
             android:id="@+id/contact_details_image"
             android:src="@drawable/ic_contacts_holo_dark"
@@ -51,7 +51,20 @@
             android:layout_marginBottom="5dip"
             android:layout_alignBottom="@id/photo_text_bar"
             android:layout_alignRight="@id/photo_text_bar"
-            android:layout_alignEnd="@id/photo_text_bar" />
+            android:layout_alignEnd="@id/photo_text_bar"
+            android:clickable="true"/>
+        <ImageView
+            android:id="@+id/quickcontact_star_button"
+            android:src="@drawable/ic_favorite_off_lt"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:layout_marginRight="16dip"
+            android:layout_marginEnd="16dip"
+            android:layout_alignBottom="@id/photo_text_bar"
+            android:layout_toLeftOf="@id/contact_details_image"
+            android:layout_toStartOf="@id/contact_details_image"
+            android:clickable="true"/>
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -68,11 +81,5 @@
             android:ellipsize="end"
             android:textColor="@android:color/white"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        <ImageButton
-            android:id="@+id/open_details_push_layer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/viewContactDesription"
-            android:background="?android:attr/selectableItemBackground" />
     </RelativeLayout>
 </merge>
