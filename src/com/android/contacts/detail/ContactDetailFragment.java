@@ -159,7 +159,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private Button mQuickFixButton;
     private QuickFix mQuickFix;
-    private String mDefaultCountryIso;
     private boolean mContactHasSocialUpdates;
     private boolean mShowStaticPhoto = true;
 
@@ -288,7 +287,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
-        mDefaultCountryIso = GeoUtil.getCurrentCountryIso(mContext);
         mViewEntryDimensions = new ViewEntryDimensions(mContext.getResources());
     }
 
