@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
@@ -78,8 +79,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     @Override
-    public CursorLoader createCursorLoader() {
-        return new ProfileAndContactsLoader(getActivity());
+    public CursorLoader createCursorLoader(Context context) {
+        return new ProfileAndContactsLoader(context);
     }
 
     @Override
