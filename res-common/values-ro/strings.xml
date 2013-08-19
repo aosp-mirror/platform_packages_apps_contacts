@@ -126,7 +126,7 @@
     <string name="postal_city" msgid="3173008531169519309">"Oraş"</string>
     <string name="postal_region" msgid="1695206048198921115">"Stat"</string>
     <string name="postal_postcode" msgid="6542806670034753265">"Cod poştal"</string>
-    <string name="postal_country" msgid="3988452247038791892">"Ţară"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Țară"</string>
     <string name="map_home" msgid="1221397355014741634">"Vizualizaţi adresa de domiciliu"</string>
     <string name="map_work" msgid="9015981646907637207">"Vizualizaţi adresa de serviciu"</string>
     <string name="map_other" msgid="55098598855607997">"Vizualizaţi adresa poştală"</string>
