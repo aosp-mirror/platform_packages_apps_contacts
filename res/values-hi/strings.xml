@@ -189,7 +189,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"संपर्क करें"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"लोड हो रहा है..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"एक नया संपर्क बनाएं"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"किसी खाते में साइन इन करें"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"किसी खाते में प्रवेश करें"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"संपर्क आयात करें"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"नया समूह बनाएं"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"नया समूह बनाएं"</string>
