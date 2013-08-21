@@ -78,7 +78,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                         String.valueOf(directoryId));
                 if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
                     builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
-                            String.valueOf(getDirectoryResultLimit()));
+                            String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
                 }
                 builder.appendQueryParameter(SearchSnippetColumns.SNIPPET_ARGS_PARAM_KEY,
                         SNIPPET_ARGS);

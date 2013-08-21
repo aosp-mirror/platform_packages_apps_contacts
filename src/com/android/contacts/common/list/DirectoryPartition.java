@@ -28,12 +28,15 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
     public static final int STATUS_LOADING = 1;
     public static final int STATUS_LOADED = 2;
 
+    public static final int RESULT_LIMIT_DEFAULT = -1;
+
     private long mDirectoryId;
     private String mDirectoryType;
     private String mDisplayName;
     private int mStatus;
     private boolean mPriorityDirectory;
     private boolean mPhotoSupported;
+    private int mResultLimit = RESULT_LIMIT_DEFAULT;
 
     public DirectoryPartition(boolean showIfEmpty, boolean hasHeader) {
         super(showIfEmpty, hasHeader);
@@ -105,5 +108,18 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
 
     public void setPhotoSupported(boolean flag) {
         this.mPhotoSupported = flag;
+    }
+
+    /**
+     * Max number of results for this directory. Defaults to {@link #RESULT_LIMIT_DEFAULT} which
+     * implies using the adapter's
+     * {@link com.android.contacts.common.list.ContactListAdapter#getDirectoryResultLimit()}
+     */
+    public int getResultLimit() {
+        return mResultLimit;
+    }
+
+    public void setResultLimit(int resultLimit) {
+        mResultLimit = resultLimit;
     }
 }

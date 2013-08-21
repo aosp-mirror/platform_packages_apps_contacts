@@ -159,7 +159,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
     }
 
-    private int getPartitionByDirectoryId(long id) {
+    protected int getPartitionByDirectoryId(long id) {
         int count = getPartitionCount();
         for (int i = 0; i < count; i++) {
             Partition partition = getPartition(i);
@@ -170,6 +170,20 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             }
         }
         return -1;
+    }
+
+    protected DirectoryPartition getDirectoryById(long id) {
+        int count = getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            Partition partition = getPartition(i);
+            if (partition instanceof DirectoryPartition) {
+                final DirectoryPartition directoryPartition = (DirectoryPartition) partition;
+                if (directoryPartition.getDirectoryId() == id) {
+                    return directoryPartition;
+                }
+            }
+        }
+        return null;
     }
 
     public abstract String getContactDisplayName(int position);
@@ -245,6 +259,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public int getDirectoryResultLimit() {
         return mDirectoryResultLimit;
+    }
+
+    public int getDirectoryResultLimit(DirectoryPartition directoryPartition) {
+        final int limit = directoryPartition.getResultLimit();
+        return limit == DirectoryPartition.RESULT_LIMIT_DEFAULT ? mDirectoryResultLimit : limit;
     }
 
     public void setDirectoryResultLimit(int limit) {
@@ -548,10 +567,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             countText.setText(R.string.search_results_searching);
         } else {
             int count = cursor == null ? 0 : cursor.getCount();
+            final int limit = getDirectoryResultLimit(directoryPartition);
             if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE
-                    && count >= getDirectoryResultLimit()) {
-                countText.setText(mContext.getString(
-                        R.string.foundTooManyContacts, getDirectoryResultLimit()));
+                    && count >= limit) {
+                countText.setText(mContext.getString(R.string.foundTooManyContacts, limit));
             } else {
                 countText.setText(getQuantityText(
                         count, R.string.listFoundAllContactsZero, R.plurals.searchFoundContacts));

@@ -29,13 +29,13 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.common.R;
-import com.android.contacts.common.CallUtil;
+import com.android.contacts.common.extensions.ExtendedPhoneDirectoriesManager;
+import com.android.contacts.common.extensions.ExtensionsFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,16 @@ import java.util.List;
  * API instead of {@link Phone}.
  */
 public class PhoneNumberListAdapter extends ContactEntryListAdapter {
+
     private static final String TAG = PhoneNumberListAdapter.class.getSimpleName();
+
+    // A list of extended directories to add to the directories from the database
+    private final List<DirectoryPartition> mExtendedDirectories;
+
+    // Extended directories will have ID's that are higher than any of the id's from the database.
+    // Thi sis so that we can identify them and set them up properly. If no extended directories
+    // exist, this will be Long.MAX_VALUE
+    private long mFirstExtendedDirectoryId = Long.MAX_VALUE;
 
     public static class PhoneQuery {
         public static final String[] PROJECTION_PRIMARY = new String[] {
@@ -97,6 +106,14 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         super(context);
         setDefaultFilterHeaderText(R.string.list_filter_phones);
         mUnknownNameText = context.getText(android.R.string.unknownName);
+
+        final ExtendedPhoneDirectoriesManager manager
+                = ExtensionsFactory.getExtendedPhoneDirectoriesManager();
+        if (manager != null) {
+            mExtendedDirectories = manager.getExtendedDirectories(mContext);
+        } else {
+            mExtendedDirectories = null;
+        }
     }
 
     protected CharSequence getUnknownNameText() {
@@ -110,56 +127,75 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        final boolean isRemoteDirectoryQuery = isRemoteDirectory(directoryId);
-        final Builder builder;
-        if (isSearchMode()) {
-            final Uri baseUri;
-            if (isRemoteDirectoryQuery) {
-                baseUri = Phone.CONTENT_FILTER_URI;
-            } else if (mUseCallableUri) {
-                baseUri = Callable.CONTENT_FILTER_URI;
-            } else {
-                baseUri = Phone.CONTENT_FILTER_URI;
-            }
-            builder = baseUri.buildUpon();
-            final String query = getQueryString();
-            if (TextUtils.isEmpty(query)) {
-                builder.appendPath("");
-            } else {
-                builder.appendPath(query);      // Builder will encode the query
-            }
-            builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
-                    String.valueOf(directoryId));
-            if (isRemoteDirectoryQuery) {
-                builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
-                        String.valueOf(getDirectoryResultLimit()));
-            }
-        } else {
-            final Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
-            builder = baseUri.buildUpon().appendQueryParameter(
-                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
-            if (isSectionHeaderDisplayEnabled()) {
-                builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
-            }
-            applyFilter(loader, builder, directoryId, getFilter());
+        String query = getQueryString();
+        if (query == null) {
+            query = "";
         }
-
-        // Remove duplicates when it is possible.
-        builder.appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true");
-        loader.setUri(builder.build());
-
-        // TODO a projection that includes the search snippet
-        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+        if (isExtendedDirectory(directoryId)) {
+            final DirectoryPartition directory = getExtendedDirectoryFromId(directoryId);
+            final Builder builder = Uri.parse(directory.getDirectoryType()).buildUpon();
+            builder.appendPath(query);
+            builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
+                    String.valueOf(getDirectoryResultLimit(directory)));
+            loader.setUri(builder.build());
             loader.setProjection(PhoneQuery.PROJECTION_PRIMARY);
         } else {
-            loader.setProjection(PhoneQuery.PROJECTION_ALTERNATIVE);
-        }
+            final boolean isRemoteDirectoryQuery = isRemoteDirectory(directoryId);
+            final Builder builder;
+            if (isSearchMode()) {
+                final Uri baseUri;
+                if (isRemoteDirectoryQuery) {
+                    baseUri = Phone.CONTENT_FILTER_URI;
+                } else if (mUseCallableUri) {
+                    baseUri = Callable.CONTENT_FILTER_URI;
+                } else {
+                    baseUri = Phone.CONTENT_FILTER_URI;
+                }
+                builder = baseUri.buildUpon();
+                builder.appendPath(query);      // Builder will encode the query
+                builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
+                        String.valueOf(directoryId));
+                if (isRemoteDirectoryQuery) {
+                    builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
+                            String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
+                }
+            } else {
+                final Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
+                builder = baseUri.buildUpon().appendQueryParameter(
+                        ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
+                if (isSectionHeaderDisplayEnabled()) {
+                    builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+                }
+                applyFilter(loader, builder, directoryId, getFilter());
+            }
 
-        if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
-            loader.setSortOrder(Phone.SORT_KEY_PRIMARY);
-        } else {
-            loader.setSortOrder(Phone.SORT_KEY_ALTERNATIVE);
+            // Remove duplicates when it is possible.
+            builder.appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true");
+            loader.setUri(builder.build());
+
+            // TODO a projection that includes the search snippet
+            if (getContactNameDisplayOrder() ==
+                    ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+                loader.setProjection(PhoneQuery.PROJECTION_PRIMARY);
+            } else {
+                loader.setProjection(PhoneQuery.PROJECTION_ALTERNATIVE);
+            }
+
+            if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+                loader.setSortOrder(Phone.SORT_KEY_PRIMARY);
+            } else {
+                loader.setSortOrder(Phone.SORT_KEY_ALTERNATIVE);
+            }
         }
+    }
+
+    private boolean isExtendedDirectory(long directoryId) {
+        return directoryId >= mFirstExtendedDirectoryId;
+    }
+
+    private DirectoryPartition getExtendedDirectoryFromId(long directoryId) {
+        final int directoryIndex = (int) (directoryId - mFirstExtendedDirectoryId);
+        return mExtendedDirectories.get(directoryIndex);
     }
 
     /**
@@ -367,5 +403,60 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     public boolean usesCallableUri() {
         return mUseCallableUri;
+    }
+
+    /**
+     * Override base implementation to inject extended directories between local & remote
+     * directories. This is done in the following steps:
+     * 1. Call base implementation to add directories from the cursor.
+     * 2. Iterate all base directories and establish the following information:
+     *   a. The highest directory id so that we can assign unused id's to the extended directories.
+     *   b. The index of the last non-remote directory. This is where we will insert extended
+     *      directories.
+     * 3. Iterate the extended directories and for each one, assign an ID and insert it in the
+     *    proper location.
+     */
+    @Override
+    public void changeDirectories(Cursor cursor) {
+        super.changeDirectories(cursor);
+        if (getDirectorySearchMode() == DirectoryListLoader.SEARCH_MODE_NONE) {
+            return;
+        }
+        final int numExtendedDirectories = mExtendedDirectories.size();
+        if (getPartitionCount() == cursor.getCount() + numExtendedDirectories) {
+            // already added all directories;
+            return;
+        }
+        //
+        mFirstExtendedDirectoryId = Long.MAX_VALUE;
+        if (numExtendedDirectories > 0) {
+            // The Directory.LOCAL_INVISIBLE is not in the cursor but we can't reuse it's
+            // "special" ID.
+            long maxId = Directory.LOCAL_INVISIBLE;
+            int insertIndex = 0;
+            for (int i = 0, n = getPartitionCount(); i < n; i++) {
+                final DirectoryPartition partition = (DirectoryPartition) getPartition(i);
+                final long id = partition.getDirectoryId();
+                if (id > maxId) {
+                    maxId = id;
+                }
+                if (!isRemoteDirectory(id)) {
+                    // assuming remote directories come after local, we will end up with the index
+                    // where we should insert extended directories. This also works if there are no
+                    // remote directories at all.
+                    insertIndex = i + 1;
+                }
+            }
+            // Extended directories ID's cannot collide with base directories
+            mFirstExtendedDirectoryId = maxId + 1;
+            for (int i = 0; i < numExtendedDirectories; i++) {
+                final long id = mFirstExtendedDirectoryId + i;
+                final DirectoryPartition directory = mExtendedDirectories.get(i);
+                if (getPartitionByDirectoryId(id) == -1) {
+                    addPartition(insertIndex, directory);
+                    directory.setDirectoryId(id);
+                }
+            }
+        }
     }
 }
