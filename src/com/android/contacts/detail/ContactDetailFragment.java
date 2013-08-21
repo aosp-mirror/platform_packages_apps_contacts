@@ -89,6 +89,7 @@ import com.android.contacts.common.model.account.AccountType.EditType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.RawContact;
 import com.android.contacts.model.RawContactDelta;
@@ -592,7 +593,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         entry.intent = phoneIntent;
                         entry.secondaryIntent = smsIntent;
                         entry.secondaryActionIcon = kind.iconAltRes;
-                        entry.secondaryActionDescription = kind.iconAltDescriptionRes;
+                        entry.secondaryActionDescription =
+                            ContactDisplayUtils.getSmsLabelResourceId(entry.type);
                     } else if (mHasPhone) {
                         entry.intent = phoneIntent;
                     } else if (mHasSms) {
@@ -1728,7 +1730,13 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             String secondaryActionDescription = null;
             if (entry.secondaryActionIcon != -1) {
                 secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
-                secondaryActionDescription = resources.getString(entry.secondaryActionDescription);
+                if (ContactDisplayUtils.isCustomPhoneType(entry.type)) {
+                    secondaryActionDescription = resources.getString(
+                            entry.secondaryActionDescription, entry.typeString);
+                } else {
+                    secondaryActionDescription = resources.getString(
+                            entry.secondaryActionDescription);
+                }
             } else if ((entry.chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
                 secondaryActionIcon =
                         resources.getDrawable(R.drawable.sym_action_videochat_holo_light);
