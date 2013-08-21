@@ -259,16 +259,24 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         }
 
         final MenuItem editMenu = menu.findItem(R.id.menu_edit);
-        editMenu.setVisible(mOptionsMenuEditable);
+        if (editMenu != null) {
+            editMenu.setVisible(mOptionsMenuEditable);
+        }
 
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
-        deleteMenu.setVisible(mOptionsMenuEditable);
+        if (deleteMenu != null) {
+            deleteMenu.setVisible(mOptionsMenuEditable);
+        }
 
         final MenuItem shareMenu = menu.findItem(R.id.menu_share);
-        shareMenu.setVisible(mOptionsMenuShareable);
+        if (shareMenu != null) {
+            shareMenu.setVisible(mOptionsMenuShareable);
+        }
 
         final MenuItem createContactShortcutMenu = menu.findItem(R.id.menu_create_contact_shortcut);
-        createContactShortcutMenu.setVisible(mOptionsMenuCanCreateShortcut);
+        if (createContactShortcutMenu != null) {
+            createContactShortcutMenu.setVisible(mOptionsMenuCanCreateShortcut);
+        }
     }
 
     public boolean isContactOptionsChangeEnabled() {
