@@ -27,7 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"選擇聯絡人"</string>
     <string name="starredList" msgid="4817256136413959463">"已加星號"</string>
     <string name="frequentList" msgid="7154768136473953056">"經常聯絡"</string>
-    <string name="strequentList" msgid="5640192862059373511">"我的最愛"</string>
+    <string name="strequentList" msgid="5640192862059373511">"我的收藏"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"聯絡人詳細資料"</string>
     <string name="viewContactDesription" msgid="214186610887547860">"檢視聯絡人"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"編輯聯絡人"</string>
@@ -39,7 +39,7 @@
     <string name="searchHint" msgid="8482945356247760701">"搜尋聯絡人"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"檢視聯絡人"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"加到我的收藏"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"從我的最愛中移除"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"從我的收藏中移除"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主螢幕上"</string>
@@ -162,7 +162,7 @@
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"群組名稱"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"透過 <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> (透過 <xliff:g id="SOURCE">%2$s</xliff:g>)"</string>
-    <string name="description_star" msgid="2605854427360036550">"我的最愛"</string>
+    <string name="description_star" msgid="2605854427360036550">"我的收藏"</string>
     <string name="edit_contact" msgid="7529281274005689512">"編輯聯絡人"</string>
   <plurals name="merge_info">
     <item quantity="one" msgid="148365587896371969">"未合併"</item>
