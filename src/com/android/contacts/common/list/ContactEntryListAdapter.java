@@ -566,7 +566,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         if (directoryPartition.isLoading()) {
             countText.setText(R.string.search_results_searching);
         } else {
-            int count = cursor == null ? 0 : cursor.getCount();
+            int count = getResultCount(cursor);
             final int limit = getDirectoryResultLimit(directoryPartition);
             if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE
                     && count >= limit) {
@@ -576,6 +576,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                         count, R.string.listFoundAllContactsZero, R.plurals.searchFoundContacts));
             }
         }
+    }
+
+    // Default implementation simply returns number of rows in the cursor.
+    // Broken out into its own routine so can be overridden by child classes
+    // for eg number of unique contacts for a phone list.
+    protected int getResultCount(Cursor cursor) {
+        return cursor == null ? 0 : cursor.getCount();
     }
 
     /**

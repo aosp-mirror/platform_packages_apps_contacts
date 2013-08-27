@@ -281,6 +281,26 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         view.setHighlightedPrefix(isSearchMode() ? getUpperCaseQueryString() : null);
     }
 
+    // Override default, which would return number of phone numbers, so we
+    // instead return number of contacts.
+    @Override
+    protected int getResultCount(Cursor cursor) {
+        if (cursor == null) {
+            return 0;
+        }
+        cursor.moveToPosition(-1);
+        long curContactId = -1;
+        int numContacts = 0;
+        while(cursor.moveToNext()) {
+            final long contactId = cursor.getLong(PhoneQuery.CONTACT_ID);
+            if (contactId != curContactId) {
+                curContactId = contactId;
+                ++numContacts;
+            }
+        }
+        return numContacts;
+    }
+
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
