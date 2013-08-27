@@ -55,9 +55,6 @@ import java.util.ArrayList;
 public class ContactDetailActivity extends ContactsActivity {
     private static final String TAG = "ContactDetailActivity";
 
-    /** Shows a toogle button for hiding/showing updates. Don't submit with true */
-    private static final boolean DEBUG_TRANSITIONS = false;
-
     private Contact mContactData;
     private Uri mLookupUri;
 
@@ -126,19 +123,6 @@ public class ContactDetailActivity extends ContactsActivity {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.star, menu);
-        if (DEBUG_TRANSITIONS) {
-            final MenuItem toggleSocial =
-                    menu.add(mLoaderFragment.getLoadStreamItems() ? "less" : "more");
-            toggleSocial.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-            toggleSocial.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    mLoaderFragment.toggleLoadStreamItems();
-                    invalidateOptionsMenu();
-                    return false;
-                }
-            });
-        }
         return true;
     }
 
