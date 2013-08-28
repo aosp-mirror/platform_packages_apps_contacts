@@ -120,11 +120,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         return mUnknownNameText;
     }
 
-    private static boolean isRemoteDirectory(long directoryId) {
-        return directoryId != Directory.DEFAULT
-            && directoryId != Directory.LOCAL_INVISIBLE;
-    }
-
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
         String query = getQueryString();
@@ -133,7 +128,12 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
         if (isExtendedDirectory(directoryId)) {
             final DirectoryPartition directory = getExtendedDirectoryFromId(directoryId);
-            final Builder builder = Uri.parse(directory.getDirectoryType()).buildUpon();
+            final String contentUri = directory.getContentUri();
+            if (contentUri == null) {
+                throw new IllegalStateException("Extended directory must have a content URL: "
+                        + directory);
+            }
+            final Builder builder = Uri.parse(contentUri).buildUpon();
             builder.appendPath(query);
             builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                     String.valueOf(getDirectoryResultLimit(directory)));

@@ -31,12 +31,15 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
     public static final int RESULT_LIMIT_DEFAULT = -1;
 
     private long mDirectoryId;
+    private String mContentUri;
     private String mDirectoryType;
     private String mDisplayName;
     private int mStatus;
     private boolean mPriorityDirectory;
     private boolean mPhotoSupported;
     private int mResultLimit = RESULT_LIMIT_DEFAULT;
+
+    private String mLabel;
 
     public DirectoryPartition(boolean showIfEmpty, boolean hasHeader) {
         super(showIfEmpty, hasHeader);
@@ -121,5 +124,43 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
 
     public void setResultLimit(int resultLimit) {
         mResultLimit = resultLimit;
+    }
+
+    /**
+     * Used by extended directories to specify a custom content URI. Extended directories MUST have
+     * a content URI
+     */
+    public String getContentUri() {
+        return mContentUri;
+    }
+
+    public void setContentUri(String contentUri) {
+        mContentUri = contentUri;
+    }
+
+    /**
+     * A label to display in the header next to the display name.
+     */
+    public String getLabel() {
+        return mLabel;
+    }
+
+    public void setLabel(String label) {
+        mLabel = label;
+    }
+
+    @Override
+    public String toString() {
+        return "DirectoryPartition{" +
+                "mDirectoryId=" + mDirectoryId +
+                ", mContentUri='" + mContentUri + '\'' +
+                ", mDirectoryType='" + mDirectoryType + '\'' +
+                ", mDisplayName='" + mDisplayName + '\'' +
+                ", mStatus=" + mStatus +
+                ", mPriorityDirectory=" + mPriorityDirectory +
+                ", mPhotoSupported=" + mPhotoSupported +
+                ", mResultLimit=" + mResultLimit +
+                ", mLabel='" + mLabel + '\'' +
+                '}';
     }
 }

@@ -382,6 +382,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             if (getPartitionByDirectoryId(id) == -1) {
                 DirectoryPartition partition = new DirectoryPartition(false, true);
                 partition.setDirectoryId(id);
+                if (isRemoteDirectory(id)) {
+                    partition.setLabel(mContext.getString(R.string.directory_search_label));
+                } else {
+                    partition.setLabel(mDefaultFilterHeaderText.toString());
+                }
                 partition.setDirectoryType(cursor.getString(directoryTypeColumnIndex));
                 partition.setDisplayName(cursor.getString(displayNameColumnIndex));
                 int photoSupport = cursor.getInt(photoSupportColumnIndex);
@@ -550,11 +555,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         long directoryId = directoryPartition.getDirectoryId();
         TextView labelTextView = (TextView)view.findViewById(R.id.label);
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
-        if (directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE) {
-            labelTextView.setText(mDefaultFilterHeaderText);
+        labelTextView.setText(directoryPartition.getLabel());
+        if (!isRemoteDirectory(directoryId)) {
             displayNameTextView.setText(null);
         } else {
-            labelTextView.setText(R.string.directory_search_label);
             String directoryName = directoryPartition.getDisplayName();
             String displayName = !TextUtils.isEmpty(directoryName)
                     ? directoryName
@@ -692,5 +696,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public String getContactsCount() {
         return mContactsCount;
+    }
+
+    public static boolean isRemoteDirectory(long directoryId) {
+        return directoryId != Directory.DEFAULT
+                && directoryId != Directory.LOCAL_INVISIBLE;
     }
 }
