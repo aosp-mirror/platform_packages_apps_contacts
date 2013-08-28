@@ -113,7 +113,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             // Not yet set-up (this can happen while the Configuration activity is visible)
             return;
         }
-        final ContactLoader contactLoader = new ContactLoader(context, contactUri, false, true,
+        final ContactLoader contactLoader = new ContactLoader(context, contactUri, false,
                 false, true, false);
         contactLoader.registerListener(0,
                 new ContactLoader.OnLoadCompleteListener<Contact>() {

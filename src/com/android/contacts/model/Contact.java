@@ -33,6 +33,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A Contact represents a single person or logical entity as perceived by the user.  The information
@@ -72,7 +73,6 @@ public class Contact {
     private final boolean mStarred;
     private final Integer mPresence;
     private ImmutableList<RawContact> mRawContacts;
-    private ImmutableList<StreamItemEntry> mStreamItems;
     private ImmutableMap<Long,DataStatus> mStatuses;
     private ImmutableList<AccountType> mInvitableAccountTypes;
 
@@ -108,7 +108,6 @@ public class Contact {
         mLookupKey = null;
         mId = -1;
         mRawContacts = null;
-        mStreamItems = null;
         mStatuses = null;
         mNameRawContactId = -1;
         mDisplayNameSource = DisplayNameSources.UNDEFINED;
@@ -150,7 +149,6 @@ public class Contact {
         mLookupKey = lookupKey;
         mId = id;
         mRawContacts = null;
-        mStreamItems = null;
         mStatuses = null;
         mNameRawContactId = nameRawContactId;
         mDisplayNameSource = displayNameSource;
@@ -187,7 +185,6 @@ public class Contact {
         mStarred = from.mStarred;
         mPresence = from.mPresence;
         mRawContacts = from.mRawContacts;
-        mStreamItems = from.mStreamItems;
         mStatuses = from.mStatuses;
         mInvitableAccountTypes = from.mInvitableAccountTypes;
 
@@ -354,7 +351,7 @@ public class Contact {
      * @return
      */
     public ImmutableList<StreamItemEntry> getStreamItems() {
-        return mStreamItems;
+        return ImmutableList.of();
     }
 
     public ImmutableMap<Long, DataStatus> getStatuses() {
@@ -483,9 +480,5 @@ public class Contact {
 
     /* package */ void setGroupMetaData(ImmutableList<GroupMetaData> groups) {
         mGroups = groups;
-    }
-
-    /* package */ void setStreamItems(ImmutableList<StreamItemEntry> streamItems) {
-        mStreamItems = streamItems;
     }
 }

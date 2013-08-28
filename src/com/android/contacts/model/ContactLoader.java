@@ -82,7 +82,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     private final Uri mRequestedUri;
     private Uri mLookupUri;
     private boolean mLoadGroupMetaData;
-    private boolean mLoadStreamItems;
     private boolean mLoadInvitableAccountTypes;
     private boolean mPostViewNotification;
     private boolean mComputeFormattedPhoneNumber;
@@ -91,17 +90,16 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
 
     public ContactLoader(Context context, Uri lookupUri, boolean postViewNotification) {
-        this(context, lookupUri, false, false, false, postViewNotification, false);
+        this(context, lookupUri, false, false, postViewNotification, false);
     }
 
     public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
-            boolean loadStreamItems, boolean loadInvitableAccountTypes,
+            boolean loadInvitableAccountTypes,
             boolean postViewNotification, boolean computeFormattedPhoneNumber) {
         super(context);
         mLookupUri = lookupUri;
         mRequestedUri = lookupUri;
         mLoadGroupMetaData = loadGroupMetaData;
-        mLoadStreamItems = loadStreamItems;
         mLoadInvitableAccountTypes = loadInvitableAccountTypes;
         mPostViewNotification = postViewNotification;
         mComputeFormattedPhoneNumber = computeFormattedPhoneNumber;
@@ -330,9 +328,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                     if (result.getGroupMetaData() == null) {
                         loadGroupMetaData(result);
                     }
-                }
-                if (mLoadStreamItems && result.getStreamItems() == null) {
-                    loadStreamItems(result);
                 }
                 if (mComputeFormattedPhoneNumber) {
                     computeFormattedPhoneNumbers(result);
@@ -711,95 +706,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     }
 
     /**
-     * Loads all stream items and stream item photos belonging to this contact.
-     */
-    private void loadStreamItems(Contact result) {
-        final Cursor cursor = getContext().getContentResolver().query(
-                Contacts.CONTENT_LOOKUP_URI.buildUpon()
-                        .appendPath(result.getLookupKey())
-                        .appendPath(Contacts.StreamItems.CONTENT_DIRECTORY).build(),
-                null, null, null, null);
-        final LongSparseArray<StreamItemEntry> streamItemsById =
-                new LongSparseArray<StreamItemEntry>();
-        final ArrayList<StreamItemEntry> streamItems = new ArrayList<StreamItemEntry>();
-        try {
-            while (cursor.moveToNext()) {
-                StreamItemEntry streamItem = new StreamItemEntry(cursor);
-                streamItemsById.put(streamItem.getId(), streamItem);
-                streamItems.add(streamItem);
-            }
-        } finally {
-            cursor.close();
-        }
-
-        // Pre-decode all HTMLs
-        final long start = System.currentTimeMillis();
-        for (StreamItemEntry streamItem : streamItems) {
-            streamItem.decodeHtml(getContext());
-        }
-        final long end = System.currentTimeMillis();
-        if (DEBUG) {
-            Log.d(TAG, "Decoded HTML for " + streamItems.size() + " items, took "
-                    + (end - start) + " ms");
-        }
-
-        // Now retrieve any photo records associated with the stream items.
-        if (!streamItems.isEmpty()) {
-            if (result.isUserProfile()) {
-                // If the stream items we're loading are for the profile, we can't bulk-load the
-                // stream items with a custom selection.
-                for (StreamItemEntry entry : streamItems) {
-                    Cursor siCursor = getContext().getContentResolver().query(
-                            Uri.withAppendedPath(
-                                    ContentUris.withAppendedId(
-                                            StreamItems.CONTENT_URI, entry.getId()),
-                                    StreamItems.StreamItemPhotos.CONTENT_DIRECTORY),
-                            null, null, null, null);
-                    try {
-                        while (siCursor.moveToNext()) {
-                            entry.addPhoto(new StreamItemPhotoEntry(siCursor));
-                        }
-                    } finally {
-                        siCursor.close();
-                    }
-                }
-            } else {
-                String[] streamItemIdArr = new String[streamItems.size()];
-                StringBuilder streamItemPhotoSelection = new StringBuilder();
-                streamItemPhotoSelection.append(StreamItemPhotos.STREAM_ITEM_ID + " IN (");
-                for (int i = 0; i < streamItems.size(); i++) {
-                    if (i > 0) {
-                        streamItemPhotoSelection.append(",");
-                    }
-                    streamItemPhotoSelection.append("?");
-                    streamItemIdArr[i] = String.valueOf(streamItems.get(i).getId());
-                }
-                streamItemPhotoSelection.append(")");
-                Cursor sipCursor = getContext().getContentResolver().query(
-                        StreamItems.CONTENT_PHOTO_URI,
-                        null, streamItemPhotoSelection.toString(), streamItemIdArr,
-                        StreamItemPhotos.STREAM_ITEM_ID);
-                try {
-                    while (sipCursor.moveToNext()) {
-                        long streamItemId = sipCursor.getLong(
-                                sipCursor.getColumnIndex(StreamItemPhotos.STREAM_ITEM_ID));
-                        StreamItemEntry streamItem = streamItemsById.get(streamItemId);
-                        streamItem.addPhoto(new StreamItemPhotoEntry(sipCursor));
-                    }
-                } finally {
-                    sipCursor.close();
-                }
-            }
-        }
-
-        // Set the sorted stream items on the result.
-        Collections.sort(streamItems);
-        result.setStreamItems(new ImmutableList.Builder<StreamItemEntry>()
-                .addAll(streamItems.iterator())
-                .build());
-    }
-
-    /**
      * Iterates over all data items that represent phone numbers are tries to calculate a formatted
      * number. This function can safely be called several times as no unformatted data is
      * overwritten
@@ -892,28 +798,16 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     }
 
     /**
-     * Sets whether to load stream items. Will trigger a reload if the value has changed.
-     * At the moment, this is only used for debugging purposes
-     */
-    public void setLoadStreamItems(boolean value) {
-        if (mLoadStreamItems != value) {
-            mLoadStreamItems = value;
-            onContentChanged();
-        }
-    }
-
-    /**
      * Fully upgrades this ContactLoader to one with all lists fully loaded. When done, the
      * new result will be delivered
      */
     public void upgradeToFullContact() {
         // Everything requested already? Nothing to do, so let's bail out
-        if (mLoadGroupMetaData && mLoadInvitableAccountTypes && mLoadStreamItems
+        if (mLoadGroupMetaData && mLoadInvitableAccountTypes
                 && mPostViewNotification && mComputeFormattedPhoneNumber) return;
 
         mLoadGroupMetaData = true;
         mLoadInvitableAccountTypes = true;
-        mLoadStreamItems = true;
         mPostViewNotification = true;
         mComputeFormattedPhoneNumber = true;
 
@@ -923,10 +817,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         // Our load parameters have changed, so let's pretend the data has changed. Its the same
         // thing, essentially.
         onContentChanged();
-    }
-
-    public boolean getLoadStreamItems() {
-        return mLoadStreamItems;
     }
 
     public Uri getLookupUri() {

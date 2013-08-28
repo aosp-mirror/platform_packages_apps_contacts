@@ -109,9 +109,6 @@ public class PeopleActivity extends ContactsActivity
 
     private static final String TAG = "PeopleActivity";
 
-    /** Shows a toogle button for hiding/showing updates. Don't submit with true */
-    private static final boolean DEBUG_TRANSITIONS = false;
-
     private static final int TAB_FADE_IN_DURATION = 500;
 
     private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
@@ -1375,20 +1372,6 @@ public class PeopleActivity extends ContactsActivity
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.people_options, menu);
-
-        if (DEBUG_TRANSITIONS && mContactDetailLoaderFragment != null) {
-            final MenuItem toggleSocial =
-                    menu.add(mContactDetailLoaderFragment.getLoadStreamItems() ? "less" : "more");
-            toggleSocial.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-            toggleSocial.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    mContactDetailLoaderFragment.toggleLoadStreamItems();
-                    invalidateOptionsMenu();
-                    return false;
-                }
-            });
-        }
 
         return true;
     }
