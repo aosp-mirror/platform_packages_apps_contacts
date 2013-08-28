@@ -1200,6 +1200,26 @@ public class ContactListItemView extends ViewGroup
 
     public void showDisplayName(Cursor cursor, int nameColumnIndex, int displayOrder) {
         CharSequence name = cursor.getString(nameColumnIndex);
+        setDisplayName(name);
+
+        // Since the quick contact content description is derived from the display name and there is
+        // no guarantee that when the quick contact is initialized the display name is already set,
+        // do it here too.
+        if (mQuickContact != null) {
+            mQuickContact.setContentDescription(mContext.getString(
+                    R.string.description_quick_contact_for, mNameTextView.getText()));
+        }
+    }
+
+    public void setDisplayName(CharSequence name, boolean highlight) {
+        if (!TextUtils.isEmpty(name) && highlight) {
+            clearHighlightSequences();
+            addNameHighlightSequence(0, name.length());
+        }
+        setDisplayName(name);
+    }
+
+    public void setDisplayName(CharSequence name) {
         if (!TextUtils.isEmpty(name)) {
             // Chooses the available highlighting method for highlighting.
             if (mHighlightedPrefix != null) {
@@ -1216,14 +1236,6 @@ public class ContactListItemView extends ViewGroup
             name = mUnknownNameText;
         }
         setMarqueeText(getNameTextView(), name);
-
-        // Since the quick contact content description is derived from the display name and there is
-        // no guarantee that when the quick contact is initialized the display name is already set,
-        // do it here too.
-        if (mQuickContact != null) {
-            mQuickContact.setContentDescription(mContext.getString(
-                    R.string.description_quick_contact_for, mNameTextView.getText()));
-        }
     }
 
     public void hideDisplayName() {
@@ -1503,5 +1515,19 @@ public class ContactListItemView extends ViewGroup
     public void setSelectionBoundsHorizontalMargin(int left, int right) {
         mSelectionBoundsMarginLeft = left;
         mSelectionBoundsMarginRight = right;
+    }
+
+    /**
+     * Set drawable resources directly for both the background and the drawable resource
+     * of the photo view
+     *
+     * @param backgroundId Id of background resource
+     * @param drawableId Id of drawable resource
+     */
+    public void setDrawableResource(int backgroundId, int drawableId) {
+        final ImageView photo = getPhotoView();
+        photo.setScaleType(ImageView.ScaleType.CENTER);
+        photo.setBackgroundResource(backgroundId);
+        photo.setImageResource(drawableId);
     }
 }

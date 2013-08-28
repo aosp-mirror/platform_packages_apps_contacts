@@ -95,6 +95,10 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         this.mListener = listener;
     }
 
+    public OnPhoneNumberPickerActionListener getOnPhoneNumberPickerListener() {
+        return mListener;
+    }
+
     @Override
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
