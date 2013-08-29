@@ -186,12 +186,17 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         } else {
             final String number = getPhoneNumber(position);
             if (number != null) {
+                cacheContactInfo(position);
                 mListener.onCallNumberDirectly(number);
             } else {
                 Log.w(TAG, "Item at " + position + " was clicked before"
                         + " adapter is ready. Ignoring");
             }
         }
+    }
+
+    protected void cacheContactInfo(int position) {
+        // Not implemented. Hook for child classes
     }
 
     protected String getPhoneNumber(int position) {

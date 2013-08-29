@@ -189,7 +189,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
     }
 
-    private boolean isExtendedDirectory(long directoryId) {
+    protected boolean isExtendedDirectory(long directoryId) {
         return directoryId >= mFirstExtendedDirectoryId;
     }
 
