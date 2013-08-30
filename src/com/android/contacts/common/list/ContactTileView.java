@@ -92,7 +92,7 @@ public abstract class ContactTileView extends FrameLayout {
     public void loadFromContact(ContactEntry entry) {
 
         if (entry != null) {
-            mName.setText(entry.name);
+            mName.setText(getNameForView(entry.name));
             mLookupUri = entry.lookupKey;
 
             if (mStatus != null) {
@@ -158,6 +158,14 @@ public abstract class ContactTileView extends FrameLayout {
 
     protected QuickContactBadge getQuickContact() {
         return mQuickContact;
+    }
+
+    /**
+     * Returns the string that should actually be displayed as the contact's name. Subclasses
+     * can override this to return formatted versions of the name - i.e. first name only.
+     */
+    protected String getNameForView(String name) {
+        return name;
     }
 
     /**
