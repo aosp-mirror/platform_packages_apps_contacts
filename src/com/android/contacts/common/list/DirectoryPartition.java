@@ -38,6 +38,7 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
     private boolean mPriorityDirectory;
     private boolean mPhotoSupported;
     private int mResultLimit = RESULT_LIMIT_DEFAULT;
+    private boolean mDisplayNumber = true;
 
     private String mLabel;
 
@@ -162,5 +163,17 @@ public final class DirectoryPartition extends CompositeCursorAdapter.Partition {
                 ", mResultLimit=" + mResultLimit +
                 ", mLabel='" + mLabel + '\'' +
                 '}';
+    }
+
+    /**
+     * Whether or not to display the phone number in app that have that option - Dialer. If false,
+     * Phone Label should be used instead of Phone Number.
+     */
+    public boolean isDisplayNumber() {
+        return mDisplayNumber;
+    }
+
+    public void setDisplayNumber(boolean displayNumber) {
+        mDisplayNumber = displayNumber;
     }
 }

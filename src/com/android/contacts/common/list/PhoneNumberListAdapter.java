@@ -33,6 +33,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.R;
 import com.android.contacts.common.extensions.ExtendedPhoneDirectoriesManager;
 import com.android.contacts.common.extensions.ExtensionsFactory;
@@ -259,7 +260,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     public Uri getDataUri(int partitionIndex, Cursor cursor) {
-        final long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
+        final long directoryId =
+                ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
         if (!isRemoteDirectory(directoryId)) {
             final long phoneId = cursor.getLong(PhoneQuery.PHONE_ID);
             return ContentUris.withAppendedId(Data.CONTENT_URI, phoneId);
@@ -352,13 +354,15 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
             view.removePhotoView(true, false);
         }
-        bindPhoneNumber(view, cursor);
+
+        final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
+        bindPhoneNumber(view, cursor, directory.isDisplayNumber());
         view.setDividerVisible(showBottomDivider);
     }
 
-    protected void bindPhoneNumber(ContactListItemView view, Cursor cursor) {
+    protected void bindPhoneNumber(ContactListItemView view, Cursor cursor, boolean displayNumber) {
         CharSequence label = null;
-        if (!cursor.isNull(PhoneQuery.PHONE_TYPE)) {
+        if (displayNumber &&  !cursor.isNull(PhoneQuery.PHONE_TYPE)) {
             final int type = cursor.getInt(PhoneQuery.PHONE_TYPE);
             final String customLabel = cursor.getString(PhoneQuery.PHONE_LABEL);
 
@@ -366,7 +370,20 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             label = Phone.getTypeLabel(getContext().getResources(), type, customLabel);
         }
         view.setLabel(label);
-        view.showPhoneNumber(cursor, PhoneQuery.PHONE_NUMBER);
+        final String text;
+        if (displayNumber) {
+            text = cursor.getString(PhoneQuery.PHONE_NUMBER);
+        } else {
+            // Display phone label. If that's null, display geocoded location for the number
+            final String phoneLabel = cursor.getString(PhoneQuery.PHONE_LABEL);
+            if (phoneLabel != null) {
+                text = phoneLabel;
+            } else {
+                final String phoneNumber = cursor.getString(PhoneQuery.PHONE_NUMBER);
+                text = GeoUtil.getGeocodedLocationFor(mContext, phoneNumber);
+            }
+        }
+        view.setPhoneNumber(text);
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
