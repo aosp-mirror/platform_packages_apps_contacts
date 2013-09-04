@@ -37,6 +37,7 @@ import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.R;
 import com.android.contacts.common.extensions.ExtendedPhoneDirectoriesManager;
 import com.android.contacts.common.extensions.ExtensionsFactory;
+import com.android.contacts.common.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -495,5 +496,22 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                 }
             }
         }
+    }
+
+    protected Uri getContactUri(int partitionIndex, Cursor cursor,
+            int contactIdColumn, int lookUpKeyColumn) {
+        final DirectoryPartition directory = (DirectoryPartition) getPartition(partitionIndex);
+        final long directoryId = directory.getDirectoryId();
+        if (!isExtendedDirectory(directoryId)) {
+            return super.getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn);
+        }
+
+        return Contacts.CONTENT_LOOKUP_URI.buildUpon()
+                .appendPath(Constants.LOOKUP_URI_ENCODED)
+                .appendQueryParameter(Constants.LOOKUP_URI_JSON, cursor.getString(lookUpKeyColumn))
+                .appendQueryParameter(Directory.DISPLAY_NAME, directory.getLabel())
+                .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
+                        String.valueOf(directoryId))
+                .build();
     }
 }
