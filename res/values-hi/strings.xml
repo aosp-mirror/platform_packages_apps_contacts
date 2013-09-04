@@ -42,7 +42,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"पसंदीदा से निकालें"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"संपादित करें"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"हटाएं"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुखपृष्ठ स्क्रीन पर रखें"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुख्यपृष्ठ स्क्रीन पर रखें"</string>
     <string name="menu_call" msgid="3992595586042260618">"संपर्क को कॉल करें"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"इस संपर्क को SMS भेजें"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"अलग करें"</string>
@@ -67,7 +67,7 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"यह संपर्क हटा दिया जाएगा."</string>
     <string name="menu_discard" msgid="6456087569315685632">"छोड़ें"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"संपर्क मौजूद नहीं है."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुखपृष्ठ स्क्रीन पर संपर्क विजेट जोड़ा गया."</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्यपृष्ठ स्क्रीन पर संपर्क विजेट जोड़ा गया."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नया संपर्क बनाएं"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"नया संपर्क बनाएं"</string>
   <string-array name="otherLabels">
@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"गैलरी से नए फ़ोटो को चुनें"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषा के परिवर्तन दिखाने के लिए संपर्क सूची को अपडेट किया जा रहा है."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची अपडेट की जा रही है."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. \n\nअपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB आंतरिक संग्रहण की आवश्‍यकता होती है.\n\nनिम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. \n\nअपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB मोबाइल संग्रहण की आवश्‍यकता होती है.\n\nनिम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"कुछ एप्लिकेशन अनइंस्टॉल करें"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"अपग्रेड का पुन: प्रयास करें"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"खोज रहा है…"</string>
@@ -208,8 +208,8 @@
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"अन्‍य संपर्क से जुड़ने से पहले संपर्क नाम लिखें."</string>
     <string name="copy_text" msgid="3257145021583508761">"क्‍लिपबोर्ड पर प्रतिलिपि बनाएं"</string>
-    <string name="set_default" msgid="4417505153468300351">"डिफ़ॉल्ट सेट करें"</string>
-    <string name="clear_default" msgid="7193185801596678067">"डिफ़ॉल्‍ट साफ़ करें"</string>
+    <string name="set_default" msgid="4417505153468300351">"सामान्य सेट करें"</string>
+    <string name="clear_default" msgid="7193185801596678067">"सामान्य साफ़ करें"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"पाठ की प्रतिलिपि बनाई गई"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"आपके परिवर्तन छोड़ें?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
