@@ -453,24 +453,6 @@
             </intent-filter>
         </activity>
 
-        <!-- The widget that shows details and the social stream of a contact -->
-        <receiver android:name=".socialwidget.SocialWidgetProvider"
-            android:label="@string/social_widget_label" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                    android:resource="@xml/social_widget_info" />
-        </receiver>
-
-        <activity
-            android:name=".socialwidget.SocialWidgetConfigureActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.APPWIDGET_PICK" />
-            </intent-filter>
-        </activity>
-
         <!-- Intercept Dialer Intents for devices without a phone.
              This activity should have the same intent filters as the DialtactsActivity,
              so that its capturing the same events. Omit android.intent.category.LAUNCHER, because
