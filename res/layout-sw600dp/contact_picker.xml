@@ -73,7 +73,7 @@
             android:duplicateParentState="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/action_bar_button_text_color"
-            style="@android:style/Widget.Holo.ActionBar.TabText"
+            style="@android:style/Widget.Holo.Light.ActionBar.TabText"
             android:text="@string/pickerNewContactText"/>
     </LinearLayout>
 </LinearLayout>

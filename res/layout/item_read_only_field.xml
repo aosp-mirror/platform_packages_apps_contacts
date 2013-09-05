@@ -33,7 +33,7 @@
         android:layout_marginRight="8dip"
         android:layout_marginStart="8dip"
         android:layout_marginEnd="8dip"
-        android:background="?android:attr/listDivider" />
+        android:background="@color/secondary_header_separator_color" />
 
     <LinearLayout
         android:layout_width="match_parent"

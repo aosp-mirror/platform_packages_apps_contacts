@@ -1429,7 +1429,7 @@ public class PeopleActivity extends ContactsActivity
         } else {
             switch (mActionBarAdapter.getCurrentTab()) {
                 case TabState.FAVORITES:
-                    addContactMenu.setVisible(false);
+                    addContactMenu.setVisible(true);
                     addGroupMenu.setVisible(false);
                     contactsFilterMenu.setVisible(false);
                     clearFrequentsMenu.setVisible(hasFrequents());

@@ -42,7 +42,7 @@
         android:layout_height="1dip"
         android:layout_marginRight="?attr/list_item_padding_right"
         android:layout_marginEnd="?attr/list_item_padding_right"
-        android:background="?android:attr/listDivider" />
+        android:background="@color/secondary_header_separator_color" />
 
     <include
         android:id="@+id/group_list_header"

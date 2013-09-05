@@ -16,11 +16,7 @@
 -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@drawable/tab_selected_pressed" android:state_pressed="true" android:state_selected="true"/>
-    <item android:drawable="@drawable/tab_selected_focused" android:state_focused="true" android:state_selected="true"/>
-    <item android:drawable="@drawable/tab_selected" android:state_selected="true"/>
-    <item android:drawable="@drawable/tab_unselected_pressed" android:state_pressed="true"/>
-    <item android:drawable="@drawable/tab_unselected_focused" android:state_focused="true"/>
-
+    <item android:drawable="@drawable/tab_selected_pressed" android:state_pressed="true"/>
+    <item android:drawable="@drawable/tab_selected_focused" android:state_focused="true"/>
+    <item android:drawable="@drawable/tab_selected" />
 </selector>

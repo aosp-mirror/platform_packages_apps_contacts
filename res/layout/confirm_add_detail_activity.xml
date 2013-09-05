@@ -133,7 +133,7 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dip"
-        android:background="?android:attr/listDivider"/>
+        android:background="@color/secondary_header_separator_color"/>
 
     <!-- Action buttons -->
     <LinearLayout
