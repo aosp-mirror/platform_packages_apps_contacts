@@ -1136,7 +1136,7 @@ public class ContactListItemView extends ViewGroup
             mCountView.setSingleLine(true);
             mCountView.setEllipsize(getTextEllipsis());
             mCountView.setTextAppearance(mContext, android.R.style.TextAppearance_Medium);
-            mCountView.setTextColor(R.color.contact_count_text_color);
+            mCountView.setTextColor(R.color.people_app_theme_color);
             addView(mCountView);
         }
         return mCountView;
