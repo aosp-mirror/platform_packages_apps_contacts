@@ -16,11 +16,14 @@
 
 <resources>
 
-    <!-- Colors in the contact browser list -->
-    <color name="contact_count_text_color">#AAAAAA</color>
+    <!-- Divider color for header separator -->
+    <color name="main_header_separator_color">#AAAAAA</color>
+
+    <!-- Divider color for header separator -->
+    <color name="secondary_header_separator_color">#D0D0D0</color>
 
     <!-- Color of the theme of the People app -->
-    <color name="people_app_theme_color">#33B5E5</color>
+    <color name="people_app_theme_color">#363636</color>
 
     <!-- Color of image view placeholder. -->
     <color name="image_placeholder">#DDDDDD</color>
