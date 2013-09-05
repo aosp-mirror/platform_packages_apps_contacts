@@ -23,18 +23,24 @@
     <color name="quickcontact_name_detail_background">#66000000</color>
 
     <!-- Color of the background of the contact detail and editor pages -->
-    <color name="background_primary">#FFFFFF</color>
+    <color name="background_primary">#f5f5f5</color>
 
     <color name="background_social_updates">#ffeeeeee</color>
 
     <!-- Color used for the letter in the A-Z section header -->
-    <color name="section_header_text_color">#ff999999</color>
+    <color name="section_header_text_color">#363636</color>
 
     <!-- Color of the text in the updates tab in the tab carousel on the contact detail page -->
     <color name="detail_update_tab_text_color">#777777</color>
 
     <!-- Color of the text of the tab carousel in the contact details  -->
     <color name="detail_tab_carousel_tab_label_color">#EEEEEE</color>
+
+    <!-- Color of the background of the action bar -->
+    <color name="action_bar_background">#e6e6e6</color>
+
+    <!-- Color of the background of the action bar when highlighted (ie. pressed, focused) -->
+    <color name="action_bar_background_highlight">#cecece</color>
 
     <!-- Color of the text for buttons in the action bar  -->
     <color name="action_bar_button_text_color">#FFFFFF</color>

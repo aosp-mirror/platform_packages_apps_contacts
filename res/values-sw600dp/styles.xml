@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:actionBarWidgetTheme">@style/ContactsActionBarTheme</item>
         <item name="android:actionBarItemBackground">@drawable/action_bar_item_background</item>
@@ -43,10 +43,10 @@
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
         <item name="list_item_header_height">32dip</item>
         <item name="list_item_header_underline_height">1dip</item>
-        <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
+        <item name="list_item_header_underline_color">@color/main_header_separator_color</item>
         <item name="list_item_data_width_weight">5</item>
         <item name="list_item_label_width_weight">3</item>
-        <item name="list_item_contacts_count_text_color">@color/contact_count_text_color</item>
+        <item name="list_item_contacts_count_text_color">@color/people_app_theme_color</item>
         <item name="list_item_contacts_count_text_size">12sp</item>
         <item name="contact_browser_list_padding_left">0dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>
@@ -76,10 +76,10 @@
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
         <item name="list_item_header_height">24dip</item>
         <item name="list_item_header_underline_height">1dip</item>
-        <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
+        <item name="list_item_header_underline_color">@color/main_header_separator_color</item>
         <item name="list_item_data_width_weight">5</item>
         <item name="list_item_label_width_weight">3</item>
-        <item name="list_item_contacts_count_text_color">@color/contact_count_text_color</item>
+        <item name="list_item_contacts_count_text_color">@color/people_app_theme_color</item>
         <item name="list_item_contacts_count_text_size">12sp</item>
         <item name="contact_browser_list_padding_left">24dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>

@@ -16,19 +16,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_search"
-        android:icon="@drawable/ic_ab_search_holo_dark"
+        android:icon="@drawable/ic_search_dk"
         android:title="@string/menu_search"
         android:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_add_contact"
-        android:icon="@drawable/ic_add_contact_holo_dark"
+        android:icon="@drawable/ic_add_person_dk"
         android:title="@string/menu_new_contact_action_bar"
         android:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_add_group"
-        android:icon="@drawable/ic_add_group_holo_dark"
+        android:icon="@drawable/ic_add_person_dk"
         android:title="@string/menu_new_group_action_bar"
         android:showAsAction="ifRoom" />
 

@@ -85,9 +85,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private boolean mShowTabsAsText;
 
     public interface TabState {
-        public static int GROUPS = 0;
+        public static int FAVORITES = 0;
         public static int ALL = 1;
-        public static int FAVORITES = 2;
+        public static int GROUPS = 2;
 
         public static int COUNT = 3;
         public static int DEFAULT = ALL;
@@ -178,9 +178,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     }
 
     private void setupTabs() {
-        addTab(TabState.GROUPS, R.drawable.ic_tab_groups, R.string.contactsGroupsLabel);
-        addTab(TabState.ALL, R.drawable.ic_tab_all, R.string.contactsAllLabel);
         addTab(TabState.FAVORITES, R.drawable.ic_tab_starred, R.string.contactsFavoritesLabel);
+        addTab(TabState.ALL, R.drawable.ic_tab_all, R.string.contactsAllLabel);
+        addTab(TabState.GROUPS, R.drawable.ic_tab_groups, R.string.contactsGroupsLabel);
     }
 
     private void setupNavigationList() {
@@ -199,9 +199,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private int getTabPositionFromNavigationItemPosition(int navItemPos) {
         switch(navItemPos) {
             case 0:
-                return TabState.ALL;
-            case 1:
                 return TabState.FAVORITES;
+            case 1:
+                return TabState.ALL;
             case 2:
                 return TabState.GROUPS;
         }
@@ -215,9 +215,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
      */
     private int getNavigationItemPositionFromTabPosition(int tabPos) {
         switch(tabPos) {
-            case TabState.ALL:
-                return 0;
             case TabState.FAVORITES:
+                return 0;
+            case TabState.ALL:
                 return 1;
             case TabState.GROUPS:
                 return 2;

@@ -16,20 +16,9 @@
 -->
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-
     <item>
         <shape android:shape="rectangle" >
-            <solid android:color="#27ffffff" />
+            <solid android:color="@color/action_bar_background_highlight" />
         </shape>
     </item>
-    <item>
-        <shape android:shape="rectangle" >
-            <solid android:color="#00000000" />
-
-            <stroke
-                android:width="2dp"
-                android:color="#27ffffff" />
-        </shape>
-    </item>
-
 </layer-list>
