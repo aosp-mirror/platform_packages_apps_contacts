@@ -26,6 +26,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.provider.ContactsContract.Preferences;
 import android.provider.ContactsContract.StreamItems;
 import android.text.Html;
 import android.text.Html.ImageGetter;
@@ -94,20 +95,19 @@ public class ContactDetailDisplayUtils {
      * Returns res/string/missing_name if there is no display name.
      */
     public static CharSequence getDisplayName(Context context, Contact contactData) {
-        CharSequence displayName = contactData.getDisplayName();
-        CharSequence altDisplayName = contactData.getAltDisplayName();
         ContactsPreferences prefs = new ContactsPreferences(context);
-        CharSequence styledName = "";
-        if (!TextUtils.isEmpty(displayName) && !TextUtils.isEmpty(altDisplayName)) {
-            if (prefs.getDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-                styledName = displayName;
-            } else {
-                styledName = altDisplayName;
+        final CharSequence displayName = contactData.getDisplayName();
+        if (prefs.getDisplayOrder() == Preferences.DISPLAY_ORDER_PRIMARY) {
+            if (!TextUtils.isEmpty(displayName)) {
+                return displayName;
             }
         } else {
-            styledName = context.getResources().getString(R.string.missing_name);
+            final CharSequence altDisplayName = contactData.getAltDisplayName();
+            if (!TextUtils.isEmpty(altDisplayName)) {
+                return altDisplayName;
+            }
         }
-        return styledName;
+        return context.getResources().getString(R.string.missing_name);
     }
 
     /**
