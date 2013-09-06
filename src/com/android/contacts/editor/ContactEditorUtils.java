@@ -70,7 +70,7 @@ public class ContactEditorUtils {
 
     public static synchronized ContactEditorUtils getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new ContactEditorUtils(context);
+            sInstance = new ContactEditorUtils(context.getApplicationContext());
         }
         return sInstance;
     }

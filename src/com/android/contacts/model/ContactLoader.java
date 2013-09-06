@@ -35,35 +35,34 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.StreamItemPhotos;
-import android.provider.ContactsContract.StreamItems;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.LongSparseArray;
 
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
+import com.android.contacts.common.util.Constants;
+import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.model.dataitem.PhoneDataItem;
 import com.android.contacts.model.dataitem.PhotoDataItem;
 import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.util.DataStatus;
-import com.android.contacts.util.StreamItemEntry;
-import com.android.contacts.util.StreamItemPhotoEntry;
-import com.android.contacts.common.util.UriUtils;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -72,6 +71,7 @@ import java.util.Set;
  * Loads a single Contact and all it constituent RawContacts.
  */
 public class ContactLoader extends AsyncTaskLoader<Contact> {
+
     private static final String TAG = ContactLoader.class.getSimpleName();
 
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
@@ -316,7 +316,11 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 result = new Contact(mRequestedUri, cachedResult);
                 resultIsCached = true;
             } else {
-                result = loadContactEntity(resolver, uriCurrentFormat);
+                if (uriCurrentFormat.getLastPathSegment().equals(Constants.LOOKUP_URI_ENCODED)) {
+                    result = loadEncodedContactEntity(uriCurrentFormat);
+                } else {
+                    result = loadContactEntity(resolver, uriCurrentFormat);
+                }
                 resultIsCached = false;
             }
             if (result.isLoaded()) {
@@ -344,6 +348,83 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
             Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
             return Contact.forError(mRequestedUri, e);
         }
+    }
+
+    private Contact loadEncodedContactEntity(Uri uri) throws JSONException {
+        final String jsonString = uri.getQueryParameter(Constants.LOOKUP_URI_JSON);
+        final JSONObject json = new JSONObject(jsonString);
+
+        final long directoryId =
+                Long.valueOf(uri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY));
+
+        final String displayName = json.getString(Contacts.DISPLAY_NAME);
+        final String altDisplayName = json.optString(
+                Contacts.DISPLAY_NAME_ALTERNATIVE, displayName);
+        final int displayNameSource = json.getInt(Contacts.DISPLAY_NAME_SOURCE);
+        final Contact contact = new Contact(
+                uri, uri,
+                mLookupUri,
+                directoryId,
+                null /* lookupKey */,
+                -1 /* id */,
+                -1 /* nameRawContactId */,
+                displayNameSource,
+                -1 /* photoId */,
+                null /* photoUri */,
+                displayName,
+                altDisplayName,
+                null /* phoneticName */,
+                false /* starred */,
+                null /* presence */,
+                false /* sendToVoicemail */,
+                null /* customRingtone */,
+                false /* isUserProfile */);
+
+        contact.setStatuses(new ImmutableMap.Builder<Long, DataStatus>().build());
+
+        final String accountName = json.optString(RawContacts.ACCOUNT_NAME, null);
+        final String directoryName = uri.getQueryParameter(Directory.DISPLAY_NAME);
+        if (accountName != null) {
+            final String accountType = json.getString(RawContacts.ACCOUNT_TYPE);
+            contact.setDirectoryMetaData(directoryName, null, accountName, accountType,
+                    Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY);
+        } else {
+            contact.setDirectoryMetaData(directoryName, null, null, null,
+                    Directory.EXPORT_SUPPORT_ANY_ACCOUNT);
+        }
+
+        final ContentValues values = new ContentValues();
+        values.put(Data._ID, -1);
+        values.put(Data.CONTACT_ID, -1);
+        final RawContact rawContact = new RawContact(values);
+
+        final JSONObject items = json.getJSONObject(Contacts.CONTENT_ITEM_TYPE);
+        final Iterator keys = items.keys();
+        while (keys.hasNext()) {
+            final String mimetype = (String) keys.next();
+            final JSONObject item = items.getJSONObject(mimetype);
+
+            final ContentValues itemValues = new ContentValues();
+            itemValues.put(Data.MIMETYPE, mimetype);
+            itemValues.put(Data._ID, -1);
+
+            final Iterator iterator = item.keys();
+            while (iterator.hasNext()) {
+                String name = (String) iterator.next();
+                final Object o = item.get(name);
+                if (o instanceof String) {
+                    itemValues.put(name, (String) o);
+                } else if (o instanceof Integer) {
+                    itemValues.put(name, (Integer) o);
+                }
+            }
+            rawContact.addDataItemValues(itemValues);
+        }
+
+        contact.setRawContacts(new ImmutableList.Builder<RawContact>()
+                .add(rawContact)
+                .build());
+        return contact;
     }
 
     private Contact loadContactEntity(ContentResolver resolver, Uri contactUri) {
