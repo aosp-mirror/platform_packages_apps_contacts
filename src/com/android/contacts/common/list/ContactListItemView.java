@@ -37,6 +37,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView.SelectionBoundsAdjuster;
@@ -1529,5 +1530,16 @@ public class ContactListItemView extends ViewGroup
         photo.setScaleType(ImageView.ScaleType.CENTER);
         photo.setBackgroundResource(backgroundId);
         photo.setImageResource(drawableId);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        final float x = event.getX();
+        final float y = event.getY();
+        if (mBoundsWithoutHeader.contains((int) x, (int) y)) {
+            return super.onTouchEvent(event);
+        } else {
+            return true;
+        }
     }
 }
