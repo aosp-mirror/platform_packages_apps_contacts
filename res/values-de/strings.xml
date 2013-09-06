@@ -214,7 +214,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Sollen die Änderungen verworfen werden?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Mein Profil einrichten"</string>
-    <string name="enter_contact_name" msgid="1738391320566349924">"Name der Person eingeben"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Namen der Person eingeben"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Gruppenname"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mein lokales Profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mein <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-Profil"</string>
