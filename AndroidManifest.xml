@@ -217,7 +217,8 @@
         <activity
             android:name=".preference.ContactsPreferenceActivity"
             android:label="@string/activity_title_settings"
-            android:theme="@style/ContactsPreferencesTheme" />
+            android:theme="@style/ContactsPreferencesTheme"
+            android:exported="false"/>
 
         <!-- Used to filter contacts list by account -->
         <activity

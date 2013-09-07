@@ -75,4 +75,9 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
         }
         return false;
     }
+
+    @Override
+    protected boolean isValidFragment(String fragmentName) {
+        return true;
+    }
 }
