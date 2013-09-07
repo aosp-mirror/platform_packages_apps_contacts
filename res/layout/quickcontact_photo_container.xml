@@ -24,7 +24,8 @@
             android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:clickable="true" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
