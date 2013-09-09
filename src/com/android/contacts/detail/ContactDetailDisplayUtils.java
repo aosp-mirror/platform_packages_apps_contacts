@@ -129,9 +129,14 @@ public class ContactDetailDisplayUtils {
         if (contactData.isDirectoryEntry()) {
             String directoryDisplayName = contactData.getDirectoryDisplayName();
             String directoryType = contactData.getDirectoryType();
-            String displayName = !TextUtils.isEmpty(directoryDisplayName)
-                    ? directoryDisplayName
-                    : directoryType;
+            final String displayName;
+            if (!TextUtils.isEmpty(directoryDisplayName)) {
+                displayName = directoryDisplayName;
+            } else if (!TextUtils.isEmpty(directoryType)) {
+                displayName = directoryType;
+            } else {
+                return null;
+            }
             return context.getString(R.string.contact_directory_description, displayName);
         }
         return null;
