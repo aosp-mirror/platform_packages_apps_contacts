@@ -114,7 +114,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         if (manager != null) {
             mExtendedDirectories = manager.getExtendedDirectories(mContext);
         } else {
-            mExtendedDirectories = null;
+            // Empty list to avoid sticky NPE's
+            mExtendedDirectories = new ArrayList<DirectoryPartition>();
         }
     }
 
