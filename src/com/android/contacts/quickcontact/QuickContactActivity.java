@@ -112,6 +112,7 @@ public class QuickContactActivity extends Activity {
     private View mSelectedTabRectangle;
     private View mLineAfterTrack;
 
+    private ImageView mPhotoView;
     private ImageView mOpenDetailsImage;
     private ImageView mStarImage;
     private ViewPager mListPager;
@@ -237,7 +238,11 @@ public class QuickContactActivity extends Activity {
 
         // find and prepare correct header view
         mPhotoContainer = findViewById(R.id.photo_container);
+
         setHeaderNameText(R.id.name, R.string.missing_name);
+
+        mPhotoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
+        mPhotoView.setOnClickListener(openDetailsClickHandler);
 
         mStopWatch.lap("v"); // view initialized
 
@@ -372,8 +377,7 @@ public class QuickContactActivity extends Activity {
 
         mStopWatch.lap("sph"); // Start photo setting
 
-        final ImageView photoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
-        mPhotoSetter.setupContactPhoto(data, photoView);
+        mPhotoSetter.setupContactPhoto(data, mPhotoView);
 
         mStopWatch.lap("ph"); // Photo set
 
