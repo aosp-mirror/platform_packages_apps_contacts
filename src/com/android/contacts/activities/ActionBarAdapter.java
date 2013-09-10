@@ -186,8 +186,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private void setupNavigationList() {
         ArrayAdapter<String> navAdapter = new CustomArrayAdapter(mContext,
                 R.layout.people_navigation_item);
-        navAdapter.add(mContext.getString(R.string.contactsAllLabel));
         navAdapter.add(mContext.getString(R.string.contactsFavoritesLabel));
+        navAdapter.add(mContext.getString(R.string.contactsAllLabel));
         navAdapter.add(mContext.getString(R.string.contactsGroupsLabel));
         mActionBar.setListNavigationCallbacks(navAdapter, mNavigationListener);
     }
