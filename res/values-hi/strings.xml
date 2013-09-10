@@ -122,8 +122,8 @@
     <string name="menu_share" msgid="943789700636542260">"साझा करें"</string>
     <string name="share_via" msgid="563121028023030093">"इसके द्वारा संपर्क साझा करें"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"खाते के तहत समूह बनाएं"</string>
-    <string name="audio_chat" msgid="2535716629358298691">"ध्वनि चैट"</string>
-    <string name="video_chat" msgid="1872255818640336072">"वीडियो चैट"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"ध्वनि बातचीत"</string>
+    <string name="video_chat" msgid="1872255818640336072">"वीडियो बातचीत"</string>
     <string name="connections" msgid="8098440723172028350">"कनेक्शन"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"कनेक्शन जोड़ें"</string>
     <string name="recent" msgid="2659189233141493004">"हाल ही के"</string>
