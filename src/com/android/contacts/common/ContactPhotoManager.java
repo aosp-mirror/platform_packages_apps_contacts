@@ -58,6 +58,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -1109,7 +1110,13 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                 }
                 try {
                     if (DEBUG) Log.d(TAG, "Loading " + uri);
-                    InputStream is = mResolver.openInputStream(uri);
+                    final String scheme = uri.getScheme();
+                    InputStream is = null;
+                    if (scheme.equals("http") || scheme.equals("https")) {
+                        is = new URL(uri.toString()).openStream();
+                    } else {
+                        is = mResolver.openInputStream(uri);
+                    }
                     if (is != null) {
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         try {
