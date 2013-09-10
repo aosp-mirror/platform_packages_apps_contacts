@@ -209,7 +209,7 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD कार्डमा कुनै पनि vCard फाइल भेटिएन।"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFCमा प्राप्त सम्पर्क"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"सम्पर्कहरू निर्यात गर्ने?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCard फ़ाइल छान्नुहोस्"</string>
+    <string name="select_vcard_title" msgid="1536575036597557639">"vCard फाइल छान्नुहोस्"</string>
     <string name="import_one_vcard_string" msgid="6199149175802496361">"एउटा vCard फाइल आयात गर्नुहोस्"</string>
     <string name="import_multiple_vcard_string" msgid="8931879029943141122">"बहु vCard फाइलहरू आयात गर्नुहोस्"</string>
     <string name="import_all_vcard_string" msgid="1037495558362397535">"सबै vCard फाइलहरू आयात गर्नुहोस्"</string>

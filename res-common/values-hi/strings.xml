@@ -131,15 +131,15 @@
     <string name="map_work" msgid="9015981646907637207">"कार्यालय का पता देखें"</string>
     <string name="map_other" msgid="55098598855607997">"पता देखें"</string>
     <string name="map_custom" msgid="4943554530347163288">"<xliff:g id="CUSTOM">%s</xliff:g> पता देखें"</string>
-    <string name="chat_aim" msgid="6479001490307452172">"AIM का उपयोग करके चैट करें"</string>
-    <string name="chat_msn" msgid="627481952525245054">"Windows Live का उपयोग करके चैट करें"</string>
-    <string name="chat_yahoo" msgid="5542489454092719897">"Yahoo का उपयोग करके चैट करें"</string>
-    <string name="chat_skype" msgid="3145166404699830256">"Skype का उपयोग करके चैट करें"</string>
-    <string name="chat_qq" msgid="2811762660890755082">"QQ का उपयोग करके चैट करें"</string>
-    <string name="chat_gtalk" msgid="6043734883347741789">"Google टॉक का उपयोग करके चैट करें"</string>
-    <string name="chat_icq" msgid="7538190395602030726">"ICQ का उपयोग करके चैट करें"</string>
-    <string name="chat_jabber" msgid="4525546665986350869">"Jabber का उपयोग करके चैट करें"</string>
-    <string name="chat" msgid="6297650784873558837">"चैट करें"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"AIM का उपयोग करके बातचीत करें"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Windows Live का उपयोग करके बातचीत करें"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Yahoo का उपयोग करके बातचीत करें"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Skype का उपयोग करके बातचीत करें"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"QQ का उपयोग करके बातचीत करें"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Google टॉक का उपयोग करके बातचीत करें"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"ICQ का उपयोग करके बातचीत करें"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Jabber का उपयोग करके बातचीत करें"</string>
+    <string name="chat" msgid="6297650784873558837">"बातचीत करें"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"हटाएं"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"नाम फ़ील्ड विस्तृत या संक्षिप्त करें"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"सभी संपर्क"</string>
