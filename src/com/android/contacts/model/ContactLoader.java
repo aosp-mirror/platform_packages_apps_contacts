@@ -59,8 +59,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -361,6 +362,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         final String altDisplayName = json.optString(
                 Contacts.DISPLAY_NAME_ALTERNATIVE, displayName);
         final int displayNameSource = json.getInt(Contacts.DISPLAY_NAME_SOURCE);
+        final String photoUri = json.optString(Contacts.PHOTO_URI, null);
         final Contact contact = new Contact(
                 uri, uri,
                 mLookupUri,
@@ -370,7 +372,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 -1 /* nameRawContactId */,
                 displayNameSource,
                 -1 /* photoId */,
-                null /* photoUri */,
+                photoUri,
                 displayName,
                 altDisplayName,
                 null /* phoneticName */,
@@ -489,25 +491,35 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
      * not found, returns null
      */
     private void loadPhotoBinaryData(Contact contactData) {
-
         // If we have a photo URI, try loading that first.
         String photoUri = contactData.getPhotoUri();
         if (photoUri != null) {
             try {
-                AssetFileDescriptor fd = getContext().getContentResolver()
-                       .openAssetFileDescriptor(Uri.parse(photoUri), "r");
+                final InputStream inputStream;
+                final AssetFileDescriptor fd;
+                final Uri uri = Uri.parse(photoUri);
+                final String scheme = uri.getScheme();
+                if ("http".equals(scheme) || "https".equals(scheme)) {
+                    // Support HTTP urls that might come from extended directories
+                    inputStream = new URL(photoUri).openStream();
+                    fd = null;
+                } else {
+                    fd = getContext().getContentResolver().openAssetFileDescriptor(uri, "r");
+                    inputStream = fd.createInputStream();
+                }
                 byte[] buffer = new byte[16 * 1024];
-                FileInputStream fis = fd.createInputStream();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 try {
                     int size;
-                    while ((size = fis.read(buffer)) != -1) {
+                    while ((size = inputStream.read(buffer)) != -1) {
                         baos.write(buffer, 0, size);
                     }
                     contactData.setPhotoBinaryData(baos.toByteArray());
                 } finally {
-                    fis.close();
-                    fd.close();
+                    inputStream.close();
+                    if (fd != null) {
+                        fd.close();
+                    }
                 }
                 return;
             } catch (IOException ioe) {
