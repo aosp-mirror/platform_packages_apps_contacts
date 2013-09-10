@@ -69,6 +69,7 @@ import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.model.dataitem.EmailDataItem;
 import com.android.contacts.model.dataitem.ImDataItem;
 import com.android.contacts.common.util.Constants;
+import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;
@@ -352,26 +353,34 @@ public class QuickContactActivity extends Activity {
             mStarImage.setImageResource(R.drawable.ic_favorite_off_lt);
         }
         final Uri lookupUri = data.getLookupUri();
-        mStarImage.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Toggle "starred" state
-                // Make sure there is a contact
-                if (lookupUri != null) {
-                    // Changes the state of the image already before sending updates to the database
-                    if (isStarred) {
-                        mStarImage.setImageResource(R.drawable.ic_favorite_off_lt);
-                    } else {
-                        mStarImage.setImageResource(R.drawable.ic_favorite_on_lt);
-                    }
 
-                    // Now perform the real save
-                    final Intent intent = ContactSaveService.createSetStarredIntent(context,
-                            lookupUri, !isStarred);
-                    context.startService(intent);
+        // If this is a json encoded URI, there is no local contact to star
+        if (UriUtils.isEncodedContactUri(lookupUri)) {
+            mStarImage.setVisibility(View.GONE);
+        } else {
+            mStarImage.setVisibility(View.VISIBLE);
+            mStarImage.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Toggle "starred" state
+                    // Make sure there is a contact
+                    if (lookupUri != null) {
+                        // Changes the state of the image already before sending updates to the
+                        // database
+                        if (isStarred) {
+                            mStarImage.setImageResource(R.drawable.ic_favorite_off_lt);
+                        } else {
+                            mStarImage.setImageResource(R.drawable.ic_favorite_on_lt);
+                        }
+
+                        // Now perform the real save
+                        final Intent intent = ContactSaveService.createSetStarredIntent(context,
+                                lookupUri, !isStarred);
+                        context.startService(intent);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         mDefaultsMap.clear();
 
