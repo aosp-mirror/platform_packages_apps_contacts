@@ -93,6 +93,8 @@ public class ContactListItemView extends ViewGroup
     private int mContactsCountTextColor = Color.BLACK;
     private int mTextIndent = 0;
     private Drawable mActivatedBackgroundDrawable;
+    private static final Typeface mHeaderTextTypeFace = Typeface.create("sans-serif-light",
+            Typeface.NORMAL);
 
     /**
      * Used with {@link #mLabelView}, specifying the width ratio between label and data.
@@ -781,7 +783,7 @@ public class ContactListItemView extends ViewGroup
                 mHeaderTextView = new TextView(mContext);
                 mHeaderTextView.setTextColor(mHeaderTextColor);
                 mHeaderTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSize);
-                mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
+                mHeaderTextView.setTypeface(mHeaderTextTypeFace);
                 mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
                 mHeaderTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                 addView(mHeaderTextView);

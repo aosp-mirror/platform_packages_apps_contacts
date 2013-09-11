@@ -566,21 +566,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                     : directoryPartition.getDirectoryType();
             displayNameTextView.setText(displayName);
         }
-
-        TextView countText = (TextView)view.findViewById(R.id.count);
-        if (directoryPartition.isLoading()) {
-            countText.setText(R.string.search_results_searching);
-        } else {
-            int count = getResultCount(cursor);
-            final int limit = getDirectoryResultLimit(directoryPartition);
-            if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE
-                    && count >= limit) {
-                countText.setText(mContext.getString(R.string.foundTooManyContacts, limit));
-            } else {
-                countText.setText(getQuantityText(
-                        count, R.string.listFoundAllContactsZero, R.plurals.searchFoundContacts));
-            }
-        }
     }
 
     // Default implementation simply returns number of rows in the cursor.
