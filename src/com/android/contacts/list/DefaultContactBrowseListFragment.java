@@ -36,6 +36,7 @@ import com.android.contacts.R;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
+import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.ProfileAndContactsLoader;
 import com.android.contacts.editor.ContactEditorFragment;
@@ -92,7 +93,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected ContactListAdapter createListAdapter() {
         DefaultContactListAdapter adapter = new DefaultContactListAdapter(getContext());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-        adapter.setDisplayPhotos(getResources().getBoolean(R.bool.config_browse_list_show_images));
+        boolean showPhoto = getResources().getBoolean(R.bool.config_browse_list_show_images);
+        adapter.setDisplayPhotos(showPhoto);
+        if (showPhoto) {
+            boolean reverse = getResources().getBoolean(R.bool.config_browse_list_reverse_images);
+            adapter.setPhotoPosition(ContactListItemView.getDefaultPhotoPosition(reverse));
+        }
         return adapter;
     }
 

@@ -22,6 +22,9 @@
     <!-- Flag indicating whether to show images in browse list -->
     <bool name="config_browse_list_show_images">true</bool>
 
+    <!-- Flag indicating whether to show images in browse list -->
+    <bool name="config_browse_list_reverse_images">true</bool>
+
     <!-- If true, phonetic name is included in the contact editor by default -->
     <bool name="config_editor_include_phonetic_name">false</bool>
 
