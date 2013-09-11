@@ -90,8 +90,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public ContactEntryListAdapter(Context context) {
         super(context);
-        addPartitions();
         setDefaultFilterHeaderText(R.string.local_search_label);
+        addPartitions();
     }
 
     protected void setDefaultFilterHeaderText(int resourceId) {
@@ -134,6 +134,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         partition.setDirectoryType(getContext().getString(R.string.contactsList));
         partition.setPriorityDirectory(true);
         partition.setPhotoSupported(true);
+        partition.setLabel(mDefaultFilterHeaderText.toString());
         return partition;
     }
 
