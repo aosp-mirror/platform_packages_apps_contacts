@@ -389,10 +389,11 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         if (accountName != null) {
             final String accountType = json.getString(RawContacts.ACCOUNT_TYPE);
             contact.setDirectoryMetaData(directoryName, null, accountName, accountType,
-                    Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY);
+                    json.optInt(Directory.EXPORT_SUPPORT,
+                            Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY));
         } else {
             contact.setDirectoryMetaData(directoryName, null, null, null,
-                    Directory.EXPORT_SUPPORT_ANY_ACCOUNT);
+                    json.optInt(Directory.EXPORT_SUPPORT, Directory.EXPORT_SUPPORT_ANY_ACCOUNT));
         }
 
         final ContentValues values = new ContentValues();
