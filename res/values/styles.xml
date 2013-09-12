@@ -69,9 +69,9 @@
         <item name="section_header_background">@drawable/list_title_holo</item>
         <item name="list_section_header_height">24dip</item>
         <item name="list_item_divider">?android:attr/listDivider</item>
-        <item name="list_item_padding_top">0dip</item>
+        <item name="list_item_padding_top">8dip</item>
         <item name="list_item_padding_right">0dip</item>
-        <item name="list_item_padding_bottom">0dip</item>
+        <item name="list_item_padding_bottom">8dip</item>
         <item name="list_item_padding_left">0dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
@@ -80,16 +80,16 @@
         <item name="list_item_photo_size">@dimen/contact_browser_list_item_photo_size</item>
         <item name="list_item_profile_photo_size">70dip</item>
         <item name="list_item_prefix_highlight_color">@color/people_app_theme_color</item>
-        <item name="list_item_header_text_color">@color/people_app_theme_color</item>
-        <item name="list_item_header_text_size">14sp</item>
-        <item name="list_item_header_height">32dip</item>
-        <item name="list_item_header_underline_height">1dip</item>
-        <item name="list_item_header_underline_color">@color/main_header_separator_color</item>
+        <item name="list_item_header_text_color">@color/dialtacts_secondary_text_color</item>
+        <item name="list_item_header_text_size">20sp</item>
+        <item name="list_item_header_height">48dip</item>
+        <item name="list_item_header_underline_height">2dip</item>
+        <item name="list_item_header_underline_color">@color/secondary_header_separator_color</item>
         <item name="list_item_data_width_weight">5</item>
         <item name="list_item_label_width_weight">3</item>
         <item name="list_item_contacts_count_text_color">@color/people_app_theme_color</item>
         <item name="list_item_header_text_indent">8dip</item>
-        <item name="contact_browser_list_padding_left">16dip</item>
+        <item name="contact_browser_list_padding_left">8dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>
         <item name="contact_browser_background">@android:color/transparent</item>
         <item name="list_item_text_indent">@dimen/contact_browser_list_item_text_indent</item>
@@ -227,12 +227,12 @@
     <style name="GroupMembershipSizeTextAppearance" parent="@android:style/TextAppearance.Small"/>
 
     <style name="PeopleNavigationDropDownTextAppearance">
-        <item name="android:textColor">#333333</item>
+        <item name="android:textColor">@color/primary_text_color</item>
         <item name="android:textSize">18sp</item>
     </style>
 
     <style name="PeopleNavigationDropDownHeaderTextAppearance">
-        <item name="android:textColor">#cdffffff</item>
+        <item name="android:textColor">@color/primary_text_color</item>
         <item name="android:textSize">18sp</item>
     </style>
 

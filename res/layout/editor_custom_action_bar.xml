@@ -44,7 +44,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="8dip"
                 android:layout_marginEnd="8dip"
-                android:src="@drawable/ic_menu_done_holo_dark"
+                android:src="@drawable/ic_menu_done_holo_light"
                 android:description="@string/menu_done" />
 
             <TextView

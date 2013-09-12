@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListFragment;
+import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.list.JoinContactLoader.JoinContactLoaderResult;
 
 /**
@@ -135,7 +136,9 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
 
     @Override
     public JoinContactListAdapter createListAdapter() {
-        return new JoinContactListAdapter(getActivity());
+        JoinContactListAdapter adapter = new JoinContactListAdapter(getActivity());
+        adapter.setPhotoPosition(ContactListItemView.getDefaultPhotoPosition(true /* opposite */));
+        return adapter;
     }
 
     @Override
