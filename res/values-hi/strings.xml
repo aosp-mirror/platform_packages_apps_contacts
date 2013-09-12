@@ -35,7 +35,7 @@
     <string name="editGroupDescription" msgid="6321161304201540561">"समूह संपादित करें"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"समूह बनाएं"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"इस बारे में"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"अपडेट"</string>
+    <string name="contactDetailUpdates" msgid="3780588624763446941">"नई जानकारी"</string>
     <string name="searchHint" msgid="8482945356247760701">"संपर्क खोजें"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"संपर्क देखें"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"पसंदीदा में जोड़ें"</string>
@@ -118,7 +118,7 @@
     <string name="description_plus_button" msgid="515164827856229880">"जोड़ें"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g> में से <xliff:g id="CURRENT_NUMBER">%s</xliff:g> संपर्क"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"आपके संपर्कों के नाम"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"यह कार्यवाही प्रबंधित करने के लिए कोई एप्लिकेशन नहीं मिला."</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"यह कार्यवाही प्रबंधित करने के लिए कोई एप्स नहीं मिला."</string>
     <string name="menu_share" msgid="943789700636542260">"साझा करें"</string>
     <string name="share_via" msgid="563121028023030093">"इसके द्वारा संपर्क साझा करें"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"खाते के तहत समूह बनाएं"</string>
@@ -127,12 +127,12 @@
     <string name="connections" msgid="8098440723172028350">"कनेक्शन"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"कनेक्शन जोड़ें"</string>
     <string name="recent" msgid="2659189233141493004">"हाल ही के"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"हाल ही के अपडेट"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"हाल ही के नई जानकारी"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> संपर्क"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"इस फ़ोटो का उपयोग करें"</string>
-    <string name="contact_read_only" msgid="7421346527289472273">"इस एप्लिकेशन द्वारा संपादन-योग्‍य नहीं."</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"इस एप्स द्वारा संपादन-योग्‍य नहीं."</string>
     <string name="no_contact_details" msgid="6636856378019344497">"इस संपर्क की कोई अतिरिक्त जानकारी नहीं है."</string>
     <string name="group_read_only" msgid="1061762906115697637">"इस उपकरण पर संपादन योग्‍य नहीं."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"सूची को इसके अनुसार क्रमित करें"</string>
@@ -145,10 +145,10 @@
     <string name="take_new_photo" msgid="7341354729436576304">"नया फ़ोटो लें"</string>
     <string name="pick_photo" msgid="3746334626214970837">"गैलरी से फ़ोटो चुनें"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"गैलरी से नए फ़ोटो को चुनें"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषा के परिवर्तन दिखाने के लिए संपर्क सूची को अपडेट किया जा रहा है."</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची अपडेट की जा रही है."</string>
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषा के परिवर्तन दिखाने के लिए संपर्क सूची से नई जानकारी मिल रहा है."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची से नई जानकारी मिल रहा है."</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. \n\nअपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB मोबाइल संग्रहण की आवश्‍यकता होती है.\n\nनिम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"कुछ एप्लिकेशन अनइंस्टॉल करें"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"कुछ एप्स अनइंस्टॉल करें"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"अपग्रेड का पुन: प्रयास करें"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"खोज रहा है…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"चयनित दिखाएं"</string>
