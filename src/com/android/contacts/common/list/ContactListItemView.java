@@ -235,7 +235,7 @@ public class ContactListItemView extends ViewGroup
         super(context);
         mContext = context;
 
-        mTextHighlighter = new TextHighlighter(Color.GREEN);
+        mTextHighlighter = new TextHighlighter(Typeface.BOLD);
     }
 
     public ContactListItemView(Context context, AttributeSet attrs) {
@@ -302,9 +302,8 @@ public class ContactListItemView extends ViewGroup
                 a.getDimensionPixelOffset(
                         R.styleable.ContactListItemView_list_item_padding_bottom, 0));
 
-        final int prefixHighlightColor = a.getColor(
-                R.styleable.ContactListItemView_list_item_prefix_highlight_color, Color.GREEN);
-        mTextHighlighter = new TextHighlighter(prefixHighlightColor);
+        mTextHighlighter = new TextHighlighter(Typeface.BOLD);
+
         a.recycle();
 
         a = getContext().obtainStyledAttributes(android.R.styleable.Theme);
