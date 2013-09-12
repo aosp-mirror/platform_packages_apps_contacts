@@ -195,6 +195,11 @@ public class PeopleActivity extends ContactsActivity
      */
     private boolean mCurrentFilterIsValid;
 
+    /**
+     * This is to disable {@link #onOptionsItemSelected} when we trying to stop the activity.
+     */
+    private boolean mDisableOptionItemSelected;
+
     /** Sequential ID assigned to each instance; used for logging */
     private final int mInstanceId;
     private static final AtomicInteger sNextInstanceId = new AtomicInteger();
@@ -500,6 +505,7 @@ public class PeopleActivity extends ContactsActivity
         // Re-register the listener, which may have been cleared when onSaveInstanceState was
         // called.  See also: onSaveInstanceState
         mActionBarAdapter.setListener(this);
+        mDisableOptionItemSelected = false;
         if (mTabPager != null) {
             mTabPager.setOnPageChangeListener(mTabPagerListener);
         }
@@ -1488,6 +1494,10 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDisableOptionItemSelected) {
+            return false;
+        }
+
         switch (item.getItemId()) {
             case android.R.id.home: {
                 // The home icon on the action bar is pressed
@@ -1706,6 +1716,7 @@ public class PeopleActivity extends ContactsActivity
         // Clear the listener to make sure we don't get callbacks after onSaveInstanceState,
         // in order to avoid doing fragment transactions after it.
         // TODO Figure out a better way to deal with the issue.
+        mDisableOptionItemSelected = true;
         mActionBarAdapter.setListener(null);
         if (mTabPager != null) {
             mTabPager.setOnPageChangeListener(null);
