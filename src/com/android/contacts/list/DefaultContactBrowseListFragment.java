@@ -285,7 +285,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mProfileHeader = inflater.inflate(R.layout.user_profile_header, null, false);
         mCounterHeaderView = (TextView) mProfileHeader.findViewById(R.id.contacts_count);
         mProfileTitle = (TextView) mProfileHeader.findViewById(R.id.profile_title);
-        mProfileTitle.setAllCaps(true);
         mProfileHeaderContainer.addView(mProfileHeader);
         list.addHeaderView(mProfileHeaderContainer, null, false);
 

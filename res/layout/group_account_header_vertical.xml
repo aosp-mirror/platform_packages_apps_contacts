@@ -34,10 +34,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="?attr/list_item_header_text_indent"
         android:paddingStart="?attr/list_item_header_text_indent"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/people_app_theme_color"
-        android:textStyle="bold"
-        android:textAllCaps="true"
+        android:textAppearance="@style/SectionHeaderStyle"
         android:singleLine="true"/>
 
     <!-- TODO: Should use correct color with a correct name (content should be same).
@@ -48,7 +45,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="?attr/list_item_header_text_indent"
         android:paddingStart="?attr/list_item_header_text_indent"
-        android:textColor="@color/people_app_theme_color"
+        android:textAppearance="@style/SectionHeaderStyle"
         android:textSize="12sp"
         android:singleLine="true"
         android:ellipsize="middle" />

@@ -34,14 +34,11 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:text="@string/user_profile_contacts_list_header"
-        android:textStyle="bold"
         android:ellipsize="end"
         android:layout_weight="1"
-        android:textAllCaps="true"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/SectionHeaderStyle"
         android:paddingLeft="?attr/list_item_text_indent"
-        android:paddingStart="?attr/list_item_text_indent"
-        android:textColor="@color/people_app_theme_color" />
+        android:paddingStart="?attr/list_item_text_indent" />
 
     <TextView
         android:id="@+id/contacts_count"
