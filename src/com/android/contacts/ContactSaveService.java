@@ -40,6 +40,7 @@ import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Groups;
+import android.provider.ContactsContract.PinnedPositions;
 import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
@@ -834,6 +835,20 @@ public class ContactSaveService extends IntentService {
         final ContentValues values = new ContentValues(1);
         values.put(Contacts.STARRED, value);
         getContentResolver().update(contactUri, values, null, null);
+
+        // Undemote the contact if necessary
+        final Cursor c = getContentResolver().query(contactUri, new String[] {Contacts._ID},
+                null, null, null);
+        try {
+            if (c.moveToFirst()) {
+                final long id = c.getLong(0);
+                values.clear();
+                values.put(String.valueOf(id), PinnedPositions.UNDEMOTE);
+                getContentResolver().update(PinnedPositions.UPDATE_URI, values, null, null);
+            }
+        } finally {
+            c.close();
+        }
     }
 
     /**
