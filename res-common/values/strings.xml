@@ -264,7 +264,7 @@
 
     <!-- Header that expands to list all event types when editing an event of a contact
          [CHAR LIMIT=20] -->
-    <string name="eventLabelsGroup">Events</string>
+    <string name="eventLabelsGroup">Special dates</string>
 
     <!-- Generic action string for text messaging a contact. Used by AccessibilityService to
          announce the purpose of the view. [CHAR LIMIT=NONE] -->
