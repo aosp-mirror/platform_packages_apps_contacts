@@ -105,7 +105,8 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Szervezet"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Kapcsolat"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"Események"</string>
+    <!-- no translation found for eventLabelsGroup (5633007096910029346) -->
+    <skip />
     <string name="sms" msgid="8086289395154598654">"Szöveges üzenet"</string>
     <string name="postal_address" msgid="7692926530081579786">"Cím"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Cég"</string>
