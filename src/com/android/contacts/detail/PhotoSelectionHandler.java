@@ -22,9 +22,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.DisplayPhoto;
@@ -48,7 +45,7 @@ import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.UiClosables;
 
-import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Handles displaying a photo selection popup for a given photo view and dealing with the results
@@ -60,11 +57,14 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
 
     private static final int REQUEST_CODE_CAMERA_WITH_DATA = 1001;
     private static final int REQUEST_CODE_PHOTO_PICKED_WITH_DATA = 1002;
+    private static final int REQUEST_CROP_PHOTO = 1003;
 
     protected final Context mContext;
     private final View mPhotoView;
     private final int mPhotoMode;
     private final int mPhotoPickSize;
+    private final Uri mCroppedPhotoUri;
+    private final Uri mTempPhotoUri;
     private final RawContactDeltaList mState;
     private final boolean mIsDirectoryContact;
     private ListPopupWindow mPopup;
@@ -74,6 +74,8 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         mContext = context;
         mPhotoView = photoView;
         mPhotoMode = photoMode;
+        mTempPhotoUri = ContactPhotoUtils.generateTempImageUri(context);
+        mCroppedPhotoUri = ContactPhotoUtils.generateTempCroppedImageUri(mContext);
         mIsDirectoryContact = isDirectoryContact;
         mState = state;
         mPhotoPickSize = getPhotoPickSize();
@@ -115,19 +117,55 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         final PhotoActionListener listener = getListener();
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
-                // Photo was chosen (either new or existing from gallery), and cropped.
-                case REQUEST_CODE_PHOTO_PICKED_WITH_DATA: {
-                    final String path = ContactPhotoUtils.pathForCroppedPhoto(
-                            mContext, listener.getCurrentPhotoFile());
-                    Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    listener.onPhotoSelected(bitmap);
-                    return true;
+                // Cropped photo was returned
+                case REQUEST_CROP_PHOTO: {
+                    final Uri uri;
+                    if (data != null && data.getData() != null) {
+                        uri = data.getData();
+                    } else {
+                        uri = mCroppedPhotoUri;
+                    }
+
+                    try {
+                        // delete the original temporary photo if it exists
+                        mContext.getContentResolver().delete(mTempPhotoUri, null, null);
+                        listener.onPhotoSelected(uri);
+                        return true;
+                    } catch (FileNotFoundException e) {
+                        return false;
+                    }
                 }
-                // Photo was successfully taken, now crop it.
-                case REQUEST_CODE_CAMERA_WITH_DATA: {
-                    doCropPhoto(listener.getCurrentPhotoFile());
+
+                // Photo was successfully taken or selected from gallery, now crop it.
+                case REQUEST_CODE_PHOTO_PICKED_WITH_DATA:
+                case REQUEST_CODE_CAMERA_WITH_DATA:
+                    final Uri uri;
+                    boolean isWritable = false;
+                    if (data != null && data.getData() != null) {
+                        uri = data.getData();
+                    } else {
+                        uri = listener.getCurrentPhotoUri();
+                        isWritable = true;
+                    }
+                    final Uri toCrop;
+                    if (isWritable) {
+                        // Since this uri belongs to our file provider, we know that it is writable
+                        // by us. This means that we don't have to save it into another temporary
+                        // location just to be able to crop it.
+                        toCrop = uri;
+                    } else {
+                        toCrop = mTempPhotoUri;
+                        try {
+                            ContactPhotoUtils.savePhotoFromUriToUri(mContext, uri,
+                                    toCrop, false);
+                        } catch (SecurityException e) {
+                            Log.d(TAG, "Did not have read-access to uri : " + uri);
+                            return false;
+                        }
+                    }
+
+                    doCropPhoto(toCrop, mCroppedPhotoUri);
                     return true;
-                }
             }
         }
         return false;
@@ -186,28 +224,16 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     }
 
     /** Used by subclasses to delegate to their enclosing Activity or Fragment. */
-    protected abstract void startPhotoActivity(Intent intent, int requestCode, String photoFile);
+    protected abstract void startPhotoActivity(Intent intent, int requestCode, Uri photoUri);
 
     /**
      * Sends a newly acquired photo to Gallery for cropping
      */
-    private void doCropPhoto(String fileName) {
+    private void doCropPhoto(Uri inputUri, Uri outputUri) {
         try {
-            // Obtain the absolute paths for the newly-taken photo, and the destination
-            // for the soon-to-be-cropped photo.
-            final String newPath = ContactPhotoUtils.pathForNewCameraPhoto(fileName);
-            final String croppedPath = ContactPhotoUtils.pathForCroppedPhoto(mContext, fileName);
-
-            // Add the image to the media store
-            MediaScannerConnection.scanFile(
-                    mContext,
-                    new String[] { newPath },
-                    new String[] { null },
-                    null);
-
             // Launch gallery to crop the photo
-            final Intent intent = getCropImageIntent(newPath, croppedPath);
-            startPhotoActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, fileName);
+            final Intent intent = getCropImageIntent(inputUri, outputUri);
+            startPhotoActivity(intent, REQUEST_CROP_PHOTO, inputUri);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
             Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
@@ -220,9 +246,9 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      *     what should be returned by
      *     {@link PhotoSelectionHandler.PhotoActionListener#getCurrentPhotoFile()}.
      */
-    private void startTakePhotoActivity(String photoFile) {
-        final Intent intent = getTakePhotoIntent(photoFile);
-        startPhotoActivity(intent, REQUEST_CODE_CAMERA_WITH_DATA, photoFile);
+    private void startTakePhotoActivity(Uri photoUri) {
+        final Intent intent = getTakePhotoIntent(photoUri);
+        startPhotoActivity(intent, REQUEST_CODE_CAMERA_WITH_DATA, photoUri);
     }
 
     /**
@@ -231,9 +257,9 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      *     stored by the content-provider.
      *     {@link PhotoSelectionHandler#handlePhotoActivityResult(int, int, Intent)}.
      */
-    private void startPickFromGalleryActivity(String photoFile) {
-        final Intent intent = getPhotoPickIntent(photoFile);
-        startPhotoActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, photoFile);
+    private void startPickFromGalleryActivity(Uri photoUri) {
+        final Intent intent = getPhotoPickIntent(photoUri);
+        startPhotoActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, photoUri);
     }
 
     private int getPhotoPickSize() {
@@ -249,36 +275,32 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     }
 
     /**
-     * Constructs an intent for picking a photo from Gallery, cropping it and returning the bitmap.
+     * Constructs an intent for capturing a photo and storing it in a temporary output uri.
      */
-    private Intent getPhotoPickIntent(String photoFile) {
-        final String croppedPhotoPath = ContactPhotoUtils.pathForCroppedPhoto(mContext, photoFile);
-        final Uri croppedPhotoUri = Uri.fromFile(new File(croppedPhotoPath));
+    private Intent getTakePhotoIntent(Uri outputUri) {
+        final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE, null);
+        ContactPhotoUtils.addPhotoPickerExtras(intent, outputUri);
+        return intent;
+    }
+
+    /**
+     * Constructs an intent for picking a photo from Gallery, and returning the bitmap.
+     */
+    private Intent getPhotoPickIntent(Uri outputUri) {
         final Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("image/*");
-        ContactPhotoUtils.addGalleryIntentExtras(intent, croppedPhotoUri, mPhotoPickSize);
+        ContactPhotoUtils.addPhotoPickerExtras(intent, outputUri);
         return intent;
     }
 
     /**
      * Constructs an intent for image cropping.
      */
-    private Intent getCropImageIntent(String inputPhotoPath, String croppedPhotoPath) {
-        final Uri inputPhotoUri = Uri.fromFile(new File(inputPhotoPath));
-        final Uri croppedPhotoUri = Uri.fromFile(new File(croppedPhotoPath));
+    private Intent getCropImageIntent(Uri inputUri, Uri outputUri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(inputPhotoUri, "image/*");
-        ContactPhotoUtils.addGalleryIntentExtras(intent, croppedPhotoUri, mPhotoPickSize);
-        return intent;
-    }
-
-    /**
-     * Constructs an intent for capturing a photo and storing it in a temporary file.
-     */
-    private static Intent getTakePhotoIntent(String fileName) {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE, null);
-        final String newPhotoPath = ContactPhotoUtils.pathForNewCameraPhoto(fileName);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(newPhotoPath)));
+        intent.setDataAndType(inputUri, "image/*");
+        ContactPhotoUtils.addPhotoPickerExtras(intent, outputUri);
+        ContactPhotoUtils.addCropExtras(intent, mPhotoPickSize);
         return intent;
     }
 
@@ -297,7 +319,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         public void onTakePhotoChosen() {
             try {
                 // Launch camera to take photo for selected contact
-                startTakePhotoActivity(ContactPhotoUtils.generateTempPhotoFileName());
+                startTakePhotoActivity(mTempPhotoUri);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(
                         mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
@@ -308,7 +330,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         public void onPickFromGalleryChosen() {
             try {
                 // Launch picker to choose photo for selected contact
-                startPickFromGalleryActivity(ContactPhotoUtils.generateTempPhotoFileName());
+                startPickFromGalleryActivity(mTempPhotoUri);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(
                         mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
@@ -317,16 +339,16 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
 
         /**
          * Called when the user has completed selection of a photo.
-         * @param bitmap The selected and cropped photo.
+         * @throws FileNotFoundException
          */
-        public abstract void onPhotoSelected(Bitmap bitmap);
+        public abstract void onPhotoSelected(Uri uri) throws FileNotFoundException;
 
         /**
          * Gets the current photo file that is being interacted with.  It is the activity or
          * fragment's responsibility to maintain this in saved state, since this handler instance
          * will not survive rotation.
          */
-        public abstract String getCurrentPhotoFile();
+        public abstract Uri getCurrentPhotoUri();
 
         /**
          * Called when the photo selection dialog is dismissed.

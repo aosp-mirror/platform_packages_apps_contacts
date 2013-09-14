@@ -91,6 +91,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -111,7 +112,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_EDIT_STATE = "state";
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
-    private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
+    private static final String KEY_CURRENT_PHOTO_URI = "currentphotouri";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
     private static final String KEY_CONTACT_WRITABLE_FOR_JOIN = "contactwritableforjoin";
     private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
@@ -220,7 +221,7 @@ public class ContactEditorFragment extends Fragment implements
 
     private Cursor mGroupMetaData;
 
-    private String mCurrentPhotoFile;
+    private Uri mCurrentPhotoUri;
     private Bundle mUpdatedPhotos = new Bundle();
 
     private Context mContext;
@@ -482,7 +483,7 @@ public class ContactEditorFragment extends Fragment implements
             mRawContactIdRequestingPhoto = savedState.getLong(
                     KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mViewIdGenerator = savedState.getParcelable(KEY_VIEW_ID_GENERATOR);
-            mCurrentPhotoFile = savedState.getString(KEY_CURRENT_PHOTO_FILE);
+            mCurrentPhotoUri = savedState.getParcelable(KEY_CURRENT_PHOTO_URI);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
             mContactWritableForJoin = savedState.getBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN);
             mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
@@ -1654,7 +1655,7 @@ public class ContactEditorFragment extends Fragment implements
         }
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
-        outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile);
+        outState.putParcelable(KEY_CURRENT_PHOTO_URI, mCurrentPhotoUri);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         outState.putBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN, mContactWritableForJoin);
         outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
@@ -1722,7 +1723,7 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Sets the photo stored in mPhoto and writes it to the RawContact with the given id
      */
-    private void setPhoto(long rawContact, Bitmap photo, String photoFile) {
+    private void setPhoto(long rawContact, Bitmap photo, Uri photoUri) {
         BaseRawContactEditorView requestingEditor = getRawContactEditorView(rawContact);
 
         if (photo == null || photo.getHeight() < 0 || photo.getWidth() < 0) {
@@ -1736,9 +1737,7 @@ public class ContactEditorFragment extends Fragment implements
             Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
 
-        final String croppedPhotoPath =
-                ContactPhotoUtils.pathForCroppedPhoto(mContext, mCurrentPhotoFile);
-        mUpdatedPhotos.putString(String.valueOf(rawContact), croppedPhotoPath);
+        mUpdatedPhotos.putParcelable(String.valueOf(rawContact), photoUri);
     }
 
     /**
@@ -1771,11 +1770,12 @@ public class ContactEditorFragment extends Fragment implements
                     countWithPicture++;
                 } else {
                     final long rawContactId = entity.getRawContactId();
-                    final String path = mUpdatedPhotos.getString(String.valueOf(rawContactId));
-                    if (path != null) {
-                        final File file = new File(path);
-                        if (file.exists()) {
+                    final Uri uri = mUpdatedPhotos.getParcelable(String.valueOf(rawContactId));
+                    if (uri != null) {
+                        try {
+                            mContext.getContentResolver().openInputStream(uri);
                             countWithPicture++;
+                        } catch (FileNotFoundException e) {
                         }
                     }
                 }
@@ -1886,11 +1886,11 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         @Override
-        public void startPhotoActivity(Intent intent, int requestCode, String photoFile) {
+        public void startPhotoActivity(Intent intent, int requestCode, Uri photoUri) {
             mRawContactIdRequestingPhoto = mEditor.getRawContactId();
             mCurrentPhotoHandler = this;
             mStatus = Status.SUB_ACTIVITY;
-            mCurrentPhotoFile = photoFile;
+            mCurrentPhotoUri = photoUri;
             ContactEditorFragment.this.startActivityForResult(intent, requestCode);
         }
 
@@ -1945,15 +1945,16 @@ public class ContactEditorFragment extends Fragment implements
             }
 
             @Override
-            public void onPhotoSelected(Bitmap bitmap) {
-                setPhoto(mRawContactId, bitmap, mCurrentPhotoFile);
+            public void onPhotoSelected(Uri uri) throws FileNotFoundException {
+                final Bitmap bitmap = ContactPhotoUtils.getBitmapFromUri(mContext, uri);
+                setPhoto(mRawContactId, bitmap, uri);
                 mCurrentPhotoHandler = null;
                 bindEditors();
             }
 
             @Override
-            public String getCurrentPhotoFile() {
-                return mCurrentPhotoFile;
+            public Uri getCurrentPhotoUri() {
+                return mCurrentPhotoUri;
             }
 
             @Override
