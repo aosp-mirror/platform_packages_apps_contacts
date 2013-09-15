@@ -105,7 +105,8 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Iмгненныя паведамленнi"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Установа"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Сувязі"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"Мерапрыемствы"</string>
+    <!-- no translation found for eventLabelsGroup (5633007096910029346) -->
+    <skip />
     <string name="sms" msgid="8086289395154598654">"Тэкставае паведамленне"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адрас"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Кампанія"</string>

@@ -105,7 +105,8 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"הודעות מיידיות"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"ארגון"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"קשר"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"אירועים"</string>
+    <!-- no translation found for eventLabelsGroup (5633007096910029346) -->
+    <skip />
     <string name="sms" msgid="8086289395154598654">"הודעת טקסט"</string>
     <string name="postal_address" msgid="7692926530081579786">"כתובת"</string>
     <string name="ghostData_company" msgid="22470841482615409">"חברה"</string>
@@ -220,7 +221,7 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"לא ניתן היה לסרוק את כרטיס ה-SD. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"מייבא <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>‏: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"יצא לאמצעי אחסון"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר חשופים"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר שמוצגים כעת"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"יבא/יצא אנשי קשר"</string>
     <string name="dialog_import" msgid="5177004290082451296">"יבא אנשי קשר"</string>
     <string name="share_error" msgid="665756457151793108">"לא ניתן לשתף איש קשר זה."</string>
