@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="people" msgid="1048457247435785074">"People"</string>
+    <string name="contactsList" msgid="8661624236494819731">"Contacts"</string>
+    <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"Direct dial"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Direct message"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choose a contact short cut"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Choose a number to call"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choose a number to message"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Choose a contact"</string>
+    <string name="starredList" msgid="4817256136413959463">"Starred"</string>
+    <string name="frequentList" msgid="7154768136473953056">"Frequent"</string>
+    <string name="strequentList" msgid="5640192862059373511">"Favourites"</string>
+    <string name="viewContactTitle" msgid="7989394521836644384">"Contact details"</string>
+    <string name="viewContactDesription" msgid="214186610887547860">"View contact"</string>
+    <string name="editContactDescription" msgid="2947202828256214947">"Edit contact"</string>
+    <string name="insertContactDescription" msgid="4709878105452681987">"Create contact"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Edit group"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Create group"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"About"</string>
+    <string name="contactDetailUpdates" msgid="3780588624763446941">"Updates"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Search contacts"</string>
+    <string name="menu_viewContact" msgid="2795575601596468581">"View contact"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Add to favourites"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Remove from favourites"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Edit"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Delete"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Place on Home screen"</string>
+    <string name="menu_call" msgid="3992595586042260618">"Call contact"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Text contact"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Separate"</string>
+    <string name="menu_editGroup" msgid="5062005185370983720">"Edit"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Delete"</string>
+    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Add Contact"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Add Group"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Separate contact?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"This contact will be separated into multiple contacts."</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Join"</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Join contacts"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Choose the contact that you want to join with <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Show all  contacts"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Suggested Contacts"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"All contacts"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contacts joined"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Set ringtone"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"All calls to voicemail"</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"You can\'t delete contacts from read-only accounts, but you can hide them in your contacts lists."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"This contact contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Deleting this contact will delete information from multiple accounts."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"This contact will be deleted."</string>
+    <string name="menu_discard" msgid="6456087569315685632">"Discard"</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"The contact doesn\'t exist."</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Contact widget added to Home screen."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Create new contact"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Create new contact"</string>
+  <string-array name="otherLabels">
+    <item msgid="8287841928119937597">"Organisation"</item>
+    <item msgid="7196592230748086755">"Note"</item>
+  </string-array>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"No pictures are available on the tablet."</string>
+    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"No pictures are available on the phone."</string>
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Contact photo"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Custom label name"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send calls directly to voicemail"</string>
+    <string name="removePhoto" msgid="4898105274130284565">"Remove photo"</string>
+    <string name="noContacts" msgid="8579310973261953559">"No contacts."</string>
+    <string name="noGroups" msgid="8614664663561385253">"No groups."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"To create groups you need an account."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"No people in this group."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"To add some, edit the group."</string>
+    <string name="savingContact" msgid="4075751076741924939">"Saving contact…"</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Contact saved."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Couldn\'t save contact changes."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"Group saved."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Couldn\'t save group changes."</string>
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="3015357862286673986">"1 contact with phone number"</item>
+    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contacts with phone numbers"</item>
+  </plurals>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"No contacts with phone numbers"</string>
+  <plurals name="listTotalAllContacts">
+    <item quantity="one" msgid="3405747744700823280">"1 contact"</item>
+    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> contacts"</item>
+  </plurals>
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="5517063038754171134">"1 found"</item>
+    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> found"</item>
+  </plurals>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"No contacts"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="4826918429708286628">"1 found"</item>
+    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> found"</item>
+  </plurals>
+    <string name="contactsAllLabel" msgid="6479708629170672169">"All contacts"</string>
+    <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groups"</string>
+    <string name="callBack" msgid="5498224409038809224">"Call back"</string>
+    <string name="callAgain" msgid="3197312117049874778">"Call again"</string>
+    <string name="returnCall" msgid="8171961914203617813">"Return call"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Add \"<xliff:g id="EMAIL">%s</xliff:g>\" to contacts?"</string>
+    <string name="description_contact_photo" msgid="3387458082667894062">"contact photo"</string>
+    <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> of <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacts"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Names of your contacts"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"No app was found to handle this action."</string>
+    <string name="menu_share" msgid="943789700636542260">"Share"</string>
+    <string name="share_via" msgid="563121028023030093">"Share contact via"</string>
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"Create group under account"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Voice chat"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Video chat"</string>
+    <string name="connections" msgid="8098440723172028350">"Connections"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"Add connection"</string>
+    <string name="recent" msgid="2659189233141493004">"Recent"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Recent updates"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contact"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
+    <string name="use_photo_as_primary" msgid="8807110122951157246">"Use this photo"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"Not editable from this app."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"No additional information for this contact."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"Not editable on this device"</string>
+    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sort list by"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"First name"</string>
+    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Surname"</string>
+    <string name="display_options_view_names_as" msgid="4386932036180428374">"View contact names"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"First name first"</string>
+    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Surname first"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Take photo"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"Take new photo"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"Choose photo from Gallery"</string>
+    <string name="pick_new_photo" msgid="7962368009197147617">"Select new photo from Gallery"</string>
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"Contact list is being updated to reflect the change of language."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"Contact list is being updated."</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Contacts are in the process of being upgraded. \n\nThe upgrade process requires approximately <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB of internal storage.\n\nChoose one of the following options:"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Uninstall some applications"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Retry upgrade"</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Searching…"</string>
+    <string name="menu_display_selected" msgid="6470001164297969034">"Show selected"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"Show all"</string>
+    <string name="menu_select_all" msgid="621719255150713545">"Select all"</string>
+    <string name="menu_select_none" msgid="7093222469852132345">"Unselect all"</string>
+    <string name="add_field" msgid="2384260056674995230">"Add another field"</string>
+    <string name="add_new_entry_for_section" msgid="5223080690667565044">"Add new"</string>
+    <string name="add_organization" msgid="7311893231158291197">"Add organisation"</string>
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Date"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Group name"</string>
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="description_star" msgid="2605854427360036550">"favourite"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Edit contact"</string>
+  <plurals name="merge_info">
+    <item quantity="one" msgid="148365587896371969">"not merged"</item>
+    <item quantity="other" msgid="425683718017380845">"merged from <xliff:g id="COUNT">%0$d</xliff:g> sources"</item>
+  </plurals>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Join the current contact with the selected contact?"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Switch to editing the selected contact? Information that you\'ve entered so far will be copied."</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Copy to My Contacts"</string>
+    <string name="add_to_my_contacts" msgid="1068274916793627723">"Add to My Contacts"</string>
+    <string name="contact_directory_description" msgid="683398073603909119">"Directory <xliff:g id="TYPE">%1$s</xliff:g>"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Creating a personal copy…"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Customised"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Settings"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Settings"</string>
+    <string name="menu_help" msgid="5123887102216637725">"Help"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Display options"</string>
+    <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"Phone number"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Add to contacts"</string>
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Add to contact"</string>
+    <string name="non_phone_close" msgid="7608506439725515667">"Close"</string>
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Provide a year"</string>
+    <string name="social_widget_label" msgid="6378905543028924592">"Contact"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Loading…"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Create a new contact"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Sign in to an account"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Import contacts"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"Create new group"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"Create new group"</string>
+  <plurals name="num_groups_in_account">
+    <item quantity="one" msgid="2944819210288517794">"1 group"</item>
+    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> groups"</item>
+  </plurals>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Delete the group \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Contacts themselves will not be deleted.)"</string>
+  <plurals name="num_contacts_in_group">
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> person from <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> people from <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+  </plurals>
+  <plurals name="group_list_num_contacts_in_group">
+    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> person"</item>
+    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> people"</item>
+  </plurals>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Type contact name before joining with another."</string>
+    <string name="copy_text" msgid="3257145021583508761">"Copy to clipboard"</string>
+    <string name="set_default" msgid="4417505153468300351">"Set default"</string>
+    <string name="clear_default" msgid="7193185801596678067">"Clear default"</string>
+    <string name="toast_text_copied" msgid="5143776250008541719">"Text copied"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Discard your changes?"</string>
+    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Set up my profile"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Type person\'s name"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"Group\'s name"</string>
+    <string name="local_profile_title" msgid="2021416826991393684">"My local profile"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"My <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profile"</string>
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Displaying all contacts"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"People works better with a Google Account.\n\n• Access from any web browser.\n• Back up your contacts securely."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Keep your contacts safe even if you lose your phone: synchronise with an online service."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Add an account"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Your new contact won\'t be backed up. Add an account that backs up contacts online?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Your new contact will be synchronised with <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"You can synchronise your new contact with one of the following accounts. Which do you want to use?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Keep locally"</string>
+    <string name="add_account" msgid="8201790677994503186">"Add account"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Add new account"</string>
+    <string name="menu_export_database" msgid="2659719297530170820">"Export database files"</string>
+    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Picture. Select to change"</string>
+</resources>

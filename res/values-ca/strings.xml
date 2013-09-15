@@ -59,7 +59,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactes suggerits"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tots els contactes"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contactes units"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Est. to trucada"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Estableix so"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Trucades a la bústia de veu"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"No pots suprimir cap contacte dels comptes de només lectura, però pots amagar-los a les llistes de contactes."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Aquest contacte inclou informació de diversos comptes. La informació dels comptes només de lectura s\'ocultarà a les llistes de contactes, però no se suprimirà."</string>
