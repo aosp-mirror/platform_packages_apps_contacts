@@ -32,8 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingTop="4dp"
-        android:paddingBottom="8dp"
         android:background="@drawable/list_section_divider_holo_custom"
         >
         <TextView
@@ -42,10 +40,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
             android:layout_marginStart="8dip"
-            android:textSize="20sp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/people_app_theme_color"
             android:singleLine="true"
-            android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
+            android:textAllCaps="true"
             android:textAlignment="viewStart" />
         <TextView
             android:id="@+id/display_name"
@@ -55,10 +54,11 @@
             android:layout_marginRight="8dip"
             android:layout_marginStart="8dip"
             android:layout_marginEnd="8dip"
-            android:textSize="20sp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/people_app_theme_color"
             android:singleLine="true"
-            android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
+            android:textAllCaps="true"
             android:textAlignment="viewStart" />
         <TextView
             android:id="@+id/count"

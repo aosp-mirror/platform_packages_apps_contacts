@@ -20,13 +20,7 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-
-    <style name="SectionHeaderStyle" parent="@android:style/TextAppearance.Large">
-        <item name="android:textColor">@color/people_app_theme_color</item>
-        <item name="android:fontFamily">sans-serif-light</item>
-    </style>
-
-    <!-- TextView style used for headers.
+    <!-- TextView style with blue underline. It is most suitable for headers.
 
 This is similar to ?android:attr/listSeparatorTextView but uses different
 background and text color. See also android:style/Widget.Holo.TextView.ListSeparator
@@ -37,12 +31,12 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <!-- See comments for @dimen/list_section_divider_min_height -->
         <item name="android:minHeight">@dimen/list_section_divider_min_height</item>
         <item name="android:background">@drawable/list_section_divider_holo_custom</item>
-        <item name="android:textAppearance">@style/SectionHeaderStyle</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/people_app_theme_color</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">8dip</item>
         <item name="android:paddingStart">8dip</item>
-        <item name="android:paddingTop">4dip</item>
-        <item name="android:paddingBottom">4dip</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
         <item name="android:textAllCaps">true</item>
