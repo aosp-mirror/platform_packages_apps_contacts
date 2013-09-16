@@ -16,7 +16,6 @@
 
 package com.android.contacts.common.format;
 
-import android.graphics.Typeface;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.text.SpannableString;
 
@@ -37,7 +36,7 @@ public class TextHighlighterTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        mTextHighlighter = new TextHighlighter(Typeface.BOLD);
+        mTextHighlighter = new TextHighlighter(TEST_PREFIX_HIGHLIGHT_COLOR);
     }
 
     public void testApply_EmptyPrefix() {

@@ -93,8 +93,6 @@ public class ContactListItemView extends ViewGroup
     private int mContactsCountTextColor = Color.BLACK;
     private int mTextIndent = 0;
     private Drawable mActivatedBackgroundDrawable;
-    private static final Typeface mHeaderTextTypeFace = Typeface.create("sans-serif-light",
-            Typeface.NORMAL);
 
     /**
      * Used with {@link #mLabelView}, specifying the width ratio between label and data.
@@ -237,7 +235,7 @@ public class ContactListItemView extends ViewGroup
         super(context);
         mContext = context;
 
-        mTextHighlighter = new TextHighlighter(Typeface.BOLD);
+        mTextHighlighter = new TextHighlighter(Color.GREEN);
     }
 
     public ContactListItemView(Context context, AttributeSet attrs) {
@@ -304,8 +302,9 @@ public class ContactListItemView extends ViewGroup
                 a.getDimensionPixelOffset(
                         R.styleable.ContactListItemView_list_item_padding_bottom, 0));
 
-        mTextHighlighter = new TextHighlighter(Typeface.BOLD);
-
+        final int prefixHighlightColor = a.getColor(
+                R.styleable.ContactListItemView_list_item_prefix_highlight_color, Color.GREEN);
+        mTextHighlighter = new TextHighlighter(prefixHighlightColor);
         a.recycle();
 
         a = getContext().obtainStyledAttributes(android.R.styleable.Theme);
@@ -782,7 +781,7 @@ public class ContactListItemView extends ViewGroup
                 mHeaderTextView = new TextView(mContext);
                 mHeaderTextView.setTextColor(mHeaderTextColor);
                 mHeaderTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSize);
-                mHeaderTextView.setTypeface(mHeaderTextTypeFace);
+                mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
                 mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
                 mHeaderTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                 addView(mHeaderTextView);
