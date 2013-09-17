@@ -105,8 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"ស្ថាប័ន"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"ចំណង​ទាក់ទង"</string>
-    <!-- no translation found for eventLabelsGroup (5633007096910029346) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"កាលបរិច្ឆេទ​ពិសេស"</string>
     <string name="sms" msgid="8086289395154598654">"សារ​អត្ថបទ"</string>
     <string name="postal_address" msgid="7692926530081579786">"អាសយដ្ឋាន"</string>
     <string name="ghostData_company" msgid="22470841482615409">"ក្រុមហ៊ុន"</string>
