@@ -34,7 +34,7 @@
     <string name="call_other_fax" msgid="2536328553125487877">"拨打传真号码"</string>
     <string name="call_radio" msgid="9055749313292712021">"拨打无线通讯电话号码"</string>
     <string name="call_telex" msgid="2909886619224843563">"拨打电报号码"</string>
-    <string name="call_tty_tdd" msgid="6704940636171078852">"拨打 TTY/TDD 电话号码"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"拨打 TTY/TDD 号码"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"拨打公司手机号码"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"拨打公司寻呼机号码"</string>
     <string name="call_assistant" msgid="5188990854852312696">"拨打<xliff:g id="ASSISTANT">%s</xliff:g>的电话号码"</string>
@@ -55,7 +55,7 @@
     <string name="sms_other_fax" msgid="8649822154879781466">"向传真号码发短信"</string>
     <string name="sms_radio" msgid="8750339218480745940">"向无线通讯电话号码发短信"</string>
     <string name="sms_telex" msgid="5469333785775443999">"向电报号码发短信"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"向 TTY/TDD 电话号码发短信"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"向 TTY/TDD 号码发短信"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"向公司手机发短信"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"向公司寻呼机号码发短信"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"向<xliff:g id="ASSISTANT">%s</xliff:g>发短信"</string>
