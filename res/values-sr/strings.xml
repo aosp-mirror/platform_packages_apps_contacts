@@ -87,9 +87,9 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Да бисте додали неке, измените групу."</string>
     <string name="savingContact" msgid="4075751076741924939">"Чување контакта је у току..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контакт је сачуван."</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Није било могуће сачувати измене контаката."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Није могуће сачувати измене контаката."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Група је сачувана."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Није било могуће сачувати измене група."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Није могуће сачувати измене група."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 контакт са бројем телефона"</item>
     <item quantity="other" msgid="3299954047880968205">"Бр. контаката са бројевима телефона: <xliff:g id="COUNT">%d</xliff:g>"</item>
