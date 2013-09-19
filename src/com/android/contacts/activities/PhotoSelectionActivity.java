@@ -28,6 +28,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.FrameLayout.LayoutParams;
@@ -41,6 +42,9 @@ import com.android.contacts.editor.PhotoActionPopup;
 import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.SchedulingUtils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 
 /**
@@ -59,8 +63,8 @@ public class PhotoSelectionActivity extends Activity {
     /** Number of ms for the animation to hide the backdrop on finish. */
     private static final int BACKDROP_FADEOUT_DURATION = 100;
 
-    /** Key used to persist photo-filename (NOT full file-path). */
-    private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
+    /** Key used to persist photo uri. */
+    private static final String KEY_CURRENT_PHOTO_URI = "currentphotouri";
 
     /** Key used to persist whether a sub-activity is currently in progress. */
     private static final String KEY_SUB_ACTIVITY_IN_PROGRESS = "subinprogress";
@@ -151,16 +155,16 @@ public class PhotoSelectionActivity extends Activity {
     private PendingPhotoResult mPendingPhotoResult;
 
     /**
-     * The photo file being interacted with, if any.  Saved/restored between activity instances.
+     * The photo uri being interacted with, if any.  Saved/restored between activity instances.
      */
-    private String mCurrentPhotoFile;
+    private Uri mCurrentPhotoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photoselection_activity);
         if (savedInstanceState != null) {
-            mCurrentPhotoFile = savedInstanceState.getString(KEY_CURRENT_PHOTO_FILE);
+            mCurrentPhotoUri = savedInstanceState.getParcelable(KEY_CURRENT_PHOTO_URI);
             mSubActivityInProgress = savedInstanceState.getBoolean(KEY_SUB_ACTIVITY_IN_PROGRESS);
         }
 
@@ -456,7 +460,7 @@ public class PhotoSelectionActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile);
+        outState.putParcelable(KEY_CURRENT_PHOTO_URI, mCurrentPhotoUri);
         outState.putBoolean(KEY_SUB_ACTIVITY_IN_PROGRESS, mSubActivityInProgress);
     }
 
@@ -527,28 +531,27 @@ public class PhotoSelectionActivity extends Activity {
         }
 
         @Override
-        public void startPhotoActivity(Intent intent, int requestCode, String photoFile) {
+        public void startPhotoActivity(Intent intent, int requestCode, Uri photoUri) {
             mSubActivityInProgress = true;
-            mCurrentPhotoFile = photoFile;
+            mCurrentPhotoUri = photoUri;
             PhotoSelectionActivity.this.startActivityForResult(intent, requestCode);
         }
 
         private final class PhotoListener extends PhotoActionListener {
             @Override
-            public void onPhotoSelected(Bitmap bitmap) {
+            public void onPhotoSelected(Uri uri) {
                 RawContactDeltaList delta = getDeltaForAttachingPhotoToContact();
                 long rawContactId = getWritableEntityId();
-                final String croppedPath = ContactPhotoUtils.pathForCroppedPhoto(
-                        PhotoSelectionActivity.this, mCurrentPhotoFile);
+
                 Intent intent = ContactSaveService.createSaveContactIntent(
-                        mContext, delta, "", 0, mIsProfile, null, null, rawContactId, croppedPath);
+                        mContext, delta, "", 0, mIsProfile, null, null, rawContactId, uri);
                 startService(intent);
                 finish();
             }
 
             @Override
-            public String getCurrentPhotoFile() {
-                return mCurrentPhotoFile;
+            public Uri getCurrentPhotoUri() {
+                return mCurrentPhotoUri;
             }
 
             @Override
