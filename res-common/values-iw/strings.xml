@@ -61,7 +61,7 @@
     <string name="sms_assistant" msgid="2677586547377136683">"שלח הודעת טקסט אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"שלח הודעת טקסט ל-MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"האם למחוק אנשי קשר קבועים?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"פעולה זו תמחק את רשימת אנשי הקשר הקבועים ביישומים \'אנשים\' ו\'טלפון\' ותאלץ את יישומי הדוא\"ל ללמוד מהתחלה את העדפות הכתובות שלך."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"פעולה זו תמחק את רשימת אנשי הקשר הקבועים באפליקציות \'אנשים\' ו\'טלפון\' ותאלץ את יישומי הדוא\"ל ללמוד מהתחלה את העדפות הכתובות שלך."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"מוחק אנשי קשר קבועים…"</string>
     <string name="status_available" msgid="4832569677396634846">"זמין"</string>
     <string name="status_away" msgid="6267905184545881094">"לא נמצא"</string>
