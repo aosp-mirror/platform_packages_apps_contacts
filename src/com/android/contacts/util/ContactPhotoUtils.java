@@ -17,17 +17,25 @@
 
 package com.android.contacts.util;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
+
+import com.google.common.io.Closeables;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -40,38 +48,55 @@ public class ContactPhotoUtils {
     private static final String TAG = "ContactPhotoUtils";
 
     private static final String PHOTO_DATE_FORMAT = "'IMG'_yyyyMMdd_HHmmss";
-    private static final String NEW_PHOTO_DIR_PATH =
-            Environment.getExternalStorageDirectory() + "/DCIM/Camera";
 
+    public static final String FILE_PROVIDER_AUTHORITY = "com.android.contacts.files";
 
     /**
      * Generate a new, unique file to be used as an out-of-band communication
      * channel, since hi-res Bitmaps are too big to serialize into a Bundle.
-     * This file will be passed to other activities (such as the gallery/camera/cropper/etc.),
-     * and read by us once they are finished writing it.
+     * This file will be passed (as a uri) to other activities (such as the gallery/camera/
+     *  cropper/etc.), and read by us once they are finished writing it.
      */
-    public static File generateTempPhotoFile(Context context) {
-        return new File(pathForCroppedPhoto(context, generateTempPhotoFileName()));
+    public static Uri generateTempImageUri(Context context) {
+        return FileProvider.getUriForFile(context, FILE_PROVIDER_AUTHORITY,
+                new File(pathForTempPhoto(context, generateTempPhotoFileName())));
     }
 
-    public static String pathForCroppedPhoto(Context context, String fileName) {
-        final File dir = new File(context.getExternalCacheDir() + "/tmp");
+    public static Uri generateTempCroppedImageUri(Context context) {
+        return FileProvider.getUriForFile(context, FILE_PROVIDER_AUTHORITY,
+                new File(pathForTempPhoto(context, generateTempCroppedPhotoFileName())));
+    }
+
+    private static String pathForTempPhoto(Context context, String fileName) {
+        final File dir = context.getCacheDir();
         dir.mkdirs();
         final File f = new File(dir, fileName);
         return f.getAbsolutePath();
     }
 
-    public static String pathForNewCameraPhoto(String fileName) {
-        final File dir = new File(NEW_PHOTO_DIR_PATH);
-        dir.mkdirs();
-        final File f = new File(dir, fileName);
-        return f.getAbsolutePath();
-    }
-
-    public static String generateTempPhotoFileName() {
-        Date date = new Date(System.currentTimeMillis());
+    private static String generateTempPhotoFileName() {
+        final Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormat = new SimpleDateFormat(PHOTO_DATE_FORMAT, Locale.US);
         return "ContactPhoto-" + dateFormat.format(date) + ".jpg";
+    }
+
+    private static String generateTempCroppedPhotoFileName() {
+        final Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(PHOTO_DATE_FORMAT, Locale.US);
+        return "ContactPhoto-" + dateFormat.format(date) + "-cropped.jpg";
+    }
+
+    /**
+     * Given a uri pointing to a bitmap, reads it into a bitmap and returns it.
+     * @throws FileNotFoundException
+     */
+    public static Bitmap getBitmapFromUri(Context context, Uri uri) throws FileNotFoundException {
+        final InputStream imageStream = context.getContentResolver().openInputStream(uri);
+        try {
+            return BitmapFactory.decodeStream(imageStream);
+        } finally {
+            Closeables.closeQuietly(imageStream);
+        }
     }
 
     /**
@@ -92,14 +117,7 @@ public class ContactPhotoUtils {
         }
     }
 
-    /**
-     * Adds common extras to gallery intents.
-     *
-     * @param intent The intent to add extras to.
-     * @param croppedPhotoUri The uri of the file to save the image to.
-     * @param photoSize The size of the photo to scale to.
-     */
-    public static void addGalleryIntentExtras(Intent intent, Uri croppedPhotoUri, int photoSize) {
+    public static void addCropExtras(Intent intent, int photoSize) {
         intent.putExtra("crop", "true");
         intent.putExtra("scale", true);
         intent.putExtra("scaleUpIfNeeded", true);
@@ -107,7 +125,53 @@ public class ContactPhotoUtils {
         intent.putExtra("aspectY", 1);
         intent.putExtra("outputX", photoSize);
         intent.putExtra("outputY", photoSize);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri);
+    }
+
+    /**
+     * Adds common extras to gallery intents.
+     *
+     * @param intent The intent to add extras to.
+     * @param photoUri The uri of the file to save the image to.
+     */
+    public static void addPhotoPickerExtras(Intent intent, Uri photoUri) {
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION |
+                Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.setClipData(ClipData.newRawUri(MediaStore.EXTRA_OUTPUT, photoUri));
+    }
+
+    /**
+     * Given an input photo stored in a uri, save it to a destination uri
+     */
+    public static boolean savePhotoFromUriToUri(Context context, Uri inputUri, Uri outputUri,
+            boolean deleteAfterSave) {
+        FileOutputStream outputStream = null;
+        InputStream inputStream = null;
+        try {
+            outputStream = context.getContentResolver()
+                    .openAssetFileDescriptor(outputUri, "rw").createOutputStream();
+            inputStream = context.getContentResolver().openInputStream(
+                    inputUri);
+
+            final byte[] buffer = new byte[16 * 1024];
+            int length;
+            int totalLength = 0;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+                totalLength += length;
+            }
+            Log.v(TAG, "Wrote " + totalLength + " bytes for photo " + inputUri.toString());
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to write photo: " + inputUri.toString() + " because: " + e);
+            return false;
+        } finally {
+            Closeables.closeQuietly(inputStream);
+            Closeables.closeQuietly(outputStream);
+            if (deleteAfterSave) {
+                context.getContentResolver().delete(inputUri, null, null);
+            }
+        }
+        return true;
     }
 }
 
