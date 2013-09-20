@@ -20,6 +20,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.Loader.OnLoadCompleteListener;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,8 +60,10 @@ public class AttachPhotoActivity extends ContactsActivity {
 
     private static final String KEY_CONTACT_URI = "contact_uri";
     private static final String KEY_TEMP_PHOTO_URI = "temp_photo_uri";
+    private static final String KEY_CROPPED_PHOTO_URI = "cropped_photo_uri";
 
     private Uri mTempPhotoUri;
+    private Uri mCroppedPhotoUri;
 
     private ContentResolver mContentResolver;
 
@@ -77,8 +80,10 @@ public class AttachPhotoActivity extends ContactsActivity {
             final String uri = icicle.getString(KEY_CONTACT_URI);
             mContactUri = (uri == null) ? null : Uri.parse(uri);
             mTempPhotoUri = Uri.parse(icicle.getString(KEY_TEMP_PHOTO_URI));
+            mCroppedPhotoUri = Uri.parse(icicle.getString(KEY_CROPPED_PHOTO_URI));
         } else {
             mTempPhotoUri = ContactPhotoUtils.generateTempImageUri(this);
+            mCroppedPhotoUri = ContactPhotoUtils.generateTempCroppedImageUri(this);
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType(Contacts.CONTENT_TYPE);
             startActivityForResult(intent, REQUEST_PICK_CONTACT);
@@ -110,21 +115,37 @@ public class AttachPhotoActivity extends ContactsActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-        if (resultCode != RESULT_OK) {
-            finish();
-            return;
-        }
-
         if (requestCode == REQUEST_PICK_CONTACT) {
+            if (resultCode != RESULT_OK) {
+                finish();
+                return;
+            }
             // A contact was picked. Launch the cropper to get face detection, the right size, etc.
             // TODO: get these values from constants somewhere
-            Intent myIntent = getIntent();
-            Intent intent = new Intent("com.android.camera.action.CROP", myIntent.getData());
-            if (myIntent.getStringExtra("mimeType") != null) {
-                intent.setDataAndType(myIntent.getData(), myIntent.getStringExtra("mimeType"));
+            final Intent myIntent = getIntent();
+            final Uri inputUri = myIntent.getData();
+
+            final int perm = checkUriPermission(inputUri, android.os.Process.myPid(),
+                    android.os.Process.myUid(), Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                            Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+            final Uri toCrop;
+
+            if (perm == PackageManager.PERMISSION_DENIED) {
+                // Work around to save a read-only URI into a temporary file provider URI so that
+                // we can add the FLAG_GRANT_WRITE_URI_PERMISSION flag to the eventual
+                // crop intent b/10837468
+                ContactPhotoUtils.savePhotoFromUriToUri(this, inputUri, mTempPhotoUri, false);
+                toCrop = mTempPhotoUri;
+            } else {
+                toCrop = inputUri;
             }
 
-            ContactPhotoUtils.addPhotoPickerExtras(intent, mTempPhotoUri);
+            final Intent intent = new Intent("com.android.camera.action.CROP", toCrop);
+            if (myIntent.getStringExtra("mimeType") != null) {
+                intent.setDataAndType(toCrop, myIntent.getStringExtra("mimeType"));
+            }
+            ContactPhotoUtils.addPhotoPickerExtras(intent, mCroppedPhotoUri);
             ContactPhotoUtils.addCropExtras(intent, mPhotoDim);
 
             startActivityForResult(intent, REQUEST_CROP_PHOTO);
@@ -132,6 +153,13 @@ public class AttachPhotoActivity extends ContactsActivity {
             mContactUri = result.getData();
 
         } else if (requestCode == REQUEST_CROP_PHOTO) {
+            // Delete the temporary photo from cache now that we have a cropped version.
+            // We should do this even if the crop failed and we eventually bail
+            getContentResolver().delete(mTempPhotoUri, null, null);
+            if (resultCode != RESULT_OK) {
+                finish();
+                return;
+            }
             loadContact(mContactUri, new Listener() {
                 @Override
                 public void onContactLoaded(Contact contact) {
@@ -187,7 +215,7 @@ public class AttachPhotoActivity extends ContactsActivity {
         final int size = ContactsUtils.getThumbnailSize(this);
         Bitmap bitmap;
         try {
-            bitmap = ContactPhotoUtils.getBitmapFromUri(this, mTempPhotoUri);
+            bitmap = ContactPhotoUtils.getBitmapFromUri(this, mCroppedPhotoUri);
         } catch (FileNotFoundException e) {
             Log.w(TAG, "Could not find bitmap");
             return;
@@ -221,7 +249,7 @@ public class AttachPhotoActivity extends ContactsActivity {
                 contact.isUserProfile(),
                 null, null,
                 raw.getRawContactId(),
-                mTempPhotoUri
+                mCroppedPhotoUri
                 );
         startService(intent);
         finish();
