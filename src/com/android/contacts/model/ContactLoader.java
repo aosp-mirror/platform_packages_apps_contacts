@@ -55,6 +55,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -405,29 +406,43 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         final Iterator keys = items.keys();
         while (keys.hasNext()) {
             final String mimetype = (String) keys.next();
-            final JSONObject item = items.getJSONObject(mimetype);
 
-            final ContentValues itemValues = new ContentValues();
-            itemValues.put(Data.MIMETYPE, mimetype);
-            itemValues.put(Data._ID, -1);
-
-            final Iterator iterator = item.keys();
-            while (iterator.hasNext()) {
-                String name = (String) iterator.next();
-                final Object o = item.get(name);
-                if (o instanceof String) {
-                    itemValues.put(name, (String) o);
-                } else if (o instanceof Integer) {
-                    itemValues.put(name, (Integer) o);
+            // Could be single object or array.
+            final JSONObject obj = items.optJSONObject(mimetype);
+            if (obj == null) {
+                final JSONArray array = items.getJSONArray(mimetype);
+                for (int i = 0; i < array.length(); i++) {
+                    final JSONObject item = array.getJSONObject(i);
+                    processOneRecord(rawContact, item, mimetype);
                 }
+            } else {
+                processOneRecord(rawContact, obj, mimetype);
             }
-            rawContact.addDataItemValues(itemValues);
         }
 
         contact.setRawContacts(new ImmutableList.Builder<RawContact>()
                 .add(rawContact)
                 .build());
         return contact;
+    }
+
+    private void processOneRecord(RawContact rawContact, JSONObject item, String mimetype)
+            throws JSONException {
+        final ContentValues itemValues = new ContentValues();
+        itemValues.put(Data.MIMETYPE, mimetype);
+        itemValues.put(Data._ID, -1);
+
+        final Iterator iterator = item.keys();
+        while (iterator.hasNext()) {
+            String name = (String) iterator.next();
+            final Object o = item.get(name);
+            if (o instanceof String) {
+                itemValues.put(name, (String) o);
+            } else if (o instanceof Integer) {
+                itemValues.put(name, (Integer) o);
+            }
+        }
+        rawContact.addDataItemValues(itemValues);
     }
 
     private Contact loadContactEntity(ContentResolver resolver, Uri contactUri) {
