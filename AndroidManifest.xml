@@ -141,9 +141,6 @@
                 <data android:mimeType="vnd.android.cursor.dir/contact" />
             </intent-filter>
 
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"
-            />
         </activity>
 
         <activity android:name=".activities.ContactSelectionActivity"
