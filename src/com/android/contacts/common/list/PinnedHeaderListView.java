@@ -398,6 +398,10 @@ public class PinnedHeaderListView extends AutoScrollListView
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (super.onInterceptTouchEvent(ev)) {
+            return true;
+        }
+
         if (mScrollState == SCROLL_STATE_IDLE) {
             final int y = (int)ev.getY();
             for (int i = mSize; --i >= 0;) {
@@ -412,7 +416,7 @@ public class PinnedHeaderListView extends AutoScrollListView
             }
         }
 
-        return super.onInterceptTouchEvent(ev);
+        return false;
     }
 
     private boolean smoothScrollToPartition(int partition) {
