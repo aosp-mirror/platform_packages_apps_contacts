@@ -33,6 +33,7 @@ public class ContactEntry {
     public Drawable presenceIcon;
     public long id;
     public int pinned = PinnedPositions.UNPINNED;
+    public boolean isFavorite = false;
 
     public static final ContactEntry BLANK_ENTRY = new ContactEntry();
 }

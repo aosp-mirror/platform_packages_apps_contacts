@@ -258,6 +258,7 @@ public class ContactTileAdapter extends BaseAdapter {
         contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
         contact.lookupKey = ContentUris.withAppendedId(
                 Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
+        contact.isFavorite = cursor.getInt(mStarredIndex) > 0;
 
         // Set phone number and label
         if (mDisplayType == DisplayType.STREQUENT_PHONE_ONLY) {
