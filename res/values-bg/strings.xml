@@ -36,7 +36,6 @@
     <string name="insertGroupDescription" msgid="5658512271662210139">"Създаване на група"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Информация"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Актуал."</string>
-    <string name="searchHint" msgid="8482945356247760701">"Търсене в контактите"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Преглед на контакт"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Добавяне към предпочитани"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Премахване от любими"</string>
@@ -117,7 +116,6 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"снимка на контакта"</string>
     <string name="description_plus_button" msgid="515164827856229880">"плюс"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> от <xliff:g id="TOTAL_NUMBER">%s</xliff:g> контакта"</string>
-    <string name="search_settings_description" msgid="2675223022992445813">"Имена на контактите ви"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не бе намерено приложение за извършване на това действие."</string>
     <string name="menu_share" msgid="943789700636542260">"Споделяне"</string>
     <string name="share_via" msgid="563121028023030093">"Споделяне на контакт чрез"</string>
