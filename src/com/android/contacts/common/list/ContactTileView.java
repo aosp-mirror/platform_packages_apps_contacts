@@ -18,6 +18,7 @@ package com.android.contacts.common.list;
 import android.content.Context;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -107,7 +108,12 @@ public abstract class ContactTileView extends FrameLayout {
             }
 
             if (mPhoneLabel != null) {
-                mPhoneLabel.setText(entry.phoneLabel);
+                if (TextUtils.isEmpty(entry.phoneLabel)) {
+                    mPhoneLabel.setVisibility(View.GONE);
+                } else {
+                    mPhoneLabel.setVisibility(View.VISIBLE);
+                    mPhoneLabel.setText(entry.phoneLabel);
+                }
             }
 
             if (mPhoneNumber != null) {

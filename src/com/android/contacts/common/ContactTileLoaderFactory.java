@@ -40,11 +40,12 @@ public final class ContactTileLoaderFactory {
     public final static int PHONE_NUMBER = 5;
     public final static int PHONE_NUMBER_TYPE = 6;
     public final static int PHONE_NUMBER_LABEL = 7;
-    public final static int PINNED = 8;
+    public final static int IS_DEFAULT_NUMBER = 8;
+    public final static int PINNED = 9;
     // The _ID field returned for strequent items actually contains data._id instead of
     // contacts._id because the query is performed on the data table. In order to obtain the
     // contact id for strequent items, we thus have to use Phone.contact_id instead.
-    public final static int CONTACT_ID_FOR_DATA = 9;
+    public final static int CONTACT_ID_FOR_DATA = 10;
 
     private static final String[] COLUMNS = new String[] {
         Contacts._ID, // ..........................................0
@@ -71,8 +72,9 @@ public final class ContactTileLoaderFactory {
         Phone.NUMBER, // ..........................................5
         Phone.TYPE, // ............................................6
         Phone.LABEL, // ...........................................7
-        Contacts.PINNED, // .......................................8
-        Phone.CONTACT_ID //........................................9
+        Phone.IS_SUPER_PRIMARY, //.................................8
+        Contacts.PINNED, // .......................................9
+        Phone.CONTACT_ID //........................................10
     };
 
     private static final String STARRED_ORDER = Contacts.DISPLAY_NAME+" COLLATE NOCASE ASC";

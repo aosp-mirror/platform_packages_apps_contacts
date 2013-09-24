@@ -34,6 +34,7 @@ public class ContactEntry {
     public long id;
     public int pinned = PinnedPositions.UNPINNED;
     public boolean isFavorite = false;
+    public boolean isDefaultNumber = false;
 
     public static final ContactEntry BLANK_ENTRY = new ContactEntry();
 }
