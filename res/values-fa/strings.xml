@@ -36,7 +36,6 @@
     <string name="insertGroupDescription" msgid="5658512271662210139">"ایجاد گروه"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"درباره"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"نسخه‌های به روز"</string>
-    <string name="searchHint" msgid="8482945356247760701">"جستجوی مخاطبین"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"مشاهده مخاطب"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"افزودن به موارد دلخواه"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"حذف از موارد دلخواه"</string>
@@ -117,7 +116,6 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"عکس مخاطب"</string>
     <string name="description_plus_button" msgid="515164827856229880">"به اضافه"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> از <xliff:g id="TOTAL_NUMBER">%s</xliff:g> مخاطب"</string>
-    <string name="search_settings_description" msgid="2675223022992445813">"نام‌های مخاطبین شما"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="menu_share" msgid="943789700636542260">"اشتراک‌گذاری"</string>
     <string name="share_via" msgid="563121028023030093">"اشتراک‌گذاری مخاطب از طریق"</string>
