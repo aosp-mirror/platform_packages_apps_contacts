@@ -28,7 +28,7 @@
 
     <item
         android:id="@+id/menu_add_group"
-        android:icon="@drawable/ic_add_person_dk"
+        android:icon="@drawable/ic_add_group_dk"
         android:title="@string/menu_new_group_action_bar"
         android:showAsAction="ifRoom" />
 
