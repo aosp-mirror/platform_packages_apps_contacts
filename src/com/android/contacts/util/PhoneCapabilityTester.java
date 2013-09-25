@@ -16,6 +16,7 @@
 
 package com.android.contacts.util;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,6 +24,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.net.sip.SipManager;
 import android.provider.MediaStore;
+import android.provider.Telephony;
 import android.telephony.TelephonyManager;
 
 import com.android.contacts.common.CallUtil;
@@ -75,13 +77,22 @@ public final class PhoneCapabilityTester {
     }
 
     /**
-     * Returns true if the device has an SMS application installed.
+     * Returns the component name to use for sending to sms or null.
      */
-    public static boolean isSmsIntentRegistered(Context context) {
-        // Don't cache the result as the user might install third party apps to send SMS
-        final Intent intent = new Intent(Intent.ACTION_SENDTO,
-                Uri.fromParts(CallUtil.SCHEME_SMSTO, "", null));
-        return isIntentRegistered(context, intent);
+    public static ComponentName getSmsComponent(Context context) {
+        String smsPackage = Telephony.Sms.getDefaultSmsPackage(context);
+        if (smsPackage != null) {
+            final PackageManager packageManager = context.getPackageManager();
+            final Intent intent = new Intent(Intent.ACTION_SENDTO,
+                    Uri.fromParts(CallUtil.SCHEME_SMSTO, "", null));
+            final List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
+            for (ResolveInfo resolveInfo : resolveInfos) {
+                if (smsPackage.equals(resolveInfo.activityInfo.packageName)) {
+                    return new ComponentName(smsPackage, resolveInfo.activityInfo.name);
+                }
+            }
+        }
+        return null;
     }
 
     /**

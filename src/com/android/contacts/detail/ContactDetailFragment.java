@@ -19,6 +19,7 @@ package com.android.contacts.detail;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -167,21 +168,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             new MakeLocalCopyQuickFix(),
             new AddToMyContactsQuickFix()
     };
-
-    /**
-     * Device capability: Set during buildEntries and used in the long-press context menu
-     */
-    private boolean mHasPhone;
-
-    /**
-     * Device capability: Set during buildEntries and used in the long-press context menu
-     */
-    private boolean mHasSms;
-
-    /**
-     * Device capability: Set during buildEntries and used in the long-press context menu
-     */
-    private boolean mHasSip;
 
     /**
      * The view shown if the detail list is empty.
@@ -533,9 +519,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * Build up the entries to display on the screen.
      */
     private final void buildEntries() {
-        mHasPhone = PhoneCapabilityTester.isPhone(mContext);
-        mHasSms = PhoneCapabilityTester.isSmsIntentRegistered(mContext);
-        mHasSip = PhoneCapabilityTester.isSipPhone(mContext);
+        final boolean hasPhone = PhoneCapabilityTester.isPhone(mContext);
+        final ComponentName smsComponent = PhoneCapabilityTester.getSmsComponent(getContext());
+        final boolean hasSms = (smsComponent != null);
+        final boolean hasSip = PhoneCapabilityTester.isSipPhone(mContext);
 
         // Clear out the old entries
         mAllEntries.clear();
@@ -583,21 +570,25 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     PhoneDataItem phone = (PhoneDataItem) dataItem;
                     // Build phone entries
                     entry.data = phone.getFormattedPhoneNumber();
-                    final Intent phoneIntent = mHasPhone ?
+                    final Intent phoneIntent = hasPhone ?
                             CallUtil.getCallIntent(entry.data) : null;
-                    final Intent smsIntent = mHasSms ? new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts(CallUtil.SCHEME_SMSTO, entry.data, null)) : null;
+                    Intent smsIntent = null;
+                    if (hasSms) {
+                        smsIntent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.fromParts(CallUtil.SCHEME_SMSTO, entry.data, null));
+                        smsIntent.setComponent(smsComponent);
+                    }
 
                     // Configure Icons and Intents.
-                    if (mHasPhone && mHasSms) {
+                    if (hasPhone && hasSms) {
                         entry.intent = phoneIntent;
                         entry.secondaryIntent = smsIntent;
                         entry.secondaryActionIcon = kind.iconAltRes;
                         entry.secondaryActionDescription =
                             ContactDisplayUtils.getSmsLabelResourceId(entry.type);
-                    } else if (mHasPhone) {
+                    } else if (hasPhone) {
                         entry.intent = phoneIntent;
-                    } else if (mHasSms) {
+                    } else if (hasSms) {
                         entry.intent = smsIntent;
                     } else {
                         entry.intent = null;
@@ -694,7 +685,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 } else if (dataItem instanceof SipAddressDataItem && hasData) {
                     // Build SipAddress entries
                     entry.uri = null;
-                    if (mHasSip) {
+                    if (hasSip) {
                         entry.intent = CallUtil.getCallIntent(
                                 Uri.fromParts(CallUtil.SCHEME_SIP, entry.data, null));
                     } else {
