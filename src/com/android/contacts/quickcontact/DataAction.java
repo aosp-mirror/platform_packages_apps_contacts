@@ -16,6 +16,7 @@
 
 package com.android.contacts.quickcontact;
 
+import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -102,7 +103,8 @@ public class DataAction implements Action {
         mDataUri = ContentUris.withAppendedId(Data.CONTENT_URI, mDataId);
 
         final boolean hasPhone = PhoneCapabilityTester.isPhone(mContext);
-        final boolean hasSms = PhoneCapabilityTester.isSmsIntentRegistered(mContext);
+        final ComponentName smsComponent = PhoneCapabilityTester.getSmsComponent(mContext);
+        final boolean hasSms = (smsComponent != null);
 
         // Handle well-known MIME-types with special care
         if (item instanceof PhoneDataItem) {
@@ -113,8 +115,12 @@ public class DataAction implements Action {
 
                     final Intent phoneIntent = hasPhone ? CallUtil.getCallIntent(number)
                             : null;
-                    final Intent smsIntent = hasSms ? new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts(CallUtil.SCHEME_SMSTO, number, null)) : null;
+                    Intent smsIntent = null;
+                    if (hasSms) {
+                        smsIntent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.fromParts(CallUtil.SCHEME_SMSTO, number, null));
+                        smsIntent.setComponent(smsComponent);
+                    }
 
                     // Configure Icons and Intents. Notice actionIcon is already set to the phone
                     if (hasPhone && hasSms) {
