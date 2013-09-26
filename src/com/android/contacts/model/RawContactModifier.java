@@ -58,6 +58,7 @@ import com.android.contacts.common.model.account.AccountType.EditType;
 import com.android.contacts.common.model.account.AccountType.EventEditType;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.model.dataitem.PhoneDataItem;
 import com.android.contacts.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.NameConverter;
@@ -693,6 +694,8 @@ public class RawContactModifier {
             // Won't override the contact name
             if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 continue;
+            } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                values.remove(PhoneDataItem.KEY_FORMATTED_PHONE_NUMBER);
             }
 
             DataKind kind = accountType.getKindForMimetype(mimeType);
