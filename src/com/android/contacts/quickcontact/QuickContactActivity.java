@@ -37,6 +37,9 @@ import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.DisplayNameSources;
+import android.provider.ContactsContract.Intents.Insert;
+import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -114,11 +117,12 @@ public class QuickContactActivity extends Activity {
     private View mLineAfterTrack;
 
     private ImageView mPhotoView;
-    private ImageView mOpenDetailsImage;
+    private ImageView mOpenDetailsOrAddContactImage;
     private ImageView mStarImage;
     private ViewPager mListPager;
     private ViewPagerAdapter mPagerAdapter;
 
+    private Contact mContactData;
     private ContactLoader mContactLoader;
 
     private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
@@ -158,6 +162,37 @@ public class QuickContactActivity extends Activity {
 
     private StopWatch mStopWatch = ENABLE_STOPWATCH
             ? StopWatch.start("QuickContact") : StopWatch.getNullStopWatch();
+
+    final OnClickListener mOpenDetailsClickHandler = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
+            mContactLoader.cacheResult();
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            startActivity(intent);
+            close(false);
+        }
+    };
+
+    final OnClickListener mAddToContactsClickHandler = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mContactData == null) {
+                Log.e(TAG, "Empty contact data when trying to add to contact");
+                return;
+            }
+            final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+            intent.setType(Contacts.CONTENT_ITEM_TYPE);
+
+            // Only pre-fill the name field if the provided display name is an organization
+            // name or better (e.g. structured name, nickname)
+            if (mContactData.getDisplayNameSource() >= DisplayNameSources.ORGANIZATION) {
+                intent.putExtra(Insert.NAME, mContactData.getDisplayName());
+            }
+            intent.putExtra(Insert.DATA, mContactData.getContentValues());
+            startActivity(intent);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -202,7 +237,7 @@ public class QuickContactActivity extends Activity {
         mFloatingLayout = (FloatingChildLayout) findViewById(R.id.floating_layout);
         mTrack = (ViewGroup) findViewById(R.id.track);
         mTrackScroller = (HorizontalScrollView) findViewById(R.id.track_scroller);
-        mOpenDetailsImage = (ImageView) findViewById(R.id.contact_details_image);
+        mOpenDetailsOrAddContactImage = (ImageView) findViewById(R.id.contact_details_image);
         mStarImage = (ImageView) findViewById(R.id.quickcontact_star_button);
         mListPager = (ViewPager) findViewById(R.id.item_list_pager);
         mSelectedTabRectangle = findViewById(R.id.selected_tab_rectangle);
@@ -216,17 +251,7 @@ public class QuickContactActivity extends Activity {
             }
         });
 
-        final OnClickListener openDetailsClickHandler = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
-                mContactLoader.cacheResult();
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                startActivity(intent);
-                close(false);
-            }
-        };
-        mOpenDetailsImage.setOnClickListener(openDetailsClickHandler);
+        mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
 
         mPagerAdapter = new ViewPagerAdapter(getFragmentManager());
         mListPager.setAdapter(mPagerAdapter);
@@ -243,7 +268,7 @@ public class QuickContactActivity extends Activity {
         setHeaderNameText(R.id.name, R.string.missing_name);
 
         mPhotoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
-        mPhotoView.setOnClickListener(openDetailsClickHandler);
+        mPhotoView.setOnClickListener(mOpenDetailsClickHandler);
 
         mStopWatch.lap("v"); // view initialized
 
@@ -341,11 +366,12 @@ public class QuickContactActivity extends Activity {
      * Handle the result from the ContactLoader
      */
     private void bindData(Contact data) {
+        mContactData = data;
         final ResolveCache cache = ResolveCache.getInstance(this);
         final Context context = this;
 
-        mOpenDetailsImage.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ? View.GONE
-                : View.VISIBLE);
+        mOpenDetailsOrAddContactImage.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ?
+                View.GONE : View.VISIBLE);
         final boolean isStarred = data.getStarred();
         if (isStarred) {
             mStarImage.setImageResource(R.drawable.ic_favorite_on_lt);
@@ -357,7 +383,19 @@ public class QuickContactActivity extends Activity {
         // If this is a json encoded URI, there is no local contact to star
         if (UriUtils.isEncodedContactUri(lookupUri)) {
             mStarImage.setVisibility(View.GONE);
+
+            // If directory export support is not allowed, then don't allow the user to add
+            // to contacts
+            if (mContactData.getDirectoryExportSupport() == Directory.EXPORT_SUPPORT_NONE) {
+                mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_contacts_holo_dark);
+                mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
+            } else {
+                mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_add_contact_holo_dark);
+                mOpenDetailsOrAddContactImage.setOnClickListener(mAddToContactsClickHandler);
+            }
         } else {
+            mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_contacts_holo_dark);
+            mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
             mStarImage.setVisibility(View.VISIBLE);
             mStarImage.setOnClickListener(new OnClickListener() {
                 @Override
