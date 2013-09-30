@@ -68,13 +68,13 @@
             android:clickable="true"/>
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="42dip"
             android:layout_alignBottom="@id/photo"
             android:layout_alignLeft="@id/photo"
             android:layout_alignStart="@id/photo"
-            android:layout_toLeftOf="@id/open_details_button"
-            android:layout_toStartOf="@id/open_details_button"
+            android:layout_toLeftOf="@id/quickcontact_star_button"
+            android:layout_toStartOf="@id/quickcontact_star_button"
             android:gravity="center_vertical"
             android:paddingLeft="8dip"
             android:paddingStart="8dip"
