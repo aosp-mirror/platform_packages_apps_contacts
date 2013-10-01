@@ -134,10 +134,10 @@
     <string name="no_contact_details" msgid="6636856378019344497">"Այս կոնտակտի համար չկան հավելյալ տվյալներ:"</string>
     <string name="group_read_only" msgid="1061762906115697637">"Խմբագրելի չէ այս սարքից:"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Դասավորել ցանկը ըստ"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Կոչված անունը"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Ազգանունը"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Անունի"</string>
+    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Ազգանունի"</string>
     <string name="display_options_view_names_as" msgid="4386932036180428374">"Դիտել կոնտակտի անունները"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Առաջինը՝ կոչված անունը"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Առաջինը՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Առաջինը՝ ազգանունը"</string>
     <string name="take_photo" msgid="7496128293167402354">"Լուսանկարել"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Լուսանկարել նորը"</string>
