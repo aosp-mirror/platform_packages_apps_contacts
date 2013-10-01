@@ -111,6 +111,9 @@ public class AttachPhotoActivity extends ContactsActivity {
         if (mTempPhotoUri != null) {
             outState.putString(KEY_TEMP_PHOTO_URI, mTempPhotoUri.toString());
         }
+        if (mCroppedPhotoUri != null) {
+            outState.putString(KEY_CROPPED_PHOTO_URI, mCroppedPhotoUri.toString());
+        }
     }
 
     @Override
