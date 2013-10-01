@@ -696,6 +696,14 @@ public class RawContactModifier {
                 continue;
             } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 values.remove(PhoneDataItem.KEY_FORMATTED_PHONE_NUMBER);
+                final Integer type = values.getAsInteger(Phone.TYPE);
+                // If the provided phone number provides a custom phone type but not a label,
+                // replace it with mobile (by default) to avoid the "Enter custom label" from
+                // popping up immediately upon entering the ContactEditorFragment
+                if (type != null && type == Phone.TYPE_CUSTOM &&
+                        TextUtils.isEmpty(values.getAsString(Phone.LABEL))) {
+                    values.put(Phone.TYPE, Phone.TYPE_MOBILE);
+                }
             }
 
             DataKind kind = accountType.getKindForMimetype(mimeType);
