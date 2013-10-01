@@ -387,15 +387,12 @@ public class QuickContactActivity extends Activity {
             // If directory export support is not allowed, then don't allow the user to add
             // to contacts
             if (mContactData.getDirectoryExportSupport() == Directory.EXPORT_SUPPORT_NONE) {
-                mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_contacts_holo_dark);
-                mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
+                configureHeaderClickActions(false);
             } else {
-                mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_add_contact_holo_dark);
-                mOpenDetailsOrAddContactImage.setOnClickListener(mAddToContactsClickHandler);
+                configureHeaderClickActions(true);
             }
         } else {
-            mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_contacts_holo_dark);
-            mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
+            configureHeaderClickActions(false);
             mStarImage.setVisibility(View.VISIBLE);
             mStarImage.setOnClickListener(new OnClickListener() {
                 @Override
@@ -542,6 +539,24 @@ public class QuickContactActivity extends Activity {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Bind the correct image resource and click handlers to the header views
+     *
+     * @param canAdd Whether or not the user can directly add information in this quick contact
+     * to their local contacts
+     */
+    private void configureHeaderClickActions(boolean canAdd) {
+        if (canAdd) {
+            mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_add_contact_holo_dark);
+            mOpenDetailsOrAddContactImage.setOnClickListener(mAddToContactsClickHandler);
+            mPhotoView.setOnClickListener(mAddToContactsClickHandler);
+        } else {
+            mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_contacts_holo_dark);
+            mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
+            mPhotoView.setOnClickListener(mOpenDetailsClickHandler);
+        }
     }
 
     /**
