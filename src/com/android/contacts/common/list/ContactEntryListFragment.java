@@ -243,6 +243,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+        mAdapter = createListAdapter();
         mContactsPrefs = new ContactsPreferences(mContext);
         restoreSavedState(savedState);
     }
@@ -691,8 +692,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         onCreateView(inflater, container);
-
-        mAdapter = createListAdapter();
 
         boolean searchMode = isSearchMode();
         mAdapter.setSearchMode(searchMode);
