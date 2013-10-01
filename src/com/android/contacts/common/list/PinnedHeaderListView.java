@@ -76,6 +76,8 @@ public class PinnedHeaderListView extends AutoScrollListView
 
     private static final int DEFAULT_ANIMATION_DURATION = 20;
 
+    private static final int DEFAULT_SMOOTH_SCROLL_DURATION = 100;
+
     private static final class PinnedHeader {
         View view;
         boolean visible;
@@ -99,6 +101,9 @@ public class PinnedHeaderListView extends AutoScrollListView
     private OnScrollListener mOnScrollListener;
     private OnItemSelectedListener mOnItemSelectedListener;
     private int mScrollState;
+
+    private boolean mScrollToSectionOnHeaderTouch = false;
+    private boolean mHeaderTouched = false;
 
     private int mAnimationDuration = DEFAULT_ANIMATION_DURATION;
     private boolean mAnimating;
@@ -147,6 +152,10 @@ public class PinnedHeaderListView extends AutoScrollListView
     public void setOnItemSelectedListener(OnItemSelectedListener listener) {
         mOnItemSelectedListener = listener;
         super.setOnItemSelectedListener(this);
+    }
+
+    public void setScrollToSectionOnHeaderTouch(boolean value) {
+        mScrollToSectionOnHeaderTouch = value;
     }
 
     @Override
@@ -398,6 +407,7 @@ public class PinnedHeaderListView extends AutoScrollListView
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        mHeaderTouched = false;
         if (super.onInterceptTouchEvent(ev)) {
             return true;
         }
@@ -407,7 +417,9 @@ public class PinnedHeaderListView extends AutoScrollListView
             for (int i = mSize; --i >= 0;) {
                 PinnedHeader header = mHeaders[i];
                 if (header.visible && header.y <= y && header.y + header.height > y) {
-                    if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+                    mHeaderTouched = true;
+                    if (mScrollToSectionOnHeaderTouch &&
+                            ev.getAction() == MotionEvent.ACTION_DOWN) {
                         return smoothScrollToPartition(i);
                     } else {
                         return true;
@@ -418,6 +430,17 @@ public class PinnedHeaderListView extends AutoScrollListView
 
         return false;
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        if (mHeaderTouched) {
+            if (ev.getAction() == MotionEvent.ACTION_UP) {
+                mHeaderTouched = false;
+            }
+            return true;
+        }
+        return super.onTouchEvent(ev);
+    };
 
     private boolean smoothScrollToPartition(int partition) {
         final int position = mAdapter.getScrollPositionForHeader(partition);
@@ -432,8 +455,8 @@ public class PinnedHeaderListView extends AutoScrollListView
                 offset += header.height;
             }
         }
-
-        smoothScrollToPositionFromTop(position + getHeaderViewsCount(), offset);
+        smoothScrollToPositionFromTop(position + getHeaderViewsCount(), offset,
+                DEFAULT_SMOOTH_SCROLL_DURATION);
         return true;
     }
 
