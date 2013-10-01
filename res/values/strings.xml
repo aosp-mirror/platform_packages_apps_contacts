@@ -85,6 +85,9 @@
     <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=15] -->
     <string name="contactDetailUpdates">Updates</string>
 
+    <!-- Hint text in the search box when the user hits the Search key while in the contacts app -->
+    <string name="searchHint">Search contacts</string>
+
     <!-- Menu item used to view the details for a specific contact -->
     <string name="menu_viewContact">View contact</string>
 
@@ -319,6 +322,9 @@
 
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
+
+    <!-- The string used to describe Contacts as a searchable item within system search settings. -->
+    <string name="search_settings_description">Names of your contacts</string>
 
     <!-- Shown as a toast when the user taps on a QuickContact icon, and no application
          was found that could perform the selected action. [CHAR LIMIT=NONE] -->
