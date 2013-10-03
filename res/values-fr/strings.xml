@@ -64,7 +64,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ce contact contient des informations provenant de plusieurs comptes. Vous pouvez masquer dans votre liste de contacts les informations des comptes en lecture seule, mais pas les supprimer."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"La suppression de ce contact entraînera celle d\'informations provenant de plusieurs comptes."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Ce contact sera supprimé."</string>
-    <string name="menu_discard" msgid="6456087569315685632">"Ignorer"</string>
+    <string name="menu_discard" msgid="6456087569315685632">"Annuler"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Ce contact n\'existe pas."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget de contact ajouté à l\'écran d\'accueil."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Créer un nouveau contact"</string>
