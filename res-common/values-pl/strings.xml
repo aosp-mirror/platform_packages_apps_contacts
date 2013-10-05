@@ -92,9 +92,9 @@
     <string name="full_name" msgid="885420216812981202">"Imię i nazwisko"</string>
     <string name="name_given" msgid="1560204576305608571">"Imię"</string>
     <string name="name_family" msgid="1267097554034721002">"Nazwisko"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Przedrostek"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Tytuł przed nazwiskiem"</string>
     <string name="name_middle" msgid="3951610314424632183">"Drugie imię"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Przyrostek"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Tytuł po nazwisku"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nazwisko (fonetycznie)"</string>
     <string name="name_phonetic_given" msgid="993707744185923412">"Imię (fonetycznie)"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Drugie imię (fonetycznie)"</string>
