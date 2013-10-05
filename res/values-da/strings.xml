@@ -78,7 +78,7 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Der er ingen tilgængelige billeder på telefonen."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Billede af kontaktperson"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Navn på tilpasset etiket"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send opkald direkte til voicemail"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send opkald direkte til telefonsvarer"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fjern billede"</string>
     <string name="noContacts" msgid="8579310973261953559">"Der er ingen kontakter."</string>
     <string name="noGroups" msgid="8614664663561385253">"Ingen grupper."</string>
