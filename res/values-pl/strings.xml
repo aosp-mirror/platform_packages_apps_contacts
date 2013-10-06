@@ -206,7 +206,7 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> osoba"</item>
     <item quantity="other" msgid="6251996206137048525">"Osoby: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
   </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Wpisz w kontakcie imię i nazwisko, zanim połączysz go z innym kontaktem."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Wpisz imię i nazwisko, zanim połączysz ten kontakt z innym."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiuj do schowka"</string>
     <string name="set_default" msgid="4417505153468300351">"Ustaw jako wartość domyślną"</string>
     <string name="clear_default" msgid="7193185801596678067">"Wyczyść wartość domyślną"</string>
