@@ -375,8 +375,12 @@ public class QuickContactActivity extends Activity {
         final boolean isStarred = data.getStarred();
         if (isStarred) {
             mStarImage.setImageResource(R.drawable.ic_favorite_on_lt);
+            mStarImage.setContentDescription(
+                getResources().getString(R.string.menu_removeStar));
         } else {
             mStarImage.setImageResource(R.drawable.ic_favorite_off_lt);
+            mStarImage.setContentDescription(
+                getResources().getString(R.string.menu_addStar));
         }
         final Uri lookupUri = data.getLookupUri();
 
