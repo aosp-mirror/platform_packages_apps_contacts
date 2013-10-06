@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:clickable="true" />
+            android:clickable="true"
+            android:contentDescription="@string/description_contact_photo" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
@@ -40,11 +41,10 @@
             android:layout_alignRight="@id/photo"
             android:layout_alignStart="@id/photo"
             android:layout_alignEnd="@id/photo"
-            android:background="@color/quickcontact_name_detail_background"/>
+            android:background="@color/quickcontact_name_detail_background" />
         <ImageView
             android:id="@+id/contact_details_image"
             android:src="@drawable/ic_contacts_holo_dark"
-            android:contentDescription="@null"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_marginRight="16dip"
@@ -53,7 +53,8 @@
             android:layout_alignBottom="@id/photo_text_bar"
             android:layout_alignRight="@id/photo_text_bar"
             android:layout_alignEnd="@id/photo_text_bar"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:contentDescription="@string/viewContactDesription" />
         <ImageView
             android:id="@+id/quickcontact_star_button"
             android:src="@drawable/ic_favorite_off_lt"
@@ -65,7 +66,8 @@
             android:layout_alignBottom="@id/photo_text_bar"
             android:layout_toLeftOf="@id/contact_details_image"
             android:layout_toStartOf="@id/contact_details_image"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:contentDescription="@string/menu_addStar" />
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
