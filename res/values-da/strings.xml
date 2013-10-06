@@ -36,6 +36,7 @@
     <string name="insertGroupDescription" msgid="5658512271662210139">"Opret gruppe"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Om"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Opdateringer"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Søg i kontakter"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Vis kontakt"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Føj til favoritter"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Fjern fra favoritter"</string>
@@ -77,7 +78,7 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Der er ingen tilgængelige billeder på telefonen."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Billede af kontaktperson"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Navn på tilpasset etiket"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send opkald direkte til voicemail"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send opkald direkte til telefonsvarer"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fjern billede"</string>
     <string name="noContacts" msgid="8579310973261953559">"Der er ingen kontakter."</string>
     <string name="noGroups" msgid="8614664663561385253">"Ingen grupper."</string>
@@ -116,6 +117,7 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"kontaktpersonfoto"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Navne på dine kontakter"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
