@@ -353,7 +353,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     }
 
     private Contact loadEncodedContactEntity(Uri uri) throws JSONException {
-        final String jsonString = uri.getQueryParameter(Constants.LOOKUP_URI_JSON);
+        final String jsonString = uri.getEncodedFragment();
         final JSONObject json = new JSONObject(jsonString);
 
         final long directoryId =
