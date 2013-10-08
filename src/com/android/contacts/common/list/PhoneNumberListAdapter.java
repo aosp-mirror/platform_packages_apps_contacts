@@ -506,13 +506,12 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         if (!isExtendedDirectory(directoryId)) {
             return super.getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn);
         }
-
         return Contacts.CONTENT_LOOKUP_URI.buildUpon()
                 .appendPath(Constants.LOOKUP_URI_ENCODED)
-                .appendQueryParameter(Constants.LOOKUP_URI_JSON, cursor.getString(lookUpKeyColumn))
                 .appendQueryParameter(Directory.DISPLAY_NAME, directory.getLabel())
                 .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                         String.valueOf(directoryId))
+                .encodedFragment(cursor.getString(lookUpKeyColumn))
                 .build();
     }
 }
