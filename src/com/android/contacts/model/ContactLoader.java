@@ -372,7 +372,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 -1 /* id */,
                 -1 /* nameRawContactId */,
                 displayNameSource,
-                -1 /* photoId */,
+                0 /* photoId */,
                 photoUri,
                 displayName,
                 altDisplayName,
