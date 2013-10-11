@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Миний дотоод профайл"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Миний <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профайл"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Бүх харилцагчийг харуулж байна"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"People нь Google Акаунттай сайн ажиллана.\n\n• Та дурын вэб хөтчөөр нэвтэрч болно.\n• Өөрийн харилцагчдыг найдвартай нөөцлөөрэй."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"People нь Google Акаунттай сайн ажиллана.\n\n• Та дурын веб хөтчөөр нэвтэрч болно.\n• Өөрийн харилцагчдыг найдвартай нөөцлөөрэй."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Утсаа гээсэн ч харилцагчдаа найдвартай хадгалаарай: онлайн үйлчилгээгээр синк хийгээрэй."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Акаунт нэмэх"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Таны шинэ харилцагч нөөцлөгдөхгүй. Харилцагчдыг онлайнаар нөөцөлдөг акаунтыг нэмэх үү?"</string>
