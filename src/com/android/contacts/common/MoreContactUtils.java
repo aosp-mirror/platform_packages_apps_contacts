@@ -190,7 +190,7 @@ public class MoreContactUtils {
         View view = View.inflate(context, R.layout.list_separator, null);
         TextView textView = (TextView) view.findViewById(R.id.title);
         textView.setText(context.getString(textResourceId));
-        textView.setAllCaps(false);
+        textView.setAllCaps(true);
         return view;
     }
 
