@@ -414,9 +414,14 @@ public class PinnedHeaderListView extends AutoScrollListView
 
         if (mScrollState == SCROLL_STATE_IDLE) {
             final int y = (int)ev.getY();
+            final int x = (int)ev.getX();
             for (int i = mSize; --i >= 0;) {
                 PinnedHeader header = mHeaders[i];
-                if (header.visible && header.y <= y && header.y + header.height > y) {
+                // For RTL layouts, this also takes into account that the scrollbar is on the left
+                // side.
+                final int padding = getPaddingLeft();
+                if (header.visible && header.y <= y && header.y + header.height > y &&
+                        x >= padding && padding + mHeaderWidth >= x) {
                     mHeaderTouched = true;
                     if (mScrollToSectionOnHeaderTouch &&
                             ev.getAction() == MotionEvent.ACTION_DOWN) {
