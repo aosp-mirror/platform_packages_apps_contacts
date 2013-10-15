@@ -41,10 +41,10 @@
         <item name="list_item_profile_photo_size">80dip</item>
         <item name="list_item_prefix_highlight_color">@color/people_app_theme_color</item>
         <item name="list_item_header_text_indent">8dip</item>
-        <item name="list_item_header_text_size">25sp</item>
+        <item name="list_item_header_text_size">14sp</item>
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
-        <item name="list_item_header_height">48dip</item>
-        <item name="list_item_header_underline_height">2dip</item>
+        <item name="list_item_header_height">30dip</item>
+        <item name="list_item_header_underline_height">1dip</item>
         <item name="list_item_header_underline_color">@color/secondary_header_separator_color</item>
         <item name="list_item_data_width_weight">5</item>
         <item name="list_item_label_width_weight">3</item>
@@ -74,9 +74,9 @@
         <item name="list_item_photo_size">64dip</item>
         <item name="list_item_profile_photo_size">80dip</item>
         <item name="list_item_header_text_indent">8dip</item>
-        <item name="list_item_header_text_size">20sp</item>
+        <item name="list_item_header_text_size">14sp</item>
         <item name="list_item_header_text_color">@color/dialtacts_secondary_text_color</item>
-        <item name="list_item_header_height">48dip</item>
+        <item name="list_item_header_height">30dip</item>
         <item name="list_item_header_underline_height">2dip</item>
         <item name="list_item_header_underline_color">@color/secondary_header_separator_color</item>
         <item name="list_item_data_width_weight">5</item>
