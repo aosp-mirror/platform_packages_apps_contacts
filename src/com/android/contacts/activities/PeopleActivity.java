@@ -166,6 +166,7 @@ public class PeopleActivity extends ContactsActivity
     private ViewPager mTabPager;
     private TabPagerAdapter mTabPagerAdapter;
     private final TabPagerListener mTabPagerListener = new TabPagerListener();
+    private int mPreviousTab = TabState.DEFAULT;
 
     private ContactDetailLayoutController mContactDetailLayoutController;
 
@@ -720,7 +721,13 @@ public class PeopleActivity extends ContactsActivity
                 mGroupDetailsView.setVisibility(View.GONE);
                 break;
         }
-        mPeopleActivityView.startMaskTransition(false, TAB_FADE_IN_DURATION);
+
+        // Perform the fade in transition only if the current tab has changed
+        if (mPreviousTab != tab) {
+            mPeopleActivityView.startMaskTransition(false, TAB_FADE_IN_DURATION);
+            mPreviousTab = tab;
+        }
+
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
