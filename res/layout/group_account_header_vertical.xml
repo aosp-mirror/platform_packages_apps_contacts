@@ -18,7 +18,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?attr/list_item_header_height"
     android:layout_marginLeft="?attr/list_item_padding_left"
     android:layout_marginRight="?attr/list_item_padding_right"
     android:layout_marginStart="?attr/list_item_padding_left"
@@ -46,6 +45,7 @@
         android:paddingLeft="?attr/list_item_header_text_indent"
         android:paddingStart="?attr/list_item_header_text_indent"
         android:textAppearance="@style/SectionHeaderStyle"
+        android:textAllCaps="false"
         android:textSize="12sp"
         android:singleLine="true"
         android:ellipsize="middle" />
