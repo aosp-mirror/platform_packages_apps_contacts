@@ -42,10 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
             android:layout_marginStart="8dip"
-            android:textSize="20sp"
-            android:textColor="@color/people_app_theme_color"
+            android:textAppearance="@style/DirectoryHeaderStyle"
             android:singleLine="true"
-            android:fontFamily="sans-serif-light"
             android:textAlignment="viewStart" />
         <TextView
             android:id="@+id/display_name"
@@ -55,10 +53,8 @@
             android:layout_marginRight="8dip"
             android:layout_marginStart="8dip"
             android:layout_marginEnd="8dip"
-            android:textSize="20sp"
-            android:textColor="@color/people_app_theme_color"
+            android:textAppearance="@style/DirectoryHeaderStyle"
             android:singleLine="true"
-            android:fontFamily="sans-serif-light"
             android:textAlignment="viewStart" />
         <TextView
             android:id="@+id/count"
