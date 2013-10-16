@@ -112,11 +112,11 @@ public class PinnedHeaderListView extends AutoScrollListView
     private int mHeaderWidth;
 
     public PinnedHeaderListView(Context context) {
-        this(context, null, com.android.internal.R.attr.listViewStyle);
+        this(context, null, android.R.attr.listViewStyle);
     }
 
     public PinnedHeaderListView(Context context, AttributeSet attrs) {
-        this(context, attrs, com.android.internal.R.attr.listViewStyle);
+        this(context, attrs, android.R.attr.listViewStyle);
     }
 
     public PinnedHeaderListView(Context context, AttributeSet attrs, int defStyle) {
