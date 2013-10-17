@@ -366,17 +366,16 @@ public class ExternalAccountType extends BaseAccountType {
                     final DataKind kind = new DataKind();
 
                     kind.mimeType = a
-                            .getString(com.android.internal.R.styleable.ContactsDataKind_mimeType);
-
+                            .getString(android.R.styleable.ContactsDataKind_mimeType);
                     final String summaryColumn = a.getString(
-                            com.android.internal.R.styleable.ContactsDataKind_summaryColumn);
+                            android.R.styleable.ContactsDataKind_summaryColumn);
                     if (summaryColumn != null) {
                         // Inflate a specific column as summary when requested
                         kind.actionHeader = new SimpleInflater(summaryColumn);
                     }
 
                     final String detailColumn = a.getString(
-                            com.android.internal.R.styleable.ContactsDataKind_detailColumn);
+                            android.R.styleable.ContactsDataKind_detailColumn);
 
                     if (detailColumn != null) {
                         // Inflate specific column as summary
