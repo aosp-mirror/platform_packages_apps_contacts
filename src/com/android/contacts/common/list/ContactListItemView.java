@@ -34,7 +34,6 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -233,14 +232,12 @@ public class ContactListItemView extends ViewGroup
 
     public ContactListItemView(Context context) {
         super(context);
-        mContext = context;
 
         mTextHighlighter = new TextHighlighter(Typeface.BOLD);
     }
 
     public ContactListItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mContext = context;
 
         // Read all style values
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
@@ -777,16 +774,16 @@ public class ContactListItemView extends ViewGroup
     public void setSectionHeader(String title) {
         if (!TextUtils.isEmpty(title)) {
             if (mHeaderTextView == null) {
-                mHeaderTextView = new TextView(mContext);
+                mHeaderTextView = new TextView(getContext());
                 mHeaderTextView.setTextColor(mHeaderTextColor);
                 mHeaderTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSize);
-                mHeaderTextView.setTextAppearance(mContext, R.style.SectionHeaderStyle);
+                mHeaderTextView.setTextAppearance(getContext(), R.style.SectionHeaderStyle);
                 mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
                 mHeaderTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                 addView(mHeaderTextView);
             }
             if (mHeaderDivider == null) {
-                mHeaderDivider = new View(mContext);
+                mHeaderDivider = new View(getContext());
                 mHeaderDivider.setBackgroundColor(mHeaderUnderlineColor);
                 addView(mHeaderDivider);
             }
@@ -814,10 +811,10 @@ public class ContactListItemView extends ViewGroup
             throw new IllegalStateException("QuickContact is disabled for this view");
         }
         if (mQuickContact == null) {
-            mQuickContact = new QuickContactBadge(mContext);
+            mQuickContact = new QuickContactBadge(getContext());
             mQuickContact.setLayoutParams(getDefaultPhotoLayoutParams());
             if (mNameTextView != null) {
-                mQuickContact.setContentDescription(mContext.getString(
+                mQuickContact.setContentDescription(getContext().getString(
                         R.string.description_quick_contact_for, mNameTextView.getText()));
             }
 
@@ -832,7 +829,7 @@ public class ContactListItemView extends ViewGroup
      */
     public ImageView getPhotoView() {
         if (mPhotoView == null) {
-            mPhotoView = new ImageView(mContext);
+            mPhotoView = new ImageView(getContext());
             mPhotoView.setLayoutParams(getDefaultPhotoLayoutParams());
             // Quick contact style used above will set a background - remove it
             mPhotoView.setBackground(null);
@@ -913,10 +910,10 @@ public class ContactListItemView extends ViewGroup
      */
     public TextView getNameTextView() {
         if (mNameTextView == null) {
-            mNameTextView = new TextView(mContext);
+            mNameTextView = new TextView(getContext());
             mNameTextView.setSingleLine(true);
             mNameTextView.setEllipsize(getTextEllipsis());
-            mNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Medium);
+            mNameTextView.setTextAppearance(getContext(), android.R.style.TextAppearance_Medium);
             // Manually call setActivated() since this view may be added after the first
             // setActivated() call toward this whole item view.
             mNameTextView.setActivated(isActivated());
@@ -948,10 +945,10 @@ public class ContactListItemView extends ViewGroup
      */
     public TextView getPhoneticNameTextView() {
         if (mPhoneticNameTextView == null) {
-            mPhoneticNameTextView = new TextView(mContext);
+            mPhoneticNameTextView = new TextView(getContext());
             mPhoneticNameTextView.setSingleLine(true);
             mPhoneticNameTextView.setEllipsize(getTextEllipsis());
-            mPhoneticNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mPhoneticNameTextView.setTextAppearance(getContext(), android.R.style.TextAppearance_Small);
             mPhoneticNameTextView.setTypeface(mPhoneticNameTextView.getTypeface(), Typeface.BOLD);
             mPhoneticNameTextView.setActivated(isActivated());
             mPhoneticNameTextView.setId(R.id.cliv_phoneticname_textview);
@@ -980,10 +977,10 @@ public class ContactListItemView extends ViewGroup
      */
     public TextView getLabelView() {
         if (mLabelView == null) {
-            mLabelView = new TextView(mContext);
+            mLabelView = new TextView(getContext());
             mLabelView.setSingleLine(true);
             mLabelView.setEllipsize(getTextEllipsis());
-            mLabelView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mLabelView.setTextAppearance(getContext(), android.R.style.TextAppearance_Small);
             if (mPhotoPosition == PhotoPosition.LEFT) {
                 mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
                 mLabelView.setAllCaps(true);
@@ -1069,10 +1066,10 @@ public class ContactListItemView extends ViewGroup
      */
     public TextView getDataView() {
         if (mDataView == null) {
-            mDataView = new TextView(mContext);
+            mDataView = new TextView(getContext());
             mDataView.setSingleLine(true);
             mDataView.setEllipsize(getTextEllipsis());
-            mDataView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mDataView.setTextAppearance(getContext(), android.R.style.TextAppearance_Small);
             mDataView.setActivated(isActivated());
             mDataView.setId(R.id.cliv_data_view);
             addView(mDataView);
@@ -1099,10 +1096,10 @@ public class ContactListItemView extends ViewGroup
      */
     public TextView getSnippetView() {
         if (mSnippetView == null) {
-            mSnippetView = new TextView(mContext);
+            mSnippetView = new TextView(getContext());
             mSnippetView.setSingleLine(true);
             mSnippetView.setEllipsize(getTextEllipsis());
-            mSnippetView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mSnippetView.setTextAppearance(getContext(), android.R.style.TextAppearance_Small);
             mSnippetView.setTypeface(mSnippetView.getTypeface(), Typeface.BOLD);
             mSnippetView.setActivated(isActivated());
             addView(mSnippetView);
@@ -1115,10 +1112,10 @@ public class ContactListItemView extends ViewGroup
      */
     public TextView getStatusView() {
         if (mStatusView == null) {
-            mStatusView = new TextView(mContext);
+            mStatusView = new TextView(getContext());
             mStatusView.setSingleLine(true);
             mStatusView.setEllipsize(getTextEllipsis());
-            mStatusView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mStatusView.setTextAppearance(getContext(), android.R.style.TextAppearance_Small);
             mStatusView.setTextColor(mSecondaryTextColor);
             mStatusView.setActivated(isActivated());
             mStatusView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
@@ -1132,10 +1129,10 @@ public class ContactListItemView extends ViewGroup
      */
     public TextView getCountView() {
         if (mCountView == null) {
-            mCountView = new TextView(mContext);
+            mCountView = new TextView(getContext());
             mCountView.setSingleLine(true);
             mCountView.setEllipsize(getTextEllipsis());
-            mCountView.setTextAppearance(mContext, android.R.style.TextAppearance_Medium);
+            mCountView.setTextAppearance(getContext(), android.R.style.TextAppearance_Medium);
             mCountView.setTextColor(R.color.people_app_theme_color);
             addView(mCountView);
         }
@@ -1181,7 +1178,7 @@ public class ContactListItemView extends ViewGroup
     public void setPresence(Drawable icon) {
         if (icon != null) {
             if (mPresenceIcon == null) {
-                mPresenceIcon = new ImageView(mContext);
+                mPresenceIcon = new ImageView(getContext());
                 addView(mPresenceIcon);
             }
             mPresenceIcon.setImageDrawable(icon);
@@ -1206,7 +1203,7 @@ public class ContactListItemView extends ViewGroup
         // no guarantee that when the quick contact is initialized the display name is already set,
         // do it here too.
         if (mQuickContact != null) {
-            mQuickContact.setContentDescription(mContext.getString(
+            mQuickContact.setContentDescription(getContext().getString(
                     R.string.description_quick_contact_for, mNameTextView.getText()));
         }
     }
