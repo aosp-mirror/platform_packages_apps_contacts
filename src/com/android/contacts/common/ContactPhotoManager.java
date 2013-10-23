@@ -16,6 +16,7 @@
 
 package com.android.contacts.common;
 
+import android.app.ActivityManager;
 import android.content.ComponentCallbacks2;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -49,7 +50,6 @@ import android.util.TypedValue;
 import android.widget.ImageView;
 
 import com.android.contacts.common.util.BitmapUtil;
-import com.android.contacts.common.util.MemoryUtils;
 import com.android.contacts.common.util.UriUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -354,8 +354,6 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     /** Cache size for {@link #mBitmapCache} for devices with "large" RAM. */
     private static final int BITMAP_CACHE_SIZE = 36864 * 48; // 1728K
 
-    private static final int LARGE_RAM_THRESHOLD = 640 * 1024 * 1024;
-
     /** For debug: How many times we had to reload cached photo for a stale entry */
     private final AtomicInteger mStaleCacheOverwrite = new AtomicInteger();
 
@@ -365,8 +363,11 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     public ContactPhotoManagerImpl(Context context) {
         mContext = context;
 
-        final float cacheSizeAdjustment =
-                (MemoryUtils.getTotalMemorySize() >= LARGE_RAM_THRESHOLD) ? 1.0f : 0.5f;
+        final ActivityManager am = ((ActivityManager) context.getSystemService(
+                Context.ACTIVITY_SERVICE));
+
+        final float cacheSizeAdjustment = (am.isLowRamDevice()) ? 0.5f : 1.0f;
+
         final int bitmapCacheSize = (int) (cacheSizeAdjustment * BITMAP_CACHE_SIZE);
         mBitmapCache = new LruCache<Object, Bitmap>(bitmapCacheSize) {
             @Override protected int sizeOf(Object key, Bitmap value) {
