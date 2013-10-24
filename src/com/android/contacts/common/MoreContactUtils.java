@@ -169,16 +169,15 @@ public class MoreContactUtils {
      * how the target {@link android.graphics.Rect} is calculated in
      * {@link android.provider.ContactsContract.QuickContact#showQuickContact}.
      */
-    public static Rect getTargetRectFromView(Context context, View view) {
-        final float appScale = context.getResources().getCompatibilityInfo().applicationScale;
+    public static Rect getTargetRectFromView(View view) {
         final int[] pos = new int[2];
         view.getLocationOnScreen(pos);
 
         final Rect rect = new Rect();
-        rect.left = (int) (pos[0] * appScale + 0.5f);
-        rect.top = (int) (pos[1] * appScale + 0.5f);
-        rect.right = (int) ((pos[0] + view.getWidth()) * appScale + 0.5f);
-        rect.bottom = (int) ((pos[1] + view.getHeight()) * appScale + 0.5f);
+        rect.left = pos[0];
+        rect.top = pos[1];
+        rect.right = pos[0] + view.getWidth();
+        rect.bottom = pos[1] + view.getHeight();
         return rect;
     }
 
