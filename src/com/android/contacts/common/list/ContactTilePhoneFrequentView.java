@@ -65,8 +65,7 @@ public class ContactTilePhoneFrequentView extends ContactTileView {
                 if (TextUtils.isEmpty(mPhoneNumberString)) {
                     // Copy "superclass" implementation
                     mListener.onContactSelected(getLookupUri(), MoreContactUtils
-                            .getTargetRectFromView(
-                                    mContext, ContactTilePhoneFrequentView.this));
+                            .getTargetRectFromView(ContactTilePhoneFrequentView.this));
                 } else {
                     // When you tap a frequently-called contact, you want to
                     // call them at the number that you usually talk to them

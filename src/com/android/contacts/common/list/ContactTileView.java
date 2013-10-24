@@ -77,7 +77,7 @@ public abstract class ContactTileView extends FrameLayout {
                 if (mListener == null) return;
                 mListener.onContactSelected(
                         getLookupUri(),
-                        MoreContactUtils.getTargetRectFromView(mContext, ContactTileView.this));
+                        MoreContactUtils.getTargetRectFromView(ContactTileView.this));
             }
         };
     }
