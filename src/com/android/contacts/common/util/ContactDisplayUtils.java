@@ -22,7 +22,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.android.contacts.common.R;
-import com.android.internal.util.Preconditions;
+
+import com.google.common.base.Preconditions;
 
 /**
  * Methods for handling various contact data labels.
