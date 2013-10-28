@@ -30,18 +30,18 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.CallUtil;
-import com.android.contacts.ContactsUtils;
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.model.account.AccountType.EditType;
-import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.model.dataitem.EmailDataItem;
-import com.android.contacts.model.dataitem.ImDataItem;
-import com.android.contacts.model.dataitem.PhoneDataItem;
-import com.android.contacts.model.dataitem.SipAddressDataItem;
-import com.android.contacts.model.dataitem.StructuredPostalDataItem;
-import com.android.contacts.model.dataitem.WebsiteDataItem;
+import com.android.contacts.common.model.dataitem.EmailDataItem;
+import com.android.contacts.common.model.dataitem.ImDataItem;
+import com.android.contacts.common.model.dataitem.PhoneDataItem;
+import com.android.contacts.common.model.dataitem.SipAddressDataItem;
+import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
+import com.android.contacts.common.model.dataitem.WebsiteDataItem;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
 

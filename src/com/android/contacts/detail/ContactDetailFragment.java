@@ -70,14 +70,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
+import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.common.GroupMetaData;
 import com.android.contacts.common.Collapser.Collapsible;
 import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.GeoUtil;
@@ -91,27 +91,27 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ContactDisplayUtils;
-import com.android.contacts.model.Contact;
-import com.android.contacts.model.RawContact;
-import com.android.contacts.model.RawContactDelta;
-import com.android.contacts.model.RawContactDeltaList;
-import com.android.contacts.model.RawContactModifier;
-import com.android.contacts.model.dataitem.DataItem;
-import com.android.contacts.model.dataitem.EmailDataItem;
-import com.android.contacts.model.dataitem.EventDataItem;
-import com.android.contacts.model.dataitem.GroupMembershipDataItem;
-import com.android.contacts.model.dataitem.ImDataItem;
-import com.android.contacts.model.dataitem.NicknameDataItem;
-import com.android.contacts.model.dataitem.NoteDataItem;
-import com.android.contacts.model.dataitem.OrganizationDataItem;
-import com.android.contacts.model.dataitem.PhoneDataItem;
-import com.android.contacts.model.dataitem.RelationDataItem;
-import com.android.contacts.model.dataitem.SipAddressDataItem;
-import com.android.contacts.model.dataitem.StructuredNameDataItem;
-import com.android.contacts.model.dataitem.StructuredPostalDataItem;
-import com.android.contacts.model.dataitem.WebsiteDataItem;
-import com.android.contacts.util.DataStatus;
-import com.android.contacts.util.DateUtils;
+import com.android.contacts.common.util.DataStatus;
+import com.android.contacts.common.util.DateUtils;
+import com.android.contacts.common.model.Contact;
+import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDeltaList;
+import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.EmailDataItem;
+import com.android.contacts.common.model.dataitem.EventDataItem;
+import com.android.contacts.common.model.dataitem.GroupMembershipDataItem;
+import com.android.contacts.common.model.dataitem.ImDataItem;
+import com.android.contacts.common.model.dataitem.NicknameDataItem;
+import com.android.contacts.common.model.dataitem.NoteDataItem;
+import com.android.contacts.common.model.dataitem.OrganizationDataItem;
+import com.android.contacts.common.model.dataitem.PhoneDataItem;
+import com.android.contacts.common.model.dataitem.RelationDataItem;
+import com.android.contacts.common.model.dataitem.SipAddressDataItem;
+import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
+import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
+import com.android.contacts.common.model.dataitem.WebsiteDataItem;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.util.UiClosables;
@@ -411,9 +411,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             }
             return;
         }
-
-        // Figure out if the contact has social updates or not
-        mContactHasSocialUpdates = !mContactData.getStreamItems().isEmpty();
 
         // Setup the photo if applicable
         if (mStaticPhotoContainer != null) {
@@ -1502,9 +1499,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         private View getHeaderEntryView(View convertView, ViewGroup parent) {
-            final int desiredLayoutResourceId = mContactHasSocialUpdates ?
-                    R.layout.detail_header_contact_with_updates :
-                    R.layout.detail_header_contact_without_updates;
+            final int desiredLayoutResourceId = R.layout.detail_header_contact_without_updates;
             View result = null;
             HeaderViewCache viewCache = null;
 

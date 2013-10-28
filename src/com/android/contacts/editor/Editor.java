@@ -18,7 +18,7 @@ package com.android.contacts.editor;
 
 import android.provider.ContactsContract.Data;
 
-import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.dataitem.DataKind;
 

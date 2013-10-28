@@ -26,6 +26,7 @@ import com.android.contacts.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.util.StreamItemEntry;
+
 import com.google.common.collect.Lists;
 
 import java.util.List;

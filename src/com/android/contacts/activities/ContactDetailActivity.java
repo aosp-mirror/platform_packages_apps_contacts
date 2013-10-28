@@ -46,7 +46,7 @@ import com.android.contacts.detail.ContactDetailLayoutController;
 import com.android.contacts.detail.ContactLoaderFragment;
 import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
 import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.model.Contact;
+import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.util.PhoneCapabilityTester;
 
