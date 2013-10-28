@@ -573,6 +573,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             layers[1] = new BitmapDrawable(mContext.getResources(), cachedBitmap);
             TransitionDrawable drawable = new TransitionDrawable(layers);
             view.setImageDrawable(drawable);
+            drawable.setCrossFadeEnabled(true);
             drawable.startTransition(FADE_TRANSITION_DURATION);
         } else {
             view.setImageBitmap(cachedBitmap);
