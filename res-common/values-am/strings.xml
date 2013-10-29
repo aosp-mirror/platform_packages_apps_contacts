@@ -139,7 +139,7 @@
     <string name="chat_gtalk" msgid="6043734883347741789">"Google Talkን በመጠቀም ይወያዩ"</string>
     <string name="chat_icq" msgid="7538190395602030726">"ICQን በመጠቀም ይወያዩ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"Jabberን በመጠቀም 271448"</string>
-    <string name="chat" msgid="6297650784873558837">"ይወያዩ"</string>
+    <string name="chat" msgid="6297650784873558837">"ውይይት"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"ሰርዝ"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"የስም መስኮችን ይዘርጉ ወይም ይሰብስቡ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"ሁሉም እውቅያዎች"</string>

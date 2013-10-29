@@ -29,16 +29,16 @@
     <string name="call_callback" msgid="687494744634190411">"تماس با شماره بازگرداندن تماس"</string>
     <string name="call_car" msgid="9078083109758282133">"تماس با تلفن خودرو"</string>
     <string name="call_company_main" msgid="8768047233970315359">"تماس با خط اصلی شرکت"</string>
-    <string name="call_isdn" msgid="3342482563847537747">"تماس با ISDN"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"‏تماس با ISDN"</string>
     <string name="call_main" msgid="4640261071249938558">"تماس با خط اصلی"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"تماس با نمابر"</string>
     <string name="call_radio" msgid="9055749313292712021">"تماس با تلفن رادیویی"</string>
     <string name="call_telex" msgid="2909886619224843563">"تماس با تلکس"</string>
-    <string name="call_tty_tdd" msgid="6704940636171078852">"تماس با TTY/TDD"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"‏تماس با TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"تماس با تلفن همراه محل کار"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"تماس با پیجر محل کار"</string>
     <string name="call_assistant" msgid="5188990854852312696">"تماس با <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="8998771923464696960">"تماس با MMS"</string>
+    <string name="call_mms" msgid="8998771923464696960">"‏تماس با MMS"</string>
     <string name="sms_custom" msgid="4601748252470175865">"ارسال پیامک به <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"ارسال پیامک به تلفن منزل"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ارسال پیامک به تلفن همراه"</string>
@@ -50,16 +50,16 @@
     <string name="sms_callback" msgid="728414485478941361">"ارسال پیامک به شماره برگرداندن تماس"</string>
     <string name="sms_car" msgid="8543669230270954512">"ارسال پیامک به تلفن خودرو"</string>
     <string name="sms_company_main" msgid="5441902128445061862">"ارسال پیامک به خط اصلی شرکت"</string>
-    <string name="sms_isdn" msgid="7142483128948042667">"ارسال پیامک به ISDN"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"‏ارسال پیامک به ISDN"</string>
     <string name="sms_main" msgid="6815987840926184815">"ارسال پیامک به شماره اصلی"</string>
     <string name="sms_other_fax" msgid="8649822154879781466">"ارسال پیامک به نمابر"</string>
     <string name="sms_radio" msgid="8750339218480745940">"ارسال پیامک به تلفن رادیویی"</string>
     <string name="sms_telex" msgid="5469333785775443999">"ارسال پیامک به تلکس"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"ارسال پیامک به TTY/TDD"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"‏ارسال پیامک به TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"ارسال پیامک به تلفن همراه محل کار"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"ارسال پیامک به پیجر محل کار"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ارسال پیامک به <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"ارسال پیامک به MMS"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"‏ارسال پیامک به MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"لیست تماس مکرر پاک شود؟"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"با این کار شما در برنامه‌های «افراد» و «تلفن»، لیست افرادی را که با آن‌ها بیشترین تماس داشته‌اید پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"در حال پاک کردن لیست تماس مکرر…"</string>
@@ -131,14 +131,14 @@
     <string name="map_work" msgid="9015981646907637207">"مشاهده آدرس محل کار"</string>
     <string name="map_other" msgid="55098598855607997">"مشاهده آدرس"</string>
     <string name="map_custom" msgid="4943554530347163288">"مشاهده آدرس <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="6479001490307452172">"گپ با استفاده از AIM"</string>
-    <string name="chat_msn" msgid="627481952525245054">"گپ با استفاده از Windows Live"</string>
-    <string name="chat_yahoo" msgid="5542489454092719897">"گپ با استفاده از Yahoo"</string>
-    <string name="chat_skype" msgid="3145166404699830256">"گپ با استفاده از Skype"</string>
-    <string name="chat_qq" msgid="2811762660890755082">"گپ با استفاده از QQ"</string>
-    <string name="chat_gtalk" msgid="6043734883347741789">"گپ با استفاده از Google Talk"</string>
-    <string name="chat_icq" msgid="7538190395602030726">"گپ با استفاده از ICQ"</string>
-    <string name="chat_jabber" msgid="4525546665986350869">"گپ با استفاده از Jabber"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"‏گپ با استفاده از AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"‏گپ با استفاده از Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"‏گپ با استفاده از Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"‏گپ با استفاده از Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"‏گپ با استفاده از QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"‏گپ با استفاده از Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"‏گپ با استفاده از ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"‏گپ با استفاده از Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"گپ"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"حذف"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"بزرگ یا کوچک کردن قسمت‌های نام"</string>
@@ -171,13 +171,13 @@
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"خطایی در هنگام صادر کردن روی داد: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"نام فایل خیلی طولانی است (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"تعداد فایل‌های کارت ویزیت در حافظه بسیار زیاد است."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"فایل‌های کارت ویزیت بسیار زیادی در کارت SD وجود دارد."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"‏فایل‌های کارت ویزیت بسیار زیادی در کارت SD وجود دارد."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"خطای ورودی/خروجی"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"حافظه کافی نیست. ممکن است فایل بسیار بزرگ باشد."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"تفسیر کارت ویزیت به دلیل پیش‌بینی نشده‌ای ممکن نیست."</string>
     <string name="fail_reason_not_supported" msgid="388664373573337601">"قالب پشتیبانی نمی‌شود."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"نمی‌توان اطلاعات متای فایل(های) کارت ویزیت داده شده را جمع‌آوری کرد."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"نمی‌توان یک یا چند فایل را وارد کرد (%s)."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"‏نمی‌توان یک یا چند فایل را وارد کرد (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> پایان یافت."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شد."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"صدور اطلاعات مخاطب"</string>
@@ -187,9 +187,9 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"هیچ مخاطب قابل صدوری وجود ندارد. اگر در گوشی خود مخاطبینی دارید، بعضی از ارائه‌دهندگان داده ممکن است اجازه ندهند تا مخاطبین از گوشی صادر شوند."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"سازنده فایل کارت ویزیت به درستی اجرا نشد."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"صادر نمی‌شود"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"داده‎های مخاطب صادر نشد.\nعلت: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"‏داده‎های مخاطب صادر نشد.\nعلت: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"هیچ دستگاه ذخیره‌ای یافت نشد."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"کارت SD یافت نشد."</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"‏کارت SD یافت نشد."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"لیست مخاطبین شما به این فایل صادر می‌شود: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"وارد کردن <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"خواندن داده‌های کارت ویزیت ممکن نیست"</string>
@@ -206,18 +206,18 @@
     <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"وارد کردن کارت ویزیت انجام نشد."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"هیچ فایل کارت ویزیتی در حافظه یافت نشد."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"هیچ فایل کارت ویزیتی در کارت SD یافت نشد."</string>
-    <string name="nfc_vcard_file_name" msgid="305679412445157370">"دریافت مخاطب باNFC"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏هیچ فایل کارت ویزیتی در کارت SD یافت نشد."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"‏دریافت مخاطب باNFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"مخاطبین صادر شوند؟"</string>
     <string name="select_vcard_title" msgid="1536575036597557639">"انتخاب فایل کارت ویزیت"</string>
     <string name="import_one_vcard_string" msgid="6199149175802496361">"وارد کردن یک فایل کارت ویزیت"</string>
     <string name="import_multiple_vcard_string" msgid="8931879029943141122">"وارد کردن چند فایل کارت ویزیت"</string>
     <string name="import_all_vcard_string" msgid="1037495558362397535">"وارد کردن همه فایل‌های کارت ویزیت"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"جستجوی داده کارت ویزیت در دستگاه ذخیره..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"در حال جستجوی داده‌های کارت ویزیت در کارت SD..."</string>
+    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"‏در حال جستجوی داده‌های کارت ویزیت در کارت SD..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"در حال ذخیره در حافظهٔ پنهان"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"دستگاه ذخیره نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"کارت SD نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏کارت SD نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"وارد کردن <xliff:g id="CURRENT_NUMBER">%s</xliff:g><xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"صادر کردن به حافظه"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"اشتراک‌گذاری مخاطبین قابل مشاهده"</string>
