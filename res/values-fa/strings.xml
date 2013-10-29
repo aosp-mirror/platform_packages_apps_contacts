@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"نمایه محلی من"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"نمایه <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> من"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"نمایش همه مخاطبان"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"People با یک حساب Google بهتر کار می‌کند.\n\n• از هر مرورگر وب به آن دسترسی دارید\n• از رویدادهای خود به طور امن پشتیبان تهیه کنید"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"‏People با یک حساب Google بهتر کار می‌کند.\n\n• از هر مرورگر وب به آن دسترسی دارید\n• از رویدادهای خود به طور امن پشتیبان تهیه کنید"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"مخاطبین خود را ایمن نگهدارید حتی اگر گوشی شما گم شود: با یک سرویس آنلاین همگام‌سازی کنید."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"افزودن یک حساب"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدید شما نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتبان تهیه کند؟"</string>

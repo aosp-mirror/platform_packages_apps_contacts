@@ -67,7 +67,7 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"איש קשר זה יימחק."</string>
     <string name="menu_discard" msgid="6456087569315685632">"מחק"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"איש הקשר לא קיים."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"widget של אנשי קשר נוסף למסך הבית."</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"‏widget של אנשי קשר נוסף למסך הבית."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"צור איש קשר חדש"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"צור איש קשר חדש"</string>
   <string-array name="otherLabels">
@@ -147,7 +147,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"בחר תמונה חדשה מהגלריה"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"רשימת אנשי הקשר מתעדכנת כדי לשקף את שינוי השפה."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"רשימת אנשי הקשר מתעדכנת."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"מתבצע כרגע שדרוג של אנשי הקשר. \n\nעבור תהליך השדרוג נדרש אחסון פנימי בנפח של כ-‏‎<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB‏.\n\nבחר אחת מהאפשרויות הבאות:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"‏מתבצע כרגע שדרוג של אנשי הקשר. \n\nעבור תהליך השדרוג נדרש אחסון פנימי בנפח של כ-‏‎<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB‏.\n\nבחר אחת מהאפשרויות הבאות:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"הסר התקנה של אפליקציות מסוימות"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"נסה שוב לשדרג"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"מחפש..."</string>
@@ -219,7 +219,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"הפרופיל המקומי שלי"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"פרופיל <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> שלי"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"מציג את כל אנשי הקשר"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"\'אנשים\' עובד טוב יותר עם ​​חשבון Google‏. \n \n • גישה מכל דפדפן אינטרנט. \n • גיבוי אנשי הקשר באופן מאובטח."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"‏\'אנשים\' עובד טוב יותר עם ​​חשבון Google‏. \n \n • גישה מכל דפדפן אינטרנט. \n • גיבוי אנשי הקשר באופן מאובטח."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"דאג שלא תאבד את אנשי הקשר שלך גם אם הטלפון שלך יאבד: בצע סנכרון עם שירות מקוון."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"הוסף חשבון"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"איש הקשר החדש שלך לא יגובה. להוסיף חשבון שמגבה אנשי קשר באופן מקוון?"</string>
