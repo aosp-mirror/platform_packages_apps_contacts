@@ -400,7 +400,7 @@ public class ShortcutIntentBuilder {
 
             final float sidePadding = mBorderWidth;
             overlay = TextUtils.ellipsize(overlay, textPaint, mIconSize - 2 * sidePadding,
-                    TruncateAt.END_SMALL);
+                    TruncateAt.END);
             final float textWidth = textPaint.measureText(overlay, 0, overlay.length());
             canvas.drawText(overlay, 0, overlay.length(), (mIconSize - textWidth) / 2, mIconSize
                     - fmi.descent - textPadding, textPaint);
