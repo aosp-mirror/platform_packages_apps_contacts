@@ -1100,7 +1100,6 @@ public class ContactListItemView extends ViewGroup
             mSnippetView.setSingleLine(true);
             mSnippetView.setEllipsize(getTextEllipsis());
             mSnippetView.setTextAppearance(getContext(), android.R.style.TextAppearance_Small);
-            mSnippetView.setTypeface(mSnippetView.getTypeface(), Typeface.BOLD);
             mSnippetView.setActivated(isActivated());
             addView(mSnippetView);
         }
