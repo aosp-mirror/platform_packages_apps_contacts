@@ -30,6 +30,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListAdapter;
 
+import com.android.contacts.common.util.ViewUtil;
+
 /**
  * A ListView that maintains a header pinned at the top of the list. The
  * pinned header can be pushed up and dissolved as needed.
@@ -543,7 +545,7 @@ public class PinnedHeaderListView extends AutoScrollListView
         if (header.visible) {
             View view = header.view;
             int saveCount = canvas.save();
-            canvas.translate(isLayoutRtl() ?
+            canvas.translate(ViewUtil.isViewLayoutRtl(this) ?
                     getWidth() - mHeaderPaddingStart - mHeaderWidth : mHeaderPaddingStart,
                     header.y);
             if (header.state == FADING) {

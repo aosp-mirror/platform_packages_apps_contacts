@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.util.ViewUtil;
 
 /**
  * A custom view for the pinned section header shown at the top of the contact list.
@@ -123,7 +124,7 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         int leftCountTextView = 0;
         int rightCountTextView = 0;
 
-        if (isLayoutRtl()) {
+        if (ViewUtil.isViewLayoutRtl(this)) {
             rightHeaderTextView = width - mPaddingRight - mHeaderTextIndent;
             leftHeaderTextView = rightHeaderTextView - mHeaderTextView.getMeasuredWidth();
 

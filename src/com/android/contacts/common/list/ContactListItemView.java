@@ -50,6 +50,8 @@ import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.common.R;
 import com.android.contacts.common.format.TextHighlighter;
 import com.android.contacts.common.util.SearchUtil;
+import com.android.contacts.common.util.ViewUtil;
+
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -497,7 +499,7 @@ public class ContactListItemView extends ViewGroup
         int leftBound = getPaddingLeft();
         int rightBound = width - getPaddingRight();
 
-        final boolean isLayoutRtl = isLayoutRtl();
+        final boolean isLayoutRtl = ViewUtil.isViewLayoutRtl(this);
 
         // Put the header in the top of the contact view (Text + underline view)
         if (mHeaderVisible) {

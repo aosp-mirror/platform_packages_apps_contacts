@@ -39,4 +39,14 @@ public class ViewUtil {
         }
         return p.width;
     }
+
+    /**
+     * Returns a boolean indicating whether or not the view's layout direction is RTL
+     *
+     * @param view - A valid view
+     * @return True if the view's layout direction is RTL
+     */
+    public static boolean isViewLayoutRtl(View view) {
+        return view.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+    }
 }
