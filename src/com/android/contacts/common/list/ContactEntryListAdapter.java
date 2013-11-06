@@ -667,8 +667,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             int contactIdColumn, int lookUpKeyColumn) {
         long contactId = cursor.getLong(contactIdColumn);
         String lookupKey = cursor.getString(lookUpKeyColumn);
-        Uri uri = Contacts.getLookupUri(contactId, lookupKey);
         long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
+        // Remote directories must have a lookup key or we don't have
+        // a working contact URI
+        if (TextUtils.isEmpty(lookupKey) && isRemoteDirectory(directoryId)) {
+            return null;
+        }
+        Uri uri = Contacts.getLookupUri(contactId, lookupKey);
         if (directoryId != Directory.DEFAULT) {
             uri = uri.buildUpon().appendQueryParameter(
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();

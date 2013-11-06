@@ -21,6 +21,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -189,7 +190,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             pickPhoneNumber(phoneUri);
         } else {
             final String number = getPhoneNumber(position);
-            if (number != null) {
+            if (!TextUtils.isEmpty(number)) {
                 cacheContactInfo(position);
                 mListener.onCallNumberDirectly(number);
             } else {
