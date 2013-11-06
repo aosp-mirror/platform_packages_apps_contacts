@@ -31,10 +31,10 @@ import android.widget.ListView;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.detail.ContactDetailDisplayUtils.StreamPhotoTag;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.model.Contact;
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.util.StreamItemEntry;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.Contact;
+import com.android.contacts.common.model.account.AccountType;
 
 public class ContactDetailUpdatesFragment extends ListFragment implements FragmentKeyListener {
 
@@ -111,14 +111,6 @@ public class ContactDetailUpdatesFragment extends ListFragment implements Fragme
                 mStreamItemPhotoItemClickListener);
         setListAdapter(mStreamItemAdapter);
         getListView().setOnScrollListener(mVerticalScrollListener);
-
-        // It is possible that the contact data was set to the fragment when it was first attached
-        // to the activity, but before this method was called because the fragment was not
-        // visible on screen yet (i.e. using a {@link ViewPager}), so display the data if we already
-        // have it.
-        if (mContactData != null) {
-            mStreamItemAdapter.setStreamItems(mContactData.getStreamItems());
-        }
     }
 
     public void setData(Uri lookupUri, Contact result) {
@@ -127,13 +119,6 @@ public class ContactDetailUpdatesFragment extends ListFragment implements Fragme
         }
         mLookupUri = lookupUri;
         mContactData = result;
-
-        // If the adapter has been created already, then try to set stream items. Otherwise,
-        // wait for the adapter to get initialized, after which we will try to set the stream items
-        // again.
-        if (mStreamItemAdapter != null) {
-            mStreamItemAdapter.setStreamItems(mContactData.getStreamItems());
-        }
     }
 
     /**

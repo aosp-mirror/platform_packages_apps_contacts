@@ -17,14 +17,14 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
-import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.model.dataitem.StructuredNameDataItem;
+import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
+import com.android.contacts.common.util.NameConverter;
 
 /**
  * A dedicated editor for phonetic name. It is similar to {@link StructuredNameEditorView}.
@@ -61,7 +61,7 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
         }
 
         private void parsePhoneticName(String value) {
-            StructuredNameDataItem dataItem = PhoneticNameEditorView.parsePhoneticName(value, null);
+            StructuredNameDataItem dataItem = NameConverter.parsePhoneticName(value, null);
             mValues.setPhoneticFamilyName(dataItem.getPhoneticFamilyName());
             mValues.setPhoneticMiddleName(dataItem.getPhoneticMiddleName());
             mValues.setPhoneticGivenName(dataItem.getPhoneticGivenName());
@@ -71,7 +71,7 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
             String family = mValues.getPhoneticFamilyName();
             String middle = mValues.getPhoneticMiddleName();
             String given = mValues.getPhoneticGivenName();
-            mPhoneticName = PhoneticNameEditorView.buildPhoneticName(family, middle, given);
+            mPhoneticName = NameConverter.buildPhoneticName(family, middle, given);
         }
 
         @Override
@@ -82,74 +82,6 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
         @Override
         public boolean isVisible() {
             return mValues.isVisible();
-        }
-    }
-
-    /**
-     * Parses phonetic name and returns parsed data (family, middle, given) as ContentValues.
-     * Parsed data should be {@link StructuredName#PHONETIC_FAMILY_NAME},
-     * {@link StructuredName#PHONETIC_MIDDLE_NAME}, and
-     * {@link StructuredName#PHONETIC_GIVEN_NAME}.
-     * If this method cannot parse given phoneticName, null values will be stored.
-     *
-     * @param phoneticName Phonetic name to be parsed
-     * @param values ContentValues to be used for storing data. If null, new instance will be
-     * created.
-     * @return ContentValues with parsed data. Those data can be null.
-     */
-    public static StructuredNameDataItem parsePhoneticName(String phoneticName,
-            StructuredNameDataItem item) {
-        String family = null;
-        String middle = null;
-        String given = null;
-
-        if (!TextUtils.isEmpty(phoneticName)) {
-            String[] strings = phoneticName.split(" ", 3);
-            switch (strings.length) {
-                case 1:
-                    family = strings[0];
-                    break;
-                case 2:
-                    family = strings[0];
-                    given = strings[1];
-                    break;
-                case 3:
-                    family = strings[0];
-                    middle = strings[1];
-                    given = strings[2];
-                    break;
-            }
-        }
-
-        if (item == null) {
-            item = new StructuredNameDataItem();
-        }
-        item.setPhoneticFamilyName(family);
-        item.setPhoneticMiddleName(middle);
-        item.setPhoneticGivenName(given);
-        return item;
-    }
-
-    /**
-     * Constructs and returns a phonetic full name from given parts.
-     */
-    public static String buildPhoneticName(String family, String middle, String given) {
-        if (!TextUtils.isEmpty(family) || !TextUtils.isEmpty(middle)
-                || !TextUtils.isEmpty(given)) {
-            StringBuilder sb = new StringBuilder();
-            if (!TextUtils.isEmpty(family)) {
-                sb.append(family.trim()).append(' ');
-            }
-            if (!TextUtils.isEmpty(middle)) {
-                sb.append(middle.trim()).append(' ');
-            }
-            if (!TextUtils.isEmpty(given)) {
-                sb.append(given.trim()).append(' ');
-            }
-            sb.setLength(sb.length() - 1);  // Yank the last space
-            return sb.toString();
-        } else {
-            return null;
         }
     }
 

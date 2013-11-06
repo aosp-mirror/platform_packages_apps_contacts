@@ -42,15 +42,15 @@ import android.widget.TextView;
 
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.R;
-import com.android.contacts.model.Contact;
-import com.android.contacts.model.RawContact;
-import com.android.contacts.model.dataitem.DataItem;
-import com.android.contacts.model.dataitem.OrganizationDataItem;
+import com.android.contacts.common.model.Contact;
+import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.OrganizationDataItem;
 import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.HtmlUtils;
 import com.android.contacts.util.MoreMath;
-import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterables;
@@ -233,17 +233,6 @@ public class ContactDetailDisplayUtils {
 
         CharSequence snippet = null;
         String photoUri = null;
-        if (!contactData.getStreamItems().isEmpty()) {
-            StreamItemEntry firstEntry = contactData.getStreamItems().get(0);
-            snippet = HtmlUtils.fromHtml(context, firstEntry.getText());
-            if (!firstEntry.getPhotos().isEmpty()) {
-                StreamItemPhotoEntry firstPhoto = firstEntry.getPhotos().get(0);
-                photoUri = firstPhoto.getPhotoUri();
-
-                // If displaying an image, hide the snippet text.
-                snippet = null;
-            }
-        }
         setDataOrHideIfNone(snippet, statusView);
         if (photoUri != null) {
             ContactPhotoManager.getInstance(context).loadPhoto(
