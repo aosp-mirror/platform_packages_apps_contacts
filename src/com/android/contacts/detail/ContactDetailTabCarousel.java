@@ -30,7 +30,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.model.Contact;
+import com.android.contacts.common.model.Contact;
 import com.android.contacts.util.MoreMath;
 import com.android.contacts.util.SchedulingUtils;
 

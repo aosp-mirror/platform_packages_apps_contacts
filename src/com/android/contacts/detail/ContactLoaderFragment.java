@@ -44,8 +44,8 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.common.list.ShortcutIntentBuilder;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
-import com.android.contacts.model.Contact;
-import com.android.contacts.model.ContactLoader;
+import com.android.contacts.common.model.Contact;
+import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.google.common.base.Objects;
 

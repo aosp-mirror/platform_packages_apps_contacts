@@ -39,7 +39,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.PhotoActionPopup;
-import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.SchedulingUtils;
 

@@ -43,9 +43,9 @@ import com.android.contacts.R;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditType;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.common.model.RawContactModifier;
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;

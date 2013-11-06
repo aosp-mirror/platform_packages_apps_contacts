@@ -45,10 +45,10 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.BaseAccountType;
-import com.android.contacts.test.InjectedServices;
-import com.android.contacts.tests.mocks.MockAccountTypeManager;
-import com.android.contacts.tests.mocks.MockContactPhotoManager;
-import com.android.contacts.tests.mocks.MockSharedPreferences;
+import com.android.contacts.common.test.InjectedServices;
+import com.android.contacts.common.test.mocks.MockAccountTypeManager;
+import com.android.contacts.common.test.mocks.MockContactPhotoManager;
+import com.android.contacts.common.test.mocks.MockSharedPreferences;
 import com.android.contacts.util.PhoneCapabilityTester;
 
 /**
