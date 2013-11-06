@@ -31,8 +31,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.util.DateUtils;
 import com.android.contacts.datepicker.DatePicker.OnDateChangedListener;
-import com.android.contacts.util.DateUtils;
 
 import java.text.DateFormat;
 import java.util.Calendar;

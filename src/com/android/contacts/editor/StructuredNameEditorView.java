@@ -25,12 +25,12 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
-import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.model.dataitem.StructuredNameDataItem;
-import com.android.contacts.util.NameConverter;
+import com.android.contacts.common.util.NameConverter;
+import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 
 import java.util.HashMap;
 import java.util.Map;

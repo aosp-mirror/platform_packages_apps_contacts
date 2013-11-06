@@ -35,6 +35,7 @@ import com.google.common.annotations.VisibleForTesting;
  * Specifically, it adjusts the color and padding of the vertical
  * stripe on block quotes and alignment of inlined images.
  */
+@VisibleForTesting
 public class HtmlUtils {
 
     /**

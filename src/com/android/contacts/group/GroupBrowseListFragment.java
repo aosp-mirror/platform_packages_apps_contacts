@@ -42,10 +42,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
 import com.android.contacts.group.GroupBrowseListAdapter.GroupListItemViewCache;
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.list.AutoScrollListView;
 
 /**

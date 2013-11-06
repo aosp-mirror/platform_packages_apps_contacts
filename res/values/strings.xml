@@ -451,12 +451,6 @@
     <!-- The button to add an organization field to a contact in the Raw Contact Editor [CHAR LIMIT=15] -->
     <string name="group_edit_field_hint_text">Group name</string>
 
-    <!-- Attribution of a contact status update, when the time of update is unknown -->
-    <string name="contact_status_update_attribution">via <xliff:g id="source" example="Google Talk">%1$s</xliff:g></string>
-
-    <!-- Attribution of a contact status update, when the time of update is known -->
-    <string name="contact_status_update_attribution_with_date"><xliff:g id="date" example="3 hours ago">%1$s</xliff:g> via <xliff:g id="source" example="Google Talk">%2$s</xliff:g></string>
-
     <!-- String describing the Star/Favorite checkbox
 
          Used by AccessibilityService to announce the purpose of the view.

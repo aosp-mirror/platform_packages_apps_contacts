@@ -29,12 +29,13 @@ import com.android.contacts.R;
 import com.android.contacts.datepicker.DatePicker;
 import com.android.contacts.datepicker.DatePickerDialog;
 import com.android.contacts.datepicker.DatePickerDialog.OnDateSetListener;
-import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.account.AccountType.EventEditType;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.util.DateUtils;
+import com.android.contacts.common.util.CommonDateUtils;
+import com.android.contacts.common.util.DateUtils;
 
 import java.text.ParsePosition;
 import java.util.Calendar;
@@ -45,10 +46,6 @@ import java.util.Locale;
  * Editor that allows editing Events using a {@link DatePickerDialog}
  */
 public class EventFieldEditorView extends LabeledEditorView {
-    /**
-     * Exchange requires 8:00 for birthdays
-     */
-    private final static int DEFAULT_HOUR = 8;
 
     /**
      * Default string to show when there is no date selected yet.
@@ -181,7 +178,7 @@ public class EventFieldEditorView extends LabeledEditorView {
             // This value is missing the year. Add it now
             calendar.setTime(date2);
             calendar.set(defaultYear, calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH), DEFAULT_HOUR, 0, 0);
+                    calendar.get(Calendar.DAY_OF_MONTH), CommonDateUtils.DEFAULT_HOUR, 0, 0);
 
             onFieldChanged(column, kind.dateFormatWithYear.format(calendar.getTime()));
             rebuildDateView();
@@ -237,7 +234,7 @@ public class EventFieldEditorView extends LabeledEditorView {
                 // For formats other than Exchange, the time of the day is ignored
                 outCalendar.clear();
                 outCalendar.set(year == DatePickerDialog.NO_YEAR ? 2000 : year, monthOfYear,
-                        dayOfMonth, DEFAULT_HOUR, 0, 0);
+                        dayOfMonth, CommonDateUtils.DEFAULT_HOUR, 0, 0);
 
                 final String resultString;
                 if (year == 0) {
@@ -252,13 +249,6 @@ public class EventFieldEditorView extends LabeledEditorView {
         final DatePickerDialog resultDialog = new DatePickerDialog(getContext(), callBack,
                 oldYear, oldMonth, oldDay, isYearOptional);
         return resultDialog;
-    }
-
-    /**
-     * @return Default hour which should be used for birthday field.
-     */
-    public static int getDefaultHourForBirthday() {
-        return DEFAULT_HOUR;
     }
 
     @Override

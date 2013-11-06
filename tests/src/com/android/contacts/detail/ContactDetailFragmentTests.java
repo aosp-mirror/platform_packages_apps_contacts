@@ -25,9 +25,9 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.detail.ContactDetailFragment.DetailViewEntry;
-import com.android.contacts.model.dataitem.DataItem;
-import com.android.contacts.model.dataitem.EmailDataItem;
-import com.android.contacts.model.dataitem.ImDataItem;
+import com.android.contacts.common.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.EmailDataItem;
+import com.android.contacts.common.model.dataitem.ImDataItem;
 
 /**
  * Tests for {@link ContactDetailFragment}.

@@ -26,7 +26,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.android.contacts.common.activity.TransactionSafeActivity;
-import com.android.contacts.test.InjectedServices;
+import com.android.contacts.common.test.InjectedServices;
 
 /**
  * A common superclass for Contacts activities that handles application-wide services.
