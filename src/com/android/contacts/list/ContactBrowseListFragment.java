@@ -40,7 +40,7 @@ import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.DirectoryPartition;
-import com.android.contacts.util.ContactLoaderUtils;
+import com.android.contacts.common.util.ContactLoaderUtils;
 
 import java.util.List;
 

@@ -27,7 +27,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.model.Contact;
+import com.android.contacts.common.model.Contact;
 
 import java.util.Arrays;
 
