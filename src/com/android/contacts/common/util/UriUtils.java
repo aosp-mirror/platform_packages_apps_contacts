@@ -50,6 +50,6 @@ public class UriUtils {
     }
 
     public static boolean isEncodedContactUri(Uri uri) {
-        return uri.getLastPathSegment().equals(Constants.LOOKUP_URI_ENCODED);
+        return uri != null && uri.getLastPathSegment().equals(Constants.LOOKUP_URI_ENCODED);
     }
 }
