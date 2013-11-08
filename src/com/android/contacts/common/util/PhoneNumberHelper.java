@@ -56,6 +56,10 @@ public class PhoneNumberHelper {
      * is made public.
      */
     public static boolean isLocalEmergencyNumber(String number, Context context) {
+        if (number == null) {
+            return false;
+        }
+
         final Locale locale = context.getResources().getConfiguration().locale;
         String countryIso = TelephonyManagerUtils.getCurrentCountryIso(context, locale);
 
