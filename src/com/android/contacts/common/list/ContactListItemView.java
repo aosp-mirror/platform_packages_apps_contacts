@@ -1534,7 +1534,10 @@ public class ContactListItemView extends ViewGroup
     public boolean onTouchEvent(MotionEvent event) {
         final float x = event.getX();
         final float y = event.getY();
-        if (mBoundsWithoutHeader.contains((int) x, (int) y)) {
+        // If the touch event's coordinates are not within the view's header, then delegate
+        // to super.onTouchEvent so that regular view behavior is preserved. Otherwise, consume
+        // and ignore the touch event.
+        if (mBoundsWithoutHeader.contains((int) x, (int) y) || !pointInView(x, y, 0)) {
             return super.onTouchEvent(event);
         } else {
             return true;
