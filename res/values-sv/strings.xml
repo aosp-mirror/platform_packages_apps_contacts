@@ -160,8 +160,6 @@
     <string name="add_organization" msgid="7311893231158291197">"Lägg till organisation"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Datum"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Gruppnamn"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Redigera kontakt"</string>
   <plurals name="merge_info">
