@@ -219,8 +219,6 @@
     <skip />
     <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
     <skip />
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"entras <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> entras <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favurit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Modifitgar il contact"</string>
   <plurals name="merge_info">
