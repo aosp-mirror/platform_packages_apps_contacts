@@ -239,4 +239,6 @@
     <string name="menu_import_export" msgid="6446229463809981669">"Importer/Exporter"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Envoyer un message à <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"Composer le numéro de téléphone de <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"par <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> par <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
 </resources>
