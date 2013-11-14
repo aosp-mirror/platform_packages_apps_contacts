@@ -240,4 +240,8 @@
     <string name="menu_import_export" msgid="6446229463809981669">"Імпарт/экспарт"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Адправіць паведамленне карыстальніку: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"Набраць тэлефон карыстальніка <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <!-- no translation found for contact_status_update_attribution (8419168578670128134) -->
+    <skip />
+    <!-- no translation found for contact_status_update_attribution_with_date (7492465535645607473) -->
+    <skip />
 </resources>
