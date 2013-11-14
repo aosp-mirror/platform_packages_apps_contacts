@@ -916,7 +916,7 @@ public class ContactListItemView extends ViewGroup
             mNameTextView = new TextView(mContext);
             mNameTextView.setSingleLine(true);
             mNameTextView.setEllipsize(getTextEllipsis());
-            mNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Medium);
+            mNameTextView.setTextAppearance(mContext, R.style.TextAppearanceMedium);
             // Manually call setActivated() since this view may be added after the first
             // setActivated() call toward this whole item view.
             mNameTextView.setActivated(isActivated());
@@ -983,9 +983,9 @@ public class ContactListItemView extends ViewGroup
             mLabelView = new TextView(mContext);
             mLabelView.setSingleLine(true);
             mLabelView.setEllipsize(getTextEllipsis());
-            mLabelView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mLabelView.setTextAppearance(mContext, R.style.TextAppearanceSmall);
             if (mPhotoPosition == PhotoPosition.LEFT) {
-                mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
+                //mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
                 mLabelView.setAllCaps(true);
                 mLabelView.setGravity(Gravity.END);
             } else {
@@ -1072,7 +1072,7 @@ public class ContactListItemView extends ViewGroup
             mDataView = new TextView(mContext);
             mDataView.setSingleLine(true);
             mDataView.setEllipsize(getTextEllipsis());
-            mDataView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mDataView.setTextAppearance(mContext, R.style.TextAppearanceSmall);
             mDataView.setActivated(isActivated());
             mDataView.setId(R.id.cliv_data_view);
             addView(mDataView);
