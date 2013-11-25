@@ -187,7 +187,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Laster inn …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opprett en ny kontakt"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Logg deg på en konto"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Logg på en konto"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer kontakter"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Opprett ny gruppe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Opprett en ny gruppe"</string>
