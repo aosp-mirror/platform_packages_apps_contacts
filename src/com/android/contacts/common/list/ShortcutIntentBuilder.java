@@ -341,7 +341,7 @@ public class ShortcutIntentBuilder {
         drawBorder(canvas, dst);
 
         Drawable overlay = mContext.getResources().getDrawableForDensity(
-                com.android.internal.R.drawable.quickcontact_badge_overlay_dark, mIconDensity);
+                R.drawable.quickcontact_badge_overlay_dark, mIconDensity);
 
         overlay.setBounds(dst);
         overlay.draw(canvas);
