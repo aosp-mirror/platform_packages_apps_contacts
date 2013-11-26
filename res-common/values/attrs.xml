@@ -15,6 +15,25 @@
   -->
 
 <resources>
+    <declare-styleable name="Theme">
+        <attr name="android:textColorSecondary" />
+    </declare-styleable>
+
+    <declare-styleable name="ContactsDataKind">
+        <!-- Mime-type handled by this mapping. -->
+        <attr name="android:mimeType" />
+        <!-- Icon used to represent data of this kind. -->
+        <attr name="android:icon" />
+        <!-- Column in data table that summarizes this data. -->
+        <attr name="android:summaryColumn" />
+        <!-- Column in data table that contains details for this data. -->
+        <attr name="android:detailColumn" />
+        <!-- Flag indicating that detail should be built from SocialProvider. -->
+        <attr name="android:detailSocialSummary" />
+        <!-- Resource representing the term "All Contacts" (e.g. "All Friends" or
+        "All connections"). Optional (Default is "All Contacts"). -->
+        <attr name="android:allContactsName" />
+    </declare-styleable>
 
     <declare-styleable name="ContactListItemView">
         <attr name="list_item_height" format="dimension"/>
