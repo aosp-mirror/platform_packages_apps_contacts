@@ -31,6 +31,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
 
+import com.android.contacts.common.R;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.google.common.annotations.VisibleForTesting;
 
@@ -362,21 +363,19 @@ public class ExternalAccountType extends BaseAccountType {
                     parseEditSchema(context, parser, attrs);
                 } else if (TAG_CONTACTS_DATA_KIND.equals(tag)) {
                     final TypedArray a = context.obtainStyledAttributes(attrs,
-                            android.R.styleable.ContactsDataKind);
+                            R.styleable.ContactsDataKind);
                     final DataKind kind = new DataKind();
 
                     kind.mimeType = a
-                            .getString(android.R.styleable.ContactsDataKind_mimeType);
+                            .getString(R.styleable.ContactsDataKind_android_mimeType);
                     final String summaryColumn = a.getString(
-                            android.R.styleable.ContactsDataKind_summaryColumn);
+                            R.styleable.ContactsDataKind_android_summaryColumn);
                     if (summaryColumn != null) {
                         // Inflate a specific column as summary when requested
                         kind.actionHeader = new SimpleInflater(summaryColumn);
                     }
-
                     final String detailColumn = a.getString(
-                            android.R.styleable.ContactsDataKind_detailColumn);
-
+                            R.styleable.ContactsDataKind_android_detailColumn);
                     if (detailColumn != null) {
                         // Inflate specific column as summary
                         kind.actionBody = new SimpleInflater(detailColumn);

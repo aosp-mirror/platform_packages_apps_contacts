@@ -305,8 +305,8 @@ public class ContactListItemView extends ViewGroup
 
         a.recycle();
 
-        a = getContext().obtainStyledAttributes(android.R.styleable.Theme);
-        mSecondaryTextColor = a.getColorStateList(android.R.styleable.Theme_textColorSecondary);
+        a = getContext().obtainStyledAttributes(R.styleable.Theme);
+        mSecondaryTextColor = a.getColorStateList(R.styleable.Theme_android_textColorSecondary);
         a.recycle();
 
         mHorizontalDividerHeight = mHorizontalDividerDrawable.getIntrinsicHeight();

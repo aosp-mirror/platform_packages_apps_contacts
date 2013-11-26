@@ -31,6 +31,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
 
+import com.android.contacts.common.R;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -118,11 +120,11 @@ public class LocalizedNameResolver  {
                 String name = parser.getName();
                 if (type == XmlPullParser.START_TAG && CONTACTS_DATA_KIND.equals(name)) {
                     final TypedArray typedArray = context.obtainStyledAttributes(attrs,
-                            android.R.styleable.ContactsDataKind);
+                            R.styleable.ContactsDataKind);
                     try {
                         // See if a string has been hardcoded directly into the xml
                         final String nonResourceString = typedArray.getNonResourceString(
-                                android.R.styleable.ContactsDataKind_allContactsName);
+                                R.styleable.ContactsDataKind_android_allContactsName);
                         if (nonResourceString != null) {
                             return nonResourceString;
                         }
@@ -130,7 +132,7 @@ public class LocalizedNameResolver  {
                         // See if a resource is referenced. We can't rely on getString
                         // to automatically resolve it as the resource lives in a different package
                         int id = typedArray.getResourceId(
-                                android.R.styleable.ContactsDataKind_allContactsName, 0);
+                                R.styleable.ContactsDataKind_android_allContactsName, 0);
                         if (id == 0) return null;
 
                         // Resolve the resource Id
