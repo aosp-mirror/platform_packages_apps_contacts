@@ -399,10 +399,10 @@
     <string name="take_new_photo">Take new photo</string>
 
     <!-- An option in the 'Contact photo' dialog, if there is no photo yet [CHAR LIMIT=50] -->
-    <string name="pick_photo">Choose photo from Gallery</string>
+    <string name="pick_photo">Choose photo</string>
 
     <!-- An option in the 'Contact photo' dialog, if there is already a photo [CHAR LIMIT=50] -->
-    <string name="pick_new_photo">Select new photo from Gallery</string>
+    <string name="pick_new_photo">Select new photo</string>
 
     <!-- Text shown in the contacts app while the background process updates contacts after a locale change [CHAR LIMIT=300] -->
     <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.</string>
