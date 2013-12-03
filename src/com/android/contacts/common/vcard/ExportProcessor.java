@@ -138,9 +138,7 @@ public class ExportProcessor extends ProcessorBase {
             // composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);
 
             writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-            final Uri contentUriForRawContactsEntity = RawContactsEntity.CONTENT_URI.buildUpon()
-                    .appendQueryParameter(RawContactsEntity.FOR_EXPORT_ONLY, "1")
-                    .build();
+            final Uri contentUriForRawContactsEntity = RawContactsEntity.CONTENT_URI;
             // TODO: should provide better selection.
             if (!composer.init(Contacts.CONTENT_URI, new String[] {Contacts._ID},
                     null, null,
