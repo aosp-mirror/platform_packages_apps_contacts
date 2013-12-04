@@ -52,8 +52,6 @@ public class GeoUtil {
     public static String getGeocodedLocationFor(Context context,  String phoneNumber) {
         final PhoneNumberOfflineGeocoder geocoder = PhoneNumberOfflineGeocoder.getInstance();
         final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
-        final CountryDetector countryDetector =
-                (CountryDetector) context.getSystemService(Context.COUNTRY_DETECTOR);
         try {
             final Phonenumber.PhoneNumber structuredPhoneNumber =
                     phoneNumberUtil.parse(phoneNumber, getCurrentCountryIso(context));
