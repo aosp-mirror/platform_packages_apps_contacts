@@ -147,6 +147,9 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
 
         Cursor cursor = context.getContentResolver().query(DirectoryQuery.URI,
                 DirectoryQuery.PROJECTION, selection, null, DirectoryQuery.ORDER_BY);
+        if (cursor == null) {
+            return result;
+        }
         try {
             while(cursor.moveToNext()) {
                 long directoryId = cursor.getLong(DirectoryQuery.ID);
