@@ -143,8 +143,8 @@
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Efternavn først"</string>
     <string name="take_photo" msgid="7496128293167402354">"Tag billede"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tag nyt billede"</string>
-    <string name="pick_photo" msgid="3746334626214970837">"Vælg billede fra Galleri"</string>
-    <string name="pick_new_photo" msgid="7962368009197147617">"Vælg nyt billede fra Galleri"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Vælg billede"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Vælg et nyt billede"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Listen over kontaktpersoner opdateres for at afspejle det nye sprog."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Listen over kontaktpersoner opdateres."</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontaktpersonerne er ved at blive opgraderet. \n\nOpgraderingen kræver ca. <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB intern lagerplads.\n\nVælg et af følgende:"</string>

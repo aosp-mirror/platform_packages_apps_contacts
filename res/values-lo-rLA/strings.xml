@@ -143,8 +143,8 @@
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"ນາມສະກຸນກ່ອນ"</string>
     <string name="take_photo" msgid="7496128293167402354">"ຖ່າຍ​ຮູບ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ຖ່າຍຮູບໃໝ່"</string>
-    <string name="pick_photo" msgid="3746334626214970837">"ເລືອກຮູບຈາກຄັງຮູບພາບ"</string>
-    <string name="pick_new_photo" msgid="7962368009197147617">"ເລືອກຮູບໃໝ່ຈາກຄັງຮູບພາບ"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"ເລືອກ​ຮູບ"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"ເລືອກຮູບໃໝ່"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"ລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດຕາມການປ່ຽນແປງຂອງພາສາ."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"ລາຍການລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດ."</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"ລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຢູ່ໃນລະຫວ່າງການອັບເກຣດ. \n\nຂັ້ນຕອນການອັບເກຣດ ຈະໃຊ້ບ່ອນຈັດເກັບຂໍ້ມູນພາຍໃນ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB.\n\nກະລຸນາເລືອກໂຕເລືອກໃດນຶ່ງຕໍ່ໄປນີ້:"</string>

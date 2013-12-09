@@ -143,8 +143,8 @@
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Etternavn først"</string>
     <string name="take_photo" msgid="7496128293167402354">"Ta bilde"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ta nytt bilde"</string>
-    <string name="pick_photo" msgid="3746334626214970837">"Velg bilde fra galleriet"</string>
-    <string name="pick_new_photo" msgid="7962368009197147617">"Velg nytt bilde fra galleriet"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Velg et bilde"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Velg et nytt bilde"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktlisten er oppdatert med nytt språk."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlisten er under oppdatering."</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Oppgradering av kontakter pågår.\n\nOppgraderingsprosessen krever omtrent <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB intern lagringsplass.\n\nVelg ett av følgende alternativer:"</string>
