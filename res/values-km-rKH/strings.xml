@@ -139,8 +139,8 @@
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"នាម​ខ្លួន"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"នាមត្រកូល"</string>
     <string name="display_options_view_names_as" msgid="4386932036180428374">"មើល​ឈ្មោះ​ទំនាក់ទំនង"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"នាម​ខ្លួន​ដំបូង"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"នាមត្រកូល​ជាមុន"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"នាម​ខ្លួន​មុន"</string>
+    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"នាម​ត្រកូល​មុន"</string>
     <string name="take_photo" msgid="7496128293167402354">"ថតរូប"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ថតរូប​ថ្មី"</string>
     <string name="pick_photo" msgid="3746334626214970837">"ជ្រើស​រូបថត​ពី​វិចិត្រសាល"</string>
