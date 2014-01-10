@@ -305,7 +305,7 @@ public class RawContactModifier {
     public static EditType getBestValidType(RawContactDelta state, DataKind kind,
             boolean includeSecondary, int exactValue) {
         // Shortcut when no types
-        if (kind.typeColumn == null) return null;
+        if (kind == null || kind.typeColumn == null) return null;
 
         // Find type counts and valid primary types, bail if none
         final SparseIntArray typeCount = getTypeFrequencies(state, kind);
@@ -347,6 +347,8 @@ public class RawContactModifier {
      * {@link #getBestValidType(RawContactDelta, DataKind, boolean, int)}.
      */
     public static ValuesDelta insertChild(RawContactDelta state, DataKind kind) {
+        // Bail early if invalid kind
+        if (kind == null) return null;
         // First try finding a valid primary
         EditType bestType = getBestValidType(state, kind, false, Integer.MIN_VALUE);
         if (bestType == null) {
