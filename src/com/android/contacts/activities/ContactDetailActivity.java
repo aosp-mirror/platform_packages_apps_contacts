@@ -105,8 +105,6 @@ public class ContactDetailActivity extends ContactsActivity {
                     | ActionBar.DISPLAY_SHOW_HOME);
             actionBar.setTitle("");
         }
-
-        Log.i(TAG, getIntent().getData().toString());
     }
 
     @Override
