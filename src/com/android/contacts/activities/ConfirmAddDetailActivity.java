@@ -683,12 +683,15 @@ public class ConfirmAddDetailActivity extends Activity implements
             // Skip kind that are not editable
             if (!kind.editable) continue;
             if (mMimetype.equals(kind.mimeType)) {
-                for (ValuesDelta valuesDelta : mRawContactDelta.getMimeEntries(mMimetype)) {
-                    // Skip entries that aren't visible
-                    if (!valuesDelta.isVisible()) continue;
-                    if (valuesDelta.isInsert()) {
-                        inflateEditorView(kind, valuesDelta, mRawContactDelta);
-                        return;
+                final ArrayList<ValuesDelta> deltas = mRawContactDelta.getMimeEntries(mMimetype);
+                if (deltas != null) {
+                    for (ValuesDelta valuesDelta : deltas) {
+                        // Skip entries that aren't visible
+                        if (!valuesDelta.isVisible()) continue;
+                        if (valuesDelta.isInsert()) {
+                            inflateEditorView(kind, valuesDelta, mRawContactDelta);
+                            return;
+                        }
                     }
                 }
             }
