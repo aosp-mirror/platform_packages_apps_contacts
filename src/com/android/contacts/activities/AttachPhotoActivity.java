@@ -101,8 +101,9 @@ public class AttachPhotoActivity extends ContactsActivity {
                     new String[]{DisplayPhoto.DISPLAY_MAX_DIM}, null, null, null);
             if (c != null) {
                 try {
-                    c.moveToFirst();
-                    mPhotoDim = c.getInt(0);
+                    if (c.moveToFirst()) {
+                        mPhotoDim = c.getInt(0);
+                    }
                 } finally {
                     c.close();
                 }
