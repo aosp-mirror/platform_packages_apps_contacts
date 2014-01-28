@@ -790,26 +790,28 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         final Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
                 GroupQuery.COLUMNS, selection.toString(), selectionArgs.toArray(new String[0]),
                 null);
-        try {
-            while (cursor.moveToNext()) {
-                final String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
-                final String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
-                final String dataSet = cursor.getString(GroupQuery.DATA_SET);
-                final long groupId = cursor.getLong(GroupQuery.ID);
-                final String title = cursor.getString(GroupQuery.TITLE);
-                final boolean defaultGroup = cursor.isNull(GroupQuery.AUTO_ADD)
-                        ? false
-                        : cursor.getInt(GroupQuery.AUTO_ADD) != 0;
-                final boolean favorites = cursor.isNull(GroupQuery.FAVORITES)
-                        ? false
-                        : cursor.getInt(GroupQuery.FAVORITES) != 0;
+        if (cursor != null) {
+            try {
+                while (cursor.moveToNext()) {
+                    final String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
+                    final String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
+                    final String dataSet = cursor.getString(GroupQuery.DATA_SET);
+                    final long groupId = cursor.getLong(GroupQuery.ID);
+                    final String title = cursor.getString(GroupQuery.TITLE);
+                    final boolean defaultGroup = cursor.isNull(GroupQuery.AUTO_ADD)
+                            ? false
+                            : cursor.getInt(GroupQuery.AUTO_ADD) != 0;
+                    final boolean favorites = cursor.isNull(GroupQuery.FAVORITES)
+                            ? false
+                            : cursor.getInt(GroupQuery.FAVORITES) != 0;
 
-                groupListBuilder.add(new GroupMetaData(
-                        accountName, accountType, dataSet, groupId, title, defaultGroup,
-                        favorites));
+                    groupListBuilder.add(new GroupMetaData(
+                                    accountName, accountType, dataSet, groupId, title, defaultGroup,
+                                    favorites));
+                }
+            } finally {
+                cursor.close();
             }
-        } finally {
-            cursor.close();
         }
         result.setGroupMetaData(groupListBuilder.build());
     }
