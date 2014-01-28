@@ -633,16 +633,18 @@ public class RawContactModifier {
                                 StructuredName.SUFFIX,
                         }, null, null, null);
 
-                try {
-                    if (cursor.moveToFirst()) {
-                        child.put(StructuredName.PREFIX, cursor.getString(0));
-                        child.put(StructuredName.GIVEN_NAME, cursor.getString(1));
-                        child.put(StructuredName.MIDDLE_NAME, cursor.getString(2));
-                        child.put(StructuredName.FAMILY_NAME, cursor.getString(3));
-                        child.put(StructuredName.SUFFIX, cursor.getString(4));
+                if (cursor != null) {
+                    try {
+                        if (cursor.moveToFirst()) {
+                            child.put(StructuredName.PREFIX, cursor.getString(0));
+                            child.put(StructuredName.GIVEN_NAME, cursor.getString(1));
+                            child.put(StructuredName.MIDDLE_NAME, cursor.getString(2));
+                            child.put(StructuredName.FAMILY_NAME, cursor.getString(3));
+                            child.put(StructuredName.SUFFIX, cursor.getString(4));
+                        }
+                    } finally {
+                        cursor.close();
                     }
-                } finally {
-                    cursor.close();
                 }
             }
         }
