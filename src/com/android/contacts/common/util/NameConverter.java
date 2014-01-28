@@ -94,12 +94,14 @@ public class NameConverter {
                 StructuredName.DISPLAY_NAME,
         }, null, null, null);
 
-        try {
-            if (cursor.moveToFirst()) {
-                displayName = cursor.getString(0);
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    displayName = cursor.getString(0);
+                }
+            } finally {
+                cursor.close();
             }
-        } finally {
-            cursor.close();
         }
         return displayName;
     }
@@ -123,14 +125,16 @@ public class NameConverter {
         Cursor cursor = context.getContentResolver().query(builder.build(), STRUCTURED_NAME_FIELDS,
                 null, null, null);
 
-        try {
-            if (cursor.moveToFirst()) {
-                for (int i = 0; i < STRUCTURED_NAME_FIELDS.length; i++) {
-                    structuredName.put(STRUCTURED_NAME_FIELDS[i], cursor.getString(i));
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    for (int i = 0; i < STRUCTURED_NAME_FIELDS.length; i++) {
+                        structuredName.put(STRUCTURED_NAME_FIELDS[i], cursor.getString(i));
+                    }
                 }
+            } finally {
+                cursor.close();
             }
-        } finally {
-            cursor.close();
         }
         return structuredName;
     }
