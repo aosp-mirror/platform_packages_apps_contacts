@@ -56,6 +56,8 @@ public class ProfileAndContactsLoader extends CursorLoader {
         if (mLoadProfile) {
             cursors.add(loadProfile());
         }
+        // ContactsCursor.loadInBackground() can return null; MergeCursor
+        // correctly handles null cursors.
         final Cursor contactsCursor = super.loadInBackground();
         cursors.add(contactsCursor);
         return new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) {
@@ -68,11 +70,17 @@ public class ProfileAndContactsLoader extends CursorLoader {
     }
 
     /**
-     * Loads the profile into a MatrixCursor.
+     * Loads the profile into a MatrixCursor. On failure returns null, which
+     * matches the behavior of CursorLoader.loadInBackground().
+     *
+     * @return MatrixCursor containing profile or null on query failure.
      */
     private MatrixCursor loadProfile() {
         Cursor cursor = getContext().getContentResolver().query(Profile.CONTENT_URI, mProjection,
                 null, null, null);
+        if (cursor == null) {
+            return null;
+        }
         try {
             MatrixCursor matrix = new MatrixCursor(mProjection);
             Object[] row = new Object[mProjection.length];
