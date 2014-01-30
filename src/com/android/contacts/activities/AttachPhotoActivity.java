@@ -223,6 +223,10 @@ public class AttachPhotoActivity extends ContactsActivity {
             Log.w(TAG, "Could not find bitmap");
             return;
         }
+        if (bitmap == null) {
+            Log.w(TAG, "Could not decode bitmap");
+            return;
+        }
 
         final Bitmap scaled = Bitmap.createScaledBitmap(bitmap, size, size, false);
         final byte[] compressed = ContactPhotoUtils.compressBitmap(scaled);
