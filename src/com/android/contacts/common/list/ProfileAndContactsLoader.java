@@ -64,7 +64,7 @@ public class ProfileAndContactsLoader extends CursorLoader {
             @Override
             public Bundle getExtras() {
                 // Need to get the extras from the contacts cursor.
-                return contactsCursor.getExtras();
+                return contactsCursor == null ? new Bundle() : contactsCursor.getExtras();
             }
         };
     }
