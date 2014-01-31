@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -44,6 +45,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMetaDataLoader;
@@ -381,7 +383,13 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                     final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     intent.setClassName(accountType.syncAdapterPackageName,
                             accountType.getViewGroupActivity());
-                    startActivity(intent);
+                    try {
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Log.e(TAG, "startActivity() failed: " + e);
+                        Toast.makeText(getActivity(), R.string.missing_app,
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         } else if (mGroupSourceView != null) {
