@@ -47,14 +47,6 @@
     -->
     <bool name="config_show_group_action_in_action_bar">false</bool>
 
-    <!-- Width of a tab in the tab carousel as a percentage of the current screen width on the
-         contact detail page -->
-    <item name="tab_width_screen_width_percentage" type="fraction">75%</item>
-
-    <!-- Height of the tab carousel as a percentage of the current screen width on the
-         contact detail page -->
-    <item name="tab_height_screen_width_percentage" type="fraction">50%</item>
-
     <!-- Help URL pointing to main TOC for People. This is intentionally empty because
          the overlay will fill this in during build time. -->
     <string name="help_url_people_main"></string>

@@ -161,7 +161,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private Button mQuickFixButton;
     private QuickFix mQuickFix;
-    private boolean mContactHasSocialUpdates;
     private boolean mShowStaticPhoto = true;
 
     private final QuickFix[] mPotentialQuickFixes = new QuickFix[] {
