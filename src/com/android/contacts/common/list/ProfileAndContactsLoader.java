@@ -58,7 +58,13 @@ public class ProfileAndContactsLoader extends CursorLoader {
         }
         // ContactsCursor.loadInBackground() can return null; MergeCursor
         // correctly handles null cursors.
-        final Cursor contactsCursor = super.loadInBackground();
+        Cursor cursor = null;
+        try {
+            cursor = super.loadInBackground();
+        } catch (NullPointerException e) {
+            // Ignore NPEs thrown by providers
+        }
+        final Cursor contactsCursor = cursor;
         cursors.add(contactsCursor);
         return new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) {
             @Override
