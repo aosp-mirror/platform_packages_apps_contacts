@@ -39,7 +39,7 @@
     <string name="searchHint" msgid="8482945356247760701">"Tafuta anwani"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Tazama anwani"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Ongeza kwa vipendwa"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Ondoa kutoka kwa vipendwa vyako"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Ondoa kwenye vipendwa"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Hariri"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Futa"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Weka kwenye skrini ya Mwanzo"</string>
@@ -119,6 +119,8 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ya anwani <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Majina ya anwani zako"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Hakuna programu iliyopatikana ya kushughulikia tendo hili."</string>
+    <!-- no translation found for missing_app (1466111003546611387) -->
+    <skip />
     <string name="menu_share" msgid="943789700636542260">"Shiriki"</string>
     <string name="share_via" msgid="563121028023030093">"Shiriki anwani kupitia"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Buni kikundi chini ya akaunti"</string>

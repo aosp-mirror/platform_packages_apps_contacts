@@ -153,6 +153,8 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Num da Voss contacts"</string>
     <!-- no translation found for quickcontact_missing_app (358168575340921552) -->
     <skip />
+    <!-- no translation found for missing_app (1466111003546611387) -->
+    <skip />
     <string name="menu_share" msgid="943789700636542260">"Cundivider"</string>
     <string name="share_via" msgid="563121028023030093">"Cundivider in contact sur"</string>
     <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
