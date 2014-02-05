@@ -55,7 +55,6 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.detail.ContactDetailLayoutController;
-import com.android.contacts.detail.ContactDetailUpdatesFragment;
 import com.android.contacts.detail.ContactLoaderFragment;
 import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
 import com.android.contacts.common.ContactsUtils;
@@ -239,7 +238,7 @@ public class PeopleActivity extends ContactsActivity
      * However, there are special fragments which may not be in the layout, so we have to do the
      * initialization here.
      * The target fragments are:
-     * - {@link ContactDetailFragment} and {@link ContactDetailUpdatesFragment}:  They may not be
+     * - {@link ContactDetailFragment}: This may not be available
      *   in the layout depending on the configuration.  (i.e. portrait)
      * - {@link ContactsUnavailableFragment}: We always create it at runtime.
      */
