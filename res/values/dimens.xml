@@ -47,33 +47,6 @@
     <!-- Height of the shadow asset under the photo on the contact detail page -->
     <dimen name="detail_contact_photo_shadow_height">10dip</dimen>
 
-    <!-- Height of the tab text label in the tab carousel on the contact detail page -->
-    <dimen name="detail_tab_carousel_tab_label_height">45dip</dimen>
-
-    <!-- Height of the tab text label in the tab carousel on the contact detail page -->
-    <dimen name="detail_tab_carousel_tab_label_indent">24dip</dimen>
-
-    <!-- Left and right padding of the text within the update tab in the tab carousel -->
-    <dimen name="detail_update_tab_side_padding">24dip</dimen>
-
-    <!-- Left and right padding of the update section in the contact detail card -->
-    <dimen name="detail_update_section_side_padding">16dip</dimen>
-
-    <!-- Vertical padding above and below individual stream items -->
-    <dimen name="detail_update_section_item_vertical_padding">16dip</dimen>
-
-    <!-- Vertical padding between text and images in a single stream item -->
-    <dimen name="detail_update_section_between_items_vertical_padding">8dip</dimen>
-
-    <!-- Horizontal padding for individual stream items -->
-    <dimen name="detail_update_section_item_horizontal_padding">8dip</dimen>
-
-    <!-- Padding between images in a single stream item -->
-    <dimen name="detail_update_section_between_items_padding">1dip</dimen>
-
-    <!-- Horizontal padding between attribution and comments -->
-    <dimen name="detail_update_section_attribution_comments_padding">4dip</dimen>
-
     <!-- Margin around the contact's photo on the contact card -->
     <dimen name="detail_contact_photo_margin">8dip</dimen>
 
@@ -151,9 +124,6 @@
     <dimen name="no_accounts_message_margin">20dip</dimen>
 
     <dimen name="contact_filter_header_min_height">24dip</dimen>
-
-    <!--  Width of the lead margin on the left of a block quote inside a stream item -->
-    <dimen name="stream_item_stripe_width">8dip</dimen>
 
     <!-- Max width of the SearchView when the contact picker is a dialog (on wide
          screen devices). -->

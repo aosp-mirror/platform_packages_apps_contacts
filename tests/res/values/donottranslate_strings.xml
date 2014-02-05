@@ -97,10 +97,7 @@
     <string name="useRandomNumbers">Use random numbers</string>
     <string name="addedLogEntriesToast">Added %1$d call log entries.</string>
     <string name="noLogEntriesToast">No entries in the call log yet.  Need at least one record for the template.  Or use random numbers.</string>
-
-    <string name="chooseAContactButton">Choose a contact to add stream items to</string>
     <string name="exitButton">Exit</string>
-    <string name="streamItemPopulator">Populate stream items</string>
 
     <string-array name="pinnedHeaderUseCases">
         <item>One short section - no headers</item>

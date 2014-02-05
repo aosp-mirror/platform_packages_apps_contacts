@@ -16,7 +16,16 @@
 
 package com.android.contacts.detail;
 
-import android.content.ContentUris;
+import com.google.common.collect.Iterables;
+
+import com.android.contacts.R;
+import com.android.contacts.common.model.Contact;
+import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.OrganizationDataItem;
+import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.util.MoreMath;
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -24,36 +33,16 @@ import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Preferences;
-import android.provider.ContactsContract.StreamItems;
 import android.text.Html;
-import android.text.Html.ImageGetter;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.R;
-import com.android.contacts.common.model.Contact;
-import com.android.contacts.common.model.RawContact;
-import com.android.contacts.common.model.dataitem.DataItem;
-import com.android.contacts.common.model.dataitem.OrganizationDataItem;
-import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.util.StreamItemEntry;
-import com.android.contacts.util.ContactBadgeUtil;
-import com.android.contacts.util.HtmlUtils;
-import com.android.contacts.util.MoreMath;
-import com.android.contacts.util.StreamItemPhotoEntry;
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Iterables;
 
 import java.util.List;
 
@@ -64,31 +53,6 @@ import java.util.List;
  */
 public class ContactDetailDisplayUtils {
     private static final String TAG = "ContactDetailDisplayUtils";
-
-    /**
-     * Tag object used for stream item photos.
-     */
-    public static class StreamPhotoTag {
-        public final StreamItemEntry streamItem;
-        public final StreamItemPhotoEntry streamItemPhoto;
-
-        public StreamPhotoTag(StreamItemEntry streamItem, StreamItemPhotoEntry streamItemPhoto) {
-            this.streamItem = streamItem;
-            this.streamItemPhoto = streamItemPhoto;
-        }
-
-        public Uri getStreamItemPhotoUri() {
-            final Uri.Builder builder = StreamItems.CONTENT_URI.buildUpon();
-            ContentUris.appendId(builder, streamItem.getId());
-            builder.appendPath(StreamItems.StreamItemPhotos.CONTENT_DIRECTORY);
-            ContentUris.appendId(builder, streamItemPhoto.getId());
-            return builder.build();
-        }
-    }
-
-    private ContactDetailDisplayUtils() {
-        // Disallow explicit creation of this class.
-    }
 
     /**
      * Returns the display name of the contact, using the current display order setting.
@@ -220,147 +184,6 @@ public class ContactDetailDisplayUtils {
         } else {
             starredMenuItem.setVisible(false);
         }
-    }
-
-    /**
-     * Set the social snippet text. If there isn't one, then set the view to gone.
-     */
-    public static void setSocialSnippet(Context context, Contact contactData, TextView statusView,
-            ImageView statusPhotoView) {
-        if (statusView == null) {
-            return;
-        }
-
-        CharSequence snippet = null;
-        String photoUri = null;
-        setDataOrHideIfNone(snippet, statusView);
-        if (photoUri != null) {
-            ContactPhotoManager.getInstance(context).loadPhoto(
-                    statusPhotoView, Uri.parse(photoUri), -1, false,
-                    ContactPhotoManager.DEFAULT_BLANK);
-            statusPhotoView.setVisibility(View.VISIBLE);
-        } else {
-            statusPhotoView.setVisibility(View.GONE);
-        }
-    }
-
-    /** Creates the view that represents a stream item. */
-    public static View createStreamItemView(LayoutInflater inflater, Context context,
-            View convertView, StreamItemEntry streamItem, View.OnClickListener photoClickListener) {
-
-        // Try to recycle existing views.
-        final View container;
-        if (convertView != null) {
-            container = convertView;
-        } else {
-            container = inflater.inflate(R.layout.stream_item_container, null, false);
-        }
-
-        final ContactPhotoManager contactPhotoManager = ContactPhotoManager.getInstance(context);
-        final List<StreamItemPhotoEntry> photos = streamItem.getPhotos();
-        final int photoCount = photos.size();
-
-        // Add the text part.
-        addStreamItemText(context, streamItem, container);
-
-        // Add images.
-        final ViewGroup imageRows = (ViewGroup) container.findViewById(R.id.stream_item_image_rows);
-
-        if (photoCount == 0) {
-            // This stream item only has text.
-            imageRows.setVisibility(View.GONE);
-        } else {
-            // This stream item has text and photos.
-            imageRows.setVisibility(View.VISIBLE);
-
-            // Number of image rows needed, which is cailing(photoCount / 2)
-            final int numImageRows = (photoCount + 1) / 2;
-
-            // Actual image rows.
-            final int numOldImageRows = imageRows.getChildCount();
-
-            // Make sure we have enough stream_item_row_images.
-            if (numOldImageRows == numImageRows) {
-                // Great, we have the just enough number of rows...
-
-            } else if (numOldImageRows < numImageRows) {
-                // Need to add more image rows.
-                for (int i = numOldImageRows; i < numImageRows; i++) {
-                    View imageRow = inflater.inflate(R.layout.stream_item_row_images, imageRows,
-                            true);
-                }
-            } else {
-                // We have exceeding image rows.  Hide them.
-                for (int i = numImageRows; i < numOldImageRows; i++) {
-                    imageRows.getChildAt(i).setVisibility(View.GONE);
-                }
-            }
-
-            // Put images, two by two.
-            for (int i = 0; i < photoCount; i += 2) {
-                final View imageRow = imageRows.getChildAt(i / 2);
-                // Reused image rows may not visible, so make sure they're shown.
-                imageRow.setVisibility(View.VISIBLE);
-
-                // Show first image.
-                loadPhoto(contactPhotoManager, streamItem, photos.get(i), imageRow,
-                        R.id.stream_item_first_image, photoClickListener);
-                final View secondContainer = imageRow.findViewById(R.id.second_image_container);
-                if (i + 1 < photoCount) {
-                    // Show the second image too.
-                    loadPhoto(contactPhotoManager, streamItem, photos.get(i + 1), imageRow,
-                            R.id.stream_item_second_image, photoClickListener);
-                    secondContainer.setVisibility(View.VISIBLE);
-                } else {
-                    // Hide the second image, but it still has to occupy the space.
-                    secondContainer.setVisibility(View.INVISIBLE);
-                }
-            }
-        }
-
-        return container;
-    }
-
-    /** Loads a photo into an image view. The image view is identified by the given id. */
-    private static void loadPhoto(ContactPhotoManager contactPhotoManager,
-            final StreamItemEntry streamItem, final StreamItemPhotoEntry streamItemPhoto,
-            View photoContainer, int imageViewId, View.OnClickListener photoClickListener) {
-        final View frame = photoContainer.findViewById(imageViewId);
-        final View pushLayerView = frame.findViewById(R.id.push_layer);
-        final ImageView imageView = (ImageView) frame.findViewById(R.id.image);
-        if (photoClickListener != null) {
-            pushLayerView.setOnClickListener(photoClickListener);
-            pushLayerView.setTag(new StreamPhotoTag(streamItem, streamItemPhoto));
-            pushLayerView.setFocusable(true);
-            pushLayerView.setEnabled(true);
-        } else {
-            pushLayerView.setOnClickListener(null);
-            pushLayerView.setTag(null);
-            pushLayerView.setFocusable(false);
-            // setOnClickListener makes it clickable, so we need to overwrite it
-            pushLayerView.setClickable(false);
-            pushLayerView.setEnabled(false);
-        }
-        contactPhotoManager.loadPhoto(imageView, Uri.parse(streamItemPhoto.getPhotoUri()), -1,
-                false, ContactPhotoManager.DEFAULT_BLANK);
-    }
-
-    @VisibleForTesting
-    static View addStreamItemText(Context context, StreamItemEntry streamItem, View rootView) {
-        TextView htmlView = (TextView) rootView.findViewById(R.id.stream_item_html);
-        TextView attributionView = (TextView) rootView.findViewById(
-                R.id.stream_item_attribution);
-        TextView commentsView = (TextView) rootView.findViewById(R.id.stream_item_comments);
-        ImageGetter imageGetter = new DefaultImageGetter(context.getPackageManager());
-
-        // Stream item text
-        setDataOrHideIfNone(streamItem.getDecodedText(), htmlView);
-        // Attribution
-        setDataOrHideIfNone(ContactBadgeUtil.getSocialDate(streamItem, context),
-                attributionView);
-        // Comments
-        setDataOrHideIfNone(streamItem.getDecodedComments(), commentsView);
-        return rootView;
     }
 
     /**
