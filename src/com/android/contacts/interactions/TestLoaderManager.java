@@ -93,6 +93,7 @@ public class TestLoaderManager extends LoaderManager {
 
     private LoaderManager mDelegate;
 
+    @VisibleForTesting
     public TestLoaderManager() {
         mFinishedLoaders = new HashSet<Integer>();
     }
