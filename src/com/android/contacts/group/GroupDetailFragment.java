@@ -245,6 +245,10 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            if (data == null || data.isClosed()) {
+                Log.e(TAG, "Failed to load group metadata");
+                return;
+            }
             data.moveToPosition(-1);
             if (data.moveToNext()) {
                 boolean deleted = data.getInt(GroupMetaDataLoader.DELETED) == 1;
@@ -277,6 +281,10 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            if (data == null || data.isClosed()) {
+                Log.e(TAG, "Failed to load group members");
+                return;
+            }
             updateSize(data.getCount());
             mAdapter.setContactCursor(data);
             mMemberListView.setEmptyView(mEmptyView);

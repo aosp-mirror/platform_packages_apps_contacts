@@ -26,6 +26,7 @@ import android.database.Cursor;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,6 +164,10 @@ public class ContactTileListFragment extends Fragment {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            if (data == null || data.isClosed()) {
+                Log.e(TAG, "Failed to load contacts");
+                return;
+            }
             mAdapter.setContactCursor(data);
             mEmptyView.setText(getEmptyStateText());
             mListView.setEmptyView(mEmptyView);
