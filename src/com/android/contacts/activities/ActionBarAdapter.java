@@ -239,6 +239,10 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             // Just set to the field here.  The listener will be notified by update().
             mCurrentTab = savedState.getInt(EXTRA_KEY_SELECTED_TAB);
         }
+        if (mCurrentTab >= TabState.COUNT || mCurrentTab < 0) {
+            // Invalid tab index was saved (b/12938207). Restore the default.
+            mCurrentTab = TabState.DEFAULT;
+        }
         // Show tabs or the expanded {@link SearchView}, depending on whether or not we are in
         // search mode.
         update();
