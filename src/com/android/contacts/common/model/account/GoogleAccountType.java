@@ -18,6 +18,7 @@ package com.android.contacts.common.model.account;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.os.SystemProperties;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -37,7 +38,7 @@ public class GoogleAccountType extends BaseAccountType {
     public static final String ACCOUNT_TYPE = "com.google";
 
     private static final List<String> mExtensionPackages =
-            Lists.newArrayList("com.google.android.apps.plus");
+            Lists.newArrayList(getPlusExtensionPackageName());
 
     public GoogleAccountType(Context context, String authenticatorPackageName) {
         this.accountType = ACCOUNT_TYPE;
@@ -193,5 +194,27 @@ public class GoogleAccountType extends BaseAccountType {
     @Override
     public String getViewContactNotifyServicePackageName() {
         return "com.google.android.syncadapters.contacts";
+    }
+
+    /**
+     * The package name that we should load contacts.xml from and rely on to handle
+     * G+ account actions. In the future, this will be gmscore by default. In the
+     * mean time, we will rely on G+ app by default and use gmscore only for testing.
+     *
+     * STOPSHIP: remove this and use the gmscore package (b/13033233). This can be done after
+     * CP2 sync is handed over from G+ app to gmscore.
+     */
+    private static String getPlusExtensionPackageName() {
+        final String USE_GMS_EXTENSION_PACKAGE_SYSTEM_PROPERTY
+                = "persist.contacts.use_gms_ext";
+        final String GMS_CORE_PACKAGE = "com.google.android.gms";
+        final String G_PLUS_APP_PACKAGE = "com.google.android.apps.plus";
+        final int shouldUseGmsExtensionPackage = SystemProperties.getInt(
+                USE_GMS_EXTENSION_PACKAGE_SYSTEM_PROPERTY, 0);
+        if (shouldUseGmsExtensionPackage == 0) {
+            return G_PLUS_APP_PACKAGE;
+        } else {
+            return GMS_CORE_PACKAGE;
+        }
     }
 }
