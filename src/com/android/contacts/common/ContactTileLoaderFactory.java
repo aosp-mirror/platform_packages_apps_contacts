@@ -15,6 +15,8 @@
  */
 package com.android.contacts.common;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import android.content.Context;
 import android.content.CursorLoader;
 import android.net.Uri;
@@ -63,7 +65,8 @@ public final class ContactTileLoaderFactory {
      * is set to true. The main difference is the lack of presence
      * and status data and the addition of phone number and label.
      */
-    private static final String[] COLUMNS_PHONE_ONLY = new String[] {
+    @VisibleForTesting
+    public static final String[] COLUMNS_PHONE_ONLY = new String[] {
         Contacts._ID, // ..........................................0
         Contacts.DISPLAY_NAME, // .................................1
         Contacts.STARRED, // ......................................2
