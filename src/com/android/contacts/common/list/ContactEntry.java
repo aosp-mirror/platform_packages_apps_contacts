@@ -29,7 +29,8 @@ public class ContactEntry {
     public String phoneLabel;
     public String phoneNumber;
     public Uri photoUri;
-    public Uri lookupKey;
+    public Uri lookupUri;
+    public String lookupKey;
     public Drawable presenceIcon;
     public long id;
     public int pinned = PinnedPositions.UNPINNED;

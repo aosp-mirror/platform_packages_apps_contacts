@@ -29,14 +29,14 @@ import com.android.contacts.common.ContactPhotoManager;
 public class MockContactPhotoManager extends ContactPhotoManager {
     @Override
     public void loadThumbnail(ImageView view, long photoId, boolean darkTheme,
-            DefaultImageProvider defaultProvider) {
-        defaultProvider.applyDefaultImage(view, -1, darkTheme);
+            DefaultImageRequest defaultImageRequest, DefaultImageProvider defaultProvider) {
+        defaultProvider.applyDefaultImage(view, -1, darkTheme, null);
     }
 
     @Override
     public void loadPhoto(ImageView view, Uri photoUri, int requestedExtent, boolean darkTheme,
-            DefaultImageProvider defaultProvider) {
-        defaultProvider.applyDefaultImage(view, requestedExtent, darkTheme);
+            DefaultImageRequest defaultImageRequest, DefaultImageProvider defaultProvider) {
+        defaultProvider.applyDefaultImage(view, requestedExtent, darkTheme, null);
     }
 
     @Override
