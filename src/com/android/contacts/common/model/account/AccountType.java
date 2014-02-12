@@ -197,16 +197,6 @@ public abstract class AccountType {
         return null;
     }
 
-    /** Returns an optional Activity string that can be used to view the stream item. */
-    public String getViewStreamItemActivity() {
-        return null;
-    }
-
-    /** Returns an optional Activity string that can be used to view the stream item photo. */
-    public String getViewStreamItemPhotoActivity() {
-        return null;
-    }
-
     public CharSequence getDisplayLabel(Context context) {
         // Note this resource is defined in the sync adapter package, not resourcePackageName.
         return getResourceText(context, syncAdapterPackageName, titleRes, accountType);
