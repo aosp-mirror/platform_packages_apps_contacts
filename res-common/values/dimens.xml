@@ -81,4 +81,10 @@
     -->
     <dimen name="contact_phone_list_empty_description_size">20sp</dimen>
     <dimen name="contact_phone_list_empty_description_padding">10dip</dimen>
+
+    <!-- Dimensions for contact letter tiles -->
+    <dimen name="tile_letter_font_size">40dp</dimen>
+    <dimen name="tile_letter_font_size_small">20dp</dimen>
+    <dimen name="tile_divider_width">1dp</dimen>
+    <item name="letter_to_tile_ratio" type="dimen">67%</item>
 </resources>
