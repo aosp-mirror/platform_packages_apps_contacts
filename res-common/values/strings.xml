@@ -726,4 +726,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Attribution of a contact status update, when the time of update is known -->
     <string name="contact_status_update_attribution_with_date"><xliff:g id="date" example="3 hours ago">%1$s</xliff:g> via <xliff:g id="source" example="Google Talk">%2$s</xliff:g></string>
 
+    <!-- Font family used when drawing letters for letter tile avatars.
+         Do not translate. -->
+    <string name="letter_tile_letter_font_family">sans-serif-thin</string>
 </resources>
