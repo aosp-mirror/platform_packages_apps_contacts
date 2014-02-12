@@ -62,9 +62,6 @@ public class ExternalAccountType extends BaseAccountType {
     private static final String ATTR_VIEW_CONTACT_NOTIFY_SERVICE = "viewContactNotifyService";
     private static final String ATTR_VIEW_GROUP_ACTIVITY = "viewGroupActivity";
     private static final String ATTR_VIEW_GROUP_ACTION_LABEL = "viewGroupActionLabel";
-    private static final String ATTR_VIEW_STREAM_ITEM_ACTIVITY = "viewStreamItemActivity";
-    private static final String ATTR_VIEW_STREAM_ITEM_PHOTO_ACTIVITY =
-            "viewStreamItemPhotoActivity";
     private static final String ATTR_DATA_SET = "dataSet";
     private static final String ATTR_EXTENSION_PACKAGE_NAMES = "extensionPackageNames";
 
@@ -85,8 +82,6 @@ public class ExternalAccountType extends BaseAccountType {
     private String mViewGroupActivity;
     private String mViewGroupLabelAttribute;
     private int mViewGroupLabelResId;
-    private String mViewStreamItemActivity;
-    private String mViewStreamItemPhotoActivity;
     private List<String> mExtensionPackageNames;
     private String mAccountTypeLabelAttribute;
     private String mAccountTypeIconAttribute;
@@ -266,16 +261,6 @@ public class ExternalAccountType extends BaseAccountType {
     }
 
     @Override
-    public String getViewStreamItemActivity() {
-        return mViewStreamItemActivity;
-    }
-
-    @Override
-    public String getViewStreamItemPhotoActivity() {
-        return mViewStreamItemPhotoActivity;
-    }
-
-    @Override
     public List<String> getExtensionPackageNames() {
         return mExtensionPackageNames;
     }
@@ -328,10 +313,6 @@ public class ExternalAccountType extends BaseAccountType {
                     mViewGroupActivity = value;
                 } else if (ATTR_VIEW_GROUP_ACTION_LABEL.equals(attr)) {
                     mViewGroupLabelAttribute = value;
-                } else if (ATTR_VIEW_STREAM_ITEM_ACTIVITY.equals(attr)) {
-                    mViewStreamItemActivity = value;
-                } else if (ATTR_VIEW_STREAM_ITEM_PHOTO_ACTIVITY.equals(attr)) {
-                    mViewStreamItemPhotoActivity = value;
                 } else if (ATTR_DATA_SET.equals(attr)) {
                     dataSet = value;
                 } else if (ATTR_EXTENSION_PACKAGE_NAMES.equals(attr)) {
