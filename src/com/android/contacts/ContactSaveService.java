@@ -435,7 +435,8 @@ public class ContactSaveService extends IntentService {
                 sb.append(")");
 
                 if (first) {
-                    throw new IllegalStateException("Version consistency failed for a new contact");
+                    throw new IllegalStateException(
+                            "Version consistency failed for a new contact", e);
                 }
 
                 final RawContactDeltaList newState = RawContactDeltaList.fromQuery(
