@@ -321,12 +321,18 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         if (size == -1) {
             groupSizeString = null;
         } else {
-            String groupSizeTemplateString = getResources().getQuantityString(
-                    R.plurals.num_contacts_in_group, size);
             AccountType accountType = mAccountTypeManager.getAccountType(mAccountTypeString,
                     mDataSet);
-            groupSizeString = String.format(groupSizeTemplateString, size,
-                    accountType.getDisplayLabel(mContext));
+            final CharSequence dispLabel = accountType.getDisplayLabel(mContext);
+            if (!TextUtils.isEmpty(dispLabel)) {
+                String groupSizeTemplateString = getResources().getQuantityString(
+                        R.plurals.num_contacts_in_group, size);
+                groupSizeString = String.format(groupSizeTemplateString, size, dispLabel);
+            } else {
+                String groupSizeTemplateString = getResources().getQuantityString(
+                        R.plurals.group_list_num_contacts_in_group, size);
+                groupSizeString = String.format(groupSizeTemplateString, size);
+            }
         }
 
         if (mGroupSize != null) {

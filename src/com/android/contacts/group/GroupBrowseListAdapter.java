@@ -197,7 +197,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
     private void bindHeaderView(GroupListItem entry, GroupListItemViewCache viewCache) {
         AccountType accountType = mAccountTypeManager.getAccountType(
                 entry.getAccountType(), entry.getDataSet());
-        viewCache.accountType.setText(accountType.getDisplayLabel(mContext).toString());
+        viewCache.accountType.setText(accountType.getDisplayLabel(mContext));
         viewCache.accountName.setText(entry.getAccountName());
     }
 
