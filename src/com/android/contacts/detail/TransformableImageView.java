@@ -40,6 +40,9 @@ public class TransformableImageView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (getDrawable() == null) {
+            return;
+        }
         int saveCount = canvas.getSaveCount();
         canvas.save();
         canvas.translate(mPaddingLeft, mPaddingTop);
