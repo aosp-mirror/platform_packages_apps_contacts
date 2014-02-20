@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 
 import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.dataitem.DataKind;
@@ -166,7 +167,8 @@ public class PhotoEditorView extends LinearLayout implements Editor {
 
     protected void resetDefault() {
         // Invalid photo, show default "add photo" place-holder
-        mPhotoImageView.setImageResource(R.drawable.ic_contact_picture_holo_light);
+        mPhotoImageView.setImageDrawable(
+                ContactPhotoManager.getDefaultAvatarDrawableForContact(getResources(), false, null));
         mFrameView.setEnabled(!mReadOnly && isEnabled());
         mHasSetPhoto = false;
         mEntry.setFromTemplate(true);
