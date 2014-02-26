@@ -221,7 +221,7 @@
     <string name="no_account_prompt" msgid="7061052512446855192">"Watu wanafanya kazi vizuri wakiwa na Akaunti ya Google. \n \n • Iangalie kwa kutumia kivinjari chochote. \n • Tunza mawasiliano yako kwa usalama."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka anwani za unaowasiliana nao salama hata ukipoteza simu yako: sawazisha kwa huduma iliyo mtandaoni."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitahifadhiwa. Je, ungetaka kuongeza akaunti ambayo inahifadhi nakala ya anwani katika mtandao?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitakuwa na nakala rudufu. Je, ungependa kuongeza akaunti ambayo inahifadhi nakala rudufu ya anwani katika mtandao?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Mtu utakayemwongeza atasawazishwa na <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Unaweza kusawazisha anwani yako mpya na mojawapo ya akaunti zifuatazo. Unataka kutumia gani?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Weka karibu"</string>
