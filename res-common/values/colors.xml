@@ -48,16 +48,17 @@
     <color name="textColorIconOverlay">#fff</color>
     <color name="textColorIconOverlayShadow">#000</color>
 
-    <!-- Make sure to also update LetterTileProvider#NUM_OF_TILE_COLORS when adding or removing colors -->
+    <!-- Make sure to also update LetterTileProvider#NUM_OF_TILE_COLORS when adding or removing
+    colors -->
     <array name="letter_tile_colors">
-        <item>#f16364</item>
-        <item>#f58559</item>
-        <item>#f9a43e</item>
-        <item>#e4c62e</item>
-        <item>#67bf74</item>
-        <item>#59a2be</item>
-        <item>#2093cd</item>
-        <item>#ad62a7</item>
+        <item>#33b679</item>
+        <item>#536173</item>
+        <item>#855e86</item>
+        <item>#df5948</item>
+        <item>#aeb857</item>
+        <item>#547bca</item>
+        <item>#ae6b23</item>
+        <item>#e5ae4f</item>
     </array>
     <color name="letter_tile_default_color">#cccccc</color>
 
