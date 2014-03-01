@@ -35,6 +35,7 @@ import android.view.ViewGroup;
 
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.R;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.extensions.ExtendedPhoneDirectoriesManager;
 import com.android.contacts.common.extensions.ExtensionsFactory;
 import com.android.contacts.common.util.Constants;
@@ -345,7 +346,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             if (isQuickContactEnabled()) {
                 bindQuickContact(view, partition, cursor, PhoneQuery.PHOTO_ID,
                         PhoneQuery.PHOTO_URI, PhoneQuery.CONTACT_ID,
-                        PhoneQuery.LOOKUP_KEY);
+                        PhoneQuery.LOOKUP_KEY, PhoneQuery.DISPLAY_NAME);
             } else {
                 if (getDisplayPhotos()) {
                     bindPhoto(view, partition, cursor);
@@ -420,11 +421,18 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
 
         if (photoId != 0) {
-            getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false);
+            getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false, null);
         } else {
             final String photoUriString = cursor.getString(PhoneQuery.PHOTO_URI);
             final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
-            getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false);
+
+            DefaultImageRequest request = null;
+            if (photoUri == null) {
+                final String displayName = cursor.getString(PhoneQuery.DISPLAY_NAME);
+                final String lookupKey = cursor.getString(PhoneQuery.LOOKUP_KEY);
+                request = new DefaultImageRequest(displayName, lookupKey);
+            }
+            getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false, request);
         }
     }
 

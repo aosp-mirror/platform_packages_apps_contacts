@@ -304,6 +304,14 @@ public class Contact {
         return mDisplayNameSource;
     }
 
+    /**
+     * Used by various classes to determine whether or not this contact should be displayed as
+     * a business rather than a person.
+     */
+    public boolean isDisplayNameFromOrganization() {
+        return DisplayNameSources.ORGANIZATION == mDisplayNameSource;
+    }
+
     public long getPhotoId() {
         return mPhotoId;
     }

@@ -34,7 +34,9 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
+import com.android.contacts.common.list.ContactListAdapter.ContactQuery;
 import com.android.contacts.common.util.SearchUtil;
 
 import java.util.HashSet;
@@ -640,10 +642,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
      * @param photoUriColumn Index of the photo uri column. Optional: Can be -1
      * @param contactIdColumn Index of the contact id column
      * @param lookUpKeyColumn Index of the lookup key column
+     * @param displayNameColumn Index of the display name column
      */
     protected void bindQuickContact(final ContactListItemView view, int partitionIndex,
             Cursor cursor, int photoIdColumn, int photoUriColumn, int contactIdColumn,
-            int lookUpKeyColumn) {
+            int lookUpKeyColumn, int displayNameColumn) {
         long photoId = 0;
         if (!cursor.isNull(photoIdColumn)) {
             photoId = cursor.getLong(photoIdColumn);
@@ -654,11 +657,16 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                 getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn));
 
         if (photoId != 0 || photoUriColumn == -1) {
-            getPhotoLoader().loadThumbnail(quickContact, photoId, mDarkTheme);
+            getPhotoLoader().loadThumbnail(quickContact, photoId, mDarkTheme, null);
         } else {
             final String photoUriString = cursor.getString(photoUriColumn);
             final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
-            getPhotoLoader().loadPhoto(quickContact, photoUri, -1, mDarkTheme);
+            DefaultImageRequest request = null;
+            if (photoUri == null) {
+                request = getDefaultImageRequestFromCursor(cursor, displayNameColumn,
+                        lookUpKeyColumn);
+            }
+            getPhotoLoader().loadPhoto(quickContact, photoUri, -1, mDarkTheme, request);
         }
 
     }
@@ -692,5 +700,22 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     public static boolean isRemoteDirectory(long directoryId) {
         return directoryId != Directory.DEFAULT
                 && directoryId != Directory.LOCAL_INVISIBLE;
+    }
+
+    /**
+     * Retrieves the lookup key and display name from a cursor, and returns a
+     * {@link DefaultImageRequest} containing these contact details
+     *
+     * @param cursor Contacts cursor positioned at the current row to retrieve contact details for
+     * @param displayNameColumn Column index of the display name
+     * @param lookupKeyColumn Column index of the lookup key
+     * @return {@link DefaultImageRequest} with the displayName and identifier fields set to the
+     * display name and lookup key of the contact.
+     */
+    public static DefaultImageRequest getDefaultImageRequestFromCursor(Cursor cursor,
+            int displayNameColumn, int lookupKeyColumn) {
+        final String displayName = cursor.getString(displayNameColumn);
+        final String lookupKey = cursor.getString(lookupKeyColumn);
+        return new DefaultImageRequest(displayName, lookupKey);
     }
 }
