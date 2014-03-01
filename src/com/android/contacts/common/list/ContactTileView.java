@@ -126,8 +126,8 @@ public abstract class ContactTileView extends FrameLayout {
 
             if (mPhotoManager != null) {
                 DefaultImageRequest request = getDefaultImageRequest(entry.name, entry.lookupKey);
+                configureViewForImage(entry.photoUri == null);
                 if (mPhoto != null) {
-
                     mPhotoManager.loadPhoto(mPhoto, entry.photoUri, getApproximateImageSize(),
                             isDarkTheme(), request);
 
@@ -184,6 +184,17 @@ public abstract class ContactTileView extends FrameLayout {
     protected abstract int getApproximateImageSize();
 
     protected abstract boolean isDarkTheme();
+
+    /**
+     * Implemented by subclasses to reconfigure the view's layout and subviews, based on whether
+     * or not the contact has a user-defined photo.
+     *
+     * @param isDefaultImage True if the contact does not have a user-defined contact photo
+     * (which means a default contact image will be applied by the {@link ContactPhotoManager}
+     */
+    protected void configureViewForImage(boolean isDefaultImage) {
+        // No-op by default.
+    }
 
     /**
      * Implemented by subclasses to allow them to return a {@link DefaultImageRequest} with the
