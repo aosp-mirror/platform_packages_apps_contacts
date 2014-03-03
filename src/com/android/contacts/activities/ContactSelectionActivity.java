@@ -317,6 +317,7 @@ public class ContactSelectionActivity extends ContactsActivity
                 break;
             }
 
+            case ContactsRequest.ACTION_DEFAULT:
             case ContactsRequest.ACTION_PICK_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setIncludeProfile(mRequest.shouldIncludeProfile());
