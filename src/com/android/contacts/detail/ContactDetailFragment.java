@@ -2066,6 +2066,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     GroupMembership.CONTENT_ITEM_TYPE);
             final ValuesDelta entry = RawContactModifier.insertChild(rawContactEntityDelta,
                     groupMembershipKind);
+            if (entry == null) return;
             entry.setGroupRowId(defaultGroupId);
 
             // and fire off the intent. we don't need a callback, as the database listener

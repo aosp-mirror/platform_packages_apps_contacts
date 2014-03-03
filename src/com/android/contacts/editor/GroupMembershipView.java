@@ -369,7 +369,9 @@ public class GroupMembershipView extends LinearLayout
             long groupId = item.getGroupId();
             if (item.isChecked() && !hasMembership(groupId)) {
                 ValuesDelta entry = RawContactModifier.insertChild(mState, mKind);
-                entry.setGroupRowId(groupId);
+                if (entry != null) {
+                    entry.setGroupRowId(groupId);
+                }
             }
         }
 
