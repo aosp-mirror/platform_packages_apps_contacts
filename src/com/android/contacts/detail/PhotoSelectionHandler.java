@@ -59,6 +59,11 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     private static final int REQUEST_CODE_PHOTO_PICKED_WITH_DATA = 1002;
     private static final int REQUEST_CROP_PHOTO = 1003;
 
+    // Height and width (in pixels) to request for the photo - queried from the provider.
+    private static int mPhotoDim;
+    // Default photo dimension to use if unable to query the provider.
+    private static final int mDefaultPhotoDim = 720;
+
     protected final Context mContext;
     private final View mPhotoView;
     private final int mPhotoMode;
@@ -263,15 +268,23 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     }
 
     private int getPhotoPickSize() {
+        if (mPhotoDim != 0) {
+            return mPhotoDim;
+        }
+
         // Note that this URI is safe to call on the UI thread.
         Cursor c = mContext.getContentResolver().query(DisplayPhoto.CONTENT_MAX_DIMENSIONS_URI,
                 new String[]{DisplayPhoto.DISPLAY_MAX_DIM}, null, null, null);
-        try {
-            c.moveToFirst();
-            return c.getInt(0);
-        } finally {
-            c.close();
+        if (c != null) {
+            try {
+                if (c.moveToFirst()) {
+                    mPhotoDim = c.getInt(0);
+                }
+            } finally {
+                c.close();
+            }
         }
+        return mPhotoDim != 0 ? mPhotoDim : mDefaultPhotoDim;
     }
 
     /**
