@@ -1392,14 +1392,14 @@ public class ContactEditorFragment extends Fragment implements
             String dataSet2 = two.getValues().getAsString(RawContacts.DATA_SET);
             final AccountType type2 = accountTypes.getAccountType(accountType2, dataSet2);
 
-            // Check read-only
+            // Check read-only. Sort read/write before read-only.
             if (!type1.areContactsWritable() && type2.areContactsWritable()) {
                 return 1;
             } else if (type1.areContactsWritable() && !type2.areContactsWritable()) {
                 return -1;
             }
 
-            // Check account type
+            // Check account type. Sort Google before non-Google.
             boolean skipAccountTypeCheck = false;
             boolean isGoogleAccount1 = type1 instanceof GoogleAccountType;
             boolean isGoogleAccount2 = type2 instanceof GoogleAccountType;
@@ -1413,21 +1413,32 @@ public class ContactEditorFragment extends Fragment implements
 
             int value;
             if (!skipAccountTypeCheck) {
-                if (type1.accountType == null) {
+                // Sort accounts with type before accounts without types.
+                if (type1.accountType != null && type2.accountType == null) {
+                    return -1;
+                } else if (type1.accountType == null && type2.accountType != null) {
                     return 1;
                 }
-                value = type1.accountType.compareTo(type2.accountType);
-                if (value != 0) {
-                    return value;
-                } else {
-                    // Fall back to data set.
-                    if (type1.dataSet != null) {
-                        value = type1.dataSet.compareTo(type2.dataSet);
-                        if (value != 0) {
-                            return value;
-                        }
-                    } else if (type2.dataSet != null) {
-                        return 1;
+
+                if (type1.accountType != null && type2.accountType != null) {
+                    value = type1.accountType.compareTo(type2.accountType);
+                    if (value != 0) {
+                        return value;
+                    }
+                }
+
+                // Fall back to data set. Sort accounts with data sets before
+                // those without.
+                if (type1.dataSet != null && type2.dataSet == null) {
+                    return -1;
+                } else if (type1.dataSet == null && type2.dataSet != null) {
+                    return 1;
+                }
+
+                if (type1.dataSet != null && type2.dataSet != null) {
+                    value = type1.dataSet.compareTo(type2.dataSet);
+                    if (value != 0) {
+                        return value;
                     }
                 }
             }
