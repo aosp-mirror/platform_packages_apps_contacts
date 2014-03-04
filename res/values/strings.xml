@@ -330,6 +330,11 @@
          was found that could perform the selected action. [CHAR LIMIT=NONE] -->
     <string name="quickcontact_missing_app">No app was found to handle this action.</string>
 
+    <!-- Shown as a toast when the user attempts an action (add contact, edit
+         contact, etc) and no application was found that could perform that
+         action. [CHAR LIMIT=NONE] -->
+    <string name="missing_app">No app was found to handle this action.</string>
+
     <!-- The menu item to share the currently viewed contact [CHAR LIMIT=30] -->
     <string name="menu_share">Share</string>
 
