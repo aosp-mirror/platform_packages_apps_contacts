@@ -199,39 +199,43 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         // Phones
         ArrayList<ValuesDelta> phones = state.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
         if (phones != null) {
-            for (int i = 0; i < phones.size(); i++) {
-                ValuesDelta phone = phones.get(i);
-                final String phoneNumber = PhoneNumberUtils.formatNumber(
-                        phone.getPhoneNumber(),
-                        phone.getPhoneNormalizedNumber(),
+            boolean isFirstPhoneBound = true;
+            for (ValuesDelta phone : phones) {
+                final String phoneNumber = phone.getPhoneNumber();
+                if (TextUtils.isEmpty(phoneNumber)) {
+                    continue;
+                }
+                final String formattedNumber = PhoneNumberUtils.formatNumber(
+                        phoneNumber, phone.getPhoneNormalizedNumber(),
                         GeoUtil.getCurrentCountryIso(getContext()));
-                final CharSequence phoneType;
+                CharSequence phoneType = null;
                 if (phone.phoneHasType()) {
                     phoneType = Phone.getTypeLabel(
                             res, phone.getPhoneType(), phone.getPhoneLabel());
-                } else {
-                    phoneType = null;
                 }
-                bindData(mContext.getText(R.string.phoneLabelsGroup), phoneNumber, phoneType,
-                        i == 0, true);
+                bindData(mContext.getText(R.string.phoneLabelsGroup), formattedNumber,
+                        phoneType, isFirstPhoneBound, true);
+                isFirstPhoneBound = false;
             }
         }
 
         // Emails
         ArrayList<ValuesDelta> emails = state.getMimeEntries(Email.CONTENT_ITEM_TYPE);
         if (emails != null) {
-            for (int i = 0; i < emails.size(); i++) {
-                ValuesDelta email = emails.get(i);
+            boolean isFirstEmailBound = true;
+            for (ValuesDelta email : emails) {
                 final String emailAddress = email.getEmailData();
-                final CharSequence emailType;
+                if (TextUtils.isEmpty(emailAddress)) {
+                    continue;
+                }
+                CharSequence emailType = null;
                 if (email.emailHasType()) {
                     emailType = Email.getTypeLabel(
                             res, email.getEmailType(), email.getEmailLabel());
-                } else {
-                    emailType = null;
                 }
                 bindData(mContext.getText(R.string.emailLabelsGroup), emailAddress, emailType,
-                        i == 0);
+                        isFirstEmailBound);
+                isFirstEmailBound = false;
             }
         }
 
