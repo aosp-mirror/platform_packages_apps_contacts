@@ -263,31 +263,33 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
                     "=?) AND " + rawContactIdSelectionBuilder.toString(),
                     selectionArgs.toArray(new String[0]), null);
 
-            try {
-                memberDataCursor.moveToPosition(-1);
-                while (memberDataCursor.moveToNext()) {
-                    long rawContactId = memberDataCursor.getLong(RAW_CONTACT_ID_COLUMN_INDEX);
-                    SuggestedMember member = suggestionsMap.get(rawContactId);
-                    if (member == null) {
-                        continue;
-                    }
-                    String mimetype = memberDataCursor.getString(MIMETYPE_COLUMN_INDEX);
-                    if (Photo.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                        // Set photo
-                        byte[] bitmapArray = memberDataCursor.getBlob(PHOTO_COLUMN_INDEX);
-                        member.setPhotoByteArray(bitmapArray);
-                    } else if (Email.CONTENT_ITEM_TYPE.equals(mimetype) ||
-                            Phone.CONTENT_ITEM_TYPE.equals(mimetype)) {
-                        // Set at most 1 extra piece of contact info that can be a phone number or
-                        // email
-                        if (!member.hasExtraInfo()) {
-                            String info = memberDataCursor.getString(DATA_COLUMN_INDEX);
-                            member.setExtraInfo(info);
+            if (memberDataCursor != null) {
+                try {
+                    memberDataCursor.moveToPosition(-1);
+                    while (memberDataCursor.moveToNext()) {
+                        long rawContactId = memberDataCursor.getLong(RAW_CONTACT_ID_COLUMN_INDEX);
+                        SuggestedMember member = suggestionsMap.get(rawContactId);
+                        if (member == null) {
+                            continue;
+                        }
+                        String mimetype = memberDataCursor.getString(MIMETYPE_COLUMN_INDEX);
+                        if (Photo.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                            // Set photo
+                            byte[] bitmapArray = memberDataCursor.getBlob(PHOTO_COLUMN_INDEX);
+                            member.setPhotoByteArray(bitmapArray);
+                        } else if (Email.CONTENT_ITEM_TYPE.equals(mimetype) ||
+                                Phone.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                            // Set at most 1 extra piece of contact info that can be a phone number or
+                            // email
+                            if (!member.hasExtraInfo()) {
+                                String info = memberDataCursor.getString(DATA_COLUMN_INDEX);
+                                member.setExtraInfo(info);
+                            }
                         }
                     }
+                } finally {
+                    memberDataCursor.close();
                 }
-            } finally {
-                memberDataCursor.close();
             }
             results.values = suggestionsList;
             return results;
