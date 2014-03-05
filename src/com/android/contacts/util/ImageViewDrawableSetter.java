@@ -23,10 +23,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.provider.ContactsContract.DisplayNameSources;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
 
 import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.model.Contact;
 
 import java.util.Arrays;
@@ -40,6 +44,7 @@ public class ImageViewDrawableSetter {
     private byte[] mCompressed;
     private Drawable mPreviousDrawable;
     private int mDurationInMillis = 0;
+    private Contact mContact;
     private static final String TAG = "ImageViewDrawableSetter";
 
     public ImageViewDrawableSetter() {
@@ -49,9 +54,10 @@ public class ImageViewDrawableSetter {
         mTarget = target;
     }
 
-    public void setupContactPhoto(Contact contactData, ImageView photoView) {
+    public Bitmap setupContactPhoto(Contact contactData, ImageView photoView) {
+        mContact = contactData;
         setTarget(photoView);
-        setCompressedImage(contactData.getPhotoBinaryData());
+        return setCompressedImage(contactData.getPhotoBinaryData());
     }
 
     public void setTransitionDuration(int durationInMillis) {
@@ -122,23 +128,33 @@ public class ImageViewDrawableSetter {
     }
 
     private Bitmap previousBitmap() {
-        return (mPreviousDrawable == null)
-                ? null
+        return (mPreviousDrawable == null) ? null
+                : mPreviousDrawable instanceof LetterTileDrawable ? null
                 : ((BitmapDrawable) mPreviousDrawable).getBitmap();
     }
 
     /**
-     * Obtain the default drawable for a contact when no photo is available.
+     * Obtain the default drawable for a contact when no photo is available. If this is a local
+     * contact, then use the contact's display name and lookup key (as a unique identifier) to
+     * retrieve a default drawable for this contact. If not, then use the name as the contact
+     * identifier instead.
      */
     private Drawable defaultDrawable() {
         Resources resources = mTarget.getResources();
-        final int resId = ContactPhotoManager.getDefaultAvatarResId(true, false);
-        try {
-            return resources.getDrawable(resId);
-        } catch (NotFoundException e) {
-            Log.wtf(TAG, "Cannot load default avatar resource.");
-            return null;
+        DefaultImageRequest request;
+        int contactType = ContactPhotoManager.TYPE_DEFAULT;
+
+        if (mContact.isDisplayNameFromOrganization()) {
+            contactType = ContactPhotoManager.TYPE_BUSINESS;
         }
+
+        if (TextUtils.isEmpty(mContact.getLookupKey())) {
+            request = new DefaultImageRequest(null, mContact.getDisplayName(), contactType);
+        } else {
+            request = new DefaultImageRequest(mContact.getDisplayName(), mContact.getLookupKey(),
+                    contactType);
+        }
+        return ContactPhotoManager.getDefaultAvatarDrawableForContact(resources, true, request);
     }
 
     private BitmapDrawable decodedBitmapDrawable(byte[] compressed) {
@@ -146,5 +162,4 @@ public class ImageViewDrawableSetter {
         Bitmap bitmap = BitmapFactory.decodeByteArray(compressed, 0, compressed.length);
         return new BitmapDrawable(rsrc, bitmap);
     }
-
 }
