@@ -40,4 +40,9 @@
     <item type="id" name="cliv_phoneticname_textview"/>
     <item type="id" name="cliv_label_textview"/>
     <item type="id" name="cliv_data_view"/>
+    
+    <!-- For tag ids used by ContactPhotoManager to tag views with contact details -->
+    <item type="id" name="tag_display_name"/>
+    <item type="id" name="tag_identifier"/>
+    <item type="id" name="tag_contact_type"/>
 </resources>
