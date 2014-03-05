@@ -28,6 +28,7 @@ import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.R;
 
@@ -94,7 +95,7 @@ public abstract class ContactTileView extends FrameLayout {
 
         if (entry != null) {
             mName.setText(getNameForView(entry.name));
-            mLookupUri = entry.lookupKey;
+            mLookupUri = entry.lookupUri;
 
             if (mStatus != null) {
                 if (entry.status == null) {
@@ -124,9 +125,11 @@ public abstract class ContactTileView extends FrameLayout {
             setVisibility(View.VISIBLE);
 
             if (mPhotoManager != null) {
+                DefaultImageRequest request = getDefaultImageRequest(entry.name, entry.lookupKey);
                 if (mPhoto != null) {
+
                     mPhotoManager.loadPhoto(mPhoto, entry.photoUri, getApproximateImageSize(),
-                            isDarkTheme());
+                            isDarkTheme(), request);
 
                     if (mQuickContact != null) {
                         mQuickContact.assignContactUri(mLookupUri);
@@ -134,7 +137,7 @@ public abstract class ContactTileView extends FrameLayout {
                 } else if (mQuickContact != null) {
                     mQuickContact.assignContactUri(mLookupUri);
                     mPhotoManager.loadPhoto(mQuickContact, entry.photoUri,
-                            getApproximateImageSize(), isDarkTheme());
+                            getApproximateImageSize(), isDarkTheme(), request);
                 }
             } else {
                 Log.w(TAG, "contactPhotoManager not set");
@@ -181,6 +184,19 @@ public abstract class ContactTileView extends FrameLayout {
     protected abstract int getApproximateImageSize();
 
     protected abstract boolean isDarkTheme();
+
+    /**
+     * Implemented by subclasses to allow them to return a {@link DefaultImageRequest} with the
+     * various image parameters defined to match their own layouts.
+     *
+     * @param displayName The display name of the contact
+     * @param lookupKey The lookup key of the contact
+     * @return A {@link DefaultImageRequest} object with each field configured by the subclass
+     * as desired, or {@code null}.
+     */
+    protected DefaultImageRequest getDefaultImageRequest(String displayName, String lookupKey) {
+        return new DefaultImageRequest(displayName, lookupKey);
+    }
 
     public interface Listener {
         /**

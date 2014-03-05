@@ -256,7 +256,8 @@ public class ContactTileAdapter extends BaseAdapter {
         contact.name = (name != null) ? name : mResources.getString(R.string.missing_name);
         contact.status = cursor.getString(mStatusIndex);
         contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
-        contact.lookupKey = ContentUris.withAppendedId(
+        contact.lookupKey = lookupKey;
+        contact.lookupUri = ContentUris.withAppendedId(
                 Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
         contact.isFavorite = cursor.getInt(mStarredIndex) > 0;
 
