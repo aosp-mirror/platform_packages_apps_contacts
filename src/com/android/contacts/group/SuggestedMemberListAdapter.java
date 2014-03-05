@@ -37,6 +37,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 
 import java.util.ArrayList;
@@ -143,7 +144,8 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
         }
         byte[] byteArray = member.getPhotoByteArray();
         if (byteArray == null) {
-            icon.setImageResource(R.drawable.ic_contact_picture_holo_light);
+            icon.setImageDrawable(ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                    icon.getResources(), false, null));
         } else {
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             icon.setImageBitmap(bitmap);

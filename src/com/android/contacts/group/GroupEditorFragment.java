@@ -64,6 +64,7 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.GroupEditorActivity;
 import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
@@ -71,6 +72,7 @@ import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ViewUtil;
+
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;
@@ -849,11 +851,13 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         private final Uri mLookupUri;
         private final String mDisplayName;
         private final Uri mPhotoUri;
+        private final String mLookupKey;
 
         public Member(long rawContactId, String lookupKey, long contactId, String displayName,
                 String photoUri) {
             mRawContactId = rawContactId;
             mContactId = contactId;
+            mLookupKey = lookupKey;
             mLookupUri = Contacts.getLookupUri(contactId, lookupKey);
             mDisplayName = displayName;
             mPhotoUri = (photoUri != null) ? Uri.parse(photoUri) : null;
@@ -869,6 +873,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         public Uri getLookupUri() {
             return mLookupUri;
+        }
+
+        public String getLookupKey() {
+            return mLookupKey;
         }
 
         public String getDisplayName() {
@@ -904,6 +912,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             dest.writeLong(mRawContactId);
             dest.writeLong(mContactId);
             dest.writeParcelable(mLookupUri, flags);
+            dest.writeString(mLookupKey);
             dest.writeString(mDisplayName);
             dest.writeParcelable(mPhotoUri, flags);
         }
@@ -912,6 +921,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             mRawContactId = in.readLong();
             mContactId = in.readLong();
             mLookupUri = in.readParcelable(getClass().getClassLoader());
+            mLookupKey = in.readString();
             mDisplayName = in.readString();
             mPhotoUri = in.readParcelable(getClass().getClassLoader());
         }
@@ -963,9 +973,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                     }
                 });
             }
-
+            DefaultImageRequest request = new DefaultImageRequest(member.getDisplayName(),
+                    member.getLookupKey());
             mPhotoManager.loadPhoto(badge, member.getPhotoUri(),
-                    ViewUtil.getConstantPreLayoutWidth(badge), false);
+                    ViewUtil.getConstantPreLayoutWidth(badge), false, request);
             return result;
         }
 
