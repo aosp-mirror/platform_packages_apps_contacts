@@ -28,7 +28,6 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.FrameLayout.LayoutParams;
@@ -40,12 +39,7 @@ import com.android.contacts.R;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.PhotoActionPopup;
 import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.SchedulingUtils;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-
 
 /**
  * Popup activity for choosing a contact photo within the Contacts app.
@@ -184,6 +178,7 @@ public class PhotoSelectionActivity extends Activity {
 
         mBackdrop = findViewById(R.id.backdrop);
         mPhotoView = (ImageView) findViewById(R.id.photo);
+
         mSourceBounds = intent.getSourceBounds();
 
         // Fade in the background.
@@ -324,11 +319,11 @@ public class PhotoSelectionActivity extends Activity {
         if (mPhotoUri != null) {
             // If we have a URI, the bitmap should be cached directly.
             ContactPhotoManager.getInstance(this).loadPhoto(mPhotoView, mPhotoUri, photoWidth,
-                    false);
+                    false, null);
         } else {
-            // Fall back to avatar image.
-            mPhotoView.setImageResource(ContactPhotoManager.getDefaultAvatarResId(this, photoWidth,
-                    false));
+            // If we don't have a URI, just display an empty ImageView. The default image from the
+            // ContactDetailFragment will show up in the background instead.
+            mPhotoView.setImageDrawable(null);
         }
 
         mPhotoView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {

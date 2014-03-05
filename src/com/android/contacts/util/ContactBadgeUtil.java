@@ -110,6 +110,6 @@ public class ContactBadgeUtil {
 
     public static Bitmap loadDefaultAvatarPhoto(Context context, boolean hires, boolean darkTheme) {
         return BitmapFactory.decodeResource(context.getResources(),
-                ContactPhotoManager.getDefaultAvatarResId(hires, darkTheme));
+                R.drawable.ic_contacts_holo_dark);
     }
 }
