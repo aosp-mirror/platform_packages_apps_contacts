@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ng <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (na) contact"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Mga pangalan ng iyong mga contact"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Walang natagpuang app na mangangasiwa sa pagkilos na ito."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Walang nakitang app na gagawa sa aksyong ito."</string>
     <string name="menu_share" msgid="943789700636542260">"Ibahagi"</string>
     <string name="share_via" msgid="563121028023030093">"Ibahagi ang contact sa pamamagitan ng"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Lumikha ng pangkat sa ilalim ng account"</string>

@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"Toplam <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kişiden <xliff:g id="CURRENT_NUMBER">%s</xliff:g> kişi"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Kişilerinizin adları"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Bu işlemi gerçekleştirecek uygulama bulunamadı."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Bu işlemi gerçekleştirecek uygulama bulunamadı."</string>
     <string name="menu_share" msgid="943789700636542260">"Paylaş"</string>
     <string name="share_via" msgid="563121028023030093">"Şunu kullanarak kişi paylaş:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Grubu şu hesabın altında oluştur:"</string>

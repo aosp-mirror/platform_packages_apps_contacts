@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> no <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontaktpersonas(-ām)"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Kontaktpersonu vārdi"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Netika atrasta neviena lietotne šīs darbības veikšanai."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Netika atrasta neviena lietotne šīs darbības veikšanai."</string>
     <string name="menu_share" msgid="943789700636542260">"Kopīgot"</string>
     <string name="share_via" msgid="563121028023030093">"Kopīgot kontaktpersonu, izmantojot"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Izveidot grupu šajā kontā:"</string>

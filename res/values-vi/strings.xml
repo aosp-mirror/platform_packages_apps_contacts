@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> trong tổng số <xliff:g id="TOTAL_NUMBER">%s</xliff:g> liên hệ"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Tên danh bạ của bạn"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Không tìm thấy ứng dụng nào để xử lý tác vụ này."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Không tìm thấy ứng dụng nào để xử lý tác vụ này."</string>
     <string name="menu_share" msgid="943789700636542260">"Chia sẻ"</string>
     <string name="share_via" msgid="563121028023030093">"Chia sẻ liên hệ qua"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Tạo nhóm trong tài khoản"</string>

@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Dina kontakters namn"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Ingen app som kan hantera åtgärden hittades."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Ingen app som kan hantera åtgärden hittades"</string>
     <string name="menu_share" msgid="943789700636542260">"Dela"</string>
     <string name="share_via" msgid="563121028023030093">"Dela kontakt via"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Skapa grupp under konto"</string>

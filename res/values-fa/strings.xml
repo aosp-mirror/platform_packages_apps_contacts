@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> از <xliff:g id="TOTAL_NUMBER">%s</xliff:g> مخاطب"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"نام‌های مخاطبین شما"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
+    <string name="missing_app" msgid="1466111003546611387">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="menu_share" msgid="943789700636542260">"اشتراک‌گذاری"</string>
     <string name="share_via" msgid="563121028023030093">"اشتراک‌گذاری مخاطب از طریق"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ایجاد گروه تحت حساب کاربری"</string>

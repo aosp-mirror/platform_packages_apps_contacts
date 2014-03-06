@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"ລາຍຊື່ຜູ່ຕິດຕໍ່ <xliff:g id="CURRENT_NUMBER">%s</xliff:g> ຈາກທັງໝົດ  <xliff:g id="TOTAL_NUMBER">%s</xliff:g> ລາຍຊື່"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"ຊື່ຂອງລາຍຊື່ຜູ່ຕິດຕໍ່ຂອງທ່ານ"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ບໍ່ພົບແອັບຯທີ່ໃຊ້ເພື່ອດຳເນີນການ."</string>
+    <string name="missing_app" msgid="1466111003546611387">"ບໍ່ພົບແອັບຯທີ່ໃຊ້ເພື່ອດຳເນີນການ."</string>
     <string name="menu_share" msgid="943789700636542260">"ແບ່ງປັນ"</string>
     <string name="share_via" msgid="563121028023030093">"ແບ່ງປັນລາຍຊື່ຜູ່ຕິດຕໍ່ຜ່ານທາງ"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ສ້າງກຸ່ມພາຍໃຕ້ບັນຊີ"</string>

@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"нийт <xliff:g id="TOTAL_NUMBER">%s</xliff:g> харилцагчдын <xliff:g id="CURRENT_NUMBER">%s</xliff:g>"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Таны харилцагчдын нэрс"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Тус үйлдлийг гүйцэтгэх апп олдсонгүй."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Тус үйлдлийг гүйцэтгэх апп олдсонгүй."</string>
     <string name="menu_share" msgid="943789700636542260">"Хуваалцах"</string>
     <string name="share_via" msgid="563121028023030093">"Харилцагчийг дараахаар хуваалцах"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Акаунт дотор бүлгэм үүсгэх"</string>

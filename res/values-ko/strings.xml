@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"연락처 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개) 내보내는 중"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
+    <string name="missing_app" msgid="1466111003546611387">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
     <string name="menu_share" msgid="943789700636542260">"공유"</string>
     <string name="share_via" msgid="563121028023030093">"연락처 공유에 사용할 애플리케이션:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"계정에서 그룹 만들기"</string>

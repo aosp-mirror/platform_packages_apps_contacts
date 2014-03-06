@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 个联系人（共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 个）"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"联系人姓名"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"未找到可处理此操作的应用。"</string>
+    <string name="missing_app" msgid="1466111003546611387">"未找到可处理此操作的应用。"</string>
     <string name="menu_share" msgid="943789700636542260">"分享"</string>
     <string name="share_via" msgid="563121028023030093">"联系人分享方式"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"要在哪个帐户下创建群组？"</string>

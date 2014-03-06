@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> (სულ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> კონტაქტიდან)"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"თქვენი კონტაქტების სახელები"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ამ მოქმედების შესასრულებლად აპი ვერ მოიძებნა."</string>
+    <string name="missing_app" msgid="1466111003546611387">"ამ მოქმედების შესასრულებლად აპი ვერ მოიძებნა."</string>
     <string name="menu_share" msgid="943789700636542260">"გაზიარება"</string>
     <string name="share_via" msgid="563121028023030093">"კონტაქტის გაზიარება"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ჯგუფის შექმნა ანგარიშში"</string>

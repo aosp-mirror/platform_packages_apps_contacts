@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contatos"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nomes dos seus contatos"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Nenhum aplicativo foi encontrado para executar esta ação."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Nenhum aplicativo foi encontrado para executar esta ação."</string>
     <string name="menu_share" msgid="943789700636542260">"Compartilhar"</string>
     <string name="share_via" msgid="563121028023030093">"Compartilhar contato via"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Criar grupo na conta"</string>

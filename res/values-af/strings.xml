@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakte"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Name van jou kontakte"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Geen program is gevind om hierdie aksie te hanteer nie."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Geen program is gevind om hierdie handeling te behartig nie."</string>
     <string name="menu_share" msgid="943789700636542260">"Deel"</string>
     <string name="share_via" msgid="563121028023030093">"Deel kontak met"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Skep groep onder rekening"</string>
