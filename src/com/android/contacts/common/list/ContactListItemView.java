@@ -1544,7 +1544,7 @@ public class ContactListItemView extends ViewGroup
     }
 
     private final boolean pointIsInView(float localX, float localY) {
-        return localX >= 0 && localX < (mRight - mLeft)
-                && localY >= 0 && localY < (mBottom - mTop);
+        return localX >= 0 && localX < (getRight() - getLeft())
+                && localY >= 0 && localY < (getBottom() - getTop());
     }
 }
