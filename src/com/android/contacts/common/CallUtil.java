@@ -19,8 +19,8 @@ package com.android.contacts.common;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
-import android.telephony.PhoneNumberUtils;
 
+import com.android.contacts.common.util.PhoneNumberHelper;
 import com.android.phone.common.PhoneConstants;
 
 /**
@@ -85,7 +85,7 @@ public class CallUtil {
      * numbers.
      */
     public static Uri getCallUri(String number) {
-        if (PhoneNumberUtils.isUriNumber(number)) {
+        if (PhoneNumberHelper.isUriNumber(number)) {
              return Uri.fromParts(SCHEME_SIP, number, null);
         }
         return Uri.fromParts(SCHEME_TEL, number, null);
