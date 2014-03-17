@@ -283,7 +283,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
             Groups.ACCOUNT_NAME,
             Groups.ACCOUNT_TYPE,
             Groups.DATA_SET,
-            Groups.ACCOUNT_TYPE_AND_DATA_SET,
             Groups._ID,
             Groups.TITLE,
             Groups.AUTO_ADD,
@@ -293,11 +292,10 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         public static final int ACCOUNT_NAME = 0;
         public static final int ACCOUNT_TYPE = 1;
         public static final int DATA_SET = 2;
-        public static final int ACCOUNT_TYPE_AND_DATA_SET = 3;
-        public static final int ID = 4;
-        public static final int TITLE = 5;
-        public static final int AUTO_ADD = 6;
-        public static final int FAVORITES = 7;
+        public static final int ID = 3;
+        public static final int TITLE = 4;
+        public static final int AUTO_ADD = 5;
+        public static final int FAVORITES = 6;
     }
 
     @Override
