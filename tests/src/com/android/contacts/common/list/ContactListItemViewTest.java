@@ -24,9 +24,8 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.TextView;
 
-//import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.format.SpannedTestUtils;
-//import com.android.contacts.common.test.IntegrationTestUtils;
+import com.android.contacts.common.list.ContactListItemView;
 
 /**
  * Unit tests for {@link com.android.contacts.common.list.ContactListItemView}.

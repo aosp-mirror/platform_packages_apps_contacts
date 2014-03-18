@@ -236,6 +236,8 @@ public class ContactListItemView extends ViewGroup
         super(context);
 
         mTextHighlighter = new TextHighlighter(Typeface.BOLD);
+        mNameHighlightSequence = new ArrayList<HighlightSequence>();
+        mNumberHighlightSequence = new ArrayList<HighlightSequence>();
     }
 
     public ContactListItemView(Context context, AttributeSet attrs) {

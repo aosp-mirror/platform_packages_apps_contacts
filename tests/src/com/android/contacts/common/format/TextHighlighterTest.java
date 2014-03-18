@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.contacts.common.format;
+package src.com.android.contacts.common.format;
 
 import android.graphics.Typeface;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.text.SpannableString;
 
 import com.android.contacts.common.format.SpannedTestUtils;
+import com.android.contacts.common.format.TextHighlighter;
 
 import junit.framework.TestCase;
 
@@ -87,34 +88,22 @@ public class TextHighlighterTest extends TestCase {
         SpannedTestUtils.assertPrefixSpan(seq, 6, 7);
     }
 
-    public void testSetMask_LengthMismatch() {
-        final SpannableString testString1 = new SpannableString("atest");
-        mTextHighlighter.applyMaskingHighlight(testString1, 0, 0);
-        CharSequence seq = testString1;
-        SpannedTestUtils.assertNotSpanned(seq, "atest");
-
-        final SpannableString testString2 = new SpannableString("");
-        mTextHighlighter.applyMaskingHighlight(testString2, 0, 0);
-        seq = testString2;
-        SpannedTestUtils.assertNotSpanned(seq, "");
-    }
-
     public void testSetMask_Highlight() {
         final SpannableString testString1 = new SpannableString("alongtest");
         mTextHighlighter.applyMaskingHighlight(testString1, 2, 4);
-        assertEquals(SpannedTestUtils.getNextTransition(testString1, 0), 2);
-        assertEquals(SpannedTestUtils.getNextTransition(testString1, 2), 4);
+        assertEquals(2, SpannedTestUtils.getNextTransition(testString1, 0));
+        assertEquals(4, SpannedTestUtils.getNextTransition(testString1, 2));
 
         mTextHighlighter.applyMaskingHighlight(testString1, 3, 6);
-        assertEquals(SpannedTestUtils.getNextTransition(testString1, 0), 2);
-        assertEquals(SpannedTestUtils.getNextTransition(testString1, 2), 6);
+        assertEquals(2, SpannedTestUtils.getNextTransition(testString1, 0));
+        assertEquals(4, SpannedTestUtils.getNextTransition(testString1, 3));
 
         mTextHighlighter.applyMaskingHighlight(testString1, 4, 5);
-        assertEquals(SpannedTestUtils.getNextTransition(testString1, 2), 6);
+        assertEquals(3, SpannedTestUtils.getNextTransition(testString1, 2));
 
         mTextHighlighter.applyMaskingHighlight(testString1, 7, 8);
-        assertEquals(SpannedTestUtils.getNextTransition(testString1, 2), 6);
-        assertEquals(SpannedTestUtils.getNextTransition(testString1, 6), 7);
-        assertEquals(SpannedTestUtils.getNextTransition(testString1, 7), 8);
+        assertEquals(6, SpannedTestUtils.getNextTransition(testString1, 5));
+        assertEquals(7, SpannedTestUtils.getNextTransition(testString1, 6));
+        assertEquals(8, SpannedTestUtils.getNextTransition(testString1, 7));
     }
 }
