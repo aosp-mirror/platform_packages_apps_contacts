@@ -301,7 +301,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                         Contacts.Entity.RAW_CONTACT_ID,
 
                         RawContacts.ACCOUNT_NAME, RawContacts.ACCOUNT_TYPE,
-                        RawContacts.DATA_SET, RawContacts.ACCOUNT_TYPE_AND_DATA_SET,
+                        RawContacts.DATA_SET,
                         RawContacts.DIRTY, RawContacts.VERSION, RawContacts.SOURCE_ID,
                         RawContacts.SYNC1, RawContacts.SYNC2, RawContacts.SYNC3, RawContacts.SYNC4,
                         RawContacts.DELETED, RawContacts.NAME_VERIFIED,
@@ -313,7 +313,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                         Data.DATA11, Data.DATA12, Data.DATA13, Data.DATA14, Data.DATA15,
                         Data.SYNC1, Data.SYNC2, Data.SYNC3, Data.SYNC4,
                         Data.DATA_VERSION, Data.IS_PRIMARY,
-                        Data.IS_SUPER_PRIMARY, Data.MIMETYPE, Data.RES_PACKAGE,
+                        Data.IS_SUPER_PRIMARY, Data.MIMETYPE,
 
                         GroupMembership.GROUP_SOURCE_ID,
 
