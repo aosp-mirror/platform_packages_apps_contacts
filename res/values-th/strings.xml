@@ -223,7 +223,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ผู้ติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลผู้ติดต่อออนไลน์หรือไม่"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"ผู้ติดต่อใหม่ของคุณจะซิงค์กับ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"คุณสามารถซิงค์ผู้ติดต่อใหม่กับบัญชีใดบัญชีหนึ่งต่อไปนี้ได้ คุณต้องการใช้บัญชีใด"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"คุณสามารถซิงค์ผู้ติดต่อใหม่กับบัญชีใด บัญชีหนึ่งต่อไปนี้ได้ คุณต้องการใช้บัญชีใด"</string>
     <string name="keep_local" msgid="1258761699192993322">"จัดเก็บในตัวเครื่อง"</string>
     <string name="add_account" msgid="8201790677994503186">"เพิ่มบัญชี"</string>
     <string name="add_new_account" msgid="5748627740680940264">"เพิ่มบัญชีใหม่"</string>
