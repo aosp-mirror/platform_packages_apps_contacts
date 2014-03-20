@@ -220,10 +220,10 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Δεν ήταν δυνατή η σάρωση της κάρτας SD. (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Εισαγωγή <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Εξαγωγή στο χώρο αποθ."</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Κοινή χρήση ορατών επαφών"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Κοινοποίηση ορατών επαφών"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Εισαγωγή/Εξαγωγή επαφών"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Εισαγωγή επαφών"</string>
-    <string name="share_error" msgid="665756457151793108">"Δεν είναι δυνατή η κοινή χρήση αυτής της επαφής."</string>
+    <string name="share_error" msgid="665756457151793108">"Δεν είναι δυνατή η κοινοποίηση αυτής της επαφής."</string>
     <string name="menu_search" msgid="7464453023659824700">"Αναζήτηση"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Επαφές για προβολή"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Επαφές για προβολή"</string>
