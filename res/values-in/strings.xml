@@ -136,7 +136,7 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Tidak dapat diedit dari apl ini."</string>
     <string name="no_contact_details" msgid="6636856378019344497">"Tidak ada informasi tambahan untuk kontak ini."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Tidak dapat diedit pada perangkat ini."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sortir daftar menurut"</string>
+    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Urutkan daftar menurut"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nama depan"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Nama keluarga"</string>
     <string name="display_options_view_names_as" msgid="4386932036180428374">"Lihat nama kontak"</string>
