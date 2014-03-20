@@ -221,13 +221,6 @@ final public class RawContact implements Parcelable {
         return getValues().getAsString(RawContacts.DATA_SET);
     }
 
-    /**
-     * Returns the account type and data set of the raw contact.
-     */
-    public String getAccountTypeAndDataSetString() {
-        return getValues().getAsString(RawContacts.ACCOUNT_TYPE_AND_DATA_SET);
-    }
-
     public boolean isDirty() {
         return getValues().getAsBoolean(RawContacts.DIRTY);
     }
