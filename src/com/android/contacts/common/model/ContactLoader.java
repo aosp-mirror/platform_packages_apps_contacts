@@ -132,7 +132,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 RawContacts.ACCOUNT_NAME,
                 RawContacts.ACCOUNT_TYPE,
                 RawContacts.DATA_SET,
-                RawContacts.ACCOUNT_TYPE_AND_DATA_SET,
                 RawContacts.DIRTY,
                 RawContacts.VERSION,
                 RawContacts.SOURCE_ID,
@@ -167,7 +166,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 Data.IS_PRIMARY,
                 Data.IS_SUPER_PRIMARY,
                 Data.MIMETYPE,
-                Data.RES_PACKAGE,
 
                 GroupMembership.GROUP_SOURCE_ID,
 
@@ -204,57 +202,55 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         public static final int ACCOUNT_NAME = 15;
         public static final int ACCOUNT_TYPE = 16;
         public static final int DATA_SET = 17;
-        public static final int ACCOUNT_TYPE_AND_DATA_SET = 18;
-        public static final int DIRTY = 19;
-        public static final int VERSION = 20;
-        public static final int SOURCE_ID = 21;
-        public static final int SYNC1 = 22;
-        public static final int SYNC2 = 23;
-        public static final int SYNC3 = 24;
-        public static final int SYNC4 = 25;
-        public static final int DELETED = 26;
-        public static final int NAME_VERIFIED = 27;
+        public static final int DIRTY = 18;
+        public static final int VERSION = 19;
+        public static final int SOURCE_ID = 20;
+        public static final int SYNC1 = 21;
+        public static final int SYNC2 = 22;
+        public static final int SYNC3 = 23;
+        public static final int SYNC4 = 24;
+        public static final int DELETED = 25;
+        public static final int NAME_VERIFIED = 26;
 
-        public static final int DATA_ID = 28;
-        public static final int DATA1 = 29;
-        public static final int DATA2 = 30;
-        public static final int DATA3 = 31;
-        public static final int DATA4 = 32;
-        public static final int DATA5 = 33;
-        public static final int DATA6 = 34;
-        public static final int DATA7 = 35;
-        public static final int DATA8 = 36;
-        public static final int DATA9 = 37;
-        public static final int DATA10 = 38;
-        public static final int DATA11 = 39;
-        public static final int DATA12 = 40;
-        public static final int DATA13 = 41;
-        public static final int DATA14 = 42;
-        public static final int DATA15 = 43;
-        public static final int DATA_SYNC1 = 44;
-        public static final int DATA_SYNC2 = 45;
-        public static final int DATA_SYNC3 = 46;
-        public static final int DATA_SYNC4 = 47;
-        public static final int DATA_VERSION = 48;
-        public static final int IS_PRIMARY = 49;
-        public static final int IS_SUPERPRIMARY = 50;
-        public static final int MIMETYPE = 51;
-        public static final int RES_PACKAGE = 52;
+        public static final int DATA_ID = 27;
+        public static final int DATA1 = 28;
+        public static final int DATA2 = 29;
+        public static final int DATA3 = 30;
+        public static final int DATA4 = 31;
+        public static final int DATA5 = 32;
+        public static final int DATA6 = 33;
+        public static final int DATA7 = 34;
+        public static final int DATA8 = 35;
+        public static final int DATA9 = 36;
+        public static final int DATA10 = 37;
+        public static final int DATA11 = 38;
+        public static final int DATA12 = 39;
+        public static final int DATA13 = 40;
+        public static final int DATA14 = 41;
+        public static final int DATA15 = 42;
+        public static final int DATA_SYNC1 = 43;
+        public static final int DATA_SYNC2 = 44;
+        public static final int DATA_SYNC3 = 45;
+        public static final int DATA_SYNC4 = 46;
+        public static final int DATA_VERSION = 47;
+        public static final int IS_PRIMARY = 48;
+        public static final int IS_SUPERPRIMARY = 49;
+        public static final int MIMETYPE = 50;
 
-        public static final int GROUP_SOURCE_ID = 53;
+        public static final int GROUP_SOURCE_ID = 51;
 
-        public static final int PRESENCE = 54;
-        public static final int CHAT_CAPABILITY = 55;
-        public static final int STATUS = 56;
-        public static final int STATUS_RES_PACKAGE = 57;
-        public static final int STATUS_ICON = 58;
-        public static final int STATUS_LABEL = 59;
-        public static final int STATUS_TIMESTAMP = 60;
+        public static final int PRESENCE = 52;
+        public static final int CHAT_CAPABILITY = 53;
+        public static final int STATUS = 54;
+        public static final int STATUS_RES_PACKAGE = 55;
+        public static final int STATUS_ICON = 56;
+        public static final int STATUS_LABEL = 57;
+        public static final int STATUS_TIMESTAMP = 58;
 
-        public static final int PHOTO_URI = 61;
-        public static final int SEND_TO_VOICEMAIL = 62;
-        public static final int CUSTOM_RINGTONE = 63;
-        public static final int IS_USER_PROFILE = 64;
+        public static final int PHOTO_URI = 59;
+        public static final int SEND_TO_VOICEMAIL = 60;
+        public static final int CUSTOM_RINGTONE = 61;
+        public static final int IS_USER_PROFILE = 62;
     }
 
     /**
@@ -643,7 +639,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_NAME);
         cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE);
         cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SET);
-        cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE_AND_DATA_SET);
         cursorColumnToContentValues(cursor, cv, ContactQuery.DIRTY);
         cursorColumnToContentValues(cursor, cv, ContactQuery.VERSION);
         cursorColumnToContentValues(cursor, cv, ContactQuery.SOURCE_ID);
@@ -690,7 +685,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         cursorColumnToContentValues(cursor, cv, ContactQuery.IS_PRIMARY);
         cursorColumnToContentValues(cursor, cv, ContactQuery.IS_SUPERPRIMARY);
         cursorColumnToContentValues(cursor, cv, ContactQuery.MIMETYPE);
-        cursorColumnToContentValues(cursor, cv, ContactQuery.RES_PACKAGE);
         cursorColumnToContentValues(cursor, cv, ContactQuery.GROUP_SOURCE_ID);
         cursorColumnToContentValues(cursor, cv, ContactQuery.CHAT_CAPABILITY);
 
