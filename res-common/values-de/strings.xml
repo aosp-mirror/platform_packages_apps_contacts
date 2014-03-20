@@ -102,7 +102,7 @@
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-Mail"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresse"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Chat"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Unternehmen"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Beziehung"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Besondere Termine"</string>
