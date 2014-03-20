@@ -21,7 +21,7 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.widget.TextView;
 
 import junit.framework.Assert;
@@ -68,7 +68,7 @@ public class SpannedTestUtils {
     }
 
     private static int getNumForegroundColorSpansBetween(Spanned value, int start, int end) {
-        return value.getSpans(start, end, ForegroundColorSpan.class).length;
+        return value.getSpans(start, end, StyleSpan.class).length;
     }
 
     /**
@@ -83,6 +83,6 @@ public class SpannedTestUtils {
     }
 
     public static int getNextTransition(SpannableString seq, int start) {
-        return seq.nextSpanTransition(start, seq.length(), ForegroundColorSpan.class);
+        return seq.nextSpanTransition(start, seq.length(), StyleSpan.class);
     }
 }
