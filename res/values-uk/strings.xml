@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> із <xliff:g id="TOTAL_NUMBER">%s</xliff:g> контактів"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Імена ваших контактів"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не знайдено програму для обробки цієї дії."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Не знайдено програму для обробки цієї дії."</string>
     <string name="menu_share" msgid="943789700636542260">"Надісл."</string>
     <string name="share_via" msgid="563121028023030093">"Надісл. контакт через"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Створити групу в обліковому записі"</string>
@@ -160,8 +161,6 @@
     <string name="add_organization" msgid="7311893231158291197">"Додати організацію"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Дата"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Назва групи"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"через <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> через <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"вибране"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Редаг. контакта"</string>
   <plurals name="merge_info">

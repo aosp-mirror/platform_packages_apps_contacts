@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Navn på kontakter"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Det ble ikke funnet noen app som kan håndtere denne handlingen."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Kunne ikke finne noen app som kan håndtere denne handlingen."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Opprett gruppe under konto"</string>
@@ -148,7 +149,7 @@
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktlisten er oppdatert med nytt språk."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlisten er under oppdatering."</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Oppgradering av kontakter pågår.\n\nOppgraderingsprosessen krever omtrent <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB intern lagringsplass.\n\nVelg ett av følgende alternativer:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstaller noen applikasjoner"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstaller noen apper"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Prøv å oppgradere på nytt"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Søker …"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Vis valgte"</string>
@@ -160,8 +161,6 @@
     <string name="add_organization" msgid="7311893231158291197">"Legg til organisasjon"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Dato"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Gruppenavn"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favoritt"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Rediger kontakt"</string>
   <plurals name="merge_info">
@@ -189,7 +188,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Laster inn …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opprett en ny kontakt"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Logg deg på en konto"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Logg på en konto"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer kontakter"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Opprett ny gruppe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Opprett en ny gruppe"</string>

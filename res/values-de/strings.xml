@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> von <xliff:g id="TOTAL_NUMBER">%s</xliff:g> Kontakten"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Namen meiner Kontakte"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Für diese Aktion wurde keine App gefunden."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Für diese Aktion wurde keine App gefunden."</string>
     <string name="menu_share" msgid="943789700636542260">"Teilen"</string>
     <string name="share_via" msgid="563121028023030093">"Kontakt teilen über"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Konto für Gruppenerstellung"</string>
@@ -160,8 +161,6 @@
     <string name="add_organization" msgid="7311893231158291197">"Unternehmen hinzufügen"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Datum"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Gruppenname"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"über <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> über <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"Favorit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Kontakt bearbeiten"</string>
   <plurals name="merge_info">
@@ -214,7 +213,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Sollen die Änderungen verworfen werden?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Mein Profil einrichten"</string>
-    <string name="enter_contact_name" msgid="1738391320566349924">"Name der Person eingeben"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Namen der Person eingeben"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Gruppenname"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mein lokales Profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mein <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-Profil"</string>
@@ -224,7 +223,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto hinzufügen"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ihr neuer Kontakt wird nicht gesichert. Konto für die Online-Sicherung von Kontakten hinzufügen?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Ihr neuer Kontakt wird mit <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> synchronisiert."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Sie können Ihren neuen Kontakt mit einem der folgenden Konten synchronisieren. Welches möchten Sie verwenden?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Sie können Ihren neuen Kontakt mit einem der folgenden Konten synchronisieren. Welches Konto möchten Sie verwenden?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Lokal speichern"</string>
     <string name="add_account" msgid="8201790677994503186">"Konto hinzufügen"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Neues Konto hinzufügen"</string>

@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ከ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> እውቂያዎች"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"የዕውቂያዎችዎ ስሞች"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ይህን እርምጃ ለማስተናገድ ምንም መተግበሪያ አልተገኘም፡፡"</string>
+    <string name="missing_app" msgid="1466111003546611387">"ይህን እርምጃ የሚያከናውን ምንም መተግበሪያ አልተገኘም።"</string>
     <string name="menu_share" msgid="943789700636542260">"መጋሪያ"</string>
     <string name="share_via" msgid="563121028023030093">"ዕውቂያበ በኩል አጋራ"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"በመለያ ስር ቡድን ፍጠር"</string>
@@ -147,7 +148,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"ከማዕከለ ስእላት አዲስ ፎቶ ምረጥ"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"የቋንቋ ለውጥ ለማንፀባረቅ የዕውቂያ ዝርዝር ዘምኗል።"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"የዕውቂያ ዝርዝር ዘምኗል"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"ዕውቂያዎች በአልቅ ሂደት ውስጥ ናቸው።\n\nየአልቁ ሂደት ወደ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>ሜባ አካባቢ የውስጥ ማከማቻ \n\nይጠይቃል።ከሚከተሉት አማራጮች አንዱን ምረጥ፡"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"ዕውቂያዎች በአልቅ ሂደት ውስጥ ናቸው።\n\nየአልቁ ሂደት ወደ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>ሜባ አካባቢ የውስጥ ማከማቻ \n\nይጠይቃል።ከሚከተሉት አማራጮች አንዱን ይምረጡ፡"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"አንዳንድ ትግበራዎችን አለመጫን"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"አልቅ ድጋሚ ሞክር"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"በመፈለግ ላይ…"</string>
@@ -160,8 +161,6 @@
     <string name="add_organization" msgid="7311893231158291197">"ድርጅት አክል"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"ቀን"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"የቡድን ስም"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"በ<xliff:g id="SOURCE">%1$s</xliff:g> በኩል"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>በ<xliff:g id="SOURCE">%2$s</xliff:g> በኩል"</string>
     <string name="description_star" msgid="2605854427360036550">"ተወዳጅ"</string>
     <string name="edit_contact" msgid="7529281274005689512">"እውቅያ አርትዕ"</string>
   <plurals name="merge_info">
@@ -224,7 +223,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"መለያ አክል"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"አዲሱ  ዕውቅያ ምትክ አይቀመጥለትም:: በመስመር ላይ ዕውቅያዎች በምትክ የሚያስቀምጥ መለያ አክል?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"አዲሱ ዕውቅያህ ከ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ጋር ይመሳሰላል፡፡"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"አዲስ ዕውቅያህን ከሚከተሉት መለያዎች ከአንዱ ጋር ማመሳሰል ትችላለህ፡፡ የትኛውን መጠቀም ትፈልጋለህ?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"አዲስ ዕውቅያዎን ከሚከተሉት መለያዎች ከአንዱ ጋር ማመሳሰል ይችላሉ። የትኛውን መጠቀም ይፈልጋሉ?"</string>
     <string name="keep_local" msgid="1258761699192993322">"በአካባቢው አቆይ"</string>
     <string name="add_account" msgid="8201790677994503186">"መለያ አክል"</string>
     <string name="add_new_account" msgid="5748627740680940264">"አዲስ መለያ አክል"</string>
