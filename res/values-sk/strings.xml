@@ -76,7 +76,7 @@
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"V tablete nie sú k dispozícii žiadne fotografie."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"V telefónne nie sú žiadne fotografie."</string>
-    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Fotografie kontaktu"</string>
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Fotka kontaktu"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Vlastný názov menovky"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Presmerovať hovory priamo do hlasovej schránky"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Odstrániť fotografiu"</string>
