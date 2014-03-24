@@ -29,12 +29,12 @@
     <string name="call_callback" msgid="687494744634190411">"الاتصال برقم معادوة الاتصال"</string>
     <string name="call_car" msgid="9078083109758282133">"الاتصال بهاتف السيارة"</string>
     <string name="call_company_main" msgid="8768047233970315359">"الاتصال بهاتف الشركة الرئيسي"</string>
-    <string name="call_isdn" msgid="3342482563847537747">"اتصال بـ ISDN"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"‏اتصال بـ ISDN"</string>
     <string name="call_main" msgid="4640261071249938558">"الاتصال بالهاتف الرئيسي"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"الاتصال برقم الفاكس"</string>
     <string name="call_radio" msgid="9055749313292712021">"اتصال بهاتف لاسلكي"</string>
     <string name="call_telex" msgid="2909886619224843563">"الاتصال بالتلكس"</string>
-    <string name="call_tty_tdd" msgid="6704940636171078852">"اتصال بـ TTY/TDD"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"‏اتصال بـ TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"الاتصال بجوال العمل"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"الاتصال بجهاز نداء العمل"</string>
     <string name="call_assistant" msgid="5188990854852312696">"الاتصال بـ <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
@@ -50,12 +50,12 @@
     <string name="sms_callback" msgid="728414485478941361">"إرسال رسالة نصية إلى هاتف معاودة الاتصال"</string>
     <string name="sms_car" msgid="8543669230270954512">"إرسال رسالة نصية إلى هاتف السيارة"</string>
     <string name="sms_company_main" msgid="5441902128445061862">"إرسال رسالة نصية إلى الهاتف الرئيسي للشركة"</string>
-    <string name="sms_isdn" msgid="7142483128948042667">"إرسال رسالة نصية إلى ISDN"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"‏إرسال رسالة نصية إلى ISDN"</string>
     <string name="sms_main" msgid="6815987840926184815">"إرسال رسالة نصية إلى الهاتف الرئيسي"</string>
     <string name="sms_other_fax" msgid="8649822154879781466">"إرسال رسالة نصية إلى فاكس"</string>
     <string name="sms_radio" msgid="8750339218480745940">"إرسال رسالة نصية إلى هاتف لاسلكي"</string>
     <string name="sms_telex" msgid="5469333785775443999">"إرسال رسالة نصية إلى هاتف تلكس"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"إرسال رسالة نصية إلى TTY/TDD"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"‏إرسال رسالة نصية إلى TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"إرسال رسالة نصية إلى جوال العمل"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"إرسال رسالة نصية إلى جهاز نداء العمل"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"إرسال رسالة نصية إلى <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"المراسلة الفورية"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"المؤسسة"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"العلاقة"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"الأحداث"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"تواريخ خاصة"</string>
     <string name="sms" msgid="8086289395154598654">"رسالة نصية"</string>
     <string name="postal_address" msgid="7692926530081579786">"العنوان"</string>
     <string name="ghostData_company" msgid="22470841482615409">"الشركة"</string>
@@ -131,14 +131,14 @@
     <string name="map_work" msgid="9015981646907637207">"عرض عنوان العمل"</string>
     <string name="map_other" msgid="55098598855607997">"عرض العنوان"</string>
     <string name="map_custom" msgid="4943554530347163288">"عرض عنوان <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="6479001490307452172">"الدردشة باستخدام AIM"</string>
-    <string name="chat_msn" msgid="627481952525245054">"الدردشة باستخدام Windows Live"</string>
-    <string name="chat_yahoo" msgid="5542489454092719897">"الدردشة باستخدام Yahoo"</string>
-    <string name="chat_skype" msgid="3145166404699830256">"الدردشة باستخدام Skype"</string>
-    <string name="chat_qq" msgid="2811762660890755082">"الدردشة باستخدام QQ"</string>
-    <string name="chat_gtalk" msgid="6043734883347741789">"الدردشة باستخدام Google Talk"</string>
-    <string name="chat_icq" msgid="7538190395602030726">"الدردشة باستخدام ICQ"</string>
-    <string name="chat_jabber" msgid="4525546665986350869">"الدردشة باستخدام Jabber"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"‏الدردشة باستخدام AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"‏الدردشة باستخدام Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"‏الدردشة باستخدام Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"‏الدردشة باستخدام Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"‏الدردشة باستخدام QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"‏الدردشة باستخدام Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"‏الدردشة باستخدام ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"‏الدردشة باستخدام Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"دردشة"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"حذف"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"توسيع أو تصغير حقول الاسم"</string>
@@ -159,25 +159,25 @@
     <string name="listCustomView" msgid="1915154113477432033">"جهات الاتصال في عرض مخصص"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"جهة اتصال واحدة"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"إنشاء جهة اتصال ضمن حساب"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"استيراد من بطاقة SIM"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"‏استيراد من بطاقة SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"استيراد من وحدة التخزين"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"هل تريد إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"هل تريد إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"تعذر إلغاء استيراد/تصدير vCard"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"‏تعذر إلغاء استيراد/تصدير vCard"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"خطأ غير معروف."</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"تعذر فتح \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"تعذر بدء المُصدر: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ليست هناك جهة اتصال قابلة للتصدير."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"حدث خطأ أثناء التصدير: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"اسم الملف المطلوب أطول مما يجب (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"هناك عدد أكبر مما يجب من ملفات vCard في وحدة التخزين."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"هناك ملفات vCard أكثر مما يجب على بطاقة SD."</string>
-    <string name="fail_reason_io_error" msgid="7736686553669161933">"خطأ I/O"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"‏هناك عدد أكبر مما يجب من ملفات vCard في وحدة التخزين."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"‏هناك ملفات vCard أكثر مما يجب على بطاقة SD."</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"‏خطأ I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"الذاكرة غير كافية. ربما يكون الملف أكبر مما يجب."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"تعذر تحليل vCard لسبب غير متوقع."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"‏تعذر تحليل vCard لسبب غير متوقع."</string>
     <string name="fail_reason_not_supported" msgid="388664373573337601">"التنسيق غير معتمد."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"تعذر جمع معلومات وصفية حول ملفات vCard المحددة."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"تعذر استيراد ملف أو أكثر (%s)."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"‏تعذر جمع معلومات وصفية حول ملفات vCard المحددة."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"‏تعذر استيراد ملف أو أكثر (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"تم الانتهاء من تصدير <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"تم إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"تصدير بيانات جهة الاتصال"</string>
@@ -185,39 +185,39 @@
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"تعذر الحصول على معلومات قاعدة البيانات."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"ليست هناك أية جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على الجهاز اللوحي، فإن بعض موفري البيانات لا يسمحون بتصدير جهات الاتصال من الجهاز اللوحي."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ليست هناك أية جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على هاتفك، فإن بعض موفري البيانات لا يسمحون بتصدير جهات الاتصال من الهاتف."</string>
-    <string name="composer_not_initialized" msgid="6514403866246950877">"لم يبدأ مؤلف vCard بشكل صحيح."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"‏لم يبدأ مؤلف vCard بشكل صحيح."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"تعذر التصدير"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"لم يتم تصدير بيانات جهة الاتصال.\nالسبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"لم يتم العثور على وحدة تخزين."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"لم يتم العثور على بطاقة SD."</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"‏لم يتم العثور على بطاقة SD."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"سيتم تصدير قائمة جهات الاتصال إلى الملف: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"جارٍ استيراد <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"تعذرت قراءة بيانات vCard"</string>
-    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"تم إلغاء قراءة بيانات vCard"</string>
-    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"تم الانتهاء من استيراد ملف vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"‏تعذرت قراءة بيانات vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"‏تم إلغاء قراءة بيانات vCard"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"‏تم الانتهاء من استيراد ملف vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="556913863250769870">"تم إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="vcard_import_will_start_message" msgid="7184603116300604514">"سيتم استيراد <xliff:g id="FILENAME">%s</xliff:g> بعد قليل."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"سيتم استيراد الملف بعد قليل."</string>
-    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"تم رفض طلب استيراد vCard. أعد المحاولة لاحقًا."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"‏تم رفض طلب استيراد vCard. أعد المحاولة لاحقًا."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"سيتم تصدير <xliff:g id="FILENAME">%s</xliff:g> بعد قليل."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"تم رفض طلب تصدير vCard. أعد المحاولة لاحقًا."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"‏تم رفض طلب تصدير vCard. أعد المحاولة لاحقًا."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"جهة اتصال"</string>
-    <string name="caching_vcard_message" msgid="6635485116655518520">"يجري تخزين ملفات vCard مؤقتًا على وحدة تخزين مؤقتة محلية. سيبدأ الاستيراد الفعلي قريبًا."</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"‏يجري تخزين ملفات vCard مؤقتًا على وحدة تخزين مؤقتة محلية. سيبدأ الاستيراد الفعلي قريبًا."</string>
     <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
-    <string name="vcard_import_failed" msgid="4105296876768072508">"تعذر استيراد vCard."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"لم يتم العثور على أي ملف vCard في وحدة التخزين."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"لم يتم العثور على ملف vCard على بطاقة SD."</string>
-    <string name="nfc_vcard_file_name" msgid="305679412445157370">"استلام ج اتص.NFC"</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"‏تعذر استيراد vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"‏لم يتم العثور على أي ملف vCard في وحدة التخزين."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏لم يتم العثور على ملف vCard على بطاقة SD."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"‏استلام ج اتص.NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"تصدير جهات الاتصال؟"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"اختيار ملف vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"استيراد ملف vCard واحد"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"استيراد ملفات vCard متعددة"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"استيراد جميع ملفات vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"جارٍ البحث عن بيانات vCard في وحدة التخزين..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"جارٍ البحث عن بيانات vCard على بطاقة SD..."</string>
+    <string name="select_vcard_title" msgid="1536575036597557639">"‏اختيار ملف vCard"</string>
+    <string name="import_one_vcard_string" msgid="6199149175802496361">"‏استيراد ملف vCard واحد"</string>
+    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"‏استيراد ملفات vCard متعددة"</string>
+    <string name="import_all_vcard_string" msgid="1037495558362397535">"‏استيراد جميع ملفات vCard"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"‏جارٍ البحث عن بيانات vCard في وحدة التخزين..."</string>
+    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"‏جارٍ البحث عن بيانات vCard على بطاقة SD..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"تخزين مؤقت"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"تعذر فحص وحدة التخزين. (السبب:\"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"تعذر فحص بطاقة SD. (السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏تعذر فحص بطاقة SD. (السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"جارٍ استيراد <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"تصدير إلى وحدة التخزين"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مشاركة جهات الاتصال المرئية"</string>
@@ -239,4 +239,6 @@
     <string name="menu_import_export" msgid="6446229463809981669">"استيراد/تصدير"</string>
     <string name="description_send_message" msgid="2630211225573754774">"إرسال رسالة إلى <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"طلب هاتف <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"عبر <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> عبر <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
 </resources>

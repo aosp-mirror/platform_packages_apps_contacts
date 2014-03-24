@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"MI"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Entidade"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Tipo de relação"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"Eventos"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"Datas especiais"</string>
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Endereço"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Empresa"</string>
@@ -219,7 +219,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Não foi possível analisar o armazenamento. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Não foi possível analisar o cartão SD. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"A importar <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exportar para o armazen."</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exportar para o armazenamento"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partilhar contactos visíveis"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importar/exportar contactos"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importar contactos"</string>
@@ -239,4 +239,6 @@
     <string name="menu_import_export" msgid="6446229463809981669">"Importar/exportar"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Enviar mensagem para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"Marcar número de telefone de <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"através do <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> através do <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
 </resources>

@@ -187,7 +187,7 @@
     <skip />
     <!-- no translation found for relationLabelsGroup (3585294036166325520) -->
     <skip />
-    <!-- no translation found for eventLabelsGroup (536444452517449685) -->
+    <!-- no translation found for eventLabelsGroup (5633007096910029346) -->
     <skip />
     <!-- no translation found for sms (8086289395154598654) -->
     <skip />
@@ -454,5 +454,9 @@
     <!-- no translation found for description_send_message (2630211225573754774) -->
     <skip />
     <!-- no translation found for description_dial_phone_number (7315580540586351853) -->
+    <skip />
+    <!-- no translation found for contact_status_update_attribution (8419168578670128134) -->
+    <skip />
+    <!-- no translation found for contact_status_update_attribution_with_date (7492465535645607473) -->
     <skip />
 </resources>

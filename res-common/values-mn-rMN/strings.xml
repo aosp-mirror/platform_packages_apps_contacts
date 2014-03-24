@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="toast_text_copied" msgid="8327159932780920627">"Текст хуулагдав"</string>
+    <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> руу залгах"</string>
+    <string name="call_home" msgid="1479549630992276827">"Гэрийн утас руу залгах"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Гар утас руу залгах"</string>
+    <string name="call_work" msgid="8299062439076337075">"Ажил руу залгах"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Ажлын факс руу залгах"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Гэрийн факс руу залгах"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Пейжер рүү залгах"</string>
+    <string name="call_other" msgid="4472141328347894937">"Залгах"</string>
+    <string name="call_callback" msgid="687494744634190411">"Дуудлага хүлээж авахаар залгах"</string>
+    <string name="call_car" msgid="9078083109758282133">"Машин руу залгах"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Компанийн үндсэн дугаар руу залгах"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"ISDN руу залгах"</string>
+    <string name="call_main" msgid="4640261071249938558">"Үндсэн дугаар руу залгах"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Факс руу залгах"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Радио руу залгах"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Телекс рүү залгах"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"TTY/TDD рүү залгах"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Ажлын гар утас руу залгах"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Ажлын пейжер рүү залгах"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> руу залгах"</string>
+    <string name="call_mms" msgid="8998771923464696960">"MMS рүү залгах"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> руу зурвас илгээх"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Гэрийн утас руу зурвас илгээх"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Гар утас руу зурвас илгээх"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Ажил руу зурвас илгээх"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Ажлын факс руу зурвас илгээх"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Гэрийн факс руу зурвас илгээх"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Пейжер рүү зурвас илгээх"</string>
+    <string name="sms_other" msgid="910895193552957097">"Зурвас илгээх"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Дуудлага авах зурвас илгээх"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Машин руу зурвас илгээх"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Компанийн үндсэн дугаар руу зурвас илгээх"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"ISDN рүү зурвас илгээх"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Үндсэн дугаар руу зурвас илгээх"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Факс руу зурвас илгээх"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Радио руу зурвас илгээх"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Телекс рүү зурвас илгээх"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"TTY/TDD рүү зурвас илгээх"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Ажлын гар утас руу зурвас илгээх"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Ажлын пейжэр рүү зурвас илгээх"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> руу зурвас бичих"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"MMS руу зурвас илгээх"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Байнга холбоо барьдаг харилцагчдын жагсаалтыг устгах уу?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Та People болон Phone апп-ууд дах байнга холбоо барьсан харилцагчдын жагсаалтыг устгаж, ингэснээрээ имэйл апп-уудыг таны имэйл хаяглах хандлагыг бүр эхнээс нь суралцахад хүргэнэ."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Байнга холбоо барьдаг харилцагчдын жагсаалтыг устгаж байна…"</string>
+    <string name="status_available" msgid="4832569677396634846">"Холбогдсон"</string>
+    <string name="status_away" msgid="6267905184545881094">"Холдсон"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Завгүй"</string>
+    <string name="contactsList" msgid="7140022347217602605">"Харилцагчид"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Бусад"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Директор"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Бүх харилцагчид"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Би"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Хайж байна..."</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>-с олон олдлоо."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Харилцагч байхгүй"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="1013734912609351182">"1 олдсон"</item>
+    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> олдсон"</item>
+  </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>-тай шууд холбогдох"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(нэр байхгүй)"</string>
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Байнга залгасан"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Байнга холбоо барьдаг"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Харилцагчийг харах"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Утасны дугаартай бүх харилцагчид"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Шинэчлэлтүүдийг харах"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Синк хийгдээгүй, зөвхөн таблет"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Синк хийгдээгүй, зөвхөн утас"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Нэр"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Хоч"</string>
+    <string name="full_name" msgid="885420216812981202">"Нэр"</string>
+    <string name="name_given" msgid="1560204576305608571">"Өөрийн нэр"</string>
+    <string name="name_family" msgid="1267097554034721002">"Овгийн нэр"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Нэрний урьдитгал"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Дундах нэр"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Нэрний дагавар"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Авианы нэр"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"Өөрийн авианы нэр"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Дундах авианы нэр"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Овгийн авианы нэр"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Утас"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Имэйл"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Хаяг"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Байгууллага"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Хамаарал"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"Онцгой огноонууд"</string>
+    <string name="sms" msgid="8086289395154598654">"Зурвас"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Хаяг"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Компани"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Гарчиг"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Тэмдэглэл"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"Интернет дуудлага"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Вебсайт"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"Бүлгэмүүд"</string>
+    <string name="email_home" msgid="2230967805906450693">"Гэр рүү имэйлдэх"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Гар утас руу имэйлдэх"</string>
+    <string name="email_work" msgid="7065971921227432400">"Ажил руу имэйлдэх"</string>
+    <string name="email_other" msgid="4601881243553289615">"Имэйлдэх"</string>
+    <string name="email_custom" msgid="5777583741581538870">"<xliff:g id="CUSTOM">%s</xliff:g> рүү имэйлдэх"</string>
+    <string name="email" msgid="5624424151176351591">"Имэйл"</string>
+    <string name="postal_street" msgid="881349814077356134">"Гудамж"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"ШХ"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Хөрш"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Хот"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Муж улс"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Зип код"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Улс"</string>
+    <string name="map_home" msgid="1221397355014741634">"Гэрийн хаяг харах"</string>
+    <string name="map_work" msgid="9015981646907637207">"Ажлын хаяг харах"</string>
+    <string name="map_other" msgid="55098598855607997">"Хаяг харах"</string>
+    <string name="map_custom" msgid="4943554530347163288">"<xliff:g id="CUSTOM">%s</xliff:g> хаяг харах"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"AIM ашиглан чатлах"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Windows Live ашиглан чатлах"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Yahoo ашиглан чатлах"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Skype ашиглан чатлах"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"QQ ашиглан чатлах"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Google Talk ашиглан чатлах"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"ICQ ашиглан чатлах"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Jabber ашиглан чатлах"</string>
+    <string name="chat" msgid="6297650784873558837">"Чат"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"устгах"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Нэрийн талбаруудыг дэлгэх буюу хумих"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Бүх харилцагчид"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Одтой"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Тохируулах"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Харилцагч"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Бусад бүх харилцагчид"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Бүх харилцагчид"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Синк бүлгэмийг арилгах"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Синк бүлгэм нэмэх"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Өөр бүлгэмүүд…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\"-г синкээс хассанаар бүлгэмээс хасагдсан бүх харилцагчдыг мөн синкээс хасах болно."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Харуулах тохиргоог хадгалж байна…"</string>
+    <string name="menu_done" msgid="32470053723443112">"Дууссан"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Цуцлах"</string>
+    <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> доторх харилцагчид"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Хувийн тохиргоотой харагдац дахь харилцагчид"</string>
+    <string name="listSingleContact" msgid="8525131203887307088">"Ганц харилцагч"</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Акаунт дотор харилцагч үүсгэх"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"SIM картаас импорт хийх"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Сангаас импорт хийх"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g>-г импорт хийхийг цуцлах уу?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g>-г экспорт хийхийг цуцлах уу?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard импорт/экспорт хийхийг цуцлаж чадсангүй"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"Тодорхойгүй алдаа."</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\"-г нээж чадсангүй: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Экспорт хийгчийг эхлүүлж чадсангүй: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Экспорт хийж болох харилцагч байхгүй."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Экспорт хийх явцад алдаа гарсан: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Шаардагдах файлын нэр хэт урт (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Санд хэт олон vCard файл байна."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD картад хэт олон vCard файл байна."</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O алдаа"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Санах ой хүрэхгүй байна. Файл хэт том байж магадгүй."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Тодорхойгүй шалтгаанаар vCard-г задлаж чадсангүй."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Формат нь дэмжигдэхгүй байна."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Өгөгдсөн vCard файлын мета мэдээллийг цуглуулж чадсангүй."</string>
+    <!-- String.format failed for translation -->
+    <!-- no translation found for fail_reason_failed_to_read_files (9213844535907986665) -->
+    <skip />
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>-г экспорт хийж дууссан."</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>-г экспорт хийхийг цуцлав."</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"Харилцагчийн өгөгдлийг экспорт хийж байна"</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Таны харилцагчийн өгөгдлийг дараах руу экспорт хийж байна: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Өгөгдлийн сангийн мэдээллийг авч чадсангүй"</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Экспорт хийж болох харилцагчид алга байна. Хэрэв та таблетдаа харилцагчидтай байгаа бол зарим өгөгдөл нийлүүлэгчээс харилцагчдын мэдээллийг таблетаас экспорт хийхийг зөвшөөрөхгүй байж магадгүй."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Экспорт хийж болох харилцагчид алга байна. Хэрэв та утсандаа харилцагчидтай байгаа бол зарим өгөгдөл нийлүүлэгчээс харилцагчдын мэдээллийг утаснаас экспорт хийхийг зөвшөөрөхгүй байж магадгүй."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"vCard бичигч зохих ёсоор эхэлсэнгүй."</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Экспорт хийж чадсангүй"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Харилцагчийн өгөгдлийг экспорт хийсэнгүй.\nШалтгаан: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Хадгалах сан олдсонгүй."</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD карт олдсонгүй."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Таны харилцагчдын жагсаалтыг дараах файл руу экспорт хийнэ: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g>-г импорт хийж байна"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard өгөгдлийг уншиж чадсангүй"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard өгөгдөл уншихыг цуцлав"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"vCard <xliff:g id="FILENAME">%s</xliff:g> -г импорт хийж дууссан"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"<xliff:g id="FILENAME">%s</xliff:g>-г импорт хийхийг цуцлав"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"<xliff:g id="FILENAME">%s</xliff:g>-г удахгүй импорт хийх болно."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Файлыг удахгүй импорт хийх болно."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard импорт хийх хүсэлтийг зөвшөөрсөнгүй. Дараа дахин оролдоно уу."</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>-г удахгүй экспорт хийх болно."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard экспорт хийх хүсэлтийг зөвшөөрсөнгүй. Дараа дахин оролдоно уу."</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"харилцагч"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-г дотоод түр санд кеш хийж байна. Удахгүй бодитоор импорт хийж эхлэх болно."</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"vCard-г импорт хийж чадсангүй."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Сан дотор vCard файл олдсонгүй."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD карт дотор vCard файл олдсонгүй."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC-р хүлээн авсан харилцагч"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"Харилцагчдыг экспорт хийх үү?"</string>
+    <string name="select_vcard_title" msgid="1536575036597557639">"vCard файл сонгоно уу"</string>
+    <string name="import_one_vcard_string" msgid="6199149175802496361">"Нэг vCard файл импорт хийх"</string>
+    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Олон vCard файл импорт хийх"</string>
+    <string name="import_all_vcard_string" msgid="1037495558362397535">"Бүх vCard файлуудыг импорт хийх"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Сан дотроос vCard өгөгдлийг хайж байна…"</string>
+    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD карт дотроос vCard өгөгдлийг хайж байна…"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Кеш хийж байна"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Хадгалах сан скан хийгдэхгүй байна. (Шалтгаан: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD карт скан хийгдэхгүй байна. (Шалтгаан: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"Импорт хийж байна <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Сан руу экспорт хийх"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Харагдах харилцагчдыг хуваалцах"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Харилцагчид импорт/экспорт хийх"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Харилцагчид импорт хийх"</string>
+    <string name="share_error" msgid="665756457151793108">"Энэ харилцагчийг хуваалцах боломжгүй."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Хайх"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Харуулах харилцагчид"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Харуулах харилцагчид"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Хувийн тохиргоот харагдацыг тодорхойлох"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Харилцагч хайх"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Таалагддаг"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Харилцагч байхгүй."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Харагдах харилцагчид байхгүй."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Дуртай байхгүй."</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> дотор харилцагчид байхгүй"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Байнга харилцсаныг арилгах"</string>
+    <string name="menu_accounts" msgid="795417468541517082">"Акаунт"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Импорт/экспорт"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> руу зурвас илгээх"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g> утас руу залгах"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g>-р"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g>-н <xliff:g id="DATE">%1$s</xliff:g>"</string>
+</resources>
