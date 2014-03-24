@@ -86,7 +86,7 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Skupina nemá žádné členy."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Chcete-li někoho přidat, upravte skupinu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Ukládání kontaktu…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt byl uložen."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt byl uložen"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Změny kontaktů nelze uložit."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Skupina byla uložena."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Změny skupiny nelze uložit."</string>
@@ -223,7 +223,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Přidat účet"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nový kontakt nebude zálohován. Chcete přidat účet pro zálohování kontaktů online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nový kontakt bude synchronizován s účtem <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nový kontakt můžete synchronizovat s jedním z následujících účtů. Který z nich chcete použít?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nový kontakt můžete synchronizovat s jedním z následujících účtů. Který z nich chcete použít?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Zachovat jako místní"</string>
     <string name="add_account" msgid="8201790677994503186">"Přidat účet"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Přidat nový účet"</string>
