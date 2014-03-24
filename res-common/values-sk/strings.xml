@@ -160,7 +160,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Jednotlivý kontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Vytvoriť kontakt na základe účtu"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importovať z karty SIM"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Import z uklad. priestoru"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Import z úložiska"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Zrušiť importovanie súboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Zrušiť exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Importovanie/exportovanie vizitky vCard zlyhalo"</string>
@@ -219,7 +219,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Ukladací priestor sa nepodarilo prehľadať. (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Kartu SD sa nepodarilo prehľadať. (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Import: <xliff:g id="CURRENT_NUMBER">%s</xliff:g> / <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Export do uklad. priest."</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Export do úložiska"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Zdieľať viditeľné kontakty"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importovať alebo exportovať kontakty"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importovať kontakty"</string>
