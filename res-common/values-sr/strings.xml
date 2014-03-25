@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Размена тренутних порука"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Организација"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Однос"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"Специјални датуми"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"Догађаји"</string>
     <string name="sms" msgid="8086289395154598654">"Текстуална порука"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адреса"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Предузеће"</string>
@@ -239,6 +239,4 @@
     <string name="menu_import_export" msgid="6446229463809981669">"Увези/извези"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Пошаљи поруку кориснику <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"Позови број телефона корисника <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution" msgid="8419168578670128134">"преко <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> преко <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
 </resources>

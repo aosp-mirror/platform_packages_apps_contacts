@@ -92,7 +92,7 @@
     <string name="full_name" msgid="885420216812981202">"Jina"</string>
     <string name="name_given" msgid="1560204576305608571">"Jina la kupewa"</string>
     <string name="name_family" msgid="1267097554034721002">"Jina la familia"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Herufi za kwanza za jina"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Kiambishi awali cha jina"</string>
     <string name="name_middle" msgid="3951610314424632183">"Jina la kati"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Kiambishi tamati cha jina"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Jina la fonetiki"</string>
@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Ujumbe wa Papo Hapo"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Shirika"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Uhusiano"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"Tarehe maalum"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"Matukio"</string>
     <string name="sms" msgid="8086289395154598654">"SMS, (Ujumbe wa maandishi)"</string>
     <string name="postal_address" msgid="7692926530081579786">"Anwani"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Kampuni"</string>
@@ -159,8 +159,8 @@
     <string name="listCustomView" msgid="1915154113477432033">"Anwani katika mwoneko maalum"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Anwani moja"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Weka anwani katika akaunti"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Ingiza kutoka SIM kadi"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Ingiza kutoka hifadhi"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Leya kutoka kwenye SIM kadi"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Leta kutoka kwenye hifadhi"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Ghairi uhamisho wa <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Ighairi uhamisho wa <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Haikuweza kughairi uingizaji/uhamishaji wa vCard"</string>
@@ -241,6 +241,4 @@
     <string name="menu_import_export" msgid="6446229463809981669">"Ingiza/hamisha"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Tuma ujumbe kwa <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"Piga simu <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution" msgid="8419168578670128134">"kupitia <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> kupitia <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
 </resources>

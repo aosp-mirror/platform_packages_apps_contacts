@@ -61,7 +61,7 @@
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> पर पाठ संदेश भेजें"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS पर पाठ संदेश भेजें"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"अक्‍सर किए जाने वाले संपर्क साफ करें?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको लोग और फ़ोन ऐप्स में अक्‍सर संपर्क करने की सूची साफ़ करनी होगी, और अपने ईमेल ऐप्स  को आपकी संबोधन प्राथमिकताओं को प्रारंभ से जानने के लिए बाध्‍य करना होगा."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको लोग और फ़ोन एप्‍लिकेशन में अक्‍सर संपर्क करने की सूची साफ़ करनी होगी, और अपने ईमेल एप्लिकेशन को आपकी संबोधन प्राथमिकताओं को प्रारंभ से जानने के लिए बाध्‍य करना होगा."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"अक्सर किए जाने वाले संपर्क साफ कर रहा है…"</string>
     <string name="status_available" msgid="4832569677396634846">"उपलब्ध"</string>
     <string name="status_away" msgid="6267905184545881094">"दूर"</string>
@@ -84,7 +84,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"बार-बार संपर्क किए गए"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"संपर्क देखें"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"फ़ोन नंबरों वाले सभी संपर्क"</string>
-    <string name="view_updates_from_group" msgid="3310864388165884352">"नई जानकारी देखें"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"अपडेट देखें"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"केवल टेबलेट पर, असमन्वयित"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"केवल-फ़ोन पर, असमन्वयित"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"नाम"</string>
@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"संगठन"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"संबंध"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"विशेष दिनांक"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"ईवेंट"</string>
     <string name="sms" msgid="8086289395154598654">"पाठ संदेश"</string>
     <string name="postal_address" msgid="7692926530081579786">"पता"</string>
     <string name="ghostData_company" msgid="22470841482615409">"कंपनी"</string>
@@ -131,15 +131,15 @@
     <string name="map_work" msgid="9015981646907637207">"कार्यालय का पता देखें"</string>
     <string name="map_other" msgid="55098598855607997">"पता देखें"</string>
     <string name="map_custom" msgid="4943554530347163288">"<xliff:g id="CUSTOM">%s</xliff:g> पता देखें"</string>
-    <string name="chat_aim" msgid="6479001490307452172">"AIM का उपयोग करके बातचीत करें"</string>
-    <string name="chat_msn" msgid="627481952525245054">"Windows Live का उपयोग करके बातचीत करें"</string>
-    <string name="chat_yahoo" msgid="5542489454092719897">"Yahoo का उपयोग करके बातचीत करें"</string>
-    <string name="chat_skype" msgid="3145166404699830256">"Skype का उपयोग करके बातचीत करें"</string>
-    <string name="chat_qq" msgid="2811762660890755082">"QQ का उपयोग करके बातचीत करें"</string>
-    <string name="chat_gtalk" msgid="6043734883347741789">"Google टॉक का उपयोग करके बातचीत करें"</string>
-    <string name="chat_icq" msgid="7538190395602030726">"ICQ का उपयोग करके बातचीत करें"</string>
-    <string name="chat_jabber" msgid="4525546665986350869">"Jabber का उपयोग करके बातचीत करें"</string>
-    <string name="chat" msgid="6297650784873558837">"बातचीत करें"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"AIM का उपयोग करके चैट करें"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Windows Live का उपयोग करके चैट करें"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Yahoo का उपयोग करके चैट करें"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Skype का उपयोग करके चैट करें"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"QQ का उपयोग करके चैट करें"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Google टॉक का उपयोग करके चैट करें"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"ICQ का उपयोग करके चैट करें"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Jabber का उपयोग करके चैट करें"</string>
+    <string name="chat" msgid="6297650784873558837">"चैट करें"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"हटाएं"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"नाम फ़ील्ड विस्तृत या संक्षिप्त करें"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"सभी संपर्क"</string>
@@ -239,6 +239,4 @@
     <string name="menu_import_export" msgid="6446229463809981669">"आयात करें/निर्यात करें"</string>
     <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> को संदेश भेजें"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"फ़ोन <xliff:g id="NAME">%1$s</xliff:g> डायल करें"</string>
-    <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> द्वारा"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> द्वारा <xliff:g id="DATE">%1$s</xliff:g> को"</string>
 </resources>

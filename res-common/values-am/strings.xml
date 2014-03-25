@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"ድርጅት"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"ግንኙነት"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"ልዩ ቀኖች"</string>
+    <string name="eventLabelsGroup" msgid="536444452517449685">"ክስተቶች"</string>
     <string name="sms" msgid="8086289395154598654">"የፅሁፍ መልዕክት"</string>
     <string name="postal_address" msgid="7692926530081579786">"አድራሻ"</string>
     <string name="ghostData_company" msgid="22470841482615409">"ኩባንያ"</string>
@@ -139,7 +139,7 @@
     <string name="chat_gtalk" msgid="6043734883347741789">"Google Talkን በመጠቀም ይወያዩ"</string>
     <string name="chat_icq" msgid="7538190395602030726">"ICQን በመጠቀም ይወያዩ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"Jabberን በመጠቀም 271448"</string>
-    <string name="chat" msgid="6297650784873558837">"ውይይት"</string>
+    <string name="chat" msgid="6297650784873558837">"ይወያዩ"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"ሰርዝ"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"የስም መስኮችን ይዘርጉ ወይም ይሰብስቡ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"ሁሉም እውቅያዎች"</string>
@@ -154,16 +154,16 @@
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"«<xliff:g id="GROUP">%s</xliff:g>»ን ከማመሳስሉ ማስወገድ ማናቸውም በቡድን ያልተካተቱ ዕውቅያዎችንም ከማመሳሰሉ ያስወግዳቸዋል።"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"የማሳያ አማራጮችን በማስቀመጥ ላይ…"</string>
     <string name="menu_done" msgid="32470053723443112">"ተከናውኗል"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"ይቅር"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"ይሰርዙ"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"በ<xliff:g id="NAME">%s</xliff:g> ውስጥ ያሉ ዕውቂያዎች"</string>
     <string name="listCustomView" msgid="1915154113477432033">"እውቂያዎች በብጁ እይታ"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"ነጠላ እውቂያ"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"በመለያ ስር ዕውቂያ ይፍጠሩ"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"ከሲም ካርድ ያስመጡ"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ከማከማቻ ያስመጡ"</string>
-    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"የ<xliff:g id="FILENAME">%s</xliff:g> ወደ ውስጥ ማስመጣት ይቅር?"</string>
-    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"የ<xliff:g id="FILENAME">%s</xliff:g> ወደ ውጭ መላክ ይቅር?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ማስመጣት/ወደ ውጪ ይቅር ማለት አልተቻለም"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"የ<xliff:g id="FILENAME">%s</xliff:g> ወደ ውስጥ ማስመጣት ይሰረዝ?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"የ<xliff:g id="FILENAME">%s</xliff:g> ወደ ውጭ መላክ ይሰረዝ?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ማስመጣት/ወደ ውጪ መላክ አልተቻለም"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"ያልታወቀ ስህተት።"</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"«<xliff:g id="FILE_NAME">%s</xliff:g>»ን መክፈት አልተቻለም፦ <xliff:g id="EXACT_REASON">%s</xliff:g>።"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ይህንን ላኪ መጀመር አልተቻለም፦ «<xliff:g id="EXACT_REASON">%s</xliff:g>»"</string>
@@ -239,6 +239,4 @@
     <string name="menu_import_export" msgid="6446229463809981669">"ያስመጡ/ወደ ውጪ ይላኩ"</string>
     <string name="description_send_message" msgid="2630211225573754774">"ለ<xliff:g id="NAME">%1$s</xliff:g> መልዕክት ይላኩ"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"ወደ የ<xliff:g id="NAME">%1$s</xliff:g> ስልክ ይደውሉ"</string>
-    <string name="contact_status_update_attribution" msgid="8419168578670128134">"በ<xliff:g id="SOURCE">%1$s</xliff:g> በኩል"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> በ<xliff:g id="SOURCE">%2$s</xliff:g> በኩል"</string>
 </resources>
