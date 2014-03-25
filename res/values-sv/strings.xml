@@ -58,7 +58,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Visa alla kontakter"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Föreslagna kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alla kontakter"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Deltagande kontakter"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakterna har slagits ihop"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ställ in ringsignal"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alla samtal till röstbrevlådan"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Du kan inte ta bort kontakter från skrivskyddade konton, men du kan dölja dem i kontaktlistorna."</string>
@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Dina kontakters namn"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Ingen app som kan hantera åtgärden hittades."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Ingen app som kan hantera åtgärden hittades"</string>
     <string name="menu_share" msgid="943789700636542260">"Dela"</string>
     <string name="share_via" msgid="563121028023030093">"Dela kontakt via"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Skapa grupp under konto"</string>
@@ -160,8 +161,6 @@
     <string name="add_organization" msgid="7311893231158291197">"Lägg till organisation"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Datum"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Gruppnamn"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Redigera kontakt"</string>
   <plurals name="merge_info">

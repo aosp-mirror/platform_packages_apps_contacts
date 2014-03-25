@@ -119,6 +119,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> dari <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontak"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nama kontak Anda"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Tidak ada apl yang ditemukan untuk menangani tindakan ini."</string>
+    <string name="missing_app" msgid="1466111003546611387">"Tidak ditemukan aplikasi untuk menangani tindakan ini."</string>
     <string name="menu_share" msgid="943789700636542260">"Bagikan"</string>
     <string name="share_via" msgid="563121028023030093">"Bagikan kontak melalui"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Buat grup dalam akun"</string>
@@ -135,7 +136,7 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Tidak dapat diedit dari apl ini."</string>
     <string name="no_contact_details" msgid="6636856378019344497">"Tidak ada informasi tambahan untuk kontak ini."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Tidak dapat diedit pada perangkat ini."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sortir daftar menurut"</string>
+    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Urutkan daftar menurut"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nama depan"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Nama keluarga"</string>
     <string name="display_options_view_names_as" msgid="4386932036180428374">"Lihat nama kontak"</string>
@@ -160,8 +161,6 @@
     <string name="add_organization" msgid="7311893231158291197">"Tambahkan organisasi"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Tanggal"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Nama grup"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"melalui <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> melalui <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Edit kontak"</string>
   <plurals name="merge_info">
