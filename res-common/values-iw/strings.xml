@@ -29,16 +29,16 @@
     <string name="call_callback" msgid="687494744634190411">"התקשר למספר להתקשרות חזרה"</string>
     <string name="call_car" msgid="9078083109758282133">"התקשר למספר במכונית"</string>
     <string name="call_company_main" msgid="8768047233970315359">"התקשר למספר הראשי של החברה"</string>
-    <string name="call_isdn" msgid="3342482563847537747">"התקשר ל-ISDN"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"‏התקשר ל-ISDN"</string>
     <string name="call_main" msgid="4640261071249938558">"התקשר למספר הראשי"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"התקשר לפקס"</string>
     <string name="call_radio" msgid="9055749313292712021">"התקשר לרדיו"</string>
     <string name="call_telex" msgid="2909886619224843563">"התקשר לטלקס"</string>
-    <string name="call_tty_tdd" msgid="6704940636171078852">"התקשר ל-TTY/TDD"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"‏התקשר ל-TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"התקשר לנייד של העבודה"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"התקשר לזימונית של העבודה"</string>
     <string name="call_assistant" msgid="5188990854852312696">"התקשר אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="8998771923464696960">"התקשר ל-MMS"</string>
+    <string name="call_mms" msgid="8998771923464696960">"‏התקשר ל-MMS"</string>
     <string name="sms_custom" msgid="4601748252470175865">"שלח הודעת טקסט אל <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"שלח הודעת טקסט לבית"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"שלח הודעת טקסט לנייד"</string>
@@ -50,18 +50,18 @@
     <string name="sms_callback" msgid="728414485478941361">"שלח הודעת טקסט למספר להתקשרות חזרה"</string>
     <string name="sms_car" msgid="8543669230270954512">"שלח הודעת טקסט למספר במכונית"</string>
     <string name="sms_company_main" msgid="5441902128445061862">"שלח הודעת טקסט למספר הראשי של החברה"</string>
-    <string name="sms_isdn" msgid="7142483128948042667">"שלח הודעת טקסט ל-ISDN"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"‏שלח הודעת טקסט ל-ISDN"</string>
     <string name="sms_main" msgid="6815987840926184815">"שלח הודעת טקסט למספר הראשי"</string>
     <string name="sms_other_fax" msgid="8649822154879781466">"שלח הודעת טקסט לפקס"</string>
     <string name="sms_radio" msgid="8750339218480745940">"שלח הודעת טקסט לרדיו"</string>
     <string name="sms_telex" msgid="5469333785775443999">"שלח הודעת טקסט לטלקס"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"שלח הודעת טקסט ל-TTY/TDD"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"‏שלח הודעת טקסט ל-TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"שלח הודעת טקסט לנייד של עבודה"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"שלח הודעת טקסט לזימונית של עבודה"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"שלח הודעת טקסט אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"שלח הודעת טקסט ל-MMS"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"‏שלח הודעת טקסט ל-MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"האם למחוק אנשי קשר קבועים?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"פעולה זו תמחק את רשימת אנשי הקשר הקבועים ביישומים \'אנשים\' ו\'טלפון\' ותאלץ את יישומי הדוא\"ל ללמוד מהתחלה את העדפות הכתובות שלך."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"פעולה זו תמחק את רשימת אנשי הקשר הקבועים באפליקציות \'אנשים\' ו\'טלפון\' ותאלץ את יישומי הדוא\"ל ללמוד מהתחלה את העדפות הכתובות שלך."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"מוחק אנשי קשר קבועים…"</string>
     <string name="status_available" msgid="4832569677396634846">"זמין"</string>
     <string name="status_away" msgid="6267905184545881094">"לא נמצא"</string>
@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"הודעות מיידיות"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"ארגון"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"קשר"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"אירועים"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"תאריכים מיוחדים"</string>
     <string name="sms" msgid="8086289395154598654">"הודעת טקסט"</string>
     <string name="postal_address" msgid="7692926530081579786">"כתובת"</string>
     <string name="ghostData_company" msgid="22470841482615409">"חברה"</string>
@@ -131,14 +131,14 @@
     <string name="map_work" msgid="9015981646907637207">"הצג כתובת עבודה"</string>
     <string name="map_other" msgid="55098598855607997">"הצג כתובת"</string>
     <string name="map_custom" msgid="4943554530347163288">"הצג כתובת <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="6479001490307452172">"שוחח בצ\'אט באמצעות AIM"</string>
-    <string name="chat_msn" msgid="627481952525245054">"שוחח בצ\'אט באמצעות Windows Live"</string>
-    <string name="chat_yahoo" msgid="5542489454092719897">"שוחח בצ\'אט באמצעות Yahoo"</string>
-    <string name="chat_skype" msgid="3145166404699830256">"שוחח בצ\'אט באמצעות Skype"</string>
-    <string name="chat_qq" msgid="2811762660890755082">"שוחח בצ\'אט באמצעות QQ"</string>
-    <string name="chat_gtalk" msgid="6043734883347741789">"שוחח בצ\'אט באמצעות Google Talk"</string>
-    <string name="chat_icq" msgid="7538190395602030726">"שוחח בצ\'אט באמצעות ICQ"</string>
-    <string name="chat_jabber" msgid="4525546665986350869">"שוחח בצ\'אט באמצעות Jabber"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"‏שוחח בצ\'אט באמצעות AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"‏שוחח בצ\'אט באמצעות Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"‏שוחח בצ\'אט באמצעות Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"‏שוחח בצ\'אט באמצעות Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"‏שוחח בצ\'אט באמצעות QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"‏שוחח בצ\'אט באמצעות Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"‏שוחח בצ\'אט באמצעות ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"‏שוחח בצ\'אט באמצעות Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"צ\'אט"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"מחק"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"הרחב או כווץ שמות של שדות"</string>
@@ -159,25 +159,25 @@
     <string name="listCustomView" msgid="1915154113477432033">"אנשי קשר בתצוגה מותאמת אישית"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"איש קשר יחיד"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"צור איש קשר בחשבון"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"יבא מכרטיס SIM"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"‏יבא מכרטיס SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"יבא מאמצעי אחסון"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"האם לבטל את הייבוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"האם לבטל את הייצוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"לא ניתן היה לבטל ייבוא/ייצוא של vCard"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"‏לא ניתן היה לבטל ייבוא/ייצוא של vCard"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"שגיאה לא ידועה."</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"לא ניתן היה לפתוח את \"<xliff:g id="FILE_NAME">%s</xliff:g>\"‏: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"לא ניתן להפעיל את המייצא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"אין אנשי קשר הניתנים לייצוא."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"אירעה שגיאה במהלך הייצוא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"שם הקובץ הדרוש ארוך מדי (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"באמצעי האחסון קיימים קובצי vCard רבים מדי."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"קיימים בכרטיס ה-SD קובצי vCard רבים מדי."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"‏באמצעי האחסון קיימים קובצי vCard רבים מדי."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"‏קיימים בכרטיס ה-SD קובצי vCard רבים מדי."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"שגיאת קלט/פלט"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"אין מספיק זיכרון. ייתכן שהקובץ גדול מדי."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"לא ניתן היה לנתח את ה-vCard מסיבה בלתי צפויה."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"‏לא ניתן היה לנתח את ה-vCard מסיבה בלתי צפויה."</string>
     <string name="fail_reason_not_supported" msgid="388664373573337601">"הפורמט אינו נתמך."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"לא ניתן היה לאסוף מטא-מידע של קובצי vCard נתונים."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"לא ניתן היה לייבא קובץ אחד או יותר (%s)."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"‏לא ניתן היה לאסוף מטא-מידע של קובצי vCard נתונים."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"‏לא ניתן היה לייבא קובץ אחד או יותר (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> הסתיים."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"מייצא נתונים של אנשי קשר"</string>
@@ -185,42 +185,42 @@
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"לא ניתן היה לקבל מידע ממסד הנתונים."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים בטאבלט שלך אנשי קשר, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטאבלט."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים אנשי קשר בטלפון שלך, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטלפון."</string>
-    <string name="composer_not_initialized" msgid="6514403866246950877">"יישום יצירת ה-vCard לא הופעל כהלכה."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"‏יישום יצירת ה-vCard לא הופעל כהלכה."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"לא ניתן היה לייצא"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"נתוני אנשי הקשר לא יוצאו.\nסיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"לא נמצאו אמצעי אחסון."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"לא נמצא כרטיס SD."</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"‏לא נמצא כרטיס SD."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"רשימת אנשי הקשר שלך תיוצא לקובץ: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"מייבא את <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"לא ניתן היה לקרוא נתוני vCard"</string>
-    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"קריאת נתוני ה-VCard בוטלה"</string>
-    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"הייבוא של קובץ vCard ‏<xliff:g id="FILENAME">%s</xliff:g> הסתיים"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"‏לא ניתן היה לקרוא נתוני vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"‏קריאת נתוני ה-VCard בוטלה"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"‏הייבוא של קובץ vCard ‏<xliff:g id="FILENAME">%s</xliff:g> הסתיים"</string>
     <string name="importing_vcard_canceled_title" msgid="556913863250769870">"הייבוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל"</string>
     <string name="vcard_import_will_start_message" msgid="7184603116300604514">"הייבוא של <xliff:g id="FILENAME">%s</xliff:g> יתבצע תוך זמן קצר."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ייבוא הקובץ יתבצע תוך זמן קצר."</string>
-    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"הבקשה לייבוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"‏הבקשה לייבוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> יתבצע תוך זמן קצר."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"הבקשה לייצוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"‏הבקשה לייצוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"איש קשר"</string>
-    <string name="caching_vcard_message" msgid="6635485116655518520">"קובצי ה-vCard נשמרים כקבצים באחסון מקומי זמני. הייבוא בפועל יחל בקרוב."</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"‏קובצי ה-vCard נשמרים כקבצים באחסון מקומי זמני. הייבוא בפועל יחל בקרוב."</string>
     <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
-    <string name="vcard_import_failed" msgid="4105296876768072508">"לא ניתן היה לייבא את ה-vCard."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"לא נמצאו קובצי vCard באמצעי האחסון."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"לא נמצאו קובצי vCard בכרטיס ה-SD."</string>
-    <string name="nfc_vcard_file_name" msgid="305679412445157370">"איש הקשר התקבל באמצעות NFC"</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"‏לא ניתן היה לייבא את ה-vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"‏לא נמצאו קובצי vCard באמצעי האחסון."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏לא נמצאו קובצי vCard בכרטיס ה-SD."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"‏איש הקשר התקבל באמצעות NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"לייצא את אנשי הקשר?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"בחר קובץ vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"יבא קובץ vCard אחד"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"יבא קובצי vCard מרובים"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"יבא את כל קובצי ה-vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"מחפש נתוני vCard באמצעי האחסון…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"מחפש נתוני vCard בכרטיס ה-SD…"</string>
+    <string name="select_vcard_title" msgid="1536575036597557639">"‏בחר קובץ vCard"</string>
+    <string name="import_one_vcard_string" msgid="6199149175802496361">"‏יבא קובץ vCard אחד"</string>
+    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"‏יבא קובצי vCard מרובים"</string>
+    <string name="import_all_vcard_string" msgid="1037495558362397535">"‏יבא את כל קובצי ה-vCard"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"‏מחפש נתוני vCard באמצעי האחסון…"</string>
+    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"‏מחפש נתוני vCard בכרטיס ה-SD…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"שומר כקובץ שמור"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"לא ניתן היה לסרוק את אמצעי האחסון. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"לא ניתן היה לסרוק את כרטיס ה-SD. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏לא ניתן היה לסרוק את כרטיס ה-SD. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"מייבא <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>‏: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"יצא לאמצעי אחסון"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר חשופים"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר שמוצגים כעת"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"יבא/יצא אנשי קשר"</string>
     <string name="dialog_import" msgid="5177004290082451296">"יבא אנשי קשר"</string>
     <string name="share_error" msgid="665756457151793108">"לא ניתן לשתף איש קשר זה."</string>
@@ -239,4 +239,6 @@
     <string name="menu_import_export" msgid="6446229463809981669">"יבא/יצא"</string>
     <string name="description_send_message" msgid="2630211225573754774">"שלח הודעה אל <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"חייג לטלפון <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"באמצעות <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> באמצעות <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
 </resources>
