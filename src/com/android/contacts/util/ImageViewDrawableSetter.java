@@ -89,7 +89,9 @@ public class ImageViewDrawableSetter {
         if (mPreviousDrawable == null) {
             // If we don't already have a drawable, skip the exit-early test
             // below; otherwise we might not end up setting the default image.
-        } else if (mPreviousDrawable != null && Arrays.equals(mCompressed, compressed)) {
+        } else if (mPreviousDrawable != null
+                && mPreviousDrawable instanceof BitmapDrawable
+                && Arrays.equals(mCompressed, compressed)) {
             // TODO: the worst case is when the arrays are equal but not
             // identical. This takes about 1ms (more with high-res photos). A
             // possible optimization is to sparsely sample chunks of the arrays
