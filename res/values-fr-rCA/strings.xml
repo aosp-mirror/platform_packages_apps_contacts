@@ -40,13 +40,13 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Afficher le contact"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Ajouter aux favoris"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Supprimer des favoris"</string>
-    <string name="menu_editContact" msgid="9042415603857662633">"modifier"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Modifier"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Supprimer"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Placer sur l\'écran d\'accueil"</string>
     <string name="menu_call" msgid="3992595586042260618">"Appeler le contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envoyer un SMS au contact"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Séparer"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"modifier"</string>
+    <string name="menu_editGroup" msgid="5062005185370983720">"Modifier"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Supprimer"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Ajouter un contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Ajouter un groupe"</string>
