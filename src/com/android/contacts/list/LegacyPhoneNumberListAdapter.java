@@ -106,6 +106,6 @@ public class LegacyPhoneNumberListAdapter extends ContactEntryListAdapter {
             label = Phone.getTypeLabel(getContext().getResources(), type, customLabel);
         }
         view.setLabel(label);
-        view.showPhoneNumber(cursor, PHONE_NUMBER_COLUMN_INDEX);
+        view.setPhoneNumber(cursor.getString(PHONE_NUMBER_COLUMN_INDEX), /* countryIso */ null);
     }
 }
