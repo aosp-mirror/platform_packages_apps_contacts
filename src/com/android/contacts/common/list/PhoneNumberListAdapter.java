@@ -29,6 +29,7 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,6 +101,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     private final CharSequence mUnknownNameText;
+    private final String mCountryIso;
 
     private ContactListItemView.PhotoPosition mPhotoPosition;
 
@@ -109,6 +111,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         super(context);
         setDefaultFilterHeaderText(R.string.list_filter_phones);
         mUnknownNameText = context.getText(android.R.string.unknownName);
+        mCountryIso = GeoUtil.getCurrentCountryIso(context);
 
         final ExtendedPhoneDirectoriesManager manager
                 = ExtensionsFactory.getExtendedPhoneDirectoriesManager();
@@ -386,7 +389,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                 text = GeoUtil.getGeocodedLocationFor(mContext, phoneNumber);
             }
         }
-        view.setPhoneNumber(text);
+        view.setPhoneNumber(text, mCountryIso);
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {

@@ -29,6 +29,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -1018,15 +1019,20 @@ public class ContactListItemView extends ViewGroup
      * Sets phone number for a list item. This takes care of number highlighting if the highlight
      * mask exists.
      */
-    public void setPhoneNumber(String text) {
+    public void setPhoneNumber(String text, String countryIso) {
         if (text == null) {
             if (mDataView != null) {
                 mDataView.setVisibility(View.GONE);
             }
         } else {
             getDataView();
+
+            if (countryIso != null) {
+                text = PhoneNumberUtils.formatNumber(text, countryIso);
+            }
+
             // Sets phone number texts for display after highlighting it, if applicable.
-            //CharSequence textToSet = text;
+            // CharSequence textToSet = text;
             final SpannableString textToSet = new SpannableString(text);
 
             if (mNumberHighlightSequence.size() != 0) {
@@ -1481,11 +1487,6 @@ public class ContactListItemView extends ViewGroup
     public void showData(Cursor cursor, int dataColumnIndex) {
         cursor.copyStringToBuffer(dataColumnIndex, mDataBuffer);
         setData(mDataBuffer.data, mDataBuffer.sizeCopied);
-    }
-
-    public void showPhoneNumber(Cursor cursor, int dataColumnIndex) {
-        // Highlights the number and aligns text before showing.
-        setPhoneNumber(cursor.getString(dataColumnIndex));
     }
 
     public void setActivatedStateSupported(boolean flag) {
