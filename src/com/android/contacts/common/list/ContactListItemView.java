@@ -1028,7 +1028,10 @@ public class ContactListItemView extends ViewGroup
             getDataView();
 
             if (countryIso != null) {
-                text = PhoneNumberUtils.formatNumber(text, countryIso);
+                String formattedText = PhoneNumberUtils.formatNumber(text, countryIso);
+                if (formattedText != null) {
+                    text = formattedText;
+                }
             }
 
             // Sets phone number texts for display after highlighting it, if applicable.
