@@ -166,7 +166,7 @@
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Không thể nhập/xuất vCard"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"Lỗi không xác định."</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Không thể mở \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Không thể khởi chạy trình xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Không thể chạy trình xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Không thể xuất liên hệ nào."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Đã xảy ra lỗi khi xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Tên tệp yêu cầu quá dài (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>

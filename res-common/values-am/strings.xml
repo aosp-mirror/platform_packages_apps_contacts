@@ -234,7 +234,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ምንም የሚታዩ ዕውቂያዎች የሉም።"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ምንም ተወዳጆች የለም።"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"በ<xliff:g id="NAME">%s</xliff:g> ውስጥ ምንም ዕውቂያዎች የሉም"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"ተደጋጋሚዎችን ጥረግ"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"ተደጋጋሚዎችን አጽዳ"</string>
     <string name="menu_accounts" msgid="795417468541517082">"መለያዎች"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"ያስመጡ/ወደ ውጪ ይላኩ"</string>
     <string name="description_send_message" msgid="2630211225573754774">"ለ<xliff:g id="NAME">%1$s</xliff:g> መልዕክት ይላኩ"</string>
