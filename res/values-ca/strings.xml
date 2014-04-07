@@ -42,7 +42,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Elimina dels preferits"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Edita"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Suprimeix"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Posa-ho a la pantalla d\'inici"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Afegeix a la pantalla d\'inici"</string>
     <string name="menu_call" msgid="3992595586042260618">"Truca al contacte"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envia un SMS al contacte"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separa"</string>
