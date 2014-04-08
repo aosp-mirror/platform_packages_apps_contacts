@@ -1027,12 +1027,9 @@ public class ContactListItemView extends ViewGroup
         } else {
             getDataView();
 
-            if (countryIso != null) {
-                String formattedText = PhoneNumberUtils.formatNumber(text, countryIso);
-                if (formattedText != null) {
-                    text = formattedText;
-                }
-            }
+            // TODO: Format number using PhoneNumberUtils.formatNumber before assigning it to
+            // mDataView. Make sure that determination of the highlight sequences are done only
+            // after number formatting.
 
             // Sets phone number texts for display after highlighting it, if applicable.
             // CharSequence textToSet = text;
