@@ -82,7 +82,7 @@ public class TelephonyManagerUtils {
         // we can rely on.
         final TelephonyManager telephonyManager =
             (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String countryIso = telephonyManager.getNetworkCountryIso();
+        String countryIso = telephonyManager.getNetworkCountryIso().toUpperCase();
 
         if (countryIso == null) {
             countryIso = locale.getCountry();
