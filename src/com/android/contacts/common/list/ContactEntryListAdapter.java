@@ -436,6 +436,9 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         if (isSectionHeaderDisplayEnabled() && partitionIndex == getIndexedPartition()) {
             updateIndexer(cursor);
         }
+
+        // When the cursor changes, cancel any pending asynchronous photo loads.
+        mPhotoLoader.cancelPendingRequests();
     }
 
     public void changeCursor(Cursor cursor) {

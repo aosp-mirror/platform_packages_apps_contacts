@@ -45,6 +45,10 @@ public class MockContactPhotoManager extends ContactPhotoManager {
     }
 
     @Override
+    public void cancelPendingRequests() {
+    }
+
+    @Override
     public void pause() {
     }
 
