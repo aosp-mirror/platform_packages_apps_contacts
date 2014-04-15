@@ -410,6 +410,11 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
     public abstract void removePhoto(ImageView view);
 
     /**
+     * Cancels all pending requests to load photos asynchronously.
+     */
+    public abstract void cancelPendingRequests();
+
+    /**
      * Temporarily stops loading photos from the database.
      */
     public abstract void pause();
@@ -726,6 +731,15 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     public void removePhoto(ImageView view) {
         view.setImageDrawable(null);
         mPendingRequests.remove(view);
+    }
+
+
+    /**
+     * Cancels all pending requests to load photos asynchronously.
+     */
+    @Override
+    public void cancelPendingRequests() {
+        mPendingRequests.clear();
     }
 
     @Override
