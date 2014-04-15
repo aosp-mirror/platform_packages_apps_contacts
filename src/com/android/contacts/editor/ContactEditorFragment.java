@@ -892,7 +892,7 @@ public class ContactEditorFragment extends Fragment implements
     */
     private Bitmap updatedBitmapForRawContact(long rawContactId) {
         String path = mUpdatedPhotos.getString(String.valueOf(rawContactId));
-        return BitmapFactory.decodeFile(path);
+        return path == null ? null : BitmapFactory.decodeFile(path);
     }
 
     private void bindPhotoHandler(BaseRawContactEditorView editor, AccountType type,
