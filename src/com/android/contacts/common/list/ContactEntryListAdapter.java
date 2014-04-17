@@ -455,7 +455,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
 
         Bundle bundle = cursor.getExtras();
-        if (bundle.containsKey(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES)) {
+        if (bundle.containsKey(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES) &&
+                bundle.containsKey(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS)) {
             String sections[] =
                     bundle.getStringArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
             int counts[] = bundle.getIntArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
