@@ -109,11 +109,6 @@ public class ContactListItemView extends ViewGroup
     private int mSelectionBoundsMarginLeft;
     private int mSelectionBoundsMarginRight;
 
-    // Horizontal divider between contact views.
-    private boolean mHorizontalDividerVisible = true;
-    private Drawable mHorizontalDividerDrawable;
-    private int mHorizontalDividerHeight;
-
     protected static class HighlightSequence {
         private final int start;
         private final int end;
@@ -250,8 +245,6 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_height, mPreferredHeight);
         mActivatedBackgroundDrawable = a.getDrawable(
                 R.styleable.ContactListItemView_activated_background);
-        mHorizontalDividerDrawable = a.getDrawable(
-                R.styleable.ContactListItemView_list_item_divider);
 
         mGapBetweenImageAndText = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_gap_between_image_and_text,
@@ -312,8 +305,6 @@ public class ContactListItemView extends ViewGroup
         mSecondaryTextColor = a.getColorStateList(R.styleable.Theme_android_textColorSecondary);
         a.recycle();
 
-        mHorizontalDividerHeight = mHorizontalDividerDrawable.getIntrinsicHeight();
-
         if (mActivatedBackgroundDrawable != null) {
             mActivatedBackgroundDrawable.setCallback(this);
         }
@@ -335,12 +326,7 @@ public class ContactListItemView extends ViewGroup
         // We will match parent's width and wrap content vertically, but make sure
         // height is no less than listPreferredItemHeight.
         final int specWidth = resolveSize(0, widthMeasureSpec);
-        final int preferredHeight;
-        if (mHorizontalDividerVisible) {
-            preferredHeight = mPreferredHeight + mHorizontalDividerHeight;
-        } else {
-            preferredHeight = mPreferredHeight;
-        }
+        final int preferredHeight = mPreferredHeight;
 
         mNameTextViewHeight = 0;
         mPhoneticNameTextViewHeight = 0;
@@ -463,11 +449,6 @@ public class ContactListItemView extends ViewGroup
         // Make sure the height is at least as high as the photo
         height = Math.max(height, mPhotoViewHeight + getPaddingBottom() + getPaddingTop());
 
-        // Add horizontal divider height
-        if (mHorizontalDividerVisible) {
-            height += mHorizontalDividerHeight;
-        }
-
         // Make sure height is at least the preferred height
         height = Math.max(height, preferredHeight);
 
@@ -521,16 +502,6 @@ public class ContactListItemView extends ViewGroup
                     rightBound,
                     mHeaderBackgroundHeight + mHeaderUnderlineHeight);
             topBound += (mHeaderBackgroundHeight + mHeaderUnderlineHeight);
-        }
-
-        // Put horizontal divider at the bottom
-        if (mHorizontalDividerVisible) {
-            mHorizontalDividerDrawable.setBounds(
-                    leftBound,
-                    height - mHorizontalDividerHeight,
-                    rightBound,
-                    height);
-            bottomBound -= mHorizontalDividerHeight;
         }
 
         mBoundsWithoutHeader.set(0, topBound, width, bottomBound);
@@ -758,19 +729,8 @@ public class ContactListItemView extends ViewGroup
         if (mActivatedStateSupported && isActivated()) {
             mActivatedBackgroundDrawable.draw(canvas);
         }
-        if (mHorizontalDividerVisible) {
-            mHorizontalDividerDrawable.draw(canvas);
-        }
 
         super.dispatchDraw(canvas);
-    }
-
-    /**
-     * Sets the flag that determines whether a divider should drawn at the bottom
-     * of the view.
-     */
-    public void setDividerVisible(boolean visible) {
-        mHorizontalDividerVisible = visible;
     }
 
     /**

@@ -218,10 +218,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 view.setCountView(null);
             }
             view.setSectionHeader(placement.sectionHeader);
-            view.setDividerVisible(!placement.lastInSection);
         } else {
             view.setSectionHeader(null);
-            view.setDividerVisible(true);
             view.setCountView(null);
         }
     }
