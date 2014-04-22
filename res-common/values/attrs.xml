@@ -40,7 +40,6 @@
         <attr name="list_section_header_height" format="dimension"/>
         <attr name="activated_background" format="reference"/>
         <attr name="section_header_background" format="reference"/>
-        <attr name="list_item_divider" format="reference"/>
         <attr name="list_item_padding_top" format="dimension"/>
         <attr name="list_item_padding_right" format="dimension"/>
         <attr name="list_item_padding_bottom" format="dimension"/>
