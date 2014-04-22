@@ -363,7 +363,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
         final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
         bindPhoneNumber(view, cursor, directory.isDisplayNumber());
-        view.setDividerVisible(showBottomDivider);
     }
 
     protected void bindPhoneNumber(ContactListItemView view, Cursor cursor, boolean displayNumber) {
@@ -396,10 +395,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         if (isSectionHeaderDisplayEnabled()) {
             Placement placement = getItemPlacementInSection(position);
             view.setSectionHeader(placement.firstInSection ? placement.sectionHeader : null);
-            view.setDividerVisible(!placement.lastInSection);
         } else {
             view.setSectionHeader(null);
-            view.setDividerVisible(true);
         }
     }
 
