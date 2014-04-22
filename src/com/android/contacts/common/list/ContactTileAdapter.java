@@ -164,6 +164,10 @@ public class ContactTileAdapter extends BaseAdapter {
         mPhoneNumberLabelIndex = ContactTileLoaderFactory.PHONE_NUMBER_LABEL;
     }
 
+    private static boolean cursorIsValid(Cursor cursor) {
+        return cursor != null && !cursor.isClosed();
+    }
+
     /**
      * Gets the number of frequents from the passed in cursor.
      *
@@ -180,10 +184,11 @@ public class ContactTileAdapter extends BaseAdapter {
                 break;
             case STREQUENT:
             case STREQUENT_PHONE_ONLY:
-                mNumFrequents = cursor.getCount() - mDividerPosition;
+                mNumFrequents = cursorIsValid(cursor) ?
+                    cursor.getCount() - mDividerPosition : 0;
                 break;
             case FREQUENT_ONLY:
-                mNumFrequents = cursor.getCount();
+                mNumFrequents = cursorIsValid(cursor) ? cursor.getCount() : 0;
                 break;
             default:
                 throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
@@ -212,20 +217,22 @@ public class ContactTileAdapter extends BaseAdapter {
      * Returns 0 if {@link DisplayType#FREQUENT_ONLY}
      */
     protected int getDividerPosition(Cursor cursor) {
-        if (cursor == null || cursor.isClosed()) {
-            throw new IllegalStateException("Unable to access cursor");
-        }
-
         switch (mDisplayType) {
             case STREQUENT:
             case STREQUENT_PHONE_ONLY:
+                if (!cursorIsValid(cursor)) {
+                    return 0;
+                }
                 cursor.moveToPosition(-1);
                 while (cursor.moveToNext()) {
                     if (cursor.getInt(mStarredIndex) == 0) {
                         return cursor.getPosition();
                     }
                 }
-                break;
+
+                // There are not NON Starred contacts in cursor
+                // Set divider positon to end
+                return cursor.getCount();
             case STARRED_ONLY:
                 // There is no divider
                 return -1;
@@ -235,16 +242,14 @@ public class ContactTileAdapter extends BaseAdapter {
             default:
                 throw new IllegalStateException("Unrecognized DisplayType " + mDisplayType);
         }
-
-        // There are not NON Starred contacts in cursor
-        // Set divider positon to end
-        return cursor.getCount();
     }
 
     protected ContactEntry createContactEntryFromCursor(Cursor cursor, int position) {
         // If the loader was canceled we will be given a null cursor.
         // In that case, show an empty list of contacts.
-        if (cursor == null || cursor.isClosed() || cursor.getCount() <= position) return null;
+        if (!cursorIsValid(cursor) || cursor.getCount() <= position) {
+            return null;
+        }
 
         cursor.moveToPosition(position);
         long id = cursor.getLong(mIdIndex);
@@ -302,7 +307,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (mContactCursor == null || mContactCursor.isClosed()) {
+        if (!cursorIsValid(mContactCursor)) {
             return 0;
         }
 
