@@ -158,15 +158,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
             String title = (String)getSections()[section];
             view.setSectionHeader(title);
         } else {
-            view.setDividerVisible(false);
             view.setSectionHeader(null);
-        }
-
-        // move the divider for the last item in a section
-        if (getPositionForSection(section + 1) - 1 == position) {
-            view.setDividerVisible(false);
-        } else {
-            view.setDividerVisible(true);
         }
     }
 

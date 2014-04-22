@@ -28,7 +28,6 @@
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
-        <item name="list_item_divider">?android:attr/listDivider</item>
         <item name="list_item_padding_top">8dip</item>
         <item name="list_item_padding_right">24dip</item>
         <item name="list_item_padding_bottom">8dip</item>
