@@ -34,7 +34,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"צור איש קשר"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"ערוך קבוצה"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"צור קבוצה"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"מידע על"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"מידע כללי"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"עדכונים"</string>
     <string name="searchHint" msgid="8482945356247760701">"חפש אנשי קשר"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"הצג איש קשר"</string>
