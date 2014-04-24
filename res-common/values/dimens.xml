@@ -87,4 +87,11 @@
     <dimen name="tile_letter_font_size_small">20dp</dimen>
     <dimen name="tile_divider_width">1dp</dimen>
     <item name="letter_to_tile_ratio" type="dimen">67%</item>
+
+    <!-- Height of the floating action button -->
+    <dimen name="floating_action_button_height">60dp</dimen>
+    <!-- Width of the floating action button -->
+    <dimen name="floating_action_button_width">60dp</dimen>
+    <!-- Z translation of the floating action button -->
+    <dimen name="floating_action_button_translation_z">5dp</dimen>
 </resources>
