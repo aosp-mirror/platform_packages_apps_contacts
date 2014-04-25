@@ -70,16 +70,6 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
      */
     protected abstract void setPinnedSectionTitle(View pinnedHeaderView, String title);
 
-    /**
-     * Sets the contacts count in the pinned header.
-     */
-    protected abstract void setPinnedHeaderContactsCount(View header);
-
-    /**
-     * clears the contacts count in the pinned header and makes the view invisible.
-     */
-    protected abstract void clearPinnedHeaderContactsCount(View header);
-
     public boolean isSectionHeaderDisplayEnabled() {
         return mSectionHeaderDisplayEnabled;
     }
@@ -185,11 +175,7 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
                 listView.setHeaderInvisible(index, false);
             } else {
                 setPinnedSectionTitle(mHeader, (String)mIndexer.getSections()[section]);
-                if (section == 0) {
-                    setPinnedHeaderContactsCount(mHeader);
-                } else {
-                    clearPinnedHeaderContactsCount(mHeader);
-                }
+
                 // Compute the item position where the current partition begins
                 int partitionStart = getPositionForPartition(mIndexedPartition);
                 if (hasHeader(mIndexedPartition)) {

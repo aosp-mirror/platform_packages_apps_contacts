@@ -91,8 +91,6 @@ public class ContactListItemView extends ViewGroup
     private int mHeaderTextSize = 12;
     private int mHeaderUnderlineHeight = 1;
     private int mHeaderUnderlineColor = 0;
-    private int mCountViewTextSize = 12;
-    private int mContactsCountTextColor = Color.BLACK;
     private int mTextIndent = 0;
     private Drawable mActivatedBackgroundDrawable;
 
@@ -165,7 +163,6 @@ public class ContactListItemView extends ViewGroup
     private TextView mDataView;
     private TextView mSnippetView;
     private TextView mStatusView;
-    private TextView mCountView;
     private ImageView mPresenceIcon;
 
     private ColorStateList mSecondaryTextColor;
@@ -275,12 +272,6 @@ public class ContactListItemView extends ViewGroup
                 mHeaderUnderlineColor);
         mTextIndent = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_text_indent, mTextIndent);
-        mCountViewTextSize = a.getDimensionPixelSize(
-                R.styleable.ContactListItemView_list_item_contacts_count_text_size,
-                mCountViewTextSize);
-        mContactsCountTextColor = a.getColor(
-                R.styleable.ContactListItemView_list_item_contacts_count_text_color,
-                mContactsCountTextColor);
         mDataViewWidthWeight = a.getInteger(
                 R.styleable.ContactListItemView_list_item_data_width_weight, mDataViewWidthWeight);
         mLabelViewWidthWeight = a.getInteger(
@@ -459,11 +450,6 @@ public class ContactListItemView extends ViewGroup
             mHeaderTextView.measure(
                     MeasureSpec.makeMeasureSpec(headerWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
-            if (mCountView != null) {
-                mCountView.measure(
-                        MeasureSpec.makeMeasureSpec(headerWidth, MeasureSpec.AT_MOST),
-                        MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
-            }
             mHeaderBackgroundHeight = Math.max(mHeaderBackgroundHeight,
                     mHeaderTextView.getMeasuredHeight());
             height += (mHeaderBackgroundHeight + mHeaderUnderlineHeight);
@@ -491,12 +477,6 @@ public class ContactListItemView extends ViewGroup
                     0,
                     isLayoutRtl ? rightBound - mHeaderTextIndent : rightBound,
                     mHeaderBackgroundHeight);
-            if (mCountView != null) {
-                mCountView.layout(rightBound - mCountView.getMeasuredWidth(),
-                        0,
-                        rightBound,
-                        mHeaderBackgroundHeight);
-            }
             mHeaderDivider.layout(leftBound,
                     mHeaderBackgroundHeight,
                     rightBound,
@@ -947,7 +927,6 @@ public class ContactListItemView extends ViewGroup
             mLabelView.setEllipsize(getTextEllipsis());
             mLabelView.setTextAppearance(getContext(), R.style.TextAppearanceSmall);
             if (mPhotoPosition == PhotoPosition.LEFT) {
-                //mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
                 mLabelView.setAllCaps(true);
                 mLabelView.setGravity(Gravity.END);
             } else {
@@ -1091,39 +1070,6 @@ public class ContactListItemView extends ViewGroup
             addView(mStatusView);
         }
         return mStatusView;
-    }
-
-    /**
-     * Returns the text view for the contacts count, creating it if necessary.
-     */
-    public TextView getCountView() {
-        if (mCountView == null) {
-            mCountView = new TextView(getContext());
-            mCountView.setSingleLine(true);
-            mCountView.setEllipsize(getTextEllipsis());
-            mCountView.setTextAppearance(getContext(), android.R.style.TextAppearance_Medium);
-            mCountView.setTextColor(R.color.people_app_theme_color);
-            addView(mCountView);
-        }
-        return mCountView;
-    }
-
-    /**
-     * Adds or updates a text view for the contacts count.
-     */
-    public void setCountView(CharSequence text) {
-        if (TextUtils.isEmpty(text)) {
-            if (mCountView != null) {
-                mCountView.setVisibility(View.GONE);
-            }
-        } else {
-            getCountView();
-            setMarqueeText(mCountView, text);
-            mCountView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCountViewTextSize);
-            mCountView.setGravity(Gravity.CENTER_VERTICAL);
-            mCountView.setTextColor(mContactsCountTextColor);
-            mCountView.setVisibility(VISIBLE);
-        }
     }
 
     /**

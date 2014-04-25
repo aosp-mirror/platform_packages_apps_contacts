@@ -45,8 +45,6 @@ public class ContactListPinnedHeaderView extends ViewGroup {
     private final int mHeaderUnderlineColor;
     private final int mPaddingRight;
     private final int mPaddingLeft;
-    private final int mContactsCountTextColor;
-    private final int mCountViewTextSize;
 
     private int mHeaderBackgroundHeight;
     private TextView mHeaderTextView;
@@ -75,10 +73,6 @@ public class ContactListPinnedHeaderView extends ViewGroup {
                 R.styleable.ContactListItemView_list_item_padding_left, 0);
         mPaddingRight = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_padding_right, 0);
-        mContactsCountTextColor = a.getColor(
-                R.styleable.ContactListItemView_list_item_contacts_count_text_color, Color.BLACK);
-        mCountViewTextSize = (int)a.getDimensionPixelSize(
-                R.styleable.ContactListItemView_list_item_contacts_count_text_size, 12);
 
         a.recycle();
 
@@ -121,22 +115,13 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         final int topTextView = 0;
         final int bottomTextView = mHeaderBackgroundHeight;
 
-        int leftCountTextView = 0;
-        int rightCountTextView = 0;
 
         if (ViewUtil.isViewLayoutRtl(this)) {
             rightHeaderTextView = width - mPaddingRight - mHeaderTextIndent;
             leftHeaderTextView = rightHeaderTextView - mHeaderTextView.getMeasuredWidth();
-
-            leftCountTextView = mHeaderTextIndent + mPaddingLeft;
-            rightCountTextView = mCountTextView.getMeasuredWidth() + leftCountTextView;
         } else {
             leftHeaderTextView = mHeaderTextIndent + mPaddingLeft;
             rightHeaderTextView = mHeaderTextView.getMeasuredWidth() + leftHeaderTextView;
-
-            // Order of statements matters
-            rightCountTextView = width - mPaddingRight;
-            leftCountTextView = rightCountTextView - mCountTextView.getMeasuredWidth();
         }
 
         // Take into account left and right padding when laying out the below views.
@@ -144,13 +129,6 @@ public class ContactListPinnedHeaderView extends ViewGroup {
                 topTextView,
                 rightHeaderTextView,
                 bottomTextView);
-
-        if (isViewMeasurable(mCountTextView)) {
-            mCountTextView.layout(leftCountTextView,
-                    topTextView,
-                    rightCountTextView,
-                    bottomTextView);
-        }
 
         mHeaderDivider.layout(mPaddingLeft,
                 mHeaderBackgroundHeight,
@@ -178,22 +156,6 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         // itself, so there is no need to pass the layout request to the parent
         // view (ListView).
         forceLayout();
-    }
-
-    public void setCountView(String count) {
-        if (mCountTextView == null) {
-            mCountTextView = new TextView(mContext);
-            mCountTextView.setTextColor(mContactsCountTextColor);
-            mCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCountViewTextSize);
-            mCountTextView.setGravity(Gravity.CENTER_VERTICAL);
-            addView(mCountTextView);
-        }
-        mCountTextView.setText(count);
-        if (count == null || count.isEmpty()) {
-            mCountTextView.setVisibility(View.GONE);
-        } else {
-            mCountTextView.setVisibility(View.VISIBLE);
-        }
     }
 
     private boolean isViewMeasurable(View view) {

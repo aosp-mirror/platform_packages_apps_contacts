@@ -210,17 +210,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Cursor cursor) {
         if (isSectionHeaderDisplayEnabled()) {
             Placement placement = getItemPlacementInSection(position);
-
-            // First position, set the contacts number string
-            if (position == 0 && cursor.getInt(ContactQuery.CONTACT_IS_USER_PROFILE) == 1) {
-                view.setCountView(getContactsCount());
-            } else {
-                view.setCountView(null);
-            }
             view.setSectionHeader(placement.sectionHeader);
         } else {
             view.setSectionHeader(null);
-            view.setCountView(null);
         }
     }
 
