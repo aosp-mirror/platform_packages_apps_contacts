@@ -174,6 +174,11 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
             if (section == -1) {
                 listView.setHeaderInvisible(index, false);
             } else {
+                View topChild = listView.getChildAt(listPosition);
+                if (topChild != null) {
+                    // Match the pinned header's height to the height of the list item.
+                    mHeader.setMinimumHeight(topChild.getMeasuredHeight());
+                }
                 setPinnedSectionTitle(mHeader, (String)mIndexer.getSections()[section]);
 
                 // Compute the item position where the current partition begins

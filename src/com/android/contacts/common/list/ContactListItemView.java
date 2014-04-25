@@ -86,12 +86,8 @@ public class ContactListItemView extends ViewGroup
     private int mGapBetweenLabelAndData = 0;
     private int mPresenceIconMargin = 4;
     private int mPresenceIconSize = 16;
-    private int mHeaderTextColor = Color.BLACK;
-    private int mHeaderTextIndent = 0;
-    private int mHeaderTextSize = 12;
-    private int mHeaderUnderlineHeight = 1;
-    private int mHeaderUnderlineColor = 0;
     private int mTextIndent = 0;
+    private int mHeaderWidth;
     private Drawable mActivatedBackgroundDrawable;
 
     /**
@@ -148,10 +144,9 @@ public class ContactListItemView extends ViewGroup
     private PhotoPosition mPhotoPosition = getDefaultPhotoPosition(false /* normal/non opposite */);
 
     // Header layout data
-    private boolean mHeaderVisible;
-    private View mHeaderDivider;
-    private int mHeaderBackgroundHeight = 30;
+    private int mHeaderBackgroundHeight;
     private TextView mHeaderTextView;
+    private boolean mIsSectionHeaderEnabled;
 
     // The views inside the contact view
     private boolean mQuickContactEnabled = true;
@@ -256,20 +251,6 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_presence_icon_size, mPresenceIconSize);
         mDefaultPhotoViewSize = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_photo_size, mDefaultPhotoViewSize);
-        mHeaderTextIndent = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_header_text_indent, mHeaderTextIndent);
-        mHeaderTextColor = a.getColor(
-                R.styleable.ContactListItemView_list_item_header_text_color, mHeaderTextColor);
-        mHeaderTextSize = a.getDimensionPixelSize(
-                R.styleable.ContactListItemView_list_item_header_text_size, mHeaderTextSize);
-        mHeaderBackgroundHeight = a.getDimensionPixelSize(
-                R.styleable.ContactListItemView_list_item_header_height, mHeaderBackgroundHeight);
-        mHeaderUnderlineHeight = a.getDimensionPixelSize(
-                R.styleable.ContactListItemView_list_item_header_underline_height,
-                mHeaderUnderlineHeight);
-        mHeaderUnderlineColor = a.getColor(
-                R.styleable.ContactListItemView_list_item_header_underline_color,
-                mHeaderUnderlineColor);
         mTextIndent = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_text_indent, mTextIndent);
         mDataViewWidthWeight = a.getInteger(
@@ -295,6 +276,9 @@ public class ContactListItemView extends ViewGroup
         a = getContext().obtainStyledAttributes(R.styleable.Theme);
         mSecondaryTextColor = a.getColorStateList(R.styleable.Theme_android_textColorSecondary);
         a.recycle();
+
+        mHeaderWidth =
+                getResources().getDimensionPixelSize(R.dimen.contact_list_section_header_width);
 
         if (mActivatedBackgroundDrawable != null) {
             mActivatedBackgroundDrawable.setCallback(this);
@@ -443,16 +427,12 @@ public class ContactListItemView extends ViewGroup
         // Make sure height is at least the preferred height
         height = Math.max(height, preferredHeight);
 
-        // Add the height of the header if visible
-        if (mHeaderVisible) {
-            final int headerWidth = specWidth -
-                    getPaddingLeft() - getPaddingRight() - mHeaderTextIndent;
+        // Measure the header if it is visible.
+        if (mHeaderTextView != null && mHeaderTextView.getVisibility() == VISIBLE) {
             mHeaderTextView.measure(
-                    MeasureSpec.makeMeasureSpec(headerWidth, MeasureSpec.EXACTLY),
-                    MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
-            mHeaderBackgroundHeight = Math.max(mHeaderBackgroundHeight,
-                    mHeaderTextView.getMeasuredHeight());
-            height += (mHeaderBackgroundHeight + mHeaderUnderlineHeight);
+                    MeasureSpec.makeMeasureSpec(mHeaderWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
+            mHeaderBackgroundHeight = Math.min(height, mHeaderTextView.getMeasuredHeight());
         }
 
         setMeasuredDimension(specWidth, height);
@@ -471,20 +451,23 @@ public class ContactListItemView extends ViewGroup
 
         final boolean isLayoutRtl = ViewUtil.isViewLayoutRtl(this);
 
-        // Put the header in the top of the contact view (Text + underline view)
-        if (mHeaderVisible) {
-            mHeaderTextView.layout(isLayoutRtl ? leftBound : leftBound + mHeaderTextIndent,
-                    0,
-                    isLayoutRtl ? rightBound - mHeaderTextIndent : rightBound,
-                    mHeaderBackgroundHeight);
-            mHeaderDivider.layout(leftBound,
-                    mHeaderBackgroundHeight,
-                    rightBound,
-                    mHeaderBackgroundHeight + mHeaderUnderlineHeight);
-            topBound += (mHeaderBackgroundHeight + mHeaderUnderlineHeight);
+        // Put the section header on the left side of the contact view.
+        if (mIsSectionHeaderEnabled) {
+            if (mHeaderTextView != null) {
+                mHeaderTextView.layout(
+                        isLayoutRtl ? rightBound - mHeaderWidth : leftBound,
+                        topBound,
+                        isLayoutRtl ? rightBound : leftBound + mHeaderWidth,
+                        mHeaderBackgroundHeight);
+            }
+            if (isLayoutRtl) {
+                rightBound -= mHeaderWidth;
+            } else {
+                leftBound += mHeaderWidth;
+            }
         }
 
-        mBoundsWithoutHeader.set(0, topBound, width, bottomBound);
+        mBoundsWithoutHeader.set(leftBound, topBound, width, bottomBound);
 
         if (mActivatedStateSupported && isActivated()) {
             mActivatedBackgroundDrawable.setBounds(mBoundsWithoutHeader);
@@ -663,10 +646,6 @@ public class ContactListItemView extends ViewGroup
         }
     }
 
-    protected void setDefaultPhotoViewSize(int pixels) {
-        mDefaultPhotoViewSize = pixels;
-    }
-
     protected int getDefaultPhotoViewSize() {
         return mDefaultPhotoViewSize;
     }
@@ -720,32 +699,20 @@ public class ContactListItemView extends ViewGroup
         if (!TextUtils.isEmpty(title)) {
             if (mHeaderTextView == null) {
                 mHeaderTextView = new TextView(getContext());
-                mHeaderTextView.setTextColor(mHeaderTextColor);
-                mHeaderTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSize);
                 mHeaderTextView.setTextAppearance(getContext(), R.style.SectionHeaderStyle);
-                mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
-                mHeaderTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+                mHeaderTextView.setGravity(Gravity.CENTER);
                 addView(mHeaderTextView);
-            }
-            if (mHeaderDivider == null) {
-                mHeaderDivider = new View(getContext());
-                mHeaderDivider.setBackgroundColor(mHeaderUnderlineColor);
-                addView(mHeaderDivider);
             }
             setMarqueeText(mHeaderTextView, title);
             mHeaderTextView.setVisibility(View.VISIBLE);
-            mHeaderDivider.setVisibility(View.VISIBLE);
             mHeaderTextView.setAllCaps(true);
-            mHeaderVisible = true;
-        } else {
-            if (mHeaderTextView != null) {
-                mHeaderTextView.setVisibility(View.GONE);
-            }
-            if (mHeaderDivider != null) {
-                mHeaderDivider.setVisibility(View.GONE);
-            }
-            mHeaderVisible = false;
+        } else if (mHeaderTextView != null) {
+            mHeaderTextView.setVisibility(View.GONE);
         }
+    }
+
+    public void setIsSectionHeaderEnabled(boolean isSectionHeaderEnabled) {
+        mIsSectionHeaderEnabled = isSectionHeaderEnabled;
     }
 
     /**
