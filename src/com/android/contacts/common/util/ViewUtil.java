@@ -73,7 +73,6 @@ public class ViewUtil {
                 }
                 outline.setRoundRect(0, 0, right - left, bottom - top, minDimension / 2);
                 v.setOutline(outline);
-                v.setClipToOutline(true);
             }
         });
         view.setTranslationZ(
