@@ -110,22 +110,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         ((ContactListPinnedHeaderView)pinnedHeaderView).setSectionHeader(title);
     }
 
-    @Override
-    protected void setPinnedHeaderContactsCount(View header) {
-        // Update the header with the contacts count only if a profile header exists
-        // otherwise, the contacts count are shown in the empty profile header view
-        if (mProfileExists) {
-            ((ContactListPinnedHeaderView)header).setCountView(mContactsCount);
-        } else {
-            clearPinnedHeaderContactsCount(header);
-        }
-    }
-
-    @Override
-    protected void clearPinnedHeaderContactsCount(View header) {
-        ((ContactListPinnedHeaderView)header).setCountView(null);
-    }
-
     protected void addPartitions() {
         addPartition(createDefaultDirectoryPartition());
     }
