@@ -165,8 +165,8 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     @Override
-    protected View newView(Context context, int partition, Cursor cursor, int position,
-            ViewGroup parent) {
+    protected ContactListItemView newView(
+            Context context, int partition, Cursor cursor, int position, ViewGroup parent) {
         switch (partition) {
             case PARTITION_SUGGESTIONS:
             case PARTITION_ALL_CONTACTS:
