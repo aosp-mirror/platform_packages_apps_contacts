@@ -96,4 +96,7 @@
     <dimen name="floating_action_button_radius">30dp</dimen>
     <!-- Z translation of the floating action button -->
     <dimen name="floating_action_button_translation_z">5dp</dimen>
+
+    <!-- Width of a contact list item section header. -->
+    <dimen name="contact_list_section_header_width">50dp</dimen>
 </resources>
