@@ -99,7 +99,6 @@ public class PinnedHeaderListView extends AutoScrollListView
     private int mSize;
     private PinnedHeader[] mHeaders;
     private RectF mBounds = new RectF();
-    private Rect mClipRect = new Rect();
     private OnScrollListener mOnScrollListener;
     private OnItemSelectedListener mOnItemSelectedListener;
     private int mScrollState;
@@ -132,10 +131,6 @@ public class PinnedHeaderListView extends AutoScrollListView
         super.onLayout(changed, l, t, r, b);
         mHeaderPaddingStart = getPaddingStart();
         mHeaderWidth = r - l - mHeaderPaddingStart - getPaddingEnd();
-    }
-
-    public void setPinnedHeaderAnimationDuration(int duration) {
-        mAnimationDuration = duration;
     }
 
     @Override
@@ -362,9 +357,18 @@ public class PinnedHeaderListView extends AutoScrollListView
     private void ensurePinnedHeaderLayout(int viewIndex) {
         View view = mHeaders[viewIndex].view;
         if (view.isLayoutRequested()) {
-            int widthSpec = View.MeasureSpec.makeMeasureSpec(mHeaderWidth, View.MeasureSpec.EXACTLY);
-            int heightSpec;
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            int widthSpec;
+            int heightSpec;
+
+            if (layoutParams != null && layoutParams.width > 0) {
+                widthSpec = View.MeasureSpec
+                        .makeMeasureSpec(layoutParams.width, View.MeasureSpec.EXACTLY);
+            } else {
+                widthSpec = View.MeasureSpec
+                        .makeMeasureSpec(mHeaderWidth, View.MeasureSpec.EXACTLY);
+            }
+
             if (layoutParams != null && layoutParams.height > 0) {
                 heightSpec = View.MeasureSpec
                         .makeMeasureSpec(layoutParams.height, View.MeasureSpec.EXACTLY);
@@ -374,7 +378,7 @@ public class PinnedHeaderListView extends AutoScrollListView
             view.measure(widthSpec, heightSpec);
             int height = view.getMeasuredHeight();
             mHeaders[viewIndex].height = height;
-            view.layout(0, 0, mHeaderWidth, height);
+            view.layout(0, 0, view.getMeasuredWidth(), height);
         }
     }
 
@@ -423,7 +427,7 @@ public class PinnedHeaderListView extends AutoScrollListView
                 // side.
                 final int padding = getPaddingLeft();
                 if (header.visible && header.y <= y && header.y + header.height > y &&
-                        x >= padding && padding + mHeaderWidth >= x) {
+                        x >= padding && padding + header.view.getWidth() >= x) {
                     mHeaderTouched = true;
                     if (mScrollToSectionOnHeaderTouch &&
                             ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -483,6 +487,7 @@ public class PinnedHeaderListView extends AutoScrollListView
         long currentTime = mAnimating ? System.currentTimeMillis() : 0;
 
         int top = 0;
+        int right = 0;
         int bottom = getBottom();
         boolean hasVisibleHeaders = false;
         for (int i = 0; i < mSize; i++) {
@@ -502,8 +507,6 @@ public class PinnedHeaderListView extends AutoScrollListView
 
         if (hasVisibleHeaders) {
             canvas.save();
-            mClipRect.set(0, top, getWidth(), bottom);
-            canvas.clipRect(mClipRect);
         }
 
         super.dispatchDraw(canvas);
@@ -545,11 +548,12 @@ public class PinnedHeaderListView extends AutoScrollListView
         if (header.visible) {
             View view = header.view;
             int saveCount = canvas.save();
-            canvas.translate(ViewUtil.isViewLayoutRtl(this) ?
-                    getWidth() - mHeaderPaddingStart - mHeaderWidth : mHeaderPaddingStart,
-                    header.y);
+            int translateX = ViewUtil.isViewLayoutRtl(this) ?
+                    getWidth() - mHeaderPaddingStart - header.view.getWidth() :
+                    mHeaderPaddingStart;
+            canvas.translate(translateX, header.y);
             if (header.state == FADING) {
-                mBounds.set(0, 0, mHeaderWidth, view.getHeight());
+                mBounds.set(0, 0, header.view.getWidth(), view.getHeight());
                 canvas.saveLayerAlpha(mBounds, header.alpha, Canvas.ALL_SAVE_FLAG);
             }
             view.draw(canvas);

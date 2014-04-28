@@ -36,7 +36,6 @@ import android.widget.TextView;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
-import com.android.contacts.common.list.ContactListAdapter.ContactQuery;
 import com.android.contacts.common.util.SearchUtil;
 
 import java.util.HashSet;
@@ -101,13 +100,21 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     @Override
+    protected ContactListItemView newView(
+            Context context, int partition, Cursor cursor, int position, ViewGroup parent) {
+        final ContactListItemView view = new ContactListItemView(context, null);
+        view.setIsSectionHeaderEnabled(isSectionHeaderDisplayEnabled());
+        return view;
+    }
+
+    @Override
     protected View createPinnedSectionHeaderView(Context context, ViewGroup parent) {
         return new ContactListPinnedHeaderView(context, null);
     }
 
     @Override
     protected void setPinnedSectionTitle(View pinnedHeaderView, String title) {
-        ((ContactListPinnedHeaderView)pinnedHeaderView).setSectionHeader(title);
+        ((ContactListPinnedHeaderView) pinnedHeaderView).setSectionHeaderTitle(title);
     }
 
     protected void addPartitions() {
