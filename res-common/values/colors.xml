@@ -15,12 +15,17 @@
   -->
 
 <resources>
+    <!-- Background color corresponding to the holo list 9-patch. -->
+    <color name="holo_list_background_color">#eeeeee</color>
 
     <!-- Divider color for header separator -->
     <color name="primary_text_color">#363636</color>
 
     <!-- Divider color for header separator -->
     <color name="secondary_text_color">#888888</color>
+
+    <!-- Text color for section header. -->
+    <color name="section_header_text_color">#aaaaaa</color>
 
     <!-- Divider color for header separator -->
     <color name="main_header_separator_color">#AAAAAA</color>
