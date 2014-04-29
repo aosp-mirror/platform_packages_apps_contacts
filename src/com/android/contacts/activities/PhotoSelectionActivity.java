@@ -319,7 +319,7 @@ public class PhotoSelectionActivity extends Activity {
         if (mPhotoUri != null) {
             // If we have a URI, the bitmap should be cached directly.
             ContactPhotoManager.getInstance(this).loadPhoto(mPhotoView, mPhotoUri, photoWidth,
-                    false, null);
+                    false /* darkTheme */, false /* isCircular */, null);
         } else {
             // If we don't have a URI, just display an empty ImageView. The default image from the
             // ContactDetailFragment will show up in the background instead.

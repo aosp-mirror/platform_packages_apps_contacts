@@ -151,10 +151,11 @@ public class ImageViewDrawableSetter {
         }
 
         if (TextUtils.isEmpty(mContact.getLookupKey())) {
-            request = new DefaultImageRequest(null, mContact.getDisplayName(), contactType);
+            request = new DefaultImageRequest(null, mContact.getDisplayName(), contactType,
+                    false /* isCircular */);
         } else {
             request = new DefaultImageRequest(mContact.getDisplayName(), mContact.getLookupKey(),
-                    contactType);
+                    contactType, false /* isCircular */);
         }
         return ContactPhotoManager.getDefaultAvatarDrawableForContact(resources, true, request);
     }

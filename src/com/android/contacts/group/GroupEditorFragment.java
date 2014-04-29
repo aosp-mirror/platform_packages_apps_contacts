@@ -974,9 +974,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 });
             }
             DefaultImageRequest request = new DefaultImageRequest(member.getDisplayName(),
-                    member.getLookupKey());
+                    member.getLookupKey(), true /* isCircular */);
             mPhotoManager.loadPhoto(badge, member.getPhotoUri(),
-                    ViewUtil.getConstantPreLayoutWidth(badge), false, request);
+                    ViewUtil.getConstantPreLayoutWidth(badge), false, true /* isCircular */,
+                            request);
             return result;
         }
 

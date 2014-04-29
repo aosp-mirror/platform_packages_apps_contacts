@@ -169,7 +169,8 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
                     PostalQuery.POSTAL_LOOKUP_KEY);
         }
 
-        getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false, request);
+        getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false, getCircularPhotos(),
+                request);
     }
 //
 //    protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {

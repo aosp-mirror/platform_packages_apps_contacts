@@ -746,7 +746,8 @@ public class ConfirmAddDetailActivity extends Activity implements
 
     private void setDefaultContactImage(String displayName, String lookupKey) {
         mPhotoView.setImageDrawable(ContactPhotoManager.getDefaultAvatarDrawableForContact(
-                getResources(), false, new DefaultImageRequest(displayName, lookupKey)));
+                getResources(), false,
+                new DefaultImageRequest(displayName, lookupKey, false /* isCircular */)));
     }
 
     /**
