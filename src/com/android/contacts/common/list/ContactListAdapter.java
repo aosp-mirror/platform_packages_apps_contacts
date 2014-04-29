@@ -229,17 +229,19 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         }
 
         if (photoId != 0) {
-            getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false, null);
+            getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false,
+                    getCircularPhotos(), null);
         } else {
             final String photoUriString = cursor.getString(ContactQuery.CONTACT_PHOTO_URI);
             final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
             DefaultImageRequest request = null;
             if (photoUri == null) {
-                String displayName = cursor.getString(ContactQuery.CONTACT_DISPLAY_NAME);
-                String lookupKey = cursor.getString(ContactQuery.CONTACT_LOOKUP_KEY);
-                request = new DefaultImageRequest(displayName, lookupKey);
+                request = getDefaultImageRequestFromCursor(cursor,
+                        ContactQuery.CONTACT_DISPLAY_NAME,
+                        ContactQuery.CONTACT_LOOKUP_KEY);
             }
-            getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false, request);
+            getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false,
+                    getCircularPhotos(), request);
         }
     }
 
