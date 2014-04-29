@@ -20,6 +20,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -39,6 +40,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
+import android.widget.Toast;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
@@ -317,6 +319,7 @@ public class ContactSelectionActivity extends ContactsActivity
                 break;
             }
 
+            case ContactsRequest.ACTION_DEFAULT:
             case ContactsRequest.ACTION_PICK_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setIncludeProfile(mRequest.shouldIncludeProfile());
@@ -538,7 +541,13 @@ public class ContactSelectionActivity extends ContactsActivity
         if (extras != null) {
             intent.putExtras(extras);
         }
-        startActivity(intent);
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Log.e(TAG, "startActivity() failed: " + e);
+            Toast.makeText(ContactSelectionActivity.this, R.string.missing_app,
+                    Toast.LENGTH_SHORT).show();
+        }
         finish();
     }
 

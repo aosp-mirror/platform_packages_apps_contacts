@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -44,6 +45,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMetaDataLoader;
@@ -319,12 +321,18 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         if (size == -1) {
             groupSizeString = null;
         } else {
-            String groupSizeTemplateString = getResources().getQuantityString(
-                    R.plurals.num_contacts_in_group, size);
             AccountType accountType = mAccountTypeManager.getAccountType(mAccountTypeString,
                     mDataSet);
-            groupSizeString = String.format(groupSizeTemplateString, size,
-                    accountType.getDisplayLabel(mContext));
+            final CharSequence dispLabel = accountType.getDisplayLabel(mContext);
+            if (!TextUtils.isEmpty(dispLabel)) {
+                String groupSizeTemplateString = getResources().getQuantityString(
+                        R.plurals.num_contacts_in_group, size);
+                groupSizeString = String.format(groupSizeTemplateString, size, dispLabel);
+            } else {
+                String groupSizeTemplateString = getResources().getQuantityString(
+                        R.plurals.group_list_num_contacts_in_group, size);
+                groupSizeString = String.format(groupSizeTemplateString, size);
+            }
         }
 
         if (mGroupSize != null) {
@@ -381,7 +389,13 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                     final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     intent.setClassName(accountType.syncAdapterPackageName,
                             accountType.getViewGroupActivity());
-                    startActivity(intent);
+                    try {
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Log.e(TAG, "startActivity() failed: " + e);
+                        Toast.makeText(getActivity(), R.string.missing_app,
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         } else if (mGroupSourceView != null) {

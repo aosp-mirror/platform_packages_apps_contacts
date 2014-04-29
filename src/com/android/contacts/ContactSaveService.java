@@ -410,6 +410,12 @@ public class ContactSaveService extends IntentService {
                 Log.e(TAG, "Problem persisting user edits", e);
                 break;
 
+            } catch (IllegalArgumentException e) {
+                // This is thrown by applyBatch on malformed requests
+                Log.e(TAG, "Problem persisting user edits", e);
+                showToast(R.string.contactSavedErrorToast);
+                break;
+
             } catch (OperationApplicationException e) {
                 // Version consistency failed, re-parent change and try again
                 Log.w(TAG, "Version consistency failed, re-parenting: " + e.toString());
@@ -429,7 +435,8 @@ public class ContactSaveService extends IntentService {
                 sb.append(")");
 
                 if (first) {
-                    throw new IllegalStateException("Version consistency failed for a new contact");
+                    throw new IllegalStateException(
+                            "Version consistency failed for a new contact", e);
                 }
 
                 final RawContactDeltaList newState = RawContactDeltaList.fromQuery(

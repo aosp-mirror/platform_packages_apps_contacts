@@ -300,6 +300,9 @@ public class AggregationSuggestionEngine extends HandlerThread {
     private void loadAggregationSuggestions(Uri uri) {
         ContentResolver contentResolver = mContext.getContentResolver();
         Cursor cursor = contentResolver.query(uri, new String[]{Contacts._ID}, null, null, null);
+        if (cursor == null) {
+            return;
+        }
         try {
             // If a new request is pending, chuck the result of the previous request
             if (getHandler().hasMessages(MESSAGE_NAME_CHANGE)) {
@@ -324,7 +327,9 @@ public class AggregationSuggestionEngine extends HandlerThread {
 
             Cursor dataCursor = contentResolver.query(Data.CONTENT_URI,
                     DataQuery.COLUMNS, sb.toString(), null, Data.CONTACT_ID);
-            mMainHandler.sendMessage(mMainHandler.obtainMessage(MESSAGE_DATA_CURSOR, dataCursor));
+            if (dataCursor != null) {
+                mMainHandler.sendMessage(mMainHandler.obtainMessage(MESSAGE_DATA_CURSOR, dataCursor));
+            }
         } finally {
             cursor.close();
         }
