@@ -99,4 +99,7 @@
 
     <!-- Width of a contact list item section header. -->
     <dimen name="contact_list_section_header_width">40dp</dimen>
+
+    <!-- Height of the selection indicator of a tab. -->
+    <dimen name="tab_selected_underline_height">3dp</dimen>
 </resources>
