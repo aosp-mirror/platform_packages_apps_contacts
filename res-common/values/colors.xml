@@ -68,4 +68,12 @@
     <color name="letter_tile_default_color">#cccccc</color>
 
     <color name="letter_tile_font_color">#ffffff</color>
+
+
+    <!-- Background color for tabs in an unpressed state. -->
+    <color name="tab_default_color">#00afcc</color>
+    <!-- Background color for tabs in a pressed state. -->
+    <color name="tab_pressed_color">#008698</color>
+    <!-- Color of the selection indicator for a tab which is selected. -->
+    <color name="tab_selected_color">#008698</color>
 </resources>
