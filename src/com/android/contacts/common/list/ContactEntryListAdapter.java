@@ -84,7 +84,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mSelectionVisible;
 
     private ContactListFilter mFilter;
-    private String mContactsCount = "";
     private boolean mDarkTheme = false;
 
     /** Resource used to provide header-text for default filter. */
@@ -693,14 +692,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
         }
         return uri;
-    }
-
-    public void setContactsCount(String count) {
-        mContactsCount = count;
-    }
-
-    public String getContactsCount() {
-        return mContactsCount;
     }
 
     public static boolean isRemoteDirectory(long directoryId) {

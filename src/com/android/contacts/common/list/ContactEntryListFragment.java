@@ -420,7 +420,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         mAdapter.changeCursor(partitionIndex, data);
         setProfileHeader();
-        showCount(partitionIndex, data);
 
         if (!isLoading()) {
             completeRestoreInstanceState();
@@ -458,13 +457,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mLoadPriorityDirectoriesOnly = true;
         mForceLoad = true;
         startLoading();
-    }
-
-    /**
-     * Shows the count of entries included in the list. The default
-     * implementation does nothing.
-     */
-    protected void showCount(int partitionIndex, Cursor data) {
     }
 
     /**
