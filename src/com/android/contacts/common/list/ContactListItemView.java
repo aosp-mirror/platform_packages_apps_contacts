@@ -22,20 +22,17 @@ import android.content.res.TypedArray;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -98,10 +95,6 @@ public class ContactListItemView extends ViewGroup
      * Used with {@link #mDataView}, specifying the width ratio between label and data.
      */
     private int mDataViewWidthWeight = 5;
-
-    // Will be used with adjustListItemSelectionBounds().
-    private int mSelectionBoundsMarginLeft;
-    private int mSelectionBoundsMarginRight;
 
     protected static class HighlightSequence {
         private final int start;
@@ -314,7 +307,7 @@ public class ContactListItemView extends ViewGroup
         ensurePhotoViewSize();
 
         // Width each TextView is able to use.
-        final int effectiveWidth;
+        int effectiveWidth;
         // All the other Views will honor the photo, so available width for them may be shrunk.
         if (mPhotoViewWidth > 0 || mKeepHorizontalPaddingForPhotoView) {
             effectiveWidth = specWidth - getPaddingLeft() - getPaddingRight()
@@ -323,11 +316,15 @@ public class ContactListItemView extends ViewGroup
             effectiveWidth = specWidth - getPaddingLeft() - getPaddingRight();
         }
 
+        if (mIsSectionHeaderEnabled) {
+            effectiveWidth -= mHeaderWidth + mGapBetweenImageAndText;
+        }
+
         // Go over all visible text views and measure actual width of each of them.
         // Also calculate their heights to get the total height for this entire view.
 
         if (isVisible(mNameTextView)) {
-            // Caculate width for name text - this parallels similar measurement in onLayout.
+            // Claculate width for name text - this parallels similar measurement in onLayout.
             int nameTextWidth = effectiveWidth;
             if (mPhotoPosition != PhotoPosition.LEFT) {
                 nameTextWidth -= mTextIndent;
@@ -467,7 +464,15 @@ public class ContactListItemView extends ViewGroup
             }
         }
 
-        mBoundsWithoutHeader.set(leftBound, topBound, width, bottomBound);
+        mBoundsWithoutHeader.set(leftBound, topBound, rightBound, bottomBound);
+
+        if (mIsSectionHeaderEnabled) {
+            if (isLayoutRtl) {
+                rightBound -= mGapBetweenImageAndText;
+            } else {
+                leftBound += mGapBetweenImageAndText;
+            }
+        }
 
         if (mActivatedStateSupported && isActivated()) {
             mActivatedBackgroundDrawable.setBounds(mBoundsWithoutHeader);
@@ -619,8 +624,8 @@ public class ContactListItemView extends ViewGroup
     public void adjustListItemSelectionBounds(Rect bounds) {
         bounds.top += mBoundsWithoutHeader.top;
         bounds.bottom = bounds.top + mBoundsWithoutHeader.height();
-        bounds.left += mSelectionBoundsMarginLeft;
-        bounds.right -= mSelectionBoundsMarginRight;
+        bounds.left = mBoundsWithoutHeader.left;
+        bounds.right = mBoundsWithoutHeader.right;
     }
 
     protected boolean isVisible(View view) {
@@ -700,7 +705,8 @@ public class ContactListItemView extends ViewGroup
             if (mHeaderTextView == null) {
                 mHeaderTextView = new TextView(getContext());
                 mHeaderTextView.setTextAppearance(getContext(), R.style.SectionHeaderStyle);
-                mHeaderTextView.setGravity(Gravity.CENTER);
+                mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL |
+                        (ViewUtil.isViewLayoutRtl(this) ? Gravity.RIGHT : Gravity.LEFT));
                 addView(mHeaderTextView);
             }
             setMarqueeText(mHeaderTextView, title);
@@ -1380,15 +1386,6 @@ public class ContactListItemView extends ViewGroup
 
     public PhotoPosition getPhotoPosition() {
         return mPhotoPosition;
-    }
-
-    /**
-     * Specifies left and right margin for selection bounds. See also
-     * {@link #adjustListItemSelectionBounds(Rect)}.
-     */
-    public void setSelectionBoundsHorizontalMargin(int left, int right) {
-        mSelectionBoundsMarginLeft = left;
-        mSelectionBoundsMarginRight = right;
     }
 
     /**
