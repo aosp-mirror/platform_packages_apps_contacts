@@ -98,5 +98,5 @@
     <dimen name="floating_action_button_translation_z">5dp</dimen>
 
     <!-- Width of a contact list item section header. -->
-    <dimen name="contact_list_section_header_width">50dp</dimen>
+    <dimen name="contact_list_section_header_width">40dp</dimen>
 </resources>

@@ -20,12 +20,10 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-
-    <style name="SectionHeaderStyle" parent="@android:style/TextAppearance.Small">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
+    <style name="SectionHeaderStyle" parent="@android:style/TextAppearance.Large">
+        <item name="android:textSize">18sp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/people_app_theme_color</item>
+        <item name="android:textColor">@color/section_header_text_color</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
@@ -48,7 +46,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <!-- See comments for @dimen/list_section_divider_min_height -->
         <item name="android:minHeight">@dimen/list_section_divider_min_height</item>
         <item name="android:background">@drawable/list_section_divider_holo_custom</item>
-        <item name="android:textAppearance">@style/SectionHeaderStyle</item>
+        <item name="android:textAppearance">@style/DirectoryHeaderStyle</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">8dip</item>
         <item name="android:paddingStart">8dip</item>
