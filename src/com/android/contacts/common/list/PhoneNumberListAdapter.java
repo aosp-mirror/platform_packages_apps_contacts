@@ -421,7 +421,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
 
         if (photoId != 0) {
-            getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false, null);
+            getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false,
+                    getCircularPhotos(), null);
         } else {
             final String photoUriString = cursor.getString(PhoneQuery.PHOTO_URI);
             final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
@@ -430,9 +431,10 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             if (photoUri == null) {
                 final String displayName = cursor.getString(PhoneQuery.DISPLAY_NAME);
                 final String lookupKey = cursor.getString(PhoneQuery.LOOKUP_KEY);
-                request = new DefaultImageRequest(displayName, lookupKey);
+                request = new DefaultImageRequest(displayName, lookupKey, false);
             }
-            getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false, request);
+            getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false,
+                    getCircularPhotos(), request);
         }
     }
 

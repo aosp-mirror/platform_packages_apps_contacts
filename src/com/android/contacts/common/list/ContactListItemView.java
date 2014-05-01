@@ -730,6 +730,7 @@ public class ContactListItemView extends ViewGroup
         }
         if (mQuickContact == null) {
             mQuickContact = new QuickContactBadge(getContext());
+            mQuickContact.setOverlay(null);
             mQuickContact.setLayoutParams(getDefaultPhotoLayoutParams());
             if (mNameTextView != null) {
                 mQuickContact.setContentDescription(getContext().getString(

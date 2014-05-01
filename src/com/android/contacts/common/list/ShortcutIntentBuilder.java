@@ -254,7 +254,7 @@ public class ShortcutIntentBuilder {
             return new BitmapDrawable(mContext.getResources(), bitmap);
         } else {
             return ContactPhotoManager.getDefaultAvatarDrawableForContact(mContext.getResources(),
-                    false, new DefaultImageRequest(displayName, lookupKey));
+                    false, new DefaultImageRequest(displayName, lookupKey, false));
         }
     }
 
