@@ -420,7 +420,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
             } else if (ExchangeAccountType.isExchangeType(type)) {
                 accountType = new ExchangeAccountType(mContext, auth.packageName, type);
             } else {
-                // TODO: use syncadapter package instead, since it provides resources
                 Log.d(TAG, "Registering external account type=" + type
                         + ", packageName=" + auth.packageName);
                 accountType = new ExternalAccountType(mContext, auth.packageName, false);
