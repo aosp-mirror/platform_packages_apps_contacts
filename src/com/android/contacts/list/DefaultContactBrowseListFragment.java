@@ -19,9 +19,11 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +41,7 @@ import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.ProfileAndContactsLoader;
+import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
 
@@ -51,13 +54,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private static final int REQUEST_CODE_ACCOUNT_FILTER = 1;
 
-    private TextView mCounterHeaderView;
     private View mSearchHeaderView;
     private View mAccountFilterHeader;
     private FrameLayout mProfileHeaderContainer;
     private View mProfileHeader;
     private Button mProfileMessage;
-    private FrameLayout mMessageContainer;
     private TextView mProfileTitle;
     private View mSearchProgress;
     private TextView mSearchProgressText;
@@ -113,7 +114,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         mAccountFilterHeader = getView().findViewById(R.id.account_filter_header_container);
         mAccountFilterHeader.setOnClickListener(mFilterHeaderClickListener);
-        mCounterHeaderView = (TextView) getView().findViewById(R.id.contacts_count);
 
         // Create an empty user profile header and hide it for now (it will be visible if the
         // contacts list will have no user profile).
@@ -145,12 +145,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     private void checkHeaderViewVisibility() {
-        if (mCounterHeaderView != null) {
-            mCounterHeaderView.setVisibility(isSearchMode() ? View.GONE : View.VISIBLE);
-        }
         updateFilterHeaderView();
 
-        // Hide the search header by default. See showCount().
+        // Hide the search header by default.
         if (mSearchHeaderView != null) {
             mSearchHeaderView.setVisibility(View.GONE);
         }
@@ -177,43 +174,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     @Override
-    protected void showCount(int partitionIndex, Cursor data) {
-        if (!isSearchMode() && data != null) {
-            int count = data.getCount();
-            if (count != 0) {
-                count -= (mUserProfileExists ? 1: 0);
-                String format = getResources().getQuantityText(
-                        R.plurals.listTotalAllContacts, count).toString();
-                // Do not count the user profile in the contacts count
-                if (mUserProfileExists) {
-                    getAdapter().setContactsCount(String.format(format, count));
-                } else {
-                    mCounterHeaderView.setText(String.format(format, count));
-                }
-            } else {
-                ContactListFilter filter = getFilter();
-                int filterType = filter != null ? filter.filterType
-                        : ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
-                switch (filterType) {
-                    case ContactListFilter.FILTER_TYPE_ACCOUNT:
-                        mCounterHeaderView.setText(getString(
-                                R.string.listTotalAllContactsZeroGroup, filter.accountName));
-                        break;
-                    case ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY:
-                        mCounterHeaderView.setText(R.string.listTotalPhoneContactsZero);
-                        break;
-                    case ContactListFilter.FILTER_TYPE_STARRED:
-                        mCounterHeaderView.setText(R.string.listTotalAllContactsZeroStarred);
-                        break;
-                    case ContactListFilter.FILTER_TYPE_CUSTOM:
-                        mCounterHeaderView.setText(R.string.listTotalAllContactsZeroCustom);
-                        break;
-                    default:
-                        mCounterHeaderView.setText(R.string.listTotalAllContactsZero);
-                        break;
-                }
-            }
-        } else {
+    protected void setProfileHeader() {
+        mUserProfileExists = getAdapter().hasProfile();
+        showEmptyUserProfile(!mUserProfileExists && !isSearchMode());
+
+        if (isSearchMode()) {
             ContactListAdapter adapter = getAdapter();
             if (adapter == null) {
                 return;
@@ -240,12 +205,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     @Override
-    protected void setProfileHeader() {
-        mUserProfileExists = getAdapter().hasProfile();
-        showEmptyUserProfile(!mUserProfileExists && !isSearchMode());
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_ACCOUNT_FILTER) {
             if (getActivity() != null) {
@@ -263,9 +222,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         // and mProfileTitle
         mProfileHeaderContainer.setVisibility(show ? View.VISIBLE : View.GONE);
         mProfileHeader.setVisibility(show ? View.VISIBLE : View.GONE);
-        mCounterHeaderView.setVisibility(show ? View.VISIBLE : View.GONE);
         mProfileTitle.setVisibility(show ? View.VISIBLE : View.GONE);
-        mMessageContainer.setVisibility(show ? View.VISIBLE : View.GONE);
         mProfileMessage.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
@@ -276,24 +233,17 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
      * 2. A button that prompts the user to create a local profile
      */
     private void addEmptyUserProfileHeader(LayoutInflater inflater) {
-
         ListView list = getListView();
-        // Put a header with the "ME" name and a view for the number of contacts
-        // The view is embedded in a frame view since you cannot change the visibility of a
-        // view in a ListView without having a parent view.
-        mProfileHeaderContainer = new FrameLayout(inflater.getContext());
+        // Add a header with the "ME" name. The view is embedded in a frame view since you cannot
+        // change the visibility of a view in a ListView without having a parent view.
         mProfileHeader = inflater.inflate(R.layout.user_profile_header, null, false);
-        mCounterHeaderView = (TextView) mProfileHeader.findViewById(R.id.contacts_count);
         mProfileTitle = (TextView) mProfileHeader.findViewById(R.id.profile_title);
+        mProfileHeaderContainer = new FrameLayout(inflater.getContext());
         mProfileHeaderContainer.addView(mProfileHeader);
         list.addHeaderView(mProfileHeaderContainer, null, false);
 
-        // Add a selectable view with a message inviting the user to create a local profile
-        mMessageContainer = new FrameLayout(inflater.getContext());
-        mProfileMessage = (Button)inflater.inflate(R.layout.user_profile_button, null, false);
-        mMessageContainer.addView(mProfileMessage);
-        list.addHeaderView(mMessageContainer, null, true);
-
+        // Add a button with a message inviting the user to create a local profile
+        mProfileMessage = (Button) mProfileHeader.findViewById(R.id.user_profile_button);
         mProfileMessage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);

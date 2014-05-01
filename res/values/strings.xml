@@ -258,12 +258,6 @@
     <!-- Displayed at the top of the contacts showing the zero as total number of contacts visible when "Only contacts with phones" is selected [CHAR LIMIT=64]-->
     <string name="listTotalPhoneContactsZero">No contacts with phone numbers</string>
 
-    <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" not selected -->
-    <plurals name="listTotalAllContacts">
-        <item quantity="one">1 contact</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
-    </plurals>
-
     <!-- Displayed at the top of the contacts showing the total number of contacts found when "Only contacts with phones" not selected [CHAR LIMIT=30] -->
     <plurals name="listFoundAllContacts">
         <item quantity="one">1 found</item>
