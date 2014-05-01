@@ -25,31 +25,32 @@
     android:paddingStart="?attr/list_item_padding_left"
     android:paddingEnd="?attr/list_item_padding_right"
     android:paddingTop="4dp"
-    android:paddingBottom="8dp"
-    android:background="@drawable/list_section_divider_holo_custom"
-    android:gravity="center_vertical"
-    >
+    android:paddingBottom="8dp" >
 
-    <TextView
-        android:id="@+id/profile_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView android:id="@+id/profile_title"
+        android:layout_width="@dimen/contact_list_section_header_width"
+        android:layout_height="?android:attr/listPreferredItemHeight"
         android:singleLine="true"
         android:text="@string/user_profile_contacts_list_header"
         android:ellipsize="end"
-        android:layout_weight="1"
-        android:textAppearance="@style/DirectoryHeaderStyle"
-        android:paddingLeft="?attr/list_item_text_indent"
-        android:paddingStart="?attr/list_item_text_indent" />
+        android:textAppearance="@style/SectionHeaderStyle"
+        android:gravity="start|center_vertical" />
 
-    <TextView
-        android:id="@+id/contacts_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button android:id="@+id/user_profile_button"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_marginLeft="?attr/list_item_padding_left"
+        android:layout_marginRight="?attr/list_item_padding_right"
+        android:layout_marginStart="?attr/list_item_padding_left"
+        android:layout_marginEnd="?attr/list_item_padding_right"
+        android:paddingLeft="?attr/list_item_gap_between_image_and_text"
+        android:paddingStart="?attr/list_item_gap_between_image_and_text"
+        android:background="?android:attr/selectableItemBackground"
         android:singleLine="true"
+        android:text="@string/profile_display_name"
         android:ellipsize="end"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="12sp"
-        android:textColor="@color/people_app_theme_color" />
+        android:gravity="start|center_vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>
