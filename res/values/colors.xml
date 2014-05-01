@@ -27,9 +27,6 @@
 
     <color name="background_social_updates">#ffeeeeee</color>
 
-    <!-- Color used for the letter in the A-Z section header -->
-    <color name="section_header_text_color">#363636</color>
-
     <!-- Color of the background of the action bar -->
     <color name="action_bar_background">#e6e6e6</color>
 

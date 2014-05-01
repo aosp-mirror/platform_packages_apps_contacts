@@ -39,6 +39,7 @@
         <item name="list_item_photo_size">64dip</item>
         <item name="list_item_profile_photo_size">80dip</item>
         <item name="list_item_prefix_highlight_color">@color/people_app_theme_color</item>
+        <item name="list_item_background_color">@color/holo_list_background_color</item>
         <item name="list_item_header_text_indent">8dip</item>
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
         <item name="list_item_header_height">30dip</item>
