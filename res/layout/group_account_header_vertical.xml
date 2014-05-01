@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="?attr/list_item_header_text_indent"
         android:paddingStart="?attr/list_item_header_text_indent"
-        android:textAppearance="@style/SectionHeaderStyle"
+        android:textAppearance="@style/DirectoryHeaderStyle"
         android:singleLine="true"/>
 
     <!-- TODO: Should use correct color with a correct name (content should be same).
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="?attr/list_item_header_text_indent"
         android:paddingStart="?attr/list_item_header_text_indent"
-        android:textAppearance="@style/SectionHeaderStyle"
+        android:textAppearance="@style/DirectoryHeaderStyle"
         android:textAllCaps="false"
         android:textSize="12sp"
         android:singleLine="true"

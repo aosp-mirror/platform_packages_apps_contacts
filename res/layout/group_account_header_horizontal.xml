@@ -33,7 +33,7 @@
         android:layout_gravity="center_vertical"
         android:paddingLeft="?attr/list_item_header_text_indent"
         android:paddingStart="?attr/list_item_header_text_indent"
-        android:textAppearance="@style/SectionHeaderStyle"
+        android:textAppearance="@style/DirectoryHeaderStyle"
         android:singleLine="true"
         android:textAlignment="viewStart" />
 
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:textAppearance="@style/SectionHeaderStyle"
+        android:textAppearance="@style/DirectoryHeaderStyle"
         android:textAllCaps="false"
         android:textSize="12sp"
         android:singleLine="true"
