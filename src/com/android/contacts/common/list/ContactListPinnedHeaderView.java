@@ -27,6 +27,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.util.ViewUtil;
 
 /**
  * A custom view for the pinned section header shown at the top of the contact list.
@@ -42,11 +43,12 @@ public class ContactListPinnedHeaderView extends TextView {
         a.recycle();
 
         setBackgroundColor(backgroundColor);
-        setTextAppearance(getContext(), R.style.DirectoryHeaderStyle);
+        setTextAppearance(getContext(), R.style.SectionHeaderStyle);
         setLayoutParams(new LayoutParams(
                 getResources().getDimensionPixelSize(R.dimen.contact_list_section_header_width),
                 LayoutParams.WRAP_CONTENT));
-        setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER);
+        setGravity(Gravity.CENTER_VERTICAL |
+                (ViewUtil.isViewLayoutRtl(this) ? Gravity.RIGHT : Gravity.LEFT));
     }
 
     /**
