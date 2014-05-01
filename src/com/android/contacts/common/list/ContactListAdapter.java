@@ -208,6 +208,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     protected void bindSectionHeaderAndDivider(ContactListItemView view, int position,
             Cursor cursor) {
+        view.setIsSectionHeaderEnabled(isSectionHeaderDisplayEnabled());
         if (isSectionHeaderDisplayEnabled()) {
             Placement placement = getItemPlacementInSection(position);
             view.setSectionHeader(placement.sectionHeader);
