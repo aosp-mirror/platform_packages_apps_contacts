@@ -70,6 +70,7 @@ public class LetterTileDrawable extends Drawable {
     private int mContactType = TYPE_DEFAULT;
     private float mScale = 1.0f;
     private float mOffset = 0.0f;
+    private boolean mIsCircle = false;
 
     /** This should match the total number of colors defined in colors.xml for letter_tile_color */
     private static final int NUM_OF_TILE_COLORS = 8;
@@ -135,7 +136,14 @@ public class LetterTileDrawable extends Drawable {
         sPaint.setColor(pickColor(mIdentifier));
 
         sPaint.setAlpha(mPaint.getAlpha());
-        canvas.drawRect(getBounds(), sPaint);
+        final Rect bounds = getBounds();
+        final int minDimension = Math.min(bounds.width(), bounds.height());
+
+        if (mIsCircle) {
+            canvas.drawCircle(bounds.centerX(), bounds.centerY(), minDimension / 2, sPaint);
+        } else {
+            canvas.drawRect(bounds, sPaint);
+        }
 
         // Draw letter/digit only if the first character is an english letter
         if (mDisplayName != null && isEnglishLetter(mDisplayName.charAt(0))) {
@@ -143,12 +151,10 @@ public class LetterTileDrawable extends Drawable {
             sFirstChar[0] = Character.toUpperCase(mDisplayName.charAt(0));
 
             // Scale text by canvas bounds and user selected scaling factor
-            final int minDimension = Math.min(getBounds().width(), getBounds().height());
             sPaint.setTextSize(mScale * sLetterToTileRatio * minDimension);
             //sPaint.setTextSize(sTileLetterFontSize);
             sPaint.getTextBounds(sFirstChar, 0, 1, sRect);
             sPaint.setColor(sTileFontColor);
-            final Rect bounds = getBounds();
 
             // Draw the letter in the canvas, vertically shifted up or down by the user-defined
             // offset
@@ -243,5 +249,9 @@ public class LetterTileDrawable extends Drawable {
 
     public void setContactType(int contactType) {
         mContactType = contactType;
+    }
+
+    public void setIsCircular(boolean isCircle) {
+        mIsCircle = isCircle;
     }
 }

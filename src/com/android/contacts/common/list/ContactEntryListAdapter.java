@@ -58,6 +58,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private int mSortOrder;
 
     private boolean mDisplayPhotos;
+    private boolean mCircularPhotos = true;
     private boolean mQuickContactEnabled;
 
     /**
@@ -294,6 +295,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setDisplayPhotos(boolean displayPhotos) {
         mDisplayPhotos = displayPhotos;
+    }
+
+    public boolean getCircularPhotos() {
+        return mCircularPhotos;
+    }
+
+    public void setCircularPhotos(boolean circularPhotos) {
+        mCircularPhotos = circularPhotos;
     }
 
     public boolean isEmptyListEnabled() {
@@ -652,7 +661,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                 getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn));
 
         if (photoId != 0 || photoUriColumn == -1) {
-            getPhotoLoader().loadThumbnail(quickContact, photoId, mDarkTheme, null);
+            getPhotoLoader().loadThumbnail(quickContact, photoId, mDarkTheme, mCircularPhotos,
+                    null);
         } else {
             final String photoUriString = cursor.getString(photoUriColumn);
             final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
@@ -661,7 +671,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                 request = getDefaultImageRequestFromCursor(cursor, displayNameColumn,
                         lookUpKeyColumn);
             }
-            getPhotoLoader().loadPhoto(quickContact, photoUri, -1, mDarkTheme, request);
+            getPhotoLoader().loadPhoto(quickContact, photoUri, -1, mDarkTheme, mCircularPhotos,
+                    request);
         }
 
     }
@@ -707,10 +718,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
      * @return {@link DefaultImageRequest} with the displayName and identifier fields set to the
      * display name and lookup key of the contact.
      */
-    public static DefaultImageRequest getDefaultImageRequestFromCursor(Cursor cursor,
+    public DefaultImageRequest getDefaultImageRequestFromCursor(Cursor cursor,
             int displayNameColumn, int lookupKeyColumn) {
         final String displayName = cursor.getString(displayNameColumn);
         final String lookupKey = cursor.getString(lookupKeyColumn);
-        return new DefaultImageRequest(displayName, lookupKey);
+        return new DefaultImageRequest(displayName, lookupKey, mCircularPhotos);
     }
 }
