@@ -88,4 +88,50 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:windowNoDisplay">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
+        <style name="DialpadKeyNumberStyle">
+        <item name="android:textColor">@color/actionbar_background_color</item>
+        <item name="android:textSize">@dimen/dialpad_key_numbers_size</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:layout_width">@dimen/dialpad_key_numbers_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DialpadKeyStarPoundStyle">
+        <item name="android:textColor">@color/dialpad_secondary_text_color</item>
+        <item name="android:textSize">@dimen/dialpad_key_star_pound_size</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:layout_width">@dimen/dialpad_key_numbers_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DialpadKeyLettersStyle">
+        <item name="android:textColor">@color/dialpad_secondary_text_color</item>
+        <item name="android:textSize">@dimen/dialpad_key_letters_size</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:layout_width">@dimen/dialpad_key_letters_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/dialpad_number_to_letters_padding</item>
+    </style>
+
+    <style name="DialpadKeyButtonStyle">
+        <item name="android:soundEffectsEnabled">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/dialpad_key_height</item>
+        <item name="android:background">@drawable/dialpad_key_colors</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="DialpadBottomKeyButtonStyle" parent="DialpadKeyButtonStyle">
+        <item name="android:layout_height">@dimen/dialpad_bottom_key_height</item>
+    </style>
+
+    <style name="DialpadKeyInternalLayoutStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 </resources>

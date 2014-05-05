@@ -720,6 +720,22 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     -->
     <string name="description_dial_phone_number">Dial phone <xliff:g id="name">%1$s</xliff:g></string>
 
+    <!-- String describing the button to add a contact for the current number.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_add_contact">Add contact</string>
+
+    <!-- String describing the overflow menu button in the dialpad -->
+    <string name="description_dialpad_overflow">More options</string>
+
+    <!-- String describing the Delete/Backspace ImageButton
+
+         Used by AccessibilityService to announce the purpose of the button.
+    -->
+    <string name="description_delete_button">backspace</string>
+
     <!-- Attribution of a contact status update, when the time of update is unknown -->
     <string name="contact_status_update_attribution">via <xliff:g id="source" example="Google Talk">%1$s</xliff:g></string>
 
