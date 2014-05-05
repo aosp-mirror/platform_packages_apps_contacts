@@ -26,7 +26,7 @@
     android:layoutDirection="ltr" >
 
     <TableRow>
-        <com.android.dialer.dialpad.DialpadKeyButton
+        <com.android.contacts.common.dialpad.DialpadKeyButton
             android:id="@+id/one"
             style="@style/DialpadKeyButtonStyle">
             <LinearLayout
@@ -41,7 +41,7 @@
                     android:scaleType="fitStart"
                     android:baselineAlignBottom="true" />
             </LinearLayout>
-        </com.android.dialer.dialpad.DialpadKeyButton>
+        </com.android.contacts.common.dialpad.DialpadKeyButton>
         <include layout="@layout/dialpad_key"
             android:id="@+id/two"
             style="@style/DialpadKeyButtonStyle" />
@@ -75,7 +75,7 @@
     </TableRow>
 
     <TableRow>
-        <com.android.dialer.dialpad.DialpadKeyButton
+        <com.android.contacts.common.dialpad.DialpadKeyButton
             android:id="@+id/star"
             style="@style/DialpadKeyButtonStyle">
             <LinearLayout
@@ -87,11 +87,11 @@
                     android:layout_height="match_parent"
                     android:layout_width="@dimen/dialpad_key_letters_width" />
             </LinearLayout>
-        </com.android.dialer.dialpad.DialpadKeyButton>
+        </com.android.contacts.common.dialpad.DialpadKeyButton>
         <include layout="@layout/dialpad_key"
             android:id="@+id/zero"
             style="@style/DialpadKeyButtonStyle" />
-        <com.android.dialer.dialpad.DialpadKeyButton
+        <com.android.contacts.common.dialpad.DialpadKeyButton
             android:id="@+id/pound"
             style="@style/DialpadKeyButtonStyle">
             <LinearLayout
@@ -103,7 +103,7 @@
                     android:layout_height="match_parent"
                     android:layout_width="@dimen/dialpad_key_letters_width" />
             </LinearLayout>
-        </com.android.dialer.dialpad.DialpadKeyButton>
+        </com.android.contacts.common.dialpad.DialpadKeyButton>
     </TableRow>
 
     <TableRow>

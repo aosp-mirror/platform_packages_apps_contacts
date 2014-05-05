@@ -15,7 +15,7 @@
 -->
 
 <!-- A layout representing a single key in the dialpad -->
-<com.android.dialer.dialpad.DialpadKeyButton
+<com.android.contacts.common.dialpad.DialpadKeyButton
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/DialpadKeyButtonStyle" >
 
@@ -32,4 +32,4 @@
             android:id="@+id/dialpad_key_letters"
             style="@style/DialpadKeyLettersStyle" />
     </LinearLayout>
-</com.android.dialer.dialpad.DialpadKeyButton>
+</com.android.contacts.common.dialpad.DialpadKeyButton>
