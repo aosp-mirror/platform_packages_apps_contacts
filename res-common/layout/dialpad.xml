@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- Dialpad in the Phone app. -->
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialpad"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:stretchColumns="*"
+    android:layoutDirection="ltr" >
+
+    <TableRow>
+        <com.android.dialer.dialpad.DialpadKeyButton
+            android:id="@+id/one"
+            style="@style/DialpadKeyButtonStyle">
+            <LinearLayout
+                style="@style/DialpadKeyInternalLayoutStyle">
+                <TextView
+                    android:id="@+id/dialpad_key_number"
+                    style="@style/DialpadKeyNumberStyle"/>
+                <ImageView
+                    android:id="@+id/dialpad_key_voicemail"
+                    style="@style/DialpadKeyLettersStyle"
+                    android:src="@drawable/ic_dial_action_vm"
+                    android:scaleType="fitStart"
+                    android:baselineAlignBottom="true" />
+            </LinearLayout>
+        </com.android.dialer.dialpad.DialpadKeyButton>
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/two"
+            style="@style/DialpadKeyButtonStyle" />
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/three"
+            style="@style/DialpadKeyButtonStyle" />
+    </TableRow>
+
+    <TableRow>
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/four"
+            style="@style/DialpadKeyButtonStyle" />
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/five"
+            style="@style/DialpadKeyButtonStyle" />
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/six"
+            style="@style/DialpadKeyButtonStyle" />
+    </TableRow>
+
+    <TableRow>
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/seven"
+            style="@style/DialpadKeyButtonStyle" />
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/eight"
+            style="@style/DialpadKeyButtonStyle" />
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/nine"
+            style="@style/DialpadKeyButtonStyle" />
+    </TableRow>
+
+    <TableRow>
+        <com.android.dialer.dialpad.DialpadKeyButton
+            android:id="@+id/star"
+            style="@style/DialpadKeyButtonStyle">
+            <LinearLayout
+                style="@style/DialpadKeyInternalLayoutStyle">
+                <TextView
+                    android:id="@id/dialpad_key_number"
+                    style="@style/DialpadKeyStarPoundStyle" />
+                <View
+                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/dialpad_key_letters_width" />
+            </LinearLayout>
+        </com.android.dialer.dialpad.DialpadKeyButton>
+        <include layout="@layout/dialpad_key"
+            android:id="@+id/zero"
+            style="@style/DialpadKeyButtonStyle" />
+        <com.android.dialer.dialpad.DialpadKeyButton
+            android:id="@+id/pound"
+            style="@style/DialpadKeyButtonStyle">
+            <LinearLayout
+                style="@style/DialpadKeyInternalLayoutStyle">
+                <TextView
+                    android:id="@id/dialpad_key_number"
+                    style="@style/DialpadKeyStarPoundStyle" />
+                <View
+                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/dialpad_key_letters_width" />
+            </LinearLayout>
+        </com.android.dialer.dialpad.DialpadKeyButton>
+    </TableRow>
+
+    <TableRow>
+        <FrameLayout
+            android:id="@+id/dialpad_add_contact"
+            android:contentDescription="@string/description_add_contact"
+            style="@style/DialpadBottomKeyButtonStyle"
+            android:visibility="invisible"
+            >
+            <ImageView
+                android:src="@drawable/ic_add_person_dk"
+                android:importantForAccessibility="no"
+                android:paddingRight="@dimen/dialpad_key_letters_width"
+                style="@style/DialpadKeyInternalLayoutStyle"
+                />
+        </FrameLayout>
+        <Space
+            style="@style/DialpadBottomKeyButtonStyle"
+            />
+        <FrameLayout
+            android:id="@+id/dialpad_overflow"
+            android:contentDescription="@string/description_dialpad_overflow"
+            style="@style/DialpadBottomKeyButtonStyle"
+            >
+            <ImageView
+                android:src="@drawable/ic_overflow_menu"
+                android:importantForAccessibility="no"
+                android:paddingRight="@dimen/dialpad_key_letters_width"
+                style="@style/DialpadKeyInternalLayoutStyle"
+                />
+        </FrameLayout>
+    </TableRow>
+</TableLayout>
