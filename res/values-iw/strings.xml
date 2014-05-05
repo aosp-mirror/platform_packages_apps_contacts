@@ -95,10 +95,6 @@
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"אין אנשי קשר עם מספרי טלפון"</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"איש קשר אחד"</item>
-    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> אנשי קשר"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"נמצא אחד"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> נמצאו"</item>

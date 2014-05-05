@@ -95,10 +95,6 @@
     <item quantity="other" msgid="3299954047880968205">"फ़ोन नंबर वाले <xliff:g id="COUNT">%d</xliff:g> संपर्क"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"फ़ोन नंबर वाले कोई संपर्क नहीं"</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"1 संपर्क"</item>
-    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> संपर्क"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 मिला"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> मिले"</item>

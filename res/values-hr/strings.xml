@@ -95,10 +95,6 @@
     <item quantity="other" msgid="3299954047880968205">"Kontakata s tel. brojevima: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Nema kontakata s telefonskim brojevima"</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"1 kontakt"</item>
-    <item quantity="other" msgid="3578469907265375314">"Broj kontakata: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 pronađen"</item>
     <item quantity="other" msgid="3852668542926965042">"Pronađeno kontakata: <xliff:g id="COUNT">%d</xliff:g>"</item>

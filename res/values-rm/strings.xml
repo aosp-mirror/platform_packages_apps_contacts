@@ -127,8 +127,6 @@
     <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
     <!-- no translation found for listTotalPhoneContactsZero (6968813857632984319) -->
     <skip />
-    <!-- no translation found for listTotalAllContacts:one (3405747744700823280) -->
-    <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"chattà 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Chattà <xliff:g id="COUNT">%d</xliff:g>"</item>

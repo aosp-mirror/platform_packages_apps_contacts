@@ -95,10 +95,6 @@
     <item quantity="other" msgid="3299954047880968205">"Telefon numarası olan <xliff:g id="COUNT">%d</xliff:g> kişi"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Telefon numarası olan hiçbir kişi yok"</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"1 kişi"</item>
-    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> kişi"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 kişi bulundu"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> kişi bulundu"</item>

@@ -95,10 +95,6 @@
     <item quantity="other" msgid="3299954047880968205">"Liczba kontaktów z numerami telefonów: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Brak kontaktów z numerami telefonów"</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"Liczba kontaktów: 1"</item>
-    <item quantity="other" msgid="3578469907265375314">"Liczba kontaktów: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Znaleziono: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Znaleziono: <xliff:g id="COUNT">%d</xliff:g>"</item>

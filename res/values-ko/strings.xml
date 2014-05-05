@@ -95,10 +95,6 @@
     <item quantity="other" msgid="3299954047880968205">"전화번호가 포함된 연락처 <xliff:g id="COUNT">%d</xliff:g>개"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"전화번호가 포함된 주소록이 없습니다."</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"연락처 1개"</item>
-    <item quantity="other" msgid="3578469907265375314">"연락처 <xliff:g id="COUNT">%d</xliff:g>개"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1개를 찾았습니다."</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g>개를 찾았습니다."</item>

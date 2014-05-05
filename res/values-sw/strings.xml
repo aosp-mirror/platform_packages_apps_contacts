@@ -95,10 +95,6 @@
     <item quantity="other" msgid="3299954047880968205">"Anwani <xliff:g id="COUNT">%d</xliff:g> zilizo na nambari ya simu"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Hakuna anwani zilizo na nambari za simu"</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"Anwani 1"</item>
-    <item quantity="other" msgid="3578469907265375314">"Anwani <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Imepatikana 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Patikana <xliff:g id="COUNT">%d</xliff:g>"</item>

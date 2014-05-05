@@ -95,10 +95,6 @@
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Không có liên hệ nào có số điện thoại"</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"1 địa chỉ liên hệ"</item>
-    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> địa chỉ liên hệ"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Đã tìm thấy 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
