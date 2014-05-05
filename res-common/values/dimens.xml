@@ -53,6 +53,8 @@
     <dimen name="contact_browser_list_header_left_margin">16dip</dimen>
     <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
+    <!-- Width of a contact list item section header. -->
+    <dimen name="contact_list_section_header_width">40dp</dimen>
 
     <!-- Size of the shortcut icon. 0dip means: use the system default -->
     <dimen name="shortcut_icon_size">0dip</dimen>
@@ -89,16 +91,13 @@
     <item name="letter_to_tile_ratio" type="dimen">67%</item>
 
     <!-- Height of the floating action button -->
-    <dimen name="floating_action_button_height">60dp</dimen>
+    <dimen name="floating_action_button_height">56dp</dimen>
     <!-- Width of the floating action button -->
-    <dimen name="floating_action_button_width">60dp</dimen>
+    <dimen name="floating_action_button_width">56dp</dimen>
     <!-- Corner radius of the floating action button -->
-    <dimen name="floating_action_button_radius">30dp</dimen>
+    <dimen name="floating_action_button_radius">28dp</dimen>
     <!-- Z translation of the floating action button -->
     <dimen name="floating_action_button_translation_z">5dp</dimen>
-
-    <!-- Width of a contact list item section header. -->
-    <dimen name="contact_list_section_header_width">40dp</dimen>
 
     <!-- Height of the selection indicator of a tab. -->
     <dimen name="tab_selected_underline_height">3dp</dimen>
