@@ -15,17 +15,18 @@
 -->
 
 <!-- Dialpad in the Phone app. -->
-<TableLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialpad"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:stretchColumns="*"
-    android:layoutDirection="ltr" >
+    android:orientation="vertical">
 
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Space style="@style/DialpadSpaceStyle" />
         <com.android.contacts.common.dialpad.DialpadKeyButton
             android:id="@+id/one"
             style="@style/DialpadKeyButtonStyle">
@@ -33,13 +34,18 @@
                 style="@style/DialpadKeyInternalLayoutStyle">
                 <TextView
                     android:id="@+id/dialpad_key_number"
-                    style="@style/DialpadKeyNumberStyle"/>
-                <ImageView
-                    android:id="@+id/dialpad_key_voicemail"
-                    style="@style/DialpadKeyLettersStyle"
-                    android:src="@drawable/ic_dial_action_vm"
-                    android:scaleType="fitStart"
-                    android:baselineAlignBottom="true" />
+                    style="@style/DialpadKeyNumberStyle" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dialpad_subtext_height" >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/dialpad_key_voicemail"
+                        android:src="@drawable/ic_dial_action_vm"
+                        android:scaleType="fitCenter"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
             </LinearLayout>
         </com.android.contacts.common.dialpad.DialpadKeyButton>
         <include layout="@layout/dialpad_key"
@@ -48,9 +54,14 @@
         <include layout="@layout/dialpad_key"
             android:id="@+id/three"
             style="@style/DialpadKeyButtonStyle" />
-    </TableRow>
+        <Space style="@style/DialpadSpaceStyle" />
+    </LinearLayout>
 
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Space style="@style/DialpadSpaceStyle" />
         <include layout="@layout/dialpad_key"
             android:id="@+id/four"
             style="@style/DialpadKeyButtonStyle" />
@@ -60,9 +71,14 @@
         <include layout="@layout/dialpad_key"
             android:id="@+id/six"
             style="@style/DialpadKeyButtonStyle" />
-    </TableRow>
+        <Space style="@style/DialpadSpaceStyle" />
+    </LinearLayout>
 
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Space style="@style/DialpadSpaceStyle" />
         <include layout="@layout/dialpad_key"
             android:id="@+id/seven"
             style="@style/DialpadKeyButtonStyle" />
@@ -72,9 +88,14 @@
         <include layout="@layout/dialpad_key"
             android:id="@+id/nine"
             style="@style/DialpadKeyButtonStyle" />
-    </TableRow>
+        <Space style="@style/DialpadSpaceStyle" />
+    </LinearLayout>
 
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Space style="@style/DialpadSpaceStyle" />
         <com.android.contacts.common.dialpad.DialpadKeyButton
             android:id="@+id/star"
             style="@style/DialpadKeyButtonStyle">
@@ -83,9 +104,6 @@
                 <TextView
                     android:id="@id/dialpad_key_number"
                     style="@style/DialpadKeyStarPoundStyle" />
-                <View
-                    android:layout_height="match_parent"
-                    android:layout_width="@dimen/dialpad_key_letters_width" />
             </LinearLayout>
         </com.android.contacts.common.dialpad.DialpadKeyButton>
         <include layout="@layout/dialpad_key"
@@ -99,35 +117,31 @@
                 <TextView
                     android:id="@id/dialpad_key_number"
                     style="@style/DialpadKeyStarPoundStyle" />
-                <View
-                    android:layout_height="match_parent"
-                    android:layout_width="@dimen/dialpad_key_letters_width" />
             </LinearLayout>
         </com.android.contacts.common.dialpad.DialpadKeyButton>
-    </TableRow>
+        <Space style="@style/DialpadSpaceStyle" />
+    </LinearLayout>
 
-    <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <FrameLayout
             android:id="@+id/dialpad_add_contact"
             android:contentDescription="@string/description_add_contact"
             style="@style/DialpadBottomKeyButtonStyle"
-            android:visibility="invisible"
-            >
+            android:visibility="invisible" >
             <ImageView
                 android:src="@drawable/ic_add_person_dk"
                 android:importantForAccessibility="no"
                 android:paddingRight="@dimen/dialpad_key_letters_width"
-                style="@style/DialpadKeyInternalLayoutStyle"
-                />
+                style="@style/DialpadKeyInternalLayoutStyle" />
         </FrameLayout>
-        <Space
-            style="@style/DialpadBottomKeyButtonStyle"
-            />
+        <Space style="@style/DialpadBottomKeyButtonStyle" />
         <FrameLayout
             android:id="@+id/dialpad_overflow"
             android:contentDescription="@string/description_dialpad_overflow"
-            style="@style/DialpadBottomKeyButtonStyle"
-            >
+            style="@style/DialpadBottomKeyButtonStyle" >
             <ImageView
                 android:src="@drawable/ic_overflow_menu"
                 android:importantForAccessibility="no"
@@ -135,5 +149,5 @@
                 style="@style/DialpadKeyInternalLayoutStyle"
                 />
         </FrameLayout>
-    </TableRow>
-</TableLayout>
+    </LinearLayout>
+</LinearLayout>

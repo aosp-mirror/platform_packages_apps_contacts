@@ -80,16 +80,13 @@
          actionbar_background_color. -->
     <color name="actionbar_background_color">#00afcc</color>
 
-    <!-- Background color of dialpad -->
+
+    <!-- Colors for the dialpad -->
     <color name="background_dialpad">#ffffff</color>
-    <!-- Pressed color of dialpad buttons -->
     <color name="background_dialpad_pressed">#ececec</color>
-    <!-- Primary color of dialpad text, including the call button -->
-    <color name="dialpad_primary_text_color">#3B77E7</color>
-    <!-- Secondary color of dialpad text (used for the letters corresponding to each digit -->
-    <color name="dialpad_secondary_text_color">#8b8b8b</color>
-    <!-- Color of dialpad digits -->
+    <color name="dialpad_primary_text_color">#26c6da</color>
+    <!-- Secondary color of dialpad text; black at 40% opacity. -->
+    <color name="dialpad_secondary_text_color">#66000000</color>
     <color name="dialpad_digits_text_color">#000000</color>
-    <!-- Color for dialpad separator lines -->
     <color name="dialpad_separator_line_color">#dadada</color>
 </resources>
