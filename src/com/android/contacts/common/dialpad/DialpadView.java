@@ -130,8 +130,6 @@ public class DialpadView extends LinearLayout {
         View overflowMenuButton = findViewById(R.id.dialpad_overflow);
         overflowMenuButton.setVisibility(canBeEdited ? View.VISIBLE : View.GONE);
 
-        View addContactButton = findViewById(R.id.dialpad_add_contact);
-        addContactButton.setVisibility(canBeEdited ? View.VISIBLE : View.GONE);
         mCanDigitsBeEdited = canBeEdited;
     }
 
