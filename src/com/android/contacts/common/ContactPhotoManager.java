@@ -23,6 +23,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -33,6 +34,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Handler;
@@ -601,6 +603,9 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     /** Cache size for {@link #mBitmapCache} for devices with "large" RAM. */
     private static final int BITMAP_CACHE_SIZE = 36864 * 48; // 1728K
 
+    /** Height/width of a thumbnail image */
+    private static int mThumbnailSize;
+
     /** For debug: How many times we had to reload cached photo for a stale entry */
     private final AtomicInteger mStaleCacheOverwrite = new AtomicInteger();
 
@@ -643,6 +648,9 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             Log.d(TAG, "Cache size: " + btk(mBitmapHolderCache.maxSize())
                     + " + " + btk(mBitmapCache.maxSize()));
         }
+
+        mThumbnailSize = context.getResources().getDimensionPixelSize(
+                R.dimen.contact_browser_list_item_photo_size);
     }
 
     /** Converts bytes to K bytes, rounding up.  Used only for debug log. */
@@ -905,6 +913,16 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         try {
             Bitmap bitmap = BitmapUtil.decodeBitmapFromBytes(bytes, sampleSize);
 
+            // TODO: As a temporary workaround while framework support is being added to
+            // clip non-square bitmaps into a perfect circle, manually crop the bitmap into
+            // into a square if it will be displayed as a thumbnail so that it can be cropped
+            // into a circle.
+            final int height = bitmap.getHeight();
+            final int width = bitmap.getWidth();
+            if (height != width && holder.originalSmallerExtent < mThumbnailSize) {
+                final int dimension = Math.min(height, width);
+                bitmap = ThumbnailUtils.extractThumbnail(bitmap, dimension, dimension);
+            }
             // make bitmap mutable and draw size onto it
             if (DEBUG_SIZES) {
                 Bitmap original = bitmap;
