@@ -19,8 +19,11 @@ package com.android.contacts.common.dialpad;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -39,6 +42,14 @@ public class DialpadView extends LinearLayout {
     private ImageButton mDelete;
 
     private boolean mCanDigitsBeEdited;
+
+    private final int[] mButtonIds = new int[] {R.id.zero, R.id.one, R.id.two, R.id.three,
+            R.id.four, R.id.five, R.id.six, R.id.seven, R.id.eight, R.id.nine, R.id.star,
+            R.id.pound};
+
+    // For animation.
+    private static final int KEY_FRAME_DURATION = 33;
+    private final Interpolator mButtonPathInterpolator = new PathInterpolator(0.4f, 0, 0.2f, 1);
 
     public DialpadView(Context context) {
         this(context, null);
@@ -60,9 +71,6 @@ public class DialpadView extends LinearLayout {
     }
 
     private void setupKeypad() {
-        final int[] buttonIds = new int[] {R.id.zero, R.id.one, R.id.two, R.id.three, R.id.four,
-                R.id.five, R.id.six, R.id.seven, R.id.eight, R.id.nine, R.id.star, R.id.pound};
-
         final int[] numberIds = new int[] {R.string.dialpad_0_number, R.string.dialpad_1_number,
                 R.string.dialpad_2_number, R.string.dialpad_3_number, R.string.dialpad_4_number,
                 R.string.dialpad_5_number, R.string.dialpad_6_number, R.string.dialpad_7_number,
@@ -81,8 +89,8 @@ public class DialpadView extends LinearLayout {
         TextView numberView;
         TextView lettersView;
 
-        for (int i = 0; i < buttonIds.length; i++) {
-            dialpadKey = (DialpadKeyButton) findViewById(buttonIds[i]);
+        for (int i = 0; i < mButtonIds.length; i++) {
+            dialpadKey = (DialpadKeyButton) findViewById(mButtonIds[i]);
             numberView = (TextView) dialpadKey.findViewById(R.id.dialpad_key_number);
             lettersView = (TextView) dialpadKey.findViewById(R.id.dialpad_key_letters);
             final String numberString = resources.getString(numberIds[i]);
@@ -146,11 +154,74 @@ public class DialpadView extends LinearLayout {
         return true;
     }
 
+    public void animateShow() {
+        DialpadKeyButton dialpadKey;
+        final int translateDistance = getResources().getDimensionPixelSize(
+                R.dimen.dialpad_key_button_translate_y);
+
+        for (int i = 0; i < mButtonIds.length; i++) {
+            dialpadKey = (DialpadKeyButton) findViewById(mButtonIds[i]);
+            dialpadKey.setTranslationY(translateDistance);
+            dialpadKey.animate()
+                    .translationY(0)
+                    .setInterpolator(mButtonPathInterpolator)
+                    .setStartDelay(getKeyButtonAnimationDelay(mButtonIds[i]))
+                    .setDuration(getKeyButtonAnimationDuration(mButtonIds[i]));
+        }
+
+        setAlpha(0);
+        animate().alpha(1.0f).setDuration(KEY_FRAME_DURATION * 20);
+    }
+
     public EditText getDigits() {
         return mDigits;
     }
 
     public ImageButton getDeleteButton() {
         return mDelete;
+    }
+
+    private int getKeyButtonAnimationDelay(int buttonId) {
+        switch(buttonId) {
+            case R.id.one: return KEY_FRAME_DURATION * 1;
+            case R.id.two: return KEY_FRAME_DURATION * 2;
+            case R.id.three: return KEY_FRAME_DURATION * 3;
+            case R.id.four: return KEY_FRAME_DURATION * 4;
+            case R.id.five: return KEY_FRAME_DURATION * 5;
+            case R.id.six: return KEY_FRAME_DURATION * 6;
+            case R.id.seven: return KEY_FRAME_DURATION * 7;
+            case R.id.eight: return KEY_FRAME_DURATION * 8;
+            case R.id.nine: return KEY_FRAME_DURATION * 9;
+            case R.id.star: return KEY_FRAME_DURATION * 10;
+            case R.id.zero:
+            case R.id.pound:
+                return KEY_FRAME_DURATION * 11;
+        }
+
+        Log.wtf(TAG, "Attempted to get animation delay for invalid key button id.");
+        return 0;
+    }
+
+    private int getKeyButtonAnimationDuration(int buttonId) {
+        switch(buttonId) {
+            case R.id.one:
+            case R.id.two:
+            case R.id.three:
+            case R.id.four:
+            case R.id.five:
+            case R.id.six:
+                return KEY_FRAME_DURATION * 10;
+            case R.id.seven:
+            case R.id.eight:
+            case R.id.nine:
+                return KEY_FRAME_DURATION * 9;
+            case R.id.star:
+            case R.id.zero:
+            case R.id.pound:
+                return KEY_FRAME_DURATION * 8;
+        }
+
+        Log.wtf(TAG, "Attempted to get animation duration for invalid key button id.");
+        return 0;
     }
 }
