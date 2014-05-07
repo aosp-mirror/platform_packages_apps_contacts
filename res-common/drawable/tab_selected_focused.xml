@@ -24,7 +24,7 @@
         <shape android:shape="rectangle" >
             <stroke
                 android:width="4dp"
-                android:color="#44ff0000" />
+                android:color="@color/focus_color" />
         </shape>
     </item>
 </layer-list>
