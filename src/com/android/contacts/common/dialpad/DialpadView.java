@@ -173,6 +173,11 @@ public class DialpadView extends LinearLayout {
         animate().alpha(1.0f).setDuration(KEY_FRAME_DURATION * 20);
     }
 
+    public void animateHide() {
+        setAlpha(1.0f);
+        animate().alpha(0).setDuration(KEY_FRAME_DURATION * 13);
+    }
+
     public EditText getDigits() {
         return mDigits;
     }
