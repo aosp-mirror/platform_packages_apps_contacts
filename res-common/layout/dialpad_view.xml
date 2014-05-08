@@ -21,7 +21,8 @@
     android:layout_gravity="bottom"
     android:orientation="vertical"
     android:layoutDirection="ltr"
-    android:background="@color/background_dialpad">
+    android:background="@color/background_dialpad"
+    android:clickable="true" >
 
     <!-- Text field and possibly soft menu button above the keypad where
      the digits are displayed. -->
