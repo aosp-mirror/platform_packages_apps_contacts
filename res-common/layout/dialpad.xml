@@ -19,12 +19,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialpad"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:clipChildren="false">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <Space style="@style/DialpadSpaceStyle" />
         <com.android.contacts.common.dialpad.DialpadKeyButton
@@ -59,7 +60,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <Space style="@style/DialpadSpaceStyle" />
         <include layout="@layout/dialpad_key"
@@ -76,7 +78,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <Space style="@style/DialpadSpaceStyle" />
         <include layout="@layout/dialpad_key"
@@ -93,7 +96,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <Space style="@style/DialpadSpaceStyle" />
         <com.android.contacts.common.dialpad.DialpadKeyButton

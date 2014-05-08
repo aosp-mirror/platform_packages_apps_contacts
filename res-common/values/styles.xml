@@ -91,7 +91,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
 
     <style name="DialpadSpaceStyle">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">@dimen/dialpad_key_height</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">3</item>
     </style>
 
@@ -126,7 +126,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:soundEffectsEnabled">false</item>
         <item name="android:clickable">true</item>
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">@dimen/dialpad_key_height</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">13</item>
         <item name="android:background">@drawable/dialpad_key_colors</item>
         <item name="android:focusable">true</item>

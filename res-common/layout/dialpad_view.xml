@@ -16,21 +16,12 @@
 <view class="com.android.contacts.common.dialpad.DialpadView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialpad_view"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:layout_gravity="bottom"
     android:orientation="vertical"
     android:layoutDirection="ltr"
     android:background="@color/background_dialpad">
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/dialpad_separator_line_color" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
 
     <!-- Text field and possibly soft menu button above the keypad where
      the digits are displayed. -->
@@ -72,18 +63,10 @@
             android:src="@drawable/ic_dial_action_delete" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="8dp" />
-
     <include layout="@layout/dialpad" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="8dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/dialpad_separator_line_color" />
 </view>
