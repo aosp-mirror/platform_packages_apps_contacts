@@ -32,11 +32,20 @@
         android:layout_height="@dimen/dialpad_digits_height"
         android:orientation="horizontal">
 
+        <ImageButton android:id="@+id/dialpad_overflow"
+            android:background="@drawable/btn_dialpad_key"
+            android:src="@drawable/ic_overflow_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dialpad_digits_padding"
+            android:paddingRight="@dimen/dialpad_digits_menu_right_padding"
+            android:contentDescription="@string/description_dialpad_overflow"
+            android:gravity="center" />
+
         <view class="com.android.contacts.common.dialpad.DigitsEditText"
             android:id="@+id/digits"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingLeft="@dimen/dialpad_digits_padding"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:layout_weight="1"

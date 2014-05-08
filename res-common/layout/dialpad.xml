@@ -125,30 +125,7 @@
         </com.android.contacts.common.dialpad.DialpadKeyButton>
         <Space style="@style/DialpadSpaceStyle" />
     </LinearLayout>
-
-    <LinearLayout
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <FrameLayout
-            android:id="@+id/dialpad_add_contact"
-            android:contentDescription="@string/description_add_contact"
-            style="@style/DialpadBottomKeyButtonStyle"
-            android:visibility="invisible" >
-            <ImageView
-                android:src="@drawable/ic_add_person_dk"
-                android:importantForAccessibility="no"
-                style="@style/DialpadKeyInternalLayoutStyle" />
-        </FrameLayout>
-        <Space style="@style/DialpadBottomKeyButtonStyle" />
-        <FrameLayout
-            android:id="@+id/dialpad_overflow"
-            android:contentDescription="@string/description_dialpad_overflow"
-            style="@style/DialpadBottomKeyButtonStyle" >
-            <ImageView
-                android:src="@drawable/ic_overflow_menu"
-                android:importantForAccessibility="no"
-                style="@style/DialpadKeyInternalLayoutStyle" />
-        </FrameLayout>
-    </LinearLayout>
+        android:layout_height="@dimen/dialpad_bottom_key_height" />
 </LinearLayout>
