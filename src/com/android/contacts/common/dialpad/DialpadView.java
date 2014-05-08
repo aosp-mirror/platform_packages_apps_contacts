@@ -40,6 +40,7 @@ public class DialpadView extends LinearLayout {
 
     private EditText mDigits;
     private ImageButton mDelete;
+    private View mOverflowMenuButton;
 
     private boolean mCanDigitsBeEdited;
 
@@ -68,6 +69,7 @@ public class DialpadView extends LinearLayout {
         setupKeypad();
         mDigits = (EditText) findViewById(R.id.digits);
         mDelete = (ImageButton) findViewById(R.id.deleteButton);
+        mOverflowMenuButton = findViewById(R.id.dialpad_overflow);
     }
 
     private void setupKeypad() {
@@ -184,6 +186,10 @@ public class DialpadView extends LinearLayout {
 
     public ImageButton getDeleteButton() {
         return mDelete;
+    }
+
+    public View getOverflowMenuButton() {
+        return mOverflowMenuButton;
     }
 
     private int getKeyButtonAnimationDelay(int buttonId) {
