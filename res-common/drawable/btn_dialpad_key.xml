@@ -14,9 +14,5 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:state_pressed="true"
-        android:drawable="@color/background_dialpad_pressed" />
-    <item android:drawable="@color/background_dialpad" />
-</selector>
+<touch-feedback xmlns:android="http://schemas.android.com/apk/res/android"
+    android:tint="@color/dialpad_touch_tint" android:pinned="true"/>
