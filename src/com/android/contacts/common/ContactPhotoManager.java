@@ -23,7 +23,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -50,7 +49,6 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
-import android.util.TypedValue;
 import android.widget.ImageView;
 
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
@@ -168,6 +166,53 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
         return builder.build();
     }
 
+    /**
+     * Adds a business contact type encoded fragment to the URL.  Used to ensure photo URLS
+     * from Nearby Places can be identified as business photo URLs rather than URLs for personal
+     * contact photos.
+     *
+     * @param photoUrl The photo URL to modify.
+     * @return URL with the contact type parameter added and set to TYPE_BUSINESS.
+     */
+    public static String appendBusinessContactType(String photoUrl) {
+        Uri uri = Uri.parse(photoUrl);
+        Builder builder = uri.buildUpon();
+        builder.encodedFragment(String.valueOf(TYPE_BUSINESS));
+        return builder.build().toString();
+    }
+
+    /**
+     * Removes the contact type information stored in the photo URI encoded fragment.
+     *
+     * @param photoUri The photo URI to remove the contact type from.
+     * @return The photo URI with contact type removed.
+     */
+    public static Uri removeContactType(Uri photoUri) {
+        String encodedFragment = photoUri.getEncodedFragment();
+        if (!TextUtils.isEmpty(encodedFragment)) {
+            Builder builder = photoUri.buildUpon();
+            builder.encodedFragment(null);
+            return builder.build();
+        }
+        return photoUri;
+    }
+
+    /**
+     * Inspects a photo URI to determine if the photo URI represents a business.
+     *
+     * @param photoUri The URI to inspect.
+     * @return Whether the URI represents a business photo or not.
+     */
+    public static boolean isBusinessContactUri(Uri photoUri) {
+        if (photoUri == null) {
+            return false;
+        }
+
+        String encodedFragment = photoUri.getEncodedFragment();
+        return !TextUtils.isEmpty(encodedFragment)
+                && encodedFragment.equals(String.valueOf(TYPE_BUSINESS));
+    }
+
     protected static DefaultImageRequest getDefaultImageRequestFromUri(Uri uri) {
         final DefaultImageRequest request = new DefaultImageRequest(
                 uri.getQueryParameter(DISPLAY_NAME_PARAM_KEY),
@@ -266,11 +311,25 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
         public static DefaultImageRequest EMPTY_DEFAULT_IMAGE_REQUEST = new DefaultImageRequest();
 
         /**
+         * Used to indicate that a drawable that represents a business without a business photo
+         * should be returned.
+         */
+        public static DefaultImageRequest EMPTY_DEFAULT_BUSINESS_IMAGE_REQUEST =
+                new DefaultImageRequest(null, null, TYPE_BUSINESS, false);
+
+        /**
          * Used to indicate that a circular drawable that represents a contact without any contact
          * details should be returned.
          */
         public static DefaultImageRequest EMPTY_CIRCULAR_DEFAULT_IMAGE_REQUEST =
                 new DefaultImageRequest(null, null, true);
+
+        /**
+         * Used to indicate that a circular drawable that represents a business without a business
+         * photo should be returned.
+         */
+        public static DefaultImageRequest EMPTY_CIRCULAR_BUSINESS_IMAGE_REQUEST =
+                new DefaultImageRequest(null, null, TYPE_BUSINESS, true);
 
         public DefaultImageRequest() {
         }
@@ -750,7 +809,6 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                 createAndApplyDefaultImageForUri(view, photoUri, requestedExtent, darkTheme,
                         defaultProvider);
             } else {
-
                 loadPhotoByIdOrUri(view, Request.createFromUri(photoUri, requestedExtent,
                         darkTheme, isCircular, defaultProvider));
             }
@@ -1413,7 +1471,15 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
          */
         private void loadUriBasedPhotos() {
             for (Request uriRequest : mPhotoUris) {
-                Uri uri = uriRequest.getUri();
+                // Keep the original URI and use this to key into the cache.  Failure to do so will
+                // result in an image being continually reloaded into cache if the original URI
+                // has a contact type encodedFragment (eg nearby places business photo URLs).
+                Uri originalUri = uriRequest.getUri();
+
+                // Strip off the "contact type" we added to the URI to ensure it was identifiable as
+                // a business photo -- there is no need to pass this on to the server.
+                Uri uri = ContactPhotoManager.removeContactType(originalUri);
+
                 if (mBuffer == null) {
                     mBuffer = new byte[BUFFER_SIZE];
                 }
@@ -1436,16 +1502,16 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                         } finally {
                             is.close();
                         }
-                        cacheBitmap(uri, baos.toByteArray(), false,
+                        cacheBitmap(originalUri, baos.toByteArray(), false,
                                 uriRequest.getRequestedExtent());
                         mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
                     } else {
                         Log.v(TAG, "Cannot load photo " + uri);
-                        cacheBitmap(uri, null, false, uriRequest.getRequestedExtent());
+                        cacheBitmap(originalUri, null, false, uriRequest.getRequestedExtent());
                     }
                 } catch (Exception ex) {
                     Log.v(TAG, "Cannot load photo " + uri, ex);
-                    cacheBitmap(uri, null, false, uriRequest.getRequestedExtent());
+                    cacheBitmap(originalUri, null, false, uriRequest.getRequestedExtent());
                 }
             }
         }
@@ -1533,10 +1599,26 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             return mUri == null ? mId : mUri;
         }
 
+        /**
+         * Applies the default image to the current view. If the request is URI-based, looks for
+         * the contact type encoded fragment to determine if this is a request for a business photo,
+         * in which case we will load the default business photo.
+         *
+         * @param view The current image view to apply the image to.
+         * @param isCircular Whether the image is circular or not.
+         */
         public void applyDefaultImage(ImageView view, boolean isCircular) {
-            final DefaultImageRequest request = isCircular
-                    ? DefaultImageRequest.EMPTY_CIRCULAR_DEFAULT_IMAGE_REQUEST
-                    : DefaultImageRequest.EMPTY_DEFAULT_IMAGE_REQUEST;
+            final DefaultImageRequest request;
+
+            if (isCircular) {
+                request = ContactPhotoManager.isBusinessContactUri(mUri)
+                        ? DefaultImageRequest.EMPTY_CIRCULAR_BUSINESS_IMAGE_REQUEST
+                        : DefaultImageRequest.EMPTY_CIRCULAR_DEFAULT_IMAGE_REQUEST;
+            } else {
+                request = ContactPhotoManager.isBusinessContactUri(mUri)
+                        ? DefaultImageRequest.EMPTY_DEFAULT_BUSINESS_IMAGE_REQUEST
+                        : DefaultImageRequest.EMPTY_DEFAULT_IMAGE_REQUEST;
+            }
             mDefaultProvider.applyDefaultImage(view, mRequestedExtent, mDarkTheme, request);
         }
     }
