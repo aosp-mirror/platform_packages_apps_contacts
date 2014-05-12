@@ -48,7 +48,17 @@ import java.util.List;
 public class ExternalAccountType extends BaseAccountType {
     private static final String TAG = "ExternalAccountType";
 
-    private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
+    /**
+     * The metadata name for so-called "contacts.xml".
+     *
+     * On LMP and later, we also accept the "alternate" name.
+     * This is to allow sync adapters to have a contacts.xml without making it visible on older
+     * platforms.
+     */
+    private static final String[] METADATA_CONTACTS_NAMES = new String[] {
+            "android.provider.ALTERNATE_CONTACTS_STRUCTURE",
+            "android.provider.CONTACTS_STRUCTURE"
+    };
 
     private static final String TAG_CONTACTS_SOURCE_LEGACY = "ContactsSource";
     private static final String TAG_CONTACTS_ACCOUNT_TYPE = "ContactsAccountType";
@@ -187,10 +197,17 @@ public class ExternalAccountType extends BaseAccountType {
         PackageInfo packageInfo = pm.getPackageInfo(resPackageName,
                 PackageManager.GET_SERVICES|PackageManager.GET_META_DATA);
         for (ServiceInfo serviceInfo : packageInfo.services) {
-            final XmlResourceParser parser = serviceInfo.loadXmlMetaData(pm,
-                    METADATA_CONTACTS);
-            if (parser != null) {
-                return parser;
+            for (String metadataName : METADATA_CONTACTS_NAMES) {
+                final XmlResourceParser parser = serviceInfo.loadXmlMetaData(pm,
+                        metadataName);
+                if (parser != null) {
+                    if (Log.isLoggable(TAG, Log.DEBUG)) {
+                        Log.d(TAG, String.format("Metadata loaded from: %s, %s, %s",
+                                serviceInfo.packageName, serviceInfo.name,
+                                metadataName));
+                    }
+                    return parser;
+                }
             }
         }
         // Package was found, but that doesn't contain the CONTACTS_STRUCTURE metadata.
