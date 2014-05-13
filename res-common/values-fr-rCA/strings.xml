@@ -91,14 +91,14 @@
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Pseudo"</string>
     <string name="full_name" msgid="885420216812981202">"Nom"</string>
     <string name="name_given" msgid="1560204576305608571">"Prénom"</string>
-    <string name="name_family" msgid="1267097554034721002">"Nom de famille"</string>
+    <string name="name_family" msgid="1267097554034721002">"Nom"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Préfixe du nom"</string>
     <string name="name_middle" msgid="3951610314424632183">"Deuxième prénom"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Suffixe du nom"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nom phonétique"</string>
     <string name="name_phonetic_given" msgid="993707744185923412">"Prénom phonétique"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Deuxième prénom phonétique"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"Nom de famille phonétique"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Nom phonétique"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Numéro de téléphone"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Adresse de courriel :"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresse"</string>
