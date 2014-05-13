@@ -89,6 +89,8 @@
     <!-- 75% opacity, black. -->
     <color name="dialpad_digits_text_color">#bf000000</color>
     <color name="dialpad_separator_line_color">#dadada</color>
+    <color name="dialpad_icon_tint">#b3b3b3</color>
+
     <!-- 35% opacity, black. -->
     <color name="dialpad_touch_tint">#59000000</color>
 </resources>

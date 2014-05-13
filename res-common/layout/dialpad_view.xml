@@ -35,6 +35,7 @@
         <ImageButton android:id="@+id/dialpad_overflow"
             android:background="@drawable/btn_dialpad_key"
             android:src="@drawable/ic_overflow_menu"
+            android:tint="@color/dialpad_icon_tint"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingLeft="@dimen/dialpad_digits_padding"
@@ -64,13 +65,14 @@
         <ImageButton
             android:id="@+id/deleteButton"
             android:background="@drawable/btn_dialpad_key"
+            android:tint="@color/dialpad_icon_tint"
             android:paddingLeft="@dimen/dialpad_digits_padding"
             android:paddingRight="@dimen/dialpad_digits_padding"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:state_enabled="false"
             android:contentDescription="@string/description_delete_button"
-            android:src="@drawable/ic_dial_action_delete" />
+            android:src="@drawable/ic_dialpad_delete" />
     </LinearLayout>
 
     <include layout="@layout/dialpad" />
