@@ -26,12 +26,6 @@
         android:title="@string/menu_new_contact_action_bar"
         android:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/menu_add_group"
-        android:icon="@drawable/ic_add_person_dk"
-        android:title="@string/menu_new_group_action_bar"
-        android:showAsAction="ifRoom" />
-
     <!-- Added orderInCategory to keep the following buttons at the end of the menu
          Buttons will be added in the order added/inflated. Ordered buttons will be added
          at the end according to the orderInCategory. This setup insures that the buttons below

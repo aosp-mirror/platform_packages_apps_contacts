@@ -87,9 +87,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     public interface TabState {
         public static int FAVORITES = 0;
         public static int ALL = 1;
-        public static int GROUPS = 2;
 
-        public static int COUNT = 3;
+        public static int COUNT = 2;
         public static int DEFAULT = ALL;
     }
 
@@ -180,7 +179,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private void setupTabs() {
         addTab(TabState.FAVORITES, R.drawable.ic_tab_starred, R.string.contactsFavoritesLabel);
         addTab(TabState.ALL, R.drawable.ic_tab_all, R.string.contactsAllLabel);
-        addTab(TabState.GROUPS, R.drawable.ic_tab_groups, R.string.contactsGroupsLabel);
     }
 
     private void setupNavigationList() {
@@ -188,7 +186,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 R.layout.people_navigation_item);
         navAdapter.add(mContext.getString(R.string.contactsFavoritesLabel));
         navAdapter.add(mContext.getString(R.string.contactsAllLabel));
-        navAdapter.add(mContext.getString(R.string.contactsGroupsLabel));
         mActionBar.setListNavigationCallbacks(navAdapter, mNavigationListener);
     }
 
@@ -202,8 +199,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 return TabState.FAVORITES;
             case 1:
                 return TabState.ALL;
-            case 2:
-                return TabState.GROUPS;
         }
         throw new IllegalArgumentException(
                 "Parameter must be between 0 and " + Integer.toString(TabState.COUNT-1)
@@ -219,8 +214,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 return 0;
             case TabState.ALL:
                 return 1;
-            case TabState.GROUPS:
-                return 2;
         }
         throw new IllegalArgumentException(
                 "Parameter must be between 0 and " + Integer.toString(TabState.COUNT-1)

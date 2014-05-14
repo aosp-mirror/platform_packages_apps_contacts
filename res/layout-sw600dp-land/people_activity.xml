@@ -30,7 +30,7 @@
         android:splitMotionEvents="true"
         android:baselineAligned="false">
 
-        <!-- Left panel browse list for Groups or All tabs -->
+        <!-- Left panel browse list for All tab -->
         <FrameLayout
             android:id="@+id/browse_view"
             android:layout_width="0dip"
@@ -43,13 +43,6 @@
             <fragment
                 android:id="@+id/all_fragment"
                 class="com.android.contacts.list.DefaultContactBrowseListFragment"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent" />
-
-            <!-- Groups -->
-            <fragment
-                android:id="@+id/groups_fragment"
-                class="com.android.contacts.group.GroupBrowseListFragment"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent" />
         </FrameLayout>
@@ -77,24 +70,6 @@
                 android:layout_height="0dip"
                 android:layout_width="0dip"
                 android:visibility="gone"/>
-        </view>
-
-        <!-- Right panel detail view for Groups tab -->
-        <view
-            class="com.android.contacts.widget.TransitionAnimationView"
-            android:id="@+id/group_details_view"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:visibility="gone">
-
-            <!-- This is the group detail page -->
-            <fragment
-                android:id="@+id/group_detail_fragment"
-                class="com.android.contacts.group.GroupDetailFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone" />
         </view>
 
         <!-- Two-panel view under the Favorites tab -->
