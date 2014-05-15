@@ -1024,23 +1024,21 @@ public class ContactEditorFragment extends Fragment implements
         // Set visibility of menus
         doneMenu.setVisible(false);
 
-        // Split only if more than one raw profile and not a user profile
-        splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile());
-
-        // Cannot join a user profile
-        joinMenu.setVisible(!isEditingUserProfile());
-
         // Discard menu is only available if at least one raw contact is editable
         discardMenu.setVisible(mState != null &&
                 mState.getFirstWritableRawContact(mContext) != null);
 
         // help menu depending on whether this is inserting or editing
         if (Intent.ACTION_INSERT.equals(mAction)) {
-            // inserting
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
+            splitMenu.setVisible(false);
+            joinMenu.setVisible(false);
         } else if (Intent.ACTION_EDIT.equals(mAction)) {
-            // editing
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
+            // Split only if more than one raw profile and not a user profile
+            splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile());
+            // Cannot join a user profile
+            joinMenu.setVisible(!isEditingUserProfile());
         } else {
             // something else, so don't show the help menu
             helpMenu.setVisible(false);
