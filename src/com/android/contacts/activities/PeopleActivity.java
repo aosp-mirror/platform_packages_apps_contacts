@@ -85,7 +85,7 @@ import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.widget.TransitionAnimationView;
@@ -1287,12 +1287,14 @@ public class PeopleActivity extends ContactsActivity
         final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
 
         final MenuItem clearFrequentsMenu = menu.findItem(R.id.menu_clear_frequents);
+        final MenuItem helpMenu = menu.findItem(R.id.menu_help);
 
         final boolean isSearchMode = mActionBarAdapter.isSearchMode();
         if (isSearchMode) {
             addContactMenu.setVisible(false);
             contactsFilterMenu.setVisible(false);
             clearFrequentsMenu.setVisible(false);
+            helpMenu.setVisible(false);
         } else {
             switch (mActionBarAdapter.getCurrentTab()) {
                 case TabState.FAVORITES:
@@ -1306,6 +1308,7 @@ public class PeopleActivity extends ContactsActivity
                     clearFrequentsMenu.setVisible(false);
                     break;
             }
+            HelpUtils.prepareHelpMenuItem(this, helpMenu, R.string.help_url_people_main);
         }
         final boolean showMiscOptions = !isSearchMode;
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);

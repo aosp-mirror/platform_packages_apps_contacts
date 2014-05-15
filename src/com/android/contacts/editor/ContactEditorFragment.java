@@ -85,10 +85,12 @@ import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.UiClosables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1016,6 +1018,7 @@ public class ContactEditorFragment extends Fragment implements
         final MenuItem doneMenu = menu.findItem(R.id.menu_done);
         final MenuItem splitMenu = menu.findItem(R.id.menu_split);
         final MenuItem joinMenu = menu.findItem(R.id.menu_join);
+        final MenuItem helpMenu = menu.findItem(R.id.menu_help);
         final MenuItem discardMenu = menu.findItem(R.id.menu_discard);
 
         // Set visibility of menus
@@ -1030,6 +1033,18 @@ public class ContactEditorFragment extends Fragment implements
         // Discard menu is only available if at least one raw contact is editable
         discardMenu.setVisible(mState != null &&
                 mState.getFirstWritableRawContact(mContext) != null);
+
+        // help menu depending on whether this is inserting or editing
+        if (Intent.ACTION_INSERT.equals(mAction)) {
+            // inserting
+            HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
+        } else if (Intent.ACTION_EDIT.equals(mAction)) {
+            // editing
+            HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
+        } else {
+            // something else, so don't show the help menu
+            helpMenu.setVisible(false);
+        }
 
         int size = menu.size();
         for (int i = 0; i < size; i++) {
