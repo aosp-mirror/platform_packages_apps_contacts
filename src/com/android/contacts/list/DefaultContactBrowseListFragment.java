@@ -141,7 +141,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     /** Show or hide the directory-search progress spinner. */
     private void showSearchProgress(boolean show) {
-        mSearchProgress.setVisibility(show ? View.VISIBLE : View.GONE);
+        if (mSearchProgress != null) {
+            mSearchProgress.setVisibility(show ? View.VISIBLE : View.GONE);
+        }
     }
 
     private void checkHeaderViewVisibility() {
