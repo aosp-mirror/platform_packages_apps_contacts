@@ -95,6 +95,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mIncludeProfile;
     private boolean mSearchMode;
     private boolean mVisibleScrollbarEnabled;
+    private boolean mShowEmptyListForEmptyQuery;
     private int mVerticalScrollbarPosition = getDefaultVerticalScrollbarPosition();
     private String mQueryString;
     private int mDirectorySearchMode = DirectoryListLoader.SEARCH_MODE_NONE;
@@ -560,9 +561,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     /**
-     * Enter/exit search mode.  By design, a fragment enters search mode only when it has a
-     * non-empty query text, so the mode must be tightly related to the current query.
-     * For this reason this method must only be called by {@link #setQueryString}.
+     * Enter/exit search mode. This is method is tightly related to the current query, and should
+     * only be called by {@link #setQueryString}.
      *
      * Also note this method doesn't call {@link #reloadData()}; {@link #setQueryString} does it.
      */
@@ -605,18 +605,29 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     public void setQueryString(String queryString, boolean delaySelection) {
-        // Normalize the empty query.
-        if (TextUtils.isEmpty(queryString)) queryString = null;
-
         if (!TextUtils.equals(mQueryString, queryString)) {
+            if (mShowEmptyListForEmptyQuery && mAdapter != null && mListView != null) {
+                if (TextUtils.isEmpty(mQueryString)) {
+                    // Restore the adapter if the query used to be empty.
+                    mListView.setAdapter(mAdapter);
+                } else if (TextUtils.isEmpty(queryString)) {
+                    // Instantly clear the list view if the new query is empty.
+                    mListView.setAdapter(null);
+                }
+            }
+
             mQueryString = queryString;
-            setSearchMode(!TextUtils.isEmpty(mQueryString));
+            setSearchMode(!TextUtils.isEmpty(mQueryString) || mShowEmptyListForEmptyQuery);
 
             if (mAdapter != null) {
                 mAdapter.setQueryString(queryString);
                 reloadData();
             }
         }
+    }
+
+    public void setShowEmptyListForNullQuery(boolean show) {
+        mShowEmptyListForEmptyQuery = show;
     }
 
     public int getDirectoryLoaderId() {
