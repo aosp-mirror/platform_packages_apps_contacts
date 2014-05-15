@@ -46,4 +46,16 @@
       shown. Otherwise it will be part of the content on the group detail page.
     -->
     <bool name="config_show_group_action_in_action_bar">false</bool>
+
+    <!-- Help URL pointing to main TOC for People. This is intentionally empty because
+         the overlay will fill this in during build time. -->
+    <string name="help_url_people_main"></string>
+
+    <!-- Help URL pointing to adding contacts in People. This is intentionally empty because
+         the overlay will fill this in during build time. -->
+    <string name="help_url_people_add"></string>
+
+    <!-- Help URL pointing to editing contacts in People. This is intentionally empty because
+         the overlay will fill this in during build time. -->
+    <string name="help_url_people_edit"></string>
 </resources>
