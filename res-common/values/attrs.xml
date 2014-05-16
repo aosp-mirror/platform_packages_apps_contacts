@@ -75,4 +75,5 @@
     <declare-styleable name="Favorites">
         <attr name="favorites_padding_bottom" format="dimension"/>
     </declare-styleable>
+
 </resources>

@@ -24,7 +24,7 @@
         <!-- Note in the referenced styles that we assign hard widths to these components
              because we want them to line up vertically when we arrange them in an MxN grid -->
 
-        <TextView
+        <com.android.contacts.common.dialpad.DialpadTextView
             android:id="@+id/dialpad_key_number"
             style="@style/DialpadKeyNumberStyle" />
 

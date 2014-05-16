@@ -33,12 +33,12 @@
             style="@style/DialpadKeyButtonStyle">
             <LinearLayout
                 style="@style/DialpadKeyInternalLayoutStyle">
-                <TextView
+                <com.android.contacts.common.dialpad.DialpadTextView
                     android:id="@+id/dialpad_key_number"
                     style="@style/DialpadKeyNumberStyle" />
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dialpad_subtext_height" >
+                    android:layout_height="wrap_content" >
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -46,6 +46,8 @@
                         android:src="@drawable/ic_dial_action_vm"
                         android:scaleType="fitCenter"
                         android:layout_centerInParent="true" />
+                    <!-- Place empty text view so vertical height is same as other dialpad keys. -->
+                    <TextView style="@style/DialpadKeyLettersStyle" />
                 </RelativeLayout>
             </LinearLayout>
         </com.android.contacts.common.dialpad.DialpadKeyButton>
@@ -105,7 +107,7 @@
             style="@style/DialpadKeyButtonStyle">
             <LinearLayout
                 style="@style/DialpadKeyInternalLayoutStyle">
-                <TextView
+                <com.android.contacts.common.dialpad.DialpadTextView
                     android:id="@id/dialpad_key_number"
                     style="@style/DialpadKeyStarPoundStyle" />
             </LinearLayout>
@@ -118,7 +120,7 @@
             style="@style/DialpadKeyButtonStyle">
             <LinearLayout
                 style="@style/DialpadKeyInternalLayoutStyle">
-                <TextView
+                <com.android.contacts.common.dialpad.DialpadTextView
                     android:id="@id/dialpad_key_number"
                     style="@style/DialpadKeyStarPoundStyle" />
             </LinearLayout>

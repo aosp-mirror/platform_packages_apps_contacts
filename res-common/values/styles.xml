@@ -99,8 +99,9 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:textColor">@color/dialpad_primary_text_color</item>
         <item name="android:textSize">@dimen/dialpad_key_numbers_size</item>
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/dialpad_key_number_margin_bottom</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -117,9 +118,9 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:textColor">@color/dialpad_secondary_text_color</item>
         <item name="android:textSize">@dimen/dialpad_key_letters_size</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
     <style name="DialpadKeyButtonStyle">
@@ -128,6 +129,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">13</item>
+        <item name="android:minHeight">@dimen/dialpad_key_height</item>
         <item name="android:background">@drawable/btn_dialpad_key</item>
         <item name="android:focusable">true</item>
     </style>
@@ -140,6 +142,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
     </style>
 </resources>

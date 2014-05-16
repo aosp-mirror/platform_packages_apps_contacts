@@ -105,10 +105,11 @@
     <dimen name="tab_text_size">14sp</dimen>
 
     <!-- Text dimensions for dialpad keys -->
-    <dimen name="dialpad_key_numbers_size">34dp</dimen>
-    <dimen name="dialpad_key_letters_size">8dp</dimen>
-    <dimen name="dialpad_key_star_pound_size">23dp</dimen>
+    <dimen name="dialpad_key_numbers_size">36sp</dimen>
+    <dimen name="dialpad_key_letters_size">8sp</dimen>
+    <dimen name="dialpad_key_star_pound_size">23sp</dimen>
     <dimen name="dialpad_key_height">64dp</dimen>
+    <dimen name="dialpad_key_number_margin_bottom">2dp</dimen>
     <dimen name="dialpad_subtext_height">10dp</dimen>
     <!-- The bottom row of the dialpad is slightly taller to account for the dial button -->
     <dimen name="dialpad_bottom_key_height">72dp</dimen>
