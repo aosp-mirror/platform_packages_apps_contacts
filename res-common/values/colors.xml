@@ -79,6 +79,10 @@
          actionbar_background_color. -->
     <color name="actionbar_background_color">#0fc6dc</color>
 
+    <!-- Color of action bar text. Ensure this stays in sync with packages/Telephony
+    phone_settings_actionbar_text_color-->
+    <color name="actionbar_text_color">#ffffff</color>
+    <color name="actionbar_unselected_text_color">#a6ffffff</color>
 
     <!-- Colors for the dialpad -->
     <color name="background_dialpad">#ffffff</color>

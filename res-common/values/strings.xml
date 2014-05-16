@@ -744,6 +744,10 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     -->
     <string name="description_voicemail_button">voicemail</string>
 
+    <!-- The font-family to use for tab text.
+         Do not translate. -->
+    <string name="tab_font_family">sans-serif</string>
+
     <!-- The digit to be displayed on the 0 key of the dialpad [CHAR LIMIT=1]-->
     <string name="dialpad_0_number">0</string>
     <!-- The digit to be displayed on the 1 key of the dialpad [CHAR LIMIT=1]-->
