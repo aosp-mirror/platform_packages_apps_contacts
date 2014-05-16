@@ -273,13 +273,11 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g> found</item>
     </plurals>
 
-    <!-- The content description for the "all contacts" tab.
+    <!-- The title of "all contacts" tab. [CHAR LIMIT=14] -->
+    <string name="all_contacts_tab_label">All contacts</string>
 
-         Note: AccessibilityServices use this attribute to announce what the view represents.
-         This is especially valuable for views without textual representation like ImageView.
-
-         [CHAR LIMIT=NONE] -->
-    <string name="contactsAllLabel">All contacts</string>
+    <!-- The title of "favorites" tab. [CHAR LIMIT=14] -->
+    <string name="favorites_tab_label">Favorites</string>
 
     <!-- Action string for calling back a number in the call log -->
     <string name="callBack">Call back</string>
