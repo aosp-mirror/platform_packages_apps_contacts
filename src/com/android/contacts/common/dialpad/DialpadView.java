@@ -138,7 +138,9 @@ public class DialpadView extends LinearLayout {
         digits.setCursorVisible(false);
 
         View overflowMenuButton = findViewById(R.id.dialpad_overflow);
-        overflowMenuButton.setVisibility(canBeEdited ? View.VISIBLE : View.GONE);
+        if (!canBeEdited) {
+            overflowMenuButton.setVisibility(View.GONE);
+        }
 
         mCanDigitsBeEdited = canBeEdited;
     }
