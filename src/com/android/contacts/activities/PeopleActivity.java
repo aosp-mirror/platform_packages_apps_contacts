@@ -1038,7 +1038,9 @@ public class PeopleActivity extends ContactsActivity
             if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
                 setupContactDetailFragment(contactLookupUri);
             } else {
-                Intent intent = new Intent(Intent.ACTION_VIEW, contactLookupUri);
+                Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
+                        getCurrentFocus().getRootView(), contactLookupUri, QuickContact.MODE_LARGE,
+                        null);
                 startActivity(intent);
             }
         }
@@ -1215,7 +1217,9 @@ public class PeopleActivity extends ContactsActivity
             if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
                 QuickContact.showQuickContact(PeopleActivity.this, targetRect, contactUri, 0, null);
             } else {
-                startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
+                Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
+                        targetRect, contactUri, QuickContact.MODE_LARGE, null);
+                startActivity(intent);
             }
         }
 
