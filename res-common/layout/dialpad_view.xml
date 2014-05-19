@@ -41,7 +41,8 @@
             android:paddingLeft="@dimen/dialpad_digits_padding"
             android:paddingRight="@dimen/dialpad_digits_menu_right_padding"
             android:contentDescription="@string/description_dialpad_overflow"
-            android:gravity="center" />
+            android:gravity="center"
+            android:visibility="gone" />
 
         <view class="com.android.contacts.common.dialpad.DigitsEditText"
             android:id="@+id/digits"
