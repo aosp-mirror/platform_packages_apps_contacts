@@ -807,7 +807,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             if (DEBUG) Log.d(TAG, "loadPhoto request: " + photoUri);
             if (isDefaultImageUri(photoUri)) {
                 createAndApplyDefaultImageForUri(view, photoUri, requestedExtent, darkTheme,
-                        defaultProvider);
+                        isCircular, defaultProvider);
             } else {
                 loadPhotoByIdOrUri(view, Request.createFromUri(photoUri, requestedExtent,
                         darkTheme, isCircular, defaultProvider));
@@ -816,8 +816,9 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     }
 
     private void createAndApplyDefaultImageForUri(ImageView view, Uri uri, int requestedExtent,
-            boolean darkTheme, DefaultImageProvider defaultProvider) {
+            boolean darkTheme, boolean isCircular, DefaultImageProvider defaultProvider) {
         DefaultImageRequest request = getDefaultImageRequestFromUri(uri);
+        request.isCircular = isCircular;
         defaultProvider.applyDefaultImage(view, requestedExtent, darkTheme, request);
     }
 
