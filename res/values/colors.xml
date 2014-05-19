@@ -36,6 +36,4 @@
     <!-- Color of the text for buttons in the action bar  -->
     <color name="action_bar_button_text_color">#FFFFFF</color>
 
-    <!-- Color of the selected tab underline (overriding value in ContactsCommon) -->
-    <color name="tab_selected_color">#ffeeff41</color>
 </resources>
