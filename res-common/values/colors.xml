@@ -88,8 +88,7 @@
     <color name="background_dialpad">#ffffff</color>
     <color name="background_dialpad_pressed">#ececec</color>
     <color name="dialpad_primary_text_color">#26c6da</color>
-    <!-- Secondary color of dialpad text; black at 40% opacity. -->
-    <color name="dialpad_secondary_text_color">#66000000</color>
+    <color name="dialpad_secondary_text_color">#999999</color>
     <!-- 75% opacity, black. -->
     <color name="dialpad_digits_text_color">#bf000000</color>
     <color name="dialpad_separator_line_color">#dadada</color>
