@@ -104,8 +104,10 @@
     <item quantity="one" msgid="4826918429708286628">"1 contact trouvé"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> contacts trouvés"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6479708629170672169">"Tous les contacts"</string>
-    <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groupes"</string>
+    <!-- no translation found for all_contacts_tab_label (6250372293594147703) -->
+    <skip />
+    <!-- no translation found for favorites_tab_label (1524869648904016414) -->
+    <skip />
     <string name="callBack" msgid="5498224409038809224">"Rappeler"</string>
     <string name="callAgain" msgid="3197312117049874778">"Renouveler l\'appel"</string>
     <string name="returnCall" msgid="8171961914203617813">"Rappeler"</string>
