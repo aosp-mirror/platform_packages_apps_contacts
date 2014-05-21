@@ -14,14 +14,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Tab background -->
-    <item android:drawable="@color/tab_default_color" />
-    <item>
-        <shape android:shape="rectangle" >
-            <stroke
-                android:width="4dp"
-                android:color="@color/focus_color" />
-        </shape>
-    </item>
-</layer-list>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+    <stroke
+        android:width="4dp"
+        android:color="@color/focus_color" />
+</shape>
