@@ -22,14 +22,32 @@ import android.view.View;
 
 public class AnimationUtils {
     public static void crossFadeViews(final View fadeIn, final View fadeOut, int duration) {
+        fadeOut.animate().cancel();
         fadeOut.animate().alpha(0).withLayer().setDuration(duration)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         fadeOut.setVisibility(View.GONE);
                     }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        fadeOut.setVisibility(View.GONE);
+                        fadeOut.setAlpha(0);
+                    }
                 }).start();
-        fadeIn.setVisibility(View.VISIBLE);
-        fadeIn.animate().alpha(1).setDuration(duration).withLayer().setListener(null).start();
+        fadeIn.animate().cancel();
+        fadeIn.animate().alpha(1).setDuration(duration).withLayer().setListener(
+                new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        fadeIn.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        fadeIn.setAlpha(1);
+                    }
+                }).start();
     }
 }
