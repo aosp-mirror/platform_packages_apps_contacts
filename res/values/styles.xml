@@ -53,19 +53,16 @@
         <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
-    <style name="PeopleTheme" parent="@android:style/Theme.Quantum.Light">
+    <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
-        <!-- Style for the tabs -->
-        <item name="android:actionBarTabStyle">@style/ContactsActionBarTabStyle</item>
-        <!-- Style for the tab bar (for the divider between tabs) -->
-        <item name="android:actionBarTabBarStyle">@style/ContactsActionBarTabBarStyle</item>
-        <!-- Style for the tab bar text (for text on tabs) -->
-        <item name="android:actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
-        <!-- Style for the overflow button in the actionbar. -->
-        <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_menu_back</item>
+        <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflow</item>
+        <item name="android:actionBarItemBackground">@drawable/action_bar_item_background</item>
+        <item name="android:actionBarWidgetTheme">@style/ContactsActionBarTheme</item>
+        <item name="android:actionBarTabStyle">@style/ContactsActionBarTabView</item>
+        <item name="android:actionDropDownStyle">@style/ContactsActionBarDropDownStyle</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
-        <item name="android:icon">@android:color/transparent</item>
         <item name="android:listViewStyle">@style/ListViewStyle</item>
         <item name="android:windowBackground">@color/background_primary</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
@@ -102,45 +99,11 @@
         <item name="android:src">@drawable/ic_overflow_menu</item>
     </style>
 
-    <style name="ContactsActionBarStyle" parent="@android:style/Widget.Quantum.Light.ActionBar">
-        <item name="android:background">@color/actionbar_background_color</item>
-        <item name="android:titleTextStyle">@style/ContactsActionBarTitleText</item>
-        <item name="android:backgroundStacked">@color/actionbar_background_color</item>
-        <!-- Empty icon -->
-        <item name="android:icon">@android:color/transparent</item>
-    </style>
-
-    <!-- Styling for tabs. -->
-    <style name="ContactsActionBarTabStyle" parent="@android:style/Widget.Quantum.Light.ActionBar.TabView">
+    <style name="ContactsActionBarStyle" parent="@android:Widget.Holo.Light.ActionBar">
         <item name="android:background">@drawable/action_bar_tab</item>
-        <item name="android:showDividers">none</item>
-    </style>
-
-    <!-- Text in the action bar at the top of the screen -->
-    <style name="ContactsActionBarTitleText"
-           parent="@android:style/TextAppearance.Quantum.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/actionbar_text_color</item>
-    </style>
-
-    <!-- Styling for the tab bar; handles styling of the divider line. -->
-    <style name="ContactsActionBarTabBarStyle"
-           parent="@android:style/Widget.Quantum.ActionBar.TabBar">
-        <item name="android:showDividers">none</item>
-    </style>
-
-    <!-- Text style for tabs. -->
-    <style name="ContactsActionBarTabTextStyle"
-           parent="android:style/Widget.Quantum.Light.ActionBar.TabText">
-        <item name="android:textColor">@color/tab_text_color</item>
-        <item name="android:textSize">@dimen/tab_text_size</item>
-        <item name="android:fontFamily">@string/tab_font_family</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <!-- Action bar overflow menu icon. -->
-    <style name="ContactsActionBarOverflowQP"
-           parent="@android:style/Widget.Quantum.Light.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_menu_overflow_lt</item>
+        <item name="android:backgroundSplit">@drawable/action_bar_tab</item>
+        <item name="android:backgroundStacked">@drawable/action_bar_tab</item>
+        <item name="android:displayOptions"></item>
     </style>
 
     <style name="ContactsActionBarDropDownStyle" parent="@android:style/Widget.Holo.Light.Spinner">
