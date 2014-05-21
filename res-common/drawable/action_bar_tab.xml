@@ -14,8 +14,13 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<ripple  xmlns:android="http://schemas.android.com/apk/res/android"
+<layer-list  xmlns:android="http://schemas.android.com/apk/res/android"
     android:tint="@color/tab_pressed_color">
+    <item>
+        <ripple android:tint="@color/tab_pressed_color">
+            <item android:drawable="@color/tab_default_color" />
+        </ripple>
+    </item>
     <item>
         <selector>
             <item android:drawable="@drawable/tab_selected"
@@ -32,7 +37,6 @@
                     android:state_selected="false" />
             <item android:drawable="@drawable/tab_selected"
                     android:state_selected="true" />
-            <item android:drawable="@color/tab_default_color" />
         </selector>
     </item>
-</ripple>
+</layer-list>

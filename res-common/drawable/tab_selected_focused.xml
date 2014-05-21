@@ -16,15 +16,7 @@
 -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
     <!-- Tab selected underline -->
-    <item android:drawable="@color/tab_selected_color" />
-    <!-- Tab background -->
-    <item android:drawable="@color/tab_default_color"
-            android:bottom="@dimen/tab_selected_underline_height" />
-    <item>
-        <shape android:shape="rectangle" >
-            <stroke
-                android:width="4dp"
-                android:color="@color/focus_color" />
-        </shape>
-    </item>
+    <item android:drawable="@drawable/tab_selected" />
+    <!-- Focus rectangle -->
+    <item android:drawable="@drawable/tab_unselected_focused" />
 </layer-list>
