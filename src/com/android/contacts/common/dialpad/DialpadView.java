@@ -166,11 +166,8 @@ public class DialpadView extends LinearLayout {
         for (int i = 0; i < mButtonIds.length; i++) {
             dialpadKey = (DialpadKeyButton) findViewById(mButtonIds[i]);
             dialpadKey.setTranslationY(translateDistance);
-            dialpadKey.setAlpha(0);
             dialpadKey.animate()
-                    .withLayer()
                     .translationY(0)
-                    .alpha(1.0f)
                     .setInterpolator(mButtonPathInterpolator)
                     .setStartDelay(getKeyButtonAnimationDelay(mButtonIds[i]))
                     .setDuration(getKeyButtonAnimationDuration(mButtonIds[i]));
