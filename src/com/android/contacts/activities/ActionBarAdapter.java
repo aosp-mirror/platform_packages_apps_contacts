@@ -82,6 +82,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private final MyNavigationListener mNavigationListener;
 
     private boolean mShowHomeIcon;
+    private boolean mShowTabsAsText;
 
     public interface TabState {
         public static int FAVORITES = 0;
@@ -131,6 +132,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mShowHomeIcon = mContext.getResources().getBoolean(R.bool.show_home_icon);
 
         // On wide screens, show the tabs as text (instead of icons)
+        mShowTabsAsText = isUsingTwoPanes;
         if (isUsingTwoPanes) {
             mActionBarNavigationMode = ActionBar.NAVIGATION_MODE_LIST;
             mTabListener = null;
@@ -175,15 +177,15 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     }
 
     private void setupTabs() {
-        addTab(TabState.FAVORITES, R.string.favorites_tab_label);
-        addTab(TabState.ALL, R.string.all_contacts_tab_label);
+        addTab(TabState.FAVORITES, R.drawable.ic_tab_starred, R.string.contactsFavoritesLabel);
+        addTab(TabState.ALL, R.drawable.ic_tab_all, R.string.contactsAllLabel);
     }
 
     private void setupNavigationList() {
         ArrayAdapter<String> navAdapter = new CustomArrayAdapter(mContext,
                 R.layout.people_navigation_item);
-        navAdapter.add(mContext.getString(R.string.favorites_tab_label));
-        navAdapter.add(mContext.getString(R.string.all_contacts_tab_label));
+        navAdapter.add(mContext.getString(R.string.contactsFavoritesLabel));
+        navAdapter.add(mContext.getString(R.string.contactsAllLabel));
         mActionBar.setListNavigationCallbacks(navAdapter, mNavigationListener);
     }
 
@@ -248,10 +250,15 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mListener = listener;
     }
 
-    private void addTab(int expectedTabIndex, int description) {
+    private void addTab(int expectedTabIndex, int icon, int description) {
         final Tab tab = mActionBar.newTab();
         tab.setTabListener(mTabListener);
-        tab.setText(description);
+        if (mShowTabsAsText) {
+            tab.setText(description);
+        } else {
+            tab.setIcon(icon);
+            tab.setContentDescription(description);
+        }
         mActionBar.addTab(tab);
         if (expectedTabIndex != tab.getPosition()) {
             throw new IllegalStateException("Tabs must be created in the right order");
@@ -392,8 +399,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
         mActionBar.setHomeButtonEnabled(mSearchMode);
 
-
-
         if (current != newFlags) {
             // Pass the mask here to preserve other flags that we're not interested here.
             mActionBar.setDisplayOptions(newFlags, MASK);
@@ -444,6 +449,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                         getNavigationItemPositionFromTabPosition(mCurrentTab));
                 mNavigationListener.mIgnoreNavigationItemSelected = false;
             }
+            mActionBar.setTitle(null);
             // Since we have the {@link SearchView} in a custom action bar, we must manually handle
             // collapsing the {@link SearchView} when search mode is exited.
             if (isIconifiedChanging) {

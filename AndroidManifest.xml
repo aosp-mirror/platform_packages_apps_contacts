@@ -64,6 +64,7 @@
         <activity android:name=".activities.PeopleActivity"
             android:label="@string/people"
             android:theme="@style/PeopleTheme"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTop"
         >
