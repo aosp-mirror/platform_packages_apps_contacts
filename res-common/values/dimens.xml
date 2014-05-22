@@ -98,6 +98,9 @@
     <dimen name="floating_action_button_radius">28dp</dimen>
     <!-- Z translation of the floating action button -->
     <dimen name="floating_action_button_translation_z">5dp</dimen>
+    <!-- Padding to be applied to the bottom of lists to make space for the floating action
+         button -->
+    <dimen name="floating_action_button_list_bottom_padding">88dp</dimen>
 
     <!-- Height of the selection indicator of a tab. -->
     <dimen name="tab_selected_underline_height">3dp</dimen>
