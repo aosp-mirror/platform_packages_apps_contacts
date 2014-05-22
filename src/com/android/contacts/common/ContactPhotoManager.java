@@ -978,7 +978,11 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             // into a circle.
             final int height = bitmap.getHeight();
             final int width = bitmap.getWidth();
-            if (height != width && holder.originalSmallerExtent < mThumbnailSize) {
+
+            // The smaller dimension of a scaled bitmap can range from anywhere from 0 to just
+            // below twice the length of a thumbnail image due to the way we calculate the optimal
+            // sample size.
+            if (height != width && Math.min(height, width) <= mThumbnailSize * 2) {
                 final int dimension = Math.min(height, width);
                 bitmap = ThumbnailUtils.extractThumbnail(bitmap, dimension, dimension);
             }
