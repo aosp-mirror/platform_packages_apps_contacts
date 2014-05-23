@@ -20,6 +20,7 @@ import android.content.res.Resources;
 import android.graphics.Outline;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.android.contacts.common.R;
 
@@ -77,5 +78,20 @@ public class ViewUtil {
         });
         view.setTranslationZ(
                 res.getDimensionPixelSize(R.dimen.floating_action_button_translation_z));
+    }
+
+    /**
+     * Adds padding to the bottom of the given {@link ListView} so that the floating action button
+     * does not obscure any content.
+     *
+     * @param listView to add the padding to
+     * @param res valid resources object
+     */
+    public static void addBottomPaddingToListViewForFab(ListView listView, Resources res) {
+        final int fabPadding = res.getDimensionPixelSize(
+                R.dimen.floating_action_button_list_bottom_padding);
+        listView.setPaddingRelative(listView.getPaddingStart(), listView.getPaddingTop(),
+                listView.getPaddingEnd(), listView.getPaddingBottom() + fabPadding);
+        listView.setClipToPadding(false);
     }
 }
