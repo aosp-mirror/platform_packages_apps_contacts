@@ -186,6 +186,7 @@ public class ContactListItemView extends ViewGroup
     private boolean mPhotoViewWidthAndHeightAreReady = false;
 
     private int mNameTextViewHeight;
+    private int mNameTextViewTextColor;
     private int mPhoneticNameTextViewHeight;
     private int mLabelViewHeight;
     private int mDataViewHeight;
@@ -251,6 +252,9 @@ public class ContactListItemView extends ViewGroup
         mLabelViewWidthWeight = a.getInteger(
                 R.styleable.ContactListItemView_list_item_label_width_weight,
                 mLabelViewWidthWeight);
+        mNameTextViewTextColor = a.getColor(
+                R.styleable.ContactListItemView_list_item_name_text_color,
+                mNameTextViewTextColor);
 
         setPaddingRelative(
                 a.getDimensionPixelOffset(
@@ -833,6 +837,7 @@ public class ContactListItemView extends ViewGroup
             mNameTextView.setSingleLine(true);
             mNameTextView.setEllipsize(getTextEllipsis());
             mNameTextView.setTextAppearance(getContext(), R.style.TextAppearanceMedium);
+            mNameTextView.setTextColor(mNameTextViewTextColor);
             // Manually call setActivated() since this view may be added after the first
             // setActivated() call toward this whole item view.
             mNameTextView.setActivated(isActivated());
