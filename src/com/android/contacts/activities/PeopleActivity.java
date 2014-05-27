@@ -47,6 +47,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
@@ -82,6 +83,7 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
+import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.util.DialogManager;
@@ -98,10 +100,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Displays a list to browse contacts. For xlarge screens, this also displays a detail-pane on
  * the right.
  */
-public class PeopleActivity extends ContactsActivity
-        implements View.OnCreateContextMenuListener, ActionBarAdapter.Listener,
+public class PeopleActivity extends ContactsActivity implements
+        View.OnCreateContextMenuListener,
+        View.OnClickListener,
+        ActionBarAdapter.Listener,
         DialogManager.DialogShowingViewActivity,
-        ContactListFilterController.ContactListFilterListener, ProviderStatusListener {
+        ContactListFilterController.ContactListFilterListener,
+        ProviderStatusListener {
 
     private static final String TAG = "PeopleActivity";
 
@@ -149,6 +154,9 @@ public class PeopleActivity extends ContactsActivity
     private View mBrowserView;
     private TransitionAnimationView mPeopleActivityView;
     private TransitionAnimationView mContactDetailsView;
+
+    private View mFloatingActionButtonContainer;
+    private ImageButton mFloatingActionButton;
 
     /** ViewPager for swipe, used only on the phone (i.e. one-pane mode) */
     private ViewPager mTabPager;
@@ -421,6 +429,12 @@ public class PeopleActivity extends ContactsActivity
         // Configure action bar
         mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar(), isUsingTwoPanes);
         mActionBarAdapter.initialize(savedState, mRequest);
+
+        // Configure action button
+        mFloatingActionButtonContainer = findViewById(R.id.floating_action_button_container);
+        ViewUtil.setupFloatingActionButton(mFloatingActionButtonContainer, getResources());
+        mFloatingActionButton = (ImageButton) findViewById(R.id.floating_action_button);
+        mFloatingActionButton.setOnClickListener(this);
 
         invalidateOptionsMenuIfNeeded();
     }
@@ -1581,5 +1595,21 @@ public class PeopleActivity extends ContactsActivity
     // Visible for testing
     public ContactDetailFragment getDetailFragment() {
         return mContactDetailFragment;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.floating_action_button:
+                Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                Bundle extras = getIntent().getExtras();
+                if (extras != null) {
+                    intent.putExtras(extras);
+                }
+                startActivity(intent);
+                break;
+        default:
+            Log.wtf(TAG, "Unexpected onClick event from " + view);
+        }
     }
 }

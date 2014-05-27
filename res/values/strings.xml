@@ -644,4 +644,8 @@
 
     <!-- Description when picture in the contact detail view is selected. [CHAR LIMIT=NONE] -->
     <string name="contact_detail_picture_description">Picture. Select to change</string>
+
+    <!-- Content description for the button that adds a new contact
+         [CHAR LIMIT=NONE] -->
+    <string name="action_menu_add_new_contact_button">add new contact</string>
 </resources>
