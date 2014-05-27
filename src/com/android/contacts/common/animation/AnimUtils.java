@@ -22,6 +22,8 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 
 public class AnimUtils {
+    public static final int DEFAULT_DURATION = -1;
+
     public static void crossFadeViews(final View fadeIn, final View fadeOut, int duration) {
         fadeIn(fadeIn, duration);
         fadeOut(fadeOut, duration);
@@ -42,7 +44,11 @@ public class AnimUtils {
                 fadeOut.setVisibility(View.GONE);
                 fadeOut.setAlpha(0);
             }
-        }).setDuration(duration).start();
+        });
+        if (duration != DEFAULT_DURATION) {
+            animator.setDuration(duration);
+        }
+        animator.start();
     }
 
     public static void fadeIn(final View fadeIn, int duration) {
@@ -59,6 +65,10 @@ public class AnimUtils {
             public void onAnimationCancel(Animator animation) {
                 fadeIn.setAlpha(1);
             }
-        }).setDuration(duration).start();
+        });
+        if (duration != DEFAULT_DURATION) {
+            animator.setDuration(duration);
+        }
+        animator.start();
     }
 }
