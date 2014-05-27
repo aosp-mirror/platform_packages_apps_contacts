@@ -75,8 +75,9 @@
     <dimen name="empty_message_top_margin">48dip</dimen>
 
     <!-- contact browser list margins -->
-    <dimen name="contact_browser_list_item_photo_size">48dip</dimen>
-    <dimen name="contact_browser_list_top_margin">8dip</dimen>
+    <dimen name="contact_browser_list_item_text_size">16sp</dimen>
+    <dimen name="contact_browser_list_item_photo_size">40dp</dimen>
+    <dimen name="contact_browser_list_top_margin">12dp</dimen>
 
     <!-- Dimensions for "No contacts" string in PhoneFavoriteFragment for the All contacts
          with phone numbers section
