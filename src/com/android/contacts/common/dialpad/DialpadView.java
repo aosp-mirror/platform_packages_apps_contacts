@@ -19,7 +19,11 @@ package com.android.contacts.common.dialpad;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.RippleDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -44,6 +48,7 @@ public class DialpadView extends LinearLayout {
     private EditText mDigits;
     private ImageButton mDelete;
     private View mOverflowMenuButton;
+    private ColorStateList mRippleColor;
 
     private boolean mCanDigitsBeEdited;
 
@@ -66,6 +71,11 @@ public class DialpadView extends LinearLayout {
 
     public DialpadView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Dialpad);
+        mRippleColor = a.getColorStateList(R.styleable.Dialpad_dialpad_key_button_touch_tint);
+        a.recycle();
+
         mTranslateDistance = getResources().getDimensionPixelSize(
                 R.dimen.dialpad_key_button_translate_y);
     }
@@ -102,9 +112,17 @@ public class DialpadView extends LinearLayout {
             numberView = (TextView) dialpadKey.findViewById(R.id.dialpad_key_number);
             lettersView = (TextView) dialpadKey.findViewById(R.id.dialpad_key_letters);
             final String numberString = resources.getString(numberIds[i]);
+            final RippleDrawable rippleBackground =
+                    (RippleDrawable) resources.getDrawable(R.drawable.btn_dialpad_key);
+            if (mRippleColor != null) {
+                rippleBackground.setTint(mRippleColor, PorterDuff.Mode.SRC_ATOP);
+            }
+
             numberView.setText(numberString);
             numberView.setElegantTextHeight(false);
             dialpadKey.setContentDescription(numberString);
+            dialpadKey.setBackground(rippleBackground);
+
             if (lettersView != null) {
                 lettersView.setText(resources.getString(letterIds[i]));
             }
