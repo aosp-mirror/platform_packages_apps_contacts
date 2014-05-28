@@ -24,7 +24,7 @@ import android.os.Parcelable;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 
-import com.android.contacts.common.test.NeededForTesting;
+import com.android.contacts.common.testing.NeededForTesting;
 import com.google.common.collect.Sets;
 
 import java.util.HashSet;

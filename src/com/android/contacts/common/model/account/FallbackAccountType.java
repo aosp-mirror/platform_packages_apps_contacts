@@ -21,7 +21,7 @@ import android.util.Log;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.test.NeededForTesting;
+import com.android.contacts.common.testing.NeededForTesting;
 
 public class FallbackAccountType extends BaseAccountType {
     private static final String TAG = "FallbackAccountType";
