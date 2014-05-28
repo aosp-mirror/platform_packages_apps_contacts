@@ -34,6 +34,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -85,6 +86,7 @@ public class ContactListItemView extends ViewGroup
     private int mPresenceIconMargin = 4;
     private int mPresenceIconSize = 16;
     private int mTextIndent = 0;
+    private int mNameTextViewTextSize;
     private int mHeaderWidth;
     private Drawable mActivatedBackgroundDrawable;
 
@@ -255,6 +257,9 @@ public class ContactListItemView extends ViewGroup
                 mLabelViewWidthWeight);
         mNameTextViewTextColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_name_text_color, mNameTextViewTextColor);
+        mNameTextViewTextSize = (int) a.getDimension(
+                R.styleable.ContactListItemView_list_item_name_text_size,
+                (int) getResources().getDimension(R.dimen.contact_browser_list_item_text_size));
 
         setPaddingRelative(
                 a.getDimensionPixelOffset(
@@ -836,8 +841,9 @@ public class ContactListItemView extends ViewGroup
             mNameTextView = new TextView(getContext());
             mNameTextView.setSingleLine(true);
             mNameTextView.setEllipsize(getTextEllipsis());
-            mNameTextView.setTextAppearance(getContext(), R.style.TextAppearanceMedium);
             mNameTextView.setTextColor(mNameTextViewTextColor);
+            mNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                    mNameTextViewTextSize);
             // Manually call setActivated() since this view may be added after the first
             // setActivated() call toward this whole item view.
             mNameTextView.setActivated(isActivated());
