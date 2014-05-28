@@ -15,7 +15,7 @@
   limitations under the License.
   -->
 <resources>
-    <integer name="contact_tile_column_count_in_favorites">4</integer>
+    <integer name="contact_tile_column_count_in_favorites">3</integer>
 
     <!-- The number of characters in the snippet before we need to tokenize and ellipse. -->
     <integer name="snippet_length_before_tokenize">60</integer>
