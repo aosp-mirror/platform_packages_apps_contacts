@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.common.test;
+package com.android.contacts.common.testing;
 
 import android.content.ContentResolver;
 import android.content.SharedPreferences;
@@ -29,13 +29,14 @@ import java.util.HashMap;
  * while running tests. Activities, Services and the Application should check
  * with this class to see if a particular service has been overridden.
  */
+@NeededForTesting
 public class InjectedServices {
 
     private ContentResolver mContentResolver;
     private SharedPreferences mSharedPreferences;
     private HashMap<String, Object> mSystemServices;
 
-    @VisibleForTesting
+    @NeededForTesting
     public void setContentResolver(ContentResolver contentResolver) {
         this.mContentResolver = contentResolver;
     }
@@ -44,7 +45,7 @@ public class InjectedServices {
         return mContentResolver;
     }
 
-    @VisibleForTesting
+    @NeededForTesting
     public void setSharedPreferences(SharedPreferences sharedPreferences) {
         this.mSharedPreferences = sharedPreferences;
     }
@@ -53,7 +54,7 @@ public class InjectedServices {
         return mSharedPreferences;
     }
 
-    @VisibleForTesting
+    @NeededForTesting
     public void setSystemService(String name, Object service) {
         if (mSystemServices == null) {
             mSystemServices = Maps.newHashMap();
