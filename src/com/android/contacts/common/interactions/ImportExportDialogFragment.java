@@ -97,7 +97,10 @@ public class ImportExportDialogFragment extends DialogFragment
             }
         };
 
-        if (TelephonyManager.getDefault().hasIccCard()
+        final TelephonyManager manager =
+                (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+
+        if (manager != null && manager.hasIccCard()
                 && res.getBoolean(R.bool.config_allow_sim_import)) {
             adapter.add(R.string.import_from_sim);
         }
