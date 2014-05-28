@@ -710,6 +710,9 @@ public class QuickContactActivity extends Activity {
         @Override
         public void onPageSelected(int position) {
             final CheckableImageView actionView = getActionViewAt(position);
+            if (actionView == null) {
+                return;
+            }
             mTrackScroller.requestChildRectangleOnScreen(actionView,
                     new Rect(0, 0, actionView.getWidth(), actionView.getHeight()), false);
             // Don't render rectangle if we are currently scrolling to prevent it from flickering
