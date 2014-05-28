@@ -22,6 +22,7 @@ import android.content.res.TypedArray;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -186,7 +187,7 @@ public class ContactListItemView extends ViewGroup
     private boolean mPhotoViewWidthAndHeightAreReady = false;
 
     private int mNameTextViewHeight;
-    private int mNameTextViewTextColor;
+    private int mNameTextViewTextColor = Color.BLACK;
     private int mPhoneticNameTextViewHeight;
     private int mLabelViewHeight;
     private int mDataViewHeight;
@@ -253,8 +254,7 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_label_width_weight,
                 mLabelViewWidthWeight);
         mNameTextViewTextColor = a.getColor(
-                R.styleable.ContactListItemView_list_item_name_text_color,
-                mNameTextViewTextColor);
+                R.styleable.ContactListItemView_list_item_name_text_color, mNameTextViewTextColor);
 
         setPaddingRelative(
                 a.getDimensionPixelOffset(
