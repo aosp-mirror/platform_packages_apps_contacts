@@ -338,7 +338,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                         contactId,
                         rawContactId,
 
-                        "mockAccountName", "mockAccountType", null, "mockAccountType",
+                        "mockAccountName", "mockAccountType", null,
                         0, 1, 0,
                         "sync1", "sync2", "sync3", "sync4",
                         0, 0,
@@ -351,7 +351,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                         "syn1", "syn2", "syn3", "syn4",
 
                         0, 0,
-                        0, StructuredName.CONTENT_ITEM_TYPE, "mockPkg2",
+                        0, StructuredName.CONTENT_ITEM_TYPE,
 
                         "groupId",
 
