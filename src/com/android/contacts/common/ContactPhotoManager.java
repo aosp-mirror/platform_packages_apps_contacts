@@ -1514,7 +1514,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                         Log.v(TAG, "Cannot load photo " + uri);
                         cacheBitmap(originalUri, null, false, uriRequest.getRequestedExtent());
                     }
-                } catch (Exception ex) {
+                } catch (final Exception | OutOfMemoryError ex) {
                     Log.v(TAG, "Cannot load photo " + uri, ex);
                     cacheBitmap(originalUri, null, false, uriRequest.getRequestedExtent());
                 }
