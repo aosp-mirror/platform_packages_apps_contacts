@@ -134,6 +134,18 @@
     <dimen name="contact_picker_contact_list_min_height">550dip</dimen>
 
 
+    <!-- Margins for ExpandingEntryCardView -->
+    <dimen name="expanding_entry_card_marginStart">8dp</dimen>
+    <dimen name="expanding_entry_card_marginEnd">8dp</dimen>
+    <dimen name="expanding_entry_card_marginBottom">8dp</dimen>
+
+    <!-- Elevation of an ExpandingEntryCard -->
+    <dimen name="expanding_entry_card_elevation">2dp</dimen>
+
+    <!-- Top margin for the communication card, used to add space from header. -->
+    <dimen name="communication_card_marginTop">8dp</dimen>
+
+
     <!-- Size of the title text for a ExpandingEntryCardView -->
     <dimen name="expanding_entry_card_title_text_size">16sp</dimen>
     <!-- Padding for the title text for a ExpandingEntryCardView -->
