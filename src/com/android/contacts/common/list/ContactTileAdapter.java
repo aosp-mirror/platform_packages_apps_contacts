@@ -501,7 +501,7 @@ public class ContactTileAdapter extends BaseAdapter {
                 // We override onMeasure() for STARRED and we don't care the layout param there.
                 Resources resources = mContext.getResources();
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.setMargins(
                         resources.getDimensionPixelSize(R.dimen.detail_item_side_margin),

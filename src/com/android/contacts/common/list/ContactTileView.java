@@ -170,6 +170,10 @@ public abstract class ContactTileView extends FrameLayout {
         return mQuickContact;
     }
 
+    protected View getPhotoView() {
+        return mPhoto;
+    }
+
     /**
      * Returns the string that should actually be displayed as the contact's name. Subclasses
      * can override this to return formatted versions of the name - i.e. first name only.

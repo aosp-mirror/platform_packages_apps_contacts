@@ -35,6 +35,6 @@ public class ContactTileFrequentView extends ContactTileView {
 
     @Override
     protected int getApproximateImageSize() {
-        return ViewUtil.getConstantPreLayoutWidth(getQuickContact());
+        return ViewUtil.getConstantPreLayoutWidth(getPhotoView());
     }
 }
