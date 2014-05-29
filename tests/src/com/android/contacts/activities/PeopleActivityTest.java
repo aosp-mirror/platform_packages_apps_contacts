@@ -16,7 +16,6 @@
 
 package com.android.contacts.activities;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
@@ -36,7 +35,6 @@ import android.widget.TextView;
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
 import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.testing.InjectedServices;
 import com.android.contacts.common.test.mocks.ContactsMockContext;
 import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.android.contacts.common.test.mocks.MockContentProvider.Query;
@@ -47,6 +45,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.BaseAccountType;
+import com.android.contacts.common.test.InjectedServices;
 import com.android.contacts.common.test.mocks.MockAccountTypeManager;
 import com.android.contacts.common.test.mocks.MockContactPhotoManager;
 import com.android.contacts.common.test.mocks.MockSharedPreferences;
@@ -89,10 +88,6 @@ public class PeopleActivityTest
     public void setUp() {
         mContext = new ContactsMockContext(getInstrumentation().getTargetContext());
         mContactsProvider = mContext.getContactsProvider();
-        // The ContactsApplication performs this getType query to warm up the provider - see
-        // ContactsApplication#DelayedInitialization.doInBackground
-        mContactsProvider.expectTypeQuery(ContentUris.withAppendedId(Contacts.CONTENT_URI, 1),
-                Contacts.CONTENT_ITEM_TYPE);
         mSettingsProvider = mContext.getSettingsProvider();
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
