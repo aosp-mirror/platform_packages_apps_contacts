@@ -27,6 +27,7 @@ public class AnimUtils {
     public static final int DEFAULT_DURATION = -1;
     public static final Interpolator EASE_IN = new PathInterpolator(0.0f, 0.0f, 0.2f, 1.0f);
     public static final Interpolator EASE_OUT = new PathInterpolator(0.4f, 0.0f, 1.0f, 1.0f);
+    public static final Interpolator EASE_OUT_EASE_IN = new PathInterpolator(0.4f, 0, 0.2f, 1);
 
     public static void crossFadeViews(final View fadeIn, final View fadeOut, int duration) {
         fadeIn(fadeIn, duration);

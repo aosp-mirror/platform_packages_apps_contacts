@@ -16,27 +16,30 @@
 
 package com.android.contacts.common.dialpad;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Interpolator;
-import android.view.animation.PathInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.animation.AnimUtils;
 
 /**
  * View that displays a twelve-key phone dialpad.
  */
 public class DialpadView extends LinearLayout {
     private static final String TAG = DialpadView.class.getSimpleName();
+
+    private static final double DELAY_MULTIPLIER = 0.66;
+    private static final double DURATION_MULTIPLIER = 0.8;
 
     private EditText mDigits;
     private ImageButton mDelete;
@@ -50,7 +53,8 @@ public class DialpadView extends LinearLayout {
 
     // For animation.
     private static final int KEY_FRAME_DURATION = 33;
-    private final Interpolator mButtonPathInterpolator = new PathInterpolator(0.4f, 0, 0.2f, 1);
+
+    private int mTranslateDistance;
 
     public DialpadView(Context context) {
         this(context, null);
@@ -62,6 +66,8 @@ public class DialpadView extends LinearLayout {
 
     public DialpadView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mTranslateDistance = getResources().getDimensionPixelSize(
+                R.dimen.dialpad_key_button_translate_y);
     }
 
     @Override
@@ -159,18 +165,24 @@ public class DialpadView extends LinearLayout {
     }
 
     public void animateShow() {
-        DialpadKeyButton dialpadKey;
-        final int translateDistance = getResources().getDimensionPixelSize(
-                R.dimen.dialpad_key_button_translate_y);
+        // This is a hack; without this, the setTranslationY is delayed in being applied, and the
+        // numbers appear at their original position (0) momentarily before animating.
+        final AnimatorListenerAdapter showListener = new AnimatorListenerAdapter() {};
 
         for (int i = 0; i < mButtonIds.length; i++) {
-            dialpadKey = (DialpadKeyButton) findViewById(mButtonIds[i]);
-            dialpadKey.setTranslationY(translateDistance);
+            int delay = (int)(getKeyButtonAnimationDelay(mButtonIds[i]) * DELAY_MULTIPLIER);
+            int duration =
+                    (int)(getKeyButtonAnimationDuration(mButtonIds[i]) * DURATION_MULTIPLIER);
+            final DialpadKeyButton dialpadKey = (DialpadKeyButton) findViewById(mButtonIds[i]);
+
+            dialpadKey.setTranslationY(mTranslateDistance);
             dialpadKey.animate()
                     .translationY(0)
-                    .setInterpolator(mButtonPathInterpolator)
-                    .setStartDelay(getKeyButtonAnimationDelay(mButtonIds[i]))
-                    .setDuration(getKeyButtonAnimationDuration(mButtonIds[i]));
+                    .setInterpolator(AnimUtils.EASE_OUT_EASE_IN)
+                    .setStartDelay(delay)
+                    .setDuration(duration)
+                    .setListener(showListener)
+                    .start();
         }
     }
 
