@@ -67,13 +67,6 @@ public class ContactTileAdapter extends BaseAdapter {
     protected int mPresenceIndex;
     protected int mStatusIndex;
 
-    /**
-     * Only valid when {@link DisplayType#STREQUENT_PHONE_ONLY} is true
-     */
-    private int mPhoneNumberIndex;
-    private int mPhoneNumberTypeIndex;
-    private int mPhoneNumberLabelIndex;
-
     private boolean mIsQuickContactEnabled = false;
     private final int mPaddingInPixels;
 
@@ -86,12 +79,6 @@ public class ContactTileAdapter extends BaseAdapter {
          * Displays a mixed view type of starred and frequent contacts
          */
         STREQUENT,
-
-        /**
-         * Displays a mixed view type of starred and frequent contacts based on phone data.
-         * Also includes secondary touch target.
-         */
-        STREQUENT_PHONE_ONLY,
 
         /**
          * Display only starred contacts
@@ -158,10 +145,6 @@ public class ContactTileAdapter extends BaseAdapter {
         mStarredIndex = ContactTileLoaderFactory.STARRED;
         mPresenceIndex = ContactTileLoaderFactory.CONTACT_PRESENCE;
         mStatusIndex = ContactTileLoaderFactory.CONTACT_STATUS;
-
-        mPhoneNumberIndex = ContactTileLoaderFactory.PHONE_NUMBER;
-        mPhoneNumberTypeIndex = ContactTileLoaderFactory.PHONE_NUMBER_TYPE;
-        mPhoneNumberLabelIndex = ContactTileLoaderFactory.PHONE_NUMBER_LABEL;
     }
 
     private static boolean cursorIsValid(Cursor cursor) {
@@ -183,7 +166,6 @@ public class ContactTileAdapter extends BaseAdapter {
                 mNumFrequents = 0;
                 break;
             case STREQUENT:
-            case STREQUENT_PHONE_ONLY:
                 mNumFrequents = cursorIsValid(cursor) ?
                     cursor.getCount() - mDividerPosition : 0;
                 break;
@@ -219,7 +201,6 @@ public class ContactTileAdapter extends BaseAdapter {
     protected int getDividerPosition(Cursor cursor) {
         switch (mDisplayType) {
             case STREQUENT:
-            case STREQUENT_PHONE_ONLY:
                 if (!cursorIsValid(cursor)) {
                     return 0;
                 }
@@ -266,34 +247,25 @@ public class ContactTileAdapter extends BaseAdapter {
                 Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
         contact.isFavorite = cursor.getInt(mStarredIndex) > 0;
 
-        // Set phone number and label
-        if (mDisplayType == DisplayType.STREQUENT_PHONE_ONLY) {
-            int phoneNumberType = cursor.getInt(mPhoneNumberTypeIndex);
-            String phoneNumberCustomLabel = cursor.getString(mPhoneNumberLabelIndex);
-            contact.phoneLabel = (String) Phone.getTypeLabel(mResources, phoneNumberType,
-                    phoneNumberCustomLabel);
-            contact.phoneNumber = cursor.getString(mPhoneNumberIndex);
-        } else {
-            // Set presence icon and status message
-            Drawable icon = null;
-            int presence = 0;
-            if (!cursor.isNull(mPresenceIndex)) {
-                presence = cursor.getInt(mPresenceIndex);
-                icon = ContactPresenceIconUtil.getPresenceIcon(mContext, presence);
-            }
-            contact.presenceIcon = icon;
-
-            String statusMessage = null;
-            if (mStatusIndex != 0 && !cursor.isNull(mStatusIndex)) {
-                statusMessage = cursor.getString(mStatusIndex);
-            }
-            // If there is no status message from the contact, but there was a presence value,
-            // then use the default status message string
-            if (statusMessage == null && presence != 0) {
-                statusMessage = ContactStatusUtil.getStatusString(mContext, presence);
-            }
-            contact.status = statusMessage;
+        // Set presence icon and status message
+        Drawable icon = null;
+        int presence = 0;
+        if (!cursor.isNull(mPresenceIndex)) {
+            presence = cursor.getInt(mPresenceIndex);
+            icon = ContactPresenceIconUtil.getPresenceIcon(mContext, presence);
         }
+        contact.presenceIcon = icon;
+
+        String statusMessage = null;
+        if (mStatusIndex != 0 && !cursor.isNull(mStatusIndex)) {
+            statusMessage = cursor.getString(mStatusIndex);
+        }
+        // If there is no status message from the contact, but there was a presence value,
+        // then use the default status message string
+        if (statusMessage == null && presence != 0) {
+            statusMessage = ContactStatusUtil.getStatusString(mContext, presence);
+        }
+        contact.status = statusMessage;
 
         return contact;
     }
@@ -315,7 +287,6 @@ public class ContactTileAdapter extends BaseAdapter {
             case STARRED_ONLY:
                 return getRowCount(mContactCursor.getCount());
             case STREQUENT:
-            case STREQUENT_PHONE_ONLY:
                 // Takes numbers of rows the Starred Contacts Occupy
                 int starredRowCount = getRowCount(mDividerPosition);
 
@@ -365,7 +336,6 @@ public class ContactTileAdapter extends BaseAdapter {
                 }
                 break;
             case STREQUENT:
-            case STREQUENT_PHONE_ONLY:
                 if (position < getRowCount(mDividerPosition)) {
                     for (int columnCounter = 0; columnCounter < mColumnCount &&
                             contactIndex != mDividerPosition; columnCounter++) {
@@ -399,8 +369,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
     @Override
     public boolean areAllItemsEnabled() {
-        return (mDisplayType != DisplayType.STREQUENT &&
-                mDisplayType != DisplayType.STREQUENT_PHONE_ONLY);
+        return (mDisplayType != DisplayType.STREQUENT);
     }
 
     @Override
@@ -434,9 +403,7 @@ public class ContactTileAdapter extends BaseAdapter {
      * the most frequently contacted contacts.
      */
     public View getDivider() {
-        return MoreContactUtils.createHeaderView(mContext,
-                mDisplayType == DisplayType.STREQUENT_PHONE_ONLY ?
-                        R.string.favoritesFrequentCalled : R.string.favoritesFrequentContacted);
+        return MoreContactUtils.createHeaderView(mContext, R.string.favoritesFrequentContacted);
     }
 
     private int getLayoutResourceId(int viewType) {
@@ -445,10 +412,7 @@ public class ContactTileAdapter extends BaseAdapter {
                 return mIsQuickContactEnabled ?
                         R.layout.contact_tile_starred_quick_contact : R.layout.contact_tile_starred;
             case ViewTypes.FREQUENT:
-                return mDisplayType == DisplayType.STREQUENT_PHONE_ONLY ?
-                        R.layout.contact_tile_frequent_phone : R.layout.contact_tile_frequent;
-            case ViewTypes.STARRED_PHONE:
-                return R.layout.contact_tile_phone_starred;
+                return R.layout.contact_tile_frequent;
             default:
                 throw new IllegalArgumentException("Unrecognized viewType " + viewType);
         }
@@ -473,14 +437,6 @@ public class ContactTileAdapter extends BaseAdapter {
                 if (position < getRowCount(mDividerPosition)) {
                     return ViewTypes.STARRED;
                 } else if (position == getRowCount(mDividerPosition)) {
-                    return ViewTypes.DIVIDER;
-                } else {
-                    return ViewTypes.FREQUENT;
-                }
-            case STREQUENT_PHONE_ONLY:
-                if (position < getRowCount(mDividerPosition)) {
-                    return ViewTypes.STARRED_PHONE;
-                 } else if (position == getRowCount(mDividerPosition)) {
                     return ViewTypes.DIVIDER;
                 } else {
                     return ViewTypes.FREQUENT;
@@ -560,7 +516,6 @@ public class ContactTileAdapter extends BaseAdapter {
             contactTile.loadFromContact(entry);
 
             switch (mItemViewType) {
-                case ViewTypes.STARRED_PHONE:
                 case ViewTypes.STARRED:
                     // Setting divider visibilities
                     contactTile.setPaddingRelative(0, 0,
@@ -579,7 +534,6 @@ public class ContactTileAdapter extends BaseAdapter {
         @Override
         protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
             switch (mItemViewType) {
-                case ViewTypes.STARRED_PHONE:
                 case ViewTypes.STARRED:
                     onLayoutForTiles();
                     return;
@@ -607,7 +561,6 @@ public class ContactTileAdapter extends BaseAdapter {
         @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             switch (mItemViewType) {
-                case ViewTypes.STARRED_PHONE:
                 case ViewTypes.STARRED:
                     onMeasureForTiles(widthMeasureSpec);
                     return;
@@ -664,6 +617,5 @@ public class ContactTileAdapter extends BaseAdapter {
         public static final int STARRED = 0;
         public static final int DIVIDER = 1;
         public static final int FREQUENT = 2;
-        public static final int STARRED_PHONE = 3;
     }
 }
