@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.common.test;
+package com.android.contacts.common.testing;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
