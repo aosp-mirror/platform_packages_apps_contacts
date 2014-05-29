@@ -335,25 +335,24 @@ public class AggregationSuggestionEngine extends HandlerThread {
         }
     }
 
-    private boolean updateSuggestedContactIds(Cursor cursor) {
-        int count = cursor.getCount();
+    private boolean updateSuggestedContactIds(final Cursor cursor) {
+        final int count = cursor.getCount();
         boolean changed = count != mSuggestedContactIds.length;
-        if (!changed) {
-            while (cursor.moveToNext()) {
-                long contactId = cursor.getLong(0);
-                if (Arrays.binarySearch(mSuggestedContactIds, contactId) < 0) {
-                    changed = true;
-                    break;
-                }
+        final ArrayList<Long> newIds = new ArrayList<Long>(count);
+        while (cursor.moveToNext()) {
+            final long contactId = cursor.getLong(0);
+            if (!changed &&
+                    Arrays.binarySearch(mSuggestedContactIds, contactId) < 0) {
+                changed = true;
             }
+            newIds.add(contactId);
         }
 
         if (changed) {
-            mSuggestedContactIds = new long[count];
-            cursor.moveToPosition(-1);
-            for (int i = 0; i < count; i++) {
-                cursor.moveToNext();
-                mSuggestedContactIds[i] = cursor.getLong(0);
+            mSuggestedContactIds = new long[newIds.size()];
+            int i = 0;
+            for (final Long newId : newIds) {
+                mSuggestedContactIds[i++] = newId;
             }
             Arrays.sort(mSuggestedContactIds);
         }
