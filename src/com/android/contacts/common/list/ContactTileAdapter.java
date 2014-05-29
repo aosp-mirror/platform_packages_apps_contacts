@@ -21,7 +21,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +68,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
     private boolean mIsQuickContactEnabled = false;
     private final int mPaddingInPixels;
+    private final int mPaddingStartEnd;
 
     /**
      * Configures the adapter to filter and display contacts using different view types.
@@ -113,6 +113,8 @@ public class ContactTileAdapter extends BaseAdapter {
         // Converting padding in dips to padding in pixels
         mPaddingInPixels = mContext.getResources()
                 .getDimensionPixelSize(R.dimen.contact_tile_divider_padding);
+        mPaddingStartEnd = mContext.getResources()
+                .getDimensionPixelSize(R.dimen.contact_tile_start_end_padding);
 
         bindColumnIndices();
     }
@@ -518,9 +520,9 @@ public class ContactTileAdapter extends BaseAdapter {
             switch (mItemViewType) {
                 case ViewTypes.STARRED:
                     // Setting divider visibilities
-                    contactTile.setPaddingRelative(0, 0,
-                            childIndex >= mColumnCount - 1 ? 0 : mPaddingInPixels,
-                            isLastRow ? 0 : mPaddingInPixels);
+                    contactTile.setPaddingRelative(childIndex == 0 ? mPaddingStartEnd : 0, 0,
+                            childIndex >= mColumnCount - 1 ? mPaddingStartEnd : mPaddingInPixels,
+                            0);
                     break;
                 case ViewTypes.FREQUENT:
                     contactTile.setHorizontalDividerVisibility(
@@ -588,9 +590,10 @@ public class ContactTileAdapter extends BaseAdapter {
             //
             // 3. Set the dimensions of itself.
             //    Let width = given width.
-            //    Let height = image size + bottom paddding.
+            //    Let height = wrap content.
 
-            final int totalPaddingsInPixels = (mColumnCount - 1) * mPaddingInPixels;
+            final int totalPaddingsInPixels = (mColumnCount - 1) * mPaddingInPixels
+                    + mPaddingStartEnd * 2;
 
             // Preferred width / height for images (excluding the padding).
             // The actual width may be 1 pixel larger than this if we have a remainder.
@@ -599,16 +602,16 @@ public class ContactTileAdapter extends BaseAdapter {
 
             for (int i = 0; i < childCount; i++) {
                 final View child = getChildAt(i);
-                final int childWidth = imageSize + child.getPaddingRight()
+                final int childWidth = imageSize + child.getPaddingRight() + child.getPaddingLeft()
                         // Compensate for the remainder
                         + (i < remainder ? 1 : 0);
-                final int childHeight = imageSize + child.getPaddingBottom();
+
                 child.measure(
                         MeasureSpec.makeMeasureSpec(childWidth, MeasureSpec.EXACTLY),
-                        MeasureSpec.makeMeasureSpec(childHeight, MeasureSpec.EXACTLY)
+                        MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
                         );
             }
-            setMeasuredDimension(width, imageSize + getChildAt(0).getPaddingBottom());
+            setMeasuredDimension(width, getChildAt(0).getMeasuredHeight());
         }
     }
 

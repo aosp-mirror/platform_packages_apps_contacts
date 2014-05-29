@@ -129,7 +129,7 @@ public abstract class ContactTileView extends FrameLayout {
                 configureViewForImage(entry.photoUri == null);
                 if (mPhoto != null) {
                     mPhotoManager.loadPhoto(mPhoto, entry.photoUri, getApproximateImageSize(),
-                            isDarkTheme(), false /* isCircular */, request);
+                            isDarkTheme(), true /* isCircular */, request);
 
                     if (mQuickContact != null) {
                         mQuickContact.assignContactUri(mLookupUri);
@@ -137,7 +137,7 @@ public abstract class ContactTileView extends FrameLayout {
                 } else if (mQuickContact != null) {
                     mQuickContact.assignContactUri(mLookupUri);
                     mPhotoManager.loadPhoto(mQuickContact, entry.photoUri,
-                            getApproximateImageSize(), isDarkTheme(), false /* isCircular */,
+                            getApproximateImageSize(), isDarkTheme(), true /* isCircular */,
                             request);
                 }
             } else {
@@ -207,7 +207,7 @@ public abstract class ContactTileView extends FrameLayout {
      * as desired, or {@code null}.
      */
     protected DefaultImageRequest getDefaultImageRequest(String displayName, String lookupKey) {
-        return new DefaultImageRequest(displayName, lookupKey, false);
+        return new DefaultImageRequest(displayName, lookupKey, true /* isCircular */);
     }
 
     public interface Listener {
