@@ -16,17 +16,16 @@
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res-auto"
-    android:background="@null"
-    class="com.android.contacts.common.list.ContactTileStarredView" >
+    class="com.android.contacts.common.list.ContactTileStarredView"
+    android:focusable="true"
+    android:background="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:id="@+id/contact_tile_push_state"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="21dp"
-        android:focusable="true"
-        android:background="?android:attr/selectableItemBackground">
+        android:paddingTop="21dp">
         <view
             android:id="@+id/contact_tile_container"
             android:layout_width="match_parent"
