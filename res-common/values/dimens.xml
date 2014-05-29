@@ -129,7 +129,6 @@
     <dimen name="dialpad_digits_margin_bottom">22dp</dimen>
     <dimen name="dialpad_digits_padding">16dp</dimen>
     <dimen name="dialpad_digits_menu_right_padding">10dp</dimen>
-    <dimen name="dialpad_digits_margin_bottom">0px</dimen>
     <dimen name="dialpad_center_margin">3dp</dimen>
     <dimen name="dialpad_button_margin">2dp</dimen>
     <dimen name="dialpad_voicemail_icon_padding_top">2dp</dimen>
