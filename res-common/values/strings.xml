@@ -736,6 +736,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     -->
     <string name="description_delete_button">backspace</string>
 
+    <!--  String describing the button used to add a plus (+) symbol to the dialpad -->
     <string name="description_image_button_plus">plus</string>
 
     <!-- String describing the Voicemail ImageButton
