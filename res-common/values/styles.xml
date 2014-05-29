@@ -110,7 +110,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:textSize">@dimen/dialpad_key_star_pound_size</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">@dimen/dialpad_subtext_height</item>
+        <item name="android:layout_marginBottom">@dimen/dialpad_symbol_margin_bottom</item>
         <item name="android:gravity">center</item>
     </style>
 

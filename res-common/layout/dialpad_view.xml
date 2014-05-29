@@ -30,6 +30,7 @@
         android:id="@+id/digits_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialpad_digits_height"
+        android:layout_marginBottom="@dimen/dialpad_digits_margin_bottom"
         android:orientation="horizontal">
 
         <ImageButton android:id="@+id/dialpad_overflow"
@@ -75,6 +76,20 @@
             android:contentDescription="@string/description_delete_button"
             android:src="@drawable/ic_dialpad_delete" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d6d6d6" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffffff" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
 
     <include layout="@layout/dialpad" />
 

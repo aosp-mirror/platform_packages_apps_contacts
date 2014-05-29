@@ -85,12 +85,11 @@
     <color name="actionbar_unselected_text_color">#a6ffffff</color>
 
     <!-- Colors for the dialpad -->
-    <color name="background_dialpad">#ffffff</color>
+    <color name="background_dialpad">#fcfcfc</color>
     <color name="background_dialpad_pressed">#ececec</color>
     <color name="dialpad_primary_text_color">#26c6da</color>
     <color name="dialpad_secondary_text_color">#999999</color>
-    <!-- 75% opacity, black. -->
-    <color name="dialpad_digits_text_color">#bf000000</color>
+    <color name="dialpad_digits_text_color">#666666</color>
     <color name="dialpad_separator_line_color">#dadada</color>
     <color name="dialpad_icon_tint">#b3b3b3</color>
 </resources>
