@@ -30,6 +30,9 @@
     <!-- Color of the background of the action bar -->
     <color name="action_bar_background">#e6e6e6</color>
 
+    <!-- Color used for system bar and navigation bar. -->
+    <color name="primary_dark">#008aa1</color>
+
     <!-- Color of the background of the action bar when highlighted (ie. pressed, focused) -->
     <color name="action_bar_background_highlight">#cecece</color>
 
