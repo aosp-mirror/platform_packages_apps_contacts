@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!--
+     Copyright (C) 2011 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,44 +14,37 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<view
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res-auto"
-    class="com.android.contacts.quickcontact.FloatingChildLayout"
-    android:id="@+id/floating_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:descendantFocusability="afterDescendants">
+    android:descendantFocusability="afterDescendants" >
+
     <LinearLayout
         android:id="@android:id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dip"
-        android:paddingRight="15dip"
-        android:paddingStart="15dip"
-        android:paddingEnd="15dip"
-        android:paddingTop="8dip"
-        android:orientation="vertical">
+        android:orientation="vertical" >
+
         <view
-            class="com.android.contacts.common.widget.ProportionalLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            ex:ratio="0.5"
-            ex:direction="widthToHeight">
+            class="com.android.contacts.common.widget.ProportionalLayout"
+            ex:direction="widthToHeight"
+            ex:ratio="0.5" >
+
             <include layout="@layout/quickcontact_photo_container" />
         </view>
-        <include layout="@layout/quickcontact_track" />
-        <View
-            android:id="@+id/line_after_track"
+
+        <com.android.contacts.quickcontact.ExpandingEntryCardView
+            android:id="@+id/communication_card"
             android:layout_width="match_parent"
-            android:layout_height="2dip"
-            android:background="@color/quickcontact_tab_indicator" />
-        <android.support.v4.view.ViewPager
-            android:id="@+id/item_list_pager"
-            android:layout_width="match_parent"
-            android:layout_height="156dip"
-            android:background="@color/quickcontact_activity_background"/>
+            android:layout_height="wrap_content"
+            android:background="@color/quickcontact_activity_background"
+            android:orientation="vertical" />
     </LinearLayout>
-</view>
+
+</ScrollView>

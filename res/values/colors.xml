@@ -15,10 +15,6 @@
 -->
 <resources>
 
-    <color name="quickcontact_list_divider">#ffcdcdcd</color>
-    <color name="quickcontact_list_background">#ffe2e2e2</color>
-    <color name="quickcontact_tab_indicator">#ffc6c6c6</color>
-    <color name="quickcontact_track_background">#fff5f5f5</color>
     <color name="quickcontact_activity_background">#fff5f5f5</color>
     <color name="quickcontact_name_detail_background">#66000000</color>
 
@@ -42,5 +38,11 @@
     <!-- Color of the selected tab underline (overriding value in ContactsCommon) -->
     <color name="tab_selected_color">#ffeeff41</color>
     <color name="contacts_accent_color">#00acc1</color>
+
+    <!-- Color of the separator between entries in an ExpandingEntryCardView -->
+    <color name="expanding_entry_card_item_separator_color">#eeeeee</color>
+
+    <!-- Color of the text on an ExpandingEntryCard button -->
+    <color name="expanding_entry_card_button_text_color">@android:color/black</color>
 
 </resources>

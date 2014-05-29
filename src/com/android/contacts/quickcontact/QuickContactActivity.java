@@ -55,6 +55,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,12 +75,15 @@ import com.android.contacts.common.model.dataitem.ImDataItem;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.common.util.UriUtils;
+import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.common.util.StopWatch;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -108,19 +112,12 @@ public class QuickContactActivity extends Activity {
     private String[] mExcludeMimes;
     private List<String> mSortedActionMimeTypes = Lists.newArrayList();
 
-    private FloatingChildLayout mFloatingLayout;
-
     private View mPhotoContainer;
-    private ViewGroup mTrack;
-    private HorizontalScrollView mTrackScroller;
-    private View mSelectedTabRectangle;
-    private View mLineAfterTrack;
 
     private ImageView mPhotoView;
     private ImageView mOpenDetailsOrAddContactImage;
     private ImageView mStarImage;
-    private ViewPager mListPager;
-    private ViewPagerAdapter mPagerAdapter;
+    private ExpandingEntryCardView mCommunicationCard;
 
     private Contact mContactData;
     private ContactLoader mContactLoader;
@@ -170,7 +167,6 @@ public class QuickContactActivity extends Activity {
             mContactLoader.cacheResult();
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             startActivity(intent);
-            close(false);
         }
     };
 
@@ -191,6 +187,18 @@ public class QuickContactActivity extends Activity {
             }
             intent.putExtra(Insert.DATA, mContactData.getContentValues());
             startActivity(intent);
+        }
+    };
+
+    final OnClickListener mEntryClickHandler = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.i(TAG, "mEntryClickHandler onClick");
+            Object intent = v.getTag();
+            if (intent == null || !(intent instanceof Intent)) {
+                return;
+            }
+            startActivity((Intent) intent);
         }
     };
 
@@ -234,33 +242,13 @@ public class QuickContactActivity extends Activity {
 
         mStopWatch.lap("l"); // layout inflated
 
-        mFloatingLayout = (FloatingChildLayout) findViewById(R.id.floating_layout);
-        mTrack = (ViewGroup) findViewById(R.id.track);
-        mTrackScroller = (HorizontalScrollView) findViewById(R.id.track_scroller);
         mOpenDetailsOrAddContactImage = (ImageView) findViewById(R.id.contact_details_image);
         mStarImage = (ImageView) findViewById(R.id.quickcontact_star_button);
-        mListPager = (ViewPager) findViewById(R.id.item_list_pager);
-        mSelectedTabRectangle = findViewById(R.id.selected_tab_rectangle);
-        mLineAfterTrack = findViewById(R.id.line_after_track);
-
-        mFloatingLayout.setOnOutsideTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                handleOutsideTouch();
-                return true;
-            }
-        });
+        mCommunicationCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
+        mCommunicationCard.setTitle(getResources().getString(R.string.communication_card_title));
 
         mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
-
-        mPagerAdapter = new ViewPagerAdapter(getFragmentManager());
-        mListPager.setAdapter(mPagerAdapter);
-        mListPager.setOnPageChangeListener(new PageChangeListener());
-
-        final Rect sourceBounds = intent.getSourceBounds();
-        if (sourceBounds != null) {
-            mFloatingLayout.setChildTargetScreen(sourceBounds);
-        }
+        mCommunicationCard.setOnClickListener(mEntryClickHandler);
 
         // find and prepare correct header view
         mPhotoContainer = findViewById(R.id.photo_container);
@@ -272,66 +260,15 @@ public class QuickContactActivity extends Activity {
 
         mStopWatch.lap("v"); // view initialized
 
-        SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
+        // TODO: Use some sort of fading in for the layout and content during animation
+        /*SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
             @Override
             public void run() {
                 mFloatingLayout.fadeInBackground();
             }
-        });
+        });*/
 
         mStopWatch.lap("cf"); // onCreate finished
-    }
-
-    private void handleOutsideTouch() {
-        if (mFloatingLayout.isContentFullyVisible()) {
-            close(true);
-        }
-    }
-
-    private void close(boolean withAnimation) {
-        // cancel any pending queries
-        getLoaderManager().destroyLoader(LOADER_ID);
-
-        if (withAnimation) {
-            mFloatingLayout.fadeOutBackground();
-            final boolean animated = mFloatingLayout.hideContent(new Runnable() {
-                @Override
-                public void run() {
-                    // Wait until the final animation frame has been drawn, otherwise
-                    // there is jank as the framework transitions to the next Activity.
-                    SchedulingUtils.doAfterDraw(mFloatingLayout, new Runnable() {
-                        @Override
-                        public void run() {
-                            // Unfortunately, we need to also use postDelayed() to wait a moment
-                            // for the frame to be drawn, else the framework's activity-transition
-                            // animation will kick in before the final frame is available to it.
-                            // This seems unavoidable.  The problem isn't merely that there is no
-                            // post-draw listener API; if that were so, it would be sufficient to
-                            // call post() instead of postDelayed().
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    finish();
-                                    overridePendingTransition(0, 0);
-                                }
-                            }, POST_DRAW_WAIT_DURATION);
-                        }
-                    });
-                }
-            });
-            if (!animated) {
-                // If we were in the wrong state, simply quit (this can happen for example
-                // if the user pushes BACK before anything has loaded)
-                finish();
-            }
-        } else {
-            finish();
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        close(true);
     }
 
     /** Assign this string to the view if it is not empty. */
@@ -483,6 +420,8 @@ public class QuickContactActivity extends Activity {
 
         setHeaderNameText(R.id.name, data.getDisplayName());
 
+        // List of Entry that makes up the ExpandingEntryCardView
+        final List<Entry> entries = new ArrayList<>();
         // All the mime-types to add.
         final Set<String> containedTypes = new HashSet<String>(mActions.keySet());
         mSortedActionMimeTypes.clear();
@@ -491,6 +430,7 @@ public class QuickContactActivity extends Activity {
             if (containedTypes.contains(mimeType)) {
                 mSortedActionMimeTypes.add(mimeType);
                 containedTypes.remove(mimeType);
+                entries.addAll(actionsToEntries(mActions.get(mimeType)));
             }
         }
 
@@ -499,6 +439,7 @@ public class QuickContactActivity extends Activity {
             if (!TRAILING_MIMETYPES.contains(mimeType)) {
                 mSortedActionMimeTypes.add(mimeType);
                 containedTypes.remove(mimeType);
+                entries.addAll(actionsToEntries(mActions.get(mimeType)));
             }
         }
 
@@ -507,26 +448,14 @@ public class QuickContactActivity extends Activity {
             if (containedTypes.contains(mimeType)) {
                 containedTypes.remove(mimeType);
                 mSortedActionMimeTypes.add(mimeType);
+                entries.addAll(actionsToEntries(mActions.get(mimeType)));
             }
         }
-        mPagerAdapter.notifyDataSetChanged();
-
-        mStopWatch.lap("mt"); // Mime types initialized
-
-        // Add buttons for each mimetype
-        mTrack.removeAllViews();
-        for (String mimeType : mSortedActionMimeTypes) {
-            final View actionView = inflateAction(mimeType, cache, mTrack, data.getDisplayName());
-            mTrack.addView(actionView);
-        }
-
-        mStopWatch.lap("mt"); // Buttons added
+        mCommunicationCard.initialize(entries, /* numInitialVisibleEntries = */ 1,
+                /* isExpanded = */ false, /* themeColor = */ 0);
 
         final boolean hasData = !mSortedActionMimeTypes.isEmpty();
-        mTrackScroller.setVisibility(hasData ? View.VISIBLE : View.GONE);
-        mSelectedTabRectangle.setVisibility(hasData ? View.VISIBLE : View.GONE);
-        mLineAfterTrack.setVisibility(hasData ? View.VISIBLE : View.GONE);
-        mListPager.setVisibility(hasData ? View.VISIBLE : View.GONE);
+        mCommunicationCard.setVisibility(hasData ? View.VISIBLE: View.GONE);
     }
 
     /**
@@ -565,37 +494,18 @@ public class QuickContactActivity extends Activity {
     }
 
     /**
-     * Inflate the in-track view for the action of the given MIME-type, collapsing duplicate values.
-     * Will use the icon provided by the {@link DataKind}.
+     * Converts a list of Action into a list of Entry
+     * @param actions The list of Action to convert
+     * @return The converted list of Entry
      */
-    private View inflateAction(String mimeType, ResolveCache resolveCache,
-                               ViewGroup root, String name) {
-        final CheckableImageView typeView = (CheckableImageView) getLayoutInflater().inflate(
-                R.layout.quickcontact_track_button, root, false);
-
-        List<Action> children = mActions.get(mimeType);
-        typeView.setTag(mimeType);
-        final Action firstInfo = children.get(0);
-
-        // Set icon and listen for clicks
-        final CharSequence descrip = resolveCache.getDescription(firstInfo, name);
-        final Drawable icon = resolveCache.getIcon(firstInfo);
-        typeView.setChecked(false);
-        typeView.setContentDescription(descrip);
-        typeView.setImageDrawable(icon);
-        typeView.setOnClickListener(mTypeViewClickListener);
-
-        return typeView;
-    }
-
-    private CheckableImageView getActionViewAt(int position) {
-        return (CheckableImageView) mTrack.getChildAt(position);
-    }
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        final QuickContactListFragment listFragment = (QuickContactListFragment) fragment;
-        listFragment.setListener(mListFragmentListener);
+    private List<Entry> actionsToEntries(List<Action> actions) {
+        List<Entry> entries = new ArrayList<>();
+        for (Action action :  actions) {
+            entries.add(new Entry(ResolveCache.getInstance(this).getIcon(action),
+                    action.getMimeType(), action.getSubtitle().toString(),
+                    action.getBody().toString(), action.getIntent(), /* isEditable= */ false));
+        }
+        return entries;
     }
 
     private LoaderCallbacks<Contact> mLoaderCallbacks =
@@ -608,7 +518,6 @@ public class QuickContactActivity extends Activity {
         public void onLoadFinished(Loader<Contact> loader, Contact data) {
             mStopWatch.lap("lf"); // onLoadFinished
             if (isFinishing()) {
-                close(false);
                 return;
             }
             if (data.isError()) {
@@ -620,7 +529,6 @@ public class QuickContactActivity extends Activity {
                 Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
                 Toast.makeText(QuickContactActivity.this, R.string.invalidContactMessage,
                         Toast.LENGTH_LONG).show();
-                close(false);
                 return;
             }
 
@@ -635,7 +543,8 @@ public class QuickContactActivity extends Activity {
 
             // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
             // that the layout passes are completed
-            SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
+            // TODO: Add animation here
+            /*SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
                 @Override
                 public void run() {
                     mFloatingLayout.showContent(new Runnable() {
@@ -645,7 +554,7 @@ public class QuickContactActivity extends Activity {
                         }
                     });
                 }
-            });
+            });*/
             mStopWatch.stopAndLog(TAG, 0);
             mStopWatch = StopWatch.getNullStopWatch(); // We're done with it.
         }
@@ -658,117 +567,6 @@ public class QuickContactActivity extends Activity {
             return new ContactLoader(getApplicationContext(), mLookupUri,
                     false /*loadGroupMetaData*/, false /*loadInvitableAccountTypes*/,
                     false /*postViewNotification*/, true /*computeFormattedPhoneNumber*/);
-        }
-    };
-
-    /** A type (e.g. Call/Addresses was clicked) */
-    private final OnClickListener mTypeViewClickListener = new OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            final CheckableImageView actionView = (CheckableImageView)view;
-            final String mimeType = (String) actionView.getTag();
-            int index = mSortedActionMimeTypes.indexOf(mimeType);
-            mListPager.setCurrentItem(index, true);
-        }
-    };
-
-    private class ViewPagerAdapter extends FragmentPagerAdapter {
-        public ViewPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            final String mimeType = mSortedActionMimeTypes.get(position);
-            QuickContactListFragment fragment = new QuickContactListFragment(mimeType);
-            final List<Action> actions = mActions.get(mimeType);
-            fragment.setActions(actions);
-            return fragment;
-        }
-
-        @Override
-        public int getCount() {
-            return mSortedActionMimeTypes.size();
-        }
-
-        @Override
-        public int getItemPosition(Object object) {
-            final QuickContactListFragment fragment = (QuickContactListFragment) object;
-            final String mimeType = fragment.getMimeType();
-            for (int i = 0; i < mSortedActionMimeTypes.size(); i++) {
-                if (mimeType.equals(mSortedActionMimeTypes.get(i))) {
-                    return i;
-                }
-            }
-            return PagerAdapter.POSITION_NONE;
-        }
-    }
-
-    private class PageChangeListener extends SimpleOnPageChangeListener {
-        private int mScrollingState = ViewPager.SCROLL_STATE_IDLE;
-
-        @Override
-        public void onPageSelected(int position) {
-            final CheckableImageView actionView = getActionViewAt(position);
-            if (actionView == null) {
-                return;
-            }
-            mTrackScroller.requestChildRectangleOnScreen(actionView,
-                    new Rect(0, 0, actionView.getWidth(), actionView.getHeight()), false);
-            // Don't render rectangle if we are currently scrolling to prevent it from flickering
-            if (mScrollingState == ViewPager.SCROLL_STATE_IDLE) {
-                renderSelectedRectangle(position, 0);
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-            super.onPageScrollStateChanged(state);
-            mScrollingState = state;
-        }
-
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            renderSelectedRectangle(position, positionOffset);
-        }
-
-        private void renderSelectedRectangle(int position, float positionOffset) {
-            final RelativeLayout.LayoutParams layoutParams =
-                    (RelativeLayout.LayoutParams) mSelectedTabRectangle.getLayoutParams();
-            final int width = layoutParams.width;
-            layoutParams.setMarginStart((int) ((position + positionOffset) * width));
-            mSelectedTabRectangle.setLayoutParams(layoutParams);
-        }
-    }
-
-    private final QuickContactListFragment.Listener mListFragmentListener =
-            new QuickContactListFragment.Listener() {
-        @Override
-        public void onOutsideClick() {
-            // If there is no background, we want to dismiss, because to the user it seems
-            // like he had touched outside. If the ViewPager is solid however, those taps
-            // must be ignored
-            final boolean isTransparent = mListPager.getBackground() == null;
-            if (isTransparent) handleOutsideTouch();
-        }
-
-        @Override
-        public void onItemClicked(final Action action, final boolean alternate) {
-            final Runnable startAppRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        startActivity(alternate ? action.getAlternateIntent() : action.getIntent());
-                    } catch (ActivityNotFoundException e) {
-                        Toast.makeText(QuickContactActivity.this, R.string.quickcontact_missing_app,
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                    close(false);
-                }
-            };
-            // Defer the action to make the window properly repaint
-            new Handler().post(startAppRunnable);
         }
     };
 }

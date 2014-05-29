@@ -13,41 +13,22 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<view
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.quickcontact.FloatingChildLayout"
-    android:id="@+id/floating_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:descendantFocusability="afterDescendants">
-    <LinearLayout
-        android:id="@android:id/content"
-        android:layout_width="wrap_content"
+    android:id="@android:id/content"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="32dip"
+    android:orientation="horizontal">
+    <FrameLayout
+        android:layout_width="360dip"
+        android:layout_height="360dip">
+        <include layout="@layout/quickcontact_photo_container" />
+    </FrameLayout>
+    <com.android.contacts.quickcontact.ExpandingEntryCardView
+        android:id="@+id/communication_card"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dip"
-        android:orientation="horizontal">
-        <FrameLayout
-            android:layout_width="360dip"
-            android:layout_height="360dip">
-            <include layout="@layout/quickcontact_photo_container" />
-        </FrameLayout>
-        <LinearLayout
-            android:layout_width="360dip"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <include layout="@layout/quickcontact_track" />
-            <View
-                android:id="@+id/line_after_track"
-                android:layout_width="match_parent"
-                android:layout_height="2dip"
-                android:background="@color/quickcontact_tab_indicator" />
-            <android.support.v4.view.ViewPager
-                android:id="@+id/item_list_pager"
-                android:background="@drawable/quickcontact_track_background"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </LinearLayout>
-</view>
+        android:orientation="vertical"
+        android:background="@color/quickcontact_activity_background" />
+</LinearLayout>

@@ -41,7 +41,7 @@
     <style name="Theme">
     </style>
 
-    <style name="Theme.QuickContact" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.QuickContact" parent="@android:style/Theme.Quantum.Light">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowFrame">@null</item>
@@ -223,12 +223,7 @@
         <item name="android:layout_height">150dip</item>
     </style>
 
-    <style name="QuickContactListItemStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">?android:attr/listPreferredItemHeight</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:gravity">center_vertical</item>
+    <style name="SelectableItem" parent="@android:style/Theme.Quantum.Light">
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 
@@ -242,12 +237,6 @@
         <item name="android:paddingEnd">16dip</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">vertical</item>
-    </style>
-
-    <style name="QuickContactListBottomStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">2dip</item>
-        <item name="android:background">@color/quickcontact_tab_indicator</item>
     </style>
 
     <style name="Theme.PhotoSelector" parent="@android:style/Theme.Holo.Light">
