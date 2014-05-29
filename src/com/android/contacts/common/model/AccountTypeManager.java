@@ -52,7 +52,7 @@ import com.android.contacts.common.model.account.ExternalAccountType;
 import com.android.contacts.common.model.account.FallbackAccountType;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.testing.NeededForTesting;
+import com.android.contacts.common.test.NeededForTesting;
 import com.android.contacts.common.util.Constants;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
