@@ -152,8 +152,6 @@ public class ContactTileListFragment extends Fragment {
                   return ContactTileLoaderFactory.createStarredLoader(getActivity());
               case STREQUENT:
                   return ContactTileLoaderFactory.createStrequentLoader(getActivity());
-              case STREQUENT_PHONE_ONLY:
-                  return ContactTileLoaderFactory.createStrequentPhoneOnlyLoader(getActivity());
               case FREQUENT_ONLY:
                   return ContactTileLoaderFactory.createFrequentLoader(getActivity());
               default:
@@ -194,7 +192,6 @@ public class ContactTileListFragment extends Fragment {
         String emptyText;
         switch (mDisplayType) {
             case STREQUENT:
-            case STREQUENT_PHONE_ONLY:
             case STARRED_ONLY:
                 emptyText = getString(R.string.listTotalAllContactsZeroStarred);
                 break;
