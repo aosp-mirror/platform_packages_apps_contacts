@@ -86,6 +86,7 @@ public class ContactListItemView extends ViewGroup
     private int mPresenceIconMargin = 4;
     private int mPresenceIconSize = 16;
     private int mTextIndent = 0;
+    private int mTextOffsetTop;
     private int mNameTextViewTextSize;
     private int mHeaderWidth;
     private Drawable mActivatedBackgroundDrawable;
@@ -250,6 +251,8 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_photo_size, mDefaultPhotoViewSize);
         mTextIndent = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_text_indent, mTextIndent);
+        mTextOffsetTop = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_text_offset_top, mTextOffsetTop);
         mDataViewWidthWeight = a.getInteger(
                 R.styleable.ContactListItemView_list_item_data_width_weight, mDataViewWidthWeight);
         mLabelViewWidthWeight = a.getInteger(
@@ -523,10 +526,10 @@ public class ContactListItemView extends ViewGroup
             leftBound += mTextIndent;
         }
 
-        // Center text vertically
+        // Center text vertically, then apply the top offset.
         final int totalTextHeight = mNameTextViewHeight + mPhoneticNameTextViewHeight +
                 mLabelAndDataViewMaxHeight + mSnippetTextViewHeight + mStatusTextViewHeight;
-        int textTopBound = (bottomBound + topBound - totalTextHeight) / 2;
+        int textTopBound = (bottomBound + topBound - totalTextHeight) / 2 + mTextOffsetTop;
 
         // Layout all text view and presence icon
         // Put name TextView first
@@ -850,6 +853,7 @@ public class ContactListItemView extends ViewGroup
             mNameTextView.setGravity(Gravity.CENTER_VERTICAL);
             mNameTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             mNameTextView.setId(R.id.cliv_name_textview);
+            mNameTextView.setElegantTextHeight(false);
             addView(mNameTextView);
         }
         return mNameTextView;
@@ -1006,6 +1010,7 @@ public class ContactListItemView extends ViewGroup
             mDataView.setTextAppearance(getContext(), R.style.TextAppearanceSmall);
             mDataView.setActivated(isActivated());
             mDataView.setId(R.id.cliv_data_view);
+            mDataView.setElegantTextHeight(false);
             addView(mDataView);
         }
         return mDataView;
