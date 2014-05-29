@@ -15,70 +15,41 @@
 -->
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res-auto"
     android:background="@null"
-    android:paddingBottom="1dip"
-    android:paddingRight="1dip"
-    android:paddingEnd="1dip"
     class="com.android.contacts.common.list.ContactTileStarredView" >
 
-    <RelativeLayout
-        android:id="@+id/contact_tile_layout"
+    <LinearLayout
+        android:id="@+id/contact_tile_push_state"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <com.android.contacts.common.widget.LayoutSuppressingImageView
-            android:id="@+id/contact_tile_image"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="21dp"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground">
+        <view
+            android:id="@+id/contact_tile_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
-
-        <LinearLayout
+            android:layout_height="wrap_content"
+            ex:direction="widthToHeight"
+            ex:ratio="1.0"
+            class="com.android.contacts.common.widget.ProportionalLayout" >
+            <ImageView
+                android:id="@+id/contact_tile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </view>
+        <TextView
+            android:id="@+id/contact_tile_name"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/contact_tile_shadowbox_height"
-            android:orientation="vertical"
-            android:background="@color/contact_tile_shadow_box_color"
-            android:layout_alignParentBottom="true"
-            android:gravity="center_vertical"
-            android:paddingLeft="8dip"
-            android:paddingRight="8dip"
-            android:paddingStart="8dip"
-            android:paddingEnd="8dip">
-
-            <TextView
-                android:id="@+id/contact_tile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:fadingEdge="horizontal"
-                android:fadingEdgeLength="3dip"
-                android:ellipsize="marquee"
-                android:textAlignment="viewStart" />
-
-            <TextView
-                android:id="@+id/contact_tile_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/people_contact_tile_status_color"
-                android:singleLine="true"
-                android:drawablePadding="4dip"
-                android:paddingBottom="4dip"
-                android:fadingEdge="horizontal"
-                android:fadingEdgeLength="3dip"
-                android:layout_marginTop="-3dip"
-                android:ellipsize="marquee" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/contact_tile_push_state"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusable="true"
-            android:background="?android:attr/selectableItemBackground" />
-
-    </RelativeLayout>
-
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:textColor="#202020"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="3dip"
+            android:ellipsize="marquee"
+            android:textAlignment="center"/>
+    </LinearLayout>
 </view>
