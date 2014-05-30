@@ -88,7 +88,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="8dp" />
+        android:layout_height="13dp" />
 
     <include layout="@layout/dialpad" />
 
