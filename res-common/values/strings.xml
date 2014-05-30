@@ -808,4 +808,15 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Font family used when drawing letters for letter tile avatars.
          Do not translate. -->
     <string name="letter_tile_letter_font_family">sans-serif-thin</string>
+
+    <!-- Content description for the fake action menu up button as used
+     inside search. [CHAR LIMIT=NONE] -->
+    <string name="action_menu_back_from_search">stop searching</string>
+
+    <!--  String describing the icon used to clear the search field -->
+    <string name="description_clear_search">Clear search</string>
+
+    <!-- The font-family to use for the text inside the searchbox.
+         Do not translate. -->
+    <string name="search_font_family">sans-serif</string>
 </resources>

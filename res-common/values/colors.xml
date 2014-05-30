@@ -78,6 +78,10 @@
     <!-- Background color of action bars. Ensure this stays in sync with packages/Telephony
          actionbar_background_color. -->
     <color name="actionbar_background_color">#0fc6dc</color>
+    <!-- Color for icons in the actionbar -->
+    <color name="actionbar_icon_color">#ffffff</color>
+    <!-- Darker version of the actionbar color. Used for the status bar and navigation bar colors. -->
+    <color name="actionbar_background_color_dark">#008aa1</color>
 
     <!-- Color of action bar text. Ensure this stays in sync with packages/Telephony
     phone_settings_actionbar_text_color-->
@@ -92,4 +96,11 @@
     <color name="dialpad_digits_text_color">#666666</color>
     <color name="dialpad_separator_line_color">#dadada</color>
     <color name="dialpad_icon_tint">#b3b3b3</color>
+
+    <!-- Text color of the search box text as entered by user  -->
+    <color name="searchbox_text_color">#000000</color>
+    <!-- Background color of the search box -->
+    <color name="searchbox_background_color">#ffffff</color>
+    <!-- Text color of the search box hint text  -->
+    <color name="searchbox_hint_text_color">#a4a4a4</color>
 </resources>
