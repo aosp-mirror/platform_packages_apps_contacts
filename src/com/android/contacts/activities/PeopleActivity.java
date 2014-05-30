@@ -632,6 +632,11 @@ public class PeopleActivity extends ContactsActivity implements
         updateFragmentsVisibility();
     }
 
+    @Override
+    public void onUpButtonPressed() {
+        onBackPressed();
+    }
+
     private void updateDebugOptionsVisibility(boolean visible) {
         if (mEnableDebugMenuOptions != visible) {
             mEnableDebugMenuOptions = visible;
