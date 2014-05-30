@@ -29,12 +29,21 @@ public class AnimUtils {
     public static final Interpolator EASE_OUT = new PathInterpolator(0.4f, 0.0f, 1.0f, 1.0f);
     public static final Interpolator EASE_OUT_EASE_IN = new PathInterpolator(0.4f, 0, 0.2f, 1);
 
-    public static void crossFadeViews(final View fadeIn, final View fadeOut, int duration) {
+    public static class AnimationCallback {
+        public void onAnimationEnd() {}
+        public void onAnimationCancel() {}
+    }
+
+    public static void crossFadeViews(View fadeIn, View fadeOut, int duration) {
         fadeIn(fadeIn, duration);
         fadeOut(fadeOut, duration);
     }
 
-    public static void fadeOut(final View fadeOut, int duration) {
+    public static void fadeOut(View fadeOut, int duration) {
+        fadeOut(fadeOut, duration, null);
+    }
+
+    public static void fadeOut(final View fadeOut, int duration, final AnimationCallback callback) {
         fadeOut.setAlpha(1);
         final ViewPropertyAnimator animator = fadeOut.animate();
         animator.cancel();
@@ -42,12 +51,18 @@ public class AnimUtils {
             @Override
             public void onAnimationEnd(Animator animation) {
                 fadeOut.setVisibility(View.GONE);
+                if (callback != null) {
+                    callback.onAnimationEnd();
+                }
             }
 
             @Override
             public void onAnimationCancel(Animator animation) {
                 fadeOut.setVisibility(View.GONE);
                 fadeOut.setAlpha(0);
+                if (callback != null) {
+                    callback.onAnimationCancel();
+                }
             }
         });
         if (duration != DEFAULT_DURATION) {
@@ -56,7 +71,11 @@ public class AnimUtils {
         animator.start();
     }
 
-    public static void fadeIn(final View fadeIn, int duration) {
+    public static void fadeIn(View fadeIn, int duration) {
+        fadeIn(fadeIn, duration, null);
+    }
+
+    public static void fadeIn(final View fadeIn, int duration, final AnimationCallback callback) {
         fadeIn.setAlpha(0);
         final ViewPropertyAnimator animator = fadeIn.animate();
         animator.cancel();
@@ -69,6 +88,16 @@ public class AnimUtils {
             @Override
             public void onAnimationCancel(Animator animation) {
                 fadeIn.setAlpha(1);
+                if (callback != null) {
+                    callback.onAnimationCancel();
+                }
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (callback != null) {
+                    callback.onAnimationEnd();
+                }
             }
         });
         if (duration != DEFAULT_DURATION) {
