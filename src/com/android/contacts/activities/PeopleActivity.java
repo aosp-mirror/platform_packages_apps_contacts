@@ -427,7 +427,7 @@ public class PeopleActivity extends ContactsActivity implements
         }
 
         // Configure action bar
-        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar(), isUsingTwoPanes);
+        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());
         mActionBarAdapter.initialize(savedState, mRequest);
 
         // Configure action button

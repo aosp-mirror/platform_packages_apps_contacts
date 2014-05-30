@@ -27,13 +27,10 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
-import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
@@ -79,7 +76,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private final ActionBar mActionBar;
     private final int mActionBarNavigationMode;
     private final MyTabListener mTabListener;
-    private final MyNavigationListener mNavigationListener;
 
     private boolean mShowHomeIcon;
 
@@ -93,36 +89,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
 
     private int mCurrentTab = TabState.DEFAULT;
 
-    /**
-     * Extension of ArrayAdapter to be used for the action bar navigation drop list.  It is not
-     * possible to change the text appearance of a text item that is in the spinner header or
-     * in the drop down list using a selector xml file.  The only way to differentiate the two
-     * is if the view is gotten via {@link #getView(int, View, ViewGroup)} or
-     * {@link #getDropDownView(int, View, ViewGroup)}.
-     */
-    private class CustomArrayAdapter extends ArrayAdapter<String> {
-
-        public CustomArrayAdapter(Context context, int textResId) {
-            super(context, textResId);
-        }
-
-        public View getView (int position, View convertView, ViewGroup parent) {
-            TextView textView = (TextView) super.getView(position, convertView, parent);
-            textView.setTextAppearance(mContext,
-                    R.style.PeopleNavigationDropDownHeaderTextAppearance);
-            return textView;
-        }
-
-        public View getDropDownView (int position, View convertView, ViewGroup parent) {
-            TextView textView = (TextView) super.getDropDownView(position, convertView, parent);
-            textView.setTextAppearance(mContext,
-                    R.style.PeopleNavigationDropDownTextAppearance);
-            return textView;
-        }
-    }
-
-    public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar,
-            boolean isUsingTwoPanes) {
+    public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar) {
         mContext = context;
         mListener = listener;
         mActionBar = actionBar;
@@ -130,16 +97,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
 
         mShowHomeIcon = mContext.getResources().getBoolean(R.bool.show_home_icon);
 
-        // On wide screens, show the tabs as text (instead of icons)
-        if (isUsingTwoPanes) {
-            mActionBarNavigationMode = ActionBar.NAVIGATION_MODE_LIST;
-            mTabListener = null;
-            mNavigationListener = new MyNavigationListener();
-        } else {
-            mActionBarNavigationMode = ActionBar.NAVIGATION_MODE_TABS;
-            mTabListener = new MyTabListener();
-            mNavigationListener = null;
-        }
+        mActionBarNavigationMode = ActionBar.NAVIGATION_MODE_TABS;
+        mTabListener = new MyTabListener();
 
         // Set up search view.
         View customSearchView = LayoutInflater.from(mActionBar.getThemedContext()).inflate(
@@ -163,59 +122,12 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mSearchView.setQuery(mQueryString, false);
         mActionBar.setCustomView(customSearchView, layoutParams);
 
-        // Set up tabs or navigation list
-        switch(mActionBarNavigationMode) {
-            case ActionBar.NAVIGATION_MODE_TABS:
-                setupTabs();
-                break;
-            case ActionBar.NAVIGATION_MODE_LIST:
-                setupNavigationList();
-                break;
-        }
+        setupTabs();
     }
 
     private void setupTabs() {
         addTab(TabState.FAVORITES, R.string.favorites_tab_label);
         addTab(TabState.ALL, R.string.all_contacts_tab_label);
-    }
-
-    private void setupNavigationList() {
-        ArrayAdapter<String> navAdapter = new CustomArrayAdapter(mContext,
-                R.layout.people_navigation_item);
-        navAdapter.add(mContext.getString(R.string.favorites_tab_label));
-        navAdapter.add(mContext.getString(R.string.all_contacts_tab_label));
-        mActionBar.setListNavigationCallbacks(navAdapter, mNavigationListener);
-    }
-
-    /**
-     * Because the navigation list items are in a different order than tab items, this returns
-     * the appropriate tab from the navigation item position.
-     */
-    private int getTabPositionFromNavigationItemPosition(int navItemPos) {
-        switch(navItemPos) {
-            case 0:
-                return TabState.FAVORITES;
-            case 1:
-                return TabState.ALL;
-        }
-        throw new IllegalArgumentException(
-                "Parameter must be between 0 and " + Integer.toString(TabState.COUNT-1)
-                + " inclusive.");
-    }
-
-    /**
-     * This is the inverse of {@link getTabPositionFromNavigationItemPosition}.
-     */
-    private int getNavigationItemPositionFromTabPosition(int tabPos) {
-        switch(tabPos) {
-            case TabState.FAVORITES:
-                return 0;
-            case TabState.ALL:
-                return 1;
-        }
-        throw new IllegalArgumentException(
-                "Parameter must be between 0 and " + Integer.toString(TabState.COUNT-1)
-                + " inclusive.");
     }
 
     public void initialize(Bundle savedState, ContactsRequest request) {
@@ -276,17 +188,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
     }
 
-    private class MyNavigationListener implements ActionBar.OnNavigationListener {
-        public boolean mIgnoreNavigationItemSelected;
-
-        public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-            if (!mIgnoreNavigationItemSelected) {
-                setCurrentTab(getTabPositionFromNavigationItemPosition(itemPosition));
-            }
-            return true;
-        }
-    }
-
     /**
      * Change the current tab, and notify the listener.
      */
@@ -304,19 +205,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mCurrentTab = tab;
 
         final int actionBarSelectedNavIndex = mActionBar.getSelectedNavigationIndex();
-        switch(mActionBar.getNavigationMode()) {
-            case ActionBar.NAVIGATION_MODE_TABS:
-                if (mCurrentTab != actionBarSelectedNavIndex) {
-                    mActionBar.setSelectedNavigationItem(mCurrentTab);
-                }
-                break;
-            case ActionBar.NAVIGATION_MODE_LIST:
-                if (mCurrentTab != getTabPositionFromNavigationItemPosition(
-                        actionBarSelectedNavIndex)) {
-                    mActionBar.setSelectedNavigationItem(
-                            getNavigationItemPositionFromTabPosition(mCurrentTab));
-                }
-                break;
+        if (mCurrentTab != actionBarSelectedNavIndex) {
+            mActionBar.setSelectedNavigationItem(mCurrentTab);
         }
 
         if (notifyListener && mListener != null) mListener.onSelectedTabChanged();
@@ -436,13 +326,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
                 mActionBar.setSelectedNavigationItem(mCurrentTab);
                 mTabListener.mIgnoreTabSelected = false;
-            } else if (mActionBarNavigationMode == ActionBar.NAVIGATION_MODE_LIST
-                    && currentNavigationMode != ActionBar.NAVIGATION_MODE_LIST) {
-                mNavigationListener.mIgnoreNavigationItemSelected = true;
-                mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-                mActionBar.setSelectedNavigationItem(
-                        getNavigationItemPositionFromTabPosition(mCurrentTab));
-                mNavigationListener.mIgnoreNavigationItemSelected = false;
             }
             // Since we have the {@link SearchView} in a custom action bar, we must manually handle
             // collapsing the {@link SearchView} when search mode is exited.
