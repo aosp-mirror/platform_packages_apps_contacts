@@ -483,11 +483,11 @@ public class QuickContactActivity extends Activity {
      */
     private void configureHeaderClickActions(boolean canAdd) {
         if (canAdd) {
-            mEditOrAddContactImage.setImageResource(R.drawable.ic_add_contact_holo_dark);
+            mEditOrAddContactImage.setImageResource(R.drawable.ic_person_add_24dp);
             mEditOrAddContactImage.setOnClickListener(mAddToContactsClickHandler);
             mPhotoView.setOnClickListener(mAddToContactsClickHandler);
         } else {
-            mEditOrAddContactImage.setImageResource(R.drawable.ic_menu_compose_holo_dark);
+            mEditOrAddContactImage.setImageResource(R.drawable.ic_create_24dp);
             mEditOrAddContactImage.setOnClickListener(mEditContactClickHandler);
             mPhotoView.setOnClickListener(mEditContactClickHandler);
         }
