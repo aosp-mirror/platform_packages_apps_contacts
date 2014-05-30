@@ -30,7 +30,6 @@
         android:id="@+id/digits_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialpad_digits_height"
-        android:layout_marginBottom="@dimen/dialpad_digits_margin_bottom"
         android:orientation="horizontal">
 
         <ImageButton android:id="@+id/dialpad_overflow"
