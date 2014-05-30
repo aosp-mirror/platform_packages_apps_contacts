@@ -21,7 +21,8 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:descendantFocusability="afterDescendants" >
+    android:descendantFocusability="afterDescendants"
+    android:background="@color/card_margin_color" >
 
     <LinearLayout
         android:id="@android:id/content"

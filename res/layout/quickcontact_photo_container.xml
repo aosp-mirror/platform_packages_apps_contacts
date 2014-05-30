@@ -43,8 +43,8 @@
             android:layout_alignEnd="@id/photo"
             android:background="@color/quickcontact_name_detail_background" />
         <ImageView
-            android:id="@+id/contact_details_image"
-            android:src="@drawable/ic_contacts_holo_dark"
+            android:id="@+id/contact_edit_image"
+            android:src="@drawable/ic_menu_compose_holo_dark"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_marginRight="16dip"
@@ -54,7 +54,7 @@
             android:layout_alignRight="@id/photo_text_bar"
             android:layout_alignEnd="@id/photo_text_bar"
             android:clickable="true"
-            android:contentDescription="@string/viewContactDesription" />
+            android:contentDescription="@string/editContactDescription" />
         <ImageView
             android:id="@+id/quickcontact_star_button"
             android:src="@drawable/ic_favorite_off_lt"
@@ -64,8 +64,8 @@
             android:layout_marginRight="16dip"
             android:layout_marginEnd="16dip"
             android:layout_alignBottom="@id/photo_text_bar"
-            android:layout_toLeftOf="@id/contact_details_image"
-            android:layout_toStartOf="@id/contact_details_image"
+            android:layout_toLeftOf="@id/contact_edit_image"
+            android:layout_toStartOf="@id/contact_edit_image"
             android:clickable="true"
             android:contentDescription="@string/menu_addStar" />
         <TextView
