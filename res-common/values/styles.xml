@@ -63,7 +63,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
     </style>
 
     <style name="TextAppearanceSmall" parent="@android:style/TextAppearance.Small">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">#888888</item>
     </style>
 
