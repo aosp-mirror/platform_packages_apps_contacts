@@ -141,7 +141,6 @@ public class ContactListItemView extends ViewGroup
     private PhotoPosition mPhotoPosition = getDefaultPhotoPosition(false /* normal/non opposite */);
 
     // Header layout data
-    private int mHeaderBackgroundHeight;
     private TextView mHeaderTextView;
     private boolean mIsSectionHeaderEnabled;
 
@@ -440,8 +439,7 @@ public class ContactListItemView extends ViewGroup
         if (mHeaderTextView != null && mHeaderTextView.getVisibility() == VISIBLE) {
             mHeaderTextView.measure(
                     MeasureSpec.makeMeasureSpec(mHeaderWidth, MeasureSpec.EXACTLY),
-                    MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
-            mHeaderBackgroundHeight = Math.min(height, mHeaderTextView.getMeasuredHeight());
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
         }
 
         setMeasuredDimension(specWidth, height);
@@ -463,11 +461,14 @@ public class ContactListItemView extends ViewGroup
         // Put the section header on the left side of the contact view.
         if (mIsSectionHeaderEnabled) {
             if (mHeaderTextView != null) {
+                int headerHeight = mHeaderTextView.getMeasuredHeight();
+                int headerTopBound = (bottomBound + topBound - headerHeight) / 2 + mTextOffsetTop;
+
                 mHeaderTextView.layout(
                         isLayoutRtl ? rightBound - mHeaderWidth : leftBound,
-                        topBound,
+                        headerTopBound,
                         isLayoutRtl ? rightBound : leftBound + mHeaderWidth,
-                        mHeaderBackgroundHeight);
+                        headerTopBound + headerHeight);
             }
             if (isLayoutRtl) {
                 rightBound -= mHeaderWidth;
@@ -717,8 +718,8 @@ public class ContactListItemView extends ViewGroup
             if (mHeaderTextView == null) {
                 mHeaderTextView = new TextView(getContext());
                 mHeaderTextView.setTextAppearance(getContext(), R.style.SectionHeaderStyle);
-                mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL |
-                        (ViewUtil.isViewLayoutRtl(this) ? Gravity.RIGHT : Gravity.LEFT));
+                mHeaderTextView.setGravity(
+                        ViewUtil.isViewLayoutRtl(this) ? Gravity.RIGHT : Gravity.LEFT);
                 addView(mHeaderTextView);
             }
             setMarqueeText(mHeaderTextView, title);
