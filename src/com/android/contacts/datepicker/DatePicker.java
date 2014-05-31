@@ -221,7 +221,7 @@ public class DatePicker extends FrameLayout {
         // We use numeric spinners for year and day, but textual months. Ask icu4c what
         // order the user's locale uses for that combination. http://b/7207103.
         String skeleton = mHasYear ? "yyyyMMMdd" : "MMMdd";
-        String pattern = ICU.getBestDateTimePattern(skeleton, Locale.getDefault().toString());
+        String pattern = DateFormat.getBestDateTimePattern(Locale.getDefault(), skeleton);
         char[] order = ICU.getDateFormatOrder(pattern);
 
         /* Remove the 3 pickers from their parent and then add them back in the
