@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Loader;
@@ -30,9 +31,11 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContactDelta;
@@ -152,7 +155,12 @@ public class AttachPhotoActivity extends ContactsActivity {
             ContactPhotoUtils.addPhotoPickerExtras(intent, mCroppedPhotoUri);
             ContactPhotoUtils.addCropExtras(intent, mPhotoDim != 0 ? mPhotoDim : mDefaultPhotoDim);
 
-            startActivityForResult(intent, REQUEST_CROP_PHOTO);
+            try {
+                startActivityForResult(intent, REQUEST_CROP_PHOTO);
+            } catch (ActivityNotFoundException ex) {
+                Toast.makeText(this, R.string.missing_app, Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             mContactUri = result.getData();
 
