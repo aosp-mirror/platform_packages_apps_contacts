@@ -439,7 +439,11 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
 
         // Launch!
-        startActivityForResult(intent, REQUEST_CODE_PICK_RINGTONE);
+        try {
+            startActivityForResult(intent, REQUEST_CODE_PICK_RINGTONE);
+        } catch (ActivityNotFoundException ex) {
+            Toast.makeText(mContext, R.string.missing_app, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
