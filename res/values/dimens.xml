@@ -16,9 +16,17 @@
 <resources>
     <dimen name="account_selector_popup_width">400dip</dimen>
 
-    <!-- Top position of quick contact. If this is -1, the vertical position is determined
-    based on the source of the request -->
-    <dimen name="quick_contact_top_position">48dip</dimen>
+    <!-- Initial height of transparent space above QuickContacts -->
+    <dimen name="quickcontact_starting_empty_height">150dp</dimen>
+    <!-- Initial/maximum height of QuickContact's header/avatar-photo -->
+    <dimen name="quickcontact_maximum_header_height">200dp</dimen>
+    <!-- Minimum height of QuickContact's header/avatar-photo -->
+    <dimen name="quickcontact_minimum_header_height">64dp</dimen>
+    <!-- If you scroll the QuickContact by this amount over the top of viewport,
+         the MultiShrinkScroller will smoothScroll the QuickContact to the top of the
+         viewport. This is used to give a sense of elasticity surrounding
+         the top of the viewport. -->
+    <dimen name="quickcontact_elastic_scroll_over_top_region">50dp</dimen>
 
     <!-- Top padding of the entire contact editor  -->
     <dimen name="editor_padding_top">0dip</dimen>

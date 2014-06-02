@@ -14,35 +14,45 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res-auto"
+<com.android.contacts.widget.MultiShrinkScroller
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/multiscroller"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:descendantFocusability="afterDescendants"
-    android:background="@color/card_margin_color" >
+    android:descendantFocusability="afterDescendants" >
 
-    <LinearLayout
-        android:id="@android:id/content"
+    <!-- Will contain ToolBar and image behind ToolBar -->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="@dimen/quickcontact_maximum_header_height"
+        android:layout_marginTop="@dimen/quickcontact_starting_empty_height"
+        android:background="@color/card_margin_color"
+        android:id="@+id/toolbar_parent">
+        <include layout="@layout/quickcontact_photo_container" />
+    </FrameLayout>
 
-        <view
+    <com.android.contacts.widget.TouchlessScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:id="@+id/content_scroller"
+        android:background="@color/card_margin_color">
+
+        <!-- All the cards should be inserted into this LinearLayout -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            class="com.android.contacts.common.widget.ProportionalLayout"
-            ex:direction="widthToHeight"
-            ex:ratio="0.5" >
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/card_container">
+            <com.android.contacts.quickcontact.ExpandingEntryCardView
+                style="@style/ExpandingEntryCardStyle"
+                android:id="@+id/communication_card"
+                android:layout_marginTop="@dimen/communication_card_marginTop" />
+        </LinearLayout>
 
-            <include layout="@layout/quickcontact_photo_container" />
-        </view>
+    </com.android.contacts.widget.TouchlessScrollView>
 
-        <com.android.contacts.quickcontact.ExpandingEntryCardView
-            style="@style/ExpandingEntryCardStyle"
-            android:id="@+id/communication_card"
-            android:layout_marginTop="@dimen/communication_card_marginTop" />
-    </LinearLayout>
-</ScrollView>
+</com.android.contacts.widget.MultiShrinkScroller>

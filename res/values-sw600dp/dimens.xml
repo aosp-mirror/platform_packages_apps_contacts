@@ -26,8 +26,6 @@
     <dimen name="group_detail_border_padding">16dip</dimen>
     <dimen name="search_view_width">400dip</dimen>
     <dimen name="contact_tile_list_padding_top">16dip</dimen>
-    <!-- Center vertically -->
-    <dimen name="quick_contact_top_position">-1px</dimen>
     <!-- Contact list (vertical scroll bar comes left) -->
     <dimen name="list_visible_scrollbar_padding">32dip</dimen>
     <dimen name="list_header_extra_top_padding">@dimen/contact_browser_list_top_margin</dimen>

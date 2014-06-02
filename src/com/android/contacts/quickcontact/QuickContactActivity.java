@@ -16,21 +16,16 @@
 
 package com.android.contacts.quickcontact;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
@@ -42,21 +37,14 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
-import android.support.v13.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.HorizontalScrollView;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,8 +65,10 @@ import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
 import com.android.contacts.util.ImageViewDrawableSetter;
-import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.common.util.StopWatch;
+import com.android.contacts.util.SchedulingUtils;
+import com.android.contacts.widget.MultiShrinkScroller;
+import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -88,8 +78,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-// TODO: Save selected tab index during rotation
 
 /**
  * Mostly translucent {@link Activity} that shows QuickContact dialog. It loads
@@ -101,7 +89,7 @@ public class QuickContactActivity extends Activity {
 
     private static final boolean TRACE_LAUNCH = false;
     private static final String TRACE_TAG = "quickcontact";
-    private static final int POST_DRAW_WAIT_DURATION = 60;
+    private static final int ANIMATION_DURATION = 250;
     private static final boolean ENABLE_STOPWATCH = false;
 
 
@@ -118,6 +106,7 @@ public class QuickContactActivity extends Activity {
     private ImageView mEditOrAddContactImage;
     private ImageView mStarImage;
     private ExpandingEntryCardView mCommunicationCard;
+    private MultiShrinkScroller mScroller;
 
     private Contact mContactData;
     private ContactLoader mContactLoader;
@@ -202,6 +191,14 @@ public class QuickContactActivity extends Activity {
         }
     };
 
+    final MultiShrinkScrollerListener mMultiShrinkScrollerListener
+            = new MultiShrinkScrollerListener() {
+        @Override
+        public void onScrolledOffBottom() {
+            onBackPressed();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle icicle) {
         mStopWatch.lap("c"); // create start
@@ -245,7 +242,12 @@ public class QuickContactActivity extends Activity {
         mEditOrAddContactImage = (ImageView) findViewById(R.id.contact_edit_image);
         mStarImage = (ImageView) findViewById(R.id.quickcontact_star_button);
         mCommunicationCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
+        mScroller = (MultiShrinkScroller) findViewById(R.id.multiscroller);
         mCommunicationCard.setTitle(getResources().getString(R.string.communication_card_title));
+
+        if (mScroller != null) {
+            mScroller.initialize(mMultiShrinkScrollerListener);
+        }
 
         mEditOrAddContactImage.setOnClickListener(mEditContactClickHandler);
         mCommunicationCard.setOnClickListener(mEntryClickHandler);
@@ -260,15 +262,19 @@ public class QuickContactActivity extends Activity {
 
         mStopWatch.lap("v"); // view initialized
 
-        // TODO: Use some sort of fading in for the layout and content during animation
-        /*SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
-            @Override
-            public void run() {
-                mFloatingLayout.fadeInBackground();
-            }
-        });*/
+        if (mScroller != null) {
+            mScroller.setVisibility(View.GONE);
+        }
 
         mStopWatch.lap("cf"); // onCreate finished
+    }
+
+    private void runEntranceAnimation() {
+        final int bottomScroll = mScroller.getScrollUntilOffBottom() - 1;
+        final ObjectAnimator scrollAnimation
+                = ObjectAnimator.ofInt(mScroller, "scroll", -bottomScroll, 0);
+        scrollAnimation.setDuration(ANIMATION_DURATION);
+        scrollAnimation.start();
     }
 
     /** Assign this string to the view if it is not empty. */
@@ -541,22 +547,20 @@ public class QuickContactActivity extends Activity {
                 Log.d(Constants.PERFORMANCE_TAG, "QuickContact shown");
             }
 
-            // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
-            // that the layout passes are completed
-            // TODO: Add animation here
-            /*SchedulingUtils.doAfterLayout(mFloatingLayout, new Runnable() {
-                @Override
-                public void run() {
-                    mFloatingLayout.showContent(new Runnable() {
-                        @Override
-                        public void run() {
-                            mContactLoader.upgradeToFullContact();
-                        }
-                    });
-                }
-            });*/
+            if (mScroller != null) {
+                // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
+                // that the layout passes are completed
+                mScroller.setVisibility(View.VISIBLE);
+                SchedulingUtils.doOnPreDraw(mScroller, /* drawNextFrame = */ false,
+                        new Runnable() {
+                    @Override
+                    public void run() {
+                        runEntranceAnimation();
+                    }
+                });
+            }
             mStopWatch.stopAndLog(TAG, 0);
-            mStopWatch = StopWatch.getNullStopWatch(); // We're done with it.
+            mStopWatch = StopWatch.getNullStopWatch();
         }
 
         @Override
@@ -569,4 +573,13 @@ public class QuickContactActivity extends Activity {
                     false /*postViewNotification*/, true /*computeFormattedPhoneNumber*/);
         }
     };
+    @Override
+    public void onBackPressed() {
+        if (mScroller != null) {
+            // TODO: implement exit animation if the scroller isn't already off the screen
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
