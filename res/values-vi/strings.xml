@@ -104,10 +104,7 @@
     <item quantity="one" msgid="4826918429708286628">"Đã tìm thấy 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <!-- no translation found for all_contacts_tab_label (6250372293594147703) -->
-    <skip />
-    <!-- no translation found for favorites_tab_label (1524869648904016414) -->
-    <skip />
+    <string name="contactsAllLabel" msgid="6479708629170672169">"Tất cả liên hệ"</string>
     <string name="callBack" msgid="5498224409038809224">"Gọi lại"</string>
     <string name="callAgain" msgid="3197312117049874778">"Gọi lại"</string>
     <string name="returnCall" msgid="8171961914203617813">"Gọi lại"</string>
@@ -144,8 +141,8 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Chụp ảnh mới"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Chọn ảnh"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Chọn ảnh mới"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Danh sách liên hệ đang được cập nhật để phản ánh sự thay đổi ngôn ngữ."</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Danh sách liên hệ đang được cập nhật."</string>
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"Danh bạ đang được cập nhật để phản ánh sự thay đổi ngôn ngữ."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"Danh bạ đang được cập nhật."</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Danh bạ đang được nâng cấp. \n\nQuá trình nâng cấp yêu cầu khoảng <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB bộ nhớ trong.\n\nChọn một trong các tùy chọn sau:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Gỡ cài đặt một số ứng dụng"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Thử lại nâng cấp"</string>

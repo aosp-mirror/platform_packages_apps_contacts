@@ -104,10 +104,7 @@
     <item quantity="one" msgid="4826918429708286628">"Βρέθηκε 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Βρέθηκαν <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <!-- no translation found for all_contacts_tab_label (6250372293594147703) -->
-    <skip />
-    <!-- no translation found for favorites_tab_label (1524869648904016414) -->
-    <skip />
+    <string name="contactsAllLabel" msgid="6479708629170672169">"Όλες οι επαφές"</string>
     <string name="callBack" msgid="5498224409038809224">"Επανάκληση"</string>
     <string name="callAgain" msgid="3197312117049874778">"Επανάληψη κλήσης"</string>
     <string name="returnCall" msgid="8171961914203617813">"Επιστροφή κλήσης"</string>
@@ -118,8 +115,8 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Ονόματα των επαφών σας"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας."</string>
     <string name="missing_app" msgid="1466111003546611387">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας."</string>
-    <string name="menu_share" msgid="943789700636542260">"Κοινοποίηση"</string>
-    <string name="share_via" msgid="563121028023030093">"Κοινοποίηση μέσω"</string>
+    <string name="menu_share" msgid="943789700636542260">"Κοινή χρήση"</string>
+    <string name="share_via" msgid="563121028023030093">"Κοινή χρήση μέσω"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Δημιουργία ομάδας στο λογαριασμό"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Φωνητική συνομιλία"</string>
     <string name="video_chat" msgid="1872255818640336072">"Συζήτηση μέσω βίντεο"</string>
