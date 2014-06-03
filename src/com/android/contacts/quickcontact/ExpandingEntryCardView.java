@@ -36,6 +36,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -282,8 +284,7 @@ public class ExpandingEntryCardView extends LinearLayout {
 
     private List<View> createEntryViews(LayoutInflater layoutInflater, List<Entry> entries) {
         ArrayList<View> views = new ArrayList<View>(entries.size());
-        for (int i = 0; i < entries.size(); ++i) {
-            Entry entry = entries.get(i);
+        for (Entry entry : entries) {
             views.add(createEntryView(layoutInflater, entry));
         }
         return views;
@@ -362,33 +363,38 @@ public class ExpandingEntryCardView extends LinearLayout {
         insertEntriesIntoViewGroup();
         updateExpandCollapseButton(getCollapseButtonText());
 
-        createExpandAnimator(startingHeight, measureContentAreaHeight()).start();
+        // When expanding, all the TextViews haven't been laid out yet. Therefore,
+        // calling measure() would return an incorrect result. Therefore, we need a pre draw
+        // listener.
+        final ViewTreeObserver observer = mEntriesViewGroup.getViewTreeObserver();
+        observer.addOnPreDrawListener(new OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                if (observer.isAlive()) {
+                    mEntriesViewGroup.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                createExpandAnimator(startingHeight, mEntriesViewGroup.getHeight()).start();
+                // Do not draw the final frame of the animation immediately.
+                return false;
+            }
+        });
     }
 
     private void collapse() {
         int startingHeight = mEntriesViewGroup.getHeight();
-
-        // Figure out the height the view will be after the animation is finished.
-        mIsExpanded = false;
-        insertEntriesIntoViewGroup();
-        int finishHeight = measureContentAreaHeight();
-
-        // During the animation, mEntriesViewGroup should contain the same views as it did before
-        // the animation. Otherwise, the animation will look very silly.
-        mIsExpanded = true;
-        insertEntriesIntoViewGroup();
+        int finishHeight = measureCollapsedViewGroupHeight();
 
         mIsExpanded = false;
         updateExpandCollapseButton(getExpandButtonText());
         createExpandAnimator(startingHeight, finishHeight).start();
     }
 
-    private int measureContentAreaHeight() {
-        // Measure the LinearLayout, assuming no constraints from the parent.
-        final int widthSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-        final int heightSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-        mEntriesViewGroup.measure(widthSpec, heightSpec);
-        return mEntriesViewGroup.getMeasuredHeight();
+    private int measureCollapsedViewGroupHeight() {
+        if (mCollapsedEntriesCount == 0) {
+            return 0;
+        }
+        final View bottomCollapsedView = mEntryViews.get(mCollapsedEntriesCount - 1);
+        return bottomCollapsedView.getTop() + bottomCollapsedView.getHeight();
     }
 
     /**
@@ -399,7 +405,6 @@ public class ExpandingEntryCardView extends LinearLayout {
      */
     private ValueAnimator createExpandAnimator(int start, int end) {
         ValueAnimator animator = ValueAnimator.ofInt(start, end);
-        animator.setInterpolator(new AccelerateDecelerateInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -413,6 +418,10 @@ public class ExpandingEntryCardView extends LinearLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 insertEntriesIntoViewGroup();
+                // Now that the animation is done, stop using a fixed height.
+                ViewGroup.LayoutParams layoutParams = mEntriesViewGroup.getLayoutParams();
+                layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                mEntriesViewGroup.setLayoutParams(layoutParams);
             }
         });
         return animator;
