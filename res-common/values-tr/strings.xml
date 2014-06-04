@@ -256,4 +256,8 @@
     <string name="dialpad_9_number" msgid="7639250786374503913">"9"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> üzerinden"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> üzerinden şu zamanda: <xliff:g id="DATE">%1$s</xliff:g>"</string>
+    <!-- no translation found for action_menu_back_from_search (1138551123844019647) -->
+    <skip />
+    <!-- no translation found for description_clear_search (3893511425518852086) -->
+    <skip />
 </resources>
