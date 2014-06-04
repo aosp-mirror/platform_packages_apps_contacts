@@ -6,6 +6,8 @@ import com.android.contacts.test.NeededForReflection;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -15,6 +17,7 @@ import android.view.ViewConfiguration;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.EdgeEffect;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.ScrollView;
@@ -47,6 +50,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private ScrollView mScrollView;
     private View mScrollViewChild;
     private View mToolbar;
+    private ImageView mPhotoView;
     private MultiShrinkScrollerListener mListener;
 
     private final Scroller mScroller;
@@ -58,6 +62,9 @@ public class MultiShrinkScroller extends LinearLayout {
     private final int mMinimumHeaderHeight;
     private final int mTransparentStartHeight;
     private final int mElasticScrollOverTopRegion;
+    private final PorterDuffColorFilter mColorFilter
+            = new PorterDuffColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+    private final int mHeaderTintColor;
 
     public interface MultiShrinkScrollerListener {
         void onScrolledOffBottom();
@@ -105,6 +112,8 @@ public class MultiShrinkScroller extends LinearLayout {
                 R.dimen.quickcontact_starting_empty_height);
         mElasticScrollOverTopRegion = (int) getResources().getDimension(
                 R.dimen.quickcontact_elastic_scroll_over_top_region);
+        mHeaderTintColor = mContext.getResources().getColor(
+                R.color.actionbar_background_color);
     }
 
     /**
@@ -114,6 +123,7 @@ public class MultiShrinkScroller extends LinearLayout {
         mScrollView = (ScrollView) findViewById(R.id.content_scroller);
         mScrollViewChild = findViewById(R.id.card_container);
         mToolbar = findViewById(R.id.toolbar_parent);
+        mPhotoView = (ImageView) findViewById(R.id.photo);
         mListener = listener;
     }
 
@@ -283,6 +293,7 @@ public class MultiShrinkScroller extends LinearLayout {
         } else {
             scrollDown(delta);
         }
+        updatePhotoTint();
     }
 
     @NeededForReflection
@@ -420,6 +431,27 @@ public class MultiShrinkScroller extends LinearLayout {
                     mListener.onScrolledOffBottom();
                 }
             });
+        }
+    }
+
+    private void updatePhotoTint() {
+        // We need to use toolbarLayoutParams to determine the height, since the layout
+        // params can be updated before the height change is reflected inside the View#getHeight().
+        final int toolbarHeight = mToolbar.getLayoutParams().height;
+        // Reuse an existing mColorFilter (to avoid GC pauses) to change the photo's tint.
+        mPhotoView.clearColorFilter();
+        if (toolbarHeight >= mMaximumHeaderHeight) {
+            return;
+        }
+        if (toolbarHeight <= mMinimumHeaderHeight) {
+            mColorFilter.setColor(mHeaderTintColor);
+            mPhotoView.setColorFilter(mColorFilter);
+        } else {
+            final int alphaBits = 0xff - 0xff * (mToolbar.getHeight()  - mMinimumHeaderHeight)
+                    / (mMaximumHeaderHeight - mMinimumHeaderHeight);
+            final int color = alphaBits << 24 | (mHeaderTintColor & 0xffffff);
+            mColorFilter.setColor(color);
+            mPhotoView.setColorFilter(mColorFilter);
         }
     }
 
