@@ -136,6 +136,7 @@ public class LetterTileDrawable extends Drawable {
         sPaint.setColor(pickColor(mIdentifier));
 
         sPaint.setAlpha(mPaint.getAlpha());
+        sPaint.setColorFilter(mPaint.getColorFilter());
         final Rect bounds = getBounds();
         final int minDimension = Math.min(bounds.width(), bounds.height());
 
