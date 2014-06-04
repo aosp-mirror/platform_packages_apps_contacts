@@ -181,7 +181,6 @@ public class PinnedHeaderListView extends AutoScrollListView
             mAnimationTargetTime = System.currentTimeMillis() + mAnimationDuration;
             mAdapter.configurePinnedHeaders(this);
             invalidateIfAnimating();
-
         }
         if (mOnScrollListener != null) {
             mOnScrollListener.onScroll(this, firstVisibleItem, visibleItemCount, totalItemCount);
@@ -514,6 +513,18 @@ public class PinnedHeaderListView extends AutoScrollListView
         if (hasVisibleHeaders) {
             canvas.restore();
 
+            // If the first item is visible, if it has a positive top use that for the first
+            // header's y value. This way, the header inherits any padding applied to the list view.
+            if (mSize > 0 && getFirstVisiblePosition() == 0) {
+                View firstChild = getChildAt(0);
+                PinnedHeader firstHeader = mHeaders[0];
+
+                if (firstHeader != null) {
+                    int firstHeaderTop = firstChild != null ? Math.max(firstChild.getTop(), 0) : 0;
+                    firstHeader.y = firstHeaderTop;
+                }
+            }
+
             // First draw top headers, then the bottom ones to handle the Z axis correctly
             for (int i = mSize; --i >= 0;) {
                 PinnedHeader header = mHeaders[i];
@@ -549,11 +560,11 @@ public class PinnedHeaderListView extends AutoScrollListView
             View view = header.view;
             int saveCount = canvas.save();
             int translateX = ViewUtil.isViewLayoutRtl(this) ?
-                    getWidth() - mHeaderPaddingStart - header.view.getWidth() :
+                    getWidth() - mHeaderPaddingStart - view.getWidth() :
                     mHeaderPaddingStart;
             canvas.translate(translateX, header.y);
             if (header.state == FADING) {
-                mBounds.set(0, 0, header.view.getWidth(), view.getHeight());
+                mBounds.set(0, 0, view.getWidth(), view.getHeight());
                 canvas.saveLayerAlpha(mBounds, header.alpha, Canvas.ALL_SAVE_FLAG);
             }
             view.draw(canvas);
