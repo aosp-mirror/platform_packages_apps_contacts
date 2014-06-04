@@ -79,16 +79,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#d6d6d6" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ffffff" />
+        android:background="#e3e3e3" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="13dp" />
+        android:layout_height="14dp" />
 
     <include layout="@layout/dialpad" />
 
