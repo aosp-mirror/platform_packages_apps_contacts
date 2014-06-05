@@ -39,6 +39,7 @@ import com.android.contacts.editor.ContactEditorFragment.SaveMode;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.util.DialogManager;
 
 import java.util.ArrayList;
@@ -156,6 +157,12 @@ public class ContactEditorActivity extends ContactsActivity
 
     private final ContactEditorFragment.Listener mFragmentListener =
             new ContactEditorFragment.Listener() {
+
+        @Override
+        public void onDeleteRequested(Uri contactUri) {
+            ContactDeletionInteraction.start(ContactEditorActivity.this, contactUri, true);
+        }
+
         @Override
         public void onReverted() {
             finish();
