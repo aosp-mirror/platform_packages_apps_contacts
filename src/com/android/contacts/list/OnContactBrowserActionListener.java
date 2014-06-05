@@ -36,29 +36,9 @@ public interface OnContactBrowserActionListener  {
     void onViewContactAction(Uri contactLookupUri);
 
     /**
-     * Creates a new contact.
-     */
-    void onCreateNewContactAction();
-
-    /**
-     * Opens the specified contact for editing.
-     */
-    void onEditContactAction(Uri contactLookupUri);
-
-    /**
      * Initiates the contact deletion process.
      */
     void onDeleteContactAction(Uri contactUri);
-
-    /**
-     * Adds the specified contact to favorites
-     */
-    void onAddToFavoritesAction(Uri contactUri);
-
-    /**
-     * Removes the specified contact from favorites.
-     */
-    void onRemoveFromFavoritesAction(Uri contactUri);
 
     /**
      * Closes the contact browser.

@@ -145,20 +145,13 @@ public class GroupEditorActivity extends ContactsActivity
 
         @Override
         public void onSaveFinished(int resultCode, Intent resultIntent) {
-            // TODO: Collapse these 2 cases into 1 that will just launch an intent with the VIEW
-            // action to see the group URI (when group URIs are supported)
-            // For a 2-pane screen, set the activity result, so the original activity (that launched
-            // the editor) can display the group detail page
-            if (PhoneCapabilityTester.isUsingTwoPanes(GroupEditorActivity.this)) {
-                setResult(resultCode, resultIntent);
-            } else if (resultIntent != null) {
-                // For a 1-pane screen, launch the group detail page
+            if (resultIntent != null) {
                 Intent intent = new Intent(GroupEditorActivity.this, GroupDetailActivity.class);
                 intent.setData(resultIntent.getData());
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
-            finish();
         }
     };
 

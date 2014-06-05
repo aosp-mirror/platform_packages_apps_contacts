@@ -27,9 +27,7 @@ import com.android.contacts.NfcHandler;
 import com.android.contacts.R.id;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.common.model.Contact;
-import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.common.util.UriUtils;
-import com.android.contacts.widget.TransitionAnimationView;
 
 /**
  * Sets ContactDetailFragment data and performs animations when data changes.
@@ -47,7 +45,6 @@ public class ContactDetailLayoutController {
     private final Activity mActivity;
     private final FragmentManager mFragmentManager;
     private final ContactDetailFragment.Listener mContactDetailFragmentListener;
-    private final TransitionAnimationView mTransitionAnimationView;
     private final View mViewContainer;
 
     private ContactDetailFragment mDetailFragment;
@@ -55,8 +52,8 @@ public class ContactDetailLayoutController {
     private Uri mContactUri;
 
     public ContactDetailLayoutController(Activity activity, Bundle savedState,
-            FragmentManager fragmentManager, TransitionAnimationView animationView,
-            View viewContainer, ContactDetailFragment.Listener contactDetailFragmentListener) {
+            FragmentManager fragmentManager, View viewContainer,
+            ContactDetailFragment.Listener contactDetailFragmentListener) {
 
         if (fragmentManager == null) {
             throw new IllegalStateException("Cannot initialize a ContactDetailLayoutController "
@@ -66,7 +63,6 @@ public class ContactDetailLayoutController {
         mActivity = activity;
         mFragmentManager = fragmentManager;
         mContactDetailFragmentListener = contactDetailFragmentListener;
-        mTransitionAnimationView = animationView;
         mViewContainer = viewContainer;
 
         initialize(savedState);
@@ -100,19 +96,12 @@ public class ContactDetailLayoutController {
         }
         mContactData = data;
 
-        if (PhoneCapabilityTester.isUsingTwoPanes(mActivity)) {
-            // Tablet: If we already showed data before, we want to cross-fade from screen to screen
-            if (contactWasLoaded && mTransitionAnimationView != null && isDifferentContact) {
-                mTransitionAnimationView.startMaskTransition(mContactData == null, -1);
-            }
-        } else {
-            // Small screen: We are on our own screen. Fade the data in, but only the first time
-            if (!contactWasLoaded) {
-                mViewContainer.setAlpha(0.0f);
-                final ViewPropertyAnimator animator = mViewContainer.animate();
-                animator.alpha(1.0f);
-                animator.setDuration(SINGLE_PANE_FADE_IN_DURATION);
-            }
+        // Small screen: We are on our own screen. Fade the data in, but only the first time
+        if (!contactWasLoaded) {
+            mViewContainer.setAlpha(0.0f);
+            final ViewPropertyAnimator animator = mViewContainer.animate();
+            animator.alpha(1.0f);
+            animator.setDuration(SINGLE_PANE_FADE_IN_DURATION);
         }
 
         showContact();

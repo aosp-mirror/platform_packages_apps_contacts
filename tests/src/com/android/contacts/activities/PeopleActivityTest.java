@@ -121,49 +121,6 @@ public class PeopleActivityTest
         super.tearDown();
     }
 
-    public void testSingleAccountNoGroups() {
-
-        if (true) { // Need this to avoid "unreachable statement"
-            return; // Disabled for now.
-        }
-
-        // This two-pane UI test only makes sense if we run with two panes.
-        // Let's ignore this in the single pane case
-        if (!PhoneCapabilityTester.isUsingTwoPanes(mContext)) return;
-
-        expectSettingsQueriesAndReturnDefault();
-        expectProviderStatusQueryAndReturnNormal();
-        expectGroupsQueryAndReturnEmpty();
-        expectContactListQuery(100);
-        expectContactLookupQuery("lu1", 1, "lu1", 1);
-        expectContactEntityQuery("lu1", 1);
-
-        setActivityIntent(new Intent(Intent.ACTION_DEFAULT));
-
-        PeopleActivity activity = getActivity();
-
-        getInstrumentation().waitForIdleSync();
-
-        ContactBrowseListFragment listFragment = activity.getListFragment();
-        ContactDetailFragment detailFragment = activity.getDetailFragment();
-
-        Loader<?> filterLoader =
-                activity.getLoaderManager().getLoader(R.id.contact_list_filter_loader);
-        Loader<?> listLoader =
-                listFragment.getLoaderManager().getLoader(0);
-
-        // TODO: wait for detail loader
-        // TODO: wait for lookup key loading
-        TestLoaderManager.waitForLoaders(filterLoader, listLoader);
-
-        getInstrumentation().waitForIdleSync();
-
-        mContext.verify();
-
-        TextView nameText = (TextView) detailFragment.getView().findViewById(R.id.name);
-        assertEquals("Contact 1", nameText.getText());
-    }
-
     private void expectSettingsQueriesAndReturnDefault() {
         mSettingsProvider
                 .expectQuery(Settings.System.CONTENT_URI)

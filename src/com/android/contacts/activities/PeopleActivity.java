@@ -19,13 +19,10 @@ package com.android.contacts.activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.ActivityNotFoundException;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.os.UserManager;
 import android.preference.PreferenceActivity;
@@ -44,30 +41,21 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
-import com.android.contacts.detail.ContactDetailFragment;
-import com.android.contacts.detail.ContactDetailLayoutController;
-import com.android.contacts.detail.ContactLoaderFragment;
-import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
-import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
-import com.android.contacts.list.ContactTileFrequentFragment;
 import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -78,8 +66,6 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
-import com.android.contacts.common.model.Contact;
-import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
@@ -88,17 +74,12 @@ import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.HelpUtils;
-import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.common.util.UriUtils;
-import com.android.contacts.widget.TransitionAnimationView;
 
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Displays a list to browse contacts. For xlarge screens, this also displays a detail-pane on
- * the right.
+ * Displays a list to browse contacts.
  */
 public class PeopleActivity extends ContactsActivity implements
         View.OnCreateContextMenuListener,
@@ -110,14 +91,10 @@ public class PeopleActivity extends ContactsActivity implements
 
     private static final String TAG = "PeopleActivity";
 
-    private static final int TAB_FADE_IN_DURATION = 500;
-
     private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
 
     // These values needs to start at 2. See {@link ContactEntryListFragment}.
-    private static final int SUBACTIVITY_NEW_CONTACT = 2;
-    private static final int SUBACTIVITY_EDIT_CONTACT = 3;
-    private static final int SUBACTIVITY_ACCOUNT_FILTER = 6;
+    private static final int SUBACTIVITY_ACCOUNT_FILTER = 2;
 
     private final DialogManager mDialogManager = new DialogManager(this);
 
@@ -125,12 +102,6 @@ public class PeopleActivity extends ContactsActivity implements
     private ContactsRequest mRequest;
 
     private ActionBarAdapter mActionBarAdapter;
-
-    private ContactDetailFragment mContactDetailFragment;
-
-    private ContactLoaderFragment mContactDetailLoaderFragment;
-    private final ContactDetailLoaderFragmentListener mContactDetailLoaderFragmentListener =
-            new ContactDetailLoaderFragmentListener();
 
     private ContactTileListFragment.Listener mFavoritesFragmentListener =
             new StrequentContactListFragmentListener();
@@ -148,27 +119,13 @@ public class PeopleActivity extends ContactsActivity implements
      */
     private DefaultContactBrowseListFragment mAllFragment;
     private ContactTileListFragment mFavoritesFragment;
-    private ContactTileFrequentFragment mFrequentFragment;
 
-    private View mFavoritesView;
-    private View mBrowserView;
-    private TransitionAnimationView mPeopleActivityView;
-    private TransitionAnimationView mContactDetailsView;
-
-    private View mFloatingActionButtonContainer;
-    private ImageButton mFloatingActionButton;
-
-    /** ViewPager for swipe, used only on the phone (i.e. one-pane mode) */
+    /** ViewPager for swipe */
     private ViewPager mTabPager;
     private TabPagerAdapter mTabPagerAdapter;
     private final TabPagerListener mTabPagerListener = new TabPagerListener();
-    private int mPreviousTab = TabState.DEFAULT;
-
-    private ContactDetailLayoutController mContactDetailLayoutController;
 
     private boolean mEnableDebugMenuOptions;
-
-    private final Handler mHandler = new Handler();
 
     /**
      * True if this activity instance is a re-created one.  i.e. set true after orientation change.
@@ -183,14 +140,6 @@ public class PeopleActivity extends ContactsActivity implements
      * created from scratch -- i.e. onCreate() was just called)
      */
     private boolean mFragmentInitialized;
-
-    /**
-     * Whether or not the current contact filter is valid or not. We need to do a check on
-     * start of the app to verify that the user is not in single contact mode. If so, we should
-     * dynamically change the filter, unless the incoming intent specifically requested a contact
-     * that should be displayed in that mode.
-     */
-    private boolean mCurrentFilterIsValid;
 
     /**
      * This is to disable {@link #onOptionsItemSelected} when we trying to stop the activity.
@@ -232,18 +181,14 @@ public class PeopleActivity extends ContactsActivity implements
      * For the fragments that are in the layout, we initialize them in
      * {@link #createViewsAndFragments(Bundle)} after inflating the layout.
      *
-     * However, there are special fragments which may not be in the layout, so we have to do the
-     * initialization here.
-     * The target fragments are:
-     * - {@link ContactDetailFragment}: This may not be available
-     *   in the layout depending on the configuration.  (i.e. portrait)
-     * - {@link ContactsUnavailableFragment}: We always create it at runtime.
+     * However, the {@link ContactsUnavailableFragment} is a special fragment which may not
+     * be in the layout, so we have to do the initialization here.
+     *
+     * The ContactsUnavailableFragment is always created at runtime.
      */
     @Override
     public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof ContactDetailFragment) {
-            mContactDetailFragment = (ContactDetailFragment) fragment;
-        } else if (fragment instanceof ContactsUnavailableFragment) {
+        if (fragment instanceof ContactsUnavailableFragment) {
             mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
             mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
                     new ContactsUnavailableFragmentListener());
@@ -285,7 +230,6 @@ public class PeopleActivity extends ContactsActivity implements
         mActionBarAdapter.initialize(null, mRequest);
 
         mContactListFilterController.checkFilterValidity(false);
-        mCurrentFilterIsValid = true;
 
         // Re-configure fragments.
         configureFragments(true /* from request */);
@@ -320,8 +264,7 @@ public class PeopleActivity extends ContactsActivity implements
             return false;
         }
 
-        if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
-                && !PhoneCapabilityTester.isUsingTwoPanes(this)) {
+        if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
             redirect = new Intent(this, ContactDetailActivity.class);
             redirect.setAction(Intent.ACTION_VIEW);
             redirect.setData(mRequest.getContactUri());
@@ -339,38 +282,31 @@ public class PeopleActivity extends ContactsActivity implements
         // Hide all tabs (the current tab will later be reshown once a tab is selected)
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        // Prepare the fragments which are used both on 1-pane and on 2-pane.
-        final boolean isUsingTwoPanes = PhoneCapabilityTester.isUsingTwoPanes(this);
-        if (isUsingTwoPanes) {
-            mFavoritesFragment = getFragment(R.id.favorites_fragment);
-            mAllFragment = getFragment(R.id.all_fragment);
-        } else {
-            mTabPager = getView(R.id.tab_pager);
-            mTabPagerAdapter = new TabPagerAdapter();
-            mTabPager.setAdapter(mTabPagerAdapter);
-            mTabPager.setOnPageChangeListener(mTabPagerListener);
+        mTabPager = getView(R.id.tab_pager);
+        mTabPagerAdapter = new TabPagerAdapter();
+        mTabPager.setAdapter(mTabPagerAdapter);
+        mTabPager.setOnPageChangeListener(mTabPagerListener);
 
-            final String FAVORITE_TAG = "tab-pager-favorite";
-            final String ALL_TAG = "tab-pager-all";
+        final String FAVORITE_TAG = "tab-pager-favorite";
+        final String ALL_TAG = "tab-pager-all";
 
-            // Create the fragments and add as children of the view pager.
-            // The pager adapter will only change the visibility; it'll never create/destroy
-            // fragments.
-            // However, if it's after screen rotation, the fragments have been re-created by
-            // the fragment manager, so first see if there're already the target fragments
-            // existing.
-            mFavoritesFragment = (ContactTileListFragment)
-                    fragmentManager.findFragmentByTag(FAVORITE_TAG);
-            mAllFragment = (DefaultContactBrowseListFragment)
-                    fragmentManager.findFragmentByTag(ALL_TAG);
+        // Create the fragments and add as children of the view pager.
+        // The pager adapter will only change the visibility; it'll never create/destroy
+        // fragments.
+        // However, if it's after screen rotation, the fragments have been re-created by
+        // the fragment manager, so first see if there're already the target fragments
+        // existing.
+        mFavoritesFragment = (ContactTileListFragment)
+                fragmentManager.findFragmentByTag(FAVORITE_TAG);
+        mAllFragment = (DefaultContactBrowseListFragment)
+                fragmentManager.findFragmentByTag(ALL_TAG);
 
-            if (mFavoritesFragment == null) {
-                mFavoritesFragment = new ContactTileListFragment();
-                mAllFragment = new DefaultContactBrowseListFragment();
+        if (mFavoritesFragment == null) {
+            mFavoritesFragment = new ContactTileListFragment();
+            mAllFragment = new DefaultContactBrowseListFragment();
 
-                transaction.add(R.id.tab_pager, mFavoritesFragment, FAVORITE_TAG);
-                transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
-            }
+            transaction.add(R.id.tab_pager, mFavoritesFragment, FAVORITE_TAG);
+            transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
         }
 
         mFavoritesFragment.setListener(mFavoritesFragmentListener);
@@ -382,59 +318,22 @@ public class PeopleActivity extends ContactsActivity implements
         transaction.hide(mFavoritesFragment);
         transaction.hide(mAllFragment);
 
-        if (isUsingTwoPanes) {
-            // Prepare 2-pane only fragments/views...
-
-            // Container views for fragments
-            mPeopleActivityView = getView(R.id.people_view);
-            mFavoritesView = getView(R.id.favorites_view);
-            mContactDetailsView = getView(R.id.contact_details_view);
-            mBrowserView = getView(R.id.browse_view);
-
-            // Only favorites tab with two panes has a separate frequent fragment
-            if (PhoneCapabilityTester.isUsingTwoPanesInFavorites(this)) {
-                mFrequentFragment = getFragment(R.id.frequent_fragment);
-                mFrequentFragment.setListener(mFavoritesFragmentListener);
-                mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
-                mFrequentFragment.enableQuickContact(true);
-            }
-
-            mContactDetailLoaderFragment = getFragment(R.id.contact_detail_loader_fragment);
-            mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
-
-            if (mContactDetailFragment != null) {
-                transaction.hide(mContactDetailFragment);
-            }
-
-            // Configure contact details
-            mContactDetailLayoutController = new ContactDetailLayoutController(this, savedState,
-                    getFragmentManager(), mContactDetailsView,
-                    findViewById(R.id.contact_detail_container),
-                    new ContactDetailFragmentListener());
-        }
         transaction.commitAllowingStateLoss();
         fragmentManager.executePendingTransactions();
 
         // Setting Properties after fragment is created
-        if (PhoneCapabilityTester.isUsingTwoPanesInFavorites(this)) {
-            mFavoritesFragment.enableQuickContact(true);
-            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
-        } else {
-            // For 2-pane in All but not in Favorites fragment, show the chevron
-            // for quick contact popup
-            mFavoritesFragment.enableQuickContact(isUsingTwoPanes);
-            mFavoritesFragment.setDisplayType(DisplayType.STREQUENT);
-        }
+        mFavoritesFragment.setDisplayType(DisplayType.STREQUENT);
 
         // Configure action bar
         mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());
         mActionBarAdapter.initialize(savedState, mRequest);
 
         // Configure action button
-        mFloatingActionButtonContainer = findViewById(R.id.floating_action_button_container);
-        ViewUtil.setupFloatingActionButton(mFloatingActionButtonContainer, getResources());
-        mFloatingActionButton = (ImageButton) findViewById(R.id.floating_action_button);
-        mFloatingActionButton.setOnClickListener(this);
+        final View floatingActionButtonContainer = findViewById(
+                R.id.floating_action_button_container);
+        ViewUtil.setupFloatingActionButton(floatingActionButtonContainer, getResources());
+        final ImageButton floatingActionButton = (ImageButton) findViewById(R.id.floating_action_button);
+        floatingActionButton.setOnClickListener(this);
 
         invalidateOptionsMenuIfNeeded();
     }
@@ -459,19 +358,6 @@ public class PeopleActivity extends ContactsActivity implements
              * (so the argument.)
              */
             configureFragments(!mIsRecreatedInstance);
-        } else if (PhoneCapabilityTester.isUsingTwoPanes(this) && !mCurrentFilterIsValid) {
-            // We only want to do the filter check in onStart for wide screen devices where it
-            // is often possible to get into single contact mode. Only do this check if
-            // the filter hasn't already been set properly (i.e. onCreate or onActivityResult).
-
-            // Since there is only one {@link ContactListFilterController} across multiple
-            // activity instances, make sure the filter controller is in sync withthe current
-            // contact list fragment filter.
-            // TODO: Clean this up. Perhaps change {@link ContactListFilterController} to not be a
-            // singleton?
-            mContactListFilterController.setContactListFilter(mAllFragment.getFilter(), true);
-            mContactListFilterController.checkFilterValidity(true);
-            mCurrentFilterIsValid = true;
         }
         super.onStart();
     }
@@ -505,7 +391,6 @@ public class PeopleActivity extends ContactsActivity implements
     @Override
     protected void onStop() {
         super.onStop();
-        mCurrentFilterIsValid = false;
     }
 
     @Override
@@ -548,13 +433,6 @@ public class PeopleActivity extends ContactsActivity implements
                     tabToOpen = TabState.FAVORITES;
                     break;
                 case ContactsRequest.ACTION_VIEW_CONTACT:
-                    // We redirect this intent to the detail activity on 1-pane, so we don't get
-                    // here.  It's only for 2-pane.
-                    Uri currentlyLoadedContactUri = mContactDetailFragment.getUri();
-                    if (currentlyLoadedContactUri != null
-                            && !mRequest.getContactUri().equals(currentlyLoadedContactUri)) {
-                        mContactDetailsView.setMaskVisibility(true);
-                    }
                     tabToOpen = TabState.ALL;
                     break;
                 default:
@@ -591,11 +469,6 @@ public class PeopleActivity extends ContactsActivity implements
 
         mAllFragment.setFilter(mContactListFilterController.getFilter());
 
-        invalidateOptionsMenuIfNeeded();
-    }
-
-    private void setupContactDetailFragment(final Uri contactLookupUri) {
-        mContactDetailLoaderFragment.loadUri(contactLookupUri);
         invalidateOptionsMenuIfNeeded();
     }
 
@@ -651,77 +524,17 @@ public class PeopleActivity extends ContactsActivity implements
     private void updateFragmentsVisibility() {
         int tab = mActionBarAdapter.getCurrentTab();
 
-        // We use ViewPager on 1-pane.
-        if (!PhoneCapabilityTester.isUsingTwoPanes(this)) {
-            if (mActionBarAdapter.isSearchMode()) {
-                mTabPagerAdapter.setSearchMode(true);
-            } else {
-                // No smooth scrolling if quitting from the search mode.
-                final boolean wasSearchMode = mTabPagerAdapter.isSearchMode();
-                mTabPagerAdapter.setSearchMode(false);
-                if (mTabPager.getCurrentItem() != tab) {
-                    mTabPager.setCurrentItem(tab, !wasSearchMode);
-                }
-            }
-            invalidateOptionsMenu();
-            showEmptyStateForTab(tab);
-            return;
-        }
-
-        // for the tablet...
-
-        // If in search mode, we use the all list + contact details to show the result.
         if (mActionBarAdapter.isSearchMode()) {
-            tab = TabState.ALL;
+            mTabPagerAdapter.setSearchMode(true);
+        } else {
+            // No smooth scrolling if quitting from the search mode.
+            final boolean wasSearchMode = mTabPagerAdapter.isSearchMode();
+            mTabPagerAdapter.setSearchMode(false);
+            if (mTabPager.getCurrentItem() != tab) {
+                mTabPager.setCurrentItem(tab, !wasSearchMode);
+            }
         }
-
-        switch (tab) {
-            case TabState.FAVORITES:
-                mFavoritesView.setVisibility(View.VISIBLE);
-                mBrowserView.setVisibility(View.GONE);
-                mContactDetailsView.setVisibility(View.GONE);
-                break;
-            case TabState.ALL:
-                mFavoritesView.setVisibility(View.GONE);
-                mBrowserView.setVisibility(View.VISIBLE);
-                mContactDetailsView.setVisibility(View.VISIBLE);
-                break;
-        }
-
-        // Perform the fade in transition only if the current tab has changed
-        if (mPreviousTab != tab) {
-            mPeopleActivityView.startMaskTransition(false, TAB_FADE_IN_DURATION);
-            mPreviousTab = tab;
-        }
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-
-        // Note mContactDetailLoaderFragment is an invisible fragment, but we still have to show/
-        // hide it so its options menu will be shown/hidden.
-        switch (tab) {
-            case TabState.FAVORITES:
-                showFragment(ft, mFavoritesFragment);
-                showFragment(ft, mFrequentFragment);
-                hideFragment(ft, mAllFragment);
-                hideFragment(ft, mContactDetailLoaderFragment);
-                hideFragment(ft, mContactDetailFragment);
-                break;
-            case TabState.ALL:
-                hideFragment(ft, mFavoritesFragment);
-                hideFragment(ft, mFrequentFragment);
-                showFragment(ft, mAllFragment);
-                showFragment(ft, mContactDetailLoaderFragment);
-                showFragment(ft, mContactDetailFragment);
-                break;
-        }
-        if (!ft.isEmpty()) {
-            ft.commitAllowingStateLoss();
-            fragmentManager.executePendingTransactions();
-            // When switching tabs, we need to invalidate options menu, but executing a
-            // fragment transaction does it implicitly.  We don't have to call invalidateOptionsMenu
-            // manually.
-        }
+        invalidateOptionsMenu();
         showEmptyStateForTab(tab);
     }
 
@@ -921,12 +734,6 @@ public class PeopleActivity extends ContactsActivity implements
     private void configureContactListFragmentForRequest() {
         Uri contactUri = mRequest.getContactUri();
         if (contactUri != null) {
-            // For an incoming request, explicitly require a selection if we are on 2-pane UI,
-            // (i.e. even if we view the same selected contact, the contact may no longer be
-            // in the list, so we must refresh the list).
-            if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                mAllFragment.setSelectionRequired(true);
-            }
             mAllFragment.setSelectedContactUri(contactUri);
         }
 
@@ -944,22 +751,12 @@ public class PeopleActivity extends ContactsActivity implements
         // Filter may be changed when this Activity is in background.
         mAllFragment.setFilter(mContactListFilterController.getFilter());
 
-        final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
-
-        mAllFragment.setVerticalScrollbarPosition(getScrollBarPosition(useTwoPane));
-        mAllFragment.setSelectionVisible(useTwoPane);
-        mAllFragment.setQuickContactEnabled(!useTwoPane);
+        mAllFragment.setVerticalScrollbarPosition(getScrollBarPosition());
+        mAllFragment.setSelectionVisible(false);
     }
 
-    private int getScrollBarPosition(boolean useTwoPane) {
-        final boolean isLayoutRtl = isRTL();
-        final int position;
-        if (useTwoPane) {
-            position = isLayoutRtl ? View.SCROLLBAR_POSITION_RIGHT : View.SCROLLBAR_POSITION_LEFT;
-        } else {
-            position = isLayoutRtl ? View.SCROLLBAR_POSITION_LEFT : View.SCROLLBAR_POSITION_RIGHT;
-        }
-        return position;
+    private int getScrollBarPosition() {
+        return isRTL() ? View.SCROLLBAR_POSITION_LEFT : View.SCROLLBAR_POSITION_RIGHT;
     }
 
     private boolean isRTL() {
@@ -979,7 +776,6 @@ public class PeopleActivity extends ContactsActivity implements
         mProviderStatus = providerStatus;
 
         View contactsUnavailableView = findViewById(R.id.contacts_unavailable_view);
-        View mainView = findViewById(R.id.main_view);
 
         if (mProviderStatus.status == ProviderStatus.STATUS_NORMAL) {
             // Ensure that the mTabPager is visible; we may have made it invisible below.
@@ -988,9 +784,6 @@ public class PeopleActivity extends ContactsActivity implements
                 mTabPager.setVisibility(View.VISIBLE);
             }
 
-            if (mainView != null) {
-                mainView.setVisibility(View.VISIBLE);
-            }
             if (mAllFragment != null) {
                 mAllFragment.setEnabled(true);
             }
@@ -1032,10 +825,6 @@ public class PeopleActivity extends ContactsActivity implements
                 mTabPager.setVisibility(View.GONE);
             }
 
-            if (mainView != null) {
-                mainView.setVisibility(View.INVISIBLE);
-            }
-
             showEmptyStateForTab(mActionBarAdapter.getCurrentTab());
         }
 
@@ -1047,57 +836,15 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onSelectionChange() {
-            if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
-                setupContactDetailFragment(mAllFragment.getSelectedContactUri());
-            }
+
         }
 
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
-            if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
-                setupContactDetailFragment(contactLookupUri);
-            } else {
-                Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
-                        getCurrentFocus().getRootView(), contactLookupUri, QuickContact.MODE_LARGE,
-                        null);
-                startActivity(intent);
-            }
-        }
-
-        @Override
-        public void onCreateNewContactAction() {
-            Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                intent.putExtras(extras);
-            }
+            Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
+                    getCurrentFocus().getRootView(), contactLookupUri, QuickContact.MODE_LARGE,
+                    null);
             startActivity(intent);
-        }
-
-        @Override
-        public void onEditContactAction(Uri contactLookupUri) {
-            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                intent.putExtras(extras);
-            }
-            intent.putExtra(
-                    ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
-            startActivityForResult(intent, SUBACTIVITY_EDIT_CONTACT);
-        }
-
-        @Override
-        public void onAddToFavoritesAction(Uri contactUri) {
-            ContentValues values = new ContentValues(1);
-            values.put(Contacts.STARRED, 1);
-            getContentResolver().update(contactUri, values, null, null);
-        }
-
-        @Override
-        public void onRemoveFromFavoritesAction(Uri contactUri) {
-            ContentValues values = new ContentValues(1);
-            values.put(Contacts.STARRED, 0);
-            getContentResolver().update(contactUri, values, null, null);
         }
 
         @Override
@@ -1125,75 +872,6 @@ public class PeopleActivity extends ContactsActivity implements
                 mAllFragment.setFilter(filter, false);
             }
             mContactListFilterController.setContactListFilter(filter, true);
-        }
-    }
-
-    private class ContactDetailLoaderFragmentListener implements ContactLoaderFragmentListener {
-        ContactDetailLoaderFragmentListener() {}
-
-        @Override
-        public void onContactNotFound() {
-            // Nothing needs to be done here
-        }
-
-        @Override
-        public void onDetailsLoaded(final Contact result) {
-            if (result == null) {
-                // Nothing is loaded. Show empty state.
-                mContactDetailLayoutController.showEmptyState();
-                return;
-            }
-            // Since {@link FragmentTransaction}s cannot be done in the onLoadFinished() of the
-            // {@link LoaderCallbacks}, then post this {@link Runnable} to the {@link Handler}
-            // on the main thread to execute later.
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    // If the activity is destroyed (or will be destroyed soon), don't update the UI
-                    if (isFinishing()) {
-                        return;
-                    }
-                    mContactDetailLayoutController.setContactData(result);
-                }
-            });
-        }
-
-        @Override
-        public void onEditRequested(Uri contactLookupUri) {
-            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-            intent.putExtra(
-                    ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
-            startActivityForResult(intent, SUBACTIVITY_EDIT_CONTACT);
-        }
-
-        @Override
-        public void onDeleteRequested(Uri contactUri) {
-            ContactDeletionInteraction.start(PeopleActivity.this, contactUri, false);
-        }
-    }
-
-    public class ContactDetailFragmentListener implements ContactDetailFragment.Listener {
-        @Override
-        public void onItemClicked(Intent intent) {
-            if (intent == null) {
-                return;
-            }
-            try {
-                startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                Log.e(TAG, "No activity found for intent: " + intent);
-            }
-        }
-
-        @Override
-        public void onCreateRawContactRequested(ArrayList<ContentValues> values,
-                AccountWithDataSet account) {
-            Toast.makeText(PeopleActivity.this, R.string.toast_making_personal_copy,
-                    Toast.LENGTH_LONG).show();
-            Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
-                    PeopleActivity.this, values, account,
-                    PeopleActivity.class, Intent.ACTION_VIEW);
-            startService(serviceIntent);
         }
     }
 
@@ -1233,13 +911,9 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onContactSelected(Uri contactUri, Rect targetRect) {
-            if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
-                QuickContact.showQuickContact(PeopleActivity.this, targetRect, contactUri, 0, null);
-            } else {
-                Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
-                        targetRect, contactUri, QuickContact.MODE_LARGE, null);
-                startActivity(intent);
-            }
+            Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
+                    targetRect, contactUri, QuickContact.MODE_LARGE, null);
+            startActivity(intent);
         }
 
         @Override
@@ -1247,18 +921,6 @@ public class PeopleActivity extends ContactsActivity implements
             // No need to call phone number directly from People app.
             Log.w(TAG, "unexpected invocation of onCallNumberDirectly()");
         }
-    }
-
-    public void startActivityAndForwardResult(final Intent intent) {
-        intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-
-        // Forward extras to the new activity
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            intent.putExtras(extras);
-        }
-        startActivity(intent);
-        finish();
     }
 
     @Override
@@ -1287,11 +949,6 @@ public class PeopleActivity extends ContactsActivity implements
         }
 
         if (mAllFragment != null && mAllFragment.isOptionsMenuChanged()) {
-            return true;
-        }
-
-        if (mContactDetailLoaderFragment != null &&
-                mContactDetailLoaderFragment.isOptionsMenuChanged()) {
             return true;
         }
 
@@ -1351,11 +1008,7 @@ public class PeopleActivity extends ContactsActivity implements
      * @return
      */
     private boolean hasFrequents() {
-        if (PhoneCapabilityTester.isUsingTwoPanesInFavorites(this)) {
-            return mFrequentFragment.hasFrequents();
-        } else {
-            return mFavoritesFragment.hasFrequents();
-        }
+        return mFavoritesFragment.hasFrequents();
     }
 
     private void makeMenuItemVisible(Menu menu, int itemId, boolean visible) {
@@ -1408,18 +1061,7 @@ public class PeopleActivity extends ContactsActivity implements
             }
             case R.id.menu_add_contact: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                // On 2-pane UI, we can let the editor activity finish itself and return
-                // to this activity to display the new contact.
-                if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                    intent.putExtra(
-                            ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED,
-                            true);
-                    startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
-                } else {
-                    // Otherwise, on 1-pane UI, we need the editor to launch the view contact
-                    // intent itself.
-                    startActivity(intent);
-                }
+                startActivity(intent);
                 return true;
             }
             case R.id.menu_import_export: {
@@ -1465,21 +1107,6 @@ public class PeopleActivity extends ContactsActivity implements
                 break;
             }
 
-            case SUBACTIVITY_NEW_CONTACT:
-            case SUBACTIVITY_EDIT_CONTACT: {
-                if (resultCode == RESULT_OK && PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                    mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
-                    mAllFragment.setSelectionRequired(true);
-                    mAllFragment.setSelectedContactUri(data.getData());
-                    // Suppress IME if in search mode
-                    if (mActionBarAdapter != null) {
-                        mActionBarAdapter.clearFocusOnSearchView();
-                    }
-                    // No need to change the contact filter
-                    mCurrentFilterIsValid = true;
-                }
-                break;
-            }
             // TODO: Using the new startActivityWithResultFromFragment API this should not be needed
             // anymore
             case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER:
@@ -1562,9 +1189,6 @@ public class PeopleActivity extends ContactsActivity implements
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mActionBarAdapter.onSaveInstanceState(outState);
-        if (mContactDetailLayoutController != null) {
-            mContactDetailLayoutController.onSaveInstanceState(outState);
-        }
 
         // Clear the listener to make sure we don't get callbacks after onSaveInstanceState,
         // in order to avoid doing fragment transactions after it.
@@ -1590,16 +1214,6 @@ public class PeopleActivity extends ContactsActivity implements
     @Override
     public DialogManager getDialogManager() {
         return mDialogManager;
-    }
-
-    // Visible for testing
-    public ContactBrowseListFragment getListFragment() {
-        return mAllFragment;
-    }
-
-    // Visible for testing
-    public ContactDetailFragment getDetailFragment() {
-        return mContactDetailFragment;
     }
 
     @Override

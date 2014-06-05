@@ -66,35 +66,11 @@ public class ContactDetailActivity extends ContactsActivity {
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-            // This activity must not be shown. We have to select the contact in the
-            // PeopleActivity instead ==> Create a forward intent and finish
-            final Intent originalIntent = getIntent();
-            Intent intent = new Intent();
-            intent.setAction(originalIntent.getAction());
-            intent.setDataAndType(originalIntent.getData(), originalIntent.getType());
-
-            // If we are launched from the outside, we should create a new task, because the user
-            // can freely navigate the app (this is different from phones, where only the UP button
-            // kicks the user into the full app)
-            if (shouldUpRecreateTask(intent)) {
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            } else {
-                intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS |
-                        Intent.FLAG_ACTIVITY_FORWARD_RESULT | Intent.FLAG_ACTIVITY_SINGLE_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            }
-            intent.setClass(this, PeopleActivity.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
 
         setContentView(R.layout.contact_detail_activity);
 
         mContactDetailLayoutController = new ContactDetailLayoutController(this, savedState,
-                getFragmentManager(), null, findViewById(R.id.contact_detail_container),
-                mContactDetailFragmentListener);
+                getFragmentManager(), null, mContactDetailFragmentListener);
 
         // We want the UP affordance but no app icon.
         // Setting HOME_AS_UP, SHOW_TITLE and clearing SHOW_HOME does the trick.

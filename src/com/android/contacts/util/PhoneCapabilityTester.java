@@ -102,19 +102,4 @@ public final class PhoneCapabilityTester {
         final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         return isIntentRegistered(context, intent);
     }
-
-    /**
-     * True if we are using two-pane layouts ("tablet mode"), false if we are using single views
-     * ("phone mode")
-     */
-    public static boolean isUsingTwoPanes(Context context) {
-        return context.getResources().getBoolean(R.bool.config_use_two_panes);
-    }
-
-    /**
-     * True if the favorites tab should be shown in two-pane mode.  False, otherwise.
-     */
-    public static boolean isUsingTwoPanesInFavorites(Context context) {
-        return context.getResources().getBoolean(R.bool.config_use_two_panes_in_favorites);
-    }
 }
