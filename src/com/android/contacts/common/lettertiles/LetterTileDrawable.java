@@ -170,6 +170,10 @@ public class LetterTileDrawable extends Drawable {
         }
     }
 
+    public int getColor() {
+        return pickColor(mIdentifier);
+    }
+
     /**
      * Returns a deterministic color based on the provided contact identifier string.
      */
