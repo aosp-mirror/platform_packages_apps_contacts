@@ -112,7 +112,8 @@
     <!-- Text dimensions for dialpad keys -->
     <dimen name="dialpad_key_numbers_size">36sp</dimen>
     <dimen name="dialpad_key_letters_size">8sp</dimen>
-    <dimen name="dialpad_key_star_pound_size">23sp</dimen>
+    <dimen name="dialpad_key_pound_size">23sp</dimen>
+    <dimen name="dialpad_key_star_size">28sp</dimen>
     <dimen name="dialpad_key_height">64dp</dimen>
     <dimen name="dialpad_key_number_margin_bottom">2dp</dimen>
     <dimen name="dialpad_symbol_margin_bottom">13dp</dimen>
