@@ -111,7 +111,7 @@
                 style="@style/DialpadKeyInternalLayoutStyle">
                 <com.android.contacts.common.dialpad.DialpadTextView
                     android:id="@id/dialpad_key_number"
-                    style="@style/DialpadKeyStarPoundStyle" />
+                    style="@style/DialpadKeyStarStyle" />
             </LinearLayout>
         </com.android.contacts.common.dialpad.DialpadKeyButton>
         <include layout="@layout/dialpad_key"
@@ -124,7 +124,7 @@
                 style="@style/DialpadKeyInternalLayoutStyle">
                 <com.android.contacts.common.dialpad.DialpadTextView
                     android:id="@id/dialpad_key_number"
-                    style="@style/DialpadKeyStarPoundStyle" />
+                    style="@style/DialpadKeyPoundStyle" />
             </LinearLayout>
         </com.android.contacts.common.dialpad.DialpadKeyButton>
         <Space style="@style/DialpadSpaceStyle" />
