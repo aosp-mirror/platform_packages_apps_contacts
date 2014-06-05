@@ -519,10 +519,12 @@ public class ContactTileAdapter extends BaseAdapter {
 
             switch (mItemViewType) {
                 case ViewTypes.STARRED:
-                    // Setting divider visibilities
-                    contactTile.setPaddingRelative(childIndex == 0 ? mPaddingStartEnd : 0, 0,
-                            childIndex >= mColumnCount - 1 ? mPaddingStartEnd : mPaddingInPixels,
-                            0);
+                    // Set padding between tiles. Divide mPaddingInPixels between left and right
+                    // tiles as evenly as possible.
+                    contactTile.setPaddingRelative(
+                            childIndex == 0 ? mPaddingStartEnd : (mPaddingInPixels + 1) / 2, 0,
+                            childIndex >= mColumnCount - 1 ? mPaddingStartEnd : mPaddingInPixels
+                            / 2, 0);
                     break;
                 case ViewTypes.FREQUENT:
                     contactTile.setHorizontalDividerVisibility(
