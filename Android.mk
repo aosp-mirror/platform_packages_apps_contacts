@@ -22,6 +22,7 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-common \
     guava \
     android-support-v13 \
+    android-support-v7-palette \
     android-support-v4 \
     android-ex-variablespeed \
     libphonenumber \
