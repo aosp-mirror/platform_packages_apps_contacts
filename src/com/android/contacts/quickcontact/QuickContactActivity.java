@@ -65,9 +65,13 @@ import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.EmailDataItem;
 import com.android.contacts.common.model.dataitem.ImDataItem;
+import com.android.contacts.common.model.dataitem.PhoneDataItem;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.common.util.UriUtils;
+import com.android.contacts.interactions.ContactInteraction;
+import com.android.contacts.interactions.ContactInteractionUtil;
+import com.android.contacts.interactions.SmsInteractionsLoader;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.common.util.StopWatch;
@@ -79,9 +83,13 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -111,7 +119,11 @@ public class QuickContactActivity extends Activity {
     private ImageView mEditOrAddContactImage;
     private ImageView mStarImage;
     private ExpandingEntryCardView mCommunicationCard;
+    private ExpandingEntryCardView mRecentCard;
     private MultiShrinkScroller mScroller;
+
+    private static final int MIN_NUM_COMMUNICATION_ENTRIES_SHOWN = 3;
+    private static final int MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN = 3;
 
     private Contact mContactData;
     private ContactLoader mContactLoader;
@@ -148,8 +160,18 @@ public class QuickContactActivity extends Activity {
     private static final List<String> TRAILING_MIMETYPES = Lists.newArrayList(
             StructuredPostal.CONTENT_ITEM_TYPE, Website.CONTENT_ITEM_TYPE);
 
-    /** Id for the background loader */
-    private static final int LOADER_ID = 0;
+    /** Id for the background contact loader */
+    private static final int LOADER_CONTACT_ID = 0;
+
+    /** Id for the background Sms Loader */
+    private static final int LOADER_SMS_ID = 1;
+    private static final String KEY_LOADER_EXTRA_SMS_PHONES =
+            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_SMS_PHONES";
+    private static final int MAX_SMS_RETRIEVE = 3;
+
+    private static final int[] mRecentLoaderIds = new int[LOADER_SMS_ID];
+    private Map<Integer, List<ContactInteraction>> mRecentLoaderResults;
+
 
     private StopWatch mStopWatch = ENABLE_STOPWATCH
             ? StopWatch.start("QuickContact") : StopWatch.getNullStopWatch();
@@ -232,7 +254,7 @@ public class QuickContactActivity extends Activity {
         mStopWatch.lap("i"); // intent parsed
 
         mContactLoader = (ContactLoader) getLoaderManager().initLoader(
-                LOADER_ID, null, mLoaderCallbacks);
+                LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
 
         mStopWatch.lap("ld"); // loader started
 
@@ -247,15 +269,20 @@ public class QuickContactActivity extends Activity {
         mEditOrAddContactImage = (ImageView) findViewById(R.id.contact_edit_image);
         mStarImage = (ImageView) findViewById(R.id.quickcontact_star_button);
         mCommunicationCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
+        mRecentCard = (ExpandingEntryCardView) findViewById(R.id.recent_card);
         mScroller = (MultiShrinkScroller) findViewById(R.id.multiscroller);
-        mCommunicationCard.setTitle(getResources().getString(R.string.communication_card_title));
 
         if (mScroller != null) {
             mScroller.initialize(mMultiShrinkScrollerListener);
         }
 
         mEditOrAddContactImage.setOnClickListener(mEditContactClickHandler);
+
         mCommunicationCard.setOnClickListener(mEntryClickHandler);
+        mCommunicationCard.setTitle(getResources().getString(R.string.communication_card_title));
+
+        mRecentCard.setOnClickListener(mEntryClickHandler);
+        mRecentCard.setTitle(getResources().getString(R.string.recent_card_title));
 
         // find and prepare correct header view
         mPhotoContainer = findViewById(R.id.photo_container);
@@ -314,7 +341,7 @@ public class QuickContactActivity extends Activity {
     /**
      * Handle the result from the ContactLoader
      */
-    private void bindData(Contact data) {
+    private void bindContactData(Contact data) {
         mContactData = data;
         final ResolveCache cache = ResolveCache.getInstance(this);
         final Context context = this;
@@ -379,12 +406,18 @@ public class QuickContactActivity extends Activity {
 
         mStopWatch.lap("ph"); // Photo set
 
+        // Maintain a list of phone numbers to pass into SmsInteractionsLoader
+        List<String> phoneNumbers = new ArrayList<>();
         for (RawContact rawContact : data.getRawContacts()) {
             for (DataItem dataItem : rawContact.getDataItems()) {
                 final String mimeType = dataItem.getMimeType();
                 final AccountType accountType = rawContact.getAccountType(this);
                 final DataKind dataKind = AccountTypeManager.getInstance(this)
                         .getKindOrFallback(accountType, mimeType);
+
+                if (dataItem instanceof PhoneDataItem) {
+                    phoneNumbers.add(((PhoneDataItem) dataItem).getNormalizedNumber());
+                }
 
                 // Skip this data item if MIME-type excluded
                 if (isMimeExcluded(mimeType)) continue;
@@ -463,8 +496,22 @@ public class QuickContactActivity extends Activity {
                 entries.addAll(actionsToEntries(mActions.get(mimeType)));
             }
         }
-        mCommunicationCard.initialize(entries, /* numInitialVisibleEntries = */ 2,
-                /* isExpanded = */ false, /* themeColor = */ 0);
+
+        Bundle smsExtraBundle = new Bundle();
+        smsExtraBundle.putStringArray(KEY_LOADER_EXTRA_SMS_PHONES,
+                phoneNumbers.toArray(new String[phoneNumbers.size()]));
+        getLoaderManager().initLoader(
+                LOADER_SMS_ID,
+                smsExtraBundle,
+                mLoaderInteractionsCallbacks);
+
+        if (entries.size() > 0) {
+            mCommunicationCard.initialize(entries,
+                    /* numInitialVisibleEntries = */ MIN_NUM_COMMUNICATION_ENTRIES_SHOWN,
+                    /* isExpanded = */ false,
+                    /* themeColor = */ 0);
+            mCommunicationCard.setVisibility(View.VISIBLE);
+        }
 
         final boolean hasData = !mSortedActionMimeTypes.isEmpty();
         mCommunicationCard.setVisibility(hasData ? View.VISIBLE: View.GONE);
@@ -572,7 +619,22 @@ public class QuickContactActivity extends Activity {
         return entries;
     }
 
-    private LoaderCallbacks<Contact> mLoaderCallbacks =
+    private List<Entry> contactInteractionsToEntries(List<ContactInteraction> interactions) {
+        List<Entry> entries = new ArrayList<>();
+        for (ContactInteraction interaction : interactions) {
+            entries.add(new Entry(interaction.getIcon(this),
+                    interaction.getViewHeader(this),
+                    interaction.getViewBody(this),
+                    interaction.getBodyIcon(this),
+                    interaction.getViewFooter(this),
+                    interaction.getFooterIcon(this),
+                    interaction.getIntent(),
+                    /* isEditable = */ false));
+        }
+        return entries;
+    }
+
+    private LoaderCallbacks<Contact> mLoaderContactCallbacks =
             new LoaderCallbacks<Contact>() {
         @Override
         public void onLoaderReset(Loader<Contact> loader) {
@@ -596,7 +658,7 @@ public class QuickContactActivity extends Activity {
                 return;
             }
 
-            bindData(data);
+            bindContactData(data);
 
             mStopWatch.lap("bd"); // bindData finished
 
@@ -631,6 +693,7 @@ public class QuickContactActivity extends Activity {
                     false /*postViewNotification*/, true /*computeFormattedPhoneNumber*/);
         }
     };
+
     @Override
     public void onBackPressed() {
         if (mScroller != null) {
@@ -638,6 +701,72 @@ public class QuickContactActivity extends Activity {
             finish();
         } else {
             super.onBackPressed();
+        }
+    }
+
+    private LoaderCallbacks<List<ContactInteraction>> mLoaderInteractionsCallbacks =
+            new LoaderCallbacks<List<ContactInteraction>>() {
+
+        @Override
+        public Loader<List<ContactInteraction>> onCreateLoader(int id, Bundle args) {
+            Log.v(TAG, "onCreateLoader");
+            Loader<List<ContactInteraction>> loader = null;
+            switch (id) {
+                case LOADER_SMS_ID:
+                    Log.v(TAG, "LOADER_SMS_ID");
+                    loader = new SmsInteractionsLoader(
+                            QuickContactActivity.this,
+                            args.getStringArray(KEY_LOADER_EXTRA_SMS_PHONES),
+                            MAX_SMS_RETRIEVE);
+                    break;
+            }
+            return loader;
+        }
+
+        @Override
+        public void onLoadFinished(Loader<List<ContactInteraction>> loader,
+                List<ContactInteraction> data) {
+            if (mRecentLoaderResults == null) {
+                mRecentLoaderResults = new HashMap<Integer, List<ContactInteraction>>();
+            }
+            mRecentLoaderResults.put(loader.getId(), data);
+
+            if (isAllRecentDataLoaded()) {
+                bindRecentData();
+            }
+        }
+
+        @Override
+        public void onLoaderReset(Loader<List<ContactInteraction>> loader) {
+            mRecentLoaderResults.remove(loader.getId());
+        }
+
+    };
+
+    private boolean isAllRecentDataLoaded() {
+        return mRecentLoaderResults.size() == mRecentLoaderIds.length;
+    }
+
+    private void bindRecentData() {
+        List<ContactInteraction> allInteractions = new ArrayList<>();
+        for (List<ContactInteraction> loaderInteractions : mRecentLoaderResults.values()) {
+            allInteractions.addAll(loaderInteractions);
+        }
+
+        // Sort the interactions by most recent
+        Collections.sort(allInteractions, new Comparator<ContactInteraction>() {
+            @Override
+            public int compare(ContactInteraction a, ContactInteraction b) {
+                return a.getInteractionDate() >= b.getInteractionDate() ? -1 : 1;
+            }
+        });
+
+        if (allInteractions.size() > 0) {
+            mRecentCard.initialize(contactInteractionsToEntries(allInteractions),
+                    /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
+                    /* isExpanded = */ false,
+                    /* themeColor = */ 0);
+            mRecentCard.setVisibility(View.VISIBLE);
         }
     }
 }

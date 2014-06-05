@@ -32,5 +32,10 @@
     <com.android.contacts.quickcontact.ExpandingEntryCardView
         style="@style/ExpandingEntryCardStyle"
         android:id="@+id/communication_card"
-        android:layout_marginTop="@dimen/communication_card_marginTop" />
+        android:layout_marginTop="@dimen/communication_card_marginTop"
+        android:visibility="gone" />
+    <com.android.contacts.quickcontact.ExpandingEntryCardView
+        style="@style/ExpandingEntryCardStyle"
+        android:id="@+id/recent_card"
+        android:visibility="gone" />
 </LinearLayout>
