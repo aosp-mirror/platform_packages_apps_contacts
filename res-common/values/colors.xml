@@ -103,4 +103,5 @@
     <color name="searchbox_background_color">#ffffff</color>
     <!-- Text color of the search box hint text  -->
     <color name="searchbox_hint_text_color">#a4a4a4</color>
+    <color name="searchbox_icon_tint">#a4a4a4</color>
 </resources>

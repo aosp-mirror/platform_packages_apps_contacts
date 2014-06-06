@@ -55,6 +55,7 @@
         android:src="@drawable/ic_close_dk"
         android:clickable="true"
         android:background="?android:attr/selectableItemBackground"
-        android:contentDescription="@string/description_clear_search" />
+        android:contentDescription="@string/description_clear_search"
+        android:tint="@color/searchbox_icon_tint"/>
 
 </LinearLayout>
