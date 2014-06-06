@@ -21,6 +21,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -34,9 +35,11 @@ import com.android.contacts.common.R;
 public class DigitsEditText extends EditText {
     // Only scale the text down to 66% smaller at most.
     private static final float MIN_TEXT_RESIZE_RATIO = 0.66f;
+    private final float mOriginalTextSize;
 
     public DigitsEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mOriginalTextSize = getTextSize();
         setInputType(getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         setShowSoftInputOnFocus(false);
     }
@@ -80,13 +83,12 @@ public class DigitsEditText extends EditText {
             return;
         }
         final Paint paint = getPaint();
-        setTextScaleX(1);
-        setScaleY(1);
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, mOriginalTextSize);
 
         float ratio = width / paint.measureText(getText().toString());
         if (ratio <= 1.0f) {
-            setTextScaleX(Math.max(MIN_TEXT_RESIZE_RATIO, ratio));
-            setScaleY(Math.max(MIN_TEXT_RESIZE_RATIO, ratio));
+            setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                    mOriginalTextSize * Math.max(MIN_TEXT_RESIZE_RATIO, ratio));
         }
     }
 }
