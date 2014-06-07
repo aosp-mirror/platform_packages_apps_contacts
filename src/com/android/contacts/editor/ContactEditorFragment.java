@@ -35,6 +35,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Intents;
+import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
@@ -86,6 +88,7 @@ import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -1309,9 +1312,7 @@ public class ContactEditorFragment extends Fragment implements
                             mLookupUri == null ? null : mLookupUri.getAuthority();
 
                     final String legacyAuthority = "contacts";
-
-                    resultIntent = new Intent();
-                    resultIntent.setAction(Intent.ACTION_VIEW);
+                    final Uri lookupUri;
                     if (legacyAuthority.equals(requestAuthority)) {
                         // Build legacy Uri when requested by caller
                         final long contactId = ContentUris.parseId(Contacts.lookupContact(
@@ -1319,12 +1320,15 @@ public class ContactEditorFragment extends Fragment implements
                         final Uri legacyContentUri = Uri.parse("content://contacts/people");
                         final Uri legacyUri = ContentUris.withAppendedId(
                                 legacyContentUri, contactId);
-                        resultIntent.setData(legacyUri);
+                        lookupUri = legacyUri;
                     } else {
                         // Otherwise pass back a lookup-style Uri
-                        resultIntent.setData(contactLookupUri);
+                        lookupUri = contactLookupUri;
                     }
-
+                    resultIntent = QuickContact.composeQuickContactsIntent(getActivity(),
+                            (Rect) null, lookupUri, QuickContactActivity.MODE_FULLY_EXPANDED, null);
+                    // Make sure not to show QuickContacts on top of another QuickContacts.
+                    resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 } else {
                     resultIntent = null;
                 }

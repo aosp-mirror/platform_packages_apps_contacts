@@ -255,14 +255,11 @@
             android:theme="@style/EditorActivityTheme"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Used to show QuickContact window over a translucent activity, which is a
-             temporary hack until we add better framework support. -->
         <activity
             android:name=".quickcontact.QuickContactActivity"
             android:theme="@style/Theme.QuickContact"
             android:launchMode="singleTop"
             android:excludeFromRecents="true"
-            android:noHistory="true"
             android:taskAffinity=""
             android:windowSoftInputMode="stateUnchanged">
 
