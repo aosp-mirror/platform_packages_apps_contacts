@@ -24,29 +24,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.QuickContact;
-import android.support.v4.text.TextUtilsCompat;
-import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnPreDrawListener;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Display entries in a LinearLayout that can be expanded to show all entries.
@@ -128,6 +119,7 @@ public class ExpandingEntryCardView extends LinearLayout {
     private OnClickListener mOnClickListener;
     private boolean mIsExpanded = false;
     private int mCollapsedEntriesCount;
+    private List<Entry> mEntries;
     private List<View> mEntryViews;
     private LinearLayout mEntriesViewGroup;
     private int mThemeColor;
@@ -144,12 +136,7 @@ public class ExpandingEntryCardView extends LinearLayout {
     };
 
     public ExpandingEntryCardView(Context context) {
-        super(context);
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View expandingEntryCardView = inflater.inflate(R.layout.expanding_entry_card_view, this);
-        mEntriesViewGroup = (LinearLayout)
-                expandingEntryCardView.findViewById(R.id.content_area_linear_layout);
-        mTitleTextView = (TextView) expandingEntryCardView.findViewById(R.id.title);
+        this(context, null);
     }
 
     public ExpandingEntryCardView(Context context, AttributeSet attrs) {
@@ -170,12 +157,15 @@ public class ExpandingEntryCardView extends LinearLayout {
             boolean isExpanded, int themeColor) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         mIsExpanded = isExpanded;
-        mEntryViews = createEntryViews(layoutInflater, entries);
-        mThemeColor = themeColor;
+        mEntries = entries;
+        mEntryViews = new ArrayList<View>(entries.size());
         mCollapsedEntriesCount = Math.min(numInitialVisibleEntries, entries.size());
+        mThemeColor = themeColor;
+
         if (mExpandCollapseButton == null) {
             createExpandButton(layoutInflater);
         }
+        inflateViewsIfNeeded(layoutInflater);
         insertEntriesIntoViewGroup();
     }
 
@@ -220,7 +210,7 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
 
         removeView(mExpandCollapseButton);
-        if (mCollapsedEntriesCount < mEntryViews.size()
+        if (mCollapsedEntriesCount < mEntries.size()
                 && mExpandCollapseButton.getParent() == null) {
             addView(mExpandCollapseButton, -1);
         }
@@ -282,12 +272,15 @@ public class ExpandingEntryCardView extends LinearLayout {
         mExpandCollapseButton.setOnClickListener(mExpandCollapseButtonListener);
     }
 
-    private List<View> createEntryViews(LayoutInflater layoutInflater, List<Entry> entries) {
-        ArrayList<View> views = new ArrayList<View>(entries.size());
-        for (Entry entry : entries) {
-            views.add(createEntryView(layoutInflater, entry));
+    /**
+     * Lazily inflate the number of views currently needed, and bind data from
+     * mEntries into these views.
+     */
+    private void inflateViewsIfNeeded(LayoutInflater layoutInflater) {
+        final int viewsToInflate = mIsExpanded ?  mEntries.size() : mCollapsedEntriesCount;
+        for (int i = mEntryViews.size(); i < viewsToInflate; i++) {
+            mEntryViews.add(createEntryView(layoutInflater, mEntries.get(i)));
         }
-        return views;
     }
 
     private View createEntryView(LayoutInflater layoutInflater, Entry entry) {
@@ -360,6 +353,8 @@ public class ExpandingEntryCardView extends LinearLayout {
         final int startingHeight = mEntriesViewGroup.getHeight();
 
         mIsExpanded = true;
+        // In order to insert new entries, we may need to inflate them for the first time
+        inflateViewsIfNeeded(LayoutInflater.from(getContext()));
         insertEntriesIntoViewGroup();
         updateExpandCollapseButton(getCollapseButtonText());
 
