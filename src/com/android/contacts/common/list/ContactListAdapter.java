@@ -199,6 +199,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         ContactListItemView view = super.newView(context, partition, cursor, position, parent);
         view.setUnknownNameText(mUnknownNameText);
         view.setQuickContactEnabled(isQuickContactEnabled());
+        view.setAdjustSelectionBoundsEnabled(isAdjustSelectionBoundsEnabled());
         view.setActivatedStateSupported(isSelectionVisible());
         if (mPhotoPosition != null) {
             view.setPhotoPosition(mPhotoPosition);

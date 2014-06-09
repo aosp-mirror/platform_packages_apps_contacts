@@ -60,6 +60,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mDisplayPhotos;
     private boolean mCircularPhotos = true;
     private boolean mQuickContactEnabled;
+    private boolean mAdjustSelectionBoundsEnabled;
 
     /**
      * indicates if contact queries include profile
@@ -104,6 +105,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             Context context, int partition, Cursor cursor, int position, ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setIsSectionHeaderEnabled(isSectionHeaderDisplayEnabled());
+        view.setAdjustSelectionBoundsEnabled(isAdjustSelectionBoundsEnabled());
         return view;
     }
 
@@ -326,6 +328,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setQuickContactEnabled(boolean quickContactEnabled) {
         mQuickContactEnabled = quickContactEnabled;
+    }
+
+    public boolean isAdjustSelectionBoundsEnabled() {
+        return mAdjustSelectionBoundsEnabled;
+    }
+
+    public void setAdjustSelectionBoundsEnabled(boolean enabled) {
+        mAdjustSelectionBoundsEnabled = enabled;
     }
 
     public boolean shouldIncludeProfile() {
