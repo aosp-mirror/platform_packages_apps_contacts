@@ -154,17 +154,14 @@ public class DialpadView extends LinearLayout {
     public void setCanDigitsBeEdited(boolean canBeEdited) {
         View deleteButton = findViewById(R.id.deleteButton);
         deleteButton.setVisibility(canBeEdited ? View.VISIBLE : View.GONE);
+        View overflowMenuButton = findViewById(R.id.dialpad_overflow);
+        overflowMenuButton.setVisibility(canBeEdited ? View.VISIBLE : View.GONE);
 
         EditText digits = (EditText) findViewById(R.id.digits);
         digits.setClickable(canBeEdited);
         digits.setLongClickable(canBeEdited);
         digits.setFocusableInTouchMode(canBeEdited);
         digits.setCursorVisible(false);
-
-        View overflowMenuButton = findViewById(R.id.dialpad_overflow);
-        if (!canBeEdited) {
-            overflowMenuButton.setVisibility(View.GONE);
-        }
 
         mCanDigitsBeEdited = canBeEdited;
     }
