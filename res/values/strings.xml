@@ -645,6 +645,8 @@
     <string name="expanding_entry_card_view_see_more">See more</string>
     <!-- Button Label to see less on an ExpandingEntryCardView [CHAR LIMIT=40] -->
     <string name="expanding_entry_card_view_see_less">See less</string>
+    <!-- Button Label to see all on an ExpandingEntryCardView [CHAR LIMIT=40] -->
+    <string name="expanding_entry_card_view_see_all">See all</string>
 
     <!-- Title of communication card. [CHAR LIMIT=60] -->
     <string name="communication_card_title">Contact</string>
@@ -656,4 +658,6 @@
     <string name="timestamp_string_yesterday">Yesterday</string>
     <!-- Timestamp string for interactions from tomorrow. [CHAR LIMIT=40] -->
     <string name="timestamp_string_tomorrow">Tomorrow</string>
+    <!-- Title of sms action entry. [CHAR LIMIT=60] -->
+    <string name="send_message">Send message</string>
 </resources>
