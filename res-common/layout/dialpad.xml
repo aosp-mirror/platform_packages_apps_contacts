@@ -28,31 +28,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
         <Space style="@style/DialpadSpaceStyle" />
-        <com.android.contacts.common.dialpad.DialpadKeyButton
-            android:id="@+id/one"
-            style="@style/DialpadKeyButtonStyle">
-            <LinearLayout
-                style="@style/DialpadKeyInternalLayoutStyle">
-                <com.android.contacts.common.dialpad.DialpadTextView
-                    android:id="@+id/dialpad_key_number"
-                    style="@style/DialpadKeyNumberStyle" />
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/dialpad_voicemail_icon_padding_top"
-                        android:id="@+id/dialpad_key_voicemail"
-                        android:src="@drawable/ic_dialpad_vm"
-                        android:scaleType="fitCenter"
-                        android:layout_centerInParent="true"
-                        android:tint="@color/dialpad_secondary_text_color" />
-                    <!-- Place empty text view so vertical height is same as other dialpad keys. -->
-                    <TextView style="@style/DialpadKeyLettersStyle" />
-                </RelativeLayout>
-            </LinearLayout>
-        </com.android.contacts.common.dialpad.DialpadKeyButton>
+        <include layout="@layout/dialpad_key_one" />
         <include layout="@layout/dialpad_key"
             android:id="@+id/two"
             style="@style/DialpadKeyButtonStyle" />
@@ -110,7 +86,7 @@
             <LinearLayout
                 style="@style/DialpadKeyInternalLayoutStyle">
                 <com.android.contacts.common.dialpad.DialpadTextView
-                    android:id="@id/dialpad_key_number"
+                    android:id="@+id/dialpad_key_number"
                     style="@style/DialpadKeyStarStyle" />
             </LinearLayout>
         </com.android.contacts.common.dialpad.DialpadKeyButton>
