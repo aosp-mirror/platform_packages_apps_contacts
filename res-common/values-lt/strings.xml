@@ -229,7 +229,7 @@
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Pateiktini kontaktai"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Apibrėžti tinkintą rodinį"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Ieškoti kontaktų"</string>
-    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Adresynas"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Mėgstamiausi"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Kontaktų nėra."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Nėra matomų kontaktų."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Į adresyną nieko neįtraukta."</string>
