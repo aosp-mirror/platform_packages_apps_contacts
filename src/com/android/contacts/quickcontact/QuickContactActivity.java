@@ -19,9 +19,9 @@ package com.android.contacts.quickcontact;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentUris;
-import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -42,38 +42,40 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.DisplayNameSources;
-import android.provider.ContactsContract.Intents.Insert;
-import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v7.graphics.Palette;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.R;
+import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.EmailDataItem;
 import com.android.contacts.common.model.dataitem.ImDataItem;
 import com.android.contacts.common.model.dataitem.PhoneDataItem;
 import com.android.contacts.common.util.DataStatus;
-import com.android.contacts.common.util.UriUtils;
+import com.android.contacts.detail.ContactDetailDisplayUtils;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
@@ -101,7 +103,7 @@ import java.util.Set;
  * data asynchronously, and then shows a popup with details centered around
  * {@link Intent#getSourceBounds()}.
  */
-public class QuickContactActivity extends Activity {
+public class QuickContactActivity extends ContactsActivity {
 
     /**
      * QuickContacts immediately takes up the full screen. All possible information is shown.
@@ -128,14 +130,11 @@ public class QuickContactActivity extends Activity {
     private int mStatusBarColor;
     private boolean mHasAlreadyBeenOpened;
 
-    private View mPhotoContainer;
-
     private ImageView mPhotoView;
-    private ImageView mEditOrAddContactImage;
-    private ImageView mStarImage;
     private ExpandingEntryCardView mCommunicationCard;
     private ExpandingEntryCardView mRecentCard;
     private MultiShrinkScroller mScroller;
+    private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
     private AsyncTask<Void, Void, Void> mEntriesAndActionsTask;
 
     private static final int MIN_NUM_COMMUNICATION_ENTRIES_SHOWN = 3;
@@ -191,35 +190,7 @@ public class QuickContactActivity extends Activity {
     private static final int[] mRecentLoaderIds = new int[LOADER_SMS_ID];
     private Map<Integer, List<ContactInteraction>> mRecentLoaderResults;
 
-    final OnClickListener mEditContactClickHandler = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            final Intent intent = new Intent(Intent.ACTION_EDIT, mLookupUri);
-            mContactLoader.cacheResult();
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-            startActivityForResult(intent, REQUEST_CODE_CONTACT_EDITOR_ACTIVITY);
-        }
-    };
-
-    final OnClickListener mAddToContactsClickHandler = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (mContactData == null) {
-                Log.e(TAG, "Empty contact data when trying to add to contact");
-                return;
-            }
-            final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            intent.setType(Contacts.CONTENT_ITEM_TYPE);
-
-            // Only pre-fill the name field if the provided display name is an organization
-            // name or better (e.g. structured name, nickname)
-            if (mContactData.getDisplayNameSource() >= DisplayNameSources.ORGANIZATION) {
-                intent.putExtra(Insert.NAME, mContactData.getDisplayName());
-            }
-            intent.putExtra(Insert.DATA, mContactData.getContentValues());
-            startActivity(intent);
-        }
-    };
+    private static final String FRAGMENT_TAG_SELECT_ACCOUNT = "select_account_fragment";
 
     final OnClickListener mEntryClickHandler = new OnClickListener() {
         @Override
@@ -232,6 +203,36 @@ public class QuickContactActivity extends Activity {
             startActivity((Intent) intent);
         }
     };
+
+    /**
+     * Headless fragment used to handle account selection callbacks invoked from
+     * {@link DirectoryContactUtil}.
+     */
+    public static class SelectAccountDialogFragmentListener extends Fragment
+            implements SelectAccountDialogFragment.Listener {
+
+        private QuickContactActivity mQuickContactActivity;
+
+        public SelectAccountDialogFragmentListener() {}
+
+        @Override
+        public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
+            DirectoryContactUtil.createCopy(mQuickContactActivity.mContactData.getContentValues(),
+                    account, mQuickContactActivity);
+        }
+
+        @Override
+        public void onAccountSelectorCancelled() {}
+
+        /**
+         * Set the parent activity. Since rotation can cause this fragment to be used across
+         * more than one activity instance, we need to explicitly set this value instead
+         * of making this class non-static.
+         */
+        public void setQuickContactActivity(QuickContactActivity quickContactActivity) {
+            mQuickContactActivity = quickContactActivity;
+        }
+    }
 
     final MultiShrinkScrollerListener mMultiShrinkScrollerListener
             = new MultiShrinkScrollerListener() {
@@ -261,27 +262,7 @@ public class QuickContactActivity extends Activity {
         // silliness of the animation by setting the navigation bar transparent.
         getWindow().setNavigationBarColor(Color.TRANSPARENT);
 
-        // Parse intent
-        final Intent intent = getIntent();
-
-        Uri lookupUri = intent.getData();
-
-        // Check to see whether it comes from the old version.
-        if (lookupUri != null && LEGACY_AUTHORITY.equals(lookupUri.getAuthority())) {
-            final long rawContactId = ContentUris.parseId(lookupUri);
-            lookupUri = RawContacts.getContactLookupUri(getContentResolver(),
-                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
-        }
-
-        mExtraMode = getIntent().getIntExtra(QuickContact.EXTRA_MODE,
-                QuickContact.MODE_LARGE);
-
-        mLookupUri = Preconditions.checkNotNull(lookupUri, "missing lookupUri");
-
-        mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
-
-        mContactLoader = (ContactLoader) getLoaderManager().initLoader(
-                LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
+        processIntent(getIntent());
 
         // Show QuickContact in front of soft input
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
@@ -289,13 +270,9 @@ public class QuickContactActivity extends Activity {
 
         setContentView(R.layout.quickcontact_activity);
 
-        mEditOrAddContactImage = (ImageView) findViewById(R.id.contact_edit_image);
-        mStarImage = (ImageView) findViewById(R.id.quickcontact_star_button);
         mCommunicationCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
         mRecentCard = (ExpandingEntryCardView) findViewById(R.id.recent_card);
         mScroller = (MultiShrinkScroller) findViewById(R.id.multiscroller);
-
-        mEditOrAddContactImage.setOnClickListener(mEditContactClickHandler);
 
         mCommunicationCard.setOnClickListener(mEntryClickHandler);
         mCommunicationCard.setTitle(getResources().getString(R.string.communication_card_title));
@@ -305,13 +282,11 @@ public class QuickContactActivity extends Activity {
         mRecentCard.setOnClickListener(mEntryClickHandler);
         mRecentCard.setTitle(getResources().getString(R.string.recent_card_title));
 
-        // find and prepare correct header view
-        mPhotoContainer = findViewById(R.id.photo_container);
+        mPhotoView = (ImageView) findViewById(R.id.photo);
 
-        setHeaderNameText(R.id.name, R.string.missing_name);
-
-        mPhotoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
-        mPhotoView.setOnClickListener(mEditContactClickHandler);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setActionBar(toolbar);
+        setHeaderNameText(R.string.missing_name);
 
         mHasAlreadyBeenOpened = savedInstanceState != null;
 
@@ -332,8 +307,16 @@ public class QuickContactActivity extends Activity {
             }
         }
 
-
         mDrawablesToTint = new ArrayList<>();
+        mSelectAccountFragmentListener= (SelectAccountDialogFragmentListener) getFragmentManager()
+                .findFragmentByTag(FRAGMENT_TAG_SELECT_ACCOUNT);
+        if (mSelectAccountFragmentListener == null) {
+            mSelectAccountFragmentListener = new SelectAccountDialogFragmentListener();
+            getFragmentManager().beginTransaction().add(0, mSelectAccountFragmentListener,
+                    FRAGMENT_TAG_SELECT_ACCOUNT).commit();
+            mSelectAccountFragmentListener.setRetainInstance(true);
+        }
+        mSelectAccountFragmentListener.setQuickContactActivity(this);
 
         Trace.endSection();
     }
@@ -351,6 +334,33 @@ public class QuickContactActivity extends Activity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         mHasAlreadyBeenOpened = true;
+        processIntent(intent);
+    }
+
+    private void processIntent(Intent intent) {
+        Uri lookupUri = intent.getData();
+
+        // Check to see whether it comes from the old version.
+        if (lookupUri != null && LEGACY_AUTHORITY.equals(lookupUri.getAuthority())) {
+            final long rawContactId = ContentUris.parseId(lookupUri);
+            lookupUri = RawContacts.getContactLookupUri(getContentResolver(),
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
+        }
+        mExtraMode = getIntent().getIntExtra(QuickContact.EXTRA_MODE,
+                QuickContact.MODE_LARGE);
+        final Uri oldLookupUri = mLookupUri;
+
+        mLookupUri = Preconditions.checkNotNull(lookupUri, "missing lookupUri");
+        mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
+        if (oldLookupUri == null) {
+            mContactLoader = (ContactLoader) getLoaderManager().initLoader(
+                    LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
+        } else if (oldLookupUri != mLookupUri) {
+            // After copying a directory contact, the contact URI changes. Therefore,
+            // we need to restart the loader and reload the new contact.
+            mContactLoader = (ContactLoader) getLoaderManager().restartLoader(
+                    LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
+        }
     }
 
     private void runEntranceAnimation() {
@@ -367,17 +377,14 @@ public class QuickContactActivity extends Activity {
     }
 
     /** Assign this string to the view if it is not empty. */
-    private void setHeaderNameText(int id, int resId) {
-        setHeaderNameText(id, getText(resId));
+    private void setHeaderNameText(int resId) {
+        getActionBar().setTitle(getText(resId));
     }
 
     /** Assign this string to the view if it is not empty. */
-    private void setHeaderNameText(int id, CharSequence value) {
-        final View view = mPhotoContainer.findViewById(id);
-        if (view instanceof TextView) {
-            if (!TextUtils.isEmpty(value)) {
-                ((TextView)view).setText(value);
-            }
+    private void setHeaderNameText(CharSequence value) {
+        if (!TextUtils.isEmpty(value)) {
+            getActionBar().setTitle(value);
         }
     }
 
@@ -401,58 +408,7 @@ public class QuickContactActivity extends Activity {
     private void bindContactData(final Contact data) {
         Trace.beginSection("bindContactData");
         mContactData = data;
-        final Context context = this;
-
-        mEditOrAddContactImage.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ?
-                View.GONE : View.VISIBLE);
-        final boolean isStarred = data.getStarred();
-        if (isStarred) {
-            mStarImage.setImageResource(R.drawable.ic_favorite_on_lt);
-            mStarImage.setContentDescription(
-                getResources().getString(R.string.menu_removeStar));
-        } else {
-            mStarImage.setImageResource(R.drawable.ic_favorite_off_lt);
-            mStarImage.setContentDescription(
-                getResources().getString(R.string.menu_addStar));
-        }
-        final Uri lookupUri = data.getLookupUri();
-
-        // If this is a json encoded URI, there is no local contact to star
-        if (UriUtils.isEncodedContactUri(lookupUri)) {
-            mStarImage.setVisibility(View.GONE);
-
-            // If directory export support is not allowed, then don't allow the user to add
-            // to contacts
-            if (mContactData.getDirectoryExportSupport() == Directory.EXPORT_SUPPORT_NONE) {
-                configureHeaderClickActions(false);
-            } else {
-                configureHeaderClickActions(true);
-            }
-        } else {
-            configureHeaderClickActions(false);
-            mStarImage.setVisibility(View.VISIBLE);
-            mStarImage.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Toggle "starred" state
-                    // Make sure there is a contact
-                    if (lookupUri != null) {
-                        // Changes the state of the image already before sending updates to the
-                        // database
-                        if (isStarred) {
-                            mStarImage.setImageResource(R.drawable.ic_favorite_off_lt);
-                        } else {
-                            mStarImage.setImageResource(R.drawable.ic_favorite_on_lt);
-                        }
-
-                        // Now perform the real save
-                        final Intent intent = ContactSaveService.createSetStarredIntent(context,
-                                lookupUri, !isStarred);
-                        context.startService(intent);
-                    }
-                }
-            });
-        }
+        invalidateOptionsMenu();
 
         mDefaultsMap.clear();
 
@@ -461,7 +417,7 @@ public class QuickContactActivity extends Activity {
 
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
         extractAndApplyTintFromPhotoViewAsynchronously();
-        setHeaderNameText(R.id.name, data.getDisplayName());
+        setHeaderNameText(data.getDisplayName());
 
         Trace.endSection();
 
@@ -517,7 +473,7 @@ public class QuickContactActivity extends Activity {
         }
 
         final boolean hasData = !sortedActionMimeTypes.isEmpty();
-        mCommunicationCard.setVisibility(hasData ? View.VISIBLE: View.GONE);
+        mCommunicationCard.setVisibility(hasData ? View.VISIBLE : View.GONE);
 
         Trace.endSection();
     }
@@ -748,24 +704,6 @@ public class QuickContactActivity extends Activity {
     }
 
     /**
-     * Bind the correct image resource and click handlers to the header views
-     *
-     * @param canAdd Whether or not the user can directly add information in this quick contact
-     * to their local contacts
-     */
-    private void configureHeaderClickActions(boolean canAdd) {
-        if (canAdd) {
-            mEditOrAddContactImage.setImageResource(R.drawable.ic_person_add_24dp);
-            mEditOrAddContactImage.setOnClickListener(mAddToContactsClickHandler);
-            mPhotoView.setOnClickListener(mAddToContactsClickHandler);
-        } else {
-            mEditOrAddContactImage.setImageResource(R.drawable.ic_create_24dp);
-            mEditOrAddContactImage.setOnClickListener(mEditContactClickHandler);
-            mPhotoView.setOnClickListener(mEditContactClickHandler);
-        }
-    }
-
-    /**
      * Converts a list of Action into a list of Entry
      * @param actions The list of Action to convert
      * @return The converted list of Entry
@@ -869,8 +807,10 @@ public class QuickContactActivity extends Activity {
             if (mLookupUri == null) {
                 Log.wtf(TAG, "Lookup uri wasn't initialized. Loader was started too early");
             }
+            // Load all contact data. We need loadGroupMetaData=true to determine whether the
+            // contact is invisible. If it is, we need to display an "Add to Contacts" MenuItem.
             return new ContactLoader(getApplicationContext(), mLookupUri,
-                    false /*loadGroupMetaData*/, false /*loadInvitableAccountTypes*/,
+                    true /*loadGroupMetaData*/, false /*loadInvitableAccountTypes*/,
                     false /*postViewNotification*/, true /*computeFormattedPhoneNumber*/);
         }
     };
@@ -974,7 +914,7 @@ public class QuickContactActivity extends Activity {
 
     /**
      * Applies the theme color as extracted in
-     * {@link extractAndApplyTintFromPhotoViewAsynchonously()} if available. If the color is not
+     * {@link #extractAndApplyTintFromPhotoViewAsynchronously()} if available. If the color is not
      * available, store a reference to the drawable to tint when a color becomes available.
      */
     private Drawable applyThemeColorIfAvailable(Drawable drawable) {
@@ -983,6 +923,90 @@ public class QuickContactActivity extends Activity {
         } else {
             mDrawablesToTint.add(drawable);
         }
-        return drawable;
+        return drawable; 
+    }
+
+    /**
+     * Returns true if it is possible to edit the current contact.
+     */
+    private boolean isContactEditable() {
+        return mContactData != null && !mContactData.isDirectoryEntry();
+    }
+
+    private void editContact() {
+        final Intent intent = new Intent(Intent.ACTION_EDIT, mLookupUri);
+        mContactLoader.cacheResult();
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        startActivityForResult(intent, REQUEST_CODE_CONTACT_EDITOR_ACTIVITY);
+    }
+
+    private void toggleStar(MenuItem starredMenuItem) {
+        // Make sure there is a contact
+        if (mLookupUri != null) {
+            // Read the current starred value from the UI instead of using the last
+            // loaded state. This allows rapid tapping without writing the same
+            // value several times
+            final boolean isStarred = starredMenuItem.isChecked();
+
+            // To improve responsiveness, swap out the picture (and tag) in the UI already
+            ContactDetailDisplayUtils.configureStarredMenuItem(starredMenuItem,
+                    mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
+                    !isStarred);
+
+            // Now perform the real save
+            Intent intent = ContactSaveService.createSetStarredIntent(
+                    QuickContactActivity.this, mLookupUri, !isStarred);
+            startService(intent);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.quickcontact, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (mContactData != null) {
+            final MenuItem starredMenuItem = menu.findItem(R.id.menu_star);
+            ContactDetailDisplayUtils.configureStarredMenuItem(starredMenuItem,
+                    mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
+                    mContactData.getStarred());
+            // Configure edit MenuItem
+            final MenuItem editMenuItem = menu.findItem(R.id.menu_edit);
+            editMenuItem.setVisible(true);
+            if (DirectoryContactUtil.isDirectoryContact(mContactData) || InvisibleContactUtil
+                    .isInvisibleAndAddable(mContactData, this)) {
+                editMenuItem.setIcon(R.drawable.ic_person_add_24dp);
+            } else if (isContactEditable()) {
+                editMenuItem.setIcon(R.drawable.ic_create_24dp);
+            } else {
+                editMenuItem.setVisible(false);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_star:
+                toggleStar(item);
+                return true;
+            case R.id.menu_edit:
+                if (DirectoryContactUtil.isDirectoryContact(mContactData)) {
+                    DirectoryContactUtil.addToMyContacts(mContactData, this, getFragmentManager(),
+                            mSelectAccountFragmentListener);
+                } else if (InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
+                    InvisibleContactUtil.addToDefaultGroup(mContactData, this);
+                } else if (isContactEditable()) {
+                    editContact();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
