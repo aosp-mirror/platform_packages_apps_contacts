@@ -271,34 +271,6 @@ public class DateUtils {
     }
 
     /**
-     * Retrieves a locale-specific string for "Today".
-     *
-     * @return Locale-specific string for "Today".
-     */
-    public static CharSequence getTodayString() {
-       return android.text.format.DateUtils.getRelativeTimeSpanString(
-               -android.text.format.DateUtils.HOUR_IN_MILLIS,
-               0,
-               android.text.format.DateUtils.DAY_IN_MILLIS,
-               android.text.format.DateUtils.FORMAT_ABBREV_RELATIVE);
-
-    }
-
-    /**
-     * Retrieves a locale-specific string for "Yesterday".
-     *
-     * @return Locale-specific string for "Yesterday".
-     */
-    public static CharSequence getYesterdayString() {
-        return android.text.format.DateUtils.getRelativeTimeSpanString(
-                -android.text.format.DateUtils.DAY_IN_MILLIS,
-                0,
-                android.text.format.DateUtils.DAY_IN_MILLIS,
-                android.text.format.DateUtils.FORMAT_ABBREV_RELATIVE);
-
-    }
-
-    /**
      * Determine the difference, in days between two dates.  Uses similar logic as the
      * {@link android.text.format.DateUtils.getRelativeTimeSpanString} method.
      *

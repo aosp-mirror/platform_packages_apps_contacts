@@ -28,20 +28,6 @@ import android.text.format.Time;
 public class DateUtilTests extends TestCase {
 
     /**
-     * Test ability to get the word "Yesterday".
-     */
-    public void testGetYesterday() {
-        assertEquals("Yesterday", DateUtils.getYesterdayString());
-    }
-
-    /**
-     * Test ability to get the word "Today".
-     */
-    public void testGetToday() {
-        assertEquals("Yesterday", DateUtils.getYesterdayString());
-    }
-
-    /**
      * Test date differences which are in the same day.
      */
     public void testDayDiffNone() {
