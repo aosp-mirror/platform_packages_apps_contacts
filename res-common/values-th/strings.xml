@@ -256,6 +256,6 @@
     <string name="dialpad_9_number" msgid="7639250786374503913">"9"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"ผ่านทาง <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> ผ่านทาง <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
-    <string name="action_menu_back_from_search" msgid="1138551123844019647">"หยุดค้นหา"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"หยุดการค้นหา"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ล้างการค้นหา"</string>
 </resources>
