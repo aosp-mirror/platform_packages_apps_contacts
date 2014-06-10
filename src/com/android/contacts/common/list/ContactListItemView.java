@@ -210,6 +210,7 @@ public class ContactListItemView extends ViewGroup
     private final CharArrayBuffer mPhoneticNameBuffer = new CharArrayBuffer(128);
 
     private boolean mActivatedStateSupported;
+    private boolean mAdjustSelectionBoundsEnabled = true;
 
     private Rect mBoundsWithoutHeader = new Rect();
 
@@ -635,10 +636,12 @@ public class ContactListItemView extends ViewGroup
 
     @Override
     public void adjustListItemSelectionBounds(Rect bounds) {
-        bounds.top += mBoundsWithoutHeader.top;
-        bounds.bottom = bounds.top + mBoundsWithoutHeader.height();
-        bounds.left = mBoundsWithoutHeader.left;
-        bounds.right = mBoundsWithoutHeader.right;
+        if (mAdjustSelectionBoundsEnabled) {
+            bounds.top += mBoundsWithoutHeader.top;
+            bounds.bottom = bounds.top + mBoundsWithoutHeader.height();
+            bounds.left = mBoundsWithoutHeader.left;
+            bounds.right = mBoundsWithoutHeader.right;
+        }
     }
 
     protected boolean isVisible(View view) {
@@ -1388,6 +1391,10 @@ public class ContactListItemView extends ViewGroup
 
     public void setActivatedStateSupported(boolean flag) {
         this.mActivatedStateSupported = flag;
+    }
+
+    public void setAdjustSelectionBoundsEnabled(boolean enabled) {
+        mAdjustSelectionBoundsEnabled = enabled;
     }
 
     @Override
