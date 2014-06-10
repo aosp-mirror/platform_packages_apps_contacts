@@ -21,12 +21,6 @@
         android:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_add_contact"
-        android:icon="@drawable/ic_add_person_dk"
-        android:title="@string/menu_new_contact_action_bar"
-        android:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/menu_contacts_filter"
         android:title="@string/menu_contacts_filter" />
 
