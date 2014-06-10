@@ -21,11 +21,11 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -37,11 +37,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Trace;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v7.graphics.Palette;
@@ -63,6 +65,8 @@ import com.android.contacts.common.Collapser;
 import com.android.contacts.R;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
+import com.android.contacts.common.list.ShortcutIntentBuilder;
+import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
@@ -79,7 +83,6 @@ import com.android.contacts.detail.ContactDetailDisplayUtils;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
-import com.android.contacts.quickcontact.Action;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;
@@ -120,6 +123,9 @@ public class QuickContactActivity extends ContactsActivity {
     private static final float SYSTEM_BAR_BRIGHTNESS_FACTOR = 0.7f;
     private static final int SHIM_COLOR = Color.argb(0x7F, 0, 0, 0);
 
+    /** This is the Intent action to install a shortcut in the launcher. */
+    private static final String ACTION_INSTALL_SHORTCUT =
+            "com.android.launcher.action.INSTALL_SHORTCUT";
 
     @SuppressWarnings("deprecation")
     private static final String LEGACY_AUTHORITY = android.provider.Contacts.AUTHORITY;
@@ -960,6 +966,74 @@ public class QuickContactActivity extends ContactsActivity {
         }
     }
 
+    /**
+     * Calls into the contacts provider to get a pre-authorized version of the given URI.
+     */
+    private Uri getPreAuthorizedUri(Uri uri) {
+        final Bundle uriBundle = new Bundle();
+        uriBundle.putParcelable(ContactsContract.Authorization.KEY_URI_TO_AUTHORIZE, uri);
+        final Bundle authResponse = getContentResolver().call(
+                ContactsContract.AUTHORITY_URI,
+                ContactsContract.Authorization.AUTHORIZATION_METHOD,
+                null,
+                uriBundle);
+        if (authResponse != null) {
+            return (Uri) authResponse.getParcelable(
+                    ContactsContract.Authorization.KEY_AUTHORIZED_URI);
+        } else {
+            return uri;
+        }
+    }
+    private void shareContact() {
+        final String lookupKey = mContactData.getLookupKey();
+        Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
+        if (mContactData.isUserProfile()) {
+            // User is sharing the profile.  We don't want to force the receiver to have
+            // the highly-privileged READ_PROFILE permission, so we need to request a
+            // pre-authorized URI from the provider.
+            shareUri = getPreAuthorizedUri(shareUri);
+        }
+
+        final Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType(Contacts.CONTENT_VCARD_TYPE);
+        intent.putExtra(Intent.EXTRA_STREAM, shareUri);
+
+        // Launch chooser to share contact via
+        final CharSequence chooseTitle = getText(R.string.share_via);
+        final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
+
+        try {
+            this.startActivity(chooseIntent);
+        } catch (ActivityNotFoundException ex) {
+            Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Creates a launcher shortcut with the current contact.
+     */
+    private void createLauncherShortcutWithContact() {
+        final ShortcutIntentBuilder builder = new ShortcutIntentBuilder(this,
+                new OnShortcutIntentCreatedListener() {
+
+                    @Override
+                    public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
+                        // Broadcast the shortcutIntent to the launcher to create a
+                        // shortcut to this contact
+                        shortcutIntent.setAction(ACTION_INSTALL_SHORTCUT);
+                        QuickContactActivity.this.sendBroadcast(shortcutIntent);
+
+                        // Send a toast to give feedback to the user that a shortcut to this
+                        // contact was added to the launcher.
+                        Toast.makeText(QuickContactActivity.this,
+                                R.string.createContactShortcutSuccessful,
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                });
+        builder.createContactShortcutIntent(mLookupUri);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -1004,6 +1078,12 @@ public class QuickContactActivity extends ContactsActivity {
                 } else if (isContactEditable()) {
                     editContact();
                 }
+                return true;
+            case R.id.menu_share:
+                shareContact();
+                return true;
+            case R.id.menu_create_contact_shortcut:
+                createLauncherShortcutWithContact();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
