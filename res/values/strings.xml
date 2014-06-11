@@ -649,4 +649,11 @@
     <!-- Title of communication card. [CHAR LIMIT=60] -->
     <string name="communication_card_title">Contact</string>
 
+    <!-- Title of recent card. [CHAR LIMIT=60] -->
+    <string name="recent_card_title">Recent</string>
+
+    <!-- Timestamp string for interactions from yesterday. [CHAR LIMIT=40] -->
+    <string name="timestamp_string_yesterday">Yesterday</string>
+    <!-- Timestamp string for interactions from tomorrow. [CHAR LIMIT=40] -->
+    <string name="timestamp_string_tomorrow">Tomorrow</string>
 </resources>
