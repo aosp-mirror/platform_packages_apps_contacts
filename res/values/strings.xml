@@ -15,9 +15,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Title for the activity that opens the People app.  This is the name
+    <!-- Title for the activity that opens the Contacts app.  This is the name
          used in the Launcher icon. -->
-    <string name="people">People</string>
+    <string name="people">Contacts</string>
 
     <!-- Directory partition name -->
     <string name="contactsList">Contacts</string>
@@ -613,12 +613,12 @@
     <string name="toast_displaying_all_contacts">Displaying all contacts</string>
 
     <!-- Message in the standard "no account" prompt that encourages the user to add a Google account before continuing to use the People app [CHAR LIMIT=NONE] -->
-    <string name="no_account_prompt">People works better with a Google Account.\n\n\u2022 Access from any web browser.\n\u2022 Back up your contacts securely.</string>
+    <string name="no_account_prompt">Contacts works better with a Google Account.\n\n\u2022 Access from any web browser.\n\u2022 Back up your contacts securely.</string>
 
     <!-- Message in the standard "no account" prompt that encourages the user to add any account (non Google-specific) before continuing to use the People app [CHAR LIMIT=NONE] -->
     <string name="generic_no_account_prompt">Keep your contacts safe even if you lose your phone: synchronize with an online service.</string>
 
-    <!-- Title of the screen that encourages the user to add any account (non Google-specific) for a better People app experience [CHAR LIMIT=20] -->
+    <!-- Title of the screen that encourages the user to add any account (non Google-specific) for a better Contacts app experience [CHAR LIMIT=20] -->
     <string name="generic_no_account_prompt_title">Add an account</string>
 
     <!-- Message in the contact editor prompt that notifies the user that the newly created contact will not be saved to any account, and prompts addition of an account [CHAR LIMIT=NONE] -->
