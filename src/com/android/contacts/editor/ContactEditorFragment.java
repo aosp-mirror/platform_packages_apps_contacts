@@ -1043,6 +1043,7 @@ public class ContactEditorFragment extends Fragment implements
         final MenuItem discardMenu = menu.findItem(R.id.menu_discard);
         final MenuItem sendToVoiceMailMenu = menu.findItem(R.id.menu_send_to_voicemail);
         final MenuItem ringToneMenu = menu.findItem(R.id.menu_set_ringtone);
+        final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
 
         // Set visibility of menus
         doneMenu.setVisible(false);
@@ -1056,6 +1057,7 @@ public class ContactEditorFragment extends Fragment implements
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
             splitMenu.setVisible(false);
             joinMenu.setVisible(false);
+            deleteMenu.setVisible(false);
         } else if (Intent.ACTION_EDIT.equals(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
             // Split only if more than one raw profile and not a user profile
@@ -1086,6 +1088,9 @@ public class ContactEditorFragment extends Fragment implements
                 return save(SaveMode.CLOSE);
             case R.id.menu_discard:
                 return revert();
+            case R.id.menu_delete:
+                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
+                return true;
             case R.id.menu_split:
                 return doSplitContactAction();
             case R.id.menu_join:
@@ -1450,6 +1455,8 @@ public class ContactEditorFragment extends Fragment implements
          */
         void onCustomEditContactActivityRequested(AccountWithDataSet account, Uri rawContactUri,
                 Bundle intentExtras, boolean redirect);
+
+        void onDeleteRequested(Uri contactUri);
     }
 
     private class EntityDeltaComparator implements Comparator<RawContactDelta> {

@@ -34,6 +34,10 @@
         android:title="@string/menu_discard" />
 
     <item
+        android:id="@+id/menu_delete"
+        android:title="@string/menu_deleteContact" />
+
+    <item
         android:id="@+id/menu_set_ringtone"
         android:title="@string/menu_set_ring_tone" />
 
