@@ -80,6 +80,8 @@ import com.android.contacts.common.model.dataitem.ImDataItem;
 import com.android.contacts.common.model.dataitem.PhoneDataItem;
 import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.detail.ContactDetailDisplayUtils;
+import com.android.contacts.common.util.UriUtils;
+import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
@@ -93,6 +95,8 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -192,8 +196,17 @@ public class QuickContactActivity extends ContactsActivity {
     private static final String KEY_LOADER_EXTRA_SMS_PHONES =
             QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_SMS_PHONES";
     private static final int MAX_SMS_RETRIEVE = 3;
+    private static final int LOADER_CALENDAR_ID = 2;
+    private static final String KEY_LOADER_EXTRA_CALENDAR_EMAILS =
+            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_CALENDAR_EMAILS";
+    private static final int MAX_PAST_CALENDAR_RETRIEVE = 3;
+    private static final int MAX_FUTURE_CALENDAR_RETRIEVE = 3;
+    private static final long PAST_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR =
+            180L * 24L * 60L * 60L * 1000L /* 180 days */;
+    private static final long FUTURE_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR =
+            36L * 60L * 60L * 1000L /* 36 hours */;
 
-    private static final int[] mRecentLoaderIds = new int[LOADER_SMS_ID];
+    private static final int[] mRecentLoaderIds = new int[]{LOADER_SMS_ID, LOADER_CALENDAR_ID};
     private Map<Integer, List<ContactInteraction>> mRecentLoaderResults;
 
     private static final String FRAGMENT_TAG_SELECT_ACCOUNT = "select_account_fragment";
@@ -366,6 +379,9 @@ public class QuickContactActivity extends ContactsActivity {
             // we need to restart the loader and reload the new contact.
             mContactLoader = (ContactLoader) getLoaderManager().restartLoader(
                     LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
+            for (int interactionLoaderId : mRecentLoaderIds) {
+                getLoaderManager().destroyLoader(interactionLoaderId);
+            }
         }
     }
 
@@ -429,14 +445,17 @@ public class QuickContactActivity extends ContactsActivity {
 
         final List<String> sortedActionMimeTypes = Lists.newArrayList();
         // Maintain a list of phone numbers to pass into SmsInteractionsLoader
-        final List<String> phoneNumbers = Lists.newArrayList();
+        final Set<String> phoneNumbers = new HashSet<>();
+        // Maintain a list of email addresses to pass into CalendarInteractionsLoader
+        final Set<String> emailAddresses = new HashSet<>();
         // List of Entry that makes up the ExpandingEntryCardView
         final List<Entry> entries = Lists.newArrayList();
 
         mEntriesAndActionsTask = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                computeEntriesAndActions(data, phoneNumbers, sortedActionMimeTypes, entries);
+                computeEntriesAndActions(data, phoneNumbers, emailAddresses,
+                        sortedActionMimeTypes, entries);
                 return null;
             }
 
@@ -447,7 +466,8 @@ public class QuickContactActivity extends ContactsActivity {
                 // is still running before binding to UI. A new intent could invalidate
                 // the results, for example.
                 if (data == mContactData && !isCancelled()) {
-                    bindEntriesAndActions(entries, phoneNumbers, sortedActionMimeTypes);
+                    bindEntriesAndActions(entries, phoneNumbers, emailAddresses,
+                            sortedActionMimeTypes);
                     showActivity();
                 }
             }
@@ -456,21 +476,30 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     private void bindEntriesAndActions(List<Entry> entries,
-            List<String> phoneNumbers,
+            Set<String> phoneNumbers,
+            Set<String> emailAddresses,
             List<String> sortedActionMimeTypes) {
         Trace.beginSection("start sms loader");
-
-        Bundle smsExtraBundle = new Bundle();
+        final Bundle smsExtraBundle = new Bundle();
         smsExtraBundle.putStringArray(KEY_LOADER_EXTRA_SMS_PHONES,
                 phoneNumbers.toArray(new String[phoneNumbers.size()]));
         getLoaderManager().initLoader(
                 LOADER_SMS_ID,
                 smsExtraBundle,
                 mLoaderInteractionsCallbacks);
-
         Trace.endSection();
-        Trace.beginSection("bind communicate card");
 
+        Trace.beginSection("start calendar loader");
+        final Bundle calendarExtraBundle = new Bundle();
+        calendarExtraBundle.putStringArray(KEY_LOADER_EXTRA_CALENDAR_EMAILS,
+                emailAddresses.toArray(new String[emailAddresses.size()]));
+        getLoaderManager().initLoader(
+                LOADER_CALENDAR_ID,
+                calendarExtraBundle,
+                mLoaderInteractionsCallbacks);
+        Trace.endSection();
+
+        Trace.beginSection("bind communicate card");
         if (entries.size() > 0) {
             mCommunicationCard.initialize(entries,
                     /* numInitialVisibleEntries = */ MIN_NUM_COMMUNICATION_ENTRIES_SHOWN,
@@ -497,8 +526,8 @@ public class QuickContactActivity extends ContactsActivity {
         }
     }
 
-    private void computeEntriesAndActions(Contact data, List<String> phoneNumbers,
-            List<String> sortedActionMimeTypes, List<Entry> entries) {
+    private void computeEntriesAndActions(Contact data, Set<String> phoneNumbers,
+            Set<String> emailAddresses, List<String> sortedActionMimeTypes, List<Entry> entries) {
         Trace.beginSection("inflate entries and actions");
 
         final ResolveCache cache = ResolveCache.getInstance(this);
@@ -511,6 +540,10 @@ public class QuickContactActivity extends ContactsActivity {
 
                 if (dataItem instanceof PhoneDataItem) {
                     phoneNumbers.add(((PhoneDataItem) dataItem).getNormalizedNumber());
+                }
+
+                if (dataItem instanceof EmailDataItem) {
+                    emailAddresses.add(((EmailDataItem) dataItem).getAddress());
                 }
 
                 // Skip this data item if MIME-type excluded
@@ -854,6 +887,16 @@ public class QuickContactActivity extends ContactsActivity {
                             args.getStringArray(KEY_LOADER_EXTRA_SMS_PHONES),
                             MAX_SMS_RETRIEVE);
                     break;
+                case LOADER_CALENDAR_ID:
+                    Log.v(TAG, "LOADER_CALENDAR_ID");
+                    loader = new CalendarInteractionsLoader(
+                            QuickContactActivity.this,
+                            Arrays.asList(args.getStringArray(KEY_LOADER_EXTRA_CALENDAR_EMAILS)),
+                            MAX_FUTURE_CALENDAR_RETRIEVE,
+                            MAX_PAST_CALENDAR_RETRIEVE,
+                            FUTURE_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR,
+                            PAST_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR);
+                    break;
             }
             return loader;
         }
@@ -864,6 +907,8 @@ public class QuickContactActivity extends ContactsActivity {
             if (mRecentLoaderResults == null) {
                 mRecentLoaderResults = new HashMap<Integer, List<ContactInteraction>>();
             }
+            Log.v(TAG, "onLoadFinished ~ loader.getId() " + loader.getId() + " data.size() " +
+                    data.size());
             mRecentLoaderResults.put(loader.getId(), data);
 
             if (isAllRecentDataLoaded()) {
@@ -929,7 +974,7 @@ public class QuickContactActivity extends ContactsActivity {
         } else {
             mDrawablesToTint.add(drawable);
         }
-        return drawable; 
+        return drawable;
     }
 
     /**

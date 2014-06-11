@@ -654,14 +654,25 @@
     <!-- Title of recent card. [CHAR LIMIT=60] -->
     <string name="recent_card_title">Recent</string>
 
-    <!-- Timestamp string for interactions from yesterday. [CHAR LIMIT=40] -->
-    <string name="timestamp_string_yesterday">Yesterday</string>
-    <!-- Timestamp string for interactions from tomorrow. [CHAR LIMIT=40] -->
-    <string name="timestamp_string_tomorrow">Tomorrow</string>
-
     <!-- Title of sms action entry. [CHAR LIMIT=60] -->
     <string name="send_message">Send message</string>
 
     <!-- Toast that appears when you are copying a directory contact into your personal contacts -->
     <string name="toast_making_personal_copy">Creating a personal copy...</string>
+    <!-- Timestamp string for interactions from yesterday. [CHAR LIMIT=40] -->
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
+    <!-- Timestamp string for interactions from today. [CHAR LIMIT=40] -->
+    <string name="today">Today</string>
+    <!-- Text for an event starting on the current day with a start and end time.
+         For ex, "Today at 5:00pm-6:00pm" [CHAR LIMIT=NONE] -->
+    <string name="today_at_time_fmt">"Today at <xliff:g id="time_interval">%s</xliff:g>"</string>
+    <!-- Text for an event starting on the next day with a start and end time.
+         For ex, "Tomorrow at 5:00pm-6:00pm" [CHAR LIMIT=NONE] -->
+    <string name="tomorrow_at_time_fmt">"Tomorrow at <xliff:g id="time_interval">%s</xliff:g>"</string>
+    <!-- Format string for a date and time description.  For ex:
+         "April 19, 2012, 3:00pm - 4:00pm" [CHAR LIMIT=NONE] -->
+    <string name="date_time_fmt">"<xliff:g id="date">%s</xliff:g>, <xliff:g id="time_interval">%s</xliff:g>"</string>
+    <!-- Title for untitled calendar interactions [CHAR LIMIT=40] -->
+    <string name="untitled_event">(Untitled event)</string>
 </resources>

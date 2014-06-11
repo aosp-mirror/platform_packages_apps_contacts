@@ -72,16 +72,22 @@ public class SmsInteractionsLoader extends AsyncTaskLoader<List<ContactInteracti
 
         // Query the SMS database for the threads
         Cursor cursor = getSmsCursorFromThreads(threadIdStrings);
+        if (cursor != null) {
+            try {
+                List<ContactInteraction> interactions = new ArrayList<>();
+                while (cursor.moveToNext()) {
+                    ContentValues values = new ContentValues();
+                    DatabaseUtils.cursorRowToContentValues(cursor, values);
+                    interactions.add(new SmsInteraction(values));
+                }
 
-        List<ContactInteraction> interactions = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            ContentValues values = new ContentValues();
-            DatabaseUtils.cursorRowToContentValues(cursor, values);
-            interactions.add(new SmsInteraction(values));
+                return interactions;
+            } finally {
+                cursor.close();
+            }
         }
 
-        Log.v(TAG, "end loadInBackground");
-        return interactions;
+        return Collections.emptyList();
     }
 
     /**

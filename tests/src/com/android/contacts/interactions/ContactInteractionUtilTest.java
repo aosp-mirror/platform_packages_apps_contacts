@@ -83,7 +83,7 @@ public class ContactInteractionUtilTest extends AndroidTestCase {
     public void testFormatDateStringFromTimestamp_yesterday() {
         // Test yesterday and tomorrow (Yesterday or Tomorrow shown)
         calendar.add(Calendar.DAY_OF_YEAR, -1);
-        assertEquals(getContext().getResources().getString(R.string.timestamp_string_yesterday),
+        assertEquals(getContext().getResources().getString(R.string.yesterday),
                 ContactInteractionUtil.formatDateStringFromTimestamp(calendar.getTimeInMillis(),
                         getContext()));
     }
@@ -95,14 +95,14 @@ public class ContactInteractionUtilTest extends AndroidTestCase {
         long lastYear = calendar.getTimeInMillis();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
 
-        assertEquals(getContext().getResources().getString(R.string.timestamp_string_yesterday),
+        assertEquals(getContext().getResources().getString(R.string.yesterday),
                 ContactInteractionUtil.formatDateStringFromTimestamp(lastYear,
                         getContext(), calendar));
     }
 
     public void testFormatDateStringFromTimestamp_tomorrow() {
         calendar.add(Calendar.DAY_OF_YEAR, 1);
-        assertEquals(getContext().getResources().getString(R.string.timestamp_string_tomorrow),
+        assertEquals(getContext().getResources().getString(R.string.tomorrow),
                 ContactInteractionUtil.formatDateStringFromTimestamp(calendar.getTimeInMillis(),
                         getContext()));
     }
@@ -112,7 +112,7 @@ public class ContactInteractionUtilTest extends AndroidTestCase {
         long thisYear = calendar.getTimeInMillis();
         calendar.add(Calendar.DAY_OF_YEAR, -1);
 
-        assertEquals(getContext().getResources().getString(R.string.timestamp_string_tomorrow),
+        assertEquals(getContext().getResources().getString(R.string.tomorrow),
                 ContactInteractionUtil.formatDateStringFromTimestamp(thisYear,
                         getContext(), calendar));
     }
