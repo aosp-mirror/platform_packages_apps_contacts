@@ -176,8 +176,8 @@ public class ContactDetailDisplayUtils {
         if (!isDirectoryEntry && !isUserProfile) {
             starredMenuItem.setVisible(true);
             final int resId = isStarred
-                    ? R.drawable.btn_star_on_normal_holo_light
-                    : R.drawable.btn_star_off_normal_holo_light;
+                    ? R.drawable.ic_star_24dp
+                    : R.drawable.ic_star_outline_24dp;
             starredMenuItem.setIcon(resId);
             starredMenuItem.setChecked(isStarred);
             starredMenuItem.setTitle(isStarred ? R.string.menu_removeStar : R.string.menu_addStar);

@@ -658,6 +658,10 @@
     <string name="timestamp_string_yesterday">Yesterday</string>
     <!-- Timestamp string for interactions from tomorrow. [CHAR LIMIT=40] -->
     <string name="timestamp_string_tomorrow">Tomorrow</string>
+
     <!-- Title of sms action entry. [CHAR LIMIT=60] -->
     <string name="send_message">Send message</string>
+
+    <!-- Toast that appears when you are copying a directory contact into your personal contacts -->
+    <string name="toast_making_personal_copy">Creating a personal copy...</string>
 </resources>
