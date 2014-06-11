@@ -16,6 +16,7 @@
 
 package com.android.contacts.quickcontact;
 
+import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -25,12 +26,14 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Trace;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
@@ -66,15 +69,13 @@ import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.EmailDataItem;
 import com.android.contacts.common.model.dataitem.ImDataItem;
 import com.android.contacts.common.model.dataitem.PhoneDataItem;
-import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.common.util.UriUtils;
+import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
-import com.android.contacts.interactions.ContactInteractionUtil;
 import com.android.contacts.interactions.SmsInteractionsLoader;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
 import com.android.contacts.util.ImageViewDrawableSetter;
-import com.android.contacts.common.util.StopWatch;
 import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
@@ -83,7 +84,6 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -98,12 +98,21 @@ import java.util.Set;
  * {@link Intent#getSourceBounds()}.
  */
 public class QuickContactActivity extends Activity {
+
+    /**
+     * QuickContacts immediately takes up the full screen. All possible information is shown.
+     * This value for {@link android.provider.ContactsContract.QuickContact#EXTRA_MODE}
+     * should only be used by the Contacts app.
+     */
+    public static final int MODE_FULLY_EXPANDED = 4;
+
     private static final String TAG = "QuickContact";
 
-    private static final boolean TRACE_LAUNCH = false;
-    private static final String TRACE_TAG = "quickcontact";
-    private static final int ANIMATION_DURATION = 250;
-    private static final boolean ENABLE_STOPWATCH = false;
+    private static final int ANIMATION_SLIDE_OPEN_DURATION = 250;
+    private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 75;
+    private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
+    private static final float SYSTEM_BAR_BRIGHTNESS_FACTOR = 0.7f;
+    private static final int SHIM_COLOR = Color.argb(0x7F, 0, 0, 0);
 
 
     @SuppressWarnings("deprecation")
@@ -111,7 +120,9 @@ public class QuickContactActivity extends Activity {
 
     private Uri mLookupUri;
     private String[] mExcludeMimes;
-    private List<String> mSortedActionMimeTypes = Lists.newArrayList();
+    private int mExtraMode;
+    private int mStatusBarColor;
+    private boolean mHasAlreadyBeenOpened;
 
     private View mPhotoContainer;
 
@@ -121,6 +132,7 @@ public class QuickContactActivity extends Activity {
     private ExpandingEntryCardView mCommunicationCard;
     private ExpandingEntryCardView mRecentCard;
     private MultiShrinkScroller mScroller;
+    private AsyncTask<Void, Void, Void> mEntriesAndActionsTask;
 
     private static final int MIN_NUM_COMMUNICATION_ENTRIES_SHOWN = 3;
     private static final int MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN = 3;
@@ -172,17 +184,13 @@ public class QuickContactActivity extends Activity {
     private static final int[] mRecentLoaderIds = new int[LOADER_SMS_ID];
     private Map<Integer, List<ContactInteraction>> mRecentLoaderResults;
 
-
-    private StopWatch mStopWatch = ENABLE_STOPWATCH
-            ? StopWatch.start("QuickContact") : StopWatch.getNullStopWatch();
-
     final OnClickListener mEditContactClickHandler = new OnClickListener() {
         @Override
         public void onClick(View v) {
             final Intent intent = new Intent(Intent.ACTION_EDIT, mLookupUri);
             mContactLoader.cacheResult();
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE_CONTACT_EDITOR_ACTIVITY);
         }
     };
 
@@ -224,16 +232,27 @@ public class QuickContactActivity extends Activity {
         public void onScrolledOffBottom() {
             onBackPressed();
         }
+
+        @Override
+        public void onEnterFullscreen() {
+            updateStatusBarColor();
+        }
+
+        @Override
+        public void onExitFullscreen() {
+            updateStatusBarColor();
+        }
     };
 
     @Override
-    protected void onCreate(Bundle icicle) {
-        mStopWatch.lap("c"); // create start
-        super.onCreate(icicle);
+    protected void onCreate(Bundle savedInstanceState) {
+        Trace.beginSection("onCreate()");
+        super.onCreate(savedInstanceState);
 
-        mStopWatch.lap("sc"); // super.onCreate
-
-        if (TRACE_LAUNCH) android.os.Debug.startMethodTracing(TRACE_TAG);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        // Since we can't disable Window animations from the Launcher, we can minimize the
+        // silliness of the animation by setting the navigation bar transparent.
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
 
         // Parse intent
         final Intent intent = getIntent();
@@ -247,16 +266,15 @@ public class QuickContactActivity extends Activity {
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
         }
 
+        mExtraMode = getIntent().getIntExtra(QuickContact.EXTRA_MODE,
+                QuickContact.MODE_LARGE);
+
         mLookupUri = Preconditions.checkNotNull(lookupUri, "missing lookupUri");
 
         mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
 
-        mStopWatch.lap("i"); // intent parsed
-
         mContactLoader = (ContactLoader) getLoaderManager().initLoader(
                 LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
-
-        mStopWatch.lap("ld"); // loader started
 
         // Show QuickContact in front of soft input
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
@@ -264,17 +282,11 @@ public class QuickContactActivity extends Activity {
 
         setContentView(R.layout.quickcontact_activity);
 
-        mStopWatch.lap("l"); // layout inflated
-
         mEditOrAddContactImage = (ImageView) findViewById(R.id.contact_edit_image);
         mStarImage = (ImageView) findViewById(R.id.quickcontact_star_button);
         mCommunicationCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
         mRecentCard = (ExpandingEntryCardView) findViewById(R.id.recent_card);
         mScroller = (MultiShrinkScroller) findViewById(R.id.multiscroller);
-
-        if (mScroller != null) {
-            mScroller.initialize(mMultiShrinkScrollerListener);
-        }
 
         mEditOrAddContactImage.setOnClickListener(mEditContactClickHandler);
 
@@ -292,20 +304,53 @@ public class QuickContactActivity extends Activity {
         mPhotoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
         mPhotoView.setOnClickListener(mEditContactClickHandler);
 
-        mStopWatch.lap("v"); // view initialized
+        mHasAlreadyBeenOpened = savedInstanceState != null;
 
-        if (mScroller != null) {
-            mScroller.setVisibility(View.GONE);
+        final ColorDrawable windowShim = new ColorDrawable(SHIM_COLOR);
+        getWindow().setBackgroundDrawable(windowShim);
+        if (!mHasAlreadyBeenOpened) {
+            final int duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+            ObjectAnimator.ofInt(windowShim, "alpha", 0, 0xFF).setDuration(duration).start();
         }
 
-        mStopWatch.lap("cf"); // onCreate finished
+        if (mScroller != null) {
+            mScroller.initialize(mMultiShrinkScrollerListener);
+            if (mHasAlreadyBeenOpened) {
+                mScroller.setVisibility(View.VISIBLE);
+                mScroller.setScroll(mScroller.getScrollNeededToBeFullScreen());
+            } else {
+                mScroller.setVisibility(View.GONE);
+            }
+        }
+
+        Trace.endSection();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode,
+            Intent data) {
+        if (requestCode == REQUEST_CODE_CONTACT_EDITOR_ACTIVITY &&
+                resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED) {
+            // The contact that we were showing has been deleted.
+            finish();
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        mHasAlreadyBeenOpened = true;
     }
 
     private void runEntranceAnimation() {
+        if (mHasAlreadyBeenOpened) {
+            return;
+        }
+        mHasAlreadyBeenOpened = true;
         final int bottomScroll = mScroller.getScrollUntilOffBottom() - 1;
         final ObjectAnimator scrollAnimation
-                = ObjectAnimator.ofInt(mScroller, "scroll", -bottomScroll, 0);
-        scrollAnimation.setDuration(ANIMATION_DURATION);
+                = ObjectAnimator.ofInt(mScroller, "scroll", -bottomScroll,
+                mExtraMode != MODE_FULLY_EXPANDED ? 0 : mScroller.getScrollNeededToBeFullScreen());
+        scrollAnimation.setDuration(ANIMATION_SLIDE_OPEN_DURATION);
         scrollAnimation.start();
     }
 
@@ -341,9 +386,9 @@ public class QuickContactActivity extends Activity {
     /**
      * Handle the result from the ContactLoader
      */
-    private void bindContactData(Contact data) {
+    private void bindContactData(final Contact data) {
+        Trace.beginSection("bindContactData");
         mContactData = data;
-        final ResolveCache cache = ResolveCache.getInstance(this);
         final Context context = this;
 
         mEditOrAddContactImage.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ?
@@ -399,15 +444,90 @@ public class QuickContactActivity extends Activity {
 
         mDefaultsMap.clear();
 
-        mStopWatch.lap("sph"); // Start photo setting
+        Trace.endSection();
+        Trace.beginSection("Set display photo & name");
 
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
         extractAndApplyTintFromPhotoViewAsynchronously();
+        setHeaderNameText(R.id.name, data.getDisplayName());
 
-        mStopWatch.lap("ph"); // Photo set
+        Trace.endSection();
 
+        final List<String> sortedActionMimeTypes = Lists.newArrayList();
         // Maintain a list of phone numbers to pass into SmsInteractionsLoader
-        List<String> phoneNumbers = new ArrayList<>();
+        final List<String> phoneNumbers = Lists.newArrayList();
+        // List of Entry that makes up the ExpandingEntryCardView
+        final List<Entry> entries = Lists.newArrayList();
+
+        mEntriesAndActionsTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                computeEntriesAndActions(data, phoneNumbers, sortedActionMimeTypes, entries);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                // Check that original AsyncTask parameters are still valid and the activity
+                // is still running before binding to UI. A new intent could invalidate
+                // the results, for example.
+                if (data == mContactData && !isCancelled()) {
+                    bindEntriesAndActions(entries, phoneNumbers, sortedActionMimeTypes);
+                    showActivity();
+                }
+            }
+        };
+        mEntriesAndActionsTask.execute();
+    }
+
+    private void bindEntriesAndActions(List<Entry> entries,
+            List<String> phoneNumbers,
+            List<String> sortedActionMimeTypes) {
+        Trace.beginSection("start sms loader");
+
+        Bundle smsExtraBundle = new Bundle();
+        smsExtraBundle.putStringArray(KEY_LOADER_EXTRA_SMS_PHONES,
+                phoneNumbers.toArray(new String[phoneNumbers.size()]));
+        getLoaderManager().initLoader(
+                LOADER_SMS_ID,
+                smsExtraBundle,
+                mLoaderInteractionsCallbacks);
+
+        Trace.endSection();
+        Trace.beginSection("bind communicate card");
+
+        if (entries.size() > 0) {
+            mCommunicationCard.initialize(entries,
+                    /* numInitialVisibleEntries = */ MIN_NUM_COMMUNICATION_ENTRIES_SHOWN,
+                    /* isExpanded = */ false,
+                    /* themeColor = */ 0);
+        }
+
+        final boolean hasData = !sortedActionMimeTypes.isEmpty();
+        mCommunicationCard.setVisibility(hasData ? View.VISIBLE: View.GONE);
+
+        Trace.endSection();
+    }
+
+    private void showActivity() {
+        if (mScroller != null) {
+            mScroller.setVisibility(View.VISIBLE);
+            SchedulingUtils.doOnPreDraw(mScroller, /* drawNextFrame = */ false,
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            runEntranceAnimation();
+                        }
+                    });
+        }
+    }
+
+    private void computeEntriesAndActions(Contact data, List<String> phoneNumbers,
+            List<String> sortedActionMimeTypes, List<Entry> entries) {
+        Trace.beginSection("inflate entries and actions");
+
+        final ResolveCache cache = ResolveCache.getInstance(this);
         for (RawContact rawContact : data.getRawContacts()) {
             for (DataItem dataItem : rawContact.getDataItems()) {
                 final String mimeType = dataItem.getMimeType();
@@ -430,7 +550,8 @@ public class QuickContactActivity extends Activity {
                     // Build an action for this data entry, find a mapping to a UI
                     // element, build its summary from the cursor, and collect it
                     // along with all others of this MIME-type.
-                    final Action action = new DataAction(context, dataItem, dataKind);
+                    final Action action = new DataAction(getApplicationContext(),
+                            dataItem, dataKind);
                     final boolean wasAdded = considerAdd(action, cache, isSuperPrimary);
                     if (wasAdded) {
                         // Remember the default
@@ -446,7 +567,8 @@ public class QuickContactActivity extends Activity {
                     final EmailDataItem email = (EmailDataItem) dataItem;
                     final ImDataItem im = ImDataItem.createFromEmail(email);
                     if (dataKind != null) {
-                        final DataAction action = new DataAction(context, im, dataKind);
+                        final DataAction action = new DataAction(getApplicationContext(),
+                                im, dataKind);
                         action.setPresence(status.getPresence());
                         considerAdd(action, cache, isSuperPrimary);
                     }
@@ -454,26 +576,23 @@ public class QuickContactActivity extends Activity {
             }
         }
 
-        mStopWatch.lap("e"); // Entities inflated
+        Trace.endSection();
+        Trace.beginSection("collapsing action list");
 
         // Collapse Action Lists (remove e.g. duplicate e-mail addresses from different sources)
         for (List<Action> actionChildren : mActions.values()) {
             Collapser.collapseList(actionChildren);
         }
 
-        mStopWatch.lap("c"); // List collapsed
+        Trace.endSection();
+        Trace.beginSection("sort mimetypes");
 
-        setHeaderNameText(R.id.name, data.getDisplayName());
-
-        // List of Entry that makes up the ExpandingEntryCardView
-        final List<Entry> entries = new ArrayList<>();
         // All the mime-types to add.
         final Set<String> containedTypes = new HashSet<String>(mActions.keySet());
-        mSortedActionMimeTypes.clear();
         // First, add LEADING_MIMETYPES, which are most common.
         for (String mimeType : LEADING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
-                mSortedActionMimeTypes.add(mimeType);
+                sortedActionMimeTypes.add(mimeType);
                 containedTypes.remove(mimeType);
                 entries.addAll(actionsToEntries(mActions.get(mimeType)));
             }
@@ -482,7 +601,7 @@ public class QuickContactActivity extends Activity {
         // Add all the remaining ones that are not TRAILING
         for (String mimeType : containedTypes.toArray(new String[containedTypes.size()])) {
             if (!TRAILING_MIMETYPES.contains(mimeType)) {
-                mSortedActionMimeTypes.add(mimeType);
+                sortedActionMimeTypes.add(mimeType);
                 containedTypes.remove(mimeType);
                 entries.addAll(actionsToEntries(mActions.get(mimeType)));
             }
@@ -492,29 +611,12 @@ public class QuickContactActivity extends Activity {
         for (String mimeType : TRAILING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
                 containedTypes.remove(mimeType);
-                mSortedActionMimeTypes.add(mimeType);
+                sortedActionMimeTypes.add(mimeType);
                 entries.addAll(actionsToEntries(mActions.get(mimeType)));
             }
         }
 
-        Bundle smsExtraBundle = new Bundle();
-        smsExtraBundle.putStringArray(KEY_LOADER_EXTRA_SMS_PHONES,
-                phoneNumbers.toArray(new String[phoneNumbers.size()]));
-        getLoaderManager().initLoader(
-                LOADER_SMS_ID,
-                smsExtraBundle,
-                mLoaderInteractionsCallbacks);
-
-        if (entries.size() > 0) {
-            mCommunicationCard.initialize(entries,
-                    /* numInitialVisibleEntries = */ MIN_NUM_COMMUNICATION_ENTRIES_SHOWN,
-                    /* isExpanded = */ false,
-                    /* themeColor = */ 0);
-            mCommunicationCard.setVisibility(View.VISIBLE);
-        }
-
-        final boolean hasData = !mSortedActionMimeTypes.isEmpty();
-        mCommunicationCard.setVisibility(hasData ? View.VISIBLE: View.GONE);
+        Trace.endSection();
     }
 
     /**
@@ -530,10 +632,11 @@ public class QuickContactActivity extends Activity {
         new AsyncTask<Void, Void, Integer>() {
             @Override
             protected Integer doInBackground(Void... params) {
-                final Bitmap bitmap;
                 if (imageViewDrawable instanceof BitmapDrawable) {
-                    bitmap = ((BitmapDrawable) imageViewDrawable).getBitmap();
-                } else if (imageViewDrawable instanceof LetterTileDrawable) {
+                    final Bitmap bitmap = ((BitmapDrawable) imageViewDrawable).getBitmap();
+                    return colorFromBitmap(bitmap);
+                }
+                if (imageViewDrawable instanceof LetterTileDrawable) {
                     // LetterTileDrawable doesn't normally draw unless it is visible. Therefore,
                     // we need to directly ask it for its color via getColor(). We could directly
                     // return this color. However, in the future Palette#generate() may incorporate
@@ -541,21 +644,19 @@ public class QuickContactActivity extends Activity {
                     // consistency.
                     final LetterTileDrawable tileDrawable = (LetterTileDrawable) imageViewDrawable;
                     final int PALETTE_BITMAP_SIZE = 1;
-                    bitmap = Bitmap.createBitmap(PALETTE_BITMAP_SIZE,
+                    final Bitmap bitmap = Bitmap.createBitmap(PALETTE_BITMAP_SIZE,
                             PALETTE_BITMAP_SIZE, Bitmap.Config.ARGB_8888);
-                    final Canvas canvas = new Canvas(bitmap);
-                    canvas.drawColor(tileDrawable.getColor());
-                } else {
-                    return 0;
+                    // If Palette can not extract a primary color, our UX person says we are better
+                    // off using the LetterTileDrawable's non vibrant color than falling back
+                    // to the app's default color.
+                    final int color = colorFromBitmap(bitmap);
+                    if (color == 0) {
+                        return tileDrawable.getColor();
+                    } else {
+                        return color;
+                    }
                 }
-                // Author of Palette recommends using 24 colors when analyzing profile photos.
-                final int NUMBER_OF_PALETTE_COLORS = 24;
-                final Palette palette = Palette.generate(bitmap, NUMBER_OF_PALETTE_COLORS);
-                if (palette != null && palette.getVibrantColor() != null) {
-                    return palette.getVibrantColor().getRgb();
-                } else {
-                    return 0;
-                }
+                return 0;
             }
 
             @Override
@@ -564,9 +665,50 @@ public class QuickContactActivity extends Activity {
                 if (color != 0 && imageViewDrawable == mPhotoView.getDrawable()) {
                     // TODO: animate from the previous tint.
                     mScroller.setHeaderTintColor(color);
+
+                    // Create a darker version of the actionbar color. HSV is device dependent
+                    // and not perceptually-linear. Therefore, we can't say mStatusBarColor is
+                    // 70% as bright as the action bar color. We can only say: it is a bit darker.
+                    final float hsvComponents[] = new float[3];
+                    Color.colorToHSV(color, hsvComponents);
+                    hsvComponents[2] *= SYSTEM_BAR_BRIGHTNESS_FACTOR;
+                    mStatusBarColor = Color.HSVToColor(hsvComponents);
+
+                    updateStatusBarColor();
                 }
             }
         }.execute();
+    }
+
+    private void updateStatusBarColor() {
+        if (mScroller == null) {
+            return;
+        }
+        final int desiredStatusBarColor;
+        // Only use a custom status bar color if QuickContacts touches the top of the viewport.
+        if (mScroller.getScrollNeededToBeFullScreen() <= 0) {
+            desiredStatusBarColor = mStatusBarColor;
+        } else {
+            desiredStatusBarColor = Color.TRANSPARENT;
+        }
+        // Animate to the new color.
+        if (desiredStatusBarColor != getWindow().getStatusBarColor()) {
+            final ObjectAnimator animation = ObjectAnimator.ofInt(getWindow(), "statusBarColor",
+                    getWindow().getStatusBarColor(), desiredStatusBarColor);
+            animation.setDuration(ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION);
+            animation.setEvaluator(new ArgbEvaluator());
+            animation.start();
+        }
+    }
+
+    private int colorFromBitmap(Bitmap bitmap) {
+        // Author of Palette recommends using 24 colors when analyzing profile photos.
+        final int NUMBER_OF_PALETTE_COLORS = 24;
+        final Palette palette = Palette.generate(bitmap, NUMBER_OF_PALETTE_COLORS);
+        if (palette != null && palette.getVibrantColor() != null) {
+            return palette.getVibrantColor().getRgb();
+        }
+        return 0;
     }
 
     /**
@@ -613,8 +755,10 @@ public class QuickContactActivity extends Activity {
         List<Entry> entries = new ArrayList<>();
         for (Action action :  actions) {
             entries.add(new Entry(ResolveCache.getInstance(this).getIcon(action),
-                    action.getMimeType(), action.getSubtitle().toString(),
-                    action.getBody().toString(), action.getIntent(), /* isEditable= */ false));
+                    action.getMimeType(),
+                    action.getSubtitle() == null ? null : action.getSubtitle().toString(),
+                    action.getBody() == null ? null : action.getBody().toString(),
+                    action.getIntent(), /* isEditable= */ false));
         }
         return entries;
     }
@@ -642,7 +786,8 @@ public class QuickContactActivity extends Activity {
 
         @Override
         public void onLoadFinished(Loader<Contact> loader, Contact data) {
-            mStopWatch.lap("lf"); // onLoadFinished
+            Trace.beginSection("onLoadFinished()");
+
             if (isFinishing()) {
                 return;
             }
@@ -652,35 +797,19 @@ public class QuickContactActivity extends Activity {
                 throw new IllegalStateException("Failed to load contact", data.getException());
             }
             if (data.isNotFound()) {
-                Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
-                Toast.makeText(QuickContactActivity.this, R.string.invalidContactMessage,
-                        Toast.LENGTH_LONG).show();
+                if (mHasAlreadyBeenOpened) {
+                    finish();
+                } else {
+                    Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
+                    Toast.makeText(QuickContactActivity.this, R.string.invalidContactMessage,
+                            Toast.LENGTH_LONG).show();
+                }
                 return;
             }
 
             bindContactData(data);
 
-            mStopWatch.lap("bd"); // bindData finished
-
-            if (TRACE_LAUNCH) android.os.Debug.stopMethodTracing();
-            if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
-                Log.d(Constants.PERFORMANCE_TAG, "QuickContact shown");
-            }
-
-            if (mScroller != null) {
-                // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
-                // that the layout passes are completed
-                mScroller.setVisibility(View.VISIBLE);
-                SchedulingUtils.doOnPreDraw(mScroller, /* drawNextFrame = */ false,
-                        new Runnable() {
-                    @Override
-                    public void run() {
-                        runEntranceAnimation();
-                    }
-                });
-            }
-            mStopWatch.stopAndLog(TAG, 0);
-            mStopWatch = StopWatch.getNullStopWatch();
+            Trace.endSection();
         }
 
         @Override
@@ -702,6 +831,14 @@ public class QuickContactActivity extends Activity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+
+        // override transitions to skip the standard window animations
+        overridePendingTransition(0, 0);
     }
 
     private LoaderCallbacks<List<ContactInteraction>> mLoaderInteractionsCallbacks =
@@ -767,6 +904,19 @@ public class QuickContactActivity extends Activity {
                     /* isExpanded = */ false,
                     /* themeColor = */ 0);
             mRecentCard.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (mEntriesAndActionsTask != null) {
+            // Once the activity is stopped, we will no longer want to bind mEntriesAndActionsTask's
+            // results on the UI thread. In some circumstances Activities are killed without
+            // onStop() being called. This is not a problem, because in these circumstances
+            // the entire process will be killed.
+            mEntriesAndActionsTask.cancel(/* mayInterruptIfRunning = */ false);
         }
     }
 }

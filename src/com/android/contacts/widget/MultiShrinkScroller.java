@@ -68,6 +68,10 @@ public class MultiShrinkScroller extends LinearLayout {
 
     public interface MultiShrinkScrollerListener {
         void onScrolledOffBottom();
+
+        void onEnterFullscreen();
+
+        void onExitFullscreen();
     }
 
     // Interpolator from android.support.v4.view.ViewPager
@@ -292,13 +296,22 @@ public class MultiShrinkScroller extends LinearLayout {
 
     @Override
     public void scrollTo(int x, int y) {
-        int delta = y - getScroll();
+        final int delta = y - getScroll();
+        boolean wasFullscreen = getScrollNeededToBeFullScreen() <= 0;
         if (delta > 0) {
             scrollUp(delta);
         } else {
             scrollDown(delta);
         }
         updatePhotoTint();
+        final boolean isFullscreen = getScrollNeededToBeFullScreen() <= 0;
+        if (mListener != null) {
+            if (wasFullscreen && !isFullscreen) {
+                 mListener.onExitFullscreen();
+            } else if (!wasFullscreen && isFullscreen) {
+                mListener.onEnterFullscreen();
+            }
+        }
     }
 
     @NeededForReflection
@@ -315,6 +328,15 @@ public class MultiShrinkScroller extends LinearLayout {
                 = (LayoutParams) mToolbar.getLayoutParams();
         return mTransparentStartHeight - toolbarLayoutParams.topMargin
                 + mMaximumHeaderHeight - toolbarLayoutParams.height + mScrollView.getScrollY();
+    }
+
+    /**
+     * Amount of transparent space above the header/toolbar.
+     */
+    public int getScrollNeededToBeFullScreen() {
+        final LinearLayout.LayoutParams toolbarLayoutParams
+                = (LayoutParams) mToolbar.getLayoutParams();
+        return toolbarLayoutParams.topMargin;
     }
 
     /**

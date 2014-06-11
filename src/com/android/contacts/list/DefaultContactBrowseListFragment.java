@@ -76,6 +76,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
+        // Don't use a QuickContactBadge. Just use a regular ImageView. Using a QuickContactBadge
+        // inside the ListView prevents us from using MODE_FULLY_EXPANDED and messes up ripples.
+        setQuickContactEnabled(false);
         setSectionHeaderDisplayEnabled(true);
         setVisibleScrollbarEnabled(true);
     }

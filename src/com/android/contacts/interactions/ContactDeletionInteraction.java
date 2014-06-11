@@ -54,6 +54,7 @@ public class ContactDeletionInteraction extends Fragment
     private static final String KEY_CONTACT_URI = "contactUri";
     private static final String KEY_FINISH_WHEN_DONE = "finishWhenDone";
     public static final String ARG_CONTACT_URI = "contactUri";
+    public static final int RESULT_CODE_DELETED = 3;
 
     private static final String[] ENTITY_PROJECTION = new String[] {
         Entity.RAW_CONTACT_ID, //0
@@ -317,6 +318,7 @@ public class ContactDeletionInteraction extends Fragment
     protected void doDeleteContact(Uri contactUri) {
         mContext.startService(ContactSaveService.createDeleteContactIntent(mContext, contactUri));
         if (isAdded() && mFinishActivityWhenDone) {
+            getActivity().setResult(RESULT_CODE_DELETED);
             getActivity().finish();
         }
     }

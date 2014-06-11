@@ -70,6 +70,7 @@ import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ViewUtil;
+import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.util.DialogManager;
@@ -842,8 +843,8 @@ public class PeopleActivity extends ContactsActivity implements
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
             Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
-                    getCurrentFocus().getRootView(), contactLookupUri, QuickContact.MODE_LARGE,
-                    null);
+                    getCurrentFocus().getRootView(), contactLookupUri,
+                    QuickContactActivity.MODE_FULLY_EXPANDED, null);
             startActivity(intent);
         }
 
@@ -912,7 +913,7 @@ public class PeopleActivity extends ContactsActivity implements
         @Override
         public void onContactSelected(Uri contactUri, Rect targetRect) {
             Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
-                    targetRect, contactUri, QuickContact.MODE_LARGE, null);
+                    targetRect, contactUri, QuickContactActivity.MODE_FULLY_EXPANDED, null);
             startActivity(intent);
         }
 
