@@ -42,6 +42,8 @@ public class ContactListPinnedHeaderView extends TextView {
                 R.styleable.ContactListItemView_list_item_background_color, Color.WHITE);
         int textOffsetTop = a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_text_offset_top, 0);
+        int paddingStartOffset = a.getDimensionPixelSize(
+                R.styleable.ContactListItemView_list_item_padding_left, 0);
         a.recycle();
 
         setBackgroundColor(backgroundColor);
@@ -55,7 +57,7 @@ public class ContactListPinnedHeaderView extends TextView {
         // Apply text top offset. Multiply by two, because we are implementing this by padding for a
         // vertically centered view, rather than adjusting the position directly via a layout.
         setPaddingRelative(
-                getPaddingStart(),
+                getPaddingStart() + paddingStartOffset,
                 getPaddingTop() + (textOffsetTop * 2),
                 getPaddingEnd(),
                 getPaddingBottom());
