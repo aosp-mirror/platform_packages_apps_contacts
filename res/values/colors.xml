@@ -45,4 +45,6 @@
     <!-- Color of the text on an ExpandingEntryCard button -->
     <color name="expanding_entry_card_button_text_color">@android:color/black</color>
 
+    <!-- Color of the margin for cards -->
+    <color name="card_margin_color">#ffbbbbbb</color>
 </resources>

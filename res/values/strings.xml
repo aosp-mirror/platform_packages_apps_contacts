@@ -60,10 +60,6 @@
     <string name="viewContactTitle">Contact details</string>
 
     <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
-         viewing a contact. This string represents the built in way to view the contact. -->
-    <string name="viewContactDesription">View contact</string>
-
-    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
          editing a contact. This string represents the built in way to edit the contact. -->
     <string name="editContactDescription">Edit contact</string>
 

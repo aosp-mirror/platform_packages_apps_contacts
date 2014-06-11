@@ -115,7 +115,7 @@ public class QuickContactActivity extends Activity {
     private View mPhotoContainer;
 
     private ImageView mPhotoView;
-    private ImageView mOpenDetailsOrAddContactImage;
+    private ImageView mEditOrAddContactImage;
     private ImageView mStarImage;
     private ExpandingEntryCardView mCommunicationCard;
 
@@ -160,10 +160,10 @@ public class QuickContactActivity extends Activity {
     private StopWatch mStopWatch = ENABLE_STOPWATCH
             ? StopWatch.start("QuickContact") : StopWatch.getNullStopWatch();
 
-    final OnClickListener mOpenDetailsClickHandler = new OnClickListener() {
+    final OnClickListener mEditContactClickHandler = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            final Intent intent = new Intent(Intent.ACTION_VIEW, mLookupUri);
+            final Intent intent = new Intent(Intent.ACTION_EDIT, mLookupUri);
             mContactLoader.cacheResult();
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             startActivity(intent);
@@ -242,12 +242,12 @@ public class QuickContactActivity extends Activity {
 
         mStopWatch.lap("l"); // layout inflated
 
-        mOpenDetailsOrAddContactImage = (ImageView) findViewById(R.id.contact_details_image);
+        mEditOrAddContactImage = (ImageView) findViewById(R.id.contact_edit_image);
         mStarImage = (ImageView) findViewById(R.id.quickcontact_star_button);
         mCommunicationCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
         mCommunicationCard.setTitle(getResources().getString(R.string.communication_card_title));
 
-        mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
+        mEditOrAddContactImage.setOnClickListener(mEditContactClickHandler);
         mCommunicationCard.setOnClickListener(mEntryClickHandler);
 
         // find and prepare correct header view
@@ -256,7 +256,7 @@ public class QuickContactActivity extends Activity {
         setHeaderNameText(R.id.name, R.string.missing_name);
 
         mPhotoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
-        mPhotoView.setOnClickListener(mOpenDetailsClickHandler);
+        mPhotoView.setOnClickListener(mEditContactClickHandler);
 
         mStopWatch.lap("v"); // view initialized
 
@@ -308,7 +308,7 @@ public class QuickContactActivity extends Activity {
         final ResolveCache cache = ResolveCache.getInstance(this);
         final Context context = this;
 
-        mOpenDetailsOrAddContactImage.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ?
+        mEditOrAddContactImage.setVisibility(isMimeExcluded(Contacts.CONTENT_ITEM_TYPE) ?
                 View.GONE : View.VISIBLE);
         final boolean isStarred = data.getStarred();
         if (isStarred) {
@@ -483,13 +483,13 @@ public class QuickContactActivity extends Activity {
      */
     private void configureHeaderClickActions(boolean canAdd) {
         if (canAdd) {
-            mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_add_contact_holo_dark);
-            mOpenDetailsOrAddContactImage.setOnClickListener(mAddToContactsClickHandler);
+            mEditOrAddContactImage.setImageResource(R.drawable.ic_add_contact_holo_dark);
+            mEditOrAddContactImage.setOnClickListener(mAddToContactsClickHandler);
             mPhotoView.setOnClickListener(mAddToContactsClickHandler);
         } else {
-            mOpenDetailsOrAddContactImage.setImageResource(R.drawable.ic_contacts_holo_dark);
-            mOpenDetailsOrAddContactImage.setOnClickListener(mOpenDetailsClickHandler);
-            mPhotoView.setOnClickListener(mOpenDetailsClickHandler);
+            mEditOrAddContactImage.setImageResource(R.drawable.ic_menu_compose_holo_dark);
+            mEditOrAddContactImage.setOnClickListener(mEditContactClickHandler);
+            mPhotoView.setOnClickListener(mEditContactClickHandler);
         }
     }
 
