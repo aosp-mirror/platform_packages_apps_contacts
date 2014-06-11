@@ -14,10 +14,10 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<layer-list  xmlns:android="http://schemas.android.com/apk/res/android"
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:tint="@color/tab_pressed_color">
     <item>
-        <ripple android:tint="@color/tab_pressed_color">
+        <ripple android:color="@color/tab_pressed_color">
             <item android:drawable="@color/tab_default_color" />
         </ripple>
     </item>
