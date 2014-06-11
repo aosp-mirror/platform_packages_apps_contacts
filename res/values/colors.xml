@@ -41,4 +41,6 @@
 
     <!-- Color of the selected tab underline (overriding value in ContactsCommon) -->
     <color name="tab_selected_color">#ffeeff41</color>
+    <color name="contacts_accent_color">#00acc1</color>
+
 </resources>
