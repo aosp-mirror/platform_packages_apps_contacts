@@ -16,7 +16,6 @@
 -->
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:tint="@color/contacts_accent_color"
-    android:pinned="true">
+    android:color="@color/contacts_accent_color">
     <item android:drawable="@drawable/profile_ic_fab_yellow" />
 </ripple>
