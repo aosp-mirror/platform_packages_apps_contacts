@@ -52,6 +52,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private View mToolbar;
     private ImageView mPhotoView;
     private MultiShrinkScrollerListener mListener;
+    private int mHeaderTintColor;
 
     private final Scroller mScroller;
     private final EdgeEffect mEdgeGlowBottom;
@@ -64,7 +65,6 @@ public class MultiShrinkScroller extends LinearLayout {
     private final int mElasticScrollOverTopRegion;
     private final PorterDuffColorFilter mColorFilter
             = new PorterDuffColorFilter(0, PorterDuff.Mode.SRC_ATOP);
-    private final int mHeaderTintColor;
 
     public interface MultiShrinkScrollerListener {
         void onScrolledOffBottom();
@@ -217,6 +217,11 @@ public class MultiShrinkScroller extends LinearLayout {
         }
 
         return true;
+    }
+
+    public void setHeaderTintColor(int color) {
+        mHeaderTintColor = color;
+        updatePhotoTint();
     }
 
     private void startDrag() {

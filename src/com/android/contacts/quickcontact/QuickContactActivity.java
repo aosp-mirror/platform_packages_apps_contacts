@@ -24,7 +24,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -37,13 +42,12 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
+import android.support.v7.graphics.Palette;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +55,7 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.R;
+import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
@@ -370,6 +375,7 @@ public class QuickContactActivity extends Activity {
         mStopWatch.lap("sph"); // Start photo setting
 
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
+        extractAndApplyTintFromPhotoViewAsynchronously();
 
         mStopWatch.lap("ph"); // Photo set
 
@@ -462,6 +468,58 @@ public class QuickContactActivity extends Activity {
 
         final boolean hasData = !mSortedActionMimeTypes.isEmpty();
         mCommunicationCard.setVisibility(hasData ? View.VISIBLE: View.GONE);
+    }
+
+    /**
+     * Asynchronously extract the most vibrant color from the PhotoView. Once extracted,
+     * apply this tint to {@link MultiShrinkScroller}. This operation takes about 20-30ms
+     * on a Nexus 5.
+     */
+    private void extractAndApplyTintFromPhotoViewAsynchronously() {
+        if (mScroller == null) {
+            return;
+        }
+        final Drawable imageViewDrawable = mPhotoView.getDrawable();
+        new AsyncTask<Void, Void, Integer>() {
+            @Override
+            protected Integer doInBackground(Void... params) {
+                final Bitmap bitmap;
+                if (imageViewDrawable instanceof BitmapDrawable) {
+                    bitmap = ((BitmapDrawable) imageViewDrawable).getBitmap();
+                } else if (imageViewDrawable instanceof LetterTileDrawable) {
+                    // LetterTileDrawable doesn't normally draw unless it is visible. Therefore,
+                    // we need to directly ask it for its color via getColor(). We could directly
+                    // return this color. However, in the future Palette#generate() may incorporate
+                    // saturation boosting. So I want to use Palette#generate() for the sake of
+                    // consistency.
+                    final LetterTileDrawable tileDrawable = (LetterTileDrawable) imageViewDrawable;
+                    final int PALETTE_BITMAP_SIZE = 1;
+                    bitmap = Bitmap.createBitmap(PALETTE_BITMAP_SIZE,
+                            PALETTE_BITMAP_SIZE, Bitmap.Config.ARGB_8888);
+                    final Canvas canvas = new Canvas(bitmap);
+                    canvas.drawColor(tileDrawable.getColor());
+                } else {
+                    return 0;
+                }
+                // Author of Palette recommends using 24 colors when analyzing profile photos.
+                final int NUMBER_OF_PALETTE_COLORS = 24;
+                final Palette palette = Palette.generate(bitmap, NUMBER_OF_PALETTE_COLORS);
+                if (palette != null && palette.getVibrantColor() != null) {
+                    return palette.getVibrantColor().getRgb();
+                } else {
+                    return 0;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Integer color) {
+                super.onPostExecute(color);
+                if (color != 0 && imageViewDrawable == mPhotoView.getDrawable()) {
+                    // TODO: animate from the previous tint.
+                    mScroller.setHeaderTintColor(color);
+                }
+            }
+        }.execute();
     }
 
     /**
