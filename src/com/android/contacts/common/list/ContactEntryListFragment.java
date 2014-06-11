@@ -68,6 +68,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_SECTION_HEADER_DISPLAY_ENABLED = "sectionHeaderDisplayEnabled";
     private static final String KEY_PHOTO_LOADER_ENABLED = "photoLoaderEnabled";
     private static final String KEY_QUICK_CONTACT_ENABLED = "quickContactEnabled";
+    private static final String KEY_ADJUST_SELECTION_BOUNDS_ENABLED =
+            "adjustSelectionBoundsEnabled";
     private static final String KEY_INCLUDE_PROFILE = "includeProfile";
     private static final String KEY_SEARCH_MODE = "searchMode";
     private static final String KEY_VISIBLE_SCROLLBAR_ENABLED = "visibleScrollbarEnabled";
@@ -92,6 +94,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
     private boolean mQuickContactEnabled = true;
+    private boolean mAdjustSelectionBoundsEnabled = true;
     private boolean mIncludeProfile;
     private boolean mSearchMode;
     private boolean mVisibleScrollbarEnabled;
@@ -225,6 +228,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED, mSectionHeaderDisplayEnabled);
         outState.putBoolean(KEY_PHOTO_LOADER_ENABLED, mPhotoLoaderEnabled);
         outState.putBoolean(KEY_QUICK_CONTACT_ENABLED, mQuickContactEnabled);
+        outState.putBoolean(KEY_ADJUST_SELECTION_BOUNDS_ENABLED, mAdjustSelectionBoundsEnabled);
         outState.putBoolean(KEY_INCLUDE_PROFILE, mIncludeProfile);
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
         outState.putBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED, mVisibleScrollbarEnabled);
@@ -257,6 +261,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mSectionHeaderDisplayEnabled = savedState.getBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED);
         mPhotoLoaderEnabled = savedState.getBoolean(KEY_PHOTO_LOADER_ENABLED);
         mQuickContactEnabled = savedState.getBoolean(KEY_QUICK_CONTACT_ENABLED);
+        mAdjustSelectionBoundsEnabled = savedState.getBoolean(KEY_ADJUST_SELECTION_BOUNDS_ENABLED);
         mIncludeProfile = savedState.getBoolean(KEY_INCLUDE_PROFILE);
         mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
         mVisibleScrollbarEnabled = savedState.getBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED);
@@ -515,17 +520,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setFastScrollAlwaysVisible(hasScrollbar);
             mListView.setVerticalScrollbarPosition(mVerticalScrollbarPosition);
             mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-            int leftPadding = 0;
-            int rightPadding = 0;
-            if (mVerticalScrollbarPosition == View.SCROLLBAR_POSITION_LEFT) {
-                leftPadding = mContext.getResources().getDimensionPixelOffset(
-                        R.dimen.list_visible_scrollbar_padding);
-            } else {
-                rightPadding = mContext.getResources().getDimensionPixelOffset(
-                        R.dimen.list_visible_scrollbar_padding);
-            }
-            mListView.setPadding(leftPadding, mListView.getPaddingTop(),
-                    rightPadding, mListView.getPaddingBottom());
         }
     }
 
@@ -551,6 +545,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setQuickContactEnabled(boolean flag) {
         this.mQuickContactEnabled = flag;
+    }
+
+    public void setAdjustSelectionBoundsEnabled(boolean flag) {
+        mAdjustSelectionBoundsEnabled = flag;
     }
 
     public void setIncludeProfile(boolean flag) {
@@ -761,6 +759,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
 
         mAdapter.setQuickContactEnabled(mQuickContactEnabled);
+        mAdapter.setAdjustSelectionBoundsEnabled(mAdjustSelectionBoundsEnabled);
         mAdapter.setIncludeProfile(mIncludeProfile);
         mAdapter.setQueryString(mQueryString);
         mAdapter.setDirectorySearchMode(mDirectorySearchMode);
