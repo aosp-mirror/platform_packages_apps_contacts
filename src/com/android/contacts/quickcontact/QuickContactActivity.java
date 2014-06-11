@@ -723,26 +723,26 @@ public class QuickContactActivity extends ContactsActivity {
             Drawable icon = null;
             switch (action.getMimeType()) {
                 case Phone.CONTENT_ITEM_TYPE:
-                    header = action.getBody().toString();
-                    footer = action.getSubtitle().toString();
+                    header = String.valueOf(action.getBody());
+                    footer = String.valueOf(action.getSubtitle());
                     icon = applyThemeColorIfAvailable(
                             getResources().getDrawable(R.drawable.ic_phone_24dp));
                     break;
                 case Email.CONTENT_ITEM_TYPE:
-                    header = action.getBody().toString();
-                    footer = action.getSubtitle().toString();
+                    header = String.valueOf(action.getBody());
+                    footer = String.valueOf(action.getSubtitle());
                     icon = applyThemeColorIfAvailable(
                             getResources().getDrawable(R.drawable.ic_email_24dp));
                     break;
                 case StructuredPostal.CONTENT_ITEM_TYPE:
-                    header = action.getBody().toString();
-                    footer = action.getSubtitle().toString();
+                    header = String.valueOf(action.getBody());
+                    footer = String.valueOf(action.getSubtitle());
                     icon = applyThemeColorIfAvailable(
                             getResources().getDrawable(R.drawable.ic_place_24dp));
                     break;
                 default:
-                    header = action.getSubtitle().toString();
-                    footer = action.getBody().toString();
+                    header = String.valueOf(action.getSubtitle());
+                    footer = String.valueOf(action.getBody());
                     icon = ResolveCache.getInstance(this).getIcon(action);
             }
             entries.add(new Entry(icon, header, body, footer, action.getIntent(),
