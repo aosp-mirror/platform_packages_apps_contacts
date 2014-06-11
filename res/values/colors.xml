@@ -15,7 +15,6 @@
 -->
 <resources>
 
-    <color name="quickcontact_activity_background">#fff5f5f5</color>
     <color name="quickcontact_name_detail_background">#66000000</color>
 
     <!-- Color of the background of the contact detail and editor pages -->
@@ -44,6 +43,9 @@
 
     <!-- Color of the text on an ExpandingEntryCard button -->
     <color name="expanding_entry_card_button_text_color">@android:color/black</color>
+
+    <!-- Background color for an ExpandingEntryCard -->
+    <color name="expanding_entry_card_background_color">#f7f8f9</color>
 
     <!-- Color of the margin for cards -->
     <color name="card_margin_color">#ffbbbbbb</color>

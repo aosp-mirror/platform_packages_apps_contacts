@@ -26,9 +26,7 @@
         <include layout="@layout/quickcontact_photo_container" />
     </FrameLayout>
     <com.android.contacts.quickcontact.ExpandingEntryCardView
+        style="@style/ExpandingEntryCardStyle"
         android:id="@+id/communication_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/quickcontact_activity_background" />
+        android:layout_marginTop="@dimen/communication_card_marginTop" />
 </LinearLayout>
