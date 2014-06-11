@@ -45,7 +45,7 @@
         <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
-    <style name="PeopleTheme" parent="@android:style/Theme.Quantum.Light">
+    <style name="PeopleTheme" parent="@android:style/Theme.Material.Light">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <!-- Style for the tabs -->
         <item name="android:actionBarTabStyle">@style/ContactsActionBarTabStyle</item>
@@ -96,7 +96,7 @@
         <item name="android:src">@drawable/ic_overflow_menu</item>
     </style>
 
-    <style name="ContactsActionBarStyle" parent="@android:style/Widget.Quantum.Light.ActionBar">
+    <style name="ContactsActionBarStyle" parent="@android:style/Widget.Material.Light.ActionBar">
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="android:titleTextStyle">@style/ContactsActionBarTitleText</item>
         <item name="android:backgroundStacked">@color/actionbar_background_color</item>
@@ -105,26 +105,26 @@
     </style>
 
     <!-- Styling for tabs. -->
-    <style name="ContactsActionBarTabStyle" parent="@android:style/Widget.Quantum.Light.ActionBar.TabView">
+    <style name="ContactsActionBarTabStyle" parent="@android:style/Widget.Material.Light.ActionBar.TabView">
         <item name="android:background">@drawable/action_bar_tab</item>
         <item name="android:showDividers">none</item>
     </style>
 
     <!-- Text in the action bar at the top of the screen -->
     <style name="ContactsActionBarTitleText"
-           parent="@android:style/TextAppearance.Quantum.Widget.ActionBar.Title">
+           parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 
     <!-- Styling for the tab bar; handles styling of the divider line. -->
     <style name="ContactsActionBarTabBarStyle"
-           parent="@android:style/Widget.Quantum.ActionBar.TabBar">
+           parent="@android:style/Widget.Material.ActionBar.TabBar">
         <item name="android:showDividers">none</item>
     </style>
 
     <!-- Text style for tabs. -->
     <style name="ContactsActionBarTabTextStyle"
-           parent="android:style/Widget.Quantum.Light.ActionBar.TabText">
+           parent="android:style/Widget.Material.Light.ActionBar.TabText">
         <item name="android:textColor">@color/tab_text_color</item>
         <item name="android:textSize">@dimen/tab_text_size</item>
         <item name="android:fontFamily">@string/tab_font_family</item>
@@ -133,7 +133,7 @@
 
     <!-- Action bar overflow menu icon. -->
     <style name="ContactsActionBarOverflowQP"
-           parent="@android:style/Widget.Quantum.Light.ActionButton.Overflow">
+           parent="@android:style/Widget.Material.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_menu_overflow_lt</item>
     </style>
 
@@ -215,7 +215,7 @@
         <item name="android:layout_height">150dip</item>
     </style>
 
-    <style name="SelectableItem" parent="@android:style/Theme.Quantum.Light">
+    <style name="SelectableItem" parent="@android:style/Theme.Material.Light">
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 
