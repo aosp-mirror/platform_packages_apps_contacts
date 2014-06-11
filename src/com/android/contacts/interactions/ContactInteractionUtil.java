@@ -79,13 +79,13 @@ public class ContactInteractionUtil {
         // Turn compareCalendar to yesterday
         compareCalendar.add(Calendar.DAY_OF_YEAR, -1);
         if (compareCalendarDayYear(interactionCalendar, compareCalendar)) {
-            return context.getString(R.string.timestamp_string_yesterday);
+            return context.getString(R.string.yesterday);
         }
 
         // Turn compareCalendar to tomorrow
         compareCalendar.add(Calendar.DAY_OF_YEAR, 2);
         if (compareCalendarDayYear(interactionCalendar, compareCalendar)) {
-            return context.getString(R.string.timestamp_string_tomorrow);
+            return context.getString(R.string.tomorrow);
         }
         return DateUtils.formatDateTime(context, interactionCalendar.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR);

@@ -45,11 +45,6 @@ public class SmsInteraction implements ContactInteraction {
     }
 
     @Override
-    public String getViewDate(Context context) {
-        return ContactInteractionUtil.formatDateStringFromTimestamp(getDate(), context);
-    }
-
-    @Override
     public long getInteractionDate() {
         return getDate();
     }
@@ -66,7 +61,7 @@ public class SmsInteraction implements ContactInteraction {
 
     @Override
     public String getViewFooter(Context context) {
-        return getViewDate(context);
+        return ContactInteractionUtil.formatDateStringFromTimestamp(getDate(), context);
     }
 
     @Override

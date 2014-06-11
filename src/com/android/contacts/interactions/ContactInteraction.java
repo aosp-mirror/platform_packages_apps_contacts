@@ -25,7 +25,6 @@ import android.net.Uri;
  */
 public interface ContactInteraction {
     Intent getIntent();
-    String getViewDate(Context context);
     long getInteractionDate();
     String getViewHeader(Context context);
     String getViewBody(Context context);
