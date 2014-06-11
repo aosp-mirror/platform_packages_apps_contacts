@@ -451,7 +451,7 @@ public class QuickContactActivity extends Activity {
                 entries.addAll(actionsToEntries(mActions.get(mimeType)));
             }
         }
-        mCommunicationCard.initialize(entries, /* numInitialVisibleEntries = */ 1,
+        mCommunicationCard.initialize(entries, /* numInitialVisibleEntries = */ 2,
                 /* isExpanded = */ false, /* themeColor = */ 0);
 
         final boolean hasData = !mSortedActionMimeTypes.isEmpty();
