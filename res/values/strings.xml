@@ -474,9 +474,6 @@
     <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
     <string name="contact_directory_description">Directory <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g></string>
 
-    <!-- Toast shown when creating a personal copy of a contact [CHAR LIMIT=100] -->
-    <string name="toast_making_personal_copy">Creating a personal copy\u2026</string>
-
     <!-- Contact list filter indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
     <string name="list_filter_custom">Custom</string>
 
