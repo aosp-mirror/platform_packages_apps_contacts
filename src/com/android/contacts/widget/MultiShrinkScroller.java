@@ -51,6 +51,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private View mScrollViewChild;
     private View mToolbar;
     private ImageView mPhotoView;
+    private View mPhotoViewContainer;
     private MultiShrinkScrollerListener mListener;
     private int mHeaderTintColor;
 
@@ -63,6 +64,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private final int mMinimumHeaderHeight;
     private final int mTransparentStartHeight;
     private final int mElasticScrollOverTopRegion;
+    private final float mToolbarElevation;
     private final PorterDuffColorFilter mColorFilter
             = new PorterDuffColorFilter(0, PorterDuff.Mode.SRC_ATOP);
 
@@ -118,6 +120,8 @@ public class MultiShrinkScroller extends LinearLayout {
                 R.dimen.quickcontact_elastic_scroll_over_top_region);
         mHeaderTintColor = mContext.getResources().getColor(
                 R.color.actionbar_background_color);
+        mToolbarElevation = (float) mContext.getResources().getDimension(
+                R.dimen.quick_contact_toolbar_elevation);
     }
 
     /**
@@ -128,6 +132,7 @@ public class MultiShrinkScroller extends LinearLayout {
         mScrollViewChild = findViewById(R.id.card_container);
         mToolbar = findViewById(R.id.toolbar_parent);
         mPhotoView = (ImageView) findViewById(R.id.photo);
+        mPhotoViewContainer = findViewById(R.id.toolbar_parent);
         mListener = listener;
     }
 
@@ -225,7 +230,7 @@ public class MultiShrinkScroller extends LinearLayout {
 
     public void setHeaderTintColor(int color) {
         mHeaderTintColor = color;
-        updatePhotoTint();
+        updatePhotoTintAndDropShadow();
     }
 
     private void startDrag() {
@@ -303,7 +308,7 @@ public class MultiShrinkScroller extends LinearLayout {
         } else {
             scrollDown(delta);
         }
-        updatePhotoTint();
+        updatePhotoTintAndDropShadow();
         final boolean isFullscreen = getScrollNeededToBeFullScreen() <= 0;
         if (mListener != null) {
             if (wasFullscreen && !isFullscreen) {
@@ -461,19 +466,22 @@ public class MultiShrinkScroller extends LinearLayout {
         }
     }
 
-    private void updatePhotoTint() {
+    private void updatePhotoTintAndDropShadow() {
         // We need to use toolbarLayoutParams to determine the height, since the layout
         // params can be updated before the height change is reflected inside the View#getHeight().
         final int toolbarHeight = mToolbar.getLayoutParams().height;
         // Reuse an existing mColorFilter (to avoid GC pauses) to change the photo's tint.
         mPhotoView.clearColorFilter();
         if (toolbarHeight >= mMaximumHeaderHeight) {
+            mPhotoViewContainer.setElevation(0);
             return;
         }
         if (toolbarHeight <= mMinimumHeaderHeight) {
             mColorFilter.setColor(mHeaderTintColor);
             mPhotoView.setColorFilter(mColorFilter);
+            mPhotoViewContainer.setElevation(mToolbarElevation);
         } else {
+            mPhotoViewContainer.setElevation(0);
             final int alphaBits = 0xff - 0xff * (mToolbar.getHeight()  - mMinimumHeaderHeight)
                     / (mMaximumHeaderHeight - mMinimumHeaderHeight);
             final int color = alphaBits << 24 | (mHeaderTintColor & 0xffffff);
