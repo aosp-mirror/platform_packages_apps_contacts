@@ -61,6 +61,9 @@ public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInte
 
     @Override
     public List<ContactInteraction> loadInBackground() {
+        if (mEmailAddresses == null || mEmailAddresses.size() < 1) {
+            return Collections.emptyList();
+        }
         // Perform separate calendar queries for events in the past and future.
         Cursor cursor = getSharedEventsCursor(/* isFuture= */ true, mMaxFutureToRetrieve);
         Log.v(TAG, "future cursor.count() " + cursor.getCount());
