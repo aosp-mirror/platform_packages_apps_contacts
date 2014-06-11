@@ -648,4 +648,12 @@
     <!-- Content description for the button that adds a new contact
          [CHAR LIMIT=NONE] -->
     <string name="action_menu_add_new_contact_button">add new contact</string>
+    <!-- Button Label to see more on an ExpandingEntryCardView [CHAR LIMIT=40] -->
+    <string name="expanding_entry_card_view_see_more">See more</string>
+    <!-- Button Label to see less on an ExpandingEntryCardView [CHAR LIMIT=40] -->
+    <string name="expanding_entry_card_view_see_less">See less</string>
+
+    <!-- Title of communication card. [CHAR LIMIT=60] -->
+    <string name="communication_card_title">Contact</string>
+
 </resources>
