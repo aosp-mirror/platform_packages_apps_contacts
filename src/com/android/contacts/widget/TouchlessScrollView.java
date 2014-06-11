@@ -1,0 +1,43 @@
+package com.android.contacts.widget;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.widget.ScrollView;
+
+/**
+ * A {@link ScrollView} that doesn't respond or intercept touch events.
+ *
+ * This is used in combination with {@link com.android.contacts.widget.MultiShrinkScroller} so
+ * that MultiShrinkScroller can handle all scrolling.
+ */
+public class TouchlessScrollView extends ScrollView {
+
+    public TouchlessScrollView(Context context) {
+        this(context, null);
+    }
+
+    public TouchlessScrollView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public TouchlessScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return false;
+    }
+}

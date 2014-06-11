@@ -19,6 +19,7 @@ package com.android.contacts.util;
 import android.view.View;
 import android.view.ViewTreeObserver.OnDrawListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.ViewTreeObserver.OnPreDrawListener;
 
 /** Static methods that are useful for scheduling actions to occur at a later time. */
 public class SchedulingUtils {
@@ -37,15 +38,17 @@ public class SchedulingUtils {
         view.getViewTreeObserver().addOnGlobalLayoutListener(listener);
     }
 
-    /** Runs a piece of code just before the next draw. */
-    public static void doAfterDraw(final View view, final Runnable runnable) {
-        final OnDrawListener listener = new OnDrawListener() {
+    /** Runs a piece of code just before the next draw, after layout and measurement */
+    public static void doOnPreDraw(final View view, final boolean drawNextFrame,
+            final Runnable runnable) {
+        final OnPreDrawListener listener = new OnPreDrawListener() {
             @Override
-            public void onDraw() {
-                view.getViewTreeObserver().removeOnDrawListener(this);
+            public boolean onPreDraw() {
+                view.getViewTreeObserver().removeOnPreDrawListener(this);
                 runnable.run();
+                return drawNextFrame;
             }
         };
-        view.getViewTreeObserver().addOnDrawListener(listener);
+        view.getViewTreeObserver().addOnPreDrawListener(listener);
     }
 }
