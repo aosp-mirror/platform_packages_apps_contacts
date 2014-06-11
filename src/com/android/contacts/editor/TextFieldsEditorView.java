@@ -58,6 +58,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
     private int mMinFieldHeight;
+    private int mEditTextTopPadding;
+    private int mEditTextBottomPadding;
     private int mPreviousViewHeight;
 
     public TextFieldsEditorView(Context context) {
@@ -82,6 +84,10 @@ public class TextFieldsEditorView extends LabeledEditorView {
 
         mMinFieldHeight = mContext.getResources().getDimensionPixelSize(
                 R.dimen.editor_min_line_item_height);
+        mEditTextBottomPadding = mContext.getResources().getDimensionPixelSize(
+                R.dimen.editor_text_field_bottom_padding);
+        mEditTextTopPadding = mContext.getResources().getDimensionPixelSize(
+                R.dimen.editor_text_field_top_padding);
         mFields = (ViewGroup) findViewById(R.id.editors);
         mExpansionView = (ImageView) findViewById(R.id.expansion_view);
         mExpansionViewContainer = findViewById(R.id.expansion_view_container);
@@ -196,7 +202,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             final EditField field = kind.fieldList.get(index);
             final EditText fieldView = new EditText(mContext);
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                    field.isMultiLine() ? LayoutParams.WRAP_CONTENT : mMinFieldHeight));
+                    LayoutParams.WRAP_CONTENT));
             // Set either a minimum line requirement or a minimum height (because {@link TextView}
             // only takes one or the other at a single time).
             if (field.minLines != 0) {
@@ -205,6 +211,9 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 fieldView.setMinHeight(mMinFieldHeight);
             }
             fieldView.setTextAppearance(getContext(), android.R.style.TextAppearance_Medium);
+            fieldView.setPadding(fieldView.getPaddingLeft(), mEditTextTopPadding,
+                    fieldView.getPaddingRight(), mEditTextBottomPadding);
+            fieldView.setHintTextColor(R.color.secondary_text_color);
             fieldView.setGravity(Gravity.TOP);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
