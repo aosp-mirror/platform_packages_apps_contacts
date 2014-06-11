@@ -26,30 +26,30 @@
     android:paddingBottom="@dimen/expanding_entry_card_item_padding_bottom">
 
     <ImageView
+        android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/icon"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="@dimen/expanding_entry_card_item_image_spacing"/>
+        android:layout_marginRight="@dimen/expanding_entry_card_item_image_spacing" />
 
     <TextView
+        android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/header"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/icon"
-        android:textStyle="bold"
+        android:singleLine="true"
         android:textColor="@android:color/black"
-        android:singleLine="true"/>
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/sub_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sub_header"
         android:layout_below="@+id/header"
         android:layout_toRightOf="@+id/icon_sub_header"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black" />
 
     <ImageView
         android:layout_width="wrap_content"
