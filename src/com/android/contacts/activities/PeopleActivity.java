@@ -964,27 +964,22 @@ public class PeopleActivity extends ContactsActivity implements
         }
 
         // Get references to individual menu items in the menu
-        final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
         final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
-
         final MenuItem clearFrequentsMenu = menu.findItem(R.id.menu_clear_frequents);
         final MenuItem helpMenu = menu.findItem(R.id.menu_help);
 
         final boolean isSearchMode = mActionBarAdapter.isSearchMode();
         if (isSearchMode) {
-            addContactMenu.setVisible(false);
             contactsFilterMenu.setVisible(false);
             clearFrequentsMenu.setVisible(false);
             helpMenu.setVisible(false);
         } else {
             switch (mActionBarAdapter.getCurrentTab()) {
                 case TabState.FAVORITES:
-                    addContactMenu.setVisible(true);
                     contactsFilterMenu.setVisible(false);
                     clearFrequentsMenu.setVisible(hasFrequents());
                     break;
                 case TabState.ALL:
-                    addContactMenu.setVisible(true);
                     contactsFilterMenu.setVisible(true);
                     clearFrequentsMenu.setVisible(false);
                     break;
@@ -1058,11 +1053,6 @@ public class PeopleActivity extends ContactsActivity implements
             }
             case R.id.menu_search: {
                 onSearchRequested();
-                return true;
-            }
-            case R.id.menu_add_contact: {
-                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                startActivity(intent);
                 return true;
             }
             case R.id.menu_import_export: {
