@@ -153,8 +153,10 @@
     <dimen name="expanding_entry_card_marginEnd">8dp</dimen>
     <dimen name="expanding_entry_card_marginBottom">8dp</dimen>
 
-    <!-- Elevation of an ExpandingEntryCard -->
+    <!-- Elevation of an ExpandingEntryCard, for the sake of shadow casting -->
     <dimen name="expanding_entry_card_elevation">2dp</dimen>
+    <!-- Elevation of the QuickContact's Toolbar, for the sake of shadow casting -->
+    <dimen name="quick_contact_toolbar_elevation">6dp</dimen>
 
     <!-- Top margin for the communication card, used to add space from header. -->
     <dimen name="communication_card_marginTop">8dp</dimen>
