@@ -272,6 +272,14 @@
                 <data android:mimeType="vnd.android.cursor.item/contact" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
             </intent-filter>
+
+            <intent-filter android:label="@string/viewContactDesription">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/person" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" />
+            </intent-filter>
         </activity>
 
         <receiver
@@ -316,21 +324,6 @@
             </intent-filter>
 
         </activity-alias>
-
-        <!-- Views the details of a single contact -->
-        <activity android:name=".activities.ContactDetailActivity"
-            android:label="@string/viewContactTitle"
-            android:theme="@style/DetailActivityTheme"
-            android:parentActivityName=".activities.PeopleActivity">
-
-            <intent-filter android:label="@string/viewContactDesription">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/person" />
-                <data android:mimeType="vnd.android.cursor.item/contact" />
-                <data android:mimeType="vnd.android.cursor.item/raw_contact" />
-            </intent-filter>
-        </activity>
 
         <!-- Confirm that a single detail will be added to an existing contact -->
         <activity
