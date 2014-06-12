@@ -129,7 +129,7 @@ public abstract class ContactTileView extends FrameLayout {
                 configureViewForImage(entry.photoUri == null);
                 if (mPhoto != null) {
                     mPhotoManager.loadPhoto(mPhoto, entry.photoUri, getApproximateImageSize(),
-                            isDarkTheme(), true /* isCircular */, request);
+                            isDarkTheme(), isContactPhotoCircular(), request);
 
                     if (mQuickContact != null) {
                         mQuickContact.assignContactUri(mLookupUri);
@@ -137,7 +137,7 @@ public abstract class ContactTileView extends FrameLayout {
                 } else if (mQuickContact != null) {
                     mQuickContact.assignContactUri(mLookupUri);
                     mPhotoManager.loadPhoto(mQuickContact, entry.photoUri,
-                            getApproximateImageSize(), isDarkTheme(), true /* isCircular */,
+                            getApproximateImageSize(), isDarkTheme(), isContactPhotoCircular(),
                             request);
                 }
             } else {
@@ -211,7 +211,15 @@ public abstract class ContactTileView extends FrameLayout {
      * as desired, or {@code null}.
      */
     protected DefaultImageRequest getDefaultImageRequest(String displayName, String lookupKey) {
-        return new DefaultImageRequest(displayName, lookupKey, true /* isCircular */);
+        return new DefaultImageRequest(displayName, lookupKey, isContactPhotoCircular());
+    }
+
+    /**
+     * Whether contact photo should be displayed as a circular image. Implemented by subclasses
+     * so they can change which drawables to fetch.
+     */
+    protected boolean isContactPhotoCircular() {
+        return true;
     }
 
     public interface Listener {
