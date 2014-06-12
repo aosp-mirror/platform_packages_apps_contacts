@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:interpolator="@interpolator/ease_out_interpolator"
+    android:interpolator="@android:interpolator/fast_out_linear_in"
     android:duration="@integer/dialpad_slide_out_duration"
     android:fromYDelta="0"
     android:toYDelta="80%p" />
