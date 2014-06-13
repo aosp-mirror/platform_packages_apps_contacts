@@ -16,7 +16,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_search"
-        android:icon="@drawable/ic_search_dk"
+        android:icon="@drawable/ic_ab_search"
         android:title="@string/menu_search"
         android:showAsAction="ifRoom" />
 

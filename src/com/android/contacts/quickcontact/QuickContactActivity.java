@@ -1100,7 +1100,7 @@ public class QuickContactActivity extends ContactsActivity {
             editMenuItem.setVisible(true);
             if (DirectoryContactUtil.isDirectoryContact(mContactData) || InvisibleContactUtil
                     .isInvisibleAndAddable(mContactData, this)) {
-                editMenuItem.setIcon(R.drawable.ic_person_add_24dp);
+                editMenuItem.setIcon(R.drawable.ic_person_add_tinted_24dp);
             } else if (isContactEditable()) {
                 editMenuItem.setIcon(R.drawable.ic_create_24dp);
             } else {
