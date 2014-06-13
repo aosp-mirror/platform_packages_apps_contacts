@@ -147,5 +147,5 @@
     <!-- Left margin of the text field in the search box. -->
     <dimen name="search_box_text_left_margin">27dp</dimen>
     <!-- Search box text size -->
-    <dimen name="search_text_size">14sp</dimen>
+    <dimen name="search_text_size">20sp</dimen>
 </resources>
