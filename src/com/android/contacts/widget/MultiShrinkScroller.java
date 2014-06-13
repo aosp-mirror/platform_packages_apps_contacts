@@ -2,9 +2,13 @@ package com.android.contacts.widget;
 
 import com.android.contacts.R;
 import com.android.contacts.test.NeededForReflection;
+import com.android.contacts.util.SchedulingUtils;
 
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -54,16 +58,16 @@ public class MultiShrinkScroller extends LinearLayout {
     private View mPhotoViewContainer;
     private MultiShrinkScrollerListener mListener;
     private int mHeaderTintColor;
+    private int mMaximumHeaderHeight;
 
     private final Scroller mScroller;
     private final EdgeEffect mEdgeGlowBottom;
     private final int mTouchSlop;
     private final int mMaximumVelocity;
     private final int mMinimumVelocity;
-    private final int mMaximumHeaderHeight;
+    private final int mIntermediateHeaderHeight;
     private final int mMinimumHeaderHeight;
     private final int mTransparentStartHeight;
-    private final int mElasticScrollOverTopRegion;
     private final float mToolbarElevation;
     private final PorterDuffColorFilter mColorFilter
             = new PorterDuffColorFilter(0, PorterDuff.Mode.SRC_ATOP);
@@ -76,7 +80,26 @@ public class MultiShrinkScroller extends LinearLayout {
         void onExitFullscreen();
     }
 
-    // Interpolator from android.support.v4.view.ViewPager
+    private final AnimatorListener mHeaderExpandAnimationListener = new AnimatorListener() {
+        @Override
+        public void onAnimationStart(Animator animation) {}
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            mPhotoView.setClickable(true);
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {}
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {}
+    };
+
+    /**
+     * Interpolator from android.support.v4.view.ViewPager. Snappier and more elastic feeling
+     * than the default interpolator.
+     */
     private static final Interpolator sInterpolator = new Interpolator() {
 
         /**
@@ -110,18 +133,19 @@ public class MultiShrinkScroller extends LinearLayout {
         mTouchSlop = configuration.getScaledTouchSlop();
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
-        mMaximumHeaderHeight = (int) getResources().getDimension(
-                R.dimen.quickcontact_maximum_header_height);
-        mMinimumHeaderHeight = (int) getResources().getDimension(
-                R.dimen.quickcontact_minimum_header_height);
+        mIntermediateHeaderHeight = (int) getResources().getDimension(
+                R.dimen.quickcontact_starting_header_height);
         mTransparentStartHeight = (int) getResources().getDimension(
                 R.dimen.quickcontact_starting_empty_height);
-        mElasticScrollOverTopRegion = (int) getResources().getDimension(
-                R.dimen.quickcontact_elastic_scroll_over_top_region);
         mHeaderTintColor = mContext.getResources().getColor(
                 R.color.actionbar_background_color);
-        mToolbarElevation = (float) mContext.getResources().getDimension(
+        mToolbarElevation = mContext.getResources().getDimension(
                 R.dimen.quick_contact_toolbar_elevation);
+
+        final TypedArray attributeArray = context.obtainStyledAttributes(
+                new int[]{android.R.attr.actionBarSize});
+        mMinimumHeaderHeight = attributeArray.getDimensionPixelSize(0, 0);
+        attributeArray.recycle();
     }
 
     /**
@@ -131,9 +155,25 @@ public class MultiShrinkScroller extends LinearLayout {
         mScrollView = (ScrollView) findViewById(R.id.content_scroller);
         mScrollViewChild = findViewById(R.id.card_container);
         mToolbar = findViewById(R.id.toolbar_parent);
-        mPhotoView = (ImageView) findViewById(R.id.photo);
         mPhotoViewContainer = findViewById(R.id.toolbar_parent);
         mListener = listener;
+
+        mPhotoView = (ImageView) findViewById(R.id.photo);
+        setHeaderHeight(mIntermediateHeaderHeight);
+        mPhotoView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expandCollapseHeader();
+            }
+        });
+
+        SchedulingUtils.doOnPreDraw(this, /* drawNextFrame = */ true, new Runnable() {
+            @Override
+            public void run() {
+                // We never want the height of the photo view to exceed its width.
+                mMaximumHeaderHeight = mToolbar.getWidth();
+            }
+        });
     }
 
     @Override
@@ -233,6 +273,25 @@ public class MultiShrinkScroller extends LinearLayout {
         updatePhotoTintAndDropShadow();
     }
 
+    /**
+     * Expand to maximum size or starting size. Disable clicks on the photo until the animation is
+     * complete.
+     */
+    private void expandCollapseHeader() {
+        mPhotoView.setClickable(false);
+        if (getHeaderHeight() != mMaximumHeaderHeight) {
+            final ObjectAnimator animator = ObjectAnimator.ofInt(this, "headerHeight",
+                    mMaximumHeaderHeight);
+            animator.addListener(mHeaderExpandAnimationListener);
+            animator.start();
+        } else if (getHeaderHeight() != mMinimumHeaderHeight) {
+            final ObjectAnimator animator = ObjectAnimator.ofInt(this, "headerHeight",
+                    mIntermediateHeaderHeight);
+            animator.addListener(mHeaderExpandAnimationListener);
+            animator.start();
+        }
+    }
+
     private void startDrag() {
         mIsBeingDragged = true;
         mScroller.abortAnimation();
@@ -272,14 +331,12 @@ public class MultiShrinkScroller extends LinearLayout {
      * If needed, snap the subviews to the top of the Window.
      */
     private boolean snapToTop(int flingDelta) {
-        if (-getScroll() - flingDelta < 0
-                && -getScroll() - flingDelta > -mTransparentStartHeight
-                - mElasticScrollOverTopRegion) {
+        if (-getScroll_ignoreOversizedHeader() - flingDelta < 0
+                && -getScroll_ignoreOversizedHeader() - flingDelta > -mTransparentStartHeight) {
             // We finish scrolling above the empty starting height, and aren't projected
-            // to fling past the top of the Window by mElasticScrollOverTopRegion worth of
-            // pixels, so elastically snap the empty space shut.
+            // to fling past the top of the Window, so elastically snap the empty space shut.
             mScroller.forceFinished(true);
-            smoothScrollBy(-getScroll() + mTransparentStartHeight);
+            smoothScrollBy(-getScroll_ignoreOversizedHeader() + mTransparentStartHeight);
             return true;
         }
         return false;
@@ -289,7 +346,7 @@ public class MultiShrinkScroller extends LinearLayout {
      * If needed, scroll all the subviews off the bottom of the Window.
      */
     private void snapToBottom(int flingDelta) {
-        if (-getScroll() - flingDelta > 0) {
+        if (-getScroll_ignoreOversizedHeader() - flingDelta > 0) {
             mScroller.forceFinished(true);
             ObjectAnimator translateAnimation = ObjectAnimator.ofInt(this, "scroll",
                     getScroll() - getScrollUntilOffBottom());
@@ -319,6 +376,23 @@ public class MultiShrinkScroller extends LinearLayout {
         }
     }
 
+    /**
+     * Set the height of the toolbar and update its tint accordingly.
+     */
+    @NeededForReflection
+    public void setHeaderHeight(int height) {
+        final LinearLayout.LayoutParams toolbarLayoutParams
+                = (LayoutParams) mToolbar.getLayoutParams();
+        toolbarLayoutParams.height = height;
+        mToolbar.setLayoutParams(toolbarLayoutParams);
+        updatePhotoTintAndDropShadow();
+    }
+
+    @NeededForReflection
+    public int getHeaderHeight() {
+        return mToolbar.getLayoutParams().height;
+    }
+
     @NeededForReflection
     public void setScroll(int scroll) {
         scrollTo(0, scroll);
@@ -326,13 +400,27 @@ public class MultiShrinkScroller extends LinearLayout {
 
     /**
      * Returns the total amount scrolled inside the nested ScrollView + the amount of shrinking
-     * performed on the ToolBar.
+     * performed on the ToolBar. This is the value inspected by animators.
      */
+    @NeededForReflection
     public int getScroll() {
         final LinearLayout.LayoutParams toolbarLayoutParams
                 = (LayoutParams) mToolbar.getLayoutParams();
         return mTransparentStartHeight - toolbarLayoutParams.topMargin
-                + mMaximumHeaderHeight - toolbarLayoutParams.height + mScrollView.getScrollY();
+                + mIntermediateHeaderHeight - toolbarLayoutParams.height + mScrollView.getScrollY();
+    }
+
+    /**
+     * A variant of {@link #getScroll} that pretends the header is never larger than
+     * than mIntermediateHeaderHeight. This function is sometimes needed when making scrolling
+     * decisions that will not change the header size (ie, snapping to the bottom or top).
+     */
+    public int getScroll_ignoreOversizedHeader() {
+        final LinearLayout.LayoutParams toolbarLayoutParams
+                = (LayoutParams) mToolbar.getLayoutParams();
+        return mTransparentStartHeight - toolbarLayoutParams.topMargin
+                + Math.max(mIntermediateHeaderHeight - toolbarLayoutParams.height, 0)
+                + mScrollView.getScrollY();
     }
 
     /**
@@ -349,7 +437,7 @@ public class MultiShrinkScroller extends LinearLayout {
      * bottom.
      */
     public int getScrollUntilOffBottom() {
-        return getHeight() + getScroll() - mTransparentStartHeight;
+        return getHeight() + getScroll_ignoreOversizedHeader() - mTransparentStartHeight;
     }
 
     @Override
@@ -415,7 +503,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private int getMaximumScrollUpwards() {
         return mTransparentStartHeight
                 // How much the Header view can compress
-                + mMaximumHeaderHeight - mMinimumHeaderHeight
+                + mIntermediateHeaderHeight - mMinimumHeaderHeight
                 // How much the ScrollView can scroll. 0, if child is smaller than ScrollView.
                 + Math.max(0, mScrollViewChild.getHeight() - getHeight() + mMinimumHeaderHeight);
     }
@@ -446,10 +534,11 @@ public class MultiShrinkScroller extends LinearLayout {
             mScrollView.scrollBy(0, delta);
             delta -= mScrollView.getScrollY() - originalValue;
         }
-        if (toolbarLayoutParams.height != mMaximumHeaderHeight) {
+        if (toolbarLayoutParams.height < mIntermediateHeaderHeight) {
             final int originalValue = toolbarLayoutParams.height;
             toolbarLayoutParams.height -= delta;
-            toolbarLayoutParams.height = Math.min(toolbarLayoutParams.height, mMaximumHeaderHeight);
+            toolbarLayoutParams.height = Math.min(toolbarLayoutParams.height,
+                    mIntermediateHeaderHeight);
             mToolbar.setLayoutParams(toolbarLayoutParams);
             delta -= originalValue - toolbarLayoutParams.height;
         }
@@ -472,7 +561,7 @@ public class MultiShrinkScroller extends LinearLayout {
         final int toolbarHeight = mToolbar.getLayoutParams().height;
         // Reuse an existing mColorFilter (to avoid GC pauses) to change the photo's tint.
         mPhotoView.clearColorFilter();
-        if (toolbarHeight >= mMaximumHeaderHeight) {
+        if (toolbarHeight >= mIntermediateHeaderHeight) {
             mPhotoViewContainer.setElevation(0);
             return;
         }
@@ -480,10 +569,10 @@ public class MultiShrinkScroller extends LinearLayout {
             mColorFilter.setColor(mHeaderTintColor);
             mPhotoView.setColorFilter(mColorFilter);
             mPhotoViewContainer.setElevation(mToolbarElevation);
-        } else {
+        } else if (toolbarHeight <= mIntermediateHeaderHeight) {
             mPhotoViewContainer.setElevation(0);
-            final int alphaBits = 0xff - 0xff * (mToolbar.getHeight()  - mMinimumHeaderHeight)
-                    / (mMaximumHeaderHeight - mMinimumHeaderHeight);
+            final int alphaBits = 0xff - 0xff * (toolbarHeight  - mMinimumHeaderHeight)
+                    / (mIntermediateHeaderHeight - mMinimumHeaderHeight);
             final int color = alphaBits << 24 | (mHeaderTintColor & 0xffffff);
             mColorFilter.setColor(color);
             mPhotoView.setColorFilter(mColorFilter);
@@ -511,6 +600,12 @@ public class MultiShrinkScroller extends LinearLayout {
     }
 
     private void smoothScrollBy(int delta) {
+        if (delta == 0) {
+            // Delta=0 implies the code calling smoothScrollBy is sloppy. We should avoid doing
+            // this, since it prevents Views from being able to register any clicks for 250ms.
+            throw new IllegalArgumentException("Smooth scrolling by delta=0 is "
+                    + "pointless and harmful");
+        }
         mScroller.startScroll(0, getScroll(), 0, delta);
         invalidate();
     }

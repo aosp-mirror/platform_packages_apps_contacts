@@ -26,7 +26,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/quickcontact_maximum_header_height"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/quickcontact_starting_empty_height"
         android:background="@color/card_margin_color"
         android:id="@+id/toolbar_parent">

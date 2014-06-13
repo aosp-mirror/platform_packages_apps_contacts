@@ -322,7 +322,9 @@ public class QuickContactActivity extends ContactsActivity {
                 mScroller.setVisibility(View.VISIBLE);
                 mScroller.setScroll(mScroller.getScrollNeededToBeFullScreen());
             } else {
-                mScroller.setVisibility(View.GONE);
+                // mScroller needs to perform asynchronous measurements after initalize(), therefore
+                // we can't mark this as GONE.
+                mScroller.setVisibility(View.INVISIBLE);
             }
         }
 
