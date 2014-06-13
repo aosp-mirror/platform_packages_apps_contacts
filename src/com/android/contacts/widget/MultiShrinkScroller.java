@@ -280,10 +280,15 @@ public class MultiShrinkScroller extends LinearLayout {
     private void expandCollapseHeader() {
         mPhotoView.setClickable(false);
         if (getHeaderHeight() != mMaximumHeaderHeight) {
+            // Expand header
             final ObjectAnimator animator = ObjectAnimator.ofInt(this, "headerHeight",
                     mMaximumHeaderHeight);
             animator.addListener(mHeaderExpandAnimationListener);
             animator.start();
+            // Scroll nested scroll view to its top
+            if (mScrollView.getScrollY() != 0) {
+                ObjectAnimator.ofInt(mScrollView, "scrollY", -mScrollView.getScrollY()).start();
+            }
         } else if (getHeaderHeight() != mMinimumHeaderHeight) {
             final ObjectAnimator animator = ObjectAnimator.ofInt(this, "headerHeight",
                     mIntermediateHeaderHeight);
