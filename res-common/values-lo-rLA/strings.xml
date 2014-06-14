@@ -62,6 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"ສົ່ງຂໍ້ຄວາມຫາເບີ MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ລຶບລາຍຊື່ທີ່ຕິດຕໍ່ເລື້ອຍໆອອກ?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"ທ່ານກຳລັງຈະລຶບລ້າງຂໍ້ມູນລາຍຊື່ທີ່ຕິດຕໍ່ຫາເລື້ອຍໆ ໃນແອັບຯ People ແລະ Phone ພ້ອມທັງບັງຄັບໃຫ້ແອັບຯອີເມວ ເລີ່ມຮຽນຮູ້ຄ່າກຳນົດທີ່ຢູ່ຂອງທ່ານໃໝ່ຕັ້ງແຕ່ຕົ້ນ."</string>
+    <string name="set_default_sim" msgid="2044993716326153078">"ໃຊ້ SIM ກາດ​ນີ້​ໂທ​ທຸກ​ຄັ້ງ"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"ກຳລັງລຶບລ້າງລາຍຊື່ທີ່ຕິດຕໍ່ຫາເລື້ອຍໆ..."</string>
     <string name="status_available" msgid="4832569677396634846">"ສາມາດໃຊ້ໄດ້"</string>
     <string name="status_away" msgid="6267905184545881094">"ບໍ່ຢູ່"</string>
@@ -235,6 +236,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ບໍ່ມີລາຍການທີ່ມັກ"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ໃນ <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"ລຶບລາຍຊື່ຄົນທີ່ຕິດຕໍ່ຫາເລື້ອຍໆ"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"ເລືອກ SIM ກາດ"</string>
     <string name="menu_accounts" msgid="795417468541517082">"ບັນຊີ"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"ນຳເຂົ້າ/ສົ່ງອອກ"</string>
     <string name="description_send_message" msgid="2630211225573754774">"ສົ່ງ​ຂໍ້​ຄວາມ​ຫາ <xliff:g id="NAME">%1$s</xliff:g>"</string>

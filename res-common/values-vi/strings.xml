@@ -62,6 +62,8 @@
     <string name="sms_mms" msgid="4887206338311086612">"Nhắn tin tới số điện thoại MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Xóa danh sách liên hệ thường xuyên?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Bạn sẽ xóa danh sách liên hệ thường xuyên trong ứng dụng Liên hệ và điện thoại cũng như buộc các ứng dụng email phải tìm hiểu các tùy chọn gửi của bạn từ đầu."</string>
+    <!-- no translation found for set_default_sim (2044993716326153078) -->
+    <skip />
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Đang xóa DS liên hệ thường xuyên…"</string>
     <string name="status_available" msgid="4832569677396634846">"Có mặt"</string>
     <string name="status_away" msgid="6267905184545881094">"Đã ra ngoài"</string>
@@ -235,6 +237,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Không có địa chỉ liên hệ yêu thích nào."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Không có địa chỉ liên hệ nào trong <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Xóa DS liên hệ thường xuyên"</string>
+    <!-- no translation found for menu_select_sim (7814841439832447299) -->
+    <skip />
     <string name="menu_accounts" msgid="795417468541517082">"Tài khoản"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Nhập/xuất"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Gửi tin nhắn tới <xliff:g id="NAME">%1$s</xliff:g>"</string>
