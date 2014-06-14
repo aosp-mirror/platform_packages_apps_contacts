@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1048457247435785074">"聯絡人"</string>
+    <string name="people" msgid="1190841469952343354">"聯絡人"</string>
     <string name="contactsList" msgid="8661624236494819731">"聯絡人"</string>
     <string name="shortcutContact" msgid="749243779392912958">"聯絡人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接撥號"</string>
@@ -29,7 +29,6 @@
     <string name="frequentList" msgid="7154768136473953056">"經常聯絡"</string>
     <string name="strequentList" msgid="5640192862059373511">"我的收藏"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"聯絡人詳細資料"</string>
-    <string name="viewContactDesription" msgid="214186610887547860">"檢視聯絡人"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"編輯聯絡人"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"建立聯絡人"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"編輯群組"</string>
@@ -65,7 +64,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"此聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"刪除此聯絡人將會刪除多個帳戶的資訊。"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"刪除此聯絡人？"</string>
-    <string name="menu_discard" msgid="6456087569315685632">"捨棄"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"捨棄變更"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"聯絡人不存在。"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"聯絡人小工具已新增到主螢幕上。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
@@ -104,7 +103,8 @@
     <item quantity="one" msgid="4826918429708286628">"找到 1 位聯絡人"</item>
     <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6479708629170672169">"所有聯絡人"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"所有聯絡人"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"最愛聯絡人"</string>
     <string name="callBack" msgid="5498224409038809224">"回播電話"</string>
     <string name="callAgain" msgid="3197312117049874778">"重撥"</string>
     <string name="returnCall" msgid="8171961914203617813">"回電"</string>
@@ -167,7 +167,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"複製到我的通訊錄"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"新增至我的聯絡人"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"目錄：<xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"正在建立個人副本…"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"自訂"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>
     <string name="menu_settings" msgid="377929915873428211">"設定"</string>
@@ -213,7 +212,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"透過「Google 帳戶」使用「Google 人物搜尋」可獲得更佳的效益。\n\n• 透過任何瀏覽器都可存取。\n• 安全備份您的聯絡人。"</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"聯絡人與 Google 帳戶搭配使用的效能更優異。\n\n• 透過任何網路瀏覽器皆可存取。\n• 安全備份您的聯絡人。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手機遺失，聯絡人資訊依然萬無一失：與線上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您新增的聯絡人資料。您是否要新建一個帳戶，將您的聯絡人資料另存在線上？"</string>
@@ -224,4 +223,19 @@
     <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"匯出資料庫檔案"</string>
     <string name="contact_detail_picture_description" msgid="6083230522651287030">"圖片 (選取即可變更)"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"新增聯絡人"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"顯示更多"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"顯示較少"</string>
+    <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"全部顯示"</string>
+    <string name="communication_card_title" msgid="7842656156852232185">"聯絡人"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"近期"</string>
+    <string name="send_message" msgid="8938418965550543196">"傳送簡訊"</string>
+    <string name="toast_making_personal_copy" msgid="6137651078366797938">"正在建立個人副本..."</string>
+    <string name="yesterday" msgid="6840858548955018569">"昨天"</string>
+    <string name="tomorrow" msgid="6241969467795308581">"明天"</string>
+    <string name="today" msgid="8041090779381781781">"今天"</string>
+    <string name="today_at_time_fmt" msgid="605665249491030460">"今天<xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"明天<xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g><xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="untitled_event" msgid="3484859385405939366">"(未命名活動)"</string>
 </resources>

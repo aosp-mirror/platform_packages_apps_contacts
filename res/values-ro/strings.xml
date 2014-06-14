@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1048457247435785074">"Persoane"</string>
+    <!-- no translation found for people (1190841469952343354) -->
+    <skip />
     <string name="contactsList" msgid="8661624236494819731">"Agendă"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Persoană din Agendă"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Apel direct"</string>
@@ -29,7 +30,6 @@
     <string name="frequentList" msgid="7154768136473953056">"Frecvent"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favorite"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Detalii ale persoanei din agendă"</string>
-    <string name="viewContactDesription" msgid="214186610887547860">"Vizualizaţi persoana din agendă"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Modificaţi informaţiile despre persoana din agendă"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Creaţi persoana din agendă"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Editaţi grupul"</string>
@@ -65,7 +65,8 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Informaţiile despre această persoană din agendă provin din mai multe conturi. Informaţiile provenite din conturile numai în citire nu vor fi şterse din lista dvs., ci doar ascunse."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ștergerea acestei persoane din agendă va elimina informaţii din mai multe conturi."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Această persoană va fi ştearsă din agendă."</string>
-    <string name="menu_discard" msgid="6456087569315685632">"Renunţaţi"</string>
+    <!-- no translation found for menu_discard (6854657936970228164) -->
+    <skip />
     <string name="invalidContactMessage" msgid="8215051456181842274">"Persoana nu există în agendă."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widgetul Agendă a fost adăugat la ecranul de pornire."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Creaţi o persoană nouă în agendă"</string>
@@ -104,7 +105,8 @@
     <item quantity="one" msgid="4826918429708286628">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="7988132539476575389">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6479708629170672169">"Toată Agenda"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Toată agenda"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"Preferate"</string>
     <string name="callBack" msgid="5498224409038809224">"Apelaţi din nou"</string>
     <string name="callAgain" msgid="3197312117049874778">"Apelaţi din nou"</string>
     <string name="returnCall" msgid="8171961914203617813">"Apelaţi înapoi"</string>
@@ -167,7 +169,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Copiaţi în Agendă"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adăugaţi în Agendă"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Director <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"Se creează o copie personală..."</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizată"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setări"</string>
     <string name="menu_settings" msgid="377929915873428211">"Setări"</string>
@@ -213,7 +214,8 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Profilul meu local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profilul meu <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Se afişează toată agenda"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Aplicaţia Persoane funcţionează mai bine cu un Cont Google.\n\n• Accesaţi aplicaţia din orice browser web.\n• Creaţi în siguranţă copii de rezervă pentru agendă."</string>
+    <!-- no translation found for no_account_prompt (6424883302325061025) -->
+    <skip />
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Păstraţi agenda dvs. în condiţii de siguranţă, chiar dacă pierdeţi telefonul, prin sincronizarea acesteia cu un serviciu online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adăugaţi un cont"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noul contact nu se va crea o copie de rezervă. Adăugați un cont care creează online copii de rezervă pentru contacte?"</string>
@@ -224,4 +226,34 @@
     <string name="add_new_account" msgid="5748627740680940264">"Adăugaţi un cont nou"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportaţi fişierele bazei de date"</string>
     <string name="contact_detail_picture_description" msgid="6083230522651287030">"Fotografie. Selectați pentru a schimba."</string>
+    <!-- no translation found for action_menu_add_new_contact_button (3180222523336380017) -->
+    <skip />
+    <!-- no translation found for expanding_entry_card_view_see_more (3779194067124758079) -->
+    <skip />
+    <!-- no translation found for expanding_entry_card_view_see_less (5344160551629714168) -->
+    <skip />
+    <!-- no translation found for expanding_entry_card_view_see_all (3845258737661412627) -->
+    <skip />
+    <!-- no translation found for communication_card_title (7842656156852232185) -->
+    <skip />
+    <!-- no translation found for recent_card_title (8982782042698001695) -->
+    <skip />
+    <!-- no translation found for send_message (8938418965550543196) -->
+    <skip />
+    <!-- no translation found for toast_making_personal_copy (6137651078366797938) -->
+    <skip />
+    <!-- no translation found for yesterday (6840858548955018569) -->
+    <skip />
+    <!-- no translation found for tomorrow (6241969467795308581) -->
+    <skip />
+    <!-- no translation found for today (8041090779381781781) -->
+    <skip />
+    <!-- no translation found for today_at_time_fmt (605665249491030460) -->
+    <skip />
+    <!-- no translation found for tomorrow_at_time_fmt (4856497969617819421) -->
+    <skip />
+    <!-- no translation found for date_time_fmt (5053178726906863812) -->
+    <skip />
+    <!-- no translation found for untitled_event (3484859385405939366) -->
+    <skip />
 </resources>
