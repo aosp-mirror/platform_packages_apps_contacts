@@ -62,6 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Enviar SMS a MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"¿Borrar contactos frecuentes?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Borrarás la lista de personas con las que te pones en contacto frecuentemente de las aplicaciones Personas y Teléfono. Además, tus aplicaciones de correo deberán establecer tus preferencias nuevamente."</string>
+    <string name="set_default_sim" msgid="2044993716326153078">"Usar siempre esta SIM para llamadas"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Borrando contactos frecuentes…"</string>
     <string name="status_available" msgid="4832569677396634846">"Disponible"</string>
     <string name="status_away" msgid="6267905184545881094">"Ausente"</string>
@@ -235,6 +236,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"No hay favoritos."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"No hay contactos en <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Borrar contactos frecuentes"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Seleccionar tarjeta SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Cuentas"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importar/exportar"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Enviar un mensaje a <xliff:g id="NAME">%1$s</xliff:g>"</string>

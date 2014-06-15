@@ -62,6 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Siųsti MMS telefono numeriu"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Išvalyti dažniausius kontaktus?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Išvalysite dažniausių kontaktų sąrašą Žmonių ir Telefono programose, o el. pašto programoms reikės iš naujo gauti adresavimo nuostatas."</string>
+    <string name="set_default_sim" msgid="2044993716326153078">"Visada naud. šią SIM kort. skamb."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Valomi dažniausi kontaktai…"</string>
     <string name="status_available" msgid="4832569677396634846">"Galima"</string>
     <string name="status_away" msgid="6267905184545881094">"Pasišalinęs"</string>
@@ -235,6 +236,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Į adresyną nieko neįtraukta."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"„<xliff:g id="NAME">%s</xliff:g>“ kontaktų nėra"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Valyti dažniausiai naudojamus"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Pasirinkti SIM kortelę"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Paskyros"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importuoti / eksportuoti"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Siųsti pranešimą <xliff:g id="NAME">%1$s</xliff:g>"</string>

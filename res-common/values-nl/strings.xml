@@ -62,6 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Sms\'en naar MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Lijst regelmatige contacten wissen?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"U wist de lijst met contacten waarmee u regelmatig contact opneemt in de apps Personen en Telefoon, en e-mailapps moeten uw voorkeursadressen weer opnieuw leren."</string>
+    <string name="set_default_sim" msgid="2044993716326153078">"Altijd deze simkaart gebruiken voor oproepen"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Regelmatige contacten wissen..."</string>
     <string name="status_available" msgid="4832569677396634846">"Beschikbaar"</string>
     <string name="status_away" msgid="6267905184545881094">"Niet beschikbaar"</string>
@@ -235,6 +236,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Geen favorieten."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Geen contacten in <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Regelmatige contacten wissen"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Simkaart selecteren"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Accounts"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importeren/exporteren"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Bericht verzenden naar <xliff:g id="NAME">%1$s</xliff:g>"</string>

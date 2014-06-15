@@ -62,6 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Pošlji SMS na telefonsko številko MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Želite izbrisati seznam pog. stikov?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Izbrisali boste seznam pogostih stikov v aplikacijah Osebe in Telefon, zato bodo e-poštne aplikacije začele shranjevati pogoste naslovnike od začetka."</string>
+    <string name="set_default_sim" msgid="2044993716326153078">"Vedno upor. to kartico SIM za klice"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Brisanje seznama pogost. stikov ..."</string>
     <string name="status_available" msgid="4832569677396634846">"Dosegljiv"</string>
     <string name="status_away" msgid="6267905184545881094">"Odsoten"</string>
@@ -235,6 +236,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Ni priljubljenih."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Ni stikov v kategoriji <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Izbriši seznam pogostih stikov"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Izberite kartico SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Računi"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Uvozi/izvozi"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Pošlji sporočilo osebi <xliff:g id="NAME">%1$s</xliff:g>"</string>

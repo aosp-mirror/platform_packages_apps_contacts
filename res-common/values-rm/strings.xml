@@ -107,6 +107,8 @@
     <skip />
     <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
     <skip />
+    <!-- no translation found for set_default_sim (2044993716326153078) -->
+    <skip />
     <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
     <skip />
     <!-- no translation found for status_available (4832569677396634846) -->
@@ -446,6 +448,8 @@
     <!-- no translation found for listTotalAllContactsZeroGroup (7450331854661098879) -->
     <skip />
     <!-- no translation found for menu_clear_frequents (8492322695770647639) -->
+    <skip />
+    <!-- no translation found for menu_select_sim (7814841439832447299) -->
     <skip />
     <!-- no translation found for menu_accounts (795417468541517082) -->
     <skip />
