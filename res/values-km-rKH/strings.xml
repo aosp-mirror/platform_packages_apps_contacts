@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1048457247435785074">"មនុស្ស"</string>
+    <string name="people" msgid="1190841469952343354">"ទំនាក់ទំនង"</string>
     <string name="contactsList" msgid="8661624236494819731">"ទំនាក់ទំនង"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ទំនាក់ទំនង"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ហៅ​ដោយ​ផ្ទាល់"</string>
@@ -29,7 +29,6 @@
     <string name="frequentList" msgid="7154768136473953056">"ញឹកញាប់"</string>
     <string name="strequentList" msgid="5640192862059373511">"សំណព្វ"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"ព័ត៌មាន​លម្អិត​របស់​ទំនាក់ទំនង"</string>
-    <string name="viewContactDesription" msgid="214186610887547860">"មើល​ទំនាក់ទំនង"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"កែ​ទំនាក់ទំនង"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"បង្កើត​ទំនាក់ទំនង"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"កែ​ក្រុម"</string>
@@ -65,7 +64,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ទំនាក់ទំនង​នេះ​មាន​ព័ត៌មាន​ពី​គណនី​ច្រើន។ នឹង​លាក់​ព័ត៌មាន​ពី​គណនី​បានតែ​អាន, មិនមែន​លុប​ទេ។"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ការ​លុប​ទំនាក់ទំនង​នេះ​នឹង​លុប​ព័ត៌មាន​ពី​គណនី​ច្រើន​ទៀត។"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"នឹង​លុប​ទំនាក់ទំនង​នេះ។"</string>
-    <string name="menu_discard" msgid="6456087569315685632">"បោះបង់"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"បោះបង់​ការ​ផ្លាស់ប្ដូរ"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"មិន​មាន​ទំនាក់ទំនង។"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"បាន​បន្ថែម​ធាតុ​ក្រាហ្វិក​របស់​ទំនាក់ទំនង​ទៅ​អេក្រង់​ដើម។"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"បង្កើត​ទំនាក់ទំនង​ថ្មី"</string>
@@ -104,7 +103,8 @@
     <item quantity="one" msgid="4826918429708286628">"បាន​រក​ឃើញ ១"</item>
     <item quantity="other" msgid="7988132539476575389">"បាន​រក​ឃើញ <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6479708629170672169">"ទំនាក់ទំនង​ទាំងអស់"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"គ្រប់ទំនាក់ទំនង"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"ពេញចិត្ត"</string>
     <string name="callBack" msgid="5498224409038809224">"ហៅ​ទៅវិញ"</string>
     <string name="callAgain" msgid="3197312117049874778">"ហៅ​ម្ដងទៀត"</string>
     <string name="returnCall" msgid="8171961914203617813">"ហៅ​ទៅវិញ"</string>
@@ -167,7 +167,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"ចម្លង​ទៅ​ទំនាក់ទំនង​របស់​ខ្ញុំ"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"បន្ថែម​ទៅ​ទំនាក់ទំនង​របស់​ខ្ញុំ"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ថត <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"កំពុង​បង្កើត​ច្បាប់​ចម្លង​ផ្ទាល់​ខ្លួន..."</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"ផ្ទាល់ខ្លួន"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ការ​កំណត់"</string>
     <string name="menu_settings" msgid="377929915873428211">"ការ​កំណត់"</string>
@@ -213,7 +212,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"ប្រវត្តិរូប​មូលដ្ឋាន​របស់​ខ្ញុំ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ប្រវត្តិរូប <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> របស់​ខ្ញុំ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"បង្ហាញ​ទំនាក់ទំនង​ទាំងអស់"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"មនុស្ស​ធ្វើការ​បាន​យ៉ាង​ប្រសើរ​ជាមួយ​គណនី​របស់ Google ។ \n \n •​អាច​ចូល​ដំណើរការ​ពី​កម្មវិធី​អ៊ីនធឺណិត​ណា​ក៏​បាន​។ \n •​បម្រុងទុក​ទំនាក់ទំនង​របស់​អ្នក​យ៉ាង​មាន​សុវត្ថិភាព។"</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"ទំនាក់ទំនង​ដំណើរការ​កាន់តែ​ល្អ​ជា​មួយ​គណនី Google ។\n\n• ចូល​ដំណើរការ​ពី​កម្មវិធី​រុករក​បណ្ដាញ។\n• បម្រុងទុក​ទំនាក់ទំនង​របស់​អ្នក​ដោយ​សុវត្ថិភាព។"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"រក្សាទុក​ទំនាក់ទំនង​របស់​អ្នក​យ៉ាង​មាន​សុវត្ថិភាព ទោះបីជា​អ្នក​បាត់​ទូរស័ព្ទ​ក៏ដោយ៖ ធ្វើ​សមកាលកម្ម​ជាមួយ​សេវាកម្ម​លើ​បណ្ដាញ។"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"បន្ថែម​គណនី"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"នឹង​មិន​បម្រុងទុក​ទំនាក់ទំនង​ថ្មី​របស់​អ្នក​ទេ។ បន្ថែម​គណនី​ដើម្បី​បម្រុងទុក​ទំនាក់ទំនង​នៅ​លើ​បណ្ដាញ?"</string>
@@ -224,4 +223,19 @@
     <string name="add_new_account" msgid="5748627740680940264">"បន្ថែម​គណនី​ថ្មី"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"នាំចេញ​ឯកសារ​មូលដ្ឋាន​ទិន្នន័យ"</string>
     <string name="contact_detail_picture_description" msgid="6083230522651287030">"រូបភាព។ ជ្រើស​ដើម្បី​ប្ដូរ"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"បន្ថែម​ទំនាក់ទំនង​ថ្មី"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"​មើល​​ច្រើន​ជាង"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"​មើល​តិច​ជាង"</string>
+    <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"​មើល​ទាំង​អស់"</string>
+    <string name="communication_card_title" msgid="7842656156852232185">"ទំនាក់ទំនង"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"ថ្មីៗ"</string>
+    <string name="send_message" msgid="8938418965550543196">"ផ្ញើ​សារ"</string>
+    <string name="toast_making_personal_copy" msgid="6137651078366797938">"កំពុង​បង្កើត​ច្បាប់​ចម្លង​ផ្ទាល់​ខ្លួន..."</string>
+    <string name="yesterday" msgid="6840858548955018569">"ម្សិលមិញ"</string>
+    <string name="tomorrow" msgid="6241969467795308581">"ស្អែក"</string>
+    <string name="today" msgid="8041090779381781781">"ថ្ងៃនេះ"</string>
+    <string name="today_at_time_fmt" msgid="605665249491030460">"ថ្ងៃនេះ​នៅ <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"ថ្ងៃស្អែក​នៅ <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="untitled_event" msgid="3484859385405939366">"(ព្រឹត្តិការណ៍​គ្មាន​ចំណងជើង)"</string>
 </resources>

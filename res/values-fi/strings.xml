@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1048457247435785074">"Henkilöt"</string>
+    <string name="people" msgid="1190841469952343354">"Yhteystiedot"</string>
     <string name="contactsList" msgid="8661624236494819731">"Yhteystiedot"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Yhteystieto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Puhelu"</string>
@@ -29,7 +29,6 @@
     <string name="frequentList" msgid="7154768136473953056">"Usein käytetyt"</string>
     <string name="strequentList" msgid="5640192862059373511">"Suosikit"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Yhteystiedot"</string>
-    <string name="viewContactDesription" msgid="214186610887547860">"Näytä yhteystieto"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Muokkaa yhteystietoa"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Luo yhteystieto"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Muokkaa ryhmää"</string>
@@ -65,7 +64,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Tämä yhteystieto sisältää tietoja useista tileistä. Vain luku -tilassa olevien tilien tietoja ei poisteta, mutta ne piilotetaan yhteystietoluettelosta."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Kun tämä yhteystieto poistetaan, tietoja poistetaan useilta tileiltä."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tämä yhteystieto poistetaan."</string>
-    <string name="menu_discard" msgid="6456087569315685632">"Hylkää"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Hylkää muutokset"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Yhteystietoa ei ole olemassa."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Yhteystiedot-widget lisätty aloitusruutuun."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Luo uusi yhteystieto"</string>
@@ -104,7 +103,8 @@
     <item quantity="one" msgid="4826918429708286628">"Löytyi 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Löytyi <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6479708629170672169">"Kaikki kontaktit"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Yhteystiedot"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"Suosikit"</string>
     <string name="callBack" msgid="5498224409038809224">"Soita takaisin"</string>
     <string name="callAgain" msgid="3197312117049874778">"Soita uudelleen"</string>
     <string name="returnCall" msgid="8171961914203617813">"Soita takaisin"</string>
@@ -167,7 +167,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopioi yhteystietoihini"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Lisää kontakteihin"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Hakemisto <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"Luodaan kopio..."</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Oma"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Asetukset"</string>
     <string name="menu_settings" msgid="377929915873428211">"Asetukset"</string>
@@ -213,7 +212,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Oma paikallinen profiili"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Oma <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiili"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kaikki kontaktit"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Ihmiset-sovellus toimii paremmin Google-tilin kanssa.\n\n• Käytä sovellusta millä tahansa selaimella.\n• Varmuuskopioi yhteystietosi turvallisesti."</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"Yhteystiedot toimivat paremmin Google-tilin kanssa.\n\n• Käytä millä tahansa selaimella.\n• Varmuuskopioi turvallisesti."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Pidä kontaktisi turvassa, vaikka puhelimesi katoaisi: synkronoi ne verkkopalvelun avulla."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Lisää tili"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Uutta kontaktiasi ei varmuuskopioida. Lisätäänkö tili, joka varmuuskopioi uudet kontaktit verkossa?"</string>
@@ -224,4 +223,19 @@
     <string name="add_new_account" msgid="5748627740680940264">"Lisää uusi tili"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Vie tietokantatiedostot"</string>
     <string name="contact_detail_picture_description" msgid="6083230522651287030">"Kuva. Vaihda valitsemalla"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"lisää uusi kontakti"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Näytä enemmän"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Näytä vähemmän"</string>
+    <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Näytä kaikki"</string>
+    <string name="communication_card_title" msgid="7842656156852232185">"Kontakti"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"Viimeisimmät"</string>
+    <string name="send_message" msgid="8938418965550543196">"Lähetä viesti"</string>
+    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Luodaan oma kopio…"</string>
+    <string name="yesterday" msgid="6840858548955018569">"Eilen"</string>
+    <string name="tomorrow" msgid="6241969467795308581">"Huomenna"</string>
+    <string name="today" msgid="8041090779381781781">"Tänään"</string>
+    <string name="today_at_time_fmt" msgid="605665249491030460">"Tänään klo <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"Huomenna klo <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="untitled_event" msgid="3484859385405939366">"(Nimetön tapahtuma)"</string>
 </resources>
