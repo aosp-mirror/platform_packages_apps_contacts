@@ -1106,8 +1106,9 @@ public class QuickContactActivity extends ContactsActivity {
             } else {
                 editMenuItem.setVisible(false);
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
