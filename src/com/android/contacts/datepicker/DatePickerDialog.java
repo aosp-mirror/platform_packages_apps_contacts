@@ -17,18 +17,15 @@
 package com.android.contacts.datepicker;
 
 // This is a fork of the standard Android DatePicker that additionally allows toggling the year
-// on/off. It uses some private API so that not everything has to be copied.
+// on/off.
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.util.DateUtils;
@@ -108,10 +105,8 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
             int monthOfYear,
             int dayOfMonth,
             boolean yearOptional) {
-        this(context, context.getApplicationInfo().targetSdkVersion >= Build.VERSION_CODES.HONEYCOMB
-                        ? com.android.internal.R.style.Theme_Holo_Light_Dialog_Alert
-                        : com.android.internal.R.style.Theme_Dialog_Alert,
-                callBack, year, monthOfYear, dayOfMonth, yearOptional);
+        this(context, THEME_DEVICE_DEFAULT_LIGHT, callBack, year, monthOfYear, dayOfMonth,
+                yearOptional);
     }
 
     /**
@@ -160,7 +155,7 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
         mTitleNoYearDateFormat = DateUtils.getLocalizedDateFormatWithoutYear(getContext());
         updateTitle(mInitialYear, mInitialMonth, mInitialDay);
 
-        setButton(BUTTON_POSITIVE, context.getText(com.android.internal.R.string.date_time_set),
+        setButton(BUTTON_POSITIVE, context.getText(R.string.date_time_set),
                 this);
         setButton(BUTTON_NEGATIVE, context.getText(android.R.string.cancel),
                 (OnClickListener) null);
@@ -171,19 +166,6 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
         setView(view);
         mDatePicker = (DatePicker) view.findViewById(R.id.datePicker);
         mDatePicker.init(mInitialYear, mInitialMonth, mInitialDay, yearOptional, this);
-    }
-
-    @Override
-    public void show() {
-        super.show();
-
-        /* Sometimes the full month is displayed causing the title
-         * to be very long, in those cases ensure it doesn't wrap to
-         * 2 lines (as that looks jumpy) and ensure we ellipsize the end.
-         */
-        TextView title = (TextView) findViewById(com.android.internal.R.id.alertTitle);
-        title.setSingleLine();
-        title.setEllipsize(TruncateAt.END);
     }
 
     @Override
