@@ -1,5 +1,7 @@
 package com.android.contacts.interactions;
 
+import com.google.common.base.Preconditions;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,19 +10,14 @@ import java.util.List;
 import java.util.Set;
 
 import android.content.AsyncTaskLoader;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.provider.CalendarContract;
-import android.provider.CalendarContract.Attendees;
 import android.provider.CalendarContract.Calendars;
-import android.provider.CalendarContract.Events;
-import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.internal.util.Preconditions;
 
 /**
  * Loads a list of calendar interactions showing shared calendar events with everyone passed in
@@ -130,7 +127,7 @@ public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInte
      * should be dot sensitive). This probably isn't a large concern.
      */
     private String caseAndDotInsensitiveEmailComparisonClause(int count) {
-        Preconditions.checkArgumentPositive(count, "Count needs to be positive");
+        Preconditions.checkArgument(count > 0, "Count needs to be positive");
         final String COMPARISON
                 = " REPLACE(" + CalendarContract.Attendees.ATTENDEE_EMAIL
                 + ", '.', '') = REPLACE(?, '.', '') COLLATE NOCASE";
