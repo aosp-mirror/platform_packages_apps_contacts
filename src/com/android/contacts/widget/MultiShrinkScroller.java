@@ -336,12 +336,14 @@ public class MultiShrinkScroller extends LinearLayout {
      * If needed, snap the subviews to the top of the Window.
      */
     private boolean snapToTop(int flingDelta) {
+        final int requiredScroll = -getScroll_ignoreOversizedHeader() + mTransparentStartHeight;
         if (-getScroll_ignoreOversizedHeader() - flingDelta < 0
-                && -getScroll_ignoreOversizedHeader() - flingDelta > -mTransparentStartHeight) {
+                && -getScroll_ignoreOversizedHeader() - flingDelta > -mTransparentStartHeight
+                && requiredScroll != 0) {
             // We finish scrolling above the empty starting height, and aren't projected
             // to fling past the top of the Window, so elastically snap the empty space shut.
             mScroller.forceFinished(true);
-            smoothScrollBy(-getScroll_ignoreOversizedHeader() + mTransparentStartHeight);
+            smoothScrollBy(requiredScroll);
             return true;
         }
         return false;
