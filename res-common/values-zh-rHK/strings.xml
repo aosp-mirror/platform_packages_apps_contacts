@@ -62,8 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"傳送短訊至 MMS 電話號碼"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"清除常用聯絡人？"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"您將清除「通訊錄」應用程式和「電話」應用程式中的常用聯絡人名單，並強制電子郵件應用程式重新取得您的寄件喜好設定。"</string>
-    <!-- no translation found for set_default_sim (2044993716326153078) -->
-    <skip />
+    <string name="set_default_sim" msgid="2044993716326153078">"一律使用這張 SIM 卡通話"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"正在清除常用聯絡人…"</string>
     <string name="status_available" msgid="4832569677396634846">"在線"</string>
     <string name="status_away" msgid="6267905184545881094">"離開"</string>
@@ -237,8 +236,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"沒有最愛的聯絡人。"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"「<xliff:g id="NAME">%s</xliff:g>」中沒有聯絡人"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"清除常用聯絡人"</string>
-    <!-- no translation found for menu_select_sim (7814841439832447299) -->
-    <skip />
+    <string name="menu_select_sim" msgid="7814841439832447299">"選取 SIM 卡"</string>
     <string name="menu_accounts" msgid="795417468541517082">"帳戶"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"匯入/匯出"</string>
     <string name="description_send_message" msgid="2630211225573754774">"傳送訊息給<xliff:g id="NAME">%1$s</xliff:g>"</string>

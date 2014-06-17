@@ -62,8 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Հաղորդագրել MMS համարին"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Մաքրե՞լ հաճախակի հաղորդակցվածները"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Դուք կմաքրեք ամենահաճախակի հաղորդակցումների ցանկը Մարդիկ և Հեռախոսներ ծրագրերում և կստիպեք էլփոտային ծրագրերին սովորել հասցեագրել ձեր նախընտրությունները զրոյից:"</string>
-    <!-- no translation found for set_default_sim (2044993716326153078) -->
-    <skip />
+    <string name="set_default_sim" msgid="2044993716326153078">"Օգտագործեք այս SIM-ը զանգերի համար"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Հաճախակի հաղորդակցումների մաքրում..."</string>
     <string name="status_available" msgid="4832569677396634846">"Հասանելի"</string>
     <string name="status_away" msgid="6267905184545881094">"Տեղում չէ"</string>
@@ -237,8 +236,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Ընտրյալներ չկան:"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>-ում կոնտակտներ չկան"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Մաքրել հաճախակիները"</string>
-    <!-- no translation found for menu_select_sim (7814841439832447299) -->
-    <skip />
+    <string name="menu_select_sim" msgid="7814841439832447299">"Ընտրեք SIM քարտը"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Հաշիվներ"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Ներմուծել/արտահանել"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Ուղարկել հաղորդագրություն <xliff:g id="NAME">%1$s</xliff:g>-ին"</string>
