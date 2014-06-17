@@ -82,6 +82,7 @@ import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.detail.ContactDetailDisplayUtils;
 import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
+import com.android.contacts.interactions.CallLogInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
@@ -191,14 +192,17 @@ public class QuickContactActivity extends ContactsActivity {
     /** Id for the background contact loader */
     private static final int LOADER_CONTACT_ID = 0;
 
+    private static final String KEY_LOADER_EXTRA_PHONES =
+            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_PHONES";
+
     /** Id for the background Sms Loader */
     private static final int LOADER_SMS_ID = 1;
-    private static final String KEY_LOADER_EXTRA_SMS_PHONES =
-            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_SMS_PHONES";
     private static final int MAX_SMS_RETRIEVE = 3;
+
+    /** Id for the back Calendar Loader */
     private static final int LOADER_CALENDAR_ID = 2;
-    private static final String KEY_LOADER_EXTRA_CALENDAR_EMAILS =
-            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_CALENDAR_EMAILS";
+    private static final String KEY_LOADER_EXTRA_EMAILS =
+            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_EMAILS";
     private static final int MAX_PAST_CALENDAR_RETRIEVE = 3;
     private static final int MAX_FUTURE_CALENDAR_RETRIEVE = 3;
     private static final long PAST_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR =
@@ -206,7 +210,15 @@ public class QuickContactActivity extends ContactsActivity {
     private static final long FUTURE_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR =
             36L * 60L * 60L * 1000L /* 36 hours */;
 
-    private static final int[] mRecentLoaderIds = new int[]{LOADER_SMS_ID, LOADER_CALENDAR_ID};
+    /** Id for the background Call Log Loader */
+    private static final int LOADER_CALL_LOG_ID = 3;
+    private static final int MAX_CALL_LOG_RETRIEVE = 3;
+
+
+    private static final int[] mRecentLoaderIds = new int[]{
+        LOADER_SMS_ID,
+        LOADER_CALENDAR_ID,
+        LOADER_CALL_LOG_ID};
     private Map<Integer, List<ContactInteraction>> mRecentLoaderResults;
 
     private static final String FRAGMENT_TAG_SELECT_ACCOUNT = "select_account_fragment";
@@ -482,22 +494,29 @@ public class QuickContactActivity extends ContactsActivity {
             Set<String> emailAddresses,
             List<String> sortedActionMimeTypes) {
         Trace.beginSection("start sms loader");
-        final Bundle smsExtraBundle = new Bundle();
-        smsExtraBundle.putStringArray(KEY_LOADER_EXTRA_SMS_PHONES,
+        final Bundle phonesExtraBundle = new Bundle();
+        phonesExtraBundle.putStringArray(KEY_LOADER_EXTRA_PHONES,
                 phoneNumbers.toArray(new String[phoneNumbers.size()]));
         getLoaderManager().initLoader(
                 LOADER_SMS_ID,
-                smsExtraBundle,
+                phonesExtraBundle,
+                mLoaderInteractionsCallbacks);
+        Trace.endSection();
+
+        Trace.beginSection("start call log loader");
+        getLoaderManager().initLoader(
+                LOADER_CALL_LOG_ID,
+                phonesExtraBundle,
                 mLoaderInteractionsCallbacks);
         Trace.endSection();
 
         Trace.beginSection("start calendar loader");
-        final Bundle calendarExtraBundle = new Bundle();
-        calendarExtraBundle.putStringArray(KEY_LOADER_EXTRA_CALENDAR_EMAILS,
+        final Bundle emailsExtraBundle = new Bundle();
+        emailsExtraBundle.putStringArray(KEY_LOADER_EXTRA_EMAILS,
                 emailAddresses.toArray(new String[emailAddresses.size()]));
         getLoaderManager().initLoader(
                 LOADER_CALENDAR_ID,
-                calendarExtraBundle,
+                emailsExtraBundle,
                 mLoaderInteractionsCallbacks);
         Trace.endSection();
 
@@ -886,19 +905,25 @@ public class QuickContactActivity extends ContactsActivity {
                     Log.v(TAG, "LOADER_SMS_ID");
                     loader = new SmsInteractionsLoader(
                             QuickContactActivity.this,
-                            args.getStringArray(KEY_LOADER_EXTRA_SMS_PHONES),
+                            args.getStringArray(KEY_LOADER_EXTRA_PHONES),
                             MAX_SMS_RETRIEVE);
                     break;
                 case LOADER_CALENDAR_ID:
                     Log.v(TAG, "LOADER_CALENDAR_ID");
                     loader = new CalendarInteractionsLoader(
                             QuickContactActivity.this,
-                            Arrays.asList(args.getStringArray(KEY_LOADER_EXTRA_CALENDAR_EMAILS)),
+                            Arrays.asList(args.getStringArray(KEY_LOADER_EXTRA_EMAILS)),
                             MAX_FUTURE_CALENDAR_RETRIEVE,
                             MAX_PAST_CALENDAR_RETRIEVE,
                             FUTURE_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR,
                             PAST_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR);
                     break;
+                case LOADER_CALL_LOG_ID:
+                    Log.v(TAG, "LOADER_CALL_LOG_ID");
+                    loader = new CallLogInteractionsLoader(
+                            QuickContactActivity.this,
+                            args.getStringArray(KEY_LOADER_EXTRA_PHONES),
+                            MAX_CALL_LOG_RETRIEVE);
             }
             return loader;
         }

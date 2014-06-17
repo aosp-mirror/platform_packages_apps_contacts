@@ -49,4 +49,7 @@
 
     <!-- Color of the margin for cards -->
     <color name="card_margin_color">#ffbbbbbb</color>
+
+    <color name="call_arrow_green">#2aad6f</color>
+    <color name="call_arrow_red">#ff2e58</color>
 </resources>
