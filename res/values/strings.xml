@@ -675,4 +675,8 @@
     <string name="date_time_fmt">"<xliff:g id="date">%s</xliff:g>, <xliff:g id="time_interval">%s</xliff:g>"</string>
     <!-- Title for untitled calendar interactions [CHAR LIMIT=40] -->
     <string name="untitled_event">(Untitled event)</string>
+
+    <!-- Name of the button in the date/time picker to accept the date/time change [CHAR LIMIT=15] -->
+    <string name="date_time_set">Set</string>
+
 </resources>

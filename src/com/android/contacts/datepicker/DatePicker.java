@@ -171,6 +171,8 @@ public class DatePicker extends FrameLayout {
                 updateDaySpinner();
             }
         });
+        mYearPicker.setMinValue(DEFAULT_START_YEAR);
+        mYearPicker.setMaxValue(DEFAULT_END_YEAR);
 
         mYearToggle = (CheckBox) findViewById(R.id.yearToggle);
         mYearToggle.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -182,19 +184,6 @@ public class DatePicker extends FrameLayout {
                 updateSpinners();
             }
         });
-
-        // attributes
-        TypedArray a = context.obtainStyledAttributes(attrs,
-                com.android.internal.R.styleable.DatePicker);
-
-        int mStartYear =
-                a.getInt(com.android.internal.R.styleable.DatePicker_startYear, DEFAULT_START_YEAR);
-        int mEndYear =
-                a.getInt(com.android.internal.R.styleable.DatePicker_endYear, DEFAULT_END_YEAR);
-        mYearPicker.setMinValue(mStartYear);
-        mYearPicker.setMaxValue(mEndYear);
-
-        a.recycle();
 
         // initialize to current date
         Calendar cal = Calendar.getInstance();
