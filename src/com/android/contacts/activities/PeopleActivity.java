@@ -843,8 +843,7 @@ public class PeopleActivity extends ContactsActivity implements
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
             Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
-                    getCurrentFocus().getRootView(), contactLookupUri,
-                    QuickContactActivity.MODE_FULLY_EXPANDED, null);
+                    (Rect) null, contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED, null);
             startActivity(intent);
         }
 
