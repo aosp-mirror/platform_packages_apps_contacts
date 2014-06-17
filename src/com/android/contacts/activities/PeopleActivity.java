@@ -1030,17 +1030,16 @@ public class PeopleActivity extends ContactsActivity implements
             }
             case R.id.menu_settings: {
                 final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
-                // as there is only one section right now, make sure it is selected
-                // on small screens, this also hides the section selector
-                // Due to b/5045558, this code unfortunately only works properly on phones
-                boolean settingsAreMultiPane = getResources().getBoolean(
-                        com.android.internal.R.bool.preferences_prefer_dual_pane);
-                if (!settingsAreMultiPane) {
-                    intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,
-                            DisplayOptionsPreferenceFragment.class.getName());
-                    intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,
-                            R.string.activity_title_settings);
-                }
+                // Since there is only one section right now, make sure it is selected on
+                // small screens.
+                intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,
+                        DisplayOptionsPreferenceFragment.class.getName());
+                // By default, the title of the activity should be equivalent to the fragment
+                // title. We set this argument to avoid this. Because of a bug, the following
+                // line isn't necessary. But, once the bug is fixed this may become necessary.
+                // b/5045558 refers to this issue, as well as another.
+                intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,
+                        R.string.activity_title_settings);
                 startActivity(intent);
                 return true;
             }
