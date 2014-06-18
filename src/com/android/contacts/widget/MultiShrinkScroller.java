@@ -568,7 +568,7 @@ public class MultiShrinkScroller extends LinearLayout {
         final int toolbarHeight = mToolbar.getLayoutParams().height;
         // Reuse an existing mColorFilter (to avoid GC pauses) to change the photo's tint.
         mPhotoView.clearColorFilter();
-        if (toolbarHeight >= mIntermediateHeaderHeight) {
+        if (toolbarHeight >= mMaximumHeaderHeight) {
             mPhotoViewContainer.setElevation(0);
             return;
         }
@@ -576,14 +576,13 @@ public class MultiShrinkScroller extends LinearLayout {
             mColorFilter.setColor(mHeaderTintColor);
             mPhotoView.setColorFilter(mColorFilter);
             mPhotoViewContainer.setElevation(mToolbarElevation);
-        } else if (toolbarHeight <= mIntermediateHeaderHeight) {
-            mPhotoViewContainer.setElevation(0);
-            final int alphaBits = 0xff - 0xff * (toolbarHeight  - mMinimumHeaderHeight)
-                    / (mIntermediateHeaderHeight - mMinimumHeaderHeight);
-            final int color = alphaBits << 24 | (mHeaderTintColor & 0xffffff);
-            mColorFilter.setColor(color);
-            mPhotoView.setColorFilter(mColorFilter);
         }
+        mPhotoViewContainer.setElevation(0);
+        final int alphaBits = 0xff - 0xff * (toolbarHeight  - mMinimumHeaderHeight)
+                / (mMaximumHeaderHeight - mMinimumHeaderHeight);
+        final int color = alphaBits << 24 | (mHeaderTintColor & 0xffffff);
+        mColorFilter.setColor(color);
+        mPhotoView.setColorFilter(mColorFilter);
     }
 
     private void updateLastEventPosition(MotionEvent event) {
