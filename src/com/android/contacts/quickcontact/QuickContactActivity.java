@@ -16,6 +16,9 @@
 
 package com.android.contacts.quickcontact;
 
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -80,7 +83,6 @@ import com.android.contacts.common.model.dataitem.ImDataItem;
 import com.android.contacts.common.model.dataitem.PhoneDataItem;
 import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.detail.ContactDetailDisplayUtils;
-import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -97,7 +99,6 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -147,6 +148,9 @@ public class QuickContactActivity extends ContactsActivity {
     private MultiShrinkScroller mScroller;
     private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
     private AsyncTask<Void, Void, Void> mEntriesAndActionsTask;
+    private ColorDrawable mWindowShim;
+    private boolean mIsWaitingForOtherPieceOfExitAnimation;
+    private boolean mIsExitAnimationInProgress;
 
     private static final int MIN_NUM_COMMUNICATION_ENTRIES_SHOWN = 3;
     private static final int MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN = 3;
@@ -269,7 +273,11 @@ public class QuickContactActivity extends ContactsActivity {
             = new MultiShrinkScrollerListener() {
         @Override
         public void onScrolledOffBottom() {
-            onBackPressed();
+            if (!mIsWaitingForOtherPieceOfExitAnimation) {
+                finish();
+                return;
+            }
+            mIsWaitingForOtherPieceOfExitAnimation = false;
         }
 
         @Override
@@ -280,6 +288,28 @@ public class QuickContactActivity extends ContactsActivity {
         @Override
         public void onExitFullscreen() {
             updateStatusBarColor();
+        }
+
+        @Override
+        public void onStartScrollOffBottom() {
+            // Remove the window shim now that we are starting an Activity exit animation.
+            final int duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+            final ObjectAnimator animator = ObjectAnimator.ofInt(mWindowShim, "alpha", 0xFF, 0);
+            animator.addListener(mExitWindowShimAnimationListener);
+            animator.setDuration(duration).start();
+            mIsWaitingForOtherPieceOfExitAnimation = true;
+            mIsExitAnimationInProgress = true;
+        }
+    };
+
+    final AnimatorListener mExitWindowShimAnimationListener = new AnimatorListenerAdapter() {
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            if (!mIsWaitingForOtherPieceOfExitAnimation) {
+                finish();
+                return;
+            }
+            mIsWaitingForOtherPieceOfExitAnimation = false;
         }
     };
 
@@ -321,11 +351,11 @@ public class QuickContactActivity extends ContactsActivity {
 
         mHasAlreadyBeenOpened = savedInstanceState != null;
 
-        final ColorDrawable windowShim = new ColorDrawable(SHIM_COLOR);
-        getWindow().setBackgroundDrawable(windowShim);
+        mWindowShim = new ColorDrawable(SHIM_COLOR);
+        getWindow().setBackgroundDrawable(mWindowShim);
         if (!mHasAlreadyBeenOpened) {
             final int duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            ObjectAnimator.ofInt(windowShim, "alpha", 0, 0xFF).setDuration(duration).start();
+            ObjectAnimator.ofInt(mWindowShim, "alpha", 0, 0xFF).setDuration(duration).start();
         }
 
         if (mScroller != null) {
@@ -878,8 +908,9 @@ public class QuickContactActivity extends ContactsActivity {
     @Override
     public void onBackPressed() {
         if (mScroller != null) {
-            // TODO: implement exit animation if the scroller isn't already off the screen
-            finish();
+            if (!mIsExitAnimationInProgress) {
+                mScroller.scrollOffBottom();
+            }
         } else {
             super.onBackPressed();
         }

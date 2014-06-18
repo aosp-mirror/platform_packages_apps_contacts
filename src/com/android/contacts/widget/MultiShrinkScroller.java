@@ -83,6 +83,8 @@ public class MultiShrinkScroller extends LinearLayout {
     public interface MultiShrinkScrollerListener {
         void onScrolledOffBottom();
 
+        void onStartScrollOffBottom();
+
         void onEnterFullscreen();
 
         void onExitFullscreen();
@@ -102,6 +104,8 @@ public class MultiShrinkScroller extends LinearLayout {
                 // Due to a rounding error, after the animation finished we haven't fully scrolled
                 // off the screen. Lie to the listener: tell it that we did scroll off the screen.
                 mListener.onScrolledOffBottom();
+                // No other messages need to be sent to the listener.
+                mListener = null;
             }
         }
     };
@@ -364,17 +368,24 @@ public class MultiShrinkScroller extends LinearLayout {
      */
     private void snapToBottom(int flingDelta) {
         if (-getScroll_ignoreOversizedHeader() - flingDelta > 0) {
-            final Interpolator interpolator = new AcceleratingFlingInterpolator(
-                    EXIT_FLING_ANIMATION_DURATION_MS, getCurrentVelocity(),
-                    getScrollUntilOffBottom());
-            mScroller.forceFinished(true);
-            ObjectAnimator translateAnimation = ObjectAnimator.ofInt(this, "scroll",
-                    getScroll() - getScrollUntilOffBottom());
-            translateAnimation.setRepeatCount(0);
-            translateAnimation.setInterpolator(interpolator);
-            translateAnimation.setDuration(EXIT_FLING_ANIMATION_DURATION_MS);
-            translateAnimation.addListener(mSnapToBottomListener);
-            translateAnimation.start();
+            scrollOffBottom();
+        }
+    }
+
+    public void scrollOffBottom() {
+        final Interpolator interpolator = new AcceleratingFlingInterpolator(
+                EXIT_FLING_ANIMATION_DURATION_MS, getCurrentVelocity(),
+                getScrollUntilOffBottom());
+        mScroller.forceFinished(true);
+        ObjectAnimator translateAnimation = ObjectAnimator.ofInt(this, "scroll",
+                getScroll() - getScrollUntilOffBottom());
+        translateAnimation.setRepeatCount(0);
+        translateAnimation.setInterpolator(interpolator);
+        translateAnimation.setDuration(EXIT_FLING_ANIMATION_DURATION_MS);
+        translateAnimation.addListener(mSnapToBottomListener);
+        translateAnimation.start();
+        if (mListener != null) {
+            mListener.onStartScrollOffBottom();
         }
     }
 
@@ -510,6 +521,9 @@ public class MultiShrinkScroller extends LinearLayout {
     }
 
     private float getCurrentVelocity() {
+        if (mVelocityTracker == null) {
+            return 0;
+        }
         mVelocityTracker.computeCurrentVelocity(PIXELS_PER_SECOND, mMaximumVelocity);
         return mVelocityTracker.getYVelocity();
     }
@@ -567,11 +581,15 @@ public class MultiShrinkScroller extends LinearLayout {
         toolbarLayoutParams.topMargin -= delta;
         mToolbar.setLayoutParams(toolbarLayoutParams);
 
-        if (mListener != null && getScrollUntilOffBottom() <= 0) {
+        if (getScrollUntilOffBottom() <= 0) {
             post(new Runnable() {
                 @Override
                 public void run() {
-                    mListener.onScrolledOffBottom();
+                    if (mListener != null) {
+                        mListener.onScrolledOffBottom();
+                        // No other messages need to be sent to the listener.
+                        mListener = null;
+                    }
                 }
             });
         }
