@@ -6,19 +6,22 @@ import com.android.contacts.util.SchedulingUtils;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.hardware.display.DisplayManagerGlobal;
 import android.util.AttributeSet;
+import android.view.Display;
+import android.view.DisplayInfo;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewConfiguration;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.EdgeEffect;
 import android.widget.ImageView;
@@ -45,6 +48,11 @@ public class MultiShrinkScroller extends LinearLayout {
      * 1000 pixels per millisecond. Ie, 1 pixel per second.
      */
     private static final int PIXELS_PER_SECOND = 1000;
+
+    /**
+     * Length of the acceleration animations. This value was taken from ValueAnimator.java.
+     */
+    private static final int EXIT_FLING_ANIMATION_DURATION_MS = 300;
 
     private float[] mLastEventPosition = { 0, 0 };
     private VelocityTracker mVelocityTracker;
@@ -80,20 +88,22 @@ public class MultiShrinkScroller extends LinearLayout {
         void onExitFullscreen();
     }
 
-    private final AnimatorListener mHeaderExpandAnimationListener = new AnimatorListener() {
-        @Override
-        public void onAnimationStart(Animator animation) {}
-
+    private final AnimatorListener mHeaderExpandAnimationListener = new AnimatorListenerAdapter() {
         @Override
         public void onAnimationEnd(Animator animation) {
             mPhotoView.setClickable(true);
         }
+    };
 
+    private final AnimatorListener mSnapToBottomListener = new AnimatorListenerAdapter() {
         @Override
-        public void onAnimationCancel(Animator animation) {}
-
-        @Override
-        public void onAnimationRepeat(Animator animation) {}
+        public void onAnimationEnd(Animator animation) {
+            if (getScrollUntilOffBottom() > 0 && mListener != null) {
+                // Due to a rounding error, after the animation finished we haven't fully scrolled
+                // off the screen. Lie to the listener: tell it that we did scroll off the screen.
+                mListener.onScrolledOffBottom();
+            }
+        }
     };
 
     /**
@@ -354,11 +364,16 @@ public class MultiShrinkScroller extends LinearLayout {
      */
     private void snapToBottom(int flingDelta) {
         if (-getScroll_ignoreOversizedHeader() - flingDelta > 0) {
+            final Interpolator interpolator = new AcceleratingFlingInterpolator(
+                    EXIT_FLING_ANIMATION_DURATION_MS, getCurrentVelocity(),
+                    getScrollUntilOffBottom());
             mScroller.forceFinished(true);
             ObjectAnimator translateAnimation = ObjectAnimator.ofInt(this, "scroll",
                     getScroll() - getScrollUntilOffBottom());
             translateAnimation.setRepeatCount(0);
-            translateAnimation.setInterpolator(new AccelerateInterpolator());
+            translateAnimation.setInterpolator(interpolator);
+            translateAnimation.setDuration(EXIT_FLING_ANIMATION_DURATION_MS);
+            translateAnimation.addListener(mSnapToBottomListener);
             translateAnimation.start();
         }
     }
@@ -615,5 +630,54 @@ public class MultiShrinkScroller extends LinearLayout {
         }
         mScroller.startScroll(0, getScroll(), 0, delta);
         invalidate();
+    }
+
+    /**
+     * Interpolator that enforces a specific starting velocity. This is useful to avoid a
+     * discontinuity between dragging speed and flinging speed.
+     *
+     * Similar to a {@link android.view.animation.AccelerateInterpolator} in the sense that
+     * getInterpolation() is a quadratic function.
+     */
+    private static class AcceleratingFlingInterpolator implements Interpolator {
+
+        private final float mStartingSpeedPixelsPerFrame;
+        private final float mDurationMs;
+        private final int mPixelsDelta;
+        private final float mNumberFrames;
+
+        public AcceleratingFlingInterpolator(int durationMs, float startingSpeedPixelsPerSecond,
+                int pixelsDelta) {
+            mStartingSpeedPixelsPerFrame = startingSpeedPixelsPerSecond / getRefreshRate();
+            mDurationMs = durationMs;
+            mPixelsDelta = pixelsDelta;
+            mNumberFrames = mDurationMs / getFrameIntervalMs();
+        }
+
+        @Override
+        public float getInterpolation(float input) {
+            final float animationIntervalNumber = mNumberFrames * input;
+            final float linearDelta = (animationIntervalNumber * mStartingSpeedPixelsPerFrame)
+                    / mPixelsDelta;
+            // Add the results of a linear interpolator (with the initial speed) with the
+            // results of a AccelerateInterpolator.
+            if (mStartingSpeedPixelsPerFrame > 0) {
+                return Math.min(input * input + linearDelta, 1);
+            } else {
+                // Initial fling was in the wrong direction, make sure that the quadratic component
+                // grows faster in order to make up for this.
+                return Math.min(input * (input - linearDelta) + linearDelta, 1);
+            }
+        }
+
+        private float getRefreshRate() {
+            DisplayInfo di = DisplayManagerGlobal.getInstance().getDisplayInfo(
+                    Display.DEFAULT_DISPLAY);
+            return di.refreshRate;
+        }
+
+        public long getFrameIntervalMs() {
+            return (long)(1000 / getRefreshRate());
+        }
     }
 }
