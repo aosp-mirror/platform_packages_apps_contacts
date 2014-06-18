@@ -143,6 +143,7 @@ public class QuickContactActivity extends ContactsActivity {
     private boolean mHasAlreadyBeenOpened;
 
     private ImageView mPhotoView;
+    private View mTransparentView;
     private ExpandingEntryCardView mCommunicationCard;
     private ExpandingEntryCardView mRecentCard;
     private MultiShrinkScroller mScroller;
@@ -344,6 +345,15 @@ public class QuickContactActivity extends ContactsActivity {
         mRecentCard.setTitle(getResources().getString(R.string.recent_card_title));
 
         mPhotoView = (ImageView) findViewById(R.id.photo);
+        mTransparentView = findViewById(R.id.transparent_view);
+        if (mScroller != null) {
+            mTransparentView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mScroller.scrollOffBottom();
+                }
+            });
+        }
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setActionBar(toolbar);

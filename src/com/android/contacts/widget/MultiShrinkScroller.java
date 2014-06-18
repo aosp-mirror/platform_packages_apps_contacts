@@ -64,6 +64,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private View mToolbar;
     private ImageView mPhotoView;
     private View mPhotoViewContainer;
+    private View mTransparentView;
     private MultiShrinkScrollerListener mListener;
     private int mHeaderTintColor;
     private int mMaximumHeaderHeight;
@@ -170,6 +171,7 @@ public class MultiShrinkScroller extends LinearLayout {
         mScrollViewChild = findViewById(R.id.card_container);
         mToolbar = findViewById(R.id.toolbar_parent);
         mPhotoViewContainer = findViewById(R.id.toolbar_parent);
+        mTransparentView = findViewById(R.id.transparent_view);
         mListener = listener;
 
         mPhotoView = (ImageView) findViewById(R.id.photo);
@@ -439,7 +441,7 @@ public class MultiShrinkScroller extends LinearLayout {
     public int getScroll() {
         final LinearLayout.LayoutParams toolbarLayoutParams
                 = (LayoutParams) mToolbar.getLayoutParams();
-        return mTransparentStartHeight - toolbarLayoutParams.topMargin
+        return mTransparentStartHeight - getTransparentViewHeight()
                 + mIntermediateHeaderHeight - toolbarLayoutParams.height + mScrollView.getScrollY();
     }
 
@@ -451,7 +453,7 @@ public class MultiShrinkScroller extends LinearLayout {
     public int getScroll_ignoreOversizedHeader() {
         final LinearLayout.LayoutParams toolbarLayoutParams
                 = (LayoutParams) mToolbar.getLayoutParams();
-        return mTransparentStartHeight - toolbarLayoutParams.topMargin
+        return mTransparentStartHeight - getTransparentViewHeight()
                 + Math.max(mIntermediateHeaderHeight - toolbarLayoutParams.height, 0)
                 + mScrollView.getScrollY();
     }
@@ -460,9 +462,7 @@ public class MultiShrinkScroller extends LinearLayout {
      * Amount of transparent space above the header/toolbar.
      */
     public int getScrollNeededToBeFullScreen() {
-        final LinearLayout.LayoutParams toolbarLayoutParams
-                = (LayoutParams) mToolbar.getLayoutParams();
-        return toolbarLayoutParams.topMargin;
+        return getTransparentViewHeight();
     }
 
     /**
@@ -544,15 +544,24 @@ public class MultiShrinkScroller extends LinearLayout {
                 + Math.max(0, mScrollViewChild.getHeight() - getHeight() + mMinimumHeaderHeight);
     }
 
+    private int getTransparentViewHeight() {
+        return mTransparentView.getLayoutParams().height;
+    }
+
+    private void setTransparentViewHeight(int height) {
+        mTransparentView.getLayoutParams().height = height;
+        mTransparentView.setLayoutParams(mTransparentView.getLayoutParams());
+    }
+
     private void scrollUp(int delta) {
-        LinearLayout.LayoutParams toolbarLayoutParams = (LayoutParams) mToolbar.getLayoutParams();
-        if (toolbarLayoutParams.topMargin != 0) {
-            final int originalValue = toolbarLayoutParams.topMargin;
-            toolbarLayoutParams.topMargin -= delta;
-            toolbarLayoutParams.topMargin = Math.max(toolbarLayoutParams.topMargin, 0);
-            mToolbar.setLayoutParams(toolbarLayoutParams);
-            delta -= originalValue - toolbarLayoutParams.topMargin;
+        if (getTransparentViewHeight() != 0) {
+            final int originalValue = getTransparentViewHeight();
+            setTransparentViewHeight(getTransparentViewHeight() - delta);
+            setTransparentViewHeight(Math.max(0, getTransparentViewHeight()));
+            delta -= originalValue - getTransparentViewHeight();
         }
+        final LinearLayout.LayoutParams toolbarLayoutParams
+                = (LayoutParams) mToolbar.getLayoutParams();
         if (toolbarLayoutParams.height != mMinimumHeaderHeight) {
             final int originalValue = toolbarLayoutParams.height;
             toolbarLayoutParams.height -= delta;
@@ -564,12 +573,13 @@ public class MultiShrinkScroller extends LinearLayout {
     }
 
     private void scrollDown(int delta) {
-        LinearLayout.LayoutParams toolbarLayoutParams = (LayoutParams) mToolbar.getLayoutParams();
         if (mScrollView.getScrollY() > 0) {
             final int originalValue = mScrollView.getScrollY();
             mScrollView.scrollBy(0, delta);
             delta -= mScrollView.getScrollY() - originalValue;
         }
+        final LinearLayout.LayoutParams toolbarLayoutParams
+                = (LayoutParams) mToolbar.getLayoutParams();
         if (toolbarLayoutParams.height < mIntermediateHeaderHeight) {
             final int originalValue = toolbarLayoutParams.height;
             toolbarLayoutParams.height -= delta;
@@ -578,8 +588,7 @@ public class MultiShrinkScroller extends LinearLayout {
             mToolbar.setLayoutParams(toolbarLayoutParams);
             delta -= originalValue - toolbarLayoutParams.height;
         }
-        toolbarLayoutParams.topMargin -= delta;
-        mToolbar.setLayoutParams(toolbarLayoutParams);
+        setTransparentViewHeight(getTransparentViewHeight() - delta);
 
         if (getScrollUntilOffBottom() <= 0) {
             post(new Runnable() {

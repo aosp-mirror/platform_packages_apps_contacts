@@ -24,10 +24,14 @@
     android:focusableInTouchMode="true"
     android:descendantFocusability="afterDescendants" >
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/quickcontact_starting_empty_height"
+        android:id="@+id/transparent_view" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/quickcontact_starting_empty_height"
         android:background="@color/card_margin_color"
         android:id="@+id/toolbar_parent">
 
