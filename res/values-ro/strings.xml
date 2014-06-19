@@ -238,4 +238,6 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"Mâine, la <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Eveniment fără titlu)"</string>
+    <!-- no translation found for date_time_set (4761419824439606690) -->
+    <skip />
 </resources>

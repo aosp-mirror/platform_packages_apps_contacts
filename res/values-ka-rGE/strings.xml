@@ -212,7 +212,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"ჩემი ადგილობრივი პროფილი"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ჩემი <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> პროფილი"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ყველა კონტაქტის ჩვენება"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"კონტაქტები Google ანგარიშთან ერთად უკეთ მუშაობს.\n\n• იქონიეთ წვდომა ნებისმიერი ვებ-ბრაუზერიდან.\n• Back up your contacts securely."</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"კონტაქტები Google ანგარიშთან ერთად უკეთ მუშაობს.\n\n• იქონიეთ წვდომა ნებისმიერი ვებ-ბრაუზერიდან.\n• თქვენი კონტაქტების საიმედო დამარქაფება."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"შეინახეთ თქვენი კონტაქტები საიმედოდ ტელეფონის დაკარგვის შემთხვევაშიც კი: მოახდინეთ სინქრონიზაცია ონლაინ სერვისთან."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ანგარიშის დამატება"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"თქვენი ახალი კონტაქტი არ დამარქაფდება. გსურთ ანგარიშის დამატება, რომელიც დაამარქაფებს კონტაქტებს ონლაინ?"</string>
@@ -238,4 +238,5 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"ხვალ <xliff:g id="TIME_INTERVAL">%s</xliff:g>-ზე"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(უსათაურო მოვლენა)"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"დაყენება"</string>
 </resources>
