@@ -15,8 +15,5 @@
   ~ limitations under the License
   -->
 <resources>
-    <integer name="dialpad_slide_in_duration">532</integer>
-    <integer name="dialpad_slide_out_duration">257</integer>
-
     <integer name="floating_action_button_animation_duration">250</integer>
 </resources>
