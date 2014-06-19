@@ -733,77 +733,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     -->
     <string name="description_add_contact">Add contact</string>
 
-    <!-- String describing the overflow menu button in the dialpad -->
-    <string name="description_dialpad_overflow">More options</string>
-
-    <!-- String describing the Delete/Backspace ImageButton
-
-         Used by AccessibilityService to announce the purpose of the button.
-    -->
-    <string name="description_delete_button">backspace</string>
-
-    <!--  String describing the button used to add a plus (+) symbol to the dialpad -->
-    <string name="description_image_button_plus">plus</string>
-
-    <!-- String describing the Voicemail ImageButton
-
-         Used by AccessibilityService to announce the purpose of the button.
-    -->
-    <string name="description_voicemail_button">voicemail</string>
-
     <!-- The font-family to use for tab text.
          Do not translate. -->
     <string name="tab_font_family">sans-serif</string>
-
-    <!-- The digit to be displayed on the 0 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_0_number">0</string>
-    <!-- The digit to be displayed on the 1 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_1_number">1</string>
-    <!-- The digit to be displayed on the 2 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_2_number">2</string>
-    <!-- The digit to be displayed on the 3 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_3_number">3</string>
-    <!-- The digit to be displayed on the 4 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_4_number">4</string>
-    <!-- The digit to be displayed on the 5 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_5_number">5</string>
-    <!-- The digit to be displayed on the 6 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_6_number">6</string>
-    <!-- The digit to be displayed on the 7 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_7_number">7</string>
-    <!-- The digit to be displayed on the 8 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_8_number">8</string>
-    <!-- The digit to be displayed on the 9 key of the dialpad [CHAR LIMIT=1]-->
-    <string name="dialpad_9_number">9</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_star_number">*</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_pound_number">#</string>
-
-    <!--  Do not translate. -->
-    <string name="dialpad_0_letters">+</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_1_letters"></string>
-    <!--  Do not translate. -->
-    <string name="dialpad_2_letters">ABC</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_3_letters">DEF</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_4_letters">GHI</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_5_letters">JKL</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_6_letters">MNO</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_7_letters">PQRS</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_8_letters">TUV</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_9_letters">WXYZ</string>
-    <!--  Do not translate. -->
-    <string name="dialpad_star_letters"></string>
-    <!--  Do not translate. -->
-    <string name="dialpad_pound_letters"></string>
 
     <!-- Attribution of a contact status update, when the time of update is unknown -->
     <string name="contact_status_update_attribution">via <xliff:g id="source" example="Google Talk">%1$s</xliff:g></string>
