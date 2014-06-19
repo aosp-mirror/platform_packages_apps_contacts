@@ -63,10 +63,8 @@ public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInte
         }
         // Perform separate calendar queries for events in the past and future.
         Cursor cursor = getSharedEventsCursor(/* isFuture= */ true, mMaxFutureToRetrieve);
-        Log.v(TAG, "future cursor.count() " + cursor.getCount());
         List<ContactInteraction> interactions = getInteractionsFromEventsCursor(cursor);
         cursor = getSharedEventsCursor(/* isFuture= */ false, mMaxPastToRetrieve);
-        Log.v(TAG, "past cursor.count() " + cursor.getCount());
         List<ContactInteraction> interactions2 = getInteractionsFromEventsCursor(cursor);
 
         ArrayList<ContactInteraction> allInteractions = new ArrayList<ContactInteraction>(
@@ -74,6 +72,7 @@ public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInte
         allInteractions.addAll(interactions);
         allInteractions.addAll(interactions2);
 
+        Log.v(TAG, "# ContactInteraction Loaded: " + allInteractions.size());
         return allInteractions;
     }
 
