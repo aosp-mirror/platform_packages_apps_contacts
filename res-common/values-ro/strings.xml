@@ -62,8 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Trimiteţi un mesaj text către un număr MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ștergeţi pers. frecvent contactate?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Veţi şterge lista cu persoanele frecvent contactate din aplicaţiile Persoane şi Telefon şi veţi forţa aplicaţiile de e-mail să reţină preferinţele dvs. pentru adrese de la zero."</string>
-    <!-- no translation found for set_default_sim (2044993716326153078) -->
-    <skip />
+    <string name="set_default_sim" msgid="2044993716326153078">"Utilizați acest SIM pentru apeluri"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Se şterg pers. frecvent contactate…"</string>
     <string name="status_available" msgid="4832569677396634846">"Disponibil(ă)"</string>
     <string name="status_away" msgid="6267905184545881094">"Plecat(ă)"</string>
@@ -237,8 +236,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Nu există preferate."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nicio persoană de contact în <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Șterg. pers. frecv. contact."</string>
-    <!-- no translation found for menu_select_sim (7814841439832447299) -->
-    <skip />
+    <string name="menu_select_sim" msgid="7814841439832447299">"Selectați cardul SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Conturi"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importați/exportați"</string>
     <string name="description_send_message" msgid="2630211225573754774">"Trimiteți un mesaj la <xliff:g id="NAME">%1$s</xliff:g>"</string>

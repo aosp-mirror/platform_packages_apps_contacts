@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Nhắn tin tới số điện thoại MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Xóa danh sách liên hệ thường xuyên?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Bạn sẽ xóa danh sách liên hệ thường xuyên trong ứng dụng Liên hệ và điện thoại cũng như buộc các ứng dụng email phải tìm hiểu các tùy chọn gửi của bạn từ đầu."</string>
-    <string name="set_default_sim" msgid="2044993716326153078">"Luôn sử dụng SIM này cho cuộc gọi"</string>
+    <string name="set_default_sim" msgid="2044993716326153078">"Luôn sử dụng SIM này để gọi điện"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Đang xóa DS liên hệ thường xuyên…"</string>
     <string name="status_available" msgid="4832569677396634846">"Có mặt"</string>
     <string name="status_away" msgid="6267905184545881094">"Đã ra ngoài"</string>
