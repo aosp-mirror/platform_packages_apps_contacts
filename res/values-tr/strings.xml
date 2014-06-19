@@ -224,11 +224,11 @@
     <string name="menu_export_database" msgid="2659719297530170820">"Veritabanı dosyalarını dışarı aktar"</string>
     <string name="contact_detail_picture_description" msgid="6083230522651287030">"Resim. Değiştirmek için seçin"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"yeni kişi ekle"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Daha çok göster"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Daha fazla göster"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Daha az göster"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Tümünü göster"</string>
     <string name="communication_card_title" msgid="7842656156852232185">"Kişi"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"Son işlemler"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"En son"</string>
     <string name="send_message" msgid="8938418965550543196">"İleti gönder"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Kişisel kopya oluşturuluyor..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Dün"</string>
@@ -238,4 +238,5 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"Yarın şu saatler arasında: <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Başlıksız etkinlik)"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"Ayarla"</string>
 </resources>
