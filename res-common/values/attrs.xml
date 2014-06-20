@@ -78,4 +78,8 @@
     <declare-styleable name="Favorites">
         <attr name="favorites_padding_bottom" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="Dialpad">
+        <attr name="dialpad_key_button_touch_tint" format="color"/>
+    </declare-styleable>
 </resources>

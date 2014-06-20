@@ -117,6 +117,29 @@
     <!-- Size of text in tabs. -->
     <dimen name="tab_text_size">14sp</dimen>
 
+    <!-- Text dimensions for dialpad keys -->
+    <dimen name="dialpad_key_numbers_size">36sp</dimen>
+    <dimen name="dialpad_key_letters_size">8sp</dimen>
+    <dimen name="dialpad_key_pound_size">23sp</dimen>
+    <dimen name="dialpad_key_star_size">28sp</dimen>
+    <dimen name="dialpad_key_height">64dp</dimen>
+    <dimen name="dialpad_key_number_margin_bottom">2dp</dimen>
+    <dimen name="dialpad_symbol_margin_bottom">13dp</dimen>
+    <!-- The bottom row of the dialpad is slightly taller to account for the dial button -->
+    <dimen name="dialpad_bottom_key_height">65dp</dimen>
+    <dimen name="dialpad_key_plus_size">18sp</dimen>
+    <dimen name="dialpad_horizontal_padding">5dp</dimen>
+    <dimen name="dialpad_digits_text_size">36dp</dimen>
+    <dimen name="dialpad_digits_height">64dp</dimen>
+    <dimen name="dialpad_digits_padding">16dp</dimen>
+    <dimen name="dialpad_digits_menu_right_padding">10dp</dimen>
+    <dimen name="dialpad_center_margin">3dp</dimen>
+    <dimen name="dialpad_button_margin">2dp</dimen>
+    <dimen name="dialpad_voicemail_icon_padding_top">2dp</dimen>
+
+
+    <dimen name="dialpad_key_button_translate_y">100dp</dimen>
+
     <!-- Padding around the icon in the search box. -->
     <dimen name="search_box_icon_margin">4dp</dimen>
     <!-- Size of the icon (voice search, close search) in the search box. -->
