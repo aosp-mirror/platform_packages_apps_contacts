@@ -34,6 +34,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
+import android.provider.ContactsContract.Contacts.Entity;
 
 import com.android.contacts.common.model.dataitem.DataKind;
 
@@ -158,5 +159,26 @@ public class DataItem {
      */
     public String buildDataStringForDisplay(Context context, DataKind kind) {
         return buildDataString(context, kind);
+    }
+
+    /**
+     * Returns the times used of the data. Not guaranteed to be available for all data rows.
+     *
+     * @return The number of times used, or -1 if unavailable.
+     */
+    public int getTimesUsed() {
+        final Integer timesUsed = mContentValues.getAsInteger(Entity.TIMES_USED);
+        return timesUsed == null ? -1 : timesUsed;
+    }
+
+    /**
+     * Returns the last time used used of the data. Not guaranteed to be available for all data
+     * rows.
+     *
+     * @return The last time used, or -1 if unavailable.
+     */
+    public long getLastTimeUsed() {
+        final Long lastTimeUsed = mContentValues.getAsLong(Entity.LAST_TIME_USED);
+        return lastTimeUsed == null ? -1 : lastTimeUsed;
     }
 }

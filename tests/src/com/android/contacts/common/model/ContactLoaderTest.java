@@ -326,6 +326,9 @@ public class ContactLoaderTest extends LoaderTestCase {
                         Contacts.SEND_TO_VOICEMAIL,
                         Contacts.CUSTOM_RINGTONE,
                         Contacts.IS_USER_PROFILE,
+
+                        Data.TIMES_USED,
+                        Data.LAST_TIME_USED,
                     })
                     .withSortOrder(Contacts.Entity.RAW_CONTACT_ID)
                     .returnRow(
@@ -363,6 +366,9 @@ public class ContactLoaderTest extends LoaderTestCase {
 
                         0,
                         null,
+                        0,
+
+                        0,
                         0
                     );
         }

@@ -181,6 +181,9 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 Contacts.SEND_TO_VOICEMAIL,
                 Contacts.CUSTOM_RINGTONE,
                 Contacts.IS_USER_PROFILE,
+
+                Data.TIMES_USED,
+                Data.LAST_TIME_USED,
         };
 
         public static final int NAME_RAW_CONTACT_ID = 0;
@@ -251,6 +254,9 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         public static final int SEND_TO_VOICEMAIL = 60;
         public static final int CUSTOM_RINGTONE = 61;
         public static final int IS_USER_PROFILE = 62;
+
+        public static final int TIMES_USED = 63;
+        public static final int LAST_TIME_USED = 64;
     }
 
     /**
@@ -687,6 +693,8 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         cursorColumnToContentValues(cursor, cv, ContactQuery.MIMETYPE);
         cursorColumnToContentValues(cursor, cv, ContactQuery.GROUP_SOURCE_ID);
         cursorColumnToContentValues(cursor, cv, ContactQuery.CHAT_CAPABILITY);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.TIMES_USED);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.LAST_TIME_USED);
 
         return cv;
     }
