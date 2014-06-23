@@ -26,7 +26,7 @@ import java.text.DateFormat;
 
 import java.util.Calendar;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 
 /**
