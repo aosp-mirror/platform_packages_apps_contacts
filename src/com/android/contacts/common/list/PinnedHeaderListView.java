@@ -520,7 +520,7 @@ public class PinnedHeaderListView extends AutoScrollListView
                 PinnedHeader firstHeader = mHeaders[0];
 
                 if (firstHeader != null) {
-                    int firstHeaderTop = firstChild != null ? Math.max(firstChild.getTop(), 0) : 0;
+                    int firstHeaderTop = firstChild != null ? firstChild.getTop() : 0;
                     firstHeader.y = firstHeaderTop;
                 }
             }
