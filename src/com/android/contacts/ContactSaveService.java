@@ -829,9 +829,8 @@ public class ContactSaveService extends IntentService {
 
                 // Don't bother undemoting if this contact is the user's profile.
                 if (id < Profile.MIN_ID) {
-                    values.clear();
-                    values.put(String.valueOf(id), PinnedPositions.UNDEMOTE);
-                    getContentResolver().update(PinnedPositions.UPDATE_URI, values, null, null);
+                    getContentResolver().call(ContactsContract.AUTHORITY_URI,
+                            PinnedPositions.UNDEMOTE_METHOD, String.valueOf(id), null);
                 }
             }
         } finally {
