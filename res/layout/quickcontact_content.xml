@@ -18,8 +18,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:id="@+id/content_scroller"
-    android:background="@color/card_margin_color">
+    android:id="@+id/content_scroller">
 
     <!-- All the cards should be inserted into this LinearLayout -->
     <LinearLayout
@@ -27,16 +26,36 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/card_container">
-        <com.android.contacts.quickcontact.ExpandingEntryCardView
-            style="@style/ExpandingEntryCardStyle"
-            android:id="@+id/communication_card"
-            android:layout_marginTop="@dimen/communication_card_marginTop"
-            android:visibility="gone" />
 
-        <com.android.contacts.quickcontact.ExpandingEntryCardView
-            style="@style/ExpandingEntryCardStyle"
-            android:id="@+id/recent_card"
-            android:visibility="gone" />
+        <!-- We cannot set the border directly on ExpandingEntryCardView without it looking
+             funny because of the card's elevation value. So we need a parent FrameLayout -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/quickcontact_card_border">
+            <com.android.contacts.quickcontact.ExpandingEntryCardView
+                style="@style/ExpandingEntryCardStyle"
+                android:id="@+id/communication_card"
+                android:layout_marginTop="@dimen/communication_card_marginTop"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/quickcontact_card_border">
+            <com.android.contacts.quickcontact.ExpandingEntryCardView
+                style="@style/ExpandingEntryCardStyle"
+                android:id="@+id/recent_card"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- Fill the rest of the LinearLayout with the correct background color -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card_margin_color" />
+
     </LinearLayout>
 
 </com.android.contacts.widget.TouchlessScrollView>
