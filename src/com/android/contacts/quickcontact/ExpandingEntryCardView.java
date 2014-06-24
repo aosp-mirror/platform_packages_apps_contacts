@@ -23,6 +23,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -122,7 +123,10 @@ public class ExpandingEntryCardView extends LinearLayout {
     private List<Entry> mEntries;
     private List<View> mEntryViews;
     private LinearLayout mEntriesViewGroup;
+    private final Drawable mCollapseArrowDrawable;
+    private final Drawable mExpandArrowDrawable;
     private int mThemeColor;
+    private ColorFilter mThemeColorFilter;
 
     private final OnClickListener mExpandCollapseButtonListener = new OnClickListener() {
         @Override
@@ -146,6 +150,17 @@ public class ExpandingEntryCardView extends LinearLayout {
         mEntriesViewGroup = (LinearLayout)
                 expandingEntryCardView.findViewById(R.id.content_area_linear_layout);
         mTitleTextView = (TextView) expandingEntryCardView.findViewById(R.id.title);
+        mCollapseArrowDrawable =
+                getResources().getDrawable(R.drawable.expanding_entry_card_collapse_white_24);
+        mExpandArrowDrawable =
+                getResources().getDrawable(R.drawable.expanding_entry_card_expand_white_24);
+
+        mExpandCollapseButton = inflater.inflate(
+                R.layout.quickcontact_expanding_entry_card_button, this, false);
+        mExpandCollapseTextView = (TextView) mExpandCollapseButton.findViewById(R.id.text);
+        mExpandCollapseButton.setOnClickListener(mExpandCollapseButtonListener);
+
+
     }
 
     /**
@@ -154,19 +169,21 @@ public class ExpandingEntryCardView extends LinearLayout {
      * @param entries The Entry list to display.
      */
     public void initialize(List<Entry> entries, int numInitialVisibleEntries,
-            boolean isExpanded, int themeColor) {
+            boolean isExpanded) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         mIsExpanded = isExpanded;
         mEntries = entries;
         mEntryViews = new ArrayList<View>(entries.size());
         mCollapsedEntriesCount = Math.min(numInitialVisibleEntries, entries.size());
-        mThemeColor = themeColor;
 
-        if (mExpandCollapseButton == null) {
-            createExpandButton(layoutInflater);
+        if (mIsExpanded) {
+            updateExpandCollapseButton(getCollapseButtonText());
+        } else {
+            updateExpandCollapseButton(getExpandButtonText());
         }
         inflateViewsIfNeeded(layoutInflater);
         insertEntriesIntoViewGroup();
+        applyColor();
     }
 
     /**
@@ -260,18 +277,6 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
     }
 
-    private void createExpandButton(LayoutInflater layoutInflater) {
-        mExpandCollapseButton = layoutInflater.inflate(
-                R.layout.quickcontact_expanding_entry_card_button, this, false);
-        mExpandCollapseTextView = (TextView) mExpandCollapseButton.findViewById(R.id.text);
-        if (mIsExpanded) {
-            updateExpandCollapseButton(getCollapseButtonText());
-        } else {
-            updateExpandCollapseButton(getExpandButtonText());
-        }
-        mExpandCollapseButton.setOnClickListener(mExpandCollapseButtonListener);
-    }
-
     /**
      * Lazily inflate the number of views currently needed, and bind data from
      * mEntries into these views.
@@ -280,6 +285,41 @@ public class ExpandingEntryCardView extends LinearLayout {
         final int viewsToInflate = mIsExpanded ?  mEntries.size() : mCollapsedEntriesCount;
         for (int i = mEntryViews.size(); i < viewsToInflate; i++) {
             mEntryViews.add(createEntryView(layoutInflater, mEntries.get(i)));
+        }
+    }
+
+    public void setColorAndFilter(int color, ColorFilter colorFilter) {
+        mThemeColor = color;
+        mThemeColorFilter = colorFilter;
+        applyColor();
+    }
+
+    /**
+     * The ColorFilter is passed in along with the color so that a new one only needs to be created
+     * once for the entire activity.
+     * 1. Title
+     * 2. Entry icons
+     * 3. Expand/Collapse Text
+     * 4. Expand/Collapse Button
+     */
+    public void applyColor() {
+        if (mThemeColor != 0 && mThemeColorFilter != null) {
+            // Title
+            if (mTitleTextView != null) {
+                mTitleTextView.setTextColor(mThemeColor);
+            }
+
+            // Entry icons
+            if (mEntries != null) {
+                for (Entry entry : mEntries) {
+                    entry.getIcon().setColorFilter(mThemeColorFilter);
+                }
+            }
+
+            // Expand/Collapse
+            mExpandCollapseTextView.setTextColor(mThemeColor);
+            mCollapseArrowDrawable.setColorFilter(mThemeColorFilter);
+            mExpandArrowDrawable.setColorFilter(mThemeColorFilter);
         }
     }
 
@@ -335,15 +375,12 @@ public class ExpandingEntryCardView extends LinearLayout {
     }
 
     private void updateExpandCollapseButton(CharSequence buttonText) {
-        int resId = mIsExpanded ? R.drawable.expanding_entry_card_collapse_white_24
-                : R.drawable.expanding_entry_card_expand_white_24;
-        // TODO: apply color theme to the drawable
-        Drawable drawable = getResources().getDrawable(resId);
+        final Drawable arrow = mIsExpanded ? mCollapseArrowDrawable : mExpandArrowDrawable;
         if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-            mExpandCollapseTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable,
+            mExpandCollapseTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, arrow,
                     null);
         } else {
-            mExpandCollapseTextView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null,
+            mExpandCollapseTextView.setCompoundDrawablesWithIntrinsicBounds(arrow, null, null,
                     null);
         }
         mExpandCollapseTextView.setText(buttonText);

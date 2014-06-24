@@ -152,8 +152,6 @@ public class MultiShrinkScroller extends LinearLayout {
                 R.dimen.quickcontact_starting_header_height);
         mTransparentStartHeight = (int) getResources().getDimension(
                 R.dimen.quickcontact_starting_empty_height);
-        mHeaderTintColor = mContext.getResources().getColor(
-                R.color.actionbar_background_color);
         mToolbarElevation = mContext.getResources().getDimension(
                 R.dimen.quick_contact_toolbar_elevation);
 

@@ -31,6 +31,7 @@ import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -93,7 +94,6 @@ import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
-
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -158,9 +158,6 @@ public class QuickContactActivity extends ContactsActivity {
 
     private Contact mContactData;
     private ContactLoader mContactLoader;
-
-    private PorterDuffColorFilter mColorFilter;
-    List<Drawable> mDrawablesToTint;
 
     private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
 
@@ -380,7 +377,6 @@ public class QuickContactActivity extends ContactsActivity {
             }
         }
 
-        mDrawablesToTint = new ArrayList<>();
         mSelectAccountFragmentListener= (SelectAccountDialogFragmentListener) getFragmentManager()
                 .findFragmentByTag(FRAGMENT_TAG_SELECT_ACCOUNT);
         if (mSelectAccountFragmentListener == null) {
@@ -564,8 +560,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (entries.size() > 0) {
             mCommunicationCard.initialize(entries,
                     /* numInitialVisibleEntries = */ MIN_NUM_COMMUNICATION_ENTRIES_SHOWN,
-                    /* isExpanded = */ false,
-                    /* themeColor = */ 0);
+                    /* isExpanded = */ false);
         }
 
         final boolean hasData = !sortedActionMimeTypes.isEmpty();
@@ -730,10 +725,13 @@ public class QuickContactActivity extends ContactsActivity {
             @Override
             protected void onPostExecute(Integer color) {
                 super.onPostExecute(color);
-                mColorFilter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-                // Make sure the color is valid. Also check that the Photo has not changed. If it
-                // has changed, the new tint color needs to be extracted
-                if (color != 0 && imageViewDrawable == mPhotoView.getDrawable()) {
+                // Check that the Photo has not changed. If it has changed, the new tint color
+                // needs to be extracted
+                if (imageViewDrawable == mPhotoView.getDrawable()) {
+                    // If the color is invalid, use the predefined default
+                    if (color == 0) {
+                        color = getResources().getColor(R.color.actionbar_background_color);
+                    }
                     // TODO: animate from the previous tint.
                     mScroller.setHeaderTintColor(color);
 
@@ -746,10 +744,10 @@ public class QuickContactActivity extends ContactsActivity {
                     mStatusBarColor = Color.HSVToColor(hsvComponents);
 
                     updateStatusBarColor();
-                    for (Drawable drawable : mDrawablesToTint) {
-                        applyThemeColorIfAvailable(drawable);
-                    }
-                    mDrawablesToTint.clear();
+                    final ColorFilter colorFilter =
+                            new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+                    mCommunicationCard.setColorAndFilter(color, colorFilter);
+                    mRecentCard.setColorAndFilter(color, colorFilter);
                 }
             }
         }.execute();
@@ -819,20 +817,17 @@ public class QuickContactActivity extends ContactsActivity {
                 case Phone.CONTENT_ITEM_TYPE:
                     header = String.valueOf(action.getBody());
                     footer = String.valueOf(action.getSubtitle());
-                    icon = applyThemeColorIfAvailable(
-                            getResources().getDrawable(R.drawable.ic_phone_24dp));
+                    icon = getResources().getDrawable(R.drawable.ic_phone_24dp);
                     break;
                 case Email.CONTENT_ITEM_TYPE:
                     header = String.valueOf(action.getBody());
                     footer = String.valueOf(action.getSubtitle());
-                    icon = applyThemeColorIfAvailable(
-                            getResources().getDrawable(R.drawable.ic_email_24dp));
+                    icon = getResources().getDrawable(R.drawable.ic_email_24dp);
                     break;
                 case StructuredPostal.CONTENT_ITEM_TYPE:
                     header = String.valueOf(action.getBody());
                     footer = String.valueOf(action.getSubtitle());
-                    icon = applyThemeColorIfAvailable(
-                            getResources().getDrawable(R.drawable.ic_place_24dp));
+                    icon = getResources().getDrawable(R.drawable.ic_place_24dp);
                     break;
                 default:
                     header = String.valueOf(action.getSubtitle());
@@ -844,8 +839,7 @@ public class QuickContactActivity extends ContactsActivity {
 
             // Add SMS in addition to phone calls
             if (action.getMimeType().equals(Phone.CONTENT_ITEM_TYPE)) {
-                entries.add(new Entry(applyThemeColorIfAvailable(getResources().getDrawable(
-                        R.drawable.ic_message_24dp)),
+                entries.add(new Entry(getResources().getDrawable(R.drawable.ic_message_24dp),
                         getResources().getString(R.string.send_message), null, header,
                         action.getAlternateIntent(), /* isEditable = */ false));
             }
@@ -856,7 +850,7 @@ public class QuickContactActivity extends ContactsActivity {
     private List<Entry> contactInteractionsToEntries(List<ContactInteraction> interactions) {
         List<Entry> entries = new ArrayList<>();
         for (ContactInteraction interaction : interactions) {
-            entries.add(new Entry(applyThemeColorIfAvailable(interaction.getIcon(this)),
+            entries.add(new Entry(interaction.getIcon(this),
                     interaction.getViewHeader(this),
                     interaction.getViewBody(this),
                     interaction.getBodyIcon(this),
@@ -1012,8 +1006,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (allInteractions.size() > 0) {
             mRecentCard.initialize(contactInteractionsToEntries(allInteractions),
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
-                    /* isExpanded = */ false,
-                    /* themeColor = */ 0);
+                    /* isExpanded = */ false);
             mRecentCard.setVisibility(View.VISIBLE);
         }
     }
@@ -1029,20 +1022,6 @@ public class QuickContactActivity extends ContactsActivity {
             // the entire process will be killed.
             mEntriesAndActionsTask.cancel(/* mayInterruptIfRunning = */ false);
         }
-    }
-
-    /**
-     * Applies the theme color as extracted in
-     * {@link #extractAndApplyTintFromPhotoViewAsynchronously()} if available. If the color is not
-     * available, store a reference to the drawable to tint when a color becomes available.
-     */
-    private Drawable applyThemeColorIfAvailable(Drawable drawable) {
-        if (mColorFilter != null) {
-            drawable.setColorFilter(mColorFilter);
-        } else {
-            mDrawablesToTint.add(drawable);
-        }
-        return drawable;
     }
 
     /**
