@@ -689,6 +689,7 @@ public class QuickContactActivity extends ContactsActivity {
          * type is also sorted, based off of {super primary, primary, times used} in that order.
          */
         final List<Action> topActions = new ArrayList<>();
+        final List<Action> allActions = new ArrayList<>();
         for (List<Action> mimeTypeActions : mActions.values()) {
             Collections.sort(mimeTypeActions, new Comparator<Action>() {
                 @Override
@@ -716,6 +717,9 @@ public class QuickContactActivity extends ContactsActivity {
                 }
             });
             topActions.add(mimeTypeActions.get(0));
+            // Add all the other actions and remove the top one
+            allActions.addAll(mimeTypeActions);
+            allActions.remove(mimeTypeActions.get(0));
         }
 
         // topActions now contains the top action for each mimetype. This list now needs to be
@@ -762,6 +766,7 @@ public class QuickContactActivity extends ContactsActivity {
         });
 
         entries.addAll(actionsToEntries(topActions));
+        entries.addAll(actionsToEntries(allActions));
         Trace.endSection();
     }
 
