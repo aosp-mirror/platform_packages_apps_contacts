@@ -40,8 +40,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/icon"
         android:singleLine="true"
-        android:textColor="@android:color/black"
-        android:textStyle="bold" />
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/sub_header"

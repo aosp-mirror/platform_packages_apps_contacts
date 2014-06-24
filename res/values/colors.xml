@@ -39,16 +39,16 @@
     <color name="contacts_accent_color">#00acc1</color>
 
     <!-- Color of the separator between entries in an ExpandingEntryCardView -->
-    <color name="expanding_entry_card_item_separator_color">#eeeeee</color>
+    <color name="expanding_entry_card_item_separator_color">#e4e4e4</color>
 
     <!-- Color of the text on an ExpandingEntryCard button -->
     <color name="expanding_entry_card_button_text_color">@android:color/black</color>
 
     <!-- Background color for an ExpandingEntryCard -->
-    <color name="expanding_entry_card_background_color">#f7f8f9</color>
+    <color name="expanding_entry_card_background_color">#ffffff</color>
 
     <!-- Color of the margin for cards -->
-    <color name="card_margin_color">#ffbbbbbb</color>
+    <color name="card_margin_color">#f4f4f4</color>
 
     <color name="call_arrow_green">#2aad6f</color>
     <color name="call_arrow_red">#ff2e58</color>

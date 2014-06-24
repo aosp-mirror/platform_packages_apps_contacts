@@ -123,11 +123,13 @@ public class QuickContactActivity extends ContactsActivity {
 
     private static final String TAG = "QuickContact";
 
+    private static final String KEY_THEME_COLOR = "theme_color";
+
     private static final int ANIMATION_SLIDE_OPEN_DURATION = 250;
-    private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 75;
+    private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
     private static final float SYSTEM_BAR_BRIGHTNESS_FACTOR = 0.7f;
-    private static final int SHIM_COLOR = Color.argb(0x7F, 0, 0, 0);
+    private static final int SCRIM_COLOR = Color.argb(0xB2, 0, 0, 0);
 
     /** This is the Intent action to install a shortcut in the launcher. */
     private static final String ACTION_INSTALL_SHORTCUT =
@@ -149,7 +151,7 @@ public class QuickContactActivity extends ContactsActivity {
     private MultiShrinkScroller mScroller;
     private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
     private AsyncTask<Void, Void, Void> mEntriesAndActionsTask;
-    private ColorDrawable mWindowShim;
+    private ColorDrawable mWindowScrim;
     private boolean mIsWaitingForOtherPieceOfExitAnimation;
     private boolean mIsExitAnimationInProgress;
 
@@ -158,6 +160,7 @@ public class QuickContactActivity extends ContactsActivity {
 
     private Contact mContactData;
     private ContactLoader mContactLoader;
+    private PorterDuffColorFilter mColorFilter;
 
     private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
 
@@ -292,7 +295,7 @@ public class QuickContactActivity extends ContactsActivity {
         public void onStartScrollOffBottom() {
             // Remove the window shim now that we are starting an Activity exit animation.
             final int duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            final ObjectAnimator animator = ObjectAnimator.ofInt(mWindowShim, "alpha", 0xFF, 0);
+            final ObjectAnimator animator = ObjectAnimator.ofInt(mWindowScrim, "alpha", 0xFF, 0);
             animator.addListener(mExitWindowShimAnimationListener);
             animator.setDuration(duration).start();
             mIsWaitingForOtherPieceOfExitAnimation = true;
@@ -354,15 +357,18 @@ public class QuickContactActivity extends ContactsActivity {
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setActionBar(toolbar);
-        setHeaderNameText(R.string.missing_name);
+        getActionBar().setTitle(null);
+        // Put a TextView with a known resource id into the ActionBar. This allows us to easily
+        // find the correct TextView location & size later.
+        toolbar.addView(getLayoutInflater().inflate(R.layout.quickcontact_title_placeholder, null));
 
         mHasAlreadyBeenOpened = savedInstanceState != null;
 
-        mWindowShim = new ColorDrawable(SHIM_COLOR);
-        getWindow().setBackgroundDrawable(mWindowShim);
+        mWindowScrim = new ColorDrawable(SCRIM_COLOR);
+        getWindow().setBackgroundDrawable(mWindowScrim);
         if (!mHasAlreadyBeenOpened) {
             final int duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            ObjectAnimator.ofInt(mWindowShim, "alpha", 0, 0xFF).setDuration(duration).start();
+            ObjectAnimator.ofInt(mWindowScrim, "alpha", 0, 0xFF).setDuration(duration).start();
         }
 
         if (mScroller != null) {
@@ -377,6 +383,8 @@ public class QuickContactActivity extends ContactsActivity {
             }
         }
 
+        setHeaderNameText(R.string.missing_name);
+
         mSelectAccountFragmentListener= (SelectAccountDialogFragmentListener) getFragmentManager()
                 .findFragmentByTag(FRAGMENT_TAG_SELECT_ACCOUNT);
         if (mSelectAccountFragmentListener == null) {
@@ -386,6 +394,21 @@ public class QuickContactActivity extends ContactsActivity {
             mSelectAccountFragmentListener.setRetainInstance(true);
         }
         mSelectAccountFragmentListener.setQuickContactActivity(this);
+
+        if (savedInstanceState != null) {
+            final int color = savedInstanceState.getInt(KEY_THEME_COLOR, 0);
+            if (color != 0) {
+                // Wait for pre draw. Setting the header tint before the MultiShrinkScroller has
+                // been measured will cause incorrect tinting calculations.
+                SchedulingUtils.doOnPreDraw(mScroller, /* drawNextFrame = */ true,
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                setThemeColor(color);
+                            }
+                        });
+            }
+        }
 
         Trace.endSection();
     }
@@ -404,6 +427,14 @@ public class QuickContactActivity extends ContactsActivity {
         super.onNewIntent(intent);
         mHasAlreadyBeenOpened = true;
         processIntent(intent);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        if (mColorFilter != null) {
+            savedInstanceState.putInt(KEY_THEME_COLOR, mColorFilter.getColor());
+        }
     }
 
     private void processIntent(Intent intent) {
@@ -450,13 +481,17 @@ public class QuickContactActivity extends ContactsActivity {
 
     /** Assign this string to the view if it is not empty. */
     private void setHeaderNameText(int resId) {
-        getActionBar().setTitle(getText(resId));
+        if (mScroller != null) {
+            mScroller.setTitle(String.valueOf(getText(resId)));
+        }
     }
 
     /** Assign this string to the view if it is not empty. */
     private void setHeaderNameText(CharSequence value) {
         if (!TextUtils.isEmpty(value)) {
-            getActionBar().setTitle(value);
+            if (mScroller != null) {
+                mScroller.setTitle(value.toString());
+            }
         }
     }
 
@@ -700,24 +735,7 @@ public class QuickContactActivity extends ContactsActivity {
                     return colorFromBitmap(bitmap);
                 }
                 if (imageViewDrawable instanceof LetterTileDrawable) {
-                    // LetterTileDrawable doesn't normally draw unless it is visible. Therefore,
-                    // we need to directly ask it for its color via getColor(). We could directly
-                    // return this color. However, in the future Palette#generate() may incorporate
-                    // saturation boosting. So I want to use Palette#generate() for the sake of
-                    // consistency.
-                    final LetterTileDrawable tileDrawable = (LetterTileDrawable) imageViewDrawable;
-                    final int PALETTE_BITMAP_SIZE = 1;
-                    final Bitmap bitmap = Bitmap.createBitmap(PALETTE_BITMAP_SIZE,
-                            PALETTE_BITMAP_SIZE, Bitmap.Config.ARGB_8888);
-                    // If Palette can not extract a primary color, our UX person says we are better
-                    // off using the LetterTileDrawable's non vibrant color than falling back
-                    // to the app's default color.
-                    final int color = colorFromBitmap(bitmap);
-                    if (color == 0) {
-                        return tileDrawable.getColor();
-                    } else {
-                        return color;
-                    }
+                    return ((LetterTileDrawable) imageViewDrawable).getColor();
                 }
                 return 0;
             }
@@ -725,32 +743,36 @@ public class QuickContactActivity extends ContactsActivity {
             @Override
             protected void onPostExecute(Integer color) {
                 super.onPostExecute(color);
-                // Check that the Photo has not changed. If it has changed, the new tint color
-                // needs to be extracted
-                if (imageViewDrawable == mPhotoView.getDrawable()) {
-                    // If the color is invalid, use the predefined default
-                    if (color == 0) {
-                        color = getResources().getColor(R.color.actionbar_background_color);
-                    }
-                    // TODO: animate from the previous tint.
-                    mScroller.setHeaderTintColor(color);
-
-                    // Create a darker version of the actionbar color. HSV is device dependent
-                    // and not perceptually-linear. Therefore, we can't say mStatusBarColor is
-                    // 70% as bright as the action bar color. We can only say: it is a bit darker.
-                    final float hsvComponents[] = new float[3];
-                    Color.colorToHSV(color, hsvComponents);
-                    hsvComponents[2] *= SYSTEM_BAR_BRIGHTNESS_FACTOR;
-                    mStatusBarColor = Color.HSVToColor(hsvComponents);
-
-                    updateStatusBarColor();
-                    final ColorFilter colorFilter =
-                            new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-                    mCommunicationCard.setColorAndFilter(color, colorFilter);
-                    mRecentCard.setColorAndFilter(color, colorFilter);
+                // Make sure the color is valid. Also check that the Photo has not changed. If it
+                // has changed, the new tint color needs to be extracted
+                if (color != 0 && imageViewDrawable == mPhotoView.getDrawable()) {
+                    setThemeColor(color);
                 }
             }
         }.execute();
+    }
+
+    private void setThemeColor(int color) {
+        // If the color is invalid, use the predefined default
+        if (color == 0) {
+            color = getResources().getColor(R.color.actionbar_background_color);
+        }
+        // TODO: animate from the previous tint.
+        mScroller.setHeaderTintColor(color);
+
+        // Create a darker version of the actionbar color. HSV is device dependent
+        // and not perceptually-linear. Therefore, we can't say mStatusBarColor is
+        // 70% as bright as the action bar color. We can only say: it is a bit darker.
+        final float hsvComponents[] = new float[3];
+        Color.colorToHSV(color, hsvComponents);
+        hsvComponents[2] *= SYSTEM_BAR_BRIGHTNESS_FACTOR;
+        mStatusBarColor = Color.HSVToColor(hsvComponents);
+
+        updateStatusBarColor();
+        mColorFilter =
+                new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        mCommunicationCard.setColorAndFilter(color, mColorFilter);
+        mRecentCard.setColorAndFilter(color, mColorFilter);
     }
 
     private void updateStatusBarColor() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!-- Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,45 +13,29 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout
+<com.android.contacts.widget.MultiShrinkScroller
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res-auto"
-    android:id="@android:id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dip"
-    android:orientation="horizontal">
-    <view
-        class="com.android.contacts.common.widget.ProportionalLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        ex:ratio="1.0"
-        ex:direction="heightToWidth">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/photo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/description_contact_photo" />
-            <!-- Need to set a non null background on Toolbar in order for MenuItem
-                ripples to be drawn on this view, instead of another-->
-            <Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="#00000000"
-                android:id="@+id/toolbar"/>
-        </FrameLayout>
-    </view>
-    <com.android.contacts.quickcontact.ExpandingEntryCardView
-        style="@style/ExpandingEntryCardStyle"
-        android:id="@+id/communication_card"
-        android:layout_marginTop="@dimen/communication_card_marginTop"
-        android:visibility="gone" />
-    <com.android.contacts.quickcontact.ExpandingEntryCardView
-        style="@style/ExpandingEntryCardStyle"
-        android:id="@+id/recent_card"
-        android:visibility="gone" />
-</LinearLayout>
+    android:orientation="vertical"
+    android:id="@+id/multiscroller"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="afterDescendants" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/quickcontact_starting_empty_height"
+        android:id="@+id/transparent_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/quickcontact_header" />
+
+        <include layout="@layout/quickcontact_content" />
+
+    </LinearLayout>
+
+</com.android.contacts.widget.MultiShrinkScroller>
