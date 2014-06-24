@@ -29,54 +29,8 @@
         android:layout_height="@dimen/quickcontact_starting_empty_height"
         android:id="@+id/transparent_view" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/card_margin_color"
-        android:id="@+id/toolbar_parent">
+    <include layout="@layout/quickcontact_header" />
 
-        <ImageView
-            android:id="@+id/photo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/description_contact_photo" />
-
-        <!-- Need to set a non null background on Toolbar in order for MenuItem
-            ripples to be drawn on this view, instead of another-->
-        <Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="#00000000"
-            android:id="@+id/toolbar"/>
-
-    </FrameLayout>
-
-    <com.android.contacts.widget.TouchlessScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:id="@+id/content_scroller"
-        android:background="@color/card_margin_color">
-
-        <!-- All the cards should be inserted into this LinearLayout -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/card_container">
-            <com.android.contacts.quickcontact.ExpandingEntryCardView
-                style="@style/ExpandingEntryCardStyle"
-                android:id="@+id/communication_card"
-                android:layout_marginTop="@dimen/communication_card_marginTop"
-                android:visibility="gone" />
-
-           <com.android.contacts.quickcontact.ExpandingEntryCardView
-                style="@style/ExpandingEntryCardStyle"
-                android:id="@+id/recent_card"
-                android:visibility="gone" />
-        </LinearLayout>
-
-    </com.android.contacts.widget.TouchlessScrollView>
+    <include layout="@layout/quickcontact_content" />
 
 </com.android.contacts.widget.MultiShrinkScroller>

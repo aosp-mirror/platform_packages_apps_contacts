@@ -18,8 +18,8 @@
 
     <!-- Initial height of transparent space above QuickContacts -->
     <dimen name="quickcontact_starting_empty_height">150dp</dimen>
-    <!-- Initial height of QuickContact's header/avatar-photo -->
-    <dimen name="quickcontact_starting_header_height">200dp</dimen>
+    <!-- Initial size of QuickContact's title size -->
+    <dimen name="quickcontact_maximum_title_size">36dp</dimen>
 
     <!-- Top padding of the entire contact editor  -->
     <dimen name="editor_padding_top">0dip</dimen>
@@ -147,9 +147,9 @@
     <dimen name="expanding_entry_card_marginBottom">8dp</dimen>
 
     <!-- Elevation of an ExpandingEntryCard, for the sake of shadow casting -->
-    <dimen name="expanding_entry_card_elevation">2dp</dimen>
+    <dimen name="expanding_entry_card_elevation">1dp</dimen>
     <!-- Elevation of the QuickContact's Toolbar, for the sake of shadow casting -->
-    <dimen name="quick_contact_toolbar_elevation">6dp</dimen>
+    <dimen name="quick_contact_toolbar_elevation">4.5dp</dimen>
 
     <!-- Top margin for the communication card, used to add space from header. -->
     <dimen name="communication_card_marginTop">8dp</dimen>

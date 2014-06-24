@@ -11,10 +11,14 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.hardware.display.DisplayManagerGlobal;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.DisplayInfo;
 import android.view.MotionEvent;
@@ -22,12 +26,14 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewConfiguration;
+import android.view.WindowManager;
 import android.view.animation.Interpolator;
 import android.widget.EdgeEffect;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 /**
  * A custom {@link ViewGroup} that operates similarly to a {@link ScrollView}, except with multiple
@@ -54,6 +60,11 @@ public class MultiShrinkScroller extends LinearLayout {
      */
     private static final int EXIT_FLING_ANIMATION_DURATION_MS = 300;
 
+    /**
+     * In portrait mode, the height:width ratio of the photo's starting height.
+     */
+    private static final float INTERMEDIATE_HEADER_HEIGHT_RATIO = 0.5f;
+
     private float[] mLastEventPosition = { 0, 0 };
     private VelocityTracker mVelocityTracker;
     private boolean mIsBeingDragged = false;
@@ -62,24 +73,49 @@ public class MultiShrinkScroller extends LinearLayout {
     private ScrollView mScrollView;
     private View mScrollViewChild;
     private View mToolbar;
-    private ImageView mPhotoView;
+    private QuickContactImageView mPhotoView;
     private View mPhotoViewContainer;
     private View mTransparentView;
     private MultiShrinkScrollerListener mListener;
+    private TextView mLargeTextView;
+    /** Contains desired location/size of the title, once the header is fully compressed */
+    private TextView mInvisiblePlaceholderTextView;
     private int mHeaderTintColor;
     private int mMaximumHeaderHeight;
+    private int mMinimumHeaderHeight;
+    private int mIntermediateHeaderHeight;
+    private int mMaximumHeaderTextSize;
 
     private final Scroller mScroller;
     private final EdgeEffect mEdgeGlowBottom;
     private final int mTouchSlop;
     private final int mMaximumVelocity;
     private final int mMinimumVelocity;
-    private final int mIntermediateHeaderHeight;
-    private final int mMinimumHeaderHeight;
     private final int mTransparentStartHeight;
     private final float mToolbarElevation;
-    private final PorterDuffColorFilter mColorFilter
-            = new PorterDuffColorFilter(0, PorterDuff.Mode.SRC_ATOP);
+    private final boolean mIsTwoPanel;
+    final Rect mLargeTextViewRect = new Rect();
+    final Rect mInvisiblePlaceholderTextViewRect = new Rect();
+
+    // Objects used to perform color filtering on the header. These are stored as fields for
+    // the sole purpose of avoiding "new" operations inside animation loops.
+    private final ColorMatrix mWhitenessColorMatrix = new ColorMatrix();
+    private final  ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(
+            mWhitenessColorMatrix);
+    private final ColorMatrix mColorMatrix = new ColorMatrix();
+    private final float[] mAlphaMatrixValues = {
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 1, 0
+    };
+    private final ColorMatrix mMultiplyBlendMatrix = new ColorMatrix();
+    private final float[] mMultiplyBlendMatrixValues = {
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 1, 0
+    };
 
     public interface MultiShrinkScrollerListener {
         void onScrolledOffBottom();
@@ -148,12 +184,11 @@ public class MultiShrinkScroller extends LinearLayout {
         mTouchSlop = configuration.getScaledTouchSlop();
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
-        mIntermediateHeaderHeight = (int) getResources().getDimension(
-                R.dimen.quickcontact_starting_header_height);
         mTransparentStartHeight = (int) getResources().getDimension(
                 R.dimen.quickcontact_starting_empty_height);
         mToolbarElevation = mContext.getResources().getDimension(
                 R.dimen.quick_contact_toolbar_elevation);
+        mIsTwoPanel = mContext.getResources().getBoolean(R.bool.quickcontact_two_panel);
 
         final TypedArray attributeArray = context.obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize});
@@ -170,10 +205,11 @@ public class MultiShrinkScroller extends LinearLayout {
         mToolbar = findViewById(R.id.toolbar_parent);
         mPhotoViewContainer = findViewById(R.id.toolbar_parent);
         mTransparentView = findViewById(R.id.transparent_view);
+        mLargeTextView = (TextView) findViewById(R.id.large_title);
+        mInvisiblePlaceholderTextView = (TextView) findViewById(R.id.placeholder_textview);
         mListener = listener;
 
-        mPhotoView = (ImageView) findViewById(R.id.photo);
-        setHeaderHeight(mIntermediateHeaderHeight);
+        mPhotoView = (QuickContactImageView) findViewById(R.id.photo);
         mPhotoView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,13 +217,47 @@ public class MultiShrinkScroller extends LinearLayout {
             }
         });
 
-        SchedulingUtils.doOnPreDraw(this, /* drawNextFrame = */ true, new Runnable() {
+        final WindowManager windowManager = (WindowManager) getContext().getSystemService(
+                Context.WINDOW_SERVICE);
+        final Point windowSize = new Point();
+        windowManager.getDefaultDisplay().getSize(windowSize);
+        if (!mIsTwoPanel) {
+            // We never want the height of the photo view to exceed its width.
+            mMaximumHeaderHeight = windowSize.x;
+            mIntermediateHeaderHeight = (int) (mMaximumHeaderHeight
+                    * INTERMEDIATE_HEADER_HEIGHT_RATIO);
+        }
+        setHeaderHeight(mIntermediateHeaderHeight);
+
+        SchedulingUtils.doOnPreDraw(this, /* drawNextFrame = */ false, new Runnable() {
             @Override
             public void run() {
-                // We never want the height of the photo view to exceed its width.
-                mMaximumHeaderHeight = mToolbar.getWidth();
+                mMaximumHeaderTextSize = mLargeTextView.getHeight();
+                // Unlike Window width, we can't know the usable window height until predraw
+                // has occured. Therefore, setting these constraints must be done inside
+                // onPreDraw for the two panel layout. Fortunately, the two panel layout
+                // doesn't need these values anywhere else inside the activity's creation.
+                if (mIsTwoPanel) {
+                    mMaximumHeaderHeight = getHeight();
+                    mMinimumHeaderHeight = mMaximumHeaderHeight;
+                    mIntermediateHeaderHeight = mMaximumHeaderHeight;
+                    final TypedValue photoRatio = new TypedValue();
+                    getResources().getValue(R.vals.quickcontact_photo_ratio, photoRatio,
+                            /* resolveRefs = */ true);
+                    final LayoutParams layoutParams
+                            = (LayoutParams) mPhotoViewContainer.getLayoutParams();
+                    layoutParams.height = mMaximumHeaderHeight;
+                    layoutParams.width = (int) (mMaximumHeaderHeight * photoRatio.getFloat());
+                    mPhotoViewContainer.setLayoutParams(layoutParams);
+                }
+
+                updateHeaderTextSize();
             }
         });
+    }
+
+    public void setTitle(String title) {
+        mLargeTextView.setText(title);
     }
 
     @Override
@@ -257,14 +327,13 @@ public class MultiShrinkScroller extends LinearLayout {
                 mReceivedDown = false;
 
                 if (mIsBeingDragged) {
-                    final int heightScrollViewChild = mScrollViewChild.getHeight();
-                    final int pulledToY = mScrollView.getScrollY() + (int) delta;
-                    if (pulledToY > heightScrollViewChild - mScrollView.getHeight()
-                            && mToolbar.getHeight() == mMinimumHeaderHeight) {
+                    final int distanceFromMaxScrolling = getMaximumScrollUpwards() - getScroll();
+                    if (delta > distanceFromMaxScrolling) {
                         // The ScrollView is being pulled upwards while there is no more
                         // content offscreen, and the view port is already fully expanded.
                         mEdgeGlowBottom.onPull(delta / getHeight(), 1 - event.getX() / getWidth());
                     }
+
                     if (!mEdgeGlowBottom.isFinished()) {
                         postInvalidateOnAnimation();
                     }
@@ -285,6 +354,9 @@ public class MultiShrinkScroller extends LinearLayout {
     public void setHeaderTintColor(int color) {
         mHeaderTintColor = color;
         updatePhotoTintAndDropShadow();
+        // We want to use the same amount of alpha on the new tint color as the previous tint color.
+        final int edgeEffectAlpha = Color.alpha(mEdgeGlowBottom.getColor());
+        mEdgeGlowBottom.setColor((color & 0xffffff) | Color.argb(edgeEffectAlpha, 0, 0, 0));
     }
 
     /**
@@ -399,6 +471,7 @@ public class MultiShrinkScroller extends LinearLayout {
             scrollDown(delta);
         }
         updatePhotoTintAndDropShadow();
+        updateHeaderTextSize();
         final boolean isFullscreen = getScrollNeededToBeFullScreen() <= 0;
         if (mListener != null) {
             if (wasFullscreen && !isFullscreen) {
@@ -419,6 +492,7 @@ public class MultiShrinkScroller extends LinearLayout {
         toolbarLayoutParams.height = height;
         mToolbar.setLayoutParams(toolbarLayoutParams);
         updatePhotoTintAndDropShadow();
+        updateHeaderTextSize();
     }
 
     @NeededForReflection
@@ -510,7 +584,12 @@ public class MultiShrinkScroller extends LinearLayout {
                     height + getMaximumScrollUpwards() - getScroll());
 
             canvas.rotate(180, width, 0);
-            mEdgeGlowBottom.setSize(width, height);
+            if (mIsTwoPanel) {
+                // Only show the EdgeEffect on the bottom of the ScrollView.
+                mEdgeGlowBottom.setSize(mScrollView.getWidth(), height);
+            } else {
+                mEdgeGlowBottom.setSize(width, height);
+            }
             if (mEdgeGlowBottom.draw(canvas)) {
                 postInvalidateOnAnimation();
             }
@@ -535,11 +614,18 @@ public class MultiShrinkScroller extends LinearLayout {
     }
 
     private int getMaximumScrollUpwards() {
-        return mTransparentStartHeight
-                // How much the Header view can compress
-                + mIntermediateHeaderHeight - mMinimumHeaderHeight
-                // How much the ScrollView can scroll. 0, if child is smaller than ScrollView.
-                + Math.max(0, mScrollViewChild.getHeight() - getHeight() + mMinimumHeaderHeight);
+        if (!mIsTwoPanel) {
+            return mTransparentStartHeight
+                    // How much the Header view can compress
+                    + mIntermediateHeaderHeight - mMinimumHeaderHeight
+                    // How much the ScrollView can scroll. 0, if child is smaller than ScrollView.
+                    + Math.max(0, mScrollViewChild.getHeight() - getHeight()
+                    + mMinimumHeaderHeight);
+        } else {
+            return mTransparentStartHeight
+                    // How much the ScrollView can scroll. 0, if child is smaller than ScrollView.
+                    + Math.max(0, mScrollViewChild.getHeight() - getHeight());
+        }
     }
 
     private int getTransparentViewHeight() {
@@ -602,27 +688,167 @@ public class MultiShrinkScroller extends LinearLayout {
         }
     }
 
+    /**
+     * Set the header size and padding, based on the current scroll position.
+     */
+    private void updateHeaderTextSize() {
+        if (mIsTwoPanel) {
+            // The text size stays constant on two panel layouts.
+            return;
+        }
+
+        // The pivot point for scaling should be middle of the starting side.
+        if (isLayoutRtl()) {
+            mLargeTextView.setPivotX(mLargeTextView.getWidth());
+        } else {
+            mLargeTextView.setPivotX(0);
+        }
+        mLargeTextView.setPivotY(mLargeTextView.getHeight() / 2);
+
+        final int START_TEXT_SCALING_THRESHOLD_COEFFICIENT = 2;
+        final int threshold = START_TEXT_SCALING_THRESHOLD_COEFFICIENT * mMinimumHeaderHeight;
+        final int toolbarHeight = mToolbar.getLayoutParams().height;
+        if (toolbarHeight >= threshold) {
+            // Keep the text at maximum size since the header is smaller than threshold.
+            mLargeTextView.setScaleX(1);
+            mLargeTextView.setScaleY(1);
+            configureLargeTitlePadding();
+            return;
+        }
+        final float ratio = (toolbarHeight  - mMinimumHeaderHeight)
+                / (float)(threshold - mMinimumHeaderHeight);
+        final float minimumSize = mInvisiblePlaceholderTextView.getHeight();
+        final float scale = (minimumSize + (mMaximumHeaderTextSize - minimumSize) * ratio)
+                / mMaximumHeaderTextSize;
+
+        mLargeTextView.setScaleX(scale);
+        mLargeTextView.setScaleY(scale);
+        configureLargeTitlePadding();
+    }
+
+    /**
+     * Configure the padding around mLargeTextView so that it will look appropriate once it
+     * finishes moving into its target location/size.
+     */
+    private void configureLargeTitlePadding() {
+        mToolbar.getBoundsOnScreen(mLargeTextViewRect);
+        mInvisiblePlaceholderTextView.getBoundsOnScreen(mInvisiblePlaceholderTextViewRect);
+        final int neededPaddingStart;
+        if (isLayoutRtl()) {
+            neededPaddingStart = mInvisiblePlaceholderTextViewRect.right - mLargeTextViewRect.right;
+        } else {
+            neededPaddingStart = mInvisiblePlaceholderTextViewRect.left - mLargeTextViewRect.left;
+        }
+
+        // Distance between top of toolbar to the center of the target rectangle.
+        final int desiredTopToCenter = (
+                mInvisiblePlaceholderTextViewRect.top + mInvisiblePlaceholderTextViewRect.bottom)
+                / 2 - mLargeTextViewRect.top;
+        // Additional padding needed on the mLargeTextView so that it has the same amount of
+        // padding as the target rectangle.
+        final int additionalBottomPaddingNeeded = desiredTopToCenter - mLargeTextView.getHeight()
+                / 2;
+
+        final FrameLayout.LayoutParams layoutParams
+                = (FrameLayout.LayoutParams) mLargeTextView.getLayoutParams();
+        layoutParams.bottomMargin = additionalBottomPaddingNeeded;
+        layoutParams.setMarginStart(neededPaddingStart);
+        mLargeTextView.setLayoutParams(layoutParams);
+    }
+
     private void updatePhotoTintAndDropShadow() {
         // We need to use toolbarLayoutParams to determine the height, since the layout
         // params can be updated before the height change is reflected inside the View#getHeight().
         final int toolbarHeight = mToolbar.getLayoutParams().height;
+
+        if (toolbarHeight <= mMinimumHeaderHeight && !mIsTwoPanel) {
+            mPhotoViewContainer.setElevation(mToolbarElevation);
+        } else {
+            mPhotoViewContainer.setElevation(0);
+        }
+
         // Reuse an existing mColorFilter (to avoid GC pauses) to change the photo's tint.
         mPhotoView.clearColorFilter();
-        if (toolbarHeight >= mMaximumHeaderHeight) {
-            mPhotoViewContainer.setElevation(0);
-            return;
+
+        final float ratio;
+        final float intermediateRatio;
+        if (!mIsTwoPanel) {
+            // Ratio of current size to maximum size of the header.
+            ratio =  (toolbarHeight  - mMinimumHeaderHeight)
+                    / (float) (mMaximumHeaderHeight - mMinimumHeaderHeight) ;
+            // The value that "ratio" will have when the header is at its
+            // starting/intermediate size.
+            intermediateRatio = (mIntermediateHeaderHeight - mMinimumHeaderHeight)
+                    / (float) (mMaximumHeaderHeight - mMinimumHeaderHeight);
+        } else {
+            // Set ratio and intermediateRatio to the same arbitrary value, so that
+            // the math below considers us to be in the intermediate position. The specific
+            // values are not very important.
+            ratio = 0.5f;
+            intermediateRatio = 0.5f;
         }
-        if (toolbarHeight <= mMinimumHeaderHeight) {
-            mColorFilter.setColor(mHeaderTintColor);
-            mPhotoView.setColorFilter(mColorFilter);
-            mPhotoViewContainer.setElevation(mToolbarElevation);
+
+        final float linearBeforeMiddle = Math.max(1 - (1 - ratio) / intermediateRatio, 0);
+
+        // Want a function with a derivative of 0 at x=0. I don't want it to grow too
+        // slowly before x=0.5. x^1.1 satisfies both requirements.
+        final float EXPONENT_ALMOST_ONE = 1.1f;
+        final float semiLinearBeforeMiddle = (float) Math.pow(linearBeforeMiddle,
+                EXPONENT_ALMOST_ONE);
+        mColorMatrix.reset();
+        mColorMatrix.setSaturation(semiLinearBeforeMiddle);
+        mColorMatrix.postConcat(alphaMatrix(ratio, Color.WHITE));
+
+        final float colorAlpha;
+        if (mPhotoView.isBasedOffLetterTile()) {
+            // Since the letter tile only has white and grey, tint it more slowly. Otherwise
+            // it will be completely invisible before we reach the intermediate point.
+            final float SLOWING_FACTOR = 1.6f;
+            float linearBeforeMiddleish = Math.max(1 - (1 - ratio) / intermediateRatio
+                    / SLOWING_FACTOR, 0);
+            colorAlpha = 1 - (float) Math.pow(linearBeforeMiddleish, EXPONENT_ALMOST_ONE);
+            mColorMatrix.postConcat(alphaMatrix(colorAlpha, mHeaderTintColor));
+        } else {
+            colorAlpha = 1 - semiLinearBeforeMiddle;
+            mColorMatrix.postConcat(multiplyBlendMatrix(mHeaderTintColor, colorAlpha));
         }
-        mPhotoViewContainer.setElevation(0);
-        final int alphaBits = 0xff - 0xff * (toolbarHeight  - mMinimumHeaderHeight)
-                / (mMaximumHeaderHeight - mMinimumHeaderHeight);
-        final int color = alphaBits << 24 | (mHeaderTintColor & 0xffffff);
-        mColorFilter.setColor(color);
+
+        mColorFilter.setColorMatrix(mColorMatrix);
         mPhotoView.setColorFilter(mColorFilter);
+        // Tell the photo view what tint we are trying to achieve. Depending on the type of
+        // drawable used, the photo view may or may not use this tint.
+        mPhotoView.setTint(((int) (0xFF * colorAlpha)) << 24 | (mHeaderTintColor & 0xffffff));
+    }
+
+    /**
+     * Simulates alpha blending an image with {@param color}.
+     */
+    private ColorMatrix alphaMatrix(float alpha, int color) {
+        mAlphaMatrixValues[0] = Color.red(color) * alpha / 255;
+        mAlphaMatrixValues[6] = Color.green(color) * alpha / 255;
+        mAlphaMatrixValues[12] = Color.blue(color) * alpha / 255;
+        mAlphaMatrixValues[4] = 255 * (1 - alpha);
+        mAlphaMatrixValues[9] = 255 * (1 - alpha);
+        mAlphaMatrixValues[14] = 255 * (1 - alpha);
+        mWhitenessColorMatrix.set(mAlphaMatrixValues);
+        return mWhitenessColorMatrix;
+    }
+
+    /**
+     * Simulates multiply blending an image with a single {@param color}.
+     *
+     * Multiply blending is [Sa * Da, Sc * Dc]. See {@link android.graphics.PorterDuff}.
+     */
+    private ColorMatrix multiplyBlendMatrix(int color, float alpha) {
+        mMultiplyBlendMatrixValues[0] = multiplyBlend(Color.red(color), alpha);
+        mMultiplyBlendMatrixValues[6] = multiplyBlend(Color.green(color), alpha);
+        mMultiplyBlendMatrixValues[12] = multiplyBlend(Color.blue(color), alpha);
+        mMultiplyBlendMatrix.set(mMultiplyBlendMatrixValues);
+        return mMultiplyBlendMatrix;
+    }
+
+    private float multiplyBlend(int color, float alpha) {
+        return color * alpha / 255.0f + (1 - alpha);
     }
 
     private void updateLastEventPosition(MotionEvent event) {
