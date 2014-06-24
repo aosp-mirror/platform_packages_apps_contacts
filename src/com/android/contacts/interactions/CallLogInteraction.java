@@ -55,7 +55,9 @@ public class CallLogInteraction implements ContactInteraction {
 
     @Override
     public Intent getIntent() {
-        return new Intent(Intent.ACTION_CALL).setData(Uri.parse(URI_TARGET_PREFIX + getNumber()));
+        String number = getNumber();
+        return number == null ? null : new Intent(Intent.ACTION_CALL).setData(
+                Uri.parse(URI_TARGET_PREFIX + number));
     }
 
     @Override
@@ -65,13 +67,14 @@ public class CallLogInteraction implements ContactInteraction {
 
     @Override
     public long getInteractionDate() {
-        return getDate();
+        Long date = getDate();
+        return date == null ? -1 : date;
     }
 
     @Override
     public String getViewBody(Context context) {
-        int numberType = getCachedNumberType();
-        if (numberType == -1) {
+        Integer numberType = getCachedNumberType();
+        if (numberType == null) {
             return null;
         }
         return Phone.getTypeLabel(context.getResources(), getCachedNumberType(),
@@ -80,7 +83,9 @@ public class CallLogInteraction implements ContactInteraction {
 
     @Override
     public String getViewFooter(Context context) {
-        return ContactInteractionUtil.formatDateStringFromTimestamp(getDate(), context);
+        Long date = getDate();
+        return date == null ? null : ContactInteractionUtil.formatDateStringFromTimestamp(
+                date, context);
     }
 
     @Override
@@ -97,7 +102,11 @@ public class CallLogInteraction implements ContactInteraction {
     public Drawable getFooterIcon(Context context) {
         Drawable callArrow = null;
         Resources res = context.getResources();
-        switch (getType()) {
+        Integer type = getType();
+        if (type == null) {
+            return null;
+        }
+        switch (type) {
             case Calls.INCOMING_TYPE:
                 callArrow = res.getDrawable(CALL_ARROW_ICON_RES);
                 callArrow.setColorFilter(res.getColor(R.color.call_arrow_green),
@@ -125,28 +134,27 @@ public class CallLogInteraction implements ContactInteraction {
         return mValues.getAsString(Calls.CACHED_NUMBER_LABEL);
     }
 
-    public int getCachedNumberType() {
-        Integer type = mValues.getAsInteger(Calls.CACHED_NUMBER_TYPE);
-        return type != null ? type : -1;
+    public Integer getCachedNumberType() {
+        return mValues.getAsInteger(Calls.CACHED_NUMBER_TYPE);
     }
 
-    public long getDate() {
+    public Long getDate() {
         return mValues.getAsLong(Calls.DATE);
     }
 
-    public long getDuration() {
+    public Long getDuration() {
         return mValues.getAsLong(Calls.DURATION);
     }
 
-    public boolean getIsRead() {
+    public Boolean getIsRead() {
         return mValues.getAsBoolean(Calls.IS_READ);
     }
 
-    public int getLimitParamKey() {
+    public Integer getLimitParamKey() {
         return mValues.getAsInteger(Calls.LIMIT_PARAM_KEY);
     }
 
-    public boolean getNew() {
+    public Boolean getNew() {
         return mValues.getAsBoolean(Calls.NEW);
     }
 
@@ -154,15 +162,15 @@ public class CallLogInteraction implements ContactInteraction {
         return mValues.getAsString(Calls.NUMBER);
     }
 
-    public int getNumberPresentation() {
+    public Integer getNumberPresentation() {
         return mValues.getAsInteger(Calls.NUMBER_PRESENTATION);
     }
 
-    public int getOffsetParamKey() {
+    public Integer getOffsetParamKey() {
         return mValues.getAsInteger(Calls.OFFSET_PARAM_KEY);
     }
 
-    public int getType() {
+    public Integer getType() {
         return mValues.getAsInteger(Calls.TYPE);
     }
 }

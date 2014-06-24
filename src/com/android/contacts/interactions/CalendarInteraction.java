@@ -61,6 +61,16 @@ public class CalendarInteraction implements ContactInteraction {
         // TODO: build callback to update time zone if different than preferences
         String localTimezone = Time.getCurrentTimezone();
 
+        Long dateEnd = getDtend();
+        Long dateStart = getDtstart();
+        if (dateStart == null && dateEnd == null) {
+            return null;
+        } else if (dateEnd == null) {
+            dateEnd = dateStart;
+        } else if (dateStart == null) {
+            dateStart = dateEnd;
+        }
+
         String displayedDatetime = CalendarInteractionUtils.getDisplayedDatetime(
                 getDtstart(), getDtend(), System.currentTimeMillis(), localTimezone,
                 getAllDay(), context);
@@ -99,39 +109,39 @@ public class CalendarInteraction implements ContactInteraction {
         return mValues.getAsString(Attendees.ATTENDEE_NAME);
     }
 
-    public int getAttendeeRelationship() {
+    public Integer getAttendeeRelationship() {
         return mValues.getAsInteger(Attendees.ATTENDEE_RELATIONSHIP);
     }
 
-    public int getAttendeeStatus() {
+    public Integer getAttendeeStatus() {
         return mValues.getAsInteger(Attendees.ATTENDEE_STATUS);
     }
 
-    public int getAttendeeType() {
+    public Integer getAttendeeType() {
         return mValues.getAsInteger(Attendees.ATTENDEE_TYPE);
     }
 
-    public int getEventId() {
+    public Integer getEventId() {
         return mValues.getAsInteger(Attendees.EVENT_ID);
     }
 
-    public int getAccessLevel() {
+    public Integer getAccessLevel() {
         return mValues.getAsInteger(Attendees.ACCESS_LEVEL);
     }
 
-    public boolean getAllDay() {
+    public Boolean getAllDay() {
         return mValues.getAsBoolean(Attendees.ALL_DAY);
     }
 
-    public int getAvailability() {
+    public Integer getAvailability() {
         return mValues.getAsInteger(Attendees.AVAILABILITY);
     }
 
-    public int getCalendarId() {
+    public Integer getCalendarId() {
         return mValues.getAsInteger(Attendees.CALENDAR_ID);
     }
 
-    public boolean getCanInviteOthers() {
+    public Boolean getCanInviteOthers() {
         return mValues.getAsBoolean(Attendees.CAN_INVITE_OTHERS);
     }
 
@@ -147,15 +157,15 @@ public class CalendarInteraction implements ContactInteraction {
         return mValues.getAsString(Attendees.DESCRIPTION);
     }
 
-    public int getDisplayColor() {
+    public Integer getDisplayColor() {
         return mValues.getAsInteger(Attendees.DISPLAY_COLOR);
     }
 
-    public long getDtend() {
+    public Long getDtend() {
         return mValues.getAsLong(Attendees.DTEND);
     }
 
-    public long getDtstart() {
+    public Long getDtstart() {
         return mValues.getAsLong(Attendees.DTSTART);
     }
 
@@ -163,7 +173,7 @@ public class CalendarInteraction implements ContactInteraction {
         return mValues.getAsString(Attendees.DURATION);
     }
 
-    public int getEventColor() {
+    public Integer getEventColor() {
         return mValues.getAsInteger(Attendees.EVENT_COLOR);
     }
 
@@ -187,27 +197,27 @@ public class CalendarInteraction implements ContactInteraction {
         return mValues.getAsString(Attendees.EXRULE);
     }
 
-    public boolean getGuestsCanInviteOthers() {
+    public Boolean getGuestsCanInviteOthers() {
         return mValues.getAsBoolean(Attendees.GUESTS_CAN_INVITE_OTHERS);
     }
 
-    public boolean getGuestsCanModify() {
+    public Boolean getGuestsCanModify() {
         return mValues.getAsBoolean(Attendees.GUESTS_CAN_MODIFY);
     }
 
-    public boolean getGuestsCanSeeGuests() {
+    public Boolean getGuestsCanSeeGuests() {
         return mValues.getAsBoolean(Attendees.GUESTS_CAN_SEE_GUESTS);
     }
 
-    public boolean getHasAlarm() {
+    public Boolean getHasAlarm() {
         return mValues.getAsBoolean(Attendees.HAS_ALARM);
     }
 
-    public boolean getHasAttendeeData() {
+    public Boolean getHasAttendeeData() {
         return mValues.getAsBoolean(Attendees.HAS_ATTENDEE_DATA);
     }
 
-    public boolean getHasExtendedProperties() {
+    public Boolean getHasExtendedProperties() {
         return mValues.getAsBoolean(Attendees.HAS_EXTENDED_PROPERTIES);
     }
 
@@ -215,11 +225,11 @@ public class CalendarInteraction implements ContactInteraction {
         return mValues.getAsString(Attendees.IS_ORGANIZER);
     }
 
-    public long getLastDate() {
+    public Long getLastDate() {
         return mValues.getAsLong(Attendees.LAST_DATE);
     }
 
-    public boolean getLastSynced() {
+    public Boolean getLastSynced() {
         return mValues.getAsBoolean(Attendees.LAST_SYNCED);
     }
 
@@ -227,7 +237,7 @@ public class CalendarInteraction implements ContactInteraction {
         return mValues.getAsString(Attendees.ORGANIZER);
     }
 
-    public boolean getOriginalAllDay() {
+    public Boolean getOriginalAllDay() {
         return mValues.getAsBoolean(Attendees.ORIGINAL_ALL_DAY);
     }
 
@@ -235,7 +245,7 @@ public class CalendarInteraction implements ContactInteraction {
         return mValues.getAsString(Attendees.ORIGINAL_ID);
     }
 
-    public long getOriginalInstanceTime() {
+    public Long getOriginalInstanceTime() {
         return mValues.getAsLong(Attendees.ORIGINAL_INSTANCE_TIME);
     }
 
@@ -251,11 +261,11 @@ public class CalendarInteraction implements ContactInteraction {
         return mValues.getAsString(Attendees.RRULE);
     }
 
-    public int getSelfAttendeeStatus() {
+    public Integer getSelfAttendeeStatus() {
         return mValues.getAsInteger(Attendees.SELF_ATTENDEE_STATUS);
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return mValues.getAsInteger(Attendees.STATUS);
     }
 

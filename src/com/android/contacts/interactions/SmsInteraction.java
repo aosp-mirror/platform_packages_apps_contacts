@@ -41,12 +41,15 @@ public class SmsInteraction implements ContactInteraction {
 
     @Override
     public Intent getIntent() {
-        return new Intent(Intent.ACTION_VIEW).setData(Uri.parse(URI_TARGET_PREFIX + getAddress()));
+        String address = getAddress();
+        return address == null ? null : new Intent(Intent.ACTION_VIEW).setData(
+                Uri.parse(URI_TARGET_PREFIX + address));
     }
 
     @Override
     public long getInteractionDate() {
-        return getDate();
+        Long date = getDate();
+        return date == null ? -1 : date;
     }
 
     @Override
@@ -61,7 +64,9 @@ public class SmsInteraction implements ContactInteraction {
 
     @Override
     public String getViewFooter(Context context) {
-        return ContactInteractionUtil.formatDateStringFromTimestamp(getDate(), context);
+        Long date = getDate();
+        return date == null ? null : ContactInteractionUtil.formatDateStringFromTimestamp(
+                date, context);
     }
 
     @Override
@@ -87,40 +92,40 @@ public class SmsInteraction implements ContactInteraction {
         return mValues.getAsString(Sms.BODY);
     }
 
-    public long getDate() {
+    public Long getDate() {
         return mValues.getAsLong(Sms.DATE);
     }
 
 
-    public long getDateSent() {
+    public Long getDateSent() {
         return mValues.getAsLong(Sms.DATE_SENT);
     }
 
-    public int getErrorCode() {
+    public Integer getErrorCode() {
         return mValues.getAsInteger(Sms.ERROR_CODE);
     }
 
-    public boolean getLocked() {
+    public Boolean getLocked() {
         return mValues.getAsBoolean(Sms.LOCKED);
     }
 
-    public int getPerson() {
+    public Integer getPerson() {
         return mValues.getAsInteger(Sms.PERSON);
     }
 
-    public int getProtocol() {
+    public Integer getProtocol() {
         return mValues.getAsInteger(Sms.PROTOCOL);
     }
 
-    public boolean getRead() {
+    public Boolean getRead() {
         return mValues.getAsBoolean(Sms.READ);
     }
 
-    public boolean getReplyPathPresent() {
+    public Boolean getReplyPathPresent() {
         return mValues.getAsBoolean(Sms.REPLY_PATH_PRESENT);
     }
 
-    public boolean getSeen() {
+    public Boolean getSeen() {
         return mValues.getAsBoolean(Sms.SEEN);
     }
 
@@ -128,7 +133,7 @@ public class SmsInteraction implements ContactInteraction {
         return mValues.getAsString(Sms.SERVICE_CENTER);
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return mValues.getAsInteger(Sms.STATUS);
     }
 
@@ -136,11 +141,11 @@ public class SmsInteraction implements ContactInteraction {
         return mValues.getAsString(Sms.SUBJECT);
     }
 
-    public int getThreadId() {
+    public Integer getThreadId() {
         return mValues.getAsInteger(Sms.THREAD_ID);
     }
 
-    public int getType() {
+    public Integer getType() {
         return mValues.getAsInteger(Sms.TYPE);
     }
 }
