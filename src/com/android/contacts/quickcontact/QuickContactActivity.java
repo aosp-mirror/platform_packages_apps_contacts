@@ -154,6 +154,7 @@ public class QuickContactActivity extends ContactsActivity {
     private ColorDrawable mWindowScrim;
     private boolean mIsWaitingForOtherPieceOfExitAnimation;
     private boolean mIsExitAnimationInProgress;
+    private boolean mHasComputedThemeColor;
 
     private static final int MIN_NUM_COMMUNICATION_ENTRIES_SHOWN = 3;
     private static final int MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN = 3;
@@ -426,6 +427,7 @@ public class QuickContactActivity extends ContactsActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         mHasAlreadyBeenOpened = true;
+        mHasComputedThemeColor = false;
         processIntent(intent);
     }
 
@@ -789,9 +791,18 @@ public class QuickContactActivity extends ContactsActivity {
             @Override
             protected void onPostExecute(Integer color) {
                 super.onPostExecute(color);
-                // Make sure the color is valid. Also check that the Photo has not changed. If it
-                // has changed, the new tint color needs to be extracted
-                if (color != 0 && imageViewDrawable == mPhotoView.getDrawable()) {
+                if (mHasComputedThemeColor) {
+                    // If we had previously computed a theme color from the contact photo,
+                    // then do not update the theme color. Changing the theme color several
+                    // seconds after QC has started, as a result of an updated/upgraded photo,
+                    // is a jarring experience. On the other hand, changing the theme color after
+                    // a rotation or onNewIntent() is perfectly fine.
+                    return;
+                }
+                // Check that the Photo has not changed. If it has changed, the new tint
+                // color needs to be extracted
+                if (imageViewDrawable == mPhotoView.getDrawable()) {
+                    mHasComputedThemeColor = true;
                     setThemeColor(color);
                 }
             }
@@ -803,7 +814,6 @@ public class QuickContactActivity extends ContactsActivity {
         if (color == 0) {
             color = getResources().getColor(R.color.actionbar_background_color);
         }
-        // TODO: animate from the previous tint.
         mScroller.setHeaderTintColor(color);
 
         // Create a darker version of the actionbar color. HSV is device dependent
@@ -813,8 +823,8 @@ public class QuickContactActivity extends ContactsActivity {
         Color.colorToHSV(color, hsvComponents);
         hsvComponents[2] *= SYSTEM_BAR_BRIGHTNESS_FACTOR;
         mStatusBarColor = Color.HSVToColor(hsvComponents);
-
         updateStatusBarColor();
+
         mColorFilter =
                 new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         mCommunicationCard.setColorAndFilter(color, mColorFilter);
@@ -973,7 +983,7 @@ public class QuickContactActivity extends ContactsActivity {
             // contact is invisible. If it is, we need to display an "Add to Contacts" MenuItem.
             return new ContactLoader(getApplicationContext(), mLookupUri,
                     true /*loadGroupMetaData*/, false /*loadInvitableAccountTypes*/,
-                    false /*postViewNotification*/, true /*computeFormattedPhoneNumber*/);
+                    true /*postViewNotification*/, true /*computeFormattedPhoneNumber*/);
         }
     };
 
