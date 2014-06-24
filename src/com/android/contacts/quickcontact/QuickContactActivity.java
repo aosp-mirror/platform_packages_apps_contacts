@@ -493,7 +493,6 @@ public class QuickContactActivity extends ContactsActivity {
 
         Trace.endSection();
 
-        final List<String> sortedActionMimeTypes = Lists.newArrayList();
         // Maintain a list of phone numbers to pass into SmsInteractionsLoader
         final Set<String> phoneNumbers = new HashSet<>();
         // Maintain a list of email addresses to pass into CalendarInteractionsLoader
@@ -504,8 +503,7 @@ public class QuickContactActivity extends ContactsActivity {
         mEntriesAndActionsTask = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                computeEntriesAndActions(data, phoneNumbers, emailAddresses,
-                        sortedActionMimeTypes, entries);
+                computeEntriesAndActions(data, phoneNumbers, emailAddresses, entries);
                 return null;
             }
 
@@ -516,8 +514,7 @@ public class QuickContactActivity extends ContactsActivity {
                 // is still running before binding to UI. A new intent could invalidate
                 // the results, for example.
                 if (data == mContactData && !isCancelled()) {
-                    bindEntriesAndActions(entries, phoneNumbers, emailAddresses,
-                            sortedActionMimeTypes);
+                    bindEntriesAndActions(entries, phoneNumbers, emailAddresses);
                     showActivity();
                 }
             }
@@ -527,8 +524,7 @@ public class QuickContactActivity extends ContactsActivity {
 
     private void bindEntriesAndActions(List<Entry> entries,
             Set<String> phoneNumbers,
-            Set<String> emailAddresses,
-            List<String> sortedActionMimeTypes) {
+            Set<String> emailAddresses) {
         Trace.beginSection("start sms loader");
         final Bundle phonesExtraBundle = new Bundle();
         phonesExtraBundle.putStringArray(KEY_LOADER_EXTRA_PHONES,
@@ -563,7 +559,7 @@ public class QuickContactActivity extends ContactsActivity {
                     /* isExpanded = */ false);
         }
 
-        final boolean hasData = !sortedActionMimeTypes.isEmpty();
+        final boolean hasData = !entries.isEmpty();
         mCommunicationCard.setVisibility(hasData ? View.VISIBLE : View.GONE);
 
         Trace.endSection();
@@ -583,7 +579,7 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     private void computeEntriesAndActions(Contact data, Set<String> phoneNumbers,
-            Set<String> emailAddresses, List<String> sortedActionMimeTypes, List<Entry> entries) {
+            Set<String> emailAddresses, List<Entry> entries) {
         Trace.beginSection("inflate entries and actions");
 
         final ResolveCache cache = ResolveCache.getInstance(this);
@@ -650,35 +646,85 @@ public class QuickContactActivity extends ContactsActivity {
         Trace.endSection();
         Trace.beginSection("sort mimetypes");
 
-        // All the mime-types to add.
-        final Set<String> containedTypes = new HashSet<String>(mActions.keySet());
-        // First, add LEADING_MIMETYPES, which are most common.
-        for (String mimeType : LEADING_MIMETYPES) {
-            if (containedTypes.contains(mimeType)) {
-                sortedActionMimeTypes.add(mimeType);
-                containedTypes.remove(mimeType);
-                entries.addAll(actionsToEntries(mActions.get(mimeType)));
-            }
+        /*
+         * Sorting is a multi part step. The end result is to a have a sorted list of the most
+         * used actions, one per mimetype. Then, within each mimetype, the list of actions for that
+         * type is also sorted, based off of {super primary, primary, times used} in that order.
+         */
+        final List<Action> topActions = new ArrayList<>();
+        for (List<Action> mimeTypeActions : mActions.values()) {
+            Collections.sort(mimeTypeActions, new Comparator<Action>() {
+                @Override
+                public int compare(Action lhs, Action rhs) {
+                    /*
+                     * Actions are compared to the same mimetype based off of three qualities:
+                     * 1. Super primary
+                     * 2. Primary
+                     * 3. Times used
+                     */
+                    if (lhs.isSuperPrimary()) {
+                        return -1;
+                    } else if (rhs.isSuperPrimary()) {
+                        return 1;
+                    } else if (lhs.isPrimary() && !rhs.isPrimary()) {
+                        return -1;
+                    } else if (!lhs.isPrimary() && rhs.isPrimary()) {
+                        return 1;
+                    } else {
+                        int lhsTimesUsed = lhs.getTimesUsed() == null ? 0 : lhs.getTimesUsed();
+                        int rhsTimesUsed = rhs.getTimesUsed() == null ? 0 : rhs.getTimesUsed();
+
+                        return rhsTimesUsed - lhsTimesUsed;
+                    }
+                }
+            });
+            topActions.add(mimeTypeActions.get(0));
         }
 
-        // Add all the remaining ones that are not TRAILING
-        for (String mimeType : containedTypes.toArray(new String[containedTypes.size()])) {
-            if (!TRAILING_MIMETYPES.contains(mimeType)) {
-                sortedActionMimeTypes.add(mimeType);
-                containedTypes.remove(mimeType);
-                entries.addAll(actionsToEntries(mActions.get(mimeType)));
-            }
-        }
+        // topActions now contains the top action for each mimetype. This list now needs to be
+        // sorted, based off of {times used, last used, statically defined} in that order.
+        Collections.sort(topActions, new Comparator<Action>() {
+            @Override
+            public int compare(Action lhs, Action rhs) {
+                int lhsTimesUsed = lhs.getTimesUsed() == null ? 0 : lhs.getTimesUsed();
+                int rhsTimesUsed = rhs.getTimesUsed() == null ? 0 : rhs.getTimesUsed();
+                int timesUsedDifference = rhsTimesUsed - lhsTimesUsed;
+                if (timesUsedDifference != 0) {
+                    return timesUsedDifference;
+                }
 
-        // Then, add TRAILING_MIMETYPES, which are least common.
-        for (String mimeType : TRAILING_MIMETYPES) {
-            if (containedTypes.contains(mimeType)) {
-                containedTypes.remove(mimeType);
-                sortedActionMimeTypes.add(mimeType);
-                entries.addAll(actionsToEntries(mActions.get(mimeType)));
-            }
-        }
+                long lhsLastTimeUsed = lhs.getLastTimeUsed() == null ? 0 : lhs.getLastTimeUsed();
+                long rhsLastTimeUsed = rhs.getLastTimeUsed() == null ? 0 : rhs.getLastTimeUsed();
+                long lastTimeUsedDifference = rhsLastTimeUsed - lhsLastTimeUsed;
+                if (lastTimeUsedDifference > 0) {
+                    return 1;
+                } else if (lastTimeUsedDifference < 0) {
+                    return -1;
+                }
 
+                // Times used and last time used are the same. Resort to statically defined.
+                String lhsMimeType = lhs.getMimeType();
+                String rhsMimeType = rhs.getMimeType();
+                for (String mimeType : LEADING_MIMETYPES) {
+                    if (lhsMimeType.equals(mimeType)) {
+                        return -1;
+                    } else if (rhsMimeType.equals(mimeType)) {
+                        return 1;
+                    }
+                }
+                // Trailing types come last, so flip the returns
+                for (String mimeType : TRAILING_MIMETYPES) {
+                    if (lhsMimeType.equals(mimeType)) {
+                        return 1;
+                    } else if (rhsMimeType.equals(mimeType)) {
+                        return -1;
+                    }
+                }
+                return 0;
+            }
+        });
+
+        entries.addAll(actionsToEntries(topActions));
         Trace.endSection();
     }
 

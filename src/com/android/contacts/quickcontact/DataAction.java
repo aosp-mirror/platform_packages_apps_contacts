@@ -29,9 +29,9 @@ import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.contacts.R;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.R;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.model.account.AccountType.EditType;
 import com.android.contacts.common.model.dataitem.DataItem;
@@ -55,6 +55,8 @@ public class DataAction implements Action {
     private final Context mContext;
     private final DataKind mKind;
     private final String mMimeType;
+    private final Integer mTimesUsed;
+    private final Long mLastTimeUsed;
 
     private CharSequence mBody;
     private CharSequence mSubtitle;
@@ -67,6 +69,7 @@ public class DataAction implements Action {
     private Uri mDataUri;
     private long mDataId;
     private boolean mIsPrimary;
+    private boolean mIsSuperPrimary;
 
     /**
      * Create an action from common {@link Data} elements.
@@ -75,6 +78,8 @@ public class DataAction implements Action {
         mContext = context;
         mKind = kind;
         mMimeType = item.getMimeType();
+        mTimesUsed = item.getTimesUsed();
+        mLastTimeUsed = item.getLastTimeUsed();
 
         // Determine type for subtitle
         mSubtitle = "";
@@ -96,7 +101,8 @@ public class DataAction implements Action {
             }
         }
 
-        mIsPrimary = item.isSuperPrimary();
+        mIsPrimary = item.isPrimary();
+        mIsSuperPrimary = item.isSuperPrimary();
         mBody = item.buildDataStringForDisplay(context, kind);
 
         mDataId = item.getId();
@@ -265,8 +271,13 @@ public class DataAction implements Action {
     }
 
     @Override
-    public Boolean isPrimary() {
+    public boolean isPrimary() {
         return mIsPrimary;
+    }
+
+    @Override
+    public boolean isSuperPrimary() {
+        return mIsSuperPrimary;
     }
 
     @Override
@@ -321,5 +332,15 @@ public class DataAction implements Action {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Integer getTimesUsed() {
+        return mTimesUsed;
+    }
+
+    @Override
+    public Long getLastTimeUsed() {
+        return mLastTimeUsed;
     }
 }

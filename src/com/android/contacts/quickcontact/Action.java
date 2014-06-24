@@ -45,7 +45,10 @@ public interface Action extends Collapser.Collapsible<Action> {
     public Intent getAlternateIntent();
 
     /** Checks if the contact data for this action is primary. */
-    public Boolean isPrimary();
+    public boolean isPrimary();
+
+    /** Checks if the contact data for this action is super primary. */
+    public boolean isSuperPrimary();
 
     /**
      * Returns a lookup (@link Uri) for the contact data item or null if there is no data item
@@ -61,4 +64,14 @@ public interface Action extends Collapser.Collapsible<Action> {
 
     /** Returns the presence of this item or -1 if it was never set */
     public int getPresence();
+
+    /**
+     * Returns the number of times this action has been used.
+     */
+    public Integer getTimesUsed();
+
+    /**
+     * Returns the last time this action was used.
+     */
+    public Long getLastTimeUsed();
 }
