@@ -161,24 +161,11 @@ public class DataItem {
         return buildDataString(context, kind);
     }
 
-    /**
-     * Returns the times used of the data. Not guaranteed to be available for all data rows.
-     *
-     * @return The number of times used, or -1 if unavailable.
-     */
-    public int getTimesUsed() {
-        final Integer timesUsed = mContentValues.getAsInteger(Entity.TIMES_USED);
-        return timesUsed == null ? -1 : timesUsed;
+    public Integer getTimesUsed() {
+        return mContentValues.getAsInteger(Entity.TIMES_USED);
     }
 
-    /**
-     * Returns the last time used used of the data. Not guaranteed to be available for all data
-     * rows.
-     *
-     * @return The last time used, or -1 if unavailable.
-     */
-    public long getLastTimeUsed() {
-        final Long lastTimeUsed = mContentValues.getAsLong(Entity.LAST_TIME_USED);
-        return lastTimeUsed == null ? -1 : lastTimeUsed;
+    public Long getLastTimeUsed() {
+        return mContentValues.getAsLong(Entity.LAST_TIME_USED);
     }
 }
