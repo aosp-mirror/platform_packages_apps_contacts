@@ -171,13 +171,6 @@ public class QuickContactActivity extends ContactsActivity {
     private HashMap<String, Action> mDefaultsMap = new HashMap<String, Action>();
 
     /**
-     * Set of {@link Action} that are associated with the aggregate currently
-     * displayed by this dialog, represented as a map from {@link String}
-     * MIME-type to a list of {@link Action}.
-     */
-    private ActionMultiMap mActions = new ActionMultiMap();
-
-    /**
      * {@link #LEADING_MIMETYPES} and {@link #TRAILING_MIMETYPES} are used to sort MIME-types.
      *
      * <p>The MIME-types in {@link #LEADING_MIMETYPES} appear in the front of the dialog,
@@ -619,6 +612,9 @@ public class QuickContactActivity extends ContactsActivity {
             Set<String> emailAddresses, List<Entry> entries) {
         Trace.beginSection("inflate entries and actions");
 
+        // Map from {@link String} MIME-type to a list of {@link Action}.
+        final ActionMultiMap actions = new ActionMultiMap();
+
         final ResolveCache cache = ResolveCache.getInstance(this);
         for (RawContact rawContact : data.getRawContacts()) {
             for (DataItem dataItem : rawContact.getDataItems()) {
@@ -648,7 +644,7 @@ public class QuickContactActivity extends ContactsActivity {
                     // along with all others of this MIME-type.
                     final Action action = new DataAction(getApplicationContext(),
                             dataItem, dataKind);
-                    final boolean wasAdded = considerAdd(action, cache, isSuperPrimary);
+                    final boolean wasAdded = considerAdd(action, cache, isSuperPrimary, actions);
                     if (wasAdded) {
                         // Remember the default
                         if (isSuperPrimary || (isPrimary && (mDefaultsMap.get(mimeType) == null))) {
@@ -666,7 +662,7 @@ public class QuickContactActivity extends ContactsActivity {
                         final DataAction action = new DataAction(getApplicationContext(),
                                 im, dataKind);
                         action.setPresence(status.getPresence());
-                        considerAdd(action, cache, isSuperPrimary);
+                        considerAdd(action, cache, isSuperPrimary, actions);
                     }
                 }
             }
@@ -676,7 +672,7 @@ public class QuickContactActivity extends ContactsActivity {
         Trace.beginSection("collapsing action list");
 
         // Collapse Action Lists (remove e.g. duplicate e-mail addresses from different sources)
-        for (List<Action> actionChildren : mActions.values()) {
+        for (List<Action> actionChildren : actions.values()) {
             Collapser.collapseList(actionChildren);
         }
 
@@ -690,7 +686,7 @@ public class QuickContactActivity extends ContactsActivity {
          */
         final List<Action> topActions = new ArrayList<>();
         final List<Action> allActions = new ArrayList<>();
-        for (List<Action> mimeTypeActions : mActions.values()) {
+        for (List<Action> mimeTypeActions : actions.values()) {
             Collections.sort(mimeTypeActions, new Comparator<Action>() {
                 @Override
                 public int compare(Action lhs, Action rhs) {
@@ -874,11 +870,13 @@ public class QuickContactActivity extends ContactsActivity {
      * @param action the action to handle
      * @param resolveCache cache of applications that can handle actions
      * @param front indicates whether to add the action to the front of the list
+     * @param actions where to put the action.
      * @return true if action has been added
      */
-    private boolean considerAdd(Action action, ResolveCache resolveCache, boolean front) {
+    private boolean considerAdd(Action action, ResolveCache resolveCache, boolean front,
+            ActionMultiMap actions) {
         if (resolveCache.hasResolve(action)) {
-            mActions.put(action.getMimeType(), action, front);
+            actions.put(action.getMimeType(), action, front);
             return true;
         }
         return false;
