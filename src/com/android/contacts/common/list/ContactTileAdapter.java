@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPresenceIconUtil;
@@ -385,7 +386,9 @@ public class ContactTileAdapter extends BaseAdapter {
 
         if (itemViewType == ViewTypes.DIVIDER) {
             // Checking For Divider First so not to cast convertView
-            return convertView == null ? getDivider() : convertView;
+            final TextView textView = (TextView) (convertView == null ? getDivider() : convertView);
+            setDividerPadding(textView, position == 0);
+            return textView;
         }
 
         ContactTileRow contactTileRowView = (ContactTileRow) convertView;
@@ -404,8 +407,12 @@ public class ContactTileAdapter extends BaseAdapter {
      * Divider uses a list_seperator.xml along with text to denote
      * the most frequently contacted contacts.
      */
-    public View getDivider() {
+    private TextView getDivider() {
         return MoreContactUtils.createHeaderView(mContext, R.string.favoritesFrequentContacted);
+    }
+
+    private void setDividerPadding(TextView headerTextView, boolean isFirstRow) {
+        MoreContactUtils.setHeaderViewBottomPadding(mContext, headerTextView, isFirstRow);
     }
 
     private int getLayoutResourceId(int viewType) {
