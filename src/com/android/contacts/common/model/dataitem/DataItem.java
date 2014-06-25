@@ -99,6 +99,10 @@ public class DataItem {
         mContentValues.put(Data.RAW_CONTACT_ID, rawContactId);
     }
 
+    public Long getRawContactId() {
+        return mContentValues.getAsLong(Data.RAW_CONTACT_ID);
+    }
+
     /**
      * Returns the data id.
      */
