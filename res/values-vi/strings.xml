@@ -146,8 +146,8 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Chụp ảnh mới"</string>
     <string name="pick_photo" msgid="3746334626214970837">"Chọn ảnh từ Thư viện"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Chọn ảnh mới từ Thư viện"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Danh sách liên hệ đang được cập nhật để phản ánh sự thay đổi ngôn ngữ."</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Danh sách liên hệ đang được cập nhật."</string>
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"Danh bạ đang được cập nhật để phản ánh sự thay đổi ngôn ngữ."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"Danh bạ đang được cập nhật."</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Danh bạ đang được nâng cấp. \n\nQuá trình nâng cấp yêu cầu khoảng <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB bộ nhớ trong.\n\nChọn một trong các tùy chọn sau:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Gỡ cài đặt một số ứng dụng"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Thử lại nâng cấp"</string>
