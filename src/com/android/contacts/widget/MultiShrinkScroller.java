@@ -85,6 +85,8 @@ public class MultiShrinkScroller extends LinearLayout {
     private int mMinimumHeaderHeight;
     private int mIntermediateHeaderHeight;
     private int mMaximumHeaderTextSize;
+    private int mCollapsedTitleBottomMargin;
+    private int mCollapsedTitleStartMargin;
 
     private final Scroller mScroller;
     private final EdgeEffect mEdgeGlowBottom;
@@ -92,10 +94,9 @@ public class MultiShrinkScroller extends LinearLayout {
     private final int mMaximumVelocity;
     private final int mMinimumVelocity;
     private final int mTransparentStartHeight;
+    private final int mMaximumTitleMargin;
     private final float mToolbarElevation;
     private final boolean mIsTwoPanel;
-    final Rect mLargeTextViewRect = new Rect();
-    final Rect mInvisiblePlaceholderTextViewRect = new Rect();
 
     // Objects used to perform color filtering on the header. These are stored as fields for
     // the sole purpose of avoiding "new" operations inside animation loops.
@@ -186,9 +187,11 @@ public class MultiShrinkScroller extends LinearLayout {
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
         mTransparentStartHeight = (int) getResources().getDimension(
                 R.dimen.quickcontact_starting_empty_height);
-        mToolbarElevation = mContext.getResources().getDimension(
+        mToolbarElevation = getResources().getDimension(
                 R.dimen.quick_contact_toolbar_elevation);
-        mIsTwoPanel = mContext.getResources().getBoolean(R.bool.quickcontact_two_panel);
+        mIsTwoPanel = getResources().getBoolean(R.bool.quickcontact_two_panel);
+        mMaximumTitleMargin = (int) getResources().getDimension(
+                R.dimen.quickcontact_title_initial_margin);
 
         final TypedArray attributeArray = context.obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize});
@@ -251,6 +254,7 @@ public class MultiShrinkScroller extends LinearLayout {
                     mPhotoViewContainer.setLayoutParams(layoutParams);
                 }
 
+                calculateCollapsedLargeTitlePadding();
                 updateHeaderTextSize();
             }
         });
@@ -712,7 +716,7 @@ public class MultiShrinkScroller extends LinearLayout {
             // Keep the text at maximum size since the header is smaller than threshold.
             mLargeTextView.setScaleX(1);
             mLargeTextView.setScaleY(1);
-            configureLargeTitlePadding();
+            setInterpolatedTitleMargin(1);
             return;
         }
         final float ratio = (toolbarHeight  - mMinimumHeaderHeight)
@@ -723,36 +727,46 @@ public class MultiShrinkScroller extends LinearLayout {
 
         mLargeTextView.setScaleX(scale);
         mLargeTextView.setScaleY(scale);
-        configureLargeTitlePadding();
+        setInterpolatedTitleMargin(ratio);
     }
 
     /**
-     * Configure the padding around mLargeTextView so that it will look appropriate once it
+     * Calculate the padding around mLargeTextView so that it will look appropriate once it
      * finishes moving into its target location/size.
      */
-    private void configureLargeTitlePadding() {
-        mToolbar.getBoundsOnScreen(mLargeTextViewRect);
-        mInvisiblePlaceholderTextView.getBoundsOnScreen(mInvisiblePlaceholderTextViewRect);
-        final int neededPaddingStart;
+    private void calculateCollapsedLargeTitlePadding() {
+        final Rect largeTextViewRect = new Rect();
+        final Rect invisiblePlaceholderTextViewRect = new Rect();
+        mToolbar.getBoundsOnScreen(largeTextViewRect);
+        mInvisiblePlaceholderTextView.getBoundsOnScreen(invisiblePlaceholderTextViewRect);
         if (isLayoutRtl()) {
-            neededPaddingStart = mInvisiblePlaceholderTextViewRect.right - mLargeTextViewRect.right;
+            mCollapsedTitleStartMargin = invisiblePlaceholderTextViewRect.right
+                    - largeTextViewRect.right;
         } else {
-            neededPaddingStart = mInvisiblePlaceholderTextViewRect.left - mLargeTextViewRect.left;
+            mCollapsedTitleStartMargin = invisiblePlaceholderTextViewRect.left
+                    - largeTextViewRect.left;
         }
 
         // Distance between top of toolbar to the center of the target rectangle.
         final int desiredTopToCenter = (
-                mInvisiblePlaceholderTextViewRect.top + mInvisiblePlaceholderTextViewRect.bottom)
-                / 2 - mLargeTextViewRect.top;
-        // Additional padding needed on the mLargeTextView so that it has the same amount of
+                invisiblePlaceholderTextViewRect.top + invisiblePlaceholderTextViewRect.bottom)
+                / 2 - largeTextViewRect.top;
+        // Padding needed on the mLargeTextView so that it has the same amount of
         // padding as the target rectangle.
-        final int additionalBottomPaddingNeeded = desiredTopToCenter - mLargeTextView.getHeight()
-                / 2;
+        mCollapsedTitleBottomMargin = desiredTopToCenter - mLargeTextView.getHeight() / 2;
+    }
 
+    /**
+     * Interpolate the title's margin size. When {@param x}=1, use the maximum title margins.
+     * When {@param x}=0, use the margin values taken from {@link #mInvisiblePlaceholderTextView}.
+     */
+    private void setInterpolatedTitleMargin(float x) {
         final FrameLayout.LayoutParams layoutParams
                 = (FrameLayout.LayoutParams) mLargeTextView.getLayoutParams();
-        layoutParams.bottomMargin = additionalBottomPaddingNeeded;
-        layoutParams.setMarginStart(neededPaddingStart);
+        layoutParams.bottomMargin = (int) (mCollapsedTitleBottomMargin * (1 - x)
+                + mMaximumTitleMargin * x) ;
+        layoutParams.setMarginStart((int) (mCollapsedTitleStartMargin * (1 - x)
+                + mMaximumTitleMargin * x));
         mLargeTextView.setLayoutParams(layoutParams);
     }
 

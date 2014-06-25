@@ -20,6 +20,8 @@
     <dimen name="quickcontact_starting_empty_height">150dp</dimen>
     <!-- Initial size of QuickContact's title size -->
     <dimen name="quickcontact_maximum_title_size">36dp</dimen>
+    <!-- When QC is uncollapsed, the title has this much margin on its left, right and bottom -->
+    <dimen name="quickcontact_title_initial_margin">16dp</dimen>
 
     <!-- Top padding of the entire contact editor  -->
     <dimen name="editor_padding_top">0dip</dimen>
