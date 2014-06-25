@@ -17,6 +17,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.display.DisplayManagerGlobal;
+import android.os.Trace;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Display;
@@ -87,6 +88,8 @@ public class MultiShrinkScroller extends LinearLayout {
     private int mMaximumHeaderTextSize;
     private int mCollapsedTitleBottomMargin;
     private int mCollapsedTitleStartMargin;
+    private int mMinimumPortraitHeaderHeight;
+    private int mMaximumPortraitHeaderHeight;
 
     private final Scroller mScroller;
     private final EdgeEffect mEdgeGlowBottom;
@@ -196,6 +199,9 @@ public class MultiShrinkScroller extends LinearLayout {
         final TypedArray attributeArray = context.obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize});
         mMinimumHeaderHeight = attributeArray.getDimensionPixelSize(0, 0);
+        // This value is approximately equal to the portrait ActionBar size. It isn't exactly the
+        // same, since the landscape and portrait ActionBar sizes can be different.
+        mMinimumPortraitHeaderHeight = mMinimumHeaderHeight;
         attributeArray.recycle();
     }
 
@@ -230,6 +236,7 @@ public class MultiShrinkScroller extends LinearLayout {
             mIntermediateHeaderHeight = (int) (mMaximumHeaderHeight
                     * INTERMEDIATE_HEADER_HEIGHT_RATIO);
         }
+        mMaximumPortraitHeaderHeight = Math.min(windowSize.x, windowSize.y);
         setHeaderHeight(mIntermediateHeaderHeight);
 
         SchedulingUtils.doOnPreDraw(this, /* drawNextFrame = */ false, new Runnable() {
@@ -771,6 +778,11 @@ public class MultiShrinkScroller extends LinearLayout {
     }
 
     private void updatePhotoTintAndDropShadow() {
+        // Let's keep an eye on how long this method takes to complete. Right now, it takes ~0.2ms
+        // on a Nexus 5. If it starts to get much slower, there are a number of easy optimizations
+        // available.
+        Trace.beginSection("updatePhotoTintAndDropShadow");
+
         // We need to use toolbarLayoutParams to determine the height, since the layout
         // params can be updated before the height change is reflected inside the View#getHeight().
         final int toolbarHeight = mToolbar.getLayoutParams().height;
@@ -784,22 +796,17 @@ public class MultiShrinkScroller extends LinearLayout {
         // Reuse an existing mColorFilter (to avoid GC pauses) to change the photo's tint.
         mPhotoView.clearColorFilter();
 
+        // Ratio of current size to maximum size of the header.
         final float ratio;
-        final float intermediateRatio;
+        // The value that "ratio" will have when the header is at its starting/intermediate size.
+        final float intermediateRatio = calculateHeightRatio((int)
+                (mMaximumPortraitHeaderHeight * INTERMEDIATE_HEADER_HEIGHT_RATIO));
         if (!mIsTwoPanel) {
-            // Ratio of current size to maximum size of the header.
-            ratio =  (toolbarHeight  - mMinimumHeaderHeight)
-                    / (float) (mMaximumHeaderHeight - mMinimumHeaderHeight) ;
-            // The value that "ratio" will have when the header is at its
-            // starting/intermediate size.
-            intermediateRatio = (mIntermediateHeaderHeight - mMinimumHeaderHeight)
-                    / (float) (mMaximumHeaderHeight - mMinimumHeaderHeight);
+            ratio = calculateHeightRatio(toolbarHeight);
         } else {
-            // Set ratio and intermediateRatio to the same arbitrary value, so that
-            // the math below considers us to be in the intermediate position. The specific
-            // values are not very important.
-            ratio = 0.5f;
-            intermediateRatio = 0.5f;
+            // We want the ratio and intermediateRatio to have the *approximate* values
+            // they would have in portrait mode when at the intermediate position.
+            ratio = intermediateRatio;
         }
 
         final float linearBeforeMiddle = Math.max(1 - (1 - ratio) / intermediateRatio, 0);
@@ -816,11 +823,16 @@ public class MultiShrinkScroller extends LinearLayout {
         final float colorAlpha;
         if (mPhotoView.isBasedOffLetterTile()) {
             // Since the letter tile only has white and grey, tint it more slowly. Otherwise
-            // it will be completely invisible before we reach the intermediate point.
-            final float SLOWING_FACTOR = 1.6f;
+            // it will be completely invisible before we reach the intermediate point. The values
+            // for TILE_EXPONENT and slowingFactor are chosen to achieve DESIRED_INTERMEDIATE_ALPHA
+            // at the intermediate/starting position.
+            final float DESIRED_INTERMEDIATE_ALPHA = 0.9f;
+            final float TILE_EXPONENT = 1.5f;
+            final float slowingFactor = (float) ((1 - intermediateRatio) / intermediateRatio
+                    / (1 - Math.pow(1 - DESIRED_INTERMEDIATE_ALPHA, 1/TILE_EXPONENT)));
             float linearBeforeMiddleish = Math.max(1 - (1 - ratio) / intermediateRatio
-                    / SLOWING_FACTOR, 0);
-            colorAlpha = 1 - (float) Math.pow(linearBeforeMiddleish, EXPONENT_ALMOST_ONE);
+                    / slowingFactor, 0);
+            colorAlpha = 1 - (float) Math.pow(linearBeforeMiddleish, TILE_EXPONENT);
             mColorMatrix.postConcat(alphaMatrix(colorAlpha, mHeaderTintColor));
         } else {
             colorAlpha = 1 - semiLinearBeforeMiddle;
@@ -831,7 +843,14 @@ public class MultiShrinkScroller extends LinearLayout {
         mPhotoView.setColorFilter(mColorFilter);
         // Tell the photo view what tint we are trying to achieve. Depending on the type of
         // drawable used, the photo view may or may not use this tint.
-        mPhotoView.setTint(((int) (0xFF * colorAlpha)) << 24 | (mHeaderTintColor & 0xffffff));
+        mPhotoView.setTint(mHeaderTintColor);
+
+        Trace.endSection();
+    }
+
+    private float calculateHeightRatio(int height) {
+        return (height - mMinimumPortraitHeaderHeight)
+                / (float) (mMaximumPortraitHeaderHeight - mMinimumPortraitHeaderHeight);
     }
 
     /**
