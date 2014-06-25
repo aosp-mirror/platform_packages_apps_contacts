@@ -274,8 +274,6 @@ public class ShortcutIntentBuilder {
         shortcutIntent.putExtra(INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION, true);
 
         shortcutIntent.setDataAndType(contactUri, contentType);
-        shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_MODE,
-                ContactsContract.QuickContact.MODE_LARGE);
         shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
                 (String[]) null);
 
