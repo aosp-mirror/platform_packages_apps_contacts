@@ -123,9 +123,6 @@
         scratch.
     </string>
 
-    <!-- Label for the check box to toggle default sim card setting [CHAR LIMIT=35]-->
-    <string name="set_default_sim">Always use this SIM for calls</string>
-
     <!-- Title of the "Clearing frequently contacted" progress-dialog [CHAR LIMIT=35] -->
     <string name="clearFrequentsProgress_title">Clearing frequently contacted\u2026</string>
 
