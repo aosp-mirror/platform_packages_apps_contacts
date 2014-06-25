@@ -27,6 +27,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/quickcontact_starting_empty_height"
+        android:contentDescription="@string/quickcontact_transparent_view_description"
         android:id="@+id/transparent_view" />
 
     <include layout="@layout/quickcontact_header" />
