@@ -14,10 +14,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
+<!-- Needs a non null background in for elevation to work on this View. This will *not* cause an
+     additional draw since the background is transparent. -->
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00000000"
     android:id="@+id/toolbar_parent">
 
     <com.android.contacts.widget.QuickContactImageView
@@ -27,8 +31,9 @@
         android:scaleType="centerCrop"
         android:contentDescription="@string/description_contact_photo" />
 
-    <!-- Need to set a non null background on Toolbar in order for MenuItem
-        ripples to be drawn on this view, instead of another-->
+    <!-- Need to set a non null background on Toolbar in order for MenuItem ripples to be drawn on
+         this view, instead of another. This will *not* cause an additional draw since the
+         background is transparent.-->
     <Toolbar
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
