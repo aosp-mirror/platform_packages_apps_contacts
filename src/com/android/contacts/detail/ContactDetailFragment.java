@@ -1357,6 +1357,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             return true;
         }
 
+        public boolean shouldCollapseWith(DetailViewEntry entry, Context context) {
+            return false;
+        }
+
         @Override
         public void click(View clickedView, Listener fragmentListener) {
             if (fragmentListener == null || intent == null) return;
