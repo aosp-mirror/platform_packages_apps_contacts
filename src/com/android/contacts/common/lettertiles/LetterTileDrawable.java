@@ -73,7 +73,7 @@ public class LetterTileDrawable extends Drawable {
     private boolean mIsCircle = false;
 
     /** This should match the total number of colors defined in colors.xml for letter_tile_color */
-    private static final int NUM_OF_TILE_COLORS = 8;
+    private static final int NUM_OF_TILE_COLORS = 12;
 
     public LetterTileDrawable(final Resources res) {
         mPaint = new Paint();
