@@ -315,7 +315,7 @@ public class DataAction implements Action {
     }
 
     @Override
-    public boolean shouldCollapseWith(Action t) {
+    public boolean shouldCollapseWith(Action t, Context context) {
         if (t == null) {
             return false;
         }
