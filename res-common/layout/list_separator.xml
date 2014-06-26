@@ -13,21 +13,15 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<FrameLayout
+<TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:id="@+id/title"
+    android:textColor="@color/frequently_contacted_title_color"
     android:paddingLeft="16dip"
-    android:paddingRight="16dip"
     android:paddingStart="16dip"
+    android:paddingRight="16dip"
     android:paddingEnd="16dip"
-    android:focusable="false">
-    <TextView
-        android:id="@+id/title"
-        style="@style/ContactListSeparatorTextViewStyle"
-        android:paddingLeft="8dip"
-        android:paddingRight="8dip"
-        android:paddingStart="8dip"
-        android:paddingEnd="8dip" />
-</FrameLayout>
+    android:paddingBottom="15dip"
+    android:paddingTop="16dip"
+    android:textStyle="bold"
+    android:textSize="20sp"/>

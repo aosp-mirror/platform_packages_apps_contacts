@@ -83,6 +83,9 @@
     <!-- Darker version of the actionbar color. Used for the status bar and navigation bar colors. -->
     <color name="actionbar_background_color_dark">#008aa1</color>
 
+    <!-- Color of the title to the Frequently Contacted section -->
+    <color name="frequently_contacted_title_color">#00acc1</color>
+
     <!-- Color of action bar text. Ensure this stays in sync with packages/Telephony
     phone_settings_actionbar_text_color-->
     <color name="actionbar_text_color">#ffffff</color>
