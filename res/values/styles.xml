@@ -53,6 +53,8 @@
         <item name="android:actionBarTabBarStyle">@style/ContactsActionBarTabBarStyle</item>
         <!-- Style for the tab bar text (for text on tabs) -->
         <item name="android:actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
+        <!--  Drawable for the back button -->
+        <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
         <!-- Style for the overflow button in the actionbar. -->
         <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
@@ -96,7 +98,9 @@
         <item name="android:src">@drawable/ic_overflow_menu</item>
     </style>
 
-    <style name="ContactsActionBarStyle" parent="@android:style/Widget.Material.Light.ActionBar">
+    <!-- Use the non-light style so that the up button & icons aren't black. If we use the
+         Light style, then it is impossible to tint the homeAsUp icon anything other than black -->
+    <style name="ContactsActionBarStyle" parent="@android:style/Widget.Material.ActionBar">
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="android:titleTextStyle">@style/ContactsActionBarTitleText</item>
         <item name="android:backgroundStacked">@color/actionbar_background_color</item>
@@ -166,25 +170,25 @@
     <style name="JoinContactActivityTheme" parent="ContactPickerTheme" >
     </style>
 
-    <style name="ContactsPreferencesTheme" parent="@android:Theme.Holo.Light">
+    <style name="ContactsPreferencesTheme" parent="@style/PeopleTheme">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
-    <style name="ContactListFilterTheme" parent="@android:Theme.Holo.Light">
+    <style name="ContactListFilterTheme" parent="@style/PeopleTheme">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent.NoTitleBar">
     </style>
 
-    <style name="NonPhoneDialogTheme" parent="@android:Theme.Holo.Light.Dialog">
+    <style name="NonPhoneDialogTheme" parent="@android:Theme.Material.Light.Dialog">
     </style>
 
-    <style name="ConfirmAddDetailDialogTheme" parent="@android:style/Theme.Holo.Light.Dialog.MinWidth">
+    <style name="ConfirmAddDetailDialogTheme" parent="@android:style/Theme.Material.Light.Dialog.MinWidth">
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
-    <style name="ContactEditorAccountsChangedActivityTheme" parent="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth">
+    <style name="ContactEditorAccountsChangedActivityTheme" parent="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth">
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
