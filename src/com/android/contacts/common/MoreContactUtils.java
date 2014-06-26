@@ -185,13 +185,30 @@ public class MoreContactUtils {
      * Returns a header view based on the R.layout.list_separator, where the
      * containing {@link android.widget.TextView} is set using the given textResourceId.
      */
-    public static View createHeaderView(Context context, int textResourceId) {
-        View view = View.inflate(context, R.layout.list_separator, null);
-        TextView textView = (TextView) view.findViewById(R.id.title);
+    public static TextView createHeaderView(Context context, int textResourceId) {
+        final TextView textView = (TextView) View.inflate(context, R.layout.list_separator, null);
         textView.setText(context.getString(textResourceId));
-        textView.setAllCaps(true);
-        return view;
+        return textView;
     }
+
+    /**
+     * Set the top padding on the header view dynamically, based on whether the header is in
+     * the first row or not.
+     */
+    public static void setHeaderViewBottomPadding(Context context, TextView textView,
+            boolean isFirstRow) {
+        final int topPadding;
+        if (isFirstRow) {
+            topPadding = (int) context.getResources().getDimension(
+                    R.dimen.frequently_contacted_title_top_margin_when_first_row);
+        } else {
+            topPadding = (int) context.getResources().getDimension(
+                    R.dimen.frequently_contacted_title_top_margin);
+        }
+        textView.setPaddingRelative(textView.getPaddingStart(), topPadding,
+                textView.getPaddingEnd(), textView.getPaddingBottom());
+    }
+
 
     /**
      * Returns the intent to launch for the given invitable account type and contact lookup URI.
