@@ -43,6 +43,9 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:listViewStyle">@style/ListViewStyle</item>
+        <!-- We need to use a light ripple behind ActionBar items in order for them to
+             be visible when using some of the darker ActionBar tints -->
+        <item name="android:actionBarItemBackground">@drawable/item_background_material_borderless_dark</item>
     </style>
 
     <style name="PeopleTheme" parent="@android:style/Theme.Material.Light">

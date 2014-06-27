@@ -79,6 +79,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private View mTransparentView;
     private MultiShrinkScrollerListener mListener;
     private TextView mLargeTextView;
+    private View mPhotoTouchInterceptOverlay;
     /** Contains desired location/size of the title, once the header is fully compressed */
     private TextView mInvisiblePlaceholderTextView;
     private int mHeaderTintColor;
@@ -134,7 +135,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private final AnimatorListener mHeaderExpandAnimationListener = new AnimatorListenerAdapter() {
         @Override
         public void onAnimationEnd(Animator animation) {
-            mPhotoView.setClickable(true);
+            mPhotoTouchInterceptOverlay.setClickable(true);
         }
     };
 
@@ -219,12 +220,16 @@ public class MultiShrinkScroller extends LinearLayout {
         mListener = listener;
 
         mPhotoView = (QuickContactImageView) findViewById(R.id.photo);
-        mPhotoView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expandCollapseHeader();
-            }
-        });
+
+        if (!mIsTwoPanel) {
+            mPhotoTouchInterceptOverlay = findViewById(R.id.photo_touch_intercept_overlay);
+            mPhotoTouchInterceptOverlay.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    expandCollapseHeader();
+                }
+            });
+        }
 
         final WindowManager windowManager = (WindowManager) getContext().getSystemService(
                 Context.WINDOW_SERVICE);
@@ -375,7 +380,7 @@ public class MultiShrinkScroller extends LinearLayout {
      * complete.
      */
     private void expandCollapseHeader() {
-        mPhotoView.setClickable(false);
+        mPhotoTouchInterceptOverlay.setClickable(false);
         if (getHeaderHeight() != mMaximumHeaderHeight) {
             // Expand header
             final ObjectAnimator animator = ObjectAnimator.ofInt(this, "headerHeight",

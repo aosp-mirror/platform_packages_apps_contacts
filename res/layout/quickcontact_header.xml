@@ -28,7 +28,14 @@
         android:id="@+id/photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
+        android:clickable="false"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:id="@+id/photo_touch_intercept_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/item_background_material_dark"
         android:contentDescription="@string/description_contact_photo" />
 
     <!-- Need to set a non null background on Toolbar in order for MenuItem ripples to be drawn on
