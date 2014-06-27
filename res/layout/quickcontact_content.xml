@@ -52,6 +52,7 @@
 
         <!-- Fill the rest of the LinearLayout with the correct background color -->
         <View
+            android:id="@+id/card_empty_space"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/card_margin_color" />

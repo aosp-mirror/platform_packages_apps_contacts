@@ -80,6 +80,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private MultiShrinkScrollerListener mListener;
     private TextView mLargeTextView;
     private View mPhotoTouchInterceptOverlay;
+    private View mLeftOverSpaceView;
     /** Contains desired location/size of the title, once the header is fully compressed */
     private TextView mInvisiblePlaceholderTextView;
     private int mHeaderTintColor;
@@ -217,6 +218,7 @@ public class MultiShrinkScroller extends LinearLayout {
         mTransparentView = findViewById(R.id.transparent_view);
         mLargeTextView = (TextView) findViewById(R.id.large_title);
         mInvisiblePlaceholderTextView = (TextView) findViewById(R.id.placeholder_textview);
+        mLeftOverSpaceView = findViewById(R.id.card_empty_space);
         mListener = listener;
 
         mPhotoView = (QuickContactImageView) findViewById(R.id.photo);
@@ -633,10 +635,10 @@ public class MultiShrinkScroller extends LinearLayout {
         if (!mIsTwoPanel) {
             return mTransparentStartHeight
                     // How much the Header view can compress
-                    + mIntermediateHeaderHeight - mMinimumHeaderHeight
+                    + mIntermediateHeaderHeight - getFullyCompressedHeaderHeight()
                     // How much the ScrollView can scroll. 0, if child is smaller than ScrollView.
                     + Math.max(0, mScrollViewChild.getHeight() - getHeight()
-                    + mMinimumHeaderHeight);
+                    + getFullyCompressedHeaderHeight());
         } else {
             return mTransparentStartHeight
                     // How much the ScrollView can scroll. 0, if child is smaller than ScrollView.
@@ -662,14 +664,30 @@ public class MultiShrinkScroller extends LinearLayout {
         }
         final LinearLayout.LayoutParams toolbarLayoutParams
                 = (LayoutParams) mToolbar.getLayoutParams();
-        if (toolbarLayoutParams.height != mMinimumHeaderHeight) {
+        if (toolbarLayoutParams.height > getFullyCompressedHeaderHeight()) {
             final int originalValue = toolbarLayoutParams.height;
             toolbarLayoutParams.height -= delta;
-            toolbarLayoutParams.height = Math.max(toolbarLayoutParams.height, mMinimumHeaderHeight);
+            toolbarLayoutParams.height = Math.max(toolbarLayoutParams.height,
+                    getFullyCompressedHeaderHeight());
             mToolbar.setLayoutParams(toolbarLayoutParams);
             delta -= originalValue - toolbarLayoutParams.height;
         }
         mScrollView.scrollBy(0, delta);
+    }
+
+    /**
+     * Returns the minimum size that we want to compress the header to, given that we don't want to
+     * allow the the ScrollView to scroll unless there is new content off of the edge of ScrollView.
+     */
+    private int getFullyCompressedHeaderHeight() {
+        final LinearLayout.LayoutParams toolbarLayoutParams
+                = (LayoutParams) mToolbar.getLayoutParams();
+        final int usedScrollViewSpace = mScrollViewChild.getHeight()
+                - mLeftOverSpaceView.getHeight();
+        final int leftOverSpace = -getHeight() + usedScrollViewSpace + toolbarLayoutParams.height;
+        return Math.min(
+                Math.max(toolbarLayoutParams.height - leftOverSpace, mMinimumHeaderHeight),
+                mIntermediateHeaderHeight);
     }
 
     private void scrollDown(int delta) {
