@@ -16,9 +16,11 @@
 
 package com.android.contacts.common;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
+import android.telecomm.Subscription;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.android.contacts.common.util.PhoneNumberHelper;
 import com.android.phone.common.PhoneConstants;
@@ -39,7 +41,7 @@ public class CallUtil {
      * automatically.
      */
     public static Intent getCallIntent(String number) {
-        return getCallIntent(number, null);
+        return getCallIntent(number, null, null);
     }
 
     /**
@@ -47,26 +49,52 @@ public class CallUtil {
      * sanity check).
      */
     public static Intent getCallIntent(Uri uri) {
-        return getCallIntent(uri, null);
+        return getCallIntent(uri, null, null);
     }
 
     /**
-     * A variant of {@link #getCallIntent(String)} but also accept a call origin. For more
-     * information about call origin, see comments in Phone package (PhoneApp).
+     * A variant of {@link #getCallIntent(String)} but also accept a call origin.
+     * For more information about call origin, see comments in Phone package (PhoneApp).
      */
     public static Intent getCallIntent(String number, String callOrigin) {
-        return getCallIntent(getCallUri(number), callOrigin);
+        return getCallIntent(getCallUri(number), callOrigin, null);
     }
 
     /**
-     * A variant of {@link #getCallIntent(android.net.Uri)} but also accept a call origin. For more
-     * information about call origin, see comments in Phone package (PhoneApp).
+     * A variant of {@link #getCallIntent(String)} but also include {@code Subscription}.
      */
-    public static Intent getCallIntent(Uri uri, String callOrigin) {
+    public static Intent getCallIntent(String number, Subscription subscription) {
+        return getCallIntent(number, null, subscription);
+    }
+
+    /**
+     * A variant of {@link #getCallIntent(android.net.Uri)} but also include {@code Subscription}.
+     */
+    public static Intent getCallIntent(Uri uri, Subscription subscription) {
+        return getCallIntent(uri, null, subscription);
+    }
+
+    /**
+     * A variant of {@link #getCallIntent(String, String)} but also include {@code Subscription}.
+     */
+    public static Intent getCallIntent(String number, String callOrigin,
+            Subscription subscription) {
+        return getCallIntent(getCallUri(number), callOrigin, subscription);
+    }
+
+    /**
+     * A variant of {@link #getCallIntent(android.net.Uri)} but also accept a call
+     * origin and {@code Subscription}.
+     * For more information about call origin, see comments in Phone package (PhoneApp).
+     */
+    public static Intent getCallIntent(Uri uri, String callOrigin, Subscription subscription) {
         final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (callOrigin != null) {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
+        }
+        if (subscription != null) {
+            intent.putExtra(TelephonyManager.EXTRA_SUBSCRIPTION, subscription);
         }
 
         return intent;
