@@ -626,6 +626,16 @@
     <!-- Message in the contact editor prompt that asks the user which account they want to save the newly created contact to. [CHAR LIMIT=NONE] -->
     <string name="contact_editor_prompt_multiple_accounts">You can synchronize your new contact with one of the following accounts. Which do you want to use?</string>
 
+    <!-- Title of the ContactEditorActivity when creating a new contact. The char
+         limit is short and cannot be increased, since this needs to be displayed in a single line
+         at a pre-determined text size. [CHAR LIMIT=20] -->
+    <string name="contact_editor_title_new_contact">Add new contact</string>
+
+    <!-- Title of the ContactEditorActivity when editing a contact that already exists. The char
+         limit is short and cannot be increased, since this needs to be displayed in a single line
+         at a pre-determined text size. [CHAR LIMIT=20] -->
+    <string name="contact_editor_title_existing_contact">Edit contact</string>
+
     <!-- Button label to indicate that the user wants to save the newly created contact locally (instead of backing it up online) [CHAR LIMIT=20] -->
     <string name="keep_local">Keep local</string>
 

@@ -30,6 +30,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
@@ -106,6 +107,14 @@ public class ContactEditorActivity extends ContactsActivity
                     mFragment.doSaveAction();
                 }
             });
+            TextView title = (TextView) customActionBarView.findViewById(R.id.title);
+            if (Intent.ACTION_EDIT.equals(action)) {
+                title.setText(getResources().getString(
+                        R.string.contact_editor_title_existing_contact));
+            } else {
+                title.setText(getResources().getString(
+                        R.string.contact_editor_title_new_contact));
+            }
             // Show the custom action bar but hide the home icon and title
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
                     ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME |
