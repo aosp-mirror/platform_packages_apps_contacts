@@ -23,4 +23,11 @@
 
     <!-- Number of lines the QuickContact title can have -->
     <integer name="quickcontact_title_lines">1</integer>
+
+    <!-- Layout weight of space elements in PeopleActivity for favorites list and all
+         contacts list when in sw600dp landscape. -->
+    <integer name="people_activity_land_space_layout_weight">2</integer>
+    <!-- Layout weight of ListViews in PeopleActivityfor tile favorites list and all
+         contacts list in PeopleActivity when in sw600dp landscape. -->
+    <integer name="people_activity_land_list_view_layout_weight">6</integer>
 </resources>

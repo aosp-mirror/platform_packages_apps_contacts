@@ -219,6 +219,7 @@ public class PeopleActivity extends ContactsActivity implements
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
         }
+        getWindow().setBackgroundDrawable(null);
     }
 
     @Override

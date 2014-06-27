@@ -74,7 +74,7 @@
         <item name="list_item_padding_top">8dip</item>
         <item name="list_item_padding_right">32dp</item>
         <item name="list_item_padding_bottom">8dip</item>
-        <item name="list_item_padding_left">0dip</item>
+        <item name="list_item_padding_left">16dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_presence_icon_margin">4dip</item>
@@ -82,16 +82,16 @@
         <item name="list_item_photo_size">@dimen/contact_browser_list_item_photo_size</item>
         <item name="list_item_profile_photo_size">70dip</item>
         <item name="list_item_prefix_highlight_color">@color/people_app_theme_color</item>
-        <item name="list_item_background_color">@color/background_primary</item>
+        <item name="list_item_background_color">@color/list_item_pinned_header_color</item>
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="list_item_header_height">30dip</item>
         <item name="list_item_data_width_weight">5</item>
         <item name="list_item_label_width_weight">3</item>
         <item name="list_item_header_text_indent">8dip</item>
-        <item name="contact_browser_list_padding_left">16dip</item>
+        <item name="contact_browser_list_padding_left">0dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>
-        <item name="contact_browser_background">@android:color/transparent</item>
+        <item name="contact_browser_background">@color/background_primary</item>
         <item name="list_item_text_indent">@dimen/contact_browser_list_item_text_indent</item>
         <!-- Favorites -->
         <item name="favorites_padding_bottom">0dip</item>

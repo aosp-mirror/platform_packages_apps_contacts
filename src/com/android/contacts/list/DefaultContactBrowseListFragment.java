@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -35,6 +36,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
@@ -62,6 +64,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private TextView mProfileTitle;
     private View mSearchProgress;
     private TextView mSearchProgressText;
+    private boolean mContactAllListShowCardFrame;
 
     private class FilterHeaderClickListener implements OnClickListener {
         @Override
@@ -98,6 +101,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         DefaultContactListAdapter adapter = new DefaultContactListAdapter(getContext());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
         boolean showPhoto = getResources().getBoolean(R.bool.config_browse_list_show_images);
+        mContactAllListShowCardFrame = getResources().getBoolean(
+                R.bool.contact_all_list_show_card_frame);
         adapter.setDisplayPhotos(showPhoto);
         if (showPhoto) {
             boolean reverse = getResources().getBoolean(R.bool.config_browse_list_reverse_images);
@@ -130,6 +135,25 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         headerContainer.addView(mSearchHeaderView);
         getListView().addHeaderView(headerContainer, null, false);
         checkHeaderViewVisibility();
+
+        // If the device is in the sw600dp class and in landscape mode, set a padding on the list
+        // view so it appears in the center of the card in the layout.
+        if (mContactAllListShowCardFrame) {
+            SchedulingUtils.doOnPreDraw(getListView(), true, new Runnable() {
+                @Override
+                public void run() {
+                    final ListView listView = getListView();
+                    final int width = listView.getWidth();
+                    listView.setPadding(width / 4, listView.getPaddingTop(),
+                            width / 4, listView.getPaddingBottom());
+                    mAccountFilterHeader.setPadding(
+                            mAccountFilterHeader.getPaddingLeft() + width / 4,
+                            mAccountFilterHeader.getPaddingTop(),
+                            mAccountFilterHeader.getPaddingRight() + width / 4,
+                            mAccountFilterHeader.getPaddingBottom());
+                }
+            });
+        }
 
         mSearchProgress = getView().findViewById(R.id.search_progress);
         mSearchProgressText = (TextView) mSearchHeaderView.findViewById(R.id.totalContactsText);

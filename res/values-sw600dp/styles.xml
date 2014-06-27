@@ -24,7 +24,7 @@
         <item name="list_item_padding_top">8dip</item>
         <item name="list_item_padding_right">0dip</item>
         <item name="list_item_padding_bottom">8dip</item>
-        <item name="list_item_padding_left">0dip</item>
+        <item name="list_item_padding_left">24dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_presence_icon_margin">18dip</item>
@@ -37,7 +37,7 @@
         <item name="list_item_header_height">30dip</item>
         <item name="list_item_data_width_weight">5</item>
         <item name="list_item_label_width_weight">3</item>
-        <item name="contact_browser_list_padding_left">24dip</item>
+        <item name="contact_browser_list_padding_left">0dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>
         <item name="contact_browser_background">@android:color/transparent</item>
         <item name="list_item_text_indent">@dimen/contact_browser_list_item_text_indent</item>

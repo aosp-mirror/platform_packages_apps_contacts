@@ -30,12 +30,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.contacts.R;
+import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactTileLoaderFactory;
-import com.android.contacts.R;
 import com.android.contacts.common.list.ContactTileAdapter;
 import com.android.contacts.common.list.ContactTileView;
 import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
@@ -62,6 +64,7 @@ public class ContactTileListFragment extends Fragment {
     private TextView mEmptyView;
     private ListView mListView;
 
+    private boolean mContactAllListShowCardFrame;
     private boolean mOptionsMenuHasFrequents;
 
     @Override
@@ -70,6 +73,7 @@ public class ContactTileListFragment extends Fragment {
 
         Resources res = getResources();
         int columnCount = res.getInteger(R.integer.contact_tile_column_count_in_favorites);
+        mContactAllListShowCardFrame = res.getBoolean(R.bool.contact_all_list_show_card_frame);
 
         mAdapter = new ContactTileAdapter(activity, mAdapterListener,
                 columnCount, mDisplayType);
@@ -92,6 +96,19 @@ public class ContactTileListFragment extends Fragment {
 
         mListView.setItemsCanFocus(true);
         mListView.setAdapter(mAdapter);
+
+        // If the device is in the sw600dp class and in landscape mode, set a padding on the list
+        // view so it appears in the center of the card in the layout.
+        if (mContactAllListShowCardFrame) {
+            SchedulingUtils.doOnPreDraw(mListView, true, new Runnable() {
+                @Override
+                public void run() {
+                    int width = mListView.getWidth();
+                    mListView.setPadding(width / 4, mListView.getPaddingTop(),
+                            width / 4, mListView.getPaddingBottom());
+                }
+            });
+        }
         return listLayout;
     }
 
