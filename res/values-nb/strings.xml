@@ -114,6 +114,8 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Navn på kontakter"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Det ble ikke funnet noen app som kan håndtere denne handlingen."</string>
+    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
+    <skip />
     <string name="missing_app" msgid="1466111003546611387">"Kunne ikke finne noen app som kan håndtere denne handlingen."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
