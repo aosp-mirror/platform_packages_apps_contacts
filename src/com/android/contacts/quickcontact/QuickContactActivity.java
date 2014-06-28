@@ -365,17 +365,10 @@ public class QuickContactActivity extends ContactsActivity {
             ObjectAnimator.ofInt(mWindowScrim, "alpha", 0, 0xFF).setDuration(duration).start();
         }
 
-        if (mScroller != null) {
-            mScroller.initialize(mMultiShrinkScrollerListener);
-            if (mHasAlreadyBeenOpened) {
-                mScroller.setVisibility(View.VISIBLE);
-                mScroller.setScroll(mScroller.getScrollNeededToBeFullScreen());
-            } else {
-                // mScroller needs to perform asynchronous measurements after initalize(), therefore
-                // we can't mark this as GONE.
-                mScroller.setVisibility(View.INVISIBLE);
-            }
-        }
+        mScroller.initialize(mMultiShrinkScrollerListener);
+        // mScroller needs to perform asynchronous measurements after initalize(), therefore
+        // we can't mark this as GONE.
+        mScroller.setVisibility(View.INVISIBLE);
 
         setHeaderNameText(R.string.missing_name);
 
@@ -391,17 +384,24 @@ public class QuickContactActivity extends ContactsActivity {
 
         if (savedInstanceState != null) {
             final int color = savedInstanceState.getInt(KEY_THEME_COLOR, 0);
-            if (color != 0) {
-                // Wait for pre draw. Setting the header tint before the MultiShrinkScroller has
-                // been measured will cause incorrect tinting calculations.
-                SchedulingUtils.doOnPreDraw(mScroller, /* drawNextFrame = */ true,
-                        new Runnable() {
-                            @Override
-                            public void run() {
+            SchedulingUtils.doOnPreDraw(mScroller, /* drawNextFrame = */ false,
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            // Need to wait for the pre draw before setting the initial scroll
+                            // value. Prior to pre draw all scroll values are invalid.
+                            if (mHasAlreadyBeenOpened) {
+                                mScroller.setVisibility(View.VISIBLE);
+                                mScroller.setScroll(mScroller.getScrollNeededToBeFullScreen());
+                            }
+                            // Need to wait for pre draw for setting the theme color. Setting the
+                            // header tint before the MultiShrinkScroller has been measured will
+                            // cause incorrect tinting calculations.
+                            if (color != 0) {
                                 setThemeColor(color);
                             }
-                        });
-            }
+                        }
+                    });
         }
 
         Trace.endSection();

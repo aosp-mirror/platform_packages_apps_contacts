@@ -9,12 +9,12 @@ import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.display.DisplayManagerGlobal;
 import android.os.Trace;
@@ -27,7 +27,6 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewConfiguration;
-import android.view.WindowManager;
 import android.view.animation.Interpolator;
 import android.widget.EdgeEffect;
 import android.widget.FrameLayout;
@@ -233,27 +232,21 @@ public class MultiShrinkScroller extends LinearLayout {
             });
         }
 
-        final WindowManager windowManager = (WindowManager) getContext().getSystemService(
-                Context.WINDOW_SERVICE);
-        final Point windowSize = new Point();
-        windowManager.getDefaultDisplay().getSize(windowSize);
-        if (!mIsTwoPanel) {
-            // We never want the height of the photo view to exceed its width.
-            mMaximumHeaderHeight = windowSize.x;
-            mIntermediateHeaderHeight = (int) (mMaximumHeaderHeight
-                    * INTERMEDIATE_HEADER_HEIGHT_RATIO);
-        }
-        mMaximumPortraitHeaderHeight = Math.min(windowSize.x, windowSize.y);
-        setHeaderHeight(mIntermediateHeaderHeight);
-
         SchedulingUtils.doOnPreDraw(this, /* drawNextFrame = */ false, new Runnable() {
             @Override
             public void run() {
+                if (!mIsTwoPanel) {
+                    // We never want the height of the photo view to exceed its width.
+                    mMaximumHeaderHeight = getWidth();
+                    mIntermediateHeaderHeight = (int) (mMaximumHeaderHeight
+                            * INTERMEDIATE_HEADER_HEIGHT_RATIO);
+                }
+                final boolean isLandscape = getResources().getConfiguration().orientation
+                        == Configuration.ORIENTATION_LANDSCAPE;
+                mMaximumPortraitHeaderHeight = isLandscape ? getHeight() : getWidth();
+                setHeaderHeight(mIntermediateHeaderHeight);
+
                 mMaximumHeaderTextSize = mLargeTextView.getHeight();
-                // Unlike Window width, we can't know the usable window height until predraw
-                // has occured. Therefore, setting these constraints must be done inside
-                // onPreDraw for the two panel layout. Fortunately, the two panel layout
-                // doesn't need these values anywhere else inside the activity's creation.
                 if (mIsTwoPanel) {
                     mMaximumHeaderHeight = getHeight();
                     mMinimumHeaderHeight = mMaximumHeaderHeight;
