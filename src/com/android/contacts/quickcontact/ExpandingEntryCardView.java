@@ -112,6 +112,10 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
     }
 
+    public interface ExpandingEntryCardViewListener {
+        void onCollapse(int heightDelta);
+    }
+
     private View mExpandCollapseButton;
     private TextView mExpandCollapseTextView;
     private TextView mTitleTextView;
@@ -120,6 +124,7 @@ public class ExpandingEntryCardView extends LinearLayout {
     private OnClickListener mOnClickListener;
     private boolean mIsExpanded = false;
     private int mCollapsedEntriesCount;
+    private ExpandingEntryCardViewListener mListener;
     private List<Entry> mEntries;
     private List<View> mEntryViews;
     private LinearLayout mEntriesViewGroup;
@@ -169,12 +174,13 @@ public class ExpandingEntryCardView extends LinearLayout {
      * @param entries The Entry list to display.
      */
     public void initialize(List<Entry> entries, int numInitialVisibleEntries,
-            boolean isExpanded) {
+            boolean isExpanded, ExpandingEntryCardViewListener listener) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         mIsExpanded = isExpanded;
         mEntries = entries;
         mEntryViews = new ArrayList<View>(entries.size());
         mCollapsedEntriesCount = Math.min(numInitialVisibleEntries, entries.size());
+        mListener = listener;
 
         if (mIsExpanded) {
             updateExpandCollapseButton(getCollapseButtonText());
@@ -415,6 +421,7 @@ public class ExpandingEntryCardView extends LinearLayout {
     private void collapse() {
         int startingHeight = mEntriesViewGroup.getHeight();
         int finishHeight = measureCollapsedViewGroupHeight();
+        mListener.onCollapse(startingHeight - finishHeight);
 
         mIsExpanded = false;
         updateExpandCollapseButton(getExpandButtonText());

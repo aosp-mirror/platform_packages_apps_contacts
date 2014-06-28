@@ -501,6 +501,26 @@ public class MultiShrinkScroller extends LinearLayout {
     }
 
     /**
+     * Change the height of the header/toolbar. Do *not* use this outside animations. This was
+     * designed for use by {@link #prepareForShrinkingScrollChild}.
+     */
+    @NeededForReflection
+    public void setToolbarHeight(int delta) {
+        final LinearLayout.LayoutParams toolbarLayoutParams
+                = (LayoutParams) mToolbar.getLayoutParams();
+        toolbarLayoutParams.height = delta;
+        mToolbar.setLayoutParams(toolbarLayoutParams);
+
+        updatePhotoTintAndDropShadow();
+        updateHeaderTextSize();
+    }
+
+    @NeededForReflection
+    public int getToolbarHeight() {
+        return mToolbar.getLayoutParams().height;
+    }
+
+    /**
      * Set the height of the toolbar and update its tint accordingly.
      */
     @NeededForReflection
@@ -680,14 +700,17 @@ public class MultiShrinkScroller extends LinearLayout {
      * allow the the ScrollView to scroll unless there is new content off of the edge of ScrollView.
      */
     private int getFullyCompressedHeaderHeight() {
-        final LinearLayout.LayoutParams toolbarLayoutParams
-                = (LayoutParams) mToolbar.getLayoutParams();
+        return Math.min(Math.max(mToolbar.getLayoutParams().height - getOverflowingChildViewSize(),
+                        mMinimumHeaderHeight), mIntermediateHeaderHeight);
+    }
+
+    /**
+     * Returns the amount of mScrollViewChild that doesn't fit inside its parent.
+     */
+    private int getOverflowingChildViewSize() {
         final int usedScrollViewSpace = mScrollViewChild.getHeight()
                 - mLeftOverSpaceView.getHeight();
-        final int leftOverSpace = -getHeight() + usedScrollViewSpace + toolbarLayoutParams.height;
-        return Math.min(
-                Math.max(toolbarLayoutParams.height - leftOverSpace, mMinimumHeaderHeight),
-                mIntermediateHeaderHeight);
+        return -getHeight() + usedScrollViewSpace + mToolbar.getLayoutParams().height;
     }
 
     private void scrollDown(int delta) {
@@ -984,6 +1007,19 @@ public class MultiShrinkScroller extends LinearLayout {
 
         public long getFrameIntervalMs() {
             return (long)(1000 / getRefreshRate());
+        }
+    }
+
+    /**
+     * Expand the header if the mScrollViewChild is about to shrink by enough to create new empty
+     * space at the bottom of this ViewGroup.
+     */
+    public void prepareForShrinkingScrollChild(int heightDelta) {
+        final int newEmptyScrollViewSpace = -getOverflowingChildViewSize() + heightDelta;
+        if (newEmptyScrollViewSpace > 0 && !mIsTwoPanel) {
+            final int newDesiredToolbarHeight = Math.min(mToolbar.getLayoutParams().height
+                    + newEmptyScrollViewSpace, mIntermediateHeaderHeight);
+            ObjectAnimator.ofInt(this, "toolbarHeight", newDesiredToolbarHeight).start();
         }
     }
 }

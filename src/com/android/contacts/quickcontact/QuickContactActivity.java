@@ -90,6 +90,7 @@ import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
+import com.android.contacts.quickcontact.ExpandingEntryCardView.ExpandingEntryCardViewListener;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
@@ -231,6 +232,14 @@ public class QuickContactActivity extends ContactsActivity {
                 return;
             }
             startActivity((Intent) intent);
+        }
+    };
+
+    final ExpandingEntryCardViewListener mExpandingEntryCardViewListener
+            = new ExpandingEntryCardViewListener() {
+        @Override
+        public void onCollapse(int heightDelta) {
+            mScroller.prepareForShrinkingScrollChild(heightDelta);
         }
     };
 
@@ -586,7 +595,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (entries.size() > 0) {
             mCommunicationCard.initialize(entries,
                     /* numInitialVisibleEntries = */ MIN_NUM_COMMUNICATION_ENTRIES_SHOWN,
-                    /* isExpanded = */ false);
+                    /* isExpanded = */ false, mExpandingEntryCardViewListener);
         }
 
         final boolean hasData = !entries.isEmpty();
@@ -1087,7 +1096,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (allInteractions.size() > 0) {
             mRecentCard.initialize(contactInteractionsToEntries(allInteractions),
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
-                    /* isExpanded = */ false);
+                    /* isExpanded = */ false, mExpandingEntryCardViewListener);
             mRecentCard.setVisibility(View.VISIBLE);
         }
     }
