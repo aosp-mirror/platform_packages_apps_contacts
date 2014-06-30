@@ -72,7 +72,7 @@ public class CalendarInteraction implements ContactInteraction {
         }
 
         String displayedDatetime = CalendarInteractionUtils.getDisplayedDatetime(
-                getDtstart(), getDtend(), System.currentTimeMillis(), localTimezone,
+                dateStart, dateEnd, System.currentTimeMillis(), localTimezone,
                 getAllDay(), context);
 
         return displayedDatetime;
