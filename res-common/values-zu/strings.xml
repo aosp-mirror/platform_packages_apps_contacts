@@ -62,7 +62,6 @@
     <string name="sms_mms" msgid="4887206338311086612">"Bhala i-MMS"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Sula oxhumana nabo njalo?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Uzosula uhlu okuxhunyanwa nalo njalo kwizinhlelo zokusebenza zabantu nefoni, futhi iphoqelela izinhlelo zokusebenza ze-imeyili ukufunda okukhethayo kokuthintana kusuka ekuqaleni."</string>
-    <string name="set_default_sim" msgid="2044993716326153078">"Hlala njalo usebenzisa le-SIM kumakholi"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Isula oxhumana nabo njalo…"</string>
     <string name="status_available" msgid="4832569677396634846">"Ngiyatholakala"</string>
     <string name="status_away" msgid="6267905184545881094">"Ngiphumile"</string>
@@ -242,20 +241,6 @@
     <string name="description_send_message" msgid="2630211225573754774">"Thumela imiyalezo ku-<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"Shayela ifoni <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_add_contact" msgid="2715346041773367686">"Engeza oxhumana naye"</string>
-    <string name="description_dialpad_overflow" msgid="1738908935150263871">"Izinketho eziningi"</string>
-    <string name="description_delete_button" msgid="5275237511583583075">"i-backspace"</string>
-    <string name="description_image_button_plus" msgid="3127477749066895550">"kuhlanganisa"</string>
-    <string name="description_voicemail_button" msgid="1214651708785762096">"ivoyisimeyili"</string>
-    <string name="dialpad_0_number" msgid="7414686576087305571">"0"</string>
-    <string name="dialpad_1_number" msgid="5037610501799059789">"1"</string>
-    <string name="dialpad_2_number" msgid="2318984595850647299">"2"</string>
-    <string name="dialpad_3_number" msgid="3783334544878901735">"3"</string>
-    <string name="dialpad_4_number" msgid="1966476753223588488">"4"</string>
-    <string name="dialpad_5_number" msgid="7361323080134767252">"5"</string>
-    <string name="dialpad_6_number" msgid="6751470364510337163">"6"</string>
-    <string name="dialpad_7_number" msgid="3272408678325243651">"7"</string>
-    <string name="dialpad_8_number" msgid="1229660916011511246">"8"</string>
-    <string name="dialpad_9_number" msgid="7639250786374503913">"9"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"nge-<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> nge-<xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"misa ukusesha"</string>

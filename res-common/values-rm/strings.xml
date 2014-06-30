@@ -107,8 +107,6 @@
     <skip />
     <!-- no translation found for clearFrequentsConfirmation (2101370440975269958) -->
     <skip />
-    <!-- no translation found for set_default_sim (2044993716326153078) -->
-    <skip />
     <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
     <skip />
     <!-- no translation found for status_available (4832569677396634846) -->
@@ -460,34 +458,6 @@
     <!-- no translation found for description_dial_phone_number (7315580540586351853) -->
     <skip />
     <!-- no translation found for description_add_contact (2715346041773367686) -->
-    <skip />
-    <!-- no translation found for description_dialpad_overflow (1738908935150263871) -->
-    <skip />
-    <!-- no translation found for description_delete_button (5275237511583583075) -->
-    <skip />
-    <!-- no translation found for description_image_button_plus (3127477749066895550) -->
-    <skip />
-    <!-- no translation found for description_voicemail_button (1214651708785762096) -->
-    <skip />
-    <!-- no translation found for dialpad_0_number (7414686576087305571) -->
-    <skip />
-    <!-- no translation found for dialpad_1_number (5037610501799059789) -->
-    <skip />
-    <!-- no translation found for dialpad_2_number (2318984595850647299) -->
-    <skip />
-    <!-- no translation found for dialpad_3_number (3783334544878901735) -->
-    <skip />
-    <!-- no translation found for dialpad_4_number (1966476753223588488) -->
-    <skip />
-    <!-- no translation found for dialpad_5_number (7361323080134767252) -->
-    <skip />
-    <!-- no translation found for dialpad_6_number (6751470364510337163) -->
-    <skip />
-    <!-- no translation found for dialpad_7_number (3272408678325243651) -->
-    <skip />
-    <!-- no translation found for dialpad_8_number (1229660916011511246) -->
-    <skip />
-    <!-- no translation found for dialpad_9_number (7639250786374503913) -->
     <skip />
     <!-- no translation found for contact_status_update_attribution (8419168578670128134) -->
     <skip />
