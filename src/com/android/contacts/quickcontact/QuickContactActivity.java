@@ -477,15 +477,15 @@ public class QuickContactActivity extends ContactsActivity {
     /** Assign this string to the view if it is not empty. */
     private void setHeaderNameText(int resId) {
         if (mScroller != null) {
-            mScroller.setTitle(String.valueOf(getText(resId)));
+            mScroller.setTitle(getText(resId) == null ? null : getText(resId).toString());
         }
     }
 
     /** Assign this string to the view if it is not empty. */
-    private void setHeaderNameText(CharSequence value) {
+    private void setHeaderNameText(String value) {
         if (!TextUtils.isEmpty(value)) {
             if (mScroller != null) {
-                mScroller.setTitle(value.toString());
+                mScroller.setTitle(value);
             }
         }
     }
@@ -890,29 +890,21 @@ public class QuickContactActivity extends ContactsActivity {
     private List<Entry> actionsToEntries(List<Action> actions) {
         List<Entry> entries = new ArrayList<>();
         for (Action action :  actions) {
-            String header = null;
+            final String header = action.getBody() == null ? null : action.getBody().toString();
+            final String footer = action.getBody() == null ? null : action.getBody().toString();
             String body = null;
-            String footer = null;
             Drawable icon = null;
             switch (action.getMimeType()) {
                 case Phone.CONTENT_ITEM_TYPE:
-                    header = String.valueOf(action.getBody());
-                    footer = String.valueOf(action.getSubtitle());
                     icon = getResources().getDrawable(R.drawable.ic_phone_24dp);
                     break;
                 case Email.CONTENT_ITEM_TYPE:
-                    header = String.valueOf(action.getBody());
-                    footer = String.valueOf(action.getSubtitle());
                     icon = getResources().getDrawable(R.drawable.ic_email_24dp);
                     break;
                 case StructuredPostal.CONTENT_ITEM_TYPE:
-                    header = String.valueOf(action.getBody());
-                    footer = String.valueOf(action.getSubtitle());
                     icon = getResources().getDrawable(R.drawable.ic_place_24dp);
                     break;
                 default:
-                    header = String.valueOf(action.getSubtitle());
-                    footer = String.valueOf(action.getBody());
                     icon = ResolveCache.getInstance(this).getIcon(action);
             }
             entries.add(new Entry(icon, header, body, footer, action.getIntent(),
