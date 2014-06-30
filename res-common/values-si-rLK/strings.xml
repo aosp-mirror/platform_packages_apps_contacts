@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"සංවිධානය"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"ඥාතිත්වය"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"සිදුවීම්"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"විශේෂ දින"</string>
     <string name="sms" msgid="8086289395154598654">"පෙළ පණිවුඩය"</string>
     <string name="postal_address" msgid="7692926530081579786">"ලිපිනය"</string>
     <string name="ghostData_company" msgid="22470841482615409">"සමාගම"</string>
@@ -235,8 +235,14 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ප්‍රියතමයන් නැත."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> හි සම්බන්ධතා නැත"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"නිතරමයන් හිස් කරන්න"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"SIM කාඩ්පත තෝරන්න"</string>
     <string name="menu_accounts" msgid="795417468541517082">"ගිණුම්"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"ආයාත/නිර්යාත"</string>
     <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> වෙත පණිවිඩය යවන්න"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g> දුරකථනය අමතන්න"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"සම්බන්ධතාවය එක් කරන්න"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> හරහා"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> මඟින් <xliff:g id="DATE">%1$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"සෙවීම අවසන් කරන්න"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"සෙවීම හිස් කරන්න"</string>
 </resources>

@@ -105,7 +105,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"संगठन"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"सम्बन्ध"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"घटनाहरू"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"विशेष मितिहरु"</string>
     <string name="sms" msgid="8086289395154598654">"पाठ सन्देश"</string>
     <string name="postal_address" msgid="7692926530081579786">"ठेगाना"</string>
     <string name="ghostData_company" msgid="22470841482615409">"कम्पनी"</string>
@@ -235,8 +235,14 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"मनपर्ने कुनै छैन।"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> मा कुनै सम्पर्कहरू छैनन्"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"बारम्बारताहरू हटाउनुहोस्"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"सिम कार्ड चयन गर्नुहोस्"</string>
     <string name="menu_accounts" msgid="795417468541517082">"खाताहरू"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"आयात/निर्यात"</string>
     <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g>लाई सन्देश पठाउनुहोस्"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g> लाई फोन डायल गर्नुहोस्"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"सम्पर्क थप्नुहोस्"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g>को मार्फत"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> मार्फत <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"खोजी गर्न  रोक्नुहोस्"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"खोजी खाली गर्नुहोस्"</string>
 </resources>

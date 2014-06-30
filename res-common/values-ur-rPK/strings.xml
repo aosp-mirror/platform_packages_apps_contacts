@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="toast_text_copied" msgid="8327159932780920627">"متن کاپی ہوگیا"</string>
+    <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> کو کال کریں"</string>
+    <string name="call_home" msgid="1479549630992276827">"گھر پر کال کریں"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"موبائل پر کال کریں"</string>
+    <string name="call_work" msgid="8299062439076337075">"دفتر کے نمبر پر کال کریں"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"دفتر کے فیکس پر کال کریں"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"گھر کے فیکس پر کال کریں"</string>
+    <string name="call_pager" msgid="3038080882899955112">"پیجر پر کال کریں"</string>
+    <string name="call_other" msgid="4472141328347894937">"کال کریں"</string>
+    <string name="call_callback" msgid="687494744634190411">"کال بیک نمبر پر کال کریں"</string>
+    <string name="call_car" msgid="9078083109758282133">"کار کے نمبر پر کال کریں"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"کمپنی کے اصل نمبر پر کال کریں"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"‏ISDN پر کال کریں"</string>
+    <string name="call_main" msgid="4640261071249938558">"اصل نمبر پر کال کریں"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"فیکس پر کال کریں"</string>
+    <string name="call_radio" msgid="9055749313292712021">"ریڈیو پر کال کریں"</string>
+    <string name="call_telex" msgid="2909886619224843563">"ٹیلیکس پر کال کریں"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"‏TTY / TDD پر کال کریں"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"دفتر کے موبائل پر کال کریں"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"دفتر کے پیجر پر کال کریں"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> کو کال کریں"</string>
+    <string name="call_mms" msgid="8998771923464696960">"‏MMS نمبر پر کال کریں"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> پر متن بھیجیں"</string>
+    <string name="sms_home" msgid="7765831490534280540">"گھر کے نمبر پر متن بھیجیں"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"موبائل پر متن بھیجیں"</string>
+    <string name="sms_work" msgid="3910570578912367742">"دفتر کے نمبر پر متن بھیجیں"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"دفتر کے فیکس نمبر پر متن بھیجیں"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"گھر کے فیکس نمبر پر متن بھیجیں"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"پیجر پر متن بھیجیں"</string>
+    <string name="sms_other" msgid="910895193552957097">"متن بھیجیں"</string>
+    <string name="sms_callback" msgid="728414485478941361">"کال بیک نمبر پر متن بھیجیں"</string>
+    <string name="sms_car" msgid="8543669230270954512">"کار کے نمبر پر متن بھیجیں"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"کمپنی کے اصل نمبر پر متن بھیجیں"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"‏ISDN نمبر پر متن بھیجیں"</string>
+    <string name="sms_main" msgid="6815987840926184815">"اصل نمبر پر متن بھیجیں"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"فیکس پر متن بھیجیں"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"ریڈیو پر متن بھیجیں"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"ٹیلکس پر متن بھیجیں"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"‏TTY / TDD پر متن بھیجیں"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"دفتر کے موبائل پر متن بھیجیں"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"دفتر کے پیجر پر متن بھیجیں"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> پر متن بھیجیں"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"‏MMS نمبر پر متن بھیجیں"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"اکثر رابطہ کردہ کو صاف کریں؟"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"‏آپ People اور فون ایپس میں اکثر رابطہ کردہ فہرست کو صاف کردیں گے اورای میل ایپس کو از سر نو اپنے پتے کی ترجیحات جاننے پر مجبور کریں گے۔"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"اکثر رابطہ کردہ کو صاف کر رہا ہے…"</string>
+    <string name="status_available" msgid="4832569677396634846">"دستیاب"</string>
+    <string name="status_away" msgid="6267905184545881094">"دور"</string>
+    <string name="status_busy" msgid="7111912905211403545">"مصروف"</string>
+    <string name="contactsList" msgid="7140022347217602605">"رابطے"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"دیگر"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"ڈائریکٹری"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"سبھی رابطے"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"میں"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"تلاش کر رہا ہے…"</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> سے زیادہ ملے۔"</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"کوئی رابطے نہیں ہیں"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="1013734912609351182">"1 ملا"</item>
+    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ملے"</item>
+  </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> کیلئے فوری رابطہ"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(کوئی نام نہیں)"</string>
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"اکثر کال کردہ"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"اکثر رابطہ کردہ"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"رابطہ دیکھیں"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"فون نمبرز کے ساتھ سبھی رابطے"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"اپ ڈیٹس دیکھیں"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"صرف ٹیبلٹ، غیر مطابقت پذیر"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"صرف فون، غیر مطابقت پذیر"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"نام"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"عرفی نام"</string>
+    <string name="full_name" msgid="885420216812981202">"نام"</string>
+    <string name="name_given" msgid="1560204576305608571">"رکھا گیا نام"</string>
+    <string name="name_family" msgid="1267097554034721002">"خاندانی نام"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"نام کا سابقہ"</string>
+    <string name="name_middle" msgid="3951610314424632183">"درمیانی نام"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"نام کا لاحقہ"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"فونیٹک نام"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"فونیٹک رکھا گیا نام"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"فونیٹک درمیانی نام"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"فونیٹک خاندانی نام"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"فون"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"ای میل"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"پتہ"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"تنظیم"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"تعلق"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"خصوصی تاریخیں"</string>
+    <string name="sms" msgid="8086289395154598654">"متنی پیغام"</string>
+    <string name="postal_address" msgid="7692926530081579786">"پتہ"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"کمپنی"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"عنوان"</string>
+    <string name="label_notes" msgid="3997277594846722699">"نوٹس"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"انٹرنیٹ کال"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"ویب سائٹ"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"گروپس"</string>
+    <string name="email_home" msgid="2230967805906450693">"گھر کے پتے پر ای میل کریں"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"موبائل پر ای میل کریں"</string>
+    <string name="email_work" msgid="7065971921227432400">"دفتر کو ای میل کریں"</string>
+    <string name="email_other" msgid="4601881243553289615">"ای میل کریں"</string>
+    <string name="email_custom" msgid="5777583741581538870">"ای میل کریں <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"ای میل کریں"</string>
+    <string name="postal_street" msgid="881349814077356134">"اسٹریٹ"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"‏PO باکس"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"مضافات"</string>
+    <string name="postal_city" msgid="3173008531169519309">"شہر"</string>
+    <string name="postal_region" msgid="1695206048198921115">"ریاست"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"زپ کوڈ"</string>
+    <string name="postal_country" msgid="3988452247038791892">"ملک"</string>
+    <string name="map_home" msgid="1221397355014741634">"گھر کا پتہ دیکھیں"</string>
+    <string name="map_work" msgid="9015981646907637207">"دفتر کا پتہ دیکھیں"</string>
+    <string name="map_other" msgid="55098598855607997">"پتہ دیکھیں"</string>
+    <string name="map_custom" msgid="4943554530347163288">"<xliff:g id="CUSTOM">%s</xliff:g> پتہ دیکھیں"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"‏AIM کے ذریعے چیٹ کریں"</string>
+    <string name="chat_msn" msgid="627481952525245054">"‏Windows Live کے ذریعے چیٹ کریں"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"‏Yahoo کے ذریعے چیٹ کریں"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"‏Skype کے ذریعے چیٹ کریں"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"‏QQ کے ذریعے چیٹ کریں"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"‏Google Talk کے ذریعے چیٹ کریں"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"‏ICQ کے ذریعے چیٹ کریں"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"‏Jabber کے ذریعے چیٹ کریں"</string>
+    <string name="chat" msgid="6297650784873558837">"چیٹ کریں"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"حذف کریں"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"نام کی فیلڈز کو پھیلائیں یا چھوٹا کریں"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"سبھی رابطے"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"ستارے کے نشان والے"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"حسب ضرورت بنائیں"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"رابطہ"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"سبھی دیگر رابطے"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"سبھی رابطے"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"مطابقت پذیر گروپ کو ہٹائیں"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"مطابقت پذیر گروپ شامل کریں"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"مزید گروپس…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" کو مطابقت پذیری سے ہٹانے سے مطابقت پذیری سے گروپ سے خارج کردہ کوئی رابطے بھی ہٹ جائیں گے۔"</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"ڈسپلے کے اختیارات محفوظ کر رہا ہے…"</string>
+    <string name="menu_done" msgid="32470053723443112">"ہو گیا"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"منسوخ کریں"</string>
+    <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> میں رابطے"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"حسب ضرورت منظر میں رابطے"</string>
+    <string name="listSingleContact" msgid="8525131203887307088">"واحد رابطہ"</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"اکاؤنٹ کے تحت رابطہ بنائیں"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"‏SIM کارڈ سے درآمد کریں"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"اسٹوریج سے درآمد کریں"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> کی درآمد منسوخ کریں؟"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد منسوخ کریں؟"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"وی کارڈ کی درآمد/برآمد کو منسوخ نہیں کرسکا"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"نامعلوم خرابی۔"</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" کو نہیں کھول سکا: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"برآمد کنندہ شروع نہیں ہو سکا: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"کوئی قابل برآمد رابطہ نہیں ہے۔"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"برآمد کرنے کے دوران ایک غلطی ہوگئی: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"مطلوبہ فائل کا نام کافی لمبا (\"<xliff:g id="FILENAME">%s</xliff:g>\") ہے۔"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"اسٹوریج میں بہت زیادہ وی کارڈ فائلیں ہیں۔"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"‏SD کارڈ میں بہت زیادہ وی کارڈ فائلیں ہیں۔"</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"‏I/O غلطی"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"کافی میموری نہیں ہے۔ فائل کافی بڑی ہو سکتی ہے۔"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"ایک غیر متوقع وجہ سے وی کارڈ کو پارس نہیں کرسکا۔"</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"فارمیٹ تعاون یافتہ نہیں ہے۔"</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"مقررہ وی کارڈ فائل (فائلوں) کی میٹا معلومات اکٹھا نہیں کرسکا۔"</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"‏ایک یا مزید فائلیں درآمد نہیں ہوسکیں (%s)۔"</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد پوری ہوگئی۔"</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد منسوخ ہوگئی۔"</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"رابطہ کا ڈیٹا برآمد کر رہا ہے"</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"آپ کا رابطے کا ڈیٹا اس میں برآمد کیا جا رہا ہے: <xliff:g id="FILE_NAME">%s</xliff:g>۔"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ڈیٹابیس کی معلومات حاصل نہیں ہو سکی۔"</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"برآمد کرنے لائق کوئی رابطے نہیں ہیں۔ اگر آپ کے ٹیبلیٹ پر واقعی رابطے ہیں تو ممکن ہے کچھ ڈیٹا فراہم کنندگان رابطوں کو ٹیبلیٹ سے برآمد کیے جانے کی اجازت نہ دیتے ہوں۔"</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"برآمد کرنے لائق کوئی رابطے نہیں ہیں۔ اگر آپ کے فون پر واقعی رابطے ہیں تو ممکن ہے کچھ ڈیٹا فراہم کنندگان رابطوں کو فون سے برآمد کیے جانے کی اجازت نہ دیتے ہوں۔"</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"وی کارڈ کمپوزر مناسب طریقے سے شروع نہیں ہوا۔"</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"برآمد نہیں کیا جاسکا"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"رابطہ کا ڈیٹا برآمد نہیں ہوا۔\nوجہ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"کوئی اسٹوریج نہیں ملا۔"</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"‏کوئی SD کارڈ نہیں ملا۔"</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"آپ کے رابطوں کی فہرست فائل: <xliff:g id="VCARD_FILENAME">%s</xliff:g> میں برآمد ہوگی۔"</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> کو درآمد کر رہا ہے"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"وی کارڈ کا ڈیٹا نہیں پڑھ سکا"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"وی کارڈ کا ڈیٹا پڑھنا منسوخ ہوگیا"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"وی کارڈ <xliff:g id="FILENAME">%s</xliff:g> کی درآمد پوری ہوگئی"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"<xliff:g id="FILENAME">%s</xliff:g> کی درآمد منسوخ ہوگئی"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"<xliff:g id="FILENAME">%s</xliff:g> جلد ہی درآمد کی جائے گی۔"</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"فائل جلد ہی درآمد کی جائے گی۔"</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"وی کارڈ درآمد کرنے کی درخواست مسترد ہوگئی تھی۔ بعد میں دوبارہ کوشش کریں۔"</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> جلد ہی برآمد کی جائے گی۔"</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"وی کارڈ برآمد کرنے کی درخواست مسترد ہوگئی تھی۔ بعد میں دوبارہ کوشش کریں۔"</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"رابطہ"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"وی کارڈ (کارڈز) کو مقامی عارضی اسٹوریج میں ذخیرہ کر رہا ہے۔ اصل درآمد جلد ہی شروع ہوگی۔"</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"وی کارڈ درآمد نہیں کرسکا۔"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"اسٹوریج میں کوئی وی کارڈ فائل نہیں ملی۔"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏SD کارڈ میں کوئی وی کارڈ فائل نہیں ملی۔"</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"‏NFC پر موصولہ رابطہ"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"رابطے برآمد کریں؟"</string>
+    <string name="select_vcard_title" msgid="1536575036597557639">"وی کارڈ فائل منتخب کریں"</string>
+    <string name="import_one_vcard_string" msgid="6199149175802496361">"ایک وی کارڈ فائل درآمد کریں"</string>
+    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"متعدد وی ​​کارڈ فائلیں درآمد کریں"</string>
+    <string name="import_all_vcard_string" msgid="1037495558362397535">"سبھی وی کارڈ فائلیں درآمد کریں"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"اسٹوریج میں وی کارڈ کا ڈیٹا تلاش کر رہا ہے…"</string>
+    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"‏SD کارڈ میں وی کارڈ کا ڈیٹا تلاش کر رہا ہے…"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"ذخیرہ کر رہا ہے"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"اسٹوریج کو اسکین نہیں کیا جا سکا۔ (وجہ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏SD کارڈ کو اسکین نہیں کیا جا سکا۔ (وجہ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g> درآمد کر رہا ہے"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"اسٹوریج میں برآمد کریں"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"مرئی رابطوں کا اشتراک کریں"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"رابطے درآمد/برآمد کریں"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"رابطے درآمد کریں"</string>
+    <string name="share_error" msgid="665756457151793108">"اس رابطہ کا اشتراک نہیں کیا جا سکتا۔"</string>
+    <string name="menu_search" msgid="7464453023659824700">"تلاش کریں"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"ڈسپلے کرنے کیلئے رابطے"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ڈسپلے کرنے کیلئے رابطے"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"حسب ضرورت منظر بیان کریں"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"رابطے تلاش کریں"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"پسندیدہ"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"کوئی رابطے نہیں ہیں۔"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"کوئی مرئی رابطے نہیں ہیں۔"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"کوئی پسندیدہ نہیں ہیں۔"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> میں کوئی رابطے نہیں ہیں"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"اکثر و بیشتر کو صاف کریں"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"‏SIM کارڈ منتخب کریں"</string>
+    <string name="menu_accounts" msgid="795417468541517082">"اکاؤنٹس"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"درآمد/برآمد کریں"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> کو پیغام بھیجیں"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"فون <xliff:g id="NAME">%1$s</xliff:g> پر ڈائل کریں"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"رابطہ شامل کریں"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"معرفت <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> معرفت <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"تلاش کرنا بند کریں"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"تلاش صاف کریں"</string>
+</resources>
