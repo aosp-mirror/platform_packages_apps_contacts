@@ -219,6 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Uutta kontaktiasi ei varmuuskopioida. Lisätäänkö tili, joka varmuuskopioi uudet kontaktit verkossa?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Uusi kontaktisi synkronoidaan tilillä <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Voit synkronoida uuden kontaktisi jollakin seuraavista tileistä. Mitä niistä haluat käyttää?"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Lisää uusi yhteystieto"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Muokkaa yhteystietoa"</string>
     <string name="keep_local" msgid="1258761699192993322">"Säilytä paikallisena"</string>
     <string name="add_account" msgid="8201790677994503186">"Lisää tili"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lisää uusi tili"</string>

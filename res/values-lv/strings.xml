@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> no <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontaktpersonas(-ām)"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Kontaktpersonu vārdi"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Netika atrasta neviena lietotne šīs darbības veikšanai."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Noklikšķiniet, lai atgrieztos iepriekšējā ekrānā."</string>
     <string name="missing_app" msgid="1466111003546611387">"Netika atrasta neviena lietotne šīs darbības veikšanai."</string>
     <string name="menu_share" msgid="943789700636542260">"Kopīgot"</string>
     <string name="share_via" msgid="563121028023030093">"Kopīgot kontaktpersonu, izmantojot"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Jaunā kontaktinformācija netiks dublēta. Vai pievienot kontu, kurā tiek tiešsaistē dublēta kontaktinformācija?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Jaunā kontaktinformācija tiks sinhronizēta ar kontu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Varat sinhronizēt jauno kontaktinformāciju ar vienu no tālāk norādītajiem kontiem. Kuru kontu vēlaties izmantot?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Saglabāt vietēji"</string>
     <string name="add_account" msgid="8201790677994503186">"Pievienot kontu"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pievienot jaunu kontu"</string>

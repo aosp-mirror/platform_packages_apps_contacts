@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"연락처 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개) 내보내는 중"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"이전 화면으로 돌아가려면 클릭"</string>
     <string name="missing_app" msgid="1466111003546611387">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
     <string name="menu_share" msgid="943789700636542260">"공유"</string>
     <string name="share_via" msgid="563121028023030093">"연락처 공유에 사용할 애플리케이션:"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"새 연락처는 백업되지 않습니다. 온라인에 주소록을 백업할 계정을 추가하시겠습니까?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"새 연락처가 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>와(과) 동기화됩니다."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"새 연락처를 다음 계정 중 하나와 동기화할 수 있습니다. 원하는 계정을 선택하세요."</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"오프라인 보관"</string>
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>

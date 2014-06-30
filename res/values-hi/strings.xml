@@ -219,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"आपके नए संपर्क का बैक अप नहीं लिया जाएगा. ऐसा खाता जोड़ें जो संपर्कों का ऑन‍लाइन बैक अप ले?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"आपका नया संपर्क <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> के साथ समन्‍वयित किया जाएगा."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"आप निम्‍न में से किसी एक खाते से अपने नए संपर्क को समन्‍वयित कर सकते हैं. आप किसका उपयोग करना चाहते हैं?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"स्‍थानीय रखें"</string>
     <string name="add_account" msgid="8201790677994503186">"खाता जोड़ें"</string>
     <string name="add_new_account" msgid="5748627740680940264">"नया खाता जोड़ें"</string>

@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ng <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (na) contact"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Mga pangalan ng iyong mga contact"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Walang natagpuang app na mangangasiwa sa pagkilos na ito."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"I-click upang bumalik sa nakaraang screen"</string>
     <string name="missing_app" msgid="1466111003546611387">"Walang nakitang app na gagawa sa aksyong ito."</string>
     <string name="menu_share" msgid="943789700636542260">"Ibahagi"</string>
     <string name="share_via" msgid="563121028023030093">"Ibahagi ang contact sa pamamagitan ng"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Hindi maba-back up ang iyong bagong contact. Magdagdag ng account na nagba-back up ng mga contact online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Masi-synchronize ang iyong bagong contact sa <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Masi-synchronize mo ang iyong bagong contact sa isa sa iyong mga sumusunod na account. Alin ang gusto mong gamitin?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Panatilihing lokal"</string>
     <string name="add_account" msgid="8201790677994503186">"Magdagdag ng account"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Magdagdag ng bagong account"</string>

@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> od <xliff:g id="TOTAL_NUMBER">%s</xliff:g> stikov"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Imena stikov"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Programa za obravnavo tega dejanja ni mogoče najti."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliknite za vrnitev na prejšnji zaslon"</string>
     <string name="missing_app" msgid="1466111003546611387">"Za to dejanje ni mogoče najti nobene aplikacije."</string>
     <string name="menu_share" msgid="943789700636542260">"Skupna raba"</string>
     <string name="share_via" msgid="563121028023030093">"Deli stik z drugimi prek"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nov stik ne bo varnostno kopiran. Želite dodati račun za varnostno kopiranje stikov v internetu?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nov stik bo sinhroniziran z računom <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nov stik lahko sinhronizirate z enim od teh računov. Katerega želite uporabiti?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Ohrani lokalno"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nov račun"</string>

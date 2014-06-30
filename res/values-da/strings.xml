@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> af <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Navne på dine kontakter"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik for at gå tilbage til forrige skærmbillede"</string>
     <string name="missing_app" msgid="1466111003546611387">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nye kontaktperson bliver ikke sikkerhedskopieret. Vil du tilføje en konto, der sikkerhedskopierer kontaktpersoner online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nye kontaktperson vil blive synkroniseret med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere din nye kontaktperson med en af de ​​følgende konti. Hvilken vil du bruge?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Gem lokalt"</string>
     <string name="add_account" msgid="8201790677994503186">"Tilføj konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tilføj ny konto"</string>

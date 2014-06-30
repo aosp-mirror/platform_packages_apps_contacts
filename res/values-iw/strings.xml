@@ -219,6 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"איש הקשר החדש שלך לא יגובה. להוסיף חשבון שמגבה אנשי קשר באופן מקוון?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"איש הקשר החדש שלך יסונכרן עם <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ניתן לסנכרן את איש הקשר החדש שלך עם אחד מהחשבונות הבאים. באיזה מהם ברצונך להשתמש?"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"הוסף איש קשר חדש"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ערוך איש קשר"</string>
     <string name="keep_local" msgid="1258761699192993322">"שמור באופן מקומי"</string>
     <string name="add_account" msgid="8201790677994503186">"הוסף חשבון"</string>
     <string name="add_new_account" msgid="5748627740680940264">"הוסף חשבון חדש"</string>
