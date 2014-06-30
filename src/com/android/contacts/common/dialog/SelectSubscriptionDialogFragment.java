@@ -16,7 +16,6 @@
 
 package com.android.contacts.common.dialog;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -25,25 +24,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.telecomm.Subscription;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.SubscriptionManager;
-import com.android.internal.util.ArrayUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -109,7 +95,7 @@ public class SelectSubscriptionDialogFragment extends DialogFragment {
             return -1;
         }
         else {
-            return ArrayUtils.indexOf(activeSubs, initialSubscription.getLabel(getActivity()));
+            return Arrays.asList(activeSubs).indexOf(initialSubscription.getLabel(getActivity()));
         }
     }
 
