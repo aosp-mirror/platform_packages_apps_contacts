@@ -441,13 +441,13 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         buildEntries();
 
         // Collapse similar data items for select {@link DataKind}s.
-        Collapser.collapseList(mPhoneEntries);
+        /*Collapser.collapseList(mPhoneEntries);
         Collapser.collapseList(mSmsEntries);
         Collapser.collapseList(mEmailEntries);
         Collapser.collapseList(mPostalEntries);
         Collapser.collapseList(mImEntries);
         Collapser.collapseList(mEventEntries);
-        Collapser.collapseList(mWebsiteEntries);
+        Collapser.collapseList(mWebsiteEntries);*/
 
         mIsUniqueNumber = mPhoneEntries.size() == 1;
         mIsUniqueEmail = mEmailEntries.size() == 1;

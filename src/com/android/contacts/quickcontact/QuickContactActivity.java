@@ -680,11 +680,6 @@ public class QuickContactActivity extends ContactsActivity {
         Trace.endSection();
         Trace.beginSection("collapsing action list");
 
-        // Collapse Action Lists (remove e.g. duplicate e-mail addresses from different sources)
-        for (List<Action> actionChildren : actions.values()) {
-            Collapser.collapseList(actionChildren);
-        }
-
         Trace.endSection();
         Trace.beginSection("sort mimetypes");
 
