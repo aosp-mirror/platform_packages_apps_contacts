@@ -1338,7 +1338,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         @Override
-        public boolean shouldCollapseWith(DetailViewEntry entry) {
+        public boolean shouldCollapseWith(DetailViewEntry entry, Context context) {
             if (entry == null) {
                 return false;
             }
