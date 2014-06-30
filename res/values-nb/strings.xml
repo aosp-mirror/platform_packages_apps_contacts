@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Navn på kontakter"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Det ble ikke funnet noen app som kan håndtere denne handlingen."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klikk for å gå tilbake til den forrige skjermen"</string>
     <string name="missing_app" msgid="1466111003546611387">"Kunne ikke finne noen app som kan håndtere denne handlingen."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Den nye kontakten din blir ikke sikkerhetskopiert. Vil du legge til en konto som sikkerhetskopierer kontakter på nettet?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Den nye kontakten din blir synkronisert med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere den nye kontakten din med én av de følgende kontoene. Hvilken vil du bruke?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Behold lokalt"</string>
     <string name="add_account" msgid="8201790677994503186">"Legg til konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Legg til ny konto"</string>

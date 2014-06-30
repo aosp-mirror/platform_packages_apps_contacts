@@ -219,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Your new contact won\'t be backed up. Add an account that backs up contacts online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Your new contact will be synchronised with <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"You can synchronise your new contact with one of the following accounts. Which do you want to use?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Keep locally"</string>
     <string name="add_account" msgid="8201790677994503186">"Add account"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Add new account"</string>

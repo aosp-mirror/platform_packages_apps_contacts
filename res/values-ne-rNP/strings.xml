@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1048457247435785074">"मानिसहरू"</string>
+    <string name="people" msgid="1190841469952343354">"सम्पर्कहरू"</string>
     <string name="contactsList" msgid="8661624236494819731">"सम्पर्क"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ठेगाना"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"सिधा डायल गर्नुहोस्"</string>
@@ -29,7 +29,6 @@
     <string name="frequentList" msgid="7154768136473953056">"कहिले कहीँ"</string>
     <string name="strequentList" msgid="5640192862059373511">"मनपर्नेहरू"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"विवरणहरूलाई सम्पर्क गर्नुहोस्"</string>
-    <string name="viewContactDesription" msgid="214186610887547860">"सम्पर्क हेर्नुहोस्"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"सम्पर्क सम्पादन गर्नुहोस्"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"ठेगाना बनाउनुहोस्"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"समूह सम्पादन गर्नुहोस्"</string>
@@ -65,7 +64,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"यो सम्पर्कमा जानकारीहरू धेरै खाताहरूबाट उपलब्ध छन्। पढ्ने-मात्र खातामा भएका जानकारीहरू तपाईँको सम्पर्क सूचीमा लुकेका हुने छन्, हटाइने छैन।"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"यो सम्पर्कलाइ हटाउनाले धेरै खाताहरूबाट जानकारीहरू नष्ट गर्ने छ।"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"यो सम्पर्क हटाइने छ।"</string>
-    <string name="menu_discard" msgid="6456087569315685632">"वेवास्ता गर्नुहोस्"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"परिवर्तनहरू रद्द गर्नुहोस्"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"सम्पर्क उपलब्ध छैन।"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"सम्पर्क विजेट होम स्क्रिनमा थपियो।"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नयाँ सम्पर्क सिर्जना गर्नुहोस्"</string>
@@ -75,7 +74,7 @@
     <item msgid="7196592230748086755">"नोट"</item>
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ट्याब्लेटमा कुनै पनि तस्वीरहरू उपलव्ध छैनन्।"</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"कुनै चित्रहरू फोनमा उपलब्ध छैनन्।"</string>
+    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"कुनै पनि चित्रहरू फोनमा उपलब्ध छैनन्।"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"सम्पर्क फोटो"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"कस्टम लेबल नाम"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"कलहरू सिधै भ्वाइसमेलमा पठाउनुहोस्"</string>
@@ -95,10 +94,6 @@
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> फोन नम्बरसहित सम्पर्कहरू"</item>
   </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"फोन नम्बर भएका कुनै सम्पर्कहरू छैनन्"</string>
-  <plurals name="listTotalAllContacts">
-    <item quantity="one" msgid="3405747744700823280">"१ सम्पर्क"</item>
-    <item quantity="other" msgid="3578469907265375314">"( <xliff:g id="COUNT">%d</xliff:g> सम्पर्कहरू)"</item>
-  </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"१ भेटियो"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> भेट्टियो"</item>
@@ -108,8 +103,8 @@
     <item quantity="one" msgid="4826918429708286628">"१ भेट्टाइयो"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> भेटाइयो"</item>
   </plurals>
-    <string name="contactsAllLabel" msgid="6479708629170672169">"सबै सम्पर्कहरू"</string>
-    <string name="contactsGroupsLabel" msgid="2841971472518003524">"समुहहरू"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"सबै सम्पर्कहरू"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"मनपर्ने"</string>
     <string name="callBack" msgid="5498224409038809224">"कल ब्याक"</string>
     <string name="callAgain" msgid="3197312117049874778">"फेरि कल गर्नुहोस्"</string>
     <string name="returnCall" msgid="8171961914203617813">"कल फर्काउनुहोस्"</string>
@@ -119,6 +114,8 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>को <xliff:g id="TOTAL_NUMBER">%s</xliff:g> सम्पर्क"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"तपाईँका सम्पर्कहरूका नामहरू"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"यो कार्य सम्हाल्न कुनै पनि अनुप्रयोग पाइएन।"</string>
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"अघिल्लो पर्दामा फर्कनको लागि क्लिक गर्नुहोस्"</string>
+    <string name="missing_app" msgid="1466111003546611387">"यो कार्य सम्हाल्न कुनै पनि अनुप्रयोग पाइएन।"</string>
     <string name="menu_share" msgid="943789700636542260">"साझेदारी गर्नुहोस्"</string>
     <string name="share_via" msgid="563121028023030093">"मार्फत सम्पर्क ‍साझेदारी गर्नुहोस्"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"खाता अन्तर्गत समूह बनाउनुहोस्"</string>
@@ -143,8 +140,8 @@
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"थर पहिले"</string>
     <string name="take_photo" msgid="7496128293167402354">"तस्वीर लिनुहोस्"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"नयाँ फोटो खिच्नुहोस्"</string>
-    <string name="pick_photo" msgid="3746334626214970837">"ग्यालरीबाट तस्वीर छान्नुहोस्"</string>
-    <string name="pick_new_photo" msgid="7962368009197147617">"ग्यालरीबाट नयाँ फोटो छान्नुहोस्"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"फोटो छान्नुहोस्"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"नयाँ तस्बिर चयन गर्नुहोस्"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषा परिवर्तन प्रतिबिम्बित गर्नका लागि सम्पर्क सूची अद्यावधिक गरिदैं छ।"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"सम्पर्क सूची अद्यावधिक हुदै छ।"</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"सम्पर्कहरू अद्यावधिक हुने प्रक्रियामा छन्।  \n \n अद्यावधिक प्रक्रिया लगभग  <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> आन्तरिक भण्डारण  MB आवश्यकता पर्छ ।  \n \n निम्न विकल्पहरू मध्ये कुनै छान्नुहोस्:"</string>
@@ -160,8 +157,6 @@
     <string name="add_organization" msgid="7311893231158291197">"संगठन थप्नुहोस्"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"मिति"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"समूह नाम"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g>मार्फत"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> मार्फत <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"मनपर्ने"</string>
     <string name="edit_contact" msgid="7529281274005689512">"सम्पर्क सम्पादन गर्नुहोस्"</string>
   <plurals name="merge_info">
@@ -173,7 +168,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"मेरा सम्पर्कहरूमा प्रतिलिपि गर्नुहोस्"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"मेरो सम्पर्कहरूमा थप्नुहोस्"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका<xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"एउटा व्यक्तिगत प्रतिलिपि बनाउँदै..."</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"अनुकूलन"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिङहरू"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिङहरू"</string>
@@ -219,15 +213,35 @@
     <string name="local_profile_title" msgid="2021416826991393684">"मेरो स्थानीय प्रोफाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"मेरो <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफाइल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सबै सम्पर्कहरू प्रदर्शन गरिदै"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"मानिसहरू गुगल खातासँग राम्रो काम गर्छन् । \n \n कुनै पनि वेब ब्राउजरबाट पहुँच गर्न सकिन्छ \n तपाईँका सम्पर्कहरू सुरक्षित रूपमा जगेडा गर्नुहोस्।"</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"Google खाता साथमा सम्पर्कले राम्रो काम गर्छ।\n\n• कुनै पनि वेब ब्राउजरबाट पहुँच गर्न सकिन्छ।\n• तपाईँका सम्पर्कहरू सुरक्षित रूपमा जगेडा गर्नुहोस्।"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"तपाईँले फोन नै हराउनु भएको अवस्थामा पनि आफ्ना सम्पर्कहरूलाई सुरक्षित राख्नुहोस्: कुनै अनलाइन सेवासँग सिन्क्रोनाइज गर्नुहोस्।"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"एउटा खाता थप्नुहोस्"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"तपाईँको नयाँ सम्पर्क अद्यावधि गरिने छैन। अनलाइन अद्यावधिक गर्ने एउटा खाता थप्ने हो?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>सँग तपाईँको नयाँ सम्पर्क सिन्क्रोनाइज गरिने छ।"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"तपाईँले आफ्ना सम्पर्कहरू निम्न मध्ये कुनै एउटा खातासँग सिन्क्रोनाइज गर्न सक्नु हुन्छ। कुन चाहिँ प्रयोग गर्न चाहनु हुन्छ ?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"स्थानीय राख्नुहोस्"</string>
     <string name="add_account" msgid="8201790677994503186">"खाता थप गर्नुहोस्"</string>
     <string name="add_new_account" msgid="5748627740680940264">"नयाँ खाता थप्नुहोस्"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फाइलहरू निर्यात गर्नुहोस्"</string>
     <string name="contact_detail_picture_description" msgid="6083230522651287030">"चित्र। परिवर्तन गर्न छान्नुहोस्"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"नयाँ सम्पर्क थप्नुहोस्"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"थप हेर्नुहोस्"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"कम हेर्नुहोस्"</string>
+    <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"सबै हेर्नुहोस्"</string>
+    <string name="communication_card_title" msgid="7842656156852232185">"सम्पर्क"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"हालैको"</string>
+    <string name="send_message" msgid="8938418965550543196">"सन्देश पठाउनुहोस्"</string>
+    <string name="toast_making_personal_copy" msgid="6137651078366797938">"व्यक्तिगत प्रतिलिपि बनाउँदै..."</string>
+    <string name="yesterday" msgid="6840858548955018569">"हिजो"</string>
+    <string name="tomorrow" msgid="6241969467795308581">"भोली"</string>
+    <string name="today" msgid="8041090779381781781">"आज"</string>
+    <string name="today_at_time_fmt" msgid="605665249491030460">"<xliff:g id="TIME_INTERVAL">%s</xliff:g>मा आज"</string>
+    <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"<xliff:g id="TIME_INTERVAL">%s</xliff:g>मा भोली"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="untitled_event" msgid="3484859385405939366">"(शीर्षकविहीन घटना)"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"सेट गर्नुहोस्"</string>
 </resources>

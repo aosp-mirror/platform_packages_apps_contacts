@@ -219,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte que faci còpies de seguretat dels contactes en línia?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"El teu contacte nou se sincronitzarà amb <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pots sincronitzar el teu contacte nou amb un dels comptes següents. Quin vols utilitzar?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Conserva localment"</string>
     <string name="add_account" msgid="8201790677994503186">"Afegeix un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Afegeix un compte nou"</string>

@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontaktov"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Mená vašich kontaktov"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikácia potrebná na spracovanie tejto akcie sa nenašla."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliknutím na tlačidlo sa vrátite na predchádzajúcu obrazovku."</string>
     <string name="missing_app" msgid="1466111003546611387">"Aplikácia potrebná na spracovanie tejto akcie sa nenašla."</string>
     <string name="menu_share" msgid="943789700636542260">"Zdieľať"</string>
     <string name="share_via" msgid="563121028023030093">"Zdieľať kontakt pomocou"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Váš nový kontakt nebude zálohovaný. Chcete pridať účet na zálohovanie kontaktov online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nový kontakt bude synchronizovaný s účtom <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nový kontakt môžete synchronizovať s jedným z nasledujúcich účtov. Ktorý z nich chcete použiť?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Zachovať miestne"</string>
     <string name="add_account" msgid="8201790677994503186">"Pridať účet"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pridať nový účet"</string>

@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> daripada <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kenalan"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nama kenalan anda"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Tiada aplikasi ditemui untuk mengendalikan tindakan ini."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik untuk kembali ke skrin sebelumnya"</string>
     <string name="missing_app" msgid="1466111003546611387">"Tiada apl ditemui untuk mengendalikan tindakan ini."</string>
     <string name="menu_share" msgid="943789700636542260">"Kongsi"</string>
     <string name="share_via" msgid="563121028023030093">"Kongsi gambar melalui"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kenalan baharu anda tidak akan dibuat sandaran. Tambahkan akaun yang membuat sandaran kenalan dalam talian?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Kenalan baharu anda akan disegerakkan dengan <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Anda boleh menyegerakkan kenalan baharu anda dengan salah satu akaun berikut. Mana satu yang anda mahu gunakan?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"Simpan setempat"</string>
     <string name="add_account" msgid="8201790677994503186">"Tambah akaun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambah akaun baharu"</string>

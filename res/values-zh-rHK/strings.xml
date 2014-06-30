@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"找不到可以處理這個操作的應用程式。"</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"按一下即可返回上一個畫面"</string>
     <string name="missing_app" msgid="1466111003546611387">"找不到可以處理這個操作的應用程式。"</string>
     <string name="menu_share" msgid="943789700636542260">"分享"</string>
     <string name="share_via" msgid="563121028023030093">"使用下列應用程式分享聯絡人資訊："</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"您的新聯絡人資料不會備份。要新增可在網上備份聯絡人資料的帳戶嗎？"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您的新聯絡人資料將與 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 同步處理。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以透過下列其中一個帳戶同步處理您的新聯絡人資料。要使用哪個帳戶？"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"保留在本機中"</string>
     <string name="add_account" msgid="8201790677994503186">"新增帳戶"</string>
     <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>

@@ -114,8 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> (სულ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> კონტაქტიდან)"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"თქვენი კონტაქტების სახელები"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ამ მოქმედების შესასრულებლად აპი ვერ მოიძებნა."</string>
-    <!-- no translation found for quickcontact_transparent_view_description (987959416759562455) -->
-    <skip />
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"დააწკაპუნეთ წინა ეკრანზე დასაბრუნებლად"</string>
     <string name="missing_app" msgid="1466111003546611387">"ამ მოქმედების შესასრულებლად აპი ვერ მოიძებნა."</string>
     <string name="menu_share" msgid="943789700636542260">"გაზიარება"</string>
     <string name="share_via" msgid="563121028023030093">"კონტაქტის გაზიარება"</string>
@@ -220,6 +219,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"თქვენი ახალი კონტაქტი არ დამარქაფდება. გსურთ ანგარიშის დამატება, რომელიც დაამარქაფებს კონტაქტებს ონლაინ?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"მოხდება თქვენი ახალი კონტაქტის სინქრონიზაცია <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>-თან."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ახალი კონტაქტის სინქრონიზაცია შეგიძლიათ ერთ-ერთი შემდეგი ანგარიშიდან. რომლის გამოყენება გსურთ?"</string>
+    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
+    <skip />
+    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
+    <skip />
     <string name="keep_local" msgid="1258761699192993322">"შენახვა ადგილობრივად"</string>
     <string name="add_account" msgid="8201790677994503186">"ანგარიშის დამატება"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ახალი ანგარიშის დამატება"</string>
