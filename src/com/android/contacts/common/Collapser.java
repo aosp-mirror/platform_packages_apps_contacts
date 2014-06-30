@@ -57,7 +57,7 @@ public final class Collapser {
      *
      * @param list List of Objects of type <T extends Collapsible<T>> to be collapsed.
      */
-    public static <T extends Collapsible<T>> void collapseList(List<T> list) {
+    public static <T extends Collapsible<T>> void collapseList(List<T> list, Context context) {
 
         int listSize = list.size();
         // The algorithm below is n^2 so don't run on long lists
@@ -71,10 +71,10 @@ public final class Collapser {
                 for (int j = i + 1; j < listSize; j++) {
                     T jItem = list.get(j);
                     if (jItem != null) {
-                        if (iItem.shouldCollapseWith(jItem, null)) {
+                        if (iItem.shouldCollapseWith(jItem, context)) {
                             iItem.collapseWith(jItem);
                             list.set(j, null);
-                        } else if (jItem.shouldCollapseWith(iItem, null)) {
+                        } else if (jItem.shouldCollapseWith(iItem, context)) {
                             jItem.collapseWith(iItem);
                             list.set(i, null);
                             break;
@@ -91,13 +91,6 @@ public final class Collapser {
                 itr.remove();
             }
         }
-
-    }
-
-    /**
-     * This will replace the above function after another CL
-     */
-    public static <T extends Collapsible<T>> void collapseList(List<T> list, Context context) {
 
     }
 }
