@@ -1357,10 +1357,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             return true;
         }
 
-        public boolean shouldCollapseWith(DetailViewEntry entry, Context context) {
-            return false;
-        }
-
         @Override
         public void click(View clickedView, Listener fragmentListener) {
             if (fragmentListener == null || intent == null) return;
@@ -2027,7 +2023,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             final long defaultGroupId = getDefaultGroupId(groups);
             if (defaultGroupId == -1) return false;
 
-            final RawContact rawContact = (RawContact) mContactData.getRawContacts().get(0);
+            final RawContact rawContact = mContactData.getRawContacts().get(0);
             final AccountType type = rawContact.getAccountType(getContext());
             // Offline or non-writeable account? Nothing to fix
             if (type == null || !type.areContactsWritable()) return false;

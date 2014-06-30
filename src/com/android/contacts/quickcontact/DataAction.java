@@ -334,10 +334,6 @@ public class DataAction implements Action {
         return true;
     }
 
-    public boolean shouldCollapseWith(Action t, Context context) {
-        return false;
-    }
-
     @Override
     public Integer getTimesUsed() {
         return mTimesUsed;
