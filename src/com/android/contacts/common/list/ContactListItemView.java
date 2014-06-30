@@ -91,6 +91,10 @@ public class ContactListItemView extends ViewGroup
     private int mHeaderWidth;
     private Drawable mActivatedBackgroundDrawable;
 
+    // Set in onLayout. Represent left and right position of the View on the screen.
+    private int mLeftOffset;
+    private int mRightOffset;
+
     /**
      * Used with {@link #mLabelView}, specifying the width ratio between label and data.
      */
@@ -478,8 +482,9 @@ public class ContactListItemView extends ViewGroup
             }
         }
 
-        mBoundsWithoutHeader.set(leftBound, topBound, rightBound, bottomBound);
-
+        mBoundsWithoutHeader.set(left + leftBound, topBound, left + rightBound, bottomBound);
+        mLeftOffset = left + leftBound;
+        mRightOffset = left + rightBound;
         if (mIsSectionHeaderEnabled) {
             if (isLayoutRtl) {
                 rightBound -= mGapBetweenImageAndText;
@@ -1442,7 +1447,7 @@ public class ContactListItemView extends ViewGroup
     }
 
     private final boolean pointIsInView(float localX, float localY) {
-        return localX >= 0 && localX < (getRight() - getLeft())
+        return localX >= mLeftOffset && localX < mRightOffset
                 && localY >= 0 && localY < (getBottom() - getTop());
     }
 }
