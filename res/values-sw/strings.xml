@@ -114,6 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ya anwani <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Majina ya anwani zako"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Hakuna programu iliyopatikana ya kushughulikia tendo hili."</string>
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Bofya ili urudi kwenye skrini iliyotangulia"</string>
     <string name="missing_app" msgid="1466111003546611387">"Hakuna programu iliyopatikana ya kushughulikia tendo hili."</string>
     <string name="menu_share" msgid="943789700636542260">"Shiriki"</string>
     <string name="share_via" msgid="563121028023030093">"Shiriki anwani kupitia"</string>

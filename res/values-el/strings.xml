@@ -114,6 +114,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> από <xliff:g id="TOTAL_NUMBER">%s</xliff:g> επαφές"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Ονόματα των επαφών σας"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας."</string>
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Κάντε κλικ για να επιστρέψετε στην προηγούμενη οθόνη"</string>
     <string name="missing_app" msgid="1466111003546611387">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας."</string>
     <string name="menu_share" msgid="943789700636542260">"Κοινή χρήση"</string>
     <string name="share_via" msgid="563121028023030093">"Κοινή χρήση μέσω"</string>
