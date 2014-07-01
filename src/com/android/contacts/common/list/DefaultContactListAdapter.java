@@ -26,7 +26,7 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.SearchSnippetColumns;
+import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -80,9 +80,9 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                     builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                             String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
                 }
-                builder.appendQueryParameter(SearchSnippetColumns.SNIPPET_ARGS_PARAM_KEY,
+                builder.appendQueryParameter(SearchSnippets.SNIPPET_ARGS_PARAM_KEY,
                         SNIPPET_ARGS);
-                builder.appendQueryParameter(SearchSnippetColumns.DEFERRED_SNIPPETING_KEY,"1");
+                builder.appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY,"1");
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
             }
