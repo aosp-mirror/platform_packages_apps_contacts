@@ -42,36 +42,6 @@ public class TelephonyManagerUtils {
         return voiceMailLabel;
     }
 
-   /**
-    * Checks a given number against the voicemail number provided by the RIL and SIM card. The
-    * caller must have the READ_PHONE_STATE credential.
-    *
-    * @param number the number to look up.
-    * @return true if the number is in the list of voicemail. False
-    * otherwise, including if the caller does not have the permission
-    * to read the VM number.
-    *
-    * TODO: Remove if PhoneNumberUtils.isVoiceMailNumber(String number) is made public.
-    */
-    public static boolean isVoiceMailNumber(String number, Context context) {
-       String vmNumber;
-       final TelephonyManager telephonyManager =
-           (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-       try {
-           vmNumber = telephonyManager.getVoiceMailNumber();
-       } catch (SecurityException ex) {
-           Log.w(LOG_TAG, "SecurtyException: could not get voicemail number.");
-           return false;
-       }
-
-       // Strip the separators from the number before comparing it to the list.
-       number = PhoneNumberUtils.extractNetworkPortion(number);
-
-       // The "compare" API tolerates null so we need to make sure that we don't return true
-       // when both are null.
-       return !TextUtils.isEmpty(number) && PhoneNumberUtils.compare(number, vmNumber);
-    }
-
     /**
      * @return The ISO 3166-1 two letters country code of the country the user
      *         is in based on the network location. If the network location does not exist, fall
