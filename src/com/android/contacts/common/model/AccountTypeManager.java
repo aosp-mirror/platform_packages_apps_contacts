@@ -17,7 +17,7 @@
 package com.android.contacts.common.model;
 
 import android.accounts.Account;
-import android.accounts.AccountManager;
+import android.accounts.PhoneAccountManager;
 import android.accounts.AuthenticatorDescription;
 import android.accounts.OnAccountsUpdateListener;
 import android.content.BroadcastReceiver;
@@ -35,7 +35,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
-import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
@@ -192,7 +191,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
             1, "xxx");
 
     private Context mContext;
-    private AccountManager mAccountManager;
+    private PhoneAccountManager mPhoneAccountManager;
 
     private AccountType mFallbackAccountType;
 
@@ -290,7 +289,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         mContext = context;
         mFallbackAccountType = new FallbackAccountType(context);
 
-        mAccountManager = AccountManager.get(mContext);
+        mPhoneAccountManager = PhoneAccountManager.get(mContext);
 
         mListenerThread = new HandlerThread("AccountChangeListener");
         mListenerThread.start();
@@ -326,7 +325,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         filter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
         mContext.registerReceiver(mBroadcastReceiver, filter);
 
-        mAccountManager.addOnAccountsUpdatedListener(this, mListenerHandler, false);
+        mPhoneAccountManager.addOnAccountsUpdatedListener(this, mListenerHandler, false);
 
         ContentResolver.addStatusChangeListener(ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS, this);
 
@@ -393,7 +392,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         final List<AccountWithDataSet> groupWritableAccounts = Lists.newArrayList();
         final Set<String> extensionPackages = Sets.newHashSet();
 
-        final AccountManager am = mAccountManager;
+        final PhoneAccountManager am = mPhoneAccountManager;
 
         final SyncAdapterType[] syncs = ContentResolver.getSyncAdapterTypes();
         final AuthenticatorDescription[] auths = am.getAuthenticatorTypes();
@@ -476,7 +475,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         timings.addSplit("Loaded account types");
 
         // Map in accounts to associate the account names with each account type entry.
-        Account[] accounts = mAccountManager.getAccounts();
+        Account[] accounts = mPhoneAccountManager.getAccounts();
         for (Account account : accounts) {
             boolean syncable =
                 ContentResolver.getIsSyncable(account, ContactsContract.AUTHORITY) > 0;
