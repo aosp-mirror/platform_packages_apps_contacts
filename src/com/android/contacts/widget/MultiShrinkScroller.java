@@ -62,6 +62,11 @@ public class MultiShrinkScroller extends LinearLayout {
     private static final int EXIT_FLING_ANIMATION_DURATION_MS = 300;
 
     /**
+     * Length of the entrance animation.
+     */
+    private static final int ENTRANCE_ANIMATION_SLIDE_OPEN_DURATION_MS = 250;
+
+    /**
      * In portrait mode, the height:width ratio of the photo's starting height.
      */
     private static final float INTERMEDIATE_HEADER_HEIGHT_RATIO = 0.5f;
@@ -88,7 +93,18 @@ public class MultiShrinkScroller extends LinearLayout {
     private int mHeaderTintColor;
     private int mMaximumHeaderHeight;
     private int mMinimumHeaderHeight;
+    /**
+     * When the contact photo is tapped, it is resized to max size or this size. This value also
+     * sometimes represents the maximum achievable header size achieved by scrolling. To enforce
+     * this maximum in scrolling logic, always access this value via
+     * {@link #getMaximumScrollableHeaderHeight}.
+     */
     private int mIntermediateHeaderHeight;
+    /**
+     * If true, regular scrolling can expand the header beyond mIntermediateHeaderHeight. The
+     * header, that contains the contact photo, can expand to a height equal its width.
+     */
+    private boolean mIsOpenContactSquare;
     private int mMaximumHeaderTextSize;
     private int mCollapsedTitleBottomMargin;
     private int mCollapsedTitleStartMargin;
@@ -218,7 +234,7 @@ public class MultiShrinkScroller extends LinearLayout {
     /**
      * This method must be called inside the Activity's OnCreate.
      */
-    public void initialize(MultiShrinkScrollerListener listener) {
+    public void initialize(MultiShrinkScrollerListener listener, boolean isOpenContactSquare) {
         mScrollView = (ScrollView) findViewById(R.id.content_scroller);
         mScrollViewChild = findViewById(R.id.card_container);
         mToolbar = findViewById(R.id.toolbar_parent);
@@ -228,6 +244,7 @@ public class MultiShrinkScroller extends LinearLayout {
         mInvisiblePlaceholderTextView = (TextView) findViewById(R.id.placeholder_textview);
         mLeftOverSpaceView = findViewById(R.id.card_empty_space);
         mListener = listener;
+        mIsOpenContactSquare = isOpenContactSquare;
 
         mPhotoView = (QuickContactImageView) findViewById(R.id.photo);
 
@@ -258,8 +275,7 @@ public class MultiShrinkScroller extends LinearLayout {
                 final boolean isLandscape = getResources().getConfiguration().orientation
                         == Configuration.ORIENTATION_LANDSCAPE;
                 mMaximumPortraitHeaderHeight = isLandscape ? getHeight() : getWidth();
-                setHeaderHeight(mIntermediateHeaderHeight);
-
+                setHeaderHeight(getMaximumScrollableHeaderHeight());
                 mMaximumHeaderTextSize = mLargeTextView.getHeight();
                 if (mIsTwoPanel) {
                     mMaximumHeaderHeight = getHeight();
@@ -471,10 +487,11 @@ public class MultiShrinkScroller extends LinearLayout {
      * If needed, snap the subviews to the top of the Window.
      */
     private boolean snapToTop(int flingDelta) {
-        final int requiredScroll = -getScroll_ignoreOversizedHeader() + mTransparentStartHeight;
-        if (-getScroll_ignoreOversizedHeader() - flingDelta < 0
-                && -getScroll_ignoreOversizedHeader() - flingDelta > -mTransparentStartHeight
-                && requiredScroll != 0) {
+        final int requiredScroll = -getScroll_ignoreOversizedHeaderForSnapping()
+                + mTransparentStartHeight;
+        if (-getScroll_ignoreOversizedHeaderForSnapping() - flingDelta < 0
+                && -getScroll_ignoreOversizedHeaderForSnapping() - flingDelta >
+                -mTransparentStartHeight && requiredScroll != 0) {
             // We finish scrolling above the empty starting height, and aren't projected
             // to fling past the top of the Window, so elastically snap the empty space shut.
             mScroller.forceFinished(true);
@@ -488,7 +505,7 @@ public class MultiShrinkScroller extends LinearLayout {
      * If needed, scroll all the subviews off the bottom of the Window.
      */
     private void snapToBottom(int flingDelta) {
-        if (-getScroll_ignoreOversizedHeader() - flingDelta > 0) {
+        if (-getScroll_ignoreOversizedHeaderForSnapping() - flingDelta > 0) {
             scrollOffBottom();
         }
     }
@@ -508,6 +525,22 @@ public class MultiShrinkScroller extends LinearLayout {
         if (mListener != null) {
             mListener.onStartScrollOffBottom();
         }
+    }
+
+    /**
+     * @param scrollToCurrentPosition if true, will scroll from the bottom of the screen to the
+     * current position. Otherwise, will scroll from the bottom of the screen to the top of the
+     * screen.
+     */
+    public void scrollUpForEntranceAnimation(boolean scrollToCurrentPosition) {
+        final int currentPosition = getScroll();
+        final int bottomScrollPosition = currentPosition
+                - (getHeight() - getTransparentViewHeight()) + 1;
+        ObjectAnimator.ofInt(this, "scroll", bottomScrollPosition,
+                currentPosition + (scrollToCurrentPosition ? currentPosition
+                : getTransparentViewHeight()))
+                .setDuration(ENTRANCE_ANIMATION_SLIDE_OPEN_DURATION_MS)
+                .start();
     }
 
     @Override
@@ -583,19 +616,30 @@ public class MultiShrinkScroller extends LinearLayout {
         final LinearLayout.LayoutParams toolbarLayoutParams
                 = (LayoutParams) mToolbar.getLayoutParams();
         return mTransparentStartHeight - getTransparentViewHeight()
-                + mIntermediateHeaderHeight - toolbarLayoutParams.height + mScrollView.getScrollY();
+                + getMaximumScrollableHeaderHeight() - toolbarLayoutParams.height
+                + mScrollView.getScrollY();
+    }
+
+    private int getMaximumScrollableHeaderHeight() {
+        return mIsOpenContactSquare ? mMaximumHeaderHeight : mIntermediateHeaderHeight;
     }
 
     /**
      * A variant of {@link #getScroll} that pretends the header is never larger than
      * than mIntermediateHeaderHeight. This function is sometimes needed when making scrolling
      * decisions that will not change the header size (ie, snapping to the bottom or top).
+     *
+     * When mIsOpenContactSquare is true, this function considers mIntermediateHeaderHeight ==
+     * mMaximumHeaderHeight, since snapping decisions will be made relative the full header
+     * size when mIsOpenContactSquare = true.
+     *
+     * This value should never be used in conjunction with {@link #getScroll} values.
      */
-    public int getScroll_ignoreOversizedHeader() {
+    private int getScroll_ignoreOversizedHeaderForSnapping() {
         final LinearLayout.LayoutParams toolbarLayoutParams
                 = (LayoutParams) mToolbar.getLayoutParams();
         return mTransparentStartHeight - getTransparentViewHeight()
-                + Math.max(mIntermediateHeaderHeight - toolbarLayoutParams.height, 0)
+                + Math.max(getMaximumScrollableHeaderHeight() - toolbarLayoutParams.height, 0)
                 + mScrollView.getScrollY();
     }
 
@@ -610,8 +654,9 @@ public class MultiShrinkScroller extends LinearLayout {
      * Return amount of scrolling needed in order for all the visible subviews to scroll off the
      * bottom.
      */
-    public int getScrollUntilOffBottom() {
-        return getHeight() + getScroll_ignoreOversizedHeader() - mTransparentStartHeight;
+    private int getScrollUntilOffBottom() {
+        return getHeight() + getScroll_ignoreOversizedHeaderForSnapping()
+                - mTransparentStartHeight;
     }
 
     @Override
@@ -686,7 +731,7 @@ public class MultiShrinkScroller extends LinearLayout {
         if (!mIsTwoPanel) {
             return mTransparentStartHeight
                     // How much the Header view can compress
-                    + mIntermediateHeaderHeight - getFullyCompressedHeaderHeight()
+                    + getMaximumScrollableHeaderHeight() - getFullyCompressedHeaderHeight()
                     // How much the ScrollView can scroll. 0, if child is smaller than ScrollView.
                     + Math.max(0, mScrollViewChild.getHeight() - getHeight()
                     + getFullyCompressedHeaderHeight());
@@ -732,7 +777,7 @@ public class MultiShrinkScroller extends LinearLayout {
      */
     private int getFullyCompressedHeaderHeight() {
         return Math.min(Math.max(mToolbar.getLayoutParams().height - getOverflowingChildViewSize(),
-                        mMinimumHeaderHeight), mIntermediateHeaderHeight);
+                        mMinimumHeaderHeight), getMaximumScrollableHeaderHeight());
     }
 
     /**
@@ -752,11 +797,11 @@ public class MultiShrinkScroller extends LinearLayout {
         }
         final LinearLayout.LayoutParams toolbarLayoutParams
                 = (LayoutParams) mToolbar.getLayoutParams();
-        if (toolbarLayoutParams.height < mIntermediateHeaderHeight) {
+        if (toolbarLayoutParams.height < getMaximumScrollableHeaderHeight()) {
             final int originalValue = toolbarLayoutParams.height;
             toolbarLayoutParams.height -= delta;
             toolbarLayoutParams.height = Math.min(toolbarLayoutParams.height,
-                    mIntermediateHeaderHeight);
+                    getMaximumScrollableHeaderHeight());
             mToolbar.setLayoutParams(toolbarLayoutParams);
             delta -= originalValue - toolbarLayoutParams.height;
         }
@@ -1053,7 +1098,7 @@ public class MultiShrinkScroller extends LinearLayout {
         final int newEmptyScrollViewSpace = -getOverflowingChildViewSize() + heightDelta;
         if (newEmptyScrollViewSpace > 0 && !mIsTwoPanel) {
             final int newDesiredToolbarHeight = Math.min(mToolbar.getLayoutParams().height
-                    + newEmptyScrollViewSpace, mIntermediateHeaderHeight);
+                    + newEmptyScrollViewSpace, getMaximumScrollableHeaderHeight());
             ObjectAnimator.ofInt(this, "toolbarHeight", newDesiredToolbarHeight).start();
         }
     }

@@ -31,8 +31,6 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -59,7 +57,6 @@ import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
@@ -160,7 +157,6 @@ public class QuickContactActivity extends ContactsActivity {
 
     private static final String KEY_THEME_COLOR = "theme_color";
 
-    private static final int ANIMATION_SLIDE_OPEN_DURATION = 250;
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
     private static final float SYSTEM_BAR_BRIGHTNESS_FACTOR = 0.7f;
@@ -539,7 +535,7 @@ public class QuickContactActivity extends ContactsActivity {
             ObjectAnimator.ofInt(mWindowScrim, "alpha", 0, 0xFF).setDuration(duration).start();
         }
 
-        mScroller.initialize(mMultiShrinkScrollerListener);
+        mScroller.initialize(mMultiShrinkScrollerListener, mExtraMode == MODE_FULLY_EXPANDED);
         // mScroller needs to perform asynchronous measurements after initalize(), therefore
         // we can't mark this as GONE.
         mScroller.setVisibility(View.INVISIBLE);
@@ -640,12 +636,7 @@ public class QuickContactActivity extends ContactsActivity {
             return;
         }
         mHasAlreadyBeenOpened = true;
-        final int bottomScroll = mScroller.getScrollUntilOffBottom() - 1;
-        final ObjectAnimator scrollAnimation
-                = ObjectAnimator.ofInt(mScroller, "scroll", -bottomScroll,
-                mExtraMode != MODE_FULLY_EXPANDED ? 0 : mScroller.getScrollNeededToBeFullScreen());
-        scrollAnimation.setDuration(ANIMATION_SLIDE_OPEN_DURATION);
-        scrollAnimation.start();
+        mScroller.scrollUpForEntranceAnimation(mExtraMode != MODE_FULLY_EXPANDED);
     }
 
     /** Assign this string to the view if it is not empty. */
