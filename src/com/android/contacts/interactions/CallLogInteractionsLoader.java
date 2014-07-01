@@ -47,7 +47,7 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
     @Override
     public List<ContactInteraction> loadInBackground() {
         if (!getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)
-                || mPhoneNumbers == null || mPhoneNumbers.length == 0) {
+                || mPhoneNumbers == null || mPhoneNumbers.length <= 0 || mMaxToRetrieve <= 0) {
             return Collections.emptyList();
         }
 
@@ -68,7 +68,10 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
                 }
             }
         });
-
+        // Duplicates only occur because of fuzzy matching. No need to dedupe a single number.
+        if (mPhoneNumbers.length == 1) {
+            return interactions;
+        }
         return pruneDuplicateCallLogInteractions(interactions, mMaxToRetrieve);
     }
 
@@ -99,9 +102,12 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
 
     private List<ContactInteraction> getCallLogInteractions(String phoneNumber) {
         final Uri uri = Uri.withAppendedPath(Calls.CONTENT_FILTER_URI, phoneNumber);
-        final String orderBy = Calls.DATE + " DESC";
+        // Append the LIMIT clause onto the ORDER BY clause. This won't cause crashes as long
+        // as we don't also set the {@link android.provider.CallLog.Calls.LIMIT_PARAM_KEY} that
+        // becomes available in KK.
+        String orderByAndLimit = Calls.DATE + " DESC LIMIT " + mMaxToRetrieve;
         final Cursor cursor = getContext().getContentResolver().query(uri, null, null, null,
-                orderBy);
+                orderByAndLimit);
         try {
             if (cursor == null || cursor.getCount() < 1) {
                 return Collections.emptyList();
