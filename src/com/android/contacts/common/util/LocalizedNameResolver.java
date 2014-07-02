@@ -16,7 +16,7 @@
 
 package com.android.contacts.common.util;
 
-import android.accounts.PhoneAccountManager;
+import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -66,7 +66,7 @@ public class LocalizedNameResolver  {
      * Finds "All Contacts"-Name for the specified account type.
      */
     private static String resolveAllContactsName(Context context, String accountType) {
-        final PhoneAccountManager am = PhoneAccountManager.get(context);
+        final AccountManager am = AccountManager.get(context);
 
         for (AuthenticatorDescription auth : am.getAuthenticatorTypes()) {
             if (accountType.equals(auth.type)) {
