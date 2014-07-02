@@ -112,8 +112,8 @@
     <dimen name="floating_action_button_dialpad_margin_bottom_offset">4dp</dimen>
 
     <!-- Height of the selection indicator of a tab. -->
-    <dimen name="tab_selected_underline_height">3dp</dimen>
-    <dimen name="tab_selected_underline_height_negative">-3dp</dimen>
+    <dimen name="tab_selected_underline_height">2dp</dimen>
+    <dimen name="tab_selected_underline_height_negative">-2dp</dimen>
     <!-- Size of text in tabs. -->
     <dimen name="tab_text_size">14sp</dimen>
 
