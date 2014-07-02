@@ -38,6 +38,20 @@
         android:background="@drawable/item_background_material_dark"
         android:contentDescription="@string/description_contact_photo" />
 
+    <!-- Overlays/gradients that can be used to make white text/buttons visible -->
+    <View
+        android:id="@+id/title_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="bottom" />
+    <View
+        android:id="@+id/action_bar_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="top" />
+
     <!-- Need to set a non null background on Toolbar in order for MenuItem ripples to be drawn on
          this view, instead of another. This will *not* cause an additional draw since the
          background is transparent.-->
