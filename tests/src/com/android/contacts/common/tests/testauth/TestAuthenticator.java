@@ -19,7 +19,7 @@ package com.android.contacts.common.tests.testauth;
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorResponse;
-import android.accounts.AccountManager;
+import android.accounts.PhoneAccountManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -67,11 +67,11 @@ class TestAuthenticator extends AbstractAccountAuthenticator {
         final Account account = new Account(newUniqueUserName(), accountType);
 
         // Create an account.
-        AccountManager.get(mContext).addAccountExplicitly(account, PASSWORD, null);
+        PhoneAccountManager.get(mContext).addAccountExplicitly(account, PASSWORD, null);
 
         // And return it.
-        bundle.putString(AccountManager.KEY_ACCOUNT_NAME, account.name);
-        bundle.putString(AccountManager.KEY_ACCOUNT_TYPE, account.type);
+        bundle.putString(PhoneAccountManager.KEY_ACCOUNT_NAME, account.name);
+        bundle.putString(PhoneAccountManager.KEY_ACCOUNT_TYPE, account.type);
         return bundle;
     }
 
@@ -83,9 +83,9 @@ class TestAuthenticator extends AbstractAccountAuthenticator {
             String authTokenType, Bundle loginOptions) {
         Log.v(TestauthConstants.LOG_TAG, "getAuthToken() account=" + account);
         final Bundle bundle = new Bundle();
-        bundle.putString(AccountManager.KEY_ACCOUNT_NAME, account.name);
-        bundle.putString(AccountManager.KEY_ACCOUNT_TYPE, account.type);
-        bundle.putString(AccountManager.KEY_AUTHTOKEN, account.name);
+        bundle.putString(PhoneAccountManager.KEY_ACCOUNT_NAME, account.name);
+        bundle.putString(PhoneAccountManager.KEY_ACCOUNT_TYPE, account.type);
+        bundle.putString(PhoneAccountManager.KEY_AUTHTOKEN, account.name);
 
         return bundle;
     }
@@ -118,7 +118,7 @@ class TestAuthenticator extends AbstractAccountAuthenticator {
         // return false (no) for any queries.
         Log.v(TestauthConstants.LOG_TAG, "hasFeatures()");
         final Bundle result = new Bundle();
-        result.putBoolean(AccountManager.KEY_BOOLEAN_RESULT, false);
+        result.putBoolean(PhoneAccountManager.KEY_BOOLEAN_RESULT, false);
         return result;
     }
 

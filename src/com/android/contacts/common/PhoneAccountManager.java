@@ -16,36 +16,36 @@
 
 package com.android.contacts.common;
 
-import android.telecomm.Subscription;
+import android.telecomm.PhoneAccount;
 import android.telephony.TelephonyManager;
 
 import java.util.List;
 
 /**
- * To pass current subscription information between activities/fragments.
+ * To pass current account information between activities/fragments.
  */
-public class SubscriptionManager {
-    private Subscription mCurrentSubscription = null;
+public class PhoneAccountManager {
+    private PhoneAccount mCurrentAccount = null;
     private TelephonyManager mTelephonyManager;
 
-    public SubscriptionManager(TelephonyManager telephonyManager, Subscription subscription) {
+    public PhoneAccountManager(TelephonyManager telephonyManager, PhoneAccount account) {
         mTelephonyManager = telephonyManager;
-        mCurrentSubscription = subscription;
+        mCurrentAccount = account;
     }
 
-    public SubscriptionManager(TelephonyManager telephonyManager) {
+    public PhoneAccountManager(TelephonyManager telephonyManager) {
         mTelephonyManager = telephonyManager;
     }
 
-    public Subscription getCurrentSubscription() {
-        return mCurrentSubscription;
+    public PhoneAccount getCurrentAccount() {
+        return mCurrentAccount;
     }
 
-    public void setCurrentSubscription(Subscription subscription) {
-        mCurrentSubscription = subscription;
+    public void setCurrentAccount(PhoneAccount account) {
+        mCurrentAccount = account;
     }
 
-    public List<Subscription> getSubscriptions() {
-        return mTelephonyManager.getSubscriptions();
+    public List<PhoneAccount> getAccounts() {
+        return mTelephonyManager.getAccounts();
     }
 }
