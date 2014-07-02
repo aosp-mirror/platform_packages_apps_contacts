@@ -16,7 +16,7 @@
 package com.android.contacts.common.tests.testauth;
 
 import android.accounts.Account;
-import android.accounts.PhoneAccountManager;
+import android.accounts.AccountManager;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
@@ -32,14 +32,14 @@ import android.util.Log;
  *
  */
 public class TestSyncAdapter extends AbstractThreadedSyncAdapter {
-    private final PhoneAccountManager mPhoneAccountManager;
+    private final AccountManager mAccountManager;
 
     private final Context mContext;
 
     public TestSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
         mContext = context.getApplicationContext();
-        mPhoneAccountManager = PhoneAccountManager.get(mContext);
+        mAccountManager = AccountManager.get(mContext);
     }
 
     /**
