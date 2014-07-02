@@ -29,7 +29,15 @@ public interface OnPhoneNumberPickerActionListener  {
      */
     void onPickPhoneNumberAction(Uri dataUri);
 
+    /**
+     * Calls the specified phone number audio call.
+     */
     void onCallNumberDirectly(String phoneNumber);
+
+    /**
+     * Calls the specified phone number, either as an audio or video call.
+     */
+    void onCallNumberDirectly(String phoneNumber, boolean isVideoCall);
 
     /**
      * Returns the selected number as a shortcut intent.
