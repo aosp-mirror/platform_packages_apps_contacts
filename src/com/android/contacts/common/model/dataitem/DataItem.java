@@ -191,6 +191,7 @@ public class DataItem implements Collapser.Collapsible<DataItem> {
         // If this does not have a label and that does, or if that's label is higher precedence,
         // use that's label
         if ((!hasKindTypeColumn(thisKind) && that.hasKindTypeColumn(thatKind)) ||
+                that.hasKindTypeColumn(thatKind) &&
                 RawContactModifier.getTypePrecedence(thisKind, getKindTypeColumn(thisKind))
                 >
                 RawContactModifier.getTypePrecedence(thatKind, that.getKindTypeColumn(thatKind))) {
