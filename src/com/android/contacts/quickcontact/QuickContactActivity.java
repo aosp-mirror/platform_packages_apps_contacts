@@ -861,8 +861,8 @@ public class QuickContactActivity extends ContactsActivity {
         // Author of Palette recommends using 24 colors when analyzing profile photos.
         final int NUMBER_OF_PALETTE_COLORS = 24;
         final Palette palette = Palette.generate(bitmap, NUMBER_OF_PALETTE_COLORS);
-        if (palette != null && palette.getVibrantColor() != null) {
-            return palette.getVibrantColor().getRgb();
+        if (palette != null && palette.getVibrantSwatch() != null) {
+            return palette.getVibrantSwatch().getRgb();
         }
         return 0;
     }
