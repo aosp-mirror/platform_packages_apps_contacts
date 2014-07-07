@@ -140,7 +140,7 @@
     <string name="chat_icq" msgid="7538190395602030726">"แชทโดยใช้ ICQ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"แชทโดยใช้ Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"แชท"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"ลบ"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"นำออก"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"ขยายหรือยุบฟิลด์ชื่อ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"รายชื่อติดต่อทั้งหมด"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"ที่ติดดาว"</string>
