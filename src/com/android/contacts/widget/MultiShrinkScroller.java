@@ -28,6 +28,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewConfiguration;
+import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.EdgeEffect;
 import android.widget.FrameLayout;
@@ -536,11 +537,13 @@ public class MultiShrinkScroller extends LinearLayout {
         final int currentPosition = getScroll();
         final int bottomScrollPosition = currentPosition
                 - (getHeight() - getTransparentViewHeight()) + 1;
-        ObjectAnimator.ofInt(this, "scroll", bottomScrollPosition,
+        final Interpolator interpolator = AnimationUtils.loadInterpolator(getContext(),
+                android.R.interpolator.linear_out_slow_in);
+        final ObjectAnimator animator = ObjectAnimator.ofInt(this, "scroll", bottomScrollPosition,
                 currentPosition + (scrollToCurrentPosition ? currentPosition
-                : getTransparentViewHeight()))
-                .setDuration(ENTRANCE_ANIMATION_SLIDE_OPEN_DURATION_MS)
-                .start();
+                : getTransparentViewHeight()));
+        animator.setInterpolator(interpolator);
+        animator.start();
     }
 
     @Override
