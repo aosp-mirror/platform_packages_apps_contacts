@@ -219,10 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"तपाईँको नयाँ सम्पर्क अद्यावधि गरिने छैन। अनलाइन अद्यावधिक गर्ने एउटा खाता थप्ने हो?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>सँग तपाईँको नयाँ सम्पर्क सिन्क्रोनाइज गरिने छ।"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"तपाईँले आफ्ना सम्पर्कहरू निम्न मध्ये कुनै एउटा खातासँग सिन्क्रोनाइज गर्न सक्नु हुन्छ। कुन चाहिँ प्रयोग गर्न चाहनु हुन्छ ?"</string>
-    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
-    <skip />
-    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"नयाँ सम्पर्क थप्ने"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"सम्पर्क सम्पादन"</string>
     <string name="keep_local" msgid="1258761699192993322">"स्थानीय राख्नुहोस्"</string>
     <string name="add_account" msgid="8201790677994503186">"खाता थप गर्नुहोस्"</string>
     <string name="add_new_account" msgid="5748627740680940264">"नयाँ खाता थप्नुहोस्"</string>

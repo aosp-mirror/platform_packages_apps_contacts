@@ -219,10 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您新增的聯絡人資料。您是否要新建一個帳戶，將您的聯絡人資料另存在線上？"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您新增的聯絡人資料將會同步儲存在 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 的帳戶中。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以將新增的聯絡人資料同步儲存在下列其中一個帳戶中。您要選擇哪一個帳戶？"</string>
-    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
-    <skip />
-    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增聯絡人"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"編輯聯絡人"</string>
     <string name="keep_local" msgid="1258761699192993322">"儲存在本機中"</string>
     <string name="add_account" msgid="8201790677994503186">"新增帳戶"</string>
     <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>

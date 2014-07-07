@@ -219,10 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"သင့် အဆက်အသွယ်အသစ်ကို အရံသိမ်းဆည်းထားခြင်း မရှိပါ။ အဆယ်အသွယ်များကို အွန်လိုင်းပေါ်မှာ အရံသိမ်းဆည်းပေးရန် အကောင့်သစ် ထပ်ထည့်ချင်ပါသလား"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"သင့်ရဲ့ အဆက်အသွယ်အသစ်ကို <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> နှင့် ထပ်တူဖြစ်အောင် ပြုလုပ်ပါမည်"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"သင်ရဲ့အဆက်အသွယ် အသစ်ကို အောက်ပါ အကောင့်တွေထဲက တစ်ခုခုဖြင့် ထပ်တူဖြစ်အောင် ပြုလုပ်နိုင်ပါသည်။ ဘယ်တစ်ခုကို သုံးချင်ပါသလဲ?"</string>
-    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
-    <skip />
-    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"လိပ်စာအသစ် ပေါင်းမည်"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
     <string name="keep_local" msgid="1258761699192993322">"ဖုန်းထဲတွင်သာသိမ်းပါ"</string>
     <string name="add_account" msgid="8201790677994503186">"အကောင့်ထပ်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>

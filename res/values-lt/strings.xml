@@ -219,10 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Naujo kontakto atsarginė kopija nebus sukurta. Pridėti paskyrą, kuri sukuria atsargines kontaktų kopijas internete?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Naujas kontaktas bus sinchronizuojamas su <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Naują kontaktą galite sinchronizuoti su viena iš toliau pateiktų paskyrų. Kurią norite naudoti?"</string>
-    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
-    <skip />
-    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Pridėti naują kont."</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Redaguoti kontaktą"</string>
     <string name="keep_local" msgid="1258761699192993322">"Išsaug. kaip vietinį"</string>
     <string name="add_account" msgid="8201790677994503186">"Pridėkite paskyrą"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pridėkite naują paskyrą"</string>

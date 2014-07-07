@@ -219,10 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kenalan baharu anda tidak akan dibuat sandaran. Tambahkan akaun yang membuat sandaran kenalan dalam talian?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Kenalan baharu anda akan disegerakkan dengan <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Anda boleh menyegerakkan kenalan baharu anda dengan salah satu akaun berikut. Mana satu yang anda mahu gunakan?"</string>
-    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
-    <skip />
-    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tambah kenalan baru"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit kenalan"</string>
     <string name="keep_local" msgid="1258761699192993322">"Simpan setempat"</string>
     <string name="add_account" msgid="8201790677994503186">"Tambah akaun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambah akaun baharu"</string>

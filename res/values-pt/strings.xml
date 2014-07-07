@@ -219,10 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será possível fazer backup de seu novo contato. Deseja adicionar uma conta que faça backup de contatos on-line?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Seu novo contato será sincronizado com <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"É possível sincronizar seu novo contato com uma das seguintes contas. Qual você deseja usar?"</string>
-    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
-    <skip />
-    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adic. novo contato"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contato"</string>
     <string name="keep_local" msgid="1258761699192993322">"Manter localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Adicionar conta"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Adicionar nova conta"</string>

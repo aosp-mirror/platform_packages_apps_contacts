@@ -219,10 +219,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"នឹង​មិន​បម្រុងទុក​ទំនាក់ទំនង​ថ្មី​របស់​អ្នក​ទេ។ បន្ថែម​គណនី​ដើម្បី​បម្រុងទុក​ទំនាក់ទំនង​នៅ​លើ​បណ្ដាញ?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"នឹង​ធ្វើ​សមកាលកម្ម​ទំនាក់ទំនង​ថ្មី​របស់​អ្នក​ជាមួយ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ។"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"អ្នក​អាច​ធ្វើ​សមកាលកម្ម​ទំនាក់ទំនង​ថ្មី​របស់​អ្នក​ជា​មួយ​គណនី​មួយ​ខាងក្រោម។ តើ​អ្នក​ចង់​ប្រើ​មួយ​ណា?"</string>
-    <!-- no translation found for contact_editor_title_new_contact (7192223018128934940) -->
-    <skip />
-    <!-- no translation found for contact_editor_title_existing_contact (4898475703683187798) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"បន្ថែមទំនាក់ទំនងថ្មី"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"កែ​ទំនាក់ទំនង"</string>
     <string name="keep_local" msgid="1258761699192993322">"រក្សា​ទុក​មូលដ្ឋាន"</string>
     <string name="add_account" msgid="8201790677994503186">"បន្ថែម​គណនី"</string>
     <string name="add_new_account" msgid="5748627740680940264">"បន្ថែម​គណនី​ថ្មី"</string>
