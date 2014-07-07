@@ -66,7 +66,7 @@
     <string name="status_available" msgid="4832569677396634846">"Có mặt"</string>
     <string name="status_away" msgid="6267905184545881094">"Đã ra ngoài"</string>
     <string name="status_busy" msgid="7111912905211403545">"Bận"</string>
-    <string name="contactsList" msgid="7140022347217602605">"Danh sách liên hệ"</string>
+    <string name="contactsList" msgid="7140022347217602605">"Danh bạ"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Khác"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Thư mục"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Tất cả người liên hệ"</string>
@@ -166,7 +166,7 @@
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Không thể nhập/xuất vCard"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"Lỗi không xác định."</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Không thể mở \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Không thể khởi chạy trình xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Không thể chạy trình xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Không thể xuất liên hệ nào."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Đã xảy ra lỗi khi xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Tên tệp yêu cầu quá dài (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
@@ -190,7 +190,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Không xuất được dữ liệu liên hệ.\nLý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Không tìm thấy bộ nhớ nào."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Không tìm thấy thẻ SD nào."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Danh sách liên hệ của bạn sẽ được xuất sang tệp: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Danh bạ của bạn sẽ được xuất sang tệp: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Đang nhập <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Không thể đọc dữ liệu vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Thao tác đọc dữ liệu vCard bị hủy"</string>
@@ -225,7 +225,7 @@
     <string name="dialog_import" msgid="5177004290082451296">"Nhập danh bạ"</string>
     <string name="share_error" msgid="665756457151793108">"Không thể chia sẻ liên hệ này."</string>
     <string name="menu_search" msgid="7464453023659824700">"Tìm kiếm"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Danh sách liên hệ để hiển thị"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Danh bạ để hiển thị"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"DS liên hệ để hiển thị"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Xác định chế độ xem tùy chỉnh"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Tìm địa chỉ liên hệ"</string>

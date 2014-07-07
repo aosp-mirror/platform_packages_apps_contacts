@@ -91,14 +91,14 @@
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Pseudo"</string>
     <string name="full_name" msgid="885420216812981202">"Nom"</string>
     <string name="name_given" msgid="1560204576305608571">"Prénom"</string>
-    <string name="name_family" msgid="1267097554034721002">"Nom de famille"</string>
+    <string name="name_family" msgid="1267097554034721002">"Nom"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Préfixe du nom"</string>
     <string name="name_middle" msgid="3951610314424632183">"Deuxième prénom"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Suffixe du nom"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nom phonétique"</string>
     <string name="name_phonetic_given" msgid="993707744185923412">"Prénom phonétique"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Deuxième prénom phonétique"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"Nom de famille phonétique"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Nom phonétique"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Numéro de téléphone"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Adresse de courriel :"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresse"</string>
@@ -143,7 +143,7 @@
     <string name="description_minus_button" msgid="2142439445814730827">"supprimer"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Développer ou réduire les champs de nom"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Tous les contacts"</string>
-    <string name="list_filter_all_starred" msgid="9060325494254507806">"Marqués d\'une étoile"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Favoris"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Personnaliser"</string>
     <string name="list_filter_single" msgid="4553809449379139446">"Contact"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"Tous les autres contacts"</string>
