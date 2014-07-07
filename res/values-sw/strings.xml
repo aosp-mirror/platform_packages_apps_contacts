@@ -40,13 +40,13 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Tazama anwani"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Ongeza kwa vipendwa"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ondoa kwenye vipendwa"</string>
-    <string name="menu_editContact" msgid="9042415603857662633">"Hariri"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Badilisha"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Futa"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Weka kwenye skrini ya Mwanzo"</string>
     <string name="menu_call" msgid="3992595586042260618">"Mpigie"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Tuma ujumbe kwa anwani"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Kando"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Hariri"</string>
+    <string name="menu_editGroup" msgid="5062005185370983720">"Badilisha"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Futa"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Ongeza Anwani"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Ongeza Kikundi"</string>
@@ -60,7 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Anwani zote"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Anwani zimeunganishwa"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Weka mlio wa simu"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Simu zote ziwekewe ujumbe wa sauti"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Simu zijibiwe kwa ujumbe-sauti"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Huwezi kufuta anwani kutoka kwa akaunti ya kusoma-tu, lakini unaweza kuzificha katika orodha zako za anwani."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Anwani hii ina maelezo kutoka kwa akaunti nyingi. Maelezo kutoka kwa akaunti za soma-tu zitafichwa katika orodha zako za anwani, sio kufutwa."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Kufuta anwani hii kutafuta maelezo kutoka kwa akaunti nyingi."</string>
@@ -168,7 +168,7 @@
     <item quantity="other" msgid="425683718017380845">"Zimeunganishwa kutoka kwa nyenzo <xliff:g id="COUNT">%0$d</xliff:g>"</item>
   </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Unganisha anwani ya sasa na anwani iliyochaguliwa?"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Badilisha kwa hariri anwani iliyochaguliwa? Maelezo uliyoyaingiza hadi sasa yatanakiliwa."</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Ungependa kubadilisha anwani uliyochagua? Maelezo uliyoweka kufikia sasa yatanakiliwa."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Nakili kwa Anwani Zangu"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Ongeza kwa Anwani Zangu"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Saraka <xliff:g id="TYPE">%1$s</xliff:g>"</string>

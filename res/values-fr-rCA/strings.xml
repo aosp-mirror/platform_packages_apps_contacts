@@ -25,7 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Choisissez le numéro à appeler"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choisissez le numéro auquel envoyer le message"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Sélectionner un contact"</string>
-    <string name="starredList" msgid="4817256136413959463">"Marqués d\'une étoile"</string>
+    <string name="starredList" msgid="4817256136413959463">"Favoris"</string>
     <string name="frequentList" msgid="7154768136473953056">"Contacts fréquents"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favoris"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Détails du contact"</string>
@@ -77,7 +77,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Aucune image n\'est disponible sur la tablette."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Aucune image disponible sur le téléphone"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Photo du contact"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Libellé personnalisé"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Étiquette personnalisée"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Renvoyer les appels directement vers la messagerie vocale"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Retirer la photo"</string>
     <string name="noContacts" msgid="8579310973261953559">"Aucun contact"</string>
@@ -138,7 +138,7 @@
     <string name="group_read_only" msgid="1061762906115697637">"Non modifiable sur cet appareil."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Trier la liste par"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Prénom"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Nom de famille"</string>
+    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Nom"</string>
     <string name="display_options_view_names_as" msgid="4386932036180428374">"Afficher les noms des contacts"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Le prénom en premier"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Le nom en premier"</string>

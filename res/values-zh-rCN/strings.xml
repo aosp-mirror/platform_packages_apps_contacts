@@ -39,7 +39,7 @@
     <string name="searchHint" msgid="8482945356247760701">"搜索联系人"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"查看联系人"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"添加到收藏"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"从收藏中删除"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"从收藏中移除"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"修改"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"删除"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"放在主屏幕上"</string>
@@ -97,7 +97,7 @@
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"没有联系人拥有电话号码"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 位联系人"</item>
-    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> 位联系人"</item>
+    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g>位联系人"</item>
   </plurals>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"找到 1 个联系人"</item>

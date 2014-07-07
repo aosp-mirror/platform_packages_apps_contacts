@@ -60,7 +60,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kontak"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontak telah bergabung"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setel nada dering"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Semua panggilan ke kotak pesan"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Panggilan masuk kotak pesan"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Anda tidak dapat menghapus kontak dari akun hanya-baca, namun Anda dapat menyembunyikannya dalam daftar kontak Anda."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Kontak ini berisi informasi dari beberapa akun. Informasi dari akun hanya-baca akan disembunyikan dalam daftar kontak Anda, tidak dihapus."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Menghapus kontak ini akan menghapus informasi dari beberapa akun."</string>
