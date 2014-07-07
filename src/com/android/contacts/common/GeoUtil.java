@@ -16,9 +16,10 @@
 
 package com.android.contacts.common;
 
+import android.app.Application;
 import android.content.Context;
-import android.location.Country;
-import android.location.CountryDetector;
+
+import com.android.contacts.common.location.CountryDetector;
 
 import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -33,20 +34,15 @@ import java.util.Locale;
 public class GeoUtil {
 
     /**
+     * Returns the country code of the country the user is currently in. Before calling this
+     * method, make sure that {@link CountryDetector#initialize(Context)} has already been called
+     * in {@link Application#onCreate()}.
      * @return The ISO 3166-1 two letters country code of the country the user
      *         is in.
      */
     public static String getCurrentCountryIso(Context context) {
-        final CountryDetector detector =
-                (CountryDetector) context.getSystemService(Context.COUNTRY_DETECTOR);
-        if (detector != null) {
-            final Country country = detector.detectCountry();
-            if (country != null) {
-                return country.getCountryIso();
-            }
-        }
-        // Fallback to Locale if have issues with CountryDetector
-        return Locale.getDefault().getCountry();
+        // The {@link CountryDetector} should never return null so this is safe to return as-is.
+        return CountryDetector.getInstance(context).getCurrentCountryIso();
     }
 
     public static String getGeocodedLocationFor(Context context,  String phoneNumber) {
