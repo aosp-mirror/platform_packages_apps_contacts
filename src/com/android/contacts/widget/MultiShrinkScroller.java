@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Rect;
+import android.graphics.drawable.GradientDrawable;
 import android.hardware.display.DisplayManagerGlobal;
 import android.os.Trace;
 import android.util.AttributeSet;
@@ -82,6 +83,8 @@ public class MultiShrinkScroller extends LinearLayout {
     private View mLeftOverSpaceView;
     /** Contains desired location/size of the title, once the header is fully compressed */
     private TextView mInvisiblePlaceholderTextView;
+    private View mTitleGradientView;
+    private View mActionBarGradientView;
     private int mHeaderTintColor;
     private int mMaximumHeaderHeight;
     private int mMinimumHeaderHeight;
@@ -121,6 +124,12 @@ public class MultiShrinkScroller extends LinearLayout {
             0, 0, 0, 0, 0,
             0, 0, 0, 1, 0
     };
+
+    private final int[] mGradientColors = new int[] {0,0xAA000000};
+    private GradientDrawable mTitleGradientDrawable = new GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM, mGradientColors);
+    private GradientDrawable mActionBarGradientDrawable = new GradientDrawable(
+            GradientDrawable.Orientation.BOTTOM_TOP, mGradientColors);
 
     public interface MultiShrinkScrollerListener {
         void onScrolledOffBottom();
@@ -222,6 +231,11 @@ public class MultiShrinkScroller extends LinearLayout {
 
         mPhotoView = (QuickContactImageView) findViewById(R.id.photo);
 
+        mTitleGradientView = findViewById(R.id.title_gradient);
+        mTitleGradientView.setBackground(mTitleGradientDrawable);
+        mActionBarGradientView = findViewById(R.id.action_bar_gradient);
+        mActionBarGradientView.setBackground(mActionBarGradientDrawable);
+
         if (!mIsTwoPanel) {
             mPhotoTouchInterceptOverlay = findViewById(R.id.photo_touch_intercept_overlay);
             mPhotoTouchInterceptOverlay.setOnClickListener(new OnClickListener() {
@@ -263,12 +277,36 @@ public class MultiShrinkScroller extends LinearLayout {
 
                 calculateCollapsedLargeTitlePadding();
                 updateHeaderTextSize();
+                configureGradientViewHeights();
             }
         });
     }
 
+    private void configureGradientViewHeights() {
+        final float GRADIENT_SIZE_COEFFICIENT = 1.25f;
+        final FrameLayout.LayoutParams actionBarGradientLayoutParams
+                = (FrameLayout.LayoutParams) mActionBarGradientView.getLayoutParams();
+        actionBarGradientLayoutParams.height
+                = (int) (mMinimumHeaderHeight * GRADIENT_SIZE_COEFFICIENT);
+        mActionBarGradientView.setLayoutParams(actionBarGradientLayoutParams);
+        final FrameLayout.LayoutParams titleGradientLayoutParams
+                = (FrameLayout.LayoutParams) mTitleGradientView.getLayoutParams();
+        final FrameLayout.LayoutParams largeTextLayoutParms
+                = (FrameLayout.LayoutParams) mLargeTextView.getLayoutParams();
+        titleGradientLayoutParams.height = (int) ((mLargeTextView.getHeight()
+                + largeTextLayoutParms.bottomMargin) * GRADIENT_SIZE_COEFFICIENT);
+        mTitleGradientView.setLayoutParams(titleGradientLayoutParams);
+    }
+
     public void setTitle(String title) {
         mLargeTextView.setText(title);
+    }
+
+    public void setUseGradient(boolean useGradient) {
+        if (mTitleGradientView != null) {
+            mTitleGradientView.setVisibility(useGradient ? View.VISIBLE : View.GONE);
+            mActionBarGradientView.setVisibility(useGradient ? View.VISIBLE : View.GONE);
+        }
     }
 
     @Override
@@ -883,6 +921,10 @@ public class MultiShrinkScroller extends LinearLayout {
         // Tell the photo view what tint we are trying to achieve. Depending on the type of
         // drawable used, the photo view may or may not use this tint.
         mPhotoView.setTint(mHeaderTintColor);
+
+        final int gradientAlpha = (int) (255 * linearBeforeMiddle);
+        mTitleGradientDrawable.setAlpha(gradientAlpha);
+        mActionBarGradientDrawable.setAlpha(gradientAlpha);
 
         Trace.endSection();
     }

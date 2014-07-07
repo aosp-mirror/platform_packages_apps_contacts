@@ -65,7 +65,6 @@ import android.widget.Toolbar;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.common.Collapser;
 import com.android.contacts.R;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
@@ -528,6 +527,7 @@ public class QuickContactActivity extends ContactsActivity {
 
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
         extractAndApplyTintFromPhotoViewAsynchronously();
+        analyzeWhitenessOfPhotoAsynchronously();
         setHeaderNameText(data.getDisplayName());
 
         Trace.endSection();
@@ -814,6 +814,30 @@ public class QuickContactActivity extends ContactsActivity {
         }.execute();
     }
 
+    /**
+     * Examine how many white pixels are in the bitmap in order to determine whether or not
+     * we need gradient overlays on top of the image.
+     */
+    private void analyzeWhitenessOfPhotoAsynchronously() {
+        final Drawable imageViewDrawable = mPhotoView.getDrawable();
+        new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                if (imageViewDrawable instanceof BitmapDrawable) {
+                    final Bitmap bitmap = ((BitmapDrawable) imageViewDrawable).getBitmap();
+                    return WhitenessUtils.isBitmapWhiteAtTopOrBottom(bitmap);
+                }
+                return !(imageViewDrawable instanceof LetterTileDrawable);
+            }
+
+            @Override
+            protected void onPostExecute(Boolean isWhite) {
+                super.onPostExecute(isWhite);
+                mScroller.setUseGradient(isWhite);
+            }
+        }.execute();
+    }
+
     private void setThemeColor(int color) {
         // If the color is invalid, use the predefined default
         if (color == 0) {
@@ -861,8 +885,8 @@ public class QuickContactActivity extends ContactsActivity {
         // Author of Palette recommends using 24 colors when analyzing profile photos.
         final int NUMBER_OF_PALETTE_COLORS = 24;
         final Palette palette = Palette.generate(bitmap, NUMBER_OF_PALETTE_COLORS);
-        if (palette != null && palette.getVibrantSwatch() != null) {
-            return palette.getVibrantSwatch().getRgb();
+        if (palette != null && palette.getVibrantColor() != null) {
+            return palette.getVibrantColor().getRgb();
         }
         return 0;
     }
