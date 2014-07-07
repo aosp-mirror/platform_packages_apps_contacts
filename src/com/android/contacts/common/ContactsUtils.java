@@ -19,12 +19,14 @@ package com.android.contacts.common;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.dataitem.ImDataItem;
 import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.model.AccountTypeManager;
 
@@ -141,4 +143,23 @@ public class ContactsUtils {
         return sThumbnailSize;
     }
 
+    public static Intent getCustomIMIntent(ImDataItem im, int protocol) {
+        String host = im.getCustomProtocol();
+        final String data = im.getData();
+        if (TextUtils.isEmpty(data)) {
+            return null;
+        }
+        if (protocol != Im.PROTOCOL_CUSTOM) {
+            // Try bringing in a well-known host for specific protocols
+            host = ContactsUtils.lookupProviderNameFromId(protocol);
+        }
+        if (TextUtils.isEmpty(host)) {
+            return null;
+        }
+        final String authority = host.toLowerCase();
+        final Uri imUri = new Uri.Builder().scheme(CallUtil.SCHEME_IMTO).authority(
+                authority).appendPath(data).build();
+        final Intent intent = new Intent(Intent.ACTION_SENDTO, imUri);
+        return intent;
+    }
 }

@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package src.com.android.contacts.common;
+package com.android.contacts.common;
 
+import android.content.ContentValues;
 import android.content.Intent;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.net.Uri;
+import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.MoreContactUtils;
+import com.android.contacts.common.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.ImDataItem;
 
 /**
  * Tests for {@link ContactsUtils}.
@@ -65,5 +68,30 @@ public class ContactsUtilsTests extends AndroidTestCase {
         assertFalse("21", ContactsUtils.areIntentActionEqual(new Intent("a"), new Intent()));
         assertFalse("22", ContactsUtils.areIntentActionEqual(new Intent(), new Intent("b")));
         assertFalse("23", ContactsUtils.areIntentActionEqual(new Intent("a"), new Intent("b")));
+    }
+
+    public void testImIntentCustom() throws Exception {
+        final String testAddress = "user@example.org";
+        final String testProtocol = "prot%col";
+
+
+        // Custom IM types have encoded authority. We send the imto Intent here, because
+        // legacy third party apps might not accept xmpp yet
+        final ContentValues values = new ContentValues();
+        values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        values.put(Im.TYPE, Im.TYPE_HOME);
+        values.put(Im.PROTOCOL, Im.PROTOCOL_CUSTOM);
+        values.put(Im.CUSTOM_PROTOCOL, testProtocol);
+        values.put(Im.DATA, testAddress);
+        ImDataItem im = (ImDataItem) DataItem.createFrom(values);
+
+        final Intent imIntent =
+                ContactsUtils.getCustomIMIntent(im, Im.PROTOCOL_CUSTOM);
+        assertEquals(Intent.ACTION_SENDTO, imIntent.getAction());
+
+        final Uri data = imIntent.getData();
+        assertEquals("imto", data.getScheme());
+        assertEquals(testProtocol, data.getAuthority());
+        assertEquals(testAddress, data.getPathSegments().get(0));
     }
 }
