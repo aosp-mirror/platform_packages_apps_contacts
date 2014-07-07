@@ -100,7 +100,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Средње име – фонетски"</string>
     <string name="name_phonetic_family" msgid="8617732497578358951">"Презиме – фонетски"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Адреса е-поште"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Имејл адреса"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Адреса"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"Размена тренутних порука"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Организација"</string>
@@ -114,12 +114,12 @@
     <string name="label_sip_address" msgid="5849843867753601973">"Интернет позив"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сајт"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Групе"</string>
-    <string name="email_home" msgid="2230967805906450693">"Пошаљи поруку е-поште на кућну адресу е-поште"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"Пошаљи поруку е-поште на мобилни телефон"</string>
-    <string name="email_work" msgid="7065971921227432400">"Пошаљи поруку е-поште на пословну адресу е-поште"</string>
-    <string name="email_other" msgid="4601881243553289615">"Пошаљи поруку е-поште"</string>
-    <string name="email_custom" msgid="5777583741581538870">"Пошаљи поруку е-поште на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5624424151176351591">"Пошаљи поруку е-поште"</string>
+    <string name="email_home" msgid="2230967805906450693">"Пошаљи имејл на кућну имејл адресу"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Пошаљи имејл на мобилни телефон"</string>
+    <string name="email_work" msgid="7065971921227432400">"Пошаљи имејл на пословну имејл адресу"</string>
+    <string name="email_other" msgid="4601881243553289615">"Пошаљи имејл"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Пошаљи имејл на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"Пошаљи имејл"</string>
     <string name="postal_street" msgid="881349814077356134">"Улица"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"Поштански фах"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"Крај"</string>

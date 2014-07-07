@@ -141,7 +141,7 @@
     <string name="chat_jabber" msgid="4525546665986350869">"Xateja amb Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"Xat"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"suprimeix"</string>
-    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Amplia o redueix els camps de nom"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Desplega o replega els camps de nom"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Tots els contactes"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Destacats"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Personalitza"</string>
