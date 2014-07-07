@@ -24,6 +24,7 @@ import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.util.Pair;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.ImDataItem;
@@ -143,7 +144,7 @@ public class ContactsUtils {
         return sThumbnailSize;
     }
 
-    public static Intent getCustomIMIntent(ImDataItem im, int protocol) {
+    private static Intent getCustomImIntent(ImDataItem im, int protocol) {
         String host = im.getCustomProtocol();
         final String data = im.getData();
         if (TextUtils.isEmpty(data)) {
@@ -161,5 +162,49 @@ public class ContactsUtils {
                 authority).appendPath(data).build();
         final Intent intent = new Intent(Intent.ACTION_SENDTO, imUri);
         return intent;
+    }
+
+    /**
+     * Returns the proper Intent for an ImDatItem. If available, a secondary intent is stored
+     * in the second Pair slot
+     */
+    public static Pair<Intent, Intent> buildImIntent(Context context, ImDataItem im) {
+        Intent intent = null;
+        Intent secondaryIntent = null;
+        final boolean isEmail = im.isCreatedFromEmail();
+
+        if (!isEmail && !im.isProtocolValid()) {
+            return null;
+        }
+
+        final String data = im.getData();
+        if (TextUtils.isEmpty(data)) {
+            return null;
+        }
+
+        final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK : im.getProtocol();
+
+        if (protocol == Im.PROTOCOL_GOOGLE_TALK) {
+            final int chatCapability = im.getChatCapability();
+            if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
+                intent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.parse("xmpp:" + data + "?message"));
+                secondaryIntent = new Intent(Intent.ACTION_SENDTO,
+                        Uri.parse("xmpp:" + data + "?call"));
+            } else if ((chatCapability & Im.CAPABILITY_HAS_VOICE) != 0) {
+                // Allow Talking and Texting
+                intent =
+                    new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message"));
+                secondaryIntent =
+                    new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
+            } else {
+                intent =
+                    new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message"));
+            }
+        } else {
+            // Build an IM Intent
+            intent = getCustomImIntent(im, protocol);
+        }
+        return new Pair<>(intent, secondaryIntent);
     }
 }

@@ -19,12 +19,15 @@ package com.android.contacts.common;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+import android.util.Pair;
 
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.EmailDataItem;
 import com.android.contacts.common.model.dataitem.ImDataItem;
 
 /**
@@ -32,6 +35,9 @@ import com.android.contacts.common.model.dataitem.ImDataItem;
  */
 @SmallTest
 public class ContactsUtilsTests extends AndroidTestCase {
+
+    private static final String TEST_ADDRESS = "user@example.org";
+    private static final String TEST_PROTOCOL = "prot%col";
 
     public void testIsGraphicNull() throws Exception {
         assertFalse(ContactsUtils.isGraphic(null));
@@ -71,27 +77,112 @@ public class ContactsUtilsTests extends AndroidTestCase {
     }
 
     public void testImIntentCustom() throws Exception {
-        final String testAddress = "user@example.org";
-        final String testProtocol = "prot%col";
-
-
         // Custom IM types have encoded authority. We send the imto Intent here, because
         // legacy third party apps might not accept xmpp yet
         final ContentValues values = new ContentValues();
         values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
         values.put(Im.TYPE, Im.TYPE_HOME);
         values.put(Im.PROTOCOL, Im.PROTOCOL_CUSTOM);
-        values.put(Im.CUSTOM_PROTOCOL, testProtocol);
-        values.put(Im.DATA, testAddress);
-        ImDataItem im = (ImDataItem) DataItem.createFrom(values);
+        values.put(Im.CUSTOM_PROTOCOL, TEST_PROTOCOL);
+        values.put(Im.DATA, TEST_ADDRESS);
+        final ImDataItem im = (ImDataItem) DataItem.createFrom(values);
 
-        final Intent imIntent =
-                ContactsUtils.getCustomIMIntent(im, Im.PROTOCOL_CUSTOM);
+        final Pair<Intent, Intent> intents = ContactsUtils.buildImIntent(getContext(), im);
+        final Intent imIntent = intents.first;
+
         assertEquals(Intent.ACTION_SENDTO, imIntent.getAction());
 
         final Uri data = imIntent.getData();
         assertEquals("imto", data.getScheme());
-        assertEquals(testProtocol, data.getAuthority());
-        assertEquals(testAddress, data.getPathSegments().get(0));
+        assertEquals(TEST_PROTOCOL, data.getAuthority());
+        assertEquals(TEST_ADDRESS, data.getPathSegments().get(0));
+
+        assertNull(intents.second);
+    }
+
+    public void testImIntent() throws Exception {
+        // Test GTalk XMPP URI. No chat capabilities provided
+        final ContentValues values = new ContentValues();
+        values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        values.put(Im.TYPE, Im.TYPE_HOME);
+        values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
+        values.put(Im.DATA, TEST_ADDRESS);
+        final ImDataItem im = (ImDataItem) DataItem.createFrom(values);
+
+        final Pair<Intent, Intent> intents = ContactsUtils.buildImIntent(getContext(), im);
+        final Intent imIntent = intents.first;
+
+        assertEquals(Intent.ACTION_SENDTO, imIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?message", imIntent.getData().toString());
+
+        assertNull(intents.second);
+    }
+
+    public void testImIntentWithAudio() throws Exception {
+        // Test GTalk XMPP URI. Audio chat capabilities provided
+        final ContentValues values = new ContentValues();
+        values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        values.put(Im.TYPE, Im.TYPE_HOME);
+        values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
+        values.put(Im.DATA, TEST_ADDRESS);
+        values.put(Im.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO);
+        final ImDataItem im = (ImDataItem) DataItem.createFrom(values);
+
+        final Pair<Intent, Intent> intents = ContactsUtils.buildImIntent(getContext(), im);
+        final Intent imIntent = intents.first;
+
+        assertEquals(Intent.ACTION_SENDTO, imIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?message", imIntent.getData().toString());
+
+        final Intent secondaryIntent = intents.second;
+        assertEquals(Intent.ACTION_SENDTO, secondaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?call", secondaryIntent.getData().toString());
+    }
+
+    public void testImIntentWithVideo() throws Exception {
+        // Test GTalk XMPP URI. Video chat capabilities provided
+        final ContentValues values = new ContentValues();
+        values.put(Im.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        values.put(Im.TYPE, Im.TYPE_HOME);
+        values.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
+        values.put(Im.DATA, TEST_ADDRESS);
+        values.put(Im.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO |
+                Im.CAPABILITY_HAS_VOICE);
+        final ImDataItem im = (ImDataItem) DataItem.createFrom(values);
+
+        final Pair<Intent, Intent> intents = ContactsUtils.buildImIntent(getContext(), im);
+        final Intent imIntent = intents.first;
+
+        assertEquals(Intent.ACTION_SENDTO, imIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?message", imIntent.getData().toString());
+
+        final Intent secondaryIntent = intents.second;
+        assertEquals(Intent.ACTION_SENDTO, secondaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?call", secondaryIntent.getData().toString());
+    }
+
+
+    public void testImEmailIntent() throws Exception {
+        // Email addresses are treated as Google Talk entries
+        // This test only tests the VIDEO+CAMERA case. The other cases have been addressed by the
+        // Im tests
+        final ContentValues values = new ContentValues();
+        values.put(Email.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+        values.put(Email.TYPE, Email.TYPE_HOME);
+        values.put(Email.DATA, TEST_ADDRESS);
+        values.put(Email.CHAT_CAPABILITY, Im.CAPABILITY_HAS_VOICE | Im.CAPABILITY_HAS_VIDEO |
+                Im.CAPABILITY_HAS_VOICE);
+        final ImDataItem im = ImDataItem.createFromEmail(
+                (EmailDataItem) DataItem.createFrom(values));
+
+        final Pair<Intent, Intent> intents = ContactsUtils.buildImIntent(getContext(), im);
+        final Intent imIntent = intents.first;
+
+        assertEquals(Intent.ACTION_SENDTO, imIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?message", imIntent.getData().toString());
+
+        final Intent secondaryIntent = intents.second;
+        assertEquals(Intent.ACTION_SENDTO, secondaryIntent.getAction());
+        assertEquals("xmpp:" + TEST_ADDRESS + "?call", secondaryIntent.getData().toString());
     }
 }
