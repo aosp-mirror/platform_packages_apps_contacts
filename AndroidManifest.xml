@@ -480,6 +480,13 @@
             </intent-filter>
         </service>
 
+        <!-- Broadcast receiver that passively listens to location updates -->
+        <receiver android:name="com.android.contacts.common.location.CountryDetector$LocationChangedReceiver"/>
+
+        <!-- IntentService to update the user's current country -->
+        <service android:name="com.android.contacts.common.location.UpdateCountryService"
+            android:exported="false"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.android.contacts.files"
