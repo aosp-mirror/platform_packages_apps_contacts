@@ -318,7 +318,10 @@ public class ExpandingEntryCardView extends LinearLayout {
             // Entry icons
             if (mEntries != null) {
                 for (Entry entry : mEntries) {
-                    entry.getIcon().setColorFilter(mThemeColorFilter);
+                    Drawable icon = entry.getIcon();
+                    if (icon != null) {
+                        icon.setColorFilter(mThemeColorFilter);
+                    }
                 }
             }
 
@@ -329,12 +332,17 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
     }
 
+    // TODO add accessibility content descriptions
     private View createEntryView(LayoutInflater layoutInflater, Entry entry) {
         View view = layoutInflater.inflate(
                 R.layout.expanding_entry_card_item, this, false);
 
         ImageView icon = (ImageView) view.findViewById(R.id.icon);
-        icon.setImageDrawable(entry.getIcon());
+        if (entry.getIcon() != null) {
+            icon.setImageDrawable(entry.getIcon());
+        } else {
+            icon.setVisibility(View.GONE);
+        }
 
         TextView header = (TextView) view.findViewById(R.id.header);
         if (entry.getHeader() != null) {
@@ -485,5 +493,9 @@ public class ExpandingEntryCardView extends LinearLayout {
             mTitleTextView.setText("");
         }
         mTitleTextView.setText(title);
+    }
+
+    public boolean shouldShow() {
+        return mEntries != null && mEntries.size() > 0;
     }
 }

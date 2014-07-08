@@ -535,9 +535,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             final long rawContactId = rawContact.getId();
             final AccountType accountType = rawContact.getAccountType(mContext);
             for (DataItem dataItem : rawContact.getDataItems()) {
-                dataItem.setRawContactId(rawContactId);
+                //dataItem.setRawContactId(rawContactId);
 
-                if (dataItem.getMimeType() == null) continue;
+                //if (dataItem.getMimeType() == null) continue;
 
                 if (dataItem instanceof GroupMembershipDataItem) {
                     GroupMembershipDataItem groupMembership =
@@ -628,7 +628,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         final DetailViewEntry imEntry = DetailViewEntry.fromValues(mContext, im,
                                 mContactData.isDirectoryEntry(), mContactData.getDirectoryId(),
                                 kind);
-                        buildImActions(mContext, imEntry, im);
+                        // buildImActions(mContext, imEntry, im);
                         imEntry.setPresence(status.getPresence());
                         imEntry.maxLines = kind.maxLinesForDisplay;
                         mImEntries.add(imEntry);
@@ -639,20 +639,20 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     mPostalEntries.add(entry);
                 } else if (dataItem instanceof ImDataItem && hasData) {
                     // Build IM entries
-                    buildImActions(mContext, entry, (ImDataItem) dataItem);
+                    /*buildImActions(mContext, entry, (ImDataItem) dataItem);
 
                     // Apply presence when available
                     final DataStatus status = mContactData.getStatuses().get(entry.id);
                     if (status != null) {
                         entry.setPresence(status.getPresence());
                     }
-                    mImEntries.add(entry);
+                    mImEntries.add(entry);*/
                 } else if (dataItem instanceof OrganizationDataItem) {
                     // Organizations are not shown. The first one is shown in the header
                     // and subsequent ones are not supported anymore
                 } else if (dataItem instanceof NicknameDataItem && hasData) {
                     // Build nickname entries
-                    final boolean isNameRawContact =
+                   /*final boolean isNameRawContact =
                         (mContactData.getNameRawContactId() == rawContactId);
 
                     final boolean duplicatesTitle =
@@ -662,14 +662,14 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     if (!duplicatesTitle) {
                         entry.uri = null;
                         mNicknameEntries.add(entry);
-                    }
+                    }*/
                 } else if (dataItem instanceof NoteDataItem && hasData) {
                     // Build note entries
-                    entry.uri = null;
-                    mNoteEntries.add(entry);
+                    // entry.uri = null;
+                    //mNoteEntries.add(entry);
                 } else if (dataItem instanceof WebsiteDataItem && hasData) {
                     // Build Website entries
-                    entry.uri = null;
+                    /*entry.uri = null;
                     try {
                         WebAddress webAddress = new WebAddress(entry.data);
                         entry.intent = new Intent(Intent.ACTION_VIEW,
@@ -677,17 +677,17 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     } catch (ParseException e) {
                         Log.e(TAG, "Couldn't parse website: " + entry.data);
                     }
-                    mWebsiteEntries.add(entry);
+                    mWebsiteEntries.add(entry);*/
                 } else if (dataItem instanceof SipAddressDataItem && hasData) {
                     // Build SipAddress entries
-                    entry.uri = null;
+                    /*entry.uri = null;
                     if (hasSip) {
                         entry.intent = CallUtil.getCallIntent(
                                 Uri.fromParts(CallUtil.SCHEME_SIP, entry.data, null));
                     } else {
                         entry.intent = null;
                     }
-                    mSipEntries.add(entry);
+                    mSipEntries.add(entry);*/
                     // TODO: Now that SipAddress is in its own list of entries
                     // (instead of grouped in mOtherEntries), consider
                     // repositioning it right under the phone number.
@@ -695,7 +695,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     // secondary=false for this field, and tweak the weight
                     // of its DataKind.)
                 } else if (dataItem instanceof EventDataItem && hasData) {
-                    final Calendar cal = DateUtils.parseDate(entry.data, false);
+                    /*final Calendar cal = DateUtils.parseDate(entry.data, false);
                     if (cal != null) {
                         final Date nextAnniversary =
                                 DateUtils.getNextAnnualDate(cal);
@@ -706,12 +706,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     }
                     entry.data = DateUtils.formatDate(mContext, entry.data);
                     entry.uri = null;
-                    mEventEntries.add(entry);
+                    mEventEntries.add(entry);*/
                 } else if (dataItem instanceof RelationDataItem && hasData) {
-                    entry.intent = new Intent(Intent.ACTION_SEARCH);
+                    /*entry.intent = new Intent(Intent.ACTION_SEARCH);
                     entry.intent.putExtra(SearchManager.QUERY, entry.data);
                     entry.intent.setType(Contacts.CONTENT_TYPE);
-                    mRelationEntries.add(entry);
+                    mRelationEntries.add(entry);*/
                 } else {
                     // Handle showing custom rows
                     entry.intent = new Intent(Intent.ACTION_VIEW);
@@ -953,7 +953,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     /**
      * Writes the Instant Messaging action into the given entry value.
      */
-    @VisibleForTesting
+    /*@VisibleForTesting
     public static void buildImActions(Context context, DetailViewEntry entry,
             ImDataItem im) {
         final boolean isEmail = im.isCreatedFromEmail();
@@ -997,9 +997,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 entry.intent = imIntent;
             }
         }
-    }
+    }*/
 
-    @VisibleForTesting
+    /*@VisibleForTesting
     public static Intent getCustomIMIntent(ImDataItem im, int protocol) {
         String host = im.getCustomProtocol();
         final String data = im.getData();
@@ -1018,7 +1018,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 authority).appendPath(data).build();
         final Intent intent = new Intent(Intent.ACTION_SENDTO, imUri);
         return intent;
-    }
+    }*/
 
     /**
      * Show a list popup.  Used for "popup-able" entry, such as "More networks".

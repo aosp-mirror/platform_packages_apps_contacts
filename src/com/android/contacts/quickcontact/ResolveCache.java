@@ -117,16 +117,14 @@ public class ResolveCache {
     }
 
     /**
-     * Get the {@link Entry} best associated with the given {@link Action},
+     * Get the {@link Entry} best associated with the given mimetype and intent,
      * or create and populate a new one if it doesn't exist.
      */
-    protected Entry getEntry(Action action) {
-        final String mimeType = action.getMimeType();
+    protected Entry getEntry(String mimeType, Intent intent) {
         Entry entry = mCache.get(mimeType);
         if (entry != null) return entry;
         entry = new Entry();
 
-        Intent intent = action.getIntent();
         if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)
                 && !PhoneCapabilityTester.isSipPhone(mContext)) {
             intent = null;
@@ -196,28 +194,10 @@ public class ResolveCache {
 
     /**
      * Check {@link PackageManager} to see if any apps offer to handle the
-     * given {@link Action}.
+     * given {@link Intent}.
      */
-    public boolean hasResolve(Action action) {
-        return getEntry(action).bestResolve != null;
-    }
-
-    /**
-     * Find the best description for the given {@link Action}, usually used
-     * for accessibility purposes.
-     */
-    public CharSequence getDescription(Action action, String name) {
-        final ResolveInfo info = getEntry(action).bestResolve;
-        final CharSequence infoStr = info != null ? info.loadLabel(mPackageManager) : null;
-        CharSequence actionDesc = action.getSubtitle();
-        CharSequence strs[];
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(actionDesc)) {
-            strs = new CharSequence[]{infoStr, name, actionDesc};
-        } else {
-            strs = new CharSequence[]{infoStr, action.getBody()};
-        }
-        CharSequence desc = TextUtils.join(" ", strs);
-        return !TextUtils.isEmpty(desc) ? desc : null;
+    public boolean hasResolve(String mimeType, Intent intent) {
+        return getEntry(mimeType, intent).bestResolve != null;
     }
 
     /**
@@ -225,8 +205,8 @@ public class ResolveCache {
      * based on the {@link ResolveInfo} found through a
      * {@link PackageManager} query.
      */
-    public Drawable getIcon(Action action) {
-        return getEntry(action).icon;
+    public Drawable getIcon(String mimeType, Intent intent) {
+        return getEntry(mimeType, intent).icon;
     }
 
     public void clear() {
