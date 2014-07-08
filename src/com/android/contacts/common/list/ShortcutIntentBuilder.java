@@ -36,6 +36,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
@@ -90,6 +91,7 @@ public class ShortcutIntentBuilder {
     private final int mIconDensity;
     private final int mBorderWidth;
     private final int mBorderColor;
+    private final Resources mResources;
 
     /**
      * This is a hidden API of the launcher in JellyBean that allows us to disable the animation
@@ -119,17 +121,17 @@ public class ShortcutIntentBuilder {
         mContext = context;
         mListener = listener;
 
-        final Resources r = context.getResources();
+        mResources = context.getResources();
         final ActivityManager am = (ActivityManager) context
                 .getSystemService(Context.ACTIVITY_SERVICE);
-        mIconSize = r.getDimensionPixelSize(R.dimen.shortcut_icon_size);
+        mIconSize = mResources.getDimensionPixelSize(R.dimen.shortcut_icon_size);
         if (mIconSize == 0) {
             mIconSize = am.getLauncherLargeIconSize();
         }
         mIconDensity = am.getLauncherLargeIconDensity();
-        mBorderWidth = r.getDimensionPixelOffset(
+        mBorderWidth = mResources.getDimensionPixelOffset(
                 R.dimen.shortcut_icon_border_width);
-        mBorderColor = r.getColor(R.color.shortcut_overlay_text_background);
+        mBorderColor = mResources.getColor(R.color.shortcut_overlay_text_background);
     }
 
     public void createContactShortcutIntent(Uri contactUri) {
@@ -340,28 +342,26 @@ public class ShortcutIntentBuilder {
     private Bitmap generateQuickContactIcon(Drawable photo) {
 
         // Setup the drawing classes
-        Bitmap icon = Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(icon);
+        Bitmap bitmap = Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
 
         // Copy in the photo
-        Paint photoPaint = new Paint();
-        photoPaint.setDither(true);
-        photoPaint.setFilterBitmap(true);
         Rect dst = new Rect(0,0, mIconSize, mIconSize);
         photo.setBounds(dst);
         photo.draw(canvas);
 
-        drawBorder(canvas, dst);
-
-        // Now draw the overlay
-        Drawable overlay = mContext.getResources().getDrawableForDensity(
-                R.drawable.quickcontact_badge_overlay_dark, mIconDensity);
-
-        overlay.setBounds(dst);
-        overlay.draw(canvas);
+        // Draw the icon with a rounded border
+        RoundedBitmapDrawable roundedDrawable = RoundedBitmapDrawable.createRoundedBitmapDrawable(
+                mResources, bitmap);
+        roundedDrawable.setAntiAlias(true);
+        roundedDrawable.setCornerRadius(mIconSize / 2);
+        Bitmap roundedBitmap = Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
+        canvas.setBitmap(roundedBitmap);
+        roundedDrawable.setBounds(dst);
+        roundedDrawable.draw(canvas);
         canvas.setBitmap(null);
 
-        return icon;
+        return roundedBitmap;
     }
 
     /**
