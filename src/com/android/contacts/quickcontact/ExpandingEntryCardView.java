@@ -380,9 +380,8 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
 
         if (entry.getIntent() != null) {
-            View entryLayout = view.findViewById(R.id.entry_layout);
-            entryLayout.setOnClickListener(mOnClickListener);
-            entryLayout.setTag(entry.getIntent());
+            view.setOnClickListener(mOnClickListener);
+            view.setTag(entry.getIntent());
         }
 
         return view;
