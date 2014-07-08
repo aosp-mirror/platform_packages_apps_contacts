@@ -40,13 +40,8 @@ import java.util.List;
  */
 public class DefaultContactListAdapter extends ContactListAdapter {
 
-    public static final char SNIPPET_START_MATCH = '\u0001';
-    public static final char SNIPPET_END_MATCH = '\u0001';
-    public static final String SNIPPET_ELLIPSIS = "\u2026";
-    public static final int SNIPPET_MAX_TOKENS = 5;
-
-    public static final String SNIPPET_ARGS = SNIPPET_START_MATCH + "," + SNIPPET_END_MATCH + ","
-            + SNIPPET_ELLIPSIS + "," + SNIPPET_MAX_TOKENS;
+    public static final char SNIPPET_START_MATCH = '[';
+    public static final char SNIPPET_END_MATCH = ']';
 
     public DefaultContactListAdapter(Context context) {
         super(context);
@@ -80,8 +75,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                     builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                             String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
                 }
-                builder.appendQueryParameter(SearchSnippets.SNIPPET_ARGS_PARAM_KEY,
-                        SNIPPET_ARGS);
                 builder.appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY,"1");
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
