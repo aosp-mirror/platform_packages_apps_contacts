@@ -30,13 +30,12 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
@@ -45,6 +44,7 @@ import android.widget.Toast;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListFragment;
+import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -75,9 +75,6 @@ public class ContactSelectionActivity extends ContactsActivity
     private static final String KEY_ACTION_CODE = "actionCode";
     private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
 
-    // Delay to allow the UI to settle before making search view visible
-    private static final int FOCUS_DELAY = 200;
-
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
 
@@ -85,10 +82,6 @@ public class ContactSelectionActivity extends ContactsActivity
 
     private ContactsRequest mRequest;
     private SearchView mSearchView;
-    /**
-     * Can be null. If null, the "Create New Contact" button should be on the menu.
-     */
-    private View mCreateNewContactButton;
 
     public ContactSelectionActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -137,14 +130,16 @@ public class ContactSelectionActivity extends ContactsActivity
 
         prepareSearchViewAndActionBar();
 
-        mCreateNewContactButton = findViewById(R.id.new_contact);
-        if (mCreateNewContactButton != null) {
-            if (shouldShowCreateNewContactButton()) {
-                mCreateNewContactButton.setVisibility(View.VISIBLE);
-                mCreateNewContactButton.setOnClickListener(this);
-            } else {
-                mCreateNewContactButton.setVisibility(View.GONE);
-            }
+        // Configure action button
+        final View floatingActionButtonContainer = findViewById(
+                R.id.floating_action_button_container);
+        if (shouldShowCreateNewContactButton()) {
+            ViewUtil.setupFloatingActionButton(floatingActionButtonContainer, getResources());
+            final ImageButton floatingActionButton
+                    = (ImageButton) findViewById(R.id.floating_action_button);
+            floatingActionButton.setOnClickListener(this);
+        } else {
+            floatingActionButtonContainer.setVisibility(View.GONE);
         }
     }
 
@@ -169,64 +164,30 @@ public class ContactSelectionActivity extends ContactsActivity
             return;
         }
 
-        // If ActionBar is available, show SearchView on it. If not, show SearchView inside the
-        // Activity's layout.
         final ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            final View searchViewOnLayout = findViewById(R.id.search_view);
-            if (searchViewOnLayout != null) {
-                searchViewOnLayout.setVisibility(View.GONE);
-            }
+        final View searchViewContainer = LayoutInflater.from(actionBar.getThemedContext())
+                .inflate(R.layout.custom_action_bar, null);
+        mSearchView = (SearchView) searchViewContainer.findViewById(R.id.search_view);
 
-            final View searchViewContainer = LayoutInflater.from(actionBar.getThemedContext())
-                    .inflate(R.layout.custom_action_bar, null);
-            mSearchView = (SearchView) searchViewContainer.findViewById(R.id.search_view);
+        // In order to make the SearchView look like "shown via search menu", we need to
+        // manually setup its state. See also DialtactsActivity.java and ActionBarAdapter.java.
+        mSearchView.setIconifiedByDefault(true);
+        mSearchView.setQueryHint(getString(R.string.hint_findContacts));
+        mSearchView.setIconified(false);
 
-            // In order to make the SearchView look like "shown via search menu", we need to
-            // manually setup its state. See also DialtactsActivity.java and ActionBarAdapter.java.
-            mSearchView.setIconifiedByDefault(true);
-            mSearchView.setQueryHint(getString(R.string.hint_findContacts));
-            mSearchView.setIconified(false);
+        mSearchView.setOnQueryTextListener(this);
+        mSearchView.setOnCloseListener(this);
+        mSearchView.setOnQueryTextFocusChangeListener(this);
 
-            mSearchView.setOnQueryTextListener(this);
-            mSearchView.setOnCloseListener(this);
-            mSearchView.setOnQueryTextFocusChangeListener(this);
-
-            actionBar.setCustomView(searchViewContainer,
-                    new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        } else {
-            mSearchView = (SearchView) findViewById(R.id.search_view);
-            mSearchView.setQueryHint(getString(R.string.hint_findContacts));
-            mSearchView.setOnQueryTextListener(this);
-
-            // This is a hack to prevent the search view from grabbing focus
-            // at this point.  If search view were visible, it would always grabs focus
-            // because it is the first focusable widget in the window.
-            mSearchView.setVisibility(View.INVISIBLE);
-            mSearchView.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mSearchView.setVisibility(View.VISIBLE);
-                }
-            }, FOCUS_DELAY);
-        }
+        actionBar.setCustomView(searchViewContainer,
+                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
 
         // Clear focus and suppress keyboard show-up.
         mSearchView.clearFocus();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // If we want "Create New Contact" button but there's no such a button in the layout,
-        // try showing a menu for it.
-        if (shouldShowCreateNewContactButton() && mCreateNewContactButton == null) {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.contact_picker_options, menu);
-        }
-        return true;
     }
 
     @Override
@@ -237,10 +198,6 @@ public class ContactSelectionActivity extends ContactsActivity
                 setResult(RESULT_CANCELED);
                 finish();
                 return true;
-            case R.id.create_new_contact: {
-                startCreateNewContactActivity();
-                return true;
-            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -601,7 +558,7 @@ public class ContactSelectionActivity extends ContactsActivity
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.new_contact: {
+            case R.id.floating_action_button: {
                 startCreateNewContactActivity();
                 break;
             }

@@ -111,6 +111,11 @@
         <item name="android:icon">@android:color/transparent</item>
     </style>
 
+    <style name="ContactsPickerActionBarStyle" parent="@style/ContactsActionBarStyle">
+        <!-- when first loading, don't show title or up button -->
+        <item name="android:displayOptions"></item>
+    </style>
+
     <!-- Styling for tabs. -->
     <style name="ContactsActionBarTabStyle" parent="@android:style/Widget.Material.Light.ActionBar.TabView">
         <item name="android:background">@drawable/action_bar_tab</item>
@@ -163,7 +168,9 @@
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
-    <style name="ContactPickerTheme" parent="@style/PeopleTheme" />
+    <style name="ContactPickerTheme" parent="@style/PeopleTheme" >
+        <item name="android:actionBarStyle">@style/ContactsPickerActionBarStyle</item>
+    </style>
 
     <style name="ContactPickerLayout" parent="ContactPickerTheme">
         <item name="android:layout_width">match_parent</item>
