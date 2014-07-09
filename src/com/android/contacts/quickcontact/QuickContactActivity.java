@@ -285,7 +285,8 @@ public class QuickContactActivity extends ContactsActivity {
             // so the exact usage type is not necessary in all cases
             String usageType = DataUsageFeedback.USAGE_TYPE_CALL;
 
-            if (intent.getData().getScheme().equals(SCHEME_SMSTO) ||
+            final String scheme = intent.getData().getScheme();
+            if ((scheme != null && scheme.equals(SCHEME_SMSTO)) ||
                     (intent.getType() != null && intent.getType().equals(MIMETYPE_SMS))) {
                 usageType = DataUsageFeedback.USAGE_TYPE_SHORT_TEXT;
             }
