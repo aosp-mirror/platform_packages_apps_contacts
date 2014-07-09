@@ -479,9 +479,6 @@ public class QuickContactActivity extends ContactsActivity {
         super.onCreate(savedInstanceState);
 
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-        // Since we can't disable Window animations from the Launcher, we can minimize the
-        // silliness of the animation by setting the navigation bar transparent.
-        getWindow().setNavigationBarColor(Color.TRANSPARENT);
 
         processIntent(getIntent());
 
