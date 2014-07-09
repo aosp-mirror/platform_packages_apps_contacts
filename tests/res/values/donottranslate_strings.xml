@@ -83,6 +83,8 @@
         <item>DIAL tel</item>
         <item>VIEW tel</item>
         <item>VIEW calls (call-log after a phone call)</item>
+        <item>VIEW missed calls</item>
+        <item>VIEW voicemails</item>
         <item>VIEW calls item</item>
         <item>CallDetailActivity (legacy)</item>
         <item>CallLogActivity (legacy)</item>

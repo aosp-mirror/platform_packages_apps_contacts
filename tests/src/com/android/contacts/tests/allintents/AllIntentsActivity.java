@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
@@ -46,6 +47,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.contacts.tests.R;
+
 import com.google.common.collect.Lists;
 
 /**
@@ -121,8 +123,10 @@ public class AllIntentsActivity extends ListActivity
         CALL_BUTTON,
         DIAL_tel,
         VIEW_tel,
-        VIEW_calllog,
-        VIEW_calllog_entry,
+        VIEW_CALLLOG,
+        VIEW_CALLLOG_MISSED,
+        VIEW_CALLLOG_VOICEMAIL,
+        VIEW_CALLLOG_ENTRY,
         LEGACY_CALL_DETAILS_ACTIVITY,
         LEGACY_CALL_LOG_ACTIVITY;
 
@@ -487,13 +491,27 @@ public class AllIntentsActivity extends ListActivity
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:555-123-4567")));
                 break;
             }
-            case VIEW_calllog: {
-                final Intent intent = new Intent(Intent.ACTION_VIEW, null);
-                intent.setType("vnd.android.cursor.dir/calls");
+            case VIEW_CALLLOG: {
+                final Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setType(CallLog.Calls.CONTENT_TYPE);
                 startActivity(intent);
                 break;
             }
-            case VIEW_calllog_entry: {
+            case VIEW_CALLLOG_MISSED: {
+                final Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setType(CallLog.Calls.CONTENT_TYPE);
+                intent.putExtra(CallLog.Calls.EXTRA_CALL_TYPE_FILTER, CallLog.Calls.MISSED_TYPE);
+                startActivity(intent);
+                break;
+            }
+            case VIEW_CALLLOG_VOICEMAIL: {
+                final Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setType(CallLog.Calls.CONTENT_TYPE);
+                intent.putExtra(CallLog.Calls.EXTRA_CALL_TYPE_FILTER, CallLog.Calls.VOICEMAIL_TYPE);
+                startActivity(intent);
+                break;
+            }
+            case VIEW_CALLLOG_ENTRY: {
                 Uri uri = getCallLogUri();
                 if (uri == null) {
                     Toast.makeText(this, "Call log is empty", Toast.LENGTH_LONG).show();
