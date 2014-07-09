@@ -1328,9 +1328,14 @@ public class QuickContactActivity extends ContactsActivity {
                     break;
                 case LOADER_CALENDAR_ID:
                     Log.v(TAG, "LOADER_CALENDAR_ID");
+                    final String[] emailsArray = args.getStringArray(KEY_LOADER_EXTRA_EMAILS);
+                    List<String> emailsList = null;
+                    if (emailsArray != null) {
+                        emailsList = Arrays.asList(args.getStringArray(KEY_LOADER_EXTRA_EMAILS));
+                    }
                     loader = new CalendarInteractionsLoader(
                             QuickContactActivity.this,
-                            Arrays.asList(args.getStringArray(KEY_LOADER_EXTRA_EMAILS)),
+                            emailsList,
                             MAX_FUTURE_CALENDAR_RETRIEVE,
                             MAX_PAST_CALENDAR_RETRIEVE,
                             FUTURE_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR,

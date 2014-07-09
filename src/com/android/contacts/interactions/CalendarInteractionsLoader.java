@@ -45,9 +45,6 @@ public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInte
             long numberFutureMillisecondToSearchLocalCalendar,
             long numberPastMillisecondToSearchLocalCalendar) {
         super(context);
-        for (String address: emailAddresses) {
-            Log.v(TAG, address);
-        }
         mEmailAddresses = emailAddresses;
         mMaxFutureToRetrieve = maxFutureToRetrieve;
         mMaxPastToRetrieve = maxPastToRetrieve;
