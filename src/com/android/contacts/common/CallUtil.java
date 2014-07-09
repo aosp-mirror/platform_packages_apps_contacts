@@ -94,6 +94,14 @@ public class CallUtil {
     /**
      * A variant of {@link #getCallIntent(String, String)} for starting a video call.
      */
+    public static Intent getVideoCallIntent(String number, String callOrigin) {
+        return getCallIntent(getCallUri(number), callOrigin, null,
+                VideoCallProfile.VIDEO_STATE_BIDIRECTIONAL);
+    }
+
+    /**
+     * A variant of {@link #getCallIntent(String, String, PhoneAccount)} for starting a video call.
+     */
     public static Intent getVideoCallIntent(
             String number, String callOrigin, PhoneAccount account) {
         return getCallIntent(getCallUri(number), callOrigin, account,
