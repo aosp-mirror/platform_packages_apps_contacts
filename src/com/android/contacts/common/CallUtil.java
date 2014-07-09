@@ -19,6 +19,8 @@ package com.android.contacts.common;
 import android.content.Intent;
 import android.net.Uri;
 import android.telecomm.PhoneAccount;
+import android.telecomm.TelecommConstants;
+import android.telecomm.VideoCallProfile;
 import android.telephony.TelephonyManager;
 
 import com.android.contacts.common.util.PhoneNumberHelper;
@@ -76,8 +78,7 @@ public class CallUtil {
     /**
      * A variant of {@link #getCallIntent(String, String)} but also include {@code Account}.
      */
-    public static Intent getCallIntent(String number, String callOrigin,
-            PhoneAccount account) {
+    public static Intent getCallIntent(String number, String callOrigin, PhoneAccount account) {
         return getCallIntent(getCallUri(number), callOrigin, account);
     }
 
@@ -87,8 +88,28 @@ public class CallUtil {
      * For more information about call origin, see comments in Phone package (PhoneApp).
      */
     public static Intent getCallIntent(Uri uri, String callOrigin, PhoneAccount account) {
+        return getCallIntent(uri, callOrigin, account, VideoCallProfile.VIDEO_STATE_AUDIO_ONLY);
+    }
+
+    /**
+     * A variant of {@link #getCallIntent(String, String)} for starting a video call.
+     */
+    public static Intent getVideoCallIntent(
+            String number, String callOrigin, PhoneAccount account) {
+        return getCallIntent(getCallUri(number), callOrigin, account,
+                VideoCallProfile.VIDEO_STATE_BIDIRECTIONAL);
+    }
+
+    /**
+     * A variant of {@link #getCallIntent(android.net.Uri)} but also accept a call
+     * origin and {@code Account} and {@code VideoCallProfile} state.
+     * For more information about call origin, see comments in Phone package (PhoneApp).
+     */
+    public static Intent getCallIntent(
+            Uri uri, String callOrigin, PhoneAccount account, int videoState) {
         final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(TelecommConstants.EXTRA_START_CALL_WITH_VIDEO_STATE, videoState);
         if (callOrigin != null) {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
         }
