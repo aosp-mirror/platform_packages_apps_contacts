@@ -313,6 +313,11 @@
          Clicking this view causes Quick Contacts to close. [CHAR LIMIT=NONE] -->
     <string name="quickcontact_transparent_view_description">Click to return to previous screen</string>
 
+    <!-- When a contact has no data, we prompt the user to add a phone number for the contact. [CHAR LIMIT=40] -->
+    <string name="quickcontact_add_phone_number">Add phone number</string>
+    <!-- When a contact has no data, we prompt the user to add an email for the contact. [CHAR LIMIT=40] -->
+    <string name="quickcontact_add_email">Add email</string>
+
     <!-- Shown as a toast when the user attempts an action (add contact, edit
          contact, etc) and no application was found that could perform that
          action. [CHAR LIMIT=NONE] -->
