@@ -52,6 +52,7 @@ public class ExpandingEntryCardView extends LinearLayout {
      */
     public static final class Entry {
 
+        private final int mViewId;
         private final Drawable mIcon;
         private final String mHeader;
         private final String mSubHeader;
@@ -61,14 +62,15 @@ public class ExpandingEntryCardView extends LinearLayout {
         private final Intent mIntent;
         private final boolean mIsEditable;
 
-        public Entry(Drawable icon, String header, String subHeader, String text,
+        public Entry(int viewId, Drawable icon, String header, String subHeader, String text,
                 Intent intent, boolean isEditable) {
-            this(icon, header, subHeader, null, text, null, intent, isEditable);
+            this(viewId, icon, header, subHeader, null, text, null, intent, isEditable);
         }
 
-        public Entry(Drawable mainIcon, String header, String subHeader,
+        public Entry(int viewId, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon, Intent intent,
                 boolean isEditable) {
+            mViewId = viewId;
             mIcon = mainIcon;
             mHeader = header;
             mSubHeader = subHeader;
@@ -109,6 +111,10 @@ public class ExpandingEntryCardView extends LinearLayout {
 
         boolean isEditable() {
             return mIsEditable;
+        }
+
+        int getViewId() {
+            return mViewId;
         }
     }
 
@@ -336,6 +342,8 @@ public class ExpandingEntryCardView extends LinearLayout {
     private View createEntryView(LayoutInflater layoutInflater, Entry entry) {
         View view = layoutInflater.inflate(
                 R.layout.expanding_entry_card_item, this, false);
+
+        view.setId(entry.getViewId());
 
         ImageView icon = (ImageView) view.findViewById(R.id.icon);
         if (entry.getIcon() != null) {

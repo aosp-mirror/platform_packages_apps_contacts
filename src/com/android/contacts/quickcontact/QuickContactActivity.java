@@ -28,6 +28,7 @@ import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -63,6 +64,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v7.graphics.Palette;
@@ -163,6 +165,8 @@ public class QuickContactActivity extends ContactsActivity {
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
     private static final float SYSTEM_BAR_BRIGHTNESS_FACTOR = 0.7f;
     private static final int SCRIM_COLOR = Color.argb(0xB2, 0, 0, 0);
+    private static final String SCHEME_SMSTO = "smsto";
+    private static final String MIMETYPE_SMS = "vnd.android-dir/mms-sms";
 
     /** This is the Intent action to install a shortcut in the launcher. */
     private static final String ACTION_INSTALL_SHORTCUT =
@@ -272,12 +276,40 @@ public class QuickContactActivity extends ContactsActivity {
     final OnClickListener mEntryClickHandler = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.i(TAG, "mEntryClickHandler onClick");
-            final Object intent = v.getTag();
-            if (intent == null || !(intent instanceof Intent)) {
+            // Data Id is stored as the entry view id
+            final int dataId = v.getId();
+            Object intentObject = v.getTag();
+            if (intentObject == null || !(intentObject instanceof Intent)) {
+                Log.w(TAG, "Intent tag was not used correctly");
                 return;
             }
-            startActivity((Intent) intent);
+            final Intent intent = (Intent) intentObject;
+
+            // Default to USAGE_TYPE_CALL. Usage is summed among all types for sorting each data id
+            // so the exact usage type is not necessary in all cases
+            String usageType = DataUsageFeedback.USAGE_TYPE_CALL;
+
+            if (intent.getData().getScheme().equals(SCHEME_SMSTO) ||
+                    (intent.getType() != null && intent.getType().equals(MIMETYPE_SMS))) {
+                usageType = DataUsageFeedback.USAGE_TYPE_SHORT_TEXT;
+            }
+
+            // Data IDs start at 1 so anything less is invalid
+            if (dataId > 0) {
+                final Uri uri = DataUsageFeedback.FEEDBACK_URI.buildUpon()
+                        .appendPath(String.valueOf(dataId))
+                        .appendQueryParameter(DataUsageFeedback.USAGE_TYPE, usageType)
+                        .build();
+                final boolean successful = getContentResolver().update(
+                        uri, new ContentValues(), null, null) > 0;
+                if (!successful) {
+                    Log.w(TAG, "DataUsageFeedback increment failed");
+                }
+            } else {
+                Log.w(TAG, "Invalid Data ID");
+            }
+
+            startActivity(intent);
         }
     };
 
@@ -781,8 +813,10 @@ public class QuickContactActivity extends ContactsActivity {
                                 Uri.fromParts(CallUtil.SCHEME_SMSTO, phone.getNumber(), null));
                         smsIntent.setComponent(mSmsComponent);
                     }
+                    final int dataId = phone.getId() > Integer.MAX_VALUE ?
+                            -1 : (int) phone.getId();
                     contactCardEntries.add(topContactIndex++,
-                            new Entry(
+                            new Entry(dataId,
                                     getResources().getDrawable(R.drawable.ic_message_24dp),
                                     getResources().getString(R.string.send_message),
                                     /* subHeader = */ null,
@@ -1057,7 +1091,10 @@ public class QuickContactActivity extends ContactsActivity {
             return null;
         }
 
-        return new Entry(icon, header, subHeader, subHeaderIcon, text, textIcon,
+        final int dataId = dataItem.getId() > Integer.MAX_VALUE ?
+                -1 : (int) dataItem.getId();
+
+        return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon,
                 intent, isEditable);
     }
 
@@ -1197,7 +1234,8 @@ public class QuickContactActivity extends ContactsActivity {
     private List<Entry> contactInteractionsToEntries(List<ContactInteraction> interactions) {
         final List<Entry> entries = new ArrayList<>();
         for (ContactInteraction interaction : interactions) {
-            entries.add(new Entry(interaction.getIcon(this),
+            entries.add(new Entry(/* id = */ -1,
+                    interaction.getIcon(this),
                     interaction.getViewHeader(this),
                     interaction.getViewBody(this),
                     interaction.getBodyIcon(this),
