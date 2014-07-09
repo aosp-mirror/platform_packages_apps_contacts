@@ -801,6 +801,7 @@ public class PeopleActivity extends ContactsActivity implements
                     UserManager.DISALLOW_MODIFY_ACCOUNTS);
             if (!disallowModifyAccounts && !areContactWritableAccountsAvailable() &&
                     AccountPromptUtils.shouldShowAccountPrompt(this)) {
+                AccountPromptUtils.neverShowAccountPromptAgain(this);
                 AccountPromptUtils.launchAccountPrompt(this);
                 return;
             }
