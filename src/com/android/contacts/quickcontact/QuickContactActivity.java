@@ -981,8 +981,10 @@ public class QuickContactActivity extends ContactsActivity {
                 intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
             }
             header = getResources().getString(R.string.header_event_entry);
-            subHeader = getResources().getString(Event.getTypeResource(
-                    event.getKindTypeColumn(kind)));
+            if (event.hasKindTypeColumn(kind)) {
+                subHeader = getResources().getString(Event.getTypeResource(
+                        event.getKindTypeColumn(kind)));
+            }
             text = DateUtils.formatDate(this, dataString);
         } else if (dataItem instanceof RelationDataItem) {
             final RelationDataItem relation = (RelationDataItem) dataItem;
@@ -994,14 +996,18 @@ public class QuickContactActivity extends ContactsActivity {
             }
             header = getResources().getString(R.string.header_relation_entry);
             subHeader = relation.getName();
-            text = Relation.getTypeLabel(getResources(), relation.getKindTypeColumn(kind),
-                    relation.getLabel()).toString();
+            if (relation.hasKindTypeColumn(kind)) {
+                text = Relation.getTypeLabel(getResources(), relation.getKindTypeColumn(kind),
+                        relation.getLabel()).toString();
+            }
         } else if (dataItem instanceof PhoneDataItem) {
             final PhoneDataItem phone = (PhoneDataItem) dataItem;
             if (!TextUtils.isEmpty(phone.getNumber())) {
                 header = phone.buildDataString(this, kind);
-                text = Phone.getTypeLabel(getResources(), phone.getKindTypeColumn(kind),
-                        phone.getLabel()).toString();
+                if (phone.hasKindTypeColumn(kind)) {
+                    text = Phone.getTypeLabel(getResources(), phone.getKindTypeColumn(kind),
+                            phone.getLabel()).toString();
+                }
                 icon = getResources().getDrawable(R.drawable.ic_phone_24dp);
                 if (PhoneCapabilityTester.isPhone(this)) {
                     intent = CallUtil.getCallIntent(phone.getNumber());
@@ -1014,8 +1020,10 @@ public class QuickContactActivity extends ContactsActivity {
                 final Uri mailUri = Uri.fromParts(CallUtil.SCHEME_MAILTO, address, null);
                 intent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 header = email.getAddress();
-                text = Email.getTypeLabel(getResources(), email.getKindTypeColumn(kind),
-                        email.getLabel()).toString();
+                if (email.hasKindTypeColumn(kind)) {
+                    text = Email.getTypeLabel(getResources(), email.getKindTypeColumn(kind),
+                            email.getLabel()).toString();
+                }
                 icon = getResources().getDrawable(R.drawable.ic_email_24dp);
             }
         } else if (dataItem instanceof StructuredPostalDataItem) {
@@ -1024,8 +1032,10 @@ public class QuickContactActivity extends ContactsActivity {
             if (!TextUtils.isEmpty(postalAddress)) {
                 intent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
                 header = postal.getFormattedAddress();
-                text = StructuredPostal.getTypeLabel(getResources(), postal.getKindTypeColumn(kind),
-                        postal.getLabel()).toString();
+                if (postal.hasKindTypeColumn(kind)) {
+                    text = StructuredPostal.getTypeLabel(getResources(),
+                            postal.getKindTypeColumn(kind), postal.getLabel()).toString();
+                }
                 icon = getResources().getDrawable(R.drawable.ic_place_24dp);
             }
         } else if (dataItem instanceof SipAddressDataItem) {
