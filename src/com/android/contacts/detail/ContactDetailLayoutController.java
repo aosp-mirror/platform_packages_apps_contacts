@@ -23,7 +23,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 
-import com.android.contacts.NfcHandler;
 import com.android.contacts.R.id;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.common.model.Contact;
@@ -73,7 +72,6 @@ public class ContactDetailLayoutController {
                 .findFragmentById(id.contact_detail_about_fragment);
 
         mDetailFragment.setListener(mContactDetailFragmentListener);
-        NfcHandler.register(mActivity, mDetailFragment);
 
         if (savedState != null) {
             mContactUri = savedState.getParcelable(KEY_CONTACT_URI);

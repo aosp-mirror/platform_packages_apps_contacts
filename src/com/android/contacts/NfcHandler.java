@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -26,8 +27,6 @@ import android.nfc.NfcEvent;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Profile;
 import android.util.Log;
-
-import com.android.contacts.detail.ContactDetailFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -45,27 +44,28 @@ public class NfcHandler implements NfcAdapter.CreateNdefMessageCallback {
 
     private static final String TAG = "ContactNfcHandler";
     private static final String PROFILE_LOOKUP_KEY = "profile";
-    private final ContactDetailFragment mContactFragment;
+    private final Context mContext;
+    private final Uri mContactUri;
 
-    public static void register(Activity activity, ContactDetailFragment contactFragment) {
+    /* Register NFC handler. This should be called in activities' onCreate(), or similar methods */
+    public static void register(Activity activity, Uri contactUri) {
         NfcAdapter adapter = NfcAdapter.getDefaultAdapter(activity.getApplicationContext());
         if (adapter == null) {
             return;  // NFC not available on this device
         }
-        adapter.setNdefPushMessageCallback(new NfcHandler(contactFragment), activity);
+        adapter.setNdefPushMessageCallback(new NfcHandler(activity, contactUri), activity);
     }
 
-    public NfcHandler(ContactDetailFragment contactFragment) {
-        mContactFragment = contactFragment;
+    public NfcHandler(Context context, Uri contactUri) {
+        mContext = context;
+        mContactUri = contactUri;
     }
 
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
-        // Get the current contact URI
-        Uri contactUri = mContactFragment.getUri();
-        ContentResolver resolver = mContactFragment.getActivity().getContentResolver();
-        if (contactUri != null) {
-            final String lookupKey = Uri.encode(contactUri.getPathSegments().get(2));
+        ContentResolver resolver = mContext.getContentResolver();
+        if (mContactUri != null) {
+            final String lookupKey = Uri.encode(mContactUri.getPathSegments().get(2));
             final Uri shareUri;
             // TODO find out where to get this constant from, or find another way
             // of determining this.
