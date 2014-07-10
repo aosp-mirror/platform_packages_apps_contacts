@@ -431,7 +431,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             if (photoUri == null) {
                 final String displayName = cursor.getString(PhoneQuery.DISPLAY_NAME);
                 final String lookupKey = cursor.getString(PhoneQuery.LOOKUP_KEY);
-                request = new DefaultImageRequest(displayName, lookupKey, false);
+                request = new DefaultImageRequest(displayName, lookupKey, getCircularPhotos());
             }
             getPhotoLoader().loadDirectoryPhoto(view.getPhotoView(), photoUri, false,
                     getCircularPhotos(), request);
