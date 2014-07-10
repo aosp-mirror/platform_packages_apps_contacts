@@ -60,6 +60,7 @@ import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.QuickContact;
@@ -781,46 +782,21 @@ public class QuickContactActivity extends ContactsActivity {
     private void populateContactAndAboutCard() {
         Trace.beginSection("bind contact card");
 
-        final List<Entry> contactCardEntries = new ArrayList<>();
-        final List<Entry> aboutCardEntries = new ArrayList<>();
+        final List<List<Entry>> contactCardEntries = new ArrayList<>();
+        final List<List<Entry>> aboutCardEntries = new ArrayList<>();
 
-        int topContactIndex = 0;
         for (int i = 0; i < mDataItemsList.size(); ++i) {
             final List<DataItem> dataItemsByMimeType = mDataItemsList.get(i);
             final DataItem topDataItem = dataItemsByMimeType.get(0);
             if (ABOUT_CARD_MIMETYPES.contains(topDataItem.getMimeType())) {
-                aboutCardEntries.addAll(dataItemsToEntries(mDataItemsList.get(i)));
+                List<Entry> aboutEntries = dataItemsToEntries(mDataItemsList.get(i));
+                if (aboutEntries.size() > 0) {
+                    aboutCardEntries.add(aboutEntries);
+                }
             } else {
-                // Add most used to the top of the contact card
-                final Entry topEntry = dataItemToEntry(topDataItem);
-                if (topEntry != null) {
-                    contactCardEntries.add(topContactIndex++, dataItemToEntry(topDataItem));
-                }
-                // TODO merge SMS into secondary action
-                if (topDataItem instanceof PhoneDataItem) {
-                    final PhoneDataItem phone = (PhoneDataItem) topDataItem;
-                    Intent smsIntent = null;
-                    if (mSmsComponent != null) {
-                        smsIntent = new Intent(Intent.ACTION_SENDTO,
-                                Uri.fromParts(CallUtil.SCHEME_SMSTO, phone.getNumber(), null));
-                        smsIntent.setComponent(mSmsComponent);
-                    }
-                    final int dataId = phone.getId() > Integer.MAX_VALUE ?
-                            -1 : (int) phone.getId();
-                    contactCardEntries.add(topContactIndex++,
-                            new Entry(dataId,
-                                    getResources().getDrawable(R.drawable.ic_message_24dp),
-                                    getResources().getString(R.string.send_message),
-                                    /* subHeader = */ null,
-                                    /* text = */ phone.buildDataString(
-                                            this, topDataItem.getDataKind()),
-                                            smsIntent,
-                                            /* isEditable = */ false));
-                }
-                // Add the rest of the entries to the bottom of the card
-                if (dataItemsByMimeType.size() > 1) {
-                    contactCardEntries.addAll(dataItemsToEntries(
-                            dataItemsByMimeType.subList(1, dataItemsByMimeType.size())));
+                List<Entry> contactEntries = dataItemsToEntries(mDataItemsList.get(i));
+                if (contactEntries.size() > 0) {
+                    contactCardEntries.add(contactEntries);
                 }
             }
         }
@@ -1075,8 +1051,8 @@ public class QuickContactActivity extends ContactsActivity {
             header = dataItem.buildDataStringForDisplay(this, kind);
             text = kind.typeColumn;
             intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.parse(dataItem.buildDataString(this, kind)),
-                    dataItem.getMimeType());
+            final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, dataItem.getId());
+            intent.setDataAndType(uri, dataItem.getMimeType());
             icon = ResolveCache.getInstance(this).getIcon(dataItem.getMimeType(), intent);
         }
 
@@ -1106,6 +1082,26 @@ public class QuickContactActivity extends ContactsActivity {
             final Entry entry = dataItemToEntry(dataItem);
             if (entry != null) {
                 entries.add(entry);
+            }
+            // TODO merge secondary intents
+            if (dataItem instanceof PhoneDataItem) {
+                final PhoneDataItem phone = (PhoneDataItem) dataItem;
+                Intent smsIntent = null;
+                if (mSmsComponent != null) {
+                    smsIntent = new Intent(Intent.ACTION_SENDTO,
+                            Uri.fromParts(CallUtil.SCHEME_SMSTO, phone.getNumber(), null));
+                    smsIntent.setComponent(mSmsComponent);
+                }
+                final int dataId = dataItem.getId() > Integer.MAX_VALUE ?
+                        -1 : (int) dataItem.getId();
+                entries.add(new Entry(dataId,
+                        getResources().getDrawable(R.drawable.ic_message_24dp),
+                        getResources().getString(R.string.send_message),
+                        /* subHeader = */ null,
+                        /* text = */ phone.buildDataString(this,
+                                dataItem.getDataKind()),
+                        smsIntent,
+                        /* isEditable = */ false));
             }
         }
         return entries;
@@ -1395,8 +1391,11 @@ public class QuickContactActivity extends ContactsActivity {
             }
         });
 
+
+        List<List<Entry>> interactionsWrapper = new ArrayList<>();
+        interactionsWrapper.add(contactInteractionsToEntries(allInteractions));
         if (allInteractions.size() > 0) {
-            mRecentCard.initialize(contactInteractionsToEntries(allInteractions),
+            mRecentCard.initialize(interactionsWrapper,
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
                     /* isExpanded = */ false, mExpandingEntryCardViewListener);
             mRecentCard.setVisibility(View.VISIBLE);

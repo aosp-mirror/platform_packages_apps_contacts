@@ -131,8 +131,10 @@ public class ExpandingEntryCardView extends LinearLayout {
     private boolean mIsExpanded = false;
     private int mCollapsedEntriesCount;
     private ExpandingEntryCardViewListener mListener;
-    private List<Entry> mEntries;
-    private List<View> mEntryViews;
+    private List<List<Entry>> mEntries;
+    private int mNumEntries = 0;
+    private boolean mAllEntriesInflated = false;
+    private List<List<View>> mEntryViews;
     private LinearLayout mEntriesViewGroup;
     private final Drawable mCollapseArrowDrawable;
     private final Drawable mExpandArrowDrawable;
@@ -179,21 +181,31 @@ public class ExpandingEntryCardView extends LinearLayout {
      *
      * @param entries The Entry list to display.
      */
-    public void initialize(List<Entry> entries, int numInitialVisibleEntries,
+    public void initialize(List<List<Entry>> entries, int numInitialVisibleEntries,
             boolean isExpanded, ExpandingEntryCardViewListener listener) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         mIsExpanded = isExpanded;
+        mEntryViews = new ArrayList<List<View>>(entries.size());
         mEntries = entries;
-        mEntryViews = new ArrayList<View>(entries.size());
-        mCollapsedEntriesCount = Math.min(numInitialVisibleEntries, entries.size());
+        for (List<Entry> entryList : mEntries) {
+            mNumEntries += entryList.size();
+            mEntryViews.add(new ArrayList<View>());
+        }
+        mCollapsedEntriesCount = Math.min(numInitialVisibleEntries, mNumEntries);
+        // Only show the head of each entry list if the initial visible number falls between the
+        // number of lists and the total number of entries
+        if (mCollapsedEntriesCount > mEntries.size()) {
+            mCollapsedEntriesCount = mEntries.size();
+        }
         mListener = listener;
 
         if (mIsExpanded) {
             updateExpandCollapseButton(getCollapseButtonText());
+            inflateAllEntries(layoutInflater);
         } else {
             updateExpandCollapseButton(getExpandButtonText());
+            inflateInitialEntries(layoutInflater);
         }
-        inflateViewsIfNeeded(layoutInflater);
         insertEntriesIntoViewGroup();
         applyColor();
     }
@@ -229,17 +241,21 @@ public class ExpandingEntryCardView extends LinearLayout {
 
     private void insertEntriesIntoViewGroup() {
         mEntriesViewGroup.removeAllViews();
-        for (int i = 0; i < mCollapsedEntriesCount; ++i) {
-            addEntry(mEntryViews.get(i));
-        }
+
         if (mIsExpanded) {
-            for (int i = mCollapsedEntriesCount; i < mEntryViews.size(); ++i) {
-                addEntry(mEntryViews.get(i));
+            for (List<View> viewList : mEntryViews) {
+                for (View view : viewList) {
+                    addEntry(view);
+                }
+            }
+        } else {
+            for (int i = 0; i < mCollapsedEntriesCount; i++) {
+                addEntry(mEntryViews.get(i).get(0));
             }
         }
 
         removeView(mExpandCollapseButton);
-        if (mCollapsedEntriesCount < mEntries.size()
+        if (mCollapsedEntriesCount < mNumEntries
                 && mExpandCollapseButton.getParent() == null) {
             addView(mExpandCollapseButton, -1);
         }
@@ -290,14 +306,35 @@ public class ExpandingEntryCardView extends LinearLayout {
     }
 
     /**
-     * Lazily inflate the number of views currently needed, and bind data from
-     * mEntries into these views.
+     * Inflates the initial entries to be shown.
      */
-    private void inflateViewsIfNeeded(LayoutInflater layoutInflater) {
-        final int viewsToInflate = mIsExpanded ?  mEntries.size() : mCollapsedEntriesCount;
-        for (int i = mEntryViews.size(); i < viewsToInflate; i++) {
-            mEntryViews.add(createEntryView(layoutInflater, mEntries.get(i)));
+    private void inflateInitialEntries(LayoutInflater layoutInflater) {
+        // If the number of collapsed entries equals total entries, inflate all
+        if (mCollapsedEntriesCount == mNumEntries) {
+            inflateAllEntries(layoutInflater);
+        } else {
+            // Otherwise inflate the top entry from each list
+            for (int i = 0; i < mCollapsedEntriesCount; i++) {
+                mEntryViews.get(i).add(createEntryView(layoutInflater, mEntries.get(i).get(0)));
+            }
         }
+    }
+
+    /**
+     * Inflates all entries.
+     */
+    private void inflateAllEntries(LayoutInflater layoutInflater) {
+        if (mAllEntriesInflated) {
+            return;
+        }
+        for (int i = 0; i < mEntries.size(); i++) {
+            List<Entry> entryList = mEntries.get(i);
+            List<View> viewList = mEntryViews.get(i);
+            for (int j = viewList.size(); j < entryList.size(); j++) {
+                viewList.add(createEntryView(layoutInflater, entryList.get(j)));
+            }
+        }
+        mAllEntriesInflated = true;
     }
 
     public void setColorAndFilter(int color, ColorFilter colorFilter) {
@@ -323,10 +360,12 @@ public class ExpandingEntryCardView extends LinearLayout {
 
             // Entry icons
             if (mEntries != null) {
-                for (Entry entry : mEntries) {
-                    Drawable icon = entry.getIcon();
-                    if (icon != null) {
-                        icon.setColorFilter(mThemeColorFilter);
+                for (List<Entry> entryList : mEntries) {
+                    for (Entry entry : entryList) {
+                        Drawable icon = entry.getIcon();
+                        if (icon != null) {
+                            icon.setColorFilter(mThemeColorFilter);
+                        }
                     }
                 }
             }
@@ -412,7 +451,7 @@ public class ExpandingEntryCardView extends LinearLayout {
 
         mIsExpanded = true;
         // In order to insert new entries, we may need to inflate them for the first time
-        inflateViewsIfNeeded(LayoutInflater.from(getContext()));
+        inflateAllEntries(LayoutInflater.from(getContext()));
         insertEntriesIntoViewGroup();
         updateExpandCollapseButton(getCollapseButtonText());
 
@@ -447,7 +486,7 @@ public class ExpandingEntryCardView extends LinearLayout {
         if (mCollapsedEntriesCount == 0) {
             return 0;
         }
-        final View bottomCollapsedView = mEntryViews.get(mCollapsedEntriesCount - 1);
+        final View bottomCollapsedView = mEntryViews.get(mCollapsedEntriesCount - 1).get(0);
         return bottomCollapsedView.getTop() + bottomCollapsedView.getHeight();
     }
 
