@@ -173,6 +173,13 @@ public class QuickContactActivity extends ContactsActivity {
     @SuppressWarnings("deprecation")
     private static final String LEGACY_AUTHORITY = android.provider.Contacts.AUTHORITY;
 
+    private static final String MIMETYPE_GPLUS_PROFILE =
+            "vnd.android.cursor.item/vnd.googleplus.profile";
+    private static final String INTENT_DATA_GPLUS_PROFILE_ADD_TO_CIRCLE = "Add to circle";
+    private static final String MIMETYPE_HANGOUTS =
+            "vnd.android.cursor.item/vnd.googleplus.profile.comm";
+    private static final String INTENT_DATA_HANGOUTS_VIDEO = "Start video call";
+
     private Uri mLookupUri;
     private String[] mExcludeMimes;
     private int mExtraMode;
@@ -1053,7 +1060,37 @@ public class QuickContactActivity extends ContactsActivity {
             intent = new Intent(Intent.ACTION_VIEW);
             final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, dataItem.getId());
             intent.setDataAndType(uri, dataItem.getMimeType());
-            icon = ResolveCache.getInstance(this).getIcon(dataItem.getMimeType(), intent);
+
+            if (intent != null) {
+                final String mimetype = intent.getType();
+
+                // Attempt to use known icons for known 3p types. Otherwise default to ResolveCache
+                switch (mimetype) {
+                    case MIMETYPE_GPLUS_PROFILE:
+                        if (INTENT_DATA_GPLUS_PROFILE_ADD_TO_CIRCLE.equals(
+                                intent.getDataString())) {
+                            icon = getResources().getDrawable(
+                                    R.drawable.ic_add_to_circles_black_24);
+                        } else {
+                            icon = getResources().getDrawable(R.drawable.ic_google_plus_24dp);
+                        }
+                        break;
+                    case MIMETYPE_HANGOUTS:
+                        if (INTENT_DATA_HANGOUTS_VIDEO.equals(intent.getDataString())) {
+                            icon = getResources().getDrawable(R.drawable.ic_hangout_video_24dp);
+                        } else {
+                            icon = getResources().getDrawable(R.drawable.ic_hangout_24dp);
+                        }
+                        break;
+                    default:
+                        icon = ResolveCache.getInstance(this).getIcon(
+                                dataItem.getMimeType(), intent);
+                        // Call mutate to create a new Drawable.ConstantState for color filtering
+                        if (icon != null) {
+                            icon.mutate();
+                        }
+                }
+            }
         }
 
         if (intent != null) {

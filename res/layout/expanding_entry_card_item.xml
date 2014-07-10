@@ -26,11 +26,12 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/expanding_entry_card_item_icon_height"
+        android:layout_height="@dimen/expanding_entry_card_item_icon_width"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="@dimen/expanding_entry_card_item_image_spacing" />
+        android:layout_marginEnd="@dimen/expanding_entry_card_item_image_spacing"
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/header"
