@@ -114,6 +114,9 @@
     <!-- Action string for sending an SMS to a MMS phone number -->
     <string name="sms_mms">Text MMS</string>
 
+    <!-- Description string for an action button to initiate a video call. -->
+    <string name="description_video_call">Make video call</string>
+
     <!-- Title of the confirmation dialog for clearing frequents. [CHAR LIMIT=37] -->
     <string name="clearFrequentsConfirmation_title">Clear frequently contacted?</string>
 
@@ -707,28 +710,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
     <string name="menu_import_export">Import/export</string>
-
-    <!-- String describing the button to send a text message on quick contact.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-              [CHAR LIMIT=NONE]
-    -->
-    <string name="description_send_message">Send message to <xliff:g id="name">%1$s</xliff:g></string>
-
-    <!-- String describing the text for a phone number in quick contact.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_dial_phone_number">Dial phone <xliff:g id="name">%1$s</xliff:g></string>
-
-    <!-- String describing the button to add a contact for the current number.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_add_contact">Add contact</string>
 
     <!-- The font-family to use for tab text.
          Do not translate. -->
