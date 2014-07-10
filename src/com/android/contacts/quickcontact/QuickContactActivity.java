@@ -80,6 +80,7 @@ import android.widget.Toolbar;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
+import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.Collapser;
@@ -627,6 +628,8 @@ public class QuickContactActivity extends ContactsActivity {
                 getLoaderManager().destroyLoader(interactionLoaderId);
             }
         }
+
+        NfcHandler.register(this, mLookupUri);
     }
 
     private void runEntranceAnimation() {
@@ -1474,6 +1477,7 @@ public class QuickContactActivity extends ContactsActivity {
             return uri;
         }
     }
+
     private void shareContact() {
         final String lookupKey = mContactData.getLookupKey();
         Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
