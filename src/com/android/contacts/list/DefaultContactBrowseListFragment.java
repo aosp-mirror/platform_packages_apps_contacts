@@ -100,14 +100,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected ContactListAdapter createListAdapter() {
         DefaultContactListAdapter adapter = new DefaultContactListAdapter(getContext());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-        boolean showPhoto = getResources().getBoolean(R.bool.config_browse_list_show_images);
         mContactAllListShowCardFrame = getResources().getBoolean(
                 R.bool.contact_all_list_show_card_frame);
-        adapter.setDisplayPhotos(showPhoto);
-        if (showPhoto) {
-            boolean reverse = getResources().getBoolean(R.bool.config_browse_list_reverse_images);
-            adapter.setPhotoPosition(ContactListItemView.getDefaultPhotoPosition(reverse));
-        }
+        adapter.setDisplayPhotos(true);
+        adapter.setPhotoPosition(
+                ContactListItemView.getDefaultPhotoPosition(/* opposite = */ false));
         return adapter;
     }
 

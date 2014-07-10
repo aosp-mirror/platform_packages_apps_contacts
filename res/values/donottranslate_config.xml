@@ -19,24 +19,8 @@
 
 <resources>
 
-    <!-- Flag indicating whether to show images in browse list -->
-    <bool name="config_browse_list_show_images">true</bool>
-
-    <!-- Whether to show images in the reverse from the default position in the browse list. -->
-    <bool name="config_browse_list_reverse_images">false</bool>
-
     <!-- If true, phonetic name is included in the contact editor by default -->
     <bool name="config_editor_include_phonetic_name">false</bool>
-
-    <!-- If true, Contacts uses two panes: List and Detail. If false, Details are
-         shown in their own screens. This flag must be in sync with the layout definitions. -->
-    <bool name="config_use_two_panes">false</bool>
-
-    <!--  If true, Contacts uses two panes in the favorites view, one for starred and one for
-          frequently contacted.  If false, only one list is shown with starred on top and frequently
-          contacted listed below. Note: This should not be true if config_use_two_panes is
-          false. -->
-    <bool name="config_use_two_panes_in_favorites">false</bool>
 
     <!-- If true, the "home" icon on the action bar will be shown. -->
     <bool name="show_home_icon">false</bool>
