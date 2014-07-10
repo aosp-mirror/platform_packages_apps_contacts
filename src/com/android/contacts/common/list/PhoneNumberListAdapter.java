@@ -39,6 +39,7 @@ import com.android.contacts.common.R;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.extensions.ExtendedPhoneDirectoriesManager;
 import com.android.contacts.common.extensions.ExtensionsFactory;
+import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.util.Constants;
 
 import java.util.ArrayList;
@@ -181,14 +182,13 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             loader.setUri(builder.build());
 
             // TODO a projection that includes the search snippet
-            if (getContactNameDisplayOrder() ==
-                    ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            if (getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
                 loader.setProjection(PhoneQuery.PROJECTION_PRIMARY);
             } else {
                 loader.setProjection(PhoneQuery.PROJECTION_ALTERNATIVE);
             }
 
-            if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+            if (getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY) {
                 loader.setSortOrder(Phone.SORT_KEY_PRIMARY);
             } else {
                 loader.setSortOrder(Phone.SORT_KEY_ALTERNATIVE);

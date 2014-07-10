@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.android.contacts.common.format.SpannedTestUtils;
 import com.android.contacts.common.list.ContactListItemView;
+import com.android.contacts.common.preference.ContactsPreferences;
 
 /**
  * Unit tests for {@link com.android.contacts.common.list.ContactListItemView}.
@@ -56,7 +57,7 @@ public class ContactListItemViewTest extends AndroidTestCase {
         Cursor cursor = createCursor("John Doe", "Doe John");
         ContactListItemView view = createView();
 
-        view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
+        view.showDisplayName(cursor, 0, ContactsPreferences.DISPLAY_ORDER_PRIMARY);
 
         assertEquals(view.getNameTextView().getText().toString(), "John Doe");
     }
@@ -66,7 +67,7 @@ public class ContactListItemViewTest extends AndroidTestCase {
         ContactListItemView view = createView();
 
         view.setUnknownNameText("unknown");
-        view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
+        view.showDisplayName(cursor, 0, ContactsPreferences.DISPLAY_ORDER_PRIMARY);
 
         assertEquals(view.getNameTextView().getText().toString(), "unknown");
     }
@@ -76,7 +77,7 @@ public class ContactListItemViewTest extends AndroidTestCase {
         ContactListItemView view = createView();
 
         view.setHighlightedPrefix("DOE");
-        view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
+        view.showDisplayName(cursor, 0, ContactsPreferences.DISPLAY_ORDER_PRIMARY);
 
         CharSequence seq = view.getNameTextView().getText();
         assertEquals("John Doe", seq.toString());
@@ -88,7 +89,7 @@ public class ContactListItemViewTest extends AndroidTestCase {
         ContactListItemView view = createView();
 
         view.setHighlightedPrefix("DOE");
-        view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE);
+        view.showDisplayName(cursor, 0, ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE);
 
         CharSequence seq = view.getNameTextView().getText();
         assertEquals("John Doe", seq.toString());

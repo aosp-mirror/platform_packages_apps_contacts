@@ -31,6 +31,7 @@ import android.widget.ListView;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
+import com.android.contacts.common.preference.ContactsPreferences;
 
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
@@ -360,13 +361,13 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected final String[] getProjection(boolean forSearch) {
         final int sortOrder = getContactNameDisplayOrder();
         if (forSearch) {
-            if (sortOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            if (sortOrder == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
                 return ContactQuery.FILTER_PROJECTION_PRIMARY;
             } else {
                 return ContactQuery.FILTER_PROJECTION_ALTERNATIVE;
             }
         } else {
-            if (sortOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            if (sortOrder == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
                 return ContactQuery.CONTACT_PROJECTION_PRIMARY;
             } else {
                 return ContactQuery.CONTACT_PROJECTION_ALTERNATIVE;
