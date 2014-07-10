@@ -18,7 +18,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <header
-        android:fragment="com.android.contacts.preference.DisplayOptionsPreferenceFragment"
+        android:fragment="com.android.contacts.common.preference.DisplayOptionsPreferenceFragment"
         android:title="@string/preference_displayOptions" />
 
 </preference-headers>

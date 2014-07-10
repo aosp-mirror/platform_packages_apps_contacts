@@ -34,6 +34,7 @@ import com.android.contacts.R;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DirectoryListLoader;
+import com.android.contacts.common.preference.ContactsPreferences;
 
 public class JoinContactListAdapter extends ContactListAdapter {
 
@@ -101,7 +102,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         loader.setUri(allContactsUri);
         loader.setSelection(Contacts._ID + "!=?");
         loader.setSelectionArgs(new String[]{ String.valueOf(mTargetContactId) });
-        if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+        if (getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
         } else {
             loader.setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);

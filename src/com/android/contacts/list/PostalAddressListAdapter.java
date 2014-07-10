@@ -31,6 +31,7 @@ import android.view.ViewGroup;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.list.ContactEntryListAdapter;
 import com.android.contacts.common.list.ContactListItemView;
+import com.android.contacts.common.preference.ContactsPreferences;
 
 /**
  * A cursor adapter for the {@link StructuredPostal#CONTENT_TYPE} content type.
@@ -84,13 +85,13 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
         }
         loader.setUri(builder.build());
 
-        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+        if (getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
             loader.setProjection(PostalQuery.PROJECTION_PRIMARY);
         } else {
             loader.setProjection(PostalQuery.PROJECTION_ALTERNATIVE);
         }
 
-        if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+        if (getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(StructuredPostal.SORT_KEY_PRIMARY);
         } else {
             loader.setSortOrder(StructuredPostal.SORT_KEY_ALTERNATIVE);
