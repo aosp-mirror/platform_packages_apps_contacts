@@ -111,6 +111,8 @@ import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.common.model.dataitem.WebsiteDataItem;
 import com.android.contacts.common.util.DateUtils;
+import com.android.contacts.common.util.MaterialColorMapUtils;
+import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.detail.ContactDetailDisplayUtils;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
@@ -125,7 +127,7 @@ import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
-import com.google.common.annotations.VisibleForTesting;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -136,10 +138,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Mostly translucent {@link Activity} that shows QuickContact dialog. It loads
@@ -161,7 +161,6 @@ public class QuickContactActivity extends ContactsActivity {
 
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
-    private static final float SYSTEM_BAR_BRIGHTNESS_FACTOR = 0.7f;
     private static final int SCRIM_COLOR = Color.argb(0xB2, 0, 0, 0);
     private static final String SCHEME_SMSTO = "smsto";
     private static final String MIMETYPE_SMS = "vnd.android-dir/mms-sms";
@@ -575,7 +574,7 @@ public class QuickContactActivity extends ContactsActivity {
                             // header tint before the MultiShrinkScroller has been measured will
                             // cause incorrect tinting calculations.
                             if (color != 0) {
-                                setThemeColor(color);
+                                setThemeColor(MaterialColorMapUtils.calculateSecondaryColor(color));
                             }
                         }
                     });
@@ -1154,22 +1153,29 @@ public class QuickContactActivity extends ContactsActivity {
             return;
         }
         final Drawable imageViewDrawable = mPhotoView.getDrawable();
-        new AsyncTask<Void, Void, Integer>() {
+        new AsyncTask<Void, Void, MaterialPalette>() {
             @Override
-            protected Integer doInBackground(Void... params) {
+            protected MaterialPalette doInBackground(Void... params) {
+
                 if (imageViewDrawable instanceof BitmapDrawable) {
                     final Bitmap bitmap = ((BitmapDrawable) imageViewDrawable).getBitmap();
-                    return colorFromBitmap(bitmap);
+                    final int primaryColor = colorFromBitmap(bitmap);
+                    if (primaryColor != 0) {
+                        return MaterialColorMapUtils.calculatePrimaryAndSecondaryColor(
+                                primaryColor);
+                    }
                 }
                 if (imageViewDrawable instanceof LetterTileDrawable) {
-                    return ((LetterTileDrawable) imageViewDrawable).getColor();
+                    final int primaryColor = ((LetterTileDrawable) imageViewDrawable).getColor();
+                    return MaterialColorMapUtils.calculateSecondaryColor(primaryColor);
                 }
-                return 0;
+                return MaterialColorMapUtils.calculatePrimaryAndSecondaryColor(
+                        getResources().getColor(R.color.quickcontact_default_photo_tint_color));
             }
 
             @Override
-            protected void onPostExecute(Integer color) {
-                super.onPostExecute(color);
+            protected void onPostExecute(MaterialPalette palette) {
+                super.onPostExecute(palette);
                 if (mHasComputedThemeColor) {
                     // If we had previously computed a theme color from the contact photo,
                     // then do not update the theme color. Changing the theme color several
@@ -1182,7 +1188,7 @@ public class QuickContactActivity extends ContactsActivity {
                 // color needs to be extracted
                 if (imageViewDrawable == mPhotoView.getDrawable()) {
                     mHasComputedThemeColor = true;
-                    setThemeColor(color);
+                    setThemeColor(palette);
                 }
             }
         }.execute();
@@ -1212,27 +1218,18 @@ public class QuickContactActivity extends ContactsActivity {
         }.execute();
     }
 
-    private void setThemeColor(int color) {
+    private void setThemeColor(MaterialPalette palette) {
         // If the color is invalid, use the predefined default
-        if (color == 0) {
-            color = getResources().getColor(R.color.actionbar_background_color);
-        }
-        mScroller.setHeaderTintColor(color);
-
-        // Create a darker version of the actionbar color. HSV is device dependent
-        // and not perceptually-linear. Therefore, we can't say mStatusBarColor is
-        // 70% as bright as the action bar color. We can only say: it is a bit darker.
-        final float hsvComponents[] = new float[3];
-        Color.colorToHSV(color, hsvComponents);
-        hsvComponents[2] *= SYSTEM_BAR_BRIGHTNESS_FACTOR;
-        mStatusBarColor = Color.HSVToColor(hsvComponents);
+        final int primaryColor = palette.mPrimaryColor;
+        mScroller.setHeaderTintColor(primaryColor);
+        mStatusBarColor = palette.mSecondaryColor;
         updateStatusBarColor();
 
         mColorFilter =
-                new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-        mContactCard.setColorAndFilter(color, mColorFilter);
-        mRecentCard.setColorAndFilter(color, mColorFilter);
-        mAboutCard.setColorAndFilter(color, mColorFilter);
+                new PorterDuffColorFilter(primaryColor, PorterDuff.Mode.SRC_ATOP);
+        mContactCard.setColorAndFilter(primaryColor, mColorFilter);
+        mRecentCard.setColorAndFilter(primaryColor, mColorFilter);
+        mAboutCard.setColorAndFilter(primaryColor, mColorFilter);
     }
 
     private void updateStatusBarColor() {
