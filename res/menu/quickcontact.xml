@@ -15,13 +15,14 @@
 -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Icon and titles are set in code for menu_star and menu_edit -->
+
     <item
         android:id="@+id/menu_star"
         android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_edit"
-        android:icon="@drawable/ic_create_24dp"
         android:showAsAction="always" />
 
     <item
