@@ -872,8 +872,8 @@ public class MultiShrinkScroller extends LinearLayout {
         mToolbar.getBoundsOnScreen(largeTextViewRect);
         mInvisiblePlaceholderTextView.getBoundsOnScreen(invisiblePlaceholderTextViewRect);
         if (isLayoutRtl()) {
-            mCollapsedTitleStartMargin = invisiblePlaceholderTextViewRect.right
-                    - largeTextViewRect.right;
+            mCollapsedTitleStartMargin = largeTextViewRect.right
+                    - invisiblePlaceholderTextViewRect.right;
         } else {
             mCollapsedTitleStartMargin = invisiblePlaceholderTextViewRect.left
                     - largeTextViewRect.left;
