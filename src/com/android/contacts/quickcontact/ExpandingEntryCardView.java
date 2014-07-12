@@ -187,6 +187,8 @@ public class ExpandingEntryCardView extends LinearLayout {
         mIsExpanded = isExpanded;
         mEntryViews = new ArrayList<List<View>>(entries.size());
         mEntries = entries;
+        mNumEntries = 0;
+        mAllEntriesInflated = false;
         for (List<Entry> entryList : mEntries) {
             mNumEntries += entryList.size();
             mEntryViews.add(new ArrayList<View>());
@@ -341,6 +343,19 @@ public class ExpandingEntryCardView extends LinearLayout {
         mThemeColor = color;
         mThemeColorFilter = colorFilter;
         applyColor();
+    }
+
+    public void setEntryHeaderColor(int color) {
+        if (mEntries != null) {
+            for (List<View> entryList : mEntryViews) {
+                for (View entryView : entryList) {
+                    TextView header = (TextView) entryView.findViewById(R.id.header);
+                    if (header != null) {
+                        header.setTextColor(color);
+                    }
+                }
+            }
+        }
     }
 
     /**

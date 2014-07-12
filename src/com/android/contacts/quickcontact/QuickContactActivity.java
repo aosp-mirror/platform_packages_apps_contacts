@@ -188,6 +188,7 @@ public class QuickContactActivity extends ContactsActivity {
     private ImageView mPhotoView;
     private View mTransparentView;
     private ExpandingEntryCardView mContactCard;
+    private ExpandingEntryCardView mNoContactDetailsCard;
     private ExpandingEntryCardView mRecentCard;
     private ExpandingEntryCardView mAboutCard;
     /**
@@ -210,9 +211,6 @@ public class QuickContactActivity extends ContactsActivity {
     private boolean mIsExitAnimationInProgress;
     private boolean mHasComputedThemeColor;
     private ComponentName mSmsComponent;
-
-    private static final int MIN_NUM_CONTACT_ENTRIES_SHOWN = 3;
-    private static final int MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN = 3;
 
     private Contact mContactData;
     private ContactLoader mContactLoader;
@@ -267,6 +265,9 @@ public class QuickContactActivity extends ContactsActivity {
     /** Id for the background Call Log Loader */
     private static final int LOADER_CALL_LOG_ID = 3;
     private static final int MAX_CALL_LOG_RETRIEVE = 3;
+    private static final int MIN_NUM_CONTACT_ENTRIES_SHOWN = 3;
+    private static final int MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN = 3;
+    private static final int CARD_ENTRY_ID_EDIT_CONTACT = -2;
 
 
     private static final int[] mRecentLoaderIds = new int[]{
@@ -282,7 +283,11 @@ public class QuickContactActivity extends ContactsActivity {
         public void onClick(View v) {
             // Data Id is stored as the entry view id
             final int dataId = v.getId();
-            Object intentObject = v.getTag();
+            if (dataId == CARD_ENTRY_ID_EDIT_CONTACT) {
+                editContact();
+                return;
+            }
+            final Object intentObject = v.getTag();
             if (intentObject == null || !(intentObject instanceof Intent)) {
                 Log.w(TAG, "Intent tag was not used correctly");
                 return;
@@ -500,10 +505,12 @@ public class QuickContactActivity extends ContactsActivity {
         mSmsComponent = PhoneCapabilityTester.getSmsComponent(this);
 
         mContactCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
+        mNoContactDetailsCard = (ExpandingEntryCardView) findViewById(R.id.no_contact_data_card);
         mRecentCard = (ExpandingEntryCardView) findViewById(R.id.recent_card);
         mAboutCard = (ExpandingEntryCardView) findViewById(R.id.about_card);
         mScroller = (MultiShrinkScroller) findViewById(R.id.multiscroller);
 
+        mNoContactDetailsCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setTitle(getResources().getString(R.string.communication_card_title));
         mContactCard.setExpandButtonText(
@@ -823,7 +830,48 @@ public class QuickContactActivity extends ContactsActivity {
                 /* numInitialVisibleEntries = */ 1,
                 /* isExpanded = */ true,
                 mExpandingEntryCardViewListener);
+
+        if (contactCardEntries.size() == 0 && aboutCardEntries.size() == 0) {
+            initializeNoContactDetailCard();
+        } else {
+            mNoContactDetailsCard.setVisibility(View.GONE);
+        }
+
         Trace.endSection();
+    }
+
+    /**
+     * Create a card that shows "Add email" and "Add phone number" entries in grey.
+     */
+    private void initializeNoContactDetailCard() {
+        final Drawable phoneIcon = getResources().getDrawable(
+                R.drawable.ic_phone_24dp).mutate();
+        final Entry phonePromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
+                phoneIcon, getString(R.string.quickcontact_add_phone_number),
+                /* subHeader = */ null, /* text = */ null,
+                getEditContactIntent(), /* isEditable = */ false);
+
+        final Drawable emailIcon = getResources().getDrawable(
+                R.drawable.ic_email_24dp).mutate();
+        final Entry emailPromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
+                emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
+                /* text = */ null, getEditContactIntent(), /* isEditable = */ false);
+
+        final List<List<Entry>> promptEntries = new ArrayList<>();
+        promptEntries.add(new ArrayList<Entry>(1));
+        promptEntries.add(new ArrayList<Entry>(1));
+        promptEntries.get(0).add(phonePromptEntry);
+        promptEntries.get(1).add(emailPromptEntry);
+
+        final int subHeaderTextColor = getResources().getColor(
+                R.color.quickcontact_entry_sub_header_text_color);
+        final PorterDuffColorFilter greyColorFilter =
+                new PorterDuffColorFilter(subHeaderTextColor, PorterDuff.Mode.SRC_ATOP);
+        mNoContactDetailsCard.initialize(promptEntries, 2, /* isExpanded = */ false,
+                mExpandingEntryCardViewListener);
+        mNoContactDetailsCard.setVisibility(View.VISIBLE);
+        mNoContactDetailsCard.setEntryHeaderColor(subHeaderTextColor);
+        mNoContactDetailsCard.setColorAndFilter(subHeaderTextColor, greyColorFilter);
     }
 
     /**
@@ -1465,11 +1513,15 @@ public class QuickContactActivity extends ContactsActivity {
         return mContactData != null && !mContactData.isDirectoryEntry();
     }
 
-    private void editContact() {
+    private Intent getEditContactIntent() {
         final Intent intent = new Intent(Intent.ACTION_EDIT, mLookupUri);
         mContactLoader.cacheResult();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        startActivityForResult(intent, REQUEST_CODE_CONTACT_EDITOR_ACTIVITY);
+        return intent;
+    }
+
+    private void editContact() {
+        startActivityForResult(getEditContactIntent(), REQUEST_CODE_CONTACT_EDITOR_ACTIVITY);
     }
 
     private void toggleStar(MenuItem starredMenuItem) {

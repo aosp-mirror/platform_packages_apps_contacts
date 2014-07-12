@@ -40,7 +40,7 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/icon"
         android:singleLine="true"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/quickcontact_entry_header_text_color" />
 
     <TextView
         android:id="@+id/sub_header"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/header"
         android:layout_toEndOf="@+id/icon_sub_header"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/quickcontact_entry_sub_header_text_color" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
         android:id="@+id/text"
         android:layout_below="@+id/sub_header"
         android:layout_toEndOf="@+id/icon_text"
-        android:textColor="@android:color/darker_gray"/>
+        android:textColor="@color/quickcontact_entry_sub_header_text_color" />
 
     <ImageView
         android:layout_width="wrap_content"

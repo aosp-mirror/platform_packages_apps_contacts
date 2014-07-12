@@ -35,6 +35,17 @@
             android:background="@drawable/quickcontact_card_border">
             <com.android.contacts.quickcontact.ExpandingEntryCardView
                 style="@style/ExpandingEntryCardStyle"
+                android:id="@+id/no_contact_data_card"
+                android:layout_marginTop="@dimen/communication_card_marginTop"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/quickcontact_card_border">
+            <com.android.contacts.quickcontact.ExpandingEntryCardView
+                style="@style/ExpandingEntryCardStyle"
                 android:id="@+id/communication_card"
                 android:layout_marginTop="@dimen/communication_card_marginTop"
                 android:visibility="gone" />
