@@ -234,7 +234,7 @@ public class QuickContactActivity extends ContactsActivity {
 
     /** See {@link #LEADING_MIMETYPES}. */
     private static final List<String> TRAILING_MIMETYPES = Lists.newArrayList(
-            StructuredPostal.CONTENT_ITEM_TYPE, Website.CONTENT_ITEM_TYPE);
+            StructuredPostal.CONTENT_ITEM_TYPE);
 
     private static final List<String> ABOUT_CARD_MIMETYPES = Lists.newArrayList(
             Event.CONTENT_ITEM_TYPE, GroupMembership.CONTENT_ITEM_TYPE, Identity.CONTENT_ITEM_TYPE,
@@ -590,8 +590,8 @@ public class QuickContactActivity extends ContactsActivity {
         Trace.endSection();
     }
 
-    protected void onActivityResult(int requestCode, int resultCode,
-            Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_CONTACT_EDITOR_ACTIVITY &&
                 resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED) {
             // The contact that we were showing has been deleted.
@@ -636,11 +636,11 @@ public class QuickContactActivity extends ContactsActivity {
         } else if (oldLookupUri != mLookupUri) {
             // After copying a directory contact, the contact URI changes. Therefore,
             // we need to restart the loader and reload the new contact.
-            mContactLoader = (ContactLoader) getLoaderManager().restartLoader(
-                    LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
             for (int interactionLoaderId : mRecentLoaderIds) {
                 getLoaderManager().destroyLoader(interactionLoaderId);
             }
+            mContactLoader = (ContactLoader) getLoaderManager().restartLoader(
+                    LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
         }
 
         NfcHandler.register(this, mLookupUri);
@@ -1331,6 +1331,7 @@ public class QuickContactActivity extends ContactsActivity {
             new LoaderCallbacks<Contact>() {
         @Override
         public void onLoaderReset(Loader<Contact> loader) {
+            mContactData = null;
         }
 
         @Override
@@ -1452,7 +1453,6 @@ public class QuickContactActivity extends ContactsActivity {
         public void onLoaderReset(Loader<List<ContactInteraction>> loader) {
             mRecentLoaderResults.remove(loader.getId());
         }
-
     };
 
     private boolean isAllRecentDataLoaded() {
