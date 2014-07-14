@@ -20,7 +20,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.telecomm.PhoneAccount;
 import android.telecomm.TelecommConstants;
-import android.telecomm.TelecommManager;
 import android.telecomm.VideoCallProfile;
 
 import com.android.contacts.common.util.PhoneNumberHelper;
@@ -122,7 +121,7 @@ public class CallUtil {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
         }
         if (account != null) {
-            intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT, account);
+            intent.putExtra(TelecommConstants.EXTRA_PHONE_ACCOUNT, account);
         }
 
         return intent;
