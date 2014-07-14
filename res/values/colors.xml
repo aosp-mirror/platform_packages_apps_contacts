@@ -35,7 +35,6 @@
     <color name="action_bar_button_text_color">#FFFFFF</color>
 
     <!-- Color of the selected tab underline (overriding value in ContactsCommon) -->
-    <color name="tab_selected_color">#ffeeff41</color>
     <color name="contacts_accent_color">#00acc1</color>
 
     <!-- Color of the separator between entries in an ExpandingEntryCardView -->
@@ -64,4 +63,8 @@
     <!-- The default color used for tinting photos when no color can be extracted via Palette,
          this is Blue Grey 500 -->
     <color name="quickcontact_default_photo_tint_color">#607D8B</color>
+
+    <color name="tab_default_color">@color/actionbar_background_color</color>
+    <color name="tab_pressed_color">@color/tab_selected_color</color>
+    <color name="tab_selected_color">#ffeeff41</color>
 </resources>
