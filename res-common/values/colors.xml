@@ -75,10 +75,6 @@
 
     <color name="letter_tile_font_color">#ffffff</color>
 
-    <color name="tab_default_color">@color/actionbar_background_color</color>
-    <color name="tab_pressed_color">#0097a8</color>
-    <color name="tab_selected_color">#0097a8</color>
-
     <!-- Background color of action bars. Ensure this stays in sync with packages/Telephony
          actionbar_background_color. -->
     <color name="actionbar_background_color">#0fc6dc</color>
