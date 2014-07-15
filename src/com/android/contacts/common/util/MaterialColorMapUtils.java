@@ -55,11 +55,11 @@ public class MaterialColorMapUtils {
 
         // TODO: check matches with known LetterTileDrawable colors, once they are material colors
 
-        final float colorHue = Color.hue(color);
+        final float colorHue = hue(color);
         float minimumDistance = Float.MAX_VALUE;
         int indexBestMatch = 0;
         for (int i = 0; i < PRIMARY_COLORS.length; i++) {
-            final float comparedHue = Color.hue(PRIMARY_COLORS[i]);
+            final float comparedHue = hue(PRIMARY_COLORS[i]);
             // No need to be perceptually accurate when calculating color distances since
             // we are only mapping to 15 colors. Being slightly inaccurate isn't going to change
             // the mapping very often.
@@ -92,4 +92,43 @@ public class MaterialColorMapUtils {
         return new MaterialPalette(primaryColor, Color.HSVToColor(hsv));
     }
 
+    /**
+     * Returns the hue component of a color int.
+     *
+     * @return A value between 0.0f and 1.0f
+     */
+    public static float hue(int color) {
+        int r = (color >> 16) & 0xFF;
+        int g = (color >> 8) & 0xFF;
+        int b = color & 0xFF;
+
+        int V = Math.max(b, Math.max(r, g));
+        int temp = Math.min(b, Math.min(r, g));
+
+        float H;
+
+        if (V == temp) {
+            H = 0;
+        } else {
+            final float vtemp = V - temp;
+            final float cr = (V - r) / vtemp;
+            final float cg = (V - g) / vtemp;
+            final float cb = (V - b) / vtemp;
+
+            if (r == V) {
+                H = cb - cg;
+            } else if (g == V) {
+                H = 2 + cr - cb;
+            } else {
+                H = 4 + cg - cr;
+            }
+
+            H /= 6.f;
+            if (H < 0) {
+                H++;
+            }
+        }
+
+        return H;
+    }
 }
