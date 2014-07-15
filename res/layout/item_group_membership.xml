@@ -25,7 +25,7 @@
         layout="@layout/edit_kind_title" />
 
     <Button
-        style="?android:attr/spinnerStyle"
+        style="@style/SpinnerButtonStyle"
         android:id="@+id/group_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

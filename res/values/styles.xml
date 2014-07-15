@@ -278,4 +278,10 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="SpinnerButtonStyle" parent="@android:style/Widget.Material.Spinner">
+        <!-- When applying the spinner style to a Button we need to disable the shadow animation
+            on the button since the spinner background is transparent. Otherwise the spinner-button
+            will look ridiculous. -->
+        <item name="android:stateListAnimator">@null</item>
+    </style>
 </resources>
