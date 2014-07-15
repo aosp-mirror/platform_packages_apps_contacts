@@ -108,6 +108,13 @@ public class CallUtil {
     }
 
     /**
+     * A variant of {@link #getCallIntent(String, String, PhoneAccount)} for starting a video call.
+     */
+    public static Intent getVideoCallIntent(String number, PhoneAccount account) {
+        return getVideoCallIntent(number, null, account);
+    }
+
+    /**
      * A variant of {@link #getCallIntent(android.net.Uri)} but also accept a call
      * origin and {@code Account} and {@code VideoCallProfile} state.
      * For more information about call origin, see comments in Phone package (PhoneApp).
