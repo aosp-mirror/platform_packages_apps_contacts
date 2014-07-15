@@ -31,8 +31,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="@dimen/expanding_entry_card_item_image_spacing"
-        android:scaleType="fitCenter"
-        android:layout_marginTop="@dimen/expanding_entry_card_item_icon_margin_top" />
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/header"
@@ -76,16 +75,5 @@
         android:layout_below="@+id/sub_header"
         android:layout_marginTop="@dimen/expanding_entry_card_item_text_icon_margin_top"
         android:layout_marginEnd="@dimen/expanding_entry_card_item_text_icon_margin_right" />
-
-    <ImageView
-        android:id="@+id/icon_alternate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:visibility="gone"
-        android:layout_marginEnd="@dimen/expanding_entry_card_item_alternate_icon_margin_end"
-        android:layout_marginTop="@dimen/expanding_entry_card_item_icon_margin_top"
-        android:layout_marginBottom="@dimen/expanding_entry_card_item_alternate_icon_margin_bottom" />
 
 </RelativeLayout>

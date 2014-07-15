@@ -24,13 +24,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.ColorFilter;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -62,21 +60,15 @@ public class ExpandingEntryCardView extends LinearLayout {
         private final String mText;
         private final Drawable mTextIcon;
         private final Intent mIntent;
-        private final Drawable mAlternateIcon;
-        private final Intent mAlternateIntent;
-        private final String mAlternateContentDescription;
         private final boolean mIsEditable;
 
         public Entry(int viewId, Drawable icon, String header, String subHeader, String text,
-                Intent intent, Drawable alternateIcon, Intent alternateIntent,
-                String alternateContentDescription, boolean isEditable) {
-            this(viewId, icon, header, subHeader, null, text, null, intent, alternateIcon,
-                    alternateIntent, alternateContentDescription, isEditable);
+                Intent intent, boolean isEditable) {
+            this(viewId, icon, header, subHeader, null, text, null, intent, isEditable);
         }
 
         public Entry(int viewId, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon, Intent intent,
-                Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
                 boolean isEditable) {
             mViewId = viewId;
             mIcon = mainIcon;
@@ -86,9 +78,6 @@ public class ExpandingEntryCardView extends LinearLayout {
             mText = text;
             mTextIcon = textIcon;
             mIntent = intent;
-            mAlternateIcon = alternateIcon;
-            mAlternateIntent = alternateIntent;
-            mAlternateContentDescription = alternateContentDescription;
             mIsEditable = isEditable;
         }
 
@@ -118,18 +107,6 @@ public class ExpandingEntryCardView extends LinearLayout {
 
         Intent getIntent() {
             return mIntent;
-        }
-
-        Drawable getAlternateIcon() {
-            return mAlternateIcon;
-        }
-
-        Intent getAlternateIntent() {
-            return mAlternateIntent;
-        }
-
-        String getAlternateContentDescription() {
-            return mAlternateContentDescription;
         }
 
         boolean isEditable() {
@@ -404,10 +381,6 @@ public class ExpandingEntryCardView extends LinearLayout {
                         if (icon != null) {
                             icon.setColorFilter(mThemeColorFilter);
                         }
-                        Drawable alternateIcon = entry.getAlternateIcon();
-                        if (alternateIcon != null) {
-                            alternateIcon.setColorFilter(mThemeColorFilter);
-                        }
                     }
                 }
             }
@@ -421,47 +394,47 @@ public class ExpandingEntryCardView extends LinearLayout {
 
     // TODO add accessibility content descriptions
     private View createEntryView(LayoutInflater layoutInflater, Entry entry) {
-        final View view = layoutInflater.inflate(
+        View view = layoutInflater.inflate(
                 R.layout.expanding_entry_card_item, this, false);
 
         view.setId(entry.getViewId());
 
-        final ImageView icon = (ImageView) view.findViewById(R.id.icon);
+        ImageView icon = (ImageView) view.findViewById(R.id.icon);
         if (entry.getIcon() != null) {
             icon.setImageDrawable(entry.getIcon());
         } else {
             icon.setVisibility(View.GONE);
         }
 
-        final TextView header = (TextView) view.findViewById(R.id.header);
+        TextView header = (TextView) view.findViewById(R.id.header);
         if (entry.getHeader() != null) {
             header.setText(entry.getHeader());
         } else {
             header.setVisibility(View.GONE);
         }
 
-        final TextView subHeader = (TextView) view.findViewById(R.id.sub_header);
+        TextView subHeader = (TextView) view.findViewById(R.id.sub_header);
         if (entry.getSubHeader() != null) {
             subHeader.setText(entry.getSubHeader());
         } else {
             subHeader.setVisibility(View.GONE);
         }
 
-        final ImageView subHeaderIcon = (ImageView) view.findViewById(R.id.icon_sub_header);
+        ImageView subHeaderIcon = (ImageView) view.findViewById(R.id.icon_sub_header);
         if (entry.getSubHeaderIcon() != null) {
             subHeaderIcon.setImageDrawable(entry.getSubHeaderIcon());
         } else {
             subHeaderIcon.setVisibility(View.GONE);
         }
 
-        final TextView text = (TextView) view.findViewById(R.id.text);
+        TextView text = (TextView) view.findViewById(R.id.text);
         if (entry.getText() != null) {
             text.setText(entry.getText());
         } else {
             text.setVisibility(View.GONE);
         }
 
-        final ImageView textIcon = (ImageView) view.findViewById(R.id.icon_text);
+        ImageView textIcon = (ImageView) view.findViewById(R.id.icon_text);
         if (entry.getTextIcon() != null) {
             textIcon.setImageDrawable(entry.getTextIcon());
         } else {
@@ -471,35 +444,6 @@ public class ExpandingEntryCardView extends LinearLayout {
         if (entry.getIntent() != null) {
             view.setOnClickListener(mOnClickListener);
             view.setTag(entry.getIntent());
-        }
-
-        final ImageView alternateIcon = (ImageView) view.findViewById(R.id.icon_alternate);
-        if (entry.getAlternateIcon() != null && entry.getAlternateIntent() != null) {
-            alternateIcon.setImageDrawable(entry.getAlternateIcon());
-            alternateIcon.setOnClickListener(mOnClickListener);
-            alternateIcon.setTag(entry.getAlternateIntent());
-            alternateIcon.setId(entry.getViewId());
-            alternateIcon.setVisibility(View.VISIBLE);
-            alternateIcon.setContentDescription(entry.getAlternateContentDescription());
-
-            // Expand the clickable area for alternate icon to be top to bottom and to right edge
-            // of the entry view
-            view.post(new Runnable() {
-                @Override
-                public void run() {
-                    final Rect entryRect = new Rect();
-                    view.getHitRect(entryRect);
-
-                    final Rect alternateIconRect = new Rect();
-                    alternateIcon.getHitRect(alternateIconRect);
-                    alternateIconRect.right = entryRect.right;
-                    alternateIconRect.bottom = entryRect.bottom;
-                    alternateIconRect.top = entryRect.top;
-                    final TouchDelegate touchDelegate =
-                            new TouchDelegate(alternateIconRect, alternateIcon);
-                    view.setTouchDelegate(touchDelegate);
-                }
-            });
         }
 
         return view;
