@@ -274,7 +274,7 @@ public class QuickContactActivity extends ContactsActivity {
         LOADER_SMS_ID,
         LOADER_CALENDAR_ID,
         LOADER_CALL_LOG_ID};
-    private Map<Integer, List<ContactInteraction>> mRecentLoaderResults;
+    private Map<Integer, List<ContactInteraction>> mRecentLoaderResults = new HashMap<>();
 
     private static final String FRAGMENT_TAG_SELECT_ACCOUNT = "select_account_fragment";
 
@@ -836,6 +836,11 @@ public class QuickContactActivity extends ContactsActivity {
             mNoContactDetailsCard.setVisibility(View.GONE);
         }
 
+        // If the Recent card is already initialized (all recent data is loaded), show the About
+        // card if it has entries. Otherwise About card visibility will be set in bindRecentData()
+        if (isAllRecentDataLoaded() && aboutCardEntries.size() > 0) {
+            mAboutCard.setVisibility(View.VISIBLE);
+        }
         Trace.endSection();
     }
 
@@ -1441,11 +1446,6 @@ public class QuickContactActivity extends ContactsActivity {
         @Override
         public void onLoadFinished(Loader<List<ContactInteraction>> loader,
                 List<ContactInteraction> data) {
-            if (mRecentLoaderResults == null) {
-                mRecentLoaderResults = new HashMap<Integer, List<ContactInteraction>>();
-            }
-            Log.v(TAG, "onLoadFinished ~ loader.getId() " + loader.getId() + " data.size() " +
-                    data.size());
             mRecentLoaderResults.put(loader.getId(), data);
 
             if (isAllRecentDataLoaded()) {
