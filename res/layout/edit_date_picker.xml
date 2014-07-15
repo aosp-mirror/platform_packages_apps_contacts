@@ -20,7 +20,7 @@
 <Button
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/date_view"
-    style="?android:attr/spinnerStyle"
+    style="@style/SpinnerButtonStyle"
     android:layout_width="0dip"
     android:layout_height="@dimen/editor_min_line_item_height"
     android:layout_weight="1"
