@@ -845,7 +845,7 @@ public class QuickContactActivity extends ContactsActivity {
                 phoneIcon, getString(R.string.quickcontact_add_phone_number),
                 /* subHeader = */ null, /* text = */ null, getEditContactIntent(),
                 /* alternateIcon = */ null, /* alternateIntent = */ null,
-                /* alternateContentDescription = */ null, /* shouldApplyColor = */ false,
+                /* alternateContentDescription = */ null, /* shouldApplyColor = */ true,
                 /* isEditable = */ false);
 
         final Drawable emailIcon = getResources().getDrawable(
@@ -854,7 +854,7 @@ public class QuickContactActivity extends ContactsActivity {
                 emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
                 /* text = */ null, getEditContactIntent(), /* alternateIcon = */ null,
                 /* alternateIntent = */ null, /* alternateContentDescription = */ null,
-                /* shouldApplyColor = */ false, /* isEditable = */ false);
+                /* shouldApplyColor = */ true, /* isEditable = */ false);
 
         final List<List<Entry>> promptEntries = new ArrayList<>();
         promptEntries.add(new ArrayList<Entry>(1));

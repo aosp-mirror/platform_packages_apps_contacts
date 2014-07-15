@@ -508,9 +508,13 @@ public class ExpandingEntryCardView extends LinearLayout {
 
                     final Rect alternateIconRect = new Rect();
                     alternateIcon.getHitRect(alternateIconRect);
-                    alternateIconRect.right = entryRect.right;
                     alternateIconRect.bottom = entryRect.bottom;
                     alternateIconRect.top = entryRect.top;
+                    if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+                        alternateIconRect.left = entryRect.left;
+                    } else {
+                        alternateIconRect.right = entryRect.right;
+                    }
                     final TouchDelegate touchDelegate =
                             new TouchDelegate(alternateIconRect, alternateIcon);
                     view.setTouchDelegate(touchDelegate);
