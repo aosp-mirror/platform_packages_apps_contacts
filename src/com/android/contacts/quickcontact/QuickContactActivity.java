@@ -219,21 +219,13 @@ public class QuickContactActivity extends ContactsActivity {
     private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
 
     /**
-     * {@link #LEADING_MIMETYPES} and {@link #TRAILING_MIMETYPES} are used to sort MIME-types.
+     * {@link #LEADING_MIMETYPES} is used to sort MIME-types.
      *
      * <p>The MIME-types in {@link #LEADING_MIMETYPES} appear in the front of the dialog,
      * in the order specified here.</p>
-     *
-     * <p>The ones in {@link #TRAILING_MIMETYPES} appear in the end of the dialog, in the order
-     * specified here.</p>
-     *
-     * <p>The rest go between them, in the order in the array.</p>
      */
     private static final List<String> LEADING_MIMETYPES = Lists.newArrayList(
-            Phone.CONTENT_ITEM_TYPE, SipAddress.CONTENT_ITEM_TYPE, Email.CONTENT_ITEM_TYPE);
-
-    /** See {@link #LEADING_MIMETYPES}. */
-    private static final List<String> TRAILING_MIMETYPES = Lists.newArrayList(
+            Phone.CONTENT_ITEM_TYPE, SipAddress.CONTENT_ITEM_TYPE, Email.CONTENT_ITEM_TYPE,
             StructuredPostal.CONTENT_ITEM_TYPE);
 
     private static final List<String> ABOUT_CARD_MIMETYPES = Lists.newArrayList(
@@ -441,6 +433,12 @@ public class QuickContactActivity extends ContactsActivity {
         }
     };
 
+    /**
+     * Sorts among different mimetypes based off:
+     * 1. Times used
+     * 2. Last time used
+     * 3. Statically defined
+     */
     private final Comparator<List<DataItem>> mAmongstMimeTypeDataItemComparator =
             new Comparator<List<DataItem>> () {
         @Override
@@ -473,14 +471,6 @@ public class QuickContactActivity extends ContactsActivity {
                     return -1;
                 } else if (rhsMimeType.equals(mimeType)) {
                     return 1;
-                }
-            }
-            // Trailing types come last, so flip the returns
-            for (String mimeType : TRAILING_MIMETYPES) {
-                if (lhsMimeType.equals(mimeType)) {
-                    return 1;
-                } else if (rhsMimeType.equals(mimeType)) {
-                    return -1;
                 }
             }
             return 0;
