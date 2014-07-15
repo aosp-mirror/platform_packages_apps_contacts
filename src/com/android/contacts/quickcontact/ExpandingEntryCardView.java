@@ -279,16 +279,23 @@ public class ExpandingEntryCardView extends LinearLayout {
             Resources resources = getResources();
             layoutParams.height = resources.getDimensionPixelSize(
                     R.dimen.expanding_entry_card_item_separator_height);
+            // The separator is aligned with the text in the entry. This is offset by a default
+            // margin. If there is an icon present, the icon's width and margin are added
+            int marginStart = resources.getDimensionPixelSize(
+                    R.dimen.expanding_entry_card_item_padding_start);
+            ImageView entryIcon = (ImageView) entry.findViewById(R.id.icon);
+            if (entryIcon.getDrawable() != null) {
+                int imageWidthAndMargin =
+                        resources.getDimensionPixelSize(
+                                R.dimen.expanding_entry_card_item_icon_width) +
+                        resources.getDimensionPixelSize(
+                                R.dimen.expanding_entry_card_item_image_spacing);
+                marginStart += imageWidthAndMargin;
+            }
             if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                layoutParams.rightMargin = resources.getDimensionPixelSize(
-                        R.dimen.expanding_entry_card_item_padding_start);
-                layoutParams.leftMargin = resources.getDimensionPixelSize(
-                        R.dimen.expanding_entry_card_item_padding_end);
+                layoutParams.rightMargin = marginStart;
             } else {
-                layoutParams.leftMargin = resources.getDimensionPixelSize(
-                        R.dimen.expanding_entry_card_item_padding_start);
-                layoutParams.rightMargin = resources.getDimensionPixelSize(
-                        R.dimen.expanding_entry_card_item_padding_end);
+                layoutParams.leftMargin = marginStart;
             }
             separator.setLayoutParams(layoutParams);
             mEntriesViewGroup.addView(separator);

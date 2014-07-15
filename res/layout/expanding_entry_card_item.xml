@@ -19,7 +19,7 @@
     style="@style/SelectableItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/expanding_entry_card_item_padding_with_image_start"
+    android:paddingStart="@dimen/expanding_entry_card_item_padding_start"
     android:paddingEnd="@dimen/expanding_entry_card_item_padding_end"
     android:paddingTop="@dimen/expanding_entry_card_item_padding_top"
     android:paddingBottom="@dimen/expanding_entry_card_item_padding_bottom">

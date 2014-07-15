@@ -167,8 +167,7 @@
     <!-- Height of the separator between entries in an ExpandingEntryCardView -->
     <dimen name="expanding_entry_card_item_separator_height">1dp</dimen>
     <!-- Dimensions for an entry in ExpandingEntryCardView -->
-    <dimen name="expanding_entry_card_item_padding_start">67dp</dimen>
-    <dimen name="expanding_entry_card_item_padding_with_image_start">20dp</dimen>
+    <dimen name="expanding_entry_card_item_padding_start">20dp</dimen>
     <dimen name="expanding_entry_card_item_padding_end">20dp</dimen>
     <dimen name="expanding_entry_card_item_padding_top">16dp</dimen>
     <dimen name="expanding_entry_card_item_padding_bottom">16dp</dimen>
