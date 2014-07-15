@@ -72,9 +72,6 @@ public class LetterTileDrawable extends Drawable {
     private float mOffset = 0.0f;
     private boolean mIsCircle = false;
 
-    /** This should match the total number of colors defined in colors.xml for letter_tile_color */
-    private static final int NUM_OF_TILE_COLORS = 12;
-
     public LetterTileDrawable(final Resources res) {
         mPaint = new Paint();
         mPaint.setFilterBitmap(true);
@@ -184,7 +181,7 @@ public class LetterTileDrawable extends Drawable {
         // String.hashCode() implementation is not supposed to change across java versions, so
         // this should guarantee the same email address always maps to the same color.
         // The email should already have been normalized by the ContactRequest.
-        final int color = Math.abs(identifier.hashCode()) % NUM_OF_TILE_COLORS;
+        final int color = Math.abs(identifier.hashCode()) % sColors.length();
         return sColors.getColor(color, sDefaultColor);
     }
 
