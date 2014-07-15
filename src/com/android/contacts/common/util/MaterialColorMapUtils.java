@@ -16,26 +16,23 @@
 
 package com.android.contacts.common.util;
 
-import android.graphics.Color;
+import com.android.contacts.common.R;
+
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.os.Trace;
 
 public class MaterialColorMapUtils {
 
-    /**
-     * Values from the extended Material color palette. 500 values are chosen when they meet
-     * GAR accessibility requirements as a background for white text. Darker versions from the
-     * extended palette are chosen when the 500 values don't meet GAR requirements (see b/16159407).
-     */
-    private static final int PRIMARY_COLORS[] = {0xFFDB4437, 0xFFE91E63, 0xFF9C27B0, 0xFF673AB7,
-            0xFF3F51B5, 0xFF4285F4, 0xFF039BE5, 0xFF0097A7, 0xFF009688, 0xFF0F9D58, 0xFF689F38,
-            0xFFEF6C00, 0xFFFF5722, 0xFF757575, 0xFF607D8B};
+    private final TypedArray sPrimaryColors;
+    private final TypedArray sSecondaryColors;
 
-    /**
-     * Darker versions of the colors in PRIMARY_COLORS. Two shades darker.
-     */
-    private static final int SECONDARY_COLORS[] = {0xFFC53929, 0xFFC2185B, 0xFF7B1FA2,
-            0xFF512DA8, 0xFF303F9F, 0xFF3367D6, 0xFF0277BD, 0xFF006064, 0xFF00796B, 0xFF0B8043,
-            0xFF33691E, 0xFFE65100, 0xFFE64A19, 0xFF424242, 0xFF455A64};
+    public MaterialColorMapUtils(Resources resources) {
+        sPrimaryColors = resources.obtainTypedArray(
+                com.android.contacts.common.R.array.letter_tile_colors);
+        sSecondaryColors = resources.obtainTypedArray(
+                com.android.contacts.common.R.array.letter_tile_colors_dark);
+    }
 
     public static class MaterialPalette {
         public MaterialPalette(int primaryColor, int secondaryColor) {
@@ -47,19 +44,18 @@ public class MaterialColorMapUtils {
     }
 
     /**
-     * Return primary and secondary colors from the Material color
-     * palette that are similar to {@param color}.
+     * Return primary and secondary colors from the Material color palette that are similar to
+     * {@param color}.
      */
-    public static MaterialPalette calculatePrimaryAndSecondaryColor(int color) {
+    public MaterialPalette calculatePrimaryAndSecondaryColor(int color) {
         Trace.beginSection("calculatePrimaryAndSecondaryColor");
-
-        // TODO: check matches with known LetterTileDrawable colors, once they are material colors
 
         final float colorHue = hue(color);
         float minimumDistance = Float.MAX_VALUE;
         int indexBestMatch = 0;
-        for (int i = 0; i < PRIMARY_COLORS.length; i++) {
-            final float comparedHue = hue(PRIMARY_COLORS[i]);
+        for (int i = 0; i < sPrimaryColors.length(); i++) {
+            final int primaryColor = sPrimaryColors.getColor(i, 0);
+            final float comparedHue = hue(primaryColor);
             // No need to be perceptually accurate when calculating color distances since
             // we are only mapping to 15 colors. Being slightly inaccurate isn't going to change
             // the mapping very often.
@@ -71,25 +67,16 @@ public class MaterialColorMapUtils {
         }
 
         Trace.endSection();
-        return new MaterialPalette(PRIMARY_COLORS[indexBestMatch],
-                SECONDARY_COLORS[indexBestMatch]);
+        return new MaterialPalette(sPrimaryColors.getColor(indexBestMatch, 0),
+                sSecondaryColors.getColor(indexBestMatch, 0));
     }
 
-    /**
-     * Given a primary color, output a secondary color. Ideally, this function would use the exact
-     * Material palette secondary color that corresponds with {@param primaryColor}.
-     */
-    // TODO: update to use a LUT, once primaryColor is gauranteed to be from Material palette
-    public static MaterialPalette calculateSecondaryColor(int primaryColor) {
-        // Arbitrarily chosen constant.
-        final float hsv[] = new float[3];
-        final float SYSTEM_BAR_BRIGHTNESS_FACTOR = 0.8f;
-        // Create a darker version of the actionbar color. HSV is device dependent
-        // and not perceptually-linear. Therefore, we can't say mStatusBarColor is
-        // 70% as bright as the action bar color. We can only say: it is a bit darker.
-        Color.colorToHSV(primaryColor, hsv);
-        hsv[2] *= SYSTEM_BAR_BRIGHTNESS_FACTOR;
-        return new MaterialPalette(primaryColor, Color.HSVToColor(hsv));
+    public static MaterialPalette getDefaultPrimaryAndSecondaryColors(Resources resources) {
+        final int primaryColor = resources.getColor(
+                R.color.quickcontact_default_photo_tint_color);
+        final int secondaryColor = resources.getColor(
+                R.color.quickcontact_default_photo_tint_color_dark);
+        return new MaterialPalette(primaryColor, secondaryColor);
     }
 
     /**
