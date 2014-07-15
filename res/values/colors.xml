@@ -62,10 +62,6 @@
     <!-- Background color of pinned header items. -->
     <color name="list_item_pinned_header_color">#f5f5f5</color>
 
-    <!-- The default color used for tinting photos when no color can be extracted via Palette,
-         this is Blue Grey 500 -->
-    <color name="quickcontact_default_photo_tint_color">#607D8B</color>
-
     <color name="tab_default_color">@color/actionbar_background_color</color>
     <color name="tab_pressed_color">@color/tab_selected_color</color>
     <color name="tab_selected_color">#ffeeff41</color>

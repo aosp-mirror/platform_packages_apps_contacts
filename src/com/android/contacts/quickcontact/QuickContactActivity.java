@@ -207,6 +207,7 @@ public class QuickContactActivity extends ContactsActivity {
     private AsyncTask<Void, Void, Pair<List<List<DataItem>>, Map<String, List<DataItem>>>>
             mEntriesAndActionsTask;
     private ColorDrawable mWindowScrim;
+    private MaterialColorMapUtils mMaterialColorMapUtils;
     private boolean mIsWaitingForOtherPieceOfExitAnimation;
     private boolean mIsExitAnimationInProgress;
     private boolean mHasComputedThemeColor;
@@ -491,6 +492,8 @@ public class QuickContactActivity extends ContactsActivity {
 
         setContentView(R.layout.quickcontact_activity);
 
+        mMaterialColorMapUtils = new MaterialColorMapUtils(getResources());
+
         mContactCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
         mNoContactDetailsCard = (ExpandingEntryCardView) findViewById(R.id.no_contact_data_card);
         mRecentCard = (ExpandingEntryCardView) findViewById(R.id.recent_card);
@@ -567,7 +570,8 @@ public class QuickContactActivity extends ContactsActivity {
                             // header tint before the MultiShrinkScroller has been measured will
                             // cause incorrect tinting calculations.
                             if (color != 0) {
-                                setThemeColor(MaterialColorMapUtils.calculateSecondaryColor(color));
+                                setThemeColor(mMaterialColorMapUtils
+                                        .calculatePrimaryAndSecondaryColor(color));
                             }
                         }
                     });
@@ -1226,16 +1230,15 @@ public class QuickContactActivity extends ContactsActivity {
                     final Bitmap bitmap = ((BitmapDrawable) imageViewDrawable).getBitmap();
                     final int primaryColor = colorFromBitmap(bitmap);
                     if (primaryColor != 0) {
-                        return MaterialColorMapUtils.calculatePrimaryAndSecondaryColor(
+                        return mMaterialColorMapUtils.calculatePrimaryAndSecondaryColor(
                                 primaryColor);
                     }
                 }
                 if (imageViewDrawable instanceof LetterTileDrawable) {
                     final int primaryColor = ((LetterTileDrawable) imageViewDrawable).getColor();
-                    return MaterialColorMapUtils.calculateSecondaryColor(primaryColor);
+                    return mMaterialColorMapUtils.calculatePrimaryAndSecondaryColor(primaryColor);
                 }
-                return MaterialColorMapUtils.calculatePrimaryAndSecondaryColor(
-                        getResources().getColor(R.color.quickcontact_default_photo_tint_color));
+                return MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors(getResources());
             }
 
             @Override
