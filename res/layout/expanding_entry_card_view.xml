@@ -23,7 +23,8 @@
         android:lines="1"
         android:padding="@dimen/expanding_entry_card_title_padding"
         android:singleLine="true"
-        android:textSize="@dimen/expanding_entry_card_title_text_size" />
+        android:textSize="@dimen/expanding_entry_card_title_text_size"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"

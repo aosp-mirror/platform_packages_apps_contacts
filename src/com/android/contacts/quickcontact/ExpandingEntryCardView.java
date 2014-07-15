@@ -553,16 +553,17 @@ public class ExpandingEntryCardView extends LinearLayout {
 
     /**
      * Sets the title text of this ExpandingEntryCardView.
-     * @param title The title to set. A null title will result in an empty string being set.
+     * @param title The title to set. A null title will result in the title being removed.
      */
     public void setTitle(String title) {
         if (mTitleTextView == null) {
             Log.e(TAG, "mTitleTextView is null");
         }
         if (title == null) {
-            mTitleTextView.setText("");
+            mTitleTextView.setVisibility(View.GONE);
         }
         mTitleTextView.setText(title);
+        mTitleTextView.setVisibility(View.VISIBLE);
     }
 
     public boolean shouldShow() {

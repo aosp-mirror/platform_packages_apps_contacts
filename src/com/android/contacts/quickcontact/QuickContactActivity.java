@@ -512,7 +512,6 @@ public class QuickContactActivity extends ContactsActivity {
 
         mNoContactDetailsCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setOnClickListener(mEntryClickHandler);
-        mContactCard.setTitle(getResources().getString(R.string.communication_card_title));
         mContactCard.setExpandButtonText(
         getResources().getString(R.string.expanding_entry_card_view_see_all));
 
