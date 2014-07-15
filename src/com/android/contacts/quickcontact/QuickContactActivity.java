@@ -849,13 +849,14 @@ public class QuickContactActivity extends ContactsActivity {
         final Entry phonePromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                 phoneIcon, getString(R.string.quickcontact_add_phone_number),
                 /* subHeader = */ null, /* text = */ null,
-                getEditContactIntent(), /* isEditable = */ false);
+                getEditContactIntent(), /* shouldApplyColor = */ false, /* isEditable = */ false);
 
         final Drawable emailIcon = getResources().getDrawable(
                 R.drawable.ic_email_24dp).mutate();
         final Entry emailPromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                 emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
-                /* text = */ null, getEditContactIntent(), /* isEditable = */ false);
+                /* text = */ null, getEditContactIntent(), /* shouldApplyColor = */ false,
+                /* isEditable = */ false);
 
         final List<List<Entry>> promptEntries = new ArrayList<>();
         promptEntries.add(new ArrayList<Entry>(1));
@@ -957,6 +958,7 @@ public class QuickContactActivity extends ContactsActivity {
         String text = null;
         Drawable textIcon = null;
         Intent intent = null;
+        boolean shouldApplyColor = true;
         final boolean isEditable = false;
 
         DataKind kind = dataItem.getDataKind();
@@ -1136,6 +1138,7 @@ public class QuickContactActivity extends ContactsActivity {
                         if (icon != null) {
                             icon.mutate();
                         }
+                        shouldApplyColor = false;
                 }
             }
         }
@@ -1157,7 +1160,7 @@ public class QuickContactActivity extends ContactsActivity {
                 -1 : (int) dataItem.getId();
 
         return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon,
-                intent, isEditable);
+                intent, shouldApplyColor, isEditable);
     }
 
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems) {
@@ -1185,6 +1188,7 @@ public class QuickContactActivity extends ContactsActivity {
                         /* text = */ phone.buildDataString(this,
                                 dataItem.getDataKind()),
                         smsIntent,
+                        /* shouldApplyColor = */ true,
                         /* isEditable = */ false));
             }
         }
@@ -1322,6 +1326,7 @@ public class QuickContactActivity extends ContactsActivity {
                     interaction.getViewFooter(this),
                     interaction.getFooterIcon(this),
                     interaction.getIntent(),
+                    /* shouldApplyColor = */ true,
                     /* isEditable = */ false));
         }
         return entries;

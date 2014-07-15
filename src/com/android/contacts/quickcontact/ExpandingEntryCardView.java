@@ -60,16 +60,18 @@ public class ExpandingEntryCardView extends LinearLayout {
         private final String mText;
         private final Drawable mTextIcon;
         private final Intent mIntent;
+        private final boolean mShouldApplyColor;
         private final boolean mIsEditable;
 
         public Entry(int viewId, Drawable icon, String header, String subHeader, String text,
-                Intent intent, boolean isEditable) {
-            this(viewId, icon, header, subHeader, null, text, null, intent, isEditable);
+                Intent intent, boolean shouldApplyColor, boolean isEditable) {
+            this(viewId, icon, header, subHeader, null, text, null, intent, shouldApplyColor,
+                    isEditable);
         }
 
         public Entry(int viewId, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon, Intent intent,
-                boolean isEditable) {
+                boolean shouldApplyColor, boolean isEditable) {
             mViewId = viewId;
             mIcon = mainIcon;
             mHeader = header;
@@ -78,6 +80,7 @@ public class ExpandingEntryCardView extends LinearLayout {
             mText = text;
             mTextIcon = textIcon;
             mIntent = intent;
+            mShouldApplyColor = shouldApplyColor;
             mIsEditable = isEditable;
         }
 
@@ -107,6 +110,10 @@ public class ExpandingEntryCardView extends LinearLayout {
 
         Intent getIntent() {
             return mIntent;
+        }
+
+        boolean shouldApplyColor() {
+            return mShouldApplyColor;
         }
 
         boolean isEditable() {
@@ -377,9 +384,11 @@ public class ExpandingEntryCardView extends LinearLayout {
             if (mEntries != null) {
                 for (List<Entry> entryList : mEntries) {
                     for (Entry entry : entryList) {
-                        Drawable icon = entry.getIcon();
-                        if (icon != null) {
-                            icon.setColorFilter(mThemeColorFilter);
+                        if (entry.shouldApplyColor()) {
+                            Drawable icon = entry.getIcon();
+                            if (icon != null) {
+                                icon.setColorFilter(mThemeColorFilter);
+                            }
                         }
                     }
                 }
