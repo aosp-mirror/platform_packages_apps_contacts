@@ -31,6 +31,8 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -127,7 +129,6 @@ import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
-
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -162,7 +163,6 @@ public class QuickContactActivity extends ContactsActivity {
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
     private static final int SCRIM_COLOR = Color.argb(0xB2, 0, 0, 0);
-    private static final String SCHEME_SMSTO = "smsto";
     private static final String MIMETYPE_SMS = "vnd.android-dir/mms-sms";
 
     /** This is the Intent action to install a shortcut in the launcher. */
@@ -210,7 +210,6 @@ public class QuickContactActivity extends ContactsActivity {
     private boolean mIsWaitingForOtherPieceOfExitAnimation;
     private boolean mIsExitAnimationInProgress;
     private boolean mHasComputedThemeColor;
-    private ComponentName mSmsComponent;
 
     private Contact mContactData;
     private ContactLoader mContactLoader;
@@ -299,7 +298,7 @@ public class QuickContactActivity extends ContactsActivity {
             String usageType = DataUsageFeedback.USAGE_TYPE_CALL;
 
             final String scheme = intent.getData().getScheme();
-            if ((scheme != null && scheme.equals(SCHEME_SMSTO)) ||
+            if ((scheme != null && scheme.equals(CallUtil.SCHEME_SMSTO)) ||
                     (intent.getType() != null && intent.getType().equals(MIMETYPE_SMS))) {
                 usageType = DataUsageFeedback.USAGE_TYPE_SHORT_TEXT;
             }
@@ -501,8 +500,6 @@ public class QuickContactActivity extends ContactsActivity {
                 WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
 
         setContentView(R.layout.quickcontact_activity);
-
-        mSmsComponent = PhoneCapabilityTester.getSmsComponent(this);
 
         mContactCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
         mNoContactDetailsCard = (ExpandingEntryCardView) findViewById(R.id.no_contact_data_card);
@@ -852,15 +849,18 @@ public class QuickContactActivity extends ContactsActivity {
                 R.drawable.ic_phone_24dp).mutate();
         final Entry phonePromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                 phoneIcon, getString(R.string.quickcontact_add_phone_number),
-                /* subHeader = */ null, /* text = */ null,
-                getEditContactIntent(), /* shouldApplyColor = */ false, /* isEditable = */ false);
+                /* subHeader = */ null, /* text = */ null, getEditContactIntent(),
+                /* alternateIcon = */ null, /* alternateIntent = */ null,
+                /* alternateContentDescription = */ null, /* shouldApplyColor = */ false,
+                /* isEditable = */ false);
 
         final Drawable emailIcon = getResources().getDrawable(
                 R.drawable.ic_email_24dp).mutate();
         final Entry emailPromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                 emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
-                /* text = */ null, getEditContactIntent(), /* shouldApplyColor = */ false,
-                /* isEditable = */ false);
+                /* text = */ null, getEditContactIntent(), /* alternateIcon = */ null,
+                /* alternateIntent = */ null, /* alternateContentDescription = */ null,
+                /* shouldApplyColor = */ false, /* isEditable = */ false);
 
         final List<List<Entry>> promptEntries = new ArrayList<>();
         promptEntries.add(new ArrayList<Entry>(1));
@@ -963,6 +963,9 @@ public class QuickContactActivity extends ContactsActivity {
         Drawable textIcon = null;
         Intent intent = null;
         boolean shouldApplyColor = true;
+        Drawable alternateIcon = null;
+        Intent alternateIntent = null;
+        String alternateContentDescription = null;
         final boolean isEditable = false;
 
         DataKind kind = dataItem.getDataKind();
@@ -1052,6 +1055,10 @@ public class QuickContactActivity extends ContactsActivity {
                 if (PhoneCapabilityTester.isPhone(this)) {
                     intent = CallUtil.getCallIntent(phone.getNumber());
                 }
+                alternateIntent = new Intent(Intent.ACTION_SENDTO,
+                        Uri.fromParts(CallUtil.SCHEME_SMSTO, phone.getNumber(), null));
+                alternateIcon = getResources().getDrawable(R.drawable.ic_message_24dp);
+                alternateContentDescription = getResources().getString(R.string.sms_other);
             }
         } else if (dataItem instanceof EmailDataItem) {
             final EmailDataItem email = (EmailDataItem) dataItem;
@@ -1154,6 +1161,18 @@ public class QuickContactActivity extends ContactsActivity {
             }
         }
 
+        if (alternateIntent != null) {
+            // Do not set the alternate intent is there are no resolves
+            if (!PhoneCapabilityTester.isIntentRegistered(this, alternateIntent)) {
+                alternateIntent = null;
+            }
+
+            // Attempt to use package manager to find a suitable content description if needed
+            if (TextUtils.isEmpty(alternateContentDescription)) {
+                alternateContentDescription = getIntentResolveLabel(alternateIntent);
+            }
+        }
+
         // If the Entry has no visual elements, return null
         if (icon == null && TextUtils.isEmpty(header) && TextUtils.isEmpty(subHeader) &&
                 subHeaderIcon == null && TextUtils.isEmpty(text) && textIcon == null) {
@@ -1163,8 +1182,9 @@ public class QuickContactActivity extends ContactsActivity {
         final int dataId = dataItem.getId() > Integer.MAX_VALUE ?
                 -1 : (int) dataItem.getId();
 
-        return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon,
-                intent, shouldApplyColor, isEditable);
+        return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon, intent,
+                alternateIcon, alternateIntent, alternateContentDescription, shouldApplyColor,
+                isEditable);
     }
 
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems) {
@@ -1174,29 +1194,28 @@ public class QuickContactActivity extends ContactsActivity {
             if (entry != null) {
                 entries.add(entry);
             }
-            // TODO merge secondary intents
-            if (dataItem instanceof PhoneDataItem) {
-                final PhoneDataItem phone = (PhoneDataItem) dataItem;
-                Intent smsIntent = null;
-                if (mSmsComponent != null) {
-                    smsIntent = new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts(CallUtil.SCHEME_SMSTO, phone.getNumber(), null));
-                    smsIntent.setComponent(mSmsComponent);
-                }
-                final int dataId = dataItem.getId() > Integer.MAX_VALUE ?
-                        -1 : (int) dataItem.getId();
-                entries.add(new Entry(dataId,
-                        getResources().getDrawable(R.drawable.ic_message_24dp),
-                        getResources().getString(R.string.send_message),
-                        /* subHeader = */ null,
-                        /* text = */ phone.buildDataString(this,
-                                dataItem.getDataKind()),
-                        smsIntent,
-                        /* shouldApplyColor = */ true,
-                        /* isEditable = */ false));
-            }
         }
         return entries;
+    }
+
+    private String getIntentResolveLabel(Intent intent) {
+        final List<ResolveInfo> matches = getPackageManager().queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+
+        // Pick first match, otherwise best found
+        ResolveInfo bestResolve = null;
+        final int size = matches.size();
+        if (size == 1) {
+            bestResolve = matches.get(0);
+        } else if (size > 1) {
+            bestResolve = ResolveCache.getInstance(this).getBestResolve(intent, matches);
+        }
+
+        if (bestResolve == null) {
+            return null;
+        }
+
+        return String.valueOf(bestResolve.loadLabel(getPackageManager()));
     }
 
     /**
@@ -1330,6 +1349,9 @@ public class QuickContactActivity extends ContactsActivity {
                     interaction.getViewFooter(this),
                     interaction.getFooterIcon(this),
                     interaction.getIntent(),
+                    /* alternateIcon = */ null,
+                    /* alternateIntent = */ null,
+                    /* alternateContentDescription = */ null,
                     /* shouldApplyColor = */ true,
                     /* isEditable = */ false));
         }
