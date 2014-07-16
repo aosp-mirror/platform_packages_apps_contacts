@@ -652,6 +652,26 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Action that exports all contacts to (USB) storage [CHAR LIMIT=25] -->
     <string name="export_to_sdcard" product="default">Export to storage</string>
 
+    <!-- Contact preferences related strings -->
+
+    <!-- Label of the "sort list by" display option -->
+    <string name="display_options_sort_list_by">Sort list by</string>
+
+    <!-- An allowable value for the "sort list by" contact display option  -->
+    <string name="display_options_sort_by_given_name">Given name</string>
+
+    <!-- An allowable value for the "sort list by" contact display option  -->
+    <string name="display_options_sort_by_family_name">Family name</string>
+
+    <!-- Label of the "view names as" display option [CHAR LIMIT=64]-->
+    <string name="display_options_view_names_as">View contact names</string>
+
+    <!-- An allowable value for the "view names as" contact display option  -->
+    <string name="display_options_view_given_name_first">Given name first</string>
+
+    <!-- An allowable value for the "view names as" contact display option  -->
+    <string name="display_options_view_family_name_first">Family name first</string>
+
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
 
@@ -738,10 +758,10 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- The title of the preference section that allows users to configure how they want their
          contacts to be displayed. [CHAR LIMIT=128] -->
-    <string name="preference_display_options">Contact display options</string>
+    <string name="settings_contact_display_options_title">Contact display options</string>
 
     <!-- Detailed description of the preference section that allows users to configure how they
          want their contacts to be displayed. [CHAR LIMIT=128] -->
-    <string name="preference_display_options_description">Configure how your contacts are displayed and sorted.</string>
+    <string name="settings_contact_display_options_description">Configure how your contacts are displayed and sorted.</string>
 
 </resources>
