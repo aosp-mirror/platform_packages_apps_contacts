@@ -46,6 +46,9 @@
     <!-- Activity title when the user is selecting a contact.  [CHAR LIMIT=128] -->
     <string name="contactPickerActivityTitle">Choose a contact</string>
 
+    <!-- Activity title when the user is selecting a contact.  [CHAR LIMIT=30] -->
+    <string name="header_entry_contact_list_adapter_header_title">Select new contact</string>
+
     <!-- Title for the activity that shows only starred contacts -->
     <string name="starredList">Starred</string>
 
