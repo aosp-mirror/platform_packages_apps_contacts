@@ -628,9 +628,11 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
         if (title == null) {
             mTitleTextView.setVisibility(View.GONE);
+            findViewById(R.id.title_separator).setVisibility(View.GONE);
         }
         mTitleTextView.setText(title);
         mTitleTextView.setVisibility(View.VISIBLE);
+        findViewById(R.id.title_separator).setVisibility(View.VISIBLE);
     }
 
     public boolean shouldShow() {

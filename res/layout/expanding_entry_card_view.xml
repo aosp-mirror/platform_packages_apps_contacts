@@ -27,9 +27,11 @@
         android:visibility="gone" />
 
     <View
+        android:id="@+id/title_separator"
         android:layout_width="match_parent"
         android:layout_height="@dimen/expanding_entry_card_item_separator_height"
-        android:background="@color/expanding_entry_card_item_separator_color" />
+        android:background="@color/expanding_entry_card_item_separator_color"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/content_area_linear_layout"
