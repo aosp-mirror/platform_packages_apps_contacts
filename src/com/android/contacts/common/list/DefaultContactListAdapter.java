@@ -86,7 +86,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         }
 
         String sortOrder;
-        if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+        if (getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY) {
             sortOrder = Contacts.SORT_KEY_PRIMARY;
         } else {
             sortOrder = Contacts.SORT_KEY_ALTERNATIVE;
