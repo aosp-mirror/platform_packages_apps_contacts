@@ -34,7 +34,6 @@ import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract.DisplayNameSources;
-import android.provider.ContactsContract.Preferences;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -61,7 +60,7 @@ public class ContactDetailDisplayUtils {
     public static CharSequence getDisplayName(Context context, Contact contactData) {
         ContactsPreferences prefs = new ContactsPreferences(context);
         final CharSequence displayName = contactData.getDisplayName();
-        if (prefs.getDisplayOrder() == Preferences.DISPLAY_ORDER_PRIMARY) {
+        if (prefs.getDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
             if (!TextUtils.isEmpty(displayName)) {
                 return displayName;
             }

@@ -370,24 +370,6 @@
     <!-- Text used to explain that a group cannot be edited since the data is read only [CHAR LIMIT=40] -->
     <string name="group_read_only">Not editable on this device.</string>
 
-    <!-- Label of the "sort list by" display option -->
-    <string name="display_options_sort_list_by">Sort list by</string>
-
-    <!-- An allowable value for the "sort list by" contact display option  -->
-    <string name="display_options_sort_by_given_name">Given name</string>
-
-    <!-- An allowable value for the "sort list by" contact display option  -->
-    <string name="display_options_sort_by_family_name">Family name</string>
-
-    <!-- Label of the "view names as" display option [CHAR LIMIT=64]-->
-    <string name="display_options_view_names_as">View contact names</string>
-
-    <!-- An allowable value for the "view names as" contact display option  -->
-    <string name="display_options_view_given_name_first">Given name first</string>
-
-    <!-- An allowable value for the "view names as" contact display option  -->
-    <string name="display_options_view_family_name_first">Family name first</string>
-
     <!-- An option in the 'Contact photo' dialog, if there is no photo yet [CHAR LIMIT=50] -->
     <string name="take_photo">Take photo</string>
 

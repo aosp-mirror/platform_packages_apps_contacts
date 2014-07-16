@@ -95,7 +95,7 @@ public final class GroupMemberLoader extends CursorLoader {
         setSelectionArgs(createSelectionArgs());
 
         ContactsPreferences prefs = new ContactsPreferences(context);
-        if (prefs.getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+        if (prefs.getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY) {
             setSortOrder(Contacts.SORT_KEY_PRIMARY);
         } else {
             setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);

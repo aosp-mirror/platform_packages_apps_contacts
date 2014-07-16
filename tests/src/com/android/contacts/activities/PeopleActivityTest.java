@@ -47,6 +47,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.BaseAccountType;
+import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.test.mocks.MockAccountTypeManager;
 import com.android.contacts.common.test.mocks.MockContactPhotoManager;
 import com.android.contacts.common.test.mocks.MockSharedPreferences;
@@ -119,23 +120,6 @@ public class PeopleActivityTest
     protected void tearDown() throws Exception {
         ContactsApplication.injectServices(null);
         super.tearDown();
-    }
-
-    private void expectSettingsQueriesAndReturnDefault() {
-        mSettingsProvider
-                .expectQuery(Settings.System.CONTENT_URI)
-                .withProjection(Settings.System.VALUE)
-                .withSelection(Settings.System.NAME + "=?",
-                        ContactsContract.Preferences.DISPLAY_ORDER)
-                .returnRow(ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY)
-                .anyNumberOfTimes();
-        mSettingsProvider
-                .expectQuery(Settings.System.CONTENT_URI)
-                .withProjection(Settings.System.VALUE)
-                .withSelection(Settings.System.NAME + "=?",
-                        ContactsContract.Preferences.SORT_ORDER)
-                .returnRow(ContactsContract.Preferences.SORT_ORDER_PRIMARY)
-                .anyNumberOfTimes();
     }
 
     private void expectProviderStatusQueryAndReturnNormal() {
