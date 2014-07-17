@@ -807,7 +807,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (contactCardEntries.size() > 0) {
             mContactCard.initialize(contactCardEntries,
                     /* numInitialVisibleEntries = */ MIN_NUM_CONTACT_ENTRIES_SHOWN,
-                    /* isExpanded = */ false,
+                    /* isExpanded = */ mContactCard.isExpanded(),
                     mExpandingEntryCardViewListener);
             mContactCard.setVisibility(View.VISIBLE);
         } else {
@@ -1498,7 +1498,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (allInteractions.size() > 0) {
             mRecentCard.initialize(interactionsWrapper,
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
-                    /* isExpanded = */ false, mExpandingEntryCardViewListener);
+                    /* isExpanded = */ mRecentCard.isExpanded(), mExpandingEntryCardViewListener);
             mRecentCard.setVisibility(View.VISIBLE);
         }
 
