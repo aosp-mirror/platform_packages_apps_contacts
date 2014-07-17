@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"שלח הודעת טקסט לזימונית של עבודה"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"שלח הודעת טקסט אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"‏שלח הודעת טקסט ל-MMS"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"בצע שיחת וידאו"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"האם למחוק אנשי קשר קבועים?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"פעולה זו תמחק את רשימת אנשי הקשר הקבועים באפליקציות \'אנשים\' ו\'טלפון\' ותאלץ את יישומי הדוא\"ל ללמוד מהתחלה את העדפות הכתובות שלך."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"מוחק אנשי קשר קבועים…"</string>
@@ -220,6 +221,18 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏לא ניתן היה לסרוק את כרטיס ה-SD. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"מייבא <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>‏: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"יצא לאמצעי אחסון"</string>
+    <!-- no translation found for display_options_sort_list_by (7686551200843900466) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_given_name (5182293506651747189) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_family_name (4146657752793207363) -->
+    <skip />
+    <!-- no translation found for display_options_view_names_as (1104495761313107327) -->
+    <skip />
+    <!-- no translation found for display_options_view_given_name_first (1412684412351158812) -->
+    <skip />
+    <!-- no translation found for display_options_view_family_name_first (8624010750059331413) -->
+    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר שמוצגים כעת"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"יבא/יצא אנשי קשר"</string>
     <string name="dialog_import" msgid="5177004290082451296">"יבא אנשי קשר"</string>
@@ -238,11 +251,12 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"‏בחר כרטיס SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"חשבונות"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"יבא/יצא"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"שלח הודעה אל <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"חייג לטלפון <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"הוסף איש קשר"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"באמצעות <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> באמצעות <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"הפסק לחפש"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"נקה את החיפוש"</string>
+    <!-- no translation found for settings_contact_display_options_title (1020420603072835628) -->
+    <skip />
+    <!-- no translation found for settings_contact_display_options_description (4130259058302284077) -->
+    <skip />
 </resources>
