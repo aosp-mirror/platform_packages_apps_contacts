@@ -115,8 +115,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Nama kenalan anda"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Tiada aplikasi ditemui untuk mengendalikan tindakan ini."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik untuk kembali ke skrin sebelumnya"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Tambah nombor telefon"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Tambah e-mel"</string>
     <string name="missing_app" msgid="1466111003546611387">"Tiada apl ditemui untuk mengendalikan tindakan ini."</string>
     <string name="menu_share" msgid="943789700636542260">"Kongsi"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Tambahkan pada kenalan"</string>
     <string name="share_via" msgid="563121028023030093">"Kongsi gambar melalui"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Buat kumpulan di bawah akaun"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Sembang suara"</string>
@@ -132,12 +135,6 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Tidak boleh diedit dari aplikasi ini."</string>
     <string name="no_contact_details" msgid="6636856378019344497">"Tiada maklumat tambahan untuk kenalan ini."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Tidak boleh diedit pada peranti ini."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Isih senarai mengikut"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nama berian"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Nama keluarga"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Lihat nama kenalan"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Nama berian dahulu"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Nama keluarga dahulu"</string>
     <string name="take_photo" msgid="7496128293167402354">"Ambil foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ambil foto baru"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Pilih foto"</string>
@@ -230,8 +227,8 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Lihat lagi"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Lihat kurang"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Lihat semua"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Kenalan"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Terbaharu"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Mengenai"</string>
     <string name="send_message" msgid="8938418965550543196">"Hantar mesej"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Membuat salinan peribadi..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Semalam"</string>
@@ -242,4 +239,12 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Acara tidak bertajuk)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Tetapkan"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
+    <string name="header_organization_entry" msgid="8515394955666265406">"Organisasi"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"Nama panggilan"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"Nota"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"Tapak web"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"Acara"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"Hubungan"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"arah ke lokasi"</string>
 </resources>

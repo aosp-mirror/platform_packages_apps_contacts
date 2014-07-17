@@ -38,15 +38,15 @@
     <string name="searchHint" msgid="8482945356247760701">"ค้นหาที่อยู่ติดต่อ"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"ดูสมุดโทรศัพท์"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"เพิ่มในรายการโปรด"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"นำออกจากรายการโปรด"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"ลบจากรายการโปรด"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"แก้ไข"</string>
-    <string name="menu_deleteContact" msgid="6788644058868189393">"นำออก"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"ลบ"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"วางบนหน้าจอหลัก"</string>
     <string name="menu_call" msgid="3992595586042260618">"โทรหารายชื่อในสมุดโทรศัพท์"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ส่งข้อความถึงรายชื่อในสมุดโทรศัพท์"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"แยก"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"แก้ไข"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"นำออก"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"ลบ"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"เพิ่มรายชื่อผู้ติดต่อ"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"เพิ่มกลุ่ม"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"แยกรายชื่อหรือไม่"</string>
@@ -60,10 +60,10 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"รายชื่อที่รวมกัน"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ตั้งเสียงเรียกเข้า"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"โอนทุกสายไปยังข้อความเสียง"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"คุณไม่สามารถนำออกรายชื่อติดต่อจากบัญชีแบบอ่านอย่างเดียวได้ แต่ซ่อนไว้ในรายการรายชื่อได้"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"สมุดโทรศัพท์นี้มีข้อมูลจากหลายบัญชี ข้อมูลจากบัญชีแบบอ่านอย่างเดียวจะถูกซ่อนในรายการรายชื่อของคุณโดยไม่ถูกนำออกออก"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"การนำออกสมุดโทรศัพท์นี้จะนำออกข้อมูลจากบัญชีแบบหลายรายการ"</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"รายชื่อนี้จะถูกนำออก"</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"คุณไม่สามารถลบรายชื่อติดต่อจากบัญชีแบบอ่านอย่างเดียวได้ แต่ซ่อนไว้ในรายการรายชื่อได้"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"สมุดโทรศัพท์นี้มีข้อมูลจากหลายบัญชี ข้อมูลจากบัญชีแบบอ่านอย่างเดียวจะถูกซ่อนในรายการรายชื่อของคุณโดยไม่ถูกลบออก"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"การลบสมุดโทรศัพท์นี้จะลบข้อมูลจากบัญชีแบบหลายรายการ"</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"รายชื่อนี้จะถูกลบ"</string>
     <string name="menu_discard" msgid="6854657936970228164">"ยกเลิกการเปลี่ยนแปลง"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"ไม่มีรายชื่อติดต่อนี้"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"เพิ่มวิดเจ็ตสมุดโทรศัพท์ในหน้าจอหลักแล้ว"</string>
@@ -115,8 +115,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"ชื่อของรายชื่อในสมุดโทรศัพท์ของคุณ"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ไม่พบแอปพลิเคชันสำหรับการทำงานนี้"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"คลิกเพื่อกลับไปยังหน้าจอก่อนหน้า"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"เพิ่มหมายเลขโทรศัพท์"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"เพิ่มอีเมล"</string>
     <string name="missing_app" msgid="1466111003546611387">"ไม่พบแอปสำหรับการทำงานนี้"</string>
     <string name="menu_share" msgid="943789700636542260">"ใช้ร่วมกัน"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"เพิ่มในสมุดติดต่อ"</string>
     <string name="share_via" msgid="563121028023030093">"ใช้สมุดโทรศัพท์ร่วมกันทาง"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"สร้างกลุ่มภายในบัญชี"</string>
     <string name="audio_chat" msgid="2535716629358298691">"แชทด้วยเสียง"</string>
@@ -132,12 +135,6 @@
     <string name="contact_read_only" msgid="7421346527289472273">"ไม่สามารถแก้ไขได้จากแอปพลิเคชันนี้"</string>
     <string name="no_contact_details" msgid="6636856378019344497">"ไม่มีข้อมูลเพิ่มเติมสำหรับรายชื่อติดต่อนี้"</string>
     <string name="group_read_only" msgid="1061762906115697637">"ไม่สามารถแก้ไขได้ในอุปกรณ์นี้"</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"เรียงรายการตาม"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"ชื่อ"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"นามสกุล"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"ดูชื่อที่อยู่ติดต่อ"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"ขึ้นต้นด้วยชื่อ"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"ขึ้นต้นด้วยนามสกุล"</string>
     <string name="take_photo" msgid="7496128293167402354">"ถ่ายภาพ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ถ่ายภาพใหม่"</string>
     <string name="pick_photo" msgid="2129509985223564942">"เลือกรูปภาพ"</string>
@@ -191,7 +188,7 @@
     <item quantity="one" msgid="2944819210288517794">"1 กลุ่ม"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> กลุ่ม"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"นำออกกลุ่ม \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" หรือไม่ (รายชื่อติดต่อจะไม่ถูกนำออก)"</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"ลบกลุ่ม \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" หรือไม่ (รายชื่อติดต่อจะไม่ถูกลบ)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> คนจาก <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> คนจาก <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -230,8 +227,8 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ดูเพิ่มเติม"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"ดูน้อยลง"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"ดูทั้งหมด"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"ที่อยู่ติดต่อ"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"ล่าสุด"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"เกี่ยวกับ"</string>
     <string name="send_message" msgid="8938418965550543196">"ส่งข้อความ"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"กำลังสร้างสำเนาส่วนตัว..."</string>
     <string name="yesterday" msgid="6840858548955018569">"เมื่อวานนี้"</string>
@@ -242,4 +239,12 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g> <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(กิจกรรมไม่มีชื่อ)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"ตั้งค่า"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
+    <string name="header_organization_entry" msgid="8515394955666265406">"องค์กร"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"ชื่อเล่น"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"โน้ต"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"เว็บไซต์"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"กิจกรรม"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"ความสัมพันธ์"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"เส้นทางไปยังสถานที่"</string>
 </resources>
