@@ -30,7 +30,7 @@
         android:layout_marginEnd="8dip"
         android:src="@drawable/ic_done_wht_24dp"
         style="?android:attr/actionButtonStyle"
-        android:description="@string/menu_done" />
+        android:contentDescription="@string/menu_done" />
 
     <TextView
         android:id="@+id/title"
