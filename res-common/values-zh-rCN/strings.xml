@@ -60,7 +60,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"向公司寻呼机号码发短信"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"向<xliff:g id="ASSISTANT">%s</xliff:g>发短信"</string>
     <string name="sms_mms" msgid="4887206338311086612">"向彩信电话号码发短信"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"发起视频通话"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"是否清除常用联系人？"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"此操作会清除“联系人”和“拨号”应用中的常用联系人列表，并强制电子邮件应用重新获取您最常使用的联系地址。"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"正在清除常用联系人…"</string>
@@ -221,18 +220,6 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"无法扫描 SD 卡（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）。"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"正在导入 - <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>：<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"导出到存储设备"</string>
-    <!-- no translation found for display_options_sort_list_by (7686551200843900466) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (5182293506651747189) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (4146657752793207363) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (1104495761313107327) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (1412684412351158812) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (8624010750059331413) -->
-    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享所显示的联系人"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"导入/导出联系人"</string>
     <string name="dialog_import" msgid="5177004290082451296">"导入联系人"</string>
@@ -251,12 +238,11 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"选择SIM卡"</string>
     <string name="menu_accounts" msgid="795417468541517082">"帐户"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"导入/导出"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"向<xliff:g id="NAME">%1$s</xliff:g>发短信"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"拨打<xliff:g id="NAME">%1$s</xliff:g>的电话"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"添加联系人"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"来源：<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>，来源：<xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜索"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜索内容"</string>
-    <!-- no translation found for settings_contact_display_options_title (1020420603072835628) -->
-    <skip />
-    <!-- no translation found for settings_contact_display_options_description (4130259058302284077) -->
-    <skip />
 </resources>

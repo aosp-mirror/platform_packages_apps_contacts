@@ -60,7 +60,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"कार्यालय के पेजर पर पाठ संदेश भेजें"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> पर पाठ संदेश भेजें"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS पर पाठ संदेश भेजें"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"वीडियो कॉल करें"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"अक्‍सर किए जाने वाले संपर्क साफ करें?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको लोग और फ़ोन ऐप्स में अक्‍सर संपर्क करने की सूची साफ़ करनी होगी, और अपने ईमेल ऐप्स  को आपकी संबोधन प्राथमिकताओं को प्रारंभ से जानने के लिए बाध्‍य करना होगा."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"अक्सर किए जाने वाले संपर्क साफ कर रहा है…"</string>
@@ -221,18 +220,6 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD कार्ड स्कैन नहीं किया जा सका. (कारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> आयात कर रहा है: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"संग्रहण में निर्यात करें"</string>
-    <!-- no translation found for display_options_sort_list_by (7686551200843900466) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (5182293506651747189) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (4146657752793207363) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (1104495761313107327) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (1412684412351158812) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (8624010750059331413) -->
-    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"दिखाई देने वाले संपर्क साझा करें"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्कों को आयात/निर्यात करें"</string>
     <string name="dialog_import" msgid="5177004290082451296">"संपर्कों को आयात करें"</string>
@@ -251,12 +238,11 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM कार्ड चुनें"</string>
     <string name="menu_accounts" msgid="795417468541517082">"खाते"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"आयात करें/निर्यात करें"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> को संदेश भेजें"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"फ़ोन <xliff:g id="NAME">%1$s</xliff:g> डायल करें"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"संपर्क जोड़ें"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> द्वारा"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> द्वारा <xliff:g id="DATE">%1$s</xliff:g> को"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"खोजना बंद करें"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"खोज साफ़ करें"</string>
-    <!-- no translation found for settings_contact_display_options_title (1020420603072835628) -->
-    <skip />
-    <!-- no translation found for settings_contact_display_options_description (4130259058302284077) -->
-    <skip />
 </resources>
