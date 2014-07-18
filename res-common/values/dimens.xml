@@ -130,4 +130,7 @@
     <!-- Top margin for the Frequently Contacted section title, when the title is the first
          item in the list -->
     <dimen name="frequently_contacted_title_top_margin">57dp</dimen>
+
+    <!-- Size of icon for contacts number shortcuts -->
+    <dimen name="search_shortcut_radius">40dp</dimen>
 </resources>
