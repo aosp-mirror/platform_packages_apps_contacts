@@ -161,9 +161,12 @@
     <skip />
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Бул ишти аткаруучу эч бир колдонмо табылган жок."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Мурунку экранга кайтуу үчүн чыкылдатыңыз"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Телефон номерин кошуу"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Электрондук почта дарегин кошуу"</string>
     <string name="missing_app" msgid="1466111003546611387">"Бул ишти аткаруучу эч бир колдонмо табылган жок."</string>
     <!-- no translation found for menu_share (943789700636542260) -->
     <skip />
+    <string name="menu_add_contact" msgid="3198704337220892684">"Байланыштарга кошуу"</string>
     <!-- no translation found for share_via (563121028023030093) -->
     <skip />
     <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
@@ -183,17 +186,6 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Бул колдонмодон өзгөртүлбөйт."</string>
     <string name="no_contact_details" msgid="6636856378019344497">"Бул байланыштын кошумча маалыматтары жок."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Бул түзмөктөн өзгөртүлбөйт."</string>
-    <!-- no translation found for display_options_sort_list_by (6080091755852211076) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (184916793466387067) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (7857986975275712622) -->
-    <skip />
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Байланыш аттарын кароо"</string>
-    <!-- no translation found for display_options_view_given_name_first (6968288511197363292) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (1447288164951453714) -->
-    <skip />
     <!-- no translation found for take_photo (7496128293167402354) -->
     <skip />
     <!-- no translation found for take_new_photo (7341354729436576304) -->
@@ -315,8 +307,8 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Дагы көрүү"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Азыраак көрүү"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Бардыгын көрүү"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Байланыш"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Акыркы"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Жөнүндө"</string>
     <string name="send_message" msgid="8938418965550543196">"Билдирүү жөнөтүү"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Жеке көчүрмөнү алуу..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Кечээ"</string>
@@ -327,4 +319,12 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Аталышы жок окуя)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Орнотуу"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
+    <string name="header_organization_entry" msgid="8515394955666265406">"Иштеген жери"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"Ылакап аты"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"Кыска жазуу"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"Вебсайт"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"Иш-чара"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"Мамилелик катышы"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"жайгашуу ордуна багыттоолор"</string>
 </resources>

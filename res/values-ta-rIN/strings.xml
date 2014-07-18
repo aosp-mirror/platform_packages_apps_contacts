@@ -115,8 +115,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"உங்கள் தொடர்புகளின் பெயர்கள்"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"இந்தச் செயலைச் செய்வதற்கான பயன்பாடு எதுவுமில்லை."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"முந்தைய திரைக்குச் செல்ல கிளிக் செய்க"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ஃபோன் எண்ணைச் சேர்க்கவும்"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"மின்னஞ்சலைச் சேர்க்கவும்"</string>
     <string name="missing_app" msgid="1466111003546611387">"இந்தச் செயலைச் செய்ய பயன்பாடு எதுவுமில்லை."</string>
     <string name="menu_share" msgid="943789700636542260">"பகிர்"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"தொடர்புகளில் சேர்"</string>
     <string name="share_via" msgid="563121028023030093">"இதன் வழியாக தொடர்பைப் பகிர்"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"கணக்கின் கீழ் குழுவை உருவாக்கவும்"</string>
     <string name="audio_chat" msgid="2535716629358298691">"குரல் அரட்டை"</string>
@@ -132,12 +135,6 @@
     <string name="contact_read_only" msgid="7421346527289472273">"இந்தப் பயன்பாட்டிலிருந்து திருத்த முடியாது."</string>
     <string name="no_contact_details" msgid="6636856378019344497">"இந்தத் தொடர்புக்குக் கூடுதல் தகவல் இல்லை."</string>
     <string name="group_read_only" msgid="1061762906115697637">"இந்தச் சாதனத்தில் திருத்தக்கூடியதல்ல."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"பட்டியலை இதன்படி அமை"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"வழங்கப்படும் பெயர்"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"குடும்பப் பெயர்"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"தொடர்பு பெயர்களைக் காட்டு"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"முதலில் வழங்கப்படும் பெயர்"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"முதலில் குடும்பப் பெயர்"</string>
     <string name="take_photo" msgid="7496128293167402354">"படமெடு"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"புதிய படத்தை எடு"</string>
     <string name="pick_photo" msgid="2129509985223564942">"படத்தைத் தேர்வுசெய்யவும்"</string>
@@ -220,7 +217,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"புதிய தொடர்பு <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> உடன் ஒத்திசைக்கப்படும்."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"புதிய தொடர்பை பின்வரும் கணக்குகள் ஒன்றுடன் ஒத்திசைக்கலாம். எதைப் பயன்படுத்த விரும்புகிறீர்கள்?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"புதிய தொடர்பைச் சேர்"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"தொடர்பை மாற்று"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"தொடர்பைத் திருத்து"</string>
     <string name="keep_local" msgid="1258761699192993322">"அகத்திலேயே சேமி"</string>
     <string name="add_account" msgid="8201790677994503186">"கணக்கைச் சேர்"</string>
     <string name="add_new_account" msgid="5748627740680940264">"புதிய கணக்கைச் சேர்"</string>
@@ -230,8 +227,8 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"மேலும் காட்டு"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"குறைவாகக் காட்டு"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"எல்லாம் காட்டு"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"தொடர்பு"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"சமீபத்தியவை"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"அறிமுகம்"</string>
     <string name="send_message" msgid="8938418965550543196">"செய்தி அனுப்பு"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"தனிப்பட்ட நகலை உருவாக்குகிறது..."</string>
     <string name="yesterday" msgid="6840858548955018569">"நேற்று"</string>
@@ -242,4 +239,12 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(பெயரிடப்படாத நிகழ்வு)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"அமை"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
+    <string name="header_organization_entry" msgid="8515394955666265406">"நிறுவனம்"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"செல்லப்பெயர்"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"குறிப்பு"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"இணையதளம்"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"நிகழ்வு"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"உறவு"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"இடத்தை நோக்கிய திசைகள்"</string>
 </resources>
