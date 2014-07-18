@@ -152,7 +152,7 @@
     <dimen name="expanding_entry_card_border_width">12dp</dimen>
 
     <!-- Top margin for the communication card, used to add space from header. -->
-    <dimen name="communication_card_marginTop">12dp</dimen>
+    <dimen name="first_card_marginTop">12dp</dimen>
 
     <!-- Elevation of an ExpandingEntryCard, for the sake of shadow casting -->
     <dimen name="expanding_entry_card_elevation">1dp</dimen>
