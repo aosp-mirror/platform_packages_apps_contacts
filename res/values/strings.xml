@@ -93,6 +93,11 @@
     <!-- Menu item used to remove a star from a contact, making the contact no longer show up at the top of favorites -->
     <string name="menu_removeStar">Remove from favorites</string>
 
+    <!-- Description of what happens when you click on the unstar MenuItem. [CHAR LIMIT=NONE] -->
+    <string name="description_action_menu_remove_star">Removed from favorites</string>
+    <!-- Description of what happens when you click on the star MenuItem. [CHAR LIMIT=NONE] -->
+    <string name="description_action_menu_add_star">Added to favorites</string>
+
     <!-- Menu item used to edit a specific contact -->
     <string name="menu_editContact">Edit</string>
 

@@ -26,7 +26,6 @@ import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -1560,6 +1559,13 @@ public class QuickContactActivity extends ContactsActivity {
             final Intent intent = ContactSaveService.createSetStarredIntent(
                     QuickContactActivity.this, mLookupUri, !isStarred);
             startService(intent);
+
+            final CharSequence accessibilityText = !isStarred
+                    ? getResources().getText(R.string.description_action_menu_add_star)
+                    : getResources().getText(R.string.description_action_menu_remove_star);
+            // Accessibility actions need to have an associated view. We can't access the MenuItem's
+            // underlying view, so put this accessibility action on the root view.
+            mScroller.announceForAccessibility(accessibilityText);
         }
     }
 
