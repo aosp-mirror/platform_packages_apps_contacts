@@ -91,6 +91,7 @@
     <dimen name="tile_letter_font_size">40dp</dimen>
     <dimen name="tile_letter_font_size_small">20dp</dimen>
     <dimen name="tile_divider_width">1dp</dimen>
+    <item name="tile_letter_avatar_scale" type="dimen">14%</item>
     <item name="letter_to_tile_ratio" type="dimen">67%</item>
 
     <!-- Height of the floating action button -->
