@@ -469,10 +469,28 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             String sections[] =
                     bundle.getStringArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
             int counts[] = bundle.getIntArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
-            setIndexer(new ContactsSectionIndexer(sections, counts));
+
+            if (getExtraStartingSection()) {
+                // Insert an additional unnamed section at the top of the list.
+                String allSections[] = new String[sections.length + 1];
+                int allCounts[] = new int[counts.length + 1];
+                for (int i = 0; i < sections.length; i++) {
+                    allSections[i + 1] = sections[i];
+                    allCounts[i + 1] = counts[i];
+                }
+                allCounts[0] = 1;
+                allSections[0] = "";
+                setIndexer(new ContactsSectionIndexer(allSections, allCounts));
+            } else {
+                setIndexer(new ContactsSectionIndexer(sections, counts));
+            }
         } else {
             setIndexer(null);
         }
+    }
+
+    protected boolean getExtraStartingSection() {
+        return false;
     }
 
     @Override

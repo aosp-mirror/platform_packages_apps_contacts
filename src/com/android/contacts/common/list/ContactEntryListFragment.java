@@ -248,9 +248,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+        restoreSavedState(savedState);
         mAdapter = createListAdapter();
         mContactsPrefs = new ContactsPreferences(mContext);
-        restoreSavedState(savedState);
     }
 
     public void restoreSavedState(Bundle savedState) {
