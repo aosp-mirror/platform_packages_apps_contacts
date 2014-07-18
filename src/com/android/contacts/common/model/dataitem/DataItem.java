@@ -205,13 +205,13 @@ public class DataItem implements Collapser.Collapsible<DataItem> {
 
         // If any of the collapsed entries are super primary make the whole thing super primary.
         if (isSuperPrimary() || that.isSuperPrimary()) {
-            mContentValues.put(Data.IS_SUPER_PRIMARY, true);
-            mContentValues.put(Data.IS_PRIMARY, true);
+            mContentValues.put(Data.IS_SUPER_PRIMARY, 1);
+            mContentValues.put(Data.IS_PRIMARY, 1);
         }
 
         // If any of the collapsed entries are primary make the whole thing primary.
         if (isPrimary() || that.isPrimary()) {
-            mContentValues.put(Data.IS_PRIMARY, true);
+            mContentValues.put(Data.IS_PRIMARY, 1);
         }
 
         // Add up the times used
