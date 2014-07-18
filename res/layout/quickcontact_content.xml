@@ -25,7 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:id="@+id/card_container">
+        android:id="@+id/card_container"
+        android:paddingTop="@dimen/first_card_marginTop"
+        android:background="@color/card_margin_color"  >
 
         <!-- We cannot set the border directly on ExpandingEntryCardView without it looking
              funny because of the card's elevation value. So we need a parent FrameLayout -->
@@ -36,7 +38,6 @@
             <com.android.contacts.quickcontact.ExpandingEntryCardView
                 style="@style/ExpandingEntryCardStyle"
                 android:id="@+id/no_contact_data_card"
-                android:layout_marginTop="@dimen/communication_card_marginTop"
                 android:visibility="gone" />
         </FrameLayout>
 
@@ -47,7 +48,6 @@
             <com.android.contacts.quickcontact.ExpandingEntryCardView
                 style="@style/ExpandingEntryCardStyle"
                 android:id="@+id/communication_card"
-                android:layout_marginTop="@dimen/communication_card_marginTop"
                 android:visibility="gone" />
         </FrameLayout>
 
