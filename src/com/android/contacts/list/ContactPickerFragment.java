@@ -28,7 +28,6 @@ import com.android.contacts.common.list.ContactEntryListAdapter;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
-import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.ShortcutIntentBuilder;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
@@ -105,7 +104,9 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     @Override
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
-        if (mCreateContactEnabled) {
+        if (mCreateContactEnabled && isLegacyCompatibilityMode()) {
+            // Since we are using the legacy adapter setShowCreateContact(true) isn't supported.
+            // So we need to add an ugly header above the list.
             getListView().addHeaderView(inflater.inflate(R.layout.create_new_contact, null, false));
         }
     }
@@ -152,12 +153,14 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     @Override
     protected ContactEntryListAdapter createListAdapter() {
         if (!isLegacyCompatibilityMode()) {
-            DefaultContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
+            HeaderEntryContactListAdapter adapter
+                    = new HeaderEntryContactListAdapter(getActivity());
             adapter.setFilter(ContactListFilter.createFilterWithType(
                     ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
             adapter.setSectionHeaderDisplayEnabled(true);
             adapter.setDisplayPhotos(true);
             adapter.setQuickContactEnabled(false);
+            adapter.setShowCreateContact(mCreateContactEnabled);
             return adapter;
         } else {
             LegacyContactListAdapter adapter = new LegacyContactListAdapter(getActivity());

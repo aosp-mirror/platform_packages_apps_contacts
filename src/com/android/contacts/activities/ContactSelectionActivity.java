@@ -35,7 +35,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
@@ -44,7 +43,6 @@ import android.widget.Toast;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListFragment;
-import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -129,33 +127,19 @@ public class ContactSelectionActivity extends ContactsActivity
         }
 
         prepareSearchViewAndActionBar();
-
-        // Configure action button
-        final View floatingActionButtonContainer = findViewById(
-                R.id.floating_action_button_container);
-        if (shouldShowCreateNewContactButton()) {
-            ViewUtil.setupFloatingActionButton(floatingActionButtonContainer, getResources());
-            final ImageButton floatingActionButton
-                    = (ImageButton) findViewById(R.id.floating_action_button);
-            floatingActionButton.setOnClickListener(this);
-        } else {
-            floatingActionButtonContainer.setVisibility(View.GONE);
-        }
-    }
-
-    private boolean shouldShowCreateNewContactButton() {
-        return (mActionCode == ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT
-                || (mActionCode == ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT
-                        && !mRequest.isSearchMode()));
     }
 
     private void prepareSearchViewAndActionBar() {
+        final ActionBar actionBar = getActionBar();
+        final View searchViewContainer = LayoutInflater.from(actionBar.getThemedContext())
+                .inflate(R.layout.custom_action_bar, null);
+        mSearchView = (SearchView) searchViewContainer.findViewById(R.id.search_view);
+
         // Postal address pickers (and legacy pickers) don't support search, so just show
         // "HomeAsUp" button and title.
         if (mRequest.getActionCode() == ContactsRequest.ACTION_PICK_POSTAL ||
                 mRequest.isLegacyCompatibilityMode()) {
-            findViewById(R.id.search_view).setVisibility(View.GONE);
-            final ActionBar actionBar = getActionBar();
+            mSearchView.setVisibility(View.GONE);
             if (actionBar != null) {
                 actionBar.setDisplayShowHomeEnabled(true);
                 actionBar.setDisplayHomeAsUpEnabled(true);
@@ -163,11 +147,6 @@ public class ContactSelectionActivity extends ContactsActivity
             }
             return;
         }
-
-        final ActionBar actionBar = getActionBar();
-        final View searchViewContainer = LayoutInflater.from(actionBar.getThemedContext())
-                .inflate(R.layout.custom_action_bar, null);
-        mSearchView = (SearchView) searchViewContainer.findViewById(R.id.search_view);
 
         // In order to make the SearchView look like "shown via search menu", we need to
         // manually setup its state. See also DialtactsActivity.java and ActionBarAdapter.java.
@@ -272,6 +251,7 @@ public class ContactSelectionActivity extends ContactsActivity
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setEditMode(true);
                 fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
+                fragment.setCreateContactEnabled(!mRequest.isSearchMode());
                 mListFragment = fragment;
                 break;
             }
@@ -286,6 +266,7 @@ public class ContactSelectionActivity extends ContactsActivity
 
             case ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
+                fragment.setCreateContactEnabled(!mRequest.isSearchMode());
                 mListFragment = fragment;
                 break;
             }
