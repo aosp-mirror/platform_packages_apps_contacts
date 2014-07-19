@@ -31,8 +31,8 @@ public class ContactsLaunchPerformance extends LaunchPerformanceBase {
     public void onCreate(Bundle arguments) {
         mIntent.setAction(Intent.ACTION_MAIN);
         mIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        mIntent.setComponent(new ComponentName("com.android.contacts",
-                "com.android.contacts.DialtactsContactsEntryActivity"));
+        mIntent.setComponent(new ComponentName(getTargetContext(),
+                "com.android.contacts.activities.PeopleActivity"));
 
         start();
     }
