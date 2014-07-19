@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Испрати текстуална порака на пејџер на работа"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Испрати текстуална порака на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Испрати текстуална порака на MMS"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Остварете видеоповик"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Исчисти често контактирани?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Ќе го исчистите списокот на често контактирани лица во апликациите „Луѓе“ и „Телефон“ и ќе ги принудите апликациите на е-пошта одново да ги дознаат вашите параметри на обраќање."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Чистење често контактирани..."</string>
@@ -220,6 +221,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"СД картичката не можеше да се скенира. (Причина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Увезување <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Извези во меморија"</string>
+    <string name="display_options_sort_list_by" msgid="7686551200843900466">"Подреди список по"</string>
+    <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"Име"</string>
+    <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"Презиме"</string>
+    <string name="display_options_view_names_as" msgid="1104495761313107327">"Прикажи имиња на контакти"</string>
+    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"Прво име"</string>
+    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"Прво презиме"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Сподели видливи контакти"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Увези/извези контакти"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Увези контакти"</string>
@@ -238,11 +245,10 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"Изберете СИМ-картичка"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Сметки"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Увези/извези"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"Испрати порака на <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"Бирај телефон на <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"Додај контакт"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"од <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"на <xliff:g id="DATE">%1$s</xliff:g> од <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"запри пребарување"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Исчисти го полето за пребарување"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Опции за прикажување контакт"</string>
+    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"Конфигурирајте како контактите се прикажани и подредени."</string>
 </resources>

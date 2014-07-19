@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"కార్యాలయ పేజర్‌కు వచనం పంపండి"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSకు వచనం పంపండి"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"వీడియో కాల్ చేయి"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేయాలా?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"మీరు వ్యక్తులు మరియు ఫోన్ అనువర్తనాల్లో తరచుగా సంప్రదించినవారి జాబితాను క్లియర్ చేస్తారు మరియు స్క్రాచ్ నుండి మీ చిరునామా ప్రాధాన్యతలను తెలుసుకునేలా ఇమెయిల్ అనువర్తనాలను నిర్బంధిస్తారు."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేస్తోంది…"</string>
@@ -220,6 +221,18 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD కార్డును స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"నిల్వకు ఎగుమతి చేయి"</string>
+    <!-- no translation found for display_options_sort_list_by (7686551200843900466) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_given_name (5182293506651747189) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_family_name (4146657752793207363) -->
+    <skip />
+    <!-- no translation found for display_options_view_names_as (1104495761313107327) -->
+    <skip />
+    <!-- no translation found for display_options_view_given_name_first (1412684412351158812) -->
+    <skip />
+    <!-- no translation found for display_options_view_family_name_first (8624010750059331413) -->
+    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయి"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"పరిచయాలను దిగుమతి/ఎగుమతి చేయండి"</string>
     <string name="dialog_import" msgid="5177004290082451296">"పరిచయాలను దిగుమతి చేయండి"</string>
@@ -238,11 +251,12 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM కార్డును ఎంచుకోండి"</string>
     <string name="menu_accounts" msgid="795417468541517082">"ఖాతాలు"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"దిగుమతి చేయి/ఎగుమతి చేయి"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g>కు సందేశం పంపు"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"ఫోన్ <xliff:g id="NAME">%1$s</xliff:g>కు డయల్ చేయండి"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"పరిచయాన్ని జోడించు"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> ద్వారా <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"శోధించడం ఆపివేయి"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"శోధనను క్లియర్ చేయండి"</string>
+    <!-- no translation found for settings_contact_display_options_title (1020420603072835628) -->
+    <skip />
+    <!-- no translation found for settings_contact_display_options_description (4130259058302284077) -->
+    <skip />
 </resources>
