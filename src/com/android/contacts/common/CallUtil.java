@@ -63,8 +63,8 @@ public class CallUtil {
     /**
      * A variant of {@link #getCallIntent(String)} but also include {@code Account}.
      */
-    public static Intent getCallIntent(String number, PhoneAccountHandle account) {
-        return getCallIntent(number, null, account);
+    public static Intent getCallIntent(String number, PhoneAccountHandle accountHandle) {
+        return getCallIntent(number, null, accountHandle);
     }
 
     /**
