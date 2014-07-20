@@ -25,6 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"కాల్ చేయాల్సిన నంబర్‌ను ఎంచుకోండి"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"సందేశం పంపడానికి నంబర్‌ను ఎంచుకోండి"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"పరిచయాన్ని ఎంచుకోండి"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"కొత్త పరిచయాన్ని ఎంచుకోండి"</string>
     <string name="starredList" msgid="4817256136413959463">"నక్షత్రం గుర్తు ఉన్నవి"</string>
     <string name="frequentList" msgid="7154768136473953056">"తరచుగా"</string>
     <string name="strequentList" msgid="5640192862059373511">"ఇష్టమైనవి"</string>
@@ -39,6 +40,10 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"పరిచయాన్ని వీక్షించండి"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ఇష్టమైనవాటికి జోడించు"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ఇష్టమైనవాటి నుండి తీసివేయి"</string>
+    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
+    <skip />
+    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
+    <skip />
     <string name="menu_editContact" msgid="9042415603857662633">"సవరించు"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"తొలగించు"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"హోమ్ స్క్రీన్‌లో ఉంచు"</string>

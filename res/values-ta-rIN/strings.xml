@@ -25,6 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"அழைப்பதற்கான எண்ணைத் தேர்வுசெய்யவும்"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"செய்தி அனுப்ப எண்ணைத் தேர்வுசெய்க"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"தொடர்பைத் தேர்வுசெய்யவும்"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"புதிய தொடர்பைத் தேர்ந்தெடுக்கவும்"</string>
     <string name="starredList" msgid="4817256136413959463">"நட்சத்திரமிட்டது"</string>
     <string name="frequentList" msgid="7154768136473953056">"அடிக்கடி"</string>
     <string name="strequentList" msgid="5640192862059373511">"பிடித்தவை"</string>
@@ -39,6 +40,10 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"தொடர்பைக் காட்டு"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"பிடித்தவற்றில் சேர்"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"பிடித்தவற்றிலிருந்து அகற்று"</string>
+    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
+    <skip />
+    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
+    <skip />
     <string name="menu_editContact" msgid="9042415603857662633">"திருத்து"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"நீக்கு"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"முகப்புத் திரையில் அமை"</string>

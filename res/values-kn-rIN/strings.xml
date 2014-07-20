@@ -25,6 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ಕೆರಮಾಡಲು ಸಂಖ್ಯೆಯೊಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ಸಂದೇಶಕ್ಕಾಗಿ ಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ಸಂಪರ್ಕ ಆಯ್ಕೆ ಮಾಡಿ"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"ಹೊಸ ಸಂಪರ್ಕ ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="starredList" msgid="4817256136413959463">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
     <string name="frequentList" msgid="7154768136473953056">"ಆಗಾಗ್ಗೆ"</string>
     <string name="strequentList" msgid="5640192862059373511">"ಮೆಚ್ಚಿನವುಗಳು"</string>
@@ -39,6 +40,10 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"ಸಂಪರ್ಕವನ್ನು ವೀಕ್ಷಿಸಿ"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ಮೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆದುಹಾಕಿ"</string>
+    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
+    <skip />
+    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
+    <skip />
     <string name="menu_editContact" msgid="9042415603857662633">"ಸಂಪಾದಿಸು"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ಅಳಿಸು"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ಮುಖಪುಟ ಪರದೆಯ ಮೇಲೆ ಇರಿಸು"</string>

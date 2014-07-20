@@ -25,6 +25,8 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"कल गर्नका लागि एउटा नम्बर छान्नुहोस्"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"सन्देश पठाउनका लागि एउटा नम्बर छान्नुहोस्"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"एउटा सम्पर्क छान्नुहोस्"</string>
+    <!-- no translation found for header_entry_contact_list_adapter_header_title (2062180422920201172) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"ताराङ्कित"</string>
     <string name="frequentList" msgid="7154768136473953056">"कहिले कहीँ"</string>
     <string name="strequentList" msgid="5640192862059373511">"मनपर्नेहरू"</string>
@@ -39,6 +41,10 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"सम्पर्क हेर्नुहोस्"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"मनपर्नेहरूमा थप्नुहोस्"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"मनपर्नेहरूबाट हटाउनुहोस्"</string>
+    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
+    <skip />
+    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
+    <skip />
     <string name="menu_editContact" msgid="9042415603857662633">"सम्पादन गर्नुहोस्"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"मेट्नुहोस्"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"होम स्क्रिनमा राख्नुहोस्"</string>

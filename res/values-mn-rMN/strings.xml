@@ -25,6 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Залгах дугаарыг сонгоно уу"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Зурвас илгээх дугаарыг сонгох"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Харилцагч сонгоно уу"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Шинэ харилцагч сонгох"</string>
     <string name="starredList" msgid="4817256136413959463">"Одтой"</string>
     <string name="frequentList" msgid="7154768136473953056">"Байнга"</string>
     <string name="strequentList" msgid="5640192862059373511">"Дуртай"</string>
@@ -39,6 +40,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Харилцагчийг харах"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Таалагдсан руу нэмэх"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Дуртайгаас хасах"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Дуртайгаас хасах"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Дуртайд нэмэх"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Засах"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Устгах"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Үндсэн дэлгэц дээр байршуулах"</string>

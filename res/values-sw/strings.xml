@@ -25,6 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Chagua nambari ya kupiga"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Chagua nambari ya kutumia ujumbe"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chagua mwasiliani"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Chagua anwani mpya"</string>
     <string name="starredList" msgid="4817256136413959463">"Zenye nyota"</string>
     <string name="frequentList" msgid="7154768136473953056">"Mara kwa mara"</string>
     <string name="strequentList" msgid="5640192862059373511">"Vipendwa"</string>
@@ -39,6 +40,10 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Tazama anwani"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Ongeza kwa vipendwa"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ondoa kwenye vipendwa"</string>
+    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
+    <skip />
+    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
+    <skip />
     <string name="menu_editContact" msgid="9042415603857662633">"Badilisha"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Futa"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Weka kwenye skrini ya Mwanzo"</string>
