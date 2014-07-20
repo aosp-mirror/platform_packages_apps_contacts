@@ -225,8 +225,8 @@
     <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"នាម​ខ្លួន"</string>
     <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"នាមត្រកូល"</string>
     <string name="display_options_view_names_as" msgid="1104495761313107327">"មើល​ឈ្មោះ​ទំនាក់ទំនង"</string>
-    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"ដំបូង​នាម​ខ្លួន"</string>
-    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"ដំបូង​នាម​ត្រកូល"</string>
+    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"នាម​ខ្លួន​មុន"</string>
+    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"នាមត្រកូល​មុន"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ចែករំលែក​ទំនាក់ទំនង​ដែល​អាច​មើល​ឃើញ"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"នាំចេញ/នាំចូល​ទំនាក់ទំនង"</string>
     <string name="dialog_import" msgid="5177004290082451296">"នាំចូល​ទំនាក់ទំនង"</string>

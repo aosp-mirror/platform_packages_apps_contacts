@@ -221,18 +221,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD कार्ड स्कैन नहीं किया जा सका. (कारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> आयात कर रहा है: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"संग्रहण में निर्यात करें"</string>
-    <!-- no translation found for display_options_sort_list_by (7686551200843900466) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (5182293506651747189) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (4146657752793207363) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (1104495761313107327) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (1412684412351158812) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (8624010750059331413) -->
-    <skip />
+    <string name="display_options_sort_list_by" msgid="7686551200843900466">"सूची को इसके अनुसार क्रमित करें"</string>
+    <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"दिया गया नाम"</string>
+    <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"उपनाम"</string>
+    <string name="display_options_view_names_as" msgid="1104495761313107327">"संपर्क नामों को देखें"</string>
+    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"दिया गया नाम पहले"</string>
+    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"उपनाम पहले"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दिखाई देने वाले संपर्क साझा करें"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्कों को आयात/निर्यात करें"</string>
     <string name="dialog_import" msgid="5177004290082451296">"संपर्कों को आयात करें"</string>
@@ -255,8 +249,6 @@
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> द्वारा <xliff:g id="DATE">%1$s</xliff:g> को"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"खोजना बंद करें"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"खोज साफ़ करें"</string>
-    <!-- no translation found for settings_contact_display_options_title (1020420603072835628) -->
-    <skip />
-    <!-- no translation found for settings_contact_display_options_description (4130259058302284077) -->
-    <skip />
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"संपर्क प्रदर्शन विकल्प"</string>
+    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"अपने संपर्कों के प्रदर्शित किए जाने और क्रमित होने का तरीका कॉन्फ़िगर करें."</string>
 </resources>
