@@ -18,7 +18,7 @@ package com.android.contacts.common;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.telecomm.PhoneAccount;
+import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
 import android.telecomm.VideoCallProfile;
 
@@ -63,22 +63,23 @@ public class CallUtil {
     /**
      * A variant of {@link #getCallIntent(String)} but also include {@code Account}.
      */
-    public static Intent getCallIntent(String number, PhoneAccount account) {
+    public static Intent getCallIntent(String number, PhoneAccountHandle account) {
         return getCallIntent(number, null, account);
     }
 
     /**
      * A variant of {@link #getCallIntent(android.net.Uri)} but also include {@code Account}.
      */
-    public static Intent getCallIntent(Uri uri, PhoneAccount account) {
-        return getCallIntent(uri, null, account);
+    public static Intent getCallIntent(Uri uri, PhoneAccountHandle accountHandle) {
+        return getCallIntent(uri, null, accountHandle);
     }
 
     /**
      * A variant of {@link #getCallIntent(String, String)} but also include {@code Account}.
      */
-    public static Intent getCallIntent(String number, String callOrigin, PhoneAccount account) {
-        return getCallIntent(getCallUri(number), callOrigin, account);
+    public static Intent getCallIntent(
+            String number, String callOrigin, PhoneAccountHandle accountHandle) {
+        return getCallIntent(getCallUri(number), callOrigin, accountHandle);
     }
 
     /**
@@ -86,8 +87,10 @@ public class CallUtil {
      * origin and {@code Account}.
      * For more information about call origin, see comments in Phone package (PhoneApp).
      */
-    public static Intent getCallIntent(Uri uri, String callOrigin, PhoneAccount account) {
-        return getCallIntent(uri, callOrigin, account, VideoCallProfile.VIDEO_STATE_AUDIO_ONLY);
+    public static Intent getCallIntent(
+            Uri uri, String callOrigin, PhoneAccountHandle accountHandle) {
+        return getCallIntent(uri, callOrigin, accountHandle,
+                VideoCallProfile.VIDEO_STATE_AUDIO_ONLY);
     }
 
     /**
@@ -99,19 +102,21 @@ public class CallUtil {
     }
 
     /**
-     * A variant of {@link #getCallIntent(String, String, PhoneAccount)} for starting a video call.
+     * A variant of {@link #getCallIntent(String, String, android.telecomm.PhoneAccountHandle)} for
+     * starting a video call.
      */
     public static Intent getVideoCallIntent(
-            String number, String callOrigin, PhoneAccount account) {
-        return getCallIntent(getCallUri(number), callOrigin, account,
+            String number, String callOrigin, PhoneAccountHandle accountHandle) {
+        return getCallIntent(getCallUri(number), callOrigin, accountHandle,
                 VideoCallProfile.VIDEO_STATE_BIDIRECTIONAL);
     }
 
     /**
-     * A variant of {@link #getCallIntent(String, String, PhoneAccount)} for starting a video call.
+     * A variant of {@link #getCallIntent(String, String, android.telecomm.PhoneAccountHandle)} for
+     * starting a video call.
      */
-    public static Intent getVideoCallIntent(String number, PhoneAccount account) {
-        return getVideoCallIntent(number, null, account);
+    public static Intent getVideoCallIntent(String number, PhoneAccountHandle accountHandle) {
+        return getVideoCallIntent(number, null, accountHandle);
     }
 
     /**
@@ -120,15 +125,15 @@ public class CallUtil {
      * For more information about call origin, see comments in Phone package (PhoneApp).
      */
     public static Intent getCallIntent(
-            Uri uri, String callOrigin, PhoneAccount account, int videoState) {
+            Uri uri, String callOrigin, PhoneAccountHandle accountHandle, int videoState) {
         final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(TelecommManager.EXTRA_START_CALL_WITH_VIDEO_STATE, videoState);
         if (callOrigin != null) {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
         }
-        if (account != null) {
-            intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT, account);
+        if (accountHandle != null) {
+            intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE, accountHandle);
         }
 
         return intent;
