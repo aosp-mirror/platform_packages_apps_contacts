@@ -170,6 +170,7 @@ public class ExpandingEntryCardView extends LinearLayout {
     private final Drawable mExpandArrowDrawable;
     private int mThemeColor;
     private ColorFilter mThemeColorFilter;
+    private boolean mIsAlwaysExpanded;
 
     private final OnClickListener mExpandCollapseButtonListener = new OnClickListener() {
         @Override
@@ -212,9 +213,13 @@ public class ExpandingEntryCardView extends LinearLayout {
      * @param entries The Entry list to display.
      */
     public void initialize(List<List<Entry>> entries, int numInitialVisibleEntries,
-            boolean isExpanded, ExpandingEntryCardViewListener listener) {
+            boolean isExpanded, boolean isAlwaysExpanded,
+            ExpandingEntryCardViewListener listener) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         mIsExpanded = isExpanded;
+        mIsAlwaysExpanded = isAlwaysExpanded;
+        // If isAlwaysExpanded is true, mIsExpanded should be true
+        mIsExpanded |= mIsAlwaysExpanded;
         mEntryViews = new ArrayList<List<View>>(entries.size());
         mEntries = entries;
         mNumEntries = 0;
@@ -288,7 +293,7 @@ public class ExpandingEntryCardView extends LinearLayout {
 
         removeView(mExpandCollapseButton);
         if (mCollapsedEntriesCount < mNumEntries
-                && mExpandCollapseButton.getParent() == null) {
+                && mExpandCollapseButton.getParent() == null && !mIsAlwaysExpanded) {
             addView(mExpandCollapseButton, -1);
         }
     }
