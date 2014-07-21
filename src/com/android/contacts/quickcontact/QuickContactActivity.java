@@ -807,6 +807,7 @@ public class QuickContactActivity extends ContactsActivity {
             mContactCard.initialize(contactCardEntries,
                     /* numInitialVisibleEntries = */ MIN_NUM_CONTACT_ENTRIES_SHOWN,
                     /* isExpanded = */ mContactCard.isExpanded(),
+                    /* isAlwaysExpanded = */ false,
                     mExpandingEntryCardViewListener);
             mContactCard.setVisibility(View.VISIBLE);
         } else {
@@ -818,6 +819,7 @@ public class QuickContactActivity extends ContactsActivity {
         mAboutCard.initialize(aboutCardEntries,
                 /* numInitialVisibleEntries = */ 1,
                 /* isExpanded = */ true,
+                /* isAlwaysExpanded = */ true,
                 mExpandingEntryCardViewListener);
 
         if (contactCardEntries.size() == 0 && aboutCardEntries.size() == 0) {
@@ -865,8 +867,8 @@ public class QuickContactActivity extends ContactsActivity {
                 R.color.quickcontact_entry_sub_header_text_color);
         final PorterDuffColorFilter greyColorFilter =
                 new PorterDuffColorFilter(subHeaderTextColor, PorterDuff.Mode.SRC_ATOP);
-        mNoContactDetailsCard.initialize(promptEntries, 2, /* isExpanded = */ false,
-                mExpandingEntryCardViewListener);
+        mNoContactDetailsCard.initialize(promptEntries, 2, /* isExpanded = */ true,
+                /* isAlwaysExpanded = */ true, mExpandingEntryCardViewListener);
         mNoContactDetailsCard.setVisibility(View.VISIBLE);
         mNoContactDetailsCard.setEntryHeaderColor(subHeaderTextColor);
         mNoContactDetailsCard.setColorAndFilter(subHeaderTextColor, greyColorFilter);
@@ -1502,7 +1504,8 @@ public class QuickContactActivity extends ContactsActivity {
         if (allInteractions.size() > 0) {
             mRecentCard.initialize(interactionsWrapper,
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
-                    /* isExpanded = */ mRecentCard.isExpanded(), mExpandingEntryCardViewListener);
+                    /* isExpanded = */  mRecentCard.isExpanded(), /* isAlwaysExpanded = */ false,
+                    mExpandingEntryCardViewListener);
             mRecentCard.setVisibility(View.VISIBLE);
         }
 
