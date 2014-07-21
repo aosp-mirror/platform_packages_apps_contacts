@@ -1085,17 +1085,22 @@ public class QuickContactActivity extends ContactsActivity {
                 if (!TextUtils.isEmpty(address)) {
                     final Uri callUri = Uri.fromParts(CallUtil.SCHEME_SIP, address, null);
                     intent = CallUtil.getCallIntent(callUri);
+                    header = address;
+                    if (sip.hasKindTypeColumn(kind)) {
+                        text = SipAddress.getTypeLabel(getResources(), sip.getKindTypeColumn(kind),
+                            sip.getLabel()).toString();
+                    }
                     // Note that this item will get a SIP-specific variant
                     // of the "call phone" icon, rather than the standard
                     // app icon for the Phone app (which we show for
                     // regular phone numbers.)  That's because the phone
                     // app explicitly specifies an android:icon attribute
                     // for the SIP-related intent-filters in its manifest.
-                }
-                icon = ResolveCache.getInstance(this).getIcon(sip.getMimeType(), intent);
-                // Call mutate to create a new Drawable.ConstantState for color filtering
-                if (icon != null) {
-                    icon.mutate();
+                    icon = ResolveCache.getInstance(this).getIcon(sip.getMimeType(), intent);
+                    // Call mutate to create a new Drawable.ConstantState for color filtering
+                    if (icon != null) {
+                        icon.mutate();
+                    }
                 }
             }
         } else if (dataItem instanceof StructuredNameDataItem) {
