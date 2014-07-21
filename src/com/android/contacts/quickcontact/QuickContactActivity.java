@@ -1504,7 +1504,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (allInteractions.size() > 0) {
             mRecentCard.initialize(interactionsWrapper,
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
-                    /* isExpanded = */  mRecentCard.isExpanded(), /* isAlwaysExpanded = */ false,
+                    /* isExpanded = */ mRecentCard.isExpanded(), /* isAlwaysExpanded = */ false,
                     mExpandingEntryCardViewListener);
             mRecentCard.setVisibility(View.VISIBLE);
         }
