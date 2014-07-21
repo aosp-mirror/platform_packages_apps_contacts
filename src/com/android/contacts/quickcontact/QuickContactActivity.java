@@ -806,7 +806,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (contactCardEntries.size() > 0) {
             mContactCard.initialize(contactCardEntries,
                     /* numInitialVisibleEntries = */ MIN_NUM_CONTACT_ENTRIES_SHOWN,
-                    /* isExpanded = */ false,
+                    /* isExpanded = */ mContactCard.isExpanded(),
                     /* isAlwaysExpanded = */ false,
                     mExpandingEntryCardViewListener);
             mContactCard.setVisibility(View.VISIBLE);
@@ -867,7 +867,7 @@ public class QuickContactActivity extends ContactsActivity {
                 R.color.quickcontact_entry_sub_header_text_color);
         final PorterDuffColorFilter greyColorFilter =
                 new PorterDuffColorFilter(subHeaderTextColor, PorterDuff.Mode.SRC_ATOP);
-        mNoContactDetailsCard.initialize(promptEntries, 2, /* isExpanded = */ false,
+        mNoContactDetailsCard.initialize(promptEntries, 2, /* isExpanded = */ true,
                 /* isAlwaysExpanded = */ true, mExpandingEntryCardViewListener);
         mNoContactDetailsCard.setVisibility(View.VISIBLE);
         mNoContactDetailsCard.setEntryHeaderColor(subHeaderTextColor);
@@ -1504,7 +1504,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (allInteractions.size() > 0) {
             mRecentCard.initialize(interactionsWrapper,
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
-                    /* isExpanded = */ false, /* isAlwaysExpanded = */ false,
+                    /* isExpanded = */ mRecentCard.isExpanded(), /* isAlwaysExpanded = */ false,
                     mExpandingEntryCardViewListener);
             mRecentCard.setVisibility(View.VISIBLE);
         }
