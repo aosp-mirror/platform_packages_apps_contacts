@@ -118,6 +118,10 @@
     <!-- Darker version of the actionbar color. Used for the status bar and navigation bar colors. -->
     <color name="actionbar_background_color_dark">#008aa1</color>
 
+    <color name="tab_ripple_color">@color/tab_accent_color</color>
+    <color name="tab_accent_color">#eeff41</color>
+    <color name="tab_selected_underline_color">@color/tab_accent_color</color>
+
     <!-- Color of the title to the Frequently Contacted section -->
     <color name="frequently_contacted_title_color">#00acc1</color>
 
