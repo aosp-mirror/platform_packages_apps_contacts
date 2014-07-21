@@ -19,7 +19,7 @@ package com.android.contacts.common;
 import android.content.Intent;
 import android.net.Uri;
 import android.telecomm.PhoneAccount;
-import android.telecomm.TelecommConstants;
+import android.telecomm.TelecommManager;
 import android.telecomm.VideoCallProfile;
 
 import com.android.contacts.common.util.PhoneNumberHelper;
@@ -123,12 +123,12 @@ public class CallUtil {
             Uri uri, String callOrigin, PhoneAccount account, int videoState) {
         final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(TelecommConstants.EXTRA_START_CALL_WITH_VIDEO_STATE, videoState);
+        intent.putExtra(TelecommManager.EXTRA_START_CALL_WITH_VIDEO_STATE, videoState);
         if (callOrigin != null) {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
         }
         if (account != null) {
-            intent.putExtra(TelecommConstants.EXTRA_PHONE_ACCOUNT, account);
+            intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT, account);
         }
 
         return intent;
