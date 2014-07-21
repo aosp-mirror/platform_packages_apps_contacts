@@ -440,7 +440,6 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
     }
 
-    // TODO add accessibility content descriptions
     private View createEntryView(LayoutInflater layoutInflater, Entry entry) {
         final View view = layoutInflater.inflate(
                 R.layout.expanding_entry_card_item, this, false);
@@ -503,22 +502,20 @@ public class ExpandingEntryCardView extends LinearLayout {
             alternateIcon.setVisibility(View.VISIBLE);
             alternateIcon.setContentDescription(entry.getAlternateContentDescription());
 
-            // Expand the clickable area for alternate icon to be top to bottom and to right edge
+            // Expand the clickable area for alternate icon to be top to bottom and to end edge
             // of the entry view
             view.post(new Runnable() {
                 @Override
                 public void run() {
-                    final Rect entryRect = new Rect();
-                    view.getHitRect(entryRect);
-
                     final Rect alternateIconRect = new Rect();
                     alternateIcon.getHitRect(alternateIconRect);
-                    alternateIconRect.bottom = entryRect.bottom;
-                    alternateIconRect.top = entryRect.top;
+
+                    alternateIconRect.bottom = view.getHeight();
+                    alternateIconRect.top = 0;
                     if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                        alternateIconRect.left = entryRect.left;
+                        alternateIconRect.left = 0;
                     } else {
-                        alternateIconRect.right = entryRect.right;
+                        alternateIconRect.right = view.getWidth();
                     }
                     final TouchDelegate touchDelegate =
                             new TouchDelegate(alternateIconRect, alternateIcon);
