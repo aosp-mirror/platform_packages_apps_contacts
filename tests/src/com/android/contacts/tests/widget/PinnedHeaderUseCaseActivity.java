@@ -76,7 +76,8 @@ public class PinnedHeaderUseCaseActivity extends ListActivity {
     private void startActivity(int[] counts, String[] names, boolean[] headers,
             boolean[] showIfEmpty, int[] delays) {
         Intent intent = new Intent();
-        intent.setComponent(new ComponentName("com.android.contacts",
+        intent.setComponent(new ComponentName(
+                getResources().getString(R.string.target_package_name),
                 "com.android.contacts.widget.PinnedHeaderListDemoActivity"));
         intent.putExtra("counts", counts);
         intent.putExtra("names", names);

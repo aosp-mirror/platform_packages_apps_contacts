@@ -61,7 +61,7 @@ public class AllIntentsActivity extends ListActivity
         implements SelectAccountDialogFragment.Listener {
 
     /** The name of the package of the contacts application. */
-    private static final String ANDROID_CONTACTS_PACKAGE = "com.android.contacts";
+    private String mContactsPackageName;
 
     private static final String CONTACT_LIST_ACTIVITY_CLASS_NAME =
             "com.android.contacts.activities.PeopleActivity";
@@ -140,6 +140,8 @@ public class AllIntentsActivity extends ListActivity
         super.onCreate(savedInstanceState);
         setListAdapter(new ArrayAdapter<String>(this, R.layout.intent_list_item,
                 getResources().getStringArray(R.array.allIntents)));
+        mContactsPackageName = getResources().getString(
+                R.string.target_package_name);
     }
 
     @Override
@@ -559,7 +561,8 @@ public class AllIntentsActivity extends ListActivity
 
     /** Creates an intent that is bound to a specific activity by name. */
     private Intent bindIntentToClass(Intent intent, String activityClassName) {
-        intent.setComponent(new ComponentName(ANDROID_CONTACTS_PACKAGE, activityClassName));
+        intent.setComponent(new ComponentName(mContactsPackageName,
+                    activityClassName));
         return intent;
     }
 
