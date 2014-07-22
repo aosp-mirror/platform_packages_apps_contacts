@@ -116,6 +116,7 @@
     <dimen name="tab_selected_underline_height">2dp</dimen>
     <!-- Size of text in tabs. -->
     <dimen name="tab_text_size">14sp</dimen>
+    <dimen name="tab_elevation">2dp</dimen>
 
     <!-- Padding around the icon in the search box. -->
     <dimen name="search_box_icon_margin">4dp</dimen>
