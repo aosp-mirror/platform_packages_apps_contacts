@@ -1098,6 +1098,9 @@ public class QuickContactActivity extends ContactsActivity {
                     text = StructuredPostal.getTypeLabel(getResources(),
                             postal.getKindTypeColumn(kind), postal.getLabel()).toString();
                 }
+                alternateIntent =
+                        StructuredPostalUtils.getViewPostalAddressDirectionsIntent(postalAddress);
+                alternateIcon = getResources().getDrawable(R.drawable.ic_directions_24dp);
                 icon = getResources().getDrawable(R.drawable.ic_place_24dp);
             }
         } else if (dataItem instanceof SipAddressDataItem) {
