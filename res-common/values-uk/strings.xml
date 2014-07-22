@@ -249,6 +249,6 @@
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> через <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"припинити пошук"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Очистити поле пошуку"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Параметри показу контакта"</string>
-    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"Налаштуйте показ і порядок контактів."</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Параметри відображення контактів"</string>
+    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"Налаштуйте відображення й сортування контактів."</string>
 </resources>
