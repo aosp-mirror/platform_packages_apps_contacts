@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ส่งข้อความเข้าเพจเจอร์ที่ทำงาน"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"ส่งข้อความถึง MMS"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"ใช้แฮงเอาท์วิดีโอ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ หรือไม่"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอปพลิเคชัน People และ Phone และบังคับให้แอปพลิเคชันอีเมลเรียนรู้ค่ากำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"กำลังล้างผู้ที่คุณติดต่อด้วยบ่อยๆ…"</string>
@@ -140,7 +141,7 @@
     <string name="chat_icq" msgid="7538190395602030726">"แชทโดยใช้ ICQ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"แชทโดยใช้ Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"แชท"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"นำออก"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"ลบ"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"ขยายหรือยุบฟิลด์ชื่อ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"รายชื่อติดต่อทั้งหมด"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"ที่ติดดาว"</string>
@@ -220,6 +221,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"ไม่สามารถสแกนการ์ด SD (สาเหตุ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"กำลังนำเข้า <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ส่งออกไปยังที่เก็บข้อมูล"</string>
+    <string name="display_options_sort_list_by" msgid="7686551200843900466">"เรียงรายการตาม"</string>
+    <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"ชื่อ"</string>
+    <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"นามสกุล"</string>
+    <string name="display_options_view_names_as" msgid="1104495761313107327">"ดูชื่อของรายชื่อผู้ติดต่อ"</string>
+    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"ขึ้นต้นด้วยชื่อ"</string>
+    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"ขึ้นต้นด้วยนามสกุล"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"แชร์รายชื่อติดต่อที่มองเห็น"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"นำเข้า/ส่งออกรายชื่อติดต่อ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"นำเข้ารายชื่อติดต่อ"</string>
@@ -238,11 +245,10 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"เลือกซิมการ์ด"</string>
     <string name="menu_accounts" msgid="795417468541517082">"บัญชี"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"นำเข้า/ส่งออก"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"ส่งข้อความให้ <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"หมายเลขโทรศัพท์ของ <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"เพิ่มที่อยู่ติดต่อ"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"ผ่านทาง <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> ผ่านทาง <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"หยุดการค้นหา"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ล้างการค้นหา"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"ตัวเลือกการแสดงรายชื่อผู้ติดต่อ"</string>
+    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"กำหนดวิธีการแสดงและการจัดเรียงรายชื่อผู้ติดต่อ"</string>
 </resources>
