@@ -61,8 +61,4 @@
 
     <!-- Background color of pinned header items. -->
     <color name="list_item_pinned_header_color">#f5f5f5</color>
-
-    <color name="tab_default_color">@color/actionbar_background_color</color>
-    <color name="tab_pressed_color">@color/tab_selected_color</color>
-    <color name="tab_selected_color">#ffeeff41</color>
 </resources>

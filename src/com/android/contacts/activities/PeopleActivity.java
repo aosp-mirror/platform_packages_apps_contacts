@@ -19,7 +19,9 @@ package com.android.contacts.activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,7 +45,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.Toolbar;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
@@ -67,6 +71,7 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
+import com.android.contacts.common.list.ViewPagerTabs;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ViewUtil;
@@ -123,7 +128,9 @@ public class PeopleActivity extends ContactsActivity implements
 
     /** ViewPager for swipe */
     private ViewPager mTabPager;
+    private ViewPagerTabs mViewPagerTabs;
     private TabPagerAdapter mTabPagerAdapter;
+    private String[] mTabTitles;
     private final TabPagerListener mTabPagerListener = new TabPagerListener();
 
     private boolean mEnableDebugMenuOptions;
@@ -277,6 +284,10 @@ public class PeopleActivity extends ContactsActivity implements
     }
 
     private void createViewsAndFragments(Bundle savedState) {
+        // Disable the ActionBar so that we can use a Toolbar. This needs to be called before
+        // setContentView().
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.people_activity);
 
         final FragmentManager fragmentManager = getFragmentManager();
@@ -284,10 +295,28 @@ public class PeopleActivity extends ContactsActivity implements
         // Hide all tabs (the current tab will later be reshown once a tab is selected)
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
 
+        mTabTitles = new String[TabState.COUNT];
+        mTabTitles[TabState.FAVORITES] = getString(R.string.favorites_tab_label);
+        mTabTitles[TabState.ALL] = getString(R.string.all_contacts_tab_label);
         mTabPager = getView(R.id.tab_pager);
         mTabPagerAdapter = new TabPagerAdapter();
         mTabPager.setAdapter(mTabPagerAdapter);
         mTabPager.setOnPageChangeListener(mTabPagerListener);
+
+        // Configure toolbar and toolbar tabs. If in landscape mode, we  configure tabs differntly.
+        final Toolbar toolbar = getView(R.id.toolbar);
+        setActionBar(toolbar);
+        final ViewPagerTabs portraitViewPagerTabs
+                = (ViewPagerTabs) findViewById(R.id.lists_pager_header);
+        ViewPagerTabs landscapeViewPagerTabs = null;
+        if (portraitViewPagerTabs ==  null) {
+            landscapeViewPagerTabs = (ViewPagerTabs) getLayoutInflater().inflate(
+                    R.layout.people_activity_tabs_lands, toolbar, /* attachToRoot = */ false);
+            mViewPagerTabs = landscapeViewPagerTabs;
+        } else {
+            mViewPagerTabs = portraitViewPagerTabs;
+        }
+        mViewPagerTabs.setViewPager(mTabPager);
 
         final String FAVORITE_TAG = "tab-pager-favorite";
         final String ALL_TAG = "tab-pager-all";
@@ -326,8 +355,8 @@ public class PeopleActivity extends ContactsActivity implements
         // Setting Properties after fragment is created
         mFavoritesFragment.setDisplayType(DisplayType.STREQUENT);
 
-        // Configure action bar
-        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());
+        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar(),
+                portraitViewPagerTabs, landscapeViewPagerTabs, toolbar);
         mActionBarAdapter.initialize(savedState, mRequest);
 
         // Configure action button
@@ -572,10 +601,16 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onPageScrollStateChanged(int state) {
+            if (!mTabPagerAdapter.isSearchMode()) {
+                mViewPagerTabs.onPageScrollStateChanged(state);
+            }
         }
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            if (!mTabPagerAdapter.isSearchMode()) {
+                mViewPagerTabs.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
         }
 
         @Override
@@ -583,6 +618,7 @@ public class PeopleActivity extends ContactsActivity implements
             // Make sure not in the search mode, in which case position != TabState.ordinal().
             if (!mTabPagerAdapter.isSearchMode()) {
                 mActionBarAdapter.setCurrentTab(position, false);
+                mViewPagerTabs.onPageSelected(position);
                 showEmptyStateForTab(position);
                 invalidateOptionsMenu();
             }
@@ -725,6 +761,11 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void restoreState(Parcelable state, ClassLoader loader) {
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTabTitles[position];
         }
     }
 
