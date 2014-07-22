@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Envia un SMS al cercapersones de la feina"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Envia un SMS a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Envia un MMS"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Permet fer una videotrucada."</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vols esborrar els contactes freqüents?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"S\'esborrarà la llista de contactes més freqüents a les aplicacions de contactes i del telèfon i es forçarà les aplicacions de correu electrònic a obtenir informació sobre les teves preferències de direccionament des de zero."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"S\'estan esborrant contactes freq..."</string>
@@ -220,6 +221,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"No s\'ha pogut explorar la targeta SD. (Motiu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"S\'està important <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exporta a l\'emmagatzematge"</string>
+    <string name="display_options_sort_list_by" msgid="7686551200843900466">"Ordena la llista per"</string>
+    <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"Nom"</string>
+    <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"Cognom"</string>
+    <string name="display_options_view_names_as" msgid="1104495761313107327">"Mostra els noms dels contactes"</string>
+    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"Primer el nom"</string>
+    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"Primer el cognom"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Comparteix els contactes visibles"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importa/exporta contactes"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importa contactes"</string>
@@ -238,11 +245,10 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"Selecciona una targeta SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Comptes"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importa/exporta"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"Envia un missatge a <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"Marca el telèfon <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"Afegeix un contacte"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"mitjançant <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> mitjançant <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"Atura la cerca."</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Esborra la cerca."</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opcions de visualització de contactes"</string>
+    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"Configura com es mostren i s\'ordenen els contactes."</string>
 </resources>
