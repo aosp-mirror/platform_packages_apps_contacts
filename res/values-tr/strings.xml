@@ -25,6 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Aranacak numarayı seçin"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"İleti gönderilecek bir numara seçin"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Bir kişi seçin"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Yeni kişi seçin"</string>
     <string name="starredList" msgid="4817256136413959463">"Yıldızlı"</string>
     <string name="frequentList" msgid="7154768136473953056">"Sık sık"</string>
     <string name="strequentList" msgid="5640192862059373511">"Sık Kullanılanlar"</string>
@@ -39,6 +40,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Kişiyi görüntüle"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Sık kullanılanlara ekle"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Sık kullanılanlardan kaldır"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Favorilerden kaldırıldı"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Favorilere eklendi"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Düzenle"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Sil"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Ana ekrana yerleştir"</string>
@@ -115,8 +118,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Kişilerinizin adları"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Bu işlemi gerçekleştirecek uygulama bulunamadı."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Önceki ekrana dönmek için tıklayın"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Telefon numarası ekle"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"E-posta adresi ekle"</string>
     <string name="missing_app" msgid="1466111003546611387">"Bu işlemi gerçekleştirecek uygulama bulunamadı."</string>
     <string name="menu_share" msgid="943789700636542260">"Paylaş"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Kişilere ekle"</string>
     <string name="share_via" msgid="563121028023030093">"Şunu kullanarak kişi paylaş:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Grubu şu hesabın altında oluştur:"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Sesli sohbet"</string>
@@ -132,12 +138,6 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Bu uygulamadan düzenlenemez."</string>
     <string name="no_contact_details" msgid="6636856378019344497">"Bu kişi için ek bilgi yok."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Bu cihazda düzenlenemez."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Listeyi şu ölçüte göre sırala:"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Adı"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Soyadı"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Kişi adlarını görüntüle"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Önce adı"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Önce soyadı"</string>
     <string name="take_photo" msgid="7496128293167402354">"Fotoğraf çek"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Yeni fotoğraf çek"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Fotoğraf seç"</string>
@@ -230,8 +230,8 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Daha fazla göster"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Daha az göster"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Tümünü göster"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Kişi"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"En son"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Hakkında"</string>
     <string name="send_message" msgid="8938418965550543196">"İleti gönder"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Kişisel kopya oluşturuluyor..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Dün"</string>
@@ -242,4 +242,12 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Başlıksız etkinlik)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Ayarla"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
+    <string name="header_organization_entry" msgid="8515394955666265406">"Kuruluş"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"Takma Ad"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"Not"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"Web sitesi"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"Etkinlik"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"İlişki"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"konum için yol tarifleri"</string>
 </resources>
