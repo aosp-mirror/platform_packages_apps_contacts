@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2013 The Android Open Source Project
+<!-- Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,15 +13,15 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Tab background -->
-    <item android:drawable="@color/tab_default_color" />
-    <!-- Focus rectangle -->
-    <item>
-        <shape android:shape="rectangle" >
-            <stroke
-                android:width="@dimen/tab_focused_stroke_width"
-                android:color="@color/focus_color" />
-        </shape>
-    </item>
-</layer-list>
+
+<com.android.contacts.common.list.ViewPagerTabs
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lists_pager_header"
+    android:layout_width="@dimen/people_activity_landscape_tabs_width"
+    android:layout_height="match_parent"
+    android:textAllCaps="true"
+    android:orientation="horizontal"
+    android:layout_gravity="top"
+    android:layout_weight="0"
+    android:textSize="@dimen/people_activity_landscape_tabs_text_size"
+    style="@style/ContactsActionBarTabTextStyle" />
