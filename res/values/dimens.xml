@@ -188,6 +188,15 @@
     <dimen name="expanding_entry_card_item_alternate_icon_margin_bottom">10dp</dimen>
 
     <dimen name="people_activity_card_elevation">2dp</dimen>
+    <!-- The width the that the tabs occupy in the ActionBar when in landscape mode.
+         426dp is the height of a "small" screen. We should leave 240dp for
+         the title and menu items -->
+    <dimen name="people_activity_landscape_tabs_width">186dip</dimen>
+    <!-- The size of the text displayed in the ActionBar tabs in landscape mode.
+         Text in the tabs should must be width dependent, otherwise it won't fit in the tabs.
+         In portrait mode, the tabs look okay when overflowing their allocated space.
+         We have to be more careful in landscape. -->
+    <dimen name="people_activity_landscape_tabs_text_size">8dp</dimen>
 
     <dimen name="expanding_entry_card_item_icon_height">24dp</dimen>
     <dimen name="expanding_entry_card_item_icon_width">24dp</dimen>

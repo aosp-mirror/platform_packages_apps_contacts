@@ -16,22 +16,25 @@
 
 package com.android.contacts.activities;
 
+import android.animation.ValueAnimator;
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.Toolbar;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
@@ -70,7 +73,14 @@ public class ActionBarAdapter implements OnCloseListener {
     private String mQueryString;
 
     private EditText mSearchView;
+    /** The view that represents tabs when we are in portrait mode **/
+    private View mPortraitTabs;
+    /** The view that represents tabs when we are in landscape mode **/
+    private View mLandscapeTabs;
     private View mSearchContainer;
+
+    private int mMaxPortraitTabHeight;
+    private int mMaxToolbarContentInsetStart;
 
     private final Context mContext;
     private final SharedPreferences mPrefs;
@@ -78,8 +88,7 @@ public class ActionBarAdapter implements OnCloseListener {
     private Listener mListener;
 
     private final ActionBar mActionBar;
-    private final int mActionBarNavigationMode;
-    private final MyTabListener mTabListener;
+    private final Toolbar mToolbar;
 
     private boolean mShowHomeIcon;
 
@@ -93,29 +102,38 @@ public class ActionBarAdapter implements OnCloseListener {
 
     private int mCurrentTab = TabState.DEFAULT;
 
-    public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar) {
+    public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar,
+            View portraitTabs, View landscapeTabs, Toolbar toolbar) {
         mContext = context;
         mListener = listener;
         mActionBar = actionBar;
         mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-
+        mPortraitTabs = portraitTabs;
+        mLandscapeTabs = landscapeTabs;
+        mToolbar = toolbar;
+        mMaxToolbarContentInsetStart = mToolbar.getContentInsetStart();
         mShowHomeIcon = mContext.getResources().getBoolean(R.bool.show_home_icon);
 
-        mActionBarNavigationMode = ActionBar.NAVIGATION_MODE_TABS;
-        mTabListener = new MyTabListener();
-
         setupSearchView();
-        setupTabs();
+        setupTabs(context);
     }
 
-    private void setupTabs() {
-        addTab(TabState.FAVORITES, R.string.favorites_tab_label);
-        addTab(TabState.ALL, R.string.all_contacts_tab_label);
+    private void setupTabs(Context context) {
+        final TypedArray attributeArray = context.obtainStyledAttributes(
+                new int[]{android.R.attr.actionBarSize});
+        mMaxPortraitTabHeight = attributeArray.getDimensionPixelSize(0, 0);
+        // Hide tabs initially
+        setPortraitTabHeight(0);
     }
 
     private void setupSearchView() {
-        mActionBar.setCustomView(R.layout.search_bar_expanded);
-        mSearchContainer = mActionBar.getCustomView();
+        final LayoutInflater inflater = (LayoutInflater) mToolbar.getContext().getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
+        mSearchContainer = inflater.inflate(R.layout.search_bar_expanded, mToolbar,
+                /* attachToRoot = */ false);
+        mSearchContainer.setVisibility(View.VISIBLE);
+        mToolbar.addView(mSearchContainer);
+
         mSearchContainer.setBackgroundColor(mContext.getResources().getColor(
                 R.color.searchbox_background_color));
         mSearchView = (EditText) mSearchContainer.findViewById(R.id.search_view);
@@ -137,7 +155,6 @@ public class ActionBarAdapter implements OnCloseListener {
                 }
             }
         });
-        mActionBar.setCustomView(mSearchContainer);
     }
 
     public void initialize(Bundle savedState, ContactsRequest request) {
@@ -170,34 +187,6 @@ public class ActionBarAdapter implements OnCloseListener {
         mListener = listener;
     }
 
-    private void addTab(int expectedTabIndex, int description) {
-        final Tab tab = mActionBar.newTab();
-        tab.setTabListener(mTabListener);
-        tab.setText(description);
-        mActionBar.addTab(tab);
-        if (expectedTabIndex != tab.getPosition()) {
-            throw new IllegalStateException("Tabs must be created in the right order");
-        }
-    }
-
-    private class MyTabListener implements ActionBar.TabListener {
-        /**
-         * If true, it won't call {@link #setCurrentTab} in {@link #onTabSelected}.
-         * This flag is used when we want to programmatically update the current tab without
-         * {@link #onTabSelected} getting called.
-         */
-        public boolean mIgnoreTabSelected;
-
-        @Override public void onTabReselected(Tab tab, FragmentTransaction ft) { }
-        @Override public void onTabUnselected(Tab tab, FragmentTransaction ft) { }
-
-        @Override public void onTabSelected(Tab tab, FragmentTransaction ft) {
-            if (!mIgnoreTabSelected) {
-                setCurrentTab(tab.getPosition());
-            }
-        }
-    }
-
     private class SearchTextWatcher implements TextWatcher {
 
         @Override
@@ -223,25 +212,20 @@ public class ActionBarAdapter implements OnCloseListener {
     }
 
     /**
-     * Change the current tab, and notify the listener.
+     * Save the current tab selection, and notify the listener.
      */
     public void setCurrentTab(int tab) {
         setCurrentTab(tab, true);
     }
 
     /**
-     * Change the current tab
+     * Save the current tab selection.
      */
     public void setCurrentTab(int tab, boolean notifyListener) {
         if (tab == mCurrentTab) {
             return;
         }
         mCurrentTab = tab;
-
-        final int actionBarSelectedNavIndex = mActionBar.getSelectedNavigationIndex();
-        if (mCurrentTab != actionBarSelectedNavIndex) {
-            mActionBar.setSelectedNavigationItem(mCurrentTab);
-        }
 
         if (notifyListener && mListener != null) mListener.onSelectedTabChanged();
         saveLastTabPreference(mCurrentTab);
@@ -295,7 +279,7 @@ public class ActionBarAdapter implements OnCloseListener {
         return mSearchMode; // Only shown on the search mode.
     }
 
-    private void updateDisplayOptions() {
+    private void updateDisplayOptionsInner() {
         // All the flags we may change in this method.
         final int MASK = ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME
                 | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_CUSTOM;
@@ -310,9 +294,13 @@ public class ActionBarAdapter implements OnCloseListener {
         }
         if (mSearchMode) {
             newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
+            mToolbar.setContentInsetsRelative(0, mToolbar.getContentInsetEnd());
         } else {
             newFlags |= ActionBar.DISPLAY_SHOW_TITLE;
+            mToolbar.setContentInsetsRelative(mMaxToolbarContentInsetStart,
+                    mToolbar.getContentInsetEnd());
         }
+
 
         if (current != newFlags) {
             // Pass the mask here to preserve other flags that we're not interested here.
@@ -322,21 +310,26 @@ public class ActionBarAdapter implements OnCloseListener {
 
     private void update(boolean skipAnimation) {
         final boolean isIconifiedChanging
-                = (mSearchContainer.getVisibility() == View.VISIBLE) != mSearchMode;
+                = (mSearchContainer.getParent() == null) == mSearchMode;
+        mToolbar.removeView(mLandscapeTabs);
         if (isIconifiedChanging && !skipAnimation) {
             if (mSearchMode) {
-                mSearchContainer.setVisibility(View.VISIBLE);
+                mToolbar.removeView(mLandscapeTabs);
+                addSearchContainer();
                 mSearchContainer.setAlpha(0);
                 mSearchContainer.animate().alpha(1);
-                updateDisplayOptionsAndNavigationMode(isIconifiedChanging);
+                animateTabHeightChange(mMaxPortraitTabHeight, 0);
+                updateDisplayOptions(isIconifiedChanging);
             } else {
                 mSearchContainer.setAlpha(1);
+                animateTabHeightChange(0, mMaxPortraitTabHeight);
                 mSearchContainer.animate().alpha(0).withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        updateDisplayOptions();
-                        mSearchContainer.setVisibility(View.GONE);
-                        updateDisplayOptionsAndNavigationMode(isIconifiedChanging);
+                        updateDisplayOptionsInner();
+                        updateDisplayOptions(isIconifiedChanging);
+                        addLandscapeViewPagerTabs();
+                        mToolbar.removeView(mSearchContainer);
                     }
                 });
             }
@@ -344,15 +337,31 @@ public class ActionBarAdapter implements OnCloseListener {
         }
         if (isIconifiedChanging && skipAnimation) {
             if (mSearchMode) {
-                mSearchContainer.setVisibility(View.VISIBLE);
+                setPortraitTabHeight(0);
+                mToolbar.removeView(mLandscapeTabs);
+                addSearchContainer();
             } else {
-                mSearchContainer.setVisibility(View.GONE);
+                setPortraitTabHeight(mMaxPortraitTabHeight);
+                mToolbar.removeView(mSearchContainer);
+                addLandscapeViewPagerTabs();
             }
         }
-        updateDisplayOptionsAndNavigationMode(isIconifiedChanging);
+        updateDisplayOptions(isIconifiedChanging);
     }
 
-    private void updateDisplayOptionsAndNavigationMode(boolean isIconifiedChanging) {
+    private void addLandscapeViewPagerTabs() {
+        if (mLandscapeTabs != null) {
+            mToolbar.removeView(mLandscapeTabs);
+            mToolbar.addView(mLandscapeTabs);
+        }
+    }
+
+    private void addSearchContainer() {
+        mToolbar.removeView(mSearchContainer);
+        mToolbar.addView(mSearchContainer);
+    }
+
+    private void updateDisplayOptions(boolean isIconifiedChanging) {
         if (mSearchMode) {
             setFocusOnSearchView();
             // Since we have the {@link SearchView} in a custom action bar, we must manually handle
@@ -364,35 +373,16 @@ public class ActionBarAdapter implements OnCloseListener {
                     mSearchView.setText(queryText);
                 }
             }
-            if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_STANDARD) {
-                mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            }
             if (mListener != null) {
                 mListener.onAction(Action.START_SEARCH_MODE);
             }
         } else {
-            final int currentNavigationMode = mActionBar.getNavigationMode();
-            if (mActionBarNavigationMode == ActionBar.NAVIGATION_MODE_TABS
-                    && currentNavigationMode != ActionBar.NAVIGATION_MODE_TABS) {
-                // setNavigationMode will trigger onTabSelected() with the tab which was previously
-                // selected.
-                // The issue is that when we're first switching to the tab navigation mode after
-                // screen orientation changes, onTabSelected() will get called with the first tab
-                // (i.e. favorite), which would results in mCurrentTab getting set to FAVORITES and
-                // we'd lose restored tab.
-                // So let's just disable the callback here temporarily.  We'll notify the listener
-                // after this anyway.
-                mTabListener.mIgnoreTabSelected = true;
-                mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-                mActionBar.setSelectedNavigationItem(mCurrentTab);
-                mTabListener.mIgnoreTabSelected = false;
-            }
             if (mListener != null) {
                 mListener.onAction(Action.STOP_SEARCH_MODE);
                 mListener.onSelectedTabChanged();
             }
         }
-        updateDisplayOptions();
+        updateDisplayOptionsInner();
     }
 
     @Override
@@ -443,5 +433,29 @@ public class ActionBarAdapter implements OnCloseListener {
             // Preference is corrupt?
             return TabState.DEFAULT;
         }
+    }
+
+    private void animateTabHeightChange(int start, int end) {
+        if (mPortraitTabs == null) {
+            return;
+        }
+        final ValueAnimator animator = ValueAnimator.ofInt(start, end);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int value = (Integer) valueAnimator.getAnimatedValue();
+                setPortraitTabHeight(value);
+            }
+        });
+        animator.setDuration(100).start();
+    }
+
+    private void setPortraitTabHeight(int height) {
+        if (mPortraitTabs == null) {
+            return;
+        }
+        ViewGroup.LayoutParams layoutParams = mPortraitTabs.getLayoutParams();
+        layoutParams.height = height;
+        mPortraitTabs.setLayoutParams(layoutParams);
     }
 }

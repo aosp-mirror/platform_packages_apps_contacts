@@ -19,6 +19,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/people_activity_toolbar"
+        android:id="@+id/toolbar_parent" />
+
     <!--
         ViewPager for swiping between tabs.  We put StrequentContactListFragment,
         DefaultContactBrowseListFragment and GroupBrowseListFragment at runtime.
@@ -30,6 +34,7 @@
         android:id="@+id/tab_pager"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_below="@id/toolbar_parent"
         />
 
     <FrameLayout
