@@ -50,8 +50,8 @@ import java.util.List;
  * (meaning name, phonetic name, job, and attribution) from a
  * {@link Contact} data object to appropriate {@link View}s.
  */
-public class ContactDetailDisplayUtils {
-    private static final String TAG = "ContactDetailDisplayUtils";
+public class ContactDisplayUtils {
+    private static final String TAG = "ContactDisplayUtils";
 
     /**
      * Returns the display name of the contact, using the current display order setting.
