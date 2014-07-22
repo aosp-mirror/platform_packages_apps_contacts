@@ -25,6 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"選擇去電號碼"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"選擇傳訊號碼"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"選擇聯絡人"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"選取新聯絡人"</string>
     <string name="starredList" msgid="4817256136413959463">"已加星號"</string>
     <string name="frequentList" msgid="7154768136473953056">"經常聯絡"</string>
     <string name="strequentList" msgid="5640192862059373511">"我的收藏"</string>
@@ -39,6 +40,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"檢視聯絡人"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"加到我的收藏"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"從我的收藏中移除"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"已從我的最愛中移除"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"已加到我的最愛"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"放在主螢幕上"</string>
@@ -115,8 +118,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"找不到可以處理這個動作的應用程式。"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"按一下即可返回上一個畫面"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"新增電話號碼"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"新增電子郵件地址"</string>
     <string name="missing_app" msgid="1466111003546611387">"找不到可以處理這個動作的應用程式。"</string>
     <string name="menu_share" msgid="943789700636542260">"分享"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"新增為聯絡人"</string>
     <string name="share_via" msgid="563121028023030093">"使用下列應用程式分享聯絡人資訊："</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"選擇帳戶以建立群組"</string>
     <string name="audio_chat" msgid="2535716629358298691">"語音通訊"</string>
@@ -132,12 +138,6 @@
     <string name="contact_read_only" msgid="7421346527289472273">"無法透過這個應用程式編輯。"</string>
     <string name="no_contact_details" msgid="6636856378019344497">"沒有這位聯絡人的其他資訊。"</string>
     <string name="group_read_only" msgid="1061762906115697637">"無法在這個裝置上編輯。"</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"清單排序依據"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"名字"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"姓氏"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"查看聯絡人姓名"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"名字在前"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"姓氏在前"</string>
     <string name="take_photo" msgid="7496128293167402354">"拍照"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"拍攝新相片"</string>
     <string name="pick_photo" msgid="2129509985223564942">"選擇相片"</string>
@@ -230,8 +230,8 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"顯示更多"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"顯示較少"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"全部顯示"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"聯絡人"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"近期"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"關於"</string>
     <string name="send_message" msgid="8938418965550543196">"傳送簡訊"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"正在建立個人副本..."</string>
     <string name="yesterday" msgid="6840858548955018569">"昨天"</string>
@@ -242,4 +242,12 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g><xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(未命名活動)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"設定"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"即時訊息"</string>
+    <string name="header_organization_entry" msgid="8515394955666265406">"機構"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"暱稱"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"記事"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"網站"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"活動"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"關係"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"規劃前往特定地點的路線"</string>
 </resources>

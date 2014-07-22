@@ -25,6 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Одаберите број за позив"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Одаберите број за слање порука"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Изаберите контакт"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Изаберите нови контакт"</string>
     <string name="starredList" msgid="4817256136413959463">"Са звездицом"</string>
     <string name="frequentList" msgid="7154768136473953056">"Чести"</string>
     <string name="strequentList" msgid="5640192862059373511">"Омиљено"</string>
@@ -39,6 +40,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Прикажи контакт"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Додај у омиљене контакте"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Уклони из омиљених контаката"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Уклоњено је из Омиљеног"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Додато је у Омиљено"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Измени"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Избриши"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Постави на Почетни екран"</string>
@@ -115,8 +118,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Имена контаката"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Није пронађена ниједна апликација која би могла да изврши ову радњу."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Кликните да бисте се вратили на претходни екран"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Додајте број телефона"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Додајте имејл"</string>
     <string name="missing_app" msgid="1466111003546611387">"Није пронађена ниједна апликација која би могла да обави ову радњу."</string>
     <string name="menu_share" msgid="943789700636542260">"Дели"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Додај у контакте"</string>
     <string name="share_via" msgid="563121028023030093">"Дели контакт преко"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Прављење групе на налогу"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Аудио ћаскање"</string>
@@ -132,12 +138,6 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Не може да се измени из ове апликације."</string>
     <string name="no_contact_details" msgid="6636856378019344497">"Нема додатних информацијa за овај контакт."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Не може да се мења на овом уређају."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Сортирај листу према"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Име"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Презиме"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Прикажи имена контаката"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Најпре име"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Прво презиме"</string>
     <string name="take_photo" msgid="7496128293167402354">"Сними фотографију"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Направи нову фотографију"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Изаберите слику"</string>
@@ -230,8 +230,8 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Прикажи више"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Прикажи мање"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Прикажи све"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Контакт"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Недавно"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Основни подаци"</string>
     <string name="send_message" msgid="8938418965550543196">"Пошаљи поруку"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Прављење личне копије..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Јуче"</string>
@@ -242,4 +242,12 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Ненасловљени догађај)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Подеси"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"Размена тренутних порука"</string>
+    <string name="header_organization_entry" msgid="8515394955666265406">"Организација"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"Надимак"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"Белешка"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"Веб-сајт"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"Догађај"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"Однос"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"упутства до локације"</string>
 </resources>
