@@ -816,6 +816,26 @@ public class QuickContactActivity extends ContactsActivity {
         Trace.endSection();
 
         Trace.beginSection("bind about card");
+        // Phonetic name is not a data item, so the entry needs to be created separately
+        final String phoneticName = mContactData.getPhoneticName();
+        if (!TextUtils.isEmpty(phoneticName)) {
+            Entry phoneticEntry = new Entry(/* viewId = */ -1,
+                    /* icon = */ null,
+                    getResources().getString(R.string.name_phonetic),
+                    phoneticName,
+                    /* text = */ null,
+                    /* intent = */ null,
+                    /* alternateIcon = */ null,
+                    /* alternateIntent = */ null,
+                    /* alternateContentDescription = */ null,
+                    /* shouldApplyColor = */ false,
+                    /* isEditable = */ false
+                    );
+            List<Entry> phoneticList = new ArrayList<>();
+            phoneticList.add(phoneticEntry);
+            aboutCardEntries.add(0, phoneticList);
+        }
+
         mAboutCard.initialize(aboutCardEntries,
                 /* numInitialVisibleEntries = */ 1,
                 /* isExpanded = */ true,
