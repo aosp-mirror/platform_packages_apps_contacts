@@ -25,8 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"选择一个可直接拨号的号码"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"选择一个可直接向其发送短信的号码"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"选择联系人"</string>
-    <!-- no translation found for header_entry_contact_list_adapter_header_title (2062180422920201172) -->
-    <skip />
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"选择新联系人"</string>
     <string name="starredList" msgid="4817256136413959463">"已加星标的内容"</string>
     <string name="frequentList" msgid="7154768136473953056">"经常联系"</string>
     <string name="strequentList" msgid="5640192862059373511">"收藏"</string>

@@ -40,10 +40,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Ikusi kontaktua"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Gehitu gogokoetan"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Kendu gogokoetatik"</string>
-    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
-    <skip />
-    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
-    <skip />
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Gogokoetatik kendu da"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Gogokoetan gehitu da"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editatu"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Ezabatu"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Jarri hasierako pantailan"</string>

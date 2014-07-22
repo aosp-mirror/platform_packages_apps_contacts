@@ -40,10 +40,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"ዕውቂያ ዕይ"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ወደ ተወዳጅ አክል"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ከተወዳጆች አስወግድ"</string>
-    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
-    <skip />
-    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
-    <skip />
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"ከተወዳጆች ውስጥ ተወግዷል"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"ወደ ተወዳጆች ታክሏል"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"አርትዕ"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ሰርዝ"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"መነሻ የማያ ገጽ ላይ አስቀምጥ"</string>

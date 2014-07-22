@@ -25,8 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolha um número a ser chamado"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Escolha um número para enviar uma mensagem"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolha um contato"</string>
-    <!-- no translation found for header_entry_contact_list_adapter_header_title (2062180422920201172) -->
-    <skip />
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Selecionar novo contato"</string>
     <string name="starredList" msgid="4817256136413959463">"Com estrela"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frequente"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favoritos"</string>
@@ -41,10 +40,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Ver contato"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Adicionar aos favoritos"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Remover dos favoritos"</string>
-    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
-    <skip />
-    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
-    <skip />
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Removido dos favoritos"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Adicionado aos favoritos"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Excluir"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Colocar na tela inicial"</string>
