@@ -20,7 +20,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.android.contacts.detail.ContactDetailDisplayUtils;
+import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.util.ThemeUtils;
 
 /**
@@ -66,7 +66,7 @@ public class AlphaTouchInterceptorOverlay extends FrameLayout {
         if (mAlphaLayer == alphaLayer) return;
 
         // We're no longer the alpha-layer, so make ourself invisible.
-        if (mAlphaLayer == this) ContactDetailDisplayUtils.setAlphaOnViewBackground(this, 0.0f);
+        if (mAlphaLayer == this) ContactDisplayUtils.setAlphaOnViewBackground(this, 0.0f);
 
         mAlphaLayer = (alphaLayer == null) ? this : alphaLayer;
         setAlphaLayerValue(mAlpha);
@@ -76,7 +76,7 @@ public class AlphaTouchInterceptorOverlay extends FrameLayout {
     public void setAlphaLayerValue(float alpha) {
         mAlpha = alpha;
         if (mAlphaLayer != null) {
-            ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, mAlpha);
+            ContactDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, mAlpha);
         }
     }
 

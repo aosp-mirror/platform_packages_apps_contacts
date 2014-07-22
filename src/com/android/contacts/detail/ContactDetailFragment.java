@@ -18,7 +18,6 @@ package com.android.contacts.detail;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -26,21 +25,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.net.ParseException;
 import android.net.Uri;
-import android.net.WebAddress;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.StatusUpdates;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -75,30 +69,24 @@ import com.android.contacts.TypePrecedence;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
-import com.android.contacts.common.Collapser;
-import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.GroupMetaData;
 import com.android.contacts.common.Collapser.Collapsible;
 import com.android.contacts.common.ContactPresenceIconUtil;
-import com.android.contacts.common.GeoUtil;
+import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.common.GroupMetaData;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountType.EditType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.common.util.ContactDisplayUtils;
-import com.android.contacts.common.util.DataStatus;
-import com.android.contacts.common.util.DateUtils;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountType.EditType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataItem;
+import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.EmailDataItem;
 import com.android.contacts.common.model.dataitem.EventDataItem;
 import com.android.contacts.common.model.dataitem.GroupMembershipDataItem;
@@ -112,17 +100,16 @@ import com.android.contacts.common.model.dataitem.SipAddressDataItem;
 import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.common.model.dataitem.WebsiteDataItem;
+import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.util.UiClosables;
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -378,7 +365,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * list cannot have a positive offset.
      */
     public int getFirstListItemOffset() {
-        return ContactDetailDisplayUtils.getFirstListItemOffset(mListView);
+        return ContactDisplayUtils.getFirstListItemOffset(mListView);
     }
 
     /**
@@ -387,7 +374,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * @param offset which should be <= 0
      */
     public void requestToMoveToOffset(int offset) {
-        ContactDetailDisplayUtils.requestToMoveToOffset(mListView, offset);
+        ContactDisplayUtils.requestToMoveToOffset(mListView, offset);
     }
 
     protected void bindData() {
@@ -581,7 +568,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         entry.secondaryIntent = smsIntent;
                         entry.secondaryActionIcon = kind.iconAltRes;
                         entry.secondaryActionDescription =
-                            ContactDisplayUtils.getSmsLabelResourceId(entry.type);
+                                com.android.contacts.common.util.ContactDisplayUtils.
+                                        getSmsLabelResourceId(entry.type);
                     } else if (hasPhone) {
                         entry.intent = phoneIntent;
                     } else if (hasSms) {
@@ -786,7 +774,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * done manually because phonetic name doesn't have a mimetype or action intent.
      */
     private void addPhoneticName() {
-        String phoneticName = ContactDetailDisplayUtils.getPhoneticName(mContext, mContactData);
+        String phoneticName = ContactDisplayUtils.getPhoneticName(mContext, mContactData);
         if (TextUtils.isEmpty(phoneticName)) {
             return;
         }
@@ -809,7 +797,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * to the same {@link DataKind}.
      */
     private void addNetworks() {
-        String attribution = ContactDetailDisplayUtils.getAttribution(mContext, mContactData);
+        String attribution = ContactDisplayUtils.getAttribution(mContext, mContactData);
         boolean hasAttribution = !TextUtils.isEmpty(attribution);
         int networksCount = mOtherEntriesMap.keySet().size();
 
@@ -1519,9 +1507,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 result.setTag(viewCache);
             }
 
-            ContactDetailDisplayUtils.setDisplayName(mContext, mContactData,
+            ContactDisplayUtils.setDisplayName(mContext, mContactData,
                     viewCache.displayNameView);
-            ContactDetailDisplayUtils.setCompanyName(mContext, mContactData, viewCache.companyView);
+            ContactDisplayUtils.setCompanyName(mContext, mContactData, viewCache.companyView);
 
             // Set the photo if it should be displayed
             if (viewCache.photoView != null) {
@@ -1537,7 +1525,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             // Set the starred state if it should be displayed
             final ImageView favoritesStar = viewCache.starredView;
             if (favoritesStar != null) {
-                ContactDetailDisplayUtils.configureStarredImageView(favoritesStar,
+                ContactDisplayUtils.configureStarredImageView(favoritesStar,
                         mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
                         mContactData.getStarred());
                 final Uri lookupUri = mContactData.getLookupUri();
@@ -1556,7 +1544,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
                             // To improve responsiveness, swap out the picture (and tag) in the UI
                             // already
-                            ContactDetailDisplayUtils.configureStarredImageView(favoritesStar,
+                            ContactDisplayUtils.configureStarredImageView(favoritesStar,
                                     mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
                                     !isStarred);
 
@@ -1715,7 +1703,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             String secondaryActionDescription = null;
             if (entry.secondaryActionIcon != -1) {
                 secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
-                if (ContactDisplayUtils.isCustomPhoneType(entry.type)) {
+                if (com.android.contacts.common.util.ContactDisplayUtils.isCustomPhoneType(
+                        entry.type)) {
                     secondaryActionDescription = resources.getString(
                             entry.secondaryActionDescription, entry.typeString);
                 } else {
