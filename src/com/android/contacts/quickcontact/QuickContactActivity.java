@@ -114,7 +114,7 @@ import com.android.contacts.common.model.dataitem.WebsiteDataItem;
 import com.android.contacts.common.util.DateUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
-import com.android.contacts.detail.ContactDetailDisplayUtils;
+import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -687,7 +687,7 @@ public class QuickContactActivity extends ContactsActivity {
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
         extractAndApplyTintFromPhotoViewAsynchronously();
         analyzeWhitenessOfPhotoAsynchronously();
-        setHeaderNameText(data.getDisplayName());
+        setHeaderNameText(ContactDisplayUtils.getDisplayName(this, data).toString());
 
         Trace.endSection();
 
@@ -1579,7 +1579,7 @@ public class QuickContactActivity extends ContactsActivity {
             final boolean isStarred = starredMenuItem.isChecked();
 
             // To improve responsiveness, swap out the picture (and tag) in the UI already
-            ContactDetailDisplayUtils.configureStarredMenuItem(starredMenuItem,
+            ContactDisplayUtils.configureStarredMenuItem(starredMenuItem,
                     mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
                     !isStarred);
 
@@ -1677,7 +1677,7 @@ public class QuickContactActivity extends ContactsActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (mContactData != null) {
             final MenuItem starredMenuItem = menu.findItem(R.id.menu_star);
-            ContactDetailDisplayUtils.configureStarredMenuItem(starredMenuItem,
+            ContactDisplayUtils.configureStarredMenuItem(starredMenuItem,
                     mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
                     mContactData.getStarred());
             // Configure edit MenuItem
