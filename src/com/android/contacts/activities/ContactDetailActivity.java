@@ -40,15 +40,14 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-import com.android.contacts.detail.ContactDetailDisplayUtils;
+import com.android.contacts.common.model.Contact;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.detail.ContactDetailLayoutController;
+import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.detail.ContactLoaderFragment;
 import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
 import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.common.model.Contact;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.util.PhoneCapabilityTester;
 
 import java.util.ArrayList;
 
@@ -115,7 +114,7 @@ public class ContactDetailActivity extends ContactsActivity {
                     final boolean isStarred = starredMenuItem.isChecked();
 
                     // To improve responsiveness, swap out the picture (and tag) in the UI already
-                    ContactDetailDisplayUtils.configureStarredMenuItem(starredMenuItem,
+                    ContactDisplayUtils.configureStarredMenuItem(starredMenuItem,
                             mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
                             !isStarred);
 
@@ -129,7 +128,7 @@ public class ContactDetailActivity extends ContactsActivity {
         });
         // If there is contact data, update the starred state
         if (mContactData != null) {
-            ContactDetailDisplayUtils.configureStarredMenuItem(starredMenuItem,
+            ContactDisplayUtils.configureStarredMenuItem(starredMenuItem,
                     mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
                     mContactData.getStarred());
         }
@@ -209,8 +208,8 @@ public class ContactDetailActivity extends ContactsActivity {
      * Setup the activity title and subtitle with contact name and company.
      */
     private void setupTitle() {
-        CharSequence displayName = ContactDetailDisplayUtils.getDisplayName(this, mContactData);
-        String company =  ContactDetailDisplayUtils.getCompany(this, mContactData);
+        CharSequence displayName = ContactDisplayUtils.getDisplayName(this, mContactData);
+        String company =  ContactDisplayUtils.getCompany(this, mContactData);
 
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(displayName);
