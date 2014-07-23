@@ -176,6 +176,11 @@
                 <data android:mimeType="vnd.android.cursor.item/postal-address_v2" />
                 <data android:mimeType="vnd.android.cursor.item/postal-address" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="com.android.contacts.action.JOIN_CONTACT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <!-- Backwards compatibility: somebody may have hard coded this activity name -->
@@ -194,17 +199,6 @@
             android:targetActivity=".activities.PeopleActivity"
             android:exported="true"
         />
-
-        <!-- An activity for joining contacts -->
-        <activity android:name=".activities.JoinContactActivity"
-            android:theme="@style/JoinContactActivityTheme"
-            android:clearTaskOnLaunch="true"
-        >
-            <intent-filter>
-                <action android:name="com.android.contacts.action.JOIN_CONTACT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
         <!-- Used to set options -->
         <activity
