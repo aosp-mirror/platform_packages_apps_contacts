@@ -27,9 +27,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.Insert;
+import android.provider.ContactsContract.Intents.UI;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,6 +51,7 @@ import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.list.EmailAddressPickerFragment;
+import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.LegacyPhoneNumberPickerFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnEmailAddressPickerActionListener;
@@ -71,15 +75,18 @@ public class ContactSelectionActivity extends ContactsActivity
     private static final int SUBACTIVITY_ADD_TO_EXISTING_CONTACT = 0;
 
     private static final String KEY_ACTION_CODE = "actionCode";
+    private static final String KEY_SEARCH_MODE = "searchMode";
     private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
 
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
 
     private int mActionCode = -1;
+    private boolean mIsSearchMode;
 
     private ContactsRequest mRequest;
     private SearchView mSearchView;
+    private View mSearchViewContainer;
 
     public ContactSelectionActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -99,6 +106,7 @@ public class ContactSelectionActivity extends ContactsActivity
 
         if (savedState != null) {
             mActionCode = savedState.getInt(KEY_ACTION_CODE);
+            mIsSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
         }
 
         // Extract relevant information from the intent
@@ -131,9 +139,9 @@ public class ContactSelectionActivity extends ContactsActivity
 
     private void prepareSearchViewAndActionBar() {
         final ActionBar actionBar = getActionBar();
-        final View searchViewContainer = LayoutInflater.from(actionBar.getThemedContext())
+        mSearchViewContainer = LayoutInflater.from(actionBar.getThemedContext())
                 .inflate(R.layout.custom_action_bar, null);
-        mSearchView = (SearchView) searchViewContainer.findViewById(R.id.search_view);
+        mSearchView = (SearchView) mSearchViewContainer.findViewById(R.id.search_view);
 
         // Postal address pickers (and legacy pickers) don't support search, so just show
         // "HomeAsUp" button and title.
@@ -148,25 +156,39 @@ public class ContactSelectionActivity extends ContactsActivity
             return;
         }
 
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         // In order to make the SearchView look like "shown via search menu", we need to
         // manually setup its state. See also DialtactsActivity.java and ActionBarAdapter.java.
         mSearchView.setIconifiedByDefault(true);
         mSearchView.setQueryHint(getString(R.string.hint_findContacts));
         mSearchView.setIconified(false);
+        mSearchView.setFocusable(true);
 
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnCloseListener(this);
         mSearchView.setOnQueryTextFocusChangeListener(this);
 
-        actionBar.setCustomView(searchViewContainer,
+        actionBar.setCustomView(mSearchViewContainer,
                 new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
 
-        // Clear focus and suppress keyboard show-up.
-        mSearchView.clearFocus();
+        configureSearchMode();
+    }
+
+    private void configureSearchMode() {
+        final ActionBar actionBar = getActionBar();
+        if (mIsSearchMode) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            mSearchViewContainer.setVisibility(View.VISIBLE);
+            mSearchView.requestFocus();
+        } else {
+            actionBar.setDisplayShowTitleEnabled(true);
+            mSearchViewContainer.setVisibility(View.GONE);
+            mSearchView.setQuery(null, true);
+        }
+        invalidateOptionsMenu();
     }
 
     @Override
@@ -175,7 +197,11 @@ public class ContactSelectionActivity extends ContactsActivity
             case android.R.id.home:
                 // Go back to previous screen, intending "cancel"
                 setResult(RESULT_CANCELED);
-                finish();
+                onBackPressed();
+                return true;
+            case R.id.menu_search:
+                mIsSearchMode = !mIsSearchMode;
+                configureSearchMode();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -185,6 +211,7 @@ public class ContactSelectionActivity extends ContactsActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_ACTION_CODE, mActionCode);
+        outState.putBoolean(KEY_SEARCH_MODE, mIsSearchMode);
     }
 
     private void configureActivityTitle() {
@@ -237,6 +264,11 @@ public class ContactSelectionActivity extends ContactsActivity
 
             case ContactsRequest.ACTION_PICK_POSTAL: {
                 setTitle(R.string.contactPickerActivityTitle);
+                break;
+            }
+
+            case ContactsRequest.ACTION_PICK_JOIN: {
+                setTitle(R.string.titleJoinContactDataWith);
                 break;
             }
         }
@@ -307,7 +339,15 @@ public class ContactSelectionActivity extends ContactsActivity
 
             case ContactsRequest.ACTION_PICK_POSTAL: {
                 PostalAddressPickerFragment fragment = new PostalAddressPickerFragment();
+
                 mListFragment = fragment;
+                break;
+            }
+
+            case ContactsRequest.ACTION_PICK_JOIN: {
+                JoinContactListFragment joinFragment = new JoinContactListFragment();
+                joinFragment.setTargetContactId(getTargetContactId());
+                mListFragment = joinFragment;
                 break;
             }
 
@@ -347,6 +387,9 @@ public class ContactSelectionActivity extends ContactsActivity
         } else if (mListFragment instanceof EmailAddressPickerFragment) {
             ((EmailAddressPickerFragment) mListFragment).setOnEmailAddressPickerActionListener(
                     new EmailAddressPickerActionListener());
+        } else if (mListFragment instanceof JoinContactListFragment) {
+            ((JoinContactListFragment) mListFragment).setOnContactPickerActionListener(
+                    new JoinContactActionListener());
         } else {
             throw new IllegalStateException("Unsupported list fragment type: " + mListFragment);
         }
@@ -460,6 +503,27 @@ public class ContactSelectionActivity extends ContactsActivity
         }
     }
 
+    private final class JoinContactActionListener implements OnContactPickerActionListener {
+        @Override
+        public void onPickContactAction(Uri contactUri) {
+            Intent intent = new Intent(null, contactUri);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+
+        @Override
+        public void onShortcutIntentCreated(Intent intent) {
+        }
+
+        @Override
+        public void onCreateNewContactAction() {
+        }
+
+        @Override
+        public void onEditContactAction(Uri contactLookupUri) {
+        }
+    }
+
     private final class PostalAddressPickerActionListener implements
             OnPostalAddressPickerActionListener {
         @Override
@@ -546,6 +610,19 @@ public class ContactSelectionActivity extends ContactsActivity
         }
     }
 
+    private long getTargetContactId() {
+        Intent intent = getIntent();
+        final long targetContactId = intent.getLongExtra(UI.TARGET_CONTACT_ID_EXTRA_KEY, -1);
+        if (targetContactId == -1) {
+            Log.e(TAG, "Intent " + intent.getAction() + " is missing required extra: "
+                    + UI.TARGET_CONTACT_ID_EXTRA_KEY);
+            setResult(RESULT_CANCELED);
+            finish();
+            return -1;
+        }
+        return targetContactId;
+    }
+
     private void startCreateNewContactActivity() {
         Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
         intent.putExtra(ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
@@ -572,6 +649,28 @@ public class ContactSelectionActivity extends ContactsActivity
                 }
                 finish();
             }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        final MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.menu_search);
+        searchItem.setVisible(!mIsSearchMode);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mIsSearchMode) {
+            mIsSearchMode = false;
+            configureSearchMode();
+        } else {
+            super.onBackPressed();
         }
     }
 }
