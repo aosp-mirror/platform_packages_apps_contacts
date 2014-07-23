@@ -37,6 +37,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.contacts.R;
@@ -506,6 +507,16 @@ public class ExpandingEntryCardView extends LinearLayout {
         if (entry.getIntent() != null) {
             view.setOnClickListener(mOnClickListener);
             view.setTag(entry.getIntent());
+        }
+
+        // If only the header is visible, add a top margin to match icon's top margin
+        if (header.getVisibility() == View.VISIBLE && subHeader.getVisibility() == View.GONE &&
+                text.getVisibility() == View.GONE) {
+            RelativeLayout.LayoutParams headerLayoutParams =
+                    (RelativeLayout.LayoutParams) header.getLayoutParams();
+            headerLayoutParams.topMargin = (int) (getResources().getDimension(
+                    R.dimen.expanding_entry_card_item_icon_margin_top));
+            header.setLayoutParams(headerLayoutParams);
         }
 
         final ImageView alternateIcon = (ImageView) view.findViewById(R.id.icon_alternate);
