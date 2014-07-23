@@ -18,65 +18,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:id="@+id/content_scroller">
+    android:id="@+id/content_scroller"
+    android:background="@color/card_margin_color">
 
     <!-- All the cards should be inserted into this LinearLayout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/card_container"
         android:paddingTop="@dimen/first_card_marginTop"
-        android:background="@color/card_margin_color"  >
+        android:id="@+id/card_container" >
 
-        <!-- We cannot set the border directly on ExpandingEntryCardView without it looking
-             funny because of the card's elevation value. So we need a parent FrameLayout -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/quickcontact_card_border">
-            <com.android.contacts.quickcontact.ExpandingEntryCardView
-                style="@style/ExpandingEntryCardStyle"
-                android:id="@+id/no_contact_data_card"
-                android:visibility="gone" />
-        </FrameLayout>
+        <com.android.contacts.quickcontact.ExpandingEntryCardView
+            style="@style/ExpandingEntryCardStyle"
+            android:id="@+id/no_contact_data_card"
+            android:visibility="gone" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/quickcontact_card_border">
-            <com.android.contacts.quickcontact.ExpandingEntryCardView
-                style="@style/ExpandingEntryCardStyle"
-                android:id="@+id/communication_card"
-                android:visibility="gone" />
-        </FrameLayout>
+        <com.android.contacts.quickcontact.ExpandingEntryCardView
+            style="@style/ExpandingEntryCardStyle"
+            android:id="@+id/communication_card"
+            android:visibility="gone" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/quickcontact_card_border">
-            <com.android.contacts.quickcontact.ExpandingEntryCardView
-                style="@style/ExpandingEntryCardStyle"
-                android:id="@+id/recent_card"
-                android:visibility="gone" />
-        </FrameLayout>
+        <com.android.contacts.quickcontact.ExpandingEntryCardView
+            style="@style/ExpandingEntryCardStyle"
+            android:id="@+id/recent_card"
+            android:visibility="gone" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/quickcontact_card_border">
-            <com.android.contacts.quickcontact.ExpandingEntryCardView
-                style="@style/ExpandingEntryCardStyle"
-                android:id="@+id/about_card"
-                android:visibility="gone" />
-        </FrameLayout>
-
-        <!-- Fill the rest of the LinearLayout with the correct background color -->
-        <View
-            android:id="@+id/card_empty_space"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/card_margin_color" />
+        <com.android.contacts.quickcontact.ExpandingEntryCardView
+            style="@style/ExpandingEntryCardStyle"
+            android:id="@+id/about_card"
+            android:visibility="gone" />
 
     </LinearLayout>
 

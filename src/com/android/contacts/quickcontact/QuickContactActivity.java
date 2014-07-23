@@ -77,6 +77,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -320,6 +321,11 @@ public class QuickContactActivity extends ContactsActivity {
         public void onCollapse(int heightDelta) {
             mScroller.prepareForShrinkingScrollChild(heightDelta);
         }
+
+        @Override
+        public void onExpand(int heightDelta) {
+            mScroller.prepareForExpandingScrollChild();
+        }
     };
 
     /**
@@ -493,11 +499,12 @@ public class QuickContactActivity extends ContactsActivity {
 
         mMaterialColorMapUtils = new MaterialColorMapUtils(getResources());
 
+        mScroller = (MultiShrinkScroller) findViewById(R.id.multiscroller);
+
         mContactCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
         mNoContactDetailsCard = (ExpandingEntryCardView) findViewById(R.id.no_contact_data_card);
         mRecentCard = (ExpandingEntryCardView) findViewById(R.id.recent_card);
         mAboutCard = (ExpandingEntryCardView) findViewById(R.id.about_card);
-        mScroller = (MultiShrinkScroller) findViewById(R.id.multiscroller);
 
         mNoContactDetailsCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setOnClickListener(mEntryClickHandler);
@@ -808,7 +815,8 @@ public class QuickContactActivity extends ContactsActivity {
                     /* numInitialVisibleEntries = */ MIN_NUM_CONTACT_ENTRIES_SHOWN,
                     /* isExpanded = */ mContactCard.isExpanded(),
                     /* isAlwaysExpanded = */ false,
-                    mExpandingEntryCardViewListener);
+                    mExpandingEntryCardViewListener,
+                    mScroller);
             mContactCard.setVisibility(View.VISIBLE);
         } else {
             mContactCard.setVisibility(View.GONE);
@@ -840,7 +848,8 @@ public class QuickContactActivity extends ContactsActivity {
                 /* numInitialVisibleEntries = */ 1,
                 /* isExpanded = */ true,
                 /* isAlwaysExpanded = */ true,
-                mExpandingEntryCardViewListener);
+                mExpandingEntryCardViewListener,
+                mScroller);
 
         if (contactCardEntries.size() == 0 && aboutCardEntries.size() == 0) {
             initializeNoContactDetailCard();
@@ -888,7 +897,7 @@ public class QuickContactActivity extends ContactsActivity {
         final PorterDuffColorFilter greyColorFilter =
                 new PorterDuffColorFilter(subHeaderTextColor, PorterDuff.Mode.SRC_ATOP);
         mNoContactDetailsCard.initialize(promptEntries, 2, /* isExpanded = */ true,
-                /* isAlwaysExpanded = */ true, mExpandingEntryCardViewListener);
+                /* isAlwaysExpanded = */ true, mExpandingEntryCardViewListener, mScroller);
         mNoContactDetailsCard.setVisibility(View.VISIBLE);
         mNoContactDetailsCard.setEntryHeaderColor(subHeaderTextColor);
         mNoContactDetailsCard.setColorAndFilter(subHeaderTextColor, greyColorFilter);
@@ -1528,7 +1537,7 @@ public class QuickContactActivity extends ContactsActivity {
             mRecentCard.initialize(interactionsWrapper,
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
                     /* isExpanded = */ mRecentCard.isExpanded(), /* isAlwaysExpanded = */ false,
-                    mExpandingEntryCardViewListener);
+                    mExpandingEntryCardViewListener, mScroller);
             mRecentCard.setVisibility(View.VISIBLE);
         }
 

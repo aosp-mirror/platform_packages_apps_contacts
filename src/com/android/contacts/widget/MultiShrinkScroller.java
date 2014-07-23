@@ -1,6 +1,7 @@
 package com.android.contacts.widget;
 
 import com.android.contacts.R;
+import com.android.contacts.quickcontact.ExpandingEntryCardView;
 import com.android.contacts.test.NeededForReflection;
 import com.android.contacts.util.SchedulingUtils;
 
@@ -86,7 +87,6 @@ public class MultiShrinkScroller extends LinearLayout {
     private MultiShrinkScrollerListener mListener;
     private TextView mLargeTextView;
     private View mPhotoTouchInterceptOverlay;
-    private View mLeftOverSpaceView;
     /** Contains desired location/size of the title, once the header is fully compressed */
     private TextView mInvisiblePlaceholderTextView;
     private View mTitleGradientView;
@@ -243,7 +243,6 @@ public class MultiShrinkScroller extends LinearLayout {
         mTransparentView = findViewById(R.id.transparent_view);
         mLargeTextView = (TextView) findViewById(R.id.large_title);
         mInvisiblePlaceholderTextView = (TextView) findViewById(R.id.placeholder_textview);
-        mLeftOverSpaceView = findViewById(R.id.card_empty_space);
         mListener = listener;
         mIsOpenContactSquare = isOpenContactSquare;
 
@@ -436,6 +435,7 @@ public class MultiShrinkScroller extends LinearLayout {
             final ObjectAnimator animator = ObjectAnimator.ofInt(this, "headerHeight",
                     mMaximumHeaderHeight);
             animator.addListener(mHeaderExpandAnimationListener);
+            animator.setDuration(ExpandingEntryCardView.DURATION_EXPAND_ANIMATION_CHANGE_BOUNDS);
             animator.start();
             // Scroll nested scroll view to its top
             if (mScrollView.getScrollY() != 0) {
@@ -787,8 +787,7 @@ public class MultiShrinkScroller extends LinearLayout {
      * Returns the amount of mScrollViewChild that doesn't fit inside its parent.
      */
     private int getOverflowingChildViewSize() {
-        final int usedScrollViewSpace = mScrollViewChild.getHeight()
-                - mLeftOverSpaceView.getHeight();
+        final int usedScrollViewSpace = mScrollViewChild.getHeight();
         return -getHeight() + usedScrollViewSpace + mToolbar.getLayoutParams().height;
     }
 
@@ -1098,11 +1097,26 @@ public class MultiShrinkScroller extends LinearLayout {
      * space at the bottom of this ViewGroup.
      */
     public void prepareForShrinkingScrollChild(int heightDelta) {
+        // The Transition framework may suppress layout on the scene root and its children. If
+        // mScrollView has its layout suppressed, user scrolling interactions will not display
+        // correctly. By turning suppress off for mScrollView, mScrollView properly adjusts its
+        // graphics as the user scrolls during the transition.
+        mScrollView.suppressLayout(false);
+
         final int newEmptyScrollViewSpace = -getOverflowingChildViewSize() + heightDelta;
         if (newEmptyScrollViewSpace > 0 && !mIsTwoPanel) {
             final int newDesiredToolbarHeight = Math.min(mToolbar.getLayoutParams().height
                     + newEmptyScrollViewSpace, getMaximumScrollableHeaderHeight());
-            ObjectAnimator.ofInt(this, "toolbarHeight", newDesiredToolbarHeight).start();
+            ObjectAnimator.ofInt(this, "toolbarHeight", newDesiredToolbarHeight).setDuration(
+                    ExpandingEntryCardView.DURATION_COLLAPSE_ANIMATION_CHANGE_BOUNDS).start();
         }
+    }
+
+    public void prepareForExpandingScrollChild() {
+        // The Transition framework may suppress layout on the scene root and its children. If
+        // mScrollView has its layout suppressed, user scrolling interactions will not display
+        // correctly. By turning suppress off for mScrollView, mScrollView properly adjusts its
+        // graphics as the user scrolls during the transition.
+        mScrollView.suppressLayout(false);
     }
 }
