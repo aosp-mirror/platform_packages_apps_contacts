@@ -171,9 +171,6 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="JoinContactActivityTheme" parent="ContactPickerTheme" >
-    </style>
-
     <style name="ContactsPreferencesTheme" parent="@style/PeopleTheme">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>

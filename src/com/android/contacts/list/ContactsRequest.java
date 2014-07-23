@@ -77,6 +77,9 @@ public class ContactsRequest implements Parcelable {
     /** Show all contacts and activate the specified one */
     public static final int ACTION_VIEW_CONTACT = 140;
 
+    /** Show contacts recommended for joining with a specified target contact */
+    public static final int ACTION_PICK_JOIN = 150;
+
     private boolean mValid = true;
     private int mActionCode = ACTION_DEFAULT;
     private Intent mRedirectIntent;

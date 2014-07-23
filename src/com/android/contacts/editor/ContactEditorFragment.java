@@ -49,6 +49,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Intents;
+import android.provider.ContactsContract.Intents.UI;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
@@ -71,7 +72,6 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
-import com.android.contacts.activities.JoinContactActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
@@ -1377,8 +1377,8 @@ public class ContactEditorFragment extends Fragment implements
 
         mContactIdForJoin = ContentUris.parseId(contactLookupUri);
         mContactWritableForJoin = isContactWritable();
-        final Intent intent = new Intent(JoinContactActivity.JOIN_CONTACT);
-        intent.putExtra(JoinContactActivity.EXTRA_TARGET_CONTACT_ID, mContactIdForJoin);
+        final Intent intent = new Intent(UI.PICK_JOIN_CONTACT_ACTION);
+        intent.putExtra(UI.TARGET_CONTACT_ID_EXTRA_KEY, mContactIdForJoin);
         startActivityForResult(intent, REQUEST_CODE_JOIN);
     }
 
