@@ -157,7 +157,7 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
         textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPager.setCurrentItem(position);
+                mPager.setCurrentItem(getRtlPosition(position));
             }
         });
 
@@ -186,6 +186,7 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        position = getRtlPosition(position);
         int tabStripChildCount = mTabStrip.getChildCount();
         if ((tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
             return;
@@ -197,6 +198,7 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
 
     @Override
     public void onPageSelected(int position) {
+        position = getRtlPosition(position);
         if (mPrevSelected >= 0) {
             mTabStrip.getChildAt(mPrevSelected).setSelected(false);
         }
@@ -211,6 +213,13 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
 
     @Override
     public void onPageScrollStateChanged(int state) {
+    }
+
+    private int getRtlPosition(int position) {
+        if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+            return mTabStrip.getChildCount() - 1 - position;
+        }
+        return position;
     }
 }
 

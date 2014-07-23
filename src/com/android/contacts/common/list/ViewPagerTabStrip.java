@@ -65,16 +65,6 @@ public class ViewPagerTabStrip extends LinearLayout {
         invalidate();
     }
 
-    /**
-     * Notifies this view that a new page has been selected in the view pager. We save the tab
-     * index and reset the selection offset to 0.
-     */
-    void onPageSelected(int position) {
-        mIndexForSelection = position;
-        mSelectionOffset = 0;
-        invalidate();
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         int childCount = getChildCount();
@@ -84,10 +74,12 @@ public class ViewPagerTabStrip extends LinearLayout {
             View selectedTitle = getChildAt(mIndexForSelection);
             int selectedLeft = selectedTitle.getLeft();
             int selectedRight = selectedTitle.getRight();
-            if ((mSelectionOffset > 0.0f) &&
-                    (mIndexForSelection < (getChildCount() - 1))) {
+            final boolean isRtl = isRtl();
+            final boolean hasNextTab = isRtl ? mIndexForSelection > 0
+                    : (mIndexForSelection < (getChildCount() - 1));
+            if ((mSelectionOffset > 0.0f) && hasNextTab) {
                 // Draw the selection partway between the tabs
-                View nextTitle = getChildAt(mIndexForSelection + 1);
+                View nextTitle = getChildAt(mIndexForSelection + (isRtl ? -1 : 1));
                 int nextLeft = nextTitle.getLeft();
                 int nextRight = nextTitle.getRight();
 
@@ -101,5 +93,9 @@ public class ViewPagerTabStrip extends LinearLayout {
             canvas.drawRect(selectedLeft, height - mSelectedUnderlineThickness,
                     selectedRight, height, mSelectedUnderlinePaint);
         }
+    }
+
+    private boolean isRtl() {
+        return getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 }

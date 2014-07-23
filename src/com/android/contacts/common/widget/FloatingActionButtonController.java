@@ -19,6 +19,7 @@ package com.android.contacts.common.widget;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.view.View;
@@ -32,8 +33,8 @@ import com.android.contacts.common.R;
  */
 public class FloatingActionButtonController {
     public static final int ALIGN_MIDDLE = 0;
-    public static final int ALIGN_QUARTER_RIGHT = 1;
-    public static final int ALIGN_RIGHT = 2;
+    public static final int ALIGN_QUARTER_END = 1;
+    public static final int ALIGN_END = 2;
 
     private final int mAnimationDuration;
     private final int mFloatingActionButtonWidth;
@@ -84,9 +85,7 @@ public class FloatingActionButtonController {
         // As the page is scrolling, if we're on the first tab, update the FAB position so it
         // moves along with it.
         mFloatingActionButtonContainer.setTranslationX(
-                (int) (positionOffset * (mScreenWidth / 2
-                        - mFloatingActionButtonWidth / 2
-                        - mFloatingActionButtonMarginRight)));
+                (int) (positionOffset * getTranslationXForAlignment(ALIGN_END)));
         mFloatingActionButtonContainer.setTranslationY(0);
     }
 
@@ -114,26 +113,33 @@ public class FloatingActionButtonController {
     }
 
     /**
-     * Calculates the X offset of the FAB to the given alignment.
+     * Calculates the X offset of the FAB to the given alignment, adjusted for whether or not the
+     * view is in RTL mode.
      *
      * @param align One of ALIGN_MIDDLE, ALIGN_QUARTER_RIGHT, or ALIGN_RIGHT.
      * @return The translationX for the given alignment.
      */
     public int getTranslationXForAlignment(int align) {
+        int result = 0;
         switch (align) {
             case ALIGN_MIDDLE:
                 // Moves the FAB to exactly center screen.
                 return 0;
-            case ALIGN_QUARTER_RIGHT:
+            case ALIGN_QUARTER_END:
                 // Moves the FAB a quarter of the screen width.
-                return mScreenWidth / 4;
-            case ALIGN_RIGHT:
+                result = mScreenWidth / 4;
+                break;
+            case ALIGN_END:
                 // Moves the FAB half the screen width. Same as aligning right with a marginRight.
-                return mScreenWidth / 2
+                result = mScreenWidth / 2
                         - mFloatingActionButtonWidth / 2
                         - mFloatingActionButtonMarginRight;
+                break;
         }
-        return 0;
+        if (isLayoutRtl()) {
+            result *= -1;
+        }
+        return result;
     }
 
     /**
@@ -145,5 +151,9 @@ public class FloatingActionButtonController {
     public void manuallyTranslate(int translationX, int translationY) {
         mFloatingActionButtonContainer.setTranslationX(translationX);
         mFloatingActionButtonContainer.setTranslationY(translationY);
+    }
+
+    private boolean isLayoutRtl() {
+        return mFloatingActionButtonContainer.isLayoutRtl();
     }
 }
