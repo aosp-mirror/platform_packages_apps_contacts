@@ -72,6 +72,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
      */
     private boolean mProfileExists;
 
+    /**
+     * The root view of the fragment that this adapter is associated with.
+     */
+    private View mFragmentRootView;
+
     private ContactPhotoManager mPhotoLoader;
 
     private String mQueryString;
@@ -94,6 +99,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         super(context);
         setDefaultFilterHeaderText(R.string.local_search_label);
         addPartitions();
+    }
+
+    /**
+     * @param fragmentRootView Root view of the fragment. This is used to restrict the scope of
+     * image loading requests that get cancelled on cursor changes.
+     */
+    protected void setFragmentRootView(View fragmentRootView) {
+        mFragmentRootView = fragmentRootView;
     }
 
     protected void setDefaultFilterHeaderText(int resourceId) {
@@ -447,7 +460,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
 
         // When the cursor changes, cancel any pending asynchronous photo loads.
-        mPhotoLoader.cancelPendingRequests();
+        mPhotoLoader.cancelPendingRequests(mFragmentRootView);
     }
 
     public void changeCursor(Cursor cursor) {

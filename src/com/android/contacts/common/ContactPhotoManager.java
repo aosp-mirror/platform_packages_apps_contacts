@@ -49,6 +49,8 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
@@ -513,7 +515,7 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
     /**
      * Cancels all pending requests to load photos asynchronously.
      */
-    public abstract void cancelPendingRequests();
+    public abstract void cancelPendingRequests(View fragmentRootView);
 
     /**
      * Temporarily stops loading photos from the database.
@@ -843,11 +845,30 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
 
     /**
-     * Cancels all pending requests to load photos asynchronously.
+     * Cancels pending requests to load photos asynchronously for views inside
+     * {@param fragmentRootView}. If {@param fragmentRootView} is null, cancels all requests.
      */
     @Override
-    public void cancelPendingRequests() {
-        mPendingRequests.clear();
+    public void cancelPendingRequests(View fragmentRootView) {
+        if (fragmentRootView == null) {
+            mPendingRequests.clear();
+            return;
+        }
+        ImageView[] requestSetCopy = mPendingRequests.keySet().toArray(new ImageView[
+                mPendingRequests.size()]);
+        for (ImageView imageView : requestSetCopy) {
+            // If an ImageView is orphaned (currently scrap) or a child of fragmentRootView, then
+            // we can safely remove its request.
+            if (imageView.getParent() == null || isChildView(fragmentRootView, imageView)) {
+                mPendingRequests.remove(imageView);
+            }
+        }
+    }
+
+    private static boolean isChildView(View parent, View potentialChild) {
+        return potentialChild.getParent() != null && (potentialChild.getParent() == parent || (
+                potentialChild.getParent() instanceof ViewGroup && isChildView(parent,
+                        (ViewGroup) potentialChild.getParent())));
     }
 
     @Override

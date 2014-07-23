@@ -737,6 +737,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         configureVerticalScrollbar();
         configurePhotoLoader();
+
+        getAdapter().setFragmentRootView(getView());
     }
 
     protected void configurePhotoLoader() {

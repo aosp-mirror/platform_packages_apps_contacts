@@ -18,6 +18,7 @@ package com.android.contacts.common.test.mocks;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.android.contacts.common.ContactPhotoManager;
@@ -46,7 +47,7 @@ public class MockContactPhotoManager extends ContactPhotoManager {
     }
 
     @Override
-    public void cancelPendingRequests() {
+    public void cancelPendingRequests(View fragmentRootView) {
     }
 
     @Override
