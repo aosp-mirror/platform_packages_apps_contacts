@@ -15,11 +15,6 @@
  */
 package com.android.contacts.quickcontact;
 
-import com.android.contacts.R;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -27,17 +22,24 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.transition.ChangeBounds;
+import android.transition.ChangeScroll;
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.Transition.TransitionListener;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.android.contacts.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,11 @@ import java.util.List;
 public class ExpandingEntryCardView extends LinearLayout {
 
     private static final String TAG = "ExpandingEntryCardView";
+    private static final int DURATION_EXPAND_ANIMATION_FADE_IN = 200;
+    private static final int DELAY_EXPAND_ANIMATION_FADE_IN = 100;
+
+    public static final int DURATION_EXPAND_ANIMATION_CHANGE_BOUNDS = 300;
+    public static final int DURATION_COLLAPSE_ANIMATION_CHANGE_BOUNDS = 300;
 
     /**
      * Entry data.
@@ -150,6 +157,7 @@ public class ExpandingEntryCardView extends LinearLayout {
 
     public interface ExpandingEntryCardViewListener {
         void onCollapse(int heightDelta);
+        void onExpand(int heightDelta);
     }
 
     private View mExpandCollapseButton;
@@ -171,6 +179,8 @@ public class ExpandingEntryCardView extends LinearLayout {
     private int mThemeColor;
     private ColorFilter mThemeColorFilter;
     private boolean mIsAlwaysExpanded;
+    /** The ViewGroup to run the expand/collapse animation on */
+    private ViewGroup mAnimationViewGroup;
 
     private final OnClickListener mExpandCollapseButtonListener = new OnClickListener() {
         @Override
@@ -214,7 +224,7 @@ public class ExpandingEntryCardView extends LinearLayout {
      */
     public void initialize(List<List<Entry>> entries, int numInitialVisibleEntries,
             boolean isExpanded, boolean isAlwaysExpanded,
-            ExpandingEntryCardViewListener listener) {
+            ExpandingEntryCardViewListener listener, ViewGroup animationViewGroup) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         mIsExpanded = isExpanded;
         mIsAlwaysExpanded = isAlwaysExpanded;
@@ -235,6 +245,7 @@ public class ExpandingEntryCardView extends LinearLayout {
             mCollapsedEntriesCount = mEntries.size();
         }
         mListener = listener;
+        mAnimationViewGroup = animationViewGroup;
 
         if (mIsExpanded) {
             updateExpandCollapseButton(getCollapseButtonText());
@@ -300,35 +311,39 @@ public class ExpandingEntryCardView extends LinearLayout {
 
     private void addEntry(View entry) {
         if (mEntriesViewGroup.getChildCount() > 0) {
-            View separator = new View(getContext());
-            separator.setBackgroundColor(getResources().getColor(
-                    R.color.expanding_entry_card_item_separator_color));
-            LayoutParams layoutParams = generateDefaultLayoutParams();
-            Resources resources = getResources();
-            layoutParams.height = resources.getDimensionPixelSize(
-                    R.dimen.expanding_entry_card_item_separator_height);
-            // The separator is aligned with the text in the entry. This is offset by a default
-            // margin. If there is an icon present, the icon's width and margin are added
-            int marginStart = resources.getDimensionPixelSize(
-                    R.dimen.expanding_entry_card_item_padding_start);
-            ImageView entryIcon = (ImageView) entry.findViewById(R.id.icon);
-            if (entryIcon.getDrawable() != null) {
-                int imageWidthAndMargin =
-                        resources.getDimensionPixelSize(
-                                R.dimen.expanding_entry_card_item_icon_width) +
-                        resources.getDimensionPixelSize(
-                                R.dimen.expanding_entry_card_item_image_spacing);
-                marginStart += imageWidthAndMargin;
-            }
-            if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                layoutParams.rightMargin = marginStart;
-            } else {
-                layoutParams.leftMargin = marginStart;
-            }
-            separator.setLayoutParams(layoutParams);
-            mEntriesViewGroup.addView(separator);
+            mEntriesViewGroup.addView(createSeparator(entry));
         }
         mEntriesViewGroup.addView(entry);
+    }
+
+    private View createSeparator(View entry) {
+        View separator = new View(getContext());
+        separator.setBackgroundColor(getResources().getColor(
+                R.color.expanding_entry_card_item_separator_color));
+        LayoutParams layoutParams = generateDefaultLayoutParams();
+        Resources resources = getResources();
+        layoutParams.height = resources.getDimensionPixelSize(
+                R.dimen.expanding_entry_card_item_separator_height);
+        // The separator is aligned with the text in the entry. This is offset by a default
+        // margin. If there is an icon present, the icon's width and margin are added
+        int marginStart = resources.getDimensionPixelSize(
+                R.dimen.expanding_entry_card_item_padding_start);
+        ImageView entryIcon = (ImageView) entry.findViewById(R.id.icon);
+        if (entryIcon.getDrawable() != null) {
+            int imageWidthAndMargin =
+                    resources.getDimensionPixelSize(
+                            R.dimen.expanding_entry_card_item_icon_width) +
+                    resources.getDimensionPixelSize(
+                            R.dimen.expanding_entry_card_item_image_spacing);
+            marginStart += imageWidthAndMargin;
+        }
+        if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+            layoutParams.rightMargin = marginStart;
+        } else {
+            layoutParams.leftMargin = marginStart;
+        }
+        separator.setLayoutParams(layoutParams);
+        return separator;
     }
 
     private CharSequence getExpandButtonText() {
@@ -543,77 +558,102 @@ public class ExpandingEntryCardView extends LinearLayout {
     }
 
     private void expand() {
-        final int startingHeight = mEntriesViewGroup.getHeight();
+        ChangeBounds boundsTransition = new ChangeBounds();
+        boundsTransition.setDuration(DURATION_EXPAND_ANIMATION_CHANGE_BOUNDS);
+
+        Fade fadeIn = new Fade(Fade.IN);
+        fadeIn.setDuration(DURATION_EXPAND_ANIMATION_FADE_IN);
+        fadeIn.setStartDelay(DELAY_EXPAND_ANIMATION_FADE_IN);
+
+        TransitionSet transitionSet = new TransitionSet();
+        transitionSet.addTransition(boundsTransition);
+        transitionSet.addTransition(fadeIn);
+
+        final ViewGroup transitionViewContainer = mAnimationViewGroup == null ?
+                this : mAnimationViewGroup;
+
+        transitionSet.addListener(new TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
+                // The listener is used to turn off suppressing, the proper delta is not necessary
+                mListener.onExpand(0);
+            }
+
+            @Override
+            public void onTransitionEnd(Transition transition) {
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+            }
+
+            @Override
+            public void onTransitionPause(Transition transition) {
+            }
+
+            @Override
+            public void onTransitionResume(Transition transition) {
+            }
+        });
+
+        TransitionManager.beginDelayedTransition(transitionViewContainer, transitionSet);
 
         mIsExpanded = true;
         // In order to insert new entries, we may need to inflate them for the first time
         inflateAllEntries(LayoutInflater.from(getContext()));
         insertEntriesIntoViewGroup();
         updateExpandCollapseButton(getCollapseButtonText());
-
-        // When expanding, all the TextViews haven't been laid out yet. Therefore,
-        // calling measure() would return an incorrect result. Therefore, we need a pre draw
-        // listener.
-        final ViewTreeObserver observer = mEntriesViewGroup.getViewTreeObserver();
-        observer.addOnPreDrawListener(new OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                if (observer.isAlive()) {
-                    mEntriesViewGroup.getViewTreeObserver().removeOnPreDrawListener(this);
-                }
-                createExpandAnimator(startingHeight, mEntriesViewGroup.getHeight()).start();
-                // Do not draw the final frame of the animation immediately.
-                return false;
-            }
-        });
     }
 
     private void collapse() {
-        int startingHeight = mEntriesViewGroup.getHeight();
-        int finishHeight = measureCollapsedViewGroupHeight();
-        mListener.onCollapse(startingHeight - finishHeight);
-
+        final int startingHeight = mEntriesViewGroup.getMeasuredHeight();
         mIsExpanded = false;
         updateExpandCollapseButton(getExpandButtonText());
-        createExpandAnimator(startingHeight, finishHeight).start();
-    }
 
-    private int measureCollapsedViewGroupHeight() {
-        if (mCollapsedEntriesCount == 0) {
-            return 0;
-        }
-        final View bottomCollapsedView = mEntryViews.get(mCollapsedEntriesCount - 1).get(0);
-        return bottomCollapsedView.getTop() + bottomCollapsedView.getHeight();
-    }
+        final ChangeBounds boundsTransition = new ChangeBounds();
+        boundsTransition.setDuration(DURATION_COLLAPSE_ANIMATION_CHANGE_BOUNDS);
 
-    /**
-     * Create ValueAnimator that performs an expand animation on the content LinearLayout.
-     *
-     * The animation needs to be performed manually using a ValueAnimator, since LinearLayout
-     * doesn't have a single set-able height property (ie, no setHeight()).
-     */
-    private ValueAnimator createExpandAnimator(int start, int end) {
-        ValueAnimator animator = ValueAnimator.ofInt(start, end);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        final ChangeScroll scrollTransition = new ChangeScroll();
+        scrollTransition.setDuration(DURATION_COLLAPSE_ANIMATION_CHANGE_BOUNDS);
+
+        TransitionSet transitionSet = new TransitionSet();
+        transitionSet.addTransition(boundsTransition);
+        transitionSet.addTransition(scrollTransition);
+
+        final ViewGroup transitionViewContainer = mAnimationViewGroup == null ?
+                this : mAnimationViewGroup;
+
+        boundsTransition.addListener(new TransitionListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                int value = (Integer) valueAnimator.getAnimatedValue();
-                ViewGroup.LayoutParams layoutParams = mEntriesViewGroup.getLayoutParams();
-                layoutParams.height = value;
-                mEntriesViewGroup.setLayoutParams(layoutParams);
+            public void onTransitionStart(Transition transition) {
+                /*
+                 * onTransitionStart is called after the view hierarchy has been changed but before
+                 * the animation begins.
+                 */
+                int finishingHeight = mEntriesViewGroup.getMeasuredHeight();
+                mListener.onCollapse(startingHeight - finishingHeight);
+            }
+
+            @Override
+            public void onTransitionEnd(Transition transition) {
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+            }
+
+            @Override
+            public void onTransitionPause(Transition transition) {
+            }
+
+            @Override
+            public void onTransitionResume(Transition transition) {
             }
         });
-        animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                insertEntriesIntoViewGroup();
-                // Now that the animation is done, stop using a fixed height.
-                ViewGroup.LayoutParams layoutParams = mEntriesViewGroup.getLayoutParams();
-                layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-                mEntriesViewGroup.setLayoutParams(layoutParams);
-            }
-        });
-        return animator;
+
+        TransitionManager.beginDelayedTransition(transitionViewContainer, transitionSet);
+
+        insertEntriesIntoViewGroup();
     }
 
     /**
