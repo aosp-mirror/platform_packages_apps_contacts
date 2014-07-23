@@ -470,14 +470,14 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
 
         final TextView header = (TextView) view.findViewById(R.id.header);
-        if (entry.getHeader() != null) {
+        if (!TextUtils.isEmpty(entry.getHeader())) {
             header.setText(entry.getHeader());
         } else {
             header.setVisibility(View.GONE);
         }
 
         final TextView subHeader = (TextView) view.findViewById(R.id.sub_header);
-        if (entry.getSubHeader() != null) {
+        if (!TextUtils.isEmpty(entry.getSubHeader())) {
             subHeader.setText(entry.getSubHeader());
         } else {
             subHeader.setVisibility(View.GONE);
@@ -491,7 +491,7 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
 
         final TextView text = (TextView) view.findViewById(R.id.text);
-        if (entry.getText() != null) {
+        if (!TextUtils.isEmpty(entry.getText())) {
             text.setText(entry.getText());
         } else {
             text.setVisibility(View.GONE);
