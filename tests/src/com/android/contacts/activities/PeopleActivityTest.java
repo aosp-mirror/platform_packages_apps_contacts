@@ -40,7 +40,6 @@ import com.android.contacts.common.testing.InjectedServices;
 import com.android.contacts.common.test.mocks.ContactsMockContext;
 import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.android.contacts.common.test.mocks.MockContentProvider.Query;
-import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.interactions.TestLoaderManager;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.common.model.AccountTypeManager;
