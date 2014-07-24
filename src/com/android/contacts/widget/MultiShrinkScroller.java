@@ -692,20 +692,23 @@ public class MultiShrinkScroller extends LinearLayout {
 
         if (!mEdgeGlowBottom.isFinished()) {
             final int restoreCount = canvas.save();
-            final int width = getWidth() - getPaddingStart() - getPaddingEnd();
+            final int width = getWidth() - getPaddingLeft() - getPaddingRight();
             final int height = getHeight();
 
             // Draw the EdgeEffect on the bottom of the Window (Or a little bit below the bottom
             // of the Window if we start to scroll upwards while EdgeEffect is visible). This
             // does not need to consider the case where this MultiShrinkScroller doesn't fill
             // the Window, since the nested ScrollView should be set to fillViewport.
-            canvas.translate(-width + getPaddingStart(),
+            canvas.translate(-width + getPaddingLeft(),
                     height + getMaximumScrollUpwards() - getScroll());
 
             canvas.rotate(180, width, 0);
             if (mIsTwoPanel) {
                 // Only show the EdgeEffect on the bottom of the ScrollView.
                 mEdgeGlowBottom.setSize(mScrollView.getWidth(), height);
+                if (isLayoutRtl()) {
+                    canvas.translate(mPhotoViewContainer.getWidth(), 0);
+                }
             } else {
                 mEdgeGlowBottom.setSize(width, height);
             }
