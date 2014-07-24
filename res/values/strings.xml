@@ -372,9 +372,6 @@
     <!-- Text used to explain that a contact cannot be edited from the People application since the data is read only [CHAR LIMIT=40] -->
     <string name="contact_read_only">Not editable from this app.</string>
 
-    <!-- Text describing that a contact has no information available other than name and photo. [CHAR LIMIT=60] -->
-    <string name="no_contact_details">No additional information for this contact.</string>
-
     <!-- Text used to explain that a group cannot be edited since the data is read only [CHAR LIMIT=40] -->
     <string name="group_read_only">Not editable on this device.</string>
 
@@ -645,9 +642,6 @@
 
     <!-- Menu item shown only when the special debug mode is enabled, which is used to send all contacts database files via email.  [CHAR LIMI=NONE] -->
     <string name="menu_export_database">Export database files</string>
-
-    <!-- Description when picture in the contact detail view is selected. [CHAR LIMIT=NONE] -->
-    <string name="contact_detail_picture_description">Picture. Select to change</string>
 
     <!-- Content description for the button that adds a new contact
          [CHAR LIMIT=NONE] -->
