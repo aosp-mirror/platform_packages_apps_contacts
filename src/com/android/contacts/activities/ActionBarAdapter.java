@@ -311,10 +311,9 @@ public class ActionBarAdapter implements OnCloseListener {
     private void update(boolean skipAnimation) {
         final boolean isIconifiedChanging
                 = (mSearchContainer.getParent() == null) == mSearchMode;
-        mToolbar.removeView(mLandscapeTabs);
         if (isIconifiedChanging && !skipAnimation) {
+            mToolbar.removeView(mLandscapeTabs);
             if (mSearchMode) {
-                mToolbar.removeView(mLandscapeTabs);
                 addSearchContainer();
                 mSearchContainer.setAlpha(0);
                 mSearchContainer.animate().alpha(1);
@@ -336,9 +335,9 @@ public class ActionBarAdapter implements OnCloseListener {
             return;
         }
         if (isIconifiedChanging && skipAnimation) {
+            mToolbar.removeView(mLandscapeTabs);
             if (mSearchMode) {
                 setPortraitTabHeight(0);
-                mToolbar.removeView(mLandscapeTabs);
                 addSearchContainer();
             } else {
                 setPortraitTabHeight(mMaxPortraitTabHeight);
