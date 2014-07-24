@@ -580,6 +580,10 @@ public class PeopleActivity extends ContactsActivity implements
                     mContactsUnavailableFragment.setMessageText(R.string.noContacts, -1);
                     break;
             }
+            // When using the mContactsUnavailableFragment the ViewPager doesn't contain two views.
+            // Therefore, we have to trick the ViewPagerTabs into thinking we have changed tabs
+            // when the mContactsUnavailableFragment changes. Otherwise the tab strip won't move.
+            mViewPagerTabs.onPageScrolled(tab, 0, 0);
         }
     }
 
