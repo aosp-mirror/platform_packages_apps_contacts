@@ -41,6 +41,7 @@
         android:id="@+id/contacts_unavailable_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_parent"
         android:visibility="gone">
         <FrameLayout
             android:id="@+id/contacts_unavailable_container"
