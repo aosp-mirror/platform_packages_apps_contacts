@@ -121,6 +121,7 @@ public class MultiShrinkScroller extends LinearLayout {
     private final int mMaximumTitleMargin;
     private final float mToolbarElevation;
     private final boolean mIsTwoPanel;
+    private final int mActionBarSize;
 
     // Objects used to perform color filtering on the header. These are stored as fields for
     // the sole purpose of avoiding "new" operations inside animation loops.
@@ -225,7 +226,8 @@ public class MultiShrinkScroller extends LinearLayout {
 
         final TypedArray attributeArray = context.obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize});
-        mMinimumHeaderHeight = attributeArray.getDimensionPixelSize(0, 0);
+        mActionBarSize = attributeArray.getDimensionPixelSize(0, 0);
+        mMinimumHeaderHeight = mActionBarSize;
         // This value is approximately equal to the portrait ActionBar size. It isn't exactly the
         // same, since the landscape and portrait ActionBar sizes can be different.
         mMinimumPortraitHeaderHeight = mMinimumHeaderHeight;
@@ -303,7 +305,7 @@ public class MultiShrinkScroller extends LinearLayout {
         final FrameLayout.LayoutParams actionBarGradientLayoutParams
                 = (FrameLayout.LayoutParams) mActionBarGradientView.getLayoutParams();
         actionBarGradientLayoutParams.height
-                = (int) (mMinimumHeaderHeight * GRADIENT_SIZE_COEFFICIENT);
+                = (int) (mActionBarSize * GRADIENT_SIZE_COEFFICIENT);
         mActionBarGradientView.setLayoutParams(actionBarGradientLayoutParams);
         final FrameLayout.LayoutParams titleGradientLayoutParams
                 = (FrameLayout.LayoutParams) mTitleGradientView.getLayoutParams();
@@ -906,6 +908,14 @@ public class MultiShrinkScroller extends LinearLayout {
         // on a Nexus 5. If it starts to get much slower, there are a number of easy optimizations
         // available.
         Trace.beginSection("updatePhotoTintAndDropShadow");
+
+        if (mIsTwoPanel && !mPhotoView.isBasedOffLetterTile()) {
+            // When in two panel mode, UX considers photo tinting unnecessary for non letter
+            // tile photos.
+            mTitleGradientDrawable.setAlpha(0xFF);
+            mActionBarGradientDrawable.setAlpha(0xFF);
+            return;
+        }
 
         // We need to use toolbarLayoutParams to determine the height, since the layout
         // params can be updated before the height change is reflected inside the View#getHeight().
