@@ -40,10 +40,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Papar kenalan"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Tambah ke kegemaran"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Alih keluar daripada kegemaran"</string>
-    <!-- no translation found for description_action_menu_remove_star (4699640108012265178) -->
-    <skip />
-    <!-- no translation found for description_action_menu_add_star (3327186327234177456) -->
-    <skip />
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Dialih keluar daripada kegemaran"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Ditambah ke kegemaran"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Edit"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Padam"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Letakkan pada skrin Utama"</string>
