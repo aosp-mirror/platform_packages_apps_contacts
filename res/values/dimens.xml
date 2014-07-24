@@ -53,15 +53,6 @@
     <!-- Left padding of the label in the add field button for the contact editor -->
     <dimen name="editor_add_field_label_left_padding">16dip</dimen>
 
-    <!-- Height of the shadow asset under the photo on the contact detail page -->
-    <dimen name="detail_contact_photo_shadow_height">10dip</dimen>
-
-    <!-- Margin around the contact's photo on the contact card -->
-    <dimen name="detail_contact_photo_margin">8dip</dimen>
-
-    <!-- Width and height of the contact photo on the contact detail page -->
-    <dimen name="detail_contact_photo_size">128dip</dimen>
-
     <!-- Width and height of the expanded contact photo on the contact detail page -->
     <dimen name="detail_contact_photo_expanded_size">400dip</dimen>
 
@@ -72,21 +63,11 @@
     <!-- Minimum width for the photo action popup options -->
     <dimen name="photo_action_popup_min_width">300dip</dimen>
 
-    <!-- Left and right padding for a contact detail item -->
-    <dimen name="detail_item_icon_margin">8dip</dimen>
-
     <!-- Top and bottom padding for a contact detail item -->
     <dimen name="detail_item_vertical_margin">8dip</dimen>
 
     <!-- Minimum height of a row in the contact detail -->
     <dimen name="detail_min_line_item_height">48dip</dimen>
-
-    <!-- Font size for the display name in header of the contact detail page -->
-    <dimen name="detail_header_name_text_size">36sp</dimen>
-
-    <!-- Vertical margin for vertical dividers existing between primary data
-         (phone number, email, etc.) and a secondary action button -->
-    <dimen name="detail_vertical_divider_vertical_margin">16dip</dimen>
 
     <!-- Font size used for the contact name in the widget -->
     <dimen name="widget_text_size_name">14sp</dimen>

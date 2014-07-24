@@ -274,7 +274,7 @@ public class PeopleActivity extends ContactsActivity implements
         }
 
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
-            redirect = new Intent(this, ContactDetailActivity.class);
+            redirect = new Intent(this, QuickContactActivity.class);
             redirect.setAction(Intent.ACTION_VIEW);
             redirect.setData(mRequest.getContactUri());
             startActivity(redirect);
