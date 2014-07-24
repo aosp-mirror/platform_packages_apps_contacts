@@ -250,5 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"detén a busca"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Borrar busca"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opcións de visualización de contactos"</string>
-    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"Configura como se mostran ou clasifican os teus contactos."</string>
+    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"Configura como se mostran e como se ordenan os teus contactos."</string>
 </resources>

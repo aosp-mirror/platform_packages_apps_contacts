@@ -225,8 +225,8 @@
     <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"رکھا گیا نام"</string>
     <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"خاندانی نام"</string>
     <string name="display_options_view_names_as" msgid="1104495761313107327">"رابطوں کے نام دیکھیں"</string>
-    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"رکھا گیا نام پہلا"</string>
-    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"خاندانی نام پہلا"</string>
+    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"رکھا گیا نام پہلے"</string>
+    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"خاندانی نام پہلے"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مرئی رابطوں کا اشتراک کریں"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"رابطے درآمد/برآمد کریں"</string>
     <string name="dialog_import" msgid="5177004290082451296">"رابطے درآمد کریں"</string>

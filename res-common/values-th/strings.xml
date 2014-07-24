@@ -224,7 +224,7 @@
     <string name="display_options_sort_list_by" msgid="7686551200843900466">"เรียงรายการตาม"</string>
     <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"ชื่อ"</string>
     <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"นามสกุล"</string>
-    <string name="display_options_view_names_as" msgid="1104495761313107327">"ดูชื่อของรายชื่อผู้ติดต่อ"</string>
+    <string name="display_options_view_names_as" msgid="1104495761313107327">"ดูชื่อของผู้ติดต่อ"</string>
     <string name="display_options_view_given_name_first" msgid="1412684412351158812">"ขึ้นต้นด้วยชื่อ"</string>
     <string name="display_options_view_family_name_first" msgid="8624010750059331413">"ขึ้นต้นด้วยนามสกุล"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"แชร์รายชื่อติดต่อที่มองเห็น"</string>

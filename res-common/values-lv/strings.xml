@@ -228,7 +228,7 @@
     <string name="display_options_view_given_name_first" msgid="1412684412351158812">"Vispirms rādīt vārdu"</string>
     <string name="display_options_view_family_name_first" msgid="8624010750059331413">"Vispirms rādīt uzvārdu"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Kopīgot redzamo kontaktpersonu datus"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktpersonu datu import./eksport."</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktpersonu importēšana/eksportēšana"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktpersonu datu importēšana"</string>
     <string name="share_error" msgid="665756457151793108">"Šīs kontaktpersonas datus nevar kopīgot."</string>
     <string name="menu_search" msgid="7464453023659824700">"Meklēt"</string>

@@ -227,7 +227,7 @@
     <string name="display_options_view_names_as" msgid="1104495761313107327">"Mostra els noms dels contactes"</string>
     <string name="display_options_view_given_name_first" msgid="1412684412351158812">"Primer el nom"</string>
     <string name="display_options_view_family_name_first" msgid="8624010750059331413">"Primer el cognom"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Comparteix els contactes visibles"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Comparteix els visibles"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importa/exporta contactes"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importa contactes"</string>
     <string name="share_error" msgid="665756457151793108">"No es pot compartir aquest contacte."</string>

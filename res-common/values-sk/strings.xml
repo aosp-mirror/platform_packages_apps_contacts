@@ -161,10 +161,10 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Jednotlivý kontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Vytvoriť kontakt na základe účtu"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importovať z karty SIM"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Import z úložiska"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importovať z úložiska"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Zrušiť importovanie súboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Zrušiť exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Importovanie/exportovanie vizitky vCard zlyhalo"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Import alebo export vizitky nie je možné zrušiť"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"Neznáma chyba."</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Súbor „<xliff:g id="FILE_NAME">%s</xliff:g>“ sa nepodarilo otvoriť: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Nástroj na exportovanie sa nepodarilo spustiť: „<xliff:g id="EXACT_REASON">%s</xliff:g>“."</string>
@@ -220,7 +220,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Ukladací priestor sa nepodarilo prehľadať. (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Kartu SD sa nepodarilo prehľadať. (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Import: <xliff:g id="CURRENT_NUMBER">%s</xliff:g> / <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Export do úložiska"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exportovať do úložiska"</string>
     <string name="display_options_sort_list_by" msgid="7686551200843900466">"Zoradiť zoznam podľa"</string>
     <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"Krstné meno"</string>
     <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"Priezvisko"</string>
@@ -228,7 +228,7 @@
     <string name="display_options_view_given_name_first" msgid="1412684412351158812">"Najskôr krstné meno"</string>
     <string name="display_options_view_family_name_first" msgid="8624010750059331413">"Najskôr priezvisko"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Zdieľať viditeľné kontakty"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Importovať alebo exportovať kontakty"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Import a export kontaktov"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importovať kontakty"</string>
     <string name="share_error" msgid="665756457151793108">"Tento kontakt nie je možné zdieľať."</string>
     <string name="menu_search" msgid="7464453023659824700">"Vyhľadávanie"</string>
@@ -241,7 +241,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Žiadne kontakty nie sú viditeľné."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Žiadne obľúbené položky."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"V skupine <xliff:g id="NAME">%s</xliff:g> nie sú žiadne kontakty"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"Vymazať často kontakt. osoby"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Vymazať často kontaktovaných"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Vybrať SIM kartu"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Účty"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Import a export"</string>
