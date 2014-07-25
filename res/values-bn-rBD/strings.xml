@@ -41,7 +41,7 @@
     <string name="menu_addStar" msgid="2908478235715404876">"পছন্দগুলিতে জুড়ুন"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"পছন্দসই থেকে সরান"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"পছন্দসই থেকে সরানো হয়েছে"</string>
-    <string name="description_action_menu_add_star" msgid="3327186327234177456">"পছন্দসই-এ জোড়া হয়েছে"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"পছন্দসই এ জোড়া হয়েছে"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"সম্পাদনা করুন"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"মুছুন"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"হোম স্ক্রীনে রাখুন"</string>
