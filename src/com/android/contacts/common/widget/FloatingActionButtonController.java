@@ -154,6 +154,6 @@ public class FloatingActionButtonController {
     }
 
     private boolean isLayoutRtl() {
-        return mFloatingActionButtonContainer.isLayoutRtl();
+        return mFloatingActionButtonContainer.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 }
