@@ -1350,13 +1350,11 @@ public class QuickContactActivity extends ContactsActivity {
             desiredStatusBarColor = Color.TRANSPARENT;
         }
         // Animate to the new color.
-        if (desiredStatusBarColor != getWindow().getStatusBarColor()) {
-            final ObjectAnimator animation = ObjectAnimator.ofInt(getWindow(), "statusBarColor",
-                    getWindow().getStatusBarColor(), desiredStatusBarColor);
-            animation.setDuration(ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION);
-            animation.setEvaluator(new ArgbEvaluator());
-            animation.start();
-        }
+        final ObjectAnimator animation = ObjectAnimator.ofInt(getWindow(), "statusBarColor",
+                getWindow().getStatusBarColor(), desiredStatusBarColor);
+        animation.setDuration(ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION);
+        animation.setEvaluator(new ArgbEvaluator());
+        animation.start();
     }
 
     private int colorFromBitmap(Bitmap bitmap) {
