@@ -290,20 +290,21 @@ public class QuickContactActivity extends ContactsActivity {
             // so the exact usage type is not necessary in all cases
             String usageType = DataUsageFeedback.USAGE_TYPE_CALL;
 
-            final String scheme = intent.getData().getScheme();
-            if ((scheme != null && scheme.equals(CallUtil.SCHEME_SMSTO)) ||
+            final Uri intentUri = intent.getData();
+            if ((intentUri != null && intentUri.getScheme() != null &&
+                    intentUri.getScheme().equals(CallUtil.SCHEME_SMSTO)) ||
                     (intent.getType() != null && intent.getType().equals(MIMETYPE_SMS))) {
                 usageType = DataUsageFeedback.USAGE_TYPE_SHORT_TEXT;
             }
 
             // Data IDs start at 1 so anything less is invalid
             if (dataId > 0) {
-                final Uri uri = DataUsageFeedback.FEEDBACK_URI.buildUpon()
+                final Uri dataUsageUri = DataUsageFeedback.FEEDBACK_URI.buildUpon()
                         .appendPath(String.valueOf(dataId))
                         .appendQueryParameter(DataUsageFeedback.USAGE_TYPE, usageType)
                         .build();
                 final boolean successful = getContentResolver().update(
-                        uri, new ContentValues(), null, null) > 0;
+                        dataUsageUri, new ContentValues(), null, null) > 0;
                 if (!successful) {
                     Log.w(TAG, "DataUsageFeedback increment failed");
                 }
