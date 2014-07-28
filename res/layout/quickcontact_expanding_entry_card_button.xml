@@ -15,25 +15,43 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/SelectableItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    style="@style/SelectableItem" >
+    android:orientation="vertical" >
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/expanding_entry_card_item_separator_height"
         android:background="@color/expanding_entry_card_item_separator_color" />
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/expanding_entry_card_button_drawable_padding"
-        android:gravity="center_vertical"
-        android:paddingBottom="@dimen/expanding_entry_card_button_padding_vertical"
-        android:paddingStart="@dimen/expanding_entry_card_button_padding_start"
-        android:paddingTop="@dimen/expanding_entry_card_button_padding_vertical"
-        android:textColor="@color/expanding_entry_card_button_text_color" />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/expanding_entry_card_button_drawable_padding"
+            android:gravity="center_vertical"
+            android:layout_weight="0"
+            android:paddingBottom="@dimen/expanding_entry_card_button_padding_vertical"
+            android:paddingStart="@dimen/expanding_entry_card_button_padding_start"
+            android:paddingTop="@dimen/expanding_entry_card_button_padding_vertical"
+            android:textColor="@color/expanding_entry_card_button_text_color" />
+
+        <LinearLayout
+            android:id="@+id/badge_container"
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="11dp"
+            android:layout_marginTop="@dimen/expanding_entry_card_button_padding_vertical"
+            android:layout_weight="1"
+            android:alpha=".3"
+            android:orientation="horizontal" />
+    </LinearLayout>
 
 </LinearLayout>

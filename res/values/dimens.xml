@@ -168,6 +168,8 @@
     <dimen name="expanding_entry_card_item_alternate_icon_margin_end">0dp</dimen>
     <dimen name="expanding_entry_card_item_alternate_icon_margin_bottom">10dp</dimen>
 
+    <dimen name="expanding_entry_card_badge_separator_margin">8dp</dimen>
+
     <dimen name="people_activity_card_elevation">2dp</dimen>
     <!-- The width the that the tabs occupy in the ActionBar when in landscape mode.
          426dp is the height of a "small" screen. We should leave 240dp for
