@@ -296,12 +296,18 @@ public class ExpandingEntryCardView extends LinearLayout {
 
         if (mIsExpanded) {
             for (List<View> viewList : mEntryViews) {
+                if (viewList != mEntryViews.get(0)) {
+                    addSeparator(viewList.get(0));
+                }
                 for (View view : viewList) {
                     addEntry(view);
                 }
             }
         } else {
             for (int i = 0; i < mCollapsedEntriesCount; i++) {
+                if (i > 0) {
+                    addSeparator(mEntryViews.get(i).get(0));
+                }
                 addEntry(mEntryViews.get(i).get(0));
             }
         }
@@ -314,13 +320,10 @@ public class ExpandingEntryCardView extends LinearLayout {
     }
 
     private void addEntry(View entry) {
-        if (mEntriesViewGroup.getChildCount() > 0) {
-            mEntriesViewGroup.addView(createSeparator(entry));
-        }
         mEntriesViewGroup.addView(entry);
     }
 
-    private View createSeparator(View entry) {
+    private void addSeparator(View entry) {
         View separator = new View(getContext());
         separator.setBackgroundColor(getResources().getColor(
                 R.color.expanding_entry_card_item_separator_color));
@@ -333,7 +336,7 @@ public class ExpandingEntryCardView extends LinearLayout {
         int marginStart = resources.getDimensionPixelSize(
                 R.dimen.expanding_entry_card_item_padding_start);
         ImageView entryIcon = (ImageView) entry.findViewById(R.id.icon);
-        if (entryIcon.getDrawable() != null) {
+        if (entryIcon.getVisibility() == View.VISIBLE) {
             int imageWidthAndMargin =
                     resources.getDimensionPixelSize(
                             R.dimen.expanding_entry_card_item_icon_width) +
@@ -341,13 +344,9 @@ public class ExpandingEntryCardView extends LinearLayout {
                             R.dimen.expanding_entry_card_item_image_spacing);
             marginStart += imageWidthAndMargin;
         }
-        if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-            layoutParams.rightMargin = marginStart;
-        } else {
-            layoutParams.leftMargin = marginStart;
-        }
+        layoutParams.setMarginStart(marginStart);
         separator.setLayoutParams(layoutParams);
-        return separator;
+        mEntriesViewGroup.addView(separator);
     }
 
     private CharSequence getExpandButtonText() {
@@ -378,7 +377,8 @@ public class ExpandingEntryCardView extends LinearLayout {
         } else {
             // Otherwise inflate the top entry from each list
             for (int i = 0; i < mCollapsedEntriesCount; i++) {
-                mEntryViews.get(i).add(createEntryView(layoutInflater, mEntries.get(i).get(0)));
+                mEntryViews.get(i).add(createEntryView(layoutInflater, mEntries.get(i).get(0),
+                        /* showIcon = */ View.VISIBLE));
             }
         }
     }
@@ -394,7 +394,18 @@ public class ExpandingEntryCardView extends LinearLayout {
             List<Entry> entryList = mEntries.get(i);
             List<View> viewList = mEntryViews.get(i);
             for (int j = viewList.size(); j < entryList.size(); j++) {
-                viewList.add(createEntryView(layoutInflater, entryList.get(j)));
+                final int iconVisibility;
+                final Entry entry = entryList.get(j);
+                // If the entry does not have an icon, mark gone. Else if it has an icon, show
+                // for the first Entry in the list only
+                if (entry.getIcon() == null) {
+                    iconVisibility = View.GONE;
+                } else if (j == 0) {
+                    iconVisibility = View.VISIBLE;
+                } else {
+                    iconVisibility = View.INVISIBLE;
+                }
+                viewList.add(createEntryView(layoutInflater, entry, iconVisibility));
             }
         }
         mAllEntriesInflated = true;
@@ -459,19 +470,17 @@ public class ExpandingEntryCardView extends LinearLayout {
         }
     }
 
-    private View createEntryView(LayoutInflater layoutInflater, Entry entry) {
+    private View createEntryView(LayoutInflater layoutInflater, Entry entry, int iconVisibility) {
         final View view = layoutInflater.inflate(
                 R.layout.expanding_entry_card_item, this, false);
 
         view.setId(entry.getViewId());
 
         final ImageView icon = (ImageView) view.findViewById(R.id.icon);
+        icon.setVisibility(iconVisibility);
         if (entry.getIcon() != null) {
             icon.setImageDrawable(entry.getIcon());
-        } else {
-            icon.setVisibility(View.GONE);
         }
-
         final TextView header = (TextView) view.findViewById(R.id.header);
         if (!TextUtils.isEmpty(entry.getHeader())) {
             header.setText(entry.getHeader());
