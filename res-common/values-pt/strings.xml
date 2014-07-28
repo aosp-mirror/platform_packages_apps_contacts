@@ -228,7 +228,7 @@
     <string name="display_options_view_given_name_first" msgid="1412684412351158812">"Nome primeiro"</string>
     <string name="display_options_view_family_name_first" msgid="8624010750059331413">"Sobrenome primeiro"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Compartilhar contatos visíveis"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Importar/Exportar contatos"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Importar/exportar contatos"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importar contatos"</string>
     <string name="share_error" msgid="665756457151793108">"Este contato não pode ser compartilhado."</string>
     <string name="menu_search" msgid="7464453023659824700">"Pesquisar"</string>

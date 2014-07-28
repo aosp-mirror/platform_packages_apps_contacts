@@ -227,8 +227,8 @@
     <string name="display_options_view_names_as" msgid="1104495761313107327">"Դիտել կոնտակտի անունները"</string>
     <string name="display_options_view_given_name_first" msgid="1412684412351158812">"Առաջինը՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="8624010750059331413">"Առաջինը՝ ազգանունը"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Կիսվել տեսանելի կոտակտներով"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Ներմուծել/արտահանել կոնտակտները"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Փոխանցել տեսանելի կոնտակտները"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Կոնտակտների ներմուծում/արտահանում"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Ներմուծել կոնտակտներ"</string>
     <string name="share_error" msgid="665756457151793108">"Հնարավոր չէ տարածել կոնտակտը:"</string>
     <string name="menu_search" msgid="7464453023659824700">"Որոնել"</string>
