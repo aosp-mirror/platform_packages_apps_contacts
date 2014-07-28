@@ -997,11 +997,25 @@ public class QuickContactActivity extends ContactsActivity {
         if (dataItem instanceof ImDataItem) {
             final ImDataItem im = (ImDataItem) dataItem;
             intent = ContactsUtils.buildImIntent(this, im).first;
-            header = getResources().getString(R.string.header_im_entry);
             final boolean isEmail = im.isCreatedFromEmail();
-            final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK : im.getProtocol();
-            subHeader = Im.getProtocolLabel(getResources(), protocol,
-                    im.getCustomProtocol()).toString();
+            final int protocol;
+            if (!im.isProtocolValid()) {
+                protocol = Im.PROTOCOL_CUSTOM;
+            } else {
+                protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK : im.getProtocol();
+            }
+            if (protocol == Im.PROTOCOL_CUSTOM) {
+                // If the protocol is custom, display the "IM" entry header as well to distinguish
+                // this entry from other ones
+                header = getResources().getString(R.string.header_im_entry);
+                subHeader = Im.getProtocolLabel(getResources(), protocol,
+                        im.getCustomProtocol()).toString();
+                text = im.getData();
+            } else {
+                header = Im.getProtocolLabel(getResources(), protocol,
+                        im.getCustomProtocol()).toString();
+                subHeader = im.getData();
+            }
         } else if (dataItem instanceof OrganizationDataItem) {
             final OrganizationDataItem organization = (OrganizationDataItem) dataItem;
             header = getResources().getString(R.string.header_organization_entry);
@@ -1049,8 +1063,8 @@ public class QuickContactActivity extends ContactsActivity {
             }
             header = getResources().getString(R.string.header_event_entry);
             if (event.hasKindTypeColumn(kind)) {
-                subHeader = getResources().getString(Event.getTypeResource(
-                        event.getKindTypeColumn(kind)));
+                subHeader = Event.getTypeLabel(getResources(), event.getKindTypeColumn(kind),
+                        event.getLabel()).toString();
             }
             text = DateUtils.formatDate(this, dataString);
         } else if (dataItem instanceof RelationDataItem) {
