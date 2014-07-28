@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"ใช้ภาพนี้"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"ไม่สามารถแก้ไขได้จากแอปพลิเคชันนี้"</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"ไม่มีข้อมูลเพิ่มเติมสำหรับรายชื่อติดต่อนี้"</string>
     <string name="group_read_only" msgid="1061762906115697637">"ไม่สามารถแก้ไขได้ในอุปกรณ์นี้"</string>
     <string name="take_photo" msgid="7496128293167402354">"ถ่ายภาพ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ถ่ายภาพใหม่"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"เพิ่มบัญชี"</string>
     <string name="add_new_account" msgid="5748627740680940264">"เพิ่มบัญชีใหม่"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ส่งออกไฟล์ฐานข้อมูล"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"ภาพ เลือกเพื่อเปลี่ยน"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"เพิ่มที่อยู่ติดต่อใหม่"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ดูเพิ่มเติม"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"ดูน้อยลง"</string>

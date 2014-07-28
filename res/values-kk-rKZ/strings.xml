@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Осы фотосуретті қолдану"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Бұл қолданба арқылы жөнделмейді."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Бұл контакт үшін қосымша ақпарат болмады."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Бұл құрылғыда жөндеу мүмкін емеc."</string>
     <string name="take_photo" msgid="7496128293167402354">"Фотосурет түсіру"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Жаңа фотосурет түсіру"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"Есептік жазба қосу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңа есептік жазба қосу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Дерекқор файлдарын экспорттау"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Сурет. Өзгерту үшін таңдау"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"жаңа контакт қосу"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Көбірек көру"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Азырақ көру"</string>

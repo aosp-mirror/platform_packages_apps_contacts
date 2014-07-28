@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilitza aquesta foto"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"No es pot editar des d\'aquesta aplicació."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"No hi ha informació addicional per a aquest contacte."</string>
     <string name="group_read_only" msgid="1061762906115697637">"No es pot editar en aquest dispositiu."</string>
     <string name="take_photo" msgid="7496128293167402354">"Fes una foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Fes una foto nova"</string>
@@ -175,7 +174,7 @@
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opcions de visualització"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Número de telèfon"</string>
-    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Afegeix-ho als contactes"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Afegeix als contactes"</string>
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Afegeix al contacte"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Tanca"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"Afegeix un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Afegeix un compte nou"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exporta els fitxers de la base de dades"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Imatge. Selecciona-la per canviar-la"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"afegeix un contacte nou"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Mostra\'n més"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Mostra\'n menys"</string>

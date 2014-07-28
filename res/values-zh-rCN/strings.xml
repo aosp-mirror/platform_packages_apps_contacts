@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"使用此照片"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"无法通过此应用修改。"</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"没有此联系人的其他信息。"</string>
     <string name="group_read_only" msgid="1061762906115697637">"无法在此设备上修改。"</string>
     <string name="take_photo" msgid="7496128293167402354">"拍照"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"拍摄新照片"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"添加帐户"</string>
     <string name="add_new_account" msgid="5748627740680940264">"添加新帐户"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"导出数据库文件"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"照片（选择即可更换）"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"添加新联系人"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"查看更多"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"隐藏部分"</string>
