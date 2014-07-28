@@ -90,7 +90,7 @@ public class CallUtil {
     public static Intent getCallIntent(
             Uri uri, String callOrigin, PhoneAccountHandle accountHandle) {
         return getCallIntent(uri, callOrigin, accountHandle,
-                VideoCallProfile.VIDEO_STATE_AUDIO_ONLY);
+                VideoCallProfile.VideoState.AUDIO_ONLY);
     }
 
     /**
@@ -98,7 +98,7 @@ public class CallUtil {
      */
     public static Intent getVideoCallIntent(String number, String callOrigin) {
         return getCallIntent(getCallUri(number), callOrigin, null,
-                VideoCallProfile.VIDEO_STATE_BIDIRECTIONAL);
+                VideoCallProfile.VideoState.BIDIRECTIONAL);
     }
 
     /**
@@ -108,7 +108,7 @@ public class CallUtil {
     public static Intent getVideoCallIntent(
             String number, String callOrigin, PhoneAccountHandle accountHandle) {
         return getCallIntent(getCallUri(number), callOrigin, accountHandle,
-                VideoCallProfile.VIDEO_STATE_BIDIRECTIONAL);
+                VideoCallProfile.VideoState.BIDIRECTIONAL);
     }
 
     /**
