@@ -126,8 +126,7 @@ public class CallUtil {
      */
     public static Intent getCallIntent(
             Uri uri, String callOrigin, PhoneAccountHandle accountHandle, int videoState) {
-        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        final Intent intent = new Intent(Intent.ACTION_CALL, uri);
         intent.putExtra(TelecommManager.EXTRA_START_CALL_WITH_VIDEO_STATE, videoState);
         if (callOrigin != null) {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
