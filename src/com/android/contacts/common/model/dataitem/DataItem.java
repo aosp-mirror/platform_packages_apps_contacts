@@ -46,7 +46,7 @@ import com.android.contacts.common.model.RawContactModifier;
 public class DataItem implements Collapser.Collapsible<DataItem> {
 
     private final ContentValues mContentValues;
-    private DataKind mKind;
+    protected DataKind mKind;
 
     protected DataItem(ContentValues values) {
         mContentValues = values;
@@ -188,8 +188,8 @@ public class DataItem implements Collapser.Collapsible<DataItem> {
     public void collapseWith(DataItem that) {
         DataKind thisKind = getDataKind();
         DataKind thatKind = that.getDataKind();
-        // If this does not have a label and that does, or if that's label is higher precedence,
-        // use that's label
+        // If this does not have a type and that does, or if that's type is higher precedence,
+        // use that's type
         if ((!hasKindTypeColumn(thisKind) && that.hasKindTypeColumn(thatKind)) ||
                 that.hasKindTypeColumn(thatKind) &&
                 RawContactModifier.getTypePrecedence(thisKind, getKindTypeColumn(thisKind))

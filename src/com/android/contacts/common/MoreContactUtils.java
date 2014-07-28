@@ -65,6 +65,7 @@ public class MoreContactUtils {
         return shouldCollapsePhoneNumbers(data1.toString(), data2.toString());
     }
 
+    // TODO: Move this to PhoneDataItem.shouldCollapse override
     private static boolean shouldCollapsePhoneNumbers(String number1, String number2) {
         // Now do the full phone number thing. split into parts, separated by waiting symbol
         // and compare them individually

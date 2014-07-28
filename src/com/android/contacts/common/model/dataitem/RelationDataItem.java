@@ -17,6 +17,7 @@
 package com.android.contacts.common.model.dataitem;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
 
@@ -36,5 +37,24 @@ public class RelationDataItem extends DataItem {
 
     public String getLabel() {
         return getContentValues().getAsString(Relation.LABEL);
+    }
+
+    @Override
+    public boolean shouldCollapseWith(DataItem t, Context context) {
+        if (!(t instanceof RelationDataItem) || mKind == null || t.getDataKind() == null) {
+            return false;
+        }
+        final RelationDataItem that = (RelationDataItem) t;
+        // Relations can have different types (assistant, father) but have the same name
+        if (!getName().equals(that.getName())) {
+            return false;
+        } else if (getKindTypeColumn(mKind) != that.getKindTypeColumn(that.getDataKind())) {
+            return false;
+        } else if (getKindTypeColumn(mKind) == Relation.TYPE_CUSTOM &&
+                !getLabel().equals(that.getLabel())) {
+            // Check if custom types are not the same
+            return false;
+        }
+        return true;
     }
 }
