@@ -182,6 +182,8 @@ public class ExpandingEntryCardView extends LinearLayout {
     private boolean mIsAlwaysExpanded;
     /** The ViewGroup to run the expand/collapse animation on */
     private ViewGroup mAnimationViewGroup;
+    private LinearLayout mBadgeContainer;
+    private final List<ImageView> mBadges;
 
     private final OnClickListener mExpandCollapseButtonListener = new OnClickListener() {
         @Override
@@ -214,8 +216,9 @@ public class ExpandingEntryCardView extends LinearLayout {
                 R.layout.quickcontact_expanding_entry_card_button, this, false);
         mExpandCollapseTextView = (TextView) mExpandCollapseButton.findViewById(R.id.text);
         mExpandCollapseButton.setOnClickListener(mExpandCollapseButtonListener);
+        mBadgeContainer = (LinearLayout) mExpandCollapseButton.findViewById(R.id.badge_container);
 
-
+        mBadges = new ArrayList<ImageView>();
     }
 
     /**
@@ -555,6 +558,7 @@ public class ExpandingEntryCardView extends LinearLayout {
 
     private void updateExpandCollapseButton(CharSequence buttonText) {
         final Drawable arrow = mIsExpanded ? mCollapseArrowDrawable : mExpandArrowDrawable;
+        updateBadges();
         if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
             mExpandCollapseTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, arrow,
                     null);
@@ -563,6 +567,36 @@ public class ExpandingEntryCardView extends LinearLayout {
                     null);
         }
         mExpandCollapseTextView.setText(buttonText);
+    }
+
+    private void updateBadges() {
+        if (mIsExpanded) {
+            mBadgeContainer.removeAllViews();
+        } else {
+            // Inflate badges if not yet created
+            if (mBadges.size() < mEntries.size() - mCollapsedEntriesCount) {
+                for (int i = mCollapsedEntriesCount; i < mEntries.size(); i++) {
+                    Drawable badgeDrawable = mEntries.get(i).get(0).getIcon();
+                    if (badgeDrawable != null) {
+                        ImageView badgeView = new ImageView(getContext());
+                        LinearLayout.LayoutParams badgeViewParams = new LinearLayout.LayoutParams(
+                                (int) getResources().getDimension(
+                                        R.dimen.expanding_entry_card_item_icon_width),
+                                (int) getResources().getDimension(
+                                        R.dimen.expanding_entry_card_item_icon_height));
+                        badgeViewParams.setMarginEnd((int) getResources().getDimension(
+                                R.dimen.expanding_entry_card_badge_separator_margin));
+                        badgeView.setLayoutParams(badgeViewParams);
+                        badgeView.setImageDrawable(badgeDrawable);
+                        mBadges.add(badgeView);
+                    }
+                }
+            }
+            mBadgeContainer.removeAllViews();
+            for (ImageView badge : mBadges) {
+                mBadgeContainer.addView(badge);
+            }
+        }
     }
 
     private void expand() {
