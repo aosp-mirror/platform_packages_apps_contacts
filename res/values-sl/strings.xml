@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Uporabi to fotografijo"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"S tem programom urejanje ni mogoče."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Za ta stik ni nobenih drugih podatkov"</string>
     <string name="group_read_only" msgid="1061762906115697637">"V tej napravi ni mogoče urejati skupine."</string>
     <string name="take_photo" msgid="7496128293167402354">"Posnemi fotografijo"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Posnemi novo fotografijo"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nov račun"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Izvoz datotek zbirke"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Slika. Izberite, da spremenite"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"dodaj novi stik"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Pokaži več"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Pokaži manj"</string>

@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Използване на тази снимка"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Не може да се редактира от приложението."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Няма допълнителна информация за този контакт."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Не може да се редактира на това у-во."</string>
     <string name="take_photo" msgid="7496128293167402354">"Снимане"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Заснемане на нова снимка"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"Добавяне на профил"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавяне на нов профил"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Експортиране на файловете на базата от данни"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Снимка. Изберете, за да промените"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"добавяне на нов контакт"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Преглед на още"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Преглед на по-малко"</string>

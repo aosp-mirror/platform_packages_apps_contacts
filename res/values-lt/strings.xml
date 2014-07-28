@@ -70,7 +70,7 @@
     <string name="menu_discard" msgid="6854657936970228164">"Atmesti pakeitimus"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontaktas neegzistuoja."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktų valdiklis pridėtas prie pagrindinio ekrano."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Kurti naują adresatą"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Kurti naują kontaktą"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Kurti naują kontaktą"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organizacija"</item>
@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Naudoti šią nuotrauką"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Iš šios programos redaguoti negalima."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Nėra papildomos informacijos apie šį kontaktą."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Negalima redaguoti šiame įrenginyje."</string>
     <string name="take_photo" msgid="7496128293167402354">"Fotografuoti"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Iš naujo fotografuoti"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"Pridėkite paskyrą"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pridėkite naują paskyrą"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksportuoti duomenų failus"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Nuotrauka. Pasirinkite, kad pakeistumėte"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"pridėti naują kontaktą"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Žr. daugiau"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Žr. mažiau"</string>

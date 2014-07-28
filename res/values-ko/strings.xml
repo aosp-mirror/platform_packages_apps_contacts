@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"사진 사용"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"이 앱에서 수정할 수 없습니다."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"연락처에 대한 추가 정보가 없습니다."</string>
     <string name="group_read_only" msgid="1061762906115697637">"이 기기에서 수정할 수 없습니다."</string>
     <string name="take_photo" msgid="7496128293167402354">"사진 찍기"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"새 사진 찍기"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"데이터베이스 파일 내보내기"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"사진을 변경하려면 선택"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"새 연락처 추가"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"더보기"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"간략히 보기"</string>
