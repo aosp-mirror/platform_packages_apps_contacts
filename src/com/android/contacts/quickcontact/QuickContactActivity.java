@@ -1543,9 +1543,13 @@ public class QuickContactActivity extends ContactsActivity {
             }
         });
 
-
+        // Wrap each interaction in its own list so that an icon is displayed for each entry
         List<List<Entry>> interactionsWrapper = new ArrayList<>();
-        interactionsWrapper.add(contactInteractionsToEntries(allInteractions));
+        for (Entry contactInteraction : contactInteractionsToEntries(allInteractions)) {
+            List<Entry> entryListWrapper = new ArrayList<>(1);
+            entryListWrapper.add(contactInteraction);
+            interactionsWrapper.add(entryListWrapper);
+        }
         if (allInteractions.size() > 0) {
             mRecentCard.initialize(interactionsWrapper,
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
