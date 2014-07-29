@@ -27,7 +27,7 @@
     <color name="secondary_text_color">#888888</color>
 
     <!-- Text color for section header. -->
-    <color name="section_header_text_color">#aaaaaa</color>
+    <color name="section_header_text_color">#888888</color>
 
     <!-- Divider color for header separator -->
     <color name="main_header_separator_color">#AAAAAA</color>
