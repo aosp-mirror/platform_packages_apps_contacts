@@ -421,6 +421,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Action string for selecting SIM for importing contacts -->
     <string name="import_from_sim">Import from SIM card</string>
 
+    <!-- Action string for selecting SIM for importing contacts, when more than one SIM card -->
+    <string name="import_from_sim_number">Import from SIM card #<xliff:g id="sim_number" example="2">%d</xliff:g></string>
+
     <!-- Action string for selecting (USB) storage for importing contacts [CHAR LIMIT=30] -->
     <string name="import_from_sdcard" product="default">Import from storage</string>
 
