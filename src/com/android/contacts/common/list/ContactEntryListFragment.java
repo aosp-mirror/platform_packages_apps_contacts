@@ -48,6 +48,7 @@ import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
 import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.dialerbind.analytics.AnalyticsFragment;
 
 import java.util.Locale;
 
@@ -55,7 +56,7 @@ import java.util.Locale;
  * Common base class for various contact-related list fragments.
  */
 public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter>
-        extends Fragment
+        extends AnalyticsFragment
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener,
                 LoaderCallbacks<Cursor> {
     private static final String TAG = "ContactEntryListFragment";
