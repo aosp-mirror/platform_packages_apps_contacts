@@ -23,7 +23,6 @@ import android.net.Uri;
 import android.net.Uri.Builder;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.view.View;
@@ -87,7 +86,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
         } else {
             builder = Email.CONTENT_URI.buildUpon();
             if (isSectionHeaderDisplayEnabled()) {
-                builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+                builder.appendQueryParameter(Email.ADDRESS_BOOK_INDEX_EXTRAS, "true");
             }
         }
         builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
