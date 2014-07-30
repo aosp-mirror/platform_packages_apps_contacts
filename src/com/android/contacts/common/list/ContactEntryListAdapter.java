@@ -21,8 +21,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.util.Log;
@@ -477,11 +477,12 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
 
         Bundle bundle = cursor.getExtras();
-        if (bundle.containsKey(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES) &&
-                bundle.containsKey(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS)) {
+        if (bundle.containsKey(Contacts.EXTRA_ADDRESS_BOOK_INDEX_TITLES) &&
+                bundle.containsKey(Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS)) {
             String sections[] =
-                    bundle.getStringArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
-            int counts[] = bundle.getIntArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
+                    bundle.getStringArray(Contacts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
+            int counts[] = bundle.getIntArray(
+                    Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
 
             if (getExtraStartingSection()) {
                 // Insert an additional unnamed section at the top of the list.
