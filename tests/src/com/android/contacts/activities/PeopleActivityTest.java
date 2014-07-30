@@ -23,7 +23,6 @@ import android.content.Loader;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.Groups;
@@ -140,7 +139,7 @@ public class PeopleActivityTest
 
     private void expectContactListQuery(int count) {
         Uri uri = Contacts.CONTENT_URI.buildUpon()
-                .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true")
+                .appendQueryParameter(Contacts.ADDRESS_BOOK_INDEX_EXTRAS, "true")
                 .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                         String.valueOf(Directory.DEFAULT))
                 .build();
