@@ -23,7 +23,6 @@ import android.net.Uri;
 import android.net.Uri.Builder;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Data;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +80,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
         final Builder builder = StructuredPostal.CONTENT_URI.buildUpon()
                 .appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true");
         if (isSectionHeaderDisplayEnabled()) {
-            builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+            builder.appendQueryParameter(StructuredPostal.ADDRESS_BOOK_INDEX_EXTRAS, "true");
         }
         loader.setUri(builder.build());
 
