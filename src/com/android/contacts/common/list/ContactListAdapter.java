@@ -19,7 +19,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippets;
@@ -143,7 +142,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     protected static Uri buildSectionIndexerUri(Uri uri) {
         return uri.buildUpon()
-                .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
+                .appendQueryParameter(Contacts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
     }
 
     @Override
