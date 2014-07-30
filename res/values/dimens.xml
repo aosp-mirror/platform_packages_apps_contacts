@@ -125,8 +125,8 @@
 
 
     <!-- Margins for ExpandingEntryCardView -->
-    <dimen name="expanding_entry_card_marginStart">12dp</dimen>
-    <dimen name="expanding_entry_card_marginEnd">12dp</dimen>
+    <dimen name="expanding_entry_card_marginStart">8dp</dimen>
+    <dimen name="expanding_entry_card_marginEnd">8dp</dimen>
     <dimen name="expanding_entry_card_marginBottom">12dp</dimen>
     <!-- Width of the grey border surrounding the expanding entry cards. If we ever add
          a rounded corner to the expanding entry cards, than we will need to increase this value -->
@@ -136,7 +136,7 @@
     <dimen name="first_card_marginTop">12dp</dimen>
 
     <!-- Elevation of an ExpandingEntryCard, for the sake of shadow casting -->
-    <dimen name="expanding_entry_card_elevation">1dp</dimen>
+    <dimen name="expanding_entry_card_elevation">2dp</dimen>
     <!-- Elevation of the QuickContact's Toolbar, for the sake of shadow casting -->
     <dimen name="quick_contact_toolbar_elevation">4.5dp</dimen>
 
@@ -150,25 +150,28 @@
     <!-- Dimensions for an entry in ExpandingEntryCardView -->
     <dimen name="expanding_entry_card_item_padding_start">20dp</dimen>
     <dimen name="expanding_entry_card_item_padding_end">20dp</dimen>
-    <dimen name="expanding_entry_card_item_padding_top">16dp</dimen>
+    <dimen name="expanding_entry_card_item_padding_top">18dp</dimen>
     <dimen name="expanding_entry_card_item_padding_bottom">16dp</dimen>
-    <dimen name="expanding_entry_card_item_image_spacing">20dp</dimen>
+    <dimen name="expanding_entry_card_item_image_spacing">27dp</dimen>
 
     <!-- Dimensions for a button in ExpandingEntryCardView -->
-    <dimen name="expanding_entry_card_button_padding_start">20dp</dimen>
-    <dimen name="expanding_entry_card_button_padding_vertical">16dp</dimen>
-    <dimen name="expanding_entry_card_button_drawable_padding">20dp</dimen>
+    <dimen name="expanding_entry_card_button_padding_vertical">18dp</dimen>
 
     <dimen name="expanding_entry_card_item_text_icon_margin_top">7dp</dimen>
     <dimen name="expanding_entry_card_item_text_icon_margin_right">7dp</dimen>
     <dimen name="expanding_entry_card_item_sub_header_icon_margin_right">4dp</dimen>
     <dimen name="expanding_entry_card_item_sub_header_icon_margin_bottom">14dp</dimen>
 
-    <dimen name="expanding_entry_card_item_icon_margin_top">8dp</dimen>
+    <dimen name="expanding_entry_card_item_icon_margin_top">7dp</dimen>
+    <dimen name="expanding_entry_card_item_header_only_margin_top">6dp</dimen>
     <dimen name="expanding_entry_card_item_alternate_icon_margin_end">0dp</dimen>
     <dimen name="expanding_entry_card_item_alternate_icon_margin_bottom">10dp</dimen>
 
     <dimen name="expanding_entry_card_badge_separator_margin">8dp</dimen>
+    <dimen name="expanding_entry_card_card_corner_radius">2dp</dimen>
+    <dimen name="expanding_entry_card_header_margin_bottom">2dp</dimen>
+    <!-- The top margin when the sub header and text views are both gone -->
+    <dimen name="expanding_entry_card_item_header_only_margin_bottom">2dp</dimen>
 
     <dimen name="people_activity_card_elevation">2dp</dimen>
     <!-- The width the that the tabs occupy in the ActionBar when in landscape mode.

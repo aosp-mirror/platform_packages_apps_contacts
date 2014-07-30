@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.transition.ChangeBounds;
 import android.transition.ChangeScroll;
@@ -35,6 +36,7 @@ import android.view.LayoutInflater;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -48,7 +50,7 @@ import java.util.List;
 /**
  * Display entries in a LinearLayout that can be expanded to show all entries.
  */
-public class ExpandingEntryCardView extends LinearLayout {
+public class ExpandingEntryCardView extends CardView {
 
     private static final String TAG = "ExpandingEntryCardView";
     private static final int DURATION_EXPAND_ANIMATION_FADE_IN = 200;
@@ -184,6 +186,7 @@ public class ExpandingEntryCardView extends LinearLayout {
     private ViewGroup mAnimationViewGroup;
     private LinearLayout mBadgeContainer;
     private final List<ImageView> mBadges;
+    private LinearLayout mContainer;
 
     private final OnClickListener mExpandCollapseButtonListener = new OnClickListener() {
         @Override
@@ -207,6 +210,7 @@ public class ExpandingEntryCardView extends LinearLayout {
         mEntriesViewGroup = (LinearLayout)
                 expandingEntryCardView.findViewById(R.id.content_area_linear_layout);
         mTitleTextView = (TextView) expandingEntryCardView.findViewById(R.id.title);
+        mContainer = (LinearLayout) expandingEntryCardView.findViewById(R.id.container);
         mCollapseArrowDrawable =
                 getResources().getDrawable(R.drawable.expanding_entry_card_collapse_white_24);
         mExpandArrowDrawable =
@@ -315,7 +319,7 @@ public class ExpandingEntryCardView extends LinearLayout {
         removeView(mExpandCollapseButton);
         if (mCollapsedEntriesCount < mNumEntries
                 && mExpandCollapseButton.getParent() == null && !mIsAlwaysExpanded) {
-            addView(mExpandCollapseButton, -1);
+            mContainer.addView(mExpandCollapseButton, -1);
         }
     }
 
@@ -325,23 +329,22 @@ public class ExpandingEntryCardView extends LinearLayout {
 
     private void addSeparator(View entry) {
         View separator = new View(getContext());
-        separator.setBackgroundColor(getResources().getColor(
+        Resources res = getResources();
+
+        separator.setBackgroundColor(res.getColor(
                 R.color.expanding_entry_card_item_separator_color));
-        LayoutParams layoutParams = generateDefaultLayoutParams();
-        Resources resources = getResources();
-        layoutParams.height = resources.getDimensionPixelSize(
-                R.dimen.expanding_entry_card_item_separator_height);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                res.getDimensionPixelSize(R.dimen.expanding_entry_card_item_separator_height));
         // The separator is aligned with the text in the entry. This is offset by a default
         // margin. If there is an icon present, the icon's width and margin are added
-        int marginStart = resources.getDimensionPixelSize(
+        int marginStart = res.getDimensionPixelSize(
                 R.dimen.expanding_entry_card_item_padding_start);
         ImageView entryIcon = (ImageView) entry.findViewById(R.id.icon);
         if (entryIcon.getVisibility() == View.VISIBLE) {
             int imageWidthAndMargin =
-                    resources.getDimensionPixelSize(
-                            R.dimen.expanding_entry_card_item_icon_width) +
-                    resources.getDimensionPixelSize(
-                            R.dimen.expanding_entry_card_item_image_spacing);
+                    res.getDimensionPixelSize(R.dimen.expanding_entry_card_item_icon_width) +
+                    res.getDimensionPixelSize(R.dimen.expanding_entry_card_item_image_spacing);
             marginStart += imageWidthAndMargin;
         }
         layoutParams.setMarginStart(marginStart);
@@ -521,13 +524,16 @@ public class ExpandingEntryCardView extends LinearLayout {
             view.setTag(entry.getIntent());
         }
 
-        // If only the header is visible, add a top margin to match icon's top margin
+        // If only the header is visible, add a top margin to match icon's top margin.
+        // Also increase the space below the header for visual comfort.
         if (header.getVisibility() == View.VISIBLE && subHeader.getVisibility() == View.GONE &&
                 text.getVisibility() == View.GONE) {
             RelativeLayout.LayoutParams headerLayoutParams =
                     (RelativeLayout.LayoutParams) header.getLayoutParams();
             headerLayoutParams.topMargin = (int) (getResources().getDimension(
-                    R.dimen.expanding_entry_card_item_icon_margin_top));
+                    R.dimen.expanding_entry_card_item_header_only_margin_top));
+            headerLayoutParams.bottomMargin += (int) (getResources().getDimension(
+                    R.dimen.expanding_entry_card_item_header_only_margin_bottom));
             header.setLayoutParams(headerLayoutParams);
         }
 
@@ -560,6 +566,12 @@ public class ExpandingEntryCardView extends LinearLayout {
                     view.setTouchDelegate(touchDelegate);
                 }
             });
+        }
+
+        // Decrease margin for entries that have an invisible icon
+        if (iconVisibility == View.INVISIBLE) {
+            view.setPaddingRelative(view.getPaddingStart(), 0, view.getPaddingEnd(),
+                    view.getPaddingBottom());
         }
 
         return view;

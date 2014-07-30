@@ -15,6 +15,7 @@
 -->
 <com.android.contacts.widget.TouchlessScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -32,22 +33,26 @@
         <com.android.contacts.quickcontact.ExpandingEntryCardView
             style="@style/ExpandingEntryCardStyle"
             android:id="@+id/no_contact_data_card"
-            android:visibility="gone" />
+            android:visibility="gone"
+            cardview:cardCornerRadius="@dimen/expanding_entry_card_card_corner_radius" />
 
         <com.android.contacts.quickcontact.ExpandingEntryCardView
             style="@style/ExpandingEntryCardStyle"
             android:id="@+id/communication_card"
-            android:visibility="gone" />
+            android:visibility="gone"
+            cardview:cardCornerRadius="@dimen/expanding_entry_card_card_corner_radius" />
 
         <com.android.contacts.quickcontact.ExpandingEntryCardView
             style="@style/ExpandingEntryCardStyle"
             android:id="@+id/recent_card"
-            android:visibility="gone" />
+            android:visibility="gone"
+            cardview:cardCornerRadius="@dimen/expanding_entry_card_card_corner_radius" />
 
         <com.android.contacts.quickcontact.ExpandingEntryCardView
             style="@style/ExpandingEntryCardStyle"
             android:id="@+id/about_card"
-            android:visibility="gone" />
+            android:visibility="gone"
+            cardview:cardCornerRadius="@dimen/expanding_entry_card_card_corner_radius" />
 
     </LinearLayout>
 
