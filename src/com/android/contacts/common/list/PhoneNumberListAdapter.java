@@ -25,7 +25,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Callable;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
-import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
@@ -172,7 +171,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                 builder = baseUri.buildUpon().appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
                 if (isSectionHeaderDisplayEnabled()) {
-                    builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+                    builder.appendQueryParameter(Phone.ADDRESS_BOOK_INDEX_EXTRAS, "true");
                 }
                 applyFilter(loader, builder, directoryId, getFilter());
             }
