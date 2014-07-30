@@ -28,6 +28,7 @@
 
     <style name="EditorActivityTheme" parent="@style/PeopleTheme">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
+        <item name="android:actionBarStyle">@style/EditorActionBarStyle</item>
     </style>
 
     <style name="Theme">
@@ -107,6 +108,11 @@
         <item name="android:backgroundStacked">@color/actionbar_background_color</item>
         <!-- Empty icon -->
         <item name="android:icon">@android:color/transparent</item>
+    </style>
+
+    <style name="EditorActionBarStyle" parent="@style/ContactsActionBarStyle">
+        <!-- Do not use a contentInsetStart, since we are setting a custom ActionBar view -->
+        <item name="android:contentInsetStart">0dp</item>
     </style>
 
     <!-- When this style was added, android:toolbarStyle was private. Therefore, this style
