@@ -24,6 +24,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.DisplayInfo;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -51,7 +52,7 @@ import android.widget.TextView;
  * features are missing. For example: handling of KEYCODES, OverScroll bounce and saving
  * scroll state in savedInstanceState bundles.
  */
-public class MultiShrinkScroller extends LinearLayout {
+public class MultiShrinkScroller extends FrameLayout {
 
     /**
      * 1000 pixels per millisecond. Ie, 1 pixel per second.
@@ -283,18 +284,28 @@ public class MultiShrinkScroller extends LinearLayout {
                     mMaximumHeaderHeight = getHeight();
                     mMinimumHeaderHeight = mMaximumHeaderHeight;
                     mIntermediateHeaderHeight = mMaximumHeaderHeight;
+
+                    // Permanently set photo width and height.
                     final TypedValue photoRatio = new TypedValue();
                     getResources().getValue(R.vals.quickcontact_photo_ratio, photoRatio,
                             /* resolveRefs = */ true);
-                    final LayoutParams layoutParams
-                            = (LayoutParams) mPhotoViewContainer.getLayoutParams();
-                    layoutParams.height = mMaximumHeaderHeight;
-                    layoutParams.width = (int) (mMaximumHeaderHeight * photoRatio.getFloat());
-                    mPhotoViewContainer.setLayoutParams(layoutParams);
+                    final ViewGroup.LayoutParams photoLayoutParams
+                            = mPhotoViewContainer.getLayoutParams();
+                    photoLayoutParams.height = mMaximumHeaderHeight;
+                    photoLayoutParams.width = (int) (mMaximumHeaderHeight * photoRatio.getFloat());
+                    mPhotoViewContainer.setLayoutParams(photoLayoutParams);
+
+                    // Permanently set title width and margin.
+                    final FrameLayout.LayoutParams largeTextLayoutParams
+                            = (FrameLayout.LayoutParams) mLargeTextView.getLayoutParams();
+                    largeTextLayoutParams.width = photoLayoutParams.width -
+                            largeTextLayoutParams.leftMargin - largeTextLayoutParams.rightMargin;
+                    largeTextLayoutParams.gravity = Gravity.BOTTOM | Gravity.START;
+                    mLargeTextView.setLayoutParams(largeTextLayoutParams);
                 }
 
                 calculateCollapsedLargeTitlePadding();
-                updateHeaderTextSize();
+                updateHeaderTextSizeAndMargin();
                 configureGradientViewHeights();
             }
         });
@@ -558,7 +569,7 @@ public class MultiShrinkScroller extends LinearLayout {
             scrollDown(delta);
         }
         updatePhotoTintAndDropShadow();
-        updateHeaderTextSize();
+        updateHeaderTextSizeAndMargin();
         final boolean isFullscreen = getScrollNeededToBeFullScreen() <= 0;
         if (mListener != null) {
             if (wasFullscreen && !isFullscreen) {
@@ -575,13 +586,13 @@ public class MultiShrinkScroller extends LinearLayout {
      */
     @NeededForReflection
     public void setToolbarHeight(int delta) {
-        final LinearLayout.LayoutParams toolbarLayoutParams
-                = (LayoutParams) mToolbar.getLayoutParams();
+        final ViewGroup.LayoutParams toolbarLayoutParams
+                = mToolbar.getLayoutParams();
         toolbarLayoutParams.height = delta;
         mToolbar.setLayoutParams(toolbarLayoutParams);
 
         updatePhotoTintAndDropShadow();
-        updateHeaderTextSize();
+        updateHeaderTextSizeAndMargin();
     }
 
     @NeededForReflection
@@ -594,12 +605,12 @@ public class MultiShrinkScroller extends LinearLayout {
      */
     @NeededForReflection
     public void setHeaderHeight(int height) {
-        final LinearLayout.LayoutParams toolbarLayoutParams
-                = (LayoutParams) mToolbar.getLayoutParams();
+        final ViewGroup.LayoutParams toolbarLayoutParams
+                = mToolbar.getLayoutParams();
         toolbarLayoutParams.height = height;
         mToolbar.setLayoutParams(toolbarLayoutParams);
         updatePhotoTintAndDropShadow();
-        updateHeaderTextSize();
+        updateHeaderTextSizeAndMargin();
     }
 
     @NeededForReflection
@@ -618,10 +629,8 @@ public class MultiShrinkScroller extends LinearLayout {
      */
     @NeededForReflection
     public int getScroll() {
-        final LinearLayout.LayoutParams toolbarLayoutParams
-                = (LayoutParams) mToolbar.getLayoutParams();
         return mTransparentStartHeight - getTransparentViewHeight()
-                + getMaximumScrollableHeaderHeight() - toolbarLayoutParams.height
+                + getMaximumScrollableHeaderHeight() - getToolbarHeight()
                 + mScrollView.getScrollY();
     }
 
@@ -641,10 +650,8 @@ public class MultiShrinkScroller extends LinearLayout {
      * This value should never be used in conjunction with {@link #getScroll} values.
      */
     private int getScroll_ignoreOversizedHeaderForSnapping() {
-        final LinearLayout.LayoutParams toolbarLayoutParams
-                = (LayoutParams) mToolbar.getLayoutParams();
         return mTransparentStartHeight - getTransparentViewHeight()
-                + Math.max(getMaximumScrollableHeaderHeight() - toolbarLayoutParams.height, 0)
+                + Math.max(getMaximumScrollableHeaderHeight() - getToolbarHeight(), 0)
                 + mScrollView.getScrollY();
     }
 
@@ -766,8 +773,8 @@ public class MultiShrinkScroller extends LinearLayout {
             setTransparentViewHeight(Math.max(0, getTransparentViewHeight()));
             delta -= originalValue - getTransparentViewHeight();
         }
-        final LinearLayout.LayoutParams toolbarLayoutParams
-                = (LayoutParams) mToolbar.getLayoutParams();
+        final ViewGroup.LayoutParams toolbarLayoutParams
+                = mToolbar.getLayoutParams();
         if (toolbarLayoutParams.height > getFullyCompressedHeaderHeight()) {
             final int originalValue = toolbarLayoutParams.height;
             toolbarLayoutParams.height -= delta;
@@ -802,8 +809,7 @@ public class MultiShrinkScroller extends LinearLayout {
             mScrollView.scrollBy(0, delta);
             delta -= mScrollView.getScrollY() - originalValue;
         }
-        final LinearLayout.LayoutParams toolbarLayoutParams
-                = (LayoutParams) mToolbar.getLayoutParams();
+        final ViewGroup.LayoutParams toolbarLayoutParams = mToolbar.getLayoutParams();
         if (toolbarLayoutParams.height < getMaximumScrollableHeaderHeight()) {
             final int originalValue = toolbarLayoutParams.height;
             toolbarLayoutParams.height -= delta;
@@ -831,9 +837,9 @@ public class MultiShrinkScroller extends LinearLayout {
     /**
      * Set the header size and padding, based on the current scroll position.
      */
-    private void updateHeaderTextSize() {
+    private void updateHeaderTextSizeAndMargin() {
         if (mIsTwoPanel) {
-            // The text size stays constant on two panel layouts.
+            // The text size stays at a constant size & location in two panel layouts.
             return;
         }
 
@@ -847,12 +853,12 @@ public class MultiShrinkScroller extends LinearLayout {
 
         final int START_TEXT_SCALING_THRESHOLD_COEFFICIENT = 2;
         final int threshold = START_TEXT_SCALING_THRESHOLD_COEFFICIENT * mMinimumHeaderHeight;
-        final int toolbarHeight = mToolbar.getLayoutParams().height;
+        final int toolbarHeight = getToolbarHeight();
         if (toolbarHeight >= threshold) {
             // Keep the text at maximum size since the header is smaller than threshold.
             mLargeTextView.setScaleX(1);
             mLargeTextView.setScaleY(1);
-            setInterpolatedTitleMargin(1);
+            setInterpolatedTitleMargins(1);
             return;
         }
         final float ratio = (toolbarHeight  - mMinimumHeaderHeight)
@@ -863,7 +869,7 @@ public class MultiShrinkScroller extends LinearLayout {
 
         mLargeTextView.setScaleX(scale);
         mLargeTextView.setScaleY(scale);
-        setInterpolatedTitleMargin(ratio);
+        setInterpolatedTitleMargins(ratio);
     }
 
     /**
@@ -896,14 +902,21 @@ public class MultiShrinkScroller extends LinearLayout {
      * Interpolate the title's margin size. When {@param x}=1, use the maximum title margins.
      * When {@param x}=0, use the margin values taken from {@link #mInvisiblePlaceholderTextView}.
      */
-    private void setInterpolatedTitleMargin(float x) {
-        final FrameLayout.LayoutParams layoutParams
+    private void setInterpolatedTitleMargins(float x) {
+        final FrameLayout.LayoutParams titleLayoutParams
                 = (FrameLayout.LayoutParams) mLargeTextView.getLayoutParams();
-        layoutParams.bottomMargin = (int) (mCollapsedTitleBottomMargin * (1 - x)
-                + mMaximumTitleMargin * x) ;
-        layoutParams.setMarginStart((int) (mCollapsedTitleStartMargin * (1 - x)
+        final LinearLayout.LayoutParams toolbarLayoutParams
+                = (LinearLayout.LayoutParams) mToolbar.getLayoutParams();
+        titleLayoutParams.setMarginStart((int) (mCollapsedTitleStartMargin * (1 - x)
                 + mMaximumTitleMargin * x));
-        mLargeTextView.setLayoutParams(layoutParams);
+        // How offset the title should be from the bottom of the toolbar
+        final int pretendBottomMargin =  (int) (mCollapsedTitleBottomMargin * (1 - x)
+                + mMaximumTitleMargin * x) ;
+        // Calculate how offset the title should be from the top of the screen.
+        titleLayoutParams.topMargin = getTransparentViewHeight()
+                + toolbarLayoutParams.height - pretendBottomMargin
+                - mLargeTextView.getHeight();
+        mLargeTextView.setLayoutParams(titleLayoutParams);
     }
 
     private void updatePhotoTintAndDropShadow() {
@@ -922,7 +935,7 @@ public class MultiShrinkScroller extends LinearLayout {
 
         // We need to use toolbarLayoutParams to determine the height, since the layout
         // params can be updated before the height change is reflected inside the View#getHeight().
-        final int toolbarHeight = mToolbar.getLayoutParams().height;
+        final int toolbarHeight = getToolbarHeight();
 
         if (toolbarHeight <= mMinimumHeaderHeight && !mIsTwoPanel) {
             mPhotoViewContainer.setElevation(mToolbarElevation);
@@ -1118,7 +1131,7 @@ public class MultiShrinkScroller extends LinearLayout {
 
         final int newEmptyScrollViewSpace = -getOverflowingChildViewSize() + heightDelta;
         if (newEmptyScrollViewSpace > 0 && !mIsTwoPanel) {
-            final int newDesiredToolbarHeight = Math.min(mToolbar.getLayoutParams().height
+            final int newDesiredToolbarHeight = Math.min(getToolbarHeight()
                     + newEmptyScrollViewSpace, getMaximumScrollableHeaderHeight());
             ObjectAnimator.ofInt(this, "toolbarHeight", newDesiredToolbarHeight).setDuration(
                     ExpandingEntryCardView.DURATION_COLLAPSE_ANIMATION_CHANGE_BOUNDS).start();
