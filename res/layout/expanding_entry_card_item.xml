@@ -36,12 +36,14 @@
 
     <TextView
         android:id="@+id/header"
+        android:textSize="@dimen/expanding_entry_card_title_text_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/icon"
         android:layout_toStartOf="@+id/icon_alternate"
-        android:textColor="@color/quickcontact_entry_header_text_color" />
+        android:textColor="@color/quickcontact_entry_header_text_color"
+        android:layout_marginBottom="@dimen/expanding_entry_card_header_margin_bottom" />
 
     <TextView
         android:id="@+id/sub_header"
