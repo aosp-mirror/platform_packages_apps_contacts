@@ -139,7 +139,6 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
         if (isSectionHeaderDisplayEnabled() && viewIndex == getPinnedHeaderCount() - 1) {
             if (mHeader == null) {
                 mHeader = createPinnedSectionHeaderView(mContext, parent);
-                mHeader.setLayoutDirection(parent.getLayoutDirection());
             }
             return mHeader;
         } else {

@@ -295,6 +295,8 @@ public class ContactListItemView extends ViewGroup
 
         mNameHighlightSequence = new ArrayList<HighlightSequence>();
         mNumberHighlightSequence = new ArrayList<HighlightSequence>();
+
+        setLayoutDirection(View.LAYOUT_DIRECTION_LOCALE);
     }
 
     public void setUnknownNameText(CharSequence unknownNameText) {
