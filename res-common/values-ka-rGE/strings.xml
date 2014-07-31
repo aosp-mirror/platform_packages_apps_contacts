@@ -161,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"ერთი კონტაქტი"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"კონტაქტის შექმნა ანგარიშში"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM ბარათიდან იმპორტი"</string>
+    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"მეხსიერებიდან იმპორტი"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"გსურთ <xliff:g id="FILENAME">%s</xliff:g>-ის იმპორტის გაუქმება?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"გსურთ <xliff:g id="FILENAME">%s</xliff:g>-ის ექსპორტის გაუქმება?"</string>
