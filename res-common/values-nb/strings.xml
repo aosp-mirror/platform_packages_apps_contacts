@@ -161,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Enkeltkontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Opprett kontakt under konto"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importer fra SIM-kort"</string>
+    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importer fra lagring"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vil du avbryte importeringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vil du avbryte eksporteringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -244,7 +246,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Fjern ofte kontaktede personer"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Velg SIM-kort"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Kontoer"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Importering og eksportering"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Import og eksport"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"avslutt søket"</string>

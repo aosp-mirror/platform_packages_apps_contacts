@@ -137,7 +137,7 @@
     <string name="chat_yahoo" msgid="5542489454092719897">"使用雅虎通聊天"</string>
     <string name="chat_skype" msgid="3145166404699830256">"使用 Skype 聊天"</string>
     <string name="chat_qq" msgid="2811762660890755082">"使用 QQ 聊天"</string>
-    <string name="chat_gtalk" msgid="6043734883347741789">"使用 Google Talk 聊天"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"使用Google Talk聊天"</string>
     <string name="chat_icq" msgid="7538190395602030726">"使用 ICQ 聊天"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"使用 Jabber 聊天"</string>
     <string name="chat" msgid="6297650784873558837">"聊天"</string>
@@ -161,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"单个联系人"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"在以下帐户中创建联系人："</string>
     <string name="import_from_sim" msgid="4749894687871835873">"从SIM卡导入"</string>
+    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"从存储设备导入"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"要取消导入“<xliff:g id="FILENAME">%s</xliff:g>”吗？"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"要取消导出“<xliff:g id="FILENAME">%s</xliff:g>”吗？"</string>
@@ -172,7 +174,7 @@
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"导出时出错：“<xliff:g id="EXACT_REASON">%s</xliff:g>”。"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"指定的文件名过长（“<xliff:g id="FILENAME">%s</xliff:g>”）。"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"存储设备中的 vCard 文件过多。"</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD 卡上的 vCard 文件过多。"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD卡上的 vCard 文件过多。"</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O 错误"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"内存不足。该文件可能过大。"</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"由于意外原因而无法解析 vCard。"</string>
@@ -190,7 +192,7 @@
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"无法导出"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"未导出联系人数据。\n原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"找不到任何存储设备。"</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"找不到 SD 卡。"</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"找不到SD卡。"</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"系统会将您的联系人列表导出到以下文件：<xliff:g id="VCARD_FILENAME">%s</xliff:g>。"</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"正在导入<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"无法读取 vCard 数据"</string>
@@ -207,7 +209,7 @@
     <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"无法导入 vCard。"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"未在存储设备中找到 vCard 文件。"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"未在 SD 卡上找到 vCard 文件。"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"未在SD卡上找到 vCard 文件。"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"通过 NFC 收到的联系人"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"要导出联系人吗？"</string>
     <string name="select_vcard_title" msgid="1536575036597557639">"选择 vCard 文件"</string>
@@ -215,10 +217,10 @@
     <string name="import_multiple_vcard_string" msgid="8931879029943141122">"导入多个 vCard 文件"</string>
     <string name="import_all_vcard_string" msgid="1037495558362397535">"导入所有 vCard 文件"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"正在搜索存储设备中的 vCard 数据..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"正在搜索 SD 卡中的 vCard 数据..."</string>
+    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"正在搜索SD卡中的 vCard 数据..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"正在缓存"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"无法扫描存储设备（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）。"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"无法扫描 SD 卡（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）。"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"无法扫描SD卡（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）。"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"正在导入 - <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>：<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"导出到存储设备"</string>
     <!-- no translation found for display_options_sort_list_by (7686551200843900466) -->
