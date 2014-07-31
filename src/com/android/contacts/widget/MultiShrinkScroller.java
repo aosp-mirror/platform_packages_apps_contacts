@@ -111,6 +111,10 @@ public class MultiShrinkScroller extends LinearLayout {
     private int mCollapsedTitleStartMargin;
     private int mMinimumPortraitHeaderHeight;
     private int mMaximumPortraitHeaderHeight;
+    /**
+     * True once the header has touched the top of the screen at least once.
+     */
+    private boolean mHasEverTouchedTheTop;
 
     private final Scroller mScroller;
     private final EdgeEffect mEdgeGlowBottom;
@@ -490,6 +494,11 @@ public class MultiShrinkScroller extends LinearLayout {
      * If needed, snap the subviews to the top of the Window.
      */
     private boolean snapToTop(int flingDelta) {
+        if (mHasEverTouchedTheTop) {
+            // Only when first interacting with QuickContacts should QuickContacts snap to the top
+            // of the screen. After this, QuickContacts can be placed most anywhere on the screen.
+            return false;
+        }
         final int requiredScroll = -getScroll_ignoreOversizedHeaderForSnapping()
                 + mTransparentStartHeight;
         if (-getScroll_ignoreOversizedHeaderForSnapping() - flingDelta < 0
@@ -508,7 +517,18 @@ public class MultiShrinkScroller extends LinearLayout {
      * If needed, scroll all the subviews off the bottom of the Window.
      */
     private void snapToBottom(int flingDelta) {
-        if (-getScroll_ignoreOversizedHeaderForSnapping() - flingDelta > 0) {
+        if (mHasEverTouchedTheTop) {
+            // If QuickContacts has touched the top of the screen previously, then we
+            // will less aggressively snap to the bottom of the screen.
+            final float predictedScrollPastTop = -getScroll() + mIntermediateHeaderHeight
+                    - flingDelta;
+            final float heightMinusHeader = getHeight() - mIntermediateHeaderHeight;
+            if (predictedScrollPastTop > heightMinusHeader) {
+                scrollOffBottom();
+            }
+            return;
+        }
+        if (-getScroll() - flingDelta > 0) {
             scrollOffBottom();
         }
     }
@@ -560,6 +580,7 @@ public class MultiShrinkScroller extends LinearLayout {
         updatePhotoTintAndDropShadow();
         updateHeaderTextSize();
         final boolean isFullscreen = getScrollNeededToBeFullScreen() <= 0;
+        mHasEverTouchedTheTop |= isFullscreen;
         if (mListener != null) {
             if (wasFullscreen && !isFullscreen) {
                  mListener.onExitFullscreen();
