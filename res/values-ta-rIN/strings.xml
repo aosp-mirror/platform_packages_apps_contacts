@@ -25,7 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"அழைப்பதற்கான எண்ணைத் தேர்வுசெய்யவும்"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"செய்தி அனுப்ப எண்ணைத் தேர்வுசெய்க"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"தொடர்பைத் தேர்வுசெய்யவும்"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"புதிய தொடர்பைத் தேர்ந்தெடுக்கவும்"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"புதிய தொடர்பைத் தேர்ந்தெடு"</string>
     <string name="starredList" msgid="4817256136413959463">"நட்சத்திரமிட்டது"</string>
     <string name="frequentList" msgid="7154768136473953056">"அடிக்கடி"</string>
     <string name="strequentList" msgid="5640192862059373511">"பிடித்தவை"</string>
@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"இந்தப் படத்தைப் பயன்படுத்து"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"இந்தப் பயன்பாட்டிலிருந்து திருத்த முடியாது."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"இந்தத் தொடர்புக்குக் கூடுதல் தகவல் இல்லை."</string>
     <string name="group_read_only" msgid="1061762906115697637">"இந்தச் சாதனத்தில் திருத்தக்கூடியதல்ல."</string>
     <string name="take_photo" msgid="7496128293167402354">"படமெடு"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"புதிய படத்தை எடு"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"கணக்கைச் சேர்"</string>
     <string name="add_new_account" msgid="5748627740680940264">"புதிய கணக்கைச் சேர்"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"தரவுத்தள கோப்புகளை ஏற்றுமதி செய்"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"படம். மாற்றுவதற்குத் தேர்ந்தெடுக்கவும்"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"புதிய தொடர்பைச் சேர்"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"மேலும் காட்டு"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"குறைவாகக் காட்டு"</string>
