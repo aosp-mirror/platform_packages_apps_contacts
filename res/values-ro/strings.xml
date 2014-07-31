@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizaţi această fotografie"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Nu se poate edita din această aplicaţie"</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Nu există informaţii suplimentare pentru acest contact."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Nu poate fi editat pe acest dispozitiv."</string>
     <string name="take_photo" msgid="7496128293167402354">"Fotografiaţi"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Creaţi o fotografie nouă"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"Adăugaţi un cont"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Adăugaţi un cont nou"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportaţi fişierele bazei de date"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Fotografie. Selectați pentru a schimba."</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"adăugați o persoană de contact nouă"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Mai multe detalii"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Mai puține detalii"</string>

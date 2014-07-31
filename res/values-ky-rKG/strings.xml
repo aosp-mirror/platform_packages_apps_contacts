@@ -187,7 +187,6 @@
     <!-- no translation found for use_photo_as_primary (8807110122951157246) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Бул колдонмодон өзгөртүлбөйт."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Бул байланыштын кошумча маалыматтары жок."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Бул түзмөктөн өзгөртүлбөйт."</string>
     <!-- no translation found for take_photo (7496128293167402354) -->
     <skip />
@@ -305,7 +304,6 @@
     <string name="add_account" msgid="8201790677994503186">"Эсеп кошуу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңы эсеп кошуу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Берилиштер корлорунун файлдарын экспорттоо"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Сүрөтү. Өзгөртүү үчүн тандоо"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"жаңы байланыш кошуу"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Дагы көрүү"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Азыраак көрүү"</string>

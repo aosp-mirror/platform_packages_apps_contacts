@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Bruk dette bildet"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Kan ikke redigeres fra denne appen."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Ingen utfyllende informasjon for denne kontakten."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Kan ikke redigeres på denne enheten."</string>
     <string name="take_photo" msgid="7496128293167402354">"Ta bilde"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ta nytt bilde"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"Legg til konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Legg til ny konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksporter databasefilene"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Bilde. Velg for å endre"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"legg til ny kontakt"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Se mer"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Se mindre"</string>

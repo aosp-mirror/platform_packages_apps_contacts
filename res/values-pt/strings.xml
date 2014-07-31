@@ -45,7 +45,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Excluir"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Colocar na tela inicial"</string>
-    <string name="menu_call" msgid="3992595586042260618">"Chamar contato"</string>
+    <string name="menu_call" msgid="3992595586042260618">"Ligar para contato"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar SMS/MMS para o contato"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editar"</string>
@@ -109,7 +109,7 @@
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Todos"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoritos"</string>
     <string name="callBack" msgid="5498224409038809224">"Retornar chamada"</string>
-    <string name="callAgain" msgid="3197312117049874778">"Chamar novamente"</string>
+    <string name="callAgain" msgid="3197312117049874778">"Ligar novamente"</string>
     <string name="returnCall" msgid="8171961914203617813">"Retornar chamada"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Adicionar \"<xliff:g id="EMAIL">%s</xliff:g>\" aos contatos?"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"foto do contato"</string>
@@ -136,7 +136,6 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Usar esta foto"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Não pode ser editado neste aplicativo."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Não há informações adicionais para este contato."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Não é possível editar neste dispositivo."</string>
     <string name="take_photo" msgid="7496128293167402354">"Tirar foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tirar outra foto"</string>
@@ -225,7 +224,6 @@
     <string name="add_account" msgid="8201790677994503186">"Adicionar conta"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Adicionar nova conta"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportar arquivos do banco de dados"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Imagem. Selecione para alterar"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"adicionar novo contato"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Ver mais"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Ver menos"</string>
