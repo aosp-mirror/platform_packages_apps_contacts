@@ -161,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Un sol contacte"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Crea el contacte al compte"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importa des de la targeta SIM"</string>
+    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importa de l\'emmagatzematge"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vols cancel·lar la importació de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vols cancel·lar l\'exportació de <xliff:g id="FILENAME">%s</xliff:g>?"</string>

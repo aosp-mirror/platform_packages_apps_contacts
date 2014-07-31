@@ -161,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Contatto singolo"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Crea contatto nell\'account"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importa da scheda SIM"</string>
+    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importa da archivio"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Annullare l\'importazione di <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Annullare l\'esportazione di <xliff:g id="FILENAME">%s</xliff:g>?"</string>

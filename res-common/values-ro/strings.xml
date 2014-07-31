@@ -161,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"O singură persoană de contact"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Creați o persoană de contact în contul"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importați de pe cardul SIM"</string>
+    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importați din stocare"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Anulați importul fișierului <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Anulați exportul fișierului <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -241,7 +243,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Nicio persoană de contact nu este vizibilă."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Nu există preferate."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nicio persoană de contact în <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"Șterg. pers. frecv. contact."</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Ștergeți contacte frecvente"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selectați cardul SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Conturi"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importați/exportați"</string>

@@ -61,9 +61,9 @@
     <string name="sms_assistant" msgid="2677586547377136683">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"ส่งข้อความถึง MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ใช้แฮงเอาท์วิดีโอ"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ หรือไม่"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ล้างรายชื่อที่ติดต่อบ่อยไหม"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอปพลิเคชัน People และ Phone และบังคับให้แอปพลิเคชันอีเมลเรียนรู้ค่ากำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"กำลังล้างผู้ที่คุณติดต่อด้วยบ่อยๆ…"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"กำลังล้างรายชื่อที่ติดต่อบ่อย…"</string>
     <string name="status_available" msgid="4832569677396634846">"พร้อมใช้งาน"</string>
     <string name="status_away" msgid="6267905184545881094">"ไม่อยู่"</string>
     <string name="status_busy" msgid="7111912905211403545">"ไม่ว่าง"</string>
@@ -161,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"รายชื่อติดต่อเดียว"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"สร้างรายชื่อภายในบัญชี"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"นำเข้าจากซิมการ์ด"</string>
+    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"นำเข้าจากที่เก็บข้อมูล"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"ยกเลิกการนำเข้า <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"ยกเลิกการส่งออก <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
@@ -241,7 +243,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ไม่มีรายชื่อติดต่อที่แสดงไว้"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ไม่มีรายการโปรด"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"ไม่มีรายชื่อติดต่อใน <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"ล้างรายชื่อที่ติดต่อบ่อย"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"เลือกซิมการ์ด"</string>
     <string name="menu_accounts" msgid="795417468541517082">"บัญชี"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"นำเข้า/ส่งออก"</string>

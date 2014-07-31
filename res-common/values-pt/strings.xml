@@ -161,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Contato único"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Criar contato na conta"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importar do cartão SIM"</string>
+    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importar do armazenamento"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Cancelar a importação de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Cancelar a exportação de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -228,7 +230,7 @@
     <string name="display_options_view_given_name_first" msgid="1412684412351158812">"Nome primeiro"</string>
     <string name="display_options_view_family_name_first" msgid="8624010750059331413">"Sobrenome primeiro"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Compartilhar contatos visíveis"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Importar/Exportar contatos"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Importar/exportar contatos"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importar contatos"</string>
     <string name="share_error" msgid="665756457151793108">"Este contato não pode ser compartilhado."</string>
     <string name="menu_search" msgid="7464453023659824700">"Pesquisar"</string>
