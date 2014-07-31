@@ -124,7 +124,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     @Override
     protected View createPinnedSectionHeaderView(Context context, ViewGroup parent) {
-        return new ContactListPinnedHeaderView(context, null);
+        return new ContactListPinnedHeaderView(context, null, parent);
     }
 
     @Override

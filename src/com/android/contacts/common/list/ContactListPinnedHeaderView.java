@@ -23,6 +23,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ import com.android.contacts.common.util.ViewUtil;
  */
 public class ContactListPinnedHeaderView extends TextView {
 
-    public ContactListPinnedHeaderView(Context context, AttributeSet attrs) {
+    public ContactListPinnedHeaderView(Context context, AttributeSet attrs, View parent) {
         super(context, attrs);
 
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
@@ -51,6 +52,7 @@ public class ContactListPinnedHeaderView extends TextView {
         setLayoutParams(new LayoutParams(
                 getResources().getDimensionPixelSize(R.dimen.contact_list_section_header_width),
                 LayoutParams.WRAP_CONTENT));
+        setLayoutDirection(parent.getLayoutDirection());
         setGravity(Gravity.CENTER_VERTICAL |
                 (ViewUtil.isViewLayoutRtl(this) ? Gravity.RIGHT : Gravity.LEFT));
 
