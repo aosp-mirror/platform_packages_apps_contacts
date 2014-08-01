@@ -121,7 +121,7 @@
     <!-- Padding around the icon in the search box. -->
     <dimen name="search_box_icon_margin">4dp</dimen>
     <!-- Size of the icon (voice search, close search) in the search box. -->
-    <dimen name="search_box_icon_size">28dp</dimen>
+    <dimen name="search_box_icon_size">32dp</dimen>
     <!-- Left margin of the text field in the search box. -->
     <dimen name="search_box_text_left_margin">27dp</dimen>
     <!-- Search box text size -->
