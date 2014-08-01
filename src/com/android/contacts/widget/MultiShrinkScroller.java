@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.view.ViewConfiguration;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
 import android.widget.EdgeEffect;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -147,6 +148,9 @@ public class MultiShrinkScroller extends FrameLayout {
             0, 0, 0, 0, 0,
             0, 0, 0, 1, 0
     };
+
+    private final PathInterpolator mTextSizePathInterpolator
+            = new PathInterpolator(0.16f, 0.4f, 0.2f, 1);
 
     private final int[] mGradientColors = new int[] {0,0xAA000000};
     private GradientDrawable mTitleGradientDrawable = new GradientDrawable(
@@ -872,25 +876,25 @@ public class MultiShrinkScroller extends FrameLayout {
         }
         mLargeTextView.setPivotY(mLargeTextView.getHeight() / 2);
 
-        final int START_TEXT_SCALING_THRESHOLD_COEFFICIENT = 2;
-        final int threshold = START_TEXT_SCALING_THRESHOLD_COEFFICIENT * mMinimumHeaderHeight;
-        final int toolbarHeight = getToolbarHeight();
-        if (toolbarHeight >= threshold) {
-            // Keep the text at maximum size since the header is smaller than threshold.
+        final int toolbarHeight = mToolbar.getLayoutParams().height;
+        if (toolbarHeight >= mMaximumHeaderHeight) {
+            // Everything is full size when the header is fully expanded.
             mLargeTextView.setScaleX(1);
             mLargeTextView.setScaleY(1);
             setInterpolatedTitleMargins(1);
             return;
         }
-        final float ratio = (toolbarHeight  - mMinimumHeaderHeight)
-                / (float)(threshold - mMinimumHeaderHeight);
+
+        float ratio = (toolbarHeight  - mMinimumHeaderHeight)
+                / (float)(mMaximumHeaderHeight - mMinimumHeaderHeight);
         final float minimumSize = mInvisiblePlaceholderTextView.getHeight();
-        final float scale = (minimumSize + (mMaximumHeaderTextSize - minimumSize) * ratio)
+        final float bezierOutput = mTextSizePathInterpolator.getInterpolation(ratio);
+        float scale = (minimumSize + (mMaximumHeaderTextSize - minimumSize) * bezierOutput)
                 / mMaximumHeaderTextSize;
 
         mLargeTextView.setScaleX(scale);
         mLargeTextView.setScaleY(scale);
-        setInterpolatedTitleMargins(ratio);
+        setInterpolatedTitleMargins(bezierOutput);
     }
 
     /**
