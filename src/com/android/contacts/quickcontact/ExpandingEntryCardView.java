@@ -33,9 +33,11 @@ import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.TouchDelegate;
 import android.view.View;
+import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -78,19 +80,22 @@ public class ExpandingEntryCardView extends CardView {
         private final String mAlternateContentDescription;
         private final boolean mShouldApplyColor;
         private final boolean mIsEditable;
+        private final EntryContextMenuInfo mEntryContextMenuInfo;
 
         public Entry(int viewId, Drawable icon, String header, String subHeader, String text,
                 Intent intent, Drawable alternateIcon, Intent alternateIntent,
                 String alternateContentDescription, boolean shouldApplyColor,
-                boolean isEditable) {
+                boolean isEditable, EntryContextMenuInfo entryContextMenuInfo) {
             this(viewId, icon, header, subHeader, null, text, null, intent, alternateIcon,
-                    alternateIntent, alternateContentDescription, shouldApplyColor, isEditable);
+                    alternateIntent, alternateContentDescription, shouldApplyColor, isEditable,
+                    entryContextMenuInfo);
         }
 
         public Entry(int viewId, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon, Intent intent,
                 Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
-                boolean shouldApplyColor, boolean isEditable) {
+                boolean shouldApplyColor, boolean isEditable,
+                EntryContextMenuInfo entryContextMenuInfo) {
             mViewId = viewId;
             mIcon = mainIcon;
             mHeader = header;
@@ -104,6 +109,7 @@ public class ExpandingEntryCardView extends CardView {
             mAlternateContentDescription = alternateContentDescription;
             mShouldApplyColor = shouldApplyColor;
             mIsEditable = isEditable;
+            mEntryContextMenuInfo = entryContextMenuInfo;
         }
 
         Drawable getIcon() {
@@ -157,6 +163,10 @@ public class ExpandingEntryCardView extends CardView {
         int getViewId() {
             return mViewId;
         }
+
+        EntryContextMenuInfo getEntryContextMenuInfo() {
+            return mEntryContextMenuInfo;
+        }
     }
 
     public interface ExpandingEntryCardViewListener {
@@ -170,6 +180,7 @@ public class ExpandingEntryCardView extends CardView {
     private CharSequence mExpandButtonText;
     private CharSequence mCollapseButtonText;
     private OnClickListener mOnClickListener;
+    private OnCreateContextMenuListener mOnCreateContextMenuListener;
     private boolean mIsExpanded = false;
     private int mCollapsedEntriesCount;
     private ExpandingEntryCardViewListener mListener;
@@ -290,6 +301,11 @@ public class ExpandingEntryCardView extends CardView {
     @Override
     public void setOnClickListener(OnClickListener listener) {
         mOnClickListener = listener;
+    }
+
+    @Override
+    public void setOnCreateContextMenuListener (OnCreateContextMenuListener listener) {
+        mOnCreateContextMenuListener = listener;
     }
 
     private void insertEntriesIntoViewGroup() {
@@ -469,10 +485,12 @@ public class ExpandingEntryCardView extends CardView {
         }
     }
 
-    private View createEntryView(LayoutInflater layoutInflater, Entry entry, int iconVisibility) {
-        final View view = layoutInflater.inflate(
+    private View createEntryView(LayoutInflater layoutInflater, final Entry entry,
+            int iconVisibility) {
+        final EntryView view = (EntryView) layoutInflater.inflate(
                 R.layout.expanding_entry_card_item, this, false);
 
+        view.setContextMenuInfo(entry.getEntryContextMenuInfo());
         view.setId(entry.getViewId());
 
         final ImageView icon = (ImageView) view.findViewById(R.id.icon);
@@ -569,6 +587,9 @@ public class ExpandingEntryCardView extends CardView {
             view.setPaddingRelative(view.getPaddingStart(), 0, view.getPaddingEnd(),
                     view.getPaddingBottom());
         }
+
+
+        view.setOnCreateContextMenuListener(mOnCreateContextMenuListener);
 
         return view;
     }
@@ -747,5 +768,44 @@ public class ExpandingEntryCardView extends CardView {
 
     public boolean shouldShow() {
         return mEntries != null && mEntries.size() > 0;
+    }
+
+    public static final class EntryView extends RelativeLayout {
+        private EntryContextMenuInfo mEntryContextMenuInfo;
+
+        public EntryView(Context context) {
+            super(context);
+        }
+
+        public EntryView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        public void setContextMenuInfo(EntryContextMenuInfo info) {
+            mEntryContextMenuInfo = info;
+        }
+
+        @Override
+        protected ContextMenuInfo getContextMenuInfo() {
+            return mEntryContextMenuInfo;
+        }
+    }
+
+    public static final class EntryContextMenuInfo implements ContextMenuInfo {
+        private final String mCopyText;
+        private final String mCopyLabel;
+
+        public EntryContextMenuInfo(String copyText, String copyLabel) {
+            mCopyText = copyText;
+            mCopyLabel = copyLabel;
+        }
+
+        public String getCopyText() {
+            return mCopyText;
+        }
+
+        public String getCopyLabel() {
+            return mCopyLabel;
+        }
     }
 }

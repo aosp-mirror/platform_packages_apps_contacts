@@ -14,7 +14,8 @@
      limitations under the License.
 -->
 
-<RelativeLayout
+<view
+    class="com.android.contacts.quickcontact.ExpandingEntryCardView$EntryView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/SelectableItem"
     android:layout_width="match_parent"
@@ -93,4 +94,4 @@
         android:layout_marginTop="@dimen/expanding_entry_card_item_icon_margin_top"
         android:layout_marginBottom="@dimen/expanding_entry_card_item_alternate_icon_margin_bottom" />
 
-</RelativeLayout>
+</view>

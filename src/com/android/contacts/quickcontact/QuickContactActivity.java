@@ -70,11 +70,14 @@ import android.support.v7.graphics.Palette;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnCreateContextMenuListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -86,6 +89,7 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.common.CallUtil;
+import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
@@ -122,6 +126,7 @@ import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
+import com.android.contacts.quickcontact.ExpandingEntryCardView.EntryContextMenuInfo;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.ExpandingEntryCardViewListener;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -337,6 +342,33 @@ public class QuickContactActivity extends ContactsActivity {
         }
     };
 
+    private final OnCreateContextMenuListener mEntryContextMenuListener =
+            new OnCreateContextMenuListener() {
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+            if (menuInfo == null) {
+                return;
+            }
+            EntryContextMenuInfo info = (EntryContextMenuInfo) menuInfo;
+            menu.setHeaderTitle(info.getCopyText());
+            menu.add(R.string.copy_text);
+        }
+    };
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        EntryContextMenuInfo menuInfo;
+        try {
+            menuInfo = (EntryContextMenuInfo) item.getMenuInfo();
+        } catch (ClassCastException e) {
+            Log.e(TAG, "bad menuInfo", e);
+            return false;
+        }
+
+        ClipboardUtils.copyText(this, menuInfo.getCopyLabel(), menuInfo.getCopyText(), true);
+        return true;
+    }
+
     /**
      * Headless fragment used to handle account selection callbacks invoked from
      * {@link DirectoryContactUtil}.
@@ -519,11 +551,13 @@ public class QuickContactActivity extends ContactsActivity {
         mContactCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setExpandButtonText(
         getResources().getString(R.string.expanding_entry_card_view_see_all));
+        mContactCard.setOnCreateContextMenuListener(mEntryContextMenuListener);
 
         mRecentCard.setOnClickListener(mEntryClickHandler);
         mRecentCard.setTitle(getResources().getString(R.string.recent_card_title));
 
         mAboutCard.setOnClickListener(mEntryClickHandler);
+        mAboutCard.setOnCreateContextMenuListener(mEntryContextMenuListener);
 
         mPhotoView = (ImageView) findViewById(R.id.photo);
         mTransparentView = findViewById(R.id.transparent_view);
@@ -859,8 +893,9 @@ public class QuickContactActivity extends ContactsActivity {
                     /* alternateIntent = */ null,
                     /* alternateContentDescription = */ null,
                     /* shouldApplyColor = */ false,
-                    /* isEditable = */ false
-                    );
+                    /* isEditable = */ false,
+                    /* EntryContextMenuInfo = */ new EntryContextMenuInfo(phoneticName,
+                            getResources().getString(R.string.name_phonetic)));
             List<Entry> phoneticList = new ArrayList<>();
             phoneticList.add(phoneticEntry);
             // Phonetic name comes after nickname. Check to see if the first entry type is nickname
@@ -904,7 +939,7 @@ public class QuickContactActivity extends ContactsActivity {
                 /* subHeader = */ null, /* text = */ null, getEditContactIntent(),
                 /* alternateIcon = */ null, /* alternateIntent = */ null,
                 /* alternateContentDescription = */ null, /* shouldApplyColor = */ true,
-                /* isEditable = */ false);
+                /* isEditable = */ false, /* EntryContextMenuInfo = */ null);
 
         final Drawable emailIcon = getResources().getDrawable(
                 R.drawable.ic_email_24dp).mutate();
@@ -912,7 +947,8 @@ public class QuickContactActivity extends ContactsActivity {
                 emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
                 /* text = */ null, getEditContactIntent(), /* alternateIcon = */ null,
                 /* alternateIntent = */ null, /* alternateContentDescription = */ null,
-                /* shouldApplyColor = */ true, /* isEditable = */ false);
+                /* shouldApplyColor = */ true, /* isEditable = */ false,
+                /* EntryContextMenuInfo = */ null);
 
         final List<List<Entry>> promptEntries = new ArrayList<>();
         promptEntries.add(new ArrayList<Entry>(1));
@@ -1019,6 +1055,7 @@ public class QuickContactActivity extends ContactsActivity {
         Intent alternateIntent = null;
         String alternateContentDescription = null;
         final boolean isEditable = false;
+        EntryContextMenuInfo entryContextMenuInfo = null;
 
         DataKind kind = dataItem.getDataKind();
 
@@ -1044,10 +1081,12 @@ public class QuickContactActivity extends ContactsActivity {
                         im.getCustomProtocol()).toString();
                 subHeader = im.getData();
             }
+            entryContextMenuInfo = new EntryContextMenuInfo(im.getData(), header);
         } else if (dataItem instanceof OrganizationDataItem) {
             final OrganizationDataItem organization = (OrganizationDataItem) dataItem;
             header = getResources().getString(R.string.header_organization_entry);
             subHeader = organization.getCompany();
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             text = organization.getTitle();
         } else if (dataItem instanceof NicknameDataItem) {
             final NicknameDataItem nickname = (NicknameDataItem) dataItem;
@@ -1062,15 +1101,18 @@ public class QuickContactActivity extends ContactsActivity {
             if (!duplicatesTitle) {
                 header = getResources().getString(R.string.header_nickname_entry);
                 subHeader = nickname.getName();
+                entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             }
         } else if (dataItem instanceof NoteDataItem) {
             final NoteDataItem note = (NoteDataItem) dataItem;
             header = getResources().getString(R.string.header_note_entry);
             subHeader = note.getNote();
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
         } else if (dataItem instanceof WebsiteDataItem) {
             final WebsiteDataItem website = (WebsiteDataItem) dataItem;
             header = getResources().getString(R.string.header_website_entry);
             subHeader = website.getUrl();
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             try {
                 final WebAddress webAddress = new WebAddress(website.buildDataString(this, kind));
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
@@ -1105,6 +1147,7 @@ public class QuickContactActivity extends ContactsActivity {
             }
             header = getResources().getString(R.string.header_relation_entry);
             subHeader = relation.getName();
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             if (relation.hasKindTypeColumn(kind)) {
                 text = Relation.getTypeLabel(getResources(), relation.getKindTypeColumn(kind),
                         relation.getLabel()).toString();
@@ -1113,6 +1156,8 @@ public class QuickContactActivity extends ContactsActivity {
             final PhoneDataItem phone = (PhoneDataItem) dataItem;
             if (!TextUtils.isEmpty(phone.getNumber())) {
                 header = phone.buildDataString(this, kind);
+                entryContextMenuInfo = new EntryContextMenuInfo(header,
+                        getResources().getString(R.string.phoneLabelsGroup));
                 if (phone.hasKindTypeColumn(kind)) {
                     text = Phone.getTypeLabel(getResources(), phone.getKindTypeColumn(kind),
                             phone.getLabel()).toString();
@@ -1133,6 +1178,8 @@ public class QuickContactActivity extends ContactsActivity {
                 final Uri mailUri = Uri.fromParts(CallUtil.SCHEME_MAILTO, address, null);
                 intent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 header = email.getAddress();
+                entryContextMenuInfo = new EntryContextMenuInfo(header,
+                        getResources().getString(R.string.emailLabelsGroup));
                 if (email.hasKindTypeColumn(kind)) {
                     text = Email.getTypeLabel(getResources(), email.getKindTypeColumn(kind),
                             email.getLabel()).toString();
@@ -1145,6 +1192,8 @@ public class QuickContactActivity extends ContactsActivity {
             if (!TextUtils.isEmpty(postalAddress)) {
                 intent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
                 header = postal.getFormattedAddress();
+                entryContextMenuInfo = new EntryContextMenuInfo(header,
+                        getResources().getString(R.string.postalLabelsGroup));
                 if (postal.hasKindTypeColumn(kind)) {
                     text = StructuredPostal.getTypeLabel(getResources(),
                             postal.getKindTypeColumn(kind), postal.getLabel()).toString();
@@ -1162,6 +1211,8 @@ public class QuickContactActivity extends ContactsActivity {
                     final Uri callUri = Uri.fromParts(CallUtil.SCHEME_SIP, address, null);
                     intent = CallUtil.getCallIntent(callUri);
                     header = address;
+                    entryContextMenuInfo = new EntryContextMenuInfo(header,
+                            getResources().getString(R.string.phoneLabelsGroup));
                     if (sip.hasKindTypeColumn(kind)) {
                         text = SipAddress.getTypeLabel(getResources(), sip.getKindTypeColumn(kind),
                             sip.getLabel()).toString();
@@ -1217,6 +1268,7 @@ public class QuickContactActivity extends ContactsActivity {
                         }
                         break;
                     default:
+                        entryContextMenuInfo = new EntryContextMenuInfo(header, mimetype);
                         icon = ResolveCache.getInstance(this).getIcon(
                                 dataItem.getMimeType(), intent);
                         // Call mutate to create a new Drawable.ConstantState for color filtering
@@ -1258,7 +1310,7 @@ public class QuickContactActivity extends ContactsActivity {
 
         return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon, intent,
                 alternateIcon, alternateIntent, alternateContentDescription, shouldApplyColor,
-                isEditable);
+                isEditable, entryContextMenuInfo);
     }
 
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems) {
@@ -1424,7 +1476,8 @@ public class QuickContactActivity extends ContactsActivity {
                     /* alternateIntent = */ null,
                     /* alternateContentDescription = */ null,
                     /* shouldApplyColor = */ true,
-                    /* isEditable = */ false));
+                    /* isEditable = */ false,
+                    /* EntryContextMenuInfo = */ null));
         }
         return entries;
     }
