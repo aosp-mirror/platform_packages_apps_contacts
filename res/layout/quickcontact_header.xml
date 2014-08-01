@@ -14,15 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<!-- Needs a non null background in for elevation to work on this View. This will *not* cause an
-     additional draw since the background is transparent. -->
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#00000000"
-    android:id="@+id/toolbar_parent">
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.android.contacts.widget.QuickContactImageView
         android:id="@+id/photo"
@@ -61,17 +53,4 @@
         android:background="#00000000"
         android:id="@+id/toolbar"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/actionbar_text_color"
-        android:maxLines="@integer/quickcontact_title_lines"
-        android:ellipsize="end"
-        android:layout_gravity="bottom|start"
-        android:textSize="@dimen/quickcontact_maximum_title_size"
-        android:layout_marginStart="@dimen/quickcontact_title_initial_margin"
-        android:layout_marginEnd="@dimen/quickcontact_title_initial_margin"
-        android:layout_marginBottom="@dimen/quickcontact_title_initial_margin"
-        android:id="@+id/large_title"/>
-
-</FrameLayout>
+</merge>
