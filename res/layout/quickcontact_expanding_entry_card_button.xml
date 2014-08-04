@@ -30,15 +30,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
+        <ImageView
+            android:id="@+id/arrow"
+            android:src="@drawable/expanding_entry_card_expand_white_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/expanding_entry_card_item_padding_start"
+            android:paddingBottom="@dimen/expanding_entry_card_button_padding_vertical"
+            android:paddingTop="@dimen/expanding_entry_card_button_padding_vertical"
+            android:layout_weight="0" />
+
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/expanding_entry_card_item_image_spacing"
+            android:paddingStart="@dimen/expanding_entry_card_item_image_spacing"
             android:gravity="center_vertical"
             android:layout_weight="0"
             android:paddingBottom="@dimen/expanding_entry_card_button_padding_vertical"
-            android:paddingStart="@dimen/expanding_entry_card_item_padding_start"
             android:paddingTop="@dimen/expanding_entry_card_button_padding_vertical"
             android:textColor="@color/expanding_entry_card_button_text_color"
             android:textSize="@dimen/expanding_entry_card_title_text_size" />
