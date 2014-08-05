@@ -161,8 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"รายชื่อติดต่อเดียว"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"สร้างรายชื่อภายในบัญชี"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"นำเข้าจากซิมการ์ด"</string>
-    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
-    <skip />
+    <string name="import_from_sim_number" msgid="1232500923375370101">"นำเข้าจากซิมการ์ด #<xliff:g id="SIM_NUMBER">%d</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"นำเข้าจากที่เก็บข้อมูล"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"ยกเลิกการนำเข้า <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"ยกเลิกการส่งออก <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
