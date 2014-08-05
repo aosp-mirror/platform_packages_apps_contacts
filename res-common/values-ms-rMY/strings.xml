@@ -160,9 +160,8 @@
     <string name="listCustomView" msgid="1915154113477432033">"Kenalan dalam pandangan tersuai"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Kenalan tunggal"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Wujudkan kenalan di bawah akaun"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Import daripada kad SIM"</string>
-    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
-    <skip />
+    <string name="import_from_sim" msgid="4749894687871835873">"Import dari kad SIM"</string>
+    <string name="import_from_sim_number" msgid="1232500923375370101">"Import dari kad SIM #<xliff:g id="SIM_NUMBER">%d</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Import dari storan"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Batalkan import <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Batalkan eksport <xliff:g id="FILENAME">%s</xliff:g>?"</string>

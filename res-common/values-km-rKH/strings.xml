@@ -161,8 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"ទំនាក់ទំនង​ទោល"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"បង្កើត​ទំនាក់ទំនង​នៅ​ក្នុង​គណនី"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"នាំចូល​ពី​ស៊ីម​កាត"</string>
-    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
-    <skip />
+    <string name="import_from_sim_number" msgid="1232500923375370101">"នាំចូល​ពី​​ស៊ីម​កាត #<xliff:g id="SIM_NUMBER">%d</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"នាំចូល​ពី​ឧបករណ៍​ផ្ទុក"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"បោះបង់​ការ​នាំចូល <xliff:g id="FILENAME">%s</xliff:g> ?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"បោះបង់​ការ​នាំចេញ <xliff:g id="FILENAME">%s</xliff:g> ?"</string>
