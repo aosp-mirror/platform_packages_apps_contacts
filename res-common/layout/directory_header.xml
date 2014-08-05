@@ -15,7 +15,7 @@
 -->
 
 <!-- Layout used for list section separators. -->
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/DirectoryHeader"
     android:id="@+id/directory_header"
@@ -24,46 +24,32 @@
     android:paddingRight="?attr/list_item_padding_right"
     android:paddingStart="?attr/list_item_padding_left"
     android:paddingEnd="?attr/list_item_padding_right"
+    android:paddingTop="@dimen/directory_header_extra_top_padding"
     android:minHeight="@dimen/list_section_divider_min_height"
     android:layout_marginTop="@dimen/list_header_extra_top_padding"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingTop="4dp"
-        android:paddingBottom="8dp"
-        android:background="@drawable/list_section_divider_holo_custom" >
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_marginStart="8dip"
-            android:textAppearance="@style/DirectoryHeaderStyle"
-            android:singleLine="true"
-            android:textAlignment="viewStart" />
-        <TextView
-            android:id="@+id/display_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="8dip"
-            android:layout_marginStart="8dip"
-            android:layout_marginEnd="8dip"
-            android:textAppearance="@style/DirectoryHeaderStyle"
-            android:singleLine="true"
-            android:textAlignment="viewStart" />
-        <TextView
-            android:id="@+id/count"
-            android:paddingTop="1dip"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:singleLine="true"
-            android:textSize="12sp"
-            android:textColor="@color/people_app_theme_color" />
-    </LinearLayout>
-</FrameLayout>
+        android:textAppearance="@style/DirectoryHeaderStyle"
+        android:singleLine="true"
+        android:textAlignment="viewStart" />
+    <TextView
+        android:id="@+id/display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/DirectoryHeaderStyle"
+        android:singleLine="true"
+        android:textAlignment="viewStart" />
+    <TextView
+        android:id="@+id/count"
+        android:paddingTop="1dip"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:singleLine="true"
+        android:textAppearance="@style/DirectoryHeaderStyle" />
+</LinearLayout>
