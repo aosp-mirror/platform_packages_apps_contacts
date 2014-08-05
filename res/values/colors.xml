@@ -53,8 +53,6 @@
 
     <color name="call_arrow_green">#2aad6f</color>
     <color name="call_arrow_red">#ff2e58</color>
-    <!-- Color of ripples use by Theme.Material. Taken from res/values/colors_material.xml -->
-    <color name="ripple_material_dark">#20ffffff</color>
 
     <color name="contact_all_list_background_color">#FFFFFF</color>
     <color name="contact_favorites_list_background_color">#FFFFFF</color>
