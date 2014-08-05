@@ -161,8 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Jeden kontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Vytvořit kontakt na základě účtu"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importovat ze SIM karty"</string>
-    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
-    <skip />
+    <string name="import_from_sim_number" msgid="1232500923375370101">"Importovat ze SIM karty č. <xliff:g id="SIM_NUMBER">%d</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importovat z úložiště"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Zrušit import souboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Zrušit export souboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>

@@ -161,8 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"単独の連絡先"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"アカウントに連絡先を作成"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIMカードからインポート"</string>
-    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
-    <skip />
+    <string name="import_from_sim_number" msgid="1232500923375370101">"SIMカード（番号: <xliff:g id="SIM_NUMBER">%d</xliff:g>）からインポート"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ストレージからインポート"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g>のインポートをキャンセルしますか？"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートをキャンセルしますか？"</string>

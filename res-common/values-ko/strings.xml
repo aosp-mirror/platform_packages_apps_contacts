@@ -161,8 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"단일 연락처"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"연락처 추가할 계정 선택하기"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM 카드에서 가져오기"</string>
-    <!-- no translation found for import_from_sim_number (1232500923375370101) -->
-    <skip />
+    <string name="import_from_sim_number" msgid="1232500923375370101">"SIM 카드 #<xliff:g id="SIM_NUMBER">%d</xliff:g>에서 가져오기"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"저장소에서 가져오기"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> 가져오기를 취소하시겠습니까?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기를 취소하시겠습니까?"</string>
