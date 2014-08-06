@@ -42,6 +42,7 @@
         android:fontFamily="@string/search_font_family"
         android:textColor="@color/searchbox_text_color"
         android:textColorHint="@color/searchbox_hint_text_color"
+        android:textCursorDrawable="@drawable/searchedittext_custom_cursor"
         android:background="@null"
         android:inputType="textFilter"
         android:singleLine="true"
