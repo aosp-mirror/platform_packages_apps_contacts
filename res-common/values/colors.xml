@@ -41,11 +41,14 @@
     <!-- Color of the theme of the People app -->
     <color name="people_app_theme_color">#363636</color>
 
+    <!-- Color of the theme of the Dialer app -->
+    <color name="dialtacts_theme_color">#0288d1</color>
+
     <!-- Color of image view placeholder. -->
     <color name="image_placeholder">#DDDDDD</color>
 
     <!-- Secondary text color in the Phone app -->
-    <color name="dialtacts_secondary_text_color">#888888</color>
+    <color name="dialtacts_secondary_text_color">#737373</color>
 
     <!--  Color of the semi-transparent shadow box on contact tiles -->
     <color name="contact_tile_shadow_box_color">#7F000000</color>
