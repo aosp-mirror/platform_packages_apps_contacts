@@ -46,6 +46,7 @@ import android.provider.ContactsContract.Contacts.Photo;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
@@ -957,7 +958,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     private Drawable getDrawableForBitmap(Resources resources, Bitmap bitmap, Request request) {
         if (request.mIsCircular) {
             final RoundedBitmapDrawable drawable =
-                    RoundedBitmapDrawable.createRoundedBitmapDrawable(resources, bitmap);
+                    RoundedBitmapDrawableFactory.create(resources, bitmap);
             drawable.setAntiAlias(true);
             drawable.setCornerRadius(bitmap.getHeight() / 2);
             return drawable;
