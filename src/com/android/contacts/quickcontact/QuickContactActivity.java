@@ -228,10 +228,18 @@ public class QuickContactActivity extends ContactsActivity {
             Phone.CONTENT_ITEM_TYPE, SipAddress.CONTENT_ITEM_TYPE, Email.CONTENT_ITEM_TYPE,
             StructuredPostal.CONTENT_ITEM_TYPE);
 
-    private static final List<String> ABOUT_CARD_MIMETYPES = Lists.newArrayList(
-            Event.CONTENT_ITEM_TYPE, GroupMembership.CONTENT_ITEM_TYPE, Identity.CONTENT_ITEM_TYPE,
-            Im.CONTENT_ITEM_TYPE, Nickname.CONTENT_ITEM_TYPE, Note.CONTENT_ITEM_TYPE,
-            Organization.CONTENT_ITEM_TYPE, Relation.CONTENT_ITEM_TYPE, Website.CONTENT_ITEM_TYPE);
+    private static final List<String> SORTED_ABOUT_CARD_MIMETYPES = Lists.newArrayList(
+            Nickname.CONTENT_ITEM_TYPE,
+            // Phonetic name is inserted after nickname if it is available.
+            // No mimetype for phonetic name exists.
+            Website.CONTENT_ITEM_TYPE,
+            Organization.CONTENT_ITEM_TYPE,
+            Event.CONTENT_ITEM_TYPE,
+            Relation.CONTENT_ITEM_TYPE,
+            Im.CONTENT_ITEM_TYPE,
+            GroupMembership.CONTENT_ITEM_TYPE,
+            Identity.CONTENT_ITEM_TYPE,
+            Note.CONTENT_ITEM_TYPE);
 
     /** Id for the background contact loader */
     private static final int LOADER_CONTACT_ID = 0;
@@ -789,20 +797,33 @@ public class QuickContactActivity extends ContactsActivity {
         }
     }
 
+    private List<List<Entry>> buildAboutCardEntries() {
+        final List<List<Entry>> aboutCardEntries = new ArrayList<>();
+        for (String mimetype : SORTED_ABOUT_CARD_MIMETYPES) {
+            final List<DataItem> mimeTypeItems = mDataItemsMap.get(mimetype);
+            if (mimeTypeItems == null) {
+                continue;
+            }
+            final List<Entry> aboutEntries = dataItemsToEntries(mimeTypeItems);
+            if (aboutEntries.size() > 0) {
+                aboutCardEntries.add(aboutEntries);
+            }
+        }
+        return aboutCardEntries;
+    }
+
     private void populateContactAndAboutCard() {
         Trace.beginSection("bind contact card");
 
         final List<List<Entry>> contactCardEntries = new ArrayList<>();
-        final List<List<Entry>> aboutCardEntries = new ArrayList<>();
+        final List<List<Entry>> aboutCardEntries = buildAboutCardEntries();
 
         for (int i = 0; i < mDataItemsList.size(); ++i) {
             final List<DataItem> dataItemsByMimeType = mDataItemsList.get(i);
             final DataItem topDataItem = dataItemsByMimeType.get(0);
-            if (ABOUT_CARD_MIMETYPES.contains(topDataItem.getMimeType())) {
-                List<Entry> aboutEntries = dataItemsToEntries(mDataItemsList.get(i));
-                if (aboutEntries.size() > 0) {
-                    aboutCardEntries.add(aboutEntries);
-                }
+            if (SORTED_ABOUT_CARD_MIMETYPES.contains(topDataItem.getMimeType())) {
+                // About card mimetypes are built in buildAboutCardEntries, skip here
+                continue;
             } else {
                 List<Entry> contactEntries = dataItemsToEntries(mDataItemsList.get(i));
                 if (contactEntries.size() > 0) {
@@ -842,7 +863,13 @@ public class QuickContactActivity extends ContactsActivity {
                     );
             List<Entry> phoneticList = new ArrayList<>();
             phoneticList.add(phoneticEntry);
-            aboutCardEntries.add(0, phoneticList);
+            // Phonetic name comes after nickname. Check to see if the first entry type is nickname
+            if (aboutCardEntries.get(0).get(0).getHeader().equals(
+                    getResources().getString(R.string.header_nickname_entry))) {
+                aboutCardEntries.add(1, phoneticList);
+            } else {
+                aboutCardEntries.add(0, phoneticList);
+            }
         }
 
         mAboutCard.initialize(aboutCardEntries,
