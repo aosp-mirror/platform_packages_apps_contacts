@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2014 Google Inc. All Rights Reserved. -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <size android:width="2dp" />
+    <solid android:color="@color/dialtacts_theme_color" />
+</shape>

@@ -62,7 +62,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
 
     <style name="TextAppearanceSmall" parent="@android:style/TextAppearance.Small">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">#888888</item>
+        <item name="android:textColor">#737373</item>
     </style>
 
     <style name="ListViewStyle" parent="@android:style/Widget.Material.Light.ListView">
