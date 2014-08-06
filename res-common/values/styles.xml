@@ -29,10 +29,8 @@
 
     <style name="DirectoryHeaderStyle" parent="@android:style/TextAppearance.Small">
         <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/people_app_theme_color</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/dialtacts_secondary_text_color</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <!-- TextView style used for headers.
