@@ -1588,6 +1588,13 @@ public class QuickContactActivity extends ContactsActivity {
         return mContactData != null && !mContactData.isDirectoryEntry();
     }
 
+    /**
+     * Returns true if it is possible to share the current contact.
+     */
+    private boolean isContactShareable() {
+        return mContactData != null && !mContactData.isDirectoryEntry();
+    }
+
     private Intent getEditContactIntent() {
         final Intent intent = new Intent(Intent.ACTION_EDIT, mLookupUri);
         mContactLoader.cacheResult();
@@ -1709,6 +1716,7 @@ public class QuickContactActivity extends ContactsActivity {
             ContactDisplayUtils.configureStarredMenuItem(starredMenuItem,
                     mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
                     mContactData.getStarred());
+
             // Configure edit MenuItem
             final MenuItem editMenuItem = menu.findItem(R.id.menu_edit);
             editMenuItem.setVisible(true);
@@ -1722,6 +1730,10 @@ public class QuickContactActivity extends ContactsActivity {
             } else {
                 editMenuItem.setVisible(false);
             }
+
+            final MenuItem shareMenuItem = menu.findItem(R.id.menu_share);
+            shareMenuItem.setVisible(isContactShareable());
+
             return true;
         }
         return false;
