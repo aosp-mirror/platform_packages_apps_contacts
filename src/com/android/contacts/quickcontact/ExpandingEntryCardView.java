@@ -15,6 +15,7 @@
  */
 package com.android.contacts.quickcontact;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -177,8 +178,7 @@ public class ExpandingEntryCardView extends CardView {
     private boolean mAllEntriesInflated = false;
     private List<List<View>> mEntryViews;
     private LinearLayout mEntriesViewGroup;
-    private final Drawable mCollapseArrowDrawable;
-    private final Drawable mExpandArrowDrawable;
+    private final ImageView mExpandCollapseArrow;
     private int mThemeColor;
     private ColorFilter mThemeColorFilter;
     private boolean mIsAlwaysExpanded;
@@ -211,14 +211,11 @@ public class ExpandingEntryCardView extends CardView {
                 expandingEntryCardView.findViewById(R.id.content_area_linear_layout);
         mTitleTextView = (TextView) expandingEntryCardView.findViewById(R.id.title);
         mContainer = (LinearLayout) expandingEntryCardView.findViewById(R.id.container);
-        mCollapseArrowDrawable =
-                getResources().getDrawable(R.drawable.expanding_entry_card_collapse_white_24);
-        mExpandArrowDrawable =
-                getResources().getDrawable(R.drawable.expanding_entry_card_expand_white_24);
 
         mExpandCollapseButton = inflater.inflate(
                 R.layout.quickcontact_expanding_entry_card_button, this, false);
         mExpandCollapseTextView = (TextView) mExpandCollapseButton.findViewById(R.id.text);
+        mExpandCollapseArrow = (ImageView) mExpandCollapseButton.findViewById(R.id.arrow);
         mExpandCollapseButton.setOnClickListener(mExpandCollapseButtonListener);
         mBadgeContainer = (LinearLayout) mExpandCollapseButton.findViewById(R.id.badge_container);
 
@@ -256,10 +253,10 @@ public class ExpandingEntryCardView extends CardView {
         mAnimationViewGroup = animationViewGroup;
 
         if (mIsExpanded) {
-            updateExpandCollapseButton(getCollapseButtonText());
+            updateExpandCollapseButton(getCollapseButtonText(), /* duration = */ 0);
             inflateAllEntries(layoutInflater);
         } else {
-            updateExpandCollapseButton(getExpandButtonText());
+            updateExpandCollapseButton(getExpandButtonText(), /* duration = */ 0);
             inflateInitialEntries(layoutInflater);
         }
         insertEntriesIntoViewGroup();
@@ -468,8 +465,7 @@ public class ExpandingEntryCardView extends CardView {
 
             // Expand/Collapse
             mExpandCollapseTextView.setTextColor(mThemeColor);
-            mCollapseArrowDrawable.setColorFilter(mThemeColorFilter);
-            mExpandArrowDrawable.setColorFilter(mThemeColorFilter);
+            mExpandCollapseArrow.setColorFilter(mThemeColorFilter);
         }
     }
 
@@ -577,16 +573,20 @@ public class ExpandingEntryCardView extends CardView {
         return view;
     }
 
-    private void updateExpandCollapseButton(CharSequence buttonText) {
-        final Drawable arrow = mIsExpanded ? mCollapseArrowDrawable : mExpandArrowDrawable;
-        updateBadges();
-        if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-            mExpandCollapseTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, arrow,
-                    null);
+    private void updateExpandCollapseButton(CharSequence buttonText, long duration) {
+        if (mIsExpanded) {
+            final ObjectAnimator animator = ObjectAnimator.ofFloat(mExpandCollapseArrow,
+                    "rotation", 180);
+            animator.setDuration(duration);
+            animator.start();
         } else {
-            mExpandCollapseTextView.setCompoundDrawablesWithIntrinsicBounds(arrow, null, null,
-                    null);
+            final ObjectAnimator animator = ObjectAnimator.ofFloat(mExpandCollapseArrow,
+                    "rotation", 0);
+            animator.setDuration(duration);
+            animator.start();
         }
+        updateBadges();
+
         mExpandCollapseTextView.setText(buttonText);
     }
 
@@ -665,13 +665,15 @@ public class ExpandingEntryCardView extends CardView {
         // In order to insert new entries, we may need to inflate them for the first time
         inflateAllEntries(LayoutInflater.from(getContext()));
         insertEntriesIntoViewGroup();
-        updateExpandCollapseButton(getCollapseButtonText());
+        updateExpandCollapseButton(getCollapseButtonText(),
+                DURATION_EXPAND_ANIMATION_CHANGE_BOUNDS);
     }
 
     private void collapse() {
         final int startingHeight = mEntriesViewGroup.getMeasuredHeight();
         mIsExpanded = false;
-        updateExpandCollapseButton(getExpandButtonText());
+        updateExpandCollapseButton(getExpandButtonText(),
+                DURATION_COLLAPSE_ANIMATION_CHANGE_BOUNDS);
 
         final ChangeBounds boundsTransition = new ChangeBounds();
         boundsTransition.setDuration(DURATION_COLLAPSE_ANIMATION_CHANGE_BOUNDS);
