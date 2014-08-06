@@ -25,6 +25,8 @@
          This value is for making the hidden configuration explicit in xml. -->
     <dimen name="list_section_divider_min_height">32dip</dimen>
 
+    <dimen name="directory_header_extra_top_padding">12dp</dimen>
+
     <!--  Horizontal padding in between contact tiles -->
     <dimen name="contact_tile_divider_padding">23dip</dimen>
     <!--  Horizontal padding before the first tile and after the last tile -->
