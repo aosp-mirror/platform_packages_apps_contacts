@@ -16,9 +16,9 @@
 
 package com.android.contacts.common.interactions;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -45,13 +45,14 @@ import com.android.contacts.common.util.AccountSelectionUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.vcard.ExportVCardActivity;
 import com.android.contacts.common.vcard.VCardCommonArguments;
+import com.android.dialerbind.analytics.AnalyticsDialogFragment;
 
 import java.util.List;
 
 /**
  * An dialog invoked to import/export contacts.
  */
-public class ImportExportDialogFragment extends DialogFragment
+public class ImportExportDialogFragment extends AnalyticsDialogFragment
         implements SelectAccountDialogFragment.Listener {
     public static final String TAG = "ImportExportDialogFragment";
 
@@ -71,6 +72,12 @@ public class ImportExportDialogFragment extends DialogFragment
         args.putString(VCardCommonArguments.ARG_CALLING_ACTIVITY, callingActivity.getName());
         fragment.setArguments(args);
         fragment.show(fragmentManager, ImportExportDialogFragment.TAG);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        sendScreenView();
     }
 
     @Override
