@@ -35,12 +35,9 @@
             android:contentDescription="@string/quickcontact_transparent_view_description"
             android:id="@+id/transparent_view" />
 
-        <!-- Needs a non null background for elevation to work on this View. This will *not*
-             cause an additional draw since the background is transparent. -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00000000"
             android:id="@+id/toolbar_parent">
             <include layout="@layout/quickcontact_header" />
         </FrameLayout>
