@@ -24,17 +24,16 @@
 
     <color name="background_social_updates">#ffeeeeee</color>
 
-    <!-- Color of the background of the action bar -->
-    <color name="action_bar_background">#e6e6e6</color>
-
-    <!-- Color used for system bar and navigation bar. -->
-    <color name="primary_dark">#008aa1</color>
-
-    <!-- Color of the background of the action bar when highlighted (ie. pressed, focused) -->
+    <!-- TODO: remove these colors once we delete the group code (b/16522929) -->
+    <color name="action_bar_background">#0288d1</color>
     <color name="action_bar_background_highlight">#cecece</color>
-
-    <!-- Color of the text for buttons in the action bar  -->
     <color name="action_bar_button_text_color">#FFFFFF</color>
+
+    <color name="actionbar_background_color">@color/primary_color</color>
+    <color name="actionbar_background_color_dark">@color/primary_color_dark</color>
+
+    <color name="primary_color_dark">#0277bd</color>
+    <color name="primary_color">#0288d1</color>
 
     <!-- Color of the selected tab underline (overriding value in ContactsCommon) -->
     <color name="contacts_accent_color">#00acc1</color>
