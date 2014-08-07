@@ -899,7 +899,7 @@ public class QuickContactActivity extends ContactsActivity {
             List<Entry> phoneticList = new ArrayList<>();
             phoneticList.add(phoneticEntry);
             // Phonetic name comes after nickname. Check to see if the first entry type is nickname
-            if (aboutCardEntries.get(0).get(0).getHeader().equals(
+            if (aboutCardEntries.size() > 0 && aboutCardEntries.get(0).get(0).getHeader().equals(
                     getResources().getString(R.string.header_nickname_entry))) {
                 aboutCardEntries.add(1, phoneticList);
             } else {
