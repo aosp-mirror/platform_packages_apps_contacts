@@ -885,12 +885,17 @@ public class MultiShrinkScroller extends FrameLayout {
             return;
         }
 
-        float ratio = (toolbarHeight  - mMinimumHeaderHeight)
+        final float ratio = (toolbarHeight  - mMinimumHeaderHeight)
                 / (float)(mMaximumHeaderHeight - mMinimumHeaderHeight);
         final float minimumSize = mInvisiblePlaceholderTextView.getHeight();
-        final float bezierOutput = mTextSizePathInterpolator.getInterpolation(ratio);
+        float bezierOutput = mTextSizePathInterpolator.getInterpolation(ratio);
         float scale = (minimumSize + (mMaximumHeaderTextSize - minimumSize) * bezierOutput)
                 / mMaximumHeaderTextSize;
+
+        // Clamp to reasonable/finite values before passing into framework. The values
+        // can be wacky before the first pre-render.
+        bezierOutput = (float) Math.min(bezierOutput, 1.0f);
+        scale = (float) Math.min(scale, 1.0f);
 
         mLargeTextView.setScaleX(scale);
         mLargeTextView.setScaleY(scale);
