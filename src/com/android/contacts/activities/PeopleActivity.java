@@ -359,6 +359,9 @@ public class PeopleActivity extends ContactsActivity implements
                 portraitViewPagerTabs, landscapeViewPagerTabs, toolbar);
         mActionBarAdapter.initialize(savedState, mRequest);
 
+        // Add shadow under toolbar
+        ViewUtil.addRectangularOutlineProvider(findViewById(R.id.toolbar_parent), getResources());
+
         // Configure action button
         final View floatingActionButtonContainer = findViewById(
                 R.id.floating_action_button_container);

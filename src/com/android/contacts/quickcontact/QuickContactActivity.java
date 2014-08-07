@@ -119,6 +119,7 @@ import com.android.contacts.common.model.dataitem.WebsiteDataItem;
 import com.android.contacts.common.util.DateUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
+import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
@@ -569,6 +570,9 @@ public class QuickContactActivity extends ContactsActivity {
                 }
             });
         }
+
+        // Allow a shadow to be shown under the toolbar.
+        ViewUtil.addRectangularOutlineProvider(findViewById(R.id.toolbar_parent), getResources());
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setActionBar(toolbar);
