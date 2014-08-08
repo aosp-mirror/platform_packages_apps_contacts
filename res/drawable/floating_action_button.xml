@@ -17,5 +17,5 @@
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
     android:color="@color/contacts_accent_color">
-    <item android:drawable="@drawable/profile_ic_fab_yellow" />
+    <item android:drawable="@drawable/fab_blue" />
 </ripple>
