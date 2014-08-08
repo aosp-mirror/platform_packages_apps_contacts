@@ -37,6 +37,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
@@ -351,8 +352,8 @@ public class ShortcutIntentBuilder {
         photo.draw(canvas);
 
         // Draw the icon with a rounded border
-        RoundedBitmapDrawable roundedDrawable = RoundedBitmapDrawable.createRoundedBitmapDrawable(
-                mResources, bitmap);
+        RoundedBitmapDrawable roundedDrawable =
+                RoundedBitmapDrawableFactory.create(mResources, bitmap);
         roundedDrawable.setAntiAlias(true);
         roundedDrawable.setCornerRadius(mIconSize / 2);
         Bitmap roundedBitmap = Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
