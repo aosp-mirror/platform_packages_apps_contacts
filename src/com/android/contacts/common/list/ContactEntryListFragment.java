@@ -576,7 +576,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             }
 
             if (mAdapter != null) {
-                mAdapter.setPinnedPartitionHeadersEnabled(flag);
                 mAdapter.setSearchMode(flag);
 
                 mAdapter.clearPartitions();
@@ -766,7 +765,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setIncludeProfile(mIncludeProfile);
         mAdapter.setQueryString(mQueryString);
         mAdapter.setDirectorySearchMode(mDirectorySearchMode);
-        mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
+        mAdapter.setPinnedPartitionHeadersEnabled(false);
         mAdapter.setContactNameDisplayOrder(mDisplayOrder);
         mAdapter.setSortOrder(mSortOrder);
         mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
