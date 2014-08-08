@@ -535,11 +535,23 @@ public class MultiShrinkScroller extends FrameLayout {
         if (mHasEverTouchedTheTop) {
             // If QuickContacts has touched the top of the screen previously, then we
             // will less aggressively snap to the bottom of the screen.
-            final float predictedScrollPastTop = -getScroll() + mIntermediateHeaderHeight
+            final float predictedScrollPastTop = -getScroll() + mTransparentStartHeight
                     - flingDelta;
-            final float heightMinusHeader = getHeight() - mIntermediateHeaderHeight;
-            if (predictedScrollPastTop > heightMinusHeader) {
-                scrollOffBottom();
+            final boolean isLandscape = getResources().getConfiguration().orientation
+                    == Configuration.ORIENTATION_LANDSCAPE;
+            if (isLandscape) {
+                // In landscape orientation, we dismiss the QC once it goes below the starting
+                // starting offset that is used when QC starts in collapsed mode.
+                if (predictedScrollPastTop > mTransparentStartHeight) {
+                    scrollOffBottom();
+                }
+            } else {
+                // In portrait orientation, we dismiss the QC once it goes below
+                // mIntermediateHeaderHeight within the bottom of the screen.
+                final float heightMinusHeader = getHeight() - mIntermediateHeaderHeight;
+                if (predictedScrollPastTop > heightMinusHeader) {
+                    scrollOffBottom();
+                }
             }
             return;
         }
