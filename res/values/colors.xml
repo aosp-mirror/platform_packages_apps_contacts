@@ -35,8 +35,10 @@
     <color name="primary_color_dark">#0277bd</color>
     <color name="primary_color">#0288d1</color>
 
-    <!-- Color of the selected tab underline (overriding value in ContactsCommon) -->
-    <color name="contacts_accent_color">#00acc1</color>
+    <!-- Color of the selected tab underline -->
+    <color name="contacts_accent_color">#FFFFFF</color>
+
+    <color name="floating_action_button_icon_color">@color/contacts_accent_color</color>
 
     <!-- Color of the separator between entries in an ExpandingEntryCardView -->
     <color name="expanding_entry_card_item_separator_color">#e4e4e4</color>
