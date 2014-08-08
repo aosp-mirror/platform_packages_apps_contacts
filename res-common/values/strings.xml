@@ -287,7 +287,7 @@
     <string name="label_notes">Notes</string>
 
     <!-- The label describing the SIP address field of a contact. [CHAR LIMIT=20] -->
-    <string name="label_sip_address">Internet call</string>
+    <string name="label_sip_address">SIP</string>
 
     <!-- Header that expands to list all website types when editing a website of a contact
          [CHAR LIMIT=20] -->
