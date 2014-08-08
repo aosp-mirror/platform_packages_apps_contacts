@@ -63,6 +63,23 @@ public class ViewUtil {
         }
     };
 
+    private static final ViewOutlineProvider RECT_OUTLINE_PROVIDER = new ViewOutlineProvider() {
+        @Override
+        public void getOutline(View view, Outline outline) {
+            outline.setRect(0, 0, view.getWidth(), view.getHeight());
+        }
+    };
+
+    /**
+     * Adds a rectangular outline to a view. This can be useful when you want to add a shadow
+     * to a transparent view. See b/16856049.
+     * @param view view that the outline is added to
+     * @param res The resources file.
+     */
+    public static void addRectangularOutlineProvider(View view, Resources res) {
+        view.setOutlineProvider(RECT_OUTLINE_PROVIDER);
+    }
+
     /**
      * Configures the floating action button, clipping it to a circle and setting its translation z.
      * @param view The float action button's view.
