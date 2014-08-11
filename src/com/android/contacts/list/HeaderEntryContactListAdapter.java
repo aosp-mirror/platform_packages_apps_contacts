@@ -81,6 +81,17 @@ public class HeaderEntryContactListAdapter extends DefaultContactListAdapter {
     }
 
     @Override
+    public boolean isEnabled(int position) {
+        return position < getHeaderEntryCount() || super
+                .isEnabled(position - getHeaderEntryCount());
+    }
+
+    @Override
+    public int getPartitionForPosition(int position) {
+        return super.getPartitionForPosition(position - getHeaderEntryCount());
+    }
+
+    @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         super.bindView(itemView, partition, cursor, position + getHeaderEntryCount());
     }
