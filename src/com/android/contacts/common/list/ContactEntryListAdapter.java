@@ -589,7 +589,15 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     protected View newHeaderView(Context context, int partition, Cursor cursor,
             ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        return inflater.inflate(R.layout.directory_header, parent, false);
+        View view = inflater.inflate(R.layout.directory_header, parent, false);
+        if (!getPinnedPartitionHeadersEnabled()) {
+            // If the headers are unpinned, there is no need for their background
+            // color to be non-transparent. Setting this transparent reduces maintenance for
+            // non-pinned headers. We don't need to bother synchronizing the activity's
+            // background color with the header background color.
+            view.setBackground(null);
+        }
+        return view;
     }
 
     @Override
