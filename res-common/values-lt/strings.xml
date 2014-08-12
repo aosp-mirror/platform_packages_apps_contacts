@@ -112,7 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Įmonė"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Pavadinimas"</string>
     <string name="label_notes" msgid="3997277594846722699">"Pastabos"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"Skambutis internetu"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Svetainė"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Grupės"</string>
     <string name="email_home" msgid="2230967805906450693">"Siųsti el. laišką namų el. pašto adresu"</string>

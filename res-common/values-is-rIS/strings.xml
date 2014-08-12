@@ -112,7 +112,8 @@
     <string name="ghostData_company" msgid="22470841482615409">"Fyrirtæki"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Titill"</string>
     <string name="label_notes" msgid="3997277594846722699">"Athugasemdir"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"Netsími"</string>
+    <!-- no translation found for label_sip_address (3754551597798479318) -->
+    <skip />
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Vefsvæði"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Hópar"</string>
     <string name="email_home" msgid="2230967805906450693">"Senda tölvupóst heim"</string>
