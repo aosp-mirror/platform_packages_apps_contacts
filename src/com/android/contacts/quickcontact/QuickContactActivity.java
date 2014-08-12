@@ -1141,6 +1141,7 @@ public class QuickContactActivity extends ContactsActivity {
                         event.getLabel()).toString();
             }
             text = DateUtils.formatDate(this, dataString);
+            entryContextMenuInfo = new EntryContextMenuInfo(text, header);
         } else if (dataItem instanceof RelationDataItem) {
             final RelationDataItem relation = (RelationDataItem) dataItem;
             final String dataString = relation.buildDataString(this, kind);
