@@ -128,6 +128,7 @@ import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.EntryContextMenuInfo;
+import com.android.contacts.quickcontact.ExpandingEntryCardView.EntryTag;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.ExpandingEntryCardViewListener;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -287,18 +288,19 @@ public class QuickContactActivity extends ContactsActivity {
     final OnClickListener mEntryClickHandler = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            // Data Id is stored as the entry view id
-            final int dataId = v.getId();
+            final Object entryTagObject = v.getTag();
+            if (entryTagObject == null || !(entryTagObject instanceof EntryTag)) {
+                Log.w(TAG, "EntryTag was not used correctly");
+                return;
+            }
+            final EntryTag entryTag = (EntryTag) entryTagObject;
+            final Intent intent = entryTag.getIntent();
+            final int dataId = entryTag.getId();
+
             if (dataId == CARD_ENTRY_ID_EDIT_CONTACT) {
                 editContact();
                 return;
             }
-            final Object intentObject = v.getTag();
-            if (intentObject == null || !(intentObject instanceof Intent)) {
-                Log.w(TAG, "Intent tag was not used correctly");
-                return;
-            }
-            final Intent intent = (Intent) intentObject;
 
             // Default to USAGE_TYPE_CALL. Usage is summed among all types for sorting each data id
             // so the exact usage type is not necessary in all cases
