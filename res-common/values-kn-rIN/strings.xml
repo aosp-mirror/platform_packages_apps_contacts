@@ -112,7 +112,8 @@
     <string name="ghostData_company" msgid="22470841482615409">"ಕಂಪನಿ"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"ಶೀರ್ಷಿಕೆ"</string>
     <string name="label_notes" msgid="3997277594846722699">"ಟಿಪ್ಪಣಿಗಳು"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"ಇಂಟರ್ನೆಟ್‌ ಕರೆ"</string>
+    <!-- no translation found for label_sip_address (3754551597798479318) -->
+    <skip />
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"ವೆಬ್‌ಸೈಟ್"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"ಗುಂಪುಗಳು"</string>
     <string name="email_home" msgid="2230967805906450693">"ಮನೆಗೆ ಇಮೇಲ್‌ ಮಾಡಿ"</string>

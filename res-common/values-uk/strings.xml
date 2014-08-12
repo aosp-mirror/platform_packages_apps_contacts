@@ -112,7 +112,8 @@
     <string name="ghostData_company" msgid="22470841482615409">"Компанія"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Назва"</string>
     <string name="label_notes" msgid="3997277594846722699">"Примітки"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"Інтернет-дзвінок"</string>
+    <!-- no translation found for label_sip_address (3754551597798479318) -->
+    <skip />
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сайт"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Групи"</string>
     <string name="email_home" msgid="2230967805906450693">"Написати на домашню електронну адресу"</string>
