@@ -67,7 +67,7 @@ public class ExpandingEntryCardView extends CardView {
      */
     public static final class Entry {
 
-        private final int mViewId;
+        private final int mId;
         private final Drawable mIcon;
         private final String mHeader;
         private final String mSubHeader;
@@ -82,21 +82,21 @@ public class ExpandingEntryCardView extends CardView {
         private final boolean mIsEditable;
         private final EntryContextMenuInfo mEntryContextMenuInfo;
 
-        public Entry(int viewId, Drawable icon, String header, String subHeader, String text,
+        public Entry(int id, Drawable icon, String header, String subHeader, String text,
                 Intent intent, Drawable alternateIcon, Intent alternateIntent,
                 String alternateContentDescription, boolean shouldApplyColor,
                 boolean isEditable, EntryContextMenuInfo entryContextMenuInfo) {
-            this(viewId, icon, header, subHeader, null, text, null, intent, alternateIcon,
+            this(id, icon, header, subHeader, null, text, null, intent, alternateIcon,
                     alternateIntent, alternateContentDescription, shouldApplyColor, isEditable,
                     entryContextMenuInfo);
         }
 
-        public Entry(int viewId, Drawable mainIcon, String header, String subHeader,
+        public Entry(int id, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon, Intent intent,
                 Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
                 boolean shouldApplyColor, boolean isEditable,
                 EntryContextMenuInfo entryContextMenuInfo) {
-            mViewId = viewId;
+            mId = id;
             mIcon = mainIcon;
             mHeader = header;
             mSubHeader = subHeader;
@@ -160,8 +160,8 @@ public class ExpandingEntryCardView extends CardView {
             return mIsEditable;
         }
 
-        int getViewId() {
-            return mViewId;
+        int getId() {
+            return mId;
         }
 
         EntryContextMenuInfo getEntryContextMenuInfo() {
@@ -491,7 +491,6 @@ public class ExpandingEntryCardView extends CardView {
                 R.layout.expanding_entry_card_item, this, false);
 
         view.setContextMenuInfo(entry.getEntryContextMenuInfo());
-        view.setId(entry.getViewId());
 
         final ImageView icon = (ImageView) view.findViewById(R.id.icon);
         icon.setVisibility(iconVisibility);
@@ -535,7 +534,7 @@ public class ExpandingEntryCardView extends CardView {
 
         if (entry.getIntent() != null) {
             view.setOnClickListener(mOnClickListener);
-            view.setTag(entry.getIntent());
+            view.setTag(new EntryTag(entry.getId(), entry.getIntent()));
         }
 
         // If only the header is visible, add a top margin to match icon's top margin.
@@ -555,8 +554,7 @@ public class ExpandingEntryCardView extends CardView {
         if (entry.getAlternateIcon() != null && entry.getAlternateIntent() != null) {
             alternateIcon.setImageDrawable(entry.getAlternateIcon());
             alternateIcon.setOnClickListener(mOnClickListener);
-            alternateIcon.setTag(entry.getAlternateIntent());
-            alternateIcon.setId(entry.getViewId());
+            alternateIcon.setTag(new EntryTag(entry.getId(), entry.getAlternateIntent()));
             alternateIcon.setVisibility(View.VISIBLE);
             alternateIcon.setContentDescription(entry.getAlternateContentDescription());
 
@@ -806,6 +804,24 @@ public class ExpandingEntryCardView extends CardView {
 
         public String getCopyLabel() {
             return mCopyLabel;
+        }
+    }
+
+    static final class EntryTag {
+        private final int mId;
+        private final Intent mIntent;
+
+        public EntryTag(int id, Intent intent) {
+            mId = id;
+            mIntent = intent;
+        }
+
+        public int getId() {
+            return mId;
+        }
+
+        public Intent getIntent() {
+            return mIntent;
         }
     }
 }
