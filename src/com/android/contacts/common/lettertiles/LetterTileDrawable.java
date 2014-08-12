@@ -18,6 +18,8 @@ package com.android.contacts.common.lettertiles;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -26,8 +28,10 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.util.BitmapUtil;
 
 import junit.framework.Assert;
 
@@ -46,9 +50,9 @@ public class LetterTileDrawable extends Drawable {
     private static int sDefaultColor;
     private static int sTileFontColor;
     private static float sLetterToTileRatio;
-    private static Drawable DEFAULT_PERSON_AVATAR;
-    private static Drawable DEFAULT_BUSINESS_AVATAR;
-    private static Drawable DEFAULT_VOICEMAIL_AVATAR;
+    private static Bitmap DEFAULT_PERSON_AVATAR;
+    private static Bitmap DEFAULT_BUSINESS_AVATAR;
+    private static Bitmap DEFAULT_VOICEMAIL_AVATAR;
 
     /** Reusable components to avoid new allocations */
     private static final Paint sPaint = new Paint();
@@ -70,6 +74,7 @@ public class LetterTileDrawable extends Drawable {
 
     public LetterTileDrawable(final Resources res) {
         mPaint = new Paint();
+        mPaint.setFilterBitmap(true);
         mPaint.setDither(true);
 
         if (sColors == null) {
@@ -77,11 +82,12 @@ public class LetterTileDrawable extends Drawable {
             sDefaultColor = res.getColor(R.color.letter_tile_default_color);
             sTileFontColor = res.getColor(R.color.letter_tile_font_color);
             sLetterToTileRatio = res.getFraction(R.dimen.letter_to_tile_ratio, 1, 1);
-            DEFAULT_BUSINESS_AVATAR = res.getDrawable(R.drawable.ic_list_item_businessavatar);
-            DEFAULT_VOICEMAIL_AVATAR = res.getDrawable(R.drawable.ic_voicemail_avatar);
-            DEFAULT_PERSON_AVATAR = res.getDrawable(R.drawable.ic_tile_letter_avatar_white);
-            // This drawable contains a ScaleDrawable that won't be visible without setLevel(1).
-            DEFAULT_PERSON_AVATAR.setLevel(1);
+            DEFAULT_PERSON_AVATAR = BitmapFactory.decodeResource(res,
+                    R.drawable.ic_person_white_64dp);
+            DEFAULT_BUSINESS_AVATAR = BitmapFactory.decodeResource(res,
+                    R.drawable.ic_list_item_businessavatar);
+            DEFAULT_VOICEMAIL_AVATAR = BitmapFactory.decodeResource(res,
+                    R.drawable.ic_voicemail_avatar);
             sPaint.setTypeface(Typeface.create(
                     res.getString(R.string.letter_tile_letter_font_family), Typeface.NORMAL));
             sPaint.setTextAlign(Align.CENTER);
@@ -100,11 +106,11 @@ public class LetterTileDrawable extends Drawable {
     }
 
     /**
-     * Draw the inner drawable onto the canvas at the current bounds taking into account the current
-     * scale.
+     * Draw the bitmap onto the canvas at the current bounds taking into account the current scale.
      */
-    private void drawInnerDrawable(final Drawable drawable, final Canvas canvas) {
-        // The drawable should be drawn in the middle of the canvas without changing its width to
+    private void drawBitmap(final Bitmap bitmap, final int width, final int height,
+            final Canvas canvas) {
+        // The bitmap should be drawn in the middle of the canvas without changing its width to
         // height ratio.
         final Rect destRect = copyBounds();
 
@@ -116,11 +122,10 @@ public class LetterTileDrawable extends Drawable {
                 destRect.centerX() + halfLength,
                 (int) (destRect.centerY() + halfLength + mOffset * destRect.height()));
 
-        drawable.setDither(true);
-        drawable.setFilterBitmap(true);
-        drawable.setBounds(destRect);
-        drawable.setAlpha(mPaint.getAlpha());
-        drawable.draw(canvas);
+        // Source rectangle remains the entire bounds of the source bitmap.
+        sRect.set(0, 0, width, height);
+
+        canvas.drawBitmap(bitmap, sRect, destRect, mPaint);
     }
 
     private void drawLetterTile(final Canvas canvas) {
@@ -155,8 +160,9 @@ public class LetterTileDrawable extends Drawable {
                     sPaint);
         } else {
             // Draw the default image if there is no letter/digit to be drawn
-            final Drawable innerDrawable = getInnerDrawableForContactType(mContactType);
-            drawInnerDrawable(innerDrawable, canvas);
+            final Bitmap bitmap = getBitmapForContactType(mContactType);
+            drawBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(),
+                    canvas);
         }
     }
 
@@ -178,7 +184,7 @@ public class LetterTileDrawable extends Drawable {
         return sColors.getColor(color, sDefaultColor);
     }
 
-    private static Drawable getInnerDrawableForContactType(int contactType) {
+    private static Bitmap getBitmapForContactType(int contactType) {
         switch (contactType) {
             case TYPE_PERSON:
                 return DEFAULT_PERSON_AVATAR;
