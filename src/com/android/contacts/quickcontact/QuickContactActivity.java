@@ -1310,6 +1310,7 @@ public class QuickContactActivity extends ContactsActivity {
             return null;
         }
 
+        // Ignore dataIds from the Me profile.
         final int dataId = dataItem.getId() > Integer.MAX_VALUE ?
                 -1 : (int) dataItem.getId();
 
