@@ -23,7 +23,7 @@
     android:background="@color/card_margin_color">
 
     <!-- All the cards should be inserted into this LinearLayout -->
-    <LinearLayout
+    <view class="com.android.contacts.common.widget.ActivityTouchLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -54,6 +54,6 @@
             android:visibility="gone"
             cardview:cardCornerRadius="@dimen/expanding_entry_card_card_corner_radius" />
 
-    </LinearLayout>
+    </view>
 
 </com.android.contacts.widget.TouchlessScrollView>
