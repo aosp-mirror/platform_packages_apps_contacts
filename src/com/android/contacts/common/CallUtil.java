@@ -20,7 +20,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
-import android.telecomm.VideoCallProfile;
+import android.telecomm.VideoProfile;
 
 import com.android.contacts.common.util.PhoneNumberHelper;
 import com.android.phone.common.PhoneConstants;
@@ -90,7 +90,7 @@ public class CallUtil {
     public static Intent getCallIntent(
             Uri uri, String callOrigin, PhoneAccountHandle accountHandle) {
         return getCallIntent(uri, callOrigin, accountHandle,
-                VideoCallProfile.VideoState.AUDIO_ONLY);
+                VideoProfile.VideoState.AUDIO_ONLY);
     }
 
     /**
@@ -98,7 +98,7 @@ public class CallUtil {
      */
     public static Intent getVideoCallIntent(String number, String callOrigin) {
         return getCallIntent(getCallUri(number), callOrigin, null,
-                VideoCallProfile.VideoState.BIDIRECTIONAL);
+                VideoProfile.VideoState.BIDIRECTIONAL);
     }
 
     /**
@@ -108,7 +108,7 @@ public class CallUtil {
     public static Intent getVideoCallIntent(
             String number, String callOrigin, PhoneAccountHandle accountHandle) {
         return getCallIntent(getCallUri(number), callOrigin, accountHandle,
-                VideoCallProfile.VideoState.BIDIRECTIONAL);
+                VideoProfile.VideoState.BIDIRECTIONAL);
     }
 
     /**
