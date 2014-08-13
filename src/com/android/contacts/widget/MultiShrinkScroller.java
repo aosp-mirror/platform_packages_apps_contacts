@@ -954,10 +954,14 @@ public class MultiShrinkScroller extends FrameLayout {
         // How offset the title should be from the bottom of the toolbar
         final int pretendBottomMargin =  (int) (mCollapsedTitleBottomMargin * (1 - x)
                 + mMaximumTitleMargin * x) ;
-        // Calculate how offset the title should be from the top of the screen.
+        // Calculate how offset the title should be from the top of the screen. Instead of
+        // calling mLargeTextView.getHeight() use the mMaximumHeaderTextSize for this calculation.
+        // The getHeight() value acts unexpectedly when mLargeTextView is partially clipped by
+        // its parent.
         titleLayoutParams.topMargin = getTransparentViewHeight()
                 + toolbarLayoutParams.height - pretendBottomMargin
-                - mLargeTextView.getHeight();
+                - mMaximumHeaderTextSize;
+        titleLayoutParams.bottomMargin = 0;
         mLargeTextView.setLayoutParams(titleLayoutParams);
     }
 
