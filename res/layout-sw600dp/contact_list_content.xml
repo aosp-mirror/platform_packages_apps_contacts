@@ -25,18 +25,18 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="@integer/people_activity_land_space_layout_weight"
+            android:layout_weight="@integer/people_activity_space_layout_weight"
             android:background="@color/background_primary"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/contact_all_list_background_color"
-            android:layout_weight="@integer/people_activity_land_list_view_layout_weight"
+            android:layout_weight="@integer/people_activity_list_view_layout_weight"
             android:elevation="@dimen/people_activity_card_elevation"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="@integer/people_activity_land_space_layout_weight"
+            android:layout_weight="@integer/people_activity_space_layout_weight"
             android:background="@color/background_primary"/>
     </LinearLayout>
     <LinearLayout
