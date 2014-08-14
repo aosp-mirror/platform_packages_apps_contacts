@@ -37,7 +37,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="start|center_vertical"
         android:focusable="true"
-        android:paddingLeft="12dip"
-        android:paddingStart="12dip" />
+        android:paddingStart="12dip"
+        android:paddingEnd="@dimen/editor_spinner_end_padding_workaround"/>
 
 </com.android.contacts.editor.GroupMembershipView>
