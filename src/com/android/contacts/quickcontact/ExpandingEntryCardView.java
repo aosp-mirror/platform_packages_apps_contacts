@@ -182,6 +182,10 @@ public class ExpandingEntryCardView extends CardView {
     private OnClickListener mOnClickListener;
     private OnCreateContextMenuListener mOnCreateContextMenuListener;
     private boolean mIsExpanded = false;
+    /**
+     * The max number of entries to show in a collapsed card. If there are less entries passed in,
+     * then they are all shown.
+     */
     private int mCollapsedEntriesCount;
     private ExpandingEntryCardViewListener mListener;
     private List<List<Entry>> mEntries;
@@ -255,11 +259,6 @@ public class ExpandingEntryCardView extends CardView {
             mEntryViews.add(new ArrayList<View>());
         }
         mCollapsedEntriesCount = Math.min(numInitialVisibleEntries, mNumEntries);
-        // Only show the head of each entry list if the initial visible number falls between the
-        // number of lists and the total number of entries
-        if (mCollapsedEntriesCount > mEntries.size()) {
-            mCollapsedEntriesCount = mEntries.size();
-        }
         mListener = listener;
         mAnimationViewGroup = animationViewGroup;
 
@@ -321,11 +320,28 @@ public class ExpandingEntryCardView extends CardView {
                 }
             }
         } else {
-            for (int i = 0; i < mCollapsedEntriesCount; i++) {
+            // We want to insert mCollapsedEntriesCount entries into the group. extraEntries is the
+            // number of entries that need to be added that are not the head element of a list
+            // to reach mCollapsedEntriesCount.
+            int numInViewGroup = 0;
+            int extraEntries = mCollapsedEntriesCount - mEntryViews.size();
+            for (int i = 0; i < mEntryViews.size() && numInViewGroup < mCollapsedEntriesCount;
+                    i++) {
+                List<View> entryViewList = mEntryViews.get(i);
                 if (i > 0) {
-                    addSeparator(mEntryViews.get(i).get(0));
+                    addSeparator(entryViewList.get(0));
                 }
-                addEntry(mEntryViews.get(i).get(0));
+                addEntry(entryViewList.get(0));
+                numInViewGroup++;
+                // Insert entries in this list to hit mCollapsedEntriesCount.
+                for (int j = 1;
+                        j < entryViewList.size() && numInViewGroup < mCollapsedEntriesCount &&
+                        extraEntries > 0;
+                        j++) {
+                    addEntry(entryViewList.get(j));
+                    numInViewGroup++;
+                    extraEntries--;
+                }
             }
         }
 
@@ -392,9 +408,24 @@ public class ExpandingEntryCardView extends CardView {
             inflateAllEntries(layoutInflater);
         } else {
             // Otherwise inflate the top entry from each list
-            for (int i = 0; i < mCollapsedEntriesCount; i++) {
-                mEntryViews.get(i).add(createEntryView(layoutInflater, mEntries.get(i).get(0),
+            // extraEntries is used to add extra entries until mCollapsedEntriesCount is reached.
+            int numInflated = 0;
+            int extraEntries = mCollapsedEntriesCount - mEntries.size();
+            for (int i = 0; i < mEntries.size() && numInflated < mCollapsedEntriesCount; i++) {
+                List<Entry> entryList = mEntries.get(i);
+                List<View> entryViewList = mEntryViews.get(i);
+
+                entryViewList.add(createEntryView(layoutInflater, entryList.get(0),
                         /* showIcon = */ View.VISIBLE));
+                numInflated++;
+                // Inflate entries in this list to hit mCollapsedEntriesCount.
+                for (int j = 1; j < entryList.size() && numInflated < mCollapsedEntriesCount &&
+                        extraEntries > 0; j++) {
+                    entryViewList.add(createEntryView(layoutInflater, entryList.get(j),
+                            /* showIcon = */ View.VISIBLE));
+                    numInflated++;
+                    extraEntries--;
+                }
             }
         }
     }
