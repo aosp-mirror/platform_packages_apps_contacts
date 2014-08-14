@@ -47,6 +47,13 @@
     <!-- Left padding of a field in the Editor -->
     <dimen name="editor_field_left_padding">4dip</dimen>
 
+    <!-- End padding added to spinners in the editor. This separates the spinner text from the
+        spinner graphic when Button gravity is incorrectly set in RTL mode
+        (see framework bug b/17011078. In LTR mode this shouldn't have an observable affect.
+        We set paddingEnd instead of drawablePadding since the spinner graphic is not a normal
+        drawable.  -->
+    <dimen name="editor_spinner_end_padding_workaround">24dip</dimen>
+
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">100dip</dimen>
 
