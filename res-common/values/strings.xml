@@ -763,8 +763,4 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          contacts to be displayed. [CHAR LIMIT=128] -->
     <string name="settings_contact_display_options_title">Contact display options</string>
 
-    <!-- Detailed description of the preference section that allows users to configure how they
-         want their contacts to be displayed. [CHAR LIMIT=128] -->
-    <string name="settings_contact_display_options_description">Configure how your contacts are displayed and sorted.</string>
-
 </resources>
