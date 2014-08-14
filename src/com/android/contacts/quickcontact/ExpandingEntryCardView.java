@@ -353,6 +353,15 @@ public class ExpandingEntryCardView extends CardView {
     }
 
     private void addEntry(View entry) {
+        // If no title and the first entry in the group, add extra padding
+        if (TextUtils.isEmpty(mTitleTextView.getText()) &&
+                mEntriesViewGroup.getChildCount() == 0) {
+            entry.setPadding(entry.getPaddingLeft(),
+                    entry.getPaddingTop() + getResources().getDimensionPixelSize(
+                            R.dimen.expanding_entry_card_null_title_top_extra_padding),
+                    entry.getPaddingRight(),
+                    entry.getPaddingBottom());
+        }
         mEntriesViewGroup.addView(entry);
     }
 
@@ -786,13 +795,30 @@ public class ExpandingEntryCardView extends CardView {
         if (mTitleTextView == null) {
             Log.e(TAG, "mTitleTextView is null");
         }
-        if (title == null) {
-            mTitleTextView.setVisibility(View.GONE);
-            findViewById(R.id.title_separator).setVisibility(View.GONE);
-        }
         mTitleTextView.setText(title);
-        mTitleTextView.setVisibility(View.VISIBLE);
-        findViewById(R.id.title_separator).setVisibility(View.VISIBLE);
+        mTitleTextView.setVisibility(TextUtils.isEmpty(title) ? View.GONE : View.VISIBLE);
+        findViewById(R.id.title_separator).setVisibility(TextUtils.isEmpty(title) ?
+                View.GONE : View.VISIBLE);
+        // If the title is set after children have been added, reset the top entry's padding to
+        // the default. Else if the title is cleared after children have been added, set
+        // the extra top padding
+        if (!TextUtils.isEmpty(title) && mEntriesViewGroup.getChildCount() > 0) {
+            View firstEntry = mEntriesViewGroup.getChildAt(0);
+            firstEntry.setPadding(firstEntry.getPaddingLeft(),
+                    getResources().getDimensionPixelSize(
+                            R.dimen.expanding_entry_card_item_padding_top),
+                    firstEntry.getPaddingRight(),
+                    firstEntry.getPaddingBottom());
+        } else if (!TextUtils.isEmpty(title) && mEntriesViewGroup.getChildCount() > 0) {
+            View firstEntry = mEntriesViewGroup.getChildAt(0);
+            firstEntry.setPadding(firstEntry.getPaddingLeft(),
+                    getResources().getDimensionPixelSize(
+                            R.dimen.expanding_entry_card_item_padding_top) +
+                            getResources().getDimensionPixelSize(
+                                    R.dimen.expanding_entry_card_null_title_top_extra_padding),
+                    firstEntry.getPaddingRight(),
+                    firstEntry.getPaddingBottom());
+        }
     }
 
     public boolean shouldShow() {
