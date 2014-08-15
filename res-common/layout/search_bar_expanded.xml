@@ -26,7 +26,7 @@
         android:id="@+id/search_back_button"
         android:layout_width="@dimen/search_box_icon_size"
         android:layout_height="@dimen/search_box_icon_size"
-        android:layout_margin="@dimen/search_box_icon_margin"
+        android:layout_margin="@dimen/search_box_navigation_icon_margin"
         android:src="@drawable/ic_back_arrow"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_menu_back_from_search"
@@ -50,9 +50,9 @@
 
     <ImageView
         android:id="@+id/search_close_button"
-        android:layout_height="@dimen/search_box_icon_size"
-        android:layout_width="@dimen/search_box_icon_size"
-        android:layout_margin="@dimen/search_box_icon_margin"
+        android:layout_height="@dimen/search_box_close_icon_size"
+        android:layout_width="@dimen/search_box_close_icon_size"
+        android:layout_margin="@dimen/search_box_close_icon_margin"
         android:src="@drawable/ic_close_dk"
         android:clickable="true"
         android:background="?android:attr/selectableItemBackgroundBorderless"
