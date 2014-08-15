@@ -30,5 +30,5 @@
     android:layout_marginStart="@dimen/editor_field_left_padding"
     android:layout_marginEnd="@dimen/editor_field_right_padding"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:paddingLeft="12dip"
-    android:paddingStart="12dip" />
+    android:paddingStart="12dip"
+    android:paddingEnd="@dimen/editor_spinner_end_padding_workaround" />
