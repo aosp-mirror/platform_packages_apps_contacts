@@ -42,13 +42,13 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"លុប​ចេញពី​សំណព្វ"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"បាន​លុប​ចេញ​​និយម​ប្រើ"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"បន្ថែម​ទៅ​និយម​ប្រើ"</string>
-    <string name="menu_editContact" msgid="9042415603857662633">"កែសម្រួល"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"កែសម្រួល​"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"លុប"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ដាក់​លើ​អេក្រង់​ដើម"</string>
     <string name="menu_call" msgid="3992595586042260618">"ហៅ​ទំនាក់ទំនង"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"អត្ថបទ​ទំនាក់ទំនង"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"បំបែក"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"កែសម្រួល"</string>
+    <string name="menu_editGroup" msgid="5062005185370983720">"កែសម្រួល​"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"លុប"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"បន្ថែម​ទំនាក់ទំនង"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"បន្ថែម​ក្រុម"</string>
@@ -121,7 +121,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"បន្ថែម​លេខទូរស័ព្ទ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"បន្ថែម​អ៊ីមែល"</string>
     <string name="missing_app" msgid="1466111003546611387">"រក​មិន​ឃើញ​កម្មវិធី​ដើម្បី​គ្រប់គ្រង​សកម្មភាព​នេះ​ទេ។"</string>
-    <string name="menu_share" msgid="943789700636542260">"ចែករំលែក"</string>
+    <string name="menu_share" msgid="943789700636542260">"ចែករំលែក​"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"បន្ថែម​ទៅ​ទំនាក់ទំនង"</string>
     <string name="share_via" msgid="563121028023030093">"ចែករំលែក​ទំនាក់ទំនង​តាម"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"បង្កើត​ក្រុម​នៅ​ក្នុង​គណនី"</string>
@@ -176,7 +176,7 @@
     <string name="non_phone_caption" msgid="1541655052330027380">"លេខទូរស័ព្ទ"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"បន្ថែម​ទៅ​ទំនាក់ទំនង"</string>
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"បន្ថែម​ទៅ​ទំនាក់ទំនង"</string>
-    <string name="non_phone_close" msgid="7608506439725515667">"បិទ"</string>
+    <string name="non_phone_close" msgid="7608506439725515667">"បិទ​"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"ផ្ដល់​ឆ្នាំ"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"ទំនាក់ទំនង"</string>
