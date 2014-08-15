@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.widget;
 
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import android.widget.ImageButton;
 
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.common.R;
+import com.android.phone.common.animation.AnimUtils;
 
 /**
  * Controls the movement and appearance of the FAB (Floating Action Button).
@@ -94,21 +96,39 @@ public class FloatingActionButtonController {
      *
      * @param align One of ALIGN_MIDDLE, ALIGN_QUARTER_RIGHT, or ALIGN_RIGHT.
      * @param offsetX Additional offsetX to translate by.
-     * @param offsetY Additional offsetY to translate by.
      * @param animate Whether or not to animate the transition.
      */
     public void align(int align, int offsetX, int offsetY, boolean animate) {
-        if (mScreenWidth == 0) return;
+        if (mScreenWidth == 0) {
+            return;
+        }
+
         int translationX = getTranslationXForAlignment(align);
         if (animate) {
             mFloatingActionButtonContainer.animate()
                     .translationX(translationX + offsetX)
                     .translationY(offsetY)
                     .setInterpolator(mFabInterpolator)
-                    .setDuration(mAnimationDuration).start();
+                    .setDuration(mAnimationDuration)
+                    .start();
         } else {
             mFloatingActionButtonContainer.setTranslationX(translationX + offsetX);
             mFloatingActionButtonContainer.setTranslationY(offsetY);
+        }
+    }
+
+    /**
+     * Resizes width and height of the floating action bar container.
+     * @param dimension The new dimensions for the width and height.
+     * @param animate Whether to animate this change.
+     */
+    public void resize(int dimension, boolean animate) {
+        if (animate) {
+            AnimUtils.changeDimensions(mFloatingActionButtonContainer, dimension, dimension);
+        } else {
+            mFloatingActionButtonContainer.getLayoutParams().width = dimension;
+            mFloatingActionButtonContainer.getLayoutParams().height = dimension;
+            mFloatingActionButtonContainer.requestLayout();
         }
     }
 
