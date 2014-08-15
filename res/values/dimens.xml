@@ -144,6 +144,8 @@
     <dimen name="expanding_entry_card_title_text_size">16sp</dimen>
     <!-- Padding for the title text for a ExpandingEntryCardView -->
     <dimen name="expanding_entry_card_title_padding">16dp</dimen>
+    <!-- Extra top padding if the title is set to null -->
+    <dimen name="expanding_entry_card_null_title_top_extra_padding">2dp</dimen>
 
     <!-- Height of the separator between entries in an ExpandingEntryCardView -->
     <dimen name="expanding_entry_card_item_separator_height">1dp</dimen>
