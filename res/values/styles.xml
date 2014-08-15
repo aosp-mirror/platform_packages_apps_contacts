@@ -74,7 +74,9 @@
         <item name="list_item_padding_right">32dp</item>
         <item name="list_item_padding_bottom">8dip</item>
         <item name="list_item_padding_left">16dip</item>
-        <item name="list_item_gap_between_image_and_text">8dip</item>
+        <item name="list_item_gap_between_image_and_text">
+            @dimen/contact_browser_list_item_gap_between_image_and_text
+        </item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_presence_icon_margin">4dip</item>
         <item name="list_item_presence_icon_size">16dip</item>
