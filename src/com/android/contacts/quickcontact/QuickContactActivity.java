@@ -34,6 +34,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
@@ -67,6 +68,7 @@ import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v7.graphics.Palette;
+import android.telecomm.TelecommManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
@@ -93,6 +95,7 @@ import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
+import com.android.contacts.common.interactions.TouchPointManager;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.list.ShortcutIntentBuilder;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
@@ -136,6 +139,7 @@ import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -326,6 +330,17 @@ public class QuickContactActivity extends ContactsActivity {
                 }
             } else {
                 Log.w(TAG, "Invalid Data ID");
+            }
+
+            // Pass the touch point through the intent for use in the InCallUI
+            if (Intent.ACTION_CALL.equals(intent.getAction())) {
+                final Point touchPoint = TouchPointManager.getInstance().getPoint();
+
+                if (touchPoint.x != 0 || touchPoint.y != 0) {
+                    Bundle extras = new Bundle();
+                    extras.putParcelable(TouchPointManager.TOUCH_POINT, touchPoint);
+                    intent.putExtra(TelecommManager.EXTRA_OUTGOING_CALL_EXTRAS, extras);
+                }
             }
 
             startActivity(intent);
