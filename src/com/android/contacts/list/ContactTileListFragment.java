@@ -97,15 +97,22 @@ public class ContactTileListFragment extends Fragment {
         mListView.setItemsCanFocus(true);
         mListView.setAdapter(mAdapter);
 
-        // If the device is in the sw600dp class and in landscape mode, set a padding on the list
+        // If the device is in the sw600dp class, set a padding on the list
         // view so it appears in the center of the card in the layout.
         if (mContactAllListShowCardFrame) {
             SchedulingUtils.doOnPreDraw(mListView, true, new Runnable() {
                 @Override
                 public void run() {
+                    Resources res = getResources();
+                    int listSpaceWeight = res.getInteger(R.integer
+                            .people_activity_space_layout_weight);
+                    int listViewWeight = res.getInteger(R.integer
+                            .people_activity_list_view_layout_weight);
+                    double paddingPercent = (double) listSpaceWeight / (double)
+                            (listSpaceWeight * 2 + listViewWeight);
                     int width = mListView.getWidth();
-                    mListView.setPadding(width / 4, mListView.getPaddingTop(),
-                            width / 4, mListView.getPaddingBottom());
+                    mListView.setPadding((int) (width * paddingPercent), mListView.getPaddingTop(),
+                            (int)(width * paddingPercent), mListView.getPaddingBottom());
                 }
             });
         }
