@@ -218,7 +218,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"我的本地个人资料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>个人资料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"显示所有联系人"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"联系人应用与 Google 帐户结合使用效果更佳。\n\n• 通过任意网络浏览器查看您的联系人信息。\n• 安全地备份您的联系人信息。"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"联系人应用与Google帐户结合使用效果更佳。\n\n• 通过任意网络浏览器查看您的联系人信息。\n• 安全地备份您的联系人信息。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手机丢了，也能确保您的联系人信息的安全性：与在线服务同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"添加帐户"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系统不会备份您的新联系人。要添加用于在线备份联系人的帐户吗？"</string>

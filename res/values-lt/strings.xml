@@ -68,7 +68,7 @@
     <string name="menu_discard" msgid="6456087569315685632">"Atmesti"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontaktas neegzistuoja."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktų valdiklis pridėtas prie pagrindinio ekrano."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Kurti naują adresatą"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Kurti naują kontaktą"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Kurti naują kontaktą"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organizacija"</item>
