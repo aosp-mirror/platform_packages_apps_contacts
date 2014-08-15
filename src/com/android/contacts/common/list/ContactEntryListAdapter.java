@@ -17,6 +17,7 @@ package com.android.contacts.common.list;
 
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -621,6 +622,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                     : directoryPartition.getDirectoryType();
             displayNameTextView.setText(displayName);
         }
+
+        final Resources res = getContext().getResources();
+        final int headerPaddingTop = partitionIndex == 1 && getPartition(0).isEmpty()?
+                0 : res.getDimensionPixelOffset(R.dimen.directory_header_extra_top_padding);
+        // There should be no extra padding at the top of the first directory header
+        view.setPaddingRelative(view.getPaddingStart(), headerPaddingTop, view.getPaddingEnd(),
+                view.getPaddingBottom());
     }
 
     // Default implementation simply returns number of rows in the cursor.
