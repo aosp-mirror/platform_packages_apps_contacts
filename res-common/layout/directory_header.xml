@@ -25,8 +25,8 @@
     android:paddingStart="?attr/list_item_padding_left"
     android:paddingEnd="?attr/list_item_padding_right"
     android:paddingTop="@dimen/directory_header_extra_top_padding"
+    android:paddingBottom="@dimen/directory_header_extra_bottom_padding"
     android:minHeight="@dimen/list_section_divider_min_height"
-    android:layout_marginTop="@dimen/list_header_extra_top_padding"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
     <TextView
