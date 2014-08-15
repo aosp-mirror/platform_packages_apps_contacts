@@ -29,6 +29,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,6 +100,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         public static final int DISPLAY_NAME            = 7;
         public static final int PHOTO_URI               = 8;
     }
+
+    private static final String IGNORE_NUMBER_TOO_LONG_CLAUSE =
+            "length(" + Phone.NUMBER + ") < 1000";
 
     private final CharSequence mUnknownNameText;
     private final String mCountryIso;
@@ -175,6 +179,17 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                 }
                 applyFilter(loader, builder, directoryId, getFilter());
             }
+
+            // Ignore invalid phone numbers that are too long. These can potentially cause freezes
+            // in the UI and there is no reason to display them.
+            final String prevSelection = loader.getSelection();
+            final String newSelection;
+            if (!TextUtils.isEmpty(prevSelection)) {
+                newSelection = prevSelection + " AND " + IGNORE_NUMBER_TOO_LONG_CLAUSE;
+            } else {
+                newSelection = IGNORE_NUMBER_TOO_LONG_CLAUSE;
+            }
+            loader.setSelection(newSelection);
 
             // Remove duplicates when it is possible.
             builder.appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true");
