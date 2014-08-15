@@ -25,7 +25,8 @@
          This value is for making the hidden configuration explicit in xml. -->
     <dimen name="list_section_divider_min_height">32dip</dimen>
 
-    <dimen name="directory_header_extra_top_padding">12dp</dimen>
+    <dimen name="directory_header_extra_top_padding">18dp</dimen>
+    <dimen name="directory_header_extra_bottom_padding">8dp</dimen>
 
     <!--  Horizontal padding in between contact tiles -->
     <dimen name="contact_tile_divider_padding">23dip</dimen>
@@ -81,6 +82,7 @@
     <!-- contact browser list margins -->
     <dimen name="contact_browser_list_item_text_size">16sp</dimen>
     <dimen name="contact_browser_list_item_photo_size">40dp</dimen>
+    <dimen name="contact_browser_list_item_gap_between_image_and_text">15dp</dimen>
     <dimen name="contact_browser_list_top_margin">12dp</dimen>
 
     <!-- Dimensions for "No contacts" string in PhoneFavoriteFragment for the All contacts
@@ -121,10 +123,17 @@
 
     <!-- Padding around the icon in the search box. -->
     <dimen name="search_box_icon_margin">4dp</dimen>
-    <!-- Size of the icon (voice search, close search) in the search box. -->
-    <dimen name="search_box_icon_size">32dp</dimen>
+    <!-- Size of the icon (voice search, back arrow) in the search box. -->
+    <dimen name="search_box_icon_size">28dp</dimen>
+    <!-- Size of the close icon.
+         Because it expands diagonally, it needs to be shrunk to look relatively the same size -->
+    <dimen name="search_box_close_icon_size">24dp</dimen>
+    <!-- Padding around back arrow icon in the search box -->
+    <dimen name="search_box_navigation_icon_margin">14dp</dimen>
+    <!-- Padding around close icon in the search box -->
+    <dimen name="search_box_close_icon_margin">16dp</dimen>
     <!-- Left margin of the text field in the search box. -->
-    <dimen name="search_box_text_left_margin">27dp</dimen>
+    <dimen name="search_box_text_left_margin">15dp</dimen>
     <!-- Search box text size -->
     <dimen name="search_text_size">20sp</dimen>
 
