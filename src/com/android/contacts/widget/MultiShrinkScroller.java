@@ -9,6 +9,8 @@ import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -162,6 +164,10 @@ public class MultiShrinkScroller extends FrameLayout {
         void onScrolledOffBottom();
 
         void onStartScrollOffBottom();
+
+        void onTransparentViewHeightChange(float ratio);
+
+        void onEntranceAnimationDone();
 
         void onEnterFullscreen();
 
@@ -560,6 +566,19 @@ public class MultiShrinkScroller extends FrameLayout {
         }
     }
 
+    /**
+     * Return ratio of non-transparent:viewgroup-height for this viewgroup at the starting position.
+     */
+    public float getStartingTransparentHeightRatio() {
+        return getTransparentHeightRatio(mTransparentStartHeight);
+    }
+
+    private float getTransparentHeightRatio(int transparentHeight) {
+        final float heightRatio = (float) transparentHeight / getHeight();
+        // Clamp between [0, 1] in case this is called before height is initialized.
+        return 1.0f - Math.max(Math.min(1.0f, heightRatio), 0f);
+    }
+
     public void scrollOffBottom() {
         final Interpolator interpolator = new AcceleratingFlingInterpolator(
                 EXIT_FLING_ANIMATION_DURATION_MS, getCurrentVelocity(),
@@ -588,10 +607,19 @@ public class MultiShrinkScroller extends FrameLayout {
                 - (getHeight() - getTransparentViewHeight()) + 1;
         final Interpolator interpolator = AnimationUtils.loadInterpolator(getContext(),
                 android.R.interpolator.linear_out_slow_in);
+        final int desiredValue = currentPosition + (scrollToCurrentPosition ? currentPosition
+                : getTransparentViewHeight());
         final ObjectAnimator animator = ObjectAnimator.ofInt(this, "scroll", bottomScrollPosition,
-                currentPosition + (scrollToCurrentPosition ? currentPosition
-                : getTransparentViewHeight()));
+                desiredValue);
         animator.setInterpolator(interpolator);
+        animator.addUpdateListener(new AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                if (animation.getAnimatedValue().equals(desiredValue) && mListener != null) {
+                    mListener.onEntranceAnimationDone();
+                }
+            }
+        });
         animator.start();
     }
 
@@ -613,6 +641,10 @@ public class MultiShrinkScroller extends FrameLayout {
                  mListener.onExitFullscreen();
             } else if (!wasFullscreen && isFullscreen) {
                 mListener.onEnterFullscreen();
+            }
+            if (!isFullscreen || !wasFullscreen) {
+                mListener.onTransparentViewHeightChange(
+                        getTransparentHeightRatio(getTransparentViewHeight()));
             }
         }
     }

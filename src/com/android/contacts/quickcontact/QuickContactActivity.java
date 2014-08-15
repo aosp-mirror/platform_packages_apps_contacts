@@ -16,9 +16,6 @@
 
 package com.android.contacts.quickcontact;
 
-import android.animation.Animator;
-import android.animation.Animator.AnimatorListener;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -82,7 +79,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -217,9 +213,15 @@ public class QuickContactActivity extends ContactsActivity {
     private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
     private AsyncTask<Void, Void, Pair<List<List<DataItem>>, Map<String, List<DataItem>>>>
             mEntriesAndActionsTask;
+    /**
+     *  This scrim's opacity is controlled in two different ways. 1) Before the initial entrance
+     *  animation finishes, the opacity is animated by a value animator. This is designed to
+     *  distract the user from the length of the initial loading time. 2) After the initial
+     *  entrance animation, the opacity is directly related to scroll position.
+     */
     private ColorDrawable mWindowScrim;
+    private boolean mIsEntranceAnimationFinished;
     private MaterialColorMapUtils mMaterialColorMapUtils;
-    private boolean mIsWaitingForOtherPieceOfExitAnimation;
     private boolean mIsExitAnimationInProgress;
     private boolean mHasComputedThemeColor;
 
@@ -421,11 +423,7 @@ public class QuickContactActivity extends ContactsActivity {
             = new MultiShrinkScrollerListener() {
         @Override
         public void onScrolledOffBottom() {
-            if (!mIsWaitingForOtherPieceOfExitAnimation) {
-                finish();
-                return;
-            }
-            mIsWaitingForOtherPieceOfExitAnimation = false;
+            finish();
         }
 
         @Override
@@ -440,24 +438,19 @@ public class QuickContactActivity extends ContactsActivity {
 
         @Override
         public void onStartScrollOffBottom() {
-            // Remove the window shim now that we are starting an Activity exit animation.
-            final int duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            final ObjectAnimator animator = ObjectAnimator.ofInt(mWindowScrim, "alpha", 0xFF, 0);
-            animator.addListener(mExitWindowShimAnimationListener);
-            animator.setDuration(duration).start();
-            mIsWaitingForOtherPieceOfExitAnimation = true;
             mIsExitAnimationInProgress = true;
         }
-    };
 
-    final AnimatorListener mExitWindowShimAnimationListener = new AnimatorListenerAdapter() {
         @Override
-        public void onAnimationEnd(Animator animation) {
-            if (!mIsWaitingForOtherPieceOfExitAnimation) {
-                finish();
-                return;
+        public void onEntranceAnimationDone() {
+            mIsEntranceAnimationFinished = true;
+        }
+
+        @Override
+        public void onTransparentViewHeightChange(float ratio) {
+            if (mIsEntranceAnimationFinished) {
+                mWindowScrim.setAlpha((int) (0xFF * ratio));
             }
-            mIsWaitingForOtherPieceOfExitAnimation = false;
         }
     };
 
@@ -599,13 +592,10 @@ public class QuickContactActivity extends ContactsActivity {
         toolbar.addView(getLayoutInflater().inflate(R.layout.quickcontact_title_placeholder, null));
 
         mHasAlreadyBeenOpened = savedInstanceState != null;
-
+        mIsEntranceAnimationFinished = mHasAlreadyBeenOpened;
         mWindowScrim = new ColorDrawable(SCRIM_COLOR);
+        mWindowScrim.setAlpha(0);
         getWindow().setBackgroundDrawable(mWindowScrim);
-        if (!mHasAlreadyBeenOpened) {
-            final int duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            ObjectAnimator.ofInt(mWindowScrim, "alpha", 0, 0xFF).setDuration(duration).start();
-        }
 
         mScroller.initialize(mMultiShrinkScrollerListener, mExtraMode == MODE_FULLY_EXPANDED);
         // mScroller needs to perform asynchronous measurements after initalize(), therefore
@@ -623,6 +613,26 @@ public class QuickContactActivity extends ContactsActivity {
             mSelectAccountFragmentListener.setRetainInstance(true);
         }
         mSelectAccountFragmentListener.setQuickContactActivity(this);
+
+        SchedulingUtils.doOnPreDraw(mScroller, /* drawNextFrame = */ true,
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!mHasAlreadyBeenOpened) {
+                            // The initial scrim opacity must match the scrim opacity that would be
+                            // achieved by scrolling to the starting position.
+                            final float alphaRatio = mExtraMode == MODE_FULLY_EXPANDED ?
+                                    1 : mScroller.getStartingTransparentHeightRatio();
+                            final int duration = getResources().getInteger(
+                                    android.R.integer.config_shortAnimTime);
+                            final int desiredAlpha = (int) (0xFF * alphaRatio);
+                            ObjectAnimator o = ObjectAnimator.ofInt(mWindowScrim, "alpha", 0,
+                                    desiredAlpha).setDuration(duration);
+
+                            o.start();
+                        }
+                    }
+                });
 
         if (savedInstanceState != null) {
             final int color = savedInstanceState.getInt(KEY_THEME_COLOR, 0);
@@ -663,6 +673,7 @@ public class QuickContactActivity extends ContactsActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         mHasAlreadyBeenOpened = true;
+        mIsEntranceAnimationFinished = true;
         mHasComputedThemeColor = false;
         processIntent(intent);
     }
