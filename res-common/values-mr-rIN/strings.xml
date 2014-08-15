@@ -112,7 +112,8 @@
     <string name="ghostData_company" msgid="22470841482615409">"कंपनी"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"शीर्षक"</string>
     <string name="label_notes" msgid="3997277594846722699">"टिपा"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"इंटरनेट कॉल"</string>
+    <!-- no translation found for label_sip_address (3754551597798479318) -->
+    <skip />
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"वेबसाइट"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"गट"</string>
     <string name="email_home" msgid="2230967805906450693">"निवासस्‍थानी ईमेल करा"</string>

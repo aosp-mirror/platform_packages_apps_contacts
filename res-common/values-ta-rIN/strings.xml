@@ -56,7 +56,7 @@
     <string name="sms_radio" msgid="8750339218480745940">"ரேடியோ தொலைபேசி எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_telex" msgid="5469333785775443999">"டெலக்ஸ் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"TTY/TDD தொலைபேசி எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"பணியிட மொபைல் தொலைபேசி எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"பணியிட மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"பணியிட பேஜர் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> க்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
@@ -112,7 +112,8 @@
     <string name="ghostData_company" msgid="22470841482615409">"நிறுவனம்"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"தலைப்பு"</string>
     <string name="label_notes" msgid="3997277594846722699">"குறிப்புகள்"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"இணைய அழைப்பு"</string>
+    <!-- no translation found for label_sip_address (3754551597798479318) -->
+    <skip />
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"இணையதளம்"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"குழுக்கள்"</string>
     <string name="email_home" msgid="2230967805906450693">"வீட்டு மின்னஞ்சல் முகவரிக்கு மின்னஞ்சல் அனுப்பு"</string>
