@@ -236,7 +236,7 @@
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> içinde kişi yok"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Sık iletişim kurulanları sil"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Hesaplar"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"İçe/Dışa Aktar"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"İçe/Dışa aktar"</string>
     <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> adlı kişiye mesaj gönder"</string>
     <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g> adlı kişinin telefon numarasını çevir"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> üzerinden"</string>

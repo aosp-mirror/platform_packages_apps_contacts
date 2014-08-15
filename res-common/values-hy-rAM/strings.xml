@@ -220,8 +220,8 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Չհաջողվեց սկանավորել SD քարտը: (Պատճառը՝ «<xliff:g id="FAIL_REASON">%s</xliff:g>»)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>-ի ներմուծում"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Արտահանել պահոց"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Կիսվել տեսանելի կոտակտներով"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Ներմուծել/արտահանել կոնտակտները"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Փոխանցել տեսանելի կոնտակտները"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Կոնտակտների ներմուծում/արտահանում"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Ներմուծել կոնտակտներ"</string>
     <string name="share_error" msgid="665756457151793108">"Հնարավոր չէ տարածել կոնտակտը:"</string>
     <string name="menu_search" msgid="7464453023659824700">"Որոնել"</string>
