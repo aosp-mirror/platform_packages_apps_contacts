@@ -193,7 +193,6 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
         }
 
         mTabStrip.onPageScrolled(position, positionOffset, positionOffsetPixels);
-        smoothScrollTo(position, 0);
     }
 
     @Override
