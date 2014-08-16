@@ -25,7 +25,8 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Επιλογή ενός αριθμού για κλήση"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Επιλογή ενός αριθμού για μήνυμα"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Επιλέξτε μια επαφή"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Επιλογή νέας επαφής"</string>
+    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"Με αστέρι"</string>
     <string name="frequentList" msgid="7154768136473953056">"Συχνές"</string>
     <string name="strequentList" msgid="5640192862059373511">"Αγαπ."</string>

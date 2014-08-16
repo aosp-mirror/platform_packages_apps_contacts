@@ -25,7 +25,8 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ಕೆರಮಾಡಲು ಸಂಖ್ಯೆಯೊಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ಸಂದೇಶಕ್ಕಾಗಿ ಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ಸಂಪರ್ಕ ಆಯ್ಕೆ ಮಾಡಿ"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"ಹೊಸ ಸಂಪರ್ಕ ಆಯ್ಕೆಮಾಡಿ"</string>
+    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
     <string name="frequentList" msgid="7154768136473953056">"ಆಗಾಗ್ಗೆ"</string>
     <string name="strequentList" msgid="5640192862059373511">"ಮೆಚ್ಚಿನವುಗಳು"</string>
