@@ -112,8 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"会社"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"役職"</string>
     <string name="label_notes" msgid="3997277594846722699">"メモ"</string>
-    <!-- no translation found for label_sip_address (3754551597798479318) -->
-    <skip />
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"ウェブサイト"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"グループ"</string>
     <string name="email_home" msgid="2230967805906450693">"自宅にメール"</string>
@@ -252,5 +251,4 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"検索を停止"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"検索をクリア"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"連絡先表示オプション"</string>
-    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"連絡先の表示方法と表示する順序を設定します。"</string>
 </resources>

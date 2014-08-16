@@ -112,8 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Kampuni"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Kichwa"</string>
     <string name="label_notes" msgid="3997277594846722699">"Daftari"</string>
-    <!-- no translation found for label_sip_address (3754551597798479318) -->
-    <skip />
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Tovuti"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Vikundi"</string>
     <string name="email_home" msgid="2230967805906450693">"Tuma barua pepe nyumbani"</string>
@@ -254,5 +253,4 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"acha kutafuta"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Futa utafutaji"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Chaguo za onyesho la anwani"</string>
-    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"Sanidi jinsi anwani zako zinavyoonekana  na kupangwa."</string>
 </resources>
