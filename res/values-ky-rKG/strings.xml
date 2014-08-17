@@ -32,7 +32,8 @@
     <!-- no translation found for messageShortcutActivityTitle (3084542316620335911) -->
     <skip />
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Байланыш тандоо"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Жаңы байланышты тандаңыз"</string>
+    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
+    <skip />
     <!-- no translation found for starredList (4817256136413959463) -->
     <skip />
     <!-- no translation found for frequentList (7154768136473953056) -->

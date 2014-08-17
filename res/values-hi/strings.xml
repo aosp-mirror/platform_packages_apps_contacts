@@ -19,13 +19,14 @@
     <string name="people" msgid="1190841469952343354">"संपर्क"</string>
     <string name="contactsList" msgid="8661624236494819731">"संपर्क"</string>
     <string name="shortcutContact" msgid="749243779392912958">"संपर्क"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"प्रत्यक्ष डायल"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"सीधा डायल करें"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"प्रत्यक्ष संदेश"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"कोई संपर्क शॉर्टकट चुनें"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"कॉल करने के लिए कोई नंबर चुनें"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"संदेश भेजने के लिए कोई नंबर चुनें"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"कोई संपर्क चुनें"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"नया संपर्क चुनें"</string>
+    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"तारांकित"</string>
     <string name="frequentList" msgid="7154768136473953056">"बार-बार"</string>
     <string name="strequentList" msgid="5640192862059373511">"पसंदीदा"</string>

@@ -25,7 +25,8 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"전화번호 선택"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"메시지를 보낼 번호 선택"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"연락처 선택"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"새 연락처 선택"</string>
+    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"중요주소록"</string>
     <string name="frequentList" msgid="7154768136473953056">"자주 사용하는 연락처"</string>
     <string name="strequentList" msgid="5640192862059373511">"즐겨찾기"</string>
