@@ -251,5 +251,4 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"stop searching"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Clear search"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Contact display options"</string>
-    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"Configure how your contacts are displayed and sorted."</string>
 </resources>

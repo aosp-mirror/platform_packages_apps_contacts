@@ -112,8 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"公司"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"职务"</string>
     <string name="label_notes" msgid="3997277594846722699">"备注"</string>
-    <!-- no translation found for label_sip_address (3754551597798479318) -->
-    <skip />
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"网站"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"群组"</string>
     <string name="email_home" msgid="2230967805906450693">"向个人邮箱发送电子邮件"</string>
@@ -258,7 +257,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜索"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜索内容"</string>
     <!-- no translation found for settings_contact_display_options_title (1020420603072835628) -->
-    <skip />
-    <!-- no translation found for settings_contact_display_options_description (4130259058302284077) -->
     <skip />
 </resources>
