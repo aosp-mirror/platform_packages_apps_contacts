@@ -431,7 +431,7 @@ public class ExpandingEntryCardView extends CardView {
                 for (int j = 1; j < entryList.size() && numInflated < mCollapsedEntriesCount &&
                         extraEntries > 0; j++) {
                     entryViewList.add(createEntryView(layoutInflater, entryList.get(j),
-                            /* showIcon = */ View.VISIBLE));
+                            /* showIcon = */ View.INVISIBLE));
                     numInflated++;
                     extraEntries--;
                 }
