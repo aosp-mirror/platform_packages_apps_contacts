@@ -148,4 +148,10 @@ public class CallUtil {
         }
         return Uri.fromParts(SCHEME_TEL, number, null);
      }
+
+    public static boolean isVideoEnabled() {
+        // TODO: Write utility methods to check subscriptions and settings, and use it to determine
+        // whether to enable or disable video call functionality.
+        return false;
+    }
 }
