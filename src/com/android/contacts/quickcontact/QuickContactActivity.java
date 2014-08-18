@@ -186,6 +186,10 @@ public class QuickContactActivity extends ContactsActivity {
             "vnd.android.cursor.item/vnd.googleplus.profile.comm";
     private static final String INTENT_DATA_HANGOUTS_VIDEO = "Start video call";
 
+    /**
+     * The URI used to load the the Contact. Once the contact is loaded, use Contact#getLookupUri()
+     * instead of referencing this URI.
+     */
     private Uri mLookupUri;
     private String[] mExcludeMimes;
     private int mExtraMode;
@@ -193,7 +197,6 @@ public class QuickContactActivity extends ContactsActivity {
     private boolean mHasAlreadyBeenOpened;
 
     private ImageView mPhotoView;
-    private View mTransparentView;
     private ExpandingEntryCardView mContactCard;
     private ExpandingEntryCardView mNoContactDetailsCard;
     private ExpandingEntryCardView mRecentCard;
@@ -571,9 +574,9 @@ public class QuickContactActivity extends ContactsActivity {
         mAboutCard.setOnCreateContextMenuListener(mEntryContextMenuListener);
 
         mPhotoView = (ImageView) findViewById(R.id.photo);
-        mTransparentView = findViewById(R.id.transparent_view);
+        final View transparentView = findViewById(R.id.transparent_view);
         if (mScroller != null) {
-            mTransparentView.setOnClickListener(new OnClickListener() {
+            transparentView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mScroller.scrollOffBottom();
@@ -1700,7 +1703,7 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     private Intent getEditContactIntent() {
-        final Intent intent = new Intent(Intent.ACTION_EDIT, mLookupUri);
+        final Intent intent = new Intent(Intent.ACTION_EDIT, mContactData.getLookupUri());
         mContactLoader.cacheResult();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         return intent;
@@ -1712,7 +1715,7 @@ public class QuickContactActivity extends ContactsActivity {
 
     private void toggleStar(MenuItem starredMenuItem) {
         // Make sure there is a contact
-        if (mLookupUri != null) {
+        if (mContactData != null) {
             // Read the current starred value from the UI instead of using the last
             // loaded state. This allows rapid tapping without writing the same
             // value several times
@@ -1725,7 +1728,7 @@ public class QuickContactActivity extends ContactsActivity {
 
             // Now perform the real save
             final Intent intent = ContactSaveService.createSetStarredIntent(
-                    QuickContactActivity.this, mLookupUri, !isStarred);
+                    QuickContactActivity.this, mContactData.getLookupUri(), !isStarred);
             startService(intent);
 
             final CharSequence accessibilityText = !isStarred
@@ -1803,7 +1806,7 @@ public class QuickContactActivity extends ContactsActivity {
                     }
 
                 });
-        builder.createContactShortcutIntent(mLookupUri);
+        builder.createContactShortcutIntent(mContactData.getLookupUri());
     }
 
     @Override
