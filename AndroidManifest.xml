@@ -47,7 +47,7 @@
     <application
         android:name="com.android.contacts.ContactsApplication"
         android:label="@string/contactsList"
-        android:icon="@mipmap/ic_launcher_contacts"
+        android:icon="@mipmap/ic_contacts_clr_48cv_44dp"
         android:taskAffinity="android.task.contacts"
         android:hardwareAccelerated="true"
         android:supportsRtl="true"
