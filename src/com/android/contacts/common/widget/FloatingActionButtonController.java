@@ -16,15 +16,11 @@
 
 package com.android.contacts.common.widget;
 
-import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.res.Resources;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.common.R;
@@ -38,14 +34,18 @@ public class FloatingActionButtonController {
     public static final int ALIGN_QUARTER_END = 1;
     public static final int ALIGN_END = 2;
 
+    private static final int FAB_FADE_DURATION = 266;
+    private static final int FAB_FADE_IN_DELAY = 100;
+
     private final int mAnimationDuration;
     private final int mFloatingActionButtonWidth;
     private final int mFloatingActionButtonMarginRight;
     private final View mFloatingActionButtonContainer;
+    private final View mFloatingActionButton;
     private final Interpolator mFabInterpolator;
     private int mScreenWidth;
 
-    public FloatingActionButtonController(Activity activity, View container) {
+    public FloatingActionButtonController(Activity activity, View container, View button) {
         Resources resources = activity.getResources();
         mFabInterpolator = AnimationUtils.loadInterpolator(activity,
                 android.R.interpolator.fast_out_slow_in);
@@ -56,6 +56,7 @@ public class FloatingActionButtonController {
         mAnimationDuration = resources.getInteger(
                 R.integer.floating_action_button_animation_duration);
         mFloatingActionButtonContainer = container;
+        mFloatingActionButton = button;
         ViewUtil.setupFloatingActionButton(mFloatingActionButtonContainer, resources);
     }
 
@@ -130,6 +131,23 @@ public class FloatingActionButtonController {
             mFloatingActionButtonContainer.getLayoutParams().height = dimension;
             mFloatingActionButtonContainer.requestLayout();
         }
+    }
+
+    /**
+     * Scales the floating action button from no height and width to its actual dimensions. This is
+     * an animation for showing the floating action button.
+     */
+    public void scaleIn() {
+        AnimUtils.scaleIn(mFloatingActionButtonContainer, mAnimationDuration);
+        AnimUtils.fadeIn(mFloatingActionButton, FAB_FADE_DURATION, FAB_FADE_IN_DELAY, null);
+    }
+
+    /**
+     * Scales the floating action button from its actual dimensions to no height and width. This is
+     * an animation for hiding the floating action button.
+     */
+    public void scaleOut() {
+        AnimUtils.scaleOut(mFloatingActionButtonContainer, mAnimationDuration);
     }
 
     /**
