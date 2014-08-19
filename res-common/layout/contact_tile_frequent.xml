@@ -24,8 +24,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingStart="?list_item_padding_left"
-        android:paddingEnd="?list_item_padding_right"
         android:paddingTop="?list_item_padding_top"
         android:paddingBottom="?list_item_padding_bottom">
 
