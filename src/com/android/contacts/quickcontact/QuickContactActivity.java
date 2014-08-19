@@ -170,7 +170,7 @@ public class QuickContactActivity extends ContactsActivity {
 
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
-    private static final int SCRIM_COLOR = Color.argb(0xB2, 0, 0, 0);
+    private static final int SCRIM_COLOR = Color.argb(0xC8, 0, 0, 0);
     private static final String MIMETYPE_SMS = "vnd.android-dir/mms-sms";
 
     /** This is the Intent action to install a shortcut in the launcher. */
