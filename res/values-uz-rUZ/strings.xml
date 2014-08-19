@@ -25,7 +25,8 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Qo‘ng‘iroq qilish uchun raqamni tanlang"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Xabar yozish uchun raqamni tanlang"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Kontaktni tanlang"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Yangi kontakt tanlash"</string>
+    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"Baho berilgan"</string>
     <string name="frequentList" msgid="7154768136473953056">"Ko‘p gaplashilgan"</string>
     <string name="strequentList" msgid="5640192862059373511">"Saralar"</string>

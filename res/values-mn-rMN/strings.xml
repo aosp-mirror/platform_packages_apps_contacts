@@ -25,7 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Залгах дугаарыг сонгоно уу"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Зурвас илгээх дугаарыг сонгох"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Харилцагч сонгоно уу"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Шинэ харилцагч сонгох"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Шинэ харилцагч үүсгэх"</string>
     <string name="starredList" msgid="4817256136413959463">"Одтой"</string>
     <string name="frequentList" msgid="7154768136473953056">"Байнга"</string>
     <string name="strequentList" msgid="5640192862059373511">"Дуртай"</string>
