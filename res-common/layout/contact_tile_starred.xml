@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="21dp">
+        android:paddingTop="24dp">
         <view
             android:id="@+id/contact_tile_container"
             android:layout_width="match_parent"
