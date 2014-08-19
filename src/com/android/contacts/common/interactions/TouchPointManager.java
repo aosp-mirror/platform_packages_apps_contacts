@@ -31,4 +31,16 @@ public class TouchPointManager {
     public void setPoint(int x, int y) {
         mPoint.set(x, y);
     }
+
+    /**
+     * When a point is initialized, its value is (0,0). Since it is highly unlikely a user will
+     * touch at that exact point, if the point in TouchPointManager is (0,0), it is safe to assume
+     * that the TouchPointManager has not yet collected a touch.
+     *
+     * @return True if there is a valid point saved. Define a valid point as any point that is
+     * not (0,0).
+     */
+    public boolean hasValidPoint() {
+        return mPoint.x != 0 || mPoint.y != 0;
+    }
 }
