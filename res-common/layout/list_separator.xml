@@ -24,4 +24,4 @@
     android:paddingBottom="15dip"
     android:paddingTop="16dip"
     android:textStyle="bold"
-    android:textSize="20sp"/>
+    android:textSize="24sp"/>
