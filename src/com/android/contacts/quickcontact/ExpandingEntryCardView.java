@@ -620,12 +620,20 @@ public class ExpandingEntryCardView extends CardView {
             });
         }
 
-        // Decrease margin for entries that have an invisible icon
-        if (iconVisibility == View.INVISIBLE) {
+        // Adjust the top padding size for entries with an invisible icon. The padding depends on
+        // if there is a sub header or text section
+        if (iconVisibility == View.INVISIBLE &&
+                (!TextUtils.isEmpty(entry.getSubHeader()) || !TextUtils.isEmpty(entry.getText()))) {
+            view.setPaddingRelative(view.getPaddingStart(),
+                    getResources().getDimensionPixelSize(
+                            R.dimen.expanding_entry_card_item_no_icon_margin_top),
+                    view.getPaddingEnd(),
+                    view.getPaddingBottom());
+        } else if (iconVisibility == View.INVISIBLE &&  TextUtils.isEmpty(entry.getSubHeader())
+                && TextUtils.isEmpty(entry.getText())) {
             view.setPaddingRelative(view.getPaddingStart(), 0, view.getPaddingEnd(),
                     view.getPaddingBottom());
         }
-
 
         view.setOnCreateContextMenuListener(mOnCreateContextMenuListener);
 

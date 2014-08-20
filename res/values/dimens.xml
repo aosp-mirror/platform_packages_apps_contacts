@@ -181,6 +181,7 @@
     <dimen name="expanding_entry_card_header_margin_bottom">2dp</dimen>
     <!-- The top margin when the sub header and text views are both gone -->
     <dimen name="expanding_entry_card_item_header_only_margin_bottom">2dp</dimen>
+    <dimen name="expanding_entry_card_item_no_icon_margin_top">6dp</dimen>
 
     <dimen name="people_activity_card_elevation">2dp</dimen>
     <!-- The width the that the tabs occupy in the ActionBar when in landscape mode.
