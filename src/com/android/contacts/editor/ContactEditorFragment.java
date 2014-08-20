@@ -131,6 +131,9 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_NEW_CONTACT_READY = "newContactDataReady";
     private static final String KEY_EXISTING_CONTACT_READY = "existingContactDataReady";
     private static final String KEY_RAW_CONTACTS = "rawContacts";
+    private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
+    private static final String KEY_CUSTOM_RINGTONE = "customRingtone";
+    private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
@@ -509,7 +512,9 @@ public class ContactEditorFragment extends Fragment implements
             mExistingContactDataReady = savedState.getBoolean(KEY_EXISTING_CONTACT_READY);
             mRawContacts = ImmutableList.copyOf(savedState.<RawContact>getParcelableArrayList(
                     KEY_RAW_CONTACTS));
-
+            mSendToVoicemailState = savedState.getBoolean(KEY_SEND_TO_VOICE_MAIL_STATE);
+            mCustomRingtone =  savedState.getString(KEY_CUSTOM_RINGTONE);
+            mArePhoneOptionsChangable =  savedState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
         }
 
         // mState can still be null because it may not have have finished loading before
@@ -1772,6 +1777,9 @@ public class ContactEditorFragment extends Fragment implements
         outState.putParcelableArrayList(KEY_RAW_CONTACTS,
                 mRawContacts == null ?
                 Lists.<RawContact> newArrayList() :  Lists.newArrayList(mRawContacts));
+        outState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
+        outState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
+        outState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
 
         super.onSaveInstanceState(outState);
     }
