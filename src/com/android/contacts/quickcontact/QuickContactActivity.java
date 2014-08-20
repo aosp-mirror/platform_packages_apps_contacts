@@ -337,11 +337,10 @@ public class QuickContactActivity extends ContactsActivity {
 
             // Pass the touch point through the intent for use in the InCallUI
             if (Intent.ACTION_CALL.equals(intent.getAction())) {
-                final Point touchPoint = TouchPointManager.getInstance().getPoint();
-
-                if (touchPoint.x != 0 || touchPoint.y != 0) {
+                if (TouchPointManager.getInstance().hasValidPoint()) {
                     Bundle extras = new Bundle();
-                    extras.putParcelable(TouchPointManager.TOUCH_POINT, touchPoint);
+                    extras.putParcelable(TouchPointManager.TOUCH_POINT,
+                            TouchPointManager.getInstance().getPoint());
                     intent.putExtra(TelecommManager.EXTRA_OUTGOING_CALL_EXTRAS, extras);
                 }
             }
