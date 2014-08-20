@@ -54,6 +54,13 @@ import android.widget.TextView;
  * MultiShrinkScroller's code is heavily influenced by ScrollView. Nonetheless, several ScrollView
  * features are missing. For example: handling of KEYCODES, OverScroll bounce and saving
  * scroll state in savedInstanceState bundles.
+ *
+ * Before copying this approach to nested scrolling, consider whether something simpler & less
+ * customized will work for you. For example, see the re-usable StickyHeaderListView used by
+ * WifiSetupActivity (very nice). Alternatively, check out Google+'s cover photo scrolling or
+ * Android L's built in nested scrolling support. I thought I needed a more custom ViewGroup in
+ * order to track velocity, modify EdgeEffect color & perform specific animations such as the ones
+ * inside snapToBottom(). As a result this ViewGroup has non-standard talkback and keyboard support.
  */
 public class MultiShrinkScroller extends FrameLayout {
 
