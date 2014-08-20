@@ -66,7 +66,7 @@
         <item name="android:windowBackground">@color/background_primary</item>
         <item name="android:colorPrimaryDark">@color/primary_color_dark</item>
         <item name="android:colorPrimary">@color/primary_color</item>
-        <item name="android:colorControlActivated">@color/primary_color</item>
+        <item name="android:colorAccent">@color/primary_color</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
