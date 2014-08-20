@@ -226,6 +226,12 @@ public class QuickContactActivity extends ContactsActivity {
     private boolean mIsExitAnimationInProgress;
     private boolean mHasComputedThemeColor;
 
+    /**
+     * Used to stop the ExpandingEntry cards from adjusting between an entry click and the intent
+     * being launched.
+     */
+    private boolean mHasIntentLaunched;
+
     private Contact mContactData;
     private ContactLoader mContactLoader;
     private PorterDuffColorFilter mColorFilter;
@@ -346,6 +352,7 @@ public class QuickContactActivity extends ContactsActivity {
                 }
             }
 
+            mHasIntentLaunched = true;
             startActivity(intent);
         }
     };
@@ -887,7 +894,20 @@ public class QuickContactActivity extends ContactsActivity {
         return aboutCardEntries;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // If returning from a launched activity, repopulate the contact and about card
+        if (mHasIntentLaunched) {
+            mHasIntentLaunched = false;
+            populateContactAndAboutCard();
+        }
+    }
+
     private void populateContactAndAboutCard() {
+        if (mHasIntentLaunched) {
+            return;
+        }
         Trace.beginSection("bind contact card");
 
         final List<List<Entry>> contactCardEntries = new ArrayList<>();
@@ -1716,6 +1736,7 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     private void editContact() {
+        mHasIntentLaunched = true;
         startActivityForResult(getEditContactIntent(), REQUEST_CODE_CONTACT_EDITOR_ACTIVITY);
     }
 
@@ -1784,6 +1805,7 @@ public class QuickContactActivity extends ContactsActivity {
         final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
 
         try {
+            mHasIntentLaunched = true;
             this.startActivity(chooseIntent);
         } catch (final ActivityNotFoundException ex) {
             Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();

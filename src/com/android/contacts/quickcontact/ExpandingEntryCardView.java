@@ -577,6 +577,11 @@ public class ExpandingEntryCardView extends CardView {
             view.setTag(new EntryTag(entry.getId(), entry.getIntent()));
         }
 
+        if (entry.getIntent() == null && entry.getEntryContextMenuInfo() == null) {
+            // Remove the click effect
+            view.setBackground(null);
+        }
+
         // If only the header is visible, add a top margin to match icon's top margin.
         // Also increase the space below the header for visual comfort.
         if (header.getVisibility() == View.VISIBLE && subHeader.getVisibility() == View.GONE &&
