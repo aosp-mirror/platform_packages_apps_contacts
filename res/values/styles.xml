@@ -66,6 +66,7 @@
         <item name="android:windowBackground">@color/background_primary</item>
         <item name="android:colorPrimaryDark">@color/primary_color_dark</item>
         <item name="android:colorPrimary">@color/primary_color</item>
+        <item name="android:colorControlActivated">@color/primary_color</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -126,6 +127,13 @@
     <style name="ContactsPickerActionBarStyle" parent="@style/ContactsActionBarStyle">
         <!-- when first loading, don't show title or up button -->
         <item name="android:displayOptions"></item>
+    </style>
+
+    <style name="ContactPickerSearchTheme" parent="@style/PeopleTheme">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorHint">?android:textColorHintInverse</item>
+        <item name="android:colorControlActivated">?android:textColorHintInverse</item>
+        <item name="android:colorControlNormal">@android:color/white</item>
     </style>
 
     <!-- Text in the action bar at the top of the screen -->
