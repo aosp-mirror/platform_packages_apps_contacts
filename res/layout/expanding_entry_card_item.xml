@@ -90,8 +90,8 @@
         android:layout_alignParentTop="true"
         android:visibility="gone"
         android:background="?android:attr/selectableItemBackgroundBorderless"
-        android:layout_marginEnd="@dimen/expanding_entry_card_item_alternate_icon_margin_end"
-        android:layout_marginTop="@dimen/expanding_entry_card_item_icon_margin_top"
-        android:layout_marginBottom="@dimen/expanding_entry_card_item_alternate_icon_margin_bottom" />
+        android:paddingTop="@dimen/expanding_entry_card_item_icon_margin_top"
+        android:paddingBottom="@dimen/expanding_entry_card_item_alternate_icon_margin_bottom"
+        android:layout_marginStart="@dimen/expanding_entry_card_item_alternate_icon_start_margin" />
 
 </view>
