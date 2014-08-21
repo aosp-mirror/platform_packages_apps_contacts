@@ -54,7 +54,11 @@ public class SmsInteraction implements ContactInteraction {
 
     @Override
     public String getViewHeader(Context context) {
-        return getBody();
+        String body = getBody();
+        if (getType() == Sms.MESSAGE_TYPE_SENT) {
+            body = context.getResources().getString(R.string.message_from_you_prefix, body);
+        }
+        return body;
     }
 
     @Override
