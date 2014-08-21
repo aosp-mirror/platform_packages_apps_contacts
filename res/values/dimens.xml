@@ -173,7 +173,7 @@
 
     <dimen name="expanding_entry_card_item_icon_margin_top">7dp</dimen>
     <dimen name="expanding_entry_card_item_header_only_margin_top">6dp</dimen>
-    <dimen name="expanding_entry_card_item_alternate_icon_margin_end">0dp</dimen>
+    <dimen name="expanding_entry_card_item_alternate_icon_start_margin">16dp</dimen>
     <dimen name="expanding_entry_card_item_alternate_icon_margin_bottom">10dp</dimen>
 
     <dimen name="expanding_entry_card_badge_separator_margin">8dp</dimen>
