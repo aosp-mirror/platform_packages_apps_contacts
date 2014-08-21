@@ -25,13 +25,13 @@ import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
@@ -68,7 +68,6 @@ import android.support.v7.graphics.Palette;
 import android.telecomm.TelecommManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -202,21 +201,13 @@ public class QuickContactActivity extends ContactsActivity {
     private ExpandingEntryCardView mNoContactDetailsCard;
     private ExpandingEntryCardView mRecentCard;
     private ExpandingEntryCardView mAboutCard;
-    /**
-     * This list contains all the {@link DataItem}s. Each nested list contains all data items of a
-     * specific mimetype in sorted order, using mWithinMimeTypeDataItemComparator. The mimetype
-     * lists are sorted using mAmongstMimeTypeDataItemComparator.
-     */
-    private List<List<DataItem>> mDataItemsList;
-    /**
-     * A map between a mimetype string and the corresponding list of data items. The data items
-     * are in sorted order using mWithinMimeTypeDataItemComparator.
-     */
-    private Map<String, List<DataItem>> mDataItemsMap;
     private MultiShrinkScroller mScroller;
     private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
-    private AsyncTask<Void, Void, Pair<List<List<DataItem>>, Map<String, List<DataItem>>>>
-            mEntriesAndActionsTask;
+    private AsyncTask<Void, Void, Cp2DataCardModel> mEntriesAndActionsTask;
+    /**
+     * The last copy of Cp2DataCardModel that was passed to {@link #populateContactAndAboutCard}.
+     */
+    private Cp2DataCardModel mCachedCp2DataCardModel;
     /**
      *  This scrim's opacity is controlled in two different ways. 1) Before the initial entrance
      *  animation finishes, the opacity is animated by a value animator. This is designed to
@@ -791,26 +782,22 @@ public class QuickContactActivity extends ContactsActivity {
 
         Trace.endSection();
 
-        mEntriesAndActionsTask = new AsyncTask<Void, Void,
-                Pair<List<List<DataItem>>, Map<String, List<DataItem>>>>() {
+        mEntriesAndActionsTask = new AsyncTask<Void, Void, Cp2DataCardModel>() {
 
             @Override
-            protected Pair<List<List<DataItem>>, Map<String, List<DataItem>>> doInBackground(
+            protected Cp2DataCardModel doInBackground(
                     Void... params) {
                 return generateDataModelFromContact(data);
             }
 
             @Override
-            protected void onPostExecute(Pair<List<List<DataItem>>,
-                    Map<String, List<DataItem>>> dataItemsPair) {
-                super.onPostExecute(dataItemsPair);
-                mDataItemsList = dataItemsPair.first;
-                mDataItemsMap = dataItemsPair.second;
+            protected void onPostExecute(Cp2DataCardModel cardDataModel) {
+                super.onPostExecute(cardDataModel);
                 // Check that original AsyncTask parameters are still valid and the activity
                 // is still running before binding to UI. A new intent could invalidate
                 // the results, for example.
                 if (data == mContactData && !isCancelled()) {
-                    bindDataToCards();
+                    bindDataToCards(cardDataModel);
                     showActivity();
                 }
             }
@@ -818,13 +805,14 @@ public class QuickContactActivity extends ContactsActivity {
         mEntriesAndActionsTask.execute();
     }
 
-    private void bindDataToCards() {
-        startInteractionLoaders();
-        populateContactAndAboutCard();
+    private void bindDataToCards(Cp2DataCardModel cp2DataCardModel) {
+        startInteractionLoaders(cp2DataCardModel);
+        populateContactAndAboutCard(cp2DataCardModel);
     }
 
-    private void startInteractionLoaders() {
-        final List<DataItem> phoneDataItems = mDataItemsMap.get(Phone.CONTENT_ITEM_TYPE);
+    private void startInteractionLoaders(Cp2DataCardModel cp2DataCardModel) {
+        final Map<String, List<DataItem>> dataItemsMap = cp2DataCardModel.dataItemsMap;
+        final List<DataItem> phoneDataItems = dataItemsMap.get(Phone.CONTENT_ITEM_TYPE);
         String[] phoneNumbers = null;
         if (phoneDataItems != null) {
             phoneNumbers = new String[phoneDataItems.size()];
@@ -851,7 +839,7 @@ public class QuickContactActivity extends ContactsActivity {
 
 
         Trace.beginSection("start calendar loader");
-        final List<DataItem> emailDataItems = mDataItemsMap.get(Email.CONTENT_ITEM_TYPE);
+        final List<DataItem> emailDataItems = dataItemsMap.get(Email.CONTENT_ITEM_TYPE);
         String[] emailAddresses = null;
         if (emailDataItems != null) {
             emailAddresses = new String[emailDataItems.size()];
@@ -881,14 +869,17 @@ public class QuickContactActivity extends ContactsActivity {
         }
     }
 
-    private List<List<Entry>> buildAboutCardEntries() {
+    private List<List<Entry>> buildAboutCardEntries(Map<String, List<DataItem>> dataItemsMap) {
         final List<List<Entry>> aboutCardEntries = new ArrayList<>();
         for (String mimetype : SORTED_ABOUT_CARD_MIMETYPES) {
-            final List<DataItem> mimeTypeItems = mDataItemsMap.get(mimetype);
+            final List<DataItem> mimeTypeItems = dataItemsMap.get(mimetype);
             if (mimeTypeItems == null) {
                 continue;
             }
-            final List<Entry> aboutEntries = dataItemsToEntries(mimeTypeItems);
+            // Set aboutCardTitleOut = null, since SORTED_ABOUT_CARD_MIMETYPES doesn't contain
+            // the name mimetype.
+            final List<Entry> aboutEntries = dataItemsToEntries(mimeTypeItems,
+                    /* aboutCardTitleOut = */ null);
             if (aboutEntries.size() > 0) {
                 aboutCardEntries.add(aboutEntries);
             }
@@ -902,32 +893,20 @@ public class QuickContactActivity extends ContactsActivity {
         // If returning from a launched activity, repopulate the contact and about card
         if (mHasIntentLaunched) {
             mHasIntentLaunched = false;
-            populateContactAndAboutCard();
+            populateContactAndAboutCard(mCachedCp2DataCardModel);
         }
     }
 
-    private void populateContactAndAboutCard() {
-        if (mHasIntentLaunched) {
+    private void populateContactAndAboutCard(Cp2DataCardModel cp2DataCardModel) {
+        mCachedCp2DataCardModel = cp2DataCardModel;
+        if (mHasIntentLaunched || cp2DataCardModel == null) {
             return;
         }
         Trace.beginSection("bind contact card");
 
-        final List<List<Entry>> contactCardEntries = new ArrayList<>();
-        final List<List<Entry>> aboutCardEntries = buildAboutCardEntries();
-
-        for (int i = 0; i < mDataItemsList.size(); ++i) {
-            final List<DataItem> dataItemsByMimeType = mDataItemsList.get(i);
-            final DataItem topDataItem = dataItemsByMimeType.get(0);
-            if (SORTED_ABOUT_CARD_MIMETYPES.contains(topDataItem.getMimeType())) {
-                // About card mimetypes are built in buildAboutCardEntries, skip here
-                continue;
-            } else {
-                List<Entry> contactEntries = dataItemsToEntries(mDataItemsList.get(i));
-                if (contactEntries.size() > 0) {
-                    contactCardEntries.add(contactEntries);
-                }
-            }
-        }
+        final List<List<Entry>> contactCardEntries = cp2DataCardModel.contactCardEntries;
+        final List<List<Entry>> aboutCardEntries = cp2DataCardModel.aboutCardEntries;
+        final String customAboutCardName = cp2DataCardModel.customAboutCardName;
 
         if (contactCardEntries.size() > 0) {
             mContactCard.initialize(contactCardEntries,
@@ -968,6 +947,10 @@ public class QuickContactActivity extends ContactsActivity {
             } else {
                 aboutCardEntries.add(0, phoneticList);
             }
+        }
+
+        if (!TextUtils.isEmpty(customAboutCardName)) {
+            mAboutCard.setTitle(customAboutCardName);
         }
 
         mAboutCard.initialize(aboutCardEntries,
@@ -1037,7 +1020,7 @@ public class QuickContactActivity extends ContactsActivity {
      *  amongst mimetype. The map goes from mimetype string to the sorted list of data items within
      *  mimetype
      */
-    private Pair<List<List<DataItem>>, Map<String, List<DataItem>>> generateDataModelFromContact(
+    private Cp2DataCardModel generateDataModelFromContact(
             Contact data) {
         Trace.beginSection("Build data items map");
 
@@ -1096,16 +1079,69 @@ public class QuickContactActivity extends ContactsActivity {
         Collections.sort(dataItemsList, mAmongstMimeTypeDataItemComparator);
         Trace.endSection();
 
-        return new Pair<>(dataItemsList, dataItemsMap);
+        Trace.beginSection("cp2 data items to entries");
+
+        final List<List<Entry>> contactCardEntries = new ArrayList<>();
+        final List<List<Entry>> aboutCardEntries = buildAboutCardEntries(dataItemsMap);
+        final MutableString aboutCardName = new MutableString();
+
+        for (int i = 0; i < dataItemsList.size(); ++i) {
+            final List<DataItem> dataItemsByMimeType = dataItemsList.get(i);
+            final DataItem topDataItem = dataItemsByMimeType.get(0);
+            if (SORTED_ABOUT_CARD_MIMETYPES.contains(topDataItem.getMimeType())) {
+                // About card mimetypes are built in buildAboutCardEntries, skip here
+                continue;
+            } else {
+                List<Entry> contactEntries = dataItemsToEntries(dataItemsList.get(i),
+                        aboutCardName);
+                if (contactEntries.size() > 0) {
+                    contactCardEntries.add(contactEntries);
+                }
+            }
+        }
+
+        Trace.endSection();
+
+        final Cp2DataCardModel dataModel = new Cp2DataCardModel();
+        dataModel.customAboutCardName = aboutCardName.value;
+        dataModel.aboutCardEntries = aboutCardEntries;
+        dataModel.contactCardEntries = contactCardEntries;
+        dataModel.dataItemsMap = dataItemsMap;
+        return dataModel;
+    }
+
+    /**
+     * Class used to hold the About card and Contact cards' data model that gets generated
+     * on a background thread. All data is from CP2.
+     */
+    private static class Cp2DataCardModel {
+        /**
+         * A map between a mimetype string and the corresponding list of data items. The data items
+         * are in sorted order using mWithinMimeTypeDataItemComparator.
+         */
+        public Map<String, List<DataItem>> dataItemsMap;
+        public List<List<Entry>> aboutCardEntries;
+        public List<List<Entry>> contactCardEntries;
+        public String customAboutCardName;
+    }
+
+    private static class MutableString {
+        public String value;
     }
 
     /**
      * Converts a {@link DataItem} into an {@link ExpandingEntryCardView.Entry} for display.
      * If the {@link ExpandingEntryCardView.Entry} has no visual elements, null is returned.
+     *
+     * This runs on a background thread. This is set as static to avoid accidentally adding
+     * additional dependencies on unsafe things (like the Activity).
+     *
      * @param dataItem The {@link DataItem} to convert.
      * @return The {@link ExpandingEntryCardView.Entry}, or null if no visual elements are present.
      */
-    private Entry dataItemToEntry(DataItem dataItem) {
+    private static Entry dataItemToEntry(DataItem dataItem,
+            Context context, Contact contactData,
+            final MutableString aboutCardName) {
         Drawable icon = null;
         String header = null;
         String subHeader = null;
@@ -1120,11 +1156,12 @@ public class QuickContactActivity extends ContactsActivity {
         final boolean isEditable = false;
         EntryContextMenuInfo entryContextMenuInfo = null;
 
+        context = context.getApplicationContext();
         DataKind kind = dataItem.getDataKind();
 
         if (dataItem instanceof ImDataItem) {
             final ImDataItem im = (ImDataItem) dataItem;
-            intent = ContactsUtils.buildImIntent(this, im).first;
+            intent = ContactsUtils.buildImIntent(context, im).first;
             final boolean isEmail = im.isCreatedFromEmail();
             final int protocol;
             if (!im.isProtocolValid()) {
@@ -1135,19 +1172,19 @@ public class QuickContactActivity extends ContactsActivity {
             if (protocol == Im.PROTOCOL_CUSTOM) {
                 // If the protocol is custom, display the "IM" entry header as well to distinguish
                 // this entry from other ones
-                header = getResources().getString(R.string.header_im_entry);
-                subHeader = Im.getProtocolLabel(getResources(), protocol,
+                header = context.getResources().getString(R.string.header_im_entry);
+                subHeader = Im.getProtocolLabel(context.getResources(), protocol,
                         im.getCustomProtocol()).toString();
                 text = im.getData();
             } else {
-                header = Im.getProtocolLabel(getResources(), protocol,
+                header = Im.getProtocolLabel(context.getResources(), protocol,
                         im.getCustomProtocol()).toString();
                 subHeader = im.getData();
             }
             entryContextMenuInfo = new EntryContextMenuInfo(im.getData(), header);
         } else if (dataItem instanceof OrganizationDataItem) {
             final OrganizationDataItem organization = (OrganizationDataItem) dataItem;
-            header = getResources().getString(R.string.header_organization_entry);
+            header = context.getResources().getString(R.string.header_organization_entry);
             subHeader = organization.getCompany();
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             text = organization.getTitle();
@@ -1155,36 +1192,37 @@ public class QuickContactActivity extends ContactsActivity {
             final NicknameDataItem nickname = (NicknameDataItem) dataItem;
             // Build nickname entries
             final boolean isNameRawContact =
-                (mContactData.getNameRawContactId() == dataItem.getRawContactId());
+                (contactData.getNameRawContactId() == dataItem.getRawContactId());
 
             final boolean duplicatesTitle =
                 isNameRawContact
-                && mContactData.getDisplayNameSource() == DisplayNameSources.NICKNAME;
+                && contactData.getDisplayNameSource() == DisplayNameSources.NICKNAME;
 
             if (!duplicatesTitle) {
-                header = getResources().getString(R.string.header_nickname_entry);
+                header = context.getResources().getString(R.string.header_nickname_entry);
                 subHeader = nickname.getName();
                 entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             }
         } else if (dataItem instanceof NoteDataItem) {
             final NoteDataItem note = (NoteDataItem) dataItem;
-            header = getResources().getString(R.string.header_note_entry);
+            header = context.getResources().getString(R.string.header_note_entry);
             subHeader = note.getNote();
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
         } else if (dataItem instanceof WebsiteDataItem) {
             final WebsiteDataItem website = (WebsiteDataItem) dataItem;
-            header = getResources().getString(R.string.header_website_entry);
+            header = context.getResources().getString(R.string.header_website_entry);
             subHeader = website.getUrl();
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             try {
-                final WebAddress webAddress = new WebAddress(website.buildDataString(this, kind));
+                final WebAddress webAddress = new WebAddress(website.buildDataString(context,
+                        kind));
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
             } catch (final ParseException e) {
-                Log.e(TAG, "Couldn't parse website: " + website.buildDataString(this, kind));
+                Log.e(TAG, "Couldn't parse website: " + website.buildDataString(context, kind));
             }
         } else if (dataItem instanceof EventDataItem) {
             final EventDataItem event = (EventDataItem) dataItem;
-            final String dataString = event.buildDataString(this, kind);
+            final String dataString = event.buildDataString(context, kind);
             final Calendar cal = DateUtils.parseDate(dataString, false);
             if (cal != null) {
                 final Date nextAnniversary =
@@ -1194,46 +1232,47 @@ public class QuickContactActivity extends ContactsActivity {
                 ContentUris.appendId(builder, nextAnniversary.getTime());
                 intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
             }
-            header = getResources().getString(R.string.header_event_entry);
+            header = context.getResources().getString(R.string.header_event_entry);
             if (event.hasKindTypeColumn(kind)) {
-                subHeader = Event.getTypeLabel(getResources(), event.getKindTypeColumn(kind),
+                subHeader = Event.getTypeLabel(context.getResources(), event.getKindTypeColumn(kind),
                         event.getLabel()).toString();
             }
-            text = DateUtils.formatDate(this, dataString);
+            text = DateUtils.formatDate(context, dataString);
             entryContextMenuInfo = new EntryContextMenuInfo(text, header);
         } else if (dataItem instanceof RelationDataItem) {
             final RelationDataItem relation = (RelationDataItem) dataItem;
-            final String dataString = relation.buildDataString(this, kind);
+            final String dataString = relation.buildDataString(context, kind);
             if (!TextUtils.isEmpty(dataString)) {
                 intent = new Intent(Intent.ACTION_SEARCH);
                 intent.putExtra(SearchManager.QUERY, dataString);
                 intent.setType(Contacts.CONTENT_TYPE);
             }
-            header = getResources().getString(R.string.header_relation_entry);
+            header = context.getResources().getString(R.string.header_relation_entry);
             subHeader = relation.getName();
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             if (relation.hasKindTypeColumn(kind)) {
-                text = Relation.getTypeLabel(getResources(), relation.getKindTypeColumn(kind),
+                text = Relation.getTypeLabel(context.getResources(),
+                        relation.getKindTypeColumn(kind),
                         relation.getLabel()).toString();
             }
         } else if (dataItem instanceof PhoneDataItem) {
             final PhoneDataItem phone = (PhoneDataItem) dataItem;
             if (!TextUtils.isEmpty(phone.getNumber())) {
-                header = phone.buildDataString(this, kind);
+                header = phone.buildDataString(context, kind);
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        getResources().getString(R.string.phoneLabelsGroup));
+                        context.getResources().getString(R.string.phoneLabelsGroup));
                 if (phone.hasKindTypeColumn(kind)) {
-                    text = Phone.getTypeLabel(getResources(), phone.getKindTypeColumn(kind),
+                    text = Phone.getTypeLabel(context.getResources(), phone.getKindTypeColumn(kind),
                             phone.getLabel()).toString();
                 }
-                icon = getResources().getDrawable(R.drawable.ic_phone_24dp);
-                if (PhoneCapabilityTester.isPhone(this)) {
+                icon = context.getResources().getDrawable(R.drawable.ic_phone_24dp);
+                if (PhoneCapabilityTester.isPhone(context)) {
                     intent = CallUtil.getCallIntent(phone.getNumber());
                 }
                 alternateIntent = new Intent(Intent.ACTION_SENDTO,
                         Uri.fromParts(CallUtil.SCHEME_SMSTO, phone.getNumber(), null));
-                alternateIcon = getResources().getDrawable(R.drawable.ic_message_24dp);
-                alternateContentDescription = getResources().getString(R.string.sms_other);
+                alternateIcon = context.getResources().getDrawable(R.drawable.ic_message_24dp);
+                alternateContentDescription = context.getResources().getString(R.string.sms_other);
             }
         } else if (dataItem instanceof EmailDataItem) {
             final EmailDataItem email = (EmailDataItem) dataItem;
@@ -1243,12 +1282,12 @@ public class QuickContactActivity extends ContactsActivity {
                 intent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 header = email.getAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        getResources().getString(R.string.emailLabelsGroup));
+                        context.getResources().getString(R.string.emailLabelsGroup));
                 if (email.hasKindTypeColumn(kind)) {
-                    text = Email.getTypeLabel(getResources(), email.getKindTypeColumn(kind),
+                    text = Email.getTypeLabel(context.getResources(), email.getKindTypeColumn(kind),
                             email.getLabel()).toString();
                 }
-                icon = getResources().getDrawable(R.drawable.ic_email_24dp);
+                icon = context.getResources().getDrawable(R.drawable.ic_email_24dp);
             }
         } else if (dataItem instanceof StructuredPostalDataItem) {
             StructuredPostalDataItem postal = (StructuredPostalDataItem) dataItem;
@@ -1257,18 +1296,18 @@ public class QuickContactActivity extends ContactsActivity {
                 intent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
                 header = postal.getFormattedAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        getResources().getString(R.string.postalLabelsGroup));
+                        context.getResources().getString(R.string.postalLabelsGroup));
                 if (postal.hasKindTypeColumn(kind)) {
-                    text = StructuredPostal.getTypeLabel(getResources(),
+                    text = StructuredPostal.getTypeLabel(context.getResources(),
                             postal.getKindTypeColumn(kind), postal.getLabel()).toString();
                 }
                 alternateIntent =
                         StructuredPostalUtils.getViewPostalAddressDirectionsIntent(postalAddress);
-                alternateIcon = getResources().getDrawable(R.drawable.ic_directions_24dp);
-                icon = getResources().getDrawable(R.drawable.ic_place_24dp);
+                alternateIcon = context.getResources().getDrawable(R.drawable.ic_directions_24dp);
+                icon = context.getResources().getDrawable(R.drawable.ic_place_24dp);
             }
         } else if (dataItem instanceof SipAddressDataItem) {
-            if (PhoneCapabilityTester.isSipPhone(this)) {
+            if (PhoneCapabilityTester.isSipPhone(context)) {
                 final SipAddressDataItem sip = (SipAddressDataItem) dataItem;
                 final String address = sip.getSipAddress();
                 if (!TextUtils.isEmpty(address)) {
@@ -1276,25 +1315,25 @@ public class QuickContactActivity extends ContactsActivity {
                     intent = CallUtil.getCallIntent(callUri);
                     header = address;
                     entryContextMenuInfo = new EntryContextMenuInfo(header,
-                            getResources().getString(R.string.phoneLabelsGroup));
+                            context.getResources().getString(R.string.phoneLabelsGroup));
                     if (sip.hasKindTypeColumn(kind)) {
-                        text = SipAddress.getTypeLabel(getResources(), sip.getKindTypeColumn(kind),
-                            sip.getLabel()).toString();
+                        text = SipAddress.getTypeLabel(context.getResources(),
+                                sip.getKindTypeColumn(kind), sip.getLabel()).toString();
                     }
-                    icon = getResources().getDrawable(R.drawable.ic_dialer_sip_black_24dp);
+                    icon = context.getResources().getDrawable(R.drawable.ic_dialer_sip_black_24dp);
                 }
             }
         } else if (dataItem instanceof StructuredNameDataItem) {
             final String givenName = ((StructuredNameDataItem) dataItem).getGivenName();
             if (!TextUtils.isEmpty(givenName)) {
-                mAboutCard.setTitle(getResources().getString(R.string.about_card_title) +
-                        " " + givenName);
+                aboutCardName.value = context.getResources().getString(R.string.about_card_title) +
+                        " " + givenName;
             } else {
-                mAboutCard.setTitle(getResources().getString(R.string.about_card_title));
+                aboutCardName.value = context.getResources().getString(R.string.about_card_title);
             }
         } else {
             // Custom DataItem
-            header = dataItem.buildDataStringForDisplay(this, kind);
+            header = dataItem.buildDataStringForDisplay(context, kind);
             text = kind.typeColumn;
             intent = new Intent(Intent.ACTION_VIEW);
             final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, dataItem.getId());
@@ -1308,22 +1347,22 @@ public class QuickContactActivity extends ContactsActivity {
                     case MIMETYPE_GPLUS_PROFILE:
                         if (INTENT_DATA_GPLUS_PROFILE_ADD_TO_CIRCLE.equals(
                                 intent.getDataString())) {
-                            icon = getResources().getDrawable(
+                            icon = context.getResources().getDrawable(
                                     R.drawable.ic_add_to_circles_black_24);
                         } else {
-                            icon = getResources().getDrawable(R.drawable.ic_google_plus_24dp);
+                            icon = context.getResources().getDrawable(R.drawable.ic_google_plus_24dp);
                         }
                         break;
                     case MIMETYPE_HANGOUTS:
                         if (INTENT_DATA_HANGOUTS_VIDEO.equals(intent.getDataString())) {
-                            icon = getResources().getDrawable(R.drawable.ic_hangout_video_24dp);
+                            icon = context.getResources().getDrawable(R.drawable.ic_hangout_video_24dp);
                         } else {
-                            icon = getResources().getDrawable(R.drawable.ic_hangout_24dp);
+                            icon = context.getResources().getDrawable(R.drawable.ic_hangout_24dp);
                         }
                         break;
                     default:
                         entryContextMenuInfo = new EntryContextMenuInfo(header, mimetype);
-                        icon = ResolveCache.getInstance(this).getIcon(
+                        icon = ResolveCache.getInstance(context).getIcon(
                                 dataItem.getMimeType(), intent);
                         // Call mutate to create a new Drawable.ConstantState for color filtering
                         if (icon != null) {
@@ -1336,20 +1375,20 @@ public class QuickContactActivity extends ContactsActivity {
 
         if (intent != null) {
             // Do not set the intent is there are no resolves
-            if (!PhoneCapabilityTester.isIntentRegistered(this, intent)) {
+            if (!PhoneCapabilityTester.isIntentRegistered(context, intent)) {
                 intent = null;
             }
         }
 
         if (alternateIntent != null) {
             // Do not set the alternate intent is there are no resolves
-            if (!PhoneCapabilityTester.isIntentRegistered(this, alternateIntent)) {
+            if (!PhoneCapabilityTester.isIntentRegistered(context, alternateIntent)) {
                 alternateIntent = null;
             }
 
             // Attempt to use package manager to find a suitable content description if needed
             if (TextUtils.isEmpty(alternateContentDescription)) {
-                alternateContentDescription = getIntentResolveLabel(alternateIntent);
+                alternateContentDescription = getIntentResolveLabel(alternateIntent, context);
             }
         }
 
@@ -1368,10 +1407,11 @@ public class QuickContactActivity extends ContactsActivity {
                 isEditable, entryContextMenuInfo);
     }
 
-    private List<Entry> dataItemsToEntries(List<DataItem> dataItems) {
+    private List<Entry> dataItemsToEntries(List<DataItem> dataItems,
+            MutableString aboutCardTitleOut) {
         final List<Entry> entries = new ArrayList<>();
         for (DataItem dataItem : dataItems) {
-            final Entry entry = dataItemToEntry(dataItem);
+            final Entry entry = dataItemToEntry(dataItem, this, mContactData, aboutCardTitleOut);
             if (entry != null) {
                 entries.add(entry);
             }
@@ -1379,8 +1419,8 @@ public class QuickContactActivity extends ContactsActivity {
         return entries;
     }
 
-    private String getIntentResolveLabel(Intent intent) {
-        final List<ResolveInfo> matches = getPackageManager().queryIntentActivities(intent,
+    private static String getIntentResolveLabel(Intent intent, Context context) {
+        final List<ResolveInfo> matches = context.getPackageManager().queryIntentActivities(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);
 
         // Pick first match, otherwise best found
@@ -1389,14 +1429,14 @@ public class QuickContactActivity extends ContactsActivity {
         if (size == 1) {
             bestResolve = matches.get(0);
         } else if (size > 1) {
-            bestResolve = ResolveCache.getInstance(this).getBestResolve(intent, matches);
+            bestResolve = ResolveCache.getInstance(context).getBestResolve(intent, matches);
         }
 
         if (bestResolve == null) {
             return null;
         }
 
-        return String.valueOf(bestResolve.loadLabel(getPackageManager()));
+        return String.valueOf(bestResolve.loadLabel(context.getPackageManager()));
     }
 
     /**
