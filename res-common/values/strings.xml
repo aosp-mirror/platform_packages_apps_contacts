@@ -222,9 +222,9 @@
     <!-- Field title for the full name of a contact [CHAR LIMIT=64]-->
     <string name="full_name">Name</string>
     <!-- Field title for the given name of a contact -->
-    <string name="name_given">Given name</string>
+    <string name="name_given">First name</string>
     <!-- Field title for the family name of a contact -->
-    <string name="name_family">Family name</string>
+    <string name="name_family">Last name</string>
     <!-- Field title for the prefix name of a contact -->
     <string name="name_prefix">Name prefix</string>
     <!-- Field title for the middle name of a contact -->
@@ -236,11 +236,11 @@
     <string name="name_phonetic">Phonetic name</string>
 
     <!-- Field title for the phonetic given name of a contact -->
-    <string name="name_phonetic_given">Phonetic given name</string>
+    <string name="name_phonetic_given">Phonetic first name</string>
     <!-- Field title for the phonetic middle name of a contact -->
     <string name="name_phonetic_middle">Phonetic middle name</string>
     <!-- Field title for the phonetic family name of a contact -->
-    <string name="name_phonetic_family">Phonetic family name</string>
+    <string name="name_phonetic_family">Phonetic last name</string>
 
     <!-- Header that expands to list all of the types of phone numbers when editing or creating a
          phone number for a contact [CHAR LIMIT=20] -->
@@ -657,23 +657,23 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Contact preferences related strings -->
 
-    <!-- Label of the "sort list by" display option -->
-    <string name="display_options_sort_list_by">Sort list by</string>
+    <!-- Label of the "sort by" display option -->
+    <string name="display_options_sort_list_by">Sort by</string>
 
     <!-- An allowable value for the "sort list by" contact display option  -->
-    <string name="display_options_sort_by_given_name">Given name</string>
+    <string name="display_options_sort_by_given_name">First name</string>
 
     <!-- An allowable value for the "sort list by" contact display option  -->
-    <string name="display_options_sort_by_family_name">Family name</string>
+    <string name="display_options_sort_by_family_name">Last name</string>
 
-    <!-- Label of the "view names as" display option [CHAR LIMIT=64]-->
-    <string name="display_options_view_names_as">View contact names</string>
-
-    <!-- An allowable value for the "view names as" contact display option  -->
-    <string name="display_options_view_given_name_first">Given name first</string>
+    <!-- Label of the "name format" display option [CHAR LIMIT=64]-->
+    <string name="display_options_view_names_as">Name format</string>
 
     <!-- An allowable value for the "view names as" contact display option  -->
-    <string name="display_options_view_family_name_first">Family name first</string>
+    <string name="display_options_view_given_name_first">First name first</string>
+
+    <!-- An allowable value for the "view names as" contact display option  -->
+    <string name="display_options_view_family_name_first">Last name first</string>
 
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
