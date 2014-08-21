@@ -17,15 +17,13 @@
 package com.android.contacts.util;
 
 import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.provider.ContactsContract.DisplayNameSources;
+import android.media.ThumbnailUtils;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.android.contacts.common.ContactPhotoManager;
@@ -161,8 +159,13 @@ public class ImageViewDrawableSetter {
     }
 
     private BitmapDrawable decodedBitmapDrawable(byte[] compressed) {
-        Resources rsrc = mTarget.getResources();
+        final Resources rsrc = mTarget.getResources();
         Bitmap bitmap = BitmapFactory.decodeByteArray(compressed, 0, compressed.length);
+        if (bitmap.getHeight() != bitmap.getWidth()) {
+            // Crop the bitmap into a square.
+            final int size = Math.min(bitmap.getWidth(), bitmap.getHeight());
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, size, size);
+        }
         return new BitmapDrawable(rsrc, bitmap);
     }
 }
