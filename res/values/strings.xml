@@ -702,4 +702,7 @@
     <!-- Content description for directions secondary button [CHAR LIMIT=NONE] -->
     <string name="content_description_directions">directions to location</string>
 
+    <!-- Prefix for messages that you sent [CHAR LIMIT=40] -->
+    <string name="message_from_you_prefix">You: <xliff:g id="sms_body">%s</xliff:g></string>
+
 </resources>
