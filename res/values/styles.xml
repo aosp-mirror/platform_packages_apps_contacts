@@ -67,6 +67,7 @@
         <item name="android:colorPrimaryDark">@color/primary_color_dark</item>
         <item name="android:colorPrimary">@color/primary_color</item>
         <item name="android:colorAccent">@color/primary_color</item>
+        <item name="android:alertDialogTheme">@style/ContactsAlertDialogTheme</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -294,5 +295,11 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">#363636</item>
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Inherit from Theme.Material.Light.Dialog instead of Theme.Material.Light.Dialog.Alert
+        since the Alert dialog is private. They are identical anyway. -->
+    <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/primary_color</item>
     </style>
 </resources>
