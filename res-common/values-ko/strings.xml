@@ -112,8 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"회사"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"제목"</string>
     <string name="label_notes" msgid="3997277594846722699">"메모"</string>
-    <!-- no translation found for label_sip_address (3754551597798479318) -->
-    <skip />
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"웹사이트"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"그룹"</string>
     <string name="email_home" msgid="2230967805906450693">"개인 이메일 주소로 이메일 보내기"</string>
@@ -252,5 +251,4 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"검색 중지"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"검색창 지우기"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"연락처 표시 옵션"</string>
-    <string name="settings_contact_display_options_description" msgid="4130259058302284077">"연락처를 표시하고 정렬하는 방법을 설정합니다."</string>
 </resources>
