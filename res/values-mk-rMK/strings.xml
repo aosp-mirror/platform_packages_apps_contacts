@@ -25,7 +25,8 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Изберете број да се јавите"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Избери број да испратиш порака"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Одбери контакт"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2062180422920201172">"Избери нов контакт"</string>
+    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
+    <skip />
     <string name="starredList" msgid="4817256136413959463">"Со ѕвезда"</string>
     <string name="frequentList" msgid="7154768136473953056">"Често"</string>
     <string name="strequentList" msgid="5640192862059373511">"Омилени"</string>
