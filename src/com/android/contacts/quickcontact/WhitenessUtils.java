@@ -39,9 +39,9 @@ public class WhitenessUtils {
     /**
      * An image with more than this amount white, is considered to be a whitish image.
      */
-    private static final float PROPORTION_WHITE_CUTOFF = 0.2f;
+    private static final float PROPORTION_WHITE_CUTOFF = 0.1f;
 
-    private static final float HALF = 0.5f;
+    private static final float THIRD = 0.33f;
 
     /**
      * Colors with luma greater than this are considered close to white. This value is lower than
@@ -55,46 +55,49 @@ public class WhitenessUtils {
      */
     public static boolean isBitmapWhiteAtTopOrBottom(Bitmap largeBitmap) {
         Trace.beginSection("isBitmapWhiteAtTopOrBottom");
+        try {
+            final Bitmap smallBitmap = scaleBitmapDown(largeBitmap);
 
-        final Bitmap smallBitmap = scaleBitmapDown(largeBitmap);
+            final int[] rgbPixels = new int[smallBitmap.getWidth() * smallBitmap.getHeight()];
+            smallBitmap.getPixels(rgbPixels, 0, smallBitmap.getWidth(), 0, 0,
+                    smallBitmap.getWidth(), smallBitmap.getHeight());
 
-        final int[] rgbPixels = new int[smallBitmap.getWidth() * smallBitmap.getHeight()];
-        smallBitmap.getPixels(rgbPixels, 0, smallBitmap.getWidth(), 0, 0,
-                smallBitmap.getWidth(), smallBitmap.getHeight());
-
-        // look at top right corner of the bitmap
-        int whiteCount = 0;
-        for (int y = 0; y < smallBitmap.getHeight() * HEIGHT_PERCENT_ANALYZED; y++) {
-            for (int x = (int) (smallBitmap.getWidth() * HALF); x < smallBitmap.getWidth(); x++) {
-                final int rgb = rgbPixels[y * smallBitmap.getWidth() + x];
-                if (isWhite(rgb)) {
-                    whiteCount ++;
+            // look at top right corner of the bitmap
+            int whiteCount = 0;
+            for (int y = 0; y < smallBitmap.getHeight() * HEIGHT_PERCENT_ANALYZED; y++) {
+                for (int x = (int) (smallBitmap.getWidth() * (1 - THIRD));
+                        x < smallBitmap.getWidth(); x++) {
+                    final int rgb = rgbPixels[y * smallBitmap.getWidth() + x];
+                    if (isWhite(rgb)) {
+                        whiteCount ++;
+                    }
                 }
             }
-        }
-        int totalPixels = (int) (smallBitmap.getHeight() * smallBitmap.getWidth()
-                * HALF * HEIGHT_PERCENT_ANALYZED);
-        if (whiteCount / (float) totalPixels > PROPORTION_WHITE_CUTOFF) {
-            return true;
-        }
+            int totalPixels = (int) (smallBitmap.getHeight() * smallBitmap.getWidth()
+                    * THIRD * HEIGHT_PERCENT_ANALYZED);
+            if (whiteCount / (float) totalPixels > PROPORTION_WHITE_CUTOFF) {
+                return true;
+            }
 
-        // look at bottom portion of bitmap
-        whiteCount = 0;
-        for (int y = (int) (smallBitmap.getHeight() * (1 - HEIGHT_PERCENT_ANALYZED));
-                y <  smallBitmap.getHeight(); y++) {
-            for (int x = 0; x < smallBitmap.getWidth(); x++) {
-                final int rgb = rgbPixels[y * smallBitmap.getWidth() + x];
-                if (isWhite(rgb)) {
-                    whiteCount ++;
+            // look at bottom portion of bitmap
+            whiteCount = 0;
+            for (int y = (int) (smallBitmap.getHeight() * (1 - HEIGHT_PERCENT_ANALYZED));
+                    y <  smallBitmap.getHeight(); y++) {
+                for (int x = 0; x < smallBitmap.getWidth(); x++) {
+                    final int rgb = rgbPixels[y * smallBitmap.getWidth() + x];
+                    if (isWhite(rgb)) {
+                        whiteCount ++;
+                    }
                 }
             }
+
+            totalPixels = (int) (smallBitmap.getHeight()
+                    * smallBitmap.getWidth() * HEIGHT_PERCENT_ANALYZED);
+
+            return whiteCount / (float) totalPixels > PROPORTION_WHITE_CUTOFF;
+        } finally {
+            Trace.endSection();
         }
-
-        totalPixels = (int) (smallBitmap.getHeight()
-                * smallBitmap.getWidth() * HEIGHT_PERCENT_ANALYZED);
-
-        Trace.endSection();
-        return whiteCount / (float) totalPixels > PROPORTION_WHITE_CUTOFF;
     }
 
     private static boolean isWhite(int rgb) {
