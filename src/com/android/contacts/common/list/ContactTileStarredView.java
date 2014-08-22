@@ -15,6 +15,9 @@
  */
 package com.android.contacts.common.list;
 
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+
 import android.content.Context;
 import android.util.AttributeSet;
 
@@ -24,6 +27,12 @@ import android.util.AttributeSet;
  * {@link com.android.contacts.common.list.ContactTileAdapter.ContactTileRow}.
  */
 public class ContactTileStarredView extends ContactTileView {
+
+    /**
+     * The photo manager should display the default image/letter at 80% of its normal size.
+     */
+    private static final float DEFAULT_IMAGE_LETTER_SCALE = 0.8f;
+
     public ContactTileStarredView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -37,5 +46,11 @@ public class ContactTileStarredView extends ContactTileView {
     protected int getApproximateImageSize() {
         // The picture is the full size of the tile (minus some padding, but we can be generous)
         return mListener.getApproximateTileWidth();
+    }
+
+    @Override
+    protected DefaultImageRequest getDefaultImageRequest(String displayName, String lookupKey) {
+        return new DefaultImageRequest(displayName, lookupKey, ContactPhotoManager.TYPE_DEFAULT,
+                DEFAULT_IMAGE_LETTER_SCALE, /* offset = */ 0, /* isCircular = */ true);
     }
 }
