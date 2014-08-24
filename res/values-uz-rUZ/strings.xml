@@ -25,8 +25,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Qo‘ng‘iroq qilish uchun raqamni tanlang"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Xabar yozish uchun raqamni tanlang"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Kontaktni tanlang"</string>
-    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
-    <skip />
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Yangi kontakt yaratish"</string>
     <string name="starredList" msgid="4817256136413959463">"Baho berilgan"</string>
     <string name="frequentList" msgid="7154768136473953056">"Ko‘p gaplashilgan"</string>
     <string name="strequentList" msgid="5640192862059373511">"Saralar"</string>
@@ -249,4 +248,6 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Tadbir"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Aloqadorlik"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"manzilga yo\'nalishlar"</string>
+    <!-- no translation found for message_from_you_prefix (7180706529908434482) -->
+    <skip />
 </resources>

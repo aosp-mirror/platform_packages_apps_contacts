@@ -248,4 +248,6 @@
     <string name="header_event_entry" msgid="6738250422744401460">"ການນັດໝາຍ"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"ຄວາມສຳພັນ"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"​ເສັ້ນ​ທາງ​ໄປ​ຫາ​ສະ​ຖານ​ທີ່"</string>
+    <!-- no translation found for message_from_you_prefix (7180706529908434482) -->
+    <skip />
 </resources>
