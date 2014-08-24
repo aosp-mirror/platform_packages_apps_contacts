@@ -91,15 +91,19 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"שם"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"כינוי"</string>
     <string name="full_name" msgid="885420216812981202">"שם"</string>
-    <string name="name_given" msgid="1560204576305608571">"שם פרטי"</string>
-    <string name="name_family" msgid="1267097554034721002">"שם משפחה"</string>
+    <!-- no translation found for name_given (4153709115654909377) -->
+    <skip />
+    <!-- no translation found for name_family (5317387657540738981) -->
+    <skip />
     <string name="name_prefix" msgid="8219879405071462309">"תחילית שם"</string>
     <string name="name_middle" msgid="3951610314424632183">"שם אמצעי"</string>
     <string name="name_suffix" msgid="5436984808550075931">"סיומת שם"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"שם פונטי"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"שם פרטי פונטי"</string>
+    <!-- no translation found for name_phonetic_given (2863316331175661852) -->
+    <skip />
     <string name="name_phonetic_middle" msgid="5970174427249235577">"שם אמצעי פונטי"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"שם משפחה פונטי"</string>
+    <!-- no translation found for name_phonetic_family (1572398622239414464) -->
+    <skip />
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"טלפון"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"דוא\"ל"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"כתובת"</string>
@@ -222,12 +226,18 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏לא ניתן היה לסרוק את כרטיס ה-SD. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"מייבא <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>‏: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"יצא לאמצעי אחסון"</string>
-    <string name="display_options_sort_list_by" msgid="7686551200843900466">"מיין רשימה לפי"</string>
-    <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"שם פרטי"</string>
-    <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"שם משפחה"</string>
-    <string name="display_options_view_names_as" msgid="1104495761313107327">"הצג שמות של אנשי קשר"</string>
-    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"שם פרטי תחילה"</string>
-    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"שם משפחה תחילה"</string>
+    <!-- no translation found for display_options_sort_list_by (8635268562263708102) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_given_name (7775798046001047995) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_family_name (8196947856299225342) -->
+    <skip />
+    <!-- no translation found for display_options_view_names_as (3232196224409242435) -->
+    <skip />
+    <!-- no translation found for display_options_view_given_name_first (7283772578267332801) -->
+    <skip />
+    <!-- no translation found for display_options_view_family_name_first (8133167685885174166) -->
+    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר שמוצגים כעת"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"יבא/יצא אנשי קשר"</string>
     <string name="dialog_import" msgid="5177004290082451296">"יבא אנשי קשר"</string>

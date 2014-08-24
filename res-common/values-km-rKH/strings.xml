@@ -91,15 +91,19 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ឈ្មោះ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"សម្មតិនាម"</string>
     <string name="full_name" msgid="885420216812981202">"ឈ្មោះ"</string>
-    <string name="name_given" msgid="1560204576305608571">"នាម​ខ្លួន"</string>
-    <string name="name_family" msgid="1267097554034721002">"នាមត្រកូល"</string>
+    <!-- no translation found for name_given (4153709115654909377) -->
+    <skip />
+    <!-- no translation found for name_family (5317387657540738981) -->
+    <skip />
     <string name="name_prefix" msgid="8219879405071462309">"បុព្វបទ​ឈ្មោះ"</string>
     <string name="name_middle" msgid="3951610314424632183">"ឈ្មោះ​កណ្ដាល"</string>
     <string name="name_suffix" msgid="5436984808550075931">"បច្ច័យ​ឈ្មោះ"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"សូរស័ព្ទ​ឈ្មោះ"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"សូរស័ព្ទ​នាម​ខ្លួន"</string>
+    <!-- no translation found for name_phonetic_given (2863316331175661852) -->
+    <skip />
     <string name="name_phonetic_middle" msgid="5970174427249235577">"សូរស័ព្ទ​ឈ្មោះ​កណ្ដាល"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"សូរស័ព្ទ​នាមត្រកូល"</string>
+    <!-- no translation found for name_phonetic_family (1572398622239414464) -->
+    <skip />
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ទូរស័ព្ទ"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"អ៊ីមែល"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"អាសយដ្ឋាន"</string>
@@ -140,8 +144,8 @@
     <string name="chat_gtalk" msgid="6043734883347741789">"ជជែក​ដោយ​ប្រើ Google Talk"</string>
     <string name="chat_icq" msgid="7538190395602030726">"ជជែក​ដោយ​ប្រើ ICQ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"ជជែក​ដោយ​ប្រើ Jabber"</string>
-    <string name="chat" msgid="6297650784873558837">"ជជែក"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"លុប"</string>
+    <string name="chat" msgid="6297650784873558837">"ជជែក​​"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"លុប​"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"ពង្រីក ឬ​បង្រួម​វាល​ឈ្មោះ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"ទំនាក់ទំនង​ទាំងអស់"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"បាន​ដាក់​ផ្កាយ"</string>
@@ -155,7 +159,7 @@
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"ការ​លុប \"<xliff:g id="GROUP">%s</xliff:g>\" ចេញពី​សមកាលកម្ម​វា​ក៏​នឹង​លុប​ទំនាក់ទំនង​ដែល​មិន​នៅ​ក្នុង​ក្រុម​ចេញពី​សមកាលកម្ម​ផង​ដែរ។"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"កំពុង​រក្សាទុក​ជម្រើស​បង្ហាញ..."</string>
     <string name="menu_done" msgid="32470053723443112">"រួចរាល់"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"បោះ​បង់"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"បោះ​បង់​"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"ទំនាក់ទំនង​នៅ​ក្នុង <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"ទំនាក់ទំនង​ក្នុង​ទិដ្ឋភាព​ផ្ទាល់ខ្លួន"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"ទំនាក់ទំនង​ទោល"</string>
@@ -222,12 +226,18 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"មិន​អាច​វិភាគ​រក​កាត​អេសឌី (មូលហេតុ៖ \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"កំពុង​នាំចូល <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>៖ <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"នាំចេញ​ទៅ​ឧបករណ៍​ផ្ទុក"</string>
-    <string name="display_options_sort_list_by" msgid="7686551200843900466">"តម្រៀប​បញ្ជី​តាម"</string>
-    <string name="display_options_sort_by_given_name" msgid="5182293506651747189">"នាម​ខ្លួន"</string>
-    <string name="display_options_sort_by_family_name" msgid="4146657752793207363">"នាមត្រកូល"</string>
-    <string name="display_options_view_names_as" msgid="1104495761313107327">"មើល​ឈ្មោះ​ទំនាក់ទំនង"</string>
-    <string name="display_options_view_given_name_first" msgid="1412684412351158812">"នាម​ខ្លួន​មុន"</string>
-    <string name="display_options_view_family_name_first" msgid="8624010750059331413">"នាមត្រកូល​មុន"</string>
+    <!-- no translation found for display_options_sort_list_by (8635268562263708102) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_given_name (7775798046001047995) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_family_name (8196947856299225342) -->
+    <skip />
+    <!-- no translation found for display_options_view_names_as (3232196224409242435) -->
+    <skip />
+    <!-- no translation found for display_options_view_given_name_first (7283772578267332801) -->
+    <skip />
+    <!-- no translation found for display_options_view_family_name_first (8133167685885174166) -->
+    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"ចែករំលែក​ទំនាក់ទំនង​ដែល​អាច​មើល​ឃើញ"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"នាំចេញ/នាំចូល​ទំនាក់ទំនង"</string>
     <string name="dialog_import" msgid="5177004290082451296">"នាំចូល​ទំនាក់ទំនង"</string>
