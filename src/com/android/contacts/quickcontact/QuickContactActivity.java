@@ -953,12 +953,14 @@ public class QuickContactActivity extends ContactsActivity {
             mAboutCard.setTitle(customAboutCardName);
         }
 
-        mAboutCard.initialize(aboutCardEntries,
-                /* numInitialVisibleEntries = */ 1,
-                /* isExpanded = */ true,
-                /* isAlwaysExpanded = */ true,
-                mExpandingEntryCardViewListener,
-                mScroller);
+        if (aboutCardEntries.size() > 0) {
+            mAboutCard.initialize(aboutCardEntries,
+                    /* numInitialVisibleEntries = */ 1,
+                    /* isExpanded = */ true,
+                    /* isAlwaysExpanded = */ true,
+                    mExpandingEntryCardViewListener,
+                    mScroller);
+        }
 
         if (contactCardEntries.size() == 0 && aboutCardEntries.size() == 0) {
             initializeNoContactDetailCard();

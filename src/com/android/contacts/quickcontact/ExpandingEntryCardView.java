@@ -201,6 +201,11 @@ public class ExpandingEntryCardView extends CardView {
     private ViewGroup mAnimationViewGroup;
     private LinearLayout mBadgeContainer;
     private final List<ImageView> mBadges;
+    /**
+     * List to hold the separators. This saves us from reconstructing every expand/collapse and
+     * provides a smoother animation.
+     */
+    private List<View> mSeparators;
     private LinearLayout mContainer;
 
     private final OnClickListener mExpandCollapseButtonListener = new OnClickListener() {
@@ -259,6 +264,10 @@ public class ExpandingEntryCardView extends CardView {
             mEntryViews.add(new ArrayList<View>());
         }
         mCollapsedEntriesCount = Math.min(numInitialVisibleEntries, mNumEntries);
+        // We need a separator between each list, but not after the last one
+        if (entries.size() > 1) {
+            mSeparators = new ArrayList<>(entries.size() - 1);
+        }
         mListener = listener;
         mAnimationViewGroup = animationViewGroup;
 
@@ -311,9 +320,17 @@ public class ExpandingEntryCardView extends CardView {
         mEntriesViewGroup.removeAllViews();
 
         if (mIsExpanded) {
-            for (List<View> viewList : mEntryViews) {
-                if (viewList != mEntryViews.get(0)) {
-                    addSeparator(viewList.get(0));
+            for (int i = 0; i < mEntryViews.size(); i++) {
+                List<View> viewList = mEntryViews.get(i);
+                if (i > 0) {
+                    View separator;
+                    if (mSeparators.size() <= i - 1) {
+                        separator = generateSeparator(viewList.get(0));
+                        mSeparators.add(separator);
+                    } else {
+                        separator = mSeparators.get(i - 1);
+                    }
+                    mEntriesViewGroup.addView(separator);
                 }
                 for (View view : viewList) {
                     addEntry(view);
@@ -329,7 +346,14 @@ public class ExpandingEntryCardView extends CardView {
                     i++) {
                 List<View> entryViewList = mEntryViews.get(i);
                 if (i > 0) {
-                    addSeparator(entryViewList.get(0));
+                    View separator;
+                    if (mSeparators.size() <= i - 1) {
+                        separator = generateSeparator(entryViewList.get(0));
+                        mSeparators.add(separator);
+                    } else {
+                        separator = mSeparators.get(i - 1);
+                    }
+                    mEntriesViewGroup.addView(separator);
                 }
                 addEntry(entryViewList.get(0));
                 numInViewGroup++;
@@ -367,7 +391,7 @@ public class ExpandingEntryCardView extends CardView {
         mEntriesViewGroup.addView(entry);
     }
 
-    private void addSeparator(View entry) {
+    private View generateSeparator(View entry) {
         View separator = new View(getContext());
         Resources res = getResources();
 
@@ -389,7 +413,7 @@ public class ExpandingEntryCardView extends CardView {
         }
         layoutParams.setMarginStart(marginStart);
         separator.setLayoutParams(layoutParams);
-        mEntriesViewGroup.addView(separator);
+        return separator;
     }
 
     private CharSequence getExpandButtonText() {
