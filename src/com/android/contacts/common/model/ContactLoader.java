@@ -140,7 +140,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 RawContacts.SYNC3,
                 RawContacts.SYNC4,
                 RawContacts.DELETED,
-                RawContacts.NAME_VERIFIED,
 
                 Contacts.Entity.DATA_ID,
                 Data.DATA1,
@@ -213,50 +212,49 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         public static final int SYNC3 = 23;
         public static final int SYNC4 = 24;
         public static final int DELETED = 25;
-        public static final int NAME_VERIFIED = 26;
 
-        public static final int DATA_ID = 27;
-        public static final int DATA1 = 28;
-        public static final int DATA2 = 29;
-        public static final int DATA3 = 30;
-        public static final int DATA4 = 31;
-        public static final int DATA5 = 32;
-        public static final int DATA6 = 33;
-        public static final int DATA7 = 34;
-        public static final int DATA8 = 35;
-        public static final int DATA9 = 36;
-        public static final int DATA10 = 37;
-        public static final int DATA11 = 38;
-        public static final int DATA12 = 39;
-        public static final int DATA13 = 40;
-        public static final int DATA14 = 41;
-        public static final int DATA15 = 42;
-        public static final int DATA_SYNC1 = 43;
-        public static final int DATA_SYNC2 = 44;
-        public static final int DATA_SYNC3 = 45;
-        public static final int DATA_SYNC4 = 46;
-        public static final int DATA_VERSION = 47;
-        public static final int IS_PRIMARY = 48;
-        public static final int IS_SUPERPRIMARY = 49;
-        public static final int MIMETYPE = 50;
+        public static final int DATA_ID = 26;
+        public static final int DATA1 = 27;
+        public static final int DATA2 = 28;
+        public static final int DATA3 = 29;
+        public static final int DATA4 = 30;
+        public static final int DATA5 = 31;
+        public static final int DATA6 = 32;
+        public static final int DATA7 = 33;
+        public static final int DATA8 = 34;
+        public static final int DATA9 = 35;
+        public static final int DATA10 = 36;
+        public static final int DATA11 = 37;
+        public static final int DATA12 = 38;
+        public static final int DATA13 = 39;
+        public static final int DATA14 = 40;
+        public static final int DATA15 = 41;
+        public static final int DATA_SYNC1 = 42;
+        public static final int DATA_SYNC2 = 43;
+        public static final int DATA_SYNC3 = 44;
+        public static final int DATA_SYNC4 = 45;
+        public static final int DATA_VERSION = 46;
+        public static final int IS_PRIMARY = 47;
+        public static final int IS_SUPERPRIMARY = 48;
+        public static final int MIMETYPE = 49;
 
-        public static final int GROUP_SOURCE_ID = 51;
+        public static final int GROUP_SOURCE_ID = 50;
 
-        public static final int PRESENCE = 52;
-        public static final int CHAT_CAPABILITY = 53;
-        public static final int STATUS = 54;
-        public static final int STATUS_RES_PACKAGE = 55;
-        public static final int STATUS_ICON = 56;
-        public static final int STATUS_LABEL = 57;
-        public static final int STATUS_TIMESTAMP = 58;
+        public static final int PRESENCE = 51;
+        public static final int CHAT_CAPABILITY = 52;
+        public static final int STATUS = 53;
+        public static final int STATUS_RES_PACKAGE = 54;
+        public static final int STATUS_ICON = 55;
+        public static final int STATUS_LABEL = 56;
+        public static final int STATUS_TIMESTAMP = 57;
 
-        public static final int PHOTO_URI = 59;
-        public static final int SEND_TO_VOICEMAIL = 60;
-        public static final int CUSTOM_RINGTONE = 61;
-        public static final int IS_USER_PROFILE = 62;
+        public static final int PHOTO_URI = 58;
+        public static final int SEND_TO_VOICEMAIL = 59;
+        public static final int CUSTOM_RINGTONE = 60;
+        public static final int IS_USER_PROFILE = 61;
 
-        public static final int TIMES_USED = 63;
-        public static final int LAST_TIME_USED = 64;
+        public static final int TIMES_USED = 62;
+        public static final int LAST_TIME_USED = 63;
     }
 
     /**
@@ -655,7 +653,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         cursorColumnToContentValues(cursor, cv, ContactQuery.DELETED);
         cursorColumnToContentValues(cursor, cv, ContactQuery.CONTACT_ID);
         cursorColumnToContentValues(cursor, cv, ContactQuery.STARRED);
-        cursorColumnToContentValues(cursor, cv, ContactQuery.NAME_VERIFIED);
 
         return cv;
     }

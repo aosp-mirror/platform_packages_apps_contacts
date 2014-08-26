@@ -304,7 +304,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                         RawContacts.DATA_SET,
                         RawContacts.DIRTY, RawContacts.VERSION, RawContacts.SOURCE_ID,
                         RawContacts.SYNC1, RawContacts.SYNC2, RawContacts.SYNC3, RawContacts.SYNC4,
-                        RawContacts.DELETED, RawContacts.NAME_VERIFIED,
+                        RawContacts.DELETED,
 
                         Contacts.Entity.DATA_ID,
 
@@ -344,7 +344,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                         "mockAccountName", "mockAccountType", null,
                         0, 1, 0,
                         "sync1", "sync2", "sync3", "sync4",
-                        0, 0,
+                        0,
 
                         dataId,
 

@@ -44,9 +44,11 @@ public class ContactsMockContext extends ContextWrapper {
         mContentResolver = new MockContentResolver();
         mContactsProvider = new MockContentProvider();
         mContentResolver.addProvider(ContactsContract.AUTHORITY, mContactsProvider);
-        mContactsProvider.attachInfo(this, new ProviderInfo());
+        final ProviderInfo providerInfo = new ProviderInfo();
+        providerInfo.authority = ContactsContract.AUTHORITY;
+        mContactsProvider.attachInfo(this, providerInfo);
         mSettingsProvider = new MockContentProvider();
-        mSettingsProvider.attachInfo(this, new ProviderInfo());
+        mSettingsProvider.attachInfo(this, providerInfo);
         mContentResolver.addProvider(Settings.AUTHORITY, mSettingsProvider);
     }
 

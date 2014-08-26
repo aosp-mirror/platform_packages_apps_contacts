@@ -249,10 +249,6 @@ final public class RawContact implements Parcelable {
         return getValues().getAsBoolean(RawContacts.DELETED);
     }
 
-    public boolean isNameVerified() {
-        return getValues().getAsBoolean(RawContacts.NAME_VERIFIED);
-    }
-
     public long getContactId() {
         return getValues().getAsLong(Contacts.Entity.CONTACT_ID);
     }
