@@ -350,6 +350,7 @@ public class MultiShrinkScroller extends FrameLayout {
 
     public void setTitle(String title) {
         mLargeTextView.setText(title);
+        mPhotoTouchInterceptOverlay.setContentDescription(title);
     }
 
     public void setUseGradient(boolean useGradient) {
