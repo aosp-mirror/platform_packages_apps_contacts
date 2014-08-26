@@ -15,7 +15,14 @@
 -->
 <resources>
     <!--  Determines the number of columns in a ContactTileRow in the favorites tab -->
-    <integer name="contact_tile_column_count_in_favorites">3</integer>
+    <integer name="contact_tile_column_count_in_favorites">4</integer>
 
     <integer name="contact_tile_column_count">2</integer>
+
+    <!-- Layout weight of space elements in PeopleActivity for favorites list and all
+      contacts list-->
+    <integer name="contact_list_space_layout_weight">11</integer>
+    <!-- Layout weight of ListViews in PeopleActivityfor tile favorites list and all
+         contacts list in PeopleActivity -->
+    <integer name="contact_list_card_layout_weight">81</integer>
 </resources>
