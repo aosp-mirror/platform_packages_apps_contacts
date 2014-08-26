@@ -35,8 +35,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
-import android.view.TouchDelegate;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -81,21 +82,26 @@ public class ExpandingEntryCardView extends CardView {
         private final boolean mShouldApplyColor;
         private final boolean mIsEditable;
         private final EntryContextMenuInfo mEntryContextMenuInfo;
+        private final Drawable mThirdIcon;
+        private final Intent mThirdIntent;
+        private final String mThirdContentDescription;
 
         public Entry(int id, Drawable icon, String header, String subHeader, String text,
                 Intent intent, Drawable alternateIcon, Intent alternateIntent,
                 String alternateContentDescription, boolean shouldApplyColor,
-                boolean isEditable, EntryContextMenuInfo entryContextMenuInfo) {
+                boolean isEditable, EntryContextMenuInfo entryContextMenuInfo,
+                Drawable thirdIcon, Intent thirdIntent, String thirdContentDescription) {
             this(id, icon, header, subHeader, null, text, null, intent, alternateIcon,
                     alternateIntent, alternateContentDescription, shouldApplyColor, isEditable,
-                    entryContextMenuInfo);
+                    entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription);
         }
 
         public Entry(int id, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon, Intent intent,
                 Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
                 boolean shouldApplyColor, boolean isEditable,
-                EntryContextMenuInfo entryContextMenuInfo) {
+                EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
+                String thirdContentDescription) {
             mId = id;
             mIcon = mainIcon;
             mHeader = header;
@@ -110,6 +116,9 @@ public class ExpandingEntryCardView extends CardView {
             mShouldApplyColor = shouldApplyColor;
             mIsEditable = isEditable;
             mEntryContextMenuInfo = entryContextMenuInfo;
+            mThirdIcon = thirdIcon;
+            mThirdIntent = thirdIntent;
+            mThirdContentDescription = thirdContentDescription;
         }
 
         Drawable getIcon() {
@@ -166,6 +175,18 @@ public class ExpandingEntryCardView extends CardView {
 
         EntryContextMenuInfo getEntryContextMenuInfo() {
             return mEntryContextMenuInfo;
+        }
+
+        Drawable getThirdIcon() {
+            return mThirdIcon;
+        }
+
+        Intent getThirdIntent() {
+            return mThirdIntent;
+        }
+
+        String getThirdContentDescription() {
+            return mThirdContentDescription;
         }
     }
 
@@ -541,6 +562,10 @@ public class ExpandingEntryCardView extends CardView {
                         if (alternateIcon != null) {
                             alternateIcon.setColorFilter(mThemeColorFilter);
                         }
+                        Drawable thirdIcon = entry.getThirdIcon();
+                        if (thirdIcon != null) {
+                            thirdIcon.setColorFilter(mThemeColorFilter);
+                        }
                     }
                 }
             }
@@ -621,36 +646,6 @@ public class ExpandingEntryCardView extends CardView {
             header.setLayoutParams(headerLayoutParams);
         }
 
-        final ImageView alternateIcon = (ImageView) view.findViewById(R.id.icon_alternate);
-        if (entry.getAlternateIcon() != null && entry.getAlternateIntent() != null) {
-            alternateIcon.setImageDrawable(entry.getAlternateIcon());
-            alternateIcon.setOnClickListener(mOnClickListener);
-            alternateIcon.setTag(new EntryTag(entry.getId(), entry.getAlternateIntent()));
-            alternateIcon.setVisibility(View.VISIBLE);
-            alternateIcon.setContentDescription(entry.getAlternateContentDescription());
-
-            // Expand the clickable area for alternate icon to be top to bottom and to end edge
-            // of the entry view
-            view.post(new Runnable() {
-                @Override
-                public void run() {
-                    final Rect alternateIconRect = new Rect();
-                    alternateIcon.getHitRect(alternateIconRect);
-
-                    alternateIconRect.bottom = view.getHeight();
-                    alternateIconRect.top = 0;
-                    if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                        alternateIconRect.left = 0;
-                    } else {
-                        alternateIconRect.right = view.getWidth();
-                    }
-                    final TouchDelegate touchDelegate =
-                            new TouchDelegate(alternateIconRect, alternateIcon);
-                    view.setTouchDelegate(touchDelegate);
-                }
-            });
-        }
-
         // Adjust the top padding size for entries with an invisible icon. The padding depends on
         // if there is a sub header or text section
         if (iconVisibility == View.INVISIBLE &&
@@ -666,6 +661,27 @@ public class ExpandingEntryCardView extends CardView {
                     view.getPaddingBottom());
         }
 
+        final ImageView alternateIcon = (ImageView) view.findViewById(R.id.icon_alternate);
+        final ImageView thirdIcon = (ImageView) view.findViewById(R.id.third_icon);
+
+        if (entry.getAlternateIcon() != null && entry.getAlternateIntent() != null) {
+            alternateIcon.setImageDrawable(entry.getAlternateIcon());
+            alternateIcon.setOnClickListener(mOnClickListener);
+            alternateIcon.setTag(new EntryTag(entry.getId(), entry.getAlternateIntent()));
+            alternateIcon.setVisibility(View.VISIBLE);
+            alternateIcon.setContentDescription(entry.getAlternateContentDescription());
+        }
+
+        if (entry.getThirdIcon() != null && entry.getThirdIntent() != null) {
+            thirdIcon.setImageDrawable(entry.getThirdIcon());
+            thirdIcon.setOnClickListener(mOnClickListener);
+            thirdIcon.setTag(new EntryTag(entry.getId(), entry.getThirdIntent()));
+            thirdIcon.setVisibility(View.VISIBLE);
+            thirdIcon.setContentDescription(entry.getThirdContentDescription());
+        }
+
+        // Set a custom touch listener for expanding the extra icon touch areas
+        view.setOnTouchListener(new EntryTouchListener(view, alternateIcon, thirdIcon));
         view.setOnCreateContextMenuListener(mOnCreateContextMenuListener);
 
         return view;
@@ -918,6 +934,105 @@ public class ExpandingEntryCardView extends CardView {
 
         public Intent getIntent() {
             return mIntent;
+        }
+    }
+
+    /**
+     * This custom touch listener increases the touch area for the second and third icons, if
+     * they are present. This is necessary to maintain other properties on an entry view, like
+     * using a top padding on entry. Based off of {@link android.view.TouchDelegate}
+     */
+    private static final class EntryTouchListener implements View.OnTouchListener {
+        private final View mEntry;
+        private final ImageView mAlternateIcon;
+        private final ImageView mThirdIcon;
+        /** mTouchedView locks in a view on touch down */
+        private View mTouchedView;
+        /** mSlop adds some space to account for touches that are just outside the hit area */
+        private int mSlop;
+
+        public EntryTouchListener(View entry, ImageView alternateIcon, ImageView thirdIcon) {
+            mEntry = entry;
+            mAlternateIcon = alternateIcon;
+            mThirdIcon = thirdIcon;
+            mSlop = ViewConfiguration.get(entry.getContext()).getScaledTouchSlop();
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            View touchedView = mTouchedView;
+            boolean sendToTouched = false;
+            boolean hit = true;
+            boolean handled = false;
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    if (hitThirdIcon(event)) {
+                        mTouchedView = mThirdIcon;
+                        sendToTouched = true;
+                    } else if (hitAlternateIcon(event)) {
+                        mTouchedView = mAlternateIcon;
+                        sendToTouched = true;
+                    } else {
+                        mTouchedView = mEntry;
+                        sendToTouched = false;
+                    }
+                    touchedView = mTouchedView;
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_MOVE:
+                    sendToTouched = mTouchedView != null && mTouchedView != mEntry;
+                    if (sendToTouched) {
+                        final Rect slopBounds = new Rect();
+                        touchedView.getHitRect(slopBounds);
+                        slopBounds.inset(-mSlop, -mSlop);
+                        if (!slopBounds.contains((int) event.getX(), (int) event.getY())) {
+                            hit = false;
+                        }
+                    }
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                    sendToTouched = mTouchedView != null && mTouchedView != mEntry;
+                    mTouchedView = null;
+                    break;
+            }
+            if (sendToTouched) {
+                if (hit) {
+                    event.setLocation(touchedView.getWidth() / 2, touchedView.getHeight() / 2);
+                } else {
+                    // Offset event coordinates to be outside the target view (in case it does
+                    // something like tracking pressed state)
+                    event.setLocation(-(mSlop * 2), -(mSlop * 2));
+                }
+                handled = touchedView.dispatchTouchEvent(event);
+            }
+            return handled;
+        }
+
+        private boolean hitThirdIcon(MotionEvent event) {
+            if (mEntry.isLayoutRtl()) {
+                return mThirdIcon.getVisibility() == View.VISIBLE &&
+                        event.getX() < mThirdIcon.getRight();
+            } else {
+                return mThirdIcon.getVisibility() == View.VISIBLE &&
+                        event.getX() > mThirdIcon.getLeft();
+            }
+        }
+
+        /**
+         * Should be used after checking if third icon was hit
+         */
+        private boolean hitAlternateIcon(MotionEvent event) {
+            // LayoutParams used to add the start margin to the touch area
+            final RelativeLayout.LayoutParams alternateIconParams =
+                    (RelativeLayout.LayoutParams) mAlternateIcon.getLayoutParams();
+            if (mEntry.isLayoutRtl()) {
+                return mAlternateIcon.getVisibility() == View.VISIBLE &&
+                        event.getX() < mAlternateIcon.getRight() + alternateIconParams.rightMargin;
+            } else {
+                return mAlternateIcon.getVisibility() == View.VISIBLE &&
+                        event.getX() > mAlternateIcon.getLeft() - alternateIconParams.leftMargin;
+            }
         }
     }
 }
