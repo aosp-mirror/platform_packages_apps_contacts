@@ -19,7 +19,6 @@ package com.android.contacts.common;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.phone.PhoneManager;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
 import android.telecomm.VideoProfile;
@@ -152,13 +151,14 @@ public class CallUtil {
      }
 
     public static boolean isVideoEnabled(Context context) {
-        PhoneManager phoneMgr = (PhoneManager) context.getSystemService(Context.PHONE_SERVICE);
-        if (phoneMgr == null) {
+        TelecommManager telecommMgr = (TelecommManager)
+                context.getSystemService(Context.TELECOMM_SERVICE);
+        if (telecommMgr == null) {
             return false;
         }
 
-        // TODO: Check phoneManager for value instead.
-        // return phoneMgr.isVideoEnabled();
+        // TODO: Check telecommManager for value instead.
+        // return telecommMgr.isVideoEnabled();
         return false;
     }
 }
