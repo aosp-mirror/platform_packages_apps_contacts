@@ -1288,7 +1288,7 @@ public class QuickContactActivity extends ContactsActivity {
                 alternateContentDescription = context.getResources().getString(R.string.sms_other);
 
                 // Add video call button if supported
-                if (CallUtil.isVideoEnabled()) {
+                if (CallUtil.isVideoEnabled(context)) {
                     thirdIcon = context.getResources().getDrawable(R.drawable.ic_videocam);
                     thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
                             CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
