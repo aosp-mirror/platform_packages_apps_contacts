@@ -91,19 +91,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Прекар"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
-    <!-- no translation found for name_given (4153709115654909377) -->
-    <skip />
-    <!-- no translation found for name_family (5317387657540738981) -->
-    <skip />
+    <string name="name_given" msgid="4153709115654909377">"Име"</string>
+    <string name="name_family" msgid="5317387657540738981">"Презиме"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Претставка на име"</string>
     <string name="name_middle" msgid="3951610314424632183">"Татково име"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Наставка на име"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Фонетско име"</string>
-    <!-- no translation found for name_phonetic_given (2863316331175661852) -->
-    <skip />
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Фонетско име"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Фонетско татково име"</string>
-    <!-- no translation found for name_phonetic_family (1572398622239414464) -->
-    <skip />
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Фонетско презиме"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-пошта"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Адреса"</string>
@@ -226,18 +222,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"СД картичката не можеше да се скенира. (Причина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Увезување <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Извези во меморија"</string>
-    <!-- no translation found for display_options_sort_list_by (8635268562263708102) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (7775798046001047995) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (8196947856299225342) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (3232196224409242435) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (7283772578267332801) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (8133167685885174166) -->
-    <skip />
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Подреди по"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Име"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Презиме"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат на име"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Прво името"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Прво презимето"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Сподели видливи контакти"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Увези/извези контакти"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Увези контакти"</string>
