@@ -248,6 +248,5 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Gertaera"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Erlazioa"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"kokapenerako jarraibideak"</string>
-    <!-- no translation found for message_from_you_prefix (7180706529908434482) -->
-    <skip />
+    <string name="message_from_you_prefix" msgid="7180706529908434482">"Zu: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
