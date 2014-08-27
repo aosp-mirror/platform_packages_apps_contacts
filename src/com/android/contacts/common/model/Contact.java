@@ -85,6 +85,11 @@ public class Contact {
     private ImmutableList<GroupMetaData> mGroups;
 
     private byte[] mPhotoBinaryData;
+    /**
+     * Small version of the contact photo loaded from a blob instead of from a file. If a large
+     * contact photo is not available yet, then this has the same value as mPhotoBinaryData.
+     */
+    private byte[] mThumbnailPhotoBinaryData;
     private final boolean mSendToVoicemail;
     private final String mCustomRingtone;
     private final boolean mIsUserProfile;
@@ -216,6 +221,10 @@ public class Contact {
 
     /* package */ void setPhotoBinaryData(byte[] photoBinaryData) {
         mPhotoBinaryData = photoBinaryData;
+    }
+
+    /* package */ void setThumbnailPhotoBinaryData(byte[] photoBinaryData) {
+        mThumbnailPhotoBinaryData = photoBinaryData;
     }
 
     /**
@@ -415,6 +424,10 @@ public class Contact {
 
     public byte[] getPhotoBinaryData() {
         return mPhotoBinaryData;
+    }
+
+    public byte[] getThumbnailPhotoBinaryData() {
+        return mThumbnailPhotoBinaryData;
     }
 
     public ArrayList<ContentValues> getContentValues() {
