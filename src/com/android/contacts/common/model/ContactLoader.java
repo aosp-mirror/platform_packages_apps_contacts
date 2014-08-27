@@ -40,7 +40,6 @@ import android.util.Log;
 
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.GroupMetaData;
-import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.common.util.Constants;
@@ -501,11 +500,13 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     }
 
     /**
-     * Looks for the photo data item in entities. If found, creates a new Bitmap instance. If
-     * not found, returns null
+     * Looks for the photo data item in entities. If found, a thumbnail will be stored. A larger
+     * photo will also be stored if available.
      */
     private void loadPhotoBinaryData(Contact contactData) {
-        // If we have a photo URI, try loading that first.
+        loadThumbnailBinaryData(contactData);
+
+        // Try to load the large photo from a file using the photo URI.
         String photoUri = contactData.getPhotoUri();
         if (photoUri != null) {
             try {
@@ -542,6 +543,10 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         }
 
         // If we couldn't load from a file, fall back to the data blob.
+        contactData.setPhotoBinaryData(contactData.getThumbnailPhotoBinaryData());
+    }
+
+    private void loadThumbnailBinaryData(Contact contactData) {
         final long photoId = contactData.getPhotoId();
         if (photoId <= 0) {
             // No photo ID
@@ -556,7 +561,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                     }
 
                     final PhotoDataItem photo = (PhotoDataItem) dataItem;
-                    contactData.setPhotoBinaryData(photo.getPhoto());
+                    contactData.setThumbnailPhotoBinaryData(photo.getPhoto());
                     break;
                 }
             }
