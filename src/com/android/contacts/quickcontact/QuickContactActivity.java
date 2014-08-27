@@ -31,6 +31,7 @@ import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -1475,12 +1476,23 @@ public class QuickContactActivity extends ContactsActivity {
             @Override
             protected MaterialPalette doInBackground(Void... params) {
 
-                if (imageViewDrawable instanceof BitmapDrawable) {
-                    final Bitmap bitmap = ((BitmapDrawable) imageViewDrawable).getBitmap();
-                    final int primaryColor = colorFromBitmap(bitmap);
-                    if (primaryColor != 0) {
-                        return mMaterialColorMapUtils.calculatePrimaryAndSecondaryColor(
-                                primaryColor);
+                if (imageViewDrawable instanceof BitmapDrawable
+                        && mContactData.getThumbnailPhotoBinaryData() != null
+                        && mContactData.getThumbnailPhotoBinaryData().length > 0) {
+                    // Perform the color analysis on the thumbnail instead of the full sized
+                    // image, so that our results will be as similar as possible to the Bugle
+                    // app.
+                    final Bitmap bitmap = BitmapFactory.decodeByteArray(
+                            mContactData.getThumbnailPhotoBinaryData(), 0,
+                            mContactData.getThumbnailPhotoBinaryData().length);
+                    try {
+                        final int primaryColor = colorFromBitmap(bitmap);
+                        if (primaryColor != 0) {
+                            return mMaterialColorMapUtils.calculatePrimaryAndSecondaryColor(
+                                    primaryColor);
+                        }
+                    } finally {
+                        bitmap.recycle();
                     }
                 }
                 if (imageViewDrawable instanceof LetterTileDrawable) {
