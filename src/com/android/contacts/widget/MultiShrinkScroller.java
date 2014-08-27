@@ -277,8 +277,8 @@ public class MultiShrinkScroller extends FrameLayout {
         mActionBarGradientView = findViewById(R.id.action_bar_gradient);
         mActionBarGradientView.setBackground(mActionBarGradientDrawable);
 
+        mPhotoTouchInterceptOverlay = findViewById(R.id.photo_touch_intercept_overlay);
         if (!mIsTwoPanel) {
-            mPhotoTouchInterceptOverlay = findViewById(R.id.photo_touch_intercept_overlay);
             mPhotoTouchInterceptOverlay.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
