@@ -32,8 +32,7 @@
     <!-- no translation found for messageShortcutActivityTitle (3084542316620335911) -->
     <skip />
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Байланыш тандоо"</string>
-    <!-- no translation found for header_entry_contact_list_adapter_header_title (2436981165830115659) -->
-    <skip />
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Жаңы байланыш түзүү"</string>
     <!-- no translation found for starredList (4817256136413959463) -->
     <skip />
     <!-- no translation found for frequentList (7154768136473953056) -->
@@ -329,4 +328,5 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Иш-чара"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Мамилелик катышы"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"жайгашуу ордуна багыттоолор"</string>
+    <string name="message_from_you_prefix" msgid="7180706529908434482">"Сиз: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>

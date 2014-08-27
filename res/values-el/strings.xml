@@ -248,4 +248,5 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Συμβάν"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Σχέση"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"οδηγίες προς την τοποθεσία"</string>
+    <string name="message_from_you_prefix" msgid="7180706529908434482">"Εσείς: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
