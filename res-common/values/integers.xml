@@ -23,4 +23,11 @@
 
     <!-- The number of characters in the snippet before we need to tokenize and ellipse. -->
     <integer name="snippet_length_before_tokenize">30</integer>
+
+    <!-- Layout weight of space elements in contact list view.
+    Default to 0 to indicate no padding-->
+    <integer name="contact_list_space_layout_weight">0</integer>
+    <!-- Layout weight of card in contact list view.
+    Default to 0 to indicate no padding -->
+    <integer name="contact_list_card_layout_weight">0</integer>
 </resources>
