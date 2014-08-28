@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="7dp"
             android:textColor="#202020"
-            android:textSize="16sp"
+            android:textSize="@dimen/contact_browser_list_item_text_size"
             android:singleLine="true"
             android:fadingEdge="horizontal"
             android:fadingEdgeLength="3dip"
