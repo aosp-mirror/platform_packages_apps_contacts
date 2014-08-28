@@ -143,6 +143,10 @@
          item in the list -->
     <dimen name="frequently_contacted_title_top_margin">57dp</dimen>
 
+    <dimen name="frequently_contacted_title_text_size">24sp</dimen>
+
     <!-- Size of icon for contacts number shortcuts -->
     <dimen name="search_shortcut_radius">40dp</dimen>
+
+    <dimen name="contact_list_card_elevation">2dp</dimen>
 </resources>

@@ -24,4 +24,4 @@
     android:paddingBottom="15dip"
     android:paddingTop="16dip"
     android:textStyle="bold"
-    android:textSize="24sp"/>
+    android:textSize="@dimen/frequently_contacted_title_text_size"/>
