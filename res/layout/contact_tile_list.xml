@@ -21,6 +21,8 @@
     android:paddingBottom="?attr/favorites_padding_bottom"
     android:background="@color/background_primary">
 
+    <include layout="@layout/contact_list_card"/>
+
     <ListView
         android:id="@+id/contact_tile_list"
         android:layout_width="match_parent"
@@ -28,7 +30,8 @@
         android:paddingTop="@dimen/contact_tile_list_padding_top"
         android:clipToPadding="false"
         android:fadingEdge="none"
-        android:divider="@null" />
+        android:divider="@null"
+        android:scrollbarStyle="outsideOverlay"/>
 
     <TextView
         android:id="@+id/contact_tile_list_empty"
