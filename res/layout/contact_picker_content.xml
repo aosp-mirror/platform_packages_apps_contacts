@@ -18,6 +18,8 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
+    <include layout="@layout/contact_list_card"/>
+
     <view
         class="com.android.contacts.common.list.PinnedHeaderListView"
         android:id="@android:id/list"

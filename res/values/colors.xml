@@ -19,9 +19,6 @@
     <color name="quickcontact_entry_sub_header_text_color">#737373</color>
     <color name="quickcontact_entry_header_text_color">#202020</color>
 
-    <!-- Color of the background of the contact detail and editor pages -->
-    <color name="background_primary">#f5f5f5</color>
-
     <color name="background_social_updates">#ffeeeeee</color>
 
     <!-- TODO: remove these colors once we delete the group code (b/16522929) -->
@@ -54,9 +51,6 @@
 
     <color name="call_arrow_green">#2aad6f</color>
     <color name="call_arrow_red">#ff2e58</color>
-
-    <color name="contact_all_list_background_color">#FFFFFF</color>
-    <color name="contact_favorites_list_background_color">#FFFFFF</color>
 
     <!-- Background color of pinned header items. -->
     <color name="list_item_pinned_header_color">#f5f5f5</color>

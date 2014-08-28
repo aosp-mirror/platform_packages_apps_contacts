@@ -25,12 +25,20 @@
     <dimen name="list_section_height">37dip</dimen>
     <dimen name="group_detail_border_padding">16dip</dimen>
     <dimen name="search_view_width">400dip</dimen>
-    <dimen name="contact_tile_list_padding_top">16dip</dimen>
+    <dimen name="contact_tile_list_padding_top">18dip</dimen>
+    <dimen name="contact_browser_list_item_text_size">18sp</dimen>
+    <dimen name="contact_browser_list_item_photo_size">50dp</dimen>
+    <dimen name="contact_browser_list_item_gap_between_image_and_text">15dp</dimen>
+    <dimen name="contact_browser_list_top_margin">18dp</dimen>
     <!-- Contact list (vertical scroll bar comes left) -->
     <dimen name="list_visible_scrollbar_padding">32dip</dimen>
     <dimen name="list_header_extra_top_padding">@dimen/contact_browser_list_top_margin</dimen>
 
     <dimen name="quick_contact_photo_container_height">360dip</dimen>
+    <!-- Height of the selection indicator of a tab. -->
+    <dimen name="tab_selected_underline_height">3dp</dimen>
+    <!-- Size of text in tabs. -->
+    <dimen name="tab_text_size">16sp</dimen>
 
     <!-- Because the "join" screen has the vertical scroll bar on right,
       we cannot use @dimen/contact_browser_list_header_left_margin as is. -->
@@ -50,4 +58,5 @@
     <!-- Left padding of the auto complete field to line hint text up with member list -->
     <dimen name="group_editor_autocomplete_left_padding">16dip</dimen>
     <dimen name="contact_detail_list_top_padding">8dip</dimen>
+    <dimen name="frequently_contacted_title_text_size">24sp</dimen>
 </resources>
