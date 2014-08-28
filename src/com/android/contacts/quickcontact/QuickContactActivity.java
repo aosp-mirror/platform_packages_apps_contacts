@@ -135,6 +135,8 @@ import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
+import com.android.contacts.widget.QuickContactImageView;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -197,7 +199,7 @@ public class QuickContactActivity extends ContactsActivity {
     private int mStatusBarColor;
     private boolean mHasAlreadyBeenOpened;
 
-    private ImageView mPhotoView;
+    private QuickContactImageView mPhotoView;
     private ExpandingEntryCardView mContactCard;
     private ExpandingEntryCardView mNoContactDetailsCard;
     private ExpandingEntryCardView mRecentCard;
@@ -580,7 +582,7 @@ public class QuickContactActivity extends ContactsActivity {
         mAboutCard.setOnClickListener(mEntryClickHandler);
         mAboutCard.setOnCreateContextMenuListener(mEntryContextMenuListener);
 
-        mPhotoView = (ImageView) findViewById(R.id.photo);
+        mPhotoView = (QuickContactImageView) findViewById(R.id.photo);
         final View transparentView = findViewById(R.id.transparent_view);
         if (mScroller != null) {
             transparentView.setOnClickListener(new OnClickListener() {
@@ -776,6 +778,7 @@ public class QuickContactActivity extends ContactsActivity {
         Trace.endSection();
         Trace.beginSection("Set display photo & name");
 
+        mPhotoView.setIsBusiness(mContactData.isDisplayNameFromOrganization());
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
         extractAndApplyTintFromPhotoViewAsynchronously();
         analyzeWhitenessOfPhotoAsynchronously();
