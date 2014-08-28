@@ -17,13 +17,13 @@
 package com.android.contacts.common.list;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,9 +45,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
-import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.common.util.ContactListViewUtils;
+import com.android.contacts.common.util.SchedulingUtils;
 import com.android.dialerbind.analytics.AnalyticsFragment;
 
 import java.util.Locale;
@@ -705,6 +707,32 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.requestFocus();
         }
 
+        // Set a padding on the list view so it appears in the center of the card
+        // in the layout if required.
+        Resources resources = getResources();
+        final int listSpaceWeight = resources.getInteger(
+                R.integer.contact_list_space_layout_weight);
+        final int listViewWeight = resources.getInteger(
+                R.integer.contact_list_card_layout_weight);
+        if (listSpaceWeight > 0 && listViewWeight > 0) {
+            // Set the card view visible
+            mView.setBackgroundResource(0);
+            View mCardView = mView.findViewById(R.id.list_card);
+            if (mCardView == null) {
+                throw new RuntimeException(
+                        "Your content must have a list card view who can be turned visible " +
+                        "whenever it is necessary.");
+            }
+            mCardView.setVisibility(View.VISIBLE);
+            // Add extra padding to the list view to make them appear in the center of the card.
+            SchedulingUtils.doOnPreDraw(mListView, true, new Runnable() {
+                @Override
+                public void run() {
+                    ContactListViewUtils.addPaddingToView(
+                            mListView, listSpaceWeight, listViewWeight);
+                }
+            });
+        }
         return mView;
     }
 
