@@ -18,17 +18,13 @@ package com.android.contacts.list;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -36,14 +32,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.ProfileAndContactsLoader;
-import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
 
@@ -64,7 +58,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private TextView mProfileTitle;
     private View mSearchProgress;
     private TextView mSearchProgressText;
-    private boolean mContactAllListShowCardFrame;
 
     private class FilterHeaderClickListener implements OnClickListener {
         @Override
@@ -100,8 +93,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected ContactListAdapter createListAdapter() {
         DefaultContactListAdapter adapter = new DefaultContactListAdapter(getContext());
         adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-        mContactAllListShowCardFrame = getResources().getBoolean(
-                R.bool.contact_all_list_show_card_frame);
         adapter.setDisplayPhotos(true);
         adapter.setPhotoPosition(
                 ContactListItemView.getDefaultPhotoPosition(/* opposite = */ false));
@@ -132,25 +123,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         headerContainer.addView(mSearchHeaderView);
         getListView().addHeaderView(headerContainer, null, false);
         checkHeaderViewVisibility();
-
-        // If the device is in the sw600dp class and in landscape mode, set a padding on the list
-        // view so it appears in the center of the card in the layout.
-        if (mContactAllListShowCardFrame) {
-            SchedulingUtils.doOnPreDraw(getListView(), true, new Runnable() {
-                @Override
-                public void run() {
-                    final ListView listView = getListView();
-                    final int width = listView.getWidth();
-                    listView.setPadding(width / 4, listView.getPaddingTop(),
-                            width / 4, listView.getPaddingBottom());
-                    mAccountFilterHeader.setPadding(
-                            mAccountFilterHeader.getPaddingLeft() + width / 4,
-                            mAccountFilterHeader.getPaddingTop(),
-                            mAccountFilterHeader.getPaddingRight() + width / 4,
-                            mAccountFilterHeader.getPaddingBottom());
-                }
-            });
-        }
 
         mSearchProgress = getView().findViewById(R.id.search_progress);
         mSearchProgressText = (TextView) mSearchHeaderView.findViewById(R.id.totalContactsText);
