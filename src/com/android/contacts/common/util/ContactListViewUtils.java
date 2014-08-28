@@ -1,9 +1,8 @@
 package com.android.contacts.common.util;
 
 
-import android.content.res.Resources;
+import android.view.View;
 import android.widget.ListView;
-import com.android.contacts.common.R;
 
 /**
  * Utilities for loading contact list view.
@@ -30,6 +29,9 @@ public class ContactListViewUtils {
                     listView.getPaddingTop(),
                     (int) (width * paddingPercent * TEXT_LEFT_PADDING_TO_CARD_PADDING_RATIO),
                     listView.getPaddingBottom());
+            // The EdgeEffect and ScrollBar need to span to the edge of the ListView's padding.
+            listView.setClipToPadding(false);
+            listView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
         }
     }
 }
