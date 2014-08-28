@@ -105,7 +105,9 @@ public class FloatingActionButtonController {
         }
 
         int translationX = getTranslationXForAlignment(align);
-        if (animate) {
+
+        // Skip animation if container is not shown; animation causes container to show again.
+        if (animate && mFloatingActionButtonContainer.isShown()) {
             mFloatingActionButtonContainer.animate()
                     .translationX(translationX + offsetX)
                     .translationY(offsetY)
