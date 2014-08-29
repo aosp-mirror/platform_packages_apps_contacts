@@ -35,41 +35,6 @@ public class DirectoryContactUtil {
         return contactData.getDirectoryExportSupport() != Directory.EXPORT_SUPPORT_NONE;
     }
 
-    public static void addToMyContacts(Contact contactData, Context context,
-            FragmentManager fragmentManager,
-            SelectAccountDialogFragmentListener selectAccountCallbacks) {
-        int exportSupport = contactData.getDirectoryExportSupport();
-        switch (exportSupport) {
-            case Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY: {
-                createCopy(contactData.getContentValues(),
-                        new AccountWithDataSet(contactData.getDirectoryAccountName(),
-                        contactData.getDirectoryAccountType(), null),
-                        context);
-                break;
-            }
-            case Directory.EXPORT_SUPPORT_ANY_ACCOUNT: {
-                final List<AccountWithDataSet> accounts =
-                        AccountTypeManager.getInstance(context).getAccounts(true);
-                if (accounts.isEmpty()) {
-                    createCopy(contactData.getContentValues(), null, context);
-                    return;  // Don't show a dialog.
-                }
-
-                // In the common case of a single writable account, auto-select
-                // it without showing a dialog.
-                if (accounts.size() == 1) {
-                    createCopy(contactData.getContentValues(), accounts.get(0), context);
-                    return;  // Don't show a dialog.
-                }
-
-                SelectAccountDialogFragment.show(fragmentManager,
-                        selectAccountCallbacks, R.string.dialog_new_contact_account,
-                        AccountListFilter.ACCOUNTS_CONTACT_WRITABLE, null);
-                break;
-            }
-        }
-    }
-
     public static void createCopy(
             ArrayList<ContentValues> values, AccountWithDataSet account,
             Context context) {

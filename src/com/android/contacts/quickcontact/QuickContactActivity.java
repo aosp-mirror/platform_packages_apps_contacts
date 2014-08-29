@@ -16,6 +16,7 @@
 
 package com.android.contacts.quickcontact;
 
+import android.accounts.Account;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -61,8 +62,10 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.DataUsageFeedback;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v7.graphics.Palette;
@@ -172,6 +175,7 @@ public class QuickContactActivity extends ContactsActivity {
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
     private static final int SCRIM_COLOR = Color.argb(0xC8, 0, 0, 0);
+    private static final int REQUEST_CODE_CONTACT_SELECTION_ACTIVITY = 2;
     private static final String MIMETYPE_SMS = "vnd.android-dir/mms-sms";
 
     /** This is the Intent action to install a shortcut in the launcher. */
@@ -679,6 +683,9 @@ public class QuickContactActivity extends ContactsActivity {
                 resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED) {
             // The contact that we were showing has been deleted.
             finish();
+        } else if (requestCode == REQUEST_CODE_CONTACT_SELECTION_ACTIVITY &&
+                resultCode != RESULT_CANCELED) {
+            processIntent(data);
         }
     }
 
@@ -1964,8 +1971,42 @@ public class QuickContactActivity extends ContactsActivity {
                 return true;
             case R.id.menu_edit:
                 if (DirectoryContactUtil.isDirectoryContact(mContactData)) {
-                    DirectoryContactUtil.addToMyContacts(mContactData, this, getFragmentManager(),
-                            mSelectAccountFragmentListener);
+                    // This action is used to launch the contact selector, with the option of
+                    // creating a new contact. Creating a new contact is an INSERT, while selecting
+                    // an exisiting one is an edit. The fields in the edit screen will be
+                    // prepopulated with data.
+
+                    final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                    intent.setType(Contacts.CONTENT_ITEM_TYPE);
+
+                    // Only pre-fill the name field if the provided display name is an organization
+                    // name or better (e.g. structured name, nickname)
+                    if (mContactData.getDisplayNameSource() >= DisplayNameSources.ORGANIZATION) {
+                        intent.putExtra(Intents.Insert.NAME, mContactData.getDisplayName());
+                    }
+                    ArrayList<ContentValues> values = mContactData.getContentValues();
+                    // Last time used and times used are aggregated values from the usage stat
+                    // table. They need to be removed from data values so the SQL table can insert
+                    // properly
+                    for (ContentValues value : values) {
+                        value.remove(Data.LAST_TIME_USED);
+                        value.remove(Data.TIMES_USED);
+                    }
+                    intent.putExtra(Intents.Insert.DATA, values);
+
+                    // If the contact can only export to the same account, add it to the intent.
+                    // Otherwise the ContactEditorFragment will show a dialog for selecting an
+                    // account.
+                    if (mContactData.getDirectoryExportSupport() ==
+                            Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
+                        intent.putExtra(Intents.Insert.ACCOUNT,
+                                new Account(mContactData.getDirectoryAccountName(),
+                                        mContactData.getDirectoryAccountType()));
+                        intent.putExtra(Intents.Insert.DATA_SET,
+                                mContactData.getRawContacts().get(0).getDataSet());
+                    }
+
+                    startActivityForResult(intent, REQUEST_CODE_CONTACT_SELECTION_ACTIVITY);
                 } else if (InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
                     InvisibleContactUtil.addToDefaultGroup(mContactData, this);
                 } else if (isContactEditable()) {
