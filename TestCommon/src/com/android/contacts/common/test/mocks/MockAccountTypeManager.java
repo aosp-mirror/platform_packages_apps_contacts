@@ -19,6 +19,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.BaseAccountType;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -42,13 +43,21 @@ public class MockAccountTypeManager extends AccountTypeManager {
 
     @Override
     public AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet) {
+        // Add fallback accountType to mimic the behavior of AccountTypeManagerImpl
+        AccountType mFallbackAccountType = new BaseAccountType() {
+            @Override
+            public boolean areContactsWritable() {
+                return false;
+            }
+        };
+        mFallbackAccountType.accountType = "fallback";
         for (AccountType type : mTypes) {
             if (Objects.equal(accountTypeWithDataSet.accountType, type.accountType)
                     && Objects.equal(accountTypeWithDataSet.dataSet, type.dataSet)) {
                 return type;
             }
         }
-        return null;
+        return mFallbackAccountType;
     }
 
     @Override
