@@ -707,32 +707,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.requestFocus();
         }
 
-        // Set a padding on the list view so it appears in the center of the card
-        // in the layout if required.
-        Resources resources = getResources();
-        final int listSpaceWeight = resources.getInteger(
-                R.integer.contact_list_space_layout_weight);
-        final int listViewWeight = resources.getInteger(
-                R.integer.contact_list_card_layout_weight);
-        if (listSpaceWeight > 0 && listViewWeight > 0) {
-            // Set the card view visible
-            mView.setBackgroundResource(0);
-            View mCardView = mView.findViewById(R.id.list_card);
-            if (mCardView == null) {
-                throw new RuntimeException(
-                        "Your content must have a list card view who can be turned visible " +
-                        "whenever it is necessary.");
-            }
-            mCardView.setVisibility(View.VISIBLE);
-            // Add extra padding to the list view to make them appear in the center of the card.
-            SchedulingUtils.doOnPreDraw(mListView, true, new Runnable() {
-                @Override
-                public void run() {
-                    ContactListViewUtils.addPaddingToView(
-                            mListView, listSpaceWeight, listViewWeight);
-                }
-            });
-        }
         return mView;
     }
 
@@ -767,6 +741,18 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         configurePhotoLoader();
 
         getAdapter().setFragmentRootView(getView());
+
+        ContactListViewUtils.applyCardPaddingToView(getResources(), mListView, mView);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (getActivity() != null && getView() != null && !hidden) {
+            // If the padding was last applied when in a hidden state, it may have been applied
+            // incorrectly. Therefore we need to reapply it.
+            ContactListViewUtils.applyCardPaddingToView(getResources(), mListView, getView());
+        }
     }
 
     protected void configurePhotoLoader() {
