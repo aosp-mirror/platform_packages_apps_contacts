@@ -23,6 +23,7 @@ import com.android.contacts.R;
 public class QuickContactImageView extends ImageView {
 
     private Drawable mOriginalDrawable;
+    private boolean mIsBusiness;
 
     public QuickContactImageView(Context context) {
         this(context, null);
@@ -54,6 +55,10 @@ public class QuickContactImageView extends ImageView {
         return mOriginalDrawable instanceof LetterTileDrawable;
     }
 
+    public void setIsBusiness(boolean isBusiness) {
+        mIsBusiness = isBusiness;
+    }
+
     @Override
     public void setImageDrawable(Drawable drawable) {
         // There is no way to avoid all this casting. Blending modes aren't equally
@@ -61,11 +66,14 @@ public class QuickContactImageView extends ImageView {
         final BitmapDrawable bitmapDrawable;
         if (drawable == null || drawable instanceof BitmapDrawable) {
             bitmapDrawable = (BitmapDrawable) drawable;
-            setScaleType(ScaleType.CENTER_CROP);
         } else if (drawable instanceof LetterTileDrawable) {
-            bitmapDrawable = (BitmapDrawable) getResources().getDrawable(
-                    R.drawable.default_avatar_white);
-            setScaleType(ScaleType.CENTER);
+            if (!mIsBusiness) {
+                bitmapDrawable = (BitmapDrawable) getResources().getDrawable(
+                        R.drawable.person_white_540dp);
+            } else {
+                bitmapDrawable = (BitmapDrawable) getResources().getDrawable(
+                        R.drawable.generic_business_white_540dp);
+            }
         } else {
             throw new IllegalArgumentException("Does not support this type of drawable");
 
