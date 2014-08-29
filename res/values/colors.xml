@@ -53,5 +53,5 @@
     <color name="call_arrow_red">#ff2e58</color>
 
     <!-- Background color of pinned header items. -->
-    <color name="list_item_pinned_header_color">#f5f5f5</color>
+    <color name="list_item_pinned_header_color">@color/background_primary</color>
 </resources>
