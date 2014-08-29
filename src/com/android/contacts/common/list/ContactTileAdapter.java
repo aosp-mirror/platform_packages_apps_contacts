@@ -511,9 +511,9 @@ public class ContactTileAdapter extends BaseAdapter {
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.setMargins(
-                        resources.getDimensionPixelSize(R.dimen.detail_item_side_margin),
+                        resources.getDimensionPixelSize(R.dimen.contact_tile_start_end_padding),
                         0,
-                        resources.getDimensionPixelSize(R.dimen.detail_item_side_margin),
+                        resources.getDimensionPixelSize(R.dimen.contact_tile_start_end_padding),
                         0);
                 contactTile.setLayoutParams(params);
                 contactTile.setPhotoManager(mPhotoManager);
