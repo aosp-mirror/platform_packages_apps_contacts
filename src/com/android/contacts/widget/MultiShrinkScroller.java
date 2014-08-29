@@ -102,6 +102,7 @@ public class MultiShrinkScroller extends FrameLayout {
     private TextView mInvisiblePlaceholderTextView;
     private View mTitleGradientView;
     private View mActionBarGradientView;
+    private View mStartColumn;
     private int mHeaderTintColor;
     private int mMaximumHeaderHeight;
     private int mMinimumHeaderHeight;
@@ -267,6 +268,22 @@ public class MultiShrinkScroller extends FrameLayout {
         mTransparentView = findViewById(R.id.transparent_view);
         mLargeTextView = (TextView) findViewById(R.id.large_title);
         mInvisiblePlaceholderTextView = (TextView) findViewById(R.id.placeholder_textview);
+        mStartColumn = findViewById(R.id.empty_start_column);
+        // Touching the empty space should close the card
+        if (mStartColumn != null) {
+            mStartColumn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scrollOffBottom();
+                }
+            });
+            findViewById(R.id.empty_end_column).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scrollOffBottom();
+                }
+            });
+        }
         mListener = listener;
         mIsOpenContactSquare = isOpenContactSquare;
 
@@ -989,8 +1006,12 @@ public class MultiShrinkScroller extends FrameLayout {
                 = (FrameLayout.LayoutParams) mLargeTextView.getLayoutParams();
         final LinearLayout.LayoutParams toolbarLayoutParams
                 = (LinearLayout.LayoutParams) mToolbar.getLayoutParams();
+
+        // Need to add more to margin start if there is a start column
+        int startColumnWidth = mStartColumn == null ? 0 : mStartColumn.getWidth();
+
         titleLayoutParams.setMarginStart((int) (mCollapsedTitleStartMargin * (1 - x)
-                + mMaximumTitleMargin * x));
+                + mMaximumTitleMargin * x) + startColumnWidth);
         // How offset the title should be from the bottom of the toolbar
         final int pretendBottomMargin =  (int) (mCollapsedTitleBottomMargin * (1 - x)
                 + mMaximumTitleMargin * x) ;
