@@ -32,4 +32,5 @@ public interface ContactInteraction {
     Drawable getIcon(Context context);
     Drawable getBodyIcon(Context context);
     Drawable getFooterIcon(Context context);
+    String getContentDescription(Context context);
 }
