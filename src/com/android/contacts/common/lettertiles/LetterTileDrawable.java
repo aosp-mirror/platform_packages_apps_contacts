@@ -83,9 +83,9 @@ public class LetterTileDrawable extends Drawable {
             sTileFontColor = res.getColor(R.color.letter_tile_font_color);
             sLetterToTileRatio = res.getFraction(R.dimen.letter_to_tile_ratio, 1, 1);
             DEFAULT_PERSON_AVATAR = BitmapFactory.decodeResource(res,
-                    R.drawable.ic_person_white_64dp);
+                    R.drawable.ic_person_white_120dp);
             DEFAULT_BUSINESS_AVATAR = BitmapFactory.decodeResource(res,
-                    R.drawable.ic_list_item_businessavatar);
+                    R.drawable.ic_business_white_120dp);
             DEFAULT_VOICEMAIL_AVATAR = BitmapFactory.decodeResource(res,
                     R.drawable.ic_voicemail_avatar);
             sPaint.setTypeface(Typeface.create(
