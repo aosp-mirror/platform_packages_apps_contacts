@@ -309,13 +309,14 @@ public class MultiShrinkScroller extends FrameLayout {
             public void run() {
                 if (!mIsTwoPanel) {
                     // We never want the height of the photo view to exceed its width.
-                    mMaximumHeaderHeight = getWidth();
+                    mMaximumHeaderHeight = mPhotoViewContainer.getWidth();
                     mIntermediateHeaderHeight = (int) (mMaximumHeaderHeight
                             * INTERMEDIATE_HEADER_HEIGHT_RATIO);
                 }
                 final boolean isLandscape = getResources().getConfiguration().orientation
                         == Configuration.ORIENTATION_LANDSCAPE;
-                mMaximumPortraitHeaderHeight = isLandscape ? getHeight() : getWidth();
+                mMaximumPortraitHeaderHeight = isLandscape ? getHeight()
+                        : mPhotoViewContainer.getWidth();
                 setHeaderHeight(getMaximumScrollableHeaderHeight());
                 mMaximumHeaderTextSize = mLargeTextView.getHeight();
                 if (mIsTwoPanel) {
