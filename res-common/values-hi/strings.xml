@@ -226,7 +226,7 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"प्रथम नाम"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"अंतिम नाम"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"नाम प्रारूप"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"पहला नाम पहले"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"प्रथम नाम पहले"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"अंतिम नाम पहले"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दिखाई देने वाले संपर्क साझा करें"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्कों को आयात/निर्यात करें"</string>
