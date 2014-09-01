@@ -226,8 +226,8 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Meno"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Priezvisko"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Formát mena"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prvé meno"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Prvé priezvisko"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Najprv meno"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Najprv priezvisko"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Zdieľať viditeľné kontakty"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Import a export kontaktov"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importovať kontakty"</string>

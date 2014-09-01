@@ -97,9 +97,9 @@
     <string name="name_middle" msgid="3951610314424632183">"Jina la kati"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Kiambishi tamati cha jina"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Jina la fonetiki"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Jina la kwanza la fonetiki"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Jina la kwanza kifonetiki"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Jina la kati la fonetiki"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Jina la mwisho la fonetiki"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Jina la mwisho kifonetiki"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Simu"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Barua pepe"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Anwani"</string>
