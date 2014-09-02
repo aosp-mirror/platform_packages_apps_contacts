@@ -64,9 +64,6 @@
     <!-- Size of the shortcut icon. 0dip means: use the system default -->
     <dimen name="shortcut_icon_size">0dip</dimen>
 
-    <!-- Width of darkened border for shortcut icon -->
-    <dimen name="shortcut_icon_border_width">1dp</dimen>
-
     <!-- Text size of shortcut icon overlay text -->
     <dimen name="shortcut_overlay_text_size">12dp</dimen>
 
