@@ -173,4 +173,33 @@ public class CallLogInteraction implements ContactInteraction {
     public Integer getType() {
         return mValues.getAsInteger(Calls.TYPE);
     }
+
+    @Override
+    public String getContentDescription(Context context) {
+        String callDetails = getCallTypeString(context) + ". " + getViewFooter(context) + ". " +
+                getViewHeader(context) + ". " + getViewFooter(context);
+        return context.getResources().getString(R.string.content_description_recent_call,
+                callDetails);
+    }
+
+    private String getCallTypeString(Context context) {
+        String callType = "";
+        Resources res = context.getResources();
+        Integer type = getType();
+        if (type == null) {
+            return callType;
+        }
+        switch (type) {
+            case Calls.INCOMING_TYPE:
+                callType = res.getString(R.string.content_description_recent_call_type_incoming);
+                break;
+            case Calls.MISSED_TYPE:
+                callType = res.getString(R.string.content_description_recent_call_type_missed);
+                break;
+            case Calls.OUTGOING_TYPE:
+                callType = res.getString(R.string.content_description_recent_call_type_outgoing);
+                break;
+        }
+        return callType;
+    }
 }
