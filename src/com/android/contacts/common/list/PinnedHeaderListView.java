@@ -18,7 +18,6 @@ package com.android.contacts.common.list;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -513,15 +512,16 @@ public class PinnedHeaderListView extends AutoScrollListView
         if (hasVisibleHeaders) {
             canvas.restore();
 
-            // If the first item is visible, if it has a positive top use that for the first
-            // header's y value. This way, the header inherits any padding applied to the list view.
+            // If the first item is visible and if it has a positive top that is greater than the
+            // first header's assigned y-value, use that for the first header's y value. This way,
+            // the header inherits any padding applied to the list view.
             if (mSize > 0 && getFirstVisiblePosition() == 0) {
                 View firstChild = getChildAt(0);
                 PinnedHeader firstHeader = mHeaders[0];
 
                 if (firstHeader != null) {
                     int firstHeaderTop = firstChild != null ? firstChild.getTop() : 0;
-                    firstHeader.y = firstHeaderTop;
+                    firstHeader.y = Math.max(firstHeader.y, firstHeaderTop);
                 }
             }
 
