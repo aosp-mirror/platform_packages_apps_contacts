@@ -1819,13 +1819,13 @@ public class QuickContactActivity extends ContactsActivity {
 
     private Intent getEditContactIntent() {
         final Intent intent = new Intent(Intent.ACTION_EDIT, mContactData.getLookupUri());
-        mContactLoader.cacheResult();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         return intent;
     }
 
     private void editContact() {
         mHasIntentLaunched = true;
+        mContactLoader.cacheResult();
         startActivityForResult(getEditContactIntent(), REQUEST_CODE_CONTACT_EDITOR_ACTIVITY);
     }
 
