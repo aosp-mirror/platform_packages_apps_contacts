@@ -276,4 +276,10 @@ public class CalendarInteraction implements ContactInteraction {
     public String getUid2445() {
         return mValues.getAsString(Attendees.UID_2445);
     }
+
+    @Override
+    public String getContentDescription(Context context) {
+        // The default TalkBack is good
+        return null;
+    }
 }
