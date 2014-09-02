@@ -317,7 +317,7 @@
     <!-- Shown as a toast when the user taps on a QuickContact icon, and no application
          was found that could perform the selected action. [CHAR LIMIT=NONE] -->
     <string name="quickcontact_missing_app">No app was found to handle this action.</string>
-    <!-- Content description for the transparent view above the visible section of QuickContacts.
+    <!-- Content description for the transparent views around the visible section of QuickContacts.
          Clicking this view causes Quick Contacts to close. [CHAR LIMIT=NONE] -->
     <string name="quickcontact_transparent_view_description">Click to return to previous screen</string>
 
