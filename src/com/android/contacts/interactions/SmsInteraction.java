@@ -152,4 +152,12 @@ public class SmsInteraction implements ContactInteraction {
     public Integer getType() {
         return mValues.getAsInteger(Sms.TYPE);
     }
+
+    @Override
+    public String getContentDescription(Context context) {
+        String messageDetails = getViewHeader(context) + ". " + getViewBody(context) + ". " +
+                getViewFooter(context);
+        return context.getResources().getString(R.string.content_description_recent_sms,
+                messageDetails);
+    }
 }

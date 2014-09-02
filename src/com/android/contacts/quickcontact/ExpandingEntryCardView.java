@@ -75,6 +75,7 @@ public class ExpandingEntryCardView extends CardView {
         private final Drawable mSubHeaderIcon;
         private final String mText;
         private final Drawable mTextIcon;
+        private final String mPrimaryContentDescription;
         private final Intent mIntent;
         private final Drawable mAlternateIcon;
         private final Intent mAlternateIntent;
@@ -87,17 +88,20 @@ public class ExpandingEntryCardView extends CardView {
         private final String mThirdContentDescription;
 
         public Entry(int id, Drawable icon, String header, String subHeader, String text,
-                Intent intent, Drawable alternateIcon, Intent alternateIntent,
-                String alternateContentDescription, boolean shouldApplyColor,
-                boolean isEditable, EntryContextMenuInfo entryContextMenuInfo,
-                Drawable thirdIcon, Intent thirdIntent, String thirdContentDescription) {
-            this(id, icon, header, subHeader, null, text, null, intent, alternateIcon,
+                String primaryContentDescription, Intent intent, Drawable alternateIcon,
+                Intent alternateIntent, String alternateContentDescription,
+                boolean shouldApplyColor, boolean isEditable,
+                EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
+                String thirdContentDescription) {
+            this(id, icon, header, subHeader, null, text, null, primaryContentDescription, intent,
+                    alternateIcon,
                     alternateIntent, alternateContentDescription, shouldApplyColor, isEditable,
                     entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription);
         }
 
         public Entry(int id, Drawable mainIcon, String header, String subHeader,
-                Drawable subHeaderIcon, String text, Drawable textIcon, Intent intent,
+                Drawable subHeaderIcon, String text, Drawable textIcon,
+                String primaryContentDescription, Intent intent,
                 Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
                 boolean shouldApplyColor, boolean isEditable,
                 EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
@@ -109,6 +113,7 @@ public class ExpandingEntryCardView extends CardView {
             mSubHeaderIcon = subHeaderIcon;
             mText = text;
             mTextIcon = textIcon;
+            mPrimaryContentDescription = primaryContentDescription;
             mIntent = intent;
             mAlternateIcon = alternateIcon;
             mAlternateIntent = alternateIntent;
@@ -143,6 +148,10 @@ public class ExpandingEntryCardView extends CardView {
 
         Drawable getTextIcon() {
             return mTextIcon;
+        }
+
+        String getPrimaryContentDescription() {
+            return mPrimaryContentDescription;
         }
 
         Intent getIntent() {
@@ -582,6 +591,9 @@ public class ExpandingEntryCardView extends CardView {
                 R.layout.expanding_entry_card_item, this, false);
 
         view.setContextMenuInfo(entry.getEntryContextMenuInfo());
+        if (!TextUtils.isEmpty(entry.getPrimaryContentDescription())) {
+            view.setContentDescription(entry.getPrimaryContentDescription());
+        }
 
         final ImageView icon = (ImageView) view.findViewById(R.id.icon);
         icon.setVisibility(iconVisibility);

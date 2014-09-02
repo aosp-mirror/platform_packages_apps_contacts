@@ -31,6 +31,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -942,6 +943,7 @@ public class QuickContactActivity extends ContactsActivity {
                     getResources().getString(R.string.name_phonetic),
                     phoneticName,
                     /* text = */ null,
+                    /* primaryContentDescription = */ null,
                     /* intent = */ null,
                     /* alternateIcon = */ null,
                     /* alternateIntent = */ null,
@@ -999,7 +1001,8 @@ public class QuickContactActivity extends ContactsActivity {
                 R.drawable.ic_phone_24dp).mutate();
         final Entry phonePromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                 phoneIcon, getString(R.string.quickcontact_add_phone_number),
-                /* subHeader = */ null, /* text = */ null, getEditContactIntent(),
+                /* subHeader = */ null, /* text = */ null, /* primaryContentDescription = */ null,
+                getEditContactIntent(),
                 /* alternateIcon = */ null, /* alternateIntent = */ null,
                 /* alternateContentDescription = */ null, /* shouldApplyColor = */ true,
                 /* isEditable = */ false, /* EntryContextMenuInfo = */ null,
@@ -1010,7 +1013,8 @@ public class QuickContactActivity extends ContactsActivity {
                 R.drawable.ic_email_24dp).mutate();
         final Entry emailPromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                 emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
-                /* text = */ null, getEditContactIntent(), /* alternateIcon = */ null,
+                /* text = */ null, /* primaryContentDescription = */ null,
+                getEditContactIntent(), /* alternateIcon = */ null,
                 /* alternateIntent = */ null, /* alternateContentDescription = */ null,
                 /* shouldApplyColor = */ true, /* isEditable = */ false,
                 /* EntryContextMenuInfo = */ null, /* thirdIcon = */ null,
@@ -1168,11 +1172,12 @@ public class QuickContactActivity extends ContactsActivity {
         Drawable subHeaderIcon = null;
         String text = null;
         Drawable textIcon = null;
+        StringBuilder primaryContentDescription = new StringBuilder();
         Intent intent = null;
         boolean shouldApplyColor = true;
         Drawable alternateIcon = null;
         Intent alternateIntent = null;
-        String alternateContentDescription = null;
+        StringBuilder alternateContentDescription = new StringBuilder();
         final boolean isEditable = false;
         EntryContextMenuInfo entryContextMenuInfo = null;
         Drawable thirdIcon = null;
@@ -1180,6 +1185,7 @@ public class QuickContactActivity extends ContactsActivity {
         String thirdContentDescription = null;
 
         context = context.getApplicationContext();
+        final Resources res = context.getResources();
         DataKind kind = dataItem.getDataKind();
 
         if (dataItem instanceof ImDataItem) {
@@ -1195,19 +1201,19 @@ public class QuickContactActivity extends ContactsActivity {
             if (protocol == Im.PROTOCOL_CUSTOM) {
                 // If the protocol is custom, display the "IM" entry header as well to distinguish
                 // this entry from other ones
-                header = context.getResources().getString(R.string.header_im_entry);
-                subHeader = Im.getProtocolLabel(context.getResources(), protocol,
+                header = res.getString(R.string.header_im_entry);
+                subHeader = Im.getProtocolLabel(res, protocol,
                         im.getCustomProtocol()).toString();
                 text = im.getData();
             } else {
-                header = Im.getProtocolLabel(context.getResources(), protocol,
+                header = Im.getProtocolLabel(res, protocol,
                         im.getCustomProtocol()).toString();
                 subHeader = im.getData();
             }
             entryContextMenuInfo = new EntryContextMenuInfo(im.getData(), header);
         } else if (dataItem instanceof OrganizationDataItem) {
             final OrganizationDataItem organization = (OrganizationDataItem) dataItem;
-            header = context.getResources().getString(R.string.header_organization_entry);
+            header = res.getString(R.string.header_organization_entry);
             subHeader = organization.getCompany();
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             text = organization.getTitle();
@@ -1222,18 +1228,18 @@ public class QuickContactActivity extends ContactsActivity {
                 && contactData.getDisplayNameSource() == DisplayNameSources.NICKNAME;
 
             if (!duplicatesTitle) {
-                header = context.getResources().getString(R.string.header_nickname_entry);
+                header = res.getString(R.string.header_nickname_entry);
                 subHeader = nickname.getName();
                 entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             }
         } else if (dataItem instanceof NoteDataItem) {
             final NoteDataItem note = (NoteDataItem) dataItem;
-            header = context.getResources().getString(R.string.header_note_entry);
+            header = res.getString(R.string.header_note_entry);
             subHeader = note.getNote();
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
         } else if (dataItem instanceof WebsiteDataItem) {
             final WebsiteDataItem website = (WebsiteDataItem) dataItem;
-            header = context.getResources().getString(R.string.header_website_entry);
+            header = res.getString(R.string.header_website_entry);
             subHeader = website.getUrl();
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             try {
@@ -1255,9 +1261,9 @@ public class QuickContactActivity extends ContactsActivity {
                 ContentUris.appendId(builder, nextAnniversary.getTime());
                 intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
             }
-            header = context.getResources().getString(R.string.header_event_entry);
+            header = res.getString(R.string.header_event_entry);
             if (event.hasKindTypeColumn(kind)) {
-                subHeader = Event.getTypeLabel(context.getResources(), event.getKindTypeColumn(kind),
+                subHeader = Event.getTypeLabel(res, event.getKindTypeColumn(kind),
                         event.getLabel()).toString();
             }
             text = DateUtils.formatDate(context, dataString);
@@ -1270,99 +1276,114 @@ public class QuickContactActivity extends ContactsActivity {
                 intent.putExtra(SearchManager.QUERY, dataString);
                 intent.setType(Contacts.CONTENT_TYPE);
             }
-            header = context.getResources().getString(R.string.header_relation_entry);
+            header = res.getString(R.string.header_relation_entry);
             subHeader = relation.getName();
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
             if (relation.hasKindTypeColumn(kind)) {
-                text = Relation.getTypeLabel(context.getResources(),
+                text = Relation.getTypeLabel(res,
                         relation.getKindTypeColumn(kind),
                         relation.getLabel()).toString();
             }
         } else if (dataItem instanceof PhoneDataItem) {
             final PhoneDataItem phone = (PhoneDataItem) dataItem;
             if (!TextUtils.isEmpty(phone.getNumber())) {
+                primaryContentDescription.append(res.getString(R.string.call_other)).append(" ");
                 header = phone.buildDataString(context, kind);
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        context.getResources().getString(R.string.phoneLabelsGroup));
+                        res.getString(R.string.phoneLabelsGroup));
                 if (phone.hasKindTypeColumn(kind)) {
-                    text = Phone.getTypeLabel(context.getResources(), phone.getKindTypeColumn(kind),
+                    text = Phone.getTypeLabel(res, phone.getKindTypeColumn(kind),
                             phone.getLabel()).toString();
+                    primaryContentDescription.append(text).append(" ");
                 }
-                icon = context.getResources().getDrawable(R.drawable.ic_phone_24dp);
+                primaryContentDescription.append(header);
+                icon = res.getDrawable(R.drawable.ic_phone_24dp);
                 if (PhoneCapabilityTester.isPhone(context)) {
                     intent = CallUtil.getCallIntent(phone.getNumber());
                 }
                 alternateIntent = new Intent(Intent.ACTION_SENDTO,
                         Uri.fromParts(CallUtil.SCHEME_SMSTO, phone.getNumber(), null));
 
-                alternateIcon = context.getResources().getDrawable(R.drawable.ic_message_24dp);
-                alternateContentDescription = context.getResources().getString(R.string.sms_other);
+                alternateIcon = res.getDrawable(R.drawable.ic_message_24dp);
+                alternateContentDescription.append(res.getString(R.string.sms_custom, header));
 
                 // Add video call button if supported
                 if (CallUtil.isVideoEnabled(context)) {
-                    thirdIcon = context.getResources().getDrawable(R.drawable.ic_videocam);
+                    thirdIcon = res.getDrawable(R.drawable.ic_videocam);
                     thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
                             CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
                     thirdContentDescription =
-                            context.getResources().getString(R.string.description_video_call);
+                            res.getString(R.string.description_video_call);
                 }
             }
         } else if (dataItem instanceof EmailDataItem) {
             final EmailDataItem email = (EmailDataItem) dataItem;
             final String address = email.getData();
             if (!TextUtils.isEmpty(address)) {
+                primaryContentDescription.append(res.getString(R.string.email_other)).append(" ");
                 final Uri mailUri = Uri.fromParts(CallUtil.SCHEME_MAILTO, address, null);
                 intent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 header = email.getAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        context.getResources().getString(R.string.emailLabelsGroup));
+                        res.getString(R.string.emailLabelsGroup));
                 if (email.hasKindTypeColumn(kind)) {
-                    text = Email.getTypeLabel(context.getResources(), email.getKindTypeColumn(kind),
+                    text = Email.getTypeLabel(res, email.getKindTypeColumn(kind),
                             email.getLabel()).toString();
+                    primaryContentDescription.append(text).append(" ");
                 }
-                icon = context.getResources().getDrawable(R.drawable.ic_email_24dp);
+                primaryContentDescription.append(header);
+                icon = res.getDrawable(R.drawable.ic_email_24dp);
             }
         } else if (dataItem instanceof StructuredPostalDataItem) {
             StructuredPostalDataItem postal = (StructuredPostalDataItem) dataItem;
             final String postalAddress = postal.getFormattedAddress();
             if (!TextUtils.isEmpty(postalAddress)) {
+                primaryContentDescription.append(res.getString(R.string.map_other)).append(" ");
                 intent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
                 header = postal.getFormattedAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        context.getResources().getString(R.string.postalLabelsGroup));
+                        res.getString(R.string.postalLabelsGroup));
                 if (postal.hasKindTypeColumn(kind)) {
-                    text = StructuredPostal.getTypeLabel(context.getResources(),
+                    text = StructuredPostal.getTypeLabel(res,
                             postal.getKindTypeColumn(kind), postal.getLabel()).toString();
+                    primaryContentDescription.append(text).append(" ");
                 }
+                primaryContentDescription.append(header);
                 alternateIntent =
                         StructuredPostalUtils.getViewPostalAddressDirectionsIntent(postalAddress);
-                alternateIcon = context.getResources().getDrawable(R.drawable.ic_directions_24dp);
-                icon = context.getResources().getDrawable(R.drawable.ic_place_24dp);
+                alternateIcon = res.getDrawable(R.drawable.ic_directions_24dp);
+                alternateContentDescription.append(res.getString(
+                        R.string.content_description_directions)).append(" ").append(header);
+                icon = res.getDrawable(R.drawable.ic_place_24dp);
             }
         } else if (dataItem instanceof SipAddressDataItem) {
             if (PhoneCapabilityTester.isSipPhone(context)) {
                 final SipAddressDataItem sip = (SipAddressDataItem) dataItem;
                 final String address = sip.getSipAddress();
                 if (!TextUtils.isEmpty(address)) {
+                    primaryContentDescription.append(res.getString(R.string.call_other)).append(
+                            " ");
                     final Uri callUri = Uri.fromParts(CallUtil.SCHEME_SIP, address, null);
                     intent = CallUtil.getCallIntent(callUri);
                     header = address;
                     entryContextMenuInfo = new EntryContextMenuInfo(header,
-                            context.getResources().getString(R.string.phoneLabelsGroup));
+                            res.getString(R.string.phoneLabelsGroup));
                     if (sip.hasKindTypeColumn(kind)) {
-                        text = SipAddress.getTypeLabel(context.getResources(),
+                        text = SipAddress.getTypeLabel(res,
                                 sip.getKindTypeColumn(kind), sip.getLabel()).toString();
+                        primaryContentDescription.append(text).append(" ");
                     }
-                    icon = context.getResources().getDrawable(R.drawable.ic_dialer_sip_black_24dp);
+                    primaryContentDescription.append(header);
+                    icon = res.getDrawable(R.drawable.ic_dialer_sip_black_24dp);
                 }
             }
         } else if (dataItem instanceof StructuredNameDataItem) {
             final String givenName = ((StructuredNameDataItem) dataItem).getGivenName();
             if (!TextUtils.isEmpty(givenName)) {
-                aboutCardName.value = context.getResources().getString(R.string.about_card_title) +
+                aboutCardName.value = res.getString(R.string.about_card_title) +
                         " " + givenName;
             } else {
-                aboutCardName.value = context.getResources().getString(R.string.about_card_title);
+                aboutCardName.value = res.getString(R.string.about_card_title);
             }
         } else {
             // Custom DataItem
@@ -1380,17 +1401,17 @@ public class QuickContactActivity extends ContactsActivity {
                     case MIMETYPE_GPLUS_PROFILE:
                         if (INTENT_DATA_GPLUS_PROFILE_ADD_TO_CIRCLE.equals(
                                 intent.getDataString())) {
-                            icon = context.getResources().getDrawable(
+                            icon = res.getDrawable(
                                     R.drawable.ic_add_to_circles_black_24);
                         } else {
-                            icon = context.getResources().getDrawable(R.drawable.ic_google_plus_24dp);
+                            icon = res.getDrawable(R.drawable.ic_google_plus_24dp);
                         }
                         break;
                     case MIMETYPE_HANGOUTS:
                         if (INTENT_DATA_HANGOUTS_VIDEO.equals(intent.getDataString())) {
-                            icon = context.getResources().getDrawable(R.drawable.ic_hangout_video_24dp);
+                            icon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
                         } else {
-                            icon = context.getResources().getDrawable(R.drawable.ic_hangout_24dp);
+                            icon = res.getDrawable(R.drawable.ic_hangout_24dp);
                         }
                         break;
                     default:
@@ -1421,7 +1442,7 @@ public class QuickContactActivity extends ContactsActivity {
 
             // Attempt to use package manager to find a suitable content description if needed
             if (TextUtils.isEmpty(alternateContentDescription)) {
-                alternateContentDescription = getIntentResolveLabel(alternateIntent, context);
+                alternateContentDescription.append(getIntentResolveLabel(alternateIntent, context));
             }
         }
 
@@ -1435,9 +1456,10 @@ public class QuickContactActivity extends ContactsActivity {
         final int dataId = dataItem.getId() > Integer.MAX_VALUE ?
                 -1 : (int) dataItem.getId();
 
-        return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon, intent,
-                alternateIcon, alternateIntent, alternateContentDescription, shouldApplyColor,
-                isEditable, entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription);
+        return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon,
+                primaryContentDescription.toString(), intent, alternateIcon, alternateIntent,
+                alternateContentDescription.toString(), shouldApplyColor, isEditable,
+                entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription);
     }
 
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems,
@@ -1610,6 +1632,7 @@ public class QuickContactActivity extends ContactsActivity {
                     interaction.getBodyIcon(this),
                     interaction.getViewFooter(this),
                     interaction.getFooterIcon(this),
+                    interaction.getContentDescription(this),
                     interaction.getIntent(),
                     /* alternateIcon = */ null,
                     /* alternateIntent = */ null,
