@@ -23,6 +23,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
+import android.telephony.PhoneNumberUtils;
 
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -101,7 +102,8 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
     }
 
     private List<ContactInteraction> getCallLogInteractions(String phoneNumber) {
-        final Uri uri = Uri.withAppendedPath(Calls.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+        final Uri uri = Uri.withAppendedPath(Calls.CONTENT_FILTER_URI,
+                Uri.encode(PhoneNumberUtils.normalizeNumber(phoneNumber)));
         // Append the LIMIT clause onto the ORDER BY clause. This won't cause crashes as long
         // as we don't also set the {@link android.provider.CallLog.Calls.LIMIT_PARAM_KEY} that
         // becomes available in KK.
