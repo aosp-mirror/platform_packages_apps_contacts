@@ -90,8 +90,7 @@ public class ShortcutIntentBuilder {
     private final Context mContext;
     private int mIconSize;
     private final int mIconDensity;
-    private final int mBorderWidth;
-    private final int mBorderColor;
+    private final int mOverlayTextBackgroundColor;
     private final Resources mResources;
 
     /**
@@ -130,9 +129,7 @@ public class ShortcutIntentBuilder {
             mIconSize = am.getLauncherLargeIconSize();
         }
         mIconDensity = am.getLauncherLargeIconDensity();
-        mBorderWidth = mResources.getDimensionPixelOffset(
-                R.dimen.shortcut_icon_border_width);
-        mBorderColor = mResources.getColor(R.color.shortcut_overlay_text_background);
+        mOverlayTextBackgroundColor = mResources.getColor(R.color.shortcut_overlay_text_background);
     }
 
     public void createContactShortcutIntent(Uri contactUri) {
@@ -329,17 +326,6 @@ public class ShortcutIntentBuilder {
         mListener.onShortcutIntentCreated(uri, intent);
     }
 
-    private void drawBorder(Canvas canvas, Rect dst) {
-        // Darken the border
-        final Paint workPaint = new Paint();
-        workPaint.setColor(mBorderColor);
-        workPaint.setStyle(Paint.Style.STROKE);
-        // The stroke is drawn centered on the rect bounds, and since half will be drawn outside the
-        // bounds, we need to double the width for it to appear as intended.
-        workPaint.setStrokeWidth(mBorderWidth * 2);
-        canvas.drawRect(dst, workPaint);
-    }
-
     private Bitmap generateQuickContactIcon(Drawable photo) {
 
         // Setup the drawing classes
@@ -377,8 +363,7 @@ public class ShortcutIntentBuilder {
         Bitmap phoneIcon = ((BitmapDrawable) r.getDrawableForDensity(actionResId, mIconDensity))
                 .getBitmap();
 
-        // Setup the drawing classes
-        Bitmap icon = Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
+        Bitmap icon = generateQuickContactIcon(photo);
         Canvas canvas = new Canvas(icon);
 
         // Copy in the photo
@@ -386,11 +371,6 @@ public class ShortcutIntentBuilder {
         photoPaint.setDither(true);
         photoPaint.setFilterBitmap(true);
         Rect dst = new Rect(0, 0, mIconSize, mIconSize);
-
-        photo.setBounds(dst);
-        photo.draw(canvas);
-
-        drawBorder(canvas, dst);
 
         // Create an overlay for the phone number type
         CharSequence overlay = Phone.getTypeLabel(r, phoneType, phoneLabel);
@@ -405,18 +385,15 @@ public class ShortcutIntentBuilder {
 
             // First fill in a darker background around the text to be drawn
             final Paint workPaint = new Paint();
-            workPaint.setColor(mBorderColor);
+            workPaint.setColor(mOverlayTextBackgroundColor);
             workPaint.setStyle(Paint.Style.FILL);
             final int textPadding = r
                     .getDimensionPixelOffset(R.dimen.shortcut_overlay_text_background_padding);
             final int textBandHeight = (fmi.descent - fmi.ascent) + textPadding * 2;
-            dst.set(0 + mBorderWidth, mIconSize - textBandHeight, mIconSize - mBorderWidth,
-                    mIconSize - mBorderWidth);
+            dst.set(0, mIconSize - textBandHeight, mIconSize, mIconSize);
             canvas.drawRect(dst, workPaint);
 
-            final float sidePadding = mBorderWidth;
-            overlay = TextUtils.ellipsize(overlay, textPaint, mIconSize - 2 * sidePadding,
-                    TruncateAt.END);
+            overlay = TextUtils.ellipsize(overlay, textPaint, mIconSize, TruncateAt.END);
             final float textWidth = textPaint.measureText(overlay, 0, overlay.length());
             canvas.drawText(overlay, 0, overlay.length(), (mIconSize - textWidth) / 2, mIconSize
                     - fmi.descent - textPadding, textPaint);
@@ -427,7 +404,6 @@ public class ShortcutIntentBuilder {
         int iconWidth = icon.getWidth();
         dst.set(iconWidth - ((int) (20 * density)), -1,
                 iconWidth, ((int) (19 * density)));
-        dst.offset(-mBorderWidth, mBorderWidth);
         canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
 
         canvas.setBitmap(null);
