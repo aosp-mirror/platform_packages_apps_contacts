@@ -79,7 +79,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -208,6 +207,7 @@ public class QuickContactActivity extends ContactsActivity {
     private MultiShrinkScroller mScroller;
     private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
     private AsyncTask<Void, Void, Cp2DataCardModel> mEntriesAndActionsTask;
+    private AsyncTask<Void, Void, Void> mRecentDataTask;
     /**
      * The last copy of Cp2DataCardModel that was passed to {@link #populateContactAndAboutCard}.
      */
@@ -1746,41 +1746,66 @@ public class QuickContactActivity extends ContactsActivity {
 
     private void bindRecentData() {
         final List<ContactInteraction> allInteractions = new ArrayList<>();
-        for (List<ContactInteraction> loaderInteractions : mRecentLoaderResults.values()) {
-            allInteractions.addAll(loaderInteractions);
-        }
+        final List<List<Entry>> interactionsWrapper = new ArrayList<>();
 
-        // Sort the interactions by most recent
-        Collections.sort(allInteractions, new Comparator<ContactInteraction>() {
+        mRecentDataTask = new AsyncTask<Void, Void, Void>() {
             @Override
-            public int compare(ContactInteraction a, ContactInteraction b) {
-                return a.getInteractionDate() >= b.getInteractionDate() ? -1 : 1;
-            }
-        });
+            protected Void doInBackground(Void... params) {
+                Trace.beginSection("sort recent loader results");
 
-        // Wrap each interaction in its own list so that an icon is displayed for each entry
-        List<List<Entry>> interactionsWrapper = new ArrayList<>();
-        for (Entry contactInteraction : contactInteractionsToEntries(allInteractions)) {
-            List<Entry> entryListWrapper = new ArrayList<>(1);
-            entryListWrapper.add(contactInteraction);
-            interactionsWrapper.add(entryListWrapper);
-        }
-        if (allInteractions.size() > 0) {
-            mRecentCard.initialize(interactionsWrapper,
+                for (List<ContactInteraction> loaderInteractions : mRecentLoaderResults.values()) {
+                    allInteractions.addAll(loaderInteractions);
+                }
+
+                // Sort the interactions by most recent
+                Collections.sort(allInteractions, new Comparator<ContactInteraction>() {
+                    @Override
+                    public int compare(ContactInteraction a, ContactInteraction b) {
+                        return a.getInteractionDate() >= b.getInteractionDate() ? -1 : 1;
+                    }
+                });
+
+                Trace.endSection();
+                Trace.beginSection("contactInteractionsToEntries");
+
+                // Wrap each interaction in its own list so that an icon is displayed for each entry
+                for (Entry contactInteraction : contactInteractionsToEntries(allInteractions)) {
+                    List<Entry> entryListWrapper = new ArrayList<>(1);
+                    entryListWrapper.add(contactInteraction);
+                    interactionsWrapper.add(entryListWrapper);
+                }
+
+                Trace.endSection();
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Trace.beginSection("initialize recents card");
+
+                if (allInteractions.size() > 0) {
+                    mRecentCard.initialize(interactionsWrapper,
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
                     /* isExpanded = */ mRecentCard.isExpanded(), /* isAlwaysExpanded = */ false,
-                    mExpandingEntryCardViewListener, mScroller);
-            mRecentCard.setVisibility(View.VISIBLE);
-        }
+                            mExpandingEntryCardViewListener, mScroller);
+                    mRecentCard.setVisibility(View.VISIBLE);
+                }
 
-        // About card is initialized along with the contact card, but since it appears after
-        // the recent card in the UI, we hold off until making it visible until the recent card
-        // is also ready to avoid stuttering.
-        if (mAboutCard.shouldShow()) {
-            mAboutCard.setVisibility(View.VISIBLE);
-        } else {
-            mAboutCard.setVisibility(View.GONE);
-        }
+                Trace.endSection();
+
+                // About card is initialized along with the contact card, but since it appears after
+                // the recent card in the UI, we hold off until making it visible until the recent
+                // card is also ready to avoid stuttering.
+                if (mAboutCard.shouldShow()) {
+                    mAboutCard.setVisibility(View.VISIBLE);
+                } else {
+                    mAboutCard.setVisibility(View.GONE);
+                }
+                mRecentDataTask = null;
+            }
+        };
+        mRecentDataTask.execute();
     }
 
     @Override
@@ -1793,6 +1818,9 @@ public class QuickContactActivity extends ContactsActivity {
             // onStop() being called. This is not a problem, because in these circumstances
             // the entire process will be killed.
             mEntriesAndActionsTask.cancel(/* mayInterruptIfRunning = */ false);
+        }
+        if (mRecentDataTask != null) {
+            mRecentDataTask.cancel(/* mayInterruptIfRunning = */ false);
         }
     }
 
