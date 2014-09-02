@@ -356,7 +356,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         final long directoryId =
                 Long.valueOf(uri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY));
 
-        final String displayName = json.getString(Contacts.DISPLAY_NAME);
+        final String displayName = json.optString(Contacts.DISPLAY_NAME);
         final String altDisplayName = json.optString(
                 Contacts.DISPLAY_NAME_ALTERNATIVE, displayName);
         final int displayNameSource = json.getInt(Contacts.DISPLAY_NAME_SOURCE);
