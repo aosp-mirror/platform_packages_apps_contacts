@@ -130,7 +130,7 @@ public class CalendarInteraction implements ContactInteraction {
     }
 
     public Boolean getAllDay() {
-        return mValues.getAsBoolean(Attendees.ALL_DAY);
+        return mValues.getAsInteger(Attendees.ALL_DAY) == 1 ? true : false;
     }
 
     public Integer getAvailability() {
