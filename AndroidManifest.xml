@@ -46,7 +46,7 @@
 
     <application
         android:name="com.android.contacts.ContactsApplication"
-        android:label="@string/contactsList"
+        android:label="@string/applicationLabel"
         android:icon="@mipmap/ic_contacts_clr_48cv_44dp"
         android:taskAffinity="android.task.contacts"
         android:hardwareAccelerated="true"
@@ -55,7 +55,7 @@
 
         <!-- The main Contacts activity with the contact list, favorites, and groups. -->
         <activity android:name=".activities.PeopleActivity"
-            android:label="@string/people"
+            android:label="@string/launcherActivityLabel"
             android:theme="@style/PeopleTheme"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTop"
@@ -139,7 +139,7 @@
         </activity>
 
         <activity android:name=".activities.ContactSelectionActivity"
-            android:label="@string/contactsList"
+            android:label="@string/launcherActivityLabel"
             android:theme="@style/ContactPickerTheme"
             android:launchMode="singleTop"
             android:clearTaskOnLaunch="true"
@@ -387,6 +387,7 @@
 
         <!-- vCard related -->
         <activity android:name=".common.vcard.ImportVCardActivity"
+            android:label="@string/launcherActivityLabel"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
@@ -399,6 +400,7 @@
         </activity>
 
         <activity android:name=".common.vcard.NfcImportVCardActivity"
+            android:label="@string/launcherActivityLabel"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
@@ -410,17 +412,21 @@
         </activity>
 
         <activity android:name=".common.vcard.CancelActivity"
+            android:label="@string/launcherActivityLabel"
             android:theme="@style/BackgroundOnlyTheme" />
 
         <activity android:name=".common.vcard.SelectAccountActivity"
+            android:label="@string/launcherActivityLabel"
             android:theme="@style/BackgroundOnlyTheme" />
 
         <activity android:name=".common.vcard.ExportVCardActivity"
+            android:label="@string/launcherActivityLabel"
             android:theme="@style/BackgroundOnlyTheme" />
 
         <service
             android:name=".common.vcard.VCardService"
             android:exported="false" />
+        <!-- end vCard related -->
 
         <!-- Pinned header list demo -->
         <activity android:name=".widget.PinnedHeaderListDemoActivity">
@@ -438,6 +444,7 @@
         <activity
             android:name="com.android.contacts.NonPhoneActivity"
             android:theme="@style/NonPhoneActivityTheme"
+            android:label="@string/launcherActivityLabel"
             >
             <intent-filter android:priority="-1">
                 <action android:name="android.intent.action.MAIN"/>
