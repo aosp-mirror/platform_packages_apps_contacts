@@ -23,6 +23,8 @@ import com.android.contacts.R;
 public class QuickContactImageView extends ImageView {
 
     private Drawable mOriginalDrawable;
+    private BitmapDrawable mBitmapDrawable;
+    private int mTintColor;
     private boolean mIsBusiness;
 
     public QuickContactImageView(Context context) {
@@ -43,11 +45,13 @@ public class QuickContactImageView extends ImageView {
     }
 
     public void setTint(int color) {
-        if (isBasedOffLetterTile()) {
+        if (mBitmapDrawable == null || mBitmapDrawable.getBitmap() == null
+                || mBitmapDrawable.getBitmap().hasAlpha()) {
             setBackgroundColor(color);
         } else {
             setBackground(null);
         }
+        mTintColor = color;
         postInvalidate();
     }
 
@@ -76,9 +80,11 @@ public class QuickContactImageView extends ImageView {
             }
         } else {
             throw new IllegalArgumentException("Does not support this type of drawable");
-
         }
+
         mOriginalDrawable = drawable;
+        mBitmapDrawable = bitmapDrawable;
+        setTint(mTintColor);
         super.setImageDrawable(bitmapDrawable);
     }
 
