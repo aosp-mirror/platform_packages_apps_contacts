@@ -281,9 +281,9 @@ public class QuickContactActivity extends ContactsActivity {
     private static final int MAX_PAST_CALENDAR_RETRIEVE = 3;
     private static final int MAX_FUTURE_CALENDAR_RETRIEVE = 3;
     private static final long PAST_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR =
-            180L * 24L * 60L * 60L * 1000L /* 180 days */;
+            1L * 24L * 60L * 60L * 1000L /* 1 day */;
     private static final long FUTURE_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR =
-            36L * 60L * 60L * 1000L /* 36 hours */;
+            7L * 24L * 60L * 60L * 1000L /* 7 days */;
 
     /** Id for the background Call Log Loader */
     private static final int LOADER_CALL_LOG_ID = 3;
