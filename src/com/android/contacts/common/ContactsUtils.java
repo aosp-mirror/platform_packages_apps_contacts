@@ -174,12 +174,12 @@ public class ContactsUtils {
         final boolean isEmail = im.isCreatedFromEmail();
 
         if (!isEmail && !im.isProtocolValid()) {
-            return null;
+            return new Pair<>(null, null);
         }
 
         final String data = im.getData();
         if (TextUtils.isEmpty(data)) {
-            return null;
+            return new Pair<>(null, null);
         }
 
         final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK : im.getProtocol();
