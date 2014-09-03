@@ -1438,10 +1438,8 @@ public class QuickContactActivity extends ContactsActivity {
             // Do not set the alternate intent is there are no resolves
             if (!PhoneCapabilityTester.isIntentRegistered(context, alternateIntent)) {
                 alternateIntent = null;
-            }
-
-            // Attempt to use package manager to find a suitable content description if needed
-            if (TextUtils.isEmpty(alternateContentDescription)) {
+            } else if (TextUtils.isEmpty(alternateContentDescription)) {
+                // Attempt to use package manager to find a suitable content description if needed
                 alternateContentDescription.append(getIntentResolveLabel(alternateIntent, context));
             }
         }
