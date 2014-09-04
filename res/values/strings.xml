@@ -15,9 +15,13 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Title for the activity that opens the Contacts app.  This is the name
+    <!-- Application name used in Settings/Apps. Default label for activities
+         that don't specify a label. -->
+    <string name="applicationLabel">Contacts</string>
+
+    <!-- Title for the activity that launches Contacts.  This is the name
          used in the Launcher icon. -->
-    <string name="people">Contacts</string>
+    <string name="launcherActivityLabel">Contacts</string>
 
     <!-- Directory partition name -->
     <string name="contactsList">Contacts</string>
