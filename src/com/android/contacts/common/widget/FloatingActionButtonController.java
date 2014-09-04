@@ -34,8 +34,9 @@ public class FloatingActionButtonController {
     public static final int ALIGN_QUARTER_END = 1;
     public static final int ALIGN_END = 2;
 
-    private static final int FAB_FADE_DURATION = 266;
-    private static final int FAB_FADE_IN_DELAY = 100;
+    private static final int FAB_SCALE_IN_DURATION = 266;
+    private static final int FAB_SCALE_IN_FADE_IN_DELAY = 100;
+    private static final int FAB_ICON_FADE_OUT_DURATION = 66;
 
     private final int mAnimationDuration;
     private final int mFloatingActionButtonWidth;
@@ -138,10 +139,13 @@ public class FloatingActionButtonController {
     /**
      * Scales the floating action button from no height and width to its actual dimensions. This is
      * an animation for showing the floating action button.
+     * @param delayMs The delay for the effect, in milliseconds.
      */
-    public void scaleIn() {
-        AnimUtils.scaleIn(mFloatingActionButtonContainer, mAnimationDuration);
-        AnimUtils.fadeIn(mFloatingActionButton, FAB_FADE_DURATION, FAB_FADE_IN_DELAY, null);
+    public void scaleIn(int delayMs) {
+        setVisible(true);
+        AnimUtils.scaleIn(mFloatingActionButtonContainer, FAB_SCALE_IN_DURATION, delayMs);
+        AnimUtils.fadeIn(mFloatingActionButton, FAB_SCALE_IN_DURATION,
+                delayMs + FAB_SCALE_IN_FADE_IN_DELAY, null);
     }
 
     /**
@@ -150,6 +154,9 @@ public class FloatingActionButtonController {
      */
     public void scaleOut() {
         AnimUtils.scaleOut(mFloatingActionButtonContainer, mAnimationDuration);
+        // Fade out the icon faster than the scale out animation, so that the icon scaling is less
+        // obvious. We don't want it to scale, but the resizing the container is not as performant.
+        AnimUtils.fadeOut(mFloatingActionButton, FAB_ICON_FADE_OUT_DURATION, null);
     }
 
     /**
@@ -180,17 +187,6 @@ public class FloatingActionButtonController {
             result *= -1;
         }
         return result;
-    }
-
-    /**
-     * Manually translates the FAB without animation.
-     *
-     * @param translationX The x distance to translate.
-     * @param translationY The y distance to translate.
-     */
-    public void manuallyTranslate(int translationX, int translationY) {
-        mFloatingActionButtonContainer.setTranslationX(translationX);
-        mFloatingActionButtonContainer.setTranslationY(translationY);
     }
 
     private boolean isLayoutRtl() {
