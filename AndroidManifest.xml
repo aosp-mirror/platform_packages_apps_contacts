@@ -251,6 +251,7 @@
 
             <intent-filter>
                 <action android:name="com.android.contacts.action.QUICK_CONTACT" />
+                <action android:name="android.provider.action.QUICK_CONTACT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/contact" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
