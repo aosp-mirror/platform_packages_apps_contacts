@@ -161,6 +161,12 @@ public class MultiShrinkScroller extends FrameLayout {
 
     private final PathInterpolator mTextSizePathInterpolator
             = new PathInterpolator(0.16f, 0.4f, 0.2f, 1);
+    /**
+     * Interpolator that starts and ends with nearly straight segments. At x=0 it has a y of
+     * approximately 0.25. We only want the contact photo 25% faded when half collapsed.
+     */
+    private final PathInterpolator mWhiteBlendingPathInterpolator
+            = new PathInterpolator(1.0f, 0.4f, 0.9f, 0.8f);
 
     private final int[] mGradientColors = new int[] {0,0xAA000000};
     private GradientDrawable mTitleGradientDrawable = new GradientDrawable(
@@ -1075,7 +1081,8 @@ public class MultiShrinkScroller extends FrameLayout {
                 EXPONENT_ALMOST_ONE);
         mColorMatrix.reset();
         mColorMatrix.setSaturation(semiLinearBeforeMiddle);
-        mColorMatrix.postConcat(alphaMatrix(ratio, Color.WHITE));
+        mColorMatrix.postConcat(alphaMatrix(
+                1 - mWhiteBlendingPathInterpolator.getInterpolation(1 - ratio), Color.WHITE));
 
         final float colorAlpha;
         if (mPhotoView.isBasedOffLetterTile()) {
