@@ -36,6 +36,7 @@ public class CallUtil {
     public static final String SCHEME_MAILTO = "mailto";
     public static final String SCHEME_IMTO = "imto";
     public static final String SCHEME_SIP = "sip";
+    public static final String SCHEME_VOICEMAIL = "voicemail";
 
     /**
      * Return an Intent for making a phone call. Scheme (e.g. tel, sip) will be determined
