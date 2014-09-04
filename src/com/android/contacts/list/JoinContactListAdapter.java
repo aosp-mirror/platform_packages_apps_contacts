@@ -187,14 +187,14 @@ public class JoinContactListAdapter extends ContactListAdapter {
                 final ContactListItemView view = (ContactListItemView) itemView;
                 view.setSectionHeader(null);
                 bindPhoto(view, partition, cursor);
-                bindName(view, cursor);
+                bindNameAndViewId(view, cursor);
                 break;
             }
             case PARTITION_ALL_CONTACTS: {
                 final ContactListItemView view = (ContactListItemView) itemView;
                 bindSectionHeaderAndDivider(view, position, cursor);
                 bindPhoto(view, partition, cursor);
-                bindName(view, cursor);
+                bindNameAndViewId(view, cursor);
                 break;
             }
         }

@@ -135,6 +135,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
         ContactListItemView view = (ContactListItemView)itemView;
         bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
+        bindViewId(view, cursor, EmailQuery.EMAIL_ID);
         bindPhoto(view, cursor);
         bindEmailAddress(view, cursor);
     }
