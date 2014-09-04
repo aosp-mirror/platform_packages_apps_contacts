@@ -248,5 +248,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"ການນັດໝາຍ"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"ຄວາມສຳພັນ"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"​ເສັ້ນ​ທາງ​ໄປ​ຫາ​ສະ​ຖານ​ທີ່"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"SMS ຫຼ້າສຸດ. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. ຄລິກ​ເພື່ອ​ຕອບ"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ສາຍ​ໂທ​ເຂົ້າ"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"ສາຍ​ໂທ​ອອກ"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ບໍ່​ໄດ້​ຮັບ"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"ໂທ​ຫຼ້າ​ສຸດ. <xliff:g id="CALL_DETAILS">%s</xliff:g>. ຄລິກ​ເພື່ອ​ໂທ​ກັບ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"​ທ່ານ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
