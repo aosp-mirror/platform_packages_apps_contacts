@@ -247,10 +247,12 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         }
     }
 
-    protected void bindName(final ContactListItemView view, Cursor cursor) {
+    protected void bindNameAndViewId(final ContactListItemView view, Cursor cursor) {
         view.showDisplayName(
                 cursor, ContactQuery.CONTACT_DISPLAY_NAME, getContactNameDisplayOrder());
         // Note: we don't show phonetic any more (See issue 5265330)
+
+        bindViewId(view, cursor, ContactQuery.CONTACT_ID);
     }
 
     protected void bindPresenceAndStatusMessage(final ContactListItemView view, Cursor cursor) {
