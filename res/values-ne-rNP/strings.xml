@@ -248,5 +248,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"घटना"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"सम्बन्ध"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"स्थानको लागि निर्देशनहरू"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"हालैको एस एम एस। <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>। प्रत्युत्तरको लागि क्लिक गर्नुहोस्"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"आगमन"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"बहिर्गमन"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"छुटेको"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"हालैको कल। <xliff:g id="CALL_DETAILS">%s</xliff:g>। फिर्ता कल गर्न क्लिक गर्नुहोस्"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"तपाईँ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
