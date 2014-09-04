@@ -248,5 +248,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Događaj"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Odnos"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"upute do lokacije"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"nedavni SMS. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. kliknite za odgovor"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"dolazno"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"odlazno"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"propušteno"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"nedavni poziv. <xliff:g id="CALL_DETAILS">%s</xliff:g>. kliknite za uzvrat"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vi: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>

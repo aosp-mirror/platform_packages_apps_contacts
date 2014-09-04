@@ -328,5 +328,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Иш-чара"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Мамилелик катышы"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"жайгашуу ордуна багыттоолор"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"акыркы sms. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. жооп берүү үчүн чыкылдатыңыз"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"келүүчү"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"чыгуучу"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"жооп берилбей калган"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"акыркы чалуу. <xliff:g id="CALL_DETAILS">%s</xliff:g>. кайра чалуу үчүн чыкылдатыңыз"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Сиз: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
