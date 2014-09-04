@@ -248,5 +248,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Umcimbi"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Ubudlelwano"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"izikhombisi-ndlela eziya endaweni"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"i-sms yakamuva. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. chofoza ukuze uphendule"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"okungenayo"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"okuphumayo"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"iphuthelwe"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"ikholi yakamuva. <xliff:g id="CALL_DETAILS">%s</xliff:g>. chofoza ukuze uphinde ushayele"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Wena: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>

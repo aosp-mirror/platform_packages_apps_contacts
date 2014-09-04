@@ -248,5 +248,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Événement"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Relation"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"itinéraire vers le lieu"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"texto récent. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. cliquez pour répondre"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"entrant"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"sortant"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"manqué"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"appel récent. <xliff:g id="CALL_DETAILS">%s</xliff:g>. cliquez pour rappeler"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vous : <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>

@@ -216,8 +216,8 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手机丢了，也能确保您的联系人信息的安全性：与在线服务同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"添加帐户"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系统不会备份您的新联系人。要添加用于在线备份联系人的帐户吗？"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"系统会将您的新联系人与 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 同步。"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以将您的新联系人与以下某个帐户同步。请选择要使用的帐户："</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您的新联系人将会同步到<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以将您的新联系人同步到以下某个帐户。请选择要使用的帐户："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增联系人"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"修改联系人"</string>
     <string name="keep_local" msgid="1258761699192993322">"本地保存"</string>
@@ -248,5 +248,15 @@
     <string name="header_event_entry" msgid="6738250422744401460">"活动"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"关系"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"到特定地点的路线"</string>
+    <!-- no translation found for content_description_recent_sms (6268563442222149676) -->
+    <skip />
+    <!-- no translation found for content_description_recent_call_type_incoming (5210739096863511410) -->
+    <skip />
+    <!-- no translation found for content_description_recent_call_type_outgoing (5156553338985232744) -->
+    <skip />
+    <!-- no translation found for content_description_recent_call_type_missed (7371810920196048204) -->
+    <skip />
+    <!-- no translation found for content_description_recent_call (6204048362763219585) -->
+    <skip />
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
