@@ -91,7 +91,7 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"নাম"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ডাকনাম"</string>
     <string name="full_name" msgid="885420216812981202">"নাম"</string>
-    <string name="name_given" msgid="4153709115654909377">"আদ্য নাম"</string>
+    <string name="name_given" msgid="4153709115654909377">"প্রথম নাম"</string>
     <string name="name_family" msgid="5317387657540738981">"পারিবারিক নাম"</string>
     <string name="name_prefix" msgid="8219879405071462309">"নামের আগের অংশ"</string>
     <string name="name_middle" msgid="3951610314424632183">"মাঝের নাম"</string>
@@ -223,7 +223,7 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"আমদানি করা হচ্ছে, <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"সংগ্রহস্থলে রপ্তানি করুন"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"এর দ্বারা সাজান"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"আদ্য নাম"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"প্রথম নাম"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"পারিবারিক নাম"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"নামের বিন্যাস"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"প্রথমে আদ্য নাম"</string>
