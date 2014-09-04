@@ -24,6 +24,7 @@ import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -102,12 +103,17 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
     }
 
     private List<ContactInteraction> getCallLogInteractions(String phoneNumber) {
+        final String normalizedNumber = PhoneNumberUtils.normalizeNumber(phoneNumber);
+        // If the number contains only symbols, we can skip it
+        if (TextUtils.isEmpty(normalizedNumber)) {
+            return Collections.emptyList();
+        }
         final Uri uri = Uri.withAppendedPath(Calls.CONTENT_FILTER_URI,
-                Uri.encode(PhoneNumberUtils.normalizeNumber(phoneNumber)));
+                Uri.encode(normalizedNumber));
         // Append the LIMIT clause onto the ORDER BY clause. This won't cause crashes as long
         // as we don't also set the {@link android.provider.CallLog.Calls.LIMIT_PARAM_KEY} that
         // becomes available in KK.
-        String orderByAndLimit = Calls.DATE + " DESC LIMIT " + mMaxToRetrieve;
+        final String orderByAndLimit = Calls.DATE + " DESC LIMIT " + mMaxToRetrieve;
         final Cursor cursor = getContext().getContentResolver().query(uri, null, null, null,
                 orderByAndLimit);
         try {
