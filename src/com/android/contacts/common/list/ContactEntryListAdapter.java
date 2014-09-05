@@ -734,6 +734,22 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     }
 
+    @Override
+    public boolean hasStableIds() {
+        // Whenever bindViewId() is called, the values passed into setId() are stable or
+        // stable-ish. For example, when one contact is modified we don't expect a second
+        // contact's Contact._ID values to change.
+        return true;
+    }
+
+    protected void bindViewId(final ContactListItemView view, Cursor cursor, int idColumn) {
+        // Set a semi-stable id, so that talkback won't get confused when the list gets
+        // refreshed. There is little harm in inserting the same ID twice.
+        long contactId = cursor.getLong(idColumn);
+        view.setId((int) (contactId % Integer.MAX_VALUE));
+
+    }
+
     protected Uri getContactUri(int partitionIndex, Cursor cursor,
             int contactIdColumn, int lookUpKeyColumn) {
         long contactId = cursor.getLong(contactIdColumn);

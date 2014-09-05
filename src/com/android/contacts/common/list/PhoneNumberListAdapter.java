@@ -357,6 +357,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
         cursor.moveToPosition(position);
 
+        bindViewId(view, cursor, PhoneQuery.PHONE_ID);
+
         bindSectionHeaderAndDivider(view, position);
         if (isFirstEntry) {
             bindName(view, cursor);
