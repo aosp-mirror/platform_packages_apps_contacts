@@ -80,7 +80,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
         final Builder builder = StructuredPostal.CONTENT_URI.buildUpon()
                 .appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true");
         if (isSectionHeaderDisplayEnabled()) {
-            builder.appendQueryParameter(StructuredPostal.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+            builder.appendQueryParameter(StructuredPostal.EXTRA_ADDRESS_BOOK_INDEX, "true");
         }
         loader.setUri(builder.build());
 
