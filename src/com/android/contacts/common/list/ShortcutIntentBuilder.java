@@ -38,11 +38,12 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.telecomm.PhoneAccount;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 
-import com.android.contacts.common.CallUtil;
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
@@ -306,11 +307,11 @@ public class ShortcutIntentBuilder {
         Uri phoneUri;
         if (Intent.ACTION_CALL.equals(shortcutAction)) {
             // Make the URI a direct tel: URI so that it will always continue to work
-            phoneUri = Uri.fromParts(CallUtil.SCHEME_TEL, phoneNumber, null);
+            phoneUri = Uri.fromParts(PhoneAccount.SCHEME_TEL, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
                     R.drawable.badge_action_call);
         } else {
-            phoneUri = Uri.fromParts(CallUtil.SCHEME_SMSTO, phoneNumber, null);
+            phoneUri = Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
                     R.drawable.badge_action_sms);
         }

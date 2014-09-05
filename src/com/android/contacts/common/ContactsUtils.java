@@ -36,6 +36,11 @@ import java.util.List;
 public class ContactsUtils {
     private static final String TAG = "ContactsUtils";
 
+    // Telecomm related schemes are in CallUtil
+    public static final String SCHEME_IMTO = "imto";
+    public static final String SCHEME_MAILTO = "mailto";
+    public static final String SCHEME_SMSTO = "smsto";
+
     private static int sThumbnailSize = -1;
 
     // TODO find a proper place for the canonical version of these
@@ -158,7 +163,7 @@ public class ContactsUtils {
             return null;
         }
         final String authority = host.toLowerCase();
-        final Uri imUri = new Uri.Builder().scheme(CallUtil.SCHEME_IMTO).authority(
+        final Uri imUri = new Uri.Builder().scheme(SCHEME_IMTO).authority(
                 authority).appendPath(data).build();
         final Intent intent = new Intent(Intent.ACTION_SENDTO, imUri);
         return intent;
