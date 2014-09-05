@@ -347,6 +347,11 @@ public class MultiShrinkScroller extends FrameLayout {
                             largeTextLayoutParams.leftMargin - largeTextLayoutParams.rightMargin;
                     largeTextLayoutParams.gravity = Gravity.BOTTOM | Gravity.START;
                     mLargeTextView.setLayoutParams(largeTextLayoutParams);
+                } else {
+                    // Set the width of mLargeTextView as if it was nested inside
+                    // mPhotoViewContainer.
+                    mLargeTextView.setWidth(mPhotoViewContainer.getWidth()
+                            - 2 * mMaximumTitleMargin);
                 }
 
                 calculateCollapsedLargeTitlePadding();
