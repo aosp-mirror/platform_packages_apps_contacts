@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.net.WebAddress;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.Data;
+import android.telecomm.PhoneAccount;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -124,7 +125,7 @@ public class DataAction implements Action {
                     Intent smsIntent = null;
                     if (hasSms) {
                         smsIntent = new Intent(Intent.ACTION_SENDTO,
-                                Uri.fromParts(CallUtil.SCHEME_SMSTO, number, null));
+                                Uri.fromParts(ContactsUtils.SCHEME_SMSTO, number, null));
                         smsIntent.setComponent(smsComponent);
                     }
 
@@ -146,7 +147,7 @@ public class DataAction implements Action {
                 final SipAddressDataItem sip = (SipAddressDataItem) item;
                 final String address = sip.getSipAddress();
                 if (!TextUtils.isEmpty(address)) {
-                    final Uri callUri = Uri.fromParts(CallUtil.SCHEME_SIP, address, null);
+                    final Uri callUri = Uri.fromParts(PhoneAccount.SCHEME_SIP, address, null);
                     mIntent = CallUtil.getCallIntent(callUri);
                     // Note that this item will get a SIP-specific variant
                     // of the "call phone" icon, rather than the standard
@@ -160,7 +161,7 @@ public class DataAction implements Action {
             final EmailDataItem email = (EmailDataItem) item;
             final String address = email.getData();
             if (!TextUtils.isEmpty(address)) {
-                final Uri mailUri = Uri.fromParts(CallUtil.SCHEME_MAILTO, address, null);
+                final Uri mailUri = Uri.fromParts(ContactsUtils.SCHEME_MAILTO, address, null);
                 mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
             }
 
@@ -195,7 +196,7 @@ public class DataAction implements Action {
 
                 if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
                     final String authority = host.toLowerCase();
-                    final Uri imUri = new Uri.Builder().scheme(CallUtil.SCHEME_IMTO).authority(
+                    final Uri imUri = new Uri.Builder().scheme(ContactsUtils.SCHEME_IMTO).authority(
                             authority).appendPath(data).build();
                     mIntent = new Intent(Intent.ACTION_SENDTO, imUri);
 

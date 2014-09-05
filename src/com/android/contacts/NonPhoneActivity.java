@@ -27,9 +27,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.Insert;
+import android.telecomm.PhoneAccount;
 import android.text.TextUtils;
-
-import com.android.contacts.common.CallUtil;
 
 /**
  * Activity that intercepts DIAL and VIEW intents for phone numbers for devices that can not
@@ -60,7 +59,7 @@ public class NonPhoneActivity extends ContactsActivity {
         final Uri data = getIntent().getData();
         if (data == null) return null;
         final String scheme = data.getScheme();
-        if (!CallUtil.SCHEME_TEL.equals(scheme)) return null;
+        if (!PhoneAccount.SCHEME_TEL.equals(scheme)) return null;
         return getIntent().getData().getSchemeSpecificPart();
     }
 
