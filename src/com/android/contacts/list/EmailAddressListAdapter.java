@@ -86,7 +86,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
         } else {
             builder = Email.CONTENT_URI.buildUpon();
             if (isSectionHeaderDisplayEnabled()) {
-                builder.appendQueryParameter(Email.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+                builder.appendQueryParameter(Email.EXTRA_ADDRESS_BOOK_INDEX, "true");
             }
         }
         builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,

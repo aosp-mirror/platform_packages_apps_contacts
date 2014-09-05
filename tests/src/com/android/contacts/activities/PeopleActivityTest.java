@@ -139,7 +139,7 @@ public class PeopleActivityTest
 
     private void expectContactListQuery(int count) {
         Uri uri = Contacts.CONTENT_URI.buildUpon()
-                .appendQueryParameter(Contacts.ADDRESS_BOOK_INDEX_EXTRAS, "true")
+                .appendQueryParameter(Contacts.EXTRA_ADDRESS_BOOK_INDEX, "true")
                 .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                         String.valueOf(Directory.DEFAULT))
                 .build();
