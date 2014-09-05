@@ -41,8 +41,9 @@ import java.util.Locale;
 public class ExchangeAccountType extends BaseAccountType {
     private static final String TAG = "ExchangeAccountType";
 
-    public static final String ACCOUNT_TYPE_AOSP = "com.android.exchange";
-    public static final String ACCOUNT_TYPE_GOOGLE = "com.google.android.exchange";
+    private static final String ACCOUNT_TYPE_AOSP = "com.android.exchange";
+    private static final String ACCOUNT_TYPE_GOOGLE_1 = "com.google.android.exchange";
+    private static final String ACCOUNT_TYPE_GOOGLE_2 = "com.google.android.gm.exchange";
 
     public ExchangeAccountType(Context context, String authenticatorPackageName, String type) {
         this.accountType = type;
@@ -72,7 +73,8 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     public static boolean isExchangeType(String type) {
-        return ACCOUNT_TYPE_AOSP.equals(type) || ACCOUNT_TYPE_GOOGLE.equals(type);
+        return ACCOUNT_TYPE_AOSP.equals(type) || ACCOUNT_TYPE_GOOGLE_1.equals(type)
+                || ACCOUNT_TYPE_GOOGLE_2.equals(type);
     }
 
     @Override
