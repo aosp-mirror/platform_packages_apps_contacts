@@ -126,6 +126,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
         ContactListItemView view = (ContactListItemView)itemView;
         bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
+        bindViewId(view, cursor, PostalQuery.POSTAL_ID);
         bindPhoto(view, cursor);
         bindPostalAddress(view, cursor);
     }
