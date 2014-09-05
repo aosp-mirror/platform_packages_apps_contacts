@@ -142,7 +142,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     protected static Uri buildSectionIndexerUri(Uri uri) {
         return uri.buildUpon()
-                .appendQueryParameter(Contacts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
+                .appendQueryParameter(Contacts.EXTRA_ADDRESS_BOOK_INDEX, "true").build();
     }
 
     @Override
