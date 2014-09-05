@@ -175,7 +175,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                 builder = baseUri.buildUpon().appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
                 if (isSectionHeaderDisplayEnabled()) {
-                    builder.appendQueryParameter(Phone.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+                    builder.appendQueryParameter(Phone.EXTRA_ADDRESS_BOOK_INDEX, "true");
                 }
                 applyFilter(loader, builder, directoryId, getFilter());
             }
