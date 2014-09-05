@@ -89,6 +89,7 @@ public class LegacyPhoneNumberListAdapter extends ContactEntryListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
         bindName(view, cursor);
+        bindViewId(view, cursor, PHONE_ID_COLUMN_INDEX);
         bindPhoneNumber(view, cursor);
     }
 

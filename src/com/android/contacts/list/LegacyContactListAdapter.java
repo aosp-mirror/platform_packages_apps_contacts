@@ -84,6 +84,7 @@ public class LegacyContactListAdapter extends ContactEntryListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
         bindName(view, cursor);
+        bindViewId(view, cursor, PERSON_ID_COLUMN_INDEX);
         bindPresence(view, cursor);
     }
 
