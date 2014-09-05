@@ -45,13 +45,14 @@ public class ContactListPinnedHeaderView extends TextView {
                 R.styleable.ContactListItemView_list_item_text_offset_top, 0);
         int paddingStartOffset = a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_padding_left, 0);
+        int textWidth = getResources().getDimensionPixelSize(
+                R.dimen.contact_list_section_header_width);
+        int widthIncludingPadding = paddingStartOffset + textWidth;
         a.recycle();
 
         setBackgroundColor(backgroundColor);
         setTextAppearance(getContext(), R.style.SectionHeaderStyle);
-        setLayoutParams(new LayoutParams(
-                getResources().getDimensionPixelSize(R.dimen.contact_list_section_header_width),
-                LayoutParams.WRAP_CONTENT));
+        setLayoutParams(new LayoutParams(widthIncludingPadding, LayoutParams.WRAP_CONTENT));
         setLayoutDirection(parent.getLayoutDirection());
         setGravity(Gravity.CENTER_VERTICAL |
                 (ViewUtil.isViewLayoutRtl(this) ? Gravity.RIGHT : Gravity.LEFT));
