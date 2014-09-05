@@ -89,6 +89,7 @@ public class LegacyPostalAddressListAdapter extends ContactEntryListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
         bindName(view, cursor);
+        bindViewId(view, cursor, POSTAL_ID_COLUMN_INDEX);
         bindPostalAddress(view, cursor);
     }
 
