@@ -19,6 +19,7 @@ package com.android.contacts.common;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.telecomm.PhoneAccount;
 import android.telecomm.PhoneAccountHandle;
 import android.telecomm.TelecommManager;
 import android.telecomm.VideoProfile;
@@ -30,13 +31,6 @@ import com.android.phone.common.PhoneConstants;
  * Utilities related to calls.
  */
 public class CallUtil {
-
-    public static final String SCHEME_TEL = "tel";
-    public static final String SCHEME_SMSTO = "smsto";
-    public static final String SCHEME_MAILTO = "mailto";
-    public static final String SCHEME_IMTO = "imto";
-    public static final String SCHEME_SIP = "sip";
-    public static final String SCHEME_VOICEMAIL = "voicemail";
 
     /**
      * Return an Intent for making a phone call. Scheme (e.g. tel, sip) will be determined
@@ -141,14 +135,14 @@ public class CallUtil {
     }
 
     /**
-     * Return Uri with an appropriate scheme, accepting Voicemail, SIP, and usual phone call
+     * Return Uri with an appropriate scheme, accepting both SIP and usual phone call
      * numbers.
      */
     public static Uri getCallUri(String number) {
         if (PhoneNumberHelper.isUriNumber(number)) {
-             return Uri.fromParts(SCHEME_SIP, number, null);
+             return Uri.fromParts(PhoneAccount.SCHEME_SIP, number, null);
         }
-        return Uri.fromParts(SCHEME_TEL, number, null);
+        return Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
      }
 
     public static boolean isVideoEnabled(Context context) {
