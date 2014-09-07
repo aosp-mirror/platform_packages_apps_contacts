@@ -70,6 +70,7 @@ import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v7.graphics.Palette;
+import android.telecomm.PhoneAccount;
 import android.telecomm.TelecommManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -324,7 +325,7 @@ public class QuickContactActivity extends ContactsActivity {
 
             final Uri intentUri = intent.getData();
             if ((intentUri != null && intentUri.getScheme() != null &&
-                    intentUri.getScheme().equals(CallUtil.SCHEME_SMSTO)) ||
+                    intentUri.getScheme().equals(ContactsUtils.SCHEME_SMSTO)) ||
                     (intent.getType() != null && intent.getType().equals(MIMETYPE_SMS))) {
                 usageType = DataUsageFeedback.USAGE_TYPE_SHORT_TEXT;
             }
@@ -1302,7 +1303,7 @@ public class QuickContactActivity extends ContactsActivity {
                     intent = CallUtil.getCallIntent(phone.getNumber());
                 }
                 alternateIntent = new Intent(Intent.ACTION_SENDTO,
-                        Uri.fromParts(CallUtil.SCHEME_SMSTO, phone.getNumber(), null));
+                        Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phone.getNumber(), null));
 
                 alternateIcon = res.getDrawable(R.drawable.ic_message_24dp);
                 alternateContentDescription.append(res.getString(R.string.sms_custom, header));
@@ -1321,7 +1322,7 @@ public class QuickContactActivity extends ContactsActivity {
             final String address = email.getData();
             if (!TextUtils.isEmpty(address)) {
                 primaryContentDescription.append(res.getString(R.string.email_other)).append(" ");
-                final Uri mailUri = Uri.fromParts(CallUtil.SCHEME_MAILTO, address, null);
+                final Uri mailUri = Uri.fromParts(ContactsUtils.SCHEME_MAILTO, address, null);
                 intent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 header = email.getAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
@@ -1363,7 +1364,7 @@ public class QuickContactActivity extends ContactsActivity {
                 if (!TextUtils.isEmpty(address)) {
                     primaryContentDescription.append(res.getString(R.string.call_other)).append(
                             " ");
-                    final Uri callUri = Uri.fromParts(CallUtil.SCHEME_SIP, address, null);
+                    final Uri callUri = Uri.fromParts(PhoneAccount.SCHEME_SIP, address, null);
                     intent = CallUtil.getCallIntent(callUri);
                     header = address;
                     entryContextMenuInfo = new EntryContextMenuInfo(header,
