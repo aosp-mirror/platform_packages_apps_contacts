@@ -452,6 +452,9 @@ public class PinnedHeaderListView extends AutoScrollListView
     };
 
     private boolean smoothScrollToPartition(int partition) {
+        if (mAdapter == null) {
+            return false;
+        }
         final int position = mAdapter.getScrollPositionForHeader(partition);
         if (position == -1) {
             return false;
