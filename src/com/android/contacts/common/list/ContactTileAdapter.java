@@ -69,7 +69,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
     private boolean mIsQuickContactEnabled = false;
     private final int mPaddingInPixels;
-    private final int mPaddingStartEnd;
+    private final int mWhitespaceStartEnd;
 
     /**
      * Configures the adapter to filter and display contacts using different view types.
@@ -114,8 +114,8 @@ public class ContactTileAdapter extends BaseAdapter {
         // Converting padding in dips to padding in pixels
         mPaddingInPixels = mContext.getResources()
                 .getDimensionPixelSize(R.dimen.contact_tile_divider_padding);
-        mPaddingStartEnd = mContext.getResources()
-                .getDimensionPixelSize(R.dimen.contact_tile_start_end_padding);
+        mWhitespaceStartEnd = mContext.getResources()
+                .getDimensionPixelSize(R.dimen.contact_tile_start_end_whitespace);
 
         bindColumnIndices();
     }
@@ -511,9 +511,9 @@ public class ContactTileAdapter extends BaseAdapter {
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.setMargins(
-                        resources.getDimensionPixelSize(R.dimen.contact_tile_start_end_padding),
+                        mWhitespaceStartEnd,
                         0,
-                        resources.getDimensionPixelSize(R.dimen.contact_tile_start_end_padding),
+                        mWhitespaceStartEnd,
                         0);
                 contactTile.setLayoutParams(params);
                 contactTile.setPhotoManager(mPhotoManager);
@@ -529,8 +529,8 @@ public class ContactTileAdapter extends BaseAdapter {
                     // Set padding between tiles. Divide mPaddingInPixels between left and right
                     // tiles as evenly as possible.
                     contactTile.setPaddingRelative(
-                            childIndex == 0 ? mPaddingStartEnd : (mPaddingInPixels + 1) / 2, 0,
-                            childIndex >= mColumnCount - 1 ? mPaddingStartEnd : mPaddingInPixels
+                            (mPaddingInPixels + 1) / 2, 0,
+                            mPaddingInPixels
                             / 2, 0);
                     break;
                 case ViewTypes.FREQUENT:
@@ -557,8 +557,10 @@ public class ContactTileAdapter extends BaseAdapter {
         private void onLayoutForTiles() {
             final int count = getChildCount();
 
+            // Amount of margin needed on the left is based on difference between offset and padding
+            int childLeft = mWhitespaceStartEnd - (mPaddingInPixels + 1) / 2;
+
             // Just line up children horizontally.
-            int childLeft = 0;
             for (int i = 0; i < count; i++) {
                 final View child = getChildAt(i);
 
@@ -592,7 +594,7 @@ public class ContactTileAdapter extends BaseAdapter {
             }
 
             // 1. Calculate image size.
-            //      = ([total width] - [total padding]) / [child count]
+            //      = ([total width] - [total whitespace]) / [child count]
             //
             // 2. Set it to width/height of each children.
             //    If we have a remainder, some tiles will have 1 pixel larger width than its height.
@@ -601,13 +603,13 @@ public class ContactTileAdapter extends BaseAdapter {
             //    Let width = given width.
             //    Let height = wrap content.
 
-            final int totalPaddingsInPixels = (mColumnCount - 1) * mPaddingInPixels
-                    + mPaddingStartEnd * 2;
+            final int totalWhitespaceInPixels = (mColumnCount - 1) * mPaddingInPixels
+                    + mWhitespaceStartEnd * 2;
 
             // Preferred width / height for images (excluding the padding).
             // The actual width may be 1 pixel larger than this if we have a remainder.
-            final int imageSize = (width - totalPaddingsInPixels) / mColumnCount;
-            final int remainder = width - (imageSize * mColumnCount) - totalPaddingsInPixels;
+            final int imageSize = (width - totalWhitespaceInPixels) / mColumnCount;
+            final int remainder = width - (imageSize * mColumnCount) - totalWhitespaceInPixels;
 
             for (int i = 0; i < childCount; i++) {
                 final View child = getChildAt(i);
