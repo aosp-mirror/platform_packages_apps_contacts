@@ -27,8 +27,9 @@
     <dimen name="search_view_width">400dip</dimen>
     <dimen name="contact_tile_list_padding_top">18dip</dimen>
     <dimen name="contact_browser_list_item_text_size">18sp</dimen>
+    <dimen name="contact_browser_list_item_padding_top_or_bottom">12dp</dimen>
     <dimen name="contact_browser_list_item_photo_size">50dp</dimen>
-    <dimen name="contact_browser_list_item_gap_between_image_and_text">15dp</dimen>
+    <dimen name="contact_browser_list_item_gap_between_image_and_text">25dp</dimen>
     <dimen name="contact_browser_list_top_margin">18dp</dimen>
     <!-- Contact list (vertical scroll bar comes left) -->
     <dimen name="list_visible_scrollbar_padding">32dip</dimen>
