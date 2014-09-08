@@ -282,4 +282,9 @@ public class CalendarInteraction implements ContactInteraction {
         // The default TalkBack is good
         return null;
     }
+
+    @Override
+    public int getIconResourceId() {
+        return CALENDAR_ICON_RES;
+    }
 }

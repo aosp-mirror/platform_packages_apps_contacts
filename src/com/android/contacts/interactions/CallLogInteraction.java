@@ -202,4 +202,9 @@ public class CallLogInteraction implements ContactInteraction {
         }
         return callType;
     }
+
+    @Override
+    public int getIconResourceId() {
+        return CALL_LOG_ICON_RES;
+    }
 }
