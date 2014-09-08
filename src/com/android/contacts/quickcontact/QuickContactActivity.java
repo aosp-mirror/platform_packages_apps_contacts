@@ -1975,6 +1975,14 @@ public class QuickContactActivity extends ContactsActivity {
         builder.createContactShortcutIntent(mContactData.getLookupUri());
     }
 
+    private boolean isShortcutCreatable() {
+        final Intent createShortcutIntent = new Intent();
+        createShortcutIntent.setAction(ACTION_INSTALL_SHORTCUT);
+        final List<ResolveInfo> receivers = getPackageManager()
+                .queryBroadcastReceivers(createShortcutIntent, 0);
+        return receivers != null && receivers.size() > 0;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         final MenuInflater inflater = getMenuInflater();
@@ -2006,6 +2014,9 @@ public class QuickContactActivity extends ContactsActivity {
 
             final MenuItem shareMenuItem = menu.findItem(R.id.menu_share);
             shareMenuItem.setVisible(isContactShareable());
+
+            final MenuItem shortcutMenuItem = menu.findItem(R.id.menu_create_contact_shortcut);
+            shortcutMenuItem.setVisible(isShortcutCreatable());
 
             return true;
         }
