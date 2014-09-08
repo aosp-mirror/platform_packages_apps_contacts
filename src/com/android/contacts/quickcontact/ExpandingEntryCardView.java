@@ -932,10 +932,17 @@ public class ExpandingEntryCardView extends CardView {
     public static final class EntryContextMenuInfo implements ContextMenuInfo {
         private final String mCopyText;
         private final String mCopyLabel;
+        private final String mMimeType;
+        private final long mId;
+        private final boolean mIsSuperPrimary;
 
-        public EntryContextMenuInfo(String copyText, String copyLabel) {
+        public EntryContextMenuInfo(String copyText, String copyLabel, String mimeType, long id,
+                boolean isSuperPrimary) {
             mCopyText = copyText;
             mCopyLabel = copyLabel;
+            mMimeType = mimeType;
+            mId = id;
+            mIsSuperPrimary = isSuperPrimary;
         }
 
         public String getCopyText() {
@@ -944,6 +951,18 @@ public class ExpandingEntryCardView extends CardView {
 
         public String getCopyLabel() {
             return mCopyLabel;
+        }
+
+        public String getMimeType() {
+            return mMimeType;
+        }
+
+        public long getId() {
+            return mId;
+        }
+
+        public boolean isSuperPrimary() {
+            return mIsSuperPrimary;
         }
     }
 

@@ -204,6 +204,8 @@ public class QuickContactActivity extends ContactsActivity {
     private int mExtraMode;
     private int mStatusBarColor;
     private boolean mHasAlreadyBeenOpened;
+    private boolean mOnlyOnePhoneNumber;
+    private boolean mOnlyOneEmail;
 
     private QuickContactImageView mPhotoView;
     private ExpandingEntryCardView mContactCard;
@@ -373,6 +375,12 @@ public class QuickContactActivity extends ContactsActivity {
         }
     };
 
+    private interface ContextMenuIds {
+        static final int COPY_TEXT = 0;
+        static final int CLEAR_DEFAULT = 1;
+        static final int SET_DEFAULT = 2;
+    }
+
     private final OnCreateContextMenuListener mEntryContextMenuListener =
             new OnCreateContextMenuListener() {
         @Override
@@ -380,9 +388,36 @@ public class QuickContactActivity extends ContactsActivity {
             if (menuInfo == null) {
                 return;
             }
-            EntryContextMenuInfo info = (EntryContextMenuInfo) menuInfo;
+            final EntryContextMenuInfo info = (EntryContextMenuInfo) menuInfo;
             menu.setHeaderTitle(info.getCopyText());
-            menu.add(R.string.copy_text);
+            menu.add(ContextMenu.NONE, ContextMenuIds.COPY_TEXT,
+                    ContextMenu.NONE, getString(R.string.copy_text));
+
+            // Don't allow setting or clearing of defaults for non-editable contacts
+            if (!isContactEditable()) {
+                return;
+            }
+
+            final String selectedMimeType = info.getMimeType();
+
+            // Defaults to true will only enable the detail to be copied to the clipboard.
+            boolean onlyOneOfMimeType = true;
+
+            // Only allow primary support for Phone and Email content types
+            if (Phone.CONTENT_ITEM_TYPE.equals(selectedMimeType)) {
+                onlyOneOfMimeType = mOnlyOnePhoneNumber;
+            } else if (Email.CONTENT_ITEM_TYPE.equals(selectedMimeType)) {
+                onlyOneOfMimeType = mOnlyOneEmail;
+            }
+
+            // Checking for previously set default
+            if (info.isSuperPrimary()) {
+                menu.add(ContextMenu.NONE, ContextMenuIds.CLEAR_DEFAULT,
+                        ContextMenu.NONE, getString(R.string.clear_default));
+            } else if (!onlyOneOfMimeType) {
+                menu.add(ContextMenu.NONE, ContextMenuIds.SET_DEFAULT,
+                        ContextMenu.NONE, getString(R.string.set_default));
+            }
         }
     };
 
@@ -396,8 +431,24 @@ public class QuickContactActivity extends ContactsActivity {
             return false;
         }
 
-        ClipboardUtils.copyText(this, menuInfo.getCopyLabel(), menuInfo.getCopyText(), true);
-        return true;
+        switch (item.getItemId()) {
+            case ContextMenuIds.COPY_TEXT:
+                ClipboardUtils.copyText(this, menuInfo.getCopyLabel(), menuInfo.getCopyText(),
+                        true);
+                return true;
+            case ContextMenuIds.SET_DEFAULT:
+                final Intent setIntent = ContactSaveService.createSetSuperPrimaryIntent(this,
+                        menuInfo.getId());
+                this.startService(setIntent);
+                return true;
+            case ContextMenuIds.CLEAR_DEFAULT:
+                final Intent clearIntent = ContactSaveService.createClearPrimaryIntent(this,
+                        menuInfo.getId());
+                this.startService(clearIntent);
+                return true;
+            default:
+                throw new IllegalArgumentException("Unknown menu option " + item.getItemId());
+        }
     }
 
     /**
@@ -827,6 +878,9 @@ public class QuickContactActivity extends ContactsActivity {
     private void startInteractionLoaders(Cp2DataCardModel cp2DataCardModel) {
         final Map<String, List<DataItem>> dataItemsMap = cp2DataCardModel.dataItemsMap;
         final List<DataItem> phoneDataItems = dataItemsMap.get(Phone.CONTENT_ITEM_TYPE);
+        if (phoneDataItems != null && phoneDataItems.size() == 1) {
+            mOnlyOnePhoneNumber = true;
+        }
         String[] phoneNumbers = null;
         if (phoneDataItems != null) {
             phoneNumbers = new String[phoneDataItems.size()];
@@ -854,6 +908,9 @@ public class QuickContactActivity extends ContactsActivity {
 
         Trace.beginSection("start calendar loader");
         final List<DataItem> emailDataItems = dataItemsMap.get(Email.CONTENT_ITEM_TYPE);
+        if (emailDataItems != null && emailDataItems.size() == 1) {
+            mOnlyOneEmail = true;
+        }
         String[] emailAddresses = null;
         if (emailDataItems != null) {
             emailAddresses = new String[emailDataItems.size()];
@@ -952,7 +1009,8 @@ public class QuickContactActivity extends ContactsActivity {
                     /* shouldApplyColor = */ false,
                     /* isEditable = */ false,
                     /* EntryContextMenuInfo = */ new EntryContextMenuInfo(phoneticName,
-                            getResources().getString(R.string.name_phonetic)),
+                            getResources().getString(R.string.name_phonetic),
+                            /* mimeType = */ null, /* id = */ -1, /* isPrimary = */ false),
                     /* thirdIcon = */ null,
                     /* thirdIntent = */ null,
                     /* thirdContentDescription = */ null,
@@ -1214,12 +1272,14 @@ public class QuickContactActivity extends ContactsActivity {
                         im.getCustomProtocol()).toString();
                 subHeader = im.getData();
             }
-            entryContextMenuInfo = new EntryContextMenuInfo(im.getData(), header);
+            entryContextMenuInfo = new EntryContextMenuInfo(im.getData(), header,
+                    dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
         } else if (dataItem instanceof OrganizationDataItem) {
             final OrganizationDataItem organization = (OrganizationDataItem) dataItem;
             header = res.getString(R.string.header_organization_entry);
             subHeader = organization.getCompany();
-            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header,
+                    dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
             text = organization.getTitle();
         } else if (dataItem instanceof NicknameDataItem) {
             final NicknameDataItem nickname = (NicknameDataItem) dataItem;
@@ -1234,18 +1294,21 @@ public class QuickContactActivity extends ContactsActivity {
             if (!duplicatesTitle) {
                 header = res.getString(R.string.header_nickname_entry);
                 subHeader = nickname.getName();
-                entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
+                entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header,
+                        dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
             }
         } else if (dataItem instanceof NoteDataItem) {
             final NoteDataItem note = (NoteDataItem) dataItem;
             header = res.getString(R.string.header_note_entry);
             subHeader = note.getNote();
-            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header,
+                    dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
         } else if (dataItem instanceof WebsiteDataItem) {
             final WebsiteDataItem website = (WebsiteDataItem) dataItem;
             header = res.getString(R.string.header_website_entry);
             subHeader = website.getUrl();
-            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header,
+                    dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
             try {
                 final WebAddress webAddress = new WebAddress(website.buildDataString(context,
                         kind));
@@ -1271,7 +1334,8 @@ public class QuickContactActivity extends ContactsActivity {
                         event.getLabel()).toString();
             }
             text = DateUtils.formatDate(context, dataString);
-            entryContextMenuInfo = new EntryContextMenuInfo(text, header);
+            entryContextMenuInfo = new EntryContextMenuInfo(text, header,
+                    dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
         } else if (dataItem instanceof RelationDataItem) {
             final RelationDataItem relation = (RelationDataItem) dataItem;
             final String dataString = relation.buildDataString(context, kind);
@@ -1282,7 +1346,8 @@ public class QuickContactActivity extends ContactsActivity {
             }
             header = res.getString(R.string.header_relation_entry);
             subHeader = relation.getName();
-            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header);
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header,
+                    dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
             if (relation.hasKindTypeColumn(kind)) {
                 text = Relation.getTypeLabel(res,
                         relation.getKindTypeColumn(kind),
@@ -1294,7 +1359,8 @@ public class QuickContactActivity extends ContactsActivity {
                 primaryContentDescription.append(res.getString(R.string.call_other)).append(" ");
                 header = phone.buildDataString(context, kind);
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        res.getString(R.string.phoneLabelsGroup));
+                        res.getString(R.string.phoneLabelsGroup), dataItem.getMimeType(),
+                        dataItem.getId(), dataItem.isSuperPrimary());
                 if (phone.hasKindTypeColumn(kind)) {
                     text = Phone.getTypeLabel(res, phone.getKindTypeColumn(kind),
                             phone.getLabel()).toString();
@@ -1330,7 +1396,8 @@ public class QuickContactActivity extends ContactsActivity {
                 intent = new Intent(Intent.ACTION_SENDTO, mailUri);
                 header = email.getAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        res.getString(R.string.emailLabelsGroup));
+                        res.getString(R.string.emailLabelsGroup), dataItem.getMimeType(),
+                        dataItem.getId(), dataItem.isSuperPrimary());
                 if (email.hasKindTypeColumn(kind)) {
                     text = Email.getTypeLabel(res, email.getKindTypeColumn(kind),
                             email.getLabel()).toString();
@@ -1348,7 +1415,8 @@ public class QuickContactActivity extends ContactsActivity {
                 intent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
                 header = postal.getFormattedAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
-                        res.getString(R.string.postalLabelsGroup));
+                        res.getString(R.string.postalLabelsGroup), dataItem.getMimeType(),
+                        dataItem.getId(), dataItem.isSuperPrimary());
                 if (postal.hasKindTypeColumn(kind)) {
                     text = StructuredPostal.getTypeLabel(res,
                             postal.getKindTypeColumn(kind), postal.getLabel()).toString();
@@ -1374,7 +1442,8 @@ public class QuickContactActivity extends ContactsActivity {
                     intent = CallUtil.getCallIntent(callUri);
                     header = address;
                     entryContextMenuInfo = new EntryContextMenuInfo(header,
-                            res.getString(R.string.phoneLabelsGroup));
+                            res.getString(R.string.phoneLabelsGroup), dataItem.getMimeType(),
+                            dataItem.getId(), dataItem.isSuperPrimary());
                     if (sip.hasKindTypeColumn(kind)) {
                         text = SipAddress.getTypeLabel(res,
                                 sip.getKindTypeColumn(kind), sip.getLabel()).toString();
@@ -1427,7 +1496,9 @@ public class QuickContactActivity extends ContactsActivity {
                         }
                         break;
                     default:
-                        entryContextMenuInfo = new EntryContextMenuInfo(header, mimetype);
+                        entryContextMenuInfo = new EntryContextMenuInfo(header, mimetype,
+                                dataItem.getMimeType(), dataItem.getId(),
+                                dataItem.isSuperPrimary());
                         icon = ResolveCache.getInstance(context).getIcon(
                                 dataItem.getMimeType(), intent);
                         // Call mutate to create a new Drawable.ConstantState for color filtering
