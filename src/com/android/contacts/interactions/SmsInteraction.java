@@ -160,4 +160,9 @@ public class SmsInteraction implements ContactInteraction {
         return context.getResources().getString(R.string.content_description_recent_sms,
                 messageDetails);
     }
+
+    @Override
+    public int getIconResourceId() {
+        return SMS_ICON_RES;
+    }
 }

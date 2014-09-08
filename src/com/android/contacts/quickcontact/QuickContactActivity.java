@@ -955,7 +955,8 @@ public class QuickContactActivity extends ContactsActivity {
                             getResources().getString(R.string.name_phonetic)),
                     /* thirdIcon = */ null,
                     /* thirdIntent = */ null,
-                    /* thirdContentDescription = */ null);
+                    /* thirdContentDescription = */ null,
+                    /* iconResourceId = */ 0);
             List<Entry> phoneticList = new ArrayList<>();
             phoneticList.add(phoneticEntry);
             // Phonetic name comes after nickname. Check to see if the first entry type is nickname
@@ -1008,7 +1009,7 @@ public class QuickContactActivity extends ContactsActivity {
                 /* alternateContentDescription = */ null, /* shouldApplyColor = */ true,
                 /* isEditable = */ false, /* EntryContextMenuInfo = */ null,
                 /* thirdIcon = */ null, /* thirdIntent = */ null,
-                /* thirdContentDescription = */ null);
+                /* thirdContentDescription = */ null, R.drawable.ic_phone_24dp);
 
         final Drawable emailIcon = getResources().getDrawable(
                 R.drawable.ic_email_24dp).mutate();
@@ -1019,7 +1020,8 @@ public class QuickContactActivity extends ContactsActivity {
                 /* alternateIntent = */ null, /* alternateContentDescription = */ null,
                 /* shouldApplyColor = */ true, /* isEditable = */ false,
                 /* EntryContextMenuInfo = */ null, /* thirdIcon = */ null,
-                /* thirdIntent = */ null, /* thirdContentDescription = */ null);
+                /* thirdIntent = */ null, /* thirdContentDescription = */ null,
+                R.drawable.ic_email_24dp);
 
         final List<List<Entry>> promptEntries = new ArrayList<>();
         promptEntries.add(new ArrayList<Entry>(1));
@@ -1184,6 +1186,7 @@ public class QuickContactActivity extends ContactsActivity {
         Drawable thirdIcon = null;
         Intent thirdIntent = null;
         String thirdContentDescription = null;
+        int iconResourceId = 0;
 
         context = context.getApplicationContext();
         final Resources res = context.getResources();
@@ -1299,6 +1302,7 @@ public class QuickContactActivity extends ContactsActivity {
                 }
                 primaryContentDescription.append(header);
                 icon = res.getDrawable(R.drawable.ic_phone_24dp);
+                iconResourceId = R.drawable.ic_phone_24dp;
                 if (PhoneCapabilityTester.isPhone(context)) {
                     intent = CallUtil.getCallIntent(phone.getNumber());
                 }
@@ -1334,6 +1338,7 @@ public class QuickContactActivity extends ContactsActivity {
                 }
                 primaryContentDescription.append(header);
                 icon = res.getDrawable(R.drawable.ic_email_24dp);
+                iconResourceId = R.drawable.ic_email_24dp;
             }
         } else if (dataItem instanceof StructuredPostalDataItem) {
             StructuredPostalDataItem postal = (StructuredPostalDataItem) dataItem;
@@ -1356,6 +1361,7 @@ public class QuickContactActivity extends ContactsActivity {
                 alternateContentDescription.append(res.getString(
                         R.string.content_description_directions)).append(" ").append(header);
                 icon = res.getDrawable(R.drawable.ic_place_24dp);
+                iconResourceId = R.drawable.ic_place_24dp;
             }
         } else if (dataItem instanceof SipAddressDataItem) {
             if (PhoneCapabilityTester.isSipPhone(context)) {
@@ -1376,6 +1382,7 @@ public class QuickContactActivity extends ContactsActivity {
                     }
                     primaryContentDescription.append(header);
                     icon = res.getDrawable(R.drawable.ic_dialer_sip_black_24dp);
+                    iconResourceId = R.drawable.ic_dialer_sip_black_24dp;
                 }
             }
         } else if (dataItem instanceof StructuredNameDataItem) {
@@ -1404,15 +1411,19 @@ public class QuickContactActivity extends ContactsActivity {
                                 intent.getDataString())) {
                             icon = res.getDrawable(
                                     R.drawable.ic_add_to_circles_black_24);
+                            iconResourceId = R.drawable.ic_add_to_circles_black_24;
                         } else {
                             icon = res.getDrawable(R.drawable.ic_google_plus_24dp);
+                            iconResourceId = R.drawable.ic_google_plus_24dp;
                         }
                         break;
                     case MIMETYPE_HANGOUTS:
                         if (INTENT_DATA_HANGOUTS_VIDEO.equals(intent.getDataString())) {
                             icon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
+                            iconResourceId = R.drawable.ic_hangout_video_24dp;
                         } else {
                             icon = res.getDrawable(R.drawable.ic_hangout_24dp);
+                            iconResourceId = R.drawable.ic_hangout_24dp;
                         }
                         break;
                     default:
@@ -1458,7 +1469,8 @@ public class QuickContactActivity extends ContactsActivity {
         return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon,
                 primaryContentDescription.toString(), intent, alternateIcon, alternateIntent,
                 alternateContentDescription.toString(), shouldApplyColor, isEditable,
-                entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription);
+                entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription,
+                iconResourceId);
     }
 
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems,
@@ -1641,7 +1653,8 @@ public class QuickContactActivity extends ContactsActivity {
                     /* EntryContextMenuInfo = */ null,
                     /* thirdIcon = */ null,
                     /* thirdIntent = */ null,
-                    /* thirdContentDescription = */ null));
+                    /* thirdContentDescription = */ null,
+                    interaction.getIconResourceId()));
         }
         return entries;
     }

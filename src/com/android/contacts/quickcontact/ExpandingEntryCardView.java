@@ -86,17 +86,19 @@ public class ExpandingEntryCardView extends CardView {
         private final Drawable mThirdIcon;
         private final Intent mThirdIntent;
         private final String mThirdContentDescription;
+        private final int mIconResourceId;
 
         public Entry(int id, Drawable icon, String header, String subHeader, String text,
                 String primaryContentDescription, Intent intent, Drawable alternateIcon,
                 Intent alternateIntent, String alternateContentDescription,
                 boolean shouldApplyColor, boolean isEditable,
                 EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
-                String thirdContentDescription) {
+                String thirdContentDescription, int iconResourceId) {
             this(id, icon, header, subHeader, null, text, null, primaryContentDescription, intent,
                     alternateIcon,
                     alternateIntent, alternateContentDescription, shouldApplyColor, isEditable,
-                    entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription);
+                    entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription,
+                    iconResourceId);
         }
 
         public Entry(int id, Drawable mainIcon, String header, String subHeader,
@@ -105,7 +107,7 @@ public class ExpandingEntryCardView extends CardView {
                 Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
                 boolean shouldApplyColor, boolean isEditable,
                 EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
-                String thirdContentDescription) {
+                String thirdContentDescription, int iconResourceId) {
             mId = id;
             mIcon = mainIcon;
             mHeader = header;
@@ -124,6 +126,7 @@ public class ExpandingEntryCardView extends CardView {
             mThirdIcon = thirdIcon;
             mThirdIntent = thirdIntent;
             mThirdContentDescription = thirdContentDescription;
+            mIconResourceId = iconResourceId;
         }
 
         Drawable getIcon() {
@@ -197,6 +200,10 @@ public class ExpandingEntryCardView extends CardView {
         String getThirdContentDescription() {
             return mThirdContentDescription;
         }
+
+        int getIconResourceId() {
+            return mIconResourceId;
+        }
     }
 
     public interface ExpandingEntryCardViewListener {
@@ -231,6 +238,7 @@ public class ExpandingEntryCardView extends CardView {
     private ViewGroup mAnimationViewGroup;
     private LinearLayout mBadgeContainer;
     private final List<ImageView> mBadges;
+    private final List<Integer> mBadgeIds;
     /**
      * List to hold the separators. This saves us from reconstructing every expand/collapse and
      * provides a smoother animation.
@@ -270,6 +278,7 @@ public class ExpandingEntryCardView extends CardView {
         mBadgeContainer = (LinearLayout) mExpandCollapseButton.findViewById(R.id.badge_container);
 
         mBadges = new ArrayList<ImageView>();
+        mBadgeIds = new ArrayList<Integer>();
     }
 
     /**
@@ -719,11 +728,17 @@ public class ExpandingEntryCardView extends CardView {
     private void updateBadges() {
         if (mIsExpanded) {
             mBadgeContainer.removeAllViews();
+            mBadgeIds.clear();
         } else {
             // Inflate badges if not yet created
             if (mBadges.size() < mEntries.size() - mCollapsedEntriesCount) {
                 for (int i = mCollapsedEntriesCount; i < mEntries.size(); i++) {
                     Drawable badgeDrawable = mEntries.get(i).get(0).getIcon();
+                    int badgeResourceId = mEntries.get(i).get(0).getIconResourceId();
+                    // Do not add the same badge twice
+                    if (badgeResourceId != 0 && mBadgeIds.contains(badgeResourceId)) {
+                        continue;
+                    }
                     if (badgeDrawable != null) {
                         ImageView badgeView = new ImageView(getContext());
                         LinearLayout.LayoutParams badgeViewParams = new LinearLayout.LayoutParams(
@@ -736,6 +751,7 @@ public class ExpandingEntryCardView extends CardView {
                         badgeView.setLayoutParams(badgeViewParams);
                         badgeView.setImageDrawable(badgeDrawable);
                         mBadges.add(badgeView);
+                        mBadgeIds.add(badgeResourceId);
                     }
                 }
             }
