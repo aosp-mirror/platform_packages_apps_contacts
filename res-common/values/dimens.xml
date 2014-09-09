@@ -30,8 +30,8 @@
 
     <!--  Horizontal padding in between contact tiles -->
     <dimen name="contact_tile_divider_padding">23dip</dimen>
-    <!--  Horizontal padding before the first tile and after the last tile -->
-    <dimen name="contact_tile_start_end_padding">16dip</dimen>
+    <!--  Horizontal whitespace (both padding and margin) before the first tile and after the last tile -->
+    <dimen name="contact_tile_start_end_whitespace">16dip</dimen>
 
     <!-- Left and right padding for a contact detail item -->
     <dimen name="detail_item_side_margin">16dip</dimen>
