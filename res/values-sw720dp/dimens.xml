@@ -28,4 +28,7 @@
     <dimen name="quickcontact_maximum_title_size">64dp</dimen>
     <!-- Right margin of the floating action button -->
     <dimen name="floating_action_button_margin_right">100dp</dimen>
+
+    <dimen name="expanding_entry_card_marginStartEnd">10dp</dimen>
+
 </resources>
