@@ -29,9 +29,7 @@
 
     <!-- Shown only when an Account filter is set.
          - paddingTop should be here to show "shade" effect correctly. -->
-    <include
-        android:id="@+id/account_filter_header_container"
-        layout="@layout/account_filter_header" />
+    <include layout="@layout/account_filter_header" />
 
     <FrameLayout
         android:layout_width="match_parent"
