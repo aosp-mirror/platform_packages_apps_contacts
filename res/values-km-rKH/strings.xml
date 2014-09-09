@@ -16,7 +16,10 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"ទំនាក់ទំនង"</string>
+    <!-- no translation found for applicationLabel (3906689777043645443) -->
+    <skip />
+    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
+    <skip />
     <string name="contactsList" msgid="8661624236494819731">"ទំនាក់ទំនង"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ទំនាក់ទំនង"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ហៅ​ដោយ​ផ្ទាល់"</string>
@@ -251,7 +254,7 @@
     <string name="content_description_recent_sms" msgid="6268563442222149676">"សារ sms ថ្មី <xliff:g id="MESSAGE_DETAILS">%s</xliff:g> ។ ចុច​ដើម្បី​ឆ្លើយតប"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ចូល"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"ចេញ"</string>
-    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ខកខាន​ទទួល​"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ខកខាន​ទទួល"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"ការ​ហៅ​ថ្មី។ <xliff:g id="CALL_DETAILS">%s</xliff:g> ។ ចុច​ដើម្បី​ហៅ​ទៅ​វិញ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"អ្នក៖ <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
