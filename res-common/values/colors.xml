@@ -148,6 +148,6 @@
     <color name="search_shortcut_icon_color">#f8f8f8</color>
 
     <!-- Color of the background of the contact detail and editor pages -->
-    <color name="background_primary">#ececec</color>
+    <color name="background_primary">#e3e3e3</color>
     <color name="contact_all_list_background_color">#FFFFFF</color>
 </resources>
