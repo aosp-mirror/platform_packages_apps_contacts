@@ -132,8 +132,7 @@
 
 
     <!-- Margins for ExpandingEntryCardView -->
-    <dimen name="expanding_entry_card_marginStart">8dp</dimen>
-    <dimen name="expanding_entry_card_marginEnd">8dp</dimen>
+    <dimen name="expanding_entry_card_marginStartEnd">8dp</dimen>
     <dimen name="expanding_entry_card_marginBottom">12dp</dimen>
     <!-- Width of the grey border surrounding the expanding entry cards. If we ever add
          a rounded corner to the expanding entry cards, than we will need to increase this value -->
