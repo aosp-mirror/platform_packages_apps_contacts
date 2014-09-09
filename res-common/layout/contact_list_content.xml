@@ -47,6 +47,8 @@
             android:layout_marginRight="?attr/contact_browser_list_padding_right"
             android:layout_marginStart="?attr/contact_browser_list_padding_left"
             android:layout_marginEnd="?attr/contact_browser_list_padding_right"
+            android:paddingTop="?attr/list_item_padding_top"
+            android:clipToPadding="false"
             android:fastScrollEnabled="true"
             android:fadingEdge="none" />
         <ProgressBar
