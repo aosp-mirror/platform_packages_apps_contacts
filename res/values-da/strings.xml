@@ -16,7 +16,10 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Kontaktpersoner"</string>
+    <!-- no translation found for applicationLabel (3906689777043645443) -->
+    <skip />
+    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
+    <skip />
     <string name="contactsList" msgid="8661624236494819731">"Kontakter"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direkte opkald"</string>
