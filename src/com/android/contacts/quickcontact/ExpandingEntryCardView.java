@@ -774,6 +774,8 @@ public class ExpandingEntryCardView extends CardView {
         transitionSet.addTransition(boundsTransition);
         transitionSet.addTransition(fadeIn);
 
+        transitionSet.excludeTarget(R.id.text, /* exclude = */ true);
+
         final ViewGroup transitionViewContainer = mAnimationViewGroup == null ?
                 this : mAnimationViewGroup;
 
