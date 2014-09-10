@@ -27,6 +27,8 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="0dip"
+        android:paddingTop="@dimen/contact_browser_list_item_padding_top_or_bottom"
+        android:clipToPadding="false"
         android:fastScrollEnabled="true"
         android:layout_weight="1"
     />
