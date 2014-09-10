@@ -19,10 +19,10 @@ package com.android.contacts.common;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.telecomm.PhoneAccount;
-import android.telecomm.PhoneAccountHandle;
-import android.telecomm.TelecommManager;
-import android.telecomm.VideoProfile;
+import android.telecom.PhoneAccount;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
+import android.telecom.VideoProfile;
 
 import com.android.contacts.common.util.PhoneNumberHelper;
 import com.android.phone.common.PhoneConstants;
@@ -98,7 +98,7 @@ public class CallUtil {
     }
 
     /**
-     * A variant of {@link #getCallIntent(String, String, android.telecomm.PhoneAccountHandle)} for
+     * A variant of {@link #getCallIntent(String, String, android.telecom.PhoneAccountHandle)} for
      * starting a video call.
      */
     public static Intent getVideoCallIntent(
@@ -108,7 +108,7 @@ public class CallUtil {
     }
 
     /**
-     * A variant of {@link #getCallIntent(String, String, android.telecomm.PhoneAccountHandle)} for
+     * A variant of {@link #getCallIntent(String, String, android.telecom.PhoneAccountHandle)} for
      * starting a video call.
      */
     public static Intent getVideoCallIntent(String number, PhoneAccountHandle accountHandle) {
@@ -123,12 +123,12 @@ public class CallUtil {
     public static Intent getCallIntent(
             Uri uri, String callOrigin, PhoneAccountHandle accountHandle, int videoState) {
         final Intent intent = new Intent(Intent.ACTION_CALL, uri);
-        intent.putExtra(TelecommManager.EXTRA_START_CALL_WITH_VIDEO_STATE, videoState);
+        intent.putExtra(TelecomManager.EXTRA_START_CALL_WITH_VIDEO_STATE, videoState);
         if (callOrigin != null) {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
         }
         if (accountHandle != null) {
-            intent.putExtra(TelecommManager.EXTRA_PHONE_ACCOUNT_HANDLE, accountHandle);
+            intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, accountHandle);
         }
 
         return intent;
@@ -146,8 +146,8 @@ public class CallUtil {
      }
 
     public static boolean isVideoEnabled(Context context) {
-        TelecommManager telecommMgr = (TelecommManager)
-                context.getSystemService(Context.TELECOMM_SERVICE);
+        TelecomManager telecommMgr = (TelecomManager)
+                context.getSystemService(Context.TELECOM_SERVICE);
         if (telecommMgr == null) {
             return false;
         }
