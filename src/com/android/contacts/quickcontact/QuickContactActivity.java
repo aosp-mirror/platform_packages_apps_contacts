@@ -357,6 +357,8 @@ public class QuickContactActivity extends ContactsActivity {
                 }
             }
 
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             mHasIntentLaunched = true;
             startActivity(intent);
         }
