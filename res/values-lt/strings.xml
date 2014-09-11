@@ -16,7 +16,10 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Kontaktai"</string>
+    <!-- no translation found for applicationLabel (3906689777043645443) -->
+    <skip />
+    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
+    <skip />
     <string name="contactsList" msgid="8661624236494819731">"Adresinė"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Adresatas"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Tiesioginis numerio rinkimas"</string>
@@ -248,15 +251,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Įvykis"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Ryšys"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"nuorodos į vietovę"</string>
-    <!-- no translation found for content_description_recent_sms (6268563442222149676) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_incoming (5210739096863511410) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_outgoing (5156553338985232744) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_missed (7371810920196048204) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call (6204048362763219585) -->
-    <skip />
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"Naujausi SMS. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. Spustelėkite, kad atsakytumėte"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"gaunamieji"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"siunčiamieji"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"praleistieji"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"Naujausias skambutis. <xliff:g id="CALL_DETAILS">%s</xliff:g>. Spustelėkite, atskambintumėte"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Jūs: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
