@@ -28,6 +28,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 
+import com.android.contacts.R;
 import com.google.common.io.Closeables;
 
 import java.io.ByteArrayOutputStream;
@@ -49,8 +50,6 @@ public class ContactPhotoUtils {
 
     private static final String PHOTO_DATE_FORMAT = "'IMG'_yyyyMMdd_HHmmss";
 
-    public static final String FILE_PROVIDER_AUTHORITY = "com.android.contacts.files";
-
     /**
      * Generate a new, unique file to be used as an out-of-band communication
      * channel, since hi-res Bitmaps are too big to serialize into a Bundle.
@@ -58,12 +57,16 @@ public class ContactPhotoUtils {
      *  cropper/etc.), and read by us once they are finished writing it.
      */
     public static Uri generateTempImageUri(Context context) {
-        return FileProvider.getUriForFile(context, FILE_PROVIDER_AUTHORITY,
+        final String  fileProviderAuthority = context.getResources().getString(
+                R.string.photo_file_provider_authority);
+        return FileProvider.getUriForFile(context, fileProviderAuthority,
                 new File(pathForTempPhoto(context, generateTempPhotoFileName())));
     }
 
     public static Uri generateTempCroppedImageUri(Context context) {
-        return FileProvider.getUriForFile(context, FILE_PROVIDER_AUTHORITY,
+        final String  fileProviderAuthority = context.getResources().getString(
+                R.string.photo_file_provider_authority);
+        return FileProvider.getUriForFile(context, fileProviderAuthority,
                 new File(pathForTempPhoto(context, generateTempCroppedPhotoFileName())));
     }
 
