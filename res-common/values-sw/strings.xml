@@ -177,7 +177,7 @@
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Hitilafu ya I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Hakuna kumbukumbu ya kutosha. Faili inaweza kuwa kubwa mno."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Haikuweza kuchanganua vCard kwa sababu isiyotarajiwa."</string>
-    <string name="fail_reason_not_supported" msgid="388664373573337601">"Muundo huu hautumiki."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Umbizo si linganifu."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Haikuweza kukusanya maelezo meta ya faili zilizotolewa za vCard."</string>
     <!-- String.format failed for translation -->
     <!-- no translation found for fail_reason_failed_to_read_files (9213844535907986665) -->
