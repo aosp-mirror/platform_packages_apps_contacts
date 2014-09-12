@@ -30,11 +30,6 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="NonPhoneDialogTheme" parent="@android:Theme.Material.Light.Dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
     <style name="ConfirmAddDetailViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
