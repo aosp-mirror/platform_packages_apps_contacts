@@ -275,7 +275,7 @@
         <activity-alias android:name="ContactShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutContact"
-            android:icon="@mipmap/ic_launcher_shortcut_contact">
+            android:icon="@drawable/logo_quick_contacts_color_44in48dp">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -287,7 +287,7 @@
         <activity-alias android:name="alias.DialShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutDialContact"
-            android:icon="@mipmap/ic_launcher_shortcut_directdial"
+            android:icon="@drawable/logo_quick_contacts_dialer_color_44in48dp"
             android:enabled="@*android:bool/config_voice_capable">
 
             <intent-filter>
@@ -301,7 +301,7 @@
         <activity-alias android:name="alias.MessageShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutMessageContact"
-            android:icon="@mipmap/ic_launcher_shortcut_directmessage"
+            android:icon="@drawable/logo_quick_contacts_mail_color_44in48dp"
             android:enabled="@*android:bool/config_voice_capable">
 
             <intent-filter>
