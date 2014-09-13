@@ -70,8 +70,8 @@ import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v7.graphics.Palette;
-import android.telecomm.PhoneAccount;
-import android.telecomm.TelecommManager;
+import android.telecom.PhoneAccount;
+import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -354,7 +354,7 @@ public class QuickContactActivity extends ContactsActivity {
                     Bundle extras = new Bundle();
                     extras.putParcelable(TouchPointManager.TOUCH_POINT,
                             TouchPointManager.getInstance().getPoint());
-                    intent.putExtra(TelecommManager.EXTRA_OUTGOING_CALL_EXTRAS, extras);
+                    intent.putExtra(TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS, extras);
                 }
             }
 
