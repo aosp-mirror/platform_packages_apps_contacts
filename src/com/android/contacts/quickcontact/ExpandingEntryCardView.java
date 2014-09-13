@@ -728,7 +728,6 @@ public class ExpandingEntryCardView extends CardView {
     private void updateBadges() {
         if (mIsExpanded) {
             mBadgeContainer.removeAllViews();
-            mBadgeIds.clear();
         } else {
             // Inflate badges if not yet created
             if (mBadges.size() < mEntries.size() - mCollapsedEntriesCount) {
@@ -828,6 +827,8 @@ public class ExpandingEntryCardView extends CardView {
         TransitionSet transitionSet = new TransitionSet();
         transitionSet.addTransition(boundsTransition);
         transitionSet.addTransition(scrollTransition);
+
+        transitionSet.excludeTarget(R.id.text, /* exclude = */ true);
 
         final ViewGroup transitionViewContainer = mAnimationViewGroup == null ?
                 this : mAnimationViewGroup;
