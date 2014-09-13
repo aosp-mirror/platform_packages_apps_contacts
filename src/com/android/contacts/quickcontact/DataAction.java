@@ -26,7 +26,7 @@ import android.net.Uri;
 import android.net.WebAddress;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.Data;
-import android.telecomm.PhoneAccount;
+import android.telecom.PhoneAccount;
 import android.text.TextUtils;
 import android.util.Log;
 
