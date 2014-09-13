@@ -27,7 +27,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.Insert;
-import android.telecomm.PhoneAccount;
+import android.telecom.PhoneAccount;
 import android.text.TextUtils;
 
 /**
