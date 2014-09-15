@@ -124,6 +124,12 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     @Override
+    protected void bindView(View itemView, int partition, Cursor cursor, int position) {
+        final ContactListItemView view = (ContactListItemView) itemView;
+        view.setIsSectionHeaderEnabled(isSectionHeaderDisplayEnabled());
+    }
+
+    @Override
     protected View createPinnedSectionHeaderView(Context context, ViewGroup parent) {
         return new ContactListPinnedHeaderView(context, null, parent);
     }

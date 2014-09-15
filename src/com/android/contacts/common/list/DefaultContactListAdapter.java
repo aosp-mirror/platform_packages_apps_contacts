@@ -176,6 +176,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
+        super.bindView(itemView, partition, cursor, position);
         final ContactListItemView view = (ContactListItemView)itemView;
 
         view.setHighlightedPrefix(isSearchMode() ? getUpperCaseQueryString() : null);
