@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Kontakty"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontakty"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakty"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Telefon do osoby"</string>
@@ -109,7 +107,7 @@
     <item quantity="one" msgid="4826918429708286628">"Znaleziono: 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Znaleziono: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Wszys. kontakty"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Wszystkie"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Ulubione"</string>
     <string name="callBack" msgid="5498224409038809224">"Oddzwoń"</string>
     <string name="callAgain" msgid="3197312117049874778">"Zadzwoń ponownie"</string>
@@ -220,7 +218,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodaj konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kopia zapasowa nowego kontaktu nie zostanie utworzona. Dodać konto, na którym kopie zapasowe kontaktów będą tworzone online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nowy kontakt zostanie zsynchronizowany z kontem <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nowy kontakt możesz zsynchronizować z dowolnym kontem. Którego chcesz użyć?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nowy kontakt możesz zsynchronizować z dowolnym kontem. Którego konta chcesz użyć?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj nowy kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edytuj kontakt"</string>
     <string name="keep_local" msgid="1258761699192993322">"Przechowuj lokalnie"</string>

@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Danh bạ"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Danh bạ"</string>
     <string name="contactsList" msgid="8661624236494819731">"Danh bạ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Liên hệ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Quay số trực tiếp"</string>
@@ -55,7 +53,7 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Xóa"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Thêm địa chỉ liên hệ"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Thêm nhóm"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Tách đ.chỉ liên hệ?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Tách địa chỉ liên hệ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Địa chỉ liên hệ này sẽ được tách thành nhiều địa chỉ liên hệ."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Kết hợp"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kết hợp danh bạ"</string>
