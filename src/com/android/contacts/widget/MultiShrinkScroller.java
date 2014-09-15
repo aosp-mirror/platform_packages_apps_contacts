@@ -275,7 +275,21 @@ public class MultiShrinkScroller extends FrameLayout {
         mLargeTextView = (TextView) findViewById(R.id.large_title);
         mInvisiblePlaceholderTextView = (TextView) findViewById(R.id.placeholder_textview);
         mStartColumn = findViewById(R.id.empty_start_column);
-
+        // Touching the empty space should close the card
+        if (mStartColumn != null) {
+            mStartColumn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scrollOffBottom();
+                }
+            });
+            findViewById(R.id.empty_end_column).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scrollOffBottom();
+                }
+            });
+        }
         mListener = listener;
         mIsOpenContactSquare = isOpenContactSquare;
 

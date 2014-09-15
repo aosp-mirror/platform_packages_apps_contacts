@@ -30,7 +30,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
-import android.telecomm.PhoneAccount;
+import android.telecom.PhoneAccount;
 import android.util.Log;
 
 import com.android.contacts.common.ContactsUtils;
