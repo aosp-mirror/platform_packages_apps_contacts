@@ -111,7 +111,7 @@
     <string name="postal_address" msgid="7692926530081579786">"Anwani"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Kampuni"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Kichwa"</string>
-    <string name="label_notes" msgid="3997277594846722699">"Daftari"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Madokezo"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Tovuti"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Vikundi"</string>
@@ -227,7 +227,7 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Panga kulingana na"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Jina la kwanza"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Jina la mwisho"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Muundo wa jina"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Mpangilio wa majina"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Jina la kwanza liwe mwanzo"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Jina la mwisho kwanza"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Shiriki anwani zinazoonekana"</string>
