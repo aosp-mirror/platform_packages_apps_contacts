@@ -125,6 +125,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_STATUS = "status";
     private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
     private static final String KEY_IS_USER_PROFILE = "isUserProfile";
+    private static final String KEY_DISABLE_DELETE_MENU_OPTION = "disableDeleteMenuOption";
     private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
     private static final String KEY_IS_EDIT = "isEdit";
     private static final String KEY_HAS_NEW_CONTACT = "hasNewContact";
@@ -145,6 +146,9 @@ public class ContactEditorFragment extends Fragment implements
     public static final String INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY = "addToDefaultDirectory";
 
     public static final String INTENT_EXTRA_NEW_LOCAL_PROFILE = "newLocalProfile";
+
+    public static final String INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION =
+            "disableDeleteMenuOption";
 
     /**
      * Modes that specify what the AsyncTask has to perform after saving
@@ -339,6 +343,7 @@ public class ContactEditorFragment extends Fragment implements
     private boolean mRequestFocus;
     private boolean mNewLocalProfile = false;
     private boolean mIsUserProfile = false;
+    private boolean mDisableDeleteMenuOption = false;
 
     public ContactEditorFragment() {
     }
@@ -471,6 +476,8 @@ public class ContactEditorFragment extends Fragment implements
                 && mIntentExtras.containsKey(INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY);
         mNewLocalProfile = mIntentExtras != null
                 && mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
+        mDisableDeleteMenuOption = mIntentExtras != null
+                && mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
     }
 
     public void setListener(Listener value) {
@@ -504,6 +511,7 @@ public class ContactEditorFragment extends Fragment implements
             mEnabled = savedState.getBoolean(KEY_ENABLED);
             mStatus = savedState.getInt(KEY_STATUS);
             mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
+            mDisableDeleteMenuOption = savedState.getBoolean(KEY_DISABLE_DELETE_MENU_OPTION);
             mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
             mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
             mIsEdit = savedState.getBoolean(KEY_IS_EDIT);
@@ -1072,6 +1080,7 @@ public class ContactEditorFragment extends Fragment implements
             splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile());
             // Cannot join a user profile
             joinMenu.setVisible(!isEditingUserProfile());
+            deleteMenu.setVisible(!mDisableDeleteMenuOption);
         } else {
             // something else, so don't show the help menu
             helpMenu.setVisible(false);
@@ -1767,6 +1776,7 @@ public class ContactEditorFragment extends Fragment implements
         outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
         outState.putBoolean(KEY_ENABLED, mEnabled);
         outState.putBoolean(KEY_NEW_LOCAL_PROFILE, mNewLocalProfile);
+        outState.putBoolean(KEY_DISABLE_DELETE_MENU_OPTION, mDisableDeleteMenuOption);
         outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
         outState.putInt(KEY_STATUS, mStatus);
         outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
