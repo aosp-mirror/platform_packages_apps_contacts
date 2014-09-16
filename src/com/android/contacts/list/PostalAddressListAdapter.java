@@ -123,6 +123,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
+        super.bindView(itemView, partition, cursor, position);
         ContactListItemView view = (ContactListItemView)itemView;
         bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
