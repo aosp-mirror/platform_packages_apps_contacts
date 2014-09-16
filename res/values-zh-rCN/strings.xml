@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"通讯录"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"通讯录"</string>
     <string name="contactsList" msgid="8661624236494819731">"联系人"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接拨打电话"</string>
@@ -88,8 +86,8 @@
     <string name="noContacts" msgid="8579310973261953559">"没有联系人。"</string>
     <string name="noGroups" msgid="8614664663561385253">"没有任何群组。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"您需要拥有一个帐户才能创建群组。"</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"此组中没有联系人。"</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"要添加联系人，请修改该组。"</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"此群组中没有联系人。"</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"要添加联系人，请修改该群组。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在保存联系人…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"此联系人已保存。"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"无法保存联系人更改。"</string>
@@ -190,8 +188,8 @@
     <string name="create_group_dialog_title" msgid="6874527142828424475">"创建新群组"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"创建新群组"</string>
   <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 个群组"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> 个群组"</item>
+    <item quantity="one" msgid="2944819210288517794">"1个群组"</item>
+    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g>个群组"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"要删除群组“<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”（并不会删除联系人本身）吗？"</string>
   <plurals name="num_contacts_in_group">
