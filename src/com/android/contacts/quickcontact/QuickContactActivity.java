@@ -125,6 +125,7 @@ import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
+import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -141,7 +142,6 @@ import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
-
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -771,6 +771,10 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     private void processIntent(Intent intent) {
+        if (intent == null) {
+            finish();
+            return;
+        }
         Uri lookupUri = intent.getData();
 
         // Check to see whether it comes from the old version.
@@ -2161,6 +2165,11 @@ public class QuickContactActivity extends ContactsActivity {
                         intent.putExtra(Intents.Insert.DATA_SET,
                                 mContactData.getRawContacts().get(0).getDataSet());
                     }
+
+                    // Add this flag to disable the delete menu option on directory contact joins
+                    // with local contacts. The delete option is ambiguous when joining contacts.
+                    intent.putExtra(ContactEditorFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
+                            true);
 
                     startActivityForResult(intent, REQUEST_CODE_CONTACT_SELECTION_ACTIVITY);
                 } else if (InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
