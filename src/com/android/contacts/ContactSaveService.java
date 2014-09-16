@@ -53,7 +53,6 @@ import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.util.CallerInfoCacheUtils;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import com.google.common.collect.Lists;
@@ -188,10 +187,8 @@ public class ContactSaveService extends IntentService {
         String action = intent.getAction();
         if (ACTION_NEW_RAW_CONTACT.equals(action)) {
             createRawContact(intent);
-            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_SAVE_CONTACT.equals(action)) {
             saveContact(intent);
-            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_CREATE_GROUP.equals(action)) {
             createGroup(intent);
         } else if (ACTION_RENAME_GROUP.equals(action)) {
@@ -208,16 +205,12 @@ public class ContactSaveService extends IntentService {
             clearPrimary(intent);
         } else if (ACTION_DELETE_CONTACT.equals(action)) {
             deleteContact(intent);
-            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_JOIN_CONTACTS.equals(action)) {
             joinContacts(intent);
-            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_SET_SEND_TO_VOICEMAIL.equals(action)) {
             setSendToVoicemail(intent);
-            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         } else if (ACTION_SET_RINGTONE.equals(action)) {
             setRingtone(intent);
-            CallerInfoCacheUtils.sendUpdateCallerInfoCacheIntent(this);
         }
     }
 
