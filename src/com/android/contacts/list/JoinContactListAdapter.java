@@ -182,6 +182,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
+        super.bindView(itemView, partition, cursor, position);
         switch (partition) {
             case PARTITION_SUGGESTIONS: {
                 final ContactListItemView view = (ContactListItemView) itemView;
