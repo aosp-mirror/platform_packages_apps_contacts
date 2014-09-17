@@ -722,4 +722,7 @@
     <!-- Prefix for messages that you sent [CHAR LIMIT=40] -->
     <string name="message_from_you_prefix">You: <xliff:g id="sms_body">%s</xliff:g></string>
 
+     <!-- File Authority for the photo picker -->
+    <string name="photo_file_provider_authority">com.android.contacts.files</string>
+
 </resources>
