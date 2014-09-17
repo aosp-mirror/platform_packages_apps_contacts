@@ -165,7 +165,7 @@
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"သိုလှောင်ရာနေရာမှ အထဲသို့သွင့်ရန်"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> ကို အထဲသို့သွင်းခြင်းအား ရပ်တန့်မလား?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> ကိုအပြင်သို့ထုတ်ခြင်းအား ရပ်တန့်မလား?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"လိပ်စာကဒ် အသွင်း၊အထုတ်ကို ရပ်တန့်လို့မရပါ"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"လိပ်စာကဒ် အသွင်း၊အထုတ်ကို ရပ်၍မရပါ"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"အမည်မသိသော မှားယွင်းမှု"</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ကို ဖွင့်မရပါ: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"အပြင်ထုတ်သောစနစ်အား စတင်လို့မရပါ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
@@ -229,7 +229,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ပထမ အမည် ဦးစွာ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"နောက်ဆုံး အမည် ဦးစွာ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"မြင်နိုင်သော အဆက်အသွယ်များအား မျှဝေပါ"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များအား အသွင်း၊အထုတ် လုပ်ခြင်း"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များ သွင်းယူ၊ ထုတ်ယူရန်"</string>
     <string name="dialog_import" msgid="5177004290082451296">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
     <string name="share_error" msgid="665756457151793108">"ဒီလိပ်စာအား မျှဝေလို့ မရပါ"</string>
     <string name="menu_search" msgid="7464453023659824700">"ရှာဖွေခြင်း"</string>
@@ -245,7 +245,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"မကြာခဏအရာများအား ဖယ်ရှားရန်"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM ကဒ်ကို ရွေးရန်"</string>
     <string name="menu_accounts" msgid="795417468541517082">"အကောင့်များ"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"အသွင်း၊အထုတ် လုပ်ခြင်း"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"သွင်းယူ၊ ထုတ်ယူခြင်း"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> မှတဆင့်"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> မှတဆင့် <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ရှာဖွေမှုကို ရပ်ရန်"</string>
