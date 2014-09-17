@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Kontaktuak"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontaktuak"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontaktuak"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontaktua"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Markatze zuzena"</string>
@@ -134,7 +132,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Gehitu konexioa"</string>
     <string name="recent" msgid="2659189233141493004">"Azkenak"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Azken berritasunak"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> iturburuko kontaktua"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontaktua"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Erabili argazki hau"</string>

@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Contactos"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Contactos"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Marcação directa"</string>
@@ -47,7 +45,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Adicionado aos favoritos"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Eliminar"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Colocar no Ecrã principal"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Colocar no ecrã principal"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ligar para contacto"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar SMS/MMS para contacto"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
@@ -65,7 +63,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contactos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contactos associados"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Definir toque"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Todas chm. para corr. de voz"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Todas as cham. p/ correio voz"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Não pode eliminar contactos de contas só de leitura, mas pode ocultá-los nas suas listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contém informações de várias contas. As informações de contas só de leitura serão ocultadas nas suas listas de contactos, mas não eliminadas."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"A eliminação deste contacto eliminará informações de várias contas."</string>
@@ -109,7 +107,7 @@
     <item quantity="one" msgid="4826918429708286628">"1 encontrado"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> encontrado(s)"</item>
   </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Todos os cont."</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Todos"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoritos"</string>
     <string name="callBack" msgid="5498224409038809224">"Chamada de retorno"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ligar novamente"</string>
@@ -181,7 +179,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Adicionar ao contacto"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Fechar"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"Indique um ano"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Escolha um ano"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Contacto"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"A carregar…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Criar novo contacto"</string>
@@ -221,7 +219,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Adicionar uma conta que efetua a cópia de segurança dos contactos on-line?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"O novo contacto será sincronizado com <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pode sincronizar o novo contacto com uma das seguintes contas. Qual a conta que deseja utilizar?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adic. novo contacto"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adicionar novo contacto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
     <string name="keep_local" msgid="1258761699192993322">"Manter localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Adicionar conta"</string>
