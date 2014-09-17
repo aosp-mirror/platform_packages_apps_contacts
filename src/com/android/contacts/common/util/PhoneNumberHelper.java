@@ -37,48 +37,6 @@ public class PhoneNumberHelper {
     private static final String LOG_TAG = PhoneNumberHelper.class.getSimpleName();
 
     /**
-     * Returns whether a number is an emergency number given the location.
-     * @param number Phone number
-     * @param context Application context
-     * @return True if the number is an emergency number in the location. False otherwise
-     *
-     * Differences introduced due to unbundling:
-     *
-     * ecclist property is set by the Android Radio Interface Library to contain a list of valid
-     * Emergency call codes (See {@link PhoneNumberUtils.isEmergencyNumber(String)}).
-     * Before if the ecclist property is not empty but does not contain the
-     * number, the number will be immediately considered as not an emergency number. However, after
-     * unbundling and formatting like this, if the number is not listed in the *non-empty* ecclist
-     * property, we still check it with libphonenumber to see whether they think this is an
-     * emergency number.
-     *
-     * TODO: Remove if PhoneNumberUtils.isLocalEmergencyNumber(String number, Context context)
-     * is made public.
-     */
-    public static boolean isLocalEmergencyNumber(String number, Context context) {
-        if (number == null) {
-            return false;
-        }
-
-        final Locale locale = context.getResources().getConfiguration().locale;
-        String countryIso = TelephonyManagerUtils.getCurrentCountryIso(context, locale);
-
-        if (PhoneNumberUtils.isEmergencyNumber(number)) {
-            // If the number is listed in system properties, return true
-            return true;
-        }
-
-        // No ecclist system property, or the ecclist system property does not contain the
-        // number, so use our own list.
-        if (countryIso == null) {
-            return ("112".equals(number) || "911".equals(number));
-        } else {
-            ShortNumberInfo util = ShortNumberInfo.getInstance();
-            return util.isEmergencyNumber(number, countryIso);
-        }
-    }
-
-    /**
      * Determines if the specified number is actually a URI (i.e. a SIP address) rather than a
      * regular PSTN phone number, based on whether or not the number contains an "@" character.
      *
@@ -105,7 +63,7 @@ public class PhoneNumberHelper {
      * phoneNumber doesn't have the country code.
      * @param defaultCountryIso The ISO 3166-1 two letters country code whose convention will
      * be used if the phoneNumberE164 is null or invalid, or if phoneNumber contains IDD.
-     * @return The formatted number if the given number has been formatted, otherwise, return the 
+     * @return The formatted number if the given number has been formatted, otherwise, return the
      * given number.
      *
      * TODO: Remove if PhoneNumberUtils.formatNumber(String phoneNumber, String phoneNumberE164,
