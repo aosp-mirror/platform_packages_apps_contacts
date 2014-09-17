@@ -93,9 +93,9 @@
     <string name="full_name" msgid="885420216812981202">"Meno"</string>
     <string name="name_given" msgid="4153709115654909377">"Meno"</string>
     <string name="name_family" msgid="5317387657540738981">"Priezvisko"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Prefix priezviska"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Titul pred menom"</string>
     <string name="name_middle" msgid="3951610314424632183">"Stredné meno"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Prímeno"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Titul za menom"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Meno (foneticky)"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetické meno"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Stredné meno (foneticky)"</string>
@@ -113,7 +113,7 @@
     <string name="ghostData_title" msgid="6221293237772204604">"Názov"</string>
     <string name="label_notes" msgid="3997277594846722699">"Poznámky"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webové stránky"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Web"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Skupiny"</string>
     <string name="email_home" msgid="2230967805906450693">"E-mail domov"</string>
     <string name="email_mobile" msgid="7532438378678903685">"E-mail na mobil"</string>
@@ -142,7 +142,7 @@
     <string name="chat_jabber" msgid="4525546665986350869">"Zhovárať sa pomocou služby Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"Rozhovor"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"odstrániť"</string>
-    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Rozbaliť alebo zbaliť polia mien"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Rozbaliť alebo zbaliť pole mena"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Všetky kontakty"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Označené hviezdičkou"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Prispôsobiť"</string>
@@ -240,7 +240,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Obľúbené"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Žiadne kontakty."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Žiadne kontakty nie sú viditeľné."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Žiadne obľúbené položky."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Žiadne obľúbené položky"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"V skupine <xliff:g id="NAME">%s</xliff:g> nie sú žiadne kontakty"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Vymazať často kontaktovaných"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Vybrať SIM kartu"</string>

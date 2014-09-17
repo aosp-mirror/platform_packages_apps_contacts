@@ -105,14 +105,14 @@
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresse"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"Chat"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Entreprise"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"Relations"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Type de relation"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Dates importantes"</string>
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adresse"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Entreprise"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Titre"</string>
     <string name="label_notes" msgid="3997277594846722699">"Notes"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"Adresse SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Site Web"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Groupes"</string>
     <string name="email_home" msgid="2230967805906450693">"Envoyer un e-mail au domicile"</string>
