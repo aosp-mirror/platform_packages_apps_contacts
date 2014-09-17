@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Контакти"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Контакти"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Директно бирање"</string>
@@ -81,7 +79,7 @@
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Слике нису доступне на таблету."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"На телефону нема доступних слика."</string>
-    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Фотографија контакта"</string>
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Слика контакта"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Назив прилагођене ознаке"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Шаљи позиве директно у гласовну пошту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Уклони фотографију"</string>

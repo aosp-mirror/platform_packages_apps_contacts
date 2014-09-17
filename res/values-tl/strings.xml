@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Mga Contact"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Mga Contact"</string>
     <string name="contactsList" msgid="8661624236494819731">"Mga Contact"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direktang pag-dial"</string>
@@ -109,7 +107,7 @@
     <item quantity="one" msgid="4826918429708286628">"1 ang nakita"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ang nakita"</item>
   </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Lahat contact"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Lahat ng Contact"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Mga Paborito"</string>
     <string name="callBack" msgid="5498224409038809224">"Tumawag pabalik"</string>
     <string name="callAgain" msgid="3197312117049874778">"Tawagan muli"</string>

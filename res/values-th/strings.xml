@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"รายชื่อติดต่อ"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"รายชื่อติดต่อ"</string>
     <string name="contactsList" msgid="8661624236494819731">"รายชื่อในสมุดโทรศัพท์"</string>
     <string name="shortcutContact" msgid="749243779392912958">"สมุดโทรศัพท์"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"โทรโดยตรง"</string>
@@ -39,7 +37,7 @@
     <string name="insertGroupDescription" msgid="5658512271662210139">"สร้างกลุ่ม"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"เกี่ยวกับ"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"อัปเดต"</string>
-    <string name="searchHint" msgid="8482945356247760701">"ค้นหาที่อยู่ติดต่อ"</string>
+    <string name="searchHint" msgid="8482945356247760701">"ค้นหารายชื่อติดต่อ"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"ดูสมุดโทรศัพท์"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"เพิ่มในรายการโปรด"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ลบจากรายการโปรด"</string>
@@ -144,8 +142,8 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ถ่ายภาพใหม่"</string>
     <string name="pick_photo" msgid="2129509985223564942">"เลือกรูปภาพ"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"เลือกรูปภาพใหม่"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"กำลังอัปเดตรายการที่อยู่ติดต่อตามการเปลี่ยนภาษา"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"กำลังอัปเดตรายการที่อยู่ติดต่อ"</string>
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"กำลังอัปเดตรายการรายชื่อติดต่อตามการเปลี่ยนภาษา"</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"กำลังอัปเดตรายการรายชื่อติดต่อ"</string>
     <string name="upgrade_out_of_memory" msgid="1209994418877625940">"กำลังดำเนินการอัปเกรดสมุดโทรศัพท์\n\nกระบวนการอัปเกรดจำเป็นต้องใช้พื้นที่ประมาณ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ของที่จัดเก็บข้อมูลภายใน\n\nเลือกหนึ่งในตัวเลือกต่อไปนี้:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"ถอนการติดตั้งแอปพลิเคชันบางอย่าง"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"ลองอัปเกรดซ้ำ"</string>
@@ -184,7 +182,7 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"ระบุปี"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"รายชื่อติดต่อ"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"กำลังโหลด..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"สร้างที่อยู่ติดต่อใหม่"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"สร้างรายชื่อติดต่อใหม่"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ลงชื่อเข้าใช้บัญชี"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"นำเข้าสมุดโทรศัพท์"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"สร้างกลุ่มใหม่"</string>
@@ -214,20 +212,20 @@
     <string name="group_name_hint" msgid="238359485263401293">"ชื่อกลุ่ม"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"โปรไฟล์ในอุปกรณ์ของฉัน"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"โปรไฟล์ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ของฉัน"</string>
-    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"แสดงที่อยู่ติดต่อทั้งหมด"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"คุณจะใช้งานที่อยู่ติดต่อได้ดีขึ้นโดยผ่านบัญชี Google\n\n• เข้าถึงได้จากเว็บเบราว์เซอร์ทุกชนิด\n• สำรองข้อมูลที่อยู่ติดต่อของคุณอย่างปลอดภัย"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"เก็บที่อยู่ติดต่อของคุณไว้อย่างปลอดภัยด้วยการซิงค์กับบริการออนไลน์แม้ว่าคุณจะทำโทรศัพท์หาย"</string>
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"แสดงรายชื่อติดต่อทั้งหมด"</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"คุณจะใช้งานรายชื่อติดต่อได้ดีขึ้นโดยผ่านบัญชี Google\n\n• เข้าถึงได้จากเว็บเบราว์เซอร์ทุกชนิด\n• สำรองข้อมูลรายชื่อติดต่อของคุณอย่างปลอดภัย"</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"เก็บรายชื่อติดต่อของคุณไว้อย่างปลอดภัยด้วยการซิงค์กับบริการออนไลน์แม้ว่าคุณจะทำโทรศัพท์หาย"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ผู้ติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลผู้ติดต่อออนไลน์หรือไม่"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"ผู้ติดต่อใหม่ของคุณจะซิงค์กับ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"คุณสามารถซิงค์ผู้ติดต่อใหม่กับบัญชีใด บัญชีหนึ่งต่อไปนี้ได้ คุณต้องการใช้บัญชีใด"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"เพิ่มที่อยู่ติดต่อ"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"แก้ไขที่อยู่ติดต่อ"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"เพิ่มรายชื่อติดต่อ"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"แก้ไขรายชื่อติดต่อ"</string>
     <string name="keep_local" msgid="1258761699192993322">"จัดเก็บในตัวเครื่อง"</string>
     <string name="add_account" msgid="8201790677994503186">"เพิ่มบัญชี"</string>
     <string name="add_new_account" msgid="5748627740680940264">"เพิ่มบัญชีใหม่"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ส่งออกไฟล์ฐานข้อมูล"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"เพิ่มที่อยู่ติดต่อใหม่"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"เพิ่มรายชื่อติดต่อใหม่"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ดูเพิ่มเติม"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"ดูน้อยลง"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"ดูทั้งหมด"</string>
