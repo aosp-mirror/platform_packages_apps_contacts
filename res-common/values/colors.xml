@@ -26,8 +26,7 @@
     <!-- Divider color for header separator -->
     <color name="primary_text_color">#363636</color>
 
-    <!-- Divider color for header separator -->
-    <color name="secondary_text_color">#888888</color>
+    <color name="secondary_text_color">@color/dialtacts_secondary_text_color</color>
 
     <!-- Text color for section header. -->
     <color name="section_header_text_color">#888888</color>
@@ -148,6 +147,6 @@
     <color name="search_shortcut_icon_color">#f8f8f8</color>
 
     <!-- Color of the background of the contact detail and editor pages -->
-    <color name="background_primary">#f5f5f5</color>
+    <color name="background_primary">#f9f9f9</color>
     <color name="contact_all_list_background_color">#FFFFFF</color>
 </resources>
