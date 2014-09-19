@@ -142,8 +142,6 @@ public class MultiShrinkScroller extends FrameLayout {
     // Objects used to perform color filtering on the header. These are stored as fields for
     // the sole purpose of avoiding "new" operations inside animation loops.
     private final ColorMatrix mWhitenessColorMatrix = new ColorMatrix();
-    private final  ColorMatrixColorFilter mColorFilter = new ColorMatrixColorFilter(
-            mWhitenessColorMatrix);
     private final ColorMatrix mColorMatrix = new ColorMatrix();
     private final float[] mAlphaMatrixValues = {
             0, 0, 0, 0, 0,
@@ -1116,8 +1114,7 @@ public class MultiShrinkScroller extends FrameLayout {
             mColorMatrix.postConcat(multiplyBlendMatrix(mHeaderTintColor, colorAlpha));
         }
 
-        mColorFilter.setColorMatrix(mColorMatrix);
-        mPhotoView.setColorFilter(mColorFilter);
+        mPhotoView.setColorFilter(new ColorMatrixColorFilter(mColorMatrix));
         // Tell the photo view what tint we are trying to achieve. Depending on the type of
         // drawable used, the photo view may or may not use this tint.
         mPhotoView.setTint(mHeaderTintColor);
