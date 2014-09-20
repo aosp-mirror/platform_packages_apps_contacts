@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Agendă"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Agendă"</string>
     <string name="contactsList" msgid="8661624236494819731">"Agendă"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Persoană din Agendă"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Apel direct"</string>
