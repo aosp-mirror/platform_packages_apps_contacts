@@ -103,7 +103,7 @@
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"电话"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"电子邮件"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"地址"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"即时通讯"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"聊天工具"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"公司或组织"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"关系"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"特殊日期"</string>
@@ -209,7 +209,7 @@
     <string name="vcard_import_failed" msgid="4105296876768072508">"无法导入 vCard。"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"未在存储设备中找到 vCard 文件。"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"未在SD卡上找到 vCard 文件。"</string>
-    <string name="nfc_vcard_file_name" msgid="305679412445157370">"通过 NFC 收到的联系人"</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"通过NFC收到的联系人"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"要导出联系人吗？"</string>
     <string name="select_vcard_title" msgid="1536575036597557639">"选择 vCard 文件"</string>
     <string name="import_one_vcard_string" msgid="6199149175802496361">"导入一个 vCard 文件"</string>
@@ -240,7 +240,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"收藏"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"没有联系人。"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"没有可显示的联系人。"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"没有收藏。"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"没有收藏的联系人。"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>中没有联系人"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"清除常用联系人"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"选择SIM卡"</string>
