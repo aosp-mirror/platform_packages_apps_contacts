@@ -16,18 +16,16 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Contactos"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Contactos"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Marcación directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaxe directa"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Escolle un atallo do contacto"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Seleccionar un atallo para o contacto"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolle un número ao que chamar"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Escolle un número ao que enviar unha mensaxe"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolle un contacto"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Seleccionar un contacto"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear novo contacto"</string>
     <string name="starredList" msgid="4817256136413959463">"Marcados con asterisco"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frecuentes"</string>

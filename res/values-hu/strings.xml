@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"Névjegyek"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Névjegyek"</string>
     <string name="contactsList" msgid="8661624236494819731">"Címtár"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Névjegy"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Közvetlen tárcsázás"</string>
@@ -203,7 +201,7 @@
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> személy"</item>
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Írja be az ismerős nevét, mielőtt összekapcsolná egy másik ismerősével."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Másolás a vágólapra"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Másolás vágólapra"</string>
     <string name="set_default" msgid="4417505153468300351">"Beállítás alapértelmezettként"</string>
     <string name="clear_default" msgid="7193185801596678067">"Alapértelmezés törlése"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Másolt szöveg"</string>

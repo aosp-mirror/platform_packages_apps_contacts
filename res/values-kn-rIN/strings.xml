@@ -16,10 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for applicationLabel (3906689777043645443) -->
-    <skip />
-    <!-- no translation found for launcherActivityLabel (6497230399032392417) -->
-    <skip />
+    <string name="applicationLabel" msgid="3906689777043645443">"ಸಂಪರ್ಕಗಳು"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="contactsList" msgid="8661624236494819731">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ಸಂಪರ್ಕ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ನೇರ ಡಯಲ್"</string>
@@ -156,7 +154,7 @@
     <string name="menu_select_none" msgid="7093222469852132345">"ಎಲ್ಲವನ್ನು ಆಯ್ಕೆ ರದ್ದುಮಾಡಿ"</string>
     <string name="add_field" msgid="2384260056674995230">"ಮತ್ತೊಂದು ಕ್ಷೇತ್ರವನ್ನು ಸೇರಿಸಿ"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"ಹೊಸದನ್ನು ಸೇರಿಸಿ"</string>
-    <string name="add_organization" msgid="7311893231158291197">"ಸಂಘಟನೆಯನ್ನು ಸೇರಿಸಿ"</string>
+    <string name="add_organization" msgid="7311893231158291197">"ಸಂಸ್ಥೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"ದಿನಾಂಕ"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"ಗುಂಪು ಹೆಸರು"</string>
     <string name="description_star" msgid="2605854427360036550">"ಮೆಚ್ಚಿನ"</string>
@@ -184,7 +182,7 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"ವರ್ಷವನ್ನು ಒದಗಿಸಿ"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"ಸಂಪರ್ಕ"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ಹೊಸದೊಂದು ಸಂಪರ್ಕವನ್ನು ರಚಿಸು"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ಹೊಸ ಸಂಪರ್ಕ ರಚಿಸಿ"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ಖಾತೆಗೆ ಸೈನ್‌ ಇನ್‌ ಮಾಡಿ"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"ಹೊಸ ಗುಂಪು ರಚಿಸಿ"</string>
