@@ -160,8 +160,8 @@
     <string name="listCustomView" msgid="1915154113477432033">"কাস্টম দৃশ্যে পরিচিতিগুলি"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"একক পরিচিতি"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"অ্যাকাউন্টের অধীনে পরিচিতি তৈরি করুন"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"SIM কার্ড থেকে আমদানি করুন"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"SIM কার্ড #<xliff:g id="SIM_NUMBER">%d</xliff:g> থেকে আমদানি করুন"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"সিম কার্ড থেকে আমদানি করুন"</string>
+    <string name="import_from_sim_number" msgid="1232500923375370101">"সিম কার্ড #<xliff:g id="SIM_NUMBER">%d</xliff:g> থেকে আমদানি করুন"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"সংগ্রহস্থল থেকে আমদানি করুন"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> এর আমদানি বাতিল করবেন?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> এর রপ্তানি বাতিল করবেন?"</string>
@@ -243,7 +243,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"কোনো পছন্দসই নেই৷"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> এ কোনো পরিচিতি নেই"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"পুনরাবৃত্তি সাফ করুন"</string>
-    <string name="menu_select_sim" msgid="7814841439832447299">"SIM কার্ড নির্বাচন করুন"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"সিম কার্ড নির্বাচন করুন"</string>
     <string name="menu_accounts" msgid="795417468541517082">"অ্যাকাউন্টগুলি"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"আমদানি/রপ্তানি"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> এর মাধ্যমে"</string>

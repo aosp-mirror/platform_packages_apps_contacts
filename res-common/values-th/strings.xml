@@ -96,7 +96,7 @@
     <string name="name_prefix" msgid="8219879405071462309">"คำนำหน้าชื่อ"</string>
     <string name="name_middle" msgid="3951610314424632183">"ชื่อกลาง"</string>
     <string name="name_suffix" msgid="5436984808550075931">"คำต่อท้ายชื่อ"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"ชื่อแบบออกเสียง"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"คำอ่านชื่อ"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"การออกเสียงชื่อ"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ชื่อกลางแบบออกเสียง"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"การออกเสียงนามสกุล"</string>
@@ -106,7 +106,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"องค์กร"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"ความเกี่ยวข้อง"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"วันที่พิเศษ"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"วันพิเศษ"</string>
     <string name="sms" msgid="8086289395154598654">"ข้อความ"</string>
     <string name="postal_address" msgid="7692926530081579786">"ที่อยู่"</string>
     <string name="ghostData_company" msgid="22470841482615409">"บริษัท"</string>

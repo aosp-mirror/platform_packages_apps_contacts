@@ -101,7 +101,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ఫోనెటిక్ మధ్య పేరు"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"ఫొనెటిక్ చివరి పేరు"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ఫోన్"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"ఇమెయిల్ చేయండి"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"ఇమెయిల్"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"చిరునామా"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"సంస్థ"</string>
