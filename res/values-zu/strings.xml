@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Oxhumana nabo"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Oxhumana nabo"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Oxhumana nabo"</string>
     <string name="contactsList" msgid="8661624236494819731">"Othi tana nabo"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Othintana naye"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Ukudayela okuqondile"</string>
@@ -154,7 +155,7 @@
     <string name="add_field" msgid="2384260056674995230">"Yengeza enye inkambu"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Faka okusha"</string>
     <string name="add_organization" msgid="7311893231158291197">"Ngeza inhlangano"</string>
-    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Usuku"</string>
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Idethi"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Igama leqembu"</string>
     <string name="description_star" msgid="2605854427360036550">"intandokazi"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Hlela othintana naye"</string>
@@ -249,9 +250,10 @@
     <string name="header_relation_entry" msgid="1520292958088146460">"Ubudlelwano"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"izikhombisi-ndlela eziya endaweni"</string>
     <string name="content_description_recent_sms" msgid="6268563442222149676">"i-sms yakamuva. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. chofoza ukuze uphendule"</string>
-    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"okungenayo"</string>
-    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"okuphumayo"</string>
-    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"iphuthelwe"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"angenayo"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"aphumayo"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"akuphuthele"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"ikholi yakamuva. <xliff:g id="CALL_DETAILS">%s</xliff:g>. chofoza ukuze uphinde ushayele"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Wena: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>

@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Mga Contact"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Mga Contact"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Mga Contact"</string>
     <string name="contactsList" msgid="8661624236494819731">"Mga Contact"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direktang pag-dial"</string>
@@ -106,7 +107,7 @@
     <item quantity="one" msgid="4826918429708286628">"1 ang nakita"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ang nakita"</item>
   </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Lahat contact"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Lahat ng Contact"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Mga Paborito"</string>
     <string name="callBack" msgid="5498224409038809224">"Tumawag pabalik"</string>
     <string name="callAgain" msgid="3197312117049874778">"Tawagan muli"</string>
@@ -248,15 +249,11 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Kaganapan"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Kaugnayan"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"mga direksyon sa lokasyon"</string>
-    <!-- no translation found for content_description_recent_sms (6268563442222149676) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_incoming (5210739096863511410) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_outgoing (5156553338985232744) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_missed (7371810920196048204) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call (6204048362763219585) -->
-    <skip />
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"kamakailang sms. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. i-click upang tumugon"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"incoming"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"papalabas"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"hindi nasagot"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"kamakailang tawag. <xliff:g id="CALL_DETAILS">%s</xliff:g>. i-click upang tumawag"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ikaw: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>
