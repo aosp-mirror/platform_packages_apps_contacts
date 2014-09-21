@@ -255,4 +255,6 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"未接电话"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"近期通话。<xliff:g id="CALL_DETAILS">%s</xliff:g>。点按可回拨"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <!-- no translation found for photo_file_provider_authority (7609339524372399628) -->
+    <skip />
 </resources>
