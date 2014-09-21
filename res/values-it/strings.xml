@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Contatti"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Contatti"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Contatti"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contatti"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contatto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Composizione diretta"</string>
@@ -106,7 +107,7 @@
     <item quantity="one" msgid="4826918429708286628">"1 trovato"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> trovati"</item>
   </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tutti i cont."</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tutti"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Preferiti"</string>
     <string name="callBack" msgid="5498224409038809224">"Richiama"</string>
     <string name="callAgain" msgid="3197312117049874778">"Richiama"</string>
@@ -167,7 +168,7 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Copia nei miei contatti"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Aggiungi ai contatti personali"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directory <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Personalizzato"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Personalizza"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Impostazioni"</string>
     <string name="menu_settings" msgid="377929915873428211">"Impostazioni"</string>
     <string name="menu_help" msgid="5123887102216637725">"Guida"</string>
@@ -254,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"senza risposta"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"chiamata recente. <xliff:g id="CALL_DETAILS">%s</xliff:g>. fai clic per richiamare"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Tu: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>

@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Contacts"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Contacts"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Contacts"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contacts"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direct dial"</string>
@@ -254,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"missed"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"recent call. <xliff:g id="CALL_DETAILS">%s</xliff:g>. click to call back"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"You: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>

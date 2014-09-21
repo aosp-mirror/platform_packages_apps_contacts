@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Kontakty"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Kontakty"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontakty"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakty"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Přímé vytáčení"</string>
@@ -216,7 +217,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mějte kontakty v bezpečí, i když telefon ztratíte: synchronizujte je s některou online službou."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Přidat účet"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nový kontakt nebude zálohován. Chcete přidat účet pro zálohování kontaktů online?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nový kontakt bude synchronizován s účtem <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nový kontakt bude synchronizován s účtem <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nový kontakt můžete synchronizovat s jedním z následujících účtů. Který z nich chcete použít?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Přidat nový kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Upravit kontakt"</string>
@@ -254,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"zmeškaný"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"nedávný hovor. <xliff:g id="CALL_DETAILS">%s</xliff:g>. kliknutím zavoláte zpět"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vy: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>

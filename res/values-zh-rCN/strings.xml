@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"通讯录"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"通讯录"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"通讯录"</string>
     <string name="contactsList" msgid="8661624236494819731">"联系人"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接拨打电话"</string>
@@ -85,8 +86,8 @@
     <string name="noContacts" msgid="8579310973261953559">"没有联系人。"</string>
     <string name="noGroups" msgid="8614664663561385253">"没有任何群组。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"您需要拥有一个帐户才能创建群组。"</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"此组中没有联系人。"</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"要添加联系人，请修改该组。"</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"此群组中没有联系人。"</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"要添加联系人，请修改该群组。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在保存联系人…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"此联系人已保存。"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"无法保存联系人更改。"</string>
@@ -187,8 +188,8 @@
     <string name="create_group_dialog_title" msgid="6874527142828424475">"创建新群组"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"创建新群组"</string>
   <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 个群组"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> 个群组"</item>
+    <item quantity="one" msgid="2944819210288517794">"1个群组"</item>
+    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g>个群组"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"要删除群组“<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”（并不会删除联系人本身）吗？"</string>
   <plurals name="num_contacts_in_group">
@@ -248,15 +249,12 @@
     <string name="header_event_entry" msgid="6738250422744401460">"活动"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"关系"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"到特定地点的路线"</string>
-    <!-- no translation found for content_description_recent_sms (6268563442222149676) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_incoming (5210739096863511410) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_outgoing (5156553338985232744) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call_type_missed (7371810920196048204) -->
-    <skip />
-    <!-- no translation found for content_description_recent_call (6204048362763219585) -->
-    <skip />
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"近期短信。<xliff:g id="MESSAGE_DETAILS">%s</xliff:g>。点按可回复"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"来电"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"外拨电话"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"未接电话"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"近期通话。<xliff:g id="CALL_DETAILS">%s</xliff:g>。点按可回拨"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <!-- no translation found for photo_file_provider_authority (7609339524372399628) -->
+    <skip />
 </resources>

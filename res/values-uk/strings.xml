@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Контакти"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Контакти"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Контакти"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Прямий набір"</string>
@@ -54,14 +55,14 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Додати групу"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Розділити контакт?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Цей контакт буде розділено на декілька контактів."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Приєдн."</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Об’єднати"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Об\'єдн. контакти"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Виберіть контакт, який треба об’єднати з <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показ. всі контакти"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Пропоновані контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Усі контакти"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Контакти об\'єднано"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Установ.мелодію"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Мелодія"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Усі виклики на голосову пошту"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Неможливо видалити контакти з облікових записів \"лише для читання\", але можна сховати їх у списках контактів."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Цей контакт містить інфор-цію з декількох обл. записів. Інф-цію із записів лише для читання буде сховано у ваших списках контактів, а не видалено."</string>
@@ -79,7 +80,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"У пристрої немає доступних зображень."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"У телефоні немає доступних зображень."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Фото контакта"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Назва спец. мітки"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Назва"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Надсилати дзвінки на голос. пошту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Видалити фото"</string>
     <string name="noContacts" msgid="8579310973261953559">"Немає контакт."</string>
@@ -254,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"пропущені дзвінки"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"Останній дзвінок: <xliff:g id="CALL_DETAILS">%s</xliff:g>. Натисніть, щоб зателефонувати"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ви: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>

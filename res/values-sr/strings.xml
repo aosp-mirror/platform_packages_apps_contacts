@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Контакти"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Контакти"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Контакти"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Директно бирање"</string>
@@ -78,7 +79,7 @@
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Слике нису доступне на таблету."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"На телефону нема доступних слика."</string>
-    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Фотографија контакта"</string>
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Слика контакта"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Назив прилагођене ознаке"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Шаљи позиве директно у гласовну пошту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Уклони фотографију"</string>
@@ -254,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"пропуштени"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"Недавни позив. <xliff:g id="CALL_DETAILS">%s</xliff:g>. Кликните да бисте узвратили позив"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ви: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>

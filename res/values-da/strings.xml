@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Kontaktpersoner"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Kontaktpersoner"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontaktpersoner"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakter"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direkte opkald"</string>
@@ -28,7 +29,7 @@
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Opret ny kontaktperson"</string>
     <string name="starredList" msgid="4817256136413959463">"Stjernemarkerede"</string>
     <string name="frequentList" msgid="7154768136473953056">"Ofte"</string>
-    <string name="strequentList" msgid="5640192862059373511">"Favorit"</string>
+    <string name="strequentList" msgid="5640192862059373511">"Foretrukne"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Kontaktoplysninger"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Rediger kontakt"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Opret kontakt"</string>
@@ -38,8 +39,8 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Opdateringer"</string>
     <string name="searchHint" msgid="8482945356247760701">"Søg i kontakter"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Vis kontakt"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Føj til favoritter"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Fjern fra favoritter"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Føj til foretrukne"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Fjern fra foretrukne"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Fjernet fra foretrukne"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Føjet til foretrukne"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Rediger"</string>
@@ -61,7 +62,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Foreslåede kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Tilføjede kontakter"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Indstil ringetone"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Angiv ringetone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle opkald til telefonsvareren"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Du kan ikke slette kontaktpersoner fra skrivebeskyttede konti, men du kan skjule dem på listerne over dine kontaktpersoner."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Denne kontakt indeholder oplysninger fra flere konti. Oplysningerne fra skrivebeskyttede konti vil blive skjult i dine lister over kontakter, men ikke slettet."</string>
@@ -107,7 +108,7 @@
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> fundet"</item>
   </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle kontakter"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Favoritter"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"Foretrukne"</string>
     <string name="callBack" msgid="5498224409038809224">"Ring tilbage"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ring op igen"</string>
     <string name="returnCall" msgid="8171961914203617813">"Ring tilbage"</string>
@@ -240,7 +241,7 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Ikke-navngiven begivenhed)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Indstil"</string>
-    <string name="header_im_entry" msgid="3581720979640225615">"Chatbesked"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"Chat"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisation"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Kaldenavn"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Note"</string>
@@ -254,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ubesvarede"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"seneste opkald. <xliff:g id="CALL_DETAILS">%s</xliff:g>. klik for at ringe tilbage"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Dig: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>
