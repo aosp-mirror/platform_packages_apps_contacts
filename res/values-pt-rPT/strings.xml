@@ -255,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"não atendida"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"chamada recente. <xliff:g id="CALL_DETAILS">%s</xliff:g>. clique para ligar de volta"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"O utilizador: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>

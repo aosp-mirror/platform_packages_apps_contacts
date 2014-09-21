@@ -255,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ತಪ್ಪಿಸಿಕೊಂಡ"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"ಇತ್ತೀಚಿನ ಕರೆ. <xliff:g id="CALL_DETAILS">%s</xliff:g>. ಮರಳಿ ಕರೆ ಮಾಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ನೀವು: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>

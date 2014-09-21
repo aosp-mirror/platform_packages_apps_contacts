@@ -213,7 +213,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Wasifu wangu wa ndani."</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Wasifu wangu wa <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Inaonyesha anwani zote"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Anwani hufanya kazi vizuri pamoja na Akaunti ya Google. \n \n • Zifikie kwa kutumia kivinjari chochote. \n • Hifadhi nakala rudufu ya anwani zako kwa usalama."</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"Anwani hufanya kazi vizuri zaidi ukiwa na Akaunti ya Google. \n \n • Zifikie ukitumia kivinjari chochote. \n • Hifadhi nakala za anwani zako kwa usalama."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka anwani za unaowasiliana nao salama hata ukipoteza simu yako: sawazisha kwa huduma iliyo mtandaoni."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitakuwa na nakala rudufu. Je, ungependa kuongeza akaunti ambayo inahifadhi nakala rudufu ya anwani katika mtandao?"</string>
@@ -255,4 +255,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ulizokosa kupokea"</string>
     <string name="content_description_recent_call" msgid="6204048362763219585">"simu ya hivi majuzi. <xliff:g id="CALL_DETAILS">%s</xliff:g>. bofya ili uipigie"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Wewe: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="photo_file_provider_authority" msgid="7609339524372399628">"com.android.contacts.files"</string>
 </resources>
