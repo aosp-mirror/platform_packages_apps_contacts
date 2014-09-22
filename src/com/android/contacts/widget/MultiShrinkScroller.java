@@ -84,6 +84,11 @@ public class MultiShrinkScroller extends FrameLayout {
      */
     private static final float INTERMEDIATE_HEADER_HEIGHT_RATIO = 0.5f;
 
+    /**
+     * Maximum velocity for flings in dips per second. Picked via non-rigorous experimentation.
+     */
+    private static final float MAXIMUM_FLING_VELOCITY = 2000;
+
     private float[] mLastEventPosition = { 0, 0 };
     private VelocityTracker mVelocityTracker;
     private boolean mIsBeingDragged = false;
@@ -242,7 +247,9 @@ public class MultiShrinkScroller extends FrameLayout {
         mScroller = new Scroller(context, sInterpolator);
         mTouchSlop = configuration.getScaledTouchSlop();
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
-        mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
+        mMaximumVelocity = (int)TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, MAXIMUM_FLING_VELOCITY,
+                getResources().getDisplayMetrics());
         mTransparentStartHeight = (int) getResources().getDimension(
                 R.dimen.quickcontact_starting_empty_height);
         mToolbarElevation = getResources().getDimension(
@@ -839,6 +846,9 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     private void fling(float velocity) {
+        if (Math.abs(mMaximumVelocity) < Math.abs(velocity)) {
+            velocity = -mMaximumVelocity * Math.signum(velocity);
+        }
         // For reasons I do not understand, scrolling is less janky when maxY=Integer.MAX_VALUE
         // then when maxY is set to an actual value.
         mScroller.fling(0, getScroll(), 0, (int) velocity, 0, 0, -Integer.MAX_VALUE,
