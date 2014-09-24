@@ -191,13 +191,6 @@ public class MultiShrinkScroller extends FrameLayout {
         void onExitFullscreen();
     }
 
-    private final AnimatorListener mHeaderExpandAnimationListener = new AnimatorListenerAdapter() {
-        @Override
-        public void onAnimationEnd(Animator animation) {
-            mPhotoTouchInterceptOverlay.setClickable(true);
-        }
-    };
-
     private final AnimatorListener mSnapToBottomListener = new AnimatorListenerAdapter() {
         @Override
         public void onAnimationEnd(Animator animation) {
@@ -310,7 +303,7 @@ public class MultiShrinkScroller extends FrameLayout {
             mPhotoTouchInterceptOverlay.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    expandCollapseHeader();
+                    expandHeader();
                 }
             });
         }
@@ -494,27 +487,18 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     /**
-     * Expand to maximum size or starting size. Disable clicks on the photo until the animation is
-     * complete.
+     * Expand to maximum size.
      */
-    private void expandCollapseHeader() {
-        mPhotoTouchInterceptOverlay.setClickable(false);
+    private void expandHeader() {
         if (getHeaderHeight() != mMaximumHeaderHeight) {
-            // Expand header
             final ObjectAnimator animator = ObjectAnimator.ofInt(this, "headerHeight",
                     mMaximumHeaderHeight);
-            animator.addListener(mHeaderExpandAnimationListener);
             animator.setDuration(ExpandingEntryCardView.DURATION_EXPAND_ANIMATION_CHANGE_BOUNDS);
             animator.start();
             // Scroll nested scroll view to its top
             if (mScrollView.getScrollY() != 0) {
                 ObjectAnimator.ofInt(mScrollView, "scrollY", -mScrollView.getScrollY()).start();
             }
-        } else if (getHeaderHeight() != mMinimumHeaderHeight) {
-            final ObjectAnimator animator = ObjectAnimator.ofInt(this, "headerHeight",
-                    mIntermediateHeaderHeight);
-            animator.addListener(mHeaderExpandAnimationListener);
-            animator.start();
         }
     }
 
@@ -903,17 +887,10 @@ public class MultiShrinkScroller extends FrameLayout {
     /**
      * Returns the minimum size that we want to compress the header to, given that we don't want to
      * allow the the ScrollView to scroll unless there is new content off of the edge of ScrollView.
-     * This value is never smaller than the current header height.
      */
     private int getFullyCompressedHeaderHeight() {
-        final int minimumScrollableHeaderHeight =
-                Math.min(Math.max(mToolbar.getLayoutParams().height - getOverflowingChildViewSize(),
+        return Math.min(Math.max(mToolbar.getLayoutParams().height - getOverflowingChildViewSize(),
                 mMinimumHeaderHeight), getMaximumScrollableHeaderHeight());
-        // It is possible that the current header height is smaller than the minimum height
-        // that can be obtained by scrolling since tapping on the contact photo collapses it.
-        // In this case, just return the current height or the minimum height.
-        return Math.max(Math.min(minimumScrollableHeaderHeight, mToolbar.getLayoutParams().height),
-                mMinimumHeaderHeight);
     }
 
     /**
@@ -973,6 +950,8 @@ public class MultiShrinkScroller extends FrameLayout {
         mLargeTextView.setPivotY(mLargeTextView.getHeight() / 2);
 
         final int toolbarHeight = mToolbar.getLayoutParams().height;
+        mPhotoTouchInterceptOverlay.setClickable(toolbarHeight != mMaximumHeaderHeight);
+
         if (toolbarHeight >= mMaximumHeaderHeight) {
             // Everything is full size when the header is fully expanded.
             mLargeTextView.setScaleX(1);
