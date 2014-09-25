@@ -66,8 +66,13 @@ public class SmsInteractionsLoader extends AsyncTaskLoader<List<ContactInteracti
         // Retrieve the thread IDs
         List<String> threadIdStrings = new ArrayList<>();
         for (String phone : mPhoneNums) {
-            threadIdStrings.add(String.valueOf(
-                    Telephony.Threads.getOrCreateThreadId(getContext(), phone)));
+            try {
+                threadIdStrings.add(String.valueOf(
+                        Telephony.Threads.getOrCreateThreadId(getContext(), phone)));
+            } catch (Exception e) {
+                // Do nothing. Telephony.Threads.getOrCreateThreadId() throws exceptions when
+                // it can't find/create a threadId (b/17657656).
+            }
         }
 
         // Query the SMS database for the threads
@@ -94,6 +99,9 @@ public class SmsInteractionsLoader extends AsyncTaskLoader<List<ContactInteracti
      * Return the most recent messages between a list of threads
      */
     private Cursor getSmsCursorFromThreads(List<String> threadIds) {
+        if (threadIds.size() == 0) {
+            return null;
+        }
         String selection = Telephony.Sms.THREAD_ID + " IN "
                 + ContactInteractionUtil.questionMarks(threadIds.size());
 
