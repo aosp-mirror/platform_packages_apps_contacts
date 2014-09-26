@@ -19,9 +19,7 @@ package com.android.contacts.activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -680,10 +678,10 @@ public class PeopleActivity extends ContactsActivity implements
                 }
             } else {
                 if (object == mFavoritesFragment) {
-                    return TabState.FAVORITES;
+                    return getTabPositionForTextDirection(TabState.FAVORITES);
                 }
                 if (object == mAllFragment) {
-                    return TabState.ALL;
+                    return getTabPositionForTextDirection(TabState.ALL);
                 }
             }
             return POSITION_NONE;
@@ -694,6 +692,7 @@ public class PeopleActivity extends ContactsActivity implements
         }
 
         private Fragment getFragment(int position) {
+            position = getTabPositionForTextDirection(position);
             if (mTabPagerAdapterSearchMode) {
                 if (position != 0) {
                     // This has only been observed in monkey tests.
@@ -1269,5 +1268,15 @@ public class PeopleActivity extends ContactsActivity implements
         default:
             Log.wtf(TAG, "Unexpected onClick event from " + view);
         }
+    }
+
+    /**
+     * Returns the tab position adjusted for the text direction.
+     */
+    private int getTabPositionForTextDirection(int position) {
+        if (isRTL()) {
+            return TabState.COUNT - 1 - position;
+        }
+        return position;
     }
 }
