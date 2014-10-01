@@ -138,7 +138,7 @@
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Použiť túto fotografiu"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Nemožno upraviť pomocou tejto aplikácie."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Nie je možné upraviť v tomto zariadení."</string>
-    <string name="take_photo" msgid="7496128293167402354">"Zaznamenať fotografiu"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Odfotiť"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Urobiť novú fotografiu"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Vybrať fotku"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Vybrať novú fotku"</string>
