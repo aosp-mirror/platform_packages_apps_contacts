@@ -215,7 +215,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತಿದೆ"</string>
     <string name="no_account_prompt" msgid="6424883302325061025">"Google ಖಾತೆಯಲ್ಲಿ ಸಂಪರ್ಕಗಳ ಕಾರ್ಯ ಉತ್ತಮವಾಗಿರುತ್ತದೆ.\n\n• ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್‌ನಿಂದ ಪ್ರವೇಶಿಸಿ.\n• ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿ."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"ನಿಮ್ಮ ಫೋನ್‌ ಅನ್ನು ಕಳೆದುಕೊಂಡರೂ ಸಹ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಇರಿಸಿಕೊಳ್ಳಿ: ಆನ್‌‌ಲೈನ್‌ ಸೇವೆಯೊಂದಿಗೆ ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಿ."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ಖಾತೆಯೊಂದನ್ನು ಸೇರಿಸಿ"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ಖಾತೆಯೊಂದನ್ನು ಸೇರಿಸು"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಬ್ಯಾಕಪ್‌ ಮಾಡುವುದಿಲ್ಲ. ಸಂಪರ್ಕಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬ್ಯಾಕಪ್‌ ಇರಿಸುವ ಖಾತೆಯನ್ನು ಸೇರಿಸುವುದೇ?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ಜೊತೆಗೆ ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಸಿಂಕ್ರೊನೈಜ್ ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ಕೆಳಗಿನ ಖಾತೆಗಳೊಂದಿಗೆ ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ನೀವು ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಬಹುದು. ಯಾವುದನ್ನು ಬಳಸಲು ನೀವು ಬಯಸುತ್ತೀರಿ?"</string>
