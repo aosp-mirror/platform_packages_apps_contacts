@@ -120,7 +120,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"לא נמצאה אפליקציה שיכולה לטפל בפעולה זו."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"לחץ כדי לחזור אל המסך הקודם"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"הוסף מספר טלפון"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"הוסף דוא\"ל"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"הוסף אימייל"</string>
     <string name="missing_app" msgid="1466111003546611387">"לא נמצאה אפליקציה שיכולה לטפל בפעולה זו."</string>
     <string name="menu_share" msgid="943789700636542260">"שתף"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"הוסף לאנשי הקשר"</string>
