@@ -28,6 +28,7 @@
     android:textColor="@color/actionbar_text_color"
     android:maxLines="@integer/quickcontact_title_lines"
     android:textSize="@dimen/quickcontact_maximum_title_size"
+    android:textAlignment="viewStart"
     android:ellipsize="end"
     android:importantForAccessibility="no"
     android:id="@+id/large_title"/>
