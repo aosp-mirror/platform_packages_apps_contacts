@@ -128,6 +128,9 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
         } else {
             uri = ((ContactListAdapter)getAdapter()).getContactUri(position);
         }
+        if (uri == null) {
+            return;
+        }
         if (mEditMode) {
             editContact(uri);
         } else  if (mShortcutRequested) {

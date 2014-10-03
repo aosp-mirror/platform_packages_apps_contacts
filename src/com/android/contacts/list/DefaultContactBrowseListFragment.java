@@ -18,6 +18,7 @@ package com.android.contacts.list;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
+import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.util.Log;
@@ -86,7 +87,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     protected void onItemClick(int position, long id) {
-        viewContact(getAdapter().getContactUri(position));
+        final Uri uri = getAdapter().getContactUri(position);
+        if (uri == null) {
+            return;
+        }
+        viewContact(uri);
     }
 
     @Override
