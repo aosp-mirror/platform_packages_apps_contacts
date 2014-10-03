@@ -23,6 +23,8 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.Telephony.Sms;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
 
 /**
  * Represents an sms interaction, wrapping the columns in
@@ -32,6 +34,7 @@ public class SmsInteraction implements ContactInteraction {
 
     private static final String URI_TARGET_PREFIX = "smsto:";
     private static final int SMS_ICON_RES = R.drawable.ic_message_24dp;
+    private static BidiFormatter sBidiFormatter = BidiFormatter.getInstance();
 
     private ContentValues mValues;
 
@@ -89,7 +92,8 @@ public class SmsInteraction implements ContactInteraction {
     }
 
     public String getAddress() {
-        return mValues.getAsString(Sms.ADDRESS);
+        return sBidiFormatter.unicodeWrap(
+                mValues.getAsString(Sms.ADDRESS), TextDirectionHeuristics.LTR);
     }
 
     public String getBody() {

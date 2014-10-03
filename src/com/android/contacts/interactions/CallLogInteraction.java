@@ -27,7 +27,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.util.Log;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
 
 /**
  * Represents a call log event interaction, wrapping the columns in
@@ -46,6 +47,7 @@ public class CallLogInteraction implements ContactInteraction {
     private static final String URI_TARGET_PREFIX = "tel:";
     private static final int CALL_LOG_ICON_RES = R.drawable.ic_phone_24dp;
     private static final int CALL_ARROW_ICON_RES = R.drawable.ic_call_arrow;
+    private static BidiFormatter sBidiFormatter = BidiFormatter.getInstance();
 
     private ContentValues mValues;
 
@@ -159,7 +161,8 @@ public class CallLogInteraction implements ContactInteraction {
     }
 
     public String getNumber() {
-        return mValues.getAsString(Calls.NUMBER);
+        return sBidiFormatter.unicodeWrap(
+                mValues.getAsString(Calls.NUMBER), TextDirectionHeuristics.LTR);
     }
 
     public Integer getNumberPresentation() {

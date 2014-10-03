@@ -34,7 +34,9 @@ import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.text.BidiFormatter;
 import android.text.Html;
+import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -52,6 +54,7 @@ import java.util.List;
  */
 public class ContactDisplayUtils {
     private static final String TAG = "ContactDisplayUtils";
+    private static BidiFormatter sBidiFormatter = BidiFormatter.getInstance();
 
     /**
      * Returns the display name of the contact, using the current display order setting.
@@ -62,6 +65,10 @@ public class ContactDisplayUtils {
         final CharSequence displayName = contactData.getDisplayName();
         if (prefs.getDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
             if (!TextUtils.isEmpty(displayName)) {
+                if (contactData.getDisplayNameSource() == DisplayNameSources.PHONE) {
+                    return sBidiFormatter.unicodeWrap(
+                            displayName.toString(), TextDirectionHeuristics.LTR);
+                }
                 return displayName;
             }
         } else {
