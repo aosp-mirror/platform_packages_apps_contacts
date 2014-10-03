@@ -72,6 +72,8 @@ import android.provider.ContactsContract.RawContacts;
 import android.support.v7.graphics.Palette;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
+import android.text.BidiFormatter;
+import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -267,6 +269,8 @@ public class QuickContactActivity extends ContactsActivity {
             GroupMembership.CONTENT_ITEM_TYPE,
             Identity.CONTENT_ITEM_TYPE,
             Note.CONTENT_ITEM_TYPE);
+
+    private static final BidiFormatter sBidiFormatter = BidiFormatter.getInstance();
 
     /** Id for the background contact loader */
     private static final int LOADER_CONTACT_ID = 0;
@@ -1372,7 +1376,8 @@ public class QuickContactActivity extends ContactsActivity {
             final PhoneDataItem phone = (PhoneDataItem) dataItem;
             if (!TextUtils.isEmpty(phone.getNumber())) {
                 primaryContentDescription.append(res.getString(R.string.call_other)).append(" ");
-                header = phone.buildDataString(context, kind);
+                header = sBidiFormatter.unicodeWrap(phone.buildDataString(context, kind),
+                        TextDirectionHeuristics.LTR);
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
                         res.getString(R.string.phoneLabelsGroup), dataItem.getMimeType(),
                         dataItem.getId(), dataItem.isSuperPrimary());
