@@ -42,7 +42,7 @@
     <string name="menu_addStar" msgid="2908478235715404876">"အနှစ်သက်ဆုံးများထဲ ထည့်ပါ"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"အနှစ်သက်ဆုံးများမှ ထုတ်ပါ"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"အကြိုက်ဆုံးများထဲမှ ထုတ်လိုက်ပါပြီ"</string>
-    <string name="description_action_menu_add_star" msgid="3327186327234177456">"အကြိုက်ဆုံးများ ထဲကို ထည့်ပြီး"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"အကြိုက်ဆုံးများ ထဲကို ထည့်ပြီး"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ပြင်ဆင်ရန်"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ဖျက်ရန်"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ပင်မစာမျက်နှာတွင် တင်ထားပါ"</string>
@@ -68,7 +68,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ဒီအဆက်အသွယ်မှာ အကောင့်အများအပြား၏ အချက်အလက်များ ပါဝင်ပါသည်။ ဖတ်ရန်အတွက်သာ အကောင့်များမှ အချက်အလက်များကို ဖျောက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်ထားတာ မဟုတ်ပါ"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ဤအဆက်အသွယ်အားဖျက်ခြင်းကြောင့် တခြားအကောင့်များမှ အချက်အလက်များလည်း ပျက်ပါလိမ့်မည်"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"ဒီလိပ်စာကို ဖျက်ပစ်ပါလိမ့်မည်"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"အပြောင်းအလဲများ စွန့်ပစ်ရန်"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"အပြောင်းအလဲများ စွန့်ပစ်ရန်"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"လိပ်စာ မရှိပါ"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"အဆက်အသွယ်ပြ ဝဒ်ဂျက်ကို ပင်မစာမျက်နှာသို့ ထည့်ပြီးပါပြီ"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"အဆက်အသွယ်သစ်တစ်ခု ပြုလုပ်ရန်"</string>
@@ -119,8 +119,8 @@
     <string name="search_settings_description" msgid="2675223022992445813">"အဆက်အသွယ်များ၏နာမည်များ"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အပလီကေးရှင်း မရှိပါ။"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ယခင် မျက်နှာပြင်သို့ ပြန်ရန် ကလစ်ပါ"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်း နံပါတ် ထည့်ရန်"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"အီးမေးလ် ထည့်ရန်"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်း နံပါတ် ထည့်ရန်"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"အီးမေးလ် ထည့်ရန်"</string>
     <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အပလီကေးရှင်း မရှိပါ။"</string>
     <string name="menu_share" msgid="943789700636542260">"မျှဝေခြင်း"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"အဆက်အသွယ်များ ထဲသို့ ထည့်ရန်"</string>
@@ -213,21 +213,21 @@
     <string name="local_profile_title" msgid="2021416826991393684">"မိမိ၏ဖုန်းမှပရိုဖိုင်လ်"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ကျွန်ုပ်၏ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ကိုယ်ရေးအကောင့်"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"အဆက်အသွယ်အားလုံးအားပြနေစဉ်"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"အဆက်အသွယ်များ၏ အလုပ်မှာ Google အကောင့်နှင့် ပိုအဆင်ပြေသည်။\n\n• မည်သည့် ဝက်ဘ် ဘရောင်ဇာဖြင့် မဆို ချဉ်းကပ်ပါ။\n• သင်၏ အဆက်အသွယ်များကို စိတ်ချရစွာ ဘက်အာပ် လုပ်ထားပါ။"</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"အဆက်အသွယ်များ၏ အလုပ်မှာ Google အကောင့်နှင့် ပိုအဆင်ပြေသည်။\n\n• မည်သည့် ဝက်ဘ် ဘရောင်ဇာဖြင့် မဆို ချဉ်းကပ်ပါ။\n• သင်၏ အဆက်အသွယ်များကို စိတ်ချရစွာ ဘက်အာပ် လုပ်ထားပါ။"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"အွန်လိုင်း ဝန်ဆောင်မှုဖြင့် ထပ်တူကျအောင် ပြုလုပ်ထားခြင်းအားဖြင့် ဖုန်းပျောက်သွားသည့်တိုင်အောင် အဆက်အသွယ်များအား လုံခြုံစွာ သိမ်းထားနိုင်ပါသည်"</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့် ထပ်ဖြည့်ပါ"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့် ထပ်ဖြည့်ပါ"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"သင့် အဆက်အသွယ်အသစ်ကို အရံသိမ်းဆည်းထားခြင်း မရှိပါ။ အဆယ်အသွယ်များကို အွန်လိုင်းပေါ်မှာ အရံသိမ်းဆည်းပေးရန် အကောင့်သစ် ထပ်ထည့်ချင်ပါသလား"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"သင့်ရဲ့ အဆက်အသွယ်အသစ်ကို <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> နှင့် ထပ်တူဖြစ်အောင် ပြုလုပ်ပါမည်"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"သင်ရဲ့အဆက်အသွယ် အသစ်ကို အောက်ပါ အကောင့်တွေထဲက တစ်ခုခုဖြင့် ထပ်တူဖြစ်အောင် ပြုလုပ်နိုင်ပါသည်။ ဘယ်တစ်ခုကို သုံးချင်ပါသလဲ?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"အဆက်အသွယ်သစ် ထည့်မည်"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
     <string name="keep_local" msgid="1258761699192993322">"ဖုန်းထဲတွင်သာသိမ်းပါ"</string>
-    <string name="add_account" msgid="8201790677994503186">"အကောင့်ထပ်ထည့်ရန်"</string>
+    <string name="add_account" msgid="8201790677994503186">"အကောင့်ထပ်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ဒေ့ဘာဘေ့စ်ဖိုင်များကို အပြင်သို့ထုတ်ပါ"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"အဆက်အသွယ် အသစ်ကို ထည့်ရန်"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"အဆက်အသွယ် အသစ်ကို ထည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ပိုပြီး ကြည့်ရန်"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"လျှော့ပြီး ကြည့်ရန်"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"လျှော့ပြီး ကြည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"အားလုံးကို ကြည့်ရန်"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"မကြာမီတုန်းက"</string>
     <string name="about_card_title" msgid="2920942314212825637">"အကြောင်း"</string>
