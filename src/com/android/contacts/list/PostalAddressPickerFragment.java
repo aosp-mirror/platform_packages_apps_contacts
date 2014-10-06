@@ -46,6 +46,9 @@ public class PostalAddressPickerFragment
 
     @Override
     protected void onItemClick(int position, long id) {
+        if (getAdapter().getItem(position) == null) {
+            return;
+        }
         if (!isLegacyCompatibilityMode()) {
             PostalAddressListAdapter adapter = (PostalAddressListAdapter)getAdapter();
             pickPostalAddress(adapter.getDataUri(position));
