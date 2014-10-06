@@ -28,7 +28,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.telephony.SubInfoRecord;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +50,7 @@ import com.android.contacts.common.vcard.ExportVCardActivity;
 import com.android.contacts.common.vcard.VCardCommonArguments;
 import com.android.dialerbind.analytics.AnalyticsDialogFragment;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -57,6 +61,7 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
     public static final String TAG = "ImportExportDialogFragment";
 
     private static final String KEY_RES_ID = "resourceId";
+    private static final String KEY_SUBSCRIPTION_ID = "subscriptionId";
     private static final String ARG_CONTACTS_ARE_AVAILABLE = "CONTACTS_ARE_AVAILABLE";
 
     private final String[] LOOKUP_PROJECTION = new String[] {
@@ -91,15 +96,14 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
                 VCardCommonArguments.ARG_CALLING_ACTIVITY);
 
         // Adapter that shows a list of string resources
-        final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getActivity(),
+        final ArrayAdapter<AdapterEntry> adapter = new ArrayAdapter<AdapterEntry>(getActivity(),
                 R.layout.select_dialog_item) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 final TextView result = (TextView)(convertView != null ? convertView :
                         dialogInflater.inflate(R.layout.select_dialog_item, parent, false));
 
-                final int resId = getItem(position);
-                result.setText(resId);
+                result.setText(getItem(position).mLabel);
                 return result;
             }
         };
@@ -107,21 +111,32 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
         final TelephonyManager manager =
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 
-        if (manager != null && manager.hasIccCard()
-                && res.getBoolean(R.bool.config_allow_sim_import)) {
-            adapter.add(R.string.import_from_sim);
-        }
         if (res.getBoolean(R.bool.config_allow_import_from_sdcard)) {
-            adapter.add(R.string.import_from_sdcard);
+            adapter.add(new AdapterEntry(getString(R.string.import_from_sdcard),
+                    R.string.import_from_sdcard));
+        }
+        if (manager != null && res.getBoolean(R.bool.config_allow_sim_import)) {
+            final List<SubInfoRecord> subInfoRecords = getAllSubInfoList();
+            if (subInfoRecords.size() == 1) {
+                adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
+                        R.string.import_from_sim, subInfoRecords.get(0).subId));
+            } else {
+                for (SubInfoRecord record : subInfoRecords) {
+                    adapter.add(new AdapterEntry(getSubDescription(record),
+                            R.string.import_from_sim, record.subId));
+                }
+            }
         }
         if (res.getBoolean(R.bool.config_allow_export_to_sdcard)) {
             if (contactsAreAvailable) {
-                adapter.add(R.string.export_to_sdcard);
+                adapter.add(new AdapterEntry(getString(R.string.export_to_sdcard),
+                        R.string.export_to_sdcard));
             }
         }
         if (res.getBoolean(R.bool.config_allow_share_visible_contacts)) {
             if (contactsAreAvailable) {
-                adapter.add(R.string.share_visible_contacts);
+                adapter.add(new AdapterEntry(getString(R.string.share_visible_contacts),
+                        R.string.share_visible_contacts));
             }
         }
 
@@ -130,11 +145,12 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 boolean dismissDialog;
-                final int resId = adapter.getItem(which);
+                final int resId = adapter.getItem(which).mChoiceResourceId;
                 switch (resId) {
                     case R.string.import_from_sim:
                     case R.string.import_from_sdcard: {
-                        dismissDialog = handleImportRequest(resId);
+                        dismissDialog = handleImportRequest(resId,
+                                adapter.getItem(which).mSubscriptionId);
                         break;
                     }
                     case R.string.export_to_sdcard: {
@@ -207,7 +223,7 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
      *
      * @return {@code true} if the dialog show be closed.  {@code false} otherwise.
      */
-    private boolean handleImportRequest(int resId) {
+    private boolean handleImportRequest(int resId, long subscriptionId) {
         // There are three possibilities:
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
@@ -219,6 +235,7 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
             // Send over to the account selector
             final Bundle args = new Bundle();
             args.putInt(KEY_RES_ID, resId);
+            args.putLong(KEY_SUBSCRIPTION_ID, subscriptionId);
             SelectAccountDialogFragment.show(
                     getFragmentManager(), this,
                     R.string.dialog_new_contact_account,
@@ -231,7 +248,7 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
         }
 
         AccountSelectionUtil.doImport(getActivity(), resId,
-                (size == 1 ? accountList.get(0) : null));
+                (size == 1 ? accountList.get(0) : null), subscriptionId);
         return true; // Close the dialog.
     }
 
@@ -240,7 +257,8 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
      */
     @Override
     public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
-        AccountSelectionUtil.doImport(getActivity(), extraArgs.getInt(KEY_RES_ID), account);
+        AccountSelectionUtil.doImport(getActivity(), extraArgs.getInt(KEY_RES_ID),
+                account, extraArgs.getLong(KEY_SUBSCRIPTION_ID));
 
         // At this point the dialog is still showing (which is why we can use getActivity() above)
         // So close it.
@@ -251,5 +269,50 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
     public void onAccountSelectorCancelled() {
         // See onAccountChosen() -- at this point the dialog is still showing.  Close it.
         dismiss();
+    }
+
+    /**
+     * Return the same values as {@link SubscriptionManager#getAllSubInfoList()} without relying
+     * on any hidden methods.
+     */
+    // TODO: replace with a method that doesn't make assumptions about the number of SIM slots
+    private static List<SubInfoRecord> getAllSubInfoList() {
+        final List<SubInfoRecord> subInfoRecords0 = SubscriptionManager.getSubInfoUsingSlotId(0);
+        final List<SubInfoRecord> subInfoRecords1 = SubscriptionManager.getSubInfoUsingSlotId(1);
+        if (subInfoRecords0 == null && subInfoRecords1 != null) {
+            return subInfoRecords1;
+        }
+        if (subInfoRecords0 != null && subInfoRecords1 == null) {
+            return subInfoRecords0;
+        }
+        if (subInfoRecords0 == null && subInfoRecords1 == null) {
+            return Collections.EMPTY_LIST;
+        }
+        subInfoRecords0.addAll(subInfoRecords1);
+        return subInfoRecords0;
+    }
+
+    private String getSubDescription(SubInfoRecord record) {
+        if (TextUtils.isEmpty(record.number)) {
+            // Don't include the phone number in the description, since we don't know the number.
+            return getString(R.string.import_from_sim_summary_no_number, record.displayName);
+        }
+        return getString(R.string.import_from_sim_summary, record.displayName, record.number);
+    }
+
+    private static class AdapterEntry {
+        public final String mLabel;
+        public final int mChoiceResourceId;
+        public final long mSubscriptionId;
+
+        public AdapterEntry(String label, int resId, long subscriptionId) {
+            mLabel = label;
+            mChoiceResourceId = resId;
+            mSubscriptionId = subscriptionId;
+        }
+
+        public AdapterEntry(String label, int resId) {
+            this(label, resId, SubscriptionManager.INVALID_SUB_ID);
+        }
     }
 }

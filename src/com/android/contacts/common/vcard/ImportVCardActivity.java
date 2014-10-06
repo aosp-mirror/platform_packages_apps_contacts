@@ -109,8 +109,6 @@ public class ImportVCardActivity extends Activity {
 
     final static String CACHED_URIS = "cached_uris";
 
-    private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
-
     private AccountWithDataSet mAccount;
 
     private ProgressDialog mProgressDialogForScanVCard;
@@ -891,14 +889,6 @@ public class ImportVCardActivity extends Activity {
     @Override
     protected Dialog onCreateDialog(int resId, Bundle bundle) {
         switch (resId) {
-            case R.string.import_from_sdcard: {
-                if (mAccountSelectionListener == null) {
-                    throw new NullPointerException(
-                            "mAccountSelectionListener must not be null.");
-                }
-                return AccountSelectionUtil.getSelectAccountDialog(this, resId,
-                        mAccountSelectionListener, mCancelListener);
-            }
             case R.id.dialog_searching_vcard: {
                 if (mProgressDialogForScanVCard == null) {
                     String message = getString(R.string.searching_vcard_message);
