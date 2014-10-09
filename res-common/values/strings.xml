@@ -763,4 +763,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          contacts to be displayed. [CHAR LIMIT=128] -->
     <string name="settings_contact_display_options_title">Contact display options</string>
 
+    <!-- Title for Select Account Dialog [CHAR LIMIT=30] -->
+    <string name="select_account_dialog_title">Select Account</string>
 </resources>
