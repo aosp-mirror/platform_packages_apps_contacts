@@ -590,9 +590,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          data storage. [CHAR LIMIT=NONE] -->
     <string name="caching_vcard_message">Caching vCard(s) to local temporary storage. The actual import will start soon.</string>
 
-    <!-- The percentage, used for expressing the progress of vCard import/export. -->
-    <string name="percentage"><xliff:g id="percentage" example="50">%s</xliff:g><xliff:g id="percentsign" example="%">%%</xliff:g></string>
-
     <!-- Message used when vCard import has failed. [CHAR LIMIT=40] -->
     <string name="vcard_import_failed">Couldn\'t import vCard.</string>
 
