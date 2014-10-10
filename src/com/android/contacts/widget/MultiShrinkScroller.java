@@ -389,6 +389,11 @@ public class MultiShrinkScroller extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        if (mVelocityTracker == null) {
+            mVelocityTracker = VelocityTracker.obtain();
+        }
+        mVelocityTracker.addMovement(event);
+
         // The only time we want to intercept touch events is when we are being dragged.
         return shouldStartDrag(event);
     }
@@ -1157,11 +1162,8 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     private boolean motionShouldStartDrag(MotionEvent event) {
-        final float deltaX = event.getX() - mLastEventPosition[0];
         final float deltaY = event.getY() - mLastEventPosition[1];
-        final boolean draggedX = (deltaX > mTouchSlop || deltaX < -mTouchSlop);
-        final boolean draggedY = (deltaY > mTouchSlop || deltaY < -mTouchSlop);
-        return draggedY && !draggedX;
+        return deltaY > mTouchSlop || deltaY < -mTouchSlop;
     }
 
     private float updatePositionAndComputeDelta(MotionEvent event) {
