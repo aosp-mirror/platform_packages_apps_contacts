@@ -16,8 +16,8 @@
 
 <!--
   List item in the pop-up window that appears when tapping a contact's photo
-  in the contact editor. This is similar to the framework's select_dialog_item.xml layout
-  except the text appearance is medium.
+  in the contact editor. This is similar to the framework's select_dialog_item_material.xml layout
+  except the text appearance is medium and the padding is set to match the material spec.
 -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
@@ -27,9 +27,6 @@
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:textColor="?android:attr/textColorAlertDialogListItem"
     android:gravity="center_vertical"
-    android:paddingLeft="14dip"
-    android:paddingRight="15dip"
-    android:paddingStart="14dip"
-    android:paddingEnd="15dip"
-    android:ellipsize="marquee"
-/>
+    android:paddingStart="24dip"
+    android:paddingEnd="24dip"
+    android:ellipsize="marquee" />
