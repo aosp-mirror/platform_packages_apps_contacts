@@ -191,10 +191,12 @@ public class QuickContactActivity extends ContactsActivity {
 
     private static final String MIMETYPE_GPLUS_PROFILE =
             "vnd.android.cursor.item/vnd.googleplus.profile";
-    private static final String INTENT_DATA_GPLUS_PROFILE_ADD_TO_CIRCLE = "Add to circle";
+    private static final String GPLUS_PROFILE_DATA_5_ADD_TO_CIRCLE = "addtocircle";
+    private static final String GPLUS_PROFILE_DATA_5_VIEW_PROFILE = "view";
     private static final String MIMETYPE_HANGOUTS =
             "vnd.android.cursor.item/vnd.googleplus.profile.comm";
-    private static final String INTENT_DATA_HANGOUTS_VIDEO = "Start video call";
+    private static final String HANGOUTS_DATA_5_VIDEO = "hangout";
+    private static final String HANGOUTS_DATA_5_MESSAGE = "conversation";
     private static final String CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY =
             "com.android.contacts.quickcontact.QuickContactActivity";
 
@@ -1241,9 +1243,11 @@ public class QuickContactActivity extends ContactsActivity {
      * additional dependencies on unsafe things (like the Activity).
      *
      * @param dataItem The {@link DataItem} to convert.
+     * @param secondDataItem A second {@link DataItem} to help build a full entry for some
+     *  mimetypes
      * @return The {@link ExpandingEntryCardView.Entry}, or null if no visual elements are present.
      */
-    private static Entry dataItemToEntry(DataItem dataItem,
+    private static Entry dataItemToEntry(DataItem dataItem, DataItem secondDataItem,
             Context context, Contact contactData,
             final MutableString aboutCardName) {
         Drawable icon = null;
@@ -1493,26 +1497,57 @@ public class QuickContactActivity extends ContactsActivity {
             if (intent != null) {
                 final String mimetype = intent.getType();
 
-                // Attempt to use known icons for known 3p types. Otherwise default to ResolveCache
+                // Build advanced entry for known 3p types. Otherwise default to ResolveCache icon.
                 switch (mimetype) {
                     case MIMETYPE_GPLUS_PROFILE:
-                        if (INTENT_DATA_GPLUS_PROFILE_ADD_TO_CIRCLE.equals(
-                                intent.getDataString())) {
-                            icon = res.getDrawable(
-                                    R.drawable.ic_add_to_circles_black_24);
-                            iconResourceId = R.drawable.ic_add_to_circles_black_24;
-                        } else {
+                        // If a secondDataItem is available, use it to build an entry with
+                        // alternate actions
+                        if (secondDataItem != null) {
                             icon = res.getDrawable(R.drawable.ic_google_plus_24dp);
-                            iconResourceId = R.drawable.ic_google_plus_24dp;
+                            alternateIcon = res.getDrawable(R.drawable.ic_add_to_circles_black_24);
+                            final GPlusOrHangoutsDataItemModel itemModel =
+                                    new GPlusOrHangoutsDataItemModel(intent, alternateIntent,
+                                            dataItem, secondDataItem, alternateContentDescription,
+                                            header, text, context);
+
+                            populateGPlusOrHangoutsDataItemModel(bundle);
+                            intent = bundle.intent;
+                            alternateIntent = bundle.alternateIntent;
+                            alternateContentDescription = bundle.alternateContentDescription;
+                            header = bundle.header;
+                            text = bundle.text;
+                        } else {
+                            if (GPLUS_PROFILE_DATA_5_ADD_TO_CIRCLE.equals(
+                                    intent.getDataString())) {
+                                icon = res.getDrawable(R.drawable.ic_add_to_circles_black_24);
+                            } else {
+                                icon = res.getDrawable(R.drawable.ic_google_plus_24dp);
+                            }
                         }
                         break;
                     case MIMETYPE_HANGOUTS:
-                        if (INTENT_DATA_HANGOUTS_VIDEO.equals(intent.getDataString())) {
-                            icon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
-                            iconResourceId = R.drawable.ic_hangout_video_24dp;
-                        } else {
+                        // If a secondDataItem is available, use it to build an entry with
+                        // alternate actions
+                        if (secondDataItem != null) {
                             icon = res.getDrawable(R.drawable.ic_hangout_24dp);
-                            iconResourceId = R.drawable.ic_hangout_24dp;
+                            alternateIcon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
+                            final GPlusOrHangoutsDataItemModel bundle =
+                                    new GPlusOrHangoutsDataItemModel(intent, alternateIntent,
+                                            dataItem, secondDataItem, alternateContentDescription,
+                                            header, text, context);
+
+                            populateGPlusOrHangoutsDataItemModel(bundle);
+                            intent = bundle.intent;
+                            alternateIntent = bundle.alternateIntent;
+                            alternateContentDescription = bundle.alternateContentDescription;
+                            header = bundle.header;
+                            text = bundle.text;
+                        } else {
+                            if (HANGOUTS_DATA_5_VIDEO.equals(intent.getDataString())) {
+                                icon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
+                            } else {
+                                icon = res.getDrawable(R.drawable.ic_hangout_24dp);
+                            }
                         }
                         break;
                     default:
@@ -1566,14 +1601,122 @@ public class QuickContactActivity extends ContactsActivity {
 
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems,
             MutableString aboutCardTitleOut) {
+        // Hangouts and G+ use two data items to create one entry.
+        if (dataItems.get(0).getMimeType().equals(MIMETYPE_GPLUS_PROFILE) ||
+                dataItems.get(0).getMimeType().equals(MIMETYPE_HANGOUTS)) {
+            return gPlusOrHangoutsDataItemsToEntries(dataItems);
+        } else {
+            final List<Entry> entries = new ArrayList<>();
+            for (DataItem dataItem : dataItems) {
+                final Entry entry = dataItemToEntry(dataItem, /* secondDataItem = */ null,
+                        this, mContactData, aboutCardTitleOut);
+                if (entry != null) {
+                    entries.add(entry);
+                }
+            }
+            return entries;
+        }
+    }
+
+    /**
+     * G+ and Hangout entries are unique in that a single ExpandingEntryCardView.Entry consists
+     * of two data items. This method attempts to build each entry using the two data items if
+     * they are available. If there are more or less than two data items, a fall back is used
+     * and each data item gets its own entry.
+     */
+    private List<Entry> gPlusOrHangoutsDataItemsToEntries(List<DataItem> dataItems) {
         final List<Entry> entries = new ArrayList<>();
+        final Map<Long, List<DataItem>> buckets = new HashMap<>();
+        // Put the data items into buckets based on the raw contact id
         for (DataItem dataItem : dataItems) {
-            final Entry entry = dataItemToEntry(dataItem, this, mContactData, aboutCardTitleOut);
-            if (entry != null) {
-                entries.add(entry);
+            List<DataItem> bucket = buckets.get(dataItem.getRawContactId());
+            if (bucket == null) {
+                bucket = new ArrayList<>();
+                buckets.put(dataItem.getRawContactId(), bucket);
+            }
+            bucket.add(dataItem);
+        }
+
+        // Use the buckets to build entries. If a bucket contains two data items, build the special
+        // entry, otherwise fall back to the normal entry.
+        for (List<DataItem> bucket : buckets.values()) {
+            if (bucket.size() == 2) {
+                // Use the pair to build an entry
+                final Entry entry = dataItemToEntry(bucket.get(0),
+                        /* secondDataItem = */ bucket.get(1), this, mContactData,
+                        /* aboutCardName = */ null);
+                if (entry != null) {
+                    entries.add(entry);
+                }
+            } else {
+                for (DataItem dataItem : bucket) {
+                    final Entry entry = dataItemToEntry(dataItem, /* secondDataItem = */ null,
+                            this, mContactData, /* aboutCardName = */ null);
+                    if (entry != null) {
+                        entries.add(entry);
+                    }
+                }
             }
         }
         return entries;
+    }
+
+    /**
+     * Used for statically passing around G+ or Hangouts data items and entry fields to
+     * populateGPlusOrHangoutsDataItemModel.
+     */
+    private static final class GPlusOrHangoutsDataItemModel {
+        public Intent intent;
+        public Intent alternateIntent;
+        public DataItem dataItem;
+        public DataItem secondDataItem;
+        public StringBuilder alternateContentDescription;
+        public String header;
+        public String text;
+        public Context context;
+
+        public GPlusOrHangoutsDataItemModel(Intent intent, Intent alternateIntent, DataItem dataItem,
+                DataItem secondDataItem, StringBuilder alternateContentDescription, String header,
+                String text, Context context) {
+            this.intent = intent;
+            this.alternateIntent = alternateIntent;
+            this.dataItem = dataItem;
+            this.secondDataItem = secondDataItem;
+            this.alternateContentDescription = alternateContentDescription;
+            this.header = header;
+            this.text = text;
+            this.context = context;
+        }
+    }
+
+    private static void populateGPlusOrHangoutsDataItemModel(
+            GPlusOrHangoutsDataItemModel dataModel) {
+        final Intent secondIntent = new Intent(Intent.ACTION_VIEW);
+        secondIntent.setDataAndType(ContentUris.withAppendedId(Data.CONTENT_URI,
+                dataModel.secondDataItem.getId()), dataModel.secondDataItem.getMimeType());
+        // There is no guarantee the order the data items come in. Second
+        // data item does not necessarily mean it's the alternate.
+        // Hangouts video and Add to circles should be alternate. Swap if needed
+        if (HANGOUTS_DATA_5_VIDEO.equals(
+                dataModel.dataItem.getContentValues().getAsString(Data.DATA5)) ||
+                GPLUS_PROFILE_DATA_5_ADD_TO_CIRCLE.equals(
+                        dataModel.dataItem.getContentValues().getAsString(Data.DATA5))) {
+            dataModel.alternateIntent = dataModel.intent;
+            dataModel.alternateContentDescription = new StringBuilder(dataModel.header);
+
+            dataModel.intent = secondIntent;
+            dataModel.header = dataModel.secondDataItem.buildDataStringForDisplay(dataModel.context,
+                    dataModel.secondDataItem.getDataKind());
+            dataModel.text = dataModel.secondDataItem.getDataKind().typeColumn;
+        } else if (HANGOUTS_DATA_5_MESSAGE.equals(
+                dataModel.dataItem.getContentValues().getAsString(Data.DATA5)) ||
+                GPLUS_PROFILE_DATA_5_VIEW_PROFILE.equals(
+                        dataModel.dataItem.getContentValues().getAsString(Data.DATA5))) {
+            dataModel.alternateIntent = secondIntent;
+            dataModel.alternateContentDescription = new StringBuilder(
+                    dataModel.secondDataItem.buildDataStringForDisplay(dataModel.context,
+                            dataModel.secondDataItem.getDataKind()));
+        }
     }
 
     private static String getIntentResolveLabel(Intent intent, Context context) {
@@ -1822,18 +1965,15 @@ public class QuickContactActivity extends ContactsActivity {
 
         @Override
         public Loader<List<ContactInteraction>> onCreateLoader(int id, Bundle args) {
-            Log.v(TAG, "onCreateLoader");
             Loader<List<ContactInteraction>> loader = null;
             switch (id) {
                 case LOADER_SMS_ID:
-                    Log.v(TAG, "LOADER_SMS_ID");
                     loader = new SmsInteractionsLoader(
                             QuickContactActivity.this,
                             args.getStringArray(KEY_LOADER_EXTRA_PHONES),
                             MAX_SMS_RETRIEVE);
                     break;
                 case LOADER_CALENDAR_ID:
-                    Log.v(TAG, "LOADER_CALENDAR_ID");
                     final String[] emailsArray = args.getStringArray(KEY_LOADER_EXTRA_EMAILS);
                     List<String> emailsList = null;
                     if (emailsArray != null) {
@@ -1848,7 +1988,6 @@ public class QuickContactActivity extends ContactsActivity {
                             PAST_MILLISECOND_TO_SEARCH_LOCAL_CALENDAR);
                     break;
                 case LOADER_CALL_LOG_ID:
-                    Log.v(TAG, "LOADER_CALL_LOG_ID");
                     loader = new CallLogInteractionsLoader(
                             QuickContactActivity.this,
                             args.getStringArray(KEY_LOADER_EXTRA_PHONES),
