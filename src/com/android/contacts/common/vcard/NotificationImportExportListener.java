@@ -32,6 +32,8 @@ import android.widget.Toast;
 import com.android.contacts.common.R;
 import com.android.vcard.VCardEntry;
 
+import java.text.NumberFormat;
+
 public class NotificationImportExportListener implements VCardImportExportListener,
         Handler.Callback {
     /** The tag used by vCard-related notifications. */
@@ -223,8 +225,9 @@ public class NotificationImportExportListener implements VCardImportExportListen
                         : android.R.drawable.stat_sys_upload)
                 .setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
         if (totalCount > 0) {
-            builder.setContentText(context.getString(R.string.percentage,
-                    String.valueOf(currentCount * 100 / totalCount)));
+            String percentage =
+                    NumberFormat.getPercentInstance().format((double) currentCount / totalCount);
+            builder.setContentText(percentage);
         }
         return builder.getNotification();
     }
