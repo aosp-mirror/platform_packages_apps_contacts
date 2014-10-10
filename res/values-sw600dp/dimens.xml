@@ -15,8 +15,6 @@
 -->
 <resources>
     <dimen name="editor_padding_top">32dip</dimen>
-    <dimen name="editor_round_button_padding_left">16dip</dimen>
-    <dimen name="editor_round_button_padding_right">16dip</dimen>
     <dimen name="editor_type_label_width">122dip</dimen>
     <dimen name="editor_add_field_label_left_padding">16dip</dimen>
     <dimen name="detail_item_vertical_margin">16dip</dimen>
