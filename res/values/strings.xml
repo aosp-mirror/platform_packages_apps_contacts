@@ -47,6 +47,9 @@
     <!-- Activity title when the user is selecting a contact for a direct message shortcut. -->
     <string name="messageShortcutActivityTitle">Choose a number to message</string>
 
+    <!-- Activity title when the user is inserting into an existing contact, or creating a new one.  [CHAR LIMIT=128] -->
+    <string name="contactInsertOrEditActivityTitle">Add to contact</string>
+
     <!-- Activity title when the user is selecting a contact.  [CHAR LIMIT=128] -->
     <string name="contactPickerActivityTitle">Choose a contact</string>
 

@@ -223,7 +223,7 @@ public class ContactSelectionActivity extends ContactsActivity
         int actionCode = mRequest.getActionCode();
         switch (actionCode) {
             case ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT: {
-                setTitle(R.string.contactPickerActivityTitle);
+                setTitle(R.string.contactInsertOrEditActivityTitle);
                 break;
             }
 
