@@ -1510,12 +1510,12 @@ public class QuickContactActivity extends ContactsActivity {
                                             dataItem, secondDataItem, alternateContentDescription,
                                             header, text, context);
 
-                            populateGPlusOrHangoutsDataItemModel(bundle);
-                            intent = bundle.intent;
-                            alternateIntent = bundle.alternateIntent;
-                            alternateContentDescription = bundle.alternateContentDescription;
-                            header = bundle.header;
-                            text = bundle.text;
+                            populateGPlusOrHangoutsDataItemModel(itemModel);
+                            intent = itemModel.intent;
+                            alternateIntent = itemModel.alternateIntent;
+                            alternateContentDescription = itemModel.alternateContentDescription;
+                            header = itemModel.header;
+                            text = itemModel.text;
                         } else {
                             if (GPLUS_PROFILE_DATA_5_ADD_TO_CIRCLE.equals(
                                     intent.getDataString())) {
@@ -1531,17 +1531,17 @@ public class QuickContactActivity extends ContactsActivity {
                         if (secondDataItem != null) {
                             icon = res.getDrawable(R.drawable.ic_hangout_24dp);
                             alternateIcon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
-                            final GPlusOrHangoutsDataItemModel bundle =
+                            final GPlusOrHangoutsDataItemModel itemModel =
                                     new GPlusOrHangoutsDataItemModel(intent, alternateIntent,
                                             dataItem, secondDataItem, alternateContentDescription,
                                             header, text, context);
 
-                            populateGPlusOrHangoutsDataItemModel(bundle);
-                            intent = bundle.intent;
-                            alternateIntent = bundle.alternateIntent;
-                            alternateContentDescription = bundle.alternateContentDescription;
-                            header = bundle.header;
-                            text = bundle.text;
+                            populateGPlusOrHangoutsDataItemModel(itemModel);
+                            intent = itemModel.intent;
+                            alternateIntent = itemModel.alternateIntent;
+                            alternateContentDescription = itemModel.alternateContentDescription;
+                            header = itemModel.header;
+                            text = itemModel.text;
                         } else {
                             if (HANGOUTS_DATA_5_VIDEO.equals(intent.getDataString())) {
                                 icon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
