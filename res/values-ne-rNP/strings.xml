@@ -25,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"सम्पर्क सर्टकट छान्नुहोस्"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"कल गर्नका लागि एउटा नम्बर छान्नुहोस्"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"सन्देश पठाउनका लागि एउटा नम्बर छान्नुहोस्"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"सम्पर्कमा थप्नुहोस्"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"एउटा सम्पर्क छान्नुहोस्"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"नयाँ सम्पर्क सिर्जना गर्नुहोस्"</string>
     <string name="starredList" msgid="4817256136413959463">"ताराङ्कित"</string>
@@ -109,7 +110,7 @@
   </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"सबै सम्पर्कहरू"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"मनपर्ने"</string>
-    <string name="callBack" msgid="5498224409038809224">"कल ब्याक"</string>
+    <string name="callBack" msgid="5498224409038809224">"कल फर्काउने"</string>
     <string name="callAgain" msgid="3197312117049874778">"फेरि कल गर्नुहोस्"</string>
     <string name="returnCall" msgid="8171961914203617813">"कल फर्काउनुहोस्"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" लाई सम्पर्कमा थप्ने?"</string>

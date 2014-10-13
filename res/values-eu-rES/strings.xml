@@ -25,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Aukeratu kontakturako lasterbidea"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Aukeratu deitzeko zenbaki bat"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Aukeratu testu-mezua bidaltzeko zenbaki bat"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Gehitu kontaktu batean"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Aukeratu kontaktu bat"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Sortu kontaktua"</string>
     <string name="starredList" msgid="4817256136413959463">"Izardunak"</string>

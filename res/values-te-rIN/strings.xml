@@ -25,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"పరిచయం యొక్క సత్వరమార్గాన్ని ఎంచుకోండి"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"కాల్ చేయాల్సిన నంబర్‌ను ఎంచుకోండి"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"సందేశం పంపడానికి నంబర్‌ను ఎంచుకోండి"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"పరిచయానికి జోడించండి"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"పరిచయాన్ని ఎంచుకోండి"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"కొత్త పరిచయాన్ని సృష్టించండి"</string>
     <string name="starredList" msgid="4817256136413959463">"నక్షత్రం గుర్తు ఉన్నవి"</string>

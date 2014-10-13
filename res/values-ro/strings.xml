@@ -25,6 +25,8 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Alegeţi o persoană din agendă pentru a crea o comandă rapidă"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Alegeţi un număr pentru apelare"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Alegeţi un număr pentru trimiterea mesajului"</string>
+    <!-- no translation found for contactInsertOrEditActivityTitle (6527505405325862674) -->
+    <skip />
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Alegeţi o persoană de contact"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Creați intrare nouă în Agendă"</string>
     <string name="starredList" msgid="4817256136413959463">"Cu stea"</string>

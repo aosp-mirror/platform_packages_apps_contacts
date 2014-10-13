@@ -25,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Velg en kontaktsnarvei"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Velg et nummer å ringe"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Velg et nummer å sende melding til"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Legg til kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Velg en kontakt"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Opprett ny kontakt"</string>
     <string name="starredList" msgid="4817256136413959463">"Med stjerne"</string>

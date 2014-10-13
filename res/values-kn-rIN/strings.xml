@@ -25,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"ಸಂಪರ್ಕದ ಶಾರ್ಟ್‌ಕಟ್‌‌ ಆರಿಸಿ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ಕೆರಮಾಡಲು ಸಂಖ್ಯೆಯೊಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ಸಂದೇಶಕ್ಕಾಗಿ ಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸಿ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ಸಂಪರ್ಕ ಆಯ್ಕೆ ಮಾಡಿ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ಹೊಸ ಸಂಪರ್ಕ ರಚಿಸಿ"</string>
     <string name="starredList" msgid="4817256136413959463">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
