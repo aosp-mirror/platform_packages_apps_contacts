@@ -25,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Výběr zkratky kontaktu"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Výběr čísla pro hovor"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Výběr čísla pro zprávu"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Přidat do kontaktu"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Vyberte kontakt"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Vytvořte nový kontakt"</string>
     <string name="starredList" msgid="4817256136413959463">"Označené hvězdičkou"</string>

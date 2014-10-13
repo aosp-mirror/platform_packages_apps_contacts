@@ -21,10 +21,11 @@
     <string name="contactsList" msgid="8661624236494819731">"संपर्क"</string>
     <string name="shortcutContact" msgid="749243779392912958">"संपर्क"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"सीधा डायल करें"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"प्रत्यक्ष संदेश"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"सीधा संदेश भेजें"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"कोई संपर्क शॉर्टकट चुनें"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"कॉल करने के लिए कोई नंबर चुनें"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"संदेश भेजने के लिए कोई नंबर चुनें"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"संपर्क में जोड़ें"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"कोई संपर्क चुनें"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"नया संपर्क बनाएं"</string>
     <string name="starredList" msgid="4817256136413959463">"तारांकित"</string>
@@ -205,7 +206,7 @@
     <string name="set_default" msgid="4417505153468300351">"सामान्य सेट करें"</string>
     <string name="clear_default" msgid="7193185801596678067">"सामान्य साफ़ करें"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"लेख की प्रतिलिपि बनाई गई"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"आपके परिवर्तन अभी नहीं?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"आपके परिवर्तन हटा दें?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"मेरी प्रोफ़ाइल सेट करें"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"व्‍यक्ति‍ का नाम लिखें"</string>
