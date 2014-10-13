@@ -39,30 +39,30 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Ligar para pager comercial"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Ligar para <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Ligar para MMS"</string>
-    <string name="sms_custom" msgid="4601748252470175865">"Enviar mensagem de texto para <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7765831490534280540">"Enviar mensagem de texto para residência"</string>
-    <string name="sms_mobile" msgid="8387632124165893103">"Enviar mensagem de texto para celular"</string>
-    <string name="sms_work" msgid="3910570578912367742">"Enviar mensagem de texto para trabalho"</string>
-    <string name="sms_fax_work" msgid="909086167151248212">"Enviar mensagem de texto para fax comercial"</string>
-    <string name="sms_fax_home" msgid="4145442497939634875">"Enviar mensagem de texto para fax residencial"</string>
-    <string name="sms_pager" msgid="5664381349583724906">"Enviar mensagem de texto para pager"</string>
-    <string name="sms_other" msgid="910895193552957097">"Enviar mensagem de texto"</string>
-    <string name="sms_callback" msgid="728414485478941361">"Enviar mensagem de texto para retorno de chamada"</string>
-    <string name="sms_car" msgid="8543669230270954512">"Enviar mensagem de texto para carro"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"Enviar mensagem de texto para empresa (principal)"</string>
-    <string name="sms_isdn" msgid="7142483128948042667">"Enviar mensagem de texto para ISDN"</string>
-    <string name="sms_main" msgid="6815987840926184815">"Enviar mensagem de texto para principal"</string>
-    <string name="sms_other_fax" msgid="8649822154879781466">"Enviar mensagem de texto para fax"</string>
-    <string name="sms_radio" msgid="8750339218480745940">"Enviar mensagem de texto para rádio"</string>
-    <string name="sms_telex" msgid="5469333785775443999">"Enviar mensagem de texto para telex"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"Enviar mensagem de texto para TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"Enviar mensagem de texto para celular comercial"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"Enviar mensagem de texto para pager comercial"</string>
-    <string name="sms_assistant" msgid="2677586547377136683">"Enviar mensagem de texto para <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"Enviar mensagem de texto para MMS"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Enviar SMS para <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Enviar SMS para residência"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Enviar SMS para celular"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Enviar SMS para trabalho"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Enviar SMS para fax comercial"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Enviar SMS para fax residencial"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Enviar SMS para pager"</string>
+    <string name="sms_other" msgid="910895193552957097">"Enviar SMS"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Enviar SMS para retorno de chamada"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Enviar SMS para carro"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Enviar SMS para empresa (principal)"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Enviar SMS para ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Enviar SMS para principal"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Enviar SMS para fax"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Enviar SMS para rádio"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Enviar SMS para telex"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Enviar SMS para TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Enviar SMS para celular comercial"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Enviar SMS para pager comercial"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"Enviar SMS para <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Enviar SMS para MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Fazer vídeo chamada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Apagar contatos frequentes?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Você apagará a lista de contatos frequentes nos aplicativos Pessoas e Telefone, fazendo com que os aplicativos de e-mail tenham que descobrir suas preferências de endereçamento."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Você apagará a lista de contatos frequentes nos apps Pessoas e Telefone, fazendo com que os apps de e-mail tenham que descobrir suas preferências de endereçamento."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Apagando contatos frequentes…"</string>
     <string name="status_available" msgid="4832569677396634846">"Disponível"</string>
     <string name="status_away" msgid="6267905184545881094">"Ausente"</string>
@@ -107,7 +107,7 @@
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organização"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Relacionamento"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Datas especiais"</string>
-    <string name="sms" msgid="8086289395154598654">"Enviar mensagem de texto"</string>
+    <string name="sms" msgid="8086289395154598654">"Enviar SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Endereço"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Empresa"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Título"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"O pedido de exportação do vCard foi rejeitado. Tente novamente mais tarde."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contato"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Armazenando VCards em cache no armazenamento temporário local. A importação real começará em breve."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Não foi possível importar o vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Nenhum arquivo vCard encontrado no armazenamento."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Nenhum arquivo vCard encontrado no cartão SD."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"parar de pesquisar"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Limpar pesquisa"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opções de exibição de contato"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Selecionar conta"</string>
 </resources>

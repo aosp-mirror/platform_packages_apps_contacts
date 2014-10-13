@@ -111,7 +111,7 @@
     <string name="postal_address" msgid="7692926530081579786">"Anwani"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Kampuni"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Kichwa"</string>
-    <string name="label_notes" msgid="3997277594846722699">"Daftari"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Madokezo"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Tovuti"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Vikundi"</string>
@@ -177,7 +177,7 @@
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Hitilafu ya I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Hakuna kumbukumbu ya kutosha. Faili inaweza kuwa kubwa mno."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Haikuweza kuchanganua vCard kwa sababu isiyotarajiwa."</string>
-    <string name="fail_reason_not_supported" msgid="388664373573337601">"Umbizo si linganifu."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Muundo huu hautumiki."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Haikuweza kukusanya maelezo meta ya faili zilizotolewa za vCard."</string>
     <!-- String.format failed for translation -->
     <!-- no translation found for fail_reason_failed_to_read_files (9213844535907986665) -->
@@ -207,7 +207,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Ombi la kuhamishwa kwa vCard limekataliwa. Jaribu tena baadaye."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"anwani"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Vcard Inaakibisha ndani ya hifadhi ya muda mfupi. Uhamisho halisi utaanza hivi karibuni."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Haikuweza kuleta vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Hakuna faili ya vCard iliyopatikana katika hifadhi."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Hakuna faili ya vCard iliyopatikana kwenye kadi ya SD."</string>
@@ -227,7 +226,7 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Panga kulingana na"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Jina la kwanza"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Jina la mwisho"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Muundo wa jina"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Mpangilio wa majina"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Jina la kwanza liwe mwanzo"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Jina la mwisho kwanza"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Shiriki anwani zinazoonekana"</string>
@@ -253,4 +252,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"acha kutafuta"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Futa utafutaji"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Chaguo za onyesho la anwani"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Chagua Akaunti"</string>
 </resources>

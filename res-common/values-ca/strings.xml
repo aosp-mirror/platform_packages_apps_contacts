@@ -60,7 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Envia un SMS al cercapersones de la feina"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Envia un SMS a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Envia un MMS"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"Permet fer una videotrucada."</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Fes una videotrucada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vols esborrar els contactes freqüents?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"S\'esborrarà la llista de contactes més freqüents a les aplicacions de contactes i del telèfon i es forçarà les aplicacions de correu electrònic a obtenir informació sobre les teves preferències de direccionament des de zero."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"S\'estan esborrant contactes freq..."</string>
@@ -101,7 +101,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Segon nom fonètic"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Cognoms fonètics"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telèfon"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Correu electrònic"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Adreça electrònica"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adreça"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"Xat"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organització"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"S\'ha rebutjat la sol·licitud per exportar la vCard. Torna-ho a provar més tard."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contacte"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"S\'estan desant les vCard a l\'emmagatzematge temporal local. La importació real començarà aviat."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"No s\'ha pogut importar la vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"No s\'ha trobat cap fitxer vCard a l\'emmagatzematge."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"No s\'ha trobat cap fitxer vCard a la targeta SD."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"Atura la cerca."</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Esborra la cerca."</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opcions de visualització de contactes"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Selecció d\'un compte"</string>
 </resources>

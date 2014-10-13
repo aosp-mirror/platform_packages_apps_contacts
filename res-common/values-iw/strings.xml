@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"‏שלח הודעת טקסט ל-MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"בצע שיחת וידאו"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"האם למחוק אנשי קשר קבועים?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"פעולה זו תמחק את רשימת אנשי הקשר הקבועים באפליקציות \'אנשים\' ו\'טלפון\' ותאלץ את יישומי הדוא\"ל ללמוד מהתחלה את העדפות הכתובות שלך."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"פעולה זו תמחק את רשימת אנשי הקשר הקבועים באפליקציות \'אנשים\' ו\'טלפון\' ותאלץ את יישומי האימייל ללמוד מהתחלה את העדפות הכתובות שלך."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"מוחק אנשי קשר קבועים…"</string>
     <string name="status_available" msgid="4832569677396634846">"זמין"</string>
     <string name="status_away" msgid="6267905184545881094">"לא נמצא"</string>
@@ -101,7 +101,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"שם אמצעי פונטי"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"שם משפחה פונטי"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"טלפון"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"דוא\"ל"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"אימייל"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"כתובת"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"הודעות מיידיות"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"ארגון"</string>
@@ -115,12 +115,12 @@
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"אתר"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"קבוצות"</string>
-    <string name="email_home" msgid="2230967805906450693">"שלח דוא\"ל לבית"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"שלח דוא\"ל לנייד"</string>
-    <string name="email_work" msgid="7065971921227432400">"שלח דוא\"ל לעבודה"</string>
-    <string name="email_other" msgid="4601881243553289615">"שלח דוא\"ל"</string>
-    <string name="email_custom" msgid="5777583741581538870">"שלח דוא\"ל אל <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5624424151176351591">"שלח דוא\"ל"</string>
+    <string name="email_home" msgid="2230967805906450693">"שלח אימייל לבית"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"שלח אימייל לנייד"</string>
+    <string name="email_work" msgid="7065971921227432400">"שלח אימייל לעבודה"</string>
+    <string name="email_other" msgid="4601881243553289615">"שלח אימייל"</string>
+    <string name="email_custom" msgid="5777583741581538870">"שלח אימייל אל <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"שלח אימייל"</string>
     <string name="postal_street" msgid="881349814077356134">"רחוב"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"תא דואר"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"שכונה"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"‏הבקשה לייצוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"איש קשר"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"‏קובצי ה-vCard נשמרים כקבצים באחסון מקומי זמני. הייבוא בפועל יחל בקרוב."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"‏לא ניתן היה לייבא את ה-vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"‏לא נמצאו קובצי vCard באמצעי האחסון."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏לא נמצאו קובצי vCard בכרטיס ה-SD."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"הפסק לחפש"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"נקה את החיפוש"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"אפשרויות להצגת אנשי קשר"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"בחר חשבון"</string>
 </resources>

@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Запит на експорт файлу vCard відхилено. Повторіть спробу пізніше."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Кешування файлів vCard у локальну тимчасову пам’ять. Імпорт почнеться незабаром."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Не вдалось імпортувати файл vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"У пам’яті не знайдено жодного файлу vCard."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На карті SD не знайдено жодного файлу vCard."</string>
@@ -240,7 +239,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Вибране"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Контактів немає."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Видимих контактів немає."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Вибраного немає."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Немає вибраних."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> – контактів немає"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Очистити часті контакти"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Вибрати SIM-карту"</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"припинити пошук"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Очистити поле пошуку"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Параметри відображення контактів"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Вибрати обліковий запис"</string>
 </resources>

@@ -204,8 +204,7 @@
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" скоро начнется."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Запрос на экспорт данных vCard отклонен. Повторите попытку позже."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
-    <string name="caching_vcard_message" msgid="6635485116655518520">"Выполняется кэширование файлов vCard в локальное временное хранилище, после чего начнется импорт."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Выполняется кеширование файлов vCard в локальное временное хранилище, после чего начнется импорт."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Не удалось импортировать данные vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"На накопителе нет файлов vCard."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На SD-карте нет файлов vCard."</string>
@@ -217,7 +216,7 @@
     <string name="import_all_vcard_string" msgid="1037495558362397535">"Импорт всех файлов vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Поиск данных vCard на накопителе…"</string>
     <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Поиск данных vCard на SD-карте…"</string>
-    <string name="caching_vcard_title" msgid="9185299351381102305">"Кэширование…"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Кеширование…"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Не удалось сканировать накопитель. <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Не удалось сканировать SD-карту. <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>..."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"прекратить поиск"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Очистить условия поиска"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Отображение контактов"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Выберите аккаунт"</string>
 </resources>
