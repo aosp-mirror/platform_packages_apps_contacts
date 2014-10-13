@@ -25,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Trieu una drecera de contacte"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Trieu un número per trucar-hi"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Trieu un número per enviar-hi un missatge"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Afegeix al contacte"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Tria un contacte"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crea un contacte nou"</string>
     <string name="starredList" msgid="4817256136413959463">"Destacats"</string>
