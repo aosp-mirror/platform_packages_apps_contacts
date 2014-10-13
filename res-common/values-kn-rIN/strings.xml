@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard ರಫ್ತು ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ಸಂಪರ್ಕ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ಗಳು) ಅನ್ನು ಸ್ಥಳೀಯ ತಾತ್ಕಾಲಿಕ ಸಂಗ್ರಹಣೆಗೆ ಸಂಗ್ರಹ ಮಾಡಲಾಗುತ್ತಿದೆ. ನಿಜವಾದ ಆಮದು ಶೀಘ್ರದಲ್ಲೇ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCard ಆಮದು ಮಾಡಲಾಗಿಲ್ಲ."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ಸಂಗ್ರಹಣೆಯಲ್ಲಿ ಯಾವುದೇ vCard ಫೈಲ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD ಕಾರ್ಡ್‌ನಲ್ಲಿ ಯಾವುದೇ vCard ಫೈಲ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ಹುಡುಕಾಟವನ್ನು ನಿಲ್ಲಿಸಿ"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ಹುಡುಕಾಟವನ್ನು ತೆರವುಗೊಳಿಸಿ"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"ಸಂಪರ್ಕ ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳು"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"ಖಾತೆ ಆಯ್ಕೆಮಾಡಿ"</string>
 </resources>

@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard 导出请求遭拒，请稍后重试。"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"联系人"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"正在将 vCard 缓存到本地临时存储空间。实际导入操作即将开始。"</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"无法导入 vCard。"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"未在存储设备中找到 vCard 文件。"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"未在SD卡上找到 vCard 文件。"</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜索"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜索内容"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"联系人显示选项"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"选择帐户"</string>
 </resources>

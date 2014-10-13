@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"درخواست صدور کارت ویزیت رد شد. لطفاً بعداً امتحان کنید."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"مخاطب"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"در حال ذخیره کارت‌(های) ویزیت در حافظه موقت محلی است. وارد کردن واقعی به زودی آغاز خواهد شد."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"وارد کردن کارت ویزیت انجام نشد."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"هیچ فایل کارت ویزیتی در حافظه یافت نشد."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏هیچ فایل کارت ویزیتی در کارت SD یافت نشد."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"توقف جستجو"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"پاک کردن جستجو"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"گزینه‌های نمایش تماس"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"انتخاب حساب"</string>
 </resources>

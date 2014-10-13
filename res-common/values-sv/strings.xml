@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Begäran om vCard-export avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-fil(er) cachelagras till en lokal tillfällig lagringsenhet. Den faktiska importen börjar snart."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g> <xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Det gick inte att importera vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Det finns ingen vCard-fil på lagringsenheten."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Det finns ingen vCard-fil på SD-kortet."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"avbryt sökning"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Rensa sökning"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Visningsalternativ för kontakter"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Välj konto"</string>
 </resources>

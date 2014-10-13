@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"လိပ်စာကဒ်အား အပြင်ထုတ်ရန် တောင်းဆိုမှု ငြင်းဆန်ခံရပါသည်။ နောင်မှ ပြန်လည်ကြိုးစားပါ"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"အဆက်အသွယ်"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"လိပ်စာကဒ်(များ)ကို စက်တွင်း ခဏသိမ်းဆည်းရာနေရာသို့ ပို့နေပါသည်။ အမှန်တကယ် တင်သွင်းခြင်း မကြာခင် စပါမည်။"</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"လိပ်စာကဒ်အား အထဲသွင်းလို့မရပါ"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"သိုလှောင်ရာနေရာထဲတွင် လိပ်စာကဒ်ဖိုင်မှမရှိပါ"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD ကဒ်ထဲတွင် လိပ်စာကဒ်ဖိုင်မှမရှိပါ"</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ရှာဖွေမှုကို ရပ်ရန်"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ရှာဖွေမှုကို ရှင်းပါ"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"အဆက်အသွယ် ပြသမှု ရွေးစရာများ"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"အကောင့်ကို ရွေးရန်"</string>
 </resources>
