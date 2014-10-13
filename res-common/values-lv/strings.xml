@@ -103,7 +103,7 @@
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Tālrunis"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-pasta adrese"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adrese"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"Tūlītējā ziņojumapm."</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Tūlītēja ziņapmaiņa"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizācija"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Saistība"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Īpašie datumi"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Tika noraidīts vCard faila eksportēšanas pieprasījums. Vēlāk mēģiniet vēlreiz."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontaktpersona"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Notiek vCard failu saglabāšana vietējā pagaidu kešatmiņā. Importēšana tiks sākta pēc neilga brīža."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Nevarēja importēt vCard datus."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Atmiņā netika atrasts neviens vCard fails."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD kartē netika atrasts neviens vCard fails."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"pārtraukt meklēšanu"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Notīrīt meklēšanas lauku"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Kontaktpersonu rādīšanas opcijas"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Konta atlase"</string>
 </resources>

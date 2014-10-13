@@ -96,7 +96,7 @@
     <string name="name_prefix" msgid="8219879405071462309">"คำนำหน้าชื่อ"</string>
     <string name="name_middle" msgid="3951610314424632183">"ชื่อกลาง"</string>
     <string name="name_suffix" msgid="5436984808550075931">"คำต่อท้ายชื่อ"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"ชื่อแบบออกเสียง"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"คำอ่านชื่อ"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"การออกเสียงชื่อ"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ชื่อกลางแบบออกเสียง"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"การออกเสียงนามสกุล"</string>
@@ -106,7 +106,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"องค์กร"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"ความเกี่ยวข้อง"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"วันที่พิเศษ"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"วันพิเศษ"</string>
     <string name="sms" msgid="8086289395154598654">"ข้อความ"</string>
     <string name="postal_address" msgid="7692926530081579786">"ที่อยู่"</string>
     <string name="ghostData_company" msgid="22470841482615409">"บริษัท"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"คำขอส่งออก vCard ถูกปฏิเสธ ลองใหม่ภายหลัง"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"รายชื่อติดต่อ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"กำลังแคช vCard ไปยังที่จัดเก็บข้อมูลชั่วคราวในตัวเครื่อง การนำเข้าจริงจะเริ่มต้นในอีกสักครู่"</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"ไม่สามารถนำเข้า vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ไม่พบไฟล์ vCard ในที่จัดเก็บข้อมูล"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"ไม่พบไฟล์ vCard บนการ์ด SD"</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"หยุดการค้นหา"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ล้างการค้นหา"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"ตัวเลือกการแสดงรายชื่อผู้ติดต่อ"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"เลือกบัญชี"</string>
 </resources>

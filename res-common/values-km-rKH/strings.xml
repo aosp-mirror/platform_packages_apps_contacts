@@ -89,7 +89,7 @@
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"តែ​កុំព្យូទ័រ​បន្ទះ​ប៉ុណ្ណោះ, ​មិន​ធ្វើ​សមកាលកម្ម"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"តែ​ទូរស័ព្ទ, មិន​បាន​ធ្វើ​សមកាលកម្ម"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ឈ្មោះ"</string>
-    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"សម្មតិនាម"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ឈ្មោះ​ហៅ​ក្រៅ"</string>
     <string name="full_name" msgid="885420216812981202">"ឈ្មោះ"</string>
     <string name="name_given" msgid="4153709115654909377">"នាម​ខ្លួន"</string>
     <string name="name_family" msgid="5317387657540738981">"នាមត្រកូល"</string>
@@ -140,8 +140,8 @@
     <string name="chat_gtalk" msgid="6043734883347741789">"ជជែក​ដោយ​ប្រើ Google Talk"</string>
     <string name="chat_icq" msgid="7538190395602030726">"ជជែក​ដោយ​ប្រើ ICQ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"ជជែក​ដោយ​ប្រើ Jabber"</string>
-    <string name="chat" msgid="6297650784873558837">"ជជែក​​"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"លុប​"</string>
+    <string name="chat" msgid="6297650784873558837">"ជជែក"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"លុប"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"ពង្រីក ឬ​បង្រួម​វាល​ឈ្មោះ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"ទំនាក់ទំនង​ទាំងអស់"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"បាន​ដាក់​ផ្កាយ"</string>
@@ -155,7 +155,7 @@
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"ការ​លុប \"<xliff:g id="GROUP">%s</xliff:g>\" ចេញពី​សមកាលកម្ម​វា​ក៏​នឹង​លុប​ទំនាក់ទំនង​ដែល​មិន​នៅ​ក្នុង​ក្រុម​ចេញពី​សមកាលកម្ម​ផង​ដែរ។"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"កំពុង​រក្សាទុក​ជម្រើស​បង្ហាញ..."</string>
     <string name="menu_done" msgid="32470053723443112">"រួចរាល់"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"បោះ​បង់​"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"បោះ​បង់"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"ទំនាក់ទំនង​នៅ​ក្នុង <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"ទំនាក់ទំនង​ក្នុង​ទិដ្ឋភាព​ផ្ទាល់ខ្លួន"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"ទំនាក់ទំនង​ទោល"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"បាន​បដិសេធ​សំណើ​នាំចេញ vCard ។ សូម​ព្យាយាម​ម្ដងទៀត​នៅ​ពេល​ក្រោយ​។"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ទំនាក់ទំនង"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"ការ​ផ្ទុក vCard(s​) ទៅកាន់​ឧបករណ៍​ផ្ទុក​បណ្ដោះអាសន្ន​មូលដ្ឋាន។ ការ​នាំ​ចូល​ពិតប្រាកដ​នឹង​ចាប់ផ្ដើម​ក្នុង​ពេល​ឆាប់ៗ។"</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"មិន​អាច​នាំចូល vCard ។"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"រក​មិន​ឃើញ​ឯកសារ vCard នៅ​ក្នុង​ឧបករណ៍​ផ្ទុក។"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"រក​មិន​ឃើញ​ឯកសារ vCard នៅ​លើ​កាត​អេសឌី។"</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"បញ្ឈប់​ការ​ស្វែងរក"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"សម្អាត​ការ​ស្វែងរក"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"ជម្រើស​បង្ហាញ​ទំនាក់ទំនង"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"ជ្រើស​គណនី"</string>
 </resources>

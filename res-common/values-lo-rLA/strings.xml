@@ -99,7 +99,7 @@
     <string name="name_phonetic" msgid="2249169131785620210">"ການອອກສຽງຊື່"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"ການ​ອອກ​ສຽງ​​ຊື່"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ການອອກສຽງຊື່ກາງ"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ການ​ອອກ​ສຽງ​ນາມ​ສະ​ກຸນ​​​"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"ການ​ອອກ​ສຽງ​ນາມ​ສະ​ກຸນ"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ໂທລະສັບ"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ອີເມວ"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"ທີ່ຢູ່"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"ຄຳຂໍການສົ່ງອອກ vCard ຖືກປະຕິເສດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"ກຳລັງເກັບຂໍ້ມູນ vCard ໃສ່ບ່ອນຈັດເກັບຂໍ້ມູນຊົ່ວຄາວໃນອຸປະກອນ. ການນຳເຂົ້າຈະເລີ່ມຂຶ້ນໃນໄວໆນີ້."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"ບໍ່ສາມາດນຳເຂົ້າ vCard ໄດ້."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ບໍ່ພົບໄຟລ໌ vCard ໃນບ່ອນຈັດເກັບຂໍ້ມູນ."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"ບໍ່ພົບໄຟລ໌ vCard ໃນ SD card."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ຢຸດ​ການ​ຊອກ​ຫາ"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ລຶບ​ການ​ຊອກ​ຫາ"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"​ໂຕ​ເລືອກ​ການ​ສະ​ແດງ​ລາຍ​ຊື່​ຜູ່​ຕິດ​ຕໍ່"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"ເລືອກ​ບັນ​ຊີ"</string>
 </resources>
