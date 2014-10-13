@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS पर लेख संदेश भेजें"</string>
     <string name="description_video_call" msgid="4907306403398614909">"वीडियो कॉल करें"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"अक्‍सर किए जाने वाले संपर्क साफ करें?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको लोग और फ़ोन ऐप्स में अक्‍सर संपर्क करने की सूची साफ़ करनी होगी, और अपने ईमेल ऐप्स  को आपकी संबोधन प्राथमिकताओं को प्रारंभ से जानने के लिए बाध्‍य करना होगा."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको लोग और फ़ोन ऐप्स में अक्‍सर संपर्क करने की सूची साफ़ करनी होगी, और अपने ईमेल ऐप्स को आपकी संबोधन करने की शब्दों को शुरु से जानने के लिए बाध्‍य करना होगा."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"अक्सर किए जाने वाले संपर्क साफ कर रहा है…"</string>
     <string name="status_available" msgid="4832569677396634846">"उपलब्ध"</string>
     <string name="status_away" msgid="6267905184545881094">"दूर"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard निर्यात अनुरोध अस्‍वीकार हो गया था. बाद में पुन: प्रयास करें."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"संपर्क"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard को स्‍थानीय अस्‍थायी मेमोरी में संचित कर रहा है. वास्‍तविक आयात जल्‍दी ही प्रारंभ होगा."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCard आयात नहीं कर सका."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"मेमोरी में कोई vCard फ़ाइल नहीं मिली."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD कार्ड पर कोई vCard फ़ाइल नहीं मिली."</string>
@@ -251,4 +250,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"खोजना बंद करें"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"खोज साफ़ करें"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"संपर्क प्रदर्शन विकल्प"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"खाता चुनें"</string>
 </resources>
