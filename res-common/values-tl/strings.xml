@@ -251,4 +251,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ihinto ang paghahanap"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"I-clear ang paghahanap"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Mga opsyon ng display ng contact"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Pumili ng Account"</string>
 </resources>

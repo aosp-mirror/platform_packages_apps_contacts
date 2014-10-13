@@ -251,4 +251,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"إيقاف البحث"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"محو البحث"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"خيارات عرض جهات الاتصال"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"تحديد الحساب"</string>
 </resources>

@@ -253,4 +253,6 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"berhenti mencari"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Kosongkan carian"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Pilihan paparan kenalan"</string>
+    <!-- no translation found for select_account_dialog_title (2970151494458786440) -->
+    <skip />
 </resources>

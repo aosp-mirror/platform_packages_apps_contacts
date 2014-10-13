@@ -251,4 +251,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"stop søgning"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Ryd søgning"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Indstillinger for visning af kontaktpersoner"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"Vælg konto"</string>
 </resources>
