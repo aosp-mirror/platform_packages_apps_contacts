@@ -16,20 +16,22 @@
 
 package com.android.contacts.activities;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.Loader.OnLoadCompleteListener;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayPhoto;
+import android.provider.ContactsContract.Intents;
+import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -44,9 +46,10 @@ import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.util.ContactPhotoUtils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
@@ -60,6 +63,7 @@ public class AttachPhotoActivity extends ContactsActivity {
 
     private static final int REQUEST_PICK_CONTACT = 1;
     private static final int REQUEST_CROP_PHOTO = 2;
+    private static final int REQUEST_PICK_DEFAULT_ACCOUNT_FOR_NEW_CONTACT = 3;
 
     private static final String KEY_CONTACT_URI = "contact_uri";
     private static final String KEY_TEMP_PHOTO_URI = "temp_photo_uri";
@@ -130,7 +134,24 @@ public class AttachPhotoActivity extends ContactsActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-        if (requestCode == REQUEST_PICK_CONTACT) {
+        if (requestCode == REQUEST_PICK_DEFAULT_ACCOUNT_FOR_NEW_CONTACT) {
+            // Bail if the account selector was not successful.
+            if (resultCode != Activity.RESULT_OK) {
+                Log.w(TAG, "account selector was not successful");
+                finish();
+                return;
+            }
+            // If there's an account specified, use it.
+            if (result != null) {
+                AccountWithDataSet account = result.getParcelableExtra(Intents.Insert.ACCOUNT);
+                if (account != null) {
+                    createNewRawContact(account);
+                    return;
+                }
+            }
+            // If there isn't an account specified, then the user opted to keep the contact local.
+            createNewRawContact(null);
+        } else if (requestCode == REQUEST_PICK_CONTACT) {
             if (resultCode != RESULT_OK) {
                 finish();
                 return;
@@ -225,9 +246,16 @@ public class AttachPhotoActivity extends ContactsActivity {
         RawContactDeltaList deltaList = contact.createRawContactDeltaList();
         RawContactDelta raw = deltaList.getFirstWritableRawContact(this);
         if (raw == null) {
-            Log.w(TAG, "no writable raw-contact found");
+            // We can't directly insert this photo since no raw contacts exist in the contact.
+            selectAccountAndCreateContact();
             return;
         }
+
+        saveToContact(contact, deltaList, raw);
+    }
+
+    private void saveToContact(Contact contact, RawContactDeltaList deltaList,
+            RawContactDelta raw) {
 
         // Create a scaled, compressed bitmap to add to the entity-delta list.
         final int size = ContactsUtils.getThumbnailSize(this);
@@ -236,10 +264,12 @@ public class AttachPhotoActivity extends ContactsActivity {
             bitmap = ContactPhotoUtils.getBitmapFromUri(this, mCroppedPhotoUri);
         } catch (FileNotFoundException e) {
             Log.w(TAG, "Could not find bitmap");
+            finish();
             return;
         }
         if (bitmap == null) {
             Log.w(TAG, "Could not decode bitmap");
+            finish();
             return;
         }
 
@@ -247,8 +277,10 @@ public class AttachPhotoActivity extends ContactsActivity {
         final byte[] compressed = ContactPhotoUtils.compressBitmap(scaled);
         if (compressed == null) {
             Log.w(TAG, "could not create scaled and compressed Bitmap");
+            finish();
             return;
         }
+
         // Add compressed bitmap to entity-delta... this allows us to save to
         // a new contact; otherwise the entity-delta-list would be empty, and
         // the ContactSaveService would not create the new contact, and the
@@ -258,6 +290,7 @@ public class AttachPhotoActivity extends ContactsActivity {
                 RawContactModifier.ensureKindExists(raw, account, Photo.CONTENT_ITEM_TYPE);
         if (values == null) {
             Log.w(TAG, "cannot attach photo to this account type");
+            finish();
             return;
         }
         values.setPhoto(compressed);
@@ -270,10 +303,52 @@ public class AttachPhotoActivity extends ContactsActivity {
                 "", 0,
                 contact.isUserProfile(),
                 null, null,
-                raw.getRawContactId(),
+                raw.getRawContactId() != null ? raw.getRawContactId() : -1,
                 mCroppedPhotoUri
-                );
+        );
         startService(intent);
         finish();
+    }
+
+    private void selectAccountAndCreateContact() {
+        // If there is no default account or the accounts have changed such that we need to
+        // prompt the user again, then launch the account prompt.
+        final ContactEditorUtils editorUtils = ContactEditorUtils.getInstance(this);
+        if (editorUtils.shouldShowAccountChangedNotification()) {
+            Intent intent = new Intent(this, ContactEditorAccountsChangedActivity.class);
+            startActivityForResult(intent, REQUEST_PICK_DEFAULT_ACCOUNT_FOR_NEW_CONTACT);
+        } else {
+            // Otherwise, there should be a default account. Then either create a local contact
+            // (if default account is null) or create a contact with the specified account.
+            AccountWithDataSet defaultAccount = editorUtils.getDefaultAccount();
+            if (defaultAccount == null) {
+                createNewRawContact(null);
+            } else {
+                createNewRawContact(defaultAccount);
+            }
+        }
+    }
+
+    /**
+     * Create a new writeable raw contact to store mCroppedPhotoUri.
+     */
+    private void createNewRawContact(final AccountWithDataSet account) {
+        // Reload the contact from URI instead of trying to pull the contact from a member variable,
+        // since this function can be called after the activity stops and resumes.
+        loadContact(mContactUri, new Listener() {
+            @Override
+            public void onContactLoaded(Contact contactToSave) {
+                final RawContactDeltaList deltaList = contactToSave.createRawContactDeltaList();
+                final ContentValues after = new ContentValues();
+                after.put(RawContacts.ACCOUNT_TYPE, account != null ? account.type : null);
+                after.put(RawContacts.ACCOUNT_NAME, account != null ? account.name : null);
+                after.put(RawContacts.DATA_SET, account != null ? account.dataSet : null);
+
+                final RawContactDelta newRawContactDelta
+                        = new RawContactDelta(ValuesDelta.fromAfter(after));
+                deltaList.add(newRawContactDelta);
+                saveToContact(contactToSave, deltaList, newRawContactDelta);
+            }
+        });
     }
 }
