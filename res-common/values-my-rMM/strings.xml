@@ -155,7 +155,7 @@
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" အား ထပ်တူပြုလုပ်ခြင်းမှ ဖယ်ထုတ်ခြင်းသည် တခြား အုပ်စုမလုပ်ထားသော အဆက်အသွယ်များအားလည်း ဖယ်ထုတ်ပါလိမ့်မည်။"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"ပြသမှု ရွေးချယ်ခြင်းများ သိမ်းဆည်နေစဉ်…"</string>
     <string name="menu_done" msgid="32470053723443112">"ပြီးပါပြီ"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"ပယ်ဖျက်သည်"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"ထားတော့"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> ထဲမှ အဆက်အသွယ်များ"</string>
     <string name="listCustomView" msgid="1915154113477432033">"မိမိစိတ်ကြိုက် မြင်ကွင်းမှ"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"အဆက်အသွယ်တစ်ခုတည်း"</string>
@@ -165,7 +165,7 @@
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"သိုလှောင်ရာနေရာမှ အထဲသို့သွင့်ရန်"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> ကို အထဲသို့သွင်းခြင်းအား ရပ်တန့်မလား?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> ကိုအပြင်သို့ထုတ်ခြင်းအား ရပ်တန့်မလား?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"လိပ်စာကဒ် အသွင်း၊အထုတ်ကို ရပ်တန့်လို့မရပါ"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"လိပ်စာကဒ် အသွင်း၊အထုတ်ကို ရပ်၍မရပါ"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"အမည်မသိသော မှားယွင်းမှု"</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ကို ဖွင့်မရပါ: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"အပြင်ထုတ်သောစနစ်အား စတင်လို့မရပါ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
@@ -189,9 +189,9 @@
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"အပြင်သို့ထုတ်ယူရနိုင်သော လိပ်စာမရှိပါ။ သင့်ဖုန်းထဲမှာ လိပ်စာများရှိပါက တချို့ ဒေတာဝန်ဆောင်မှုက ထိုလိပ်စာများအား ဖုန်းထဲမှအပြင်သို့ ထုတ်ခွင့်ပေးခွင့် မပေးတာမျိုးဖြစ်နိုင်ပါသည်"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"လိပ်စာကဒ်ပြုလုပ်သောစန် ကောင်းမွန်စာ မစတင်ပါ"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"အပြင်ထုတ်လို့မရပါ"</string>
-    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"အဆက်အသွယ် အချက်အလက်ကို \nအကြောင်းပြချက်ကြောင့် မထုတ်နိုင်ပါ။  \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"မည်သည့်သိုလှောင်မှုနေရာမှ မတွေ့ပါ"</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"မည်သည့်SD ကဒ်မှ မတွေ့ပါ"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"အဆက်အသွယ် အချက်အလက်ကို \nအကြောင်းပြချက်ကြောင့် မထုတ်နိုင်ပါ။  \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"မည်သည့်သိုလှောင်မှုနေရာမှ မတွေ့ပါ"</string>
+    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"မည်သည့်SD ကဒ်မှ မတွေ့ပါ"</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"သင့် လိပ်စာစာရင်းမှာ ဖော်ပြပါဖိုင်အနေဖြင့် အပြင်သို့ထုတ်ပါမည်: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> အား အထဲသွင်းစဉ်"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"လိပ်စာကဒ်ဒေတာအား ဖတ်မရပါ"</string>
@@ -205,7 +205,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"လိပ်စာကဒ်အား အပြင်ထုတ်ရန် တောင်းဆိုမှု ငြင်းဆန်ခံရပါသည်။ နောင်မှ ပြန်လည်ကြိုးစားပါ"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"အဆက်အသွယ်"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"လိပ်စာကဒ်(များ)ကို စက်တွင်း ခဏသိမ်းဆည်းရာနေရာသို့ ပို့နေပါသည်။ အမှန်တကယ် တင်သွင်းခြင်း မကြာခင် စပါမည်။"</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"လိပ်စာကဒ်အား အထဲသွင်းလို့မရပါ"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"သိုလှောင်ရာနေရာထဲတွင် လိပ်စာကဒ်ဖိုင်မှမရှိပါ"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD ကဒ်ထဲတွင် လိပ်စာကဒ်ဖိုင်မှမရှိပါ"</string>
@@ -222,14 +221,14 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD ကဒ်ကို စကင်လုပ်မရပါ။ (အကြောင်းပြချက်: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>ကို သွင်းနေစဉ်: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"သိမ်းဆည်သောအရာသို့ပို့ပါ"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ဖြင့် စီပေးရန်"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ဖြင့် စီပေးရန်"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ပထမ အမည်"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"နောက်ဆုံး အမည်"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"အမည် ချထားပုံစံ"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ပထမ အမည် ဦးစွာ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"နောက်ဆုံး အမည် ဦးစွာ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"မြင်နိုင်သော အဆက်အသွယ်များအား မျှဝေပါ"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များအား အသွင်း၊အထုတ် လုပ်ခြင်း"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များ သွင်းယူ၊ ထုတ်ယူရန်"</string>
     <string name="dialog_import" msgid="5177004290082451296">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
     <string name="share_error" msgid="665756457151793108">"ဒီလိပ်စာအား မျှဝေလို့ မရပါ"</string>
     <string name="menu_search" msgid="7464453023659824700">"ရှာဖွေခြင်း"</string>
@@ -245,10 +244,11 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"မကြာခဏအရာများအား ဖယ်ရှားရန်"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM ကဒ်ကို ရွေးရန်"</string>
     <string name="menu_accounts" msgid="795417468541517082">"အကောင့်များ"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"အသွင်း၊အထုတ် လုပ်ခြင်း"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"သွင်းယူ၊ ထုတ်ယူခြင်း"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> မှတဆင့်"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> မှတဆင့် <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ရှာဖွေမှုကို ရပ်ရန်"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ရှာဖွေမှုကို ရှင်းပါ"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"အဆက်အသွယ် ပြသမှု ရွေးစရာများ"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"အကောင့်ကို ရွေးရန်"</string>
 </resources>
