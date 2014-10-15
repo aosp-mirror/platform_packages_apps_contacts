@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"ಸಂಪರ್ಕಗಳು"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"ಸಂಪರ್ಕಗಳು"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="contactsList" msgid="8661624236494819731">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ಸಂಪರ್ಕ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ನೇರ ಡಯಲ್"</string>
@@ -24,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"ಸಂಪರ್ಕದ ಶಾರ್ಟ್‌ಕಟ್‌‌ ಆರಿಸಿ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ಕೆರಮಾಡಲು ಸಂಖ್ಯೆಯೊಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ಸಂದೇಶಕ್ಕಾಗಿ ಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸಿ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ಸಂಪರ್ಕ ಆಯ್ಕೆ ಮಾಡಿ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ಹೊಸ ಸಂಪರ್ಕ ರಚಿಸಿ"</string>
     <string name="starredList" msgid="4817256136413959463">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
@@ -153,7 +155,7 @@
     <string name="menu_select_none" msgid="7093222469852132345">"ಎಲ್ಲವನ್ನು ಆಯ್ಕೆ ರದ್ದುಮಾಡಿ"</string>
     <string name="add_field" msgid="2384260056674995230">"ಮತ್ತೊಂದು ಕ್ಷೇತ್ರವನ್ನು ಸೇರಿಸಿ"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"ಹೊಸದನ್ನು ಸೇರಿಸಿ"</string>
-    <string name="add_organization" msgid="7311893231158291197">"ಸಂಘಟನೆಯನ್ನು ಸೇರಿಸಿ"</string>
+    <string name="add_organization" msgid="7311893231158291197">"ಸಂಸ್ಥೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"ದಿನಾಂಕ"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"ಗುಂಪು ಹೆಸರು"</string>
     <string name="description_star" msgid="2605854427360036550">"ಮೆಚ್ಚಿನ"</string>
@@ -181,7 +183,7 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"ವರ್ಷವನ್ನು ಒದಗಿಸಿ"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"ಸಂಪರ್ಕ"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ಹೊಸದೊಂದು ಸಂಪರ್ಕವನ್ನು ರಚಿಸು"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ಹೊಸ ಸಂಪರ್ಕ ರಚಿಸಿ"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ಖಾತೆಗೆ ಸೈನ್‌ ಇನ್‌ ಮಾಡಿ"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"ಹೊಸ ಗುಂಪು ರಚಿಸಿ"</string>
@@ -214,7 +216,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತಿದೆ"</string>
     <string name="no_account_prompt" msgid="6424883302325061025">"Google ಖಾತೆಯಲ್ಲಿ ಸಂಪರ್ಕಗಳ ಕಾರ್ಯ ಉತ್ತಮವಾಗಿರುತ್ತದೆ.\n\n• ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್‌ನಿಂದ ಪ್ರವೇಶಿಸಿ.\n• ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿ."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"ನಿಮ್ಮ ಫೋನ್‌ ಅನ್ನು ಕಳೆದುಕೊಂಡರೂ ಸಹ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಇರಿಸಿಕೊಳ್ಳಿ: ಆನ್‌‌ಲೈನ್‌ ಸೇವೆಯೊಂದಿಗೆ ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಿ."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ಖಾತೆಯೊಂದನ್ನು ಸೇರಿಸಿ"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ಖಾತೆಯೊಂದನ್ನು ಸೇರಿಸು"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಬ್ಯಾಕಪ್‌ ಮಾಡುವುದಿಲ್ಲ. ಸಂಪರ್ಕಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬ್ಯಾಕಪ್‌ ಇರಿಸುವ ಖಾತೆಯನ್ನು ಸೇರಿಸುವುದೇ?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ಜೊತೆಗೆ ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಸಿಂಕ್ರೊನೈಜ್ ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ಕೆಳಗಿನ ಖಾತೆಗಳೊಂದಿಗೆ ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ನೀವು ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಬಹುದು. ಯಾವುದನ್ನು ಬಳಸಲು ನೀವು ಬಯಸುತ್ತೀರಿ?"</string>
@@ -248,5 +250,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"ಈವೆಂಟ್"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"ಸಂಬಂಧ"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"ಸ್ಥಳಕ್ಕಾಗಿ ದಿಕ್ಕುಗಳು"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"ಇತ್ತೀಚಿನ sms. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. ಪ್ರತಿಕ್ರಿಯಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ಒಳಬರುವ"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"ಹೊರಹೋಗುವ"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ತಪ್ಪಿಸಿಕೊಂಡ"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"ಇತ್ತೀಚಿನ ಕರೆ. <xliff:g id="CALL_DETAILS">%s</xliff:g>. ಮರಳಿ ಕರೆ ಮಾಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ನೀವು: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
