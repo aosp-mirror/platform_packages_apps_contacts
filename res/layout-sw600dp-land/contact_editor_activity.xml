@@ -30,19 +30,19 @@
         <View
             android:layout_height="match_parent"
             android:layout_width="0dip"
-            android:layout_weight="2" />
+            android:layout_weight="@integer/contact_list_space_layout_weight" />
 
         <fragment class="com.android.contacts.editor.ContactEditorFragment"
             android:id="@+id/contact_editor_fragment"
             android:layout_width="0dip"
-            android:layout_weight="6"
+            android:layout_weight="@integer/contact_list_card_layout_weight"
             android:layout_height="match_parent"/>
 
         <!-- Empty view to represent the right margin -->
         <View
             android:layout_height="match_parent"
             android:layout_width="0dip"
-            android:layout_weight="2" />
+            android:layout_weight="@integer/contact_list_space_layout_weight" />
 
     </LinearLayout>
 
