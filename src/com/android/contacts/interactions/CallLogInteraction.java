@@ -180,10 +180,8 @@ public class CallLogInteraction implements ContactInteraction {
 
     @Override
     public String getContentDescription(Context context) {
-        String callDetails = getCallTypeString(context) + ". " + getViewFooter(context) + ". " +
-                getViewHeader(context) + ". " + getViewFooter(context);
         return context.getResources().getString(R.string.content_description_recent_call,
-                callDetails);
+                getCallTypeString(context), getViewHeader(context), getViewFooter(context));
     }
 
     private String getCallTypeString(Context context) {

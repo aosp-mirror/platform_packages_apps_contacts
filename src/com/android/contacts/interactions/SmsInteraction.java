@@ -160,10 +160,8 @@ public class SmsInteraction implements ContactInteraction {
 
     @Override
     public String getContentDescription(Context context) {
-        String messageDetails = getViewHeader(context) + ". " + getViewBody(context) + ". " +
-                getViewFooter(context);
         return context.getResources().getString(R.string.content_description_recent_sms,
-                messageDetails);
+                getViewHeader(context), getViewBody(context), getViewFooter(context));
     }
 
     @Override
