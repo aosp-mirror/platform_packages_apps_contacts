@@ -572,7 +572,7 @@ public class PeopleActivity extends ContactsActivity implements
 
     private void showEmptyStateForTab(int tab) {
         if (mContactsUnavailableFragment != null) {
-            switch (tab) {
+            switch (getTabPositionForTextDirection(tab)) {
                 case TabState.FAVORITES:
                     mContactsUnavailableFragment.setMessageText(
                             R.string.listTotalAllContactsZeroStarred, -1);
@@ -1022,7 +1022,7 @@ public class PeopleActivity extends ContactsActivity implements
             clearFrequentsMenu.setVisible(false);
             helpMenu.setVisible(false);
         } else {
-            switch (mActionBarAdapter.getCurrentTab()) {
+            switch (getTabPositionForTextDirection(mActionBarAdapter.getCurrentTab())) {
                 case TabState.FAVORITES:
                     contactsFilterMenu.setVisible(false);
                     clearFrequentsMenu.setVisible(hasFrequents());
