@@ -1760,29 +1760,29 @@ public class QuickContactActivity extends ContactsActivity {
         @Override
         public void onLoadFinished(Loader<Contact> loader, Contact data) {
             Trace.beginSection("onLoadFinished()");
+            try {
 
-            if (isFinishing()) {
-                return;
-            }
-            if (data.isError()) {
-                // This shouldn't ever happen, so throw an exception. The {@link ContactLoader}
-                // should log the actual exception.
-                throw new IllegalStateException("Failed to load contact", data.getException());
-            }
-            if (data.isNotFound()) {
-                if (mHasAlreadyBeenOpened) {
-                    finish();
-                } else {
+                if (isFinishing()) {
+                    return;
+                }
+                if (data.isError()) {
+                    // This shouldn't ever happen, so throw an exception. The {@link ContactLoader}
+                    // should log the actual exception.
+                    throw new IllegalStateException("Failed to load contact", data.getException());
+                }
+                if (data.isNotFound()) {
                     Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
                     Toast.makeText(QuickContactActivity.this, R.string.invalidContactMessage,
                             Toast.LENGTH_LONG).show();
+                    finish();
+                    return;
                 }
-                return;
+
+                bindContactData(data);
+
+            } finally {
+                Trace.endSection();
             }
-
-            bindContactData(data);
-
-            Trace.endSection();
         }
 
         @Override
