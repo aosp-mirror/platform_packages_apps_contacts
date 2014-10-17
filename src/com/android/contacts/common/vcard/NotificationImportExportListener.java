@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.widget.Toast;
 
@@ -125,7 +126,8 @@ public class NotificationImportExportListener implements VCardImportExportListen
                             RawContacts.CONTENT_URI, rawContactId));
             intent = new Intent(Intent.ACTION_VIEW, contactUri);
         } else {
-            intent = null;
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
         }
         final Notification notification =
                 NotificationImportExportListener.constructFinishNotification(mContext,

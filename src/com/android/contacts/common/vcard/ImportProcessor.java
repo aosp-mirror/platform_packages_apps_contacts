@@ -194,14 +194,14 @@ public class ImportProcessor extends ProcessorBase implements VCardEntryHandler 
                 Log.i(LOG_TAG, "Successfully finished importing one vCard file: " + uri);
                 List<Uri> uris = committer.getCreatedUris();
                 if (mListener != null) {
-                    if (uris != null && uris.size() > 0) {
-                        // TODO: construct intent showing a list of imported contact list.
+                    if (uris != null && uris.size() == 1) {
                         mListener.onImportFinished(mImportRequest, mJobId, uris.get(0));
                     } else {
-                        // Not critical, but suspicious.
-                        Log.w(LOG_TAG,
-                                "Created Uris is null or 0 length " +
-                                "though the creation itself is successful.");
+                        if (uris == null || uris.size() == 0) {
+                            // Not critical, but suspicious.
+                            Log.w(LOG_TAG,  "Created Uris is null or 0 length " +
+                                    "though the creation itself is successful.");
+                        }
                         mListener.onImportFinished(mImportRequest, mJobId, null);
                     }
                 }
