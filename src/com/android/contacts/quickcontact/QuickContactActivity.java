@@ -2283,12 +2283,23 @@ public class QuickContactActivity extends ContactsActivity {
                     final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                     intent.setType(Contacts.CONTENT_ITEM_TYPE);
 
-                    // Only pre-fill the name field if the provided display name is an organization
-                    // name or better (e.g. structured name, nickname)
-                    if (mContactData.getDisplayNameSource() >= DisplayNameSources.ORGANIZATION) {
-                        intent.putExtra(Intents.Insert.NAME, mContactData.getDisplayName());
-                    }
                     ArrayList<ContentValues> values = mContactData.getContentValues();
+
+                    // Only pre-fill the name field if the provided display name is an nickname
+                    // or better (e.g. structured name, nickname)
+                    if (mContactData.getDisplayNameSource() >= DisplayNameSources.NICKNAME) {
+                        intent.putExtra(Intents.Insert.NAME, mContactData.getDisplayName());
+                    } else if (mContactData.getDisplayNameSource()
+                            == DisplayNameSources.ORGANIZATION) {
+                        // This is probably an organization. Instead of copying the organization
+                        // name into a name entry, copy it into the organization entry. This
+                        // way we will still consider the contact an organization.
+                        final ContentValues organization = new ContentValues();
+                        organization.put(Organization.COMPANY, mContactData.getDisplayName());
+                        organization.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
+                        values.add(organization);
+                    }
+
                     // Last time used and times used are aggregated values from the usage stat
                     // table. They need to be removed from data values so the SQL table can insert
                     // properly
