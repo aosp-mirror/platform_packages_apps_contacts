@@ -562,7 +562,8 @@ public class ContactTileAdapter extends BaseAdapter {
 
             // Just line up children horizontally.
             for (int i = 0; i < count; i++) {
-                final View child = getChildAt(i);
+                final int rtlAdjustedIndex = isLayoutRtl() ? count - i - 1 : i;
+                final View child = getChildAt(rtlAdjustedIndex);
 
                 // Note MeasuredWidth includes the padding.
                 final int childWidth = child.getMeasuredWidth();
