@@ -37,6 +37,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -472,7 +473,8 @@ public class VCardService extends Service {
          * This method increments "index" part from 1 to maximum, and checks whether any file name
          * following naming rule is available. If there's no file named /mnt/sdcard/00001.vcf, the
          * name will be returned to a caller. If there are 00001.vcf 00002.vcf, 00003.vcf is
-         * returned.
+         * returned. We format these numbers in the US locale to ensure we they appear as
+         * english numerals.
          *
          * There may not be any appropriate file name. If there are 99999 vCard files in the
          * storage, for example, there's no appropriate name, so this method returns
@@ -495,7 +497,7 @@ public class VCardService extends Service {
 
         if (!ALLOW_LONG_FILE_NAME) {
             final String possibleBody =
-                    String.format(bodyFormat, mFileNamePrefix, 1, mFileNameSuffix);
+                    String.format(Locale.US, bodyFormat, mFileNamePrefix, 1, mFileNameSuffix);
             if (possibleBody.length() > 8 || mFileNameExtension.length() > 3) {
                 Log.e(LOG_TAG, "This code does not allow any long file name.");
                 mErrorReason = getString(R.string.fail_reason_too_long_filename,
@@ -507,7 +509,8 @@ public class VCardService extends Service {
 
         for (int i = mFileIndexMinimum; i <= mFileIndexMaximum; i++) {
             boolean numberIsAvailable = true;
-            final String body = String.format(bodyFormat, mFileNamePrefix, i, mFileNameSuffix);
+            final String body
+                    = String.format(Locale.US, bodyFormat, mFileNamePrefix, i, mFileNameSuffix);
             // Make sure that none of the extensions of mExtensionsToConsider matches. If this
             // number is free, we'll go ahead with mFileNameExtension (which is included in
             // mExtensionsToConsider)
