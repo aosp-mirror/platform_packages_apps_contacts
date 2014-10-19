@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS पर लेख संदेश भेजें"</string>
     <string name="description_video_call" msgid="4907306403398614909">"वीडियो कॉल करें"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"अक्‍सर किए जाने वाले संपर्क साफ करें?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको लोग और फ़ोन ऐप्स में अक्‍सर संपर्क करने की सूची साफ़ करनी होगी, और अपने ईमेल ऐप्स  को आपकी संबोधन प्राथमिकताओं को प्रारंभ से जानने के लिए बाध्‍य करना होगा."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको अक्‍सर संपर्क करने की सूची लोग ऐप और फ़ोन में  से साफ़ करनी होगी, और अपने ईमेल ऐप को आपकी संबोधन करने की शब्दों को शुरु से शिखाना होगा."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"अक्सर किए जाने वाले संपर्क साफ कर रहा है…"</string>
     <string name="status_available" msgid="4832569677396634846">"उपलब्ध"</string>
     <string name="status_away" msgid="6267905184545881094">"दूर"</string>
