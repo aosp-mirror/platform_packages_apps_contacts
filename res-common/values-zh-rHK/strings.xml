@@ -161,7 +161,10 @@
     <string name="listSingleContact" msgid="8525131203887307088">"單一聯絡人"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"在帳戶中建立聯絡人"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"從 SIM 卡匯入"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"從 SIM 卡 #<xliff:g id="SIM_NUMBER">%d</xliff:g> 匯入"</string>
+    <!-- no translation found for import_from_sim_summary (2306434118233541675) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_no_number (8498561004799710237) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"從儲存匯入"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"要取消匯入 <xliff:g id="FILENAME">%s</xliff:g> 嗎？"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"要取消匯出 <xliff:g id="FILENAME">%s</xliff:g> 嗎？"</string>

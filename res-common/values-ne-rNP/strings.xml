@@ -161,7 +161,10 @@
     <string name="listSingleContact" msgid="8525131203887307088">"एकल सम्पर्क"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"खाताअन्तर्गत सम्पर्क सिर्जना गर्नुहोस्"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM कार्डबाट आयात गर्नुहोस्"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"सिमकार्ड #<xliff:g id="SIM_NUMBER">%d</xliff:g> बाट आयात गर्नुहोस्"</string>
+    <!-- no translation found for import_from_sim_summary (2306434118233541675) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_no_number (8498561004799710237) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"भण्डारणबाट आयात गर्नुहोस्"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g>को आयात रद्द गर्ने हो?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> को निर्यात रद्द गर्नहोस्?"</string>
@@ -251,4 +254,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"खोजी गर्न  रोक्नुहोस्"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"खोजी खाली गर्नुहोस्"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"सम्पर्क प्रदर्शन विकल्पहरू"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"खाता चयन गर्नुहोस्"</string>
 </resources>

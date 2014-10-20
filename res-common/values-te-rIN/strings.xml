@@ -101,7 +101,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ఫోనెటిక్ మధ్య పేరు"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"ఫొనెటిక్ చివరి పేరు"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ఫోన్"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"ఇమెయిల్ చేయండి"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"ఇమెయిల్"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"చిరునామా"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"సంస్థ"</string>
@@ -161,7 +161,10 @@
     <string name="listSingleContact" msgid="8525131203887307088">"ఒక పరిచయం"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"ఖాతాలో పరిచయాన్ని సృష్టించండి"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM కార్డు నుండి దిగుమతి చేయండి"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"SIM కార్డ్ #<xliff:g id="SIM_NUMBER">%d</xliff:g> నుండి దిగుమతి చేయండి"</string>
+    <!-- no translation found for import_from_sim_summary (2306434118233541675) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_no_number (8498561004799710237) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"నిల్వ నుండి దిగుమతి చేయండి"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క దిగుమతిని రద్దు చేయాలా?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క ఎగుమతిని రద్దు చేయాలా?"</string>
@@ -251,4 +254,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"శోధించడం ఆపివేయి"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"శోధనను క్లియర్ చేయండి"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"పరిచయ ప్రదర్శన ఎంపికలు"</string>
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"ఖాతాను ఎంచుకోండి"</string>
 </resources>

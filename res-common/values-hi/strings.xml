@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS पर लेख संदेश भेजें"</string>
     <string name="description_video_call" msgid="4907306403398614909">"वीडियो कॉल करें"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"अक्‍सर किए जाने वाले संपर्क साफ करें?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको लोग और फ़ोन ऐप्स में अक्‍सर संपर्क करने की सूची साफ़ करनी होगी, और अपने ईमेल ऐप्स को आपकी संबोधन करने की शब्दों को शुरु से जानने के लिए बाध्‍य करना होगा."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपको अक्‍सर संपर्क करने की सूची लोग ऐप और फ़ोन में  से साफ़ करनी होगी, और अपने ईमेल ऐप को आपकी संबोधन करने की शब्दों को शुरु से शिखाना होगा."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"अक्सर किए जाने वाले संपर्क साफ कर रहा है…"</string>
     <string name="status_available" msgid="4832569677396634846">"उपलब्ध"</string>
     <string name="status_away" msgid="6267905184545881094">"दूर"</string>
@@ -161,7 +161,10 @@
     <string name="listSingleContact" msgid="8525131203887307088">"एकल संपर्क"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"खाते के अंतर्गत संपर्क बनाएं"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"सिम कार्ड से आयात करें"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"सिम कार्ड #<xliff:g id="SIM_NUMBER">%d</xliff:g> से आयात करें"</string>
+    <!-- no translation found for import_from_sim_summary (2306434118233541675) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_no_number (8498561004799710237) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"मेमोरी से आयात करें"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> का आयात रहने दें?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात रहने दें?"</string>
