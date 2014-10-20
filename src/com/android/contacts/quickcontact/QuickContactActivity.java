@@ -801,14 +801,19 @@ public class QuickContactActivity extends ContactsActivity {
         } else if (oldLookupUri != mLookupUri) {
             // After copying a directory contact, the contact URI changes. Therefore,
             // we need to restart the loader and reload the new contact.
-            for (int interactionLoaderId : mRecentLoaderIds) {
-                getLoaderManager().destroyLoader(interactionLoaderId);
-            }
+            destroyInteractionLoaders();
             mContactLoader = (ContactLoader) getLoaderManager().restartLoader(
                     LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
+            mCachedCp2DataCardModel = null;
         }
 
         NfcHandler.register(this, mLookupUri);
+    }
+
+    private void destroyInteractionLoaders() {
+        for (int interactionLoaderId : mRecentLoaderIds) {
+            getLoaderManager().destroyLoader(interactionLoaderId);
+        }
     }
 
     private void runEntranceAnimation() {
@@ -986,6 +991,14 @@ public class QuickContactActivity extends ContactsActivity {
         if (mHasIntentLaunched) {
             mHasIntentLaunched = false;
             populateContactAndAboutCard(mCachedCp2DataCardModel);
+        }
+
+        // When exiting the activity and resuming, we want to force a full reload of all the
+        // interaction data in case something changed in the background. On screen rotation,
+        // we don't need to do this. And, mCachedCp2DataCardModel will be null, so we won't.
+        if (mCachedCp2DataCardModel != null) {
+            destroyInteractionLoaders();
+            startInteractionLoaders(mCachedCp2DataCardModel);
         }
     }
 
