@@ -118,7 +118,7 @@
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> od <xliff:g id="TOTAL_NUMBER">%s</xliff:g> stikov"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Imena stikov"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Programa za obravnavo tega dejanja ni mogoče najti."</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikacije za obravnavo tega dejanja ni mogoče najti."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliknite za vrnitev na prejšnji zaslon"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Dodaj telefonsko številko"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Dodaj e-poštni naslov"</string>
@@ -137,7 +137,7 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Uporabi to fotografijo"</string>
-    <string name="contact_read_only" msgid="7421346527289472273">"S tem programom urejanje ni mogoče."</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"S to aplikacijo urejanje ni mogoče."</string>
     <string name="group_read_only" msgid="1061762906115697637">"V tej napravi ni mogoče urejati skupine."</string>
     <string name="take_photo" msgid="7496128293167402354">"Posnemi fotografijo"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Posnemi novo fotografijo"</string>
