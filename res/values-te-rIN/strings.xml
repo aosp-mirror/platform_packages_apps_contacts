@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"పరిచయాలు"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"పరిచయాలు"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"పరిచయాలు"</string>
     <string name="contactsList" msgid="8661624236494819731">"పరిచయాలు"</string>
     <string name="shortcutContact" msgid="749243779392912958">"పరిచయం"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"డైరెక్ట్ డయల్"</string>
@@ -248,5 +249,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"ఈవెంట్"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"సంబంధం"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"స్థానానికి వెళ్లడానికి దిశలు"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"ఇటీవలి sms. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. ప్రతిస్పందించడానికి క్లిక్ చేయండి"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ఇన్‌కమింగ్"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"అవుట్‌గోయింగ్"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"మిస్డ్"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"ఇటీవలి కాల్. <xliff:g id="CALL_DETAILS">%s</xliff:g>. తిరిగి కాల్ చేయడానికి క్లిక్ చేయండి"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"మీరు: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>

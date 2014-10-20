@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"सम्पर्कहरू"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"सम्पर्कहरू"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"सम्पर्कहरू"</string>
     <string name="contactsList" msgid="8661624236494819731">"सम्पर्क"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ठेगाना"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"सिधा डायल गर्नुहोस्"</string>
@@ -108,7 +109,7 @@
   </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"सबै सम्पर्कहरू"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"मनपर्ने"</string>
-    <string name="callBack" msgid="5498224409038809224">"कल ब्याक"</string>
+    <string name="callBack" msgid="5498224409038809224">"कल फर्काउने"</string>
     <string name="callAgain" msgid="3197312117049874778">"फेरि कल गर्नुहोस्"</string>
     <string name="returnCall" msgid="8171961914203617813">"कल फर्काउनुहोस्"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" लाई सम्पर्कमा थप्ने?"</string>
@@ -248,5 +249,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"घटना"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"सम्बन्ध"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"स्थानको लागि निर्देशनहरू"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"हालैको एसएमएस। <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>। प्रत्युत्तरको लागि क्लिक गर्नुहोस्"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"आगमन"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"बहिर्गमन"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"छुटेको"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"हालैको कल। <xliff:g id="CALL_DETAILS">%s</xliff:g>। फिर्ता कल गर्न क्लिक गर्नुहोस्"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"तपाईँ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>

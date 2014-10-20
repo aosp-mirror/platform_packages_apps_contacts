@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"සම්බන්ධතා"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"සම්බන්ධතා"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"සම්බන්ධතා"</string>
     <string name="contactsList" msgid="8661624236494819731">"සම්බන්ධතා"</string>
     <string name="shortcutContact" msgid="749243779392912958">"සම්බන්ධතාවය"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ඍජු ඇමතීම"</string>
@@ -54,7 +55,7 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"කණ්ඩායමක් එක් කරන්න"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"සම්බන්ධතාව වෙන් කරන්නද?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"මෙම සම්බන්ධතාවය සම්බන්ධතා කිහිපයකට වෙන් කෙරෙනු ඇත."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"එකතු වන්න"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"සම්බන්ධ කරන්න"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"සම්බන්ධතා එකතු කරන්න"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> සමඟ එක් කළ යුතු සම්බන්ධතාවය තෝරන්න:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"සියලු සම්බන්ධතා පෙන්වන්න"</string>
@@ -218,13 +219,13 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ඔබගේ නව සම්බන්ධතාවය උපස්ථ නොවනු ඇත. ඔබගේ සම්බන්ධතා සබැඳිව උපස්ථ කරන ගිණුමක් එක් කරන්නද?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"ඔබගේ නව සම්බන්ධතාවය <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> සමඟ සමමුහුර්ත වනු ඇත."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ඔබගේ පහත ගිණුම් වලින් එකක් සමඟ ඔබගේ නව සම්බන්ධතාවය සමමුහුර්ත කළ හැක. ඔබට භාවිතා කිරීමට අවශ්‍ය කුමක්ද?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"නව සම්බන්ධතා එකතු කරන්න"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"නව සම්බන්ධතාව එක් කරන්න"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
     <string name="keep_local" msgid="1258761699192993322">"පෙදෙසිව තබාගන්න"</string>
     <string name="add_account" msgid="8201790677994503186">"ගිණුමක් එකතු කරන්න"</string>
     <string name="add_new_account" msgid="5748627740680940264">"නව ගිණුමක් එක් කරන්න"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"දත්ත සමුදා ගොනු නිර්යාත කරන්න"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"නව සම්බන්ධතා එකතු කරන්න"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"නව සම්බන්ධතාව එක් කරන්න"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"තව බලන්න"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"අඩුවෙන් බලන්න"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"සියල්ල බලන්න"</string>
@@ -248,5 +249,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"සිදුවීම"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"සම්බන්ධතාව"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"ස්ථානයට දිශාවන්"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"මෑත කදී ආ sms. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. ප්‍රතිචාර දැක්වීමට ක්ලික් කරන්න"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ඇතුළට එන"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"පිටතට යන"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"හමු නොවී යන ලදි"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"මෑත ඇමතුම්. <xliff:g id="CALL_DETAILS">%s</xliff:g>. ආපසු ඇමැතීමට ක්ලික් කරන්න"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ඔබ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>

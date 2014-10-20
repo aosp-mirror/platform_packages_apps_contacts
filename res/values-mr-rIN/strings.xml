@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"संपर्क"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"संपर्क"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"संपर्क"</string>
     <string name="contactsList" msgid="8661624236494819731">"संपर्क"</string>
     <string name="shortcutContact" msgid="749243779392912958">"संपर्क"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"थेट डायल करा"</string>
@@ -248,5 +249,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"इव्‍हेंट"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"संबंध"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"स्थानाचे दिशानिर्देश"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"अलीकडील sms. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. प्रतिसाद देण्यासाठी क्लिक करा"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"येणारे"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"केले जाणारे"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"सुटलेले"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"अलीकडील कॉल. <xliff:g id="CALL_DETAILS">%s</xliff:g>. परत कॉल करण्यासाठी क्लिक करा"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"आपण: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>

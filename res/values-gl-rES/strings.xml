@@ -16,15 +16,16 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Contactos"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Contactos"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Contactos"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Marcación directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaxe directa"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Escolle un atallo do contacto"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Seleccionar un atallo para o contacto"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolle un número ao que chamar"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Escolle un número ao que enviar unha mensaxe"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolle un contacto"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Seleccionar un contacto"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear novo contacto"</string>
     <string name="starredList" msgid="4817256136413959463">"Marcados con asterisco"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frecuentes"</string>
@@ -248,5 +249,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Evento"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Relación"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"indicacións para a localización"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"sms recente. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. fai clic para responder"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"entrante"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"saínte"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"perdida"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"chamada recente. <xliff:g id="CALL_DETAILS">%s</xliff:g>. fai clic para devolver a chamada"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ti: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
