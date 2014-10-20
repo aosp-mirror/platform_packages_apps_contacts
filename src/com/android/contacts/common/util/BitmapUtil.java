@@ -19,6 +19,11 @@ package com.android.contacts.common.util;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.BitmapDrawable;
 
@@ -106,5 +111,52 @@ public class BitmapUtil {
         tempCanvas.drawBitmap(original, 0, 0, null);
 
         return new BitmapDrawable(resources,rotated);
+    }
+
+    /**
+     * Given an input bitmap, scales it to the given width/height and makes it round.
+     *
+     * @param input {@link Bitmap} to scale and crop
+     * @param targetWidth desired output width
+     * @param targetHeight desired output height
+     * @return output bitmap scaled to the target width/height and cropped to an oval. The
+     *         cropping algorithm will try to fit as much of the input into the output as possible,
+     *         while preserving the target width/height ratio.
+     */
+    public static Bitmap getRoundedBitmap(Bitmap input, int targetWidth, int targetHeight) {
+        if (input == null) {
+            return null;
+        }
+        final Bitmap result = Bitmap.createBitmap(targetWidth, targetHeight, input.getConfig());
+        final Canvas canvas = new Canvas(result);
+        final Paint paint = new Paint();
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setAntiAlias(true);
+        canvas.drawOval(0, 0, targetWidth, targetHeight, paint);
+
+        // Specifies that only pixels present in the destination (i.e. the drawn oval) should
+        // be overwritten with pixels from the input bitmap.
+        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+
+        final int inputWidth = input.getWidth();
+        final int inputHeight = input.getHeight();
+
+        // Choose the largest scale factor that will fit inside the dimensions of the
+        // input bitmap.
+        final float scaleBy = Math.min((float) inputWidth / targetWidth,
+            (float) inputHeight / targetHeight);
+
+        final int xCropAmountHalved = (int) (scaleBy * targetWidth / 2);
+        final int yCropAmountHalved = (int) (scaleBy * targetHeight / 2);
+
+        final Rect src = new Rect(
+                inputWidth / 2 - xCropAmountHalved,
+                inputHeight / 2 - yCropAmountHalved,
+                inputWidth / 2 + xCropAmountHalved,
+                inputHeight / 2 + yCropAmountHalved);
+
+        final RectF dst = new RectF(0, 0, targetWidth, targetHeight);
+        canvas.drawBitmap(input, src, dst, paint);
+        return result;
     }
 }
