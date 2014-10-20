@@ -161,7 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"جهة اتصال واحدة"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"إنشاء جهة اتصال ضمن حساب"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"‏استيراد من بطاقة SIM"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"‏الاستيراد من بطاقة SIM رقم <xliff:g id="SIM_NUMBER">%d</xliff:g>"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"‏استيراد من بطاقة SIM <xliff:g id="SIM_NAME">%1$s</xliff:g> - <xliff:g id="SIM_NUMBER">%2$s</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"‏استيراد من بطاقة SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"استيراد من وحدة التخزين"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"هل تريد إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"هل تريد إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
