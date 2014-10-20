@@ -161,7 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"ነጠላ እውቂያ"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"በመለያ ስር ዕውቂያ ይፍጠሩ"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"ከሲም ካርድ ያስመጡ"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"ከሲም ካርድ #<xliff:g id="SIM_NUMBER">%d</xliff:g> አስመጣ"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"ከSIM አስመጣ <xliff:g id="SIM_NAME">%1$s</xliff:g> - <xliff:g id="SIM_NUMBER">%2$s</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"ከSIM አስመጣ <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ከማከማቻ ያስመጡ"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"የ<xliff:g id="FILENAME">%s</xliff:g> ወደ ውስጥ ማስመጣት ይቅር?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"የ<xliff:g id="FILENAME">%s</xliff:g> ወደ ውጭ መላክ ይቅር?"</string>

@@ -161,7 +161,10 @@
     <string name="listSingleContact" msgid="8525131203887307088">"একক পরিচিতি"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"অ্যাকাউন্টের অধীনে পরিচিতি তৈরি করুন"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"সিম কার্ড থেকে আমদানি করুন"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"সিম কার্ড #<xliff:g id="SIM_NUMBER">%d</xliff:g> থেকে আমদানি করুন"</string>
+    <!-- no translation found for import_from_sim_summary (2306434118233541675) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_no_number (8498561004799710237) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"সংগ্রহস্থল থেকে আমদানি করুন"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> এর আমদানি বাতিল করবেন?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> এর রপ্তানি বাতিল করবেন?"</string>

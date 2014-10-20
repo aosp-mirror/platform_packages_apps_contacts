@@ -67,7 +67,7 @@
     <string name="status_available" msgid="4832569677396634846">"ലഭ്യം"</string>
     <string name="status_away" msgid="6267905184545881094">"ലഭ്യമല്ല"</string>
     <string name="status_busy" msgid="7111912905211403545">"തിരക്കിലാണ്"</string>
-    <string name="contactsList" msgid="7140022347217602605">"കോണ്‍‌ടാക്റ്റുകള്‍"</string>
+    <string name="contactsList" msgid="7140022347217602605">"വിലാസങ്ങൾ"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"മറ്റുള്ളവ"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ഡയറക്‌ടറി"</string>
     <string name="local_search_label" msgid="9094584931063745728">"എല്ലാ കോൺടാക്റ്റുകളും"</string>
@@ -160,12 +160,15 @@
     <string name="listCustomView" msgid="1915154113477432033">"ഇഷ്‌ടാനുസൃത കാഴ്‌ചയിലെ കോൺടാക്റ്റുകൾ"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"സിംഗിൾ കോൺടാക്റ്റ്"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"അക്കൗണ്ടിന് കീഴിൽ കോൺ‌ടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"SIM കാർഡിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"#<xliff:g id="SIM_NUMBER">%d</xliff:g> എന്ന SIM കാർഡിൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"സിം കാർഡിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
+    <!-- no translation found for import_from_sim_summary (2306434118233541675) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_no_number (8498561004799710237) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"സംഭരണത്തിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് ഇമ്പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് എക്‌സ്‌പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ഇമ്പോർട്ടുചെയ്യൽ/എക്‌സ്‌പോർട്ടുചെയ്യൽ റദ്ദാക്കാനായില്ല"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ഡൗൺലോഡ്/അപ്‌ലോഡ് റദ്ദാക്കാനായില്ല"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"അജ്ഞാത പിശക്."</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" തുറക്കാനായില്ല: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"എക്‌സ്‌പോർട്ടർ ആരംഭിക്കാനായില്ല: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
@@ -228,7 +231,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"പേരിന്റെ ആദ്യഭാഗം ആദ്യം"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"പേരിന്റെ അവസാന ഭാഗം ആദ്യം"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുക"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുക/എക്‌സ്പോർട്ടുചെയ്യുക"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"കോൺടാക്റ്റുകൾ ഡൗൺലോഡ്/അപ്‌ലോഡ് ചെയ്യുക"</string>
     <string name="dialog_import" msgid="5177004290082451296">"കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="share_error" msgid="665756457151793108">"ഈ കോൺടാക്റ്റ് പങ്കിടാനാകില്ല."</string>
     <string name="menu_search" msgid="7464453023659824700">"തിരയുക"</string>
@@ -242,9 +245,9 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"പ്രിയപ്പെട്ടവർ ആരുമില്ല."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> എന്നതിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരെ മായ്‌ക്കുക"</string>
-    <string name="menu_select_sim" msgid="7814841439832447299">"SIM കാർഡ് തിരഞ്ഞെടുക്കുക"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"സിം കാർഡ് തിരഞ്ഞെടുക്കുക"</string>
     <string name="menu_accounts" msgid="795417468541517082">"അക്കൗണ്ടുകൾ"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"ഇമ്പോർട്ടുചെയ്യുക/എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"ഡൗൺലോഡ്/അപ്‌ലോഡ്"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> വഴി"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> വഴി <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"തിരയൽ നിർത്തുക"</string>
