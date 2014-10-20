@@ -161,7 +161,10 @@
     <string name="listSingleContact" msgid="8525131203887307088">"එක් සම්බන්ධතාවය"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"ගිණුම යටතේ සම්බන්ධතාවය නිර්මාණය කරන්න"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM පතෙන් ආයාත කරන්න"</string>
-    <string name="import_from_sim_number" msgid="1232500923375370101">"SIM කාඩ්පතින් #<xliff:g id="SIM_NUMBER">%d</xliff:g> ආයාත කරන්න"</string>
+    <!-- no translation found for import_from_sim_summary (2306434118233541675) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_no_number (8498561004799710237) -->
+    <skip />
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ආචයනයෙන් ආයාත කරන්න"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> ආයාත කිරීම අවලංගු කරන්නද?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> නිර්යාත කිරීම අවලංගු කරන්නද?"</string>
@@ -250,6 +253,5 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"සෙවීම අවසන් කරන්න"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"සෙවීම හිස් කරන්න"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"දර්ශනය කිරීමේ විකල්පය සම්බන්ධ කරගන්න"</string>
-    <!-- no translation found for select_account_dialog_title (2970151494458786440) -->
-    <skip />
+    <string name="select_account_dialog_title" msgid="2970151494458786440">"ගිණුම තෝරන්න"</string>
 </resources>
