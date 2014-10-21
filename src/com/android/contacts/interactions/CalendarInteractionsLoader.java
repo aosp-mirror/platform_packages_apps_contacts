@@ -96,13 +96,18 @@ public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInte
                 String.valueOf(futureTimeCutoff)};
         selectionArgs.addAll(Arrays.asList(timeArguments));
 
+        // When LAST_SYNCED = 1, the event is not a real event. We should ignore all such events.
+        String IS_NOT_TEMPORARY_COPY_OF_LOCAL_EVENT
+                = CalendarContract.Attendees.LAST_SYNCED + " = 0";
+
         String orderBy = CalendarContract.Attendees.DTSTART + (isFuture ? " ASC " : " DESC ");
         String selection = caseAndDotInsensitiveEmailComparisonClause(mEmailAddresses.size())
                 + " AND " + CalendarContract.Attendees.CALENDAR_ID
                 + " IN " + ContactInteractionUtil.questionMarks(calendarIds.size())
                 + " AND " + CalendarContract.Attendees.DTSTART + timeOperator + " ? "
                 + " AND " + CalendarContract.Attendees.DTSTART + " > ? "
-                + " AND " + CalendarContract.Attendees.DTSTART + " < ? ";
+                + " AND " + CalendarContract.Attendees.DTSTART + " < ? "
+                + " AND " + IS_NOT_TEMPORARY_COPY_OF_LOCAL_EVENT;
 
         return getContext().getContentResolver().query(CalendarContract.Attendees.CONTENT_URI,
                 /* projection = */ null, selection,
