@@ -47,7 +47,8 @@
          this view, instead of another. This will *not* cause an additional draw since the
          background is transparent.-->
     <Toolbar
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_gravity="end|top"
         android:layout_height="?android:attr/actionBarSize"
         android:background="#00000000"
         android:id="@+id/toolbar"/>
