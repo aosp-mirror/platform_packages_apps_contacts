@@ -375,7 +375,12 @@ public class QuickContactActivity extends ContactsActivity {
             getWindow().setDimAmount(mWindowScrim.getAlpha() / DEFAULT_SCRIM_ALPHA);
 
             mHasIntentLaunched = true;
-            startActivity(intent);
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException ex) {
+                Toast.makeText(QuickContactActivity.this, R.string.missing_app,
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
