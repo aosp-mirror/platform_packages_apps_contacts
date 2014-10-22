@@ -20,7 +20,6 @@ import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,6 +37,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.android.contacts.common.R;
+import com.android.contacts.commonbind.analytics.AnalyticsDialogFragment;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ import java.util.List;
  * Dialog that allows the user to select a phone accounts for a given action. Optionally provides
  * the choice to set the phone account as default.
  */
-public class SelectPhoneAccountDialogFragment extends DialogFragment {
+public class SelectPhoneAccountDialogFragment extends AnalyticsDialogFragment {
     private boolean mCanSetDefault;
     private List<PhoneAccountHandle> mAccountHandles;
     private boolean mIsSelected;

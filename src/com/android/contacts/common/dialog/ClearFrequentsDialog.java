@@ -18,7 +18,6 @@ package com.android.contacts.common.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -28,11 +27,12 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 
 import com.android.contacts.common.R;
+import com.android.contacts.commonbind.analytics.AnalyticsDialogFragment;
 
 /**
  * Dialog that clears the frequently contacted list after confirming with the user.
  */
-public class ClearFrequentsDialog extends DialogFragment {
+public class ClearFrequentsDialog extends AnalyticsDialogFragment {
     /** Preferred way to show this dialog */
     public static void show(FragmentManager fragmentManager) {
         ClearFrequentsDialog dialog = new ClearFrequentsDialog();

@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,12 +44,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
-import com.android.contacts.common.R;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.util.ContactListViewUtils;
-import com.android.contacts.common.util.SchedulingUtils;
-import com.android.dialerbind.analytics.AnalyticsFragment;
+import com.android.contacts.commonbind.analytics.AnalyticsFragment;
 
 import java.util.Locale;
 
