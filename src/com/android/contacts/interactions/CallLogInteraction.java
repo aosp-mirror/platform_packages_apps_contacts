@@ -161,8 +161,9 @@ public class CallLogInteraction implements ContactInteraction {
     }
 
     public String getNumber() {
-        return sBidiFormatter.unicodeWrap(
-                mValues.getAsString(Calls.NUMBER), TextDirectionHeuristics.LTR);
+        final String number = mValues.getAsString(Calls.NUMBER);
+        return number == null ? null :
+            sBidiFormatter.unicodeWrap(number, TextDirectionHeuristics.LTR);
     }
 
     public Integer getNumberPresentation() {
