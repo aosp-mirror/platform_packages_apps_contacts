@@ -18,7 +18,6 @@ package com.android.contacts.common.widget;
 
 import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -31,7 +30,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -40,11 +42,14 @@ import com.android.contacts.common.R;
 import java.util.List;
 
 /**
- * Dialog that allows the user to switch between default SIM cards
+ * Dialog that allows the user to select a phone accounts for a given action. Optionally provides
+ * the choice to set the phone account as default.
  */
 public class SelectPhoneAccountDialogFragment extends DialogFragment {
+    private boolean mCanSetDefault;
     private List<PhoneAccountHandle> mAccountHandles;
     private boolean mIsSelected;
+    private boolean mIsDefaultChecked;
     private TelecomManager mTelecomManager;
     private SelectPhoneAccountListener mListener;
 
@@ -55,28 +60,30 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
      * @param fragmentManager The fragment manager.
      * @param accountHandles The {@code PhoneAccountHandle}s available to select from.
      */
-    public static void showAccountDialog(FragmentManager fragmentManager,
+    public static void showAccountDialog(FragmentManager fragmentManager, boolean canSetDefault,
             List<PhoneAccountHandle> accountHandles, SelectPhoneAccountListener listener) {
         SelectPhoneAccountDialogFragment fragment =
-                new SelectPhoneAccountDialogFragment(accountHandles, listener);
+                new SelectPhoneAccountDialogFragment(canSetDefault, accountHandles, listener);
         fragment.show(fragmentManager, "selectAccount");
     }
 
-    public SelectPhoneAccountDialogFragment(List<PhoneAccountHandle> accountHandles,
-            SelectPhoneAccountListener listener) {
+    public SelectPhoneAccountDialogFragment(boolean canSetDefault,
+            List<PhoneAccountHandle> accountHandles, SelectPhoneAccountListener listener) {
         super();
+        mCanSetDefault = canSetDefault;
         mAccountHandles = accountHandles;
         mListener = listener;
     }
 
     public interface SelectPhoneAccountListener {
-        void onPhoneAccountSelected(PhoneAccountHandle selectedAccountHandle);
+        void onPhoneAccountSelected(PhoneAccountHandle selectedAccountHandle, boolean setDefault);
         void onDialogDismissed();
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         mIsSelected = false;
+        mIsDefaultChecked = false;
         mTelecomManager =
                 (TelecomManager) getActivity().getSystemService(Context.TELECOM_SERVICE);
 
@@ -86,20 +93,42 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 mIsSelected = true;
                 PhoneAccountHandle selectedAccountHandle = mAccountHandles.get(which);
-                mListener.onPhoneAccountSelected(selectedAccountHandle);
+                mListener.onPhoneAccountSelected(selectedAccountHandle, mIsDefaultChecked);
+            }
+        };
+
+        final CompoundButton.OnCheckedChangeListener checkListener =
+                new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton check, boolean isChecked) {
+                mIsDefaultChecked = isChecked;
             }
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         ListAdapter selectAccountListAdapter = new SelectAccountListAdapter(
                 builder.getContext(),
                 R.layout.select_account_list_item,
                 mAccountHandles);
 
-        return builder.setTitle(R.string.select_account_dialog_title)
+        AlertDialog dialog = builder.setTitle(R.string.select_account_dialog_title)
                 .setAdapter(selectAccountListAdapter, selectionListener)
                 .create();
+
+        if (mCanSetDefault) {
+            // Generate custom checkbox view
+            LinearLayout checkboxLayout = (LinearLayout) getActivity()
+                    .getLayoutInflater()
+                    .inflate(R.layout.default_account_checkbox, null);
+
+            CheckBox cb =
+                    (CheckBox) checkboxLayout.findViewById(R.id.default_account_checkbox_view);
+            cb.setOnCheckedChangeListener(checkListener);
+
+            dialog.getListView().addFooterView(checkboxLayout);
+        }
+
+        return dialog;
     }
 
     private class SelectAccountListAdapter extends ArrayAdapter<PhoneAccountHandle> {
