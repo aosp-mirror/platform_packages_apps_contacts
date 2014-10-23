@@ -221,7 +221,7 @@
         <activity
             android:name=".activities.ShowOrCreateActivity"
             android:label="@string/launcherActivityLabel"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar">
 
             <intent-filter>
                 <action android:name="com.android.contacts.action.SHOW_OR_CREATE_CONTACT" />
