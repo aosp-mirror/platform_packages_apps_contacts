@@ -31,11 +31,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.contacts.R;
+import com.android.contacts.commonbind.analytics.AnalyticsDialogFragment;
 
 /**
  * A common superclass for creating and renaming groups.
  */
-public abstract class GroupNameDialogFragment extends DialogFragment {
+public abstract class GroupNameDialogFragment extends AnalyticsDialogFragment {
     protected abstract int getTitleResourceId();
     protected abstract void initializeGroupLabelEditText(EditText editText);
     protected abstract void onCompleted(String groupLabel);

@@ -15,7 +15,6 @@
  */
 package com.android.contacts.list;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.ContactsContract.ProviderStatus;
@@ -29,12 +28,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.commonbind.analytics.AnalyticsFragment;
 
 /**
  * Fragment shown when contacts are unavailable. It contains provider status
  * messaging as well as instructions for the user.
  */
-public class ContactsUnavailableFragment extends Fragment implements OnClickListener {
+public class ContactsUnavailableFragment extends AnalyticsFragment implements OnClickListener {
 
     private View mView;
     private TextView mMessageView;

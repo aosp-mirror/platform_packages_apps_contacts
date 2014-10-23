@@ -57,11 +57,12 @@ import com.android.contacts.common.list.ContactTileView;
 import com.android.contacts.list.GroupMemberTileAdapter;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.commonbind.analytics.AnalyticsFragment;
 
 /**
  * Displays the details of a group and shows a list of actions possible for the group.
  */
-public class GroupDetailFragment extends Fragment implements OnScrollListener {
+public class GroupDetailFragment extends AnalyticsFragment implements OnScrollListener {
 
     public static interface Listener {
         /**
