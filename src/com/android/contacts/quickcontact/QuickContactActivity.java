@@ -1469,27 +1469,27 @@ public class QuickContactActivity extends ContactsActivity {
                 iconResourceId = R.drawable.ic_place_24dp;
             }
         } else if (dataItem instanceof SipAddressDataItem) {
-            if (PhoneCapabilityTester.isSipPhone(context)) {
-                final SipAddressDataItem sip = (SipAddressDataItem) dataItem;
-                final String address = sip.getSipAddress();
-                if (!TextUtils.isEmpty(address)) {
-                    primaryContentDescription.append(res.getString(R.string.call_other)).append(
-                            " ");
+            final SipAddressDataItem sip = (SipAddressDataItem) dataItem;
+            final String address = sip.getSipAddress();
+            if (!TextUtils.isEmpty(address)) {
+                primaryContentDescription.append(res.getString(R.string.call_other)).append(
+                        " ");
+                if (PhoneCapabilityTester.isSipPhone(context)) {
                     final Uri callUri = Uri.fromParts(PhoneAccount.SCHEME_SIP, address, null);
                     intent = CallUtil.getCallIntent(callUri);
-                    header = address;
-                    entryContextMenuInfo = new EntryContextMenuInfo(header,
-                            res.getString(R.string.phoneLabelsGroup), dataItem.getMimeType(),
-                            dataItem.getId(), dataItem.isSuperPrimary());
-                    if (sip.hasKindTypeColumn(kind)) {
-                        text = SipAddress.getTypeLabel(res,
-                                sip.getKindTypeColumn(kind), sip.getLabel()).toString();
-                        primaryContentDescription.append(text).append(" ");
-                    }
-                    primaryContentDescription.append(header);
-                    icon = res.getDrawable(R.drawable.ic_dialer_sip_black_24dp);
-                    iconResourceId = R.drawable.ic_dialer_sip_black_24dp;
                 }
+                header = address;
+                entryContextMenuInfo = new EntryContextMenuInfo(header,
+                        res.getString(R.string.phoneLabelsGroup), dataItem.getMimeType(),
+                        dataItem.getId(), dataItem.isSuperPrimary());
+                if (sip.hasKindTypeColumn(kind)) {
+                    text = SipAddress.getTypeLabel(res,
+                            sip.getKindTypeColumn(kind), sip.getLabel()).toString();
+                    primaryContentDescription.append(text).append(" ");
+                }
+                primaryContentDescription.append(header);
+                icon = res.getDrawable(R.drawable.ic_dialer_sip_black_24dp);
+                iconResourceId = R.drawable.ic_dialer_sip_black_24dp;
             }
         } else if (dataItem instanceof StructuredNameDataItem) {
             final String givenName = ((StructuredNameDataItem) dataItem).getGivenName();
