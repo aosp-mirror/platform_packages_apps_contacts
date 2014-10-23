@@ -16,7 +16,6 @@
 
 package com.android.contacts.common.vcard;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +33,7 @@ import android.util.Log;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.commonbind.analytics.AnalyticsActivity;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryCounter;
 import com.android.vcard.VCardParser;
@@ -49,7 +49,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NfcImportVCardActivity extends Activity implements ServiceConnection,
+public class NfcImportVCardActivity extends AnalyticsActivity implements ServiceConnection,
         VCardImportExportListener {
     private static final String TAG = "NfcImportVCardActivity";
 
