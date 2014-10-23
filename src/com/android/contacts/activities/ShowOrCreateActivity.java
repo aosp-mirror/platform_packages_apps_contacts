@@ -213,7 +213,7 @@ public final class ShowOrCreateActivity extends ContactsActivity
                 final CharSequence message = getResources().getString(
                         R.string.add_contact_dlg_message_fmt, mCreateDescrip);
 
-                return new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT)
+                return new AlertDialog.Builder(this)
                         .setMessage(message)
                         .setPositiveButton(android.R.string.ok,
                                 new IntentClickListener(this, createIntent))
