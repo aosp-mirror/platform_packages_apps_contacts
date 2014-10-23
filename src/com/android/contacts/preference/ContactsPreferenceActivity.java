@@ -20,18 +20,18 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.PeopleActivity;
+import com.android.contacts.commonbind.analytics.AnalyticsPreferenceActivity;
 
 import java.util.List;
 
 /**
  * Contacts settings.
  */
-public final class ContactsPreferenceActivity extends PreferenceActivity {
+public final class ContactsPreferenceActivity extends AnalyticsPreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

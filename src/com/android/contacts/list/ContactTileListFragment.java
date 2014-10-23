@@ -39,7 +39,7 @@ import com.android.contacts.common.list.ContactTileAdapter;
 import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.common.list.ContactTileView;
 import com.android.contacts.common.util.ContactListViewUtils;
-import com.android.contacts.common.util.SchedulingUtils;
+import com.android.contacts.commonbind.analytics.AnalyticsFragment;
 
 /**
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.
@@ -49,7 +49,7 @@ import com.android.contacts.common.util.SchedulingUtils;
  * (i.e. adding header views to the ListViews in the fragment). This work was started
  * by creating {@link ContactTileFrequentFragment}.
  */
-public class ContactTileListFragment extends Fragment {
+public class ContactTileListFragment extends AnalyticsFragment {
     private static final String TAG = ContactTileListFragment.class.getSimpleName();
 
     public interface Listener {
