@@ -58,6 +58,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.editor.Editor;
 import com.android.contacts.editor.EditorUiUtils;
@@ -102,7 +103,7 @@ import java.util.List;
  * Note when there's no accounts, it *is* okay to show the picker / dialog, because the local-only
  * contacts are writable.
  */
-public class ConfirmAddDetailActivity extends Activity implements
+public class ConfirmAddDetailActivity extends ContactsActivity implements
         DialogManager.DialogShowingViewActivity {
 
     private static final String TAG = "ConfirmAdd"; // The class name is too long to be a tag.
