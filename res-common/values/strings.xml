@@ -765,4 +765,8 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Title for Select Account Dialog [CHAR LIMIT=30] -->
     <string name="select_account_dialog_title">Select Account</string>
+
+    <!-- Label for the check box to toggle default sim card setting [CHAR LIMIT=35]-->
+    <string name="set_default_account">Always use this for calls</string>
+
 </resources>
