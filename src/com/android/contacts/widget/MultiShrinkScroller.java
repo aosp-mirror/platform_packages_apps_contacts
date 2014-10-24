@@ -41,6 +41,7 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 /**
  * A custom {@link ViewGroup} that operates similarly to a {@link ScrollView}, except with multiple
@@ -103,7 +104,7 @@ public class MultiShrinkScroller extends FrameLayout {
     private MultiShrinkScrollerListener mListener;
     private TextView mLargeTextView;
     private View mPhotoTouchInterceptOverlay;
-    /** Contains desired location/size of the title, once the header is fully compressed */
+    /** Contains desired size & vertical offset of the title, once the header is fully compressed */
     private TextView mInvisiblePlaceholderTextView;
     private View mTitleGradientView;
     private View mActionBarGradientView;
@@ -297,6 +298,7 @@ public class MultiShrinkScroller extends FrameLayout {
         mTitleGradientView.setBackground(mTitleGradientDrawable);
         mActionBarGradientView = findViewById(R.id.action_bar_gradient);
         mActionBarGradientView.setBackground(mActionBarGradientDrawable);
+        mCollapsedTitleStartMargin = ((Toolbar) findViewById(R.id.toolbar)).getContentInsetStart();
 
         mPhotoTouchInterceptOverlay = findViewById(R.id.photo_touch_intercept_overlay);
         if (!mIsTwoPanel) {
@@ -1006,17 +1008,9 @@ public class MultiShrinkScroller extends FrameLayout {
      */
     private void calculateCollapsedLargeTitlePadding() {
         final Rect largeTextViewRect = new Rect();
-        final Rect invisiblePlaceholderTextViewRect = new Rect();
         mToolbar.getBoundsOnScreen(largeTextViewRect);
+        final Rect invisiblePlaceholderTextViewRect = new Rect();
         mInvisiblePlaceholderTextView.getBoundsOnScreen(invisiblePlaceholderTextViewRect);
-        if (isLayoutRtl()) {
-            mCollapsedTitleStartMargin = largeTextViewRect.right
-                    - invisiblePlaceholderTextViewRect.right;
-        } else {
-            mCollapsedTitleStartMargin = invisiblePlaceholderTextViewRect.left
-                    - largeTextViewRect.left;
-        }
-
         // Distance between top of toolbar to the center of the target rectangle.
         final int desiredTopToCenter = (
                 invisiblePlaceholderTextViewRect.top + invisiblePlaceholderTextViewRect.bottom)
