@@ -252,4 +252,5 @@
     <string name="description_clear_search" msgid="3893511425518852086">"សម្អាត​ការ​ស្វែងរក"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"ជម្រើស​បង្ហាញ​ទំនាក់ទំនង"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"ជ្រើស​គណនី"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"ប្រើ​វា​សម្រាប់​ការ​ហៅ​ជា​និច្ច"</string>
 </resources>

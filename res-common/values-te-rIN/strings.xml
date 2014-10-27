@@ -252,4 +252,5 @@
     <string name="description_clear_search" msgid="3893511425518852086">"శోధనను క్లియర్ చేయండి"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"పరిచయ ప్రదర్శన ఎంపికలు"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"ఖాతాను ఎంచుకోండి"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"కాల్‌ల కోసం ఎల్లప్పుడూ దీన్ని ఉపయోగించు"</string>
 </resources>
