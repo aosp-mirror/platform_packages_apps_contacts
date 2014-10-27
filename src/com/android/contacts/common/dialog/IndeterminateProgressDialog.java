@@ -16,9 +16,8 @@
 
 package com.android.contacts.common.dialog;
 
-import com.android.contacts.commonbind.analytics.AnalyticsDialogFragment;
-
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -42,7 +41,7 @@ import android.os.Handler;
  * after a device orientation change because the {@link #setRetainInstance(boolean)} is called
  * internally with true.
  */
-public class IndeterminateProgressDialog extends AnalyticsDialogFragment {
+public class IndeterminateProgressDialog extends DialogFragment {
     private static final String TAG = IndeterminateProgressDialog.class.getSimpleName();
 
     private CharSequence mTitle;
