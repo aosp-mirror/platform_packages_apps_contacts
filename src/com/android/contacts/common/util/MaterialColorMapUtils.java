@@ -41,6 +41,36 @@ public class MaterialColorMapUtils {
         }
         public final int mPrimaryColor;
         public final int mSecondaryColor;
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            MaterialPalette other = (MaterialPalette) obj;
+            if (mPrimaryColor != other.mPrimaryColor) {
+                return false;
+            }
+            if (mSecondaryColor != other.mSecondaryColor) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + mPrimaryColor;
+            result = prime * result + mSecondaryColor;
+            return result;
+        }
     }
 
     /**
@@ -76,6 +106,12 @@ public class MaterialColorMapUtils {
                 R.color.quickcontact_default_photo_tint_color);
         final int secondaryColor = resources.getColor(
                 R.color.quickcontact_default_photo_tint_color_dark);
+        return new MaterialPalette(primaryColor, secondaryColor);
+    }
+
+    public static MaterialPalette getDefaultInCallPrimaryAndSecondaryColors(Resources resources) {
+        final int primaryColor = resources.getColor(R.color.dialer_theme_color);
+        final int secondaryColor = resources.getColor(R.color.dialer_theme_color_dark);
         return new MaterialPalette(primaryColor, secondaryColor);
     }
 
