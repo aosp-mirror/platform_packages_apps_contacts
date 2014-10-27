@@ -253,4 +253,5 @@
     <string name="description_clear_search" msgid="3893511425518852086">"शोध साफ करा"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"संपर्क प्रदर्शन पर्याय"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"खाते निवडा"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"कॉलसाठी हे नेहमी वापरा"</string>
 </resources>

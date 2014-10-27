@@ -253,4 +253,5 @@
     <string name="description_clear_search" msgid="3893511425518852086">"தேடலை அழி"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"தொடர்பின் காட்சி விருப்பங்கள்"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"கணக்கைத் தேர்ந்தெடுக்கவும்"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"அழைப்புகளுக்கு எப்போதும் இதைப் பயன்படுத்து"</string>
 </resources>
