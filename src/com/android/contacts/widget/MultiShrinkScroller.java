@@ -143,6 +143,7 @@ public class MultiShrinkScroller extends FrameLayout {
     private final int mMaximumTitleMargin;
     private final float mToolbarElevation;
     private final boolean mIsTwoPanel;
+    private final float mLandscapePhotoRatio;
     private final int mActionBarSize;
 
     // Objects used to perform color filtering on the header. These are stored as fields for
@@ -252,6 +253,11 @@ public class MultiShrinkScroller extends FrameLayout {
         mMaximumTitleMargin = (int) getResources().getDimension(
                 R.dimen.quickcontact_title_initial_margin);
 
+        final TypedValue photoRatio = new TypedValue();
+        getResources().getValue(R.dimen.quickcontact_landscape_photo_ratio, photoRatio,
+                            /* resolveRefs = */ true);
+        mLandscapePhotoRatio = photoRatio.getFloat();
+
         final TypedArray attributeArray = context.obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize});
         mActionBarSize = attributeArray.getDimensionPixelSize(0, 0);
@@ -319,9 +325,7 @@ public class MultiShrinkScroller extends FrameLayout {
                     mIntermediateHeaderHeight = (int) (mMaximumHeaderHeight
                             * INTERMEDIATE_HEADER_HEIGHT_RATIO);
                 }
-                final boolean isLandscape = getResources().getConfiguration().orientation
-                        == Configuration.ORIENTATION_LANDSCAPE;
-                mMaximumPortraitHeaderHeight = isLandscape ? getHeight()
+                mMaximumPortraitHeaderHeight = mIsTwoPanel ? getHeight()
                         : mPhotoViewContainer.getWidth();
                 setHeaderHeight(getMaximumScrollableHeaderHeight());
                 mMaximumHeaderTextSize = mLargeTextView.getHeight();
@@ -331,13 +335,10 @@ public class MultiShrinkScroller extends FrameLayout {
                     mIntermediateHeaderHeight = mMaximumHeaderHeight;
 
                     // Permanently set photo width and height.
-                    final TypedValue photoRatio = new TypedValue();
-                    getResources().getValue(R.vals.quickcontact_photo_ratio, photoRatio,
-                            /* resolveRefs = */ true);
                     final ViewGroup.LayoutParams photoLayoutParams
                             = mPhotoViewContainer.getLayoutParams();
                     photoLayoutParams.height = mMaximumHeaderHeight;
-                    photoLayoutParams.width = (int) (mMaximumHeaderHeight * photoRatio.getFloat());
+                    photoLayoutParams.width = (int) (mMaximumHeaderHeight * mLandscapePhotoRatio);
                     mPhotoViewContainer.setLayoutParams(photoLayoutParams);
 
                     // Permanently set title width and margin.
