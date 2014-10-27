@@ -198,7 +198,12 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
     @Override
     public void onPageSelected(int position) {
         position = getRtlPosition(position);
-        if (mPrevSelected >= 0) {
+        int tabStripChildCount = mTabStrip.getChildCount();
+        if ((tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
+            return;
+        }
+
+        if (mPrevSelected >= 0 && mPrevSelected < tabStripChildCount) {
             mTabStrip.getChildAt(mPrevSelected).setSelected(false);
         }
         final View selectedChild = mTabStrip.getChildAt(position);
