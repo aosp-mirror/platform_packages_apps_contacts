@@ -252,4 +252,5 @@
     <string name="description_clear_search" msgid="3893511425518852086">"Suche zurücksetzen"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Anzeigeoptionen für Kontakte"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"Konto auswählen"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Diese SIM für alle Anrufe verwenden"</string>
 </resources>
