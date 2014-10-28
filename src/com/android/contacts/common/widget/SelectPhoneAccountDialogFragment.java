@@ -132,20 +132,18 @@ public class SelectPhoneAccountDialogFragment extends AnalyticsDialogFragment {
     }
 
     private class SelectAccountListAdapter extends ArrayAdapter<PhoneAccountHandle> {
-        private Context mContext;
         private int mResId;
 
         public SelectAccountListAdapter(
                 Context context, int resource, List<PhoneAccountHandle> accountHandles) {
             super(context, resource, accountHandles);
-            mContext = context;
             mResId = resource;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater)
-                    mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View rowView;
             final ViewHolder holder;
@@ -166,7 +164,7 @@ public class SelectPhoneAccountDialogFragment extends AnalyticsDialogFragment {
             PhoneAccountHandle accountHandle = getItem(position);
             PhoneAccount account = mTelecomManager.getPhoneAccount(accountHandle);
             holder.textView.setText(account.getLabel());
-            holder.imageView.setImageDrawable(account.getIcon(mContext));
+            holder.imageView.setImageDrawable(account.getIcon(getContext()));
             return rowView;
         }
 
