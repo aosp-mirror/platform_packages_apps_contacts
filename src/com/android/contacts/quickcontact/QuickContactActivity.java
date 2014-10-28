@@ -177,8 +177,7 @@ public class QuickContactActivity extends ContactsActivity {
 
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
-    private static final int DEFAULT_SCRIM_ALPHA = 0xC8;
-    private static final int SCRIM_COLOR = Color.argb(DEFAULT_SCRIM_ALPHA, 0, 0, 0);
+    private static final int SCRIM_COLOR = Color.argb(0xC8, 0, 0, 0);
     private static final int REQUEST_CODE_CONTACT_SELECTION_ACTIVITY = 2;
     private static final String MIMETYPE_SMS = "vnd.android-dir/mms-sms";
 
@@ -365,14 +364,6 @@ public class QuickContactActivity extends ContactsActivity {
             }
 
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            // Force the window dim amount to the scrim value for app transition animations
-            // The scrim may be removed before the window transitions to the new activity, which
-            // can cause a flicker in the status and navigation bar. Set dim alone does not work
-            // well because the request is passed through IPC which makes it slow to animate.
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND,
-                    WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            getWindow().setDimAmount(mWindowScrim.getAlpha() / DEFAULT_SCRIM_ALPHA);
 
             mHasIntentLaunched = true;
             try {
