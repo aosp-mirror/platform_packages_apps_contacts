@@ -55,12 +55,12 @@ public class AccountSelectionUtil {
 
         final private Context mContext;
         final private int mResId;
-        final private long mSubscriptionId;
+        final private int mSubscriptionId;
 
         final protected List<AccountWithDataSet> mAccountList;
 
         public AccountSelectedListener(Context context, List<AccountWithDataSet> accountList,
-                int resId, long subscriptionId) {
+                int resId, int subscriptionId) {
             if (accountList == null || accountList.size() == 0) {
                 Log.e(LOG_TAG, "The size of Account list is 0.");
             }

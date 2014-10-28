@@ -303,12 +303,12 @@ public class ImportExportDialogFragment extends AnalyticsDialogFragment
     private static class AdapterEntry {
         public final String mLabel;
         public final int mChoiceResourceId;
-        public final long mSubscriptionId;
+        public final int mSubscriptionId;
 
-        public AdapterEntry(String label, int resId, long subscriptionId) {
+        public AdapterEntry(String label, int resId, int subId) {
             mLabel = label;
             mChoiceResourceId = resId;
-            mSubscriptionId = subscriptionId;
+            mSubscriptionId = subId;
         }
 
         public AdapterEntry(String label, int resId) {
