@@ -73,6 +73,7 @@ import android.support.v7.graphics.Palette;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
 import android.text.BidiFormatter;
+import android.text.SpannableString;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.util.Log;
@@ -1606,7 +1607,8 @@ public class QuickContactActivity extends ContactsActivity {
                 -1 : (int) dataItem.getId();
 
         return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon,
-                primaryContentDescription.toString(), intent, alternateIcon, alternateIntent,
+                new SpannableString(primaryContentDescription.toString()),
+                intent, alternateIcon, alternateIntent,
                 alternateContentDescription.toString(), shouldApplyColor, isEditable,
                 entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription,
                 iconResourceId);

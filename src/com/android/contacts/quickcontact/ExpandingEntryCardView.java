@@ -23,6 +23,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
+import android.text.Spannable;
 import android.text.TextUtils;
 import android.transition.ChangeBounds;
 import android.transition.ChangeScroll;
@@ -73,7 +74,7 @@ public class ExpandingEntryCardView extends CardView {
         private final Drawable mSubHeaderIcon;
         private final String mText;
         private final Drawable mTextIcon;
-        private final String mPrimaryContentDescription;
+        private Spannable mPrimaryContentDescription;
         private final Intent mIntent;
         private final Drawable mAlternateIcon;
         private final Intent mAlternateIntent;
@@ -88,7 +89,7 @@ public class ExpandingEntryCardView extends CardView {
 
         public Entry(int id, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon,
-                String primaryContentDescription, Intent intent,
+                Spannable primaryContentDescription, Intent intent,
                 Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
                 boolean shouldApplyColor, boolean isEditable,
                 EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
@@ -138,7 +139,7 @@ public class ExpandingEntryCardView extends CardView {
             return mTextIcon;
         }
 
-        String getPrimaryContentDescription() {
+        Spannable getPrimaryContentDescription() {
             return mPrimaryContentDescription;
         }
 
