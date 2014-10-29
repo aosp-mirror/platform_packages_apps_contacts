@@ -23,7 +23,6 @@ import android.content.res.TypedArray;
 import android.os.Trace;
 
 public class MaterialColorMapUtils {
-
     private final TypedArray sPrimaryColors;
     private final TypedArray sSecondaryColors;
 
@@ -106,12 +105,6 @@ public class MaterialColorMapUtils {
                 R.color.quickcontact_default_photo_tint_color);
         final int secondaryColor = resources.getColor(
                 R.color.quickcontact_default_photo_tint_color_dark);
-        return new MaterialPalette(primaryColor, secondaryColor);
-    }
-
-    public static MaterialPalette getDefaultInCallPrimaryAndSecondaryColors(Resources resources) {
-        final int primaryColor = resources.getColor(R.color.dialer_theme_color);
-        final int secondaryColor = resources.getColor(R.color.dialer_theme_color_dark);
         return new MaterialPalette(primaryColor, secondaryColor);
     }
 
