@@ -710,7 +710,7 @@
     <string name="content_description_directions">directions to location</string>
 
     <!-- Content description for recent sms interaction [CHAR LIMIT=NONE] -->
-    <string name="content_description_recent_sms">recent sms. <xliff:g id="message_details">%s</xliff:g>. click to respond</string>
+    <string name="content_description_recent_sms">recent sms. <xliff:g id="message_body">%s</xliff:g>. <xliff:g id="phone_number">%s</xliff:g>. <xliff:g id="date">%s</xliff:g>. click to respond</string>
 
     <!-- Header for the Relation entry [CHAR LIMIT=NONE] -->
     <string name="content_description_recent_call_type_incoming">incoming</string>
@@ -720,7 +720,7 @@
     <string name="content_description_recent_call_type_missed">missed</string>
 
     <!-- Content description for recent sms interaction [CHAR LIMIT=NONE] -->
-    <string name="content_description_recent_call">recent call. <xliff:g id="call_details">%s</xliff:g>. click to call back</string>
+    <string name="content_description_recent_call">recent call. <xliff:g id="call_type">%s</xliff:g>. <xliff:g id="phone_number">%s</xliff:g>. <xliff:g id="date">%s</xliff:g>. click to call back</string>
 
     <!-- Prefix for messages that you sent [CHAR LIMIT=40] -->
     <string name="message_from_you_prefix">You: <xliff:g id="sms_body">%s</xliff:g></string>
