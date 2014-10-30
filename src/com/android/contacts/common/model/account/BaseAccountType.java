@@ -99,20 +99,20 @@ public abstract class BaseAccountType extends AccountType {
         static final String TYPE = "type";
     }
 
-    private interface Weight {
+    protected interface Weight {
         static final int NONE = -1;
-        static final int ORGANIZATION = 5;
         static final int PHONE = 10;
         static final int EMAIL = 15;
-        static final int IM = 20;
         static final int STRUCTURED_POSTAL = 25;
-        static final int NOTE = 110;
-        static final int NICKNAME = 115;
-        static final int WEBSITE = 120;
-        static final int SIP_ADDRESS = 130;
-        static final int EVENT = 150;
-        static final int RELATIONSHIP = 160;
-        static final int GROUP_MEMBERSHIP = 999;
+        static final int NICKNAME = 111;
+        static final int EVENT = 120;
+        static final int ORGANIZATION = 125;
+        static final int NOTE = 130;
+        static final int IM = 140;
+        static final int SIP_ADDRESS = 145;
+        static final int GROUP_MEMBERSHIP = 150;
+        static final int WEBSITE = 160;
+        static final int RELATIONSHIP = 999;
     }
 
     public BaseAccountType() {
@@ -148,7 +148,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindStructuredName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                R.string.nameLabelsGroup, -1, true));
+                R.string.nameLabelsGroup, Weight.NONE, true));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
         kind.typeOverallMax = 1;
@@ -178,7 +178,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindDisplayName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
-                R.string.nameLabelsGroup, -1, true));
+                R.string.nameLabelsGroup, Weight.NONE, true));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
         kind.typeOverallMax = 1;
@@ -219,7 +219,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindPhoneticName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
-                R.string.name_phonetic, -1, true));
+                R.string.name_phonetic, Weight.NONE, true));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
         kind.typeOverallMax = 1;
@@ -239,7 +239,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindNickname(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Nickname.CONTENT_ITEM_TYPE,
-                    R.string.nicknameLabelsGroup, 115, true));
+                    R.string.nicknameLabelsGroup, Weight.NICKNAME, true));
         kind.typeOverallMax = 1;
         kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
@@ -255,7 +255,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindPhone(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Phone.CONTENT_ITEM_TYPE, R.string.phoneLabelsGroup,
-                10, true));
+                Weight.PHONE, true));
         kind.iconAltRes = R.drawable.ic_text_holo_light;
         kind.iconAltDescriptionRes = R.string.sms;
         kind.actionHeader = new PhoneActionInflater();
@@ -294,7 +294,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindEmail(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Email.CONTENT_ITEM_TYPE, R.string.emailLabelsGroup,
-                15, true));
+                Weight.EMAIL, true));
         kind.actionHeader = new EmailActionInflater();
         kind.actionBody = new SimpleInflater(Email.DATA);
         kind.typeColumn = Email.TYPE;
@@ -314,7 +314,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindStructuredPostal(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
-                R.string.postalLabelsGroup, 25, true));
+                R.string.postalLabelsGroup, Weight.STRUCTURED_POSTAL, true));
         kind.actionHeader = new PostalActionInflater();
         kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
         kind.typeColumn = StructuredPostal.TYPE;
@@ -336,8 +336,8 @@ public abstract class BaseAccountType extends AccountType {
     }
 
     protected DataKind addDataKindIm(Context context) throws DefinitionException {
-        DataKind kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup, 20,
-                true));
+        DataKind kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
+                Weight.IM, true));
         kind.actionHeader = new ImActionInflater();
         kind.actionBody = new SimpleInflater(Im.DATA);
 
@@ -368,7 +368,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindOrganization(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Organization.CONTENT_ITEM_TYPE,
-                    R.string.organizationLabelsGroup, 5, true));
+                    R.string.organizationLabelsGroup, Weight.ORGANIZATION, true));
         kind.actionHeader = new SimpleInflater(R.string.organizationLabelsGroup);
         kind.actionBody = ORGANIZATION_BODY_INFLATER;
         kind.typeOverallMax = 1;
@@ -383,7 +383,7 @@ public abstract class BaseAccountType extends AccountType {
     }
 
     protected DataKind addDataKindPhoto(Context context) throws DefinitionException {
-        DataKind kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, true));
+        DataKind kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, Weight.NONE, true));
         kind.typeOverallMax = 1;
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
@@ -391,8 +391,8 @@ public abstract class BaseAccountType extends AccountType {
     }
 
     protected DataKind addDataKindNote(Context context) throws DefinitionException {
-        DataKind kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE, R.string.label_notes, 110,
-                true));
+        DataKind kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE, R.string.label_notes,
+                Weight.NOTE, true));
         kind.typeOverallMax = 1;
         kind.actionHeader = new SimpleInflater(R.string.label_notes);
         kind.actionBody = new SimpleInflater(Note.NOTE);
@@ -406,7 +406,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindWebsite(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Website.CONTENT_ITEM_TYPE,
-                R.string.websiteLabelsGroup, 120, true));
+                R.string.websiteLabelsGroup, Weight.WEBSITE, true));
         kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
         kind.actionBody = new SimpleInflater(Website.URL);
         kind.defaultValues = new ContentValues();
@@ -420,7 +420,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindSipAddress(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
-                    R.string.label_sip_address, 130, true));
+                    R.string.label_sip_address, Weight.SIP_ADDRESS, true));
 
         kind.typeOverallMax = 1;
         kind.actionHeader = new SimpleInflater(R.string.label_sip_address);
@@ -434,7 +434,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindGroupMembership(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(GroupMembership.CONTENT_ITEM_TYPE,
-                R.string.groupsLabel, 999, true));
+                R.string.groupsLabel, Weight.GROUP_MEMBERSHIP, true));
 
         kind.typeOverallMax = 1;
         kind.fieldList = Lists.newArrayList();

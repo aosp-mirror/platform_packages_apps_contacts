@@ -80,7 +80,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindStructuredName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                R.string.nameLabelsGroup, -1, true));
+                R.string.nameLabelsGroup, Weight.NONE, true));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -109,7 +109,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindDisplayName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
-                R.string.nameLabelsGroup, -1, true));
+                R.string.nameLabelsGroup, Weight.NONE, true));
 
         boolean displayOrderPrimary =
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
@@ -142,7 +142,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindPhoneticName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
-                R.string.name_phonetic, -1, true));
+                R.string.name_phonetic, Weight.NONE, true));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -307,7 +307,7 @@ public class ExchangeAccountType extends BaseAccountType {
 
     protected DataKind addDataKindEvent(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE, R.string.eventLabelsGroup,
-                150, true));
+                Weight.EVENT, true));
         kind.actionHeader = new EventActionInflater();
         kind.actionBody = new SimpleInflater(Event.START_DATE);
 
