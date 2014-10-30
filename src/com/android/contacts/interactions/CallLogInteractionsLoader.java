@@ -103,6 +103,8 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
     }
 
     private List<ContactInteraction> getCallLogInteractions(String phoneNumber) {
+        // TODO: the phone number added to the ContactInteractions result should retain their
+        // original formatting since TalkBack is not reading the normalized number correctly
         final String normalizedNumber = PhoneNumberUtils.normalizeNumber(phoneNumber);
         // If the number contains only symbols, we can skip it
         if (TextUtils.isEmpty(normalizedNumber)) {

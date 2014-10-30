@@ -66,6 +66,8 @@ public class SmsInteractionsLoader extends AsyncTaskLoader<List<ContactInteracti
         // Retrieve the thread IDs
         List<String> threadIdStrings = new ArrayList<>();
         for (String phone : mPhoneNums) {
+            // TODO: the phone numbers added to the ContactInteraction result should retain their
+            // original formatting since TalkBack is not reading the normalized numbers correctly
             try {
                 threadIdStrings.add(String.valueOf(
                         Telephony.Threads.getOrCreateThreadId(getContext(), phone)));
