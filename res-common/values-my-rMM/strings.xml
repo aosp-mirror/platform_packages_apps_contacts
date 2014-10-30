@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"အလုပ်ပေ့ဂျာသို့ စာပို့ပါ"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>ထံ စာပို့ပါ"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS နံပါတ်သို့ စာပို့ပါ"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"ဗီဒီယို ခေါ်ဆိုမှု ပြုလုပ်ရန်"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"အသုံးများသောလိပ်စာများရှင်းပစ်မလား?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"သင့်အနေဖြင့် အသုံးများသော လိပ်စာများကို လူများနှင့် ဖုန်း အပ်ပလီကေးရှင်းမှ ရှင်းလင်းပစ်မှာဖြစ်ပြီး အီးမေးလ် အပ်ပလီကေးရှင်းမှာ သင့်နှစ်သက်ရာ လိပ်စာများကို အစကနေ ပြန်ပြီးမှတ်သားရမှာ ဖြစ်ပါသည်"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"အသုံးများသောလိပ်စာများ ရှင်းလင်းနေစဉ်"</string>
@@ -85,20 +86,20 @@
     <string name="description_view_contact_detail" msgid="2756753096193839285">"အဆက်အသွယ်အား ကြည့်ရန်"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ဖုန်းနံပါတ်ပါသော လိပ်စာများအားလုံး"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"အဆင့်မြှင့်ခြင်းများပြရန်"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"တက်ဘလက်သာ, တူညီအောင်ပြုလို့မရပါ"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"ဖုန်းတွင်သာ တူညီအောင်ပြုလို့မရပါ"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"တက်ဘလက်တွင်သာ၊ ညီတူမညှိထားပါ"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"ဖုန်းတွင်သာ ညီတူမညှိထားပါ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"အမည်"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"နာမည်ဝှက်"</string>
     <string name="full_name" msgid="885420216812981202">"အမည်"</string>
-    <string name="name_given" msgid="1560204576305608571">"ကိုယ်ပိုင်နာမည်"</string>
-    <string name="name_family" msgid="1267097554034721002">"မိသားစုနာမည်"</string>
+    <string name="name_given" msgid="4153709115654909377">"ပထမ အမည်"</string>
+    <string name="name_family" msgid="5317387657540738981">"နောက်ဆုံး အမည်"</string>
     <string name="name_prefix" msgid="8219879405071462309">"နာမည်ရှေ့ဆောင်"</string>
     <string name="name_middle" msgid="3951610314424632183">"အလယ်နာမည်"</string>
     <string name="name_suffix" msgid="5436984808550075931">"နာမည်နောက်စွဲ"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"အသံထွက်နာမည်"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"အသံထွက် ကိုယ်ပိုင်နာမည်"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"အသံထွက် ပထမ အမည်"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"အသံထွက် အလယ်နာမည်"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"အသံထွက် မိသားစုနာမည်"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"အသံထွက် နောက်ဆုံး အမည်"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ဖုန်း"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"အီးမေးလ်"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"လိပ်စာ"</string>
@@ -111,7 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"ကုမ္ပဏီ"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"ခေါင်းစဉ်"</string>
     <string name="label_notes" msgid="3997277594846722699">"မှတ်စုများ"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"အင်တာနက်မှခေါ်ဆိုမှု"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"ဝဘ်ဆိုက်"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"အုပ်စုများ"</string>
     <string name="email_home" msgid="2230967805906450693">"အိမ်ကို အီးမေးလ် ပို့ပါ"</string>
@@ -154,16 +155,17 @@
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" အား ထပ်တူပြုလုပ်ခြင်းမှ ဖယ်ထုတ်ခြင်းသည် တခြား အုပ်စုမလုပ်ထားသော အဆက်အသွယ်များအားလည်း ဖယ်ထုတ်ပါလိမ့်မည်။"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"ပြသမှု ရွေးချယ်ခြင်းများ သိမ်းဆည်နေစဉ်…"</string>
     <string name="menu_done" msgid="32470053723443112">"ပြီးပါပြီ"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"ပယ်ဖျက်သည်"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"ထားတော့"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> ထဲမှ အဆက်အသွယ်များ"</string>
     <string name="listCustomView" msgid="1915154113477432033">"မိမိစိတ်ကြိုက် မြင်ကွင်းမှ"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"အဆက်အသွယ်တစ်ခုတည်း"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"အကောင့်အောက်မှာ အဆက်အသွယ်များပြုလုပ်ပါ"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"ဆင်းမ်ကဒ်ထဲမှ အထဲသို့သွင်းရန်"</string>
+    <string name="import_from_sim_number" msgid="1232500923375370101">"ဆင်းမ် ကဒ် #<xliff:g id="SIM_NUMBER">%d</xliff:g>ထံမှ တင်သွင်းရန်"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"သိုလှောင်ရာနေရာမှ အထဲသို့သွင့်ရန်"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> ကို အထဲသို့သွင်းခြင်းအား ရပ်တန့်မလား?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> ကိုအပြင်သို့ထုတ်ခြင်းအား ရပ်တန့်မလား?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"လိပ်စာကဒ် အသွင်း၊အထုတ်ကို ရပ်တန့်လို့မရပါ"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"လိပ်စာကဒ် အသွင်း၊အထုတ်ကို ရပ်၍မရပါ"</string>
     <string name="fail_reason_unknown" msgid="8541352164960008557">"အမည်မသိသော မှားယွင်းမှု"</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ကို ဖွင့်မရပါ: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"အပြင်ထုတ်သောစနစ်အား စတင်လို့မရပါ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
@@ -220,9 +222,15 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD ကဒ်ကို စကင်လုပ်မရပါ။ (အကြောင်းပြချက်: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>ကို သွင်းနေစဉ်: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"သိမ်းဆည်သောအရာသို့ပို့ပါ"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ဖြင့် စီပေးရန်"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ပထမ အမည်"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"နောက်ဆုံး အမည်"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"အမည် ချထားပုံစံ"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ပထမ အမည် ဦးစွာ"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"နောက်ဆုံး အမည် ဦးစွာ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"မြင်နိုင်သော အဆက်အသွယ်များအား မျှဝေပါ"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များအား အသွင်း၊အထုတ် လုပ်ခြင်း"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"လိပ်စားများ ထည့်ပါ"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များ သွင်းယူ၊ ထုတ်ယူရန်"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
     <string name="share_error" msgid="665756457151793108">"ဒီလိပ်စာအား မျှဝေလို့ မရပါ"</string>
     <string name="menu_search" msgid="7464453023659824700">"ရှာဖွေခြင်း"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ပြရန် အဆက်အသွယ်များ"</string>
@@ -237,12 +245,10 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"မကြာခဏအရာများအား ဖယ်ရှားရန်"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM ကဒ်ကို ရွေးရန်"</string>
     <string name="menu_accounts" msgid="795417468541517082">"အကောင့်များ"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"အသွင်း၊အထုတ် လုပ်ခြင်း"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> ကို စာတိုပို့ရန်"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g> ဖုန်းကို ခေါ်ပါ"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"အဆက်အသွယ် ထည့်ရန်"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"သွင်းယူ၊ ထုတ်ယူခြင်း"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> မှတဆင့်"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> မှတဆင့် <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ရှာဖွေမှုကို ရပ်ရန်"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ရှာဖွေမှုကို ရှင်းပါ"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"အဆက်အသွယ် ပြသမှု ရွေးစရာများ"</string>
 </resources>

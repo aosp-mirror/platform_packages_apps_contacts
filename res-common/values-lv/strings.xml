@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Sūtīt īsziņu uz darba peidžeri"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Sūtīt īsziņu: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Sūtīt multiziņu"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Veikt videozvanu"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vai dzēst bieži lietotos kontaktus?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Tiks dzēsts bieži lietoto kontaktpersonu saraksts lietotnēs Personas un Tālrunis, un e-pasta lietotnēs adrešu preferenču saglabāšana tiks sākta no sākuma."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Bieži lietoto kontaktu dzēšana..."</string>
@@ -90,19 +91,19 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Vārds un uzvārds"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Segvārds"</string>
     <string name="full_name" msgid="885420216812981202">"Vārds un uzvārds"</string>
-    <string name="name_given" msgid="1560204576305608571">"Vārds"</string>
-    <string name="name_family" msgid="1267097554034721002">"Uzvārds"</string>
+    <string name="name_given" msgid="4153709115654909377">"Vārds"</string>
+    <string name="name_family" msgid="5317387657540738981">"Uzvārds"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Uzruna"</string>
     <string name="name_middle" msgid="3951610314424632183">"Otrais vārds"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Tituls"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Vārda un uzvārda izruna"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"Vārda izruna"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Vārda izruna"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Otrā vārda izruna"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"Uzvārda izruna"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Uzvārda izruna"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Tālrunis"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-pasta adrese"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adrese"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"Tūlītējā ziņojumapm."</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Tūlītēja ziņapmaiņa"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizācija"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Saistība"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Īpašie datumi"</string>
@@ -111,7 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Uzņēmums"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Nosaukums"</string>
     <string name="label_notes" msgid="3997277594846722699">"Piezīmes"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"Interneta zvans"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Vietne"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Grupas"</string>
     <string name="email_home" msgid="2230967805906450693">"Sūtīt e-pasta ziņojumu uz privāto adresi"</string>
@@ -160,6 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Viena kontaktpersona"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Izveidot jaunu kontaktpersonu kontā"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importēt no SIM kartes"</string>
+    <string name="import_from_sim_number" msgid="1232500923375370101">"Importēt no SIM kartes Nr. <xliff:g id="SIM_NUMBER">%d</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importēt no atmiņas"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vai atcelt faila <xliff:g id="FILENAME">%s</xliff:g> importēšanu?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vai atcelt faila <xliff:g id="FILENAME">%s</xliff:g> eksportēšanu?"</string>
@@ -220,8 +222,14 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD karti nevarēja skenēt. (Iemesls: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importē <xliff:g id="CURRENT_NUMBER">%s</xliff:g>. no <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Eksportēt uz atmiņu"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Kārtot pēc"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Vārds"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Uzvārds"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Vārda formāts"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Vispirms rādīt vārdu"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Vispirms rādīt uzvārdu"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Kopīgot redzamo kontaktpersonu datus"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktpersonu datu import./eksport."</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktpersonu importēšana/eksportēšana"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktpersonu datu importēšana"</string>
     <string name="share_error" msgid="665756457151793108">"Šīs kontaktpersonas datus nevar kopīgot."</string>
     <string name="menu_search" msgid="7464453023659824700">"Meklēt"</string>
@@ -238,11 +246,9 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"Atlasiet SIM karti"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Konti"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importēt/eksportēt"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"Sūtīt īsziņu kontaktpersonai <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"Kontaktpersonas <xliff:g id="NAME">%1$s</xliff:g> tālruņa numurs"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"Pievienot kontaktpersonu"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"izmantojot <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>, izmantojot <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"pārtraukt meklēšanu"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Notīrīt meklēšanas lauku"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Kontaktpersonu rādīšanas opcijas"</string>
 </resources>

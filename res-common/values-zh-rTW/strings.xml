@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"傳送簡訊至公司呼叫器"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"傳送簡訊至<xliff:g id="ASSISTANT">%s</xliff:g>電話"</string>
     <string name="sms_mms" msgid="4887206338311086612">"傳送簡訊至 MMS 電話"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"進行視訊通話"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"清除常用聯絡人？"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"您即將清除「使用者」應用程式和「電話」應用程式中的常用聯絡人清單，並設定讓電子郵件應用程式重新熟悉您的寄件偏好設定。"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"正在清除常用聯絡人…"</string>
@@ -90,28 +91,28 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"姓名"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"暱稱"</string>
     <string name="full_name" msgid="885420216812981202">"姓名"</string>
-    <string name="name_given" msgid="1560204576305608571">"名字"</string>
-    <string name="name_family" msgid="1267097554034721002">"姓氏"</string>
+    <string name="name_given" msgid="4153709115654909377">"名字"</string>
+    <string name="name_family" msgid="5317387657540738981">"姓氏"</string>
     <string name="name_prefix" msgid="8219879405071462309">"姓名前稱銜"</string>
     <string name="name_middle" msgid="3951610314424632183">"中間名"</string>
     <string name="name_suffix" msgid="5436984808550075931">"姓名後稱銜"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"姓名拼音"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"名字 (拼音)"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"拼音名字"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"中間名 (拼音)"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"姓氏 (拼音)"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"拼音姓氏"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"電話號碼"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"電子郵件"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"地址"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"即時訊息"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"機構"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"關係"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"特殊日期"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"特別的日子"</string>
     <string name="sms" msgid="8086289395154598654">"簡訊"</string>
     <string name="postal_address" msgid="7692926530081579786">"地址"</string>
     <string name="ghostData_company" msgid="22470841482615409">"公司"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"職稱"</string>
     <string name="label_notes" msgid="3997277594846722699">"附註"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"網路通話"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"網站"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"群組"</string>
     <string name="email_home" msgid="2230967805906450693">"傳送電子郵件至住家電子郵件地址"</string>
@@ -160,6 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"單一聯絡人"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"在帳戶下建立聯絡人"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"從 SIM 卡匯入"</string>
+    <string name="import_from_sim_number" msgid="1232500923375370101">"從 SIM 卡 #<xliff:g id="SIM_NUMBER">%d</xliff:g> 匯入"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"從儲存裝置匯入"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"確定要取消匯入 <xliff:g id="FILENAME">%s</xliff:g>？"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"確定要取消匯出 <xliff:g id="FILENAME">%s</xliff:g>？"</string>
@@ -220,6 +222,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"無法掃描 SD 卡 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)。"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"正在匯入第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 筆資料 (共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 筆)：<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"匯出到儲存裝置"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"排序依據"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"名字"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"姓氏"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"姓名格式"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"名字在前"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"姓氏在前"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享正常顯示的聯絡人"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"匯入/匯出聯絡人"</string>
     <string name="dialog_import" msgid="5177004290082451296">"匯入聯絡人"</string>
@@ -238,11 +246,9 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"選取 SIM 卡"</string>
     <string name="menu_accounts" msgid="795417468541517082">"帳戶"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"匯入/匯出"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"傳送訊息給 <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g> 的電話號碼"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"新增聯絡人"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"透過 <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> (透過 <xliff:g id="SOURCE">%2$s</xliff:g>)"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜尋"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜尋"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"聯絡人顯示選項"</string>
 </resources>

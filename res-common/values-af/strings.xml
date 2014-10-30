@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"SMS werkroeper"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"SMS <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"SMS MMS"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Maak video-oproep"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vee gereeld-gekontaktes uit?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Jy gaan die gereeld-gekontak-lys in die People- en Phone-programme uitvee en e-posprogramme forseer om jou adresvoorkeure van nuuts af te leer."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Vee tans gereeld-gekontaktes uit..."</string>
@@ -90,15 +91,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Naam"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Bynaam"</string>
     <string name="full_name" msgid="885420216812981202">"Naam"</string>
-    <string name="name_given" msgid="1560204576305608571">"Voornaam"</string>
-    <string name="name_family" msgid="1267097554034721002">"Van"</string>
+    <string name="name_given" msgid="4153709115654909377">"Voornaam"</string>
+    <string name="name_family" msgid="5317387657540738981">"Van"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Naamvoorvoegsel"</string>
     <string name="name_middle" msgid="3951610314424632183">"Middelnaam"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Naamagtervoegsel"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Fonetiese naam"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"Fonetiese voornaam"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetiese voornaam"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetiese middelnaam"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"Fonetiese van"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Fonetiese van"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Foon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-pos"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adres"</string>
@@ -111,7 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Maatskappy"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Titel"</string>
     <string name="label_notes" msgid="3997277594846722699">"Notas"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"Internetoproep"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webwerf"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Groepe"</string>
     <string name="email_home" msgid="2230967805906450693">"E-postuis"</string>
@@ -160,6 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Enkel kontak"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Skep kontak onder rekening"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Voer van SIM-kaart af in"</string>
+    <string name="import_from_sim_number" msgid="1232500923375370101">"Voer vanaf SIM-kaart #<xliff:g id="SIM_NUMBER">%d</xliff:g> in"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Voer van berging af in"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Kanselleer invoer van <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Kanselleer uitvoer van <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -220,6 +222,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Die SD-kaart kon nie geskandeer word nie. (Rede: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Voer <xliff:g id="TOTAL_NUMBER">%s</xliff:g><xliff:g id="CURRENT_NUMBER">%s</xliff:g> in: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Voer uit na berging"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sorteer volgens"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Voornaam"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Van"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Naamformaat"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Voornaam eerste"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Van eerste"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Deel sigbare kontakte"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Voer kontakte in/uit"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Voer kontakte in"</string>
@@ -238,11 +246,9 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"Kies SIM-kaart"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Rekeninge"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Voer in/uit"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"Stuur boodskap aan <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"Bel foon <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"Voeg kontak by"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"hou op soek"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Vee soektog uit"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opsies vir wys van kontakte"</string>
 </resources>
