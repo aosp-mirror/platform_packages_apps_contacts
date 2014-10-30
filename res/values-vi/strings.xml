@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Danh bạ"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Danh bạ"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Danh bạ"</string>
     <string name="contactsList" msgid="8661624236494819731">"Danh bạ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Liên hệ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Quay số trực tiếp"</string>
@@ -25,6 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Chọn một số để gọi"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Chọn một số để gửi tin nhắn"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chọn địa chỉ liên hệ"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Tạo liên hệ mới"</string>
     <string name="starredList" msgid="4817256136413959463">"Được gắn dấu sao"</string>
     <string name="frequentList" msgid="7154768136473953056">"Thường xuyên"</string>
     <string name="strequentList" msgid="5640192862059373511">"Mục ưa thích"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Xem liên hệ"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Thêm vào mục ưa thích"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Xóa khỏi mục ưa thích"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Đã xóa khỏi mục ưa thích"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Đã thêm vào mục ưa thích"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Chỉnh sửa"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Xóa"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Đặt trên màn hình chính"</string>
@@ -49,7 +53,7 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Xóa"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Thêm địa chỉ liên hệ"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Thêm nhóm"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Tách đ.chỉ liên hệ?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Tách địa chỉ liên hệ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Địa chỉ liên hệ này sẽ được tách thành nhiều địa chỉ liên hệ."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Kết hợp"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kết hợp danh bạ"</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Tên danh bạ của bạn"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Không tìm thấy ứng dụng nào để xử lý tác vụ này."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Nhấp để quay lại màn hình trước đó"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Thêm số điện thoại"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Thêm email"</string>
     <string name="missing_app" msgid="1466111003546611387">"Không tìm thấy ứng dụng nào để xử lý tác vụ này."</string>
     <string name="menu_share" msgid="943789700636542260">"Chia sẻ"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Thêm vào danh bạ"</string>
     <string name="share_via" msgid="563121028023030093">"Chia sẻ liên hệ qua"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Tạo nhóm trong tài khoản"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Trò chuyện thoại"</string>
@@ -130,14 +137,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Sử dụng ảnh này"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Không chỉnh sửa được từ ứng dụng này."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Không có thông tin bổ sung nào cho địa chỉ liên hệ này."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Không chỉnh sửa được trên thiết bị này."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sắp xếp danh sách theo"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Tên"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Họ"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Xem tên liên hệ"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Tên trước tiên"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Họ trước tiên"</string>
     <string name="take_photo" msgid="7496128293167402354">"Chụp ảnh"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Chụp ảnh mới"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Chọn ảnh"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"Thêm tài khoản"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Thêm tài khoản mới"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Xuất các tệp cơ sở dữ liệu"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Ảnh. Chọn để thay đổi"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"thêm liên hệ mới"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Xem thêm"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Xem bớt"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Xem tất cả"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Liên hệ"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Gần đây"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Giới thiệu"</string>
     <string name="send_message" msgid="8938418965550543196">"Gửi tin nhắn"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Đang tạo bản sao cá nhân..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Hôm qua"</string>

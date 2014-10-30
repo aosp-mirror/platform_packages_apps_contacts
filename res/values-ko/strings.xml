@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"주소록"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"주소록"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"주소록"</string>
     <string name="contactsList" msgid="8661624236494819731">"주소록"</string>
     <string name="shortcutContact" msgid="749243779392912958">"연락처"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"바로 전화 걸기"</string>
@@ -25,6 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"전화번호 선택"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"메시지를 보낼 번호 선택"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"연락처 선택"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"새 연락처 만들기"</string>
     <string name="starredList" msgid="4817256136413959463">"중요주소록"</string>
     <string name="frequentList" msgid="7154768136473953056">"자주 사용하는 연락처"</string>
     <string name="strequentList" msgid="5640192862059373511">"즐겨찾기"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"연락처 보기"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"즐겨찾기에 추가"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"즐겨찾기에서 삭제"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"즐겨찾기에서 삭제됨"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"즐겨찾기에 추가됨"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"수정"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"삭제"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"홈 화면에 만들기"</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"이전 화면으로 돌아가려면 클릭"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"전화번호 추가"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"이메일 추가"</string>
     <string name="missing_app" msgid="1466111003546611387">"이 작업을 처리하는 앱을 찾을 수 없습니다."</string>
     <string name="menu_share" msgid="943789700636542260">"공유"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"주소록에 추가"</string>
     <string name="share_via" msgid="563121028023030093">"연락처 공유에 사용할 애플리케이션:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"계정에서 그룹 만들기"</string>
     <string name="audio_chat" msgid="2535716629358298691">"음성채팅"</string>
@@ -130,14 +137,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"사진 사용"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"이 앱에서 수정할 수 없습니다."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"연락처에 대한 추가 정보가 없습니다."</string>
     <string name="group_read_only" msgid="1061762906115697637">"이 기기에서 수정할 수 없습니다."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"목록 정렬 기준"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"이름"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"성"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"연락처 이름 보기"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"이름 먼저 표시"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"성 먼저 표시"</string>
     <string name="take_photo" msgid="7496128293167402354">"사진 찍기"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"새 사진 찍기"</string>
     <string name="pick_photo" msgid="2129509985223564942">"사진 선택"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"데이터베이스 파일 내보내기"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"사진을 변경하려면 선택"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"새 연락처 추가"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"더보기"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"간략히 보기"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"모두 보기"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"연락처"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"최근"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"정보"</string>
     <string name="send_message" msgid="8938418965550543196">"메시지 보내기"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"개인 사본 작성 중..."</string>
     <string name="yesterday" msgid="6840858548955018569">"어제"</string>

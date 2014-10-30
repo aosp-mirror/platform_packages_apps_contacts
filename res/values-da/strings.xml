@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Kontaktpersoner"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Kontaktpersoner"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontaktpersoner"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakter"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direkte opkald"</string>
@@ -25,9 +26,10 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Vælg et nummer at ringe til"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Vælg et nummer, som beskeden skal sendes til"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Vælg en kontaktperson"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Opret ny kontaktperson"</string>
     <string name="starredList" msgid="4817256136413959463">"Stjernemarkerede"</string>
     <string name="frequentList" msgid="7154768136473953056">"Ofte"</string>
-    <string name="strequentList" msgid="5640192862059373511">"Favorit"</string>
+    <string name="strequentList" msgid="5640192862059373511">"Foretrukne"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Kontaktoplysninger"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Rediger kontakt"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Opret kontakt"</string>
@@ -37,8 +39,10 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Opdateringer"</string>
     <string name="searchHint" msgid="8482945356247760701">"Søg i kontakter"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Vis kontakt"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Føj til favoritter"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Fjern fra favoritter"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Føj til foretrukne"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Fjern fra foretrukne"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Fjernet fra foretrukne"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Føjet til foretrukne"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Rediger"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Slet"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Placer på startskærmen"</string>
@@ -58,7 +62,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Foreslåede kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Tilføjede kontakter"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Indstil ringetone"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Angiv ringetone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle opkald til telefonsvareren"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Du kan ikke slette kontaktpersoner fra skrivebeskyttede konti, men du kan skjule dem på listerne over dine kontaktpersoner."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Denne kontakt indeholder oplysninger fra flere konti. Oplysningerne fra skrivebeskyttede konti vil blive skjult i dine lister over kontakter, men ikke slettet."</string>
@@ -104,7 +108,7 @@
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> fundet"</item>
   </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle kontakter"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Favoritter"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"Foretrukne"</string>
     <string name="callBack" msgid="5498224409038809224">"Ring tilbage"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ring op igen"</string>
     <string name="returnCall" msgid="8171961914203617813">"Ring tilbage"</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Navne på dine kontakter"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik for at gå tilbage til forrige skærmbillede"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Tilføj mobiltelefonnummer"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Tilføj e-mail"</string>
     <string name="missing_app" msgid="1466111003546611387">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Føj til kontaktpersoner"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Opret gruppe på konto"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Talechat"</string>
@@ -130,14 +137,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Brug dette billede"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Kan ikke redigeres fra denne app."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Der er ikke flere oplysninger om denne kontaktperson."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Kan ikke redigeres på denne enhed."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sorter liste efter"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Fornavn"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Efternavn"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Se kontaktnavne"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Fornavn først"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Efternavn først"</string>
     <string name="take_photo" msgid="7496128293167402354">"Tag billede"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tag nyt billede"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Vælg billede"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"Tilføj konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tilføj ny konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksportér databasefiler"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Billede. Vælg for at ændre"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"tilføj ny kontaktperson"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Se mere"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Se mindre"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Se alle"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Kontaktperson"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Seneste"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Om"</string>
     <string name="send_message" msgid="8938418965550543196">"Send besked"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Opretter en personlig kopi..."</string>
     <string name="yesterday" msgid="6840858548955018569">"I går"</string>

@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Байланыштар"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Байланыштар"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Байланыштар"</string>
     <!-- no translation found for contactsList (8661624236494819731) -->
     <skip />
     <!-- no translation found for shortcutContact (749243779392912958) -->
@@ -32,6 +33,7 @@
     <!-- no translation found for messageShortcutActivityTitle (3084542316620335911) -->
     <skip />
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Байланыш тандоо"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Жаңы байланыш түзүү"</string>
     <!-- no translation found for starredList (4817256136413959463) -->
     <skip />
     <!-- no translation found for frequentList (7154768136473953056) -->
@@ -60,6 +62,8 @@
     <skip />
     <!-- no translation found for menu_removeStar (5844227078364227030) -->
     <skip />
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Сүйүктүүлөрдөн чыгарылды"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Сүйүктүүлөргө кошулду"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Өзгөртүү"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Жок кылуу"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Үй экранына жайгаштыруу"</string>
@@ -161,9 +165,12 @@
     <skip />
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Бул ишти аткаруучу эч бир колдонмо табылган жок."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Мурунку экранга кайтуу үчүн чыкылдатыңыз"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Телефон номерин кошуу"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Электрондук почта дарегин кошуу"</string>
     <string name="missing_app" msgid="1466111003546611387">"Бул ишти аткаруучу эч бир колдонмо табылган жок."</string>
     <!-- no translation found for menu_share (943789700636542260) -->
     <skip />
+    <string name="menu_add_contact" msgid="3198704337220892684">"Байланыштарга кошуу"</string>
     <!-- no translation found for share_via (563121028023030093) -->
     <skip />
     <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
@@ -181,19 +188,7 @@
     <!-- no translation found for use_photo_as_primary (8807110122951157246) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Бул колдонмодон өзгөртүлбөйт."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Бул байланыштын кошумча маалыматтары жок."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Бул түзмөктөн өзгөртүлбөйт."</string>
-    <!-- no translation found for display_options_sort_list_by (6080091755852211076) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (184916793466387067) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (7857986975275712622) -->
-    <skip />
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Байланыш аттарын кароо"</string>
-    <!-- no translation found for display_options_view_given_name_first (6968288511197363292) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (1447288164951453714) -->
-    <skip />
     <!-- no translation found for take_photo (7496128293167402354) -->
     <skip />
     <!-- no translation found for take_new_photo (7341354729436576304) -->
@@ -310,13 +305,12 @@
     <string name="add_account" msgid="8201790677994503186">"Эсеп кошуу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңы эсеп кошуу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Берилиштер корлорунун файлдарын экспорттоо"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Сүрөтү. Өзгөртүү үчүн тандоо"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"жаңы байланыш кошуу"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Дагы көрүү"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Азыраак көрүү"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Бардыгын көрүү"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Байланыш"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Акыркы"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Жөнүндө"</string>
     <string name="send_message" msgid="8938418965550543196">"Билдирүү жөнөтүү"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Жеке көчүрмөнү алуу..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Кечээ"</string>

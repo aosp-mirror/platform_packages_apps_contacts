@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Contactos"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Contactos"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Contactos"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Llamada directa"</string>
@@ -25,6 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Elegir un número para la llamada"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Elegir un número para el mensaje"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Seleccionar un contacto"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear nuevo contacto"</string>
     <string name="starredList" msgid="4817256136413959463">"Destacados"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frecuentes"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favoritos"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Ver contacto"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Añadir a \"Favoritos\""</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Eliminar de \"Favoritos\""</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Eliminado de favoritos"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Añadido a favoritos"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Eliminar"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Añadir a la pantalla de inicio"</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Nombres de tus contactos"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"No se ha detectado ninguna aplicación que pueda hacer esta acción."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Haz clic para volver a la pantalla anterior"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Añadir número de teléfono"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Añadir correo electrónico"</string>
     <string name="missing_app" msgid="1466111003546611387">"No se ha detectado ninguna aplicación que pueda hacer esta acción."</string>
     <string name="menu_share" msgid="943789700636542260">"Compartir"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Añadir a contactos"</string>
     <string name="share_via" msgid="563121028023030093">"Compartir contacto a través de"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Crear grupo en cuenta"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat de voz"</string>
@@ -130,14 +137,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizar esta foto"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"No se puede editar desde la aplicación."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"No hay información adicional para este contacto."</string>
     <string name="group_read_only" msgid="1061762906115697637">"No se puede editar en este dispositivo."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Ordenar lista por"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nombre"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Apellidos"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Ver nombres de contactos"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Nombre primero"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Apellidos primero"</string>
     <string name="take_photo" msgid="7496128293167402354">"Hacer una foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Hacer una foto nueva"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Elegir foto"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"Añadir cuenta"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Añadir una cuenta"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportar archivos de base de datos"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Imagen. Seleccionar para cambiar"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"añadir nuevo contacto"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Ver más"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Ver menos"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Ver todo"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Contacto"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Recientes"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Información"</string>
     <string name="send_message" msgid="8938418965550543196">"Enviar mensaje"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Creando una copia personal..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Ayer"</string>

@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Stiki"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Stiki"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Stiki"</string>
     <string name="contactsList" msgid="8661624236494819731">"Stiki"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Vizitka"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Bližnjice za klicanje"</string>
@@ -25,6 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Izberite klicno številko"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Izberi številko za pošiljanje sporočila"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Izbira stika"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Ustvarite nov stik"</string>
     <string name="starredList" msgid="4817256136413959463">"Z zvezdico"</string>
     <string name="frequentList" msgid="7154768136473953056">"Pogosto"</string>
     <string name="strequentList" msgid="5640192862059373511">"Priljubljene"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Ogled stika"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj k priljubljenim"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Odstrani iz priljubljenih"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Odstranjeno iz priljubljenih"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Dodano med priljubljene"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Izbriši"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Postavi na začetni zaslon"</string>
@@ -113,10 +117,13 @@
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> od <xliff:g id="TOTAL_NUMBER">%s</xliff:g> stikov"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Imena stikov"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Programa za obravnavo tega dejanja ni mogoče najti."</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikacije za obravnavo tega dejanja ni mogoče najti."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliknite za vrnitev na prejšnji zaslon"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Dodaj telefonsko številko"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Dodaj e-poštni naslov"</string>
     <string name="missing_app" msgid="1466111003546611387">"Za to dejanje ni mogoče najti nobene aplikacije."</string>
     <string name="menu_share" msgid="943789700636542260">"Skupna raba"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Dodaj med stike"</string>
     <string name="share_via" msgid="563121028023030093">"Deli stik z drugimi prek"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Ustvari skupino v računu"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Glasovni klepet"</string>
@@ -129,15 +136,8 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Uporabi to fotografijo"</string>
-    <string name="contact_read_only" msgid="7421346527289472273">"S tem programom urejanje ni mogoče."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Za ta stik ni nobenih drugih podatkov"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"S to aplikacijo urejanje ni mogoče."</string>
     <string name="group_read_only" msgid="1061762906115697637">"V tej napravi ni mogoče urejati skupine."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Razvrsti seznam po"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Ime"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Priimek"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Prikaži imena stikov"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Najprej ime"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Najprej priimek"</string>
     <string name="take_photo" msgid="7496128293167402354">"Posnemi fotografijo"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Posnemi novo fotografijo"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Izberite fotografijo"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nov račun"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Izvoz datotek zbirke"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Slika. Izberite, da spremenite"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"dodaj novi stik"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Pokaži več"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Pokaži manj"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Pokaži vse"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Stik"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Nedavno"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Vizitka"</string>
     <string name="send_message" msgid="8938418965550543196">"Pošlji sporočilo"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Ustvarjanje osebne kopije ..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Včeraj"</string>

@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"పరిచయాలు"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"పరిచయాలు"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"పరిచయాలు"</string>
     <string name="contactsList" msgid="8661624236494819731">"పరిచయాలు"</string>
     <string name="shortcutContact" msgid="749243779392912958">"పరిచయం"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"డైరెక్ట్ డయల్"</string>
@@ -25,6 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"కాల్ చేయాల్సిన నంబర్‌ను ఎంచుకోండి"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"సందేశం పంపడానికి నంబర్‌ను ఎంచుకోండి"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"పరిచయాన్ని ఎంచుకోండి"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"కొత్త పరిచయాన్ని సృష్టించండి"</string>
     <string name="starredList" msgid="4817256136413959463">"నక్షత్రం గుర్తు ఉన్నవి"</string>
     <string name="frequentList" msgid="7154768136473953056">"తరచుగా"</string>
     <string name="strequentList" msgid="5640192862059373511">"ఇష్టమైనవి"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"పరిచయాన్ని వీక్షించండి"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ఇష్టమైనవాటికి జోడించు"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ఇష్టమైనవాటి నుండి తీసివేయి"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"ఇష్టమైనవి నుండి తీసివేయబడింది"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"ఇష్టమైనవికి జోడించబడింది"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"సవరించు"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"తొలగించు"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"హోమ్ స్క్రీన్‌లో ఉంచు"</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"మీ పరిచయాల యొక్క పేర్లు"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ఈ చర్యను నిర్వహించడానికి అనువర్తనం ఏదీ కనుగొనబడలేదు."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"మునుపటి స్క్రీన్‌కి తిరిగి రావడానికి క్లిక్ చేయండి"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ఫోన్ నంబర్‌ను జోడించండి"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"ఇమెయిల్ జోడించండి"</string>
     <string name="missing_app" msgid="1466111003546611387">"ఈ చర్యను నిర్వహించడానికి అనువర్తనం ఏదీ కనుగొనబడలేదు."</string>
     <string name="menu_share" msgid="943789700636542260">"భాగస్వామ్యం చేయి"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"పరిచయాలకు జోడించు"</string>
     <string name="share_via" msgid="563121028023030093">"పరిచయాన్ని దీని ద్వారా భాగస్వామ్యం చేయండి"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ఖాతాలో సమూహాన్ని సృష్టించండి"</string>
     <string name="audio_chat" msgid="2535716629358298691">"వాయిస్ చాట్"</string>
@@ -130,14 +137,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"ఈ ఫోటోను ఉపయోగించు"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"ఈ అనువర్తనం నుండి సవరించడం కుదరదు."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"ఈ పరిచయానికి అదనపు సమాచారం లేదు."</string>
     <string name="group_read_only" msgid="1061762906115697637">"ఈ పరికరంలో సవరించడం కుదరదు."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"జాబితాను ఇలా క్రమబద్ధీకరించండి"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"పెట్టిన పేరు"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"కుటుంబం పేరు"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"పరిచయ పేర్లను వీక్షించండి"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"ముందుగా పెట్టిన పేరు"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"ముందుగా కుటుంబం పేరు"</string>
     <string name="take_photo" msgid="7496128293167402354">"ఫోటో తీసుకోండి"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"కొత్త ఫోటో తీసుకోండి"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ఫోటోను ఎంచుకోండి"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"ఖాతాను జోడించు"</string>
     <string name="add_new_account" msgid="5748627740680940264">"కొత్త ఖాతాను జోడించు"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"డేటాబేస్ ఫైల్‌లను ఎగుమతి చేయి"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"చిత్రం. మార్చడానికి నొక్కండి"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"కొత్త పరిచయాన్ని జోడించు"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"మరిన్ని చూడండి"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"తక్కువ చూడండి"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"అన్నీ చూడండి"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"పరిచయం"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"ఇటీవలివి"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"పరిచయం"</string>
     <string name="send_message" msgid="8938418965550543196">"సందేశాన్ని పంపండి"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"వ్యక్తిగత కాపీని సృష్టిస్తోంది..."</string>
     <string name="yesterday" msgid="6840858548955018569">"నిన్న"</string>

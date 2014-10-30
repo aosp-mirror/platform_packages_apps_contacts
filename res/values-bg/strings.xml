@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Контакти"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Контакти"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Контакти"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Директно набиране"</string>
@@ -25,6 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Избор на номер за обаждане"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Избор на номер за изпращане на съобщение"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Избор на контакт"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Създайте нов контакт"</string>
     <string name="starredList" msgid="4817256136413959463">"Със звезда"</string>
     <string name="frequentList" msgid="7154768136473953056">"Често"</string>
     <string name="strequentList" msgid="5640192862059373511">"Любими"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Преглед на контакт"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Добавяне към предпочитани"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Премахване от любими"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Премахнато от любимите"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Добавено към любимите"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Редактиране"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Изтриване"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Поставяне на началния екран"</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Имена на контактите ви"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не бе намерено приложение за извършване на това действие."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Кликнете за връщане към предишния екран"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Добавяне на телефонен номер"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Добавяне на имейл"</string>
     <string name="missing_app" msgid="1466111003546611387">"Не бе намерено приложение за извършване на това действие."</string>
     <string name="menu_share" msgid="943789700636542260">"Споделяне"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Добавяне към контактите"</string>
     <string name="share_via" msgid="563121028023030093">"Споделяне на контакт чрез"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Създаване на група в профил"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Гласов разговор"</string>
@@ -130,14 +137,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Използване на тази снимка"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Не може да се редактира от приложението."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Няма допълнителна информация за този контакт."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Не може да се редактира на това у-во."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Подреждане на списък по"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Собствено име"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Фамилия"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Преглед на имената на контактите"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Първо собственото име"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Първо фамилията"</string>
     <string name="take_photo" msgid="7496128293167402354">"Снимане"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Заснемане на нова снимка"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Избор на снимка"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"Добавяне на профил"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавяне на нов профил"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Експортиране на файловете на базата от данни"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Снимка. Изберете, за да промените"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"добавяне на нов контакт"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Преглед на още"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Преглед на по-малко"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Преглед на всичко"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Контакт"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Скорошни"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Информация"</string>
     <string name="send_message" msgid="8938418965550543196">"Изпращане на съобщение"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Създава се лично копие..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Вчера"</string>

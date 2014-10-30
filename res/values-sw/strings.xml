@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Anwani"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Anwani"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Anwani"</string>
     <string name="contactsList" msgid="8661624236494819731">"Anwani"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Anwani"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Upigaji wa moja kwa moja"</string>
@@ -25,6 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Chagua nambari ya kupiga"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Chagua nambari ya kutumia ujumbe"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chagua mwasiliani"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Ongeza anwani mpya"</string>
     <string name="starredList" msgid="4817256136413959463">"Zenye nyota"</string>
     <string name="frequentList" msgid="7154768136473953056">"Mara kwa mara"</string>
     <string name="strequentList" msgid="5640192862059373511">"Vipendwa"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Tazama anwani"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Ongeza kwa vipendwa"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ondoa kwenye vipendwa"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Imeondolowa kwenye vipendewa"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Imeongezwa kwenye vipendwa"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Badilisha"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Futa"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Weka kwenye skrini ya Mwanzo"</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Majina ya anwani zako"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Hakuna programu iliyopatikana ya kushughulikia tendo hili."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Bofya ili urudi kwenye skrini iliyotangulia"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Ongeza nambari ya simu"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Ongeza anwani ya barua pepe"</string>
     <string name="missing_app" msgid="1466111003546611387">"Hakuna programu iliyopatikana ya kushughulikia tendo hili."</string>
     <string name="menu_share" msgid="943789700636542260">"Shiriki"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Ongeza kwenye anwani"</string>
     <string name="share_via" msgid="563121028023030093">"Shiriki anwani kupitia"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Buni kikundi chini ya akaunti"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Gumzo la sauti"</string>
@@ -130,14 +137,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Tumia picha hii"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Haiwezi kuhaririwa kutoka kwa programu hii."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Hakuna maelezo ya ziada ya mwasiliani huyu."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Haiwezi kuhaririwa kwenye kifaa hiki"</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Panga orodha kwa"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Jina la kwanza"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Jila la familia"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Angalia majina ya anwani"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Jina ulilopewa kwanza"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Jina la familia kwanza"</string>
     <string name="take_photo" msgid="7496128293167402354">"Piga picha"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Piga picha mpya"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Chagua picha"</string>
@@ -213,7 +213,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Wasifu wangu wa ndani."</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Wasifu wangu wa <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Inaonyesha anwani zote"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Anwani hufanya kazi vizuri pamoja na Akaunti ya Google. \n \n • Zifikie kwa kutumia kivinjari chochote. \n • Hifadhi nakala rudufu ya anwani zako kwa usalama."</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"Anwani hufanya kazi vizuri zaidi ukiwa na Akaunti ya Google. \n \n • Zifikie ukitumia kivinjari chochote. \n • Hifadhi nakala za anwani zako kwa usalama."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka anwani za unaowasiliana nao salama hata ukipoteza simu yako: sawazisha kwa huduma iliyo mtandaoni."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitakuwa na nakala rudufu. Je, ungependa kuongeza akaunti ambayo inahifadhi nakala rudufu ya anwani katika mtandao?"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"Ongeza akaunti"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ongeza akaunti mpya"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Hamisha faili za hifadhidata"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Picha. Chagua ili ubadilishe"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"ongeza anwani mpya"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Angalia zaidi"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Angalia chache"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Angalia zote"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Anwani"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Hivi majuzi"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Kuhusu"</string>
     <string name="send_message" msgid="8938418965550543196">"Tuma ujumbe"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Inaunda nakala binafsi..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Jana"</string>

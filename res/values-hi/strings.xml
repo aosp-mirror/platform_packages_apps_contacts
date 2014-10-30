@@ -16,15 +16,17 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"संपर्क"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"संपर्क"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"संपर्क"</string>
     <string name="contactsList" msgid="8661624236494819731">"संपर्क"</string>
     <string name="shortcutContact" msgid="749243779392912958">"संपर्क"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"प्रत्यक्ष डायल"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"प्रत्यक्ष संदेश"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"कॉल करें"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"मैसेज भेजें"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"कोई संपर्क शॉर्टकट चुनें"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"कॉल करने के लिए कोई नंबर चुनें"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"संदेश भेजने के लिए कोई नंबर चुनें"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"कोई संपर्क चुनें"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"नया संपर्क बनाएं"</string>
     <string name="starredList" msgid="4817256136413959463">"तारांकित"</string>
     <string name="frequentList" msgid="7154768136473953056">"बार-बार"</string>
     <string name="strequentList" msgid="5640192862059373511">"पसंदीदा"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"संपर्क देखें"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"पसंदीदा में जोड़ें"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"पसंदीदा से निकालें"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"पसंदीदा से निकाल दिया गया"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"पसंदीदा में जोड़ा गया"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"संपादित करें"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"हटाएं"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुख्यपृष्ठ स्क्रीन पर रखें"</string>
@@ -64,7 +68,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"इस संपर्क में एकाधिक खातों की जानकारी है. केवल-पढ़ने के लिए खातों की जानकारी आपकी संपर्क सूचियों में छिपी रहेगी, उसे हटाया नहीं जाएगा."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"इस संपर्क को हटाने से एकाधिक खातों से जानकारी हट जाएगी."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"यह संपर्क हटा दिया जाएगा."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"बदलावों को छोड़ें"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"परिवर्तन हटा दें"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"संपर्क मौजूद नहीं है."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्यपृष्ठ स्क्रीन पर संपर्क विजेट जोड़ा गया."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नया संपर्क बनाएं"</string>
@@ -77,7 +81,7 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"फ़ोन पर कोई चित्र उपलब्ध नहीं है."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"संपर्क का फ़ोटो"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"कस्टम लेबल नाम"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"सीधे ध्वनिमेल पर कॉल भेजें"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"सीधे वॉयस मेल पर कॉल भेजें"</string>
     <string name="removePhoto" msgid="4898105274130284565">"फ़ोटो निकालें"</string>
     <string name="noContacts" msgid="8579310973261953559">"कोई संपर्क नहीं."</string>
     <string name="noGroups" msgid="8614664663561385253">"कोई समूह नहीं."</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"आपके संपर्कों के नाम"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"यह कार्यवाही प्रबंधित करने के लिए कोई ऐप्स  नहीं मिला."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"पिछली स्क्रीन पर लौटने के लिए क्लिक करें"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"फ़ोन नंबर जोड़ें"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"ईमेल जोड़ें"</string>
     <string name="missing_app" msgid="1466111003546611387">"यह कार्यवाही प्रबंधित करने के लिए कोई ऐप्स नहीं मिला."</string>
     <string name="menu_share" msgid="943789700636542260">"साझा करें"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"संपर्कों में जोड़ें"</string>
     <string name="share_via" msgid="563121028023030093">"इसके द्वारा संपर्क साझा करें"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"खाते के तहत समूह बनाएं"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ध्वनि बातचीत"</string>
@@ -130,28 +137,21 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"इस फ़ोटो का उपयोग करें"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"इस ऐप्स  द्वारा संपादन-योग्‍य नहीं."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"इस संपर्क की कोई अतिरिक्त जानकारी नहीं है."</string>
-    <string name="group_read_only" msgid="1061762906115697637">"इस उपकरण पर संपादन योग्‍य नहीं."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"सूची को इसके अनुसार क्रमित करें"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"दिया गया नाम"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"उपनाम"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"संपर्क नामों को देखें"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"दिया गया नाम पहले"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"कुलनाम पहले"</string>
+    <string name="group_read_only" msgid="1061762906115697637">"इस डिवाइस पर संपादन योग्‍य नहीं."</string>
     <string name="take_photo" msgid="7496128293167402354">"फ़ोटो लें"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"नया फ़ोटो लें"</string>
     <string name="pick_photo" msgid="2129509985223564942">"फ़ोटो चुनें"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"नई फ़ोटो चुनें"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषा के परिवर्तन दिखाने के लिए संपर्क सूची से नई जानकारी मिल रही है."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची से नई जानकारी मिल रही है."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. \n\nअपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB मोबाइल संग्रहण की आवश्‍यकता होती है.\n\nनिम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. \n\nअपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB मोबाइल मेमोरी की आवश्‍यकता होती है.\n\nनिम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"कुछ ऐप्स  अनइंस्टॉल करें"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"अपग्रेड का पुन: प्रयास करें"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"खोज रहा है…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"चयनित दिखाएं"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"सभी दिखाएं"</string>
     <string name="menu_select_all" msgid="621719255150713545">"सभी को चुनें"</string>
-    <string name="menu_select_none" msgid="7093222469852132345">"सभी का चयन रद्द करें"</string>
+    <string name="menu_select_none" msgid="7093222469852132345">"कुछ भी ना चुनें"</string>
     <string name="add_field" msgid="2384260056674995230">"दूसरा फ़ील्ड जोड़ें"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"नया जोड़ें"</string>
     <string name="add_organization" msgid="7311893231158291197">"संगठन जोड़ें"</string>
@@ -179,7 +179,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"संपर्क में जोड़ें"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"बंद करें"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"वर्ष दर्शाएं"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"वर्ष दिखाएं"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"संपर्क करें"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"लोड हो रहा है..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"एक नया संपर्क बनाएं"</string>
@@ -204,8 +204,8 @@
     <string name="copy_text" msgid="3257145021583508761">"क्‍लिपबोर्ड पर प्रतिलिपि बनाएं"</string>
     <string name="set_default" msgid="4417505153468300351">"सामान्य सेट करें"</string>
     <string name="clear_default" msgid="7193185801596678067">"सामान्य साफ़ करें"</string>
-    <string name="toast_text_copied" msgid="5143776250008541719">"पाठ की प्रतिलिपि बनाई गई"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"आपके परिवर्तन छोड़ें?"</string>
+    <string name="toast_text_copied" msgid="5143776250008541719">"लेख की प्रतिलिपि बनाई गई"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"आपके परिवर्तन हटा दें?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"मेरी प्रोफ़ाइल सेट करें"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"व्‍यक्ति‍ का नाम लिखें"</string>
@@ -225,13 +225,12 @@
     <string name="add_account" msgid="8201790677994503186">"खाता जोड़ें"</string>
     <string name="add_new_account" msgid="5748627740680940264">"नया खाता जोड़ें"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फ़ाइलें निर्यात करें"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"चित्र. बदलने के लिए चुनें"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"नया संपर्क जोड़ें"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"अधिक देखें"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"कम देखें"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"सभी देखें"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"संपर्क"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"हाल ही का"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"संक्षिप्त विवरण"</string>
     <string name="send_message" msgid="8938418965550543196">"संदेश भेजें"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"व्यक्तिगत प्रति बनाई जा रही है..."</string>
     <string name="yesterday" msgid="6840858548955018569">"कल"</string>

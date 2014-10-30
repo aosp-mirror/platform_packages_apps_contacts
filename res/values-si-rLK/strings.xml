@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"සම්බන්ධතා"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"සම්බන්ධතා"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"සම්බන්ධතා"</string>
     <string name="contactsList" msgid="8661624236494819731">"සම්බන්ධතා"</string>
     <string name="shortcutContact" msgid="749243779392912958">"සම්බන්ධතාවය"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ඍජු ඇමතීම"</string>
@@ -25,6 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ඇමතීමට අංකයක් තෝරාගන්න"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"පණිවිඩයක් යැවීමට අංකයක් තෝරාගන්න"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"සම්බන්ධතාවයක් තෝරාගන්න"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"නව සම්බන්ධතාවයක් නිර්මාණය කරන්න"</string>
     <string name="starredList" msgid="4817256136413959463">"තරුව සලකුණු කළ"</string>
     <string name="frequentList" msgid="7154768136473953056">"නිතර"</string>
     <string name="strequentList" msgid="5640192862059373511">"ප්‍රියතම"</string>
@@ -39,6 +41,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"සම්බන්ධතාව පෙන්වන්න"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ප්‍රියතම වලට එක් කරන්න"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ප්‍රියතම වලින් ඉවත් කරන්න"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"ප්‍රියතමයන්ගෙන් ඉවත් කරන්න"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"ප්‍රියතමයන් වෙත එකතු කරන්න"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"සංස්කරණය කරන්න"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"මකන්න"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"මුල් තිරයෙහි තබන්න"</string>
@@ -51,7 +55,7 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"කණ්ඩායමක් එක් කරන්න"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"සම්බන්ධතාව වෙන් කරන්නද?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"මෙම සම්බන්ධතාවය සම්බන්ධතා කිහිපයකට වෙන් කෙරෙනු ඇත."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"එකතු වන්න"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"සම්බන්ධ කරන්න"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"සම්බන්ධතා එකතු කරන්න"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> සමඟ එක් කළ යුතු සම්බන්ධතාවය තෝරන්න:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"සියලු සම්බන්ධතා පෙන්වන්න"</string>
@@ -115,8 +119,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"ඔබගේ සම්බන්ධතා වල නම්"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"මෙම ක්‍රියාව හැසිරවීමට යෙදුමක් සොයාගත්තේ නැත"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"පෙර තිරයට යෑම ආපසු යෑම ක්ලික් කරන්න"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"දුරකථන අංකයක් එකතු කරන්න"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"ඊ-තැපෑලක් එකතු කරන්න"</string>
     <string name="missing_app" msgid="1466111003546611387">"මෙම ක්‍රියාව හැසිරවීමට යෙදුමක් සොයාගත්තේ නැත"</string>
     <string name="menu_share" msgid="943789700636542260">"බෙදාගන්න"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"සම්බන්ධතා වලට එක් කරන්න"</string>
     <string name="share_via" msgid="563121028023030093">"ඔස්සේ සම්බන්ධතාවය බෙදාගන්න"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ගිණුම යටතේ කණ්ඩායමක් නිර්මාණය කරන්න"</string>
     <string name="audio_chat" msgid="2535716629358298691">"හඬ කතාබහ"</string>
@@ -130,14 +137,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"මෙම ඡායාරූපය භාවිත කරන්න"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"මෙම යෙදුමෙන් සංස්කරණය කළ නොහැක."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"මෙම සම්බන්ධතාවයට අමතර තොරතුරු නොමැත."</string>
     <string name="group_read_only" msgid="1061762906115697637">"මෙම උපාංගයෙහි සංස්කරණය කළ නොහැක"</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"මඟින් ලැයිස්තුව අනුපිළිවෙලට සකසන්න"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"ලබාදුන් නම"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"වාසගම"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"සම්බන්ධතා නම් පෙන්වන්න"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"ලබාදුන් නම මුලින්"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"වාසගම මුලින්"</string>
     <string name="take_photo" msgid="7496128293167402354">"ඡායාරූපය ගන්න"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"නව ඡායාරූපයක් ගන්න"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ඡායාරූපය තෝරන්න"</string>
@@ -219,19 +219,18 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ඔබගේ නව සම්බන්ධතාවය උපස්ථ නොවනු ඇත. ඔබගේ සම්බන්ධතා සබැඳිව උපස්ථ කරන ගිණුමක් එක් කරන්නද?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"ඔබගේ නව සම්බන්ධතාවය <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> සමඟ සමමුහුර්ත වනු ඇත."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ඔබගේ පහත ගිණුම් වලින් එකක් සමඟ ඔබගේ නව සම්බන්ධතාවය සමමුහුර්ත කළ හැක. ඔබට භාවිතා කිරීමට අවශ්‍ය කුමක්ද?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"නව සම්බන්ධතා එකතු කරන්න"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"නව සම්බන්ධතාව එක් කරන්න"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
     <string name="keep_local" msgid="1258761699192993322">"පෙදෙසිව තබාගන්න"</string>
     <string name="add_account" msgid="8201790677994503186">"ගිණුමක් එකතු කරන්න"</string>
     <string name="add_new_account" msgid="5748627740680940264">"නව ගිණුමක් එක් කරන්න"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"දත්ත සමුදා ගොනු නිර්යාත කරන්න"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"පින්තූරය. වෙනස් කිරීමට තෝරාගන්න"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"නව සම්බන්ධතා එකතු කරන්න"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"නව සම්බන්ධතාව එක් කරන්න"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"තව බලන්න"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"අඩුවෙන් බලන්න"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"සියල්ල බලන්න"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"සම්බන්ධතාවය"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"මෑත"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"පිළිබඳ"</string>
     <string name="send_message" msgid="8938418965550543196">"පණිවිඩය යවන්න"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"පුද්ගලික පිටපතක් නිර්මාණය කරමින්..."</string>
     <string name="yesterday" msgid="6840858548955018569">"ඊයේ"</string>
@@ -242,4 +241,18 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(නම් නොකළ සිදුවීම)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"සකසන්න"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
+    <string name="header_organization_entry" msgid="8515394955666265406">"සංවිධානය"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"අපනාමය"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"සටහන"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"වෙබ් අඩවිය"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"සිදුවීම"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"සම්බන්ධතාව"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"ස්ථානයට දිශාවන්"</string>
+    <string name="content_description_recent_sms" msgid="6268563442222149676">"මෑත කදී ආ sms. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. ප්‍රතිචාර දැක්වීමට ක්ලික් කරන්න"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ඇතුළට එන"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"පිටතට යන"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"හමු නොවී යන ලදි"</string>
+    <string name="content_description_recent_call" msgid="6204048362763219585">"මෑත ඇමතුම්. <xliff:g id="CALL_DETAILS">%s</xliff:g>. ආපසු ඇමැතීමට ක්ලික් කරන්න"</string>
+    <string name="message_from_you_prefix" msgid="7180706529908434482">"ඔබ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
