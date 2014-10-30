@@ -17,6 +17,7 @@ package com.android.contacts.interactions;
 
 import com.android.contacts.R;
 import com.android.contacts.common.util.BitmapUtil;
+import com.android.contacts.common.util.ContactDisplayUtils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,6 +29,7 @@ import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.BidiFormatter;
+import android.text.Spannable;
 import android.text.TextDirectionHeuristics;
 
 /**
@@ -179,9 +181,12 @@ public class CallLogInteraction implements ContactInteraction {
     }
 
     @Override
-    public String getContentDescription(Context context) {
-        return context.getResources().getString(R.string.content_description_recent_call,
-                getCallTypeString(context), getViewHeader(context), getViewFooter(context));
+    public Spannable getContentDescription(Context context) {
+        final String phoneNumber = getViewHeader(context);
+        final String contentDescription = context.getResources().getString(
+                R.string.content_description_recent_call,
+                getCallTypeString(context), phoneNumber, getViewFooter(context));
+        return ContactDisplayUtils.getTelephoneTtsSpannable(contentDescription, phoneNumber);
     }
 
     private String getCallTypeString(Context context) {
