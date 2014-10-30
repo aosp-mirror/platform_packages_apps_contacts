@@ -20,20 +20,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <include
-        android:id="@+id/kind_title_layout"
-        layout="@layout/edit_kind_title" />
+    <ImageView
+        android:id="@+id/kind_icon"
+        style="@style/EditKindIconStyle" />
 
     <LinearLayout
         android:id="@+id/kind_editors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" />
-
-    <include
-        android:id="@+id/add_field_footer"
-        layout="@layout/edit_add_field" />
 
 </com.android.contacts.editor.KindSectionView>

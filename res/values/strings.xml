@@ -426,9 +426,6 @@
     <!-- Label to clear all selection in multiple picker -->
     <string name="menu_select_none">"Unselect all"</string>
 
-    <!-- The add field button shown in the editor under each editable Raw Contact [CHAR LIMIT=30] -->
-    <string name="add_field">Add another field</string>
-
     <!-- The button to add another entry of a specific data type (i.e. email, phone, address) to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
     <string name="add_new_entry_for_section">Add new</string>
 
