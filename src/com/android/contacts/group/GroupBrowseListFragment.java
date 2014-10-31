@@ -47,12 +47,11 @@ import com.android.contacts.R;
 import com.android.contacts.group.GroupBrowseListAdapter.GroupListItemViewCache;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.list.AutoScrollListView;
-import com.android.contacts.commonbind.analytics.AnalyticsFragment;
 
 /**
  * Fragment to display the list of groups.
  */
-public class GroupBrowseListFragment extends AnalyticsFragment
+public class GroupBrowseListFragment extends Fragment
         implements OnFocusChangeListener, OnTouchListener {
 
     /**
