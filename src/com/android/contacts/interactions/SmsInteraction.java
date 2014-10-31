@@ -16,6 +16,7 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
+import com.android.contacts.common.util.ContactDisplayUtils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.Telephony.Sms;
 import android.text.BidiFormatter;
+import android.text.Spannable;
 import android.text.TextDirectionHeuristics;
 
 /**
@@ -159,9 +161,12 @@ public class SmsInteraction implements ContactInteraction {
     }
 
     @Override
-    public String getContentDescription(Context context) {
-        return context.getResources().getString(R.string.content_description_recent_sms,
-                getViewHeader(context), getViewBody(context), getViewFooter(context));
+    public Spannable getContentDescription(Context context) {
+        final String phoneNumber = getViewBody(context);
+        final String contentDescription = context.getResources().getString(
+                R.string.content_description_recent_sms,
+                getViewHeader(context), phoneNumber, getViewFooter(context));
+        return ContactDisplayUtils.getTelephoneTtsSpannable(contentDescription, phoneNumber);
     }
 
     @Override
