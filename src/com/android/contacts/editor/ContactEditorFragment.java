@@ -93,8 +93,6 @@ import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UiClosables;
-import com.android.contacts.commonbind.analytics.AnalyticsFragment;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
@@ -104,7 +102,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class ContactEditorFragment extends AnalyticsFragment implements
+public class ContactEditorFragment extends Fragment implements
         SplitContactConfirmationDialogFragment.Listener,
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         RawContactReadOnlyEditorView.Listener {

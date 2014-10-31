@@ -72,15 +72,13 @@ import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ViewUtil;
-import com.android.contacts.commonbind.analytics.AnalyticsFragment;
 
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupEditorFragment extends AnalyticsFragment
-        implements SelectAccountDialogFragment.Listener {
+public class GroupEditorFragment extends Fragment implements SelectAccountDialogFragment.Listener {
     private static final String TAG = "GroupEditorFragment";
 
     private static final String LEGACY_CONTACTS_AUTHORITY = "contacts";
