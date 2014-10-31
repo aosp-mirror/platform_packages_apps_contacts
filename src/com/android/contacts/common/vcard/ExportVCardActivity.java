@@ -15,6 +15,7 @@
  */
 package com.android.contacts.common.vcard;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -35,7 +36,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.R;
-import com.android.contacts.commonbind.analytics.AnalyticsActivity;
 
 import java.io.File;
 
@@ -46,7 +46,7 @@ import java.io.File;
  * a user. After the user's confirmation, it send export request with the file name, assuming the
  * file name is not reserved yet.
  */
-public class ExportVCardActivity extends AnalyticsActivity implements ServiceConnection,
+public class ExportVCardActivity extends Activity implements ServiceConnection,
         DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
     private static final String LOG_TAG = "VCardExport";
     private static final boolean DEBUG = VCardService.DEBUG;

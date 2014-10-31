@@ -17,6 +17,7 @@
 package com.android.contacts.common.list;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
@@ -47,7 +48,6 @@ import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.util.ContactListViewUtils;
-import com.android.contacts.commonbind.analytics.AnalyticsFragment;
 
 import java.util.Locale;
 
@@ -55,7 +55,7 @@ import java.util.Locale;
  * Common base class for various contact-related list fragments.
  */
 public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter>
-        extends AnalyticsFragment
+        extends Fragment
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener,
                 LoaderCallbacks<Cursor> {
     private static final String TAG = "ContactEntryListFragment";

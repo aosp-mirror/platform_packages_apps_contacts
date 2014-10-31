@@ -16,8 +16,6 @@
 
 package com.android.contacts.common.activity;
 
-import com.android.contacts.commonbind.analytics.AnalyticsActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -25,7 +23,7 @@ import android.os.Bundle;
  * A common superclass that keeps track of whether an {@link Activity} has saved its state yet or
  * not.
  */
-public abstract class TransactionSafeActivity extends AnalyticsActivity {
+public abstract class TransactionSafeActivity extends Activity {
 
     private boolean mIsSafeToCommitTransactions;
 

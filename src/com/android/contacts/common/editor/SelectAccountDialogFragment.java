@@ -18,6 +18,7 @@ package com.android.contacts.common.editor;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
@@ -26,14 +27,13 @@ import android.os.Bundle;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.commonbind.analytics.AnalyticsDialogFragment;
 
 /**
  * Shows a dialog asking the user which account to chose.
  *
  * The result is passed to {@code targetFragment} passed to {@link #show}.
  */
-public final class SelectAccountDialogFragment extends AnalyticsDialogFragment {
+public final class SelectAccountDialogFragment extends DialogFragment {
     public static final String TAG = "SelectAccountDialogFragment";
 
     private static final String KEY_TITLE_RES_ID = "title_res_id";

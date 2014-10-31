@@ -62,8 +62,6 @@ import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.util.EmptyService;
 import com.android.contacts.common.util.LocalizedNameResolver;
 import com.android.contacts.common.util.WeakAsyncTask;
-import com.android.contacts.commonbind.analytics.AnalyticsActivity;
-
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -75,7 +73,7 @@ import java.util.Iterator;
  * Shows a list of all available {@link Groups} available, letting the user
  * select which ones they want to be visible.
  */
-public class CustomContactListFilterActivity extends AnalyticsActivity
+public class CustomContactListFilterActivity extends Activity
         implements View.OnClickListener, ExpandableListView.OnChildClickListener,
         LoaderCallbacks<CustomContactListFilterActivity.AccountSet>
 {

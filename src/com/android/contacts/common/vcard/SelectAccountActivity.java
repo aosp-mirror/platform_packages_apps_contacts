@@ -15,6 +15,7 @@
  */
 package com.android.contacts.common.vcard;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,11 +26,10 @@ import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountSelectionUtil;
-import com.android.contacts.commonbind.analytics.AnalyticsActivity;
 
 import java.util.List;
 
-public class SelectAccountActivity extends AnalyticsActivity {
+public class SelectAccountActivity extends Activity {
     private static final String LOG_TAG = "SelectAccountActivity";
 
     public static final String ACCOUNT_NAME = "account_name";

@@ -38,8 +38,6 @@ import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.commonbind.analytics.AnalyticsActivity;
-
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -49,8 +47,7 @@ import java.util.List;
  * Shows a list of all available accounts, letting the user select under which account to view
  * contacts.
  */
-public class AccountFilterActivity extends AnalyticsActivity
-        implements AdapterView.OnItemClickListener {
+public class AccountFilterActivity extends Activity implements AdapterView.OnItemClickListener {
 
     private static final String TAG = AccountFilterActivity.class.getSimpleName();
 
