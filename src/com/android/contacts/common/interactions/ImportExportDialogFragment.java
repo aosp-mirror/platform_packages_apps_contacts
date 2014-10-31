@@ -120,11 +120,11 @@ public class ImportExportDialogFragment extends DialogFragment
             final List<SubInfoRecord> subInfoRecords = getAllSubInfoList();
             if (subInfoRecords.size() == 1) {
                 adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
-                        R.string.import_from_sim, subInfoRecords.get(0).subId));
+                        R.string.import_from_sim, subInfoRecords.get(0).getSubscriptionId()));
             } else {
                 for (SubInfoRecord record : subInfoRecords) {
                     adapter.add(new AdapterEntry(getSubDescription(record),
-                            R.string.import_from_sim, record.subId));
+                            R.string.import_from_sim, record.getSubscriptionId()));
                 }
             }
         }
@@ -294,11 +294,12 @@ public class ImportExportDialogFragment extends DialogFragment
     }
 
     private String getSubDescription(SubInfoRecord record) {
-        if (TextUtils.isEmpty(record.number)) {
+        CharSequence name = record.getDisplayName();
+        if (TextUtils.isEmpty(record.getNumber())) {
             // Don't include the phone number in the description, since we don't know the number.
-            return getString(R.string.import_from_sim_summary_no_number, record.displayName);
+            return getString(R.string.import_from_sim_summary_no_number, name);
         }
-        return getString(R.string.import_from_sim_summary, record.displayName, record.number);
+        return getString(R.string.import_from_sim_summary, name, record.getNumber());
     }
 
     private static class AdapterEntry {
