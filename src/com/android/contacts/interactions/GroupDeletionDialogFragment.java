@@ -17,18 +17,18 @@ package com.android.contacts.interactions;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.commonbind.analytics.AnalyticsDialogFragment;
 
 /**
  * A dialog for deleting a group.
  */
-public class GroupDeletionDialogFragment extends AnalyticsDialogFragment {
+public class GroupDeletionDialogFragment extends DialogFragment {
 
     private static final String ARG_GROUP_ID = "groupId";
     private static final String ARG_LABEL = "label";

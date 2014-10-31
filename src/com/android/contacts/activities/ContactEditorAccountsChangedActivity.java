@@ -28,7 +28,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -46,7 +45,7 @@ import java.util.List;
  * the new contact in. If the activity result doesn't contain intent data, then there is no
  * account for this contact.
  */
-public class ContactEditorAccountsChangedActivity extends ContactsActivity {
+public class ContactEditorAccountsChangedActivity extends Activity {
 
     private static final String TAG = ContactEditorAccountsChangedActivity.class.getSimpleName();
 
