@@ -559,15 +559,18 @@ public class ExpandingEntryCardView extends CardView {
                         if (entry.shouldApplyColor()) {
                             Drawable icon = entry.getIcon();
                             if (icon != null) {
+                                icon.mutate();
                                 icon.setColorFilter(mThemeColorFilter);
                             }
                         }
                         Drawable alternateIcon = entry.getAlternateIcon();
                         if (alternateIcon != null) {
+                            alternateIcon.mutate();
                             alternateIcon.setColorFilter(mThemeColorFilter);
                         }
                         Drawable thirdIcon = entry.getThirdIcon();
                         if (thirdIcon != null) {
+                            thirdIcon.mutate();
                             thirdIcon.setColorFilter(mThemeColorFilter);
                         }
                     }
