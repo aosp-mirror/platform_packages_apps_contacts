@@ -24,7 +24,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.android.contacts.R;
-import com.android.contacts.commonbind.analytics.AnalyticsDialogFragment;
 
 /**
  * Shows a dialog asking the user whether to split the contact. The result is passed back
@@ -32,7 +31,7 @@ import com.android.contacts.commonbind.analytics.AnalyticsDialogFragment;
  * has to implement {@link SplitContactConfirmationDialogFragment.Listener}.
  * Does not split the contact itself.
  */
-public class SplitContactConfirmationDialogFragment extends AnalyticsDialogFragment {
+public class SplitContactConfirmationDialogFragment extends DialogFragment {
     public static final String TAG = "SplitContactConfirmationDialog";
 
     public SplitContactConfirmationDialogFragment() {
