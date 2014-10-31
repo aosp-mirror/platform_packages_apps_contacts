@@ -48,7 +48,7 @@ import android.widget.Toast;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.commonbind.analytics.AnalyticsActivity;
+import com.android.contacts.common.util.AccountSelectionUtil;
 import com.android.vcard.VCardEntryCounter;
 import com.android.vcard.VCardParser;
 import com.android.vcard.VCardParser_V21;
@@ -85,7 +85,7 @@ import java.util.Vector;
  * any Dialog in the instance. So this code is careless about the management around managed
  * dialogs stuffs (like how onCreateDialog() is used).
  */
-public class ImportVCardActivity extends AnalyticsActivity {
+public class ImportVCardActivity extends Activity {
     private static final String LOG_TAG = "VCardImport";
 
     private static final int SELECT_ACCOUNT = 0;

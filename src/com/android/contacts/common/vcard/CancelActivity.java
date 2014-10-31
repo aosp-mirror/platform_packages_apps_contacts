@@ -15,6 +15,7 @@
  */
 package com.android.contacts.common.vcard;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -28,12 +29,11 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.android.contacts.common.R;
-import com.android.contacts.commonbind.analytics.AnalyticsActivity;
 
 /**
  * The Activity for canceling vCard import/export.
  */
-public class CancelActivity extends AnalyticsActivity implements ServiceConnection {
+public class CancelActivity extends Activity implements ServiceConnection {
     private final String LOG_TAG = "VCardCancel";
 
     /* package */ final static String JOB_ID = "job_id";

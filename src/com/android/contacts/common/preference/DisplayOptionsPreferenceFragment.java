@@ -17,14 +17,14 @@
 package com.android.contacts.common.preference;
 
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 
 import com.android.contacts.common.R;
-import com.android.contacts.commonbind.analytics.AnalyticsPreferenceFragment;
 
 /**
  * This fragment shows the preferences for the first header.
  */
-public class DisplayOptionsPreferenceFragment extends AnalyticsPreferenceFragment {
+public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
