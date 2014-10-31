@@ -122,7 +122,7 @@ public class GoogleAccountType extends BaseAccountType {
 
     private DataKind addDataKindRelation(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Relation.CONTENT_ITEM_TYPE,
-                R.string.relationLabelsGroup, 160, true));
+                R.string.relationLabelsGroup, Weight.RELATIONSHIP, true));
         kind.actionHeader = new RelationActionInflater();
         kind.actionBody = new SimpleInflater(Relation.NAME);
 
@@ -157,7 +157,7 @@ public class GoogleAccountType extends BaseAccountType {
 
     private DataKind addDataKindEvent(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
-                    R.string.eventLabelsGroup, 150, true));
+                    R.string.eventLabelsGroup, Weight.EVENT, true));
         kind.actionHeader = new EventActionInflater();
         kind.actionBody = new SimpleInflater(Event.START_DATE);
 
