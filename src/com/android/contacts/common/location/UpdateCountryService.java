@@ -38,6 +38,10 @@ public class UpdateCountryService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        if (intent == null) {
+            Log.d(TAG, "onHandleIntent: could not handle null intent");
+            return;
+        }
         if (ACTION_UPDATE_COUNTRY.equals(intent.getAction())) {
             final Location location = (Location) intent.getParcelableExtra(KEY_INTENT_LOCATION);
             final String country = getCountryFromLocation(getApplicationContext(), location);
