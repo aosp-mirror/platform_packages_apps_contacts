@@ -210,6 +210,9 @@ public class ContactDisplayUtils {
      * the entire length of the given phone number.
      */
     public static Spannable getTelephoneTtsSpannable(String phoneNumber) {
+        if (phoneNumber == null) {
+            return null;
+        }
         final Spannable spannable = new SpannableString(phoneNumber);
         final TtsSpan ttsSpan = getTelephoneTtsSpan(phoneNumber);
         spannable.setSpan(ttsSpan, 0, phoneNumber.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -221,8 +224,11 @@ public class ContactDisplayUtils {
      * the given phone number text wherever it is found within the message.
      */
     public static Spannable getTelephoneTtsSpannable(String message, String phoneNumber) {
+        if (message == null) {
+            return null;
+        }
         final Spannable spannable = new SpannableString(message);
-        int start = message.indexOf(phoneNumber);
+        int start = phoneNumber == null ? -1 : message.indexOf(phoneNumber);
         while (start >= 0) {
             final int end = start + phoneNumber.length();
             final TtsSpan ttsSpan = getTelephoneTtsSpan(phoneNumber);
