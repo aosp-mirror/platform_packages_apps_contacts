@@ -250,12 +250,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Dogodek"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Razmerje"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"navodila do mesta"</string>
-    <!-- no translation found for content_description_recent_sms (1666389577263317445) -->
-    <skip />
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"nedavni sms. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. kliknite, če želite odgovoriti"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"Dohodni"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"Odhodni"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"Zgrešeni"</string>
-    <!-- no translation found for content_description_recent_call (5183800406316723676) -->
-    <skip />
+    <string name="content_description_recent_call" msgid="5183800406316723676">"nedavni klic. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. kliknite, če želite poklicati nazaj"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vi: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
