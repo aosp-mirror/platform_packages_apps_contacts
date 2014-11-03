@@ -250,10 +250,10 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Wydarzenie"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Relacja"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"trasa do lokalizacji"</string>
-    <string name="content_description_recent_sms" msgid="6268563442222149676">"Ostatni SMS. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. Kliknij, by odpowiedzieć"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"ostatni SMS. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. kliknij, by odpowiedzieć"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"przychodzące"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"wychodzące"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"nieodebrane"</string>
-    <string name="content_description_recent_call" msgid="6204048362763219585">"Ostatni telefon. <xliff:g id="CALL_DETAILS">%s</xliff:g>. Kliknij, by oddzwonić."</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"ostatnie połączenie. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. kliknij, by oddzwonić"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ty: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
 </resources>
