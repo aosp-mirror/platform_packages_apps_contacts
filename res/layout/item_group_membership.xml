@@ -19,10 +19,12 @@
     android:id="@+id/group_membership_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <include
-        layout="@layout/edit_kind_title" />
+    <ImageView
+        android:id="@+id/kind_icon"
+        android:src="@drawable/ic_people_black_24dp"
+        style="@style/EditKindIconStyle" />
 
     <Button
         style="@style/SpinnerButtonStyle"
@@ -30,14 +32,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/editor_min_line_item_height"
-        android:layout_marginLeft="@dimen/editor_field_left_padding"
-        android:layout_marginRight="@dimen/editor_field_left_padding"
-        android:layout_marginStart="@dimen/editor_field_left_padding"
-        android:layout_marginEnd="@dimen/editor_field_left_padding"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:gravity="start|center_vertical"
+        android:textSize="@dimen/editor_form_text_size"
         android:focusable="true"
-        android:paddingStart="12dip"
-        android:paddingEnd="@dimen/editor_spinner_end_padding_workaround"/>
+        android:layout_marginEnd="@dimen/editor_delete_button_size"
+        android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
+        android:paddingRight="@dimen/editor_spinner_right_padding_workaround"/>
 
 </com.android.contacts.editor.GroupMembershipView>

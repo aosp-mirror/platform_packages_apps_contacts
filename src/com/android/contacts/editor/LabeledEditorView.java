@@ -25,10 +25,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextUtils.TruncateAt;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -160,6 +159,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 });
             }
         });
+
+        setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(),
+                (int) getResources().getDimension(R.dimen.editor_padding_between_editor_views));
     }
 
     @Override
@@ -551,8 +553,12 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return createViewFromResource(
-                    position, convertView, parent, android.R.layout.simple_spinner_item);
+            final View view = createViewFromResource(
+                    position, convertView, parent, R.layout.edit_simple_spinner_item);
+            // We don't want any background on this view. The background would obscure
+            // the spinner's background.
+            view.setBackground(null);
+            return view;
         }
 
         @Override
@@ -567,11 +573,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
             if (convertView == null) {
                 textView = (TextView) mInflater.inflate(resource, parent, false);
-                textView.setAllCaps(true);
-                textView.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
-                textView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(
+                        R.dimen.editor_form_text_size));
                 textView.setTextColor(mTextColor);
-                textView.setEllipsize(TruncateAt.MIDDLE);
             } else {
                 textView = (TextView) convertView;
             }

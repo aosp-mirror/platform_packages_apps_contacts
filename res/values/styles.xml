@@ -284,11 +284,14 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="SpinnerButtonStyle" parent="@android:style/Widget.Material.Spinner">
+    <style name="SpinnerButtonStyle" parent="@android:style/Widget.Material.Spinner.Underlined">
         <!-- When applying the spinner style to a Button we need to disable the shadow animation
             on the button since the spinner background is transparent. Otherwise the spinner-button
             will look ridiculous. -->
         <item name="android:stateListAnimator">@null</item>
+        <!-- We want our spinner's to use the same gravity as an EditText, so that they look
+            visually consistent with other controls in our forms -->
+        <item name="android:gravity">start|center_vertical</item>
     </style>
 
     <style name="EditKindSeparatorTextViewStyle" parent="ContactListSeparatorTextViewStyle">
@@ -307,5 +310,14 @@
         since the Alert dialog is private. They are identical anyway. -->
     <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.Material.Light.Dialog">
         <item name="android:colorAccent">@color/primary_color</item>
+    </style>
+
+    <style name="EditKindIconStyle">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:tint">@color/editor_icon_color</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:layout_marginTop">@dimen/editor_kind_icon_top_margin</item>
     </style>
 </resources>

@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.ListView;
@@ -173,8 +174,8 @@ public class GroupMembershipView extends LinearLayout
 
     public void setKind(DataKind kind) {
         mKind = kind;
-        TextView kindTitle = (TextView) findViewById(R.id.kind_title);
-        kindTitle.setText(getResources().getString(kind.titleRes).toUpperCase());
+        final ImageView imageView = (ImageView) findViewById(R.id.kind_icon);
+        imageView.setContentDescription(getResources().getString(kind.titleRes));
     }
 
     public void setGroupMetaData(Cursor groupMetaData) {

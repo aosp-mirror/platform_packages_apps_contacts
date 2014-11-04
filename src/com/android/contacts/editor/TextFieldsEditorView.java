@@ -26,7 +26,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -58,9 +58,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
     private int mMinFieldHeight;
-    private int mEditTextTopPadding;
-    private int mEditTextBottomPadding;
     private int mPreviousViewHeight;
+    private int mHintTextColor;
 
     public TextFieldsEditorView(Context context) {
         super(context);
@@ -84,38 +83,37 @@ public class TextFieldsEditorView extends LabeledEditorView {
 
         mMinFieldHeight = mContext.getResources().getDimensionPixelSize(
                 R.dimen.editor_min_line_item_height);
-        mEditTextBottomPadding = mContext.getResources().getDimensionPixelSize(
-                R.dimen.editor_text_field_bottom_padding);
-        mEditTextTopPadding = mContext.getResources().getDimensionPixelSize(
-                R.dimen.editor_text_field_top_padding);
         mFields = (ViewGroup) findViewById(R.id.editors);
+        mHintTextColor = getResources().getColor(R.color.secondary_text_color);
         mExpansionView = (ImageView) findViewById(R.id.expansion_view);
         mExpansionViewContainer = findViewById(R.id.expansion_view_container);
-        mExpansionViewContainer.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPreviousViewHeight = mFields.getHeight();
+        if (mExpansionViewContainer != null) {
+            mExpansionViewContainer.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPreviousViewHeight = mFields.getHeight();
 
-                // Save focus
-                final View focusedChild = getFocusedChild();
-                final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
+                    // Save focus
+                    final View focusedChild = getFocusedChild();
+                    final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
 
-                // Reconfigure GUI
-                mHideOptional = !mHideOptional;
-                onOptionalFieldVisibilityChange();
-                rebuildValues();
+                    // Reconfigure GUI
+                    mHideOptional = !mHideOptional;
+                    onOptionalFieldVisibilityChange();
+                    rebuildValues();
 
-                // Restore focus
-                View newFocusView = findViewById(focusedViewId);
-                if (newFocusView == null || newFocusView.getVisibility() == GONE) {
-                    // find first visible child
-                    newFocusView = TextFieldsEditorView.this;
+                    // Restore focus
+                    View newFocusView = findViewById(focusedViewId);
+                    if (newFocusView == null || newFocusView.getVisibility() == GONE) {
+                        // find first visible child
+                        newFocusView = TextFieldsEditorView.this;
+                    }
+                    newFocusView.requestFocus();
+
+                    EditorAnimator.getInstance().slideAndFadeIn(mFields, mPreviousViewHeight);
                 }
-                newFocusView.requestFocus();
-
-                EditorAnimator.getInstance().slideAndFadeIn(mFields, mPreviousViewHeight);
-            }
-        });
+            });
+        }
     }
 
     @Override
@@ -143,7 +141,9 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 mFieldEditTexts[index].setEnabled(!isReadOnly() && enabled);
             }
         }
-        mExpansionView.setEnabled(!isReadOnly() && enabled);
+        if (mExpansionView != null) {
+            mExpansionView.setEnabled(!isReadOnly() && enabled);
+        }
     }
 
     /**
@@ -203,18 +203,9 @@ public class TextFieldsEditorView extends LabeledEditorView {
             final EditText fieldView = new EditText(mContext);
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
-            // Set either a minimum line requirement or a minimum height (because {@link TextView}
-            // only takes one or the other at a single time).
-            if (field.minLines != 0) {
-                fieldView.setMinLines(field.minLines);
-            } else {
-                fieldView.setMinHeight(mMinFieldHeight);
-            }
-            fieldView.setTextAppearance(getContext(), android.R.style.TextAppearance_Medium);
-            fieldView.setPadding(fieldView.getPaddingLeft(), mEditTextTopPadding,
-                    fieldView.getPaddingRight(), mEditTextBottomPadding);
-            fieldView.setHintTextColor(R.color.secondary_text_color);
-            fieldView.setGravity(Gravity.TOP);
+            fieldView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                    getResources().getDimension(R.dimen.editor_form_text_size));
+            fieldView.setHintTextColor(mHintTextColor);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
             if (field.titleRes > 0) {
@@ -225,6 +216,16 @@ public class TextFieldsEditorView extends LabeledEditorView {
             if (inputType == InputType.TYPE_CLASS_PHONE) {
                 PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(mContext, fieldView);
                 fieldView.setTextDirection(View.TEXT_DIRECTION_LTR);
+            }
+
+            // Set either a minimum line requirement or a minimum height (because {@link TextView}
+            // only takes one or the other at a single time).
+            if (field.minLines > 1) {
+                fieldView.setMinLines(field.minLines);
+            } else {
+                // This needs to be called after setInputType. Otherwise, calling setInputType
+                // will unset this value.
+                fieldView.setMinHeight(mMinFieldHeight);
             }
 
             // Show the "next" button in IME to navigate between text fields
@@ -278,10 +279,11 @@ public class TextFieldsEditorView extends LabeledEditorView {
             mFields.addView(fieldView);
         }
 
-        // When hiding fields, place expandable
-        setupExpansionView(hidePossible, mHideOptional);
-        mExpansionView.setEnabled(!readOnly && isEnabled());
-
+        if (mExpansionView != null) {
+            // When hiding fields, place expandable
+            setupExpansionView(hidePossible, mHideOptional);
+            mExpansionView.setEnabled(!readOnly && isEnabled());
+        }
         updateEmptiness();
     }
 
