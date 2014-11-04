@@ -18,21 +18,19 @@
     android:id="@+id/default_account_checkbox_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dip"
+    android:padding="4dp"
     android:orientation="vertical">
-    <!--  Dummy to enable right-justification of checkbox -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
     <CheckBox
         android:id="@+id/default_account_checkbox_view"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="20dip"
-        android:layout_marginLeft="20dip"
+        android:paddingStart="15dip"
+        android:layout_marginLeft="13dip"
         android:layout_marginBottom="20dip"
         android:gravity="center"
-        android:textSize="14sp"
         android:textAlignment="viewStart"
-        android:text="@string/set_default_account"/>
+        android:text="@string/set_default_account"
+        android:textColor="@color/dialtacts_secondary_text_color"
+        />
 </LinearLayout>

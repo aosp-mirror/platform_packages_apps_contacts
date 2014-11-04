@@ -20,7 +20,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dp" >
+    android:padding="8dp" >
 
     <ImageView android:id="@+id/icon"
                android:layout_width="48dp"
@@ -28,11 +28,26 @@
                android:tint="@color/dialtacts_secondary_text_color"
                android:scaleType="center" />
 
-    <TextView android:id="@+id/text"
-              android:textAppearance="?android:attr/textAppearanceMedium"
+    <LinearLayout
+              android:id="@+id/text"
               android:gravity="start|center_vertical"
               android:layout_marginLeft="8dp"
               android:layout_width="0dp"
               android:layout_weight="1"
-              android:layout_height="match_parent" />
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
+         <TextView android:id="@+id/label"
+                   android:textAppearance="?android:attr/textAppearanceMedium"
+                   android:textColor="@color/dialtacts_primary_text_color"
+                   android:includeFontPadding="false"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content" />
+         <TextView android:id="@+id/number"
+                   android:textAppearance="?android:attr/textAppearanceSmall"
+                   android:includeFontPadding="false"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:visibility="gone" />
+    </LinearLayout>
+
 </view>
