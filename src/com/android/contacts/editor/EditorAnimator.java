@@ -115,43 +115,7 @@ public class EditorAnimator {
         });
     }
 
-    public void expandOrganization(final View addOrganizationButton,
-            final ViewGroup organizationSectionViewContainer) {
-        mRunner.endOldAnimation();
-        // Make the new controls visible and do one layout pass (so that we can measure)
-        organizationSectionViewContainer.setVisibility(View.VISIBLE);
-        organizationSectionViewContainer.setAlpha(0.0f);
-        organizationSectionViewContainer.requestFocus();
-        SchedulingUtils.doAfterLayout(addOrganizationButton, new Runnable() {
-            @Override
-            public void run() {
-                // How many pixels extra do we need?
-                final int offset = organizationSectionViewContainer.getHeight() -
-                        addOrganizationButton.getHeight();
-                final List<Animator> animators = Lists.newArrayList();
-
-                // Fade out
-                final ObjectAnimator fadeOutAnimator = ObjectAnimator.ofFloat(
-                        addOrganizationButton, View.ALPHA, 1.0f, 0.0f);
-                fadeOutAnimator.setDuration(200);
-                animators.add(fadeOutAnimator);
-
-                // Translations
-                final List<View> viewsToMove = getViewsBelowOf(organizationSectionViewContainer);
-                translateViews(animators, viewsToMove, -offset, 0.0f, 0, 200);
-                // Fade in
-                final ObjectAnimator fadeInAnimator = ObjectAnimator.ofFloat(
-                        organizationSectionViewContainer, View.ALPHA, 0.0f, 1.0f);
-                fadeInAnimator.setDuration(200);
-                fadeInAnimator.setStartDelay(200);
-                animators.add(fadeInAnimator);
-
-                mRunner.run(animators);
-            }
-        });
-    }
-
-    public void showAddFieldFooter(final View view) {
+    public void showFieldFooter(final View view) {
         mRunner.endOldAnimation();
         if (view.getVisibility() == View.VISIBLE) return;
         // Make the new controls visible and do one layout pass (so that we can measure)
@@ -177,40 +141,6 @@ public class EditorAnimator {
                 animators.add(fadeInAnimator);
 
                 mRunner.run(animators);
-            }
-        });
-    }
-
-    public void hideAddFieldFooter(final View victim) {
-        mRunner.endOldAnimation();
-        if (victim.getVisibility() == View.GONE) return;
-        final int offset = victim.getHeight();
-
-        final List<View> viewsToMove = getViewsBelowOf(victim);
-        final List<Animator> animators = Lists.newArrayList();
-
-        // Fade out
-        final ObjectAnimator fadeOutAnimator =
-                ObjectAnimator.ofFloat(victim, View.ALPHA, 1.0f, 0.0f);
-        fadeOutAnimator.setDuration(200);
-        animators.add(fadeOutAnimator);
-
-        // Translations
-        translateViews(animators, viewsToMove, 0.0f, -offset, 100, 200);
-
-        // Combine
-        mRunner.run(animators, new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                // Clean up: Remove all the translations
-                for (int i = 0; i < viewsToMove.size(); i++) {
-                    final View view = viewsToMove.get(i);
-                    view.setTranslationY(0.0f);
-                }
-
-                // Restore alpha (for next time), but hide the view for good now
-                victim.setAlpha(1.0f);
-                victim.setVisibility(View.GONE);
             }
         });
     }

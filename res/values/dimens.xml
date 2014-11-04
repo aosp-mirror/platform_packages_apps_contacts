@@ -37,27 +37,34 @@
     <!-- Minimum height of a row in the Editor -->
     <dimen name="editor_min_line_item_height">48dip</dimen>
 
-    <!-- Top padding of an EditText in the Editor -->
-    <dimen name="editor_text_field_top_padding">8dip</dimen>
+    <!-- The height and width of the delete button should be the same size as an editor row -->
+    <dimen name="editor_delete_button_size">@dimen/editor_min_line_item_height</dimen>
 
-    <!-- Bottom padding of an EditText in the Editor -->
-    <dimen name="editor_text_field_bottom_padding">7dip</dimen>
+    <!-- Top margin applied to mime-type icons inside the editor. This is needed to give the
+        appearance that the icons are top aligned with the text, since visible text doesn't
+        start at the very top of TextViews. -->
+    <dimen name="editor_kind_icon_top_margin">9dp</dimen>
 
-    <!-- Right padding of a field in the Editor -->
-    <dimen name="editor_field_right_padding">4dip</dimen>
+    <!-- RHS padding added to spinners in the editor. This separates the spinner text from the
+        spinner graphic since b/18194928 causes the spinner to always be on the RHS.
+        In LTR mode this shouldn't have an observable affect. We set paddingRight instead of
+        drawablePadding since the spinner graphic is not a normal drawable.  -->
+    <dimen name="editor_spinner_right_padding_workaround">24dip</dimen>
 
-    <!-- Left padding of a field in the Editor -->
-    <dimen name="editor_field_left_padding">4dip</dimen>
+    <!-- Size of input form text inside the contact editor -->
+    <dimen name="editor_form_text_size">16sp</dimen>
 
-    <!-- End padding added to spinners in the editor. This separates the spinner text from the
-        spinner graphic when Button gravity is incorrectly set in RTL mode
-        (see framework bug b/17011078. In LTR mode this shouldn't have an observable affect.
-        We set paddingEnd instead of drawablePadding since the spinner graphic is not a normal
-        drawable.  -->
-    <dimen name="editor_spinner_end_padding_workaround">24dip</dimen>
+    <!-- Width and height of the mime-type icons inside the editor -->
+    <dimen name="editor_kind_icon_size">24dp</dimen>
+
+    <!-- Padding below every editor view, such as LabeledEditorView -->
+    <dimen name="editor_padding_between_editor_views">24dp</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
-    <dimen name="editor_type_label_width">100dip</dimen>
+    <dimen name="editor_type_label_width">150dip</dimen>
+
+    <!-- Width of the drop down that appears when you click on the Type-Label spinner in the editor -->
+    <dimen name="editor_type_label_dropdown_width">150dp</dimen>
 
     <!-- Left padding of the label in the add field button for the contact editor -->
     <dimen name="editor_add_field_label_left_padding">16dip</dimen>

@@ -16,15 +16,14 @@
   -->
 
 <!-- Spinner for a field in the contact editor. -->
-
-<!-- Note: explicitly override the default left and right padding on spinner -->
 <Spinner
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/spinner"
     android:layout_gravity="bottom"
+    style="@android:style/Widget.Material.Spinner.Underlined"
+    android:dropDownWidth="@dimen/editor_type_label_dropdown_width"
     android:layout_width="@dimen/editor_type_label_width"
     android:layout_height="@dimen/editor_min_line_item_height"
-    android:paddingLeft="0dip"
-    android:paddingRight="10dip"
-    android:paddingStart="0dip"
-    android:paddingEnd="10dip" />
+    android:paddingBottom="0dp"
+    android:paddingTop="0dp"
+    android:paddingRight="@dimen/editor_spinner_right_padding_workaround" />
