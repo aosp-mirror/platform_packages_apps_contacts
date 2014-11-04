@@ -301,6 +301,14 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         mEntry.put(column, value);
     }
 
+    /**
+     * Sub classes should call this at the end of {@link #setValues} once they finish changing
+     * isEmpty(). This is needed to fix b/18194655.
+     */
+    protected final void updateEmptiness() {
+        mWasEmpty = isEmpty();
+    }
+
     protected void notifyEditorListener() {
         if (mListener != null) {
             mListener.onRequest(EditorListener.FIELD_CHANGED);
@@ -337,8 +345,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     }
 
     /**
-     * Prepare this editor using the given {@link DataKind} for defining
-     * structure and {@link ValuesDelta} describing the content to edit.
+     * Prepare this editor using the given {@link DataKind} for defining structure and
+     * {@link ValuesDelta} describing the content to edit. When overriding this, be careful
+     * to call {@link #updateEmptiness} at the end.
      */
     @Override
     public void setValues(DataKind kind, ValuesDelta entry, RawContactDelta state, boolean readOnly,
