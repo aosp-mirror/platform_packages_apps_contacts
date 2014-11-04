@@ -16,19 +16,12 @@
   -->
 
 <!-- Button to select a date in the contact editor. -->
-
 <Button
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/date_view"
     style="@style/SpinnerButtonStyle"
-    android:layout_width="0dip"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/editor_min_line_item_height"
     android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_marginLeft="@dimen/editor_field_left_padding"
-    android:layout_marginRight="@dimen/editor_field_right_padding"
-    android:layout_marginStart="@dimen/editor_field_left_padding"
-    android:layout_marginEnd="@dimen/editor_field_right_padding"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:paddingStart="12dip"
-    android:paddingEnd="@dimen/editor_spinner_end_padding_workaround" />
+    android:textSize="@dimen/editor_form_text_size"
+    android:paddingRight="@dimen/editor_spinner_right_padding_workaround" />

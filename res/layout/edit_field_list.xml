@@ -20,9 +20,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/editors"
-    android:layout_width="0dip"
-    android:layout_weight="1"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/editor_field_left_padding"
-    android:paddingStart="@dimen/editor_field_left_padding"
     android:orientation="vertical" />
