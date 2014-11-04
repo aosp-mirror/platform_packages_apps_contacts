@@ -26,6 +26,10 @@
         android:showAsAction="always" />
 
     <item
+        android:id="@+id/menu_delete"
+        android:title="@string/menu_deleteContact" />
+
+    <item
         android:id="@+id/menu_share"
         android:title="@string/menu_share"
         android:alphabeticShortcut="s" />
