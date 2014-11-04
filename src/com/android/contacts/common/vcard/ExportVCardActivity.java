@@ -216,6 +216,9 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
      * appearance in bidirectional text.
      */
     private String getTargetFileForDisplay() {
+        if (mTargetFileName == null) {
+            return null;
+        }
         return mBidiFormatter.unicodeWrap(mTargetFileName, TextDirectionHeuristics.LTR);
     }
 
