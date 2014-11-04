@@ -113,6 +113,7 @@ public class EventFieldEditorView extends LabeledEditorView {
         mDateView.setEnabled(isEnabled() && !readOnly);
 
         rebuildDateView();
+        updateEmptiness();
     }
 
     private void rebuildDateView() {

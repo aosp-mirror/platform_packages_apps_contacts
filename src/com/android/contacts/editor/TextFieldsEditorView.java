@@ -281,6 +281,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
         // When hiding fields, place expandable
         setupExpansionView(hidePossible, mHideOptional);
         mExpansionView.setEnabled(!readOnly && isEnabled());
+
+        updateEmptiness();
     }
 
     @Override
