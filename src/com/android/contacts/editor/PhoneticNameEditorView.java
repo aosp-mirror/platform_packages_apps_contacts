@@ -108,6 +108,7 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
             entry = new PhoneticValuesDelta(entry);
         }
         super.setValues(kind, entry, state, readOnly, vig);
+        updateEmptiness();
     }
 
     @Override

@@ -73,6 +73,7 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         } else {
             mChanged = false;
         }
+        updateEmptiness();
     }
 
     @Override
