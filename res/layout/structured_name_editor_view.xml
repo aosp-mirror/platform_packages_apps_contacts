@@ -42,6 +42,8 @@
         layout="@layout/name_edit_expansion_view"
         android:visibility="gone" />
 
+    <!-- This isn't used in StructuredNameEditorView. It is only included so that
+        StructuredNameEditorView's base classes don't need extra null checks. -->
     <include
         android:id="@+id/delete_button_container"
         layout="@layout/edit_delete_button"
