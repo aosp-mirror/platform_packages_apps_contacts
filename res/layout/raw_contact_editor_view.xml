@@ -38,6 +38,10 @@
         layout="@layout/phonetic_name_editor_view" />
 
     <include
+        android:id="@+id/edit_nick_name"
+        layout="@layout/item_kind_section" />
+
+    <include
         android:id="@+id/edit_photo"
         android:layout_marginRight="8dip"
         android:layout_marginEnd="8dip"

@@ -57,6 +57,9 @@
     <!-- Width and height of the mime-type icons inside the editor -->
     <dimen name="editor_kind_icon_size">24dp</dimen>
 
+    <!-- Total width of data-kind icon, including its start and end padding -->
+    <dimen name="editor_kind_icon_total_width">72dp</dimen>
+
     <!-- Padding below every editor view, such as LabeledEditorView -->
     <dimen name="editor_padding_between_editor_views">24dp</dimen>
 
