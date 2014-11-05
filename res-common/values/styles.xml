@@ -83,7 +83,9 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowNoDisplay">true</item>
+        <!-- Activities that use this theme are background activities without obvious displays.
+            However, some also have dialogs. Therefore, it doesn't make sense to set this true.-->
+        <item name="android:windowNoDisplay">false</item>
         <item name="android:windowIsFloating">true</item>
     </style>
 </resources>
