@@ -151,4 +151,12 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
         return !TextUtils.isEmpty(family) || !TextUtils.isEmpty(middle)
                 || !TextUtils.isEmpty(given);
     }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        // Remove padding below this view.
+        setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), 0);
+    }
 }

@@ -20,33 +20,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="@dimen/editor_min_line_item_height"
-    android:orientation="vertical">
+    android:layout_marginStart="@dimen/editor_kind_icon_total_width">
 
+    <!-- This isn't used in PhoneticNameEditorView. It is only included so that
+        StructuredNameEditorView's base classes don't need extra null checks. -->
     <include
         android:id="@+id/spinner"
         layout="@layout/edit_spinner"
         android:visibility="gone" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+    <include
+        android:id="@+id/editors"
+        layout="@layout/edit_field_list" />
 
-        <include
-            android:id="@+id/editors"
-            layout="@layout/edit_field_list" />
+    <include
+        android:id="@+id/expansion_view_container"
+        layout="@layout/name_edit_expansion_view"
+        android:visibility="visible" />
 
-        <include
-            android:id="@+id/expansion_view_container"
-            layout="@layout/name_edit_expansion_view"
-            android:visibility="gone" />
-
-        <include
-            android:id="@+id/delete_button_container"
-            layout="@layout/edit_delete_button"
-            android:visibility="gone" />
-
-    </LinearLayout>
+    <!-- This isn't used in PhoneticNameEditorView. It is only included so that
+        StructuredNameEditorView's base classes don't need extra null checks. -->
+    <include
+        android:id="@+id/delete_button_container"
+        layout="@layout/edit_delete_button"
+        android:visibility="gone" />
 
 </com.android.contacts.editor.PhoneticNameEditorView>
