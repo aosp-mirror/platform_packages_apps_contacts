@@ -29,7 +29,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.telephony.SubInfoRecord;
+import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -117,12 +117,12 @@ public class ImportExportDialogFragment extends DialogFragment
                     R.string.import_from_sdcard));
         }
         if (manager != null && res.getBoolean(R.bool.config_allow_sim_import)) {
-            final List<SubInfoRecord> subInfoRecords = getAllSubInfoList();
+            final List<SubscriptionInfo> subInfoRecords = getAllSubInfoList();
             if (subInfoRecords.size() == 1) {
                 adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
                         R.string.import_from_sim, subInfoRecords.get(0).getSubscriptionId()));
             } else {
-                for (SubInfoRecord record : subInfoRecords) {
+                for (SubscriptionInfo record : subInfoRecords) {
                     adapter.add(new AdapterEntry(getSubDescription(record),
                             R.string.import_from_sim, record.getSubscriptionId()));
                 }
@@ -273,13 +273,13 @@ public class ImportExportDialogFragment extends DialogFragment
     }
 
     /**
-     * Return the same values as {@link SubscriptionManager#getAllSubInfoList()} without relying
+     * Return the same values as {@link SubscriptionManager#getAllSubscriptionInfoList()} without relying
      * on any hidden methods.
      */
     // TODO: replace with a method that doesn't make assumptions about the number of SIM slots
-    private static List<SubInfoRecord> getAllSubInfoList() {
-        final List<SubInfoRecord> subInfoRecords0 = SubscriptionManager.getSubInfoUsingSlotId(0);
-        final List<SubInfoRecord> subInfoRecords1 = SubscriptionManager.getSubInfoUsingSlotId(1);
+    private static List<SubscriptionInfo> getAllSubInfoList() {
+        final List<SubscriptionInfo> subInfoRecords0 = SubscriptionManager.getSubscriptionInfoUsingSlotId(0);
+        final List<SubscriptionInfo> subInfoRecords1 = SubscriptionManager.getSubscriptionInfoUsingSlotId(1);
         if (subInfoRecords0 == null && subInfoRecords1 != null) {
             return subInfoRecords1;
         }
@@ -293,7 +293,7 @@ public class ImportExportDialogFragment extends DialogFragment
         return subInfoRecords0;
     }
 
-    private String getSubDescription(SubInfoRecord record) {
+    private String getSubDescription(SubscriptionInfo record) {
         CharSequence name = record.getDisplayName();
         if (TextUtils.isEmpty(record.getNumber())) {
             // Don't include the phone number in the description, since we don't know the number.
