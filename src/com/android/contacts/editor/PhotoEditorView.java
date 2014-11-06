@@ -19,13 +19,17 @@ package com.android.contacts.editor;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.DisplayPhoto;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.contacts.R;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageProvider;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactsUtils;
@@ -44,6 +48,7 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     private ValuesDelta mEntry;
     private EditorListener mListener;
     private View mTriangleAffordance;
+    private ContactPhotoManager mContactPhotoManager;
 
     private boolean mHasSetPhoto = false;
     private boolean mReadOnly;
@@ -72,6 +77,7 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        mContactPhotoManager = ContactPhotoManager.getInstance(mContext);
         mTriangleAffordance = findViewById(R.id.photo_triangle_affordance);
         mPhotoImageView = (ImageView) findViewById(R.id.photo);
         mFrameView = findViewById(R.id.frame);
@@ -111,6 +117,20 @@ public class PhotoEditorView extends LinearLayout implements Editor {
                 mFrameView.setEnabled(isEnabled());
                 mHasSetPhoto = true;
                 mEntry.setFromTemplate(false);
+
+                if (values.getAfter() == null || values.getAfter().get(Photo.PHOTO) == null) {
+                    // If the user hasn't updated the PHOTO value, then PHOTO_FILE_ID may contain
+                    // a reference to a larger version of PHOTO that we can bind to the UI.
+                    // Otherwise, we need to wait for a call to #setFullSizedPhoto() to update
+                    // our full sized image.
+                    final Integer photoFileId = values.getAsInteger(Photo.PHOTO_FILE_ID);
+                    if (photoFileId != null) {
+                        final Uri photoUri = DisplayPhoto.CONTENT_URI.buildUpon()
+                                .appendPath(photoFileId.toString()).build();
+                        setFullSizedPhoto(photoUri);
+                    }
+                }
+
             } else {
                 resetDefault();
             }
@@ -127,10 +147,10 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     }
 
     /**
-     * Assign the given {@link Bitmap} as the new value, updating UI and
-     * readying for persisting through {@link ValuesDelta}.
+     * Assign the given {@link Bitmap} as the new value for the sake of building
+     * {@link ValuesDelta}. We may as well bind a thumbnail to the UI while we are at it.
      */
-    public void setPhotoBitmap(Bitmap photo) {
+    public void setPhotoEntry(Bitmap photo) {
         if (photo == null) {
             // Clear any existing photo and return
             mEntry.put(Photo.PHOTO, (byte[])null);
@@ -138,7 +158,10 @@ public class PhotoEditorView extends LinearLayout implements Editor {
             return;
         }
 
-        mPhotoImageView.setImageBitmap(photo);
+        final int size = ContactsUtils.getThumbnailSize(getContext());
+        final Bitmap scaled = Bitmap.createScaledBitmap(photo, size, size, false);
+
+        mPhotoImageView.setImageBitmap(scaled);
         mFrameView.setEnabled(isEnabled());
         mHasSetPhoto = true;
         mEntry.setFromTemplate(false);
@@ -152,10 +175,29 @@ public class PhotoEditorView extends LinearLayout implements Editor {
         // code all over the place, because we don't have to test whether
         // there is a change in EITHER the delta-list OR a changed photo...
         // this way, there is always a change in the delta-list.
-        final int size = ContactsUtils.getThumbnailSize(getContext());
-        final Bitmap scaled = Bitmap.createScaledBitmap(photo, size, size, false);
         final byte[] compressed = ContactPhotoUtils.compressBitmap(scaled);
-        if (compressed != null) mEntry.setPhoto(compressed);
+        if (compressed != null) {
+            mEntry.setPhoto(compressed);
+        }
+    }
+
+    /**
+     * Bind the {@param photoUri}'s photo to editor's UI. This doesn't affect {@link ValuesDelta}.
+     */
+    public void setFullSizedPhoto(Uri photoUri) {
+        if (photoUri != null) {
+            final DefaultImageProvider fallbackToPreviousImage = new DefaultImageProvider() {
+                @Override
+                public void applyDefaultImage(ImageView view, int extent, boolean darkTheme,
+                        DefaultImageRequest defaultImageRequest) {
+                    // Before we finish setting the full sized image, don't change the current
+                    // image that is set in any way.
+                }
+            };
+            mContactPhotoManager.loadPhoto(mPhotoImageView, photoUri,
+                    mPhotoImageView.getWidth(), /* darkTheme = */ false, /* isCircular = */ false,
+                    /* defaultImageRequest = */ null, fallbackToPreviousImage);
+        }
     }
 
     /**

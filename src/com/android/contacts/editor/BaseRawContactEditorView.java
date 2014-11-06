@@ -19,9 +19,9 @@ package com.android.contacts.editor;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.RawContacts;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +46,6 @@ import com.android.contacts.common.model.account.AccountType.EditType;
 public abstract class BaseRawContactEditorView extends LinearLayout {
 
     private PhotoEditorView mPhoto;
-    private boolean mHasPhotoEditor = false;
 
     private View mBody;
     private View mDivider;
@@ -77,23 +76,22 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
     /**
      * Assign the given {@link Bitmap} to the internal {@link PhotoEditorView}
-     * for the {@link RawContactDelta} currently being edited.
+     * in order to update the {@link RawContactDelta} currently being edited.
      */
-    public void setPhotoBitmap(Bitmap bitmap) {
-        mPhoto.setPhotoBitmap(bitmap);
-    }
-
-    protected void setHasPhotoEditor(boolean hasPhotoEditor) {
-        mHasPhotoEditor = hasPhotoEditor;
-        mPhoto.setVisibility(hasPhotoEditor ? View.VISIBLE : View.GONE);
+    public void setPhotoEntry(Bitmap bitmap) {
+        mPhoto.setPhotoEntry(bitmap);
     }
 
     /**
-     * Return true if the current {@link RawContacts} supports {@link Photo},
-     * which means that {@link PhotoEditorView} is enabled.
+     * Assign the given photo {@link Uri} to UI of the {@link PhotoEditorView}, so that it can
+     * display a full sized photo.
      */
-    public boolean hasPhotoEditor() {
-        return mHasPhotoEditor;
+    public void setFullSizedPhoto(Uri uri) {
+        mPhoto.setFullSizedPhoto(uri);
+    }
+
+    protected void setHasPhotoEditor(boolean hasPhotoEditor) {
+        mPhoto.setVisibility(hasPhotoEditor ? View.VISIBLE : View.GONE);
     }
 
     /**
