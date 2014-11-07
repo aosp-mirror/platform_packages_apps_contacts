@@ -253,4 +253,6 @@
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"കോൺടാക്‌റ്റ് ഡിസ്പ്ലേ ഓപ്ഷനുകൾ"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക"</string>
     <string name="set_default_account" msgid="3865970860434642695">"ഇത് എല്ലായ്‌പ്പോഴും കോളുകൾക്കായി ഉപയോഗിക്കുക"</string>
+    <!-- no translation found for select_phone_account_for_calls (933905607702811164) -->
+    <skip />
 </resources>

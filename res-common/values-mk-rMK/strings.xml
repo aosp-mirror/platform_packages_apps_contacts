@@ -253,4 +253,6 @@
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Опции за прикажување контакт"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"Изберете сметка"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Секогаш користи го ова за повици"</string>
+    <!-- no translation found for select_phone_account_for_calls (933905607702811164) -->
+    <skip />
 </resources>
