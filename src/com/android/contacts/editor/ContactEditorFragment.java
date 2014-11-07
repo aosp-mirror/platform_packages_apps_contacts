@@ -34,7 +34,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -862,10 +861,10 @@ public class ContactEditorFragment extends Fragment implements
             // Set up the photo handler.
             bindPhotoHandler(editor, type, mState);
 
-            // If a new photo was chosen but not yet saved, we need to
-            // update the thumbnail to reflect this.
-            Bitmap bitmap = updatedBitmapForRawContact(rawContactId);
-            if (bitmap != null) editor.setPhotoBitmap(bitmap);
+            // If a new photo was chosen but not yet saved, we need to update the UI to
+            // reflect this.
+            final Uri photoUri = updatedPhotoUriForRawContact(rawContactId);
+            if (photoUri != null) editor.setFullSizedPhoto(photoUri);
 
             if (editor instanceof RawContactEditorView) {
                 final Activity activity = getActivity();
@@ -922,14 +921,12 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     /**
-     * If we've stashed a temporary file containing a contact's new photo,
-     * decode it and return the bitmap.
+     * If we've stashed a temporary file containing a contact's new photo, return its URI.
      * @param rawContactId identifies the raw-contact whose Bitmap we'll try to return.
-     * @return Bitmap of photo for specified raw-contact, or null
-    */
-    private Bitmap updatedBitmapForRawContact(long rawContactId) {
-        String path = mUpdatedPhotos.getString(String.valueOf(rawContactId));
-        return path == null ? null : BitmapFactory.decodeFile(path);
+     * @return Uru of photo for specified raw-contact, or null
+     */
+    private Uri updatedPhotoUriForRawContact(long rawContactId) {
+        return (Uri) mUpdatedPhotos.get(String.valueOf(rawContactId));
     }
 
     private void bindPhotoHandler(BaseRawContactEditorView editor, AccountType type,
@@ -1861,7 +1858,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         if (requestingEditor != null) {
-            requestingEditor.setPhotoBitmap(photo);
+            requestingEditor.setPhotoEntry(photo);
         } else {
             Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
@@ -2065,7 +2062,7 @@ public class ContactEditorFragment extends Fragment implements
              */
             @Override
             public void onRemovePictureChosen() {
-                mEditor.setPhotoBitmap(null);
+                mEditor.setPhotoEntry(null);
 
                 // Prevent bitmap from being restored if rotate the device.
                 // (only if we first chose a new photo before removing it)
