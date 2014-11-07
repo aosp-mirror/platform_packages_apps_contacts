@@ -253,4 +253,6 @@
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"連絡先表示オプション"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"アカウントの選択"</string>
     <string name="set_default_account" msgid="3865970860434642695">"このSIMを常に通話に使用する"</string>
+    <!-- no translation found for select_phone_account_for_calls (933905607702811164) -->
+    <skip />
 </resources>
