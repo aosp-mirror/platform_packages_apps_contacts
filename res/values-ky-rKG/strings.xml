@@ -214,8 +214,6 @@
     <skip />
     <!-- no translation found for menu_select_none (7093222469852132345) -->
     <skip />
-    <!-- no translation found for add_field (2384260056674995230) -->
-    <skip />
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Жаңысын кошуу"</string>
     <string name="add_organization" msgid="7311893231158291197">"Уюм кошуу"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Дата"</string>

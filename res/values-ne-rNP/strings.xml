@@ -153,7 +153,6 @@
     <string name="menu_display_all" msgid="8887488642609786198">"सबै देखाउनुहोस्"</string>
     <string name="menu_select_all" msgid="621719255150713545">"सबैलाई चयन गर्नुहोस्"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"सबैलाई अचयन गर्नुहोस्"</string>
-    <string name="add_field" msgid="2384260056674995230">"अर्को फिल्ड थप्नुहोस्"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"नयाँ खाता थप्नुहोस्"</string>
     <string name="add_organization" msgid="7311893231158291197">"संगठन थप्नुहोस्"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"मिति"</string>
