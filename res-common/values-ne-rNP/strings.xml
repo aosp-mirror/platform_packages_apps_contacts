@@ -253,6 +253,5 @@
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"सम्पर्क प्रदर्शन विकल्पहरू"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"खाता चयन गर्नुहोस्"</string>
     <string name="set_default_account" msgid="3865970860434642695">"कल गर्नका लागि यसको प्रयोग सधैं गर्नुहोस्"</string>
-    <!-- no translation found for select_phone_account_for_calls (933905607702811164) -->
-    <skip />
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"संग कल"</string>
 </resources>
