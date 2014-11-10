@@ -253,6 +253,5 @@
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"ಸಂಪರ್ಕ ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳು"</string>
     <string name="select_account_dialog_title" msgid="2970151494458786440">"ಖಾತೆ ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="set_default_account" msgid="3865970860434642695">"ಕರೆಗಳನ್ನು ಮಾಡಲು ಯಾವಾಗಲೂ ಇದನ್ನು ಬಳಸಿ"</string>
-    <!-- no translation found for select_phone_account_for_calls (933905607702811164) -->
-    <skip />
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"ಇದರೊಂದಿಗೆ ಕರೆ ಮಾಡಿ"</string>
 </resources>
