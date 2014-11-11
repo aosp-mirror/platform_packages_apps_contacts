@@ -515,7 +515,8 @@ public class ContactSaveService extends IntentService {
             final ArrayList<ContentProviderOperation> diff,
             final ContentProviderResult[] results) {
         final int diffSize = diff.size();
-        for (int i = 0; i < diffSize; i++) {
+        final int numResults = results.length;
+        for (int i = 0; i < diffSize && i < numResults; i++) {
             ContentProviderOperation operation = diff.get(i);
             if (operation.getType() == ContentProviderOperation.TYPE_INSERT
                     && operation.getUri().getEncodedPath().contains(
