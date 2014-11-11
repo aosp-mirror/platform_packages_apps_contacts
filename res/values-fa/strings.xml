@@ -91,7 +91,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"برای افزودن چند عضو، گروه را ویرایش کنید."</string>
     <string name="savingContact" msgid="4075751076741924939">"در حال ذخیره مخاطب..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"مخاطب ذخیره شد."</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"تغییرات مخاطب ذخیره نمی‌شود."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"ذخیره تغییرات مخاطب انجام نشد."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"گروه ذخیره شد."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"ذخیرهٔ تغییرات گروه انجام نشد."</string>
   <plurals name="listTotalPhoneContacts">
