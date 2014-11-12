@@ -40,8 +40,6 @@ public class PhotoActionPopup {
      * Bitmask flags to specify which actions should be presented to the user.
      */
     public static final class Flags {
-        /** If set, show choice to use as primary photo. */
-        public static final int ALLOW_PRIMARY = 1;
         /** If set, show choice to remove photo. */
         public static final int REMOVE_PHOTO = 2;
         /** If set, show choices to take a picture with the camera, or pick one from the gallery. */
@@ -59,14 +57,8 @@ public class PhotoActionPopup {
     public static final class Modes {
         public static final int NO_PHOTO =
                 Flags.TAKE_OR_PICK_PHOTO;
-        public static final int READ_ONLY_ALLOW_PRIMARY =
-                Flags.ALLOW_PRIMARY;
-        public static final int PHOTO_DISALLOW_PRIMARY =
-                Flags.REMOVE_PHOTO |
-                Flags.TAKE_OR_PICK_PHOTO |
-                Flags.TAKE_OR_PICK_PHOTO_REPLACE_WORDING;
-        public static final int PHOTO_ALLOW_PRIMARY =
-                Flags.ALLOW_PRIMARY |
+        public static final int READ_ONLY_PHOTO = 0;
+        public static final int WRITE_ABLE_PHOTO =
                 Flags.REMOVE_PHOTO |
                 Flags.TAKE_OR_PICK_PHOTO |
                 Flags.TAKE_OR_PICK_PHOTO_REPLACE_WORDING;
@@ -77,11 +69,6 @@ public class PhotoActionPopup {
         // Build choices, depending on the current mode. We assume this Dialog is never called
         // if there are NO choices (e.g. a read-only picture is already super-primary)
         final ArrayList<ChoiceListItem> choices = new ArrayList<ChoiceListItem>(4);
-        // Use as Primary
-        if ((mode & Flags.ALLOW_PRIMARY) > 0) {
-            choices.add(new ChoiceListItem(ChoiceListItem.ID_USE_AS_PRIMARY,
-                    context.getString(R.string.use_photo_as_primary)));
-        }
         // Remove
         if ((mode & Flags.REMOVE_PHOTO) > 0) {
             choices.add(new ChoiceListItem(ChoiceListItem.ID_REMOVE,
@@ -109,9 +96,6 @@ public class PhotoActionPopup {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final ChoiceListItem choice = choices.get(position);
                 switch (choice.getId()) {
-                    case ChoiceListItem.ID_USE_AS_PRIMARY:
-                        listener.onUseAsPrimaryChosen();
-                        break;
                     case ChoiceListItem.ID_REMOVE:
                         listener.onRemovePictureChosen();
                         break;
@@ -144,7 +128,6 @@ public class PhotoActionPopup {
         private final int mId;
         private final String mCaption;
 
-        public static final int ID_USE_AS_PRIMARY = 0;
         public static final int ID_TAKE_PHOTO = 1;
         public static final int ID_PICK_PHOTO = 2;
         public static final int ID_REMOVE = 3;
@@ -165,7 +148,6 @@ public class PhotoActionPopup {
     }
 
     public interface Listener {
-        void onUseAsPrimaryChosen();
         void onRemovePictureChosen();
         void onTakePhotoChosen();
         void onPickFromGalleryChosen();

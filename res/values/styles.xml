@@ -29,6 +29,7 @@
     <style name="EditorActivityTheme" parent="@style/PeopleTheme">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
         <item name="android:actionBarStyle">@style/EditorActionBarStyle</item>
+        <item name="android:colorButtonNormal">@color/background_primary</item>
     </style>
 
     <style name="Theme">
@@ -317,7 +318,9 @@
         <item name="android:layout_height">24dp</item>
         <item name="android:tint">@color/editor_icon_color</item>
         <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">32dp</item>
+        <!-- We want 32dp of padding between these icon's and EditText's. Since EditText's have
+            4dp of starting padding built in, we set this as 28dp. -->
+        <item name="android:layout_marginEnd">28dp</item>
         <item name="android:layout_marginTop">@dimen/editor_kind_icon_top_margin</item>
     </style>
 </resources>

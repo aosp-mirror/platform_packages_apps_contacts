@@ -24,8 +24,10 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 
 import com.android.contacts.R;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageProvider;
@@ -43,11 +45,11 @@ import com.android.contacts.util.ContactPhotoUtils;
 public class PhotoEditorView extends LinearLayout implements Editor {
 
     private ImageView mPhotoImageView;
-    private View mFrameView;
+    private Button mChangeButton;
+    private RadioButton mPrimaryCheckBox;
 
     private ValuesDelta mEntry;
     private EditorListener mListener;
-    private View mTriangleAffordance;
     private ContactPhotoManager mContactPhotoManager;
 
     private boolean mHasSetPhoto = false;
@@ -64,7 +66,6 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        mFrameView.setEnabled(enabled);
     }
 
     @Override
@@ -78,14 +79,24 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     protected void onFinishInflate() {
         super.onFinishInflate();
         mContactPhotoManager = ContactPhotoManager.getInstance(mContext);
-        mTriangleAffordance = findViewById(R.id.photo_triangle_affordance);
         mPhotoImageView = (ImageView) findViewById(R.id.photo);
-        mFrameView = findViewById(R.id.frame);
-        mFrameView.setOnClickListener(new OnClickListener() {
+        mPrimaryCheckBox = (RadioButton) findViewById(R.id.primary_checkbox);
+        mChangeButton = (Button) findViewById(R.id.change_button);
+        mChangeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onRequest(EditorListener.REQUEST_PICK_PHOTO);
+                }
+            }
+        });
+        // Turn off own state management. We do this ourselves on rotation.
+        mPrimaryCheckBox.setSaveEnabled(false);
+        mPrimaryCheckBox.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onRequest(EditorListener.REQUEST_PICK_PRIMARY_PHOTO);
                 }
             }
         });
@@ -106,6 +117,8 @@ public class PhotoEditorView extends LinearLayout implements Editor {
 
         setId(vig.getId(state, kind, values, 0));
 
+        mPrimaryCheckBox.setChecked(values != null && values.isSuperPrimary());
+
         if (values != null) {
             // Try decoding photo if actual entry
             final byte[] photoBytes = values.getAsByteArray(Photo.PHOTO);
@@ -114,7 +127,6 @@ public class PhotoEditorView extends LinearLayout implements Editor {
                         photoBytes.length);
 
                 mPhotoImageView.setImageBitmap(photo);
-                mFrameView.setEnabled(isEnabled());
                 mHasSetPhoto = true;
                 mEntry.setFromTemplate(false);
 
@@ -140,6 +152,14 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     }
 
     /**
+     * Whether to display a "Primary photo" RadioButton. This is only needed if there are multiple
+     * candidate photos.
+     */
+    public void setShowPrimary(boolean showPrimaryCheckBox) {
+        mPrimaryCheckBox.setVisibility(showPrimaryCheckBox ? View.VISIBLE : View.GONE);
+    }
+
+    /**
      * Return true if a valid {@link Photo} has been set.
      */
     public boolean hasSetPhoto() {
@@ -162,7 +182,6 @@ public class PhotoEditorView extends LinearLayout implements Editor {
         final Bitmap scaled = Bitmap.createScaledBitmap(photo, size, size, false);
 
         mPhotoImageView.setImageBitmap(scaled);
-        mFrameView.setEnabled(isEnabled());
         mHasSetPhoto = true;
         mEntry.setFromTemplate(false);
 
@@ -211,7 +230,6 @@ public class PhotoEditorView extends LinearLayout implements Editor {
         // Invalid photo, show default "add photo" place-holder
         mPhotoImageView.setImageDrawable(
                 ContactPhotoManager.getDefaultAvatarDrawableForContact(getResources(), false, null));
-        mFrameView.setEnabled(!mReadOnly && isEnabled());
         mHasSetPhoto = false;
         mEntry.setFromTemplate(true);
     }
@@ -220,10 +238,6 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     @Override
     public void setEditorListener(EditorListener listener) {
         mListener = listener;
-
-        final boolean isPushable = listener != null;
-        mTriangleAffordance.setVisibility(isPushable ? View.VISIBLE : View.INVISIBLE);
-        mFrameView.setVisibility(isPushable ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
@@ -244,5 +258,12 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     @Override
     public void clearAllFields() {
         resetDefault();
+    }
+
+    /**
+     * The change drop down menu should be anchored to this view.
+     */
+    public View getChangeAnchorView() {
+        return mChangeButton;
     }
 }
