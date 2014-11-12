@@ -19,46 +19,51 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="@dimen/editor_padding_top"
-    android:paddingBottom="32dip">
+    android:paddingTop="@dimen/editor_padding_top">
 
     <include
         layout="@layout/editor_account_header" />
 
+    <!-- Want 16dp of apparent top padding. Since EditText has 10dp of inset/padding built in,
+        only set marginTop=6dp. -->
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingTop="8dip"
-        android:paddingLeft="16dip"
-        android:paddingStart="16dip">
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/editor_min_line_item_height"
+        android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
 
-        <TextView android:id="@+id/read_only_name"
-            android:layout_width="0dip"
+        <ImageView
+            android:id="@+id/kind_icon"
+            android:src="@drawable/ic_person_black_24dp"
+            android:contentDescription="@string/header_name_entry"
+            style="@style/EditKindIconStyle" />
+
+        <EditText
+            android:id="@+id/read_only_name"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:layout_marginRight="@dimen/editor_delete_button_width"
             android:singleLine="true"
-            android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="?android:attr/textColorSecondary" />
-
-        <include
-            android:id="@+id/edit_photo"
-            android:layout_marginRight="8dip"
-            android:layout_marginEnd="8dip"
-            layout="@layout/item_photo_editor" />
+            android:textSize="@dimen/editor_form_text_size"
+            android:textColor="?android:attr/textColorSecondary"
+            android:enabled="false"/>
 
     </LinearLayout>
+
+    <include
+        android:id="@+id/edit_photo"
+        layout="@layout/item_photo_editor_readonly" />
 
     <Button
         android:id="@+id/button_edit_externally"
         android:text="@string/edit_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dip"
-        android:layout_marginBottom="13dip"
-        android:layout_marginLeft="13dip"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/editor_padding_below_photo"
+        android:layout_marginEnd="13dip"
         android:layout_marginStart="13dip"/>
 
     <LinearLayout android:id="@+id/sect_general"
