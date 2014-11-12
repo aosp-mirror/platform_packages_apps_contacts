@@ -251,7 +251,7 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜尋"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜尋"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"聯絡人顯示選項"</string>
-    <string name="select_account_dialog_title" msgid="2970151494458786440">"選取帳戶"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"帳戶"</string>
     <string name="set_default_account" msgid="3865970860434642695">"永遠使用這張 SIM 卡通話"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"選取用於撥號的 SIM 卡："</string>
 </resources>
