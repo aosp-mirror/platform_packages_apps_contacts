@@ -251,7 +251,7 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ძიების შეჩერება"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ძიების გასუფთავება"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"კონტაქტის ჩვენების ვარიანტები"</string>
-    <string name="select_account_dialog_title" msgid="2970151494458786440">"ანგარიშის არჩევა"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"ანგარიში"</string>
     <string name="set_default_account" msgid="3865970860434642695">"ზარებისთვის მუდამ ამის გამოყენება"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"დარეკვა ანგარიშით:"</string>
 </resources>
