@@ -37,6 +37,9 @@
     <!-- Minimum height of a row in the Editor -->
     <dimen name="editor_min_line_item_height">48dip</dimen>
 
+    <!-- Width of the delete button (X) in the raw contact editor -->
+    <dimen name="editor_delete_button_width">48dp</dimen>
+
     <!-- The height and width of the delete button should be the same size as an editor row -->
     <dimen name="editor_delete_button_size">@dimen/editor_min_line_item_height</dimen>
 

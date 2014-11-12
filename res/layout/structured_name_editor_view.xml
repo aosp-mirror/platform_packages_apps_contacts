@@ -32,6 +32,7 @@
     <ImageView
         android:id="@+id/kind_icon"
         android:src="@drawable/ic_person_black_24dp"
+        android:contentDescription="@string/header_name_entry"
         style="@style/EditKindIconStyle" />
 
     <include
