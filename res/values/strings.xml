@@ -373,9 +373,6 @@
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format"><xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
 
-    <!-- Checkbox asking the user if they want to display a particular photo for a contact -->
-    <string name="use_photo_as_primary">Use this photo</string>
-
     <!-- Text used to explain that a contact cannot be edited from the People application since the data is read only [CHAR LIMIT=40] -->
     <string name="contact_read_only">Not editable from this app.</string>
 
@@ -437,6 +434,15 @@
 
     <!-- The button to add an organization field to a contact in the Raw Contact Editor [CHAR LIMIT=15] -->
     <string name="group_edit_field_hint_text">Group name</string>
+
+    <!-- Button used for changing a photo in the Raw Contact Editor [CHAR LIMIT=15] -->
+    <string name="change_photo">Change</string>
+
+    <!-- Content description for the camera icon beside the photo section in the Raw Contact Editor [CHAR LIMIT=NONE] -->
+    <string name="photo_section">Photo section</string>
+
+    <!-- RadioButton that determines whether a raw contact's photo should be used for the entire contact [CHAR LIMIT=15] -->
+    <string name="primary_photo">Primary photo</string>
 
     <!-- String describing the Star/Favorite checkbox
 
