@@ -136,7 +136,6 @@
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> ta kontakt"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="use_photo_as_primary" msgid="8807110122951157246">"Ushbu suratdan foydalaning"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Ushbu ilova orqali tahrirlab bo‘lmaydi."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Ushbu qurilmada tahrir qilib bo‘lmaydi."</string>
     <string name="take_photo" msgid="7496128293167402354">"Suratga olish"</string>
@@ -157,6 +156,12 @@
     <string name="add_organization" msgid="7311893231158291197">"Tashkilot qo‘shish"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Sana"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Guruh nomi"</string>
+    <!-- no translation found for change_photo (8530597935483526383) -->
+    <skip />
+    <!-- no translation found for photo_section (2512312974830078109) -->
+    <skip />
+    <!-- no translation found for primary_photo (8517942231868516999) -->
+    <skip />
     <string name="description_star" msgid="2605854427360036550">"ajratilgan"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Kontaktni tahrirlash"</string>
   <plurals name="merge_info">
