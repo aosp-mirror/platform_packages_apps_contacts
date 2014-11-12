@@ -65,7 +65,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     private static final int mDefaultPhotoDim = 720;
 
     protected final Context mContext;
-    private final View mPhotoView;
+    private final View mChangeAnchorView;
     private final int mPhotoMode;
     private final int mPhotoPickSize;
     private final Uri mCroppedPhotoUri;
@@ -74,10 +74,10 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     private final boolean mIsDirectoryContact;
     private ListPopupWindow mPopup;
 
-    public PhotoSelectionHandler(Context context, View photoView, int photoMode,
+    public PhotoSelectionHandler(Context context, View changeAnchorView, int photoMode,
             boolean isDirectoryContact, RawContactDeltaList state) {
         mContext = context;
-        mPhotoView = photoView;
+        mChangeAnchorView = changeAnchorView;
         mPhotoMode = photoMode;
         mTempPhotoUri = ContactPhotoUtils.generateTempImageUri(context);
         mCroppedPhotoUri = ContactPhotoUtils.generateTempCroppedImageUri(mContext);
@@ -98,7 +98,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         if (listener != null) {
             if (getWritableEntityIndex() != -1) {
                 mPopup = PhotoActionPopup.createPopupMenu(
-                        mContext, mPhotoView, listener, mPhotoMode);
+                        mContext, mChangeAnchorView, listener, mPhotoMode);
                 mPopup.setOnDismissListener(new OnDismissListener() {
                     @Override
                     public void onDismiss() {
@@ -318,11 +318,6 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
     }
 
     public abstract class PhotoActionListener implements PhotoActionPopup.Listener {
-        @Override
-        public void onUseAsPrimaryChosen() {
-            // No default implementation.
-        }
-
         @Override
         public void onRemovePictureChosen() {
             // No default implementation.

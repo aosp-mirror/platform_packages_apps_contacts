@@ -486,7 +486,7 @@ public class PhotoSelectionActivity extends Activity {
         // from the gallery), but with slightly different wording.
         // Note: don't worry about this being a read-only contact; this code will not be invoked.
         int mode = (mPhotoUri == null) ? PhotoActionPopup.Modes.NO_PHOTO
-                : PhotoActionPopup.Modes.PHOTO_DISALLOW_PRIMARY;
+                : PhotoActionPopup.Modes.WRITE_ABLE_PHOTO;
         // We don't want to provide a choice to remove the photo for two reasons:
         //   1) the UX designs don't call for it
         //   2) even if we wanted to, the implementation would be moderately hairy

@@ -58,10 +58,16 @@
     <dimen name="editor_kind_icon_size">24dp</dimen>
 
     <!-- Total width of data-kind icon, including its start and end padding -->
-    <dimen name="editor_kind_icon_total_width">72dp</dimen>
+    <dimen name="editor_kind_icon_total_width">68dp</dimen>
 
-    <!-- Padding below every editor view, such as LabeledEditorView -->
-    <dimen name="editor_padding_between_editor_views">24dp</dimen>
+    <!-- Padding below every editor view, such as LabeledEditorView. This value is chosen
+        to give 32dp of apparent padding between EditText's in the Raw Contact Editor. -->
+    <dimen name="editor_padding_between_editor_views">20dp</dimen>
+
+    <!-- Padding below the photo editor. This value is larger than
+        editor_padding_between_editor_views, since ImageView's don't have space between the bottom
+        of their visual bottom, like an EditText does. -->
+    <dimen name="editor_padding_below_photo">22dp</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">150dip</dimen>
