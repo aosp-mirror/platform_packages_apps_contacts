@@ -19,6 +19,7 @@ package com.android.contacts.editor;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -181,7 +182,6 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
                 mContext.getString(R.string.missing_name));
 
         if (type.getEditContactActivityClassName() != null) {
-            mAccountContainer.setBackgroundDrawable(null);
             mAccountContainer.setEnabled(false);
             mEditExternallyButton.setVisibility(View.VISIBLE);
         } else {
@@ -197,7 +197,9 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
 
         final Resources res = mContext.getResources();
         // Phones
-        ArrayList<ValuesDelta> phones = state.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
+        final ArrayList<ValuesDelta> phones = state.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
+        final Drawable phoneDrawable = getResources().getDrawable(R.drawable.ic_phone_24dp);
+        final String phoneContentDescription = res.getString(R.string.header_phone_entry);
         if (phones != null) {
             boolean isFirstPhoneBound = true;
             for (ValuesDelta phone : phones) {
@@ -213,14 +215,16 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
                     phoneType = Phone.getTypeLabel(
                             res, phone.getPhoneType(), phone.getPhoneLabel());
                 }
-                bindData(mContext.getText(R.string.phoneLabelsGroup), formattedNumber,
-                        phoneType, isFirstPhoneBound, true);
+                bindData(phoneDrawable, phoneContentDescription, formattedNumber, phoneType,
+                        isFirstPhoneBound, true);
                 isFirstPhoneBound = false;
             }
         }
 
         // Emails
-        ArrayList<ValuesDelta> emails = state.getMimeEntries(Email.CONTENT_ITEM_TYPE);
+        final ArrayList<ValuesDelta> emails = state.getMimeEntries(Email.CONTENT_ITEM_TYPE);
+        final Drawable emailDrawable = getResources().getDrawable(R.drawable.ic_email_24dp);
+        final String emailContentDescription = res.getString(R.string.header_email_entry);
         if (emails != null) {
             boolean isFirstEmailBound = true;
             for (ValuesDelta email : emails) {
@@ -233,7 +237,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
                     emailType = Email.getTypeLabel(
                             res, email.getEmailType(), email.getEmailLabel());
                 }
-                bindData(mContext.getText(R.string.emailLabelsGroup), emailAddress, emailType,
+                bindData(emailDrawable, emailContentDescription, emailAddress, emailType,
                         isFirstEmailBound);
                 isFirstEmailBound = false;
             }
@@ -247,23 +251,22 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         }
     }
 
-    private void bindData(CharSequence titleText, CharSequence data, CharSequence type,
-            boolean isFirstEntry) {
-        bindData(titleText, data, type, isFirstEntry, false);
+    private void bindData(Drawable icon, String iconContentDescription, CharSequence data,
+            CharSequence type, boolean isFirstEntry) {
+        bindData(icon, iconContentDescription, data, type, isFirstEntry, false);
     }
 
-    private void bindData(CharSequence titleText, CharSequence data, CharSequence type,
-            boolean isFirstEntry, boolean forceLTR) {
+    private void bindData(Drawable icon, String iconContentDescription, CharSequence data,
+            CharSequence type, boolean isFirstEntry, boolean forceLTR) {
         final View field = mInflater.inflate(R.layout.item_read_only_field, mGeneral, false);
-        final View divider = field.findViewById(R.id.divider);
         if (isFirstEntry) {
-            final TextView titleView = (TextView) field.findViewById(R.id.kind_title);
-            titleView.setText(titleText);
-            divider.setVisibility(View.GONE);
+            final ImageView imageView = (ImageView) field.findViewById(R.id.kind_icon);
+            imageView.setImageDrawable(icon);
+            imageView.setContentDescription(iconContentDescription);
         } else {
-            View titleContainer = field.findViewById(R.id.kind_title_layout);
-            titleContainer.setVisibility(View.GONE);
-            divider.setVisibility(View.VISIBLE);
+            final ImageView imageView = (ImageView) field.findViewById(R.id.kind_icon);
+            imageView.setVisibility(View.INVISIBLE);
+            imageView.setContentDescription(null);
         }
         final TextView dataView = (TextView) field.findViewById(R.id.data);
         dataView.setText(data);

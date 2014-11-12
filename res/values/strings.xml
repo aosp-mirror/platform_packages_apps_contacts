@@ -708,6 +708,12 @@
     <string name="header_event_entry">Event</string>
     <!-- Header for the Relation entry [CHAR LIMIT=40] -->
     <string name="header_relation_entry">Relation</string>
+    <!-- Content description for the name fields header entry [CHAR LIMIT=NONE] -->
+    <string name="header_name_entry">Name section</string>
+    <!-- Content description for the email fields header entry [CHAR LIMIT=NONE] -->
+    <string name="header_email_entry">Email section</string>
+    <!-- Content description for the phone fields header entry [CHAR LIMIT=NONE] -->
+    <string name="header_phone_entry">Phone section</string>
 
     <!-- Content description for directions secondary button [CHAR LIMIT=NONE] -->
     <string name="content_description_directions">directions to location</string>

@@ -18,50 +18,42 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_marginEnd="@dimen/editor_delete_button_width"
+    android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
+    android:orientation="horizontal">
 
-    <include
-        android:id="@+id/kind_title_layout"
-        layout="@layout/edit_kind_title" />
-
-    <!-- Shown only when id/kind_title_layout is hidden, dividing a previous item and this item. -->
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="8dip"
-        android:layout_marginRight="8dip"
-        android:layout_marginStart="8dip"
-        android:layout_marginEnd="8dip"
-        android:background="@color/secondary_header_separator_color" />
+    <ImageView
+        android:id="@+id/kind_icon"
+        style="@style/EditKindIconStyle" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/editor_min_line_item_height"
-        android:layout_marginLeft="16dip"
-        android:layout_marginRight="16dip"
-        android:layout_marginStart="16dip"
-        android:layout_marginEnd="16dip"
-        android:orientation="horizontal">
-        <TextView
+        android:orientation="vertical">
+
+        <EditText
             android:id="@+id/data"
-            android:layout_width="0px"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:minHeight="@dimen/editor_min_line_item_height"
+            android:textSize="@dimen/editor_form_text_size"
             android:textColor="?android:attr/textColorSecondary"
-            android:singleLine="true"/>
-        <TextView
+            android:singleLine="true"
+            android:saveEnabled="false"
+            android:enabled="false"/>
+
+        <EditText
             android:id="@+id/type"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/editor_type_label_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/editor_form_text_size"
             android:textColor="?android:attr/textColorSecondary"
-            android:textAllCaps="true"
-            android:singleLine="true"/>
+            android:minHeight="@dimen/editor_min_line_item_height"
+            android:singleLine="true"
+            android:saveEnabled="false"
+            android:enabled="false"/>
+
     </LinearLayout>
 
 </LinearLayout>
