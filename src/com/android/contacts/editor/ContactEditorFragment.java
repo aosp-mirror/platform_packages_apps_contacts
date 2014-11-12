@@ -932,28 +932,28 @@ public class ContactEditorFragment extends Fragment implements
     private void bindPhotoHandler(BaseRawContactEditorView editor, AccountType type,
             RawContactDeltaList state) {
         final int mode;
+        final boolean showIsPrimaryOption;
         if (type.areContactsWritable()) {
             if (editor.hasSetPhoto()) {
-                if (hasMoreThanOnePhoto()) {
-                    mode = PhotoActionPopup.Modes.PHOTO_ALLOW_PRIMARY;
-                } else {
-                    mode = PhotoActionPopup.Modes.PHOTO_DISALLOW_PRIMARY;
-                }
+                mode = PhotoActionPopup.Modes.WRITE_ABLE_PHOTO;
+                showIsPrimaryOption = hasMoreThanOnePhoto();
             } else {
                 mode = PhotoActionPopup.Modes.NO_PHOTO;
+                showIsPrimaryOption = false;
             }
+        } else if (editor.hasSetPhoto() && hasMoreThanOnePhoto()) {
+            mode = PhotoActionPopup.Modes.READ_ONLY_PHOTO;
+            showIsPrimaryOption = true;
         } else {
-            if (editor.hasSetPhoto() && hasMoreThanOnePhoto()) {
-                mode = PhotoActionPopup.Modes.READ_ONLY_ALLOW_PRIMARY;
-            } else {
-                // Read-only and either no photo or the only photo ==> no options
-                editor.getPhotoEditor().setEditorListener(null);
-                return;
-            }
+            // Read-only and either no photo or the only photo ==> no options
+            editor.getPhotoEditor().setEditorListener(null);
+            editor.getPhotoEditor().setShowPrimary(false);
+            return;
         }
         final PhotoHandler photoHandler = new PhotoHandler(mContext, editor, mode, state);
         editor.getPhotoEditor().setEditorListener(
                 (PhotoHandler.PhotoEditorListener) photoHandler.getListener());
+        editor.getPhotoEditor().setShowPrimary(showIsPrimaryOption);
 
         // Note a newly created raw contact gets some random negative ID, so any value is valid
         // here. (i.e. don't check against -1 or anything.)
@@ -1859,6 +1859,17 @@ public class ContactEditorFragment extends Fragment implements
 
         if (requestingEditor != null) {
             requestingEditor.setPhotoEntry(photo);
+            // Immediately set all other photos as non-primary. Otherwise the UI can display
+            // multiple photos as "Primary photo".
+            for (int i = 0; i < mContent.getChildCount(); i++) {
+                final View childView = mContent.getChildAt(i);
+                if (childView instanceof BaseRawContactEditorView
+                        && childView != requestingEditor) {
+                    final BaseRawContactEditorView rawContactEditor
+                            = (BaseRawContactEditorView) childView;
+                    rawContactEditor.getPhotoEditor().setSuperPrimary(false);
+                }
+            }
         } else {
             Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
@@ -2000,7 +2011,7 @@ public class ContactEditorFragment extends Fragment implements
 
         public PhotoHandler(Context context, BaseRawContactEditorView editor, int photoMode,
                 RawContactDeltaList state) {
-            super(context, editor.getPhotoEditor(), photoMode, false, state);
+            super(context, editor.getPhotoEditor().getChangeAnchorView(), photoMode, false, state);
             mEditor = editor;
             mRawContactId = editor.getRawContactId();
             mPhotoEditorListener = new PhotoEditorListener();
@@ -2030,6 +2041,9 @@ public class ContactEditorFragment extends Fragment implements
                 if (request == EditorListener.REQUEST_PICK_PHOTO) {
                     onClick(mEditor.getPhotoEditor());
                 }
+                if (request == EditorListener.REQUEST_PICK_PRIMARY_PHOTO) {
+                    useAsPrimaryChosen();
+                }
             }
 
             @Override
@@ -2041,8 +2055,7 @@ public class ContactEditorFragment extends Fragment implements
             /**
              * User has chosen to set the selected photo as the (super) primary photo
              */
-            @Override
-            public void onUseAsPrimaryChosen() {
+            public void useAsPrimaryChosen() {
                 // Set the IsSuperPrimary for each editor
                 int count = mContent.getChildCount();
                 for (int i = 0; i < count; i++) {
