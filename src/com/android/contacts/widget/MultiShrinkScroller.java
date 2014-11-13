@@ -375,13 +375,6 @@ public class MultiShrinkScroller extends FrameLayout {
         mTitleGradientView.setLayoutParams(titleGradientLayoutParams);
     }
 
-    private void setTitleGradientViewBottomMargin(int bottomMargin) {
-        final FrameLayout.LayoutParams titleGradientLayoutParams
-                = (FrameLayout.LayoutParams) mTitleGradientView.getLayoutParams();
-        titleGradientLayoutParams.bottomMargin = bottomMargin;
-        mTitleGradientView.setLayoutParams(titleGradientLayoutParams);
-    }
-
     public void setTitle(String title) {
         mLargeTextView.setText(title);
         mPhotoTouchInterceptOverlay.setContentDescription(title);
@@ -949,18 +942,7 @@ public class MultiShrinkScroller extends FrameLayout {
      */
     private void updateHeaderTextSizeAndMargin() {
         if (mIsTwoPanel) {
-            // This is the amount of additional padding needed to keep the title text on screen.
-            final int transparentHeight = mTransparentView.getLayoutParams().height;
-            // We want to keep the title text on screen as we scroll, up to a point. Once we
-            // scroll farther off the screen than the semi collapsed starting height, stop
-            // compensating for scrolling.
-            final int scrollCompensation = Math.min(transparentHeight, mTransparentStartHeight);
-            mLargeTextView.setPadding(mLargeTextView.getPaddingLeft(),
-                    mLargeTextView.getPaddingTop(), mLargeTextView.getPaddingRight(),
-                    scrollCompensation);
-            // Use margin to offset the title gradient instead of padding. This is necessary since
-            // GradientDrawable appears to ignore the insets suggested by its View's padding.
-            setTitleGradientViewBottomMargin(scrollCompensation);
+            // The text size stays at a constant size & location in two panel layouts.
             return;
         }
 
