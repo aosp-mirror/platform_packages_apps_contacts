@@ -141,6 +141,9 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         mIcon.setContentDescription(titleString);
 
         mIcon.setImageDrawable(getMimeTypeDrawable(kind.mimeType));
+        if (mIcon.getDrawable() == null) {
+            mIcon.setContentDescription(null);
+        }
 
         rebuildFromState();
         updateEmptyEditors(/* shouldAnimate = */ false);
