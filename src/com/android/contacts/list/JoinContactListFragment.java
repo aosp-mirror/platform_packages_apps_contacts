@@ -81,8 +81,11 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                     break;
                 }
                 case JoinContactListAdapter.PARTITION_ALL_CONTACTS: {
-                    Cursor suggestionsCursor = ((JoinContactLoaderResult) data).suggestionCursor;
-                    onContactListLoaded(suggestionsCursor, data);
+                    if (data != null) {
+                        final Cursor suggestionsCursor =
+                                ((JoinContactLoaderResult) data).suggestionCursor;
+                        onContactListLoaded(suggestionsCursor, data);
+                    }
                     break;
                 }
             }

@@ -52,9 +52,13 @@ public class JoinContactLoader extends CursorLoader {
         @Override
         public void close() {
             try {
-                suggestionCursor.close();
+                if (suggestionCursor != null) {
+                    suggestionCursor.close();
+                }
             } finally {
-                super.close();
+                if (super.getWrappedCursor() != null) {
+                    super.close();
+                }
             }
         }
     }
@@ -79,6 +83,23 @@ public class JoinContactLoader extends CursorLoader {
         // to load the entire list
         final Cursor suggestionsCursor = getContext().getContentResolver()
                 .query(mSuggestionUri, mProjection, null, null, null);
-        return new JoinContactLoaderResult(super.loadInBackground(), suggestionsCursor);
+        if (suggestionsCursor == null) {
+            return null;
+        }
+        Cursor cursorToClose = suggestionsCursor;
+        try {
+            final Cursor baseCursor = super.loadInBackground();
+            if (baseCursor != null) {
+                final JoinContactLoaderResult result =
+                        new JoinContactLoaderResult(baseCursor, suggestionsCursor);
+                cursorToClose = null;
+                return result;
+            }
+        } finally {
+            if (cursorToClose != null) {
+                cursorToClose.close();
+            }
+        }
+        return null;
     }
 }
