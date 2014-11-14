@@ -895,6 +895,7 @@ public class ContactListItemView extends ViewGroup
             mPhoneticNameTextView.setSingleLine(true);
             mPhoneticNameTextView.setEllipsize(getTextEllipsis());
             mPhoneticNameTextView.setTextAppearance(getContext(), android.R.style.TextAppearance_Small);
+            mPhoneticNameTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             mPhoneticNameTextView.setTypeface(mPhoneticNameTextView.getTypeface(), Typeface.BOLD);
             mPhoneticNameTextView.setActivated(isActivated());
             mPhoneticNameTextView.setId(R.id.cliv_phoneticname_textview);
@@ -1020,6 +1021,7 @@ public class ContactListItemView extends ViewGroup
             mDataView.setSingleLine(true);
             mDataView.setEllipsize(getTextEllipsis());
             mDataView.setTextAppearance(getContext(), R.style.TextAppearanceSmall);
+            mDataView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             mDataView.setActivated(isActivated());
             mDataView.setId(R.id.cliv_data_view);
             mDataView.setElegantTextHeight(false);
@@ -1058,6 +1060,7 @@ public class ContactListItemView extends ViewGroup
             mSnippetView.setSingleLine(true);
             mSnippetView.setEllipsize(getTextEllipsis());
             mSnippetView.setTextAppearance(getContext(), android.R.style.TextAppearance_Small);
+            mSnippetView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             mSnippetView.setActivated(isActivated());
             addView(mSnippetView);
         }
