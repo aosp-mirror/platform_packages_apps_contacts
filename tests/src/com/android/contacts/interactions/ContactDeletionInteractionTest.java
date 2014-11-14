@@ -18,7 +18,6 @@ package com.android.contacts.interactions;
 
 import android.content.ContentUris;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
 import android.test.ActivityInstrumentationTestCase2;
@@ -50,12 +49,6 @@ import com.android.contacts.common.test.mocks.MockAccountTypeManager;
 @SmallTest
 public class ContactDeletionInteractionTest
         extends ActivityInstrumentationTestCase2<FragmentTestActivity> {
-
-    static {
-        // AsyncTask class needs to be initialized on the main thread.
-        AsyncTask.init();
-    }
-
     private static final Uri CONTACT_URI = ContentUris.withAppendedId(Contacts.CONTENT_URI, 13);
     private static final Uri ENTITY_URI = Uri.withAppendedPath(
             CONTACT_URI, Entity.CONTENT_DIRECTORY);
