@@ -438,9 +438,6 @@
     <!-- Button used for changing a photo in the Raw Contact Editor [CHAR LIMIT=15] -->
     <string name="change_photo">Change</string>
 
-    <!-- Content description for the camera icon beside the photo section in the Raw Contact Editor [CHAR LIMIT=NONE] -->
-    <string name="photo_section">Photo section</string>
-
     <!-- RadioButton that determines whether a raw contact's photo should be used for the entire contact [CHAR LIMIT=15] -->
     <string name="primary_photo">Primary photo</string>
 
@@ -709,11 +706,13 @@
     <!-- Header for the Relation entry [CHAR LIMIT=40] -->
     <string name="header_relation_entry">Relation</string>
     <!-- Content description for the name fields header entry [CHAR LIMIT=NONE] -->
-    <string name="header_name_entry">Name section</string>
+    <string name="header_name_entry">Name</string>
     <!-- Content description for the email fields header entry [CHAR LIMIT=NONE] -->
-    <string name="header_email_entry">Email section</string>
+    <string name="header_email_entry">Email</string>
     <!-- Content description for the phone fields header entry [CHAR LIMIT=NONE] -->
-    <string name="header_phone_entry">Phone section</string>
+    <string name="header_phone_entry">Phone</string>
+    <!-- Content description for the camera icon beside the photo section in the Raw Contact Editor [CHAR LIMIT=NONE] -->
+    <string name="header_photo_entry">Photo</string>
 
     <!-- Content description for directions secondary button [CHAR LIMIT=NONE] -->
     <string name="content_description_directions">directions to location</string>
