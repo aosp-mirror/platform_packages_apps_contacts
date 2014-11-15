@@ -21,7 +21,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
@@ -68,11 +67,6 @@ import com.android.contacts.util.PhoneCapabilityTester;
 public class PeopleActivityTest
         extends ActivityInstrumentationTestCase2<PeopleActivity>
 {
-    static {
-        // AsyncTask class needs to be initialized on the main thread.
-        AsyncTask.init();
-    }
-
     private static final String TEST_ACCOUNT = "testAccount";
     private static final String TEST_ACCOUNT_TYPE = "testAccountType";
 
