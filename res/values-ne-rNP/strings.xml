@@ -136,7 +136,6 @@
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> सम्पर्क"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="use_photo_as_primary" msgid="8807110122951157246">"यो फोटाको प्रयोग गर्नुहोस्"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"यो अनुप्रयोगबाट सम्पादन गर्न नमिल्ने।"</string>
     <string name="group_read_only" msgid="1061762906115697637">"यस उपकरणमा सम्पादनयोग्य छैन।"</string>
     <string name="take_photo" msgid="7496128293167402354">"तस्वीर लिनुहोस्"</string>
@@ -157,6 +156,10 @@
     <string name="add_organization" msgid="7311893231158291197">"संगठन थप्नुहोस्"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"मिति"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"समूह नाम"</string>
+    <!-- no translation found for change_photo (8530597935483526383) -->
+    <skip />
+    <!-- no translation found for primary_photo (8517942231868516999) -->
+    <skip />
     <string name="description_star" msgid="2605854427360036550">"मनपर्ने"</string>
     <string name="edit_contact" msgid="7529281274005689512">"सम्पर्क सम्पादन गर्नुहोस्"</string>
   <plurals name="merge_info">
@@ -248,6 +251,10 @@
     <string name="header_website_entry" msgid="1411467850000824745">"वेबसाइट"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"घटना"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"सम्बन्ध"</string>
+    <string name="header_name_entry" msgid="1592791008096288306">"नाम"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"इमेल"</string>
+    <string name="header_phone_entry" msgid="8450980572274173570">"फोन"</string>
+    <string name="header_photo_entry" msgid="4438023151411853238">"फोटो"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"स्थानको लागि निर्देशनहरू"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"हालैको एसएमएस। <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. प्रतिक्रियाको लागि क्लिक गर्नुहोस्"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"आगमन"</string>
