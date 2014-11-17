@@ -251,8 +251,7 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜索"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜索内容"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"联系人显示选项"</string>
-    <!-- no translation found for select_account_dialog_title (5509088895267310568) -->
-    <skip />
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"帐户"</string>
     <string name="set_default_account" msgid="3865970860434642695">"一律使用这张卡进行通话"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"用于外拨电话的电话帐户"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"用于外拨电话的帐户"</string>
 </resources>
