@@ -1188,8 +1188,8 @@ public class PeopleActivity extends ContactsActivity implements
                         && !Character.isWhitespace(unicodeChar)) {
                     String query = new String(new int[]{ unicodeChar }, 0, 1);
                     if (!mActionBarAdapter.isSearchMode()) {
-                        mActionBarAdapter.setQueryString(query);
                         mActionBarAdapter.setSearchMode(true);
+                        mActionBarAdapter.setQueryString(query);
                         return true;
                     }
                 }
