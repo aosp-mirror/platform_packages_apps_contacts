@@ -874,7 +874,6 @@ public class QuickContactActivity extends ContactsActivity {
         mPhotoView.setIsBusiness(mContactData.isDisplayNameFromOrganization());
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
         extractAndApplyTintFromPhotoViewAsynchronously();
-        analyzeWhitenessOfPhotoAsynchronously();
         setHeaderNameText(ContactDisplayUtils.getDisplayName(this, data).toString());
 
         Trace.endSection();
@@ -1820,30 +1819,6 @@ public class QuickContactActivity extends ContactsActivity {
                     mHasComputedThemeColor = true;
                     setThemeColor(palette);
                 }
-            }
-        }.execute();
-    }
-
-    /**
-     * Examine how many white pixels are in the bitmap in order to determine whether or not
-     * we need gradient overlays on top of the image.
-     */
-    private void analyzeWhitenessOfPhotoAsynchronously() {
-        final Drawable imageViewDrawable = mPhotoView.getDrawable();
-        new AsyncTask<Void, Void, Boolean>() {
-            @Override
-            protected Boolean doInBackground(Void... params) {
-                if (imageViewDrawable instanceof BitmapDrawable) {
-                    final Bitmap bitmap = ((BitmapDrawable) imageViewDrawable).getBitmap();
-                    return WhitenessUtils.isBitmapWhiteAtTopOrBottom(bitmap);
-                }
-                return !(imageViewDrawable instanceof LetterTileDrawable);
-            }
-
-            @Override
-            protected void onPostExecute(Boolean isWhite) {
-                super.onPostExecute(isWhite);
-                mScroller.setUseGradient(isWhite);
             }
         }.execute();
     }
