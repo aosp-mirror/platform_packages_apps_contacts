@@ -83,6 +83,7 @@ public class ContactSelectionActivity extends ContactsActivity
 
     private int mActionCode = -1;
     private boolean mIsSearchMode;
+    private boolean mIsSearchSupported;
 
     private ContactsRequest mRequest;
     private SearchView mSearchView;
@@ -153,6 +154,8 @@ public class ContactSelectionActivity extends ContactsActivity
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setDisplayShowTitleEnabled(true);
             }
+            mIsSearchSupported = false;
+            configureSearchMode();
             return;
         }
 
@@ -174,6 +177,7 @@ public class ContactSelectionActivity extends ContactsActivity
                 new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         actionBar.setDisplayShowCustomEnabled(true);
 
+        mIsSearchSupported = true;
         configureSearchMode();
     }
 
@@ -660,7 +664,7 @@ public class ContactSelectionActivity extends ContactsActivity
         inflater.inflate(R.menu.search_menu, menu);
 
         final MenuItem searchItem = menu.findItem(R.id.menu_search);
-        searchItem.setVisible(!mIsSearchMode);
+        searchItem.setVisible(!mIsSearchMode && mIsSearchSupported);
         return true;
     }
 
