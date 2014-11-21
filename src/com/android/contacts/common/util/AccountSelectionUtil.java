@@ -74,7 +74,7 @@ public class AccountSelectionUtil {
                 int resId) {
             // Subscription id is only needed for importing from SIM card. We can safely ignore
             // its value for SD card importing.
-            this(context, accountList, resId, SubscriptionManager.INVALID_SUB_ID);
+            this(context, accountList, resId, SubscriptionManager.INVALID_SUBSCRIPTION_ID);
         }
 
         public void onClick(DialogInterface dialog, int which) {
