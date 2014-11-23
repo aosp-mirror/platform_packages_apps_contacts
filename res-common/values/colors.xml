@@ -20,8 +20,8 @@
 
     <color name="focus_color">#44ff0000</color>
 
-    <!-- Color of ripples used by Theme.Material. Taken from res/values/colors_material.xml -->
-    <color name="ripple_material_dark">#20ffffff</color>
+    <!-- Color of ripples used for views with dark backgrounds -->
+    <color name="ripple_material_dark">#a0ffffff</color>
 
     <!-- Divider color for header separator -->
     <color name="primary_text_color">#363636</color>
