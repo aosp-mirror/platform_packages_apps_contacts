@@ -69,6 +69,8 @@ public class ImportExportDialogFragment extends DialogFragment
             Contacts.LOOKUP_KEY
     };
 
+    private SubscriptionManager mSubscriptionManager;
+
     /** Preferred way to show this dialog */
     public static void show(FragmentManager fragmentManager, boolean contactsAreAvailable,
             Class callingActivity) {
@@ -112,19 +114,24 @@ public class ImportExportDialogFragment extends DialogFragment
         final TelephonyManager manager =
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 
+        mSubscriptionManager = SubscriptionManager.from(getActivity());
+
         if (res.getBoolean(R.bool.config_allow_import_from_sdcard)) {
             adapter.add(new AdapterEntry(getString(R.string.import_from_sdcard),
                     R.string.import_from_sdcard));
         }
         if (manager != null && res.getBoolean(R.bool.config_allow_sim_import)) {
-            final List<SubscriptionInfo> subInfoRecords = getAllSubInfoList();
-            if (subInfoRecords.size() == 1) {
-                adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
-                        R.string.import_from_sim, subInfoRecords.get(0).getSubscriptionId()));
-            } else {
-                for (SubscriptionInfo record : subInfoRecords) {
-                    adapter.add(new AdapterEntry(getSubDescription(record),
-                            R.string.import_from_sim, record.getSubscriptionId()));
+            final List<SubscriptionInfo> subInfoRecords =
+                    mSubscriptionManager.getActiveSubscriptionInfoList();
+            if (subInfoRecords != null) {
+                if (subInfoRecords.size() == 1) {
+                    adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
+                            R.string.import_from_sim, subInfoRecords.get(0).getSubscriptionId()));
+                } else {
+                    for (SubscriptionInfo record : subInfoRecords) {
+                        adapter.add(new AdapterEntry(getSubDescription(record),
+                                R.string.import_from_sim, record.getSubscriptionId()));
+                    }
                 }
             }
         }
@@ -272,27 +279,6 @@ public class ImportExportDialogFragment extends DialogFragment
         dismiss();
     }
 
-    /**
-     * Return the same values as {@link SubscriptionManager#getAllSubscriptionInfoList()} without relying
-     * on any hidden methods.
-     */
-    // TODO: replace with a method that doesn't make assumptions about the number of SIM slots
-    private static List<SubscriptionInfo> getAllSubInfoList() {
-        final List<SubscriptionInfo> subInfoRecords0 = SubscriptionManager.getSubscriptionInfoUsingSlotId(0);
-        final List<SubscriptionInfo> subInfoRecords1 = SubscriptionManager.getSubscriptionInfoUsingSlotId(1);
-        if (subInfoRecords0 == null && subInfoRecords1 != null) {
-            return subInfoRecords1;
-        }
-        if (subInfoRecords0 != null && subInfoRecords1 == null) {
-            return subInfoRecords0;
-        }
-        if (subInfoRecords0 == null && subInfoRecords1 == null) {
-            return Collections.EMPTY_LIST;
-        }
-        subInfoRecords0.addAll(subInfoRecords1);
-        return subInfoRecords0;
-    }
-
     private String getSubDescription(SubscriptionInfo record) {
         CharSequence name = record.getDisplayName();
         if (TextUtils.isEmpty(record.getNumber())) {
@@ -314,7 +300,7 @@ public class ImportExportDialogFragment extends DialogFragment
         }
 
         public AdapterEntry(String label, int resId) {
-            this(label, resId, SubscriptionManager.INVALID_SUB_ID);
+            this(label, resId, SubscriptionManager.INVALID_SUBSCRIPTION_ID);
         }
     }
 }
