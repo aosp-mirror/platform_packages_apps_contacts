@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"အဆက်အသွယ်များ"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"အဆက်အသွယ်များ"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"အဆက်အသွယ်များ"</string>
     <string name="contactsList" msgid="8661624236494819731">"အဆက်အသွယ်များ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"အဆက်အသွယ်"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"တိုက်ရိုက်ခေါ်ဆိုခြင်း"</string>
@@ -24,6 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"လိပ်စာအတိုကောက် တစ်ခုရွေးပါ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ခေါ်ဆိုရန် နံပါတ်တစ်ခုရွေးပါ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"စာတိုပို့ရန် နံပါတ်တစ်ခုရွေးပါ"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"လိပ်စာသို့ထည့်ပါ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"လိပ်စာတစ်ခုရွေးပါ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"အဆက်အသွယ် အသစ် ဖန်တီးရန်"</string>
     <string name="starredList" msgid="4817256136413959463">"စတားပေးထားသော အရာ"</string>
@@ -134,7 +136,6 @@
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> လိပ်စာ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="use_photo_as_primary" msgid="8807110122951157246">"ဒီပုံကို သုံးရန်"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"ဤအပ်ပလီကေးရှင်းမှ ပြင်ခွင့်မရှိပါ"</string>
     <string name="group_read_only" msgid="1061762906115697637">"ဒီစက်ပေါ်မှာ ပြင်လို့ မရနိုင်ပါ"</string>
     <string name="take_photo" msgid="7496128293167402354">"ဓာတ်ပုံရိုက်ရန်"</string>
@@ -151,11 +152,14 @@
     <string name="menu_display_all" msgid="8887488642609786198">"အားလုံးကို ပြသရန်"</string>
     <string name="menu_select_all" msgid="621719255150713545">"အားလုံးရွေးရန်"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"အားလုံးရွေးထားမှု ဖျက်ပါ"</string>
-    <string name="add_field" msgid="2384260056674995230">"တစ်ခြားအချက်အလက် ထည့်မယ်"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"အသစ်ထည့်ရန်"</string>
     <string name="add_organization" msgid="7311893231158291197">"အဖွဲ့အစည်းထည့်ရန်"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"ရက်စွဲ"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"အုပ်စုနာမည်"</string>
+    <!-- no translation found for change_photo (8530597935483526383) -->
+    <skip />
+    <!-- no translation found for primary_photo (8517942231868516999) -->
+    <skip />
     <string name="description_star" msgid="2605854427360036550">"အနှစ်သက်ဆုံး"</string>
     <string name="edit_contact" msgid="7529281274005689512">"အဆက်အသွယ်အားပြင်ရန်"</string>
   <plurals name="merge_info">
@@ -247,6 +251,17 @@
     <string name="header_website_entry" msgid="1411467850000824745">"ဝက်ဘ်ဆိုက်"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"ဖြစ်ရပ်"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"တော်စပ်ပုံ"</string>
+    <string name="header_name_entry" msgid="1592791008096288306">"အမည်"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"အီးမေးလ်"</string>
+    <string name="header_phone_entry" msgid="8450980572274173570">"ဖုန်း"</string>
+    <string name="header_photo_entry" msgid="4438023151411853238">"ဓာတ်ပုံ"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"တည်နေရာများသို့ လမ်းညွှန်ချက်"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"မကြာမီက စာတို။ <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. တုံ့ပြန်ရန် ကလစ်ပါ"</string>
+    <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"အဝင်"</string>
+    <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"အထွက်"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"လွတ်သွား"</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"မကြာမီက ခေါ်ဆိုမှု။ <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ပြန်ခေါ်ရန် ကလစ်ပါ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"သင်: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <!-- no translation found for contact_editor_hangouts_im_alert (114855385615225735) -->
+    <skip />
 </resources>
