@@ -147,6 +147,7 @@ import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListen
 import com.android.contacts.widget.QuickContactImageView;
 import com.google.common.collect.Lists;
 
+import java.lang.SecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -368,6 +369,11 @@ public class QuickContactActivity extends ContactsActivity {
             mHasIntentLaunched = true;
             try {
                 startActivity(intent);
+            } catch (SecurityException ex) {
+                Toast.makeText(QuickContactActivity.this, R.string.missing_app,
+                        Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "QuickContacts does not have permission to launch "
+                        + intent);
             } catch (ActivityNotFoundException ex) {
                 Toast.makeText(QuickContactActivity.this, R.string.missing_app,
                         Toast.LENGTH_SHORT).show();
