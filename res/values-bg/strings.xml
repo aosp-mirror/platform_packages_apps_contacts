@@ -262,4 +262,6 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"пропуснато"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"Скорошно обаждане (<xliff:g id="CALL_TYPE">%s</xliff:g>) от <xliff:g id="PHONE_NUMBER">%s</xliff:g> на <xliff:g id="DATE">%s</xliff:g>. Кликнете за обратно обаждане"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Вие: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <!-- no translation found for contact_editor_hangouts_im_alert (114855385615225735) -->
+    <skip />
 </resources>
