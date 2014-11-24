@@ -61,8 +61,8 @@ public class ProfileAndContactsLoader extends CursorLoader {
         Cursor cursor = null;
         try {
             cursor = super.loadInBackground();
-        } catch (NullPointerException e) {
-            // Ignore NPEs thrown by providers
+        } catch (NullPointerException | SecurityException e) {
+            // Ignore NPEs and SecurityExceptions thrown by providers
         }
         final Cursor contactsCursor = cursor;
         cursors.add(contactsCursor);
