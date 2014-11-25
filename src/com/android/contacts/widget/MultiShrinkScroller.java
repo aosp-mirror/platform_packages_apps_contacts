@@ -76,14 +76,21 @@ public class MultiShrinkScroller extends FrameLayout {
     private static final int EXIT_FLING_ANIMATION_DURATION_MS = 300;
 
     /**
-     * Length of the entrance animation.
-     */
-    private static final int ENTRANCE_ANIMATION_SLIDE_OPEN_DURATION_MS = 250;
-
-    /**
      * In portrait mode, the height:width ratio of the photo's starting height.
      */
-    private static final float INTERMEDIATE_HEADER_HEIGHT_RATIO = 0.5f;
+    private static final float INTERMEDIATE_HEADER_HEIGHT_RATIO = 0.6f;
+
+    /**
+     * Color blending will only be performed on the contact photo once the toolbar is compressed
+     * to this ratio of its full height.
+     */
+    private static final float COLOR_BLENDING_START_RATIO = 0.5f;
+
+    /**
+     * When displaying a letter tile drawable, this alpha value should be used at the intermediate
+     * toolbar height.
+     */
+    private static final float DESIRED_INTERMEDIATE_LETTER_TILE_ALPHA = 0.8f;
 
     /**
      * Maximum velocity for flings in dips per second. Picked via non-rigorous experimentation.
@@ -166,14 +173,8 @@ public class MultiShrinkScroller extends FrameLayout {
 
     private final PathInterpolator mTextSizePathInterpolator
             = new PathInterpolator(0.16f, 0.4f, 0.2f, 1);
-    /**
-     * Interpolator that starts and ends with nearly straight segments. At x=0 it has a y of
-     * approximately 0.25. We only want the contact photo 25% faded when half collapsed.
-     */
-    private final PathInterpolator mWhiteBlendingPathInterpolator
-            = new PathInterpolator(1.0f, 0.4f, 0.9f, 0.8f);
 
-    private final int[] mGradientColors = new int[] {0,0xAA000000};
+    private final int[] mGradientColors = new int[] {0,0x88000000};
     private GradientDrawable mTitleGradientDrawable = new GradientDrawable(
             GradientDrawable.Orientation.TOP_BOTTOM, mGradientColors);
     private GradientDrawable mActionBarGradientDrawable = new GradientDrawable(
@@ -363,31 +364,23 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     private void configureGradientViewHeights() {
-        final float GRADIENT_SIZE_COEFFICIENT = 1.25f;
         final FrameLayout.LayoutParams actionBarGradientLayoutParams
                 = (FrameLayout.LayoutParams) mActionBarGradientView.getLayoutParams();
-        actionBarGradientLayoutParams.height
-                = (int) (mActionBarSize * GRADIENT_SIZE_COEFFICIENT);
+        actionBarGradientLayoutParams.height = mActionBarSize;
         mActionBarGradientView.setLayoutParams(actionBarGradientLayoutParams);
         final FrameLayout.LayoutParams titleGradientLayoutParams
                 = (FrameLayout.LayoutParams) mTitleGradientView.getLayoutParams();
+        final float TITLE_GRADIENT_SIZE_COEFFICIENT = 1.25f;
         final FrameLayout.LayoutParams largeTextLayoutParms
                 = (FrameLayout.LayoutParams) mLargeTextView.getLayoutParams();
         titleGradientLayoutParams.height = (int) ((mLargeTextView.getHeight()
-                + largeTextLayoutParms.bottomMargin) * GRADIENT_SIZE_COEFFICIENT);
+                + largeTextLayoutParms.bottomMargin) * TITLE_GRADIENT_SIZE_COEFFICIENT);
         mTitleGradientView.setLayoutParams(titleGradientLayoutParams);
     }
 
     public void setTitle(String title) {
         mLargeTextView.setText(title);
         mPhotoTouchInterceptOverlay.setContentDescription(title);
-    }
-
-    public void setUseGradient(boolean useGradient) {
-        if (mTitleGradientView != null) {
-            mTitleGradientView.setVisibility(useGradient ? View.VISIBLE : View.GONE);
-            mActionBarGradientView.setVisibility(useGradient ? View.VISIBLE : View.GONE);
-        }
     }
 
     @Override
@@ -1033,9 +1026,7 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     private void updatePhotoTintAndDropShadow() {
-        // Let's keep an eye on how long this method takes to complete. Right now, it takes ~0.2ms
-        // on a Nexus 5. If it starts to get much slower, there are a number of easy optimizations
-        // available.
+        // Let's keep an eye on how long this method takes to complete.
         Trace.beginSection("updatePhotoTintAndDropShadow");
 
         if (mIsTwoPanel && !mPhotoView.isBasedOffLetterTile()) {
@@ -1058,66 +1049,73 @@ public class MultiShrinkScroller extends FrameLayout {
 
         // Reuse an existing mColorFilter (to avoid GC pauses) to change the photo's tint.
         mPhotoView.clearColorFilter();
-
-        // Ratio of current size to maximum size of the header.
-        final float ratio;
-        // The value that "ratio" will have when the header is at its starting/intermediate size.
-        final float intermediateRatio = calculateHeightRatio((int)
-                (mMaximumPortraitHeaderHeight * INTERMEDIATE_HEADER_HEIGHT_RATIO));
-        if (!mIsTwoPanel) {
-            ratio = calculateHeightRatio(toolbarHeight);
-        } else {
-            // We want the ratio and intermediateRatio to have the *approximate* values
-            // they would have in portrait mode when at the intermediate position.
-            ratio = intermediateRatio;
-        }
-
-        final float linearBeforeMiddle = Math.max(1 - (1 - ratio) / intermediateRatio, 0);
-
-        // Want a function with a derivative of 0 at x=0. I don't want it to grow too
-        // slowly before x=0.5. x^1.1 satisfies both requirements.
-        final float EXPONENT_ALMOST_ONE = 1.1f;
-        final float semiLinearBeforeMiddle = (float) Math.pow(linearBeforeMiddle,
-                EXPONENT_ALMOST_ONE);
         mColorMatrix.reset();
-        mColorMatrix.setSaturation(semiLinearBeforeMiddle);
-        mColorMatrix.postConcat(alphaMatrix(
-                1 - mWhiteBlendingPathInterpolator.getInterpolation(1 - ratio), Color.WHITE));
 
-        final float colorAlpha;
-        if (mPhotoView.isBasedOffLetterTile()) {
-            // Since the letter tile only has white and grey, tint it more slowly. Otherwise
-            // it will be completely invisible before we reach the intermediate point. The values
-            // for TILE_EXPONENT and slowingFactor are chosen to achieve DESIRED_INTERMEDIATE_ALPHA
-            // at the intermediate/starting position.
-            final float DESIRED_INTERMEDIATE_ALPHA = 0.9f;
-            final float TILE_EXPONENT = 1.5f;
-            final float slowingFactor = (float) ((1 - intermediateRatio) / intermediateRatio
-                    / (1 - Math.pow(1 - DESIRED_INTERMEDIATE_ALPHA, 1/TILE_EXPONENT)));
-            float linearBeforeMiddleish = Math.max(1 - (1 - ratio) / intermediateRatio
-                    / slowingFactor, 0);
-            colorAlpha = 1 - (float) Math.pow(linearBeforeMiddleish, TILE_EXPONENT);
-            mColorMatrix.postConcat(alphaMatrix(colorAlpha, mHeaderTintColor));
+        final int gradientAlpha;
+        if (!mPhotoView.isBasedOffLetterTile()) {
+            // Constants and equations were arbitrarily picked to choose values for saturation,
+            // whiteness, tint and gradient alpha. There were four main objectives:
+            // 1) The transition period between the unmodified image and fully colored image should
+            //    be very short.
+            // 2) The tinting should be fully applied even before the background image is fully
+            //    faded out and desaturated. Why? A half tinted photo looks bad and results in
+            //    unappealing colors.
+            // 3) The function should have a derivative of 0 at ratio = 1 to avoid discontinuities.
+            // 4) The entire process should look awesome.
+            final float ratio = calculateHeightRatioToBlendingStartHeight(toolbarHeight);
+            final float alpha = 1.0f - (float) Math.min(Math.pow(ratio, 1.5f) * 2f, 1f);
+            final float tint = (float) Math.min(Math.pow(ratio, 1.5f) * 3f, 1f);
+            mColorMatrix.setSaturation(alpha);
+            mColorMatrix.postConcat(alphaMatrix(alpha, Color.WHITE));
+            mColorMatrix.postConcat(multiplyBlendMatrix(mHeaderTintColor, tint));
+            gradientAlpha = (int) (255 * alpha);
+        } else if (mIsTwoPanel) {
+            mColorMatrix.reset();
+            mColorMatrix.postConcat(alphaMatrix(DESIRED_INTERMEDIATE_LETTER_TILE_ALPHA,
+                    mHeaderTintColor));
+            gradientAlpha = 0;
         } else {
-            colorAlpha = 1 - semiLinearBeforeMiddle;
-            mColorMatrix.postConcat(multiplyBlendMatrix(mHeaderTintColor, colorAlpha));
+            // We want a function that has DESIRED_INTERMEDIATE_LETTER_TILE_ALPHA value
+            // at the intermediate position and uses TILE_EXPONENT. Finding an equation
+            // that satisfies this condition requires the following arithmetic.
+            final float ratio = calculateHeightRatioToFullyOpen(toolbarHeight);
+            final float intermediateRatio = calculateHeightRatioToFullyOpen((int)
+                    (mMaximumPortraitHeaderHeight * INTERMEDIATE_HEADER_HEIGHT_RATIO));
+            final float TILE_EXPONENT = 3f;
+            final float slowingFactor = (float) ((1 - intermediateRatio) / intermediateRatio
+                    / (1 - Math.pow(1 - DESIRED_INTERMEDIATE_LETTER_TILE_ALPHA, 1/TILE_EXPONENT)));
+            float linearBeforeIntermediate = Math.max(1 - (1 - ratio) / intermediateRatio
+                    / slowingFactor, 0);
+            float colorAlpha = 1 - (float) Math.pow(linearBeforeIntermediate, TILE_EXPONENT);
+            mColorMatrix.postConcat(alphaMatrix(colorAlpha, mHeaderTintColor));
+            gradientAlpha = 0;
         }
 
+        // TODO: remove re-allocation of ColorMatrixColorFilter objects (b/17627000)
         mPhotoView.setColorFilter(new ColorMatrixColorFilter(mColorMatrix));
+
         // Tell the photo view what tint we are trying to achieve. Depending on the type of
         // drawable used, the photo view may or may not use this tint.
         mPhotoView.setTint(mHeaderTintColor);
-
-        final int gradientAlpha = (int) (255 * linearBeforeMiddle);
         mTitleGradientDrawable.setAlpha(gradientAlpha);
         mActionBarGradientDrawable.setAlpha(gradientAlpha);
 
         Trace.endSection();
     }
 
-    private float calculateHeightRatio(int height) {
+    private float calculateHeightRatioToFullyOpen(int height) {
         return (height - mMinimumPortraitHeaderHeight)
                 / (float) (mMaximumPortraitHeaderHeight - mMinimumPortraitHeaderHeight);
+    }
+
+    private float calculateHeightRatioToBlendingStartHeight(int height) {
+        final float intermediateHeight = mMaximumPortraitHeaderHeight
+                * COLOR_BLENDING_START_RATIO;
+        final float interpolatingHeightRange = intermediateHeight - mMinimumPortraitHeaderHeight;
+        if (height > intermediateHeight) {
+            return 0;
+        }
+        return (intermediateHeight - height) / interpolatingHeightRange;
     }
 
     /**
