@@ -145,7 +145,6 @@ import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -790,7 +789,11 @@ public class QuickContactActivity extends ContactsActivity {
                 QuickContact.MODE_LARGE);
         final Uri oldLookupUri = mLookupUri;
 
-        mLookupUri = Preconditions.checkNotNull(lookupUri, "missing lookupUri");
+        if (lookupUri == null) {
+            finish();
+            return;
+        }
+        mLookupUri = lookupUri;
         mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
         if (oldLookupUri == null) {
             mContactLoader = (ContactLoader) getLoaderManager().initLoader(
