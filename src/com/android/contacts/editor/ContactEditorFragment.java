@@ -1428,7 +1428,7 @@ public class ContactEditorFragment extends Fragment implements
     public static interface Listener {
         /**
          * Contact was not found, so somehow close this fragment. This is raised after a contact
-         * is removed via Menu/Delete (unless it was a new contact)
+         * is removed via Menu/Delete
          */
         void onContactNotFound();
 
@@ -1785,7 +1785,7 @@ public class ContactEditorFragment extends Fragment implements
         outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
         outState.putParcelableArrayList(KEY_RAW_CONTACTS,
                 mRawContacts == null ?
-                Lists.<RawContact> newArrayList() :  Lists.newArrayList(mRawContacts));
+                Lists.<RawContact>newArrayList() : Lists.newArrayList(mRawContacts));
         outState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
         outState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
         outState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
@@ -1941,8 +1941,9 @@ public class ContactEditorFragment extends Fragment implements
             final long loaderCurrentTime = SystemClock.elapsedRealtime();
             Log.v(TAG, "Time needed for loading: " + (loaderCurrentTime-mLoaderStartTime));
             if (!data.isLoaded()) {
-                // Item has been deleted
+                // Item has been deleted. Close activity without saving again.
                 Log.i(TAG, "No contact found. Closing activity");
+                mStatus = Status.CLOSING;
                 if (mListener != null) mListener.onContactNotFound();
                 return;
             }
