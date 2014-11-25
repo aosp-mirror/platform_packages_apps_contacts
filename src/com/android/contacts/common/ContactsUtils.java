@@ -41,6 +41,8 @@ public class ContactsUtils {
     public static final String SCHEME_MAILTO = "mailto";
     public static final String SCHEME_SMSTO = "smsto";
 
+    private static final int DEFAULT_THUMBNAIL_SIZE = 96;
+
     private static int sThumbnailSize = -1;
 
     // TODO find a proper place for the canonical version of these
@@ -139,14 +141,17 @@ public class ContactsUtils {
             final Cursor c = context.getContentResolver().query(
                     DisplayPhoto.CONTENT_MAX_DIMENSIONS_URI,
                     new String[] { DisplayPhoto.THUMBNAIL_MAX_DIM }, null, null, null);
-            try {
-                c.moveToFirst();
-                sThumbnailSize = c.getInt(0);
-            } finally {
-                c.close();
+            if (c != null) {
+                try {
+                    if (c.moveToFirst()) {
+                        sThumbnailSize = c.getInt(0);
+                    }
+                } finally {
+                    c.close();
+                }
             }
         }
-        return sThumbnailSize;
+        return sThumbnailSize != -1 ? sThumbnailSize : DEFAULT_THUMBNAIL_SIZE;
     }
 
     private static Intent getCustomImIntent(ImDataItem im, int protocol) {
