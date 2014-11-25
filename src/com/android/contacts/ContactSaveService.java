@@ -817,6 +817,9 @@ public class ContactSaveService extends IntentService {
         // Undemote the contact if necessary
         final Cursor c = getContentResolver().query(contactUri, new String[] {Contacts._ID},
                 null, null, null);
+        if (c == null) {
+            return;
+        }
         try {
             if (c.moveToFirst()) {
                 final long id = c.getLong(0);
@@ -1005,6 +1008,11 @@ public class ContactSaveService extends IntentService {
                 JoinContactQuery.PROJECTION,
                 JoinContactQuery.SELECTION,
                 new String[]{String.valueOf(contactId1), String.valueOf(contactId2)}, null);
+        if (c == null) {
+            Log.e(TAG, "Unable to open Contacts DB cursor");
+            showToast(R.string.contactSavedErrorToast);
+            return;
+        }
 
         long rawContactIds[];
         long verifiedNameRawContactId = -1;
