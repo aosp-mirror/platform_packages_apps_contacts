@@ -95,31 +95,15 @@ public class ContactEditorActivity extends ContactsActivity
 
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            // Inflate a custom action bar that contains the "done" button for saving changes
-            // to the contact
-            LayoutInflater inflater = (LayoutInflater) getSystemService
-                    (Context.LAYOUT_INFLATER_SERVICE);
-            View customActionBarView = inflater.inflate(R.layout.editor_custom_action_bar, null);
-            View saveMenuItem = customActionBarView.findViewById(R.id.save_menu_item);
-            saveMenuItem.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mFragment.doSaveAction();
-                }
-            });
-            TextView title = (TextView) customActionBarView.findViewById(R.id.title);
             if (Intent.ACTION_EDIT.equals(action)) {
-                title.setText(getResources().getString(
+                actionBar.setTitle(getResources().getString(
                         R.string.contact_editor_title_existing_contact));
             } else {
-                title.setText(getResources().getString(
+                actionBar.setTitle(getResources().getString(
                         R.string.contact_editor_title_new_contact));
             }
-            // Show the custom action bar but hide the home icon and title
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
-                    ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME |
-                    ActionBar.DISPLAY_SHOW_TITLE);
-            actionBar.setCustomView(customActionBarView);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         mFragment = (ContactEditorFragment) getFragmentManager().findFragmentById(
