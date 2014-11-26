@@ -22,10 +22,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Data;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
@@ -33,6 +36,7 @@ import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
 /**
  * Base view that provides common code for the editor interaction for a specific
@@ -47,10 +51,18 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
     private PhotoEditorView mPhoto;
 
-    private View mBody;
-    private View mDivider;
+    private View mAccountHeaderContainer;
+    private ImageView mExpandAccountButton;
+    private LinearLayout mCollapsibleSection;
+    private TextView mAccountName;
+    private TextView mAccountType;
 
-    private boolean mExpanded = true;
+    protected Listener mListener;
+
+    public interface Listener {
+        void onExternalEditorRequest(AccountWithDataSet account, Uri uri);
+        void onEditorExpansionChanged();
+    }
 
     public BaseRawContactEditorView(Context context) {
         super(context);
@@ -64,14 +76,25 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mBody = findViewById(R.id.body);
-        mDivider = findViewById(R.id.divider);
-
         mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
         mPhoto.setEnabled(isEnabled());
+
+        mAccountHeaderContainer = findViewById(R.id.account_header_container);
+        mExpandAccountButton = (ImageView) findViewById(R.id.expand_account_button);
+        mCollapsibleSection = (LinearLayout) findViewById(R.id.collapsable_section);
+        mAccountName = (TextView) findViewById(R.id.account_name);
+        mAccountType = (TextView) findViewById(R.id.account_type);
+
+        setCollapsed(false);
+        setCollapsible(true);
     }
 
     public void setGroupMetaData(Cursor groupMetaData) {
+    }
+
+
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
 
     /**
@@ -111,25 +134,80 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
     public abstract long getRawContactId();
 
     /**
+     * If {@param isCollapsible} is TRUE, then this editor can be collapsed by clicking on its
+     * account header.
+     */
+    public void setCollapsible(boolean isCollapsible) {
+        if (isCollapsible) {
+            mAccountHeaderContainer.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final int startingHeight = mCollapsibleSection.getMeasuredHeight();
+                    final boolean isCollapsed = isCollapsed();
+                    setCollapsed(!isCollapsed);
+                    // The slideAndFadeIn animation only looks good when collapsing. For expanding,
+                    // it looks like the editor is loading sluggishly. I tried animating the
+                    // clipping bounds instead of the alpha value. But because the editors are very
+                    // tall, this animation looked very similar to doing no animation at all. It
+                    // wasn't worth the significant additional complexity.
+                    if (!isCollapsed) {
+                        EditorAnimator.getInstance().slideAndFadeIn(mCollapsibleSection,
+                                startingHeight);
+                    }
+                    if (mListener != null) {
+                        mListener.onEditorExpansionChanged();
+                    }
+                    updateAccountHeaderContentDescription();
+                }
+            });
+            mExpandAccountButton.setVisibility(View.VISIBLE);
+            mAccountHeaderContainer.setClickable(true);
+        } else {
+            mAccountHeaderContainer.setOnClickListener(null);
+            mExpandAccountButton.setVisibility(View.GONE);
+            mAccountHeaderContainer.setClickable(false);
+        }
+    }
+
+    public boolean isCollapsed() {
+        return mCollapsibleSection.getLayoutParams().height == 0;
+    }
+
+    public void setCollapsed(boolean isCollapsed) {
+        final LinearLayout.LayoutParams params
+                = (LayoutParams) mCollapsibleSection.getLayoutParams();
+        if (isCollapsed) {
+            params.height = 0;
+            mCollapsibleSection.setLayoutParams(params);
+            mExpandAccountButton.setImageResource(R.drawable.ic_menu_expander_minimized_holo_light);
+        } else {
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            mCollapsibleSection.setLayoutParams(params);
+            mExpandAccountButton.setImageResource(R.drawable.ic_menu_expander_maximized_holo_light);
+        }
+    }
+
+    protected void updateAccountHeaderContentDescription() {
+        final StringBuilder builder = new StringBuilder();
+        if (!TextUtils.isEmpty(mAccountType.getText())) {
+            builder.append(mAccountType.getText()).append('\n');
+        }
+        if (!TextUtils.isEmpty(mAccountName.getText())) {
+            builder.append(mAccountName.getText()).append('\n');
+        }
+        if (mExpandAccountButton.getVisibility() == View.VISIBLE) {
+            builder.append(getResources().getString(isCollapsed()
+                    ? R.string.content_description_expand_editor
+                    : R.string.content_description_collapse_editor));
+        }
+        mAccountHeaderContainer.setContentDescription(builder);
+    }
+
+    /**
      * Set the internal state for this view, given a current
      * {@link RawContactDelta} state and the {@link AccountType} that
      * apply to that state.
      */
     public abstract void setState(RawContactDelta state, AccountType source, ViewIdGenerator vig,
             boolean isProfile);
-
-    /* package */ void setExpanded(boolean value) {
-        // only allow collapsing if we are one of several children
-        final boolean newValue;
-        if (getParent() instanceof ViewGroup && ((ViewGroup) getParent()).getChildCount() == 1) {
-            newValue = true;
-        } else {
-            newValue = value;
-        }
-
-        if (newValue == mExpanded) return;
-        mExpanded = newValue;
-        mBody.setVisibility(newValue ? View.VISIBLE : View.GONE);
-        mDivider.setVisibility(newValue ? View.GONE : View.VISIBLE);
-    }
 }

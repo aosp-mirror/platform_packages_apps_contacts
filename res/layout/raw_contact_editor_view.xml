@@ -19,39 +19,51 @@
     android:id="@+id/body"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/editor_padding_top" >
+    android:orientation="vertical" >
 
+    <!-- There are two mutually exclusive account headers that look significantly different.
+        The editor_account_selector is used when an account needs to be chosen. -->
     <include
-        layout="@layout/editor_account_header_with_dropdown" />
-
-    <Space
-        android:layout_height="8dip"
-        android:layout_width="match_parent" />
-
+        layout="@layout/editor_account_header_expandable" />
     <include
-        android:id="@+id/edit_name"
-        layout="@layout/structured_name_editor_view" />
-
-    <include
-        android:id="@+id/edit_phonetic_name"
-        layout="@layout/phonetic_name_editor_view" />
-
-    <include
-        android:id="@+id/edit_nick_name"
-        layout="@layout/item_kind_section" />
-
-    <include
-        android:id="@+id/edit_photo"
-        android:layout_marginRight="8dip"
-        android:layout_marginEnd="8dip"
-        layout="@layout/item_photo_editor" />
+        layout="@layout/editor_account_selector" />
 
     <LinearLayout
-        android:id="@+id/sect_fields"
+        android:id="@+id/collapsable_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="16dip"/>
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/edit_name"
+            layout="@layout/structured_name_editor_view" />
+
+        <include
+            android:id="@+id/edit_phonetic_name"
+            layout="@layout/phonetic_name_editor_view" />
+
+        <include
+            android:id="@+id/edit_nick_name"
+            layout="@layout/item_kind_section" />
+
+        <include
+            android:id="@+id/edit_photo"
+            android:layout_marginRight="8dip"
+            android:layout_marginEnd="8dip"
+            layout="@layout/item_photo_editor" />
+
+        <LinearLayout
+            android:id="@+id/sect_fields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dip"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_line_height"
+        android:background="@color/divider_line_color_light" />
 
 </com.android.contacts.editor.RawContactEditorView>

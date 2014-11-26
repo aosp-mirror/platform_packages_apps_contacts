@@ -705,6 +705,8 @@
     <string name="header_event_entry">Event</string>
     <!-- Header for the Relation entry [CHAR LIMIT=40] -->
     <string name="header_relation_entry">Relation</string>
+    <!-- Content description for the account field header image. Example accounts listed in this field: Google, Hotmail and Exchange. [CHAR LIMIT=NONE] -->
+    <string name="header_account_entry">Account</string>
     <!-- Content description for the name fields header entry [CHAR LIMIT=NONE] -->
     <string name="header_name_entry">Name</string>
     <!-- Content description for the email fields header entry [CHAR LIMIT=NONE] -->
@@ -713,6 +715,11 @@
     <string name="header_phone_entry">Phone</string>
     <!-- Content description for the camera icon beside the photo section in the Raw Contact Editor [CHAR LIMIT=NONE] -->
     <string name="header_photo_entry">Photo</string>
+
+    <!-- Content description for the expand button inside the raw contact editor's header. [CHAR LIMIT=NONE] -->
+    <string name="content_description_expand_editor">Click to expand contact editor.</string>
+    <!-- Content description for the collapse button inside the raw contact editor's header. [CHAR LIMIT=NONE] -->
+    <string name="content_description_collapse_editor">Click to collapse contact editor.</string>
 
     <!-- Content description for directions secondary button [CHAR LIMIT=NONE] -->
     <string name="content_description_directions">directions to location</string>

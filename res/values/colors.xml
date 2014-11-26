@@ -37,8 +37,8 @@
 
     <color name="floating_action_button_icon_color">@color/contacts_accent_color</color>
 
-    <!-- Color of the separator between entries in an ExpandingEntryCardView -->
-    <color name="expanding_entry_card_item_separator_color">#e4e4e4</color>
+    <!-- Horizontal separator line should be 12% dark in the light theme. -->
+    <color name="divider_line_color_light">#e0e0e0</color>
 
     <!-- Color of the text on an ExpandingEntryCard button -->
     <color name="expanding_entry_card_button_text_color">@android:color/black</color>
