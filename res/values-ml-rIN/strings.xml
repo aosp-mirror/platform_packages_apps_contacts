@@ -156,10 +156,8 @@
     <string name="add_organization" msgid="7311893231158291197">"ഓർഗനൈസേഷൻ ചേർക്കുക"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"തീയതി"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"ഗ്രൂപ്പിന്റെ പേര്"</string>
-    <!-- no translation found for change_photo (8530597935483526383) -->
-    <skip />
-    <!-- no translation found for primary_photo (8517942231868516999) -->
-    <skip />
+    <string name="change_photo" msgid="8530597935483526383">"മാറ്റുക"</string>
+    <string name="primary_photo" msgid="8517942231868516999">"പ്രാഥമിക ഫോട്ടോ"</string>
     <string name="description_star" msgid="2605854427360036550">"പ്രിയപ്പെട്ടതാക്കുക"</string>
     <string name="edit_contact" msgid="7529281274005689512">"കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുക"</string>
   <plurals name="merge_info">
