@@ -260,6 +260,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"छुटेको"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"हालैको कल। <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. कल फिर्ता गर्न क्लिक गर्नुहोस्"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"तपाईँ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <!-- no translation found for contact_editor_hangouts_im_alert (114855385615225735) -->
-    <skip />
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"तपाईंले इमेल क्षेत्र वा फोन क्षेत्रमा व्यक्तिको Hangouts परिचायक प्रविष्ट गर्नु हुँदा Hangouts राम्रो काम गर्दछ।"</string>
 </resources>
