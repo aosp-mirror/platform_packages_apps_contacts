@@ -231,7 +231,7 @@ public class ImportExportDialogFragment extends DialogFragment
      *
      * @return {@code true} if the dialog show be closed.  {@code false} otherwise.
      */
-    private boolean handleImportRequest(int resId, long subscriptionId) {
+    private boolean handleImportRequest(int resId, int subscriptionId) {
         // There are three possibilities:
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
@@ -243,7 +243,7 @@ public class ImportExportDialogFragment extends DialogFragment
             // Send over to the account selector
             final Bundle args = new Bundle();
             args.putInt(KEY_RES_ID, resId);
-            args.putLong(KEY_SUBSCRIPTION_ID, subscriptionId);
+            args.putInt(KEY_SUBSCRIPTION_ID, subscriptionId);
             SelectAccountDialogFragment.show(
                     getFragmentManager(), this,
                     R.string.dialog_new_contact_account,
@@ -266,7 +266,7 @@ public class ImportExportDialogFragment extends DialogFragment
     @Override
     public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
         AccountSelectionUtil.doImport(getActivity(), extraArgs.getInt(KEY_RES_ID),
-                account, extraArgs.getLong(KEY_SUBSCRIPTION_ID));
+                account, extraArgs.getInt(KEY_SUBSCRIPTION_ID));
 
         // At this point the dialog is still showing (which is why we can use getActivity() above)
         // So close it.
