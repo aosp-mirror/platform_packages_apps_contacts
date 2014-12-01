@@ -157,7 +157,7 @@
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Ամսաթիվը"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Խմբի անունը"</string>
     <string name="change_photo" msgid="8530597935483526383">"Փոխել"</string>
-    <string name="primary_photo" msgid="8517942231868516999">"Առաջնային լուսանկար"</string>
+    <string name="primary_photo" msgid="8517942231868516999">"Հիմնական լուսանկար"</string>
     <string name="description_star" msgid="2605854427360036550">"ընտրյալ"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Խմբագրել կոնտակտը"</string>
   <plurals name="merge_info">
@@ -260,5 +260,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"բաց թողնված"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"վերջին զանգը՝ <xliff:g id="CALL_TYPE">%s</xliff:g>, <xliff:g id="PHONE_NUMBER">%s</xliff:g>, <xliff:g id="DATE">%s</xliff:g>, սեղմեք՝ հետ զանգելու համար"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Դուք՝ <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts-ն ավելի լավ կաշխատի, եթե մուտքագրեք անձի Hangouts նույնացուցիչը էլփոստի կամ հեռախոսի դաշտում:"</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts-ն ավելի լավ կաշխատի, եթե էլփոստի կամ հեռախոսի դաշտում մուտքագրեք Hangouts-ի օգտվողի նույնացուցիչը:"</string>
 </resources>

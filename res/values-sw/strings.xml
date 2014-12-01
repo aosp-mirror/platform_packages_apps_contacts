@@ -260,6 +260,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ulizokosa kupokea"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"simu ya hivi karibuni. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. bofya ili upige simu"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Wewe: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <!-- no translation found for contact_editor_hangouts_im_alert (114855385615225735) -->
-    <skip />
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangout hufanya kazi vizuri zaidi unapoweka nambari ya mtu ya utambulisho wa Hangout katika sehemu ya anwani ya barua pepe au sehemu ya nambari ya simu."</string>
 </resources>
