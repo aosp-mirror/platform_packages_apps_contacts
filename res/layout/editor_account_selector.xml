@@ -14,19 +14,24 @@
      limitations under the License.
 -->
 
+<!-- Header at the top of a raw contact editor. This allows users to change the account that
+    the raw contact is saved in. -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/account_container"
+    android:id="@+id/account_selector_container"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:minHeight="48dip"
-    android:background="#EEEEEE"
+    android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
     android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:paddingLeft="@dimen/account_container_left_padding"
-    android:paddingRight="28dip"
-    android:paddingStart="@dimen/account_container_left_padding"
-    android:paddingEnd="28dip">
+    android:paddingTop="16dp"
+    android:visibility="gone" >
+
+    <ImageView
+        android:id="@+id/kind_icon"
+        android:src="@drawable/ic_account_circle_black_24dp"
+        android:contentDescription="@string/header_account_entry"
+        style="@style/EditKindIconStyle" />
 
     <LinearLayout
         android:id="@+id/account"
@@ -34,42 +39,29 @@
         android:layout_width="0dip"
         android:layout_weight="1"
         android:orientation="vertical"
-        style="?android:attr/spinnerStyle">
+        android:layout_marginEnd="48dp"
+        style="@android:style/Widget.Material.Spinner.Underlined">
 
         <TextView
-            android:id="@+id/account_type"
+            android:id="@+id/account_type_selector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="16sp"
             android:singleLine="true"
             android:textColor="@color/primary_text_color"
             android:ellipsize="end" />
 
         <TextView
-             android:id="@+id/account_name"
+             android:id="@+id/account_name_selector"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:paddingRight="8dip"
              android:paddingEnd="8dip"
-             android:textAppearance="?android:attr/textAppearanceSmall"
+             android:textSize="14sp"
              android:singleLine="true"
-             android:textColor="@color/primary_text_color"
+             android:textColor="@color/secondary_text_color"
              android:ellipsize="end" />
 
     </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dip"
-        android:layout_marginStart="10dip">
-
-        <ImageView
-             android:id="@+id/account_icon"
-             android:layout_width="32dip"
-             android:layout_height="32dip"
-             android:layout_gravity="center_vertical" />
-
-    </FrameLayout>
 
 </LinearLayout>

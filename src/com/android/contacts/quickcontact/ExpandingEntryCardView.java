@@ -421,10 +421,10 @@ public class ExpandingEntryCardView extends CardView {
         Resources res = getResources();
 
         separator.setBackgroundColor(res.getColor(
-                R.color.expanding_entry_card_item_separator_color));
+                R.color.divider_line_color_light));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                res.getDimensionPixelSize(R.dimen.expanding_entry_card_item_separator_height));
+                res.getDimensionPixelSize(R.dimen.divider_line_height));
         // The separator is aligned with the text in the entry. This is offset by a default
         // margin. If there is an icon present, the icon's width and margin are added
         int marginStart = res.getDimensionPixelSize(

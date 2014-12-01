@@ -99,6 +99,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public class ContactEditorFragment extends Fragment implements
@@ -134,6 +135,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
     private static final String KEY_CUSTOM_RINGTONE = "customRingtone";
     private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
+    private static final String KEY_EXPANDED_EDITORS = "expandedEditors";
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
@@ -275,6 +277,9 @@ public class ContactEditorFragment extends Fragment implements
 
     // Used to temporarily store existing contact data during a rebind call (i.e. account switch)
     private ImmutableList<RawContact> mRawContacts;
+
+    // Used to store which raw contact editors have been expanded. Keyed on raw contact ids.
+    private HashMap<Long, Boolean> mExpandedEditors = new HashMap<Long, Boolean>();
 
     private AggregationSuggestionEngine mAggregationSuggestionEngine;
     private long mAggregationSuggestionsRawContactId;
@@ -522,6 +527,8 @@ public class ContactEditorFragment extends Fragment implements
             mSendToVoicemailState = savedState.getBoolean(KEY_SEND_TO_VOICE_MAIL_STATE);
             mCustomRingtone =  savedState.getString(KEY_CUSTOM_RINGTONE);
             mArePhoneOptionsChangable =  savedState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
+            mExpandedEditors = (HashMap<Long, Boolean>)
+                    savedState.getSerializable(KEY_EXPANDED_EDITORS);
         }
 
         // mState can still be null because it may not have have finished loading before
@@ -582,6 +589,11 @@ public class ContactEditorFragment extends Fragment implements
     @Override
     public void onExternalEditorRequest(AccountWithDataSet account, Uri uri) {
         mListener.onCustomEditContactActivityRequested(account, uri, null, false);
+    }
+
+    @Override
+    public void onEditorExpansionChanged() {
+        updatedExpandedEditorsMap();
     }
 
     private void bindEditorsForExistingContact(String displayName, boolean isUserProfile,
@@ -835,28 +847,30 @@ public class ContactEditorFragment extends Fragment implements
             if (!type.areContactsWritable()) {
                 editor = (BaseRawContactEditorView) inflater.inflate(
                         R.layout.raw_contact_readonly_editor_view, mContent, false);
-                ((RawContactReadOnlyEditorView) editor).setListener(this);
             } else {
                 editor = (RawContactEditorView) inflater.inflate(R.layout.raw_contact_editor_view,
                         mContent, false);
             }
-            if (mHasNewContact && !mNewLocalProfile) {
-                final List<AccountWithDataSet> accounts =
-                        AccountTypeManager.getInstance(mContext).getAccounts(true);
-                if (accounts.size() > 1) {
-                    addAccountSwitcher(mState.get(0), editor);
-                } else {
-                    disableAccountSwitcher(editor);
-                }
-            } else {
-                disableAccountSwitcher(editor);
+            editor.setListener(this);
+            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(mContext)
+                    .getAccounts(true);
+            if (mHasNewContact && !mNewLocalProfile && accounts.size() > 1) {
+                addAccountSwitcher(mState.get(0), editor);
             }
 
             editor.setEnabled(mEnabled);
 
+            if (mExpandedEditors.containsKey(rawContactId)) {
+                editor.setCollapsed(mExpandedEditors.get(rawContactId));
+            } else {
+                // By default, only the first editor will be expanded.
+                editor.setCollapsed(i != 0);
+            }
+
             mContent.addView(editor);
 
             editor.setState(rawContactDelta, type, mViewIdGenerator, isEditingUserProfile());
+            editor.setCollapsible(numRawContacts > 1);
 
             // Set up the photo handler.
             bindPhotoHandler(editor, type, mState);
@@ -918,6 +932,21 @@ public class ContactEditorFragment extends Fragment implements
         // Activity can be null if we have been detached from the Activity
         final Activity activity = getActivity();
         if (activity != null) activity.invalidateOptionsMenu();
+
+        updatedExpandedEditorsMap();
+    }
+
+    /**
+     * Update the values in {@link #mExpandedEditors}.
+     */
+    private void updatedExpandedEditorsMap() {
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            final View childView = mContent.getChildAt(i);
+            if (childView instanceof BaseRawContactEditorView) {
+                BaseRawContactEditorView childEditor = (BaseRawContactEditorView) childView;
+                mExpandedEditors.put(childEditor.getRawContactId(), childEditor.isCollapsed());
+            }
+        }
     }
 
     /**
@@ -1002,7 +1031,11 @@ public class ContactEditorFragment extends Fragment implements
                 currentState.getAccountType(),
                 currentState.getDataSet());
         final View accountView = editor.findViewById(R.id.account);
-        final View anchorView = editor.findViewById(R.id.account_container);
+        final View anchorView = editor.findViewById(R.id.account_selector_container);
+        if (accountView == null) {
+            return;
+        }
+        anchorView.setVisibility(View.VISIBLE);
         accountView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1029,14 +1062,6 @@ public class ContactEditorFragment extends Fragment implements
                 popup.show();
             }
         });
-    }
-
-    private void disableAccountSwitcher(BaseRawContactEditorView editor) {
-        // Remove the pressed state from the account header because the user cannot switch accounts
-        // on an existing contact
-        final View accountView = editor.findViewById(R.id.account);
-        accountView.setBackground(null);
-        accountView.setEnabled(false);
     }
 
     @Override
@@ -1789,6 +1814,7 @@ public class ContactEditorFragment extends Fragment implements
         outState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
         outState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
         outState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
+        outState.putSerializable(KEY_EXPANDED_EDITORS, mExpandedEditors);
 
         super.onSaveInstanceState(outState);
     }
