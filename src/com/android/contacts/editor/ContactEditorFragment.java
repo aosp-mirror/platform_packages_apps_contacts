@@ -1058,7 +1058,7 @@ public class ContactEditorFragment extends Fragment implements
         final MenuItem ringToneMenu = menu.findItem(R.id.menu_set_ringtone);
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
         deleteMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        deleteMenu.setIcon(R.drawable.ic_trash_white_24);
+        deleteMenu.setIcon(R.drawable.ic_delete_white_24dp);
 
         // Set visibility of menus
         doneMenu.setVisible(false);
