@@ -144,9 +144,12 @@ public class CustomContactListFilterActivity extends Activity
                 if (account.dataSet != null) {
                     groupsUri.appendQueryParameter(Groups.DATA_SET, account.dataSet).build();
                 }
+                final Cursor cursor = resolver.query(groupsUri.build(), null, null, null, null);
+                if (cursor == null) {
+                    continue;
+                }
                 android.content.EntityIterator iterator =
-                        ContactsContract.Groups.newEntityIterator(resolver.query(
-                        groupsUri.build(), null, null, null, null));
+                        ContactsContract.Groups.newEntityIterator(cursor);
                 try {
                     boolean hasGroups = false;
 
