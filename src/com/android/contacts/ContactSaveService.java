@@ -514,6 +514,9 @@ public class ContactSaveService extends IntentService {
     private long getInsertedRawContactId(
             final ArrayList<ContentProviderOperation> diff,
             final ContentProviderResult[] results) {
+        if (results == null) {
+            return -1;
+        }
         final int diffSize = diff.size();
         final int numResults = results.length;
         for (int i = 0; i < diffSize && i < numResults; i++) {
