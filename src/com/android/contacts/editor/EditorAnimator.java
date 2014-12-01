@@ -91,7 +91,6 @@ public class EditorAnimator {
         mRunner.endOldAnimation();
         target.setVisibility(View.VISIBLE);
         target.setAlpha(0.0f);
-        target.requestFocus();
         SchedulingUtils.doAfterLayout(target, new Runnable() {
             @Override
             public void run() {

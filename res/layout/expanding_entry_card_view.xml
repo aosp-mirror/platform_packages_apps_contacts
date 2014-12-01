@@ -33,8 +33,8 @@
     <View
         android:id="@+id/title_separator"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/expanding_entry_card_item_separator_height"
-        android:background="@color/expanding_entry_card_item_separator_color"
+        android:layout_height="@dimen/divider_line_height"
+        android:background="@color/divider_line_color_light"
         android:visibility="gone" />
 
     <LinearLayout
