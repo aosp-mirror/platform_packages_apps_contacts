@@ -260,6 +260,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"未接來電"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"最近通話 (<xliff:g id="CALL_TYPE">%s</xliff:g>、<xliff:g id="PHONE_NUMBER">%s</xliff:g>、<xliff:g id="DATE">%s</xliff:g>)。按一下即可回電"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <!-- no translation found for contact_editor_hangouts_im_alert (114855385615225735) -->
-    <skip />
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"當您在電郵欄或手機欄中輸入個人的 Hangouts 識別碼時，Hangouts 會提供更卓越的服務。"</string>
 </resources>

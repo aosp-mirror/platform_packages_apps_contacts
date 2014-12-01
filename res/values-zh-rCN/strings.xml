@@ -260,6 +260,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"未接电话"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"近期通话：<xliff:g id="CALL_TYPE">%s</xliff:g>，<xliff:g id="PHONE_NUMBER">%s</xliff:g>，<xliff:g id="DATE">%s</xliff:g>。点按可回拨。"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <!-- no translation found for contact_editor_hangouts_im_alert (114855385615225735) -->
-    <skip />
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"请将联系人的环聊帐户信息输入到电子邮件地址字段或电话号码字段，以便获得更佳的环聊使用体验。"</string>
 </resources>
