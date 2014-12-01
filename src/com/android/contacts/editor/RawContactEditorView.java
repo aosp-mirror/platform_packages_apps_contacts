@@ -31,7 +31,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.contacts.GroupMetaDataLoader;
@@ -42,6 +41,7 @@ import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.RawContactModifier;
+
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;
@@ -69,9 +69,13 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     private ViewGroup mFields;
 
-    private ImageView mAccountIcon;
-    private TextView mAccountTypeTextView;
-    private TextView mAccountNameTextView;
+    private View mAccountSelector;
+    private TextView mAccountSelectorTypeTextView;
+    private TextView mAccountSelectorNameTextView;
+
+    private View mAccountHeader;
+    private TextView mAccountHeaderTypeTextView;
+    private TextView mAccountHeaderNameTextView;
 
     private long mRawContactId = -1;
     private boolean mAutoAddToDefaultGroup = true;
@@ -132,9 +136,13 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
-        mAccountIcon = (ImageView) findViewById(R.id.account_icon);
-        mAccountTypeTextView = (TextView) findViewById(R.id.account_type);
-        mAccountNameTextView = (TextView) findViewById(R.id.account_name);
+        mAccountHeader = findViewById(R.id.account_header_container);
+        mAccountHeaderTypeTextView = (TextView) findViewById(R.id.account_type);
+        mAccountHeaderNameTextView = (TextView) findViewById(R.id.account_name);
+
+        mAccountSelector = findViewById(R.id.account_selector_container);
+        mAccountSelectorTypeTextView = (TextView) findViewById(R.id.account_type_selector);
+        mAccountSelectorNameTextView = (TextView) findViewById(R.id.account_name_selector);
     }
 
     @Override
@@ -183,13 +191,13 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         if (isProfile) {
             String accountName = state.getAccountName();
             if (TextUtils.isEmpty(accountName)) {
-                mAccountNameTextView.setVisibility(View.GONE);
-                mAccountTypeTextView.setText(R.string.local_profile_title);
+                mAccountHeaderNameTextView.setVisibility(View.GONE);
+                mAccountHeaderTypeTextView.setText(R.string.local_profile_title);
             } else {
                 CharSequence accountType = type.getDisplayLabel(mContext);
-                mAccountTypeTextView.setText(mContext.getString(R.string.external_profile_title,
+                mAccountHeaderTypeTextView.setText(mContext.getString(R.string.external_profile_title,
                         accountType));
-                mAccountNameTextView.setText(accountName);
+                mAccountHeaderNameTextView.setText(accountName);
             }
         } else {
             String accountName = state.getAccountName();
@@ -198,17 +206,27 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 accountType = mContext.getString(R.string.account_phone);
             }
             if (!TextUtils.isEmpty(accountName)) {
-                mAccountNameTextView.setVisibility(View.VISIBLE);
-                mAccountNameTextView.setText(
+                mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
+                mAccountHeaderNameTextView.setText(
                         mContext.getString(R.string.from_account_format, accountName));
             } else {
                 // Hide this view so the other text view will be centered vertically
-                mAccountNameTextView.setVisibility(View.GONE);
+                mAccountHeaderNameTextView.setVisibility(View.GONE);
             }
-            mAccountTypeTextView.setText(
+            mAccountHeaderTypeTextView.setText(
                     mContext.getString(R.string.account_type_format, accountType));
         }
-        mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
+        updateAccountHeaderContentDescription();
+
+        // The account selector and header are both used to display the same information.
+        mAccountSelectorTypeTextView.setText(mAccountHeaderTypeTextView.getText());
+        mAccountSelectorTypeTextView.setVisibility(mAccountHeaderTypeTextView.getVisibility());
+        mAccountSelectorNameTextView.setText(mAccountHeaderNameTextView.getText());
+        mAccountSelectorNameTextView.setVisibility(mAccountHeaderNameTextView.getVisibility());
+        // Showing the account header at the same time as the account selector drop down is
+        // confusing. They should be mutually exclusive.
+        mAccountHeader.setVisibility(mAccountSelector.getVisibility() == View.GONE
+                ? View.VISIBLE : View.GONE);
 
         // Show photo editor when supported
         RawContactModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);

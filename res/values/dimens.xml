@@ -25,9 +25,6 @@
     <!-- The ratio of width:height for the contact's photo in landscape -->
     <item name="quickcontact_landscape_photo_ratio" type="dimen" format="float">0.7</item>
 
-    <!-- Top padding of the entire contact editor  -->
-    <dimen name="editor_padding_top">0dip</dimen>
-
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
     <dimen name="editor_round_button_padding_left">16dip</dimen>
     <dimen name="editor_round_button_padding_right">16dip</dimen>
@@ -174,8 +171,9 @@
     <!-- Extra top padding if the title is set to null -->
     <dimen name="expanding_entry_card_null_title_top_extra_padding">2dp</dimen>
 
-    <!-- Height of the separator between entries in an ExpandingEntryCardView -->
-    <dimen name="expanding_entry_card_item_separator_height">1dp</dimen>
+    <!-- Height of the separator between entries in an ExpandingEntryCardView and contact editor. -->
+    <dimen name="divider_line_height">1dp</dimen>
+
     <!-- Dimensions for an entry in ExpandingEntryCardView -->
     <dimen name="expanding_entry_card_item_padding_start">20dp</dimen>
     <dimen name="expanding_entry_card_item_padding_end">20dp</dimen>
