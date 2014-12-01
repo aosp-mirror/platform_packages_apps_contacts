@@ -20,6 +20,8 @@ import com.android.contacts.common.R;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.Trace;
 
 public class MaterialColorMapUtils {
@@ -33,7 +35,7 @@ public class MaterialColorMapUtils {
                 com.android.contacts.common.R.array.letter_tile_colors_dark);
     }
 
-    public static class MaterialPalette {
+    public static class MaterialPalette implements Parcelable {
         public MaterialPalette(int primaryColor, int secondaryColor) {
             mPrimaryColor = primaryColor;
             mSecondaryColor = secondaryColor;
@@ -70,6 +72,34 @@ public class MaterialColorMapUtils {
             result = prime * result + mSecondaryColor;
             return result;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(mPrimaryColor);
+            dest.writeInt(mSecondaryColor);
+        }
+
+        private MaterialPalette(Parcel in) {
+            mPrimaryColor = in.readInt();
+            mSecondaryColor = in.readInt();
+        }
+
+        public static final Creator<MaterialPalette> CREATOR = new Creator<MaterialPalette>() {
+                @Override
+                public MaterialPalette createFromParcel(Parcel in) {
+                    return new MaterialPalette(in);
+                }
+
+                @Override
+                public MaterialPalette[] newArray(int size) {
+                    return new MaterialPalette[size];
+                }
+        };
     }
 
     /**
