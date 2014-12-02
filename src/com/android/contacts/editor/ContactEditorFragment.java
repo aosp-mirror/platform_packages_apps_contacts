@@ -1125,6 +1125,7 @@ public class ContactEditorFragment extends Fragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
             case R.id.menu_done:
                 return save(SaveMode.CLOSE);
             case R.id.menu_discard:
