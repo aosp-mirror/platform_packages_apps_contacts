@@ -249,10 +249,13 @@
     <string name="header_website_entry" msgid="1411467850000824745">"വെബ്‌സൈറ്റ്"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"ഇവന്‍റ്"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"ബന്ധം"</string>
+    <string name="header_account_entry" msgid="2684318506427891827">"അക്കൗണ്ട്"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"പേര്"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"ഇമെയിൽ"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"ഫോണ്‍"</string>
     <string name="header_photo_entry" msgid="4438023151411853238">"ഫോട്ടോ"</string>
+    <string name="content_description_expand_editor" msgid="1111381475901897470">"കോൺടാക്‌റ്റ് എഡിറ്റർ വിപുലീകരിക്കാൻ ക്ലിക്കുചെയ്യുക."</string>
+    <string name="content_description_collapse_editor" msgid="7598061318022977825">"കോൺടാക്‌റ്റ് എഡിറ്റർ ചുരുക്കാൻ ക്ലിക്കുചെയ്യുക."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"ലൊക്കേഷനിലേക്കുള്ള വഴികൾ"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"പുതിയ sms. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. മറുപടി നൽകാൻ ക്ലിക്കുചെയ്യുക"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ഇൻകമിംഗ്"</string>
