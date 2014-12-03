@@ -182,6 +182,10 @@ public class ContactSaveService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        if (intent == null) {
+            Log.d(TAG, "onHandleIntent: could not handle null intent");
+            return;
+        }
         // Call an appropriate method. If we're sure it affects how incoming phone calls are
         // handled, then notify the fact to in-call screen.
         String action = intent.getAction();
