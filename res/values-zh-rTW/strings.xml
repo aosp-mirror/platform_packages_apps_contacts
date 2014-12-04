@@ -249,10 +249,16 @@
     <string name="header_website_entry" msgid="1411467850000824745">"網站"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"活動"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"關係"</string>
+    <!-- no translation found for header_account_entry (2684318506427891827) -->
+    <skip />
     <string name="header_name_entry" msgid="1592791008096288306">"姓名"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"電子郵件"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"電話"</string>
     <string name="header_photo_entry" msgid="4438023151411853238">"相片"</string>
+    <!-- no translation found for content_description_expand_editor (1111381475901897470) -->
+    <skip />
+    <!-- no translation found for content_description_collapse_editor (7598061318022977825) -->
+    <skip />
     <string name="content_description_directions" msgid="2686791825798189335">"規劃前往特定地點的路線"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"近期簡訊。<xliff:g id="MESSAGE_BODY">%s</xliff:g>。<xliff:g id="PHONE_NUMBER">%s</xliff:g>。<xliff:g id="DATE">%s</xliff:g>。按一下即可回覆"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"來電"</string>
