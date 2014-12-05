@@ -64,7 +64,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     private StructuredNameEditorView mName;
     private PhoneticNameEditorView mPhoneticName;
-    private KindSectionView mNickNameSectionView;
+    private TextFieldsEditorView mNickName;
+
     private GroupMembershipView mGroupMembershipView;
 
     private ViewGroup mFields;
@@ -132,7 +133,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         mPhoneticName = (PhoneticNameEditorView)findViewById(R.id.edit_phonetic_name);
         mPhoneticName.setDeletable(false);
 
-        mNickNameSectionView = (KindSectionView)findViewById(R.id.edit_nick_name);
+        mNickName = (TextFieldsEditorView)findViewById(R.id.edit_nick_name);
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
@@ -264,11 +265,10 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 mPhoneticName.setValues(
                         type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
                         primary, state, false, vig);
-                // Special case for nick name, so it gets inserted in the header section. It
-                // should look like it belongs to the same KindSectionView as the other name fields.
-                mNickNameSectionView.setEnabled(isEnabled());
-                mNickNameSectionView.setState(type.getKindForMimetype(Nickname.CONTENT_ITEM_TYPE),
-                        state, false, vig);
+                mNickName.setValues(
+                        type.getKindForMimetype(Nickname.CONTENT_ITEM_TYPE),
+                        primary, state, false, vig);
+                mNickName.setDeletable(false);
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
@@ -376,6 +376,10 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     public TextFieldsEditorView getPhoneticNameEditor() {
         return mPhoneticName;
+    }
+
+    public TextFieldsEditorView getNickNameEditor() {
+        return mNickName;
     }
 
     @Override

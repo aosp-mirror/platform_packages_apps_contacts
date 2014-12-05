@@ -49,6 +49,9 @@ public interface Editor {
         // The editor has switched between different representations of the same
         // data, e.g. from full name to structured name
         public static final int EDITOR_FORM_CHANGED = 5;
+
+        // Focus has changed inside the editor.
+        public static final int EDITOR_FOCUS_CHANGED = 6;
     }
 
     /**
