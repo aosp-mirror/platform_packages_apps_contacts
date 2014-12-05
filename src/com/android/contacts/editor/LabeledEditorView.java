@@ -239,6 +239,10 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         mListener = listener;
     }
 
+    protected EditorListener getEditorListener(){
+        return mListener;
+    }
+
     @Override
     public void setDeletable(boolean deletable) {
         mIsDeletable = deletable;
@@ -276,7 +280,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
      * Build the current label state based on selected {@link EditType} and
      * possible custom label string.
      */
-    private void rebuildLabel() {
+    public void rebuildLabel() {
         mEditTypeAdapter = new EditTypeAdapter(mContext);
         mLabel.setAdapter(mEditTypeAdapter);
         if (mEditTypeAdapter.hasCustomSelection()) {
@@ -297,6 +301,8 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
         // Notify listener if applicable
         notifyEditorListener();
+
+        rebuildLabel();
     }
 
     protected void saveValue(String column, String value) {
@@ -527,12 +533,18 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private class EditTypeAdapter extends ArrayAdapter<EditType> {
         private final LayoutInflater mInflater;
         private boolean mHasCustomSelection;
-        private int mTextColor;
+        private int mTextColorHintUnfocused;
+        private int mTextColorDark;
+        private int mTextColorSecondary;
 
         public EditTypeAdapter(Context context) {
             super(context, 0);
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            mTextColor = context.getResources().getColor(R.color.secondary_text_color);
+            mTextColorHintUnfocused = context.getResources().getColor(
+                    R.color.editor_disabled_text_color);
+            mTextColorSecondary = context.getResources().getColor(R.color.secondary_text_color);
+            mTextColorDark = context.getResources().getColor(R.color.primary_text_color);
+
 
             if (mType != null && mType.customColumn != null) {
 
@@ -553,11 +565,21 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            final View view = createViewFromResource(
+            final TextView view = createViewFromResource(
                     position, convertView, parent, R.layout.edit_simple_spinner_item);
             // We don't want any background on this view. The background would obscure
             // the spinner's background.
             view.setBackground(null);
+            // The text color should be a very light hint color when unfocused and empty. When
+            // focused and empty, use a less light hint color. When non-empty, use a dark non-hint
+            // color.
+            if (!LabeledEditorView.this.isEmpty()) {
+                view.setTextColor(mTextColorDark);
+            } else if (LabeledEditorView.this.hasFocus()) {
+                view.setTextColor(mTextColorSecondary);
+            } else {
+                view.setTextColor(mTextColorHintUnfocused);
+            }
             return view;
         }
 
@@ -567,7 +589,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                     position, convertView, parent, android.R.layout.simple_spinner_dropdown_item);
         }
 
-        private View createViewFromResource(int position, View convertView, ViewGroup parent,
+        private TextView createViewFromResource(int position, View convertView, ViewGroup parent,
                 int resource) {
             TextView textView;
 
@@ -575,7 +597,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 textView = (TextView) mInflater.inflate(resource, parent, false);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(
                         R.dimen.editor_form_text_size));
-                textView.setTextColor(mTextColor);
+                textView.setTextColor(mTextColorDark);
             } else {
                 textView = (TextView) convertView;
             }

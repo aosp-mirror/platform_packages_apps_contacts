@@ -52,7 +52,7 @@ public class EventFieldEditorView extends LabeledEditorView {
      */
     private String mNoDateString;
     private int mPrimaryTextColor;
-    private int mSecondaryTextColor;
+    private int mHintTextColor;
 
     private Button mDateView;
 
@@ -75,7 +75,7 @@ public class EventFieldEditorView extends LabeledEditorView {
 
         Resources resources = mContext.getResources();
         mPrimaryTextColor = resources.getColor(R.color.primary_text_color);
-        mSecondaryTextColor = resources.getColor(R.color.secondary_text_color);
+        mHintTextColor = resources.getColor(R.color.editor_disabled_text_color);
         mNoDateString = mContext.getString(R.string.event_edit_field_hint_text);
 
         mDateView = (Button) findViewById(R.id.date_view);
@@ -123,7 +123,7 @@ public class EventFieldEditorView extends LabeledEditorView {
                 false /*Use the short DateFormat to ensure that it fits inside the EditText*/);
         if (TextUtils.isEmpty(data)) {
             mDateView.setText(mNoDateString);
-            mDateView.setTextColor(mSecondaryTextColor);
+            mDateView.setTextColor(mHintTextColor);
             setDeleteButtonVisible(false);
         } else {
             mDateView.setText(data);
@@ -256,7 +256,7 @@ public class EventFieldEditorView extends LabeledEditorView {
     public void clearAllFields() {
         // Update UI
         mDateView.setText(mNoDateString);
-        mDateView.setTextColor(mSecondaryTextColor);
+        mDateView.setTextColor(mHintTextColor);
 
         // Update state
         final String column = getKind().fieldList.get(0).column;

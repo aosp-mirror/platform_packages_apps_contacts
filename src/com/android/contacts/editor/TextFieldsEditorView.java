@@ -60,6 +60,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private int mMinFieldHeight;
     private int mPreviousViewHeight;
     private int mHintTextColor;
+    private int mHintTextColorUnfocused;
 
     public TextFieldsEditorView(Context context) {
         super(context);
@@ -85,6 +86,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 R.dimen.editor_min_line_item_height);
         mFields = (ViewGroup) findViewById(R.id.editors);
         mHintTextColor = getResources().getColor(R.color.secondary_text_color);
+        mHintTextColorUnfocused = getResources().getColor(R.color.editor_disabled_text_color);
         mExpansionView = (ImageView) findViewById(R.id.expansion_view);
         mExpansionViewContainer = findViewById(R.id.expansion_view_container);
         if (mExpansionViewContainer != null) {
@@ -143,6 +145,36 @@ public class TextFieldsEditorView extends LabeledEditorView {
         }
         if (mExpansionView != null) {
             mExpansionView.setEnabled(!isReadOnly() && enabled);
+        }
+    }
+
+    private OnFocusChangeListener mTextFocusChangeListener = new OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            // Check whether this field contains focus by calling findFocus() instead of
+            // hasFocus(). The hasFocus() value is not necessarily up to date.
+            setHintColorDark(TextFieldsEditorView.this.findFocus() != null);
+            if (getEditorListener() != null) {
+                getEditorListener().onRequest(EditorListener.EDITOR_FOCUS_CHANGED);
+            }
+            // Rebuild the label spinner using the new colors.
+            rebuildLabel();
+        }
+    };
+
+    /**
+     * Set the hint color. If {@param isHintDark} is TRUE, then the hint color is set to a
+     * a darker color.
+     */
+    public void setHintColorDark(boolean isHintDark) {
+        if (mFieldEditTexts != null) {
+            for (EditText text : mFieldEditTexts) {
+                if (isHintDark) {
+                    text.setHintTextColor(mHintTextColor);
+                } else {
+                    text.setHintTextColor(mHintTextColorUnfocused);
+                }
+            }
         }
     }
 
@@ -205,7 +237,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
                     LayoutParams.WRAP_CONTENT));
             fieldView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                     getResources().getDimension(R.dimen.editor_form_text_size));
-            fieldView.setHintTextColor(mHintTextColor);
+            fieldView.setHintTextColor(mHintTextColorUnfocused);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
             if (field.titleRes > 0) {
@@ -259,6 +291,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             });
 
             fieldView.setEnabled(isEnabled() && !readOnly);
+            fieldView.setOnFocusChangeListener(mTextFocusChangeListener);
 
             if (field.shortForm) {
                 hidePossible = true;

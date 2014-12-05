@@ -44,7 +44,7 @@
 
         <include
             android:id="@+id/edit_nick_name"
-            layout="@layout/item_kind_section" />
+            layout="@layout/nick_name_editor_view" />
 
         <include
             android:id="@+id/edit_photo"
