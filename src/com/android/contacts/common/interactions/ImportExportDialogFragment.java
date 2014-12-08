@@ -29,6 +29,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -279,21 +280,24 @@ public class ImportExportDialogFragment extends DialogFragment
         dismiss();
     }
 
-    private String getSubDescription(SubscriptionInfo record) {
+    private CharSequence getSubDescription(SubscriptionInfo record) {
         CharSequence name = record.getDisplayName();
         if (TextUtils.isEmpty(record.getNumber())) {
             // Don't include the phone number in the description, since we don't know the number.
             return getString(R.string.import_from_sim_summary_no_number, name);
         }
-        return getString(R.string.import_from_sim_summary, name, record.getNumber());
+        return TextUtils.expandTemplate(
+                getString(R.string.import_from_sim_summary),
+                name,
+                PhoneNumberUtils.ttsSpanAsPhoneNumber(record.getNumber()));
     }
 
     private static class AdapterEntry {
-        public final String mLabel;
+        public final CharSequence mLabel;
         public final int mChoiceResourceId;
         public final int mSubscriptionId;
 
-        public AdapterEntry(String label, int resId, int subId) {
+        public AdapterEntry(CharSequence label, int resId, int subId) {
             mLabel = label;
             mChoiceResourceId = resId;
             mSubscriptionId = subId;
