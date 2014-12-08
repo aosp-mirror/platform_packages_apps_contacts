@@ -19,10 +19,8 @@ package com.android.contacts.common.util;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
 import android.content.Context;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ServiceInfo;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.content.res.TypedArray;
@@ -32,6 +30,7 @@ import android.util.Log;
 import android.util.Xml;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.model.account.ExternalAccountType;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -44,11 +43,6 @@ import java.io.IOException;
  */
 public class LocalizedNameResolver  {
     private static final String TAG = "LocalizedNameResolver";
-
-    /**
-     * Meta-data key for the contacts configuration associated with a sync service.
-     */
-    private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
 
     private static final String CONTACTS_DATA_KIND = "ContactsDataKind";
 
@@ -82,20 +76,9 @@ public class LocalizedNameResolver  {
      * reads the picture priority from that file.
      */
     private static String resolveAllContactsNameFromMetaData(Context context, String packageName) {
-        final PackageManager pm = context.getPackageManager();
-        try {
-            PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SERVICES
-                    | PackageManager.GET_META_DATA);
-            if (pi != null && pi.services != null) {
-                for (ServiceInfo si : pi.services) {
-                    final XmlResourceParser parser = si.loadXmlMetaData(pm, METADATA_CONTACTS);
-                    if (parser != null) {
-                        return loadAllContactsNameFromXml(context, parser, packageName);
-                    }
-                }
-            }
-        } catch (NameNotFoundException e) {
-            Log.w(TAG, "Problem loading \"All Contacts\"-name: " + e.toString());
+        final XmlResourceParser parser = ExternalAccountType.loadContactsXml(context, packageName);
+        if (parser != null) {
+            return loadAllContactsNameFromXml(context, parser, packageName);
         }
         return null;
     }
