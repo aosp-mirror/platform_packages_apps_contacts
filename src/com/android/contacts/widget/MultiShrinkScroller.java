@@ -12,7 +12,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -60,8 +59,8 @@ import android.widget.Toolbar;
  * customized will work for you. For example, see the re-usable StickyHeaderListView used by
  * WifiSetupActivity (very nice). Alternatively, check out Google+'s cover photo scrolling or
  * Android L's built in nested scrolling support. I thought I needed a more custom ViewGroup in
- * order to track velocity, modify EdgeEffect color & perform specific animations such as the ones
- * inside snapToBottom(). As a result this ViewGroup has non-standard talkback and keyboard support.
+ * order to track velocity, modify EdgeEffect color & perform the originally specified animations.
+ * As a result this ViewGroup has non-standard talkback and keyboard support.
  */
 public class MultiShrinkScroller extends FrameLayout {
 
@@ -73,7 +72,7 @@ public class MultiShrinkScroller extends FrameLayout {
     /**
      * Length of the acceleration animations. This value was taken from ValueAnimator.java.
      */
-    private static final int EXIT_FLING_ANIMATION_DURATION_MS = 300;
+    private static final int EXIT_FLING_ANIMATION_DURATION_MS = 250;
 
     /**
      * In portrait mode, the height:width ratio of the photo's starting height.
@@ -86,21 +85,22 @@ public class MultiShrinkScroller extends FrameLayout {
      */
     private static final float COLOR_BLENDING_START_RATIO = 0.5f;
 
+    private static final float SPRING_DAMPENING_FACTOR = 0.01f;
+
     /**
      * When displaying a letter tile drawable, this alpha value should be used at the intermediate
      * toolbar height.
      */
     private static final float DESIRED_INTERMEDIATE_LETTER_TILE_ALPHA = 0.8f;
 
-    /**
-     * Maximum velocity for flings in dips per second. Picked via non-rigorous experimentation.
-     */
-    private static final float MAXIMUM_FLING_VELOCITY = 2000;
-
     private float[] mLastEventPosition = { 0, 0 };
     private VelocityTracker mVelocityTracker;
     private boolean mIsBeingDragged = false;
     private boolean mReceivedDown = false;
+    /**
+     * Did the current downwards fling/scroll-animation start while we were fullscreen?
+     */
+    private boolean mIsFullscreenDownwardsFling = false;
 
     private ScrollView mScrollView;
     private View mScrollViewChild;
@@ -140,12 +140,17 @@ public class MultiShrinkScroller extends FrameLayout {
      * True once the header has touched the top of the screen at least once.
      */
     private boolean mHasEverTouchedTheTop;
+    private boolean mIsTouchDisabledForDismissAnimation;
 
     private final Scroller mScroller;
     private final EdgeEffect mEdgeGlowBottom;
+    private final EdgeEffect mEdgeGlowTop;
     private final int mTouchSlop;
     private final int mMaximumVelocity;
     private final int mMinimumVelocity;
+    private final int mDismissDistanceOnScroll;
+    private final int mDismissDistanceOnRelease;
+    private final int mSnapToTopSlopHeight;
     private final int mTransparentStartHeight;
     private final int mMaximumTitleMargin;
     private final float mToolbarElevation;
@@ -240,12 +245,11 @@ public class MultiShrinkScroller extends FrameLayout {
         setWillNotDraw(/* willNotDraw = */ false);
 
         mEdgeGlowBottom = new EdgeEffect(context);
+        mEdgeGlowTop = new EdgeEffect(context);
         mScroller = new Scroller(context, sInterpolator);
         mTouchSlop = configuration.getScaledTouchSlop();
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
-        mMaximumVelocity = (int)TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, MAXIMUM_FLING_VELOCITY,
-                getResources().getDisplayMetrics());
+        mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
         mTransparentStartHeight = (int) getResources().getDimension(
                 R.dimen.quickcontact_starting_empty_height);
         mToolbarElevation = getResources().getDimension(
@@ -253,6 +257,13 @@ public class MultiShrinkScroller extends FrameLayout {
         mIsTwoPanel = getResources().getBoolean(R.bool.quickcontact_two_panel);
         mMaximumTitleMargin = (int) getResources().getDimension(
                 R.dimen.quickcontact_title_initial_margin);
+
+        mDismissDistanceOnScroll = (int) getResources().getDimension(
+                R.dimen.quickcontact_dismiss_distance_on_scroll);
+        mDismissDistanceOnRelease = (int) getResources().getDimension(
+                R.dimen.quickcontact_dismiss_distance_on_release);
+        mSnapToTopSlopHeight = (int) getResources().getDimension(
+                R.dimen.quickcontact_snap_to_top_slop_height);
 
         final TypedValue photoRatio = new TypedValue();
         getResources().getValue(R.dimen.quickcontact_landscape_photo_ratio, photoRatio,
@@ -395,6 +406,8 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     private boolean shouldStartDrag(MotionEvent event) {
+        if (mIsTouchDisabledForDismissAnimation) return false;
+
         if (mIsBeingDragged) {
             mIsBeingDragged = false;
             return false;
@@ -429,6 +442,8 @@ public class MultiShrinkScroller extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (mIsTouchDisabledForDismissAnimation) return true;
+
         final int action = event.getAction();
 
         if (mVelocityTracker == null) {
@@ -466,6 +481,10 @@ public class MultiShrinkScroller extends FrameLayout {
                         postInvalidateOnAnimation();
                     }
 
+                    if (shouldDismissOnScroll()) {
+                        scrollOffBottom();
+                    }
+
                 }
                 break;
 
@@ -485,6 +504,7 @@ public class MultiShrinkScroller extends FrameLayout {
         // We want to use the same amount of alpha on the new tint color as the previous tint color.
         final int edgeEffectAlpha = Color.alpha(mEdgeGlowBottom.getColor());
         mEdgeGlowBottom.setColor((color & 0xffffff) | Color.argb(edgeEffectAlpha, 0, 0, 0));
+        mEdgeGlowTop.setColor(mEdgeGlowBottom.getColor());
     }
 
     /**
@@ -531,31 +551,43 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     private void onDragFinished(int flingDelta) {
-        if (!snapToTop(flingDelta)) {
+        if (getTransparentViewHeight() <= 0) {
+            // Don't perform any snapping if quick contacts is full screen.
+            return;
+        }
+        if (!snapToTopOnDragFinished(flingDelta)) {
             // The drag/fling won't result in the content at the top of the Window. Consider
             // snapping the content to the bottom of the window.
-            snapToBottom(flingDelta);
+            snapToBottomOnDragFinished();
         }
     }
 
     /**
      * If needed, snap the subviews to the top of the Window.
+     *
+     * @return TRUE if QuickContacts will snap/fling to to top after this method call.
      */
-    private boolean snapToTop(int flingDelta) {
-        if (mHasEverTouchedTheTop) {
-            // Only when first interacting with QuickContacts should QuickContacts snap to the top
-            // of the screen. After this, QuickContacts can be placed most anywhere on the screen.
+    private boolean snapToTopOnDragFinished(int flingDelta) {
+        if (!mHasEverTouchedTheTop) {
+            // If the current fling is predicted to scroll past the top, then we don't need to snap
+            // to the top. However, if the fling only flings past the top by a tiny amount,
+            // it will look nicer to snap than to fling.
+            final float predictedScrollPastTop = getTransparentViewHeight() - flingDelta;
+            if (predictedScrollPastTop < -mSnapToTopSlopHeight) {
+                return false;
+            }
+
+            if (getTransparentViewHeight() <= mTransparentStartHeight) {
+                // We are above the starting scroll position so snap to the top.
+                mScroller.forceFinished(true);
+                smoothScrollBy(getTransparentViewHeight());
+                return true;
+            }
             return false;
         }
-        final int requiredScroll = -getScroll_ignoreOversizedHeaderForSnapping()
-                + mTransparentStartHeight;
-        if (-getScroll_ignoreOversizedHeaderForSnapping() - flingDelta < 0
-                && -getScroll_ignoreOversizedHeaderForSnapping() - flingDelta >
-                -mTransparentStartHeight && requiredScroll != 0) {
-            // We finish scrolling above the empty starting height, and aren't projected
-            // to fling past the top of the Window, so elastically snap the empty space shut.
+        if (getTransparentViewHeight() < mDismissDistanceOnRelease) {
             mScroller.forceFinished(true);
-            smoothScrollBy(requiredScroll);
+            smoothScrollBy(getTransparentViewHeight());
             return true;
         }
         return false;
@@ -564,33 +596,24 @@ public class MultiShrinkScroller extends FrameLayout {
     /**
      * If needed, scroll all the subviews off the bottom of the Window.
      */
-    private void snapToBottom(int flingDelta) {
+    private void snapToBottomOnDragFinished() {
         if (mHasEverTouchedTheTop) {
-            // If QuickContacts has touched the top of the screen previously, then we
-            // will less aggressively snap to the bottom of the screen.
-            final float predictedScrollPastTop = -getScroll() + mTransparentStartHeight
-                    - flingDelta;
-            final boolean isLandscape = getResources().getConfiguration().orientation
-                    == Configuration.ORIENTATION_LANDSCAPE;
-            if (isLandscape) {
-                // In landscape orientation, we dismiss the QC once it goes below the starting
-                // starting offset that is used when QC starts in collapsed mode.
-                if (predictedScrollPastTop > mTransparentStartHeight) {
-                    scrollOffBottom();
-                }
-            } else {
-                // In portrait orientation, we dismiss the QC once it goes below
-                // mIntermediateHeaderHeight within the bottom of the screen.
-                final float heightMinusHeader = getHeight() - mIntermediateHeaderHeight;
-                if (predictedScrollPastTop > heightMinusHeader) {
-                    scrollOffBottom();
-                }
+            if (getTransparentViewHeight() > mDismissDistanceOnRelease) {
+                scrollOffBottom();
             }
             return;
         }
-        if (-getScroll() - flingDelta > 0) {
+        if (getTransparentViewHeight() > mTransparentStartHeight) {
             scrollOffBottom();
         }
+    }
+
+    /**
+     * Returns TRUE if we have scrolled far QuickContacts far enough that we should dismiss it
+     * without waiting for the user to finish their drag.
+     */
+    private boolean shouldDismissOnScroll() {
+        return mHasEverTouchedTheTop && getTransparentViewHeight() > mDismissDistanceOnScroll;
     }
 
     /**
@@ -607,6 +630,7 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     public void scrollOffBottom() {
+        mIsTouchDisabledForDismissAnimation = true;
         final Interpolator interpolator = new AcceleratingFlingInterpolator(
                 EXIT_FLING_ANIMATION_DURATION_MS, getCurrentVelocity(),
                 getScrollUntilOffBottom());
@@ -770,7 +794,7 @@ public class MultiShrinkScroller extends FrameLayout {
     @Override
     public void computeScroll() {
         if (mScroller.computeScrollOffset()) {
-            // Examine the fling results in order to activate EdgeEffect when we fling to the end.
+            // Examine the fling results in order to activate EdgeEffect and halt flings.
             final int oldScroll = getScroll();
             scrollTo(0, mScroller.getCurrY());
             final int delta = mScroller.getCurrY() - oldScroll;
@@ -778,13 +802,21 @@ public class MultiShrinkScroller extends FrameLayout {
             if (delta > distanceFromMaxScrolling && distanceFromMaxScrolling > 0) {
                 mEdgeGlowBottom.onAbsorb((int) mScroller.getCurrVelocity());
             }
-
+            if (mIsFullscreenDownwardsFling && getTransparentViewHeight() > 0) {
+                // Halt the fling once QuickContact's top is on screen.
+                scrollTo(0, getScroll() + getTransparentViewHeight());
+                mEdgeGlowTop.onAbsorb((int) mScroller.getCurrVelocity());
+                mScroller.abortAnimation();
+                mIsFullscreenDownwardsFling = false;
+            }
             if (!awakenScrollBars()) {
                 // Keep on drawing until the animation has finished.
                 postInvalidateOnAnimation();
             }
             if (mScroller.getCurrY() >= getMaximumScrollUpwards()) {
+                // Halt the fling once QuickContact's bottom is on screen.
                 mScroller.abortAnimation();
+                mIsFullscreenDownwardsFling = false;
             }
         }
     }
@@ -793,10 +825,11 @@ public class MultiShrinkScroller extends FrameLayout {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
+        final int width = getWidth() - getPaddingLeft() - getPaddingRight();
+        final int height = getHeight();
+
         if (!mEdgeGlowBottom.isFinished()) {
             final int restoreCount = canvas.save();
-            final int width = getWidth() - getPaddingLeft() - getPaddingRight();
-            final int height = getHeight();
 
             // Draw the EdgeEffect on the bottom of the Window (Or a little bit below the bottom
             // of the Window if we start to scroll upwards while EdgeEffect is visible). This
@@ -820,6 +853,22 @@ public class MultiShrinkScroller extends FrameLayout {
             }
             canvas.restoreToCount(restoreCount);
         }
+
+        if (!mEdgeGlowTop.isFinished()) {
+            final int restoreCount = canvas.save();
+            if (mIsTwoPanel) {
+                mEdgeGlowTop.setSize(mScrollView.getWidth(), height);
+                if (!isLayoutRtl()) {
+                    canvas.translate(mPhotoViewContainer.getWidth(), 0);
+                }
+            } else {
+                mEdgeGlowTop.setSize(width, height);
+            }
+            if (mEdgeGlowTop.draw(canvas)) {
+                postInvalidateOnAnimation();
+            }
+            canvas.restoreToCount(restoreCount);
+        }
     }
 
     private float getCurrentVelocity() {
@@ -831,13 +880,13 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     private void fling(float velocity) {
-        if (Math.abs(mMaximumVelocity) < Math.abs(velocity)) {
-            velocity = -mMaximumVelocity * Math.signum(velocity);
-        }
         // For reasons I do not understand, scrolling is less janky when maxY=Integer.MAX_VALUE
         // then when maxY is set to an actual value.
         mScroller.fling(0, getScroll(), 0, (int) velocity, 0, 0, -Integer.MAX_VALUE,
                 Integer.MAX_VALUE);
+        if (velocity < 0 && mTransparentView.getHeight() <= 0) {
+            mIsFullscreenDownwardsFling = true;
+        }
         invalidate();
     }
 
@@ -1163,7 +1212,13 @@ public class MultiShrinkScroller extends FrameLayout {
         final int VERTICAL = 1;
         final float position = mLastEventPosition[VERTICAL];
         updateLastEventPosition(event);
-        return position - mLastEventPosition[VERTICAL];
+        float elasticityFactor = 1;
+        if (position < mLastEventPosition[VERTICAL] && mHasEverTouchedTheTop) {
+            // As QuickContacts is dragged from the top of the window, its rate of movement will
+            // slow down in proportion to its distance from the top. This will feel springy.
+            elasticityFactor += mTransparentView.getHeight() * SPRING_DAMPENING_FACTOR;
+        }
+        return (position - mLastEventPosition[VERTICAL]) / elasticityFactor;
     }
 
     private void smoothScrollBy(int delta) {
