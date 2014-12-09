@@ -29,26 +29,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <!-- Want 16dp of apparent top padding. Since EditText has 10dp of inset/padding built in,
-            only set marginTop=6dp. -->
+        <!-- Want 16dp of apparent top padding. Since TextView has 4dp of inset/padding built in,
+            only set marginTop=12dp. -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/editor_min_line_item_height"
-            android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
-            android:layout_marginTop="6dp"
+            android:layout_marginBottom="@dimen/editor_padding_around_read_only_photo_editor"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/kind_icon"
+                android:layout_marginTop="2dp"
                 android:src="@drawable/ic_person_black_24dp"
                 android:contentDescription="@string/header_name_entry"
                 style="@style/EditKindIconStyle" />
 
-            <EditText
+            <TextView
                 android:id="@+id/read_only_name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/editor_delete_button_width"
                 android:singleLine="true"
                 android:textSize="@dimen/editor_form_text_size"
@@ -66,7 +66,7 @@
             android:text="@string/edit_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="@dimen/editor_padding_below_photo"
             android:layout_marginEnd="13dip"
             android:layout_marginStart="13dip"/>
