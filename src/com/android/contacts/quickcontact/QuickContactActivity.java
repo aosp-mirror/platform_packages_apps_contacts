@@ -1355,15 +1355,16 @@ public class QuickContactActivity extends ContactsActivity {
             entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header,
                     dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
             try {
-                final WebAddress webAddress = new WebAddress(website.buildDataString(context,
-                        kind));
+                final WebAddress webAddress = new WebAddress(website.buildDataStringForDisplay
+                        (context, kind));
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
             } catch (final ParseException e) {
-                Log.e(TAG, "Couldn't parse website: " + website.buildDataString(context, kind));
+                Log.e(TAG, "Couldn't parse website: " + website.buildDataStringForDisplay(
+                        context, kind));
             }
         } else if (dataItem instanceof EventDataItem) {
             final EventDataItem event = (EventDataItem) dataItem;
-            final String dataString = event.buildDataString(context, kind);
+            final String dataString = event.buildDataStringForDisplay(context, kind);
             final Calendar cal = DateUtils.parseDate(dataString, false);
             if (cal != null) {
                 final Date nextAnniversary =
@@ -1383,7 +1384,7 @@ public class QuickContactActivity extends ContactsActivity {
                     dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
         } else if (dataItem instanceof RelationDataItem) {
             final RelationDataItem relation = (RelationDataItem) dataItem;
-            final String dataString = relation.buildDataString(context, kind);
+            final String dataString = relation.buildDataStringForDisplay(context, kind);
             if (!TextUtils.isEmpty(dataString)) {
                 intent = new Intent(Intent.ACTION_SEARCH);
                 intent.putExtra(SearchManager.QUERY, dataString);
@@ -1402,7 +1403,7 @@ public class QuickContactActivity extends ContactsActivity {
             final PhoneDataItem phone = (PhoneDataItem) dataItem;
             if (!TextUtils.isEmpty(phone.getNumber())) {
                 primaryContentDescription.append(res.getString(R.string.call_other)).append(" ");
-                header = sBidiFormatter.unicodeWrap(phone.buildDataString(context, kind),
+                header = sBidiFormatter.unicodeWrap(phone.buildDataStringForDisplay(context, kind),
                         TextDirectionHeuristics.LTR);
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
                         res.getString(R.string.phoneLabelsGroup), dataItem.getMimeType(),
