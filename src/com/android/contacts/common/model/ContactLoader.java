@@ -318,7 +318,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 resultIsCached = true;
             } else {
                 if (uriCurrentFormat.getLastPathSegment().equals(Constants.LOOKUP_URI_ENCODED)) {
-                    result = loadEncodedContactEntity(uriCurrentFormat);
+                    result = loadEncodedContactEntity(uriCurrentFormat, mLookupUri);
                 } else {
                     result = loadContactEntity(resolver, uriCurrentFormat);
                 }
@@ -351,7 +351,22 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         }
     }
 
-    private Contact loadEncodedContactEntity(Uri uri) throws JSONException {
+    /**
+     * Parses a {@link Contact} stored as a JSON string in a lookup URI.
+     *
+     * @param lookupUri The contact information to parse .
+     * @return The parsed {@code Contact} information.
+     * @throws JSONException
+     */
+    public static Contact parseEncodedContactEntity(Uri lookupUri)  {
+        try {
+            return loadEncodedContactEntity(lookupUri, lookupUri);
+        } catch (JSONException je) {
+            return null;
+        }
+    }
+
+    private static Contact loadEncodedContactEntity(Uri uri, Uri lookupUri) throws JSONException {
         final String jsonString = uri.getEncodedFragment();
         final JSONObject json = new JSONObject(jsonString);
 
@@ -365,7 +380,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         final String photoUri = json.optString(Contacts.PHOTO_URI, null);
         final Contact contact = new Contact(
                 uri, uri,
-                mLookupUri,
+                lookupUri,
                 directoryId,
                 null /* lookupKey */,
                 -1 /* id */,
@@ -425,7 +440,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         return contact;
     }
 
-    private void processOneRecord(RawContact rawContact, JSONObject item, String mimetype)
+    private static void processOneRecord(RawContact rawContact, JSONObject item, String mimetype)
             throws JSONException {
         final ContentValues itemValues = new ContentValues();
         itemValues.put(Data.MIMETYPE, mimetype);
