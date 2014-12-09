@@ -17,9 +17,10 @@
 package com.android.contacts.common.model.account;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -48,12 +49,15 @@ import java.util.List;
 public class ExternalAccountType extends BaseAccountType {
     private static final String TAG = "ExternalAccountType";
 
+    private static final String SYNC_META_DATA = "android.content.SyncAdapter";
+
     /**
      * The metadata name for so-called "contacts.xml".
      *
      * On LMP and later, we also accept the "alternate" name.
      * This is to allow sync adapters to have a contacts.xml without making it visible on older
-     * platforms.
+     * platforms. If you modify this also update the corresponding list in
+     * ContactsProvider/PhotoPriorityResolver
      */
     private static final String[] METADATA_CONTACTS_NAMES = new String[] {
             "android.provider.ALTERNATE_CONTACTS_STRUCTURE",
@@ -114,15 +118,9 @@ public class ExternalAccountType extends BaseAccountType {
         this.resourcePackageName = packageName;
         this.syncAdapterPackageName = packageName;
 
-        final PackageManager pm = context.getPackageManager();
         final XmlResourceParser parser;
         if (injectedMetadata == null) {
-            try {
-                parser = loadContactsXml(context, packageName);
-            } catch (NameNotFoundException e1) {
-                // If the package name is not found, we can't initialize this account type.
-                return;
-            }
+            parser = loadContactsXml(context, packageName);
         } else {
             parser = injectedMetadata;
         }
@@ -181,35 +179,41 @@ public class ExternalAccountType extends BaseAccountType {
     /**
      * Returns the CONTACTS_STRUCTURE metadata (aka "contacts.xml") in the given apk package.
      *
-     * Unfortunately, there's no public way to determine which service defines a sync service for
-     * which account type, so this method looks through all services in the package, and just
-     * returns the first CONTACTS_STRUCTURE metadata defined in any of them.
+     * This method looks through all services in the package that handle sync adapter
+     * intents for the first one that contains CONTACTS_STRUCTURE metadata. We have to look
+     * through all sync adapters in the package in case there are contacts and other sync
+     * adapters (eg, calendar) in the same package.
      *
      * Returns {@code null} if the package has no CONTACTS_STRUCTURE metadata.  In this case
      * the account type *will* be initialized with minimal configuration.
-     *
-     * On the other hand, if the package is not found, it throws a {@link NameNotFoundException},
-     * in which case the account type will *not* be initialized.
      */
-    private XmlResourceParser loadContactsXml(Context context, String resPackageName)
-            throws NameNotFoundException {
+    public static XmlResourceParser loadContactsXml(Context context, String resPackageName) {
         final PackageManager pm = context.getPackageManager();
-        PackageInfo packageInfo = pm.getPackageInfo(resPackageName,
-                PackageManager.GET_SERVICES|PackageManager.GET_META_DATA);
-        for (ServiceInfo serviceInfo : packageInfo.services) {
-            for (String metadataName : METADATA_CONTACTS_NAMES) {
-                final XmlResourceParser parser = serviceInfo.loadXmlMetaData(pm,
-                        metadataName);
-                if (parser != null) {
-                    if (Log.isLoggable(TAG, Log.DEBUG)) {
-                        Log.d(TAG, String.format("Metadata loaded from: %s, %s, %s",
-                                serviceInfo.packageName, serviceInfo.name,
-                                metadataName));
+        final Intent intent = new Intent(SYNC_META_DATA).setPackage(resPackageName);
+        final List<ResolveInfo> intentServices = pm.queryIntentServices(intent,
+                PackageManager.GET_SERVICES | PackageManager.GET_META_DATA);
+
+        if (intentServices != null) {
+            for (final ResolveInfo resolveInfo : intentServices) {
+                final ServiceInfo serviceInfo = resolveInfo.serviceInfo;
+                if (serviceInfo == null) {
+                    continue;
+                }
+                for (String metadataName : METADATA_CONTACTS_NAMES) {
+                    final XmlResourceParser parser = serviceInfo.loadXmlMetaData(
+                            pm, metadataName);
+                    if (parser != null) {
+                        if (Log.isLoggable(TAG, Log.DEBUG)) {
+                            Log.d(TAG, String.format("Metadata loaded from: %s, %s, %s",
+                                    serviceInfo.packageName, serviceInfo.name,
+                                    metadataName));
+                        }
+                        return parser;
                     }
-                    return parser;
                 }
             }
         }
+
         // Package was found, but that doesn't contain the CONTACTS_STRUCTURE metadata.
         return null;
     }
