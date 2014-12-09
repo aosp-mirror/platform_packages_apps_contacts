@@ -892,6 +892,8 @@ public class ContactEditorFragment extends Fragment implements
                         }
                         if (request == EditorListener.FIELD_CHANGED && !isEditingUserProfile()) {
                             acquireAggregationSuggestions(activity, rawContactEditor);
+                        } else if (request == EditorListener.EDITOR_FOCUS_CHANGED) {
+                            adjustNameFieldsHintDarkness(rawContactEditor);
                         }
                     }
 
@@ -915,9 +917,15 @@ public class ContactEditorFragment extends Fragment implements
                 phoneticNameEditor.setEditorListener(listener);
                 rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);
 
+                final TextFieldsEditorView nickNameEditor =
+                        rawContactEditor.getNickNameEditor();
+                nickNameEditor.setEditorListener(listener);
+
                 if (rawContactId == mAggregationSuggestionsRawContactId) {
                     acquireAggregationSuggestions(activity, rawContactEditor);
                 }
+
+                adjustNameFieldsHintDarkness(rawContactEditor);
             }
         }
 
@@ -934,6 +942,23 @@ public class ContactEditorFragment extends Fragment implements
         if (activity != null) activity.invalidateOptionsMenu();
 
         updatedExpandedEditorsMap();
+    }
+
+    /**
+     * Adjust how dark the hint text should be on all the names' text fields.
+     *
+     * @param rawContactEditor editor to update
+     */
+    private void adjustNameFieldsHintDarkness(RawContactEditorView rawContactEditor) {
+        // Check whether fields contain focus by calling findFocus() instead of hasFocus().
+        // The hasFocus() value is not necessarily up to date.
+        final boolean nameFieldsAreNotFocused
+                = rawContactEditor.getNameEditor().findFocus() == null
+                && rawContactEditor.getPhoneticNameEditor().findFocus() == null
+                && rawContactEditor.getNickNameEditor().findFocus() == null;
+        rawContactEditor.getNameEditor().setHintColorDark(!nameFieldsAreNotFocused);
+        rawContactEditor.getPhoneticNameEditor().setHintColorDark(!nameFieldsAreNotFocused);
+        rawContactEditor.getNickNameEditor().setHintColorDark(!nameFieldsAreNotFocused);
     }
 
     /**
