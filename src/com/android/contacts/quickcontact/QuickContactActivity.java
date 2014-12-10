@@ -157,6 +157,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Mostly translucent {@link Activity} that shows QuickContact dialog. It loads
@@ -307,7 +308,13 @@ public class QuickContactActivity extends ContactsActivity {
         LOADER_SMS_ID,
         LOADER_CALENDAR_ID,
         LOADER_CALL_LOG_ID};
-    private Map<Integer, List<ContactInteraction>> mRecentLoaderResults = new HashMap<>();
+    /**
+     * ConcurrentHashMap constructor params: 4 is initial table size, 0.9f is
+     * load factor before resizing, 1 means we only expect a single thread to
+     * write to the map so make only a single shard
+     */
+    private Map<Integer, List<ContactInteraction>> mRecentLoaderResults =
+        new ConcurrentHashMap<>(4, 0.9f, 1);
 
     private static final String FRAGMENT_TAG_SELECT_ACCOUNT = "select_account_fragment";
 
