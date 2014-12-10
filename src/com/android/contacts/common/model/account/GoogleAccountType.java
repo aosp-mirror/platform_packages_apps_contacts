@@ -36,9 +36,10 @@ public class GoogleAccountType extends BaseAccountType {
 
     /**
      * The package name that we should load contacts.xml from and rely on to handle
-     * G+ account actions.
+     * G+ account actions. Even though this points to gms, in some cases gms will still hand
+     * off responsibility to the G+ app.
      */
-    public static final String PLUS_EXTENSION_PACKAGE_NAME = "com.google.android.apps.plus";
+    public static final String PLUS_EXTENSION_PACKAGE_NAME = "com.google.android.gms";
 
     public static final String ACCOUNT_TYPE = "com.google";
 
