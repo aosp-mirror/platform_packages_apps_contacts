@@ -161,7 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"مخاطب تکی"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"ایجاد مخاطبین تحت حساب"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"وارد کردن از سیم کارت"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"وارد کردن از سیم‌کارت <xliff:g id="SIM_NAME">%1$s</xliff:g> - <xliff:g id="SIM_NUMBER">%2$s</xliff:g>"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"وارد کردن از سیم‌کارت <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"وارد کردن از سیم کارت <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"وارد کردن از حافظه"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"وارد کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
