@@ -422,7 +422,6 @@ public abstract class BaseAccountType extends AccountType {
         DataKind kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
                     R.string.label_sip_address, Weight.SIP_ADDRESS, true));
 
-        kind.typeOverallMax = 1;
         kind.actionHeader = new SimpleInflater(R.string.label_sip_address);
         kind.actionBody = new SimpleInflater(SipAddress.SIP_ADDRESS);
         kind.fieldList = Lists.newArrayList();
