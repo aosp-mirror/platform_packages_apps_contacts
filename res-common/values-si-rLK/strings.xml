@@ -161,7 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"එක් සම්බන්ධතාවය"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"ගිණුම යටතේ සම්බන්ධතාවය නිර්මාණය කරන්න"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM පතෙන් ආයාත කරන්න"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g> - <xliff:g id="SIM_NUMBER">%2$s</xliff:g> වෙතින් ආයාත කරන්න"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> වෙතින් ආයාත කරන්න"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g> වෙතින් ආයාත කරන්න"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ආචයනයෙන් ආයාත කරන්න"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> ආයාත කිරීම අවලංගු කරන්නද?"</string>

@@ -161,7 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Enkeltkontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Opprett kontakt under konto"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importer fra SIM-kort"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g> – <xliff:g id="SIM_NUMBER">%2$s</xliff:g>"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importer fra lagring"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vil du avbryte importeringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>

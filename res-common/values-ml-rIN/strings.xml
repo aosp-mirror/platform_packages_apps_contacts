@@ -161,7 +161,7 @@
     <string name="listSingleContact" msgid="8525131203887307088">"സിംഗിൾ കോൺടാക്റ്റ്"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"അക്കൗണ്ടിന് കീഴിൽ കോൺ‌ടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"സിം കാർഡിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM-ൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക <xliff:g id="SIM_NAME">%1$s</xliff:g> - <xliff:g id="SIM_NUMBER">%2$s</xliff:g>"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM-ൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM-ൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"സംഭരണത്തിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് ഇമ്പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
