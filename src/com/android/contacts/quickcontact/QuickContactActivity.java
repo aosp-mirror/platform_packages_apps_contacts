@@ -1915,9 +1915,13 @@ public class QuickContactActivity extends ContactsActivity {
                     return;
                 }
                 if (data.isError()) {
-                    // This shouldn't ever happen, so throw an exception. The {@link ContactLoader}
-                    // should log the actual exception.
-                    throw new IllegalStateException("Failed to load contact", data.getException());
+                    // This means either the contact is invalid or we had an
+                    // internal error such as an acore crash.
+                    Log.i(TAG, "Failed to load contact: " + ((ContactLoader)loader).getLookupUri());
+                    Toast.makeText(QuickContactActivity.this, R.string.invalidContactMessage,
+                            Toast.LENGTH_LONG).show();
+                    finish();
+                    return;
                 }
                 if (data.isNotFound()) {
                     Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
