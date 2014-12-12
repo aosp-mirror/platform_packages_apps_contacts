@@ -265,9 +265,15 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 mPhoneticName.setValues(
                         type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
                         primary, state, false, vig);
-                mNickName.setValues(
-                        type.getKindForMimetype(Nickname.CONTENT_ITEM_TYPE),
-                        primary, state, false, vig);
+                // It is useful to use Nickname outside of a KindSectionView so that we can treat it
+                // as a part of StructuredName's fake KindSectionView, even though it uses a
+                // different CP2 mime-type. We do a bit of extra work below to make this possible.
+                final DataKind nickNameKind = type.getKindForMimetype(Nickname.CONTENT_ITEM_TYPE);
+                ValuesDelta primaryNickNameEntry = state.getPrimaryEntry(nickNameKind.mimeType);
+                if (primaryNickNameEntry == null) {
+                    primaryNickNameEntry = RawContactModifier.insertChild(state, nickNameKind);
+                }
+                mNickName.setValues(nickNameKind, primaryNickNameEntry, state, false, vig);
                 mNickName.setDeletable(false);
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
