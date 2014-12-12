@@ -24,24 +24,23 @@
     <ImageView
         android:id="@+id/kind_icon"
         android:src="@drawable/ic_camera_alt_black_24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="0dp"
         android:contentDescription="@string/header_photo_entry"
         style="@style/EditKindIconStyle" />
 
-    <!-- Needs 10dp of top padding, in order get a total of 32dp of padding between this view
-        and the previous DataKindSection. Note that EditTexts in other editor.xml files have this
-        padding built in. Similarly, we need to add 4dp of start margin to make up for the padding
-        that an EditText would have in this image's place. -->
+    <!-- We need to add 2dp of start margin to make up for the padding that a TextView would
+        have in this image's place. We add 2dp of top margin, so that icon drawable is a little
+        below the top of this ImageView. -->
     <ImageView
         android:id="@+id/photo"
         android:layout_width="72dip"
         android:layout_height="72dip"
         android:cropToPadding="true"
         android:scaleType="centerCrop"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="2dp"
         android:contentDescription="@string/description_contact_photo"
-        android:layout_marginBottom="@dimen/editor_padding_below_photo"
+        android:layout_marginBottom="@dimen/editor_padding_around_read_only_photo_editor"
         android:gravity="start" />
 
 
@@ -53,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/editor_delete_button_width"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:textSize="@dimen/editor_form_text_size"
         android:text="@string/primary_photo" />
 </view>

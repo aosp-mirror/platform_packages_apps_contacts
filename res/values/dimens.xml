@@ -72,6 +72,14 @@
         to give 32dp of apparent padding between EditText's in the Raw Contact Editor. -->
     <dimen name="editor_padding_between_editor_views">20dp</dimen>
 
+    <!-- Padding below every readonly editor view. This value is chosen to give 32dp of apparent padding
+        between TextView's in the readonly Raw Contact Editor. -->
+    <dimen name="editor_padding_between_read_only_editor_views">25dp</dimen>
+
+    <!-- Padding above and below the photo editor. This value is chosen to give 32dp of apparent
+        padding between TextView's and the photo's ImageView. -->
+    <dimen name="editor_padding_around_read_only_photo_editor">28dp</dimen>
+
     <!-- Padding below the photo editor. This value is larger than
         editor_padding_between_editor_views, since ImageView's don't have space between the bottom
         of their visual bottom, like an EditText does. -->
