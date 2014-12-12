@@ -19,11 +19,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/editor_delete_button_width"
-    android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
+    android:layout_marginBottom="@dimen/editor_padding_between_read_only_editor_views"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/kind_icon"
+        android:layout_marginTop="2dp"
         style="@style/EditKindIconStyle" />
 
     <LinearLayout
@@ -32,24 +33,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
+        <TextView
             android:id="@+id/data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/editor_min_line_item_height"
             android:textSize="@dimen/editor_form_text_size"
             android:textColor="?android:attr/textColorSecondary"
             android:singleLine="true"
             android:saveEnabled="false"
             android:enabled="false"/>
 
-        <EditText
+        <TextView
             android:id="@+id/type"
             android:layout_width="@dimen/editor_type_label_width"
             android:layout_height="wrap_content"
             android:textSize="@dimen/editor_form_text_size"
             android:textColor="?android:attr/textColorSecondary"
-            android:minHeight="@dimen/editor_min_line_item_height"
             android:singleLine="true"
             android:saveEnabled="false"
             android:enabled="false"/>
