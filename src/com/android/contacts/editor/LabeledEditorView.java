@@ -281,7 +281,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
      * possible custom label string.
      */
     public void rebuildLabel() {
-        mEditTypeAdapter = new EditTypeAdapter(mContext);
+        mEditTypeAdapter = new EditTypeAdapter(getContext());
         mLabel.setAdapter(mEditTypeAdapter);
         if (mEditTypeAdapter.hasCustomSelection()) {
             mLabel.setSelection(mEditTypeAdapter.getPosition(CUSTOM_SELECTION));
@@ -396,7 +396,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
      * no empty text is allowed in any custom label.
      */
     private Dialog createCustomDialog() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         final LayoutInflater layoutInflater = LayoutInflater.from(builder.getContext());
         builder.setTitle(R.string.customLabelPickerTitle);
 

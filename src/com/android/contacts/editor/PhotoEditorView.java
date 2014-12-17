@@ -78,7 +78,7 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mContactPhotoManager = ContactPhotoManager.getInstance(mContext);
+        mContactPhotoManager = ContactPhotoManager.getInstance(getContext());
         mPhotoImageView = (ImageView) findViewById(R.id.photo);
         mPrimaryCheckBox = (RadioButton) findViewById(R.id.primary_checkbox);
         mChangeButton = (Button) findViewById(R.id.change_button);

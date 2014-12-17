@@ -195,27 +195,28 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 mAccountHeaderNameTextView.setVisibility(View.GONE);
                 mAccountHeaderTypeTextView.setText(R.string.local_profile_title);
             } else {
-                CharSequence accountType = type.getDisplayLabel(mContext);
-                mAccountHeaderTypeTextView.setText(mContext.getString(R.string.external_profile_title,
+                CharSequence accountType = type.getDisplayLabel(getContext());
+                mAccountHeaderTypeTextView.setText(getContext().getString(
+                        R.string.external_profile_title,
                         accountType));
                 mAccountHeaderNameTextView.setText(accountName);
             }
         } else {
             String accountName = state.getAccountName();
-            CharSequence accountType = type.getDisplayLabel(mContext);
+            CharSequence accountType = type.getDisplayLabel(getContext());
             if (TextUtils.isEmpty(accountType)) {
-                accountType = mContext.getString(R.string.account_phone);
+                accountType = getContext().getString(R.string.account_phone);
             }
             if (!TextUtils.isEmpty(accountName)) {
                 mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
                 mAccountHeaderNameTextView.setText(
-                        mContext.getString(R.string.from_account_format, accountName));
+                        getContext().getString(R.string.from_account_format, accountName));
             } else {
                 // Hide this view so the other text view will be centered vertically
                 mAccountHeaderNameTextView.setVisibility(View.GONE);
             }
             mAccountHeaderTypeTextView.setText(
-                    mContext.getString(R.string.account_type_format, accountType));
+                    getContext().getString(R.string.account_type_format, accountType));
         }
         updateAccountHeaderContentDescription();
 

@@ -842,7 +842,7 @@ public class MultiShrinkScroller extends FrameLayout {
             if (mIsTwoPanel) {
                 // Only show the EdgeEffect on the bottom of the ScrollView.
                 mEdgeGlowBottom.setSize(mScrollView.getWidth(), height);
-                if (isLayoutRtl()) {
+                if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
                     canvas.translate(mPhotoViewContainer.getWidth(), 0);
                 }
             } else {
@@ -858,7 +858,7 @@ public class MultiShrinkScroller extends FrameLayout {
             final int restoreCount = canvas.save();
             if (mIsTwoPanel) {
                 mEdgeGlowTop.setSize(mScrollView.getWidth(), height);
-                if (!isLayoutRtl()) {
+                if (getLayoutDirection() != View.LAYOUT_DIRECTION_RTL) {
                     canvas.translate(mPhotoViewContainer.getWidth(), 0);
                 }
             } else {
@@ -992,7 +992,7 @@ public class MultiShrinkScroller extends FrameLayout {
         }
 
         // The pivot point for scaling should be middle of the starting side.
-        if (isLayoutRtl()) {
+        if (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
             mLargeTextView.setPivotX(mLargeTextView.getWidth());
         } else {
             mLargeTextView.setPivotX(0);

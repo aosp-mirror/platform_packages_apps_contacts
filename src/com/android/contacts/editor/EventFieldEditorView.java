@@ -73,10 +73,10 @@ public class EventFieldEditorView extends LabeledEditorView {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        Resources resources = mContext.getResources();
+        Resources resources = getContext().getResources();
         mPrimaryTextColor = resources.getColor(R.color.primary_text_color);
         mHintTextColor = resources.getColor(R.color.editor_disabled_text_color);
-        mNoDateString = mContext.getString(R.string.event_edit_field_hint_text);
+        mNoDateString = getContext().getString(R.string.event_edit_field_hint_text);
 
         mDateView = (Button) findViewById(R.id.date_view);
         mDateView.setOnClickListener(new OnClickListener() {

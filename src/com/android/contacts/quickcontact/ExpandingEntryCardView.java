@@ -1049,7 +1049,7 @@ public class ExpandingEntryCardView extends CardView {
         }
 
         private boolean hitThirdIcon(MotionEvent event) {
-            if (mEntry.isLayoutRtl()) {
+            if (mEntry.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
                 return mThirdIcon.getVisibility() == View.VISIBLE &&
                         event.getX() < mThirdIcon.getRight();
             } else {
@@ -1065,7 +1065,7 @@ public class ExpandingEntryCardView extends CardView {
             // LayoutParams used to add the start margin to the touch area
             final RelativeLayout.LayoutParams alternateIconParams =
                     (RelativeLayout.LayoutParams) mAlternateIcon.getLayoutParams();
-            if (mEntry.isLayoutRtl()) {
+            if (mEntry.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
                 return mAlternateIcon.getVisibility() == View.VISIBLE &&
                         event.getX() < mAlternateIcon.getRight() + alternateIconParams.rightMargin;
             } else {

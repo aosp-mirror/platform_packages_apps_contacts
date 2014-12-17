@@ -119,25 +119,26 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
                 mAccountHeaderNameTextView.setVisibility(View.GONE);
                 mAccountHeaderTypeTextView.setText(R.string.local_profile_title);
             } else {
-                CharSequence accountType = type.getDisplayLabel(mContext);
-                mAccountHeaderTypeTextView.setText(mContext.getString(R.string.external_profile_title,
+                CharSequence accountType = type.getDisplayLabel(getContext());
+                mAccountHeaderTypeTextView.setText(getContext().getString(
+                        R.string.external_profile_title,
                         accountType));
                 mAccountHeaderNameTextView.setText(mAccountName);
             }
         } else {
-            CharSequence accountType = type.getDisplayLabel(mContext);
+            CharSequence accountType = type.getDisplayLabel(getContext());
             if (TextUtils.isEmpty(accountType)) {
-                accountType = mContext.getString(R.string.account_phone);
+                accountType = getContext().getString(R.string.account_phone);
             }
             if (!TextUtils.isEmpty(mAccountName)) {
                 mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
                 mAccountHeaderNameTextView.setText(
-                        mContext.getString(R.string.from_account_format, mAccountName));
+                        getContext().getString(R.string.from_account_format, mAccountName));
             } else {
                 // Hide this view so the other text view will be centered vertically
                 mAccountHeaderNameTextView.setVisibility(View.GONE);
             }
-            mAccountHeaderTypeTextView.setText(mContext.getString(R.string.account_type_format,
+            mAccountHeaderTypeTextView.setText(getContext().getString(R.string.account_type_format,
                     accountType));
         }
         updateAccountHeaderContentDescription();
@@ -161,7 +162,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         // Name
         primary = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
         mName.setText(primary != null ? primary.getAsString(StructuredName.DISPLAY_NAME) :
-                mContext.getString(R.string.missing_name));
+                getContext().getString(R.string.missing_name));
 
         if (type.getEditContactActivityClassName() != null) {
             mEditExternallyButton.setVisibility(View.VISIBLE);
@@ -169,7 +170,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
             mEditExternallyButton.setVisibility(View.GONE);
         }
 
-        final Resources res = mContext.getResources();
+        final Resources res = getContext().getResources();
         // Phones
         final ArrayList<ValuesDelta> phones = state.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
         final Drawable phoneDrawable = getResources().getDrawable(R.drawable.ic_phone_24dp);

@@ -162,10 +162,10 @@ public class GroupMembershipView extends LinearLayout
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        Resources resources = mContext.getResources();
+        Resources resources = getContext().getResources();
         mPrimaryTextColor = resources.getColor(R.color.primary_text_color);
         mHintTextColor = resources.getColor(R.color.editor_disabled_text_color);
-        mNoGroupString = mContext.getString(R.string.group_edit_field_hint_text);
+        mNoGroupString = getContext().getString(R.string.group_edit_field_hint_text);
     }
 
     @Override

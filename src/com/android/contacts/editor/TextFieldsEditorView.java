@@ -82,7 +82,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
         setDrawingCacheEnabled(true);
         setAlwaysDrawnWithCacheEnabled(true);
 
-        mMinFieldHeight = mContext.getResources().getDimensionPixelSize(
+        mMinFieldHeight = getContext().getResources().getDimensionPixelSize(
                 R.dimen.editor_min_line_item_height);
         mFields = (ViewGroup) findViewById(R.id.editors);
         mHintTextColor = getResources().getColor(R.color.secondary_text_color);
@@ -232,7 +232,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
         mFieldEditTexts = new EditText[fieldCount];
         for (int index = 0; index < fieldCount; index++) {
             final EditField field = kind.fieldList.get(index);
-            final EditText fieldView = new EditText(mContext);
+            final EditText fieldView = new EditText(getContext());
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             fieldView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
@@ -246,7 +246,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             int inputType = field.inputType;
             fieldView.setInputType(inputType);
             if (inputType == InputType.TYPE_CLASS_PHONE) {
-                PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(mContext, fieldView);
+                PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(getContext(), fieldView);
                 fieldView.setTextDirection(View.TEXT_DIRECTION_LTR);
             }
 

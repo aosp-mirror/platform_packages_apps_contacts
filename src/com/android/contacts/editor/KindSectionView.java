@@ -99,7 +99,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         setDrawingCacheEnabled(true);
         setAlwaysDrawnWithCacheEnabled(true);
 
-        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         mEditors = (ViewGroup) findViewById(R.id.kind_editors);
         mIcon = (ImageView) findViewById(R.id.kind_icon);
