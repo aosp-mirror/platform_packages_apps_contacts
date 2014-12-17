@@ -378,18 +378,6 @@
             </intent-filter>
         </activity>
 
-        <!--
-            Internal photo selection activity.  This activity handles all configuration changes by
-            itself.
-        -->
-        <activity android:name=".activities.PhotoSelectionActivity"
-            android:theme="@style/Theme.PhotoSelector"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="stateUnchanged"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
-            >
-        </activity>
-
         <!-- vCard related -->
         <activity android:name=".common.vcard.ImportVCardActivity"
             android:label="@string/launcherActivityLabel"
