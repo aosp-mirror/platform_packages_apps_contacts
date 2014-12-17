@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.android.contacts.util.SchedulingUtils;
 import com.google.common.collect.Lists;
@@ -142,6 +143,57 @@ public class EditorAnimator {
                 mRunner.run(animators);
             }
         });
+    }
+
+    /**
+     * Smoothly scroll {@param targetView}'s parent ScrollView to the top of {@param targetView}.
+     */
+    public void scrollViewToTop(final View targetView) {
+        final ScrollView scrollView = getParentScrollView(targetView);
+        SchedulingUtils.doAfterLayout(scrollView, new Runnable() {
+            @Override
+            public void run() {
+                ScrollView scrollView = getParentScrollView(targetView);
+                scrollView.smoothScrollTo(0, offsetFromTopOfViewGroup(targetView, scrollView)
+                        + scrollView.getScrollY());
+            }
+        });
+        // Clear the focused element so it doesn't interfere with scrolling.
+        View view = scrollView.findFocus();
+        if (view != null) {
+            view.clearFocus();
+        }
+    }
+
+    public static void placeFocusAtTopOfScreenAfterReLayout(final View view) {
+        // In order for the focus to be placed at the top of the Window, we need
+        // to wait for layout. Otherwise we don't know where the top of the screen is.
+        SchedulingUtils.doAfterLayout(view, new Runnable() {
+            @Override
+            public void run() {
+                EditorAnimator.getParentScrollView(view).clearFocus();
+            }
+        });
+    }
+
+    private int offsetFromTopOfViewGroup(View view, ViewGroup viewGroup) {
+        int viewLocation[] = new int[2];
+        int viewGroupLocation[] = new int[2];
+        viewGroup.getLocationOnScreen(viewGroupLocation);
+        view.getLocationOnScreen(viewLocation);
+        return viewLocation[1] - viewGroupLocation[1];
+    }
+
+    private static ScrollView getParentScrollView(View view) {
+        while (true) {
+            ViewParent parent = view.getParent();
+            if (parent instanceof ScrollView)
+                return (ScrollView) parent;
+            if (!(parent instanceof View))
+                throw new IllegalArgumentException(
+                        "The editor should be contained inside a ScrollView.");
+            view = (View) parent;
+        }
     }
 
     /**
