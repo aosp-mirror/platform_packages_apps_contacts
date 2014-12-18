@@ -51,7 +51,7 @@
     <!-- Top margin applied to mime-type icons inside the editor. This is needed to give the
         appearance that the icons are top aligned with the text, since visible text doesn't
         start at the very top of TextViews. -->
-    <dimen name="editor_kind_icon_top_margin">9dp</dimen>
+    <dimen name="editor_kind_icon_top_margin">14dp</dimen>
 
     <!-- RHS padding added to spinners in the editor. This separates the spinner text from the
         spinner graphic since b/18194928 causes the spinner to always be on the RHS.
@@ -70,7 +70,7 @@
 
     <!-- Padding below every editor view, such as LabeledEditorView. This value is chosen
         to give 32dp of apparent padding between EditText's in the Raw Contact Editor. -->
-    <dimen name="editor_padding_between_editor_views">20dp</dimen>
+    <dimen name="editor_padding_between_editor_views">15dp</dimen>
 
     <!-- Padding below every readonly editor view. This value is chosen to give 32dp of apparent padding
         between TextView's in the readonly Raw Contact Editor. -->
@@ -83,7 +83,7 @@
     <!-- Padding below the photo editor. This value is larger than
         editor_padding_between_editor_views, since ImageView's don't have space between the bottom
         of their visual bottom, like an EditText does. -->
-    <dimen name="editor_padding_below_photo">22dp</dimen>
+    <dimen name="editor_padding_below_photo">21dp</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">150dip</dimen>
