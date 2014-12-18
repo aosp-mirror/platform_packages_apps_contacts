@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/kind_icon"
         android:src="@drawable/ic_camera_alt_black_24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="13dp"
         android:contentDescription="@string/header_photo_entry"
         style="@style/EditKindIconStyle" />
 
@@ -37,7 +37,7 @@
         android:layout_height="72dip"
         android:cropToPadding="true"
         android:scaleType="centerCrop"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="4dp"
         android:contentDescription="@string/description_contact_photo"
         android:layout_marginBottom="@dimen/editor_padding_below_photo"
@@ -59,14 +59,14 @@
             This is 2dp less than the default touch target size.
             3) This button will appear to be offset by the private
             @android:dimen/button_inset_vertical_material amount. Therefore, in order to achieve
-            10dp of apparent top margin, we only need to apply 4dp. -->
+            15dp of apparent top margin, we only need to apply 9dp. -->
         <Button
             android:id="@+id/change_button"
             android:layout_width="wrap_content"
             android:layout_height="46dp"
             android:textSize="@dimen/editor_form_text_size"
             android:textColor="@color/primary_text_color"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="9dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/change_photo" />
