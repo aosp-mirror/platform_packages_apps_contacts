@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.net.WebAddress;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.Data;
 import android.telecom.PhoneAccount;
@@ -43,6 +42,7 @@ import com.android.contacts.common.model.dataitem.PhoneDataItem;
 import com.android.contacts.common.model.dataitem.SipAddressDataItem;
 import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.common.model.dataitem.WebsiteDataItem;
+import com.android.contacts.quickcontact.WebAddress.ParseException;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.StructuredPostalUtils;
 
@@ -169,8 +169,12 @@ public class DataAction implements Action {
             final WebsiteDataItem website = (WebsiteDataItem) item;
             final String url = website.getUrl();
             if (!TextUtils.isEmpty(url)) {
-                WebAddress webAddress = new WebAddress(url);
-                mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
+                try {
+                    final WebAddress webAddress = new WebAddress(url);
+                    mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
+                } catch (ParseException e) {
+                    mIntent = null;
+                }
             }
 
         } else if (item instanceof ImDataItem) {
