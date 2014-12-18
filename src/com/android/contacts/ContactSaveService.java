@@ -833,8 +833,7 @@ public class ContactSaveService extends IntentService {
 
                 // Don't bother undemoting if this contact is the user's profile.
                 if (id < Profile.MIN_ID) {
-                    getContentResolver().call(ContactsContract.AUTHORITY_URI,
-                            PinnedPositions.UNDEMOTE_METHOD, String.valueOf(id), null);
+                    PinnedPositions.undemote(getContentResolver(), id);
                 }
             }
         } finally {
