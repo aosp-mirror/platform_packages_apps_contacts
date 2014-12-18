@@ -16,13 +16,8 @@
 
 package com.android.contacts.datepicker;
 
-// This is a fork of the standard Android DatePicker that additionally allows toggling the year
-// on/off. It uses some private API so that not everything has to be copied.
-
 import android.animation.LayoutTransition;
-import android.annotation.Widget;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.format.DateFormat;
@@ -41,13 +36,13 @@ import android.widget.NumberPicker.OnValueChangeListener;
 import com.android.contacts.R;
 
 import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import libcore.icu.ICU;
-
 /**
+ * This is a fork of the standard Android DatePicker that additionally allows toggling the year
+ * on/off.
+ *
  * A view for selecting a month / year / day based on a calendar like layout.
  *
  * <p>See the <a href="{@docRoot}resources/tutorials/views/hello-datepicker.html">Date Picker
@@ -55,13 +50,13 @@ import libcore.icu.ICU;
  *
  * For a dialog using this view, see {@link android.app.DatePickerDialog}.
  */
-@Widget
 public class DatePicker extends FrameLayout {
     /** Magic year that represents "no year" */
     public static int NO_YEAR = 0;
 
     private static final int DEFAULT_START_YEAR = 1900;
     private static final int DEFAULT_END_YEAR = 2100;
+    private static final TwoDigitFormatter sTwoDigitFormatter = new TwoDigitFormatter();
 
     /* UI Components */
     private final LinearLayout mPickerContainer;
@@ -113,7 +108,7 @@ public class DatePicker extends FrameLayout {
 
         mPickerContainer = (LinearLayout) findViewById(R.id.parent);
         mDayPicker = (NumberPicker) findViewById(R.id.day);
-        mDayPicker.setFormatter(NumberPicker.getTwoDigitFormatter());
+        mDayPicker.setFormatter(sTwoDigitFormatter);
         mDayPicker.setOnLongPressUpdateInterval(100);
         mDayPicker.setOnValueChangedListener(new OnValueChangeListener() {
             @Override
@@ -123,7 +118,7 @@ public class DatePicker extends FrameLayout {
             }
         });
         mMonthPicker = (NumberPicker) findViewById(R.id.month);
-        mMonthPicker.setFormatter(NumberPicker.getTwoDigitFormatter());
+        mMonthPicker.setFormatter(sTwoDigitFormatter);
         DateFormatSymbols dfs = new DateFormatSymbols();
         String[] months = dfs.getShortMonths();
 
