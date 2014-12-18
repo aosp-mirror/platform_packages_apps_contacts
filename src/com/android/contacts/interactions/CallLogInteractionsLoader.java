@@ -26,7 +26,7 @@ import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
-import com.android.internal.annotations.VisibleForTesting;
+import com.google.common.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
 import java.util.Collections;
