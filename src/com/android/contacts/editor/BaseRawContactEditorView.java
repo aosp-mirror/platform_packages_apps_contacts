@@ -153,6 +153,14 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
                     if (!isCollapsed) {
                         EditorAnimator.getInstance().slideAndFadeIn(mCollapsibleSection,
                                 startingHeight);
+                        // We want to place the focus near the top of the screen now that a
+                        // potentially focused editor is being collapsed.
+                        EditorAnimator.placeFocusAtTopOfScreenAfterReLayout(mCollapsibleSection);
+                    } else {
+                        // When expanding we should scroll the expanded view onto the screen.
+                        // Otherwise, user's may not notice that any expansion happened.
+                        EditorAnimator.getInstance().scrollViewToTop(mAccountHeaderContainer);
+                        mCollapsibleSection.requestFocus();
                     }
                     if (mListener != null) {
                         mListener.onEditorExpansionChanged();
