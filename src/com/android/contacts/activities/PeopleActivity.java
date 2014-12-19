@@ -20,6 +20,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -845,7 +846,7 @@ public class PeopleActivity extends ContactsActivity implements
             //
             // Also check for ability to modify accounts.  In limited user mode, you can't modify
             // accounts so there is no point sending users to account setup activity.
-            final UserManager userManager = UserManager.get(this);
+            final UserManager userManager = (UserManager) getSystemService(Context.USER_SERVICE);
             final boolean disallowModifyAccounts = userManager.getUserRestrictions().getBoolean(
                     UserManager.DISALLOW_MODIFY_ACCOUNTS);
             if (!disallowModifyAccounts && !areContactWritableAccountsAvailable() &&
