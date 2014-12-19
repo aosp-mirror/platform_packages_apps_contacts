@@ -16,7 +16,6 @@
 
 package com.android.contacts.interactions;
 
-import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
 import android.content.Loader;
@@ -34,59 +33,10 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * A {@link LoaderManager} that records which loaders have been completed.
- * <p>
- * You should wrap the existing LoaderManager with an instance of this class, which will then
- * delegate to the original object.
- * <p>
- * Typically, one would override {@link Activity#getLoaderManager()} to return the
- * TestLoaderManager and ensuring it wraps the {@link LoaderManager} for this object, e.g.:
- * <pre>
- *   private TestLoaderManager mTestLoaderManager;
- *
- *   public LoaderManager getLoaderManager() {
- *     LoaderManager loaderManager = super.getLoaderManager();
- *     if (mTestLoaderManager != null) {
- *       mTestLoaderManager.setDelegate(loaderManager);
- *       return mTestLoaderManager;
- *     } else {
- *       return loaderManager;
- *     }
- *   }
- *
- *   void setTestLoaderManager(TestLoaderManager testLoaderManager) {
- *     mTestLoaderManager = testLoaderManager;
- *   }
- * </pre>
- * In the tests, one would set the TestLoaderManager upon creating the activity, and then wait for
- * the loader to complete.
- * <pre>
- *   public void testLoadedCorrect() {
- *     TestLoaderManager testLoaderManager = new TestLoaderManager();
- *     getActivity().setTestLoaderManager(testLoaderManager);
- *     runOnUiThread(new Runnable() { public void run() { getActivity().startLoading(); } });
- *     testLoaderManager.waitForLoader(R.id.test_loader_id);
- *   }
- * </pre>
- * If the loader completes before the call to {@link #waitForLoaders(int...)}, the TestLoaderManager
- * will have stored the fact that the loader has completed and correctly terminate immediately.
- * <p>
- * It one needs to wait for the same loader multiple times, call {@link #reset()} between the them
- * as in:
- * <pre>
- *   public void testLoadedCorrect() {
- *     TestLoaderManager testLoaderManager = new TestLoaderManager();
- *     getActivity().setTestLoaderManager(testLoaderManager);
- *     runOnUiThread(new Runnable() { public void run() { getActivity().startLoading(); } });
- *     testLoaderManager.waitForLoader(R.id.test_loader_id);
- *     testLoaderManager.reset();
- *     // Load and wait again.
- *     runOnUiThread(new Runnable() { public void run() { getActivity().startLoading(); } });
- *     testLoaderManager.waitForLoader(R.id.test_loader_id);
- *   }
- * </pre>
+ * This implementation of TestLoaderManagerBase uses hidden APIs and must therefore
+ * be kept outside of the main Contacts apk.
  */
-public class TestLoaderManager extends LoaderManager {
+public class TestLoaderManager extends TestLoaderManagerBase {
     private static final String TAG = "TestLoaderManager";
 
     private final HashSet<Integer> mFinishedLoaders;
@@ -127,7 +77,7 @@ public class TestLoaderManager extends LoaderManager {
      * not wait for it to complete again.
      */
     @VisibleForTesting
-    /*package*/ synchronized void waitForLoaders(int... loaderIds) {
+    public synchronized void waitForLoaders(int... loaderIds) {
         List<Loader<?>> loaders = new ArrayList<Loader<?>>(loaderIds.length);
         for (int loaderId : loaderIds) {
             if (mFinishedLoaders.contains(loaderId)) {
