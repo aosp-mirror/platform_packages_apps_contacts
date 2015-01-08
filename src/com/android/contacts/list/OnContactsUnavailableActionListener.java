@@ -34,10 +34,4 @@ public interface OnContactsUnavailableActionListener  {
      * Initiates contact import from a file.
      */
     void onImportContactsFromFileAction();
-
-    /**
-     * Initiates an interaction that frees up some internal storage for the purposes
-     * of a database upgrade.
-     */
-    void onFreeInternalStorageAction();
 }

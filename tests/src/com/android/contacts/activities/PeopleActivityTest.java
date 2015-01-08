@@ -117,8 +117,8 @@ public class PeopleActivityTest
     private void expectProviderStatusQueryAndReturnNormal() {
         mContactsProvider
                 .expectQuery(ProviderStatus.CONTENT_URI)
-                .withProjection(ProviderStatus.STATUS, ProviderStatus.DATA1)
-                .returnRow(ProviderStatus.STATUS_NORMAL, null)
+                .withProjection(ProviderStatus.STATUS)
+                .returnRow(ProviderStatus.STATUS_NORMAL)
                 .anyNumberOfTimes();
     }
 

@@ -42,15 +42,13 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
     private Button mCreateContactButton;
     private Button mAddAccountButton;
     private Button mImportContactsButton;
-    private Button mUninstallAppsButton;
-    private Button mRetryUpgradeButton;
     private ProgressBar mProgress;
     private int mNoContactsMsgResId = -1;
     private int mNSecNoContactsMsgResId = -1;
 
     private OnContactsUnavailableActionListener mListener;
 
-    private ProviderStatusWatcher.Status mProviderStatus;
+    private Integer mProviderStatus;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,10 +67,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mAddAccountButton.setOnClickListener(this);
         mImportContactsButton = (Button) mView.findViewById(R.id.import_contacts_button);
         mImportContactsButton.setOnClickListener(this);
-        mUninstallAppsButton = (Button) mView.findViewById(R.id.import_failure_uninstall_button);
-        mUninstallAppsButton.setOnClickListener(this);
-        mRetryUpgradeButton = (Button) mView.findViewById(R.id.import_failure_retry_button);
-        mRetryUpgradeButton.setOnClickListener(this);
         mProgress = (ProgressBar) mView.findViewById(R.id.progress);
 
         if (mProviderStatus != null) {
@@ -87,20 +81,18 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mListener = listener;
     }
 
-    public void updateStatus(ProviderStatusWatcher.Status providerStatus) {
+    public void updateStatus(int providerStatus) {
         mProviderStatus = providerStatus;
         if (mView == null) {
             // The view hasn't been inflated yet.
             return;
         }
-        switch (providerStatus.status) {
+        switch (providerStatus) {
             case ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS:
                 setMessageText(mNoContactsMsgResId, mNSecNoContactsMsgResId);
                 mCreateContactButton.setVisibility(View.VISIBLE);
                 mAddAccountButton.setVisibility(View.VISIBLE);
                 mImportContactsButton.setVisibility(View.VISIBLE);
-                mUninstallAppsButton.setVisibility(View.GONE);
-                mRetryUpgradeButton.setVisibility(View.GONE);
                 mProgress.setVisibility(View.GONE);
                 break;
 
@@ -111,8 +103,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mCreateContactButton.setVisibility(View.GONE);
                 mAddAccountButton.setVisibility(View.GONE);
                 mImportContactsButton.setVisibility(View.GONE);
-                mUninstallAppsButton.setVisibility(View.GONE);
-                mRetryUpgradeButton.setVisibility(View.GONE);
                 mProgress.setVisibility(View.VISIBLE);
                 break;
 
@@ -123,23 +113,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mCreateContactButton.setVisibility(View.GONE);
                 mAddAccountButton.setVisibility(View.GONE);
                 mImportContactsButton.setVisibility(View.GONE);
-                mUninstallAppsButton.setVisibility(View.GONE);
-                mRetryUpgradeButton.setVisibility(View.GONE);
                 mProgress.setVisibility(View.VISIBLE);
-                break;
-
-            case ProviderStatus.STATUS_UPGRADE_OUT_OF_MEMORY:
-                String message = getResources().getString(R.string.upgrade_out_of_memory,
-                        new Object[] { providerStatus.data});
-                mMessageView.setText(message);
-                mMessageView.setGravity(Gravity.START);
-                mMessageView.setVisibility(View.VISIBLE);
-                mCreateContactButton.setVisibility(View.GONE);
-                mAddAccountButton.setVisibility(View.GONE);
-                mImportContactsButton.setVisibility(View.GONE);
-                mUninstallAppsButton.setVisibility(View.VISIBLE);
-                mRetryUpgradeButton.setVisibility(View.VISIBLE);
-                mProgress.setVisibility(View.GONE);
                 break;
         }
     }
@@ -159,15 +133,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
             case R.id.import_contacts_button:
                 mListener.onImportContactsFromFileAction();
                 break;
-            case R.id.import_failure_uninstall_button:
-                mListener.onFreeInternalStorageAction();
-                break;
-            case R.id.import_failure_retry_button:
-                final Context context = getActivity();
-                if (context != null) { // Just in case.
-                    ProviderStatusWatcher.retryUpgrade(context);
-                }
-                break;
         }
     }
     /**
@@ -179,7 +144,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mNoContactsMsgResId = resId;
         mNSecNoContactsMsgResId = secResId;
         if ((mMessageView != null) && (mProviderStatus != null) &&
-                (mProviderStatus.status == ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS)) {
+                (mProviderStatus.equals(ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS))) {
             if (resId != -1) {
                 mMessageView.setText(mNoContactsMsgResId);
                 mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);

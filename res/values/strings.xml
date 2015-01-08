@@ -397,17 +397,6 @@
     <!-- Text shown in the contacts app while the background process updates contacts after a system upgrade [CHAR LIMIT=300] -->
     <string name="upgrade_in_progress">Contact list is being updated.</string>
 
-    <!-- Text shown in the contacts app if the background process updating contacts fails because of memory shortage [CHAR LIMIT=300] -->
-    <string name="upgrade_out_of_memory">Contacts are in the process of being upgraded.
-    \n\nThe upgrade process requires approximately <xliff:g id="size_in_megabytes">%s</xliff:g>
-    MB of internal storage.\n\nChoose one of the following options:</string>
-
-    <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage [CHAR LIMIT=50] -->
-    <string name="upgrade_out_of_memory_uninstall">Uninstall some applications</string>
-
-    <!-- Button shown in the contacts app if the background process updating contacts fails because of memory shortage [CHAR LIMIT=50] -->
-    <string name="upgrade_out_of_memory_retry">Retry upgrade</string>
-
     <!-- Title shown in the search result activity of contacts app while searching.  [CHAR LIMIT=20] -->
     <string name="search_results_searching">Searching\u2026</string>
 

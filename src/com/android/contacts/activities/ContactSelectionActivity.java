@@ -27,7 +27,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.Insert;
-import android.provider.ContactsContract.Intents.UI;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -55,6 +54,7 @@ import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.LegacyPhoneNumberPickerFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnEmailAddressPickerActionListener;
+import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.common.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.common.list.PhoneNumberPickerFragment;
@@ -616,10 +616,11 @@ public class ContactSelectionActivity extends ContactsActivity
 
     private long getTargetContactId() {
         Intent intent = getIntent();
-        final long targetContactId = intent.getLongExtra(UI.TARGET_CONTACT_ID_EXTRA_KEY, -1);
+        final long targetContactId = intent.getLongExtra(
+                UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, -1);
         if (targetContactId == -1) {
             Log.e(TAG, "Intent " + intent.getAction() + " is missing required extra: "
-                    + UI.TARGET_CONTACT_ID_EXTRA_KEY);
+                    + UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY);
             setResult(RESULT_CANCELED);
             finish();
             return -1;

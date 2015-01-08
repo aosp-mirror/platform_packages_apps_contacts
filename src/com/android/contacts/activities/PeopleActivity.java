@@ -116,7 +116,7 @@ public class PeopleActivity extends ContactsActivity implements
 
     private ContactsUnavailableFragment mContactsUnavailableFragment;
     private ProviderStatusWatcher mProviderStatusWatcher;
-    private ProviderStatusWatcher.Status mProviderStatus;
+    private Integer mProviderStatus;
 
     private boolean mOptionsMenuContactsAvailable;
 
@@ -172,7 +172,7 @@ public class PeopleActivity extends ContactsActivity implements
 
     public boolean areContactsAvailable() {
         return (mProviderStatus != null)
-                && mProviderStatus.status == ProviderStatus.STATUS_NORMAL;
+                && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
     }
 
     private boolean areContactWritableAccountsAvailable() {
@@ -821,14 +821,14 @@ public class PeopleActivity extends ContactsActivity implements
     }
 
     private void updateViewConfiguration(boolean forceUpdate) {
-        ProviderStatusWatcher.Status providerStatus = mProviderStatusWatcher.getProviderStatus();
+        int providerStatus = mProviderStatusWatcher.getProviderStatus();
         if (!forceUpdate && (mProviderStatus != null)
-                && (providerStatus.status == mProviderStatus.status)) return;
+                && (mProviderStatus.equals(providerStatus))) return;
         mProviderStatus = providerStatus;
 
         View contactsUnavailableView = findViewById(R.id.contacts_unavailable_view);
 
-        if (mProviderStatus.status == ProviderStatus.STATUS_NORMAL) {
+        if (mProviderStatus.equals(ProviderStatus.STATUS_NORMAL)) {
             // Ensure that the mTabPager is visible; we may have made it invisible below.
             contactsUnavailableView.setVisibility(View.GONE);
             if (mTabPager != null) {
@@ -948,11 +948,6 @@ public class PeopleActivity extends ContactsActivity implements
         public void onImportContactsFromFileAction() {
             ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
                     PeopleActivity.class);
-        }
-
-        @Override
-        public void onFreeInternalStorageAction() {
-            startActivity(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
         }
     }
 
