@@ -39,7 +39,6 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.Insert;
-import android.provider.ContactsContract.Intents.UI;
 import android.provider.ContactsContract.RawContacts;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -67,13 +66,6 @@ public class AllIntentsActivity extends ListActivity
             "com.android.contacts.activities.PeopleActivity";
 
     public enum ContactsIntent {
-        LIST_DEFAULT,
-        LIST_ALL_CONTACTS_ACTION,
-        LIST_CONTACTS_WITH_PHONES_ACTION,
-        LIST_STARRED_ACTION,
-        LIST_FREQUENT_ACTION,
-        LIST_STREQUENT_ACTION,
-        LIST_GROUP_ACTION,
         VIEW_CONTACT_WITHOUT_ID,
         ACTION_PICK_CONTACT,
         ACTION_PICK_CONTACT_LEGACY,
@@ -149,41 +141,6 @@ public class AllIntentsActivity extends ListActivity
         super.onListItemClick(l, v, position, id);
 
         switch (ContactsIntent.get(position)) {
-            case LIST_DEFAULT: {
-                startContactListActivity(
-                        new Intent(UI.LIST_DEFAULT, Contacts.CONTENT_URI));
-                break;
-            }
-            case LIST_ALL_CONTACTS_ACTION: {
-                startContactListActivity(
-                        new Intent(UI.LIST_ALL_CONTACTS_ACTION, Contacts.CONTENT_URI));
-                break;
-            }
-            case LIST_CONTACTS_WITH_PHONES_ACTION: {
-                startContactListActivity(
-                        new Intent(UI.LIST_CONTACTS_WITH_PHONES_ACTION, Contacts.CONTENT_URI));
-                break;
-            }
-            case LIST_STARRED_ACTION: {
-                startContactListActivity(
-                        new Intent(UI.LIST_STARRED_ACTION, Contacts.CONTENT_URI));
-                break;
-            }
-            case LIST_FREQUENT_ACTION: {
-                startContactListActivity(
-                        new Intent(UI.LIST_FREQUENT_ACTION, Contacts.CONTENT_URI));
-                break;
-            }
-            case LIST_STREQUENT_ACTION: {
-                startContactListActivity(
-                        new Intent(UI.LIST_STREQUENT_ACTION, Contacts.CONTENT_URI));
-                break;
-            }
-            case LIST_GROUP_ACTION: {
-                startContactListActivity(
-                        new Intent(UI.LIST_GROUP_ACTION, Contacts.CONTENT_URI));
-                break;
-            }
             case ACTION_PICK_CONTACT: {
                 startContactSelectionActivityForResult(
                         new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI));
@@ -563,15 +520,6 @@ public class AllIntentsActivity extends ListActivity
     private Intent bindIntentToClass(Intent intent, String activityClassName) {
         intent.setComponent(new ComponentName(mContactsPackageName,
                     activityClassName));
-        return intent;
-    }
-
-    private Intent buildFilterIntent(int actionCode, boolean legacy) {
-        Intent intent = new Intent(UI.FILTER_CONTACTS_ACTION);
-        intent.putExtra(UI.FILTER_TEXT_EXTRA_KEY, "A");
-//        ContactsRequest request = new ContactsRequest();
-//        request.setActionCode(actionCode);
-//        intent.putExtra("originalRequest", request);
         return intent;
     }
 

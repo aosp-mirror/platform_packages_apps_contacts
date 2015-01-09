@@ -1,0 +1,113 @@
+/*
+ * Copyright (C) 2015 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License
+ */
+
+package com.android.contacts.list;
+
+/**
+ * Intent actions related to the Contacts app UI. In the past we decided to store these in a single
+ * location in order to easily expose them via ContactsContract. We eventually decided
+ * this wasn't useful.
+ */
+public class UiIntentActions {
+    /**
+     * The action for the default contacts list tab.
+     */
+    public static final String LIST_DEFAULT =
+            "com.android.contacts.action.LIST_DEFAULT";
+
+    /**
+     * The action for the contacts list tab.
+     */
+    public static final String LIST_GROUP_ACTION =
+            "com.android.contacts.action.LIST_GROUP";
+
+    /**
+     * When in LIST_GROUP_ACTION mode, this is the group to display.
+     */
+    public static final String GROUP_NAME_EXTRA_KEY = "com.android.contacts.extra.GROUP";
+
+    /**
+     * The action for the all contacts list tab.
+     */
+    public static final String LIST_ALL_CONTACTS_ACTION =
+            "com.android.contacts.action.LIST_ALL_CONTACTS";
+
+    /**
+     * The action for the contacts with phone numbers list tab.
+     */
+    public static final String LIST_CONTACTS_WITH_PHONES_ACTION =
+            "com.android.contacts.action.LIST_CONTACTS_WITH_PHONES";
+
+    /**
+     * The action for the starred contacts list tab.
+     */
+    public static final String LIST_STARRED_ACTION =
+            "com.android.contacts.action.LIST_STARRED";
+
+    /**
+     * The action for the frequent contacts list tab.
+     */
+    public static final String LIST_FREQUENT_ACTION =
+            "com.android.contacts.action.LIST_FREQUENT";
+
+    /**
+     * The action for the "Join Contact" picker.
+     */
+    public static final String PICK_JOIN_CONTACT_ACTION =
+            "com.android.contacts.action.JOIN_CONTACT";
+
+    /**
+     * The action for the "strequent" contacts list tab. It first lists the starred
+     * contacts in alphabetical order and then the frequent contacts in descending
+     * order of the number of times they have been contacted.
+     */
+    public static final String LIST_STREQUENT_ACTION =
+            "com.android.contacts.action.LIST_STREQUENT";
+
+    /**
+     * A key for to be used as an intent extra to set the activity
+     * title to a custom String value.
+     */
+    public static final String TITLE_EXTRA_KEY =
+            "com.android.contacts.extra.TITLE_EXTRA";
+
+    /**
+     * Activity Action: Display a filtered list of contacts
+     * <p>
+     * Input: Extra field {@link #FILTER_TEXT_EXTRA_KEY} is the text to use for
+     * filtering
+     * <p>
+     * Output: Nothing.
+     */
+    public static final String FILTER_CONTACTS_ACTION =
+            "com.android.contacts.action.FILTER_CONTACTS";
+
+    /**
+     * Used as an int extra field in {@link #FILTER_CONTACTS_ACTION}
+     * intents to supply the text on which to filter.
+     */
+    public static final String FILTER_TEXT_EXTRA_KEY =
+            "com.android.contacts.extra.FILTER_TEXT";
+
+    /**
+     * Used with JOIN_CONTACT action to set the target for aggregation. This action type
+     * uses contact ids instead of contact uris for the sake of backwards compatibility.
+     * <p>
+     * Type: LONG
+     */
+    public static final String TARGET_CONTACT_ID_EXTRA_KEY
+            = "com.android.contacts.action.CONTACT_ID";
+}

@@ -47,22 +47,8 @@ public class ProviderStatusWatcher extends ContentObserver {
         public void onProviderStatusChange();
     }
 
-    public static class Status {
-        /** See {@link ProviderStatus#STATUS} */
-        public final int status;
-
-        /** See {@link ProviderStatus#DATA1} */
-        public final String data;
-
-        public Status(int status, String data) {
-            this.status = status;
-            this.data = data;
-        }
-    }
-
     private static final String[] PROJECTION = new String[] {
-        ProviderStatus.STATUS,
-        ProviderStatus.DATA1
+        ProviderStatus.STATUS
     };
 
     /**
@@ -81,8 +67,9 @@ public class ProviderStatusWatcher extends ContentObserver {
 
     private LoaderTask mLoaderTask;
 
-    /** Last known provider status.  This can be changed on a worker thread. */
-    private Status mProviderStatus;
+    /** Last known provider status.  This can be changed on a worker thread.
+     *  See {@link ProviderStatus#STATUS} */
+    private Integer mProviderStatus;
 
     private final ArrayList<ProviderStatusListener> mListeners = Lists.newArrayList();
 
@@ -185,11 +172,11 @@ public class ProviderStatusWatcher extends ContentObserver {
      * (If {@link ProviderStatus#STATUS_UPGRADING} is returned, the app (should) shows an according
      * message, like "contacts are being updated".)
      */
-    public Status getProviderStatus() {
+    public int getProviderStatus() {
         waitForLoaded();
 
         if (mProviderStatus == null) {
-            return new Status(ProviderStatus.STATUS_UPGRADING, null);
+            return ProviderStatus.STATUS_UPGRADING;
         }
 
         return mProviderStatus;
@@ -234,8 +221,7 @@ public class ProviderStatusWatcher extends ContentObserver {
                         if (cursor.moveToFirst()) {
                             // Note here we can't just say "Status", as AsyncTask has the "Status"
                             // enum too.
-                            mProviderStatus = new ProviderStatusWatcher.Status(
-                                    cursor.getInt(0), cursor.getString(1));
+                            mProviderStatus = cursor.getInt(0);
                             return true;
                         }
                     } finally {
@@ -282,23 +268,5 @@ public class ProviderStatusWatcher extends ContentObserver {
 
         mHandler.removeCallbacks(mStartLoadingRunnable); // Remove one in the queue, if any.
         mHandler.post(mStartLoadingRunnable);
-    }
-
-    /**
-     * Sends a provider status update, which will trigger a retry of database upgrade
-     */
-    public static void retryUpgrade(final Context context) {
-        Log.i(TAG, "retryUpgrade");
-        final AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                ContentValues values = new ContentValues();
-                values.put(ProviderStatus.STATUS, ProviderStatus.STATUS_UPGRADING);
-                context.getContentResolver().update(ProviderStatus.CONTENT_URI, values,
-                        null, null);
-                return null;
-            }
-        };
-        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 }

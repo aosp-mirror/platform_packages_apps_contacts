@@ -20,13 +20,6 @@
 
     <string-array name="allIntents">
         <!-- List modes -->
-        <item>LIST_DEFAULT</item>
-        <item>LIST_ALL_CONTACTS_ACTION</item>
-        <item>LIST_CONTACTS_WITH_PHONES_ACTION (deprecated)</item>
-        <item>LIST_STARRED_ACTION</item>
-        <item>LIST_FREQUENT_ACTION</item>
-        <item>LIST_STREQUENT_ACTION</item>
-        <item>LIST_GROUP_ACTION</item>
         <item>VIEW (content uri without any id)</item>
         <item>ACTION_PICK: contact</item>
         <item>ACTION_PICK: contact (legacy)</item>

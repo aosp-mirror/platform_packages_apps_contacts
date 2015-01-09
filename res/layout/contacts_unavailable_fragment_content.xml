@@ -66,20 +66,6 @@
             android:layout_marginBottom="15dip"
             android:text="@string/contacts_unavailable_import_contacts" />
 
-        <Button
-            android:id="@+id/import_failure_uninstall_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dip"
-            android:text="@string/upgrade_out_of_memory_uninstall" />
-
-        <Button
-            android:id="@+id/import_failure_retry_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dip"
-            android:text="@string/upgrade_out_of_memory_retry" />
-
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="wrap_content"

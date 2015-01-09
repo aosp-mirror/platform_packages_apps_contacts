@@ -20,9 +20,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Intents.UI;
 
 import com.android.contacts.list.ContactsRequest;
+import com.android.contacts.list.UiIntentActions;
 
 /**
  * A convenience class that helps launch contact search from within the app.
@@ -57,14 +57,14 @@ public class ContactsSearchManager {
             Activity context, String initialQuery, ContactsRequest originalRequest) {
         Intent intent = new Intent();
         intent.setData(ContactsContract.Contacts.CONTENT_URI);
-        intent.setAction(UI.FILTER_CONTACTS_ACTION);
+        intent.setAction(UiIntentActions.FILTER_CONTACTS_ACTION);
 
         Intent originalIntent = context.getIntent();
         Bundle originalExtras = originalIntent.getExtras();
         if (originalExtras != null) {
             intent.putExtras(originalExtras);
         }
-        intent.putExtra(UI.FILTER_TEXT_EXTRA_KEY, initialQuery);
+        intent.putExtra(UiIntentActions.FILTER_TEXT_EXTRA_KEY, initialQuery);
         if (originalRequest != null) {
             intent.putExtra(ORIGINAL_REQUEST_KEY, originalRequest);
         }
