@@ -296,7 +296,12 @@ final public class RawContact implements Parcelable {
     }
 
     public void setAccount(AccountWithDataSet accountWithDataSet) {
-        setAccount(accountWithDataSet.name, accountWithDataSet.type, accountWithDataSet.dataSet);
+        if (accountWithDataSet != null) {
+            setAccount(accountWithDataSet.name, accountWithDataSet.type,
+                    accountWithDataSet.dataSet);
+        } else {
+            setAccount(null, null, null);
+        }
     }
 
     public void setAccountToLocal() {

@@ -18,6 +18,7 @@ package com.android.contacts.common.vcard;
 import android.accounts.Account;
 import android.net.Uri;
 
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.vcard.VCardSourceDetector;
 
 /**
@@ -95,10 +96,10 @@ public class ImportRequest {
      */
     public final int entryCount;
 
-    public ImportRequest(Account account,
+    public ImportRequest(AccountWithDataSet account,
             byte[] data, Uri uri, String displayName, int estimatedType, String estimatedCharset,
             int vcardVersion, int entryCount) {
-        this.account = account;
+        this.account = account != null ? account.getAccountOrNull() : null;
         this.data = data;
         this.uri = uri;
         this.displayName = displayName;

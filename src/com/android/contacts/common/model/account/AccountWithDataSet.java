@@ -20,6 +20,7 @@ import android.accounts.Account;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.os.Parcel;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
@@ -36,7 +37,7 @@ import java.util.regex.Pattern;
 /**
  * Wrapper for an account that includes a data set (which may be null).
  */
-public class AccountWithDataSet extends Account {
+public class AccountWithDataSet implements Parcelable {
     private static final String STRINGIFY_SEPARATOR = "\u0001";
     private static final String ARRAY_STRINGIFY_SEPARATOR = "\u0002";
 
@@ -45,6 +46,8 @@ public class AccountWithDataSet extends Account {
     private static final Pattern ARRAY_STRINGIFY_SEPARATOR_PAT =
             Pattern.compile(Pattern.quote(ARRAY_STRINGIFY_SEPARATOR));
 
+    public final String name;
+    public final String type;
     public final String dataSet;
     private final AccountTypeWithDataSet mAccountTypeWithDataSet;
 
@@ -54,20 +57,41 @@ public class AccountWithDataSet extends Account {
 
 
     public AccountWithDataSet(String name, String type, String dataSet) {
-        super(name, type);
-        this.dataSet = dataSet;
+        this.name = emptyToNull(name);
+        this.type = emptyToNull(type);
+        this.dataSet = emptyToNull(dataSet);
         mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
 
+    private static final String emptyToNull(String text) {
+        return TextUtils.isEmpty(text) ? null : text;
+    }
+
     public AccountWithDataSet(Parcel in) {
-        super(in);
+        this.name = in.readString();
+        this.type = in.readString();
         this.dataSet = in.readString();
         mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
 
-    @Override
+    public boolean isLocalAccount() {
+        return name == null && type == null;
+    }
+
+    public Account getAccountOrNull() {
+        if (name != null && type != null) {
+            return new Account(name, type);
+        }
+        return null;
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
-        super.writeToParcel(dest, flags);
+        dest.writeString(name);
+        dest.writeString(type);
         dest.writeString(dataSet);
     }
 
@@ -113,27 +137,32 @@ public class AccountWithDataSet extends Account {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return (o instanceof AccountWithDataSet) && super.equals(o)
-                && Objects.equal(((AccountWithDataSet) o).dataSet, dataSet);
+    public boolean equals(Object obj) {
+        if (obj instanceof AccountWithDataSet) {
+            AccountWithDataSet other = (AccountWithDataSet) obj;
+            return Objects.equal(name, other.name)
+                    && Objects.equal(type, other.type)
+                    && Objects.equal(dataSet, other.dataSet);
+        }
+        return false;
     }
 
-    @Override
     public int hashCode() {
-        return 31 * super.hashCode()
-                + (dataSet == null ? 0 : dataSet.hashCode());
+        int result = 17;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (dataSet != null ? dataSet.hashCode() : 0);
+        return result;
     }
 
-    @Override
     public String toString() {
         return "AccountWithDataSet {name=" + name + ", type=" + type + ", dataSet=" + dataSet + "}";
     }
 
     private static StringBuilder addStringified(StringBuilder sb, AccountWithDataSet account) {
-        sb.append(account.name);
+        if (!TextUtils.isEmpty(account.name)) sb.append(account.name);
         sb.append(STRINGIFY_SEPARATOR);
-        sb.append(account.type);
+        if (!TextUtils.isEmpty(account.type)) sb.append(account.type);
         sb.append(STRINGIFY_SEPARATOR);
         if (!TextUtils.isEmpty(account.dataSet)) sb.append(account.dataSet);
 
