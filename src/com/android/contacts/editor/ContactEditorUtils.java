@@ -119,7 +119,7 @@ public class ContactEditorUtils {
         final SharedPreferences.Editor editor = mPrefs.edit()
                 .putBoolean(KEY_ANYTHING_SAVED, true);
 
-        if (defaultAccount == null) {
+        if (defaultAccount == null || defaultAccount.isLocalAccount()) {
             // If the default is "local only", there should be no writable accounts.
             // This should always be the case with our spec, but because we load the account list
             // asynchronously using a worker thread, it is possible that there are accounts at this
@@ -165,7 +165,7 @@ public class ContactEditorUtils {
      */
     @VisibleForTesting
     boolean isValidAccount(AccountWithDataSet account) {
-        if (account == null) {
+        if (account == null || account.isLocalAccount()) {
             return true; // It's "local only" account, which is valid.
         }
         return getWritableAccounts().contains(account);
@@ -227,7 +227,8 @@ public class ContactEditorUtils {
         // ("local" account) while there are multiple accounts, then show the notification dialog.
         // This shouldn't ever happen, but this should allow the user can get back into a normal
         // state after they respond to the notification.
-        if (defaultAccount == null && currentWritableAccounts.size() > 0) {
+        if ((defaultAccount == null || defaultAccount.isLocalAccount())
+                && currentWritableAccounts.size() > 0) {
             Log.e(TAG, "Preferences file in an inconsistent state, request that the default account"
                     + " and current writable accounts be saved again");
             return true;
