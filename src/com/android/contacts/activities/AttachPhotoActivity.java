@@ -321,11 +321,7 @@ public class AttachPhotoActivity extends ContactsActivity {
             // Otherwise, there should be a default account. Then either create a local contact
             // (if default account is null) or create a contact with the specified account.
             AccountWithDataSet defaultAccount = editorUtils.getDefaultAccount();
-            if (defaultAccount == null) {
-                createNewRawContact(null);
-            } else {
-                createNewRawContact(defaultAccount);
-            }
+            createNewRawContact(defaultAccount);
         }
     }
 

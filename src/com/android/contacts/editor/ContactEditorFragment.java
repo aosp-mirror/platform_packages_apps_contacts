@@ -682,11 +682,7 @@ public class ContactEditorFragment extends Fragment implements
             // Otherwise, there should be a default account. Then either create a local contact
             // (if default account is null) or create a contact with the specified account.
             AccountWithDataSet defaultAccount = mEditorUtils.getDefaultAccount();
-            if (defaultAccount == null) {
-                createContact(null);
-            } else {
-                createContact(defaultAccount);
-            }
+            createContact(defaultAccount);
         }
     }
 
@@ -715,9 +711,7 @@ public class ContactEditorFragment extends Fragment implements
      */
     private void createContact(AccountWithDataSet account) {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        final AccountType accountType =
-                accountTypes.getAccountType(account != null ? account.type : null,
-                        account != null ? account.dataSet : null);
+        final AccountType accountType = accountTypes.getAccountTypeForAccount(account);
 
         if (accountType.getCreateContactActivityClassName() != null) {
             if (mListener != null) {
@@ -740,10 +734,8 @@ public class ContactEditorFragment extends Fragment implements
             RawContactDelta oldState, AccountWithDataSet oldAccount,
             AccountWithDataSet newAccount) {
         AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        AccountType oldAccountType = accountTypes.getAccountType(
-                oldAccount.type, oldAccount.dataSet);
-        AccountType newAccountType = accountTypes.getAccountType(
-                newAccount.type, newAccount.dataSet);
+        AccountType oldAccountType = accountTypes.getAccountTypeForAccount(oldAccount);
+        AccountType newAccountType = accountTypes.getAccountTypeForAccount(newAccount);
 
         if (newAccountType.getCreateContactActivityClassName() != null) {
             Log.w(TAG, "external activity called in rebind situation");
@@ -772,11 +764,7 @@ public class ContactEditorFragment extends Fragment implements
         mStatus = Status.EDITING;
 
         final RawContact rawContact = new RawContact();
-        if (newAccount != null) {
-            rawContact.setAccount(newAccount);
-        } else {
-            rawContact.setAccountToLocal();
-        }
+        rawContact.setAccount(newAccount);
 
         final ValuesDelta valuesDelta = ValuesDelta.fromAfter(rawContact.getValues());
         final RawContactDelta insert = new RawContactDelta(valuesDelta);
