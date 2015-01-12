@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Шинэ зураг сонгох"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Хэлний өөрчлөлтийг тусгахын тулд харилцагчдын жагсаалтыг шинэчилж байна."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Харилцагчдын жагсаалтыг шинэчилж байна."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Харилцагчдын жагсаалтыг сайжруулж байна. \n\nСайжруулах явцад ойролцоогоор <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB хэмжээтэй дотоод сан шаардагдана.\n\nДараах сонголтуудаас нэгийг нь сонгоно уу:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Зарим аппликешнүүдийг устгана уу"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Сайжруулахыг дахин эхлүүлэх"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Хайж байна..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Сонгоснуудыг харуулах"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Бүгдийг харуулах"</string>

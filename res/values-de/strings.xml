@@ -127,8 +127,8 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"Zu Kontakten hinzufügen"</string>
     <string name="share_via" msgid="563121028023030093">"Kontakt teilen über"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Konto für Gruppenerstellung"</string>
-    <string name="audio_chat" msgid="2535716629358298691">"Sprach-Chat"</string>
-    <string name="video_chat" msgid="1872255818640336072">"Video-Chat"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Sprachchat"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Videochat"</string>
     <string name="connections" msgid="8098440723172028350">"Verbindungen"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Verbindung hinzufügen"</string>
     <string name="recent" msgid="2659189233141493004">"Neueste Nachrichten"</string>
@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Neues Foto auswählen"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktliste wird an die geänderte Sprache angepasst..."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktliste wird aktualisiert..."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte werden gerade aktualisiert. \n\nDas Upgrade erfordert etwa <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB des internen Speichers.\n\nWählen Sie eine der folgenden Optionen:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Einige Apps deinstallieren"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Upgrade wiederholen"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Suche..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Auswahl anzeigen"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Alle anzeigen"</string>

@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Yangi suratni tanlang"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Til o‘zgarishlarini aks ettirish uchun kontakt ro‘yxati yangilanmoqda."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontakt ro‘yxati yangilanmoqda."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontaktlarni yangilash jarayoni boshlangan. \n\nYangilash jarayoni taxminan <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ichki xotiradan joy talab qiladi.\n\nQuyidagilardan birini tanlang:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Bir nechta ilovalarni o‘chiring"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Yangilash uchun yana urinib ko‘ring"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Qidirmoqda…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Tanlanganni ko‘rsatish"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Barchasini ko‘rsatish"</string>

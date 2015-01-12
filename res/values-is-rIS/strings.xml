@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Velja nýja mynd"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Verið er að uppfæra tengiliðalistann í samræmi við valið tungumál."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Verið er að uppfæra tengiliðalistann."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Verið er að uppfæra tengiliði. \n\nUppfærsluferlið notar u.þ.b. <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB af innbyggðu geymslunni.\n\nVeldu einn eftirfarandi valkosta:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Fjarlægja einhver forrit"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Prófa uppfærslu aftur"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Leitar…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Sýna valda"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Sýna alla"</string>

@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Pasirinkti naują nuotrauką"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktų sąrašas yra atnaujinamas, kad atspindėtų kalbos pakeitimą."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Atnaujinamas kontaktų sąrašas."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontaktai naujovinami. \n\nNaujovinimo procesui reikalinga maždaug <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB vidinės atminties.\n\nPasirinkite vieną iš šių parinkčių:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Pašalinti kai kurias programas"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Bandyti naujovinti iš naujo"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Ieškoma…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Rodyti pasirinktus"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Rodyti visus"</string>

@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"새 사진 선택"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"변경된 언어를 반영하도록 주소록을 업데이트하는 중입니다. 잠시 기다려 주세요."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"주소록을 업데이트하고 있습니다."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"주소록을 업그레이드하는 중입니다. \n\n업그레이드 하려면 약 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>MB의 내부 저장공간이 필요합니다.\n\n다음 옵션 중 하나를 선택하세요."</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"일부 애플리케이션 제거"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"업그레이드 다시 시도"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"검색 중…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"선택한 항목 표시"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"모두 표시"</string>

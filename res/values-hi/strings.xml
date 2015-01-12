@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"नई फ़ोटो चुनें"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषा के परिवर्तन दिखाने के लिए संपर्क सूची से नई जानकारी मिल रही है."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची से नई जानकारी मिल रही है."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क अपग्रेड होने की प्रक्रिया में हैं. \n\nअपग्रेड प्रक्रिया को लगभग <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB मोबाइल मेमोरी की आवश्‍यकता होती है.\n\nनिम्‍न विकल्‍पों में से कोई एक चुनें:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"कुछ ऐप्स  अनइंस्टॉल करें"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"अपग्रेड का पुन: प्रयास करें"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"खोज रहा है…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"चयनित दिखाएं"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"सभी दिखाएं"</string>

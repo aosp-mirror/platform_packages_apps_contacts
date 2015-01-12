@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Yeni fotoğraf seç"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kişi listesi, dil değişikliğini yansıtmak üzere güncelleniyor."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kişi listesi güncelleniyor."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kişiler yeni sürüme geçiriliyor. \n\nYeni sürüme geçirme işlemi yaklaşık <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB dahili depolama alanı gerektirir.\n\nAşağıdaki seçeneklerden birini belirleyin:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Bazı uygulamaları kaldırın"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Yeni sürüme geçmeyi tekrar dene"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Aranıyor…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Seçileni göster"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Tümünü göster"</string>

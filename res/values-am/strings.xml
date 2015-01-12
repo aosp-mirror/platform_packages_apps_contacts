@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"አዲስ ፎቶ ይምረጡ"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"የቋንቋ ለውጥ ለማንፀባረቅ የዕውቂያ ዝርዝር ዘምኗል።"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"የዕውቂያ ዝርዝር ዘምኗል"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"ዕውቂያዎች በአልቅ ሂደት ውስጥ ናቸው።\n\nየአልቁ ሂደት ወደ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>ሜባ አካባቢ የውስጥ ማከማቻ \n\nይጠይቃል።ከሚከተሉት አማራጮች አንዱን ይምረጡ፡"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"አንዳንድ ትግበራዎችን አለመጫን"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"አልቅ ድጋሚ ሞክር"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"በመፈለግ ላይ…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"የተመረጡትን አሳይ"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"ሁሉንም አሳይ"</string>

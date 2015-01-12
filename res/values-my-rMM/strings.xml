@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"ပုံသစ်ရွေးရန်"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"ဘာသာစကားပြောင်းမှုနဲ့ ကိုက်ညီအောင် အဆက်အသွယ်စာရင်းအား ပြင်ဆင်နေပါသည်"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"အဆက်အသွယ်စာရင်းအား ပြုပြင်နေစဉ်"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"အဆက်အသွယ်များမှာ အဆင့်မြင့်တင်ခြင်း လုပ်ဆောင်ခံရဖို့ ပြုလုပ်နေစဉ် ဖြစ်ပါသည်။\n\nအဆင့်မြင့်ခြင်း အလုပ်ဟာ ယေဘုယျ ဖုန်းထဲမှ သိုလှောင်မှုနေရာ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB လိုအပ်ပါသည်။\n\nအောက်ပါများထဲမှ တစ်ခုကိုရွေးပါ:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"တချို့အပ်ပလီကေးရှင်းများအား ထုတ်ပစ်ရန်"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"အဆင့်မြှင့်ခြင်းအား ပြန်ကြိုးစားရန်"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ရှာဖွေနေသည်…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ရွေးချယ်ထားသည်ကိုပြပါ"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"အားလုံးကို ပြသရန်"</string>

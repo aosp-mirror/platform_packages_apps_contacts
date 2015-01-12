@@ -198,11 +198,6 @@
     <skip />
     <!-- no translation found for upgrade_in_progress (474511436863451061) -->
     <skip />
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Байланыштар жаңыртылууда. \n\nЖаңыртуу ишине ички сактагычтан <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> МБ орун талап кылынат.\n\nКийинки мүмкүнчүлүктөрдүн бирин тандаңыз:"</string>
-    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
-    <skip />
     <string name="search_results_searching" msgid="3984833028938569930">"Изделүүдө…"</string>
     <!-- no translation found for menu_display_selected (6470001164297969034) -->
     <skip />

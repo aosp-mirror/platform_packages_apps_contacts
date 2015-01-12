@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Wybierz nowe zdjęcie"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Lista kontaktów jest aktualizowana, aby odzwierciedlić zmianę języka."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Lista kontaktów jest aktualizowana."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Trwa proces uaktualniania kontaktów. \n\nProces uaktualniania wymaga w przybliżeniu <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB pamięci wewnętrznej.\n\nWybierz jedną z następujących opcji:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Odinstaluj część aplikacji"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Ponów próbę uaktualnienia"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Wyszukiwanie…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Pokaż wybrane"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Pokaż wszystkie"</string>

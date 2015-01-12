@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো নির্বাচন করুন"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"যোগাযোগ তালিকার ভাষা পরিবর্তন প্রতিফলিত করতে আপডেট করা হচ্ছে৷"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"পরিচিতি তালিকা আপডেট করা হচ্ছে৷"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"পরিচিতিগুলি আপগ্রেড হওয়ার প্রক্রিয়ায় রয়েছে৷ \n\nআপগ্রেড প্রক্রিয়াটির জন্য আনুমানিক <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB অভ্যন্তরীণ সঞ্চয়স্থানের প্রয়োজন৷\n\nনিম্নলিখিত যেকোনো একটি বিকল্প চয়ন করুন:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"কিছু অ্যাপ্লিকেশান আনইনস্টল করুন"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"পুনরায় আপগ্রেডের চেষ্টা করুন"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"নির্বাচিত দেখান"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"সকল দেখান"</string>

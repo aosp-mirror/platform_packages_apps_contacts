@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"புதிய படத்தைத் தேர்ந்தெடுக்கவும்"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"மொழியின் மாற்றத்தைப் பிரதிபலிக்கத் தொடர்பு பட்டியல் புதுப்பிக்கப்படுகிறது."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"தொடர்பு பட்டியல் புதுப்பிக்கப்படுகிறது."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"தொடர்புகள் மேம்படுத்தல் செயல்முறையில் உள்ளன. \n\nமேம்படுத்தல் செயல்முறைக்குத் தோராயமாக <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> மெ.பை. அகச் சேமிப்பகம் தேவை.\n\nபின்வரும் விருப்பங்களில் ஒன்றைத் தேர்வுசெய்யவும்:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"சில பயன்பாடுகளை நிறுவல் நீக்கு"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"மேம்படுத்தலை மீண்டும் முயற்சி"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"தேடுகிறது..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"தேர்ந்தெடுத்தவற்றைக் காட்டு"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"அனைத்தையும் காட்டு"</string>

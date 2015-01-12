@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"ახალი ფოტოს არჩევა"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"მიმდინარეობს კონტაქტების სიის განახლება ენის ცვლილების ასახვის მიზნით."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"მიმდინარეობს კონტაქტების სიის განახლება."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"კონტაქტები ახალ ვერსიაზე გადასვლის პროცესშია. \n\nახალ ვერსიაზე გადასვლის პროცესს ესაჭიროება შიდა მეხსიერების დაახლოებით <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> მბაიტი.\n\nაირჩიეთ შემდეგი პარამეტრებიდან ერთ-ერთი:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"ზოგიერთი აპლიკაციის დეინსტალაცია"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"ახალ ვერსიაზე გადასვლის მცდელობის გამეორება"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ძიება..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"არჩეულის ჩვენება"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"ყველას ჩვენება"</string>

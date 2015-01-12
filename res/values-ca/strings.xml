@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Selecciona una foto nova"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"S\'actualitza la llista de contactes per reflectir el canvi d\'idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"S\'actualitza la llista de contactes."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"S\'estan actualitzant els contactes. \n\nEl procés d\'actualització requereix aproximadament <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB de l\'emmagatzematge intern.\n\nTria una de les opcions següents:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstal·leu aplicacions"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Torna a provar d\'actualitzar"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"S\'està cercant..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Mostra la selecció"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Mostra-ho tot"</string>

@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"انتخاب عکس جدید"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"لیست مخاطبین در حال به‌روزرسانی برای منعکس کردن تغییرات زبان است."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"لیست مخاطبین در حال به‌روزرسانی است."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"مخاطبین در حال ارتقا هستند. \n\nفرآیند ارتقا به تقریباً <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> مگابایت از حافظهٔ داخلی نیاز دارد. \n\nیکی از گزینه‌های زیر را انتخاب کنید:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"حذف نصب برخی از برنامه‌های کاربردی"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"امتحان مجدد برای ارتقا"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"در حال جستجو..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"نمایش موارد انتخاب شده"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"نمایش همه"</string>

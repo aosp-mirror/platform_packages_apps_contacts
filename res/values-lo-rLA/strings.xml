@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"ເລືອກຮູບໃໝ່"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"ລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດຕາມການປ່ຽນແປງຂອງພາສາ."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"ລາຍການລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດ."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"ລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຢູ່ໃນລະຫວ່າງການອັບເກຣດ. \n\nຂັ້ນຕອນການອັບເກຣດ ຈະໃຊ້ບ່ອນຈັດເກັບຂໍ້ມູນພາຍໃນ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB.\n\nກະລຸນາເລືອກໂຕເລືອກໃດນຶ່ງຕໍ່ໄປນີ້:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"ຖອນການຕິດຕັ້ງບາງແອັບພລິເຄຊັນອອກ"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"ລອງອັບເກຣດອີກຄັ້ງ"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ກຳລັງຊອກຫາ..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ສະແດງສິ່ງທີ່ເລືອກ"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"ສະແດງທັງໝົດ"</string>

@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"අලුත් ඡායාරූපය තෝරන්න"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"භාෂා වෙනස්වීම පෙන්වීමට සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"සම්බන්ධතා උත්ශ්‍රේණි ක්‍රියාවලියක තිබේ. \n\nඋත්ශ්‍රේණි ක්‍රියාවට <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ක අභ්‍යන්තර දුරකථන ආචයනයක් ආසන්න වශයෙන් අවශ්‍ය වේ.\n\nපහත විකල්ප වලින් එකක් තෝරාගන්න:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"සමහර යෙදුම් අස්ථාපනය කරන්න"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"උත්ශ්‍රේණි කිරීම නැවත උත්සාහ කරන්න"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"සොයමින්..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"තෝරාගත් ඒවා පෙන්වන්න"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"සියල්ල පෙන්වන්න"</string>

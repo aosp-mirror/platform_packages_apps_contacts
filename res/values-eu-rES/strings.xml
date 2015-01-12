@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Hautatu argazki berria"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktuen zerrenda hizkuntza-aldaketa islatzeko eguneratzen ari da."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktuen zerrenda eguneratzen ari da."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontaktuak bertsio-berritzeko prozesuan daude. \n\nBertsio-berritzeko prozesua osatzeko, barneko memoriako <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB behar izaten dira gutxi gorabehera.\n\nHautatu aukera hauetako bat:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstalatu aplikazio batzuk"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Saiatu berriro bertsio-berritzen"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Bilatzen…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Erakutsi hautatutakoak"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Erakutsi guztiak"</string>

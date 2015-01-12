@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"नवीन फोटो निवडा"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषेचा बदल प्रतिबिंबित करण्यासाठी संपर्क सूची सुधारित केली जात आहे."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची अद्यतनित केली जात आहे."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"संपर्क श्रेणीसुधारित होण्‍याच्‍या प्रक्रियेत आहेत. \n\nश्रेणीसुधारित प्रक्रियेस अंदाजे <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB अंतर्गत संचयन आवश्‍यक असते. \n\nखालील पर्यायांपैकी एक निवडा:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"काही अनुप्रयोग विस्थापित करा"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"श्रेणीसुधारित करण्‍याचा पुन्‍हा प्रयत्‍न करा"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"शोधत आहे..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"निवडलेले दर्शवा"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"सर्व दर्शवा"</string>

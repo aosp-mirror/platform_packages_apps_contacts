@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Pumili ng bagong larawan"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Ina-update ang listahan ng contact upang maipakita ang pagbabago ng wika."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Ina-update ang listahan ng contact."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Nasa proseso ng pag-upgrade ang mga contact. \n\nNangangailangan ng tinatayang <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ng panloob na storage ang proseso ng pag-upgrade.\n\nPumili ng isa sa mga sumusunod na pagpipilian:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"I-uninstall ang ilang application"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Muling subukan ang i-upgrade"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Naghahanap…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Ipakita ang napili"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Ipakita lahat"</string>

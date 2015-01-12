@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Új fotó kiválasztása"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Az ismerőslista frissítése folyamatban van, hogy tükrözze a nyelv módosítását."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Az ismerőslista frissítése folyamatban van."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"A névjegyek frissítése folyamatban van. \n\nA frissítés elvégzéséhez megközelítőleg <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB belső tárhelyre lesz szükség.\n\nVálasszon a következő lehetőségek közül:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Távolítson el néhány alkalmazást"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Verziófrissítés újrapróbálása"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Keresés..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Kiválasztottak megjelenítése"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Összes megjelenítése"</string>

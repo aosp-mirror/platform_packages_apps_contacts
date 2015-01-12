@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"選取新相片"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"正在更新聯絡人清單以反映語言變更。"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"正在更新聯絡人清單。"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"正在升級通訊錄。\n\n升級程序大約需要 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB 的內部儲存空間。\n\n請選擇下列其中一個選項："</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"解除安裝一些應用程式"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"重試升級"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"搜尋中…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"顯示已選取的項目"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"全部顯示"</string>

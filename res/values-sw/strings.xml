@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Chagua picha mpya"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Orodha ya anwani inasasishwa ili kuangazia mabadiliko ya lugha."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Orodha ya anwani inasasishwa."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Anwani ziko katika harakati ya kupandishwa gredi. \n\nMchakato wa kupandisha gredi unahitaji takriban MB <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> za hifadhi ya ndani.\n\nChagua mojawapo ya chaguo zifwatazo:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Ondoa baadhi ya programu"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Jaribu kupandisha gredi tena"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Inatafuta…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Onyesha iliyochaguliwa"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Onyesha zote"</string>

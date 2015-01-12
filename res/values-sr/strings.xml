@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Изаберите нову слику"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Контакт листа се ажурира у складу са променом језика."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Контакт листа се ажурира."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"У току је надоградња контаката. \n\nПроцес надоградње захтева око <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB интерне меморије.\n\nИзаберите једну од следећих опција:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Деинсталирајте неке апликације"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Поново покушај надоградњу"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Претраживање..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Прикажи изабрано"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Прикажи све"</string>

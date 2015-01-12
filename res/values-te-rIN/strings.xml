@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"కొత్త ఫోటోను ఎంచుకోండి"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"భాష మార్పును ప్రతిబింబించడానికి పరిచయ జాబితా నవీకరించబడుతోంది."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"పరిచయ జాబితా నవీకరించబడుతోంది."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"పరిచయాలు అప్‌గ్రేడ్ అయ్యే ప్రాసెస్‌లో ఉన్నాయి. \n\nఅప్‌గ్రేడ్ ప్రాసెస్‌కు సుమారుగా <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB అంతర్గత నిల్వ అవసరం.\n\nక్రింది ఎంపికల్లో ఒకదాన్ని ఎంచుకోండి:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"కొన్ని అనువర్తనాలను అన్‌ఇన్‌స్టాల్ చేయండి"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"అప్‌గ్రేడ్ చేయడాన్ని మళ్లీ ప్రయత్నించు"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"శోధిస్తోంది..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ఎంచుకున్న వాటిని చూపు"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"అన్నీ చూపు"</string>

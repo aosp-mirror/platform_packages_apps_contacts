@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"نئی تصویر منتخب کریں"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"زبان کی تبدیلی کی عکاسی کرنے کیلئے رابطہ کی فہرست اپ ڈیٹ کی جا رہی ہے۔"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"رابطہ کی فہرست اپ ڈیٹ ہو رہی ہے۔"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"‏رابطوں کو اپ گریڈ کرنے کی کارروائی ہو رہی ہے۔ \n\nاپ گریڈ کی کارروائی کیلئے تقریبا <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB داخلی اسٹوریج درکار ہے۔\n\nدرج ذیل اختیارات میں سے ایک منتخب کریں۔"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"کچھ ایپلیکیشنز ان انسٹال کریں"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"اپ گریڈ کرنے کی دوبارہ کوشش کریں"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"تلاش کر رہا ہے…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"منتخب کردہ کو دکھائیں"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"سبھی دکھائیں"</string>

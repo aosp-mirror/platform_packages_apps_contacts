@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Ընտրել նոր լուսանկար"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Կոնտակտների ցանկը թարմացվում է՝ լեզվի փոփոխություններն արտացոլելու համար:"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Կոնտակտների ցանկը թարմացվում է:"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Կոնտակտները թարմացման գործընթացի մեջ են:\n\nԹարմացման գործընթացը պահանջում է մոտավորապես <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Մբ հեռախոսի ներքին պահոց:\n\nԸնտրեք հետևյալ ընրանքներից մեկը՝"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Ապատեղադրել որոշ ծրագրեր"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Կրկին փորձել թարմացնել"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Որոնում..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Ցույց տալ ընտրվածները"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Ցուցադրել բոլորը"</string>

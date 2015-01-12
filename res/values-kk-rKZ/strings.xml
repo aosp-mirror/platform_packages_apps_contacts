@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Жаңа фотоурет таңдау"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Өзгертілген тілді көрсету үшін контакт жаңартылуда."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Контакт тізімі жаңартылуда."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Контактілер жаңартылуда. \n\nЖаңалау үрдісіне шамамен <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MБ ішкі жад орны қажет.\n\nКелесі опциялардың бірін таңдаңыз:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Кейбір қолданбаларды алып тастау"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Жаңартуға қайта әрекеттену"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Іздеуде…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Таңдалғанды көрсету"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Барлығын көрсету"</string>

@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"ជ្រើស​រូបថត​ថ្មី"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​ទំនាក់ទំនង​ដើម្បី​ឆ្លុះបញ្ចាំង​ការ​ប្ដូរ​ភាសា។"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​បញ្ជី​ទំនាក់ទំនង។"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​ទំនាក់ទំនង។ \n\nដំណើរការ​នេះ​ទាមទារ​ឧបករណ៍​ផ្ទុក​ខាងក្នុង​ប្រហែល <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> មេកាបៃ។\n\nជ្រើស​ជម្រើស​មួយ​ខាងក្រោម៖"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"លុប​កម្មវិធី​មួយ​ចំនួន"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"ធ្វើ​បច្ចុប្បន្នភាព​ម្ដងទៀត"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"កំពុង​រក..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"បង្ហាញ​អ្វី​ដែល​បាន​ជ្រើស"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"បង្ហាញ​ទាំងអស់"</string>

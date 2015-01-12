@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"新しい写真を選択"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"言語の変更に伴い連絡先リストを更新しています。"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"連絡先リストを更新しています。"</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"連絡先をアップグレードしています。\n\nアップグレード処理には約<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>MBの内部ストレージが必要です。\n\n次のいずれかのオプションを選択してください:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"一部のアプリケーションをアンインストール"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"アップグレードを再試行"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"検索しています..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"選択した連絡先を表示"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"すべて表示"</string>

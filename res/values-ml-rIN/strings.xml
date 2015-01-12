@@ -144,9 +144,6 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"പുതിയ ഫോട്ടോ തിരഞ്ഞെടുക്കുക"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"ഭാഷാമാറ്റം പ്രതിഫലിക്കുന്നതിനായി കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റുചെയ്യുന്നു."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റുചെയ്യുന്നു."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"കോൺടാക്റ്റുകൾ അപ്‌ഗ്രേഡുചെയ്യുന്ന പ്രോസസ്സിലാണ്. \n\nഅപ്‌ഗ്രേഡ് പ്രോസസ്സിന് ഏകദേശം <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ആന്തരിക സംഭരണം ആവശ്യമാണ്.\n\nഇനിപ്പറയുന്ന ഓപ്‌ഷനുകളിലൊന്ന് തിരഞ്ഞെടുക്കുക:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"ചില അപ്ലിക്കേഷനുകൾ അൺഇൻസ്റ്റാളുചെയ്യുക"</string>
-    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"അപ്‌ഗ്രേഡുചെയ്യാൻ വീണ്ടും ശ്രമിക്കുക"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"തിരയുന്നു…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"തിരഞ്ഞെടുത്തവ കാണിക്കുക"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"എല്ലാം കാണിക്കുക"</string>
