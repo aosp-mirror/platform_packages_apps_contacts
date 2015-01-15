@@ -260,7 +260,7 @@
                 <data android:mimeType="vnd.android.cursor.item/person" />
             </intent-filter>
 
-            <intent-filter android:label="@string/viewContactDesription">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
