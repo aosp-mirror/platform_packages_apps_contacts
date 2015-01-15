@@ -164,7 +164,7 @@ public class ContactPhotoUtils {
                 totalLength += length;
             }
             Log.v(TAG, "Wrote " + totalLength + " bytes for photo " + inputUri.toString());
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             Log.e(TAG, "Failed to write photo: " + inputUri.toString() + " because: " + e);
             return false;
         } finally {
@@ -177,5 +177,3 @@ public class ContactPhotoUtils {
         return true;
     }
 }
-
-
