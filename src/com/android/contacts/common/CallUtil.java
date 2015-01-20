@@ -27,6 +27,8 @@ import android.telecom.VideoProfile;
 import com.android.contacts.common.util.PhoneNumberHelper;
 import com.android.phone.common.PhoneConstants;
 
+import java.util.List;
+
 /**
  * Utilities related to calls.
  */
@@ -150,8 +152,15 @@ public class CallUtil {
              return Uri.fromParts(PhoneAccount.SCHEME_SIP, number, null);
         }
         return Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
-     }
+    }
 
+    /**
+     * Determines if one of the call capable phone accounts defined supports video calling.
+     *
+     * @param context The context.
+     * @return {@code true} if one of the call capable phone accounts supports video calling,
+     *      {@code false} otherwise.
+     */
     public static boolean isVideoEnabled(Context context) {
         TelecomManager telecommMgr = (TelecomManager)
                 context.getSystemService(Context.TELECOM_SERVICE);
@@ -159,8 +168,13 @@ public class CallUtil {
             return false;
         }
 
-        // TODO: Check telecommManager for value instead.
-        // return telecommMgr.isVideoEnabled();
+        List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
+        for (PhoneAccountHandle accountHandle : accountHandles) {
+            PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
+            if (account.hasCapabilities(PhoneAccount.CAPABILITY_VIDEO_CALLING)) {
+                return true;
+            }
+        }
         return false;
     }
 }
