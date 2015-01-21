@@ -24,7 +24,7 @@ import android.os.Parcelable;
 /**
  * Parsed form of the intent sent to the Contacts application.
  */
-public class ContactsRequest implements Parcelable {
+public class ContactsRequest {
 
     /** Default mode: browse contacts */
     public static final int ACTION_DEFAULT = 10;
@@ -104,62 +104,6 @@ public class ContactsRequest implements Parcelable {
                 + " mDirectorySearchEnabled=" + mDirectorySearchEnabled
                 + " mContactUri=" + mContactUri
                 + "}";
-    }
-
-    /**
-     * Copies all fields.
-     */
-    public void copyFrom(ContactsRequest request) {
-        mValid = request.mValid;
-        mActionCode = request.mActionCode;
-        mRedirectIntent = request.mRedirectIntent;
-        mTitle = request.mTitle;
-        mSearchMode = request.mSearchMode;
-        mQueryString = request.mQueryString;
-        mIncludeProfile = request.mIncludeProfile;
-        mLegacyCompatibilityMode = request.mLegacyCompatibilityMode;
-        mDirectorySearchEnabled = request.mDirectorySearchEnabled;
-        mContactUri = request.mContactUri;
-    }
-
-    public static Parcelable.Creator<ContactsRequest> CREATOR = new Creator<ContactsRequest>() {
-
-        public ContactsRequest[] newArray(int size) {
-            return new ContactsRequest[size];
-        }
-
-        public ContactsRequest createFromParcel(Parcel source) {
-            ClassLoader classLoader = this.getClass().getClassLoader();
-            ContactsRequest request = new ContactsRequest();
-            request.mValid = source.readInt() != 0;
-            request.mActionCode = source.readInt();
-            request.mRedirectIntent = source.readParcelable(classLoader);
-            request.mTitle = source.readCharSequence();
-            request.mSearchMode = source.readInt() != 0;
-            request.mQueryString = source.readString();
-            request.mIncludeProfile = source.readInt() != 0;
-            request.mLegacyCompatibilityMode  = source.readInt() != 0;
-            request.mDirectorySearchEnabled = source.readInt() != 0;
-            request.mContactUri = source.readParcelable(classLoader);
-            return request;
-        }
-    };
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mValid ? 1 : 0);
-        dest.writeInt(mActionCode);
-        dest.writeParcelable(mRedirectIntent, 0);
-        dest.writeCharSequence(mTitle);
-        dest.writeInt(mSearchMode ? 1 : 0);
-        dest.writeString(mQueryString);
-        dest.writeInt(mIncludeProfile ? 1 : 0);
-        dest.writeInt(mLegacyCompatibilityMode ? 1 : 0);
-        dest.writeInt(mDirectorySearchEnabled ? 1 : 0);
-        dest.writeParcelable(mContactUri, 0);
-    }
-
-    public int describeContents() {
-        return 0;
     }
 
     public boolean isValid() {

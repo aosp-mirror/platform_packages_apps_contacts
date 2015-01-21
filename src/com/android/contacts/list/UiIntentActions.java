@@ -85,17 +85,6 @@ public class UiIntentActions {
             "com.android.contacts.extra.TITLE_EXTRA";
 
     /**
-     * Activity Action: Display a filtered list of contacts
-     * <p>
-     * Input: Extra field {@link #FILTER_TEXT_EXTRA_KEY} is the text to use for
-     * filtering
-     * <p>
-     * Output: Nothing.
-     */
-    public static final String FILTER_CONTACTS_ACTION =
-            "com.android.contacts.action.FILTER_CONTACTS";
-
-    /**
      * Used as an int extra field in {@link #FILTER_CONTACTS_ACTION}
      * intents to supply the text on which to filter.
      */

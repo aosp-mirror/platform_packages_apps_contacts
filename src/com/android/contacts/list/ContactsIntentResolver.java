@@ -16,13 +16,10 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsSearchManager;
-
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -145,24 +142,6 @@ public class ContactsIntentResolver {
                 intent.setAction(Intent.ACTION_DEFAULT);
                 intent.setData(null);
             }
-        } else if (UiIntentActions.FILTER_CONTACTS_ACTION.equals(action)) {
-            // When we get a FILTER_CONTACTS_ACTION, it represents search in the context
-            // of some other action. Let's retrieve the original action to provide proper
-            // context for the search queries.
-            request.setActionCode(ContactsRequest.ACTION_DEFAULT);
-            Bundle extras = intent.getExtras();
-            if (extras != null) {
-                request.setQueryString(extras.getString(UiIntentActions.FILTER_TEXT_EXTRA_KEY));
-
-                ContactsRequest originalRequest =
-                        (ContactsRequest)extras.get(ContactsSearchManager.ORIGINAL_REQUEST_KEY);
-                if (originalRequest != null) {
-                    request.copyFrom(originalRequest);
-                }
-            }
-
-            request.setSearchMode(true);
-
         // Since this is the filter activity it receives all intents
         // dispatched from the SearchManager for security reasons
         // so we need to re-dispatch from here to the intended target.
