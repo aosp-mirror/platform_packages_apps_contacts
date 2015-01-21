@@ -246,6 +246,7 @@ public class QuickContactActivity extends ContactsActivity {
     private Contact mContactData;
     private ContactLoader mContactLoader;
     private PorterDuffColorFilter mColorFilter;
+    private int mColorFilterColor;
 
     private final ImageViewDrawableSetter mPhotoSetter = new ImageViewDrawableSetter();
 
@@ -780,7 +781,7 @@ public class QuickContactActivity extends ContactsActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         if (mColorFilter != null) {
-            savedInstanceState.putInt(KEY_THEME_COLOR, mColorFilter.getColor());
+            savedInstanceState.putInt(KEY_THEME_COLOR, mColorFilterColor);
         }
     }
 
@@ -1832,16 +1833,16 @@ public class QuickContactActivity extends ContactsActivity {
 
     private void setThemeColor(MaterialPalette palette) {
         // If the color is invalid, use the predefined default
-        final int primaryColor = palette.mPrimaryColor;
-        mScroller.setHeaderTintColor(primaryColor);
+        mColorFilterColor = palette.mPrimaryColor;
+        mScroller.setHeaderTintColor(mColorFilterColor);
         mStatusBarColor = palette.mSecondaryColor;
         updateStatusBarColor();
 
         mColorFilter =
-                new PorterDuffColorFilter(primaryColor, PorterDuff.Mode.SRC_ATOP);
-        mContactCard.setColorAndFilter(primaryColor, mColorFilter);
-        mRecentCard.setColorAndFilter(primaryColor, mColorFilter);
-        mAboutCard.setColorAndFilter(primaryColor, mColorFilter);
+                new PorterDuffColorFilter(mColorFilterColor, PorterDuff.Mode.SRC_ATOP);
+        mContactCard.setColorAndFilter(mColorFilterColor, mColorFilter);
+        mRecentCard.setColorAndFilter(mColorFilterColor, mColorFilter);
+        mAboutCard.setColorAndFilter(mColorFilterColor, mColorFilter);
     }
 
     private void updateStatusBarColor() {
