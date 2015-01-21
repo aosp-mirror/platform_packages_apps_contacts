@@ -395,8 +395,13 @@ public class QuickContactActivity extends ContactsActivity {
         }
 
         @Override
-        public void onExpand(int heightDelta) {
-            mScroller.prepareForExpandingScrollChild();
+        public void onExpand() {
+            mScroller.setDisableTouchesForSuppressLayout(/* areTouchesDisabled = */ true);
+        }
+
+        @Override
+        public void onExpandDone() {
+            mScroller.setDisableTouchesForSuppressLayout(/* areTouchesDisabled = */ false);
         }
     };
 
