@@ -937,7 +937,7 @@ public class ExpandingEntryCardView extends CardView {
                             getResources().getDimensionPixelSize(
                                     R.dimen.expanding_entry_card_null_title_top_extra_padding),
                     firstEntry.getPaddingRight(),
-                    firgetPaddingBottom());
+                    firstEntry.getPaddingBottom());
         }
     }
 
