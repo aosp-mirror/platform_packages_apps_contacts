@@ -21,12 +21,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
@@ -34,7 +32,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,10 +42,8 @@ import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
@@ -70,6 +65,7 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
+import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
@@ -87,7 +83,6 @@ import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.list.UiIntentActions;
-import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -96,18 +91,18 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-public class ContactEditorFragment extends Fragment implements
-        SplitContactConfirmationDialogFragment.Listener,
+/**
+ * Contact editor with all fields displayed.
+ */
+public class ContactEditorFragment extends ContactEditorBaseFragment implements
+        ContactEditor, SplitContactConfirmationDialogFragment.Listener,
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         RawContactReadOnlyEditorView.Listener {
-
-    private static final String TAG = ContactEditorFragment.class.getSimpleName();
 
     private static final int LOADER_DATA = 1;
     private static final int LOADER_GROUPS = 2;
@@ -139,7 +134,6 @@ public class ContactEditorFragment extends Fragment implements
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
-
     /**
      * An intent extra that forces the editor to add the edited contact
      * to the default group (e.g. "My Contacts").
@@ -150,67 +144,6 @@ public class ContactEditorFragment extends Fragment implements
 
     public static final String INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION =
             "disableDeleteMenuOption";
-
-    /**
-     * Modes that specify what the AsyncTask has to perform after saving
-     */
-    public interface SaveMode {
-        /**
-         * Close the editor after saving
-         */
-        public static final int CLOSE = 0;
-
-        /**
-         * Reload the data so that the user can continue editing
-         */
-        public static final int RELOAD = 1;
-
-        /**
-         * Split the contact after saving
-         */
-        public static final int SPLIT = 2;
-
-        /**
-         * Join another contact after saving
-         */
-        public static final int JOIN = 3;
-
-        /**
-         * Navigate to Contacts Home activity after saving.
-         */
-        public static final int HOME = 4;
-    }
-
-    private interface Status {
-        /**
-         * The loader is fetching data
-         */
-        public static final int LOADING = 0;
-
-        /**
-         * Not currently busy. We are waiting for the user to enter data
-         */
-        public static final int EDITING = 1;
-
-        /**
-         * The data is currently being saved. This is used to prevent more
-         * auto-saves (they shouldn't overlap)
-         */
-        public static final int SAVING = 2;
-
-        /**
-         * Prevents any more saves. This is used if in the following cases:
-         * - After Save/Close
-         * - After Revert
-         * - After the user has accepted an edit suggestion
-         */
-        public static final int CLOSING = 3;
-
-        /**
-         * Prevents saving while running a child activity.
-         */
-        public static final int SUB_ACTIVITY = 4;
-    }
 
     private static final int REQUEST_CODE_JOIN = 0;
     private static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
@@ -242,7 +175,7 @@ public class ContactEditorFragment extends Fragment implements
     private String mAction;
     private Uri mLookupUri;
     private Bundle mIntentExtras;
-    private Listener mListener;
+    private ContactEditorBaseFragment.Listener mListener;
 
     private long mContactIdForJoin;
     private boolean mContactWritableForJoin;
@@ -472,6 +405,7 @@ public class ContactEditorFragment extends Fragment implements
         super.onStart();
     }
 
+    @Override
     public void load(String action, Uri lookupUri, Bundle intentExtras) {
         mAction = action;
         mLookupUri = lookupUri;
@@ -484,6 +418,7 @@ public class ContactEditorFragment extends Fragment implements
                 && mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
     }
 
+    @Override
     public void setListener(Listener value) {
         mListener = value;
     }
@@ -1209,10 +1144,7 @@ public class ContactEditorFragment extends Fragment implements
         return RawContactModifier.hasChanges(mState, accountTypes);
     }
 
-    /**
-     * Saves or creates the contact based on the mode, and if successful
-     * finishes the activity.
-     */
+    @Override
     public boolean save(int saveMode) {
         if (!hasValidState() || mStatus != Status.EDITING) {
             return false;
@@ -1360,27 +1292,9 @@ public class ContactEditorFragment extends Fragment implements
             case SaveMode.HOME:
                 final Intent resultIntent;
                 if (saveSucceeded && contactLookupUri != null) {
-                    final String requestAuthority =
-                            mLookupUri == null ? null : mLookupUri.getAuthority();
-
-                    final String legacyAuthority = "contacts";
-                    final Uri lookupUri;
-                    if (legacyAuthority.equals(requestAuthority)) {
-                        // Build legacy Uri when requested by caller
-                        final long contactId = ContentUris.parseId(Contacts.lookupContact(
-                                mContext.getContentResolver(), contactLookupUri));
-                        final Uri legacyContentUri = Uri.parse("content://contacts/people");
-                        final Uri legacyUri = ContentUris.withAppendedId(
-                                legacyContentUri, contactId);
-                        lookupUri = legacyUri;
-                    } else {
-                        // Otherwise pass back a lookup-style Uri
-                        lookupUri = contactLookupUri;
-                    }
-                    resultIntent = QuickContact.composeQuickContactsIntent(getActivity(),
-                            (Rect) null, lookupUri, QuickContactActivity.MODE_FULLY_EXPANDED, null);
-                    // Make sure not to show QuickContacts on top of another QuickContacts.
-                    resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    final Uri lookupUri = maybeConvertToLegacyLookupUri(
+                            mContext, contactLookupUri, mLookupUri);
+                    resultIntent = composeQuickContactsIntent(mContext, lookupUri);
                 } else {
                     resultIntent = null;
                 }
@@ -1462,57 +1376,6 @@ public class ContactEditorFragment extends Fragment implements
 
     private boolean isEditingUserProfile() {
         return mNewLocalProfile || mIsUserProfile;
-    }
-
-    public static interface Listener {
-        /**
-         * Contact was not found, so somehow close this fragment. This is raised after a contact
-         * is removed via Menu/Delete
-         */
-        void onContactNotFound();
-
-        /**
-         * Contact was split, so we can close now.
-         * @param newLookupUri The lookup uri of the new contact that should be shown to the user.
-         * The editor tries best to chose the most natural contact here.
-         */
-        void onContactSplit(Uri newLookupUri);
-
-        /**
-         * User has tapped Revert, close the fragment now.
-         */
-        void onReverted();
-
-        /**
-         * Contact was saved and the Fragment can now be closed safely.
-         */
-        void onSaveFinished(Intent resultIntent);
-
-        /**
-         * User switched to editing a different contact (a suggestion from the
-         * aggregation engine).
-         */
-        void onEditOtherContactRequested(
-                Uri contactLookupUri, ArrayList<ContentValues> contentValues);
-
-        /**
-         * Contact is being created for an external account that provides its own
-         * new contact activity.
-         */
-        void onCustomCreateContactActivityRequested(AccountWithDataSet account,
-                Bundle intentExtras);
-
-        /**
-         * The edited raw contact belongs to an external account that provides
-         * its own edit activity.
-         *
-         * @param redirect indicates that the current editor should be closed
-         *            before the custom editor is shown.
-         */
-        void onCustomEditContactActivityRequested(AccountWithDataSet account, Uri rawContactUri,
-                Bundle intentExtras, boolean redirect);
-
-        void onDeleteRequested(Uri contactUri);
     }
 
     private class EntityDeltaComparator implements Comparator<RawContactDelta> {
