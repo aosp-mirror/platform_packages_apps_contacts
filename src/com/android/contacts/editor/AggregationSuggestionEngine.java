@@ -223,12 +223,11 @@ public class AggregationSuggestionEngine extends HandlerThread {
                 .setContactId(mContactId);
 
         if (nameSb.length() != 0) {
-            builder.addParameter(AggregationSuggestions.PARAMETER_MATCH_NAME, nameSb.toString());
+            builder.addNameParameter(nameSb.toString());
         }
 
         if (phoneticNameSb.length() != 0) {
-            builder.addParameter(
-                    AggregationSuggestions.PARAMETER_MATCH_NAME, phoneticNameSb.toString());
+            builder.addNameParameter(phoneticNameSb.toString());
         }
 
         return builder.build();
