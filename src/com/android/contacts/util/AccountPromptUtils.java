@@ -107,7 +107,6 @@ public class AccountPromptUtils {
             public void run(AccountManagerFuture<Bundle> future) {
                 if (future.isCancelled()) {
                     // The account creation process was canceled
-                    activity.finish();
                     return;
                 }
                 try {
