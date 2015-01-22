@@ -17,7 +17,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.hardware.display.DisplayManager;
 import android.os.Trace;
@@ -140,6 +139,7 @@ public class MultiShrinkScroller extends FrameLayout {
      */
     private boolean mHasEverTouchedTheTop;
     private boolean mIsTouchDisabledForDismissAnimation;
+    private boolean mIsTouchDisabledForSuppressLayout;
 
     private final Scroller mScroller;
     private final EdgeEffect mEdgeGlowBottom;
@@ -405,7 +405,8 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     private boolean shouldStartDrag(MotionEvent event) {
-        if (mIsTouchDisabledForDismissAnimation) return false;
+        if (mIsTouchDisabledForDismissAnimation || mIsTouchDisabledForSuppressLayout) return false;
+
 
         if (mIsBeingDragged) {
             mIsBeingDragged = false;
@@ -441,7 +442,7 @@ public class MultiShrinkScroller extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (mIsTouchDisabledForDismissAnimation) return true;
+        if (mIsTouchDisabledForDismissAnimation || mIsTouchDisabledForSuppressLayout) return true;
 
         final int action = event.getAction();
 
@@ -1285,12 +1286,6 @@ public class MultiShrinkScroller extends FrameLayout {
      * space at the bottom of this ViewGroup.
      */
     public void prepareForShrinkingScrollChild(int heightDelta) {
-        // The Transition framework may suppress layout on the scene root and its children. If
-        // mScrollView has its layout suppressed, user scrolling interactions will not display
-        // correctly. By turning suppress off for mScrollView, mScrollView properly adjusts its
-        // graphics as the user scrolls during the transition.
-        mScrollView.suppressLayout(false);
-
         final int newEmptyScrollViewSpace = -getOverflowingChildViewSize() + heightDelta;
         if (newEmptyScrollViewSpace > 0 && !mIsTwoPanel) {
             final int newDesiredToolbarHeight = Math.min(getToolbarHeight()
@@ -1300,11 +1295,13 @@ public class MultiShrinkScroller extends FrameLayout {
         }
     }
 
-    public void prepareForExpandingScrollChild() {
-        // The Transition framework may suppress layout on the scene root and its children. If
-        // mScrollView has its layout suppressed, user scrolling interactions will not display
-        // correctly. By turning suppress off for mScrollView, mScrollView properly adjusts its
-        // graphics as the user scrolls during the transition.
-        mScrollView.suppressLayout(false);
+    /**
+     * If {@param areTouchesDisabled} is TRUE, ignore all of the user's touches.
+     */
+    public void setDisableTouchesForSuppressLayout(boolean areTouchesDisabled) {
+        // The card expansion animation uses the Transition framework's ChangeBounds API. This
+        // invokes suppressLayout(true) on the MultiShrinkScroller. As a result, we need to avoid
+        // all layout changes during expansion in order to avoid weird layout artifacts.
+        mIsTouchDisabledForSuppressLayout = areTouchesDisabled;
     }
 }
