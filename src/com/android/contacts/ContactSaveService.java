@@ -525,8 +525,7 @@ public class ContactSaveService extends IntentService {
         final int numResults = results.length;
         for (int i = 0; i < diffSize && i < numResults; i++) {
             ContentProviderOperation operation = diff.get(i);
-            if (operation.getType() == ContentProviderOperation.TYPE_INSERT
-                    && operation.getUri().getEncodedPath().contains(
+            if (operation.isInsert() && operation.getUri().getEncodedPath().contains(
                             RawContacts.CONTENT_URI.getEncodedPath())) {
                 return ContentUris.parseId(results[i].uri);
             }
