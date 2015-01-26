@@ -434,9 +434,9 @@ public class ContactEditorFragment extends Fragment implements
             } else if (Intent.ACTION_INSERT.equals(mAction)) {
                 mHasNewContact = true;
                 final Account account = mIntentExtras == null ? null :
-                        (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
+                        (Account) mIntentExtras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
                 final String dataSet = mIntentExtras == null ? null :
-                        mIntentExtras.getString(Intents.Insert.DATA_SET);
+                        mIntentExtras.getString(Intents.Insert.EXTRA_DATA_SET);
 
                 if (account != null) {
                     // Account specified in Intent
@@ -1863,7 +1863,8 @@ public class ContactEditorFragment extends Fragment implements
                 }
                 // If there's an account specified, use it.
                 if (data != null) {
-                    AccountWithDataSet account = data.getParcelableExtra(Intents.Insert.ACCOUNT);
+                    AccountWithDataSet account = data.getParcelableExtra(
+                            Intents.Insert.EXTRA_ACCOUNT);
                     if (account != null) {
                         createContact(account);
                         return;

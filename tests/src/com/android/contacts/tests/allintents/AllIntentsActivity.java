@@ -600,16 +600,16 @@ public class AllIntentsActivity extends ListActivity
         switch (ContactsIntent.get(tag)) {
             case EDIT_NEW_CONTACT_FOR_ACCOUNT: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                intent.putExtra(Insert.ACCOUNT, account);
-                intent.putExtra(Insert.DATA_SET, dataSet);
+                intent.putExtra(Insert.EXTRA_ACCOUNT, account);
+                intent.putExtra(Insert.EXTRA_DATA_SET, dataSet);
                 startActivity(intent);
                 break;
             }
             case EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
 
-                intent.putExtra(Insert.ACCOUNT, account);
-                intent.putExtra(Insert.DATA_SET, dataSet);
+                intent.putExtra(Insert.EXTRA_ACCOUNT, account);
+                intent.putExtra(Insert.EXTRA_DATA_SET, dataSet);
                 putDataExtra(intent);
 
                 startActivity(intent);

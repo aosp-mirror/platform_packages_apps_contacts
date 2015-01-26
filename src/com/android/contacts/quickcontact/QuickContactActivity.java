@@ -2341,10 +2341,10 @@ public class QuickContactActivity extends ContactsActivity {
                     // account.
                     if (mContactData.getDirectoryExportSupport() ==
                             Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
-                        intent.putExtra(Intents.Insert.ACCOUNT,
+                        intent.putExtra(Intents.Insert.EXTRA_ACCOUNT,
                                 new Account(mContactData.getDirectoryAccountName(),
                                         mContactData.getDirectoryAccountType()));
-                        intent.putExtra(Intents.Insert.DATA_SET,
+                        intent.putExtra(Intents.Insert.EXTRA_DATA_SET,
                                 mContactData.getRawContacts().get(0).getDataSet());
                     }
 

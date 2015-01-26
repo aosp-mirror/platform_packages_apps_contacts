@@ -239,9 +239,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             startGroupMetaDataLoader();
         } else if (Intent.ACTION_INSERT.equals(mAction)) {
             final Account account = mIntentExtras == null ? null :
-                    (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
+                    (Account) mIntentExtras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
             final String dataSet = mIntentExtras == null ? null :
-                    mIntentExtras.getString(Intents.Insert.DATA_SET);
+                    mIntentExtras.getString(Intents.Insert.EXTRA_DATA_SET);
 
             if (account != null) {
                 // Account specified in Intent - no data set can be specified in this manner.

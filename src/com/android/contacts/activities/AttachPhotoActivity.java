@@ -143,7 +143,8 @@ public class AttachPhotoActivity extends ContactsActivity {
             }
             // If there's an account specified, use it.
             if (result != null) {
-                AccountWithDataSet account = result.getParcelableExtra(Intents.Insert.ACCOUNT);
+                AccountWithDataSet account = result.getParcelableExtra(
+                        Intents.Insert.EXTRA_ACCOUNT);
                 if (account != null) {
                     createNewRawContact(account);
                     return;

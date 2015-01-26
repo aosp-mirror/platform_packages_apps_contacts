@@ -185,7 +185,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
 
         // Pass account info in activity result intent
         Intent intent = new Intent();
-        intent.putExtra(Intents.Insert.ACCOUNT, account);
+        intent.putExtra(Intents.Insert.EXTRA_ACCOUNT, account);
         setResult(RESULT_OK, intent);
         finish();
     }
