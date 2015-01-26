@@ -16,15 +16,19 @@
 
 package com.android.contacts.editor;
 
+import com.google.common.collect.ImmutableList;
+
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
-import com.android.contacts.editor.ContactEditorBaseFragment.Listener;
+import com.android.contacts.common.model.Contact;
+import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,21 +39,6 @@ import android.widget.LinearLayout;
  */
 public class CompactContactEditorFragment extends ContactEditorBaseFragment
         implements ContactEditor {
-
-    private Context mContext;
-    private Listener mListener;
-
-    private String mAction;
-    private Uri mLookupUri;
-    private Bundle mIntentExtras;
-
-    private LinearLayout mContent;
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mContext = activity;
-    }
 
     @Override
     public void setListener(Listener listener) {
@@ -63,6 +52,36 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
         mContent = (LinearLayout) view.findViewById(R.id.editors);
         return view;
     }
+
+    //
+    // ContactEditorBaseFragment
+    //
+
+    @Override
+    protected void bindEditorsForExistingContact(String displayName, boolean isUserProfile,
+            ImmutableList<RawContact> rawContacts) {
+    }
+
+    @Override
+    protected void bindEditorsForNewContact(AccountWithDataSet account,
+            AccountType accountType) {
+    }
+
+    @Override
+    protected void bindEditors() {
+    }
+
+    @Override
+    protected void bindGroupMetaData() {
+    }
+
+    @Override
+    protected void bindMenuItemsForPhone(Contact contact) {
+    }
+
+    //
+    // ContactEditor
+    //
 
     @Override
     public void load(String action, Uri lookupUri, Bundle intentExtras) {
