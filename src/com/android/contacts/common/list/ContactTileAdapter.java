@@ -34,6 +34,7 @@ import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.common.ContactTileLoaderFactory;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.R;
+import com.android.contacts.common.util.ViewUtil;
 
 import java.util.ArrayList;
 
@@ -562,7 +563,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
             // Just line up children horizontally.
             for (int i = 0; i < count; i++) {
-                final int rtlAdjustedIndex = isLayoutRtl() ? count - i - 1 : i;
+                final int rtlAdjustedIndex = ViewUtil.isViewLayoutRtl(this) ? count - i - 1 : i;
                 final View child = getChildAt(rtlAdjustedIndex);
 
                 // Note MeasuredWidth includes the padding.
