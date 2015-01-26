@@ -122,7 +122,7 @@
 
     <!-- Confirmation dialog for clearing frequents. [CHAR LIMIT=NONE] -->
     <string name="clearFrequentsConfirmation">You\'ll clear the frequently contacted list in the
-        People and Phone apps, and force email apps to learn your addressing preferences from
+        Contacts and Phone apps, and force email apps to learn your addressing preferences from
         scratch.
     </string>
 
