@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2015 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,27 +17,25 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.R;
-import com.android.contacts.editor.ContactEditorFragment;
-import com.android.contacts.util.DialogManager;
+import com.android.contacts.editor.CompactContactEditorFragment;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 /**
- * Contact editor with all fields displayed.
+ * Contact editor with only the most important fields displayed initially.
  */
-public class ContactEditorActivity extends ContactEditorBaseActivity
-        implements DialogManager.DialogShowingViewActivity {
+public class CompactContactEditorActivity extends ContactEditorBaseActivity {
 
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        setContentView(R.layout.contact_editor_activity);
+        setContentView(R.layout.compact_contact_editor_activity);
 
-        mFragment = (ContactEditorFragment) getFragmentManager().findFragmentById(
-                R.id.contact_editor_fragment);
+        mFragment = (CompactContactEditorFragment) getFragmentManager().findFragmentById(
+                R.id.compact_contact_editor_fragment);
         mFragment.setListener(mFragmentListener);
 
         final String action = getIntent().getAction();
