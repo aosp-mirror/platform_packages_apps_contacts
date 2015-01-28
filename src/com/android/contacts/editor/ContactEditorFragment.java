@@ -71,34 +71,33 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.account.GoogleAccountType;
-import com.android.contacts.common.util.AccountsListAdapter;
-import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.detail.PhotoSelectionHandler;
-import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.AccountsListAdapter;
+import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.detail.PhotoSelectionHandler;
+import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UiClosables;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -231,7 +230,7 @@ public class ContactEditorFragment extends Fragment implements
      */
     private PhotoHandler mCurrentPhotoHandler;
 
-    private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
+    private RawContactDeltaComparator mComparator;
 
     private Cursor mGroupMetaData;
 
@@ -372,6 +371,7 @@ public class ContactEditorFragment extends Fragment implements
         super.onAttach(activity);
         mContext = activity;
         mEditorUtils = ContactEditorUtils.getInstance(mContext);
+        mComparator = new RawContactDeltaComparator(mContext);
     }
 
     @Override
@@ -1513,99 +1513,6 @@ public class ContactEditorFragment extends Fragment implements
                 Bundle intentExtras, boolean redirect);
 
         void onDeleteRequested(Uri contactUri);
-    }
-
-    private class EntityDeltaComparator implements Comparator<RawContactDelta> {
-        /**
-         * Compare EntityDeltas for sorting the stack of editors.
-         */
-        @Override
-        public int compare(RawContactDelta one, RawContactDelta two) {
-            // Check direct equality
-            if (one.equals(two)) {
-                return 0;
-            }
-
-            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-            String accountType1 = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            String dataSet1 = one.getValues().getAsString(RawContacts.DATA_SET);
-            final AccountType type1 = accountTypes.getAccountType(accountType1, dataSet1);
-            String accountType2 = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            String dataSet2 = two.getValues().getAsString(RawContacts.DATA_SET);
-            final AccountType type2 = accountTypes.getAccountType(accountType2, dataSet2);
-
-            // Check read-only. Sort read/write before read-only.
-            if (!type1.areContactsWritable() && type2.areContactsWritable()) {
-                return 1;
-            } else if (type1.areContactsWritable() && !type2.areContactsWritable()) {
-                return -1;
-            }
-
-            // Check account type. Sort Google before non-Google.
-            boolean skipAccountTypeCheck = false;
-            boolean isGoogleAccount1 = type1 instanceof GoogleAccountType;
-            boolean isGoogleAccount2 = type2 instanceof GoogleAccountType;
-            if (isGoogleAccount1 && !isGoogleAccount2) {
-                return -1;
-            } else if (!isGoogleAccount1 && isGoogleAccount2) {
-                return 1;
-            } else if (isGoogleAccount1 && isGoogleAccount2){
-                skipAccountTypeCheck = true;
-            }
-
-            int value;
-            if (!skipAccountTypeCheck) {
-                // Sort accounts with type before accounts without types.
-                if (type1.accountType != null && type2.accountType == null) {
-                    return -1;
-                } else if (type1.accountType == null && type2.accountType != null) {
-                    return 1;
-                }
-
-                if (type1.accountType != null && type2.accountType != null) {
-                    value = type1.accountType.compareTo(type2.accountType);
-                    if (value != 0) {
-                        return value;
-                    }
-                }
-
-                // Fall back to data set. Sort accounts with data sets before
-                // those without.
-                if (type1.dataSet != null && type2.dataSet == null) {
-                    return -1;
-                } else if (type1.dataSet == null && type2.dataSet != null) {
-                    return 1;
-                }
-
-                if (type1.dataSet != null && type2.dataSet != null) {
-                    value = type1.dataSet.compareTo(type2.dataSet);
-                    if (value != 0) {
-                        return value;
-                    }
-                }
-            }
-
-            // Check account name
-            String oneAccount = one.getAccountName();
-            if (oneAccount == null) oneAccount = "";
-            String twoAccount = two.getAccountName();
-            if (twoAccount == null) twoAccount = "";
-            value = oneAccount.compareTo(twoAccount);
-            if (value != 0) {
-                return value;
-            }
-
-            // Both are in the same account, fall back to contact ID
-            Long oneId = one.getRawContactId();
-            Long twoId = two.getRawContactId();
-            if (oneId == null) {
-                return -1;
-            } else if (twoId == null) {
-                return 1;
-            }
-
-            return (int)(oneId - twoId);
-        }
     }
 
     /**
