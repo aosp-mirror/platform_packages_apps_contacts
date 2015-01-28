@@ -37,6 +37,7 @@ import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Groups;
@@ -58,11 +59,6 @@ import com.android.contacts.util.ContactPhotoUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -984,7 +980,6 @@ public class ContactSaveService extends IntentService {
         String[] PROJECTION = {
                 RawContacts._ID,
                 RawContacts.CONTACT_ID,
-                RawContacts.NAME_VERIFIED,
                 RawContacts.DISPLAY_NAME_SOURCE,
         };
 
@@ -992,14 +987,29 @@ public class ContactSaveService extends IntentService {
 
         int _ID = 0;
         int CONTACT_ID = 1;
-        int NAME_VERIFIED = 2;
-        int DISPLAY_NAME_SOURCE = 3;
+        int DISPLAY_NAME_SOURCE = 2;
+    }
+
+    private interface ContactEntityQuery {
+        String[] PROJECTION = {
+                Contacts.Entity.DATA_ID,
+                Contacts.Entity.CONTACT_ID,
+                Contacts.Entity.IS_SUPER_PRIMARY,
+        };
+        String SELECTION = Data.MIMETYPE + " = '" + StructuredName.CONTENT_ITEM_TYPE + "'" +
+                " AND " + StructuredName.DISPLAY_NAME + "=" + Contacts.DISPLAY_NAME +
+                " AND " + StructuredName.DISPLAY_NAME + " IS NOT NULL " +
+                " AND " + StructuredName.DISPLAY_NAME + " != '' ";
+
+        int DATA_ID = 0;
+        int CONTACT_ID = 1;
+        int IS_SUPER_PRIMARY = 2;
     }
 
     private void joinContacts(Intent intent) {
         long contactId1 = intent.getLongExtra(EXTRA_CONTACT_ID1, -1);
         long contactId2 = intent.getLongExtra(EXTRA_CONTACT_ID2, -1);
-        boolean writable = intent.getBooleanExtra(EXTRA_CONTACT_WRITABLE, false);
+
         if (contactId1 == -1 || contactId2 == -1) {
             Log.e(TAG, "Invalid arguments for joinContacts request");
             return;
@@ -1008,57 +1018,16 @@ public class ContactSaveService extends IntentService {
         final ContentResolver resolver = getContentResolver();
 
         // Load raw contact IDs for all raw contacts involved - currently edited and selected
-        // in the join UIs
-        Cursor c = resolver.query(RawContacts.CONTENT_URI,
-                JoinContactQuery.PROJECTION,
-                JoinContactQuery.SELECTION,
-                new String[]{String.valueOf(contactId1), String.valueOf(contactId2)}, null);
-        if (c == null) {
-            Log.e(TAG, "Unable to open Contacts DB cursor");
-            showToast(R.string.contactSavedErrorToast);
+        // in the join UIs.
+        long rawContactIds[] = getRawContactIdsForAggregation(contactId1, contactId2);
+        if (rawContactIds == null) {
+            // Error.
             return;
         }
 
-        long rawContactIds[];
-        long verifiedNameRawContactId = -1;
-        try {
-            if (c.getCount() == 0) {
-                return;
-            }
-            int maxDisplayNameSource = -1;
-            rawContactIds = new long[c.getCount()];
-            for (int i = 0; i < rawContactIds.length; i++) {
-                c.moveToPosition(i);
-                long rawContactId = c.getLong(JoinContactQuery._ID);
-                rawContactIds[i] = rawContactId;
-                int nameSource = c.getInt(JoinContactQuery.DISPLAY_NAME_SOURCE);
-                if (nameSource > maxDisplayNameSource) {
-                    maxDisplayNameSource = nameSource;
-                }
-            }
-
-            // Find an appropriate display name for the joined contact:
-            // if should have a higher DisplayNameSource or be the name
-            // of the original contact that we are joining with another.
-            if (writable) {
-                for (int i = 0; i < rawContactIds.length; i++) {
-                    c.moveToPosition(i);
-                    if (c.getLong(JoinContactQuery.CONTACT_ID) == contactId1) {
-                        int nameSource = c.getInt(JoinContactQuery.DISPLAY_NAME_SOURCE);
-                        if (nameSource == maxDisplayNameSource
-                                && (verifiedNameRawContactId == -1
-                                        || c.getInt(JoinContactQuery.NAME_VERIFIED) != 0)) {
-                            verifiedNameRawContactId = c.getLong(JoinContactQuery._ID);
-                        }
-                    }
-                }
-            }
-        } finally {
-            c.close();
-        }
+        ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>();
 
         // For each pair of raw contacts, insert an aggregation exception
-        ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>();
         for (int i = 0; i < rawContactIds.length; i++) {
             for (int j = 0; j < rawContactIds.length; j++) {
                 if (i != j) {
@@ -1067,12 +1036,34 @@ public class ContactSaveService extends IntentService {
             }
         }
 
-        // Mark the original contact as "name verified" to make sure that the contact
-        // display name does not change as a result of the join
-        if (verifiedNameRawContactId != -1) {
+        // Use the name for contactId1 as the name for the newly aggregated contact.
+        final Uri contactId1Uri = ContentUris.withAppendedId(
+                Contacts.CONTENT_URI, contactId1);
+        final Uri entityUri = Uri.withAppendedPath(
+                contactId1Uri, Contacts.Entity.CONTENT_DIRECTORY);
+        Cursor c = resolver.query(entityUri,
+                ContactEntityQuery.PROJECTION, ContactEntityQuery.SELECTION, null, null);
+        if (c == null) {
+            Log.e(TAG, "Unable to open Contacts DB cursor");
+            showToast(R.string.contactSavedErrorToast);
+            return;
+        }
+        long dataIdToAddSuperPrimary = -1;
+        try {
+            if (c.moveToFirst()) {
+                dataIdToAddSuperPrimary = c.getLong(ContactEntityQuery.DATA_ID);
+            }
+        } finally {
+            c.close();
+        }
+
+        // Mark the name from contactId1 IS_SUPER_PRIMARY to make sure that the contact
+        // display name does not change as a result of the join.
+        if (dataIdToAddSuperPrimary != -1) {
             Builder builder = ContentProviderOperation.newUpdate(
-                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, verifiedNameRawContactId));
-            builder.withValue(RawContacts.NAME_VERIFIED, 1);
+                    ContentUris.withAppendedId(Data.CONTENT_URI, dataIdToAddSuperPrimary));
+            builder.withValue(Data.IS_SUPER_PRIMARY, 1);
+            builder.withValue(Data.IS_PRIMARY, 1);
             operations.add(builder.build());
         }
 
@@ -1097,6 +1088,35 @@ public class ContactSaveService extends IntentService {
             callbackIntent.setData(uri);
         }
         deliverCallback(callbackIntent);
+    }
+
+    private long[] getRawContactIdsForAggregation(long contactId1, long contactId2) {
+        final ContentResolver resolver = getContentResolver();
+        long rawContactIds[];
+        final Cursor c = resolver.query(RawContacts.CONTENT_URI,
+                JoinContactQuery.PROJECTION,
+                JoinContactQuery.SELECTION,
+                new String[]{String.valueOf(contactId1), String.valueOf(contactId2)}, null);
+        if (c == null) {
+            Log.e(TAG, "Unable to open Contacts DB cursor");
+            showToast(R.string.contactSavedErrorToast);
+            return null;
+        }
+        try {
+            if (c.getCount() < 2) {
+                Log.e(TAG, "Not enough raw contacts to aggregate toghether.");
+                return null;
+            }
+            rawContactIds = new long[c.getCount()];
+            for (int i = 0; i < rawContactIds.length; i++) {
+                c.moveToPosition(i);
+                long rawContactId = c.getLong(JoinContactQuery._ID);
+                rawContactIds[i] = rawContactId;
+            }
+        } finally {
+            c.close();
+        }
+        return rawContactIds;
     }
 
     /**
