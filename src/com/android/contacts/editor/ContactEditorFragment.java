@@ -138,7 +138,6 @@ public class ContactEditorFragment extends Fragment implements
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
-
     /**
      * An intent extra that forces the editor to add the edited contact
      * to the default group (e.g. "My Contacts").
@@ -215,46 +214,40 @@ public class ContactEditorFragment extends Fragment implements
     private static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
     private static final int REQUEST_CODE_PICK_RINGTONE = 2;
 
-    /**
-     * The raw contact for which we started "take photo" or "choose photo from gallery" most
-     * recently.  Used to restore {@link #mCurrentPhotoHandler} after orientation change.
-     */
-    private long mRawContactIdRequestingPhoto;
-    /**
-     * The {@link PhotoHandler} for the photo editor for the {@link #mRawContactIdRequestingPhoto}
-     * raw contact.
-     *
-     * A {@link PhotoHandler} is created for each photo editor in {@link #bindPhotoHandler}, but
-     * the only "active" one should get the activity result.  This member represents the active
-     * one.
-     */
-    private PhotoHandler mCurrentPhotoHandler;
-
-    private RawContactDeltaComparator mComparator;
-
-    private Cursor mGroupMetaData;
-
-    private Uri mCurrentPhotoUri;
-    private Bundle mUpdatedPhotos = new Bundle();
-
     private Context mContext;
+    private Listener mListener;
+
+    private LinearLayout mContent;
+
+    //
+    // Parameters passed in on {@link #load}
+    //
     private String mAction;
     private Uri mLookupUri;
     private Bundle mIntentExtras;
-    private Listener mListener;
+    private boolean mAutoAddToDefaultGroup;
+    private boolean mDisableDeleteMenuOption = false;
+    private boolean mNewLocalProfile = false;
 
-    private long mContactIdForJoin;
-    private boolean mContactWritableForJoin;
-
+    //
+    // Helpers
+    //
     private ContactEditorUtils mEditorUtils;
-
-    private LinearLayout mContent;
-    private RawContactDeltaList mState;
-
+    private RawContactDeltaComparator mComparator;
     private ViewIdGenerator mViewIdGenerator;
+    private AggregationSuggestionEngine mAggregationSuggestionEngine;
 
-    private long mLoaderStartTime;
+    //
+    // Loaded data
+    //
+    // Used to temporarily store existing contact data during a rebind call (i.e. account switch)
+    private ImmutableList<RawContact> mRawContacts;
+    private Cursor mGroupMetaData;
 
+    //
+    // Contact editor state
+    //
+    private RawContactDeltaList mState;
     private int mStatus;
 
     // Whether to show the new contact blank form and if it's corresponding delta is ready.
@@ -270,20 +263,47 @@ public class ContactEditorFragment extends Fragment implements
     private boolean mArePhoneOptionsChangable;
     private String mCustomRingtone;
 
-    // This is used to pre-populate the editor with a display name when a user edits a read-only
-    // contact.
-    private String mDefaultDisplayName;
-
-    // Used to temporarily store existing contact data during a rebind call (i.e. account switch)
-    private ImmutableList<RawContact> mRawContacts;
+    // Joins
+    private long mContactIdForJoin;
+    private boolean mContactWritableForJoin;
 
     // Used to store which raw contact editors have been expanded. Keyed on raw contact ids.
     private HashMap<Long, Boolean> mExpandedEditors = new HashMap<Long, Boolean>();
 
-    private AggregationSuggestionEngine mAggregationSuggestionEngine;
+    private boolean mIsUserProfile = false;
+
+    // Whether editors and options menu items are enabled
+    private boolean mEnabled = true;
+
+    // Whether the name editor should receive focus after being bound
+    private boolean mRequestFocus;
+
+    // This is used to pre-populate the editor with a display name when a user edits a read-only
+    // contact.
+    private String mDefaultDisplayName;
+
+    // Photos
+    /**
+     * The raw contact for which we started "take photo" or "choose photo from gallery" most
+     * recently.  Used to restore {@link #mCurrentPhotoHandler} after orientation change.
+     */
+    private long mRawContactIdRequestingPhoto;
+
+    /**
+     * The {@link PhotoHandler} for the photo editor for the {@link #mRawContactIdRequestingPhoto}
+     * raw contact.
+     *
+     * A {@link PhotoHandler} is created for each photo editor in {@link #bindPhotoHandler}, but
+     * the only "active" one should get the activity result.  This member represents the active
+     * one.
+     */
+    private PhotoHandler mCurrentPhotoHandler;
+    private Uri mCurrentPhotoUri;
+    private Bundle mUpdatedPhotos = new Bundle();
+
+    // Aggregations
     private long mAggregationSuggestionsRawContactId;
     private View mAggregationSuggestionView;
-
     private ListPopupWindow mAggregationSuggestionPopup;
 
     private static final class AggregationSuggestionAdapter extends BaseAdapter {
@@ -339,14 +359,6 @@ public class ContactEditorFragment extends Fragment implements
             mAggregationSuggestionPopup = null;
         }
     };
-
-    private boolean mAutoAddToDefaultGroup;
-
-    private boolean mEnabled = true;
-    private boolean mRequestFocus;
-    private boolean mNewLocalProfile = false;
-    private boolean mIsUserProfile = false;
-    private boolean mDisableDeleteMenuOption = false;
 
     public ContactEditorFragment() {
     }
@@ -477,7 +489,7 @@ public class ContactEditorFragment extends Fragment implements
         mLookupUri = lookupUri;
         mIntentExtras = intentExtras;
         mAutoAddToDefaultGroup = mIntentExtras != null
-                && mIntentExtras.containsKey(INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY);
+                &&  mIntentExtras.containsKey(INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY);
         mNewLocalProfile = mIntentExtras != null
                 && mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
         mDisableDeleteMenuOption = mIntentExtras != null
@@ -1878,6 +1890,9 @@ public class ContactEditorFragment extends Fragment implements
      */
     private final LoaderManager.LoaderCallbacks<Contact> mDataLoaderListener =
             new LoaderCallbacks<Contact>() {
+
+        private long mLoaderStartTime;
+
         @Override
         public Loader<Contact> onCreateLoader(int id, Bundle args) {
             mLoaderStartTime = SystemClock.elapsedRealtime();
