@@ -56,13 +56,13 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Adăugaţi un grup"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Intrare separată?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Această persoană de contact va fi separată în mai multe intrări în Agendă."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Alăturaţi-vă"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Asociaţi intrările din Agendă"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Îmbinați"</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Îmbinați intrările din Agendă"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Alegeţi persoana de contact de asociat cu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afişaţi toate persoanele din agendă"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toate persoanele din agendă"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Persoanele din agendă au fost unite"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Intrările din agendă au fost îmbinate"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setaţi ton apel"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Toate apel. către mesag. voc."</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Nu puteţi şterge persoane din agendă, din conturi cu permisiuni doar de citire, însă puteţi să le ascundeţi în lista dvs. de persoane din agendă."</string>
@@ -72,7 +72,7 @@
     <string name="menu_discard" msgid="6854657936970228164">"Renunțați la modificări"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Persoana nu există în agendă."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widgetul Agendă a fost adăugat la ecranul de pornire."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Creaţi o persoană nouă în agendă"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Creaţi o intrare nouă în agendă"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Creaţi o intrare nouă în Agendă"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organizaţie"</item>
@@ -161,7 +161,7 @@
     <item quantity="one" msgid="148365587896371969">"nu au fost îmbinate"</item>
     <item quantity="other" msgid="425683718017380845">"au fost îmbinate din <xliff:g id="COUNT">%0$d</xliff:g> surse"</item>
   </plurals>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Asociaţi intrarea curentă din agendă cu intrarea selectată?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Îmbinați intrarea curentă din agendă cu intrarea selectată?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Comutaţi la funcţia de editare a persoanei din agendă selectate? Informaţiile introduse până acum vor fi copiate."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copiaţi în Agendă"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adăugaţi în Agendă"</string>
