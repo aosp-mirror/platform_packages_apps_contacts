@@ -57,14 +57,17 @@ import android.widget.ImageView;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.util.BitmapUtil;
 import com.android.contacts.common.util.UriUtils;
+import com.android.contacts.commonbind.util.UserAgentGenerator;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
@@ -674,6 +677,11 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     /** For debug: How many times we had to reload cached photo for a fresh entry.  Should be 0. */
     private final AtomicInteger mFreshCacheOverwrite = new AtomicInteger();
 
+    /**
+     * The user agent string to use when loading URI based photos.
+     */
+    private String mUserAgent;
+
     public ContactPhotoManagerImpl(Context context) {
         mContext = context;
 
@@ -713,6 +721,12 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
         mThumbnailSize = context.getResources().getDimensionPixelSize(
                 R.dimen.contact_browser_list_item_photo_size);
+
+        // Get a user agent string to use for URI photo requests.
+        mUserAgent = UserAgentGenerator.getUserAgent(context);
+        if (mUserAgent == null) {
+            mUserAgent = "";
+        }
     }
 
     /** Converts bytes to K bytes, rounding up.  Used only for debug log. */
@@ -1515,7 +1529,19 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                     final String scheme = uri.getScheme();
                     InputStream is = null;
                     if (scheme.equals("http") || scheme.equals("https")) {
-                        is = new URL(uri.toString()).openStream();
+                        final HttpURLConnection connection =
+                                (HttpURLConnection) new URL(uri.toString()).openConnection();
+
+                        // Include the user agent if it is specified.
+                        if (!TextUtils.isEmpty(mUserAgent)) {
+                            connection.setRequestProperty("User-Agent", mUserAgent);
+                        }
+                        try {
+                            is = connection.getInputStream();
+                        } catch (IOException e) {
+                            connection.disconnect();
+                            is = null;
+                        }
                     } else {
                         is = mResolver.openInputStream(uri);
                     }
