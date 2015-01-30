@@ -66,8 +66,6 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
-import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor.SaveMode;
-import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor.Status;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
@@ -108,30 +106,47 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     private static final int LOADER_DATA = 1;
     private static final int LOADER_GROUPS = 2;
 
-    private static final String KEY_URI = "uri";
     private static final String KEY_ACTION = "action";
-    private static final String KEY_EDIT_STATE = "state";
-    private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
-    private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
-    private static final String KEY_CURRENT_PHOTO_URI = "currentphotouri";
-    private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
-    private static final String KEY_CONTACT_WRITABLE_FOR_JOIN = "contactwritableforjoin";
-    private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
-    private static final String KEY_ENABLED = "enabled";
-    private static final String KEY_STATUS = "status";
-    private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
-    private static final String KEY_IS_USER_PROFILE = "isUserProfile";
+    private static final String KEY_URI = "uri";
     private static final String KEY_DISABLE_DELETE_MENU_OPTION = "disableDeleteMenuOption";
-    private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
-    private static final String KEY_IS_EDIT = "isEdit";
+    private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
+
+    private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
+
+    private static final String KEY_RAW_CONTACTS = "rawContacts";
+
+    private static final String KEY_EDIT_STATE = "state";
+    private static final String KEY_STATUS = "status";
+
     private static final String KEY_HAS_NEW_CONTACT = "hasNewContact";
     private static final String KEY_NEW_CONTACT_READY = "newContactDataReady";
+
+    private static final String KEY_IS_EDIT = "isEdit";
     private static final String KEY_EXISTING_CONTACT_READY = "existingContactDataReady";
-    private static final String KEY_RAW_CONTACTS = "rawContacts";
+
+    // Phone option menus
     private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
-    private static final String KEY_CUSTOM_RINGTONE = "customRingtone";
     private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
+    private static final String KEY_CUSTOM_RINGTONE = "customRingtone";
+
+    // Joins
+    private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
+    private static final String KEY_CONTACT_WRITABLE_FOR_JOIN = "contactwritableforjoin";
+
     private static final String KEY_EXPANDED_EDITORS = "expandedEditors";
+
+    private static final String KEY_IS_USER_PROFILE = "isUserProfile";
+
+    private static final String KEY_ENABLED = "enabled";
+
+    // Photos
+    private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
+    private static final String KEY_CURRENT_PHOTO_URI = "currentphotouri";
+    private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
+
+    // Aggregations
+    private static final String KEY_AGGREGATION_SUGGESTIONS_RAW_CONTACT_ID =
+            "aggregationSuggestionsRawContactId";
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
@@ -194,7 +209,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     private boolean mIsEdit = false;
     private boolean mExistingContactDataReady = false;
 
-    // Variables related to phone specific option menus
+    // Phone specific option menus
     private boolean mSendToVoicemailState;
     private boolean mArePhoneOptionsChangable;
     private String mCustomRingtone;
@@ -443,8 +458,8 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         if (savedState != null) {
             // Restore mUri before calling super.onCreate so that onInitializeLoaders
             // would already have a uri and an action to work with
-            mLookupUri = savedState.getParcelable(KEY_URI);
             mAction = savedState.getString(KEY_ACTION);
+            mLookupUri = savedState.getParcelable(KEY_URI);
         }
 
         super.onCreate(savedState);
@@ -453,32 +468,52 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             // If savedState is non-null, onRestoreInstanceState() will restore the generator.
             mViewIdGenerator = new ViewIdGenerator();
         } else {
-            // Read state from savedState. No loading involved here
-            mState = savedState.<RawContactDeltaList> getParcelable(KEY_EDIT_STATE);
-            mRawContactIdRequestingPhoto = savedState.getLong(
-                    KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mViewIdGenerator = savedState.getParcelable(KEY_VIEW_ID_GENERATOR);
-            mCurrentPhotoUri = savedState.getParcelable(KEY_CURRENT_PHOTO_URI);
-            mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
-            mContactWritableForJoin = savedState.getBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN);
-            mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
-            mEnabled = savedState.getBoolean(KEY_ENABLED);
-            mStatus = savedState.getInt(KEY_STATUS);
-            mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
+
             mDisableDeleteMenuOption = savedState.getBoolean(KEY_DISABLE_DELETE_MENU_OPTION);
-            mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
-            mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
-            mIsEdit = savedState.getBoolean(KEY_IS_EDIT);
-            mHasNewContact = savedState.getBoolean(KEY_HAS_NEW_CONTACT);
-            mNewContactDataReady = savedState.getBoolean(KEY_NEW_CONTACT_READY);
-            mExistingContactDataReady = savedState.getBoolean(KEY_EXISTING_CONTACT_READY);
+            mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
+
             mRawContacts = ImmutableList.copyOf(savedState.<RawContact>getParcelableArrayList(
                     KEY_RAW_CONTACTS));
+            // NOTE: mGroupMetaData is not saved/restored
+
+            // Read state from savedState. No loading involved here
+            mState = savedState.<RawContactDeltaList> getParcelable(KEY_EDIT_STATE);
+            mStatus = savedState.getInt(KEY_STATUS);
+
+            mHasNewContact = savedState.getBoolean(KEY_HAS_NEW_CONTACT);
+            mNewContactDataReady = savedState.getBoolean(KEY_NEW_CONTACT_READY);
+
+            mIsEdit = savedState.getBoolean(KEY_IS_EDIT);
+            mExistingContactDataReady = savedState.getBoolean(KEY_EXISTING_CONTACT_READY);
+
+            // Phone specific options menus
             mSendToVoicemailState = savedState.getBoolean(KEY_SEND_TO_VOICE_MAIL_STATE);
+            mArePhoneOptionsChangable = savedState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
             mCustomRingtone =  savedState.getString(KEY_CUSTOM_RINGTONE);
-            mArePhoneOptionsChangable =  savedState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
+
+            // Joins
+            mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
+            mContactWritableForJoin = savedState.getBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN);
+
             mExpandedEditors = (HashMap<Long, Boolean>)
                     savedState.getSerializable(KEY_EXPANDED_EDITORS);
+
+            mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
+
+            mEnabled = savedState.getBoolean(KEY_ENABLED);
+
+            // NOTE: mRequestFocus and mDefaultDisplayName are not saved/restored
+
+            // Photos
+            mRawContactIdRequestingPhoto = savedState.getLong(
+                    KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
+            mCurrentPhotoUri = savedState.getParcelable(KEY_CURRENT_PHOTO_URI);
+            mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
+
+            // Aggregations
+            mAggregationSuggestionsRawContactId = savedState.getLong(
+                    KEY_AGGREGATION_SUGGESTIONS_RAW_CONTACT_ID);
         }
 
         // mState can still be null because it may not have have finished loading before
@@ -1584,36 +1619,51 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(KEY_URI, mLookupUri);
         outState.putString(KEY_ACTION, mAction);
+        outState.putParcelable(KEY_URI, mLookupUri);
+        outState.putBoolean(KEY_DISABLE_DELETE_MENU_OPTION, mDisableDeleteMenuOption);
+        outState.putBoolean(KEY_NEW_LOCAL_PROFILE, mNewLocalProfile);
+
+        outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
+
+        outState.putParcelableArrayList(KEY_RAW_CONTACTS, mRawContacts == null
+                ? Lists.<RawContact>newArrayList() : Lists.newArrayList(mRawContacts));
 
         if (hasValidState()) {
             // Store entities with modifications
             outState.putParcelable(KEY_EDIT_STATE, mState);
         }
-        outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
-        outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
-        outState.putParcelable(KEY_CURRENT_PHOTO_URI, mCurrentPhotoUri);
+        outState.putInt(KEY_STATUS, mStatus);
+
+        outState.putBoolean(KEY_HAS_NEW_CONTACT, mHasNewContact);
+        outState.putBoolean(KEY_NEW_CONTACT_READY, mNewContactDataReady);
+
+        outState.putBoolean(KEY_IS_EDIT, mIsEdit);
+        outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
+
+        // Phone specific options
+        outState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
+        outState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
+        outState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
+
+        // Joins
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         outState.putBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN, mContactWritableForJoin);
-        outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
-        outState.putBoolean(KEY_ENABLED, mEnabled);
-        outState.putBoolean(KEY_NEW_LOCAL_PROFILE, mNewLocalProfile);
-        outState.putBoolean(KEY_DISABLE_DELETE_MENU_OPTION, mDisableDeleteMenuOption);
-        outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
-        outState.putInt(KEY_STATUS, mStatus);
-        outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
-        outState.putBoolean(KEY_HAS_NEW_CONTACT, mHasNewContact);
-        outState.putBoolean(KEY_IS_EDIT, mIsEdit);
-        outState.putBoolean(KEY_NEW_CONTACT_READY, mNewContactDataReady);
-        outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
-        outState.putParcelableArrayList(KEY_RAW_CONTACTS,
-                mRawContacts == null ?
-                Lists.<RawContact>newArrayList() : Lists.newArrayList(mRawContacts));
-        outState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
-        outState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
-        outState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
+
         outState.putSerializable(KEY_EXPANDED_EDITORS, mExpandedEditors);
+
+        outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
+
+        outState.putBoolean(KEY_ENABLED, mEnabled);
+
+        // Photos
+        outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
+        outState.putParcelable(KEY_CURRENT_PHOTO_URI, mCurrentPhotoUri);
+        outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
+
+        // Aggregations
+        outState.putLong(KEY_AGGREGATION_SUGGESTIONS_RAW_CONTACT_ID,
+                mAggregationSuggestionsRawContactId);
 
         super.onSaveInstanceState(outState);
     }
