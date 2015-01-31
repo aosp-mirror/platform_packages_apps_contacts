@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,9 +39,6 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -57,7 +53,6 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
@@ -72,8 +67,6 @@ import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.util.ContactPhotoUtils;
-import com.android.contacts.util.HelpUtils;
-import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UiClosables;
 
 import com.google.common.collect.ImmutableList;
@@ -92,20 +85,11 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         RawContactReadOnlyEditorView.Listener {
 
-    // Phone option menus
-    private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
-    private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
-    private static final String KEY_CUSTOM_RINGTONE = "customRingtone";
-
     // Joins
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
     private static final String KEY_CONTACT_WRITABLE_FOR_JOIN = "contactwritableforjoin";
 
     private static final String KEY_EXPANDED_EDITORS = "expandedEditors";
-
-    private static final String KEY_IS_USER_PROFILE = "isUserProfile";
-
-    private static final String KEY_ENABLED = "enabled";
 
     // Photos
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
@@ -118,17 +102,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
-    /**
-     * An intent extra that forces the editor to add the edited contact
-     * to the default group (e.g. "My Contacts").
-     */
-    public static final String INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY = "addToDefaultDirectory";
-
-    public static final String INTENT_EXTRA_NEW_LOCAL_PROFILE = "newLocalProfile";
-
-    public static final String INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION =
-            "disableDeleteMenuOption";
-
     //
     // Helpers
     //
@@ -137,22 +110,12 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     //
     // Contact editor state
     //
-    // Phone specific option menus
-    private boolean mSendToVoicemailState;
-    private boolean mArePhoneOptionsChangable;
-    private String mCustomRingtone;
-
     // Joins
     private long mContactIdForJoin;
     private boolean mContactWritableForJoin;
 
     // Used to store which raw contact editors have been expanded. Keyed on raw contact ids.
     private HashMap<Long, Boolean> mExpandedEditors = new HashMap<Long, Boolean>();
-
-    private boolean mIsUserProfile = false;
-
-    // Whether editors and options menu items are enabled
-    private boolean mEnabled = true;
 
     // Whether the name editor should receive focus after being bound
     private boolean mRequestFocus;
@@ -295,43 +258,16 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     }
 
     @Override
-    public void load(String action, Uri lookupUri, Bundle intentExtras) {
-        mAction = action;
-        mLookupUri = lookupUri;
-        mIntentExtras = intentExtras;
-        mAutoAddToDefaultGroup = mIntentExtras != null
-                &&  mIntentExtras.containsKey(INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY);
-        mNewLocalProfile = mIntentExtras != null
-                && mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
-        mDisableDeleteMenuOption = mIntentExtras != null
-                && mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
-    }
-
-    @Override
-    public void setListener(Listener value) {
-        mListener = value;
-    }
-
-    @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
         if (savedState != null) {
-            // Phone specific options menus
-            mSendToVoicemailState = savedState.getBoolean(KEY_SEND_TO_VOICE_MAIL_STATE);
-            mArePhoneOptionsChangable = savedState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
-            mCustomRingtone = savedState.getString(KEY_CUSTOM_RINGTONE);
-
             // Joins
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
             mContactWritableForJoin = savedState.getBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN);
 
             mExpandedEditors = (HashMap<Long, Boolean>)
                     savedState.getSerializable(KEY_EXPANDED_EDITORS);
-
-            mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
-
-            mEnabled = savedState.getBoolean(KEY_ENABLED);
 
             // NOTE: mRequestFocus and mDefaultDisplayName are not saved/restored
 
@@ -397,20 +333,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     }
 
     @Override
-    protected void bindMenuItemsForPhone(Contact contact) {
-        mSendToVoicemailState = contact.isSendToVoicemail();
-        mCustomRingtone = contact.getCustomRingtone();
-        mArePhoneOptionsChangable = arePhoneOptionsChangable(contact);
-    }
-
-    private boolean arePhoneOptionsChangable(Contact contact) {
-        return contact != null && !contact.isDirectoryEntry()
-                && PhoneCapabilityTester.isPhone(mContext);
-    }
-
-    /**
-     * Merges extras from the intent.
-     */
     public void setIntentExtras(Bundle extras) {
         if (extras == null || extras.size() == 0) {
             return;
@@ -786,130 +708,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
-        inflater.inflate(R.menu.edit_contact, menu);
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        // This supports the keyboard shortcut to save changes to a contact but shouldn't be visible
-        // because the custom action bar contains the "save" button now (not the overflow menu).
-        // TODO: Find a better way to handle shortcuts, i.e. onKeyDown()?
-        final MenuItem doneMenu = menu.findItem(R.id.menu_done);
-        final MenuItem splitMenu = menu.findItem(R.id.menu_split);
-        final MenuItem joinMenu = menu.findItem(R.id.menu_join);
-        final MenuItem helpMenu = menu.findItem(R.id.menu_help);
-        final MenuItem discardMenu = menu.findItem(R.id.menu_discard);
-        final MenuItem sendToVoiceMailMenu = menu.findItem(R.id.menu_send_to_voicemail);
-        final MenuItem ringToneMenu = menu.findItem(R.id.menu_set_ringtone);
-        final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
-        deleteMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        deleteMenu.setIcon(R.drawable.ic_delete_white_24dp);
-
-        // Set visibility of menus
-        doneMenu.setVisible(false);
-
-        // Discard menu is only available if at least one raw contact is editable
-        discardMenu.setVisible(mState != null &&
-                mState.getFirstWritableRawContact(mContext) != null);
-
-        // help menu depending on whether this is inserting or editing
-        if (Intent.ACTION_INSERT.equals(mAction)) {
-            HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
-            splitMenu.setVisible(false);
-            joinMenu.setVisible(false);
-            deleteMenu.setVisible(false);
-        } else if (Intent.ACTION_EDIT.equals(mAction)) {
-            HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
-            // Split only if more than one raw profile and not a user profile
-            splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile());
-            // Cannot join a user profile
-            joinMenu.setVisible(!isEditingUserProfile());
-            deleteMenu.setVisible(!mDisableDeleteMenuOption);
-        } else {
-            // something else, so don't show the help menu
-            helpMenu.setVisible(false);
-        }
-
-        // Hide telephony-related settings (ringtone, send to voicemail)
-        // if we don't have a telephone or are editing a new contact.
-        sendToVoiceMailMenu.setChecked(mSendToVoicemailState);
-        sendToVoiceMailMenu.setVisible(mArePhoneOptionsChangable);
-        ringToneMenu.setVisible(mArePhoneOptionsChangable);
-
-        int size = menu.size();
-        for (int i = 0; i < size; i++) {
-            menu.getItem(i).setEnabled(mEnabled);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-            case R.id.menu_done:
-                return save(SaveMode.CLOSE);
-            case R.id.menu_discard:
-                return revert();
-            case R.id.menu_delete:
-                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
-                return true;
-            case R.id.menu_split:
-                return doSplitContactAction();
-            case R.id.menu_join:
-                return doJoinContactAction();
-            case R.id.menu_set_ringtone:
-                doPickRingtone();
-                return true;
-            case R.id.menu_send_to_voicemail:
-                // Update state and save
-                mSendToVoicemailState = !mSendToVoicemailState;
-                item.setChecked(mSendToVoicemailState);
-                final Intent intent = ContactSaveService.createSetSendToVoicemail(
-                        mContext, mLookupUri, mSendToVoicemailState);
-                mContext.startService(intent);
-                return true;
-        }
-
-        return false;
-    }
-
-    private boolean doSplitContactAction() {
-        if (!hasValidState()) return false;
-
-        final SplitContactConfirmationDialogFragment dialog =
-                new SplitContactConfirmationDialogFragment();
-        dialog.setTargetFragment(this, 0);
-        dialog.show(getFragmentManager(), SplitContactConfirmationDialogFragment.TAG);
-        return true;
-    }
-
-    private boolean doJoinContactAction() {
-        if (!hasValidState()) {
-            return false;
-        }
-
-        // If we just started creating a new contact and haven't added any data, it's too
-        // early to do a join
-        if (mState.size() == 1 && mState.get(0).isContactInsert() && !hasPendingChanges()) {
-            Toast.makeText(mContext, R.string.toast_join_with_empty_contact,
-                            Toast.LENGTH_LONG).show();
-            return true;
-        }
-
-        return save(SaveMode.JOIN);
-    }
-
-    /**
-     * Return true if there are any edits to the current contact which need to
-     * be saved.
-     */
-    private boolean hasPendingChanges() {
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        return RawContactModifier.hasChanges(mState, accountTypes);
-    }
-
-    @Override
     public boolean save(int saveMode) {
         if (!hasValidState() || mStatus != Status.EDITING) {
             return false;
@@ -949,88 +747,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         mUpdatedPhotos = new Bundle();
 
         return true;
-    }
-
-    private void doPickRingtone() {
-
-        final Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
-        // Allow user to pick 'Default'
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
-        // Show only ringtones
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
-        // Allow the user to pick a silent ringtone
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
-
-        final Uri ringtoneUri;
-        if (mCustomRingtone != null) {
-            ringtoneUri = Uri.parse(mCustomRingtone);
-        } else {
-            // Otherwise pick default ringtone Uri so that something is selected.
-            ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-        }
-
-        // Put checkmark next to the current ringtone for this contact
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
-
-        // Launch!
-        try {
-            startActivityForResult(intent, REQUEST_CODE_PICK_RINGTONE);
-        } catch (ActivityNotFoundException ex) {
-            Toast.makeText(mContext, R.string.missing_app, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void handleRingtonePicked(Uri pickedUri) {
-        if (pickedUri == null || RingtoneManager.isDefault(pickedUri)) {
-            mCustomRingtone = null;
-        } else {
-            mCustomRingtone = pickedUri.toString();
-        }
-        Intent intent = ContactSaveService.createSetRingtone(
-                mContext, mLookupUri, mCustomRingtone);
-        mContext.startService(intent);
-    }
-
-    public static class CancelEditDialogFragment extends DialogFragment {
-
-        public static void show(ContactEditorFragment fragment) {
-            CancelEditDialogFragment dialog = new CancelEditDialogFragment();
-            dialog.setTargetFragment(fragment, 0);
-            dialog.show(fragment.getFragmentManager(), "cancelEditor");
-        }
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setIconAttribute(android.R.attr.alertDialogIcon)
-                    .setMessage(R.string.cancel_confirmation_dialog_message)
-                    .setPositiveButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int whichButton) {
-                                ((ContactEditorFragment)getTargetFragment()).doRevertAction();
-                            }
-                        }
-                    )
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .create();
-            return dialog;
-        }
-    }
-
-    private boolean revert() {
-        if (mState.isEmpty() || !hasPendingChanges()) {
-            doRevertAction();
-        } else {
-            CancelEditDialogFragment.show(this);
-        }
-        return true;
-    }
-
-    private void doRevertAction() {
-        // When this Fragment is closed we don't want it to auto-save
-        mStatus = Status.CLOSING;
-        if (mListener != null) mListener.onReverted();
     }
 
     @Override
@@ -1135,10 +851,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             }
         }
         return false;
-    }
-
-    private boolean isEditingUserProfile() {
-        return mNewLocalProfile || mIsUserProfile;
     }
 
     /**
@@ -1332,18 +1044,11 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        // Phone specific options
-        outState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
-        outState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
-        outState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
-
         // Joins
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         outState.putBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN, mContactWritableForJoin);
 
         outState.putSerializable(KEY_EXPANDED_EDITORS, mExpandedEditors);
-        outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
-        outState.putBoolean(KEY_ENABLED, mEnabled);
 
         // Photos
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
@@ -1379,33 +1084,8 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 }
                 break;
             }
-            case REQUEST_CODE_ACCOUNTS_CHANGED: {
-                // Bail if the account selector was not successful.
-                if (resultCode != Activity.RESULT_OK) {
-                    mListener.onReverted();
-                    return;
-                }
-                // If there's an account specified, use it.
-                if (data != null) {
-                    AccountWithDataSet account = data.getParcelableExtra(
-                            Intents.Insert.EXTRA_ACCOUNT);
-                    if (account != null) {
-                        createContact(account);
-                        return;
-                    }
-                }
-                // If there isn't an account specified, then this is likely a phone-local
-                // contact, so we should continue setting up the editor by automatically selecting
-                // the most appropriate account.
-                createContact();
-                break;
-            }
-            case REQUEST_CODE_PICK_RINGTONE: {
-                if (data != null) {
-                    final Uri pickedUri = data.getParcelableExtra(
-                            RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-                    handleRingtonePicked(pickedUri);
-                }
+            default: {
+                super.onActivityResult(requestCode, resultCode, data);
                 break;
             }
         }

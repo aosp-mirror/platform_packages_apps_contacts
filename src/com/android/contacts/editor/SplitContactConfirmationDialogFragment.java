@@ -34,7 +34,11 @@ import com.android.contacts.R;
 public class SplitContactConfirmationDialogFragment extends DialogFragment {
     public static final String TAG = "SplitContactConfirmationDialog";
 
-    public SplitContactConfirmationDialogFragment() {
+    public static void show(ContactEditorBaseFragment fragment) {
+        SplitContactConfirmationDialogFragment dialog = new
+                SplitContactConfirmationDialogFragment();
+        dialog.setTargetFragment(fragment, 0);
+        dialog.show(fragment.getFragmentManager(), "splitContact");
     }
 
     @Override

@@ -20,7 +20,6 @@ import com.google.common.collect.ImmutableList;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
-import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -28,7 +27,6 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,16 +39,21 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
         implements ContactEditor {
 
     @Override
-    public void setListener(Listener listener) {
-        mListener = listener;
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
+        setHasOptionsMenu(true);
+
         final View view = inflater.inflate(
                 R.layout.compact_contact_editor_fragment, container, false);
         mContent = (LinearLayout) view.findViewById(R.id.editors);
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (mStatus == Status.SUB_ACTIVITY) {
+            mStatus = Status.EDITING;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     //
@@ -75,20 +78,9 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
     protected void bindGroupMetaData() {
     }
 
-    @Override
-    protected void bindMenuItemsForPhone(Contact contact) {
-    }
-
     //
     // ContactEditor
     //
-
-    @Override
-    public void load(String action, Uri lookupUri, Bundle intentExtras) {
-        mAction = action;
-        mLookupUri = lookupUri;
-        mIntentExtras = intentExtras;
-    }
 
     @Override
     public void setIntentExtras(Bundle extras) {
