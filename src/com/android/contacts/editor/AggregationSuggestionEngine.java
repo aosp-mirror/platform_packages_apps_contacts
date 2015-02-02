@@ -218,7 +218,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
             return null;
         }
 
-        Builder builder = AggregationSuggestions.builder()
+        Builder builder = new AggregationSuggestions.Builder()
                 .setLimit(MAX_SUGGESTION_COUNT)
                 .setContactId(mContactId);
 
