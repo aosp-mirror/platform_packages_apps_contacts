@@ -304,7 +304,9 @@ public class ImportExportDialogFragment extends DialogFragment
         }
 
         public AdapterEntry(String label, int resId) {
-            this(label, resId, SubscriptionManager.INVALID_SUBSCRIPTION_ID);
+            // Store a nonsense value for mSubscriptionId. If this constructor is used,
+            // the mSubscriptionId value should not be read later.
+            this(label, resId, /* subId = */ -1);
         }
     }
 }

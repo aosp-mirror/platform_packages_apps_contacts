@@ -40,7 +40,7 @@ import com.android.contacts.common.vcard.ImportVCardActivity;
 import java.util.List;
 
 /**
- * Utility class for selectiong an Account for importing contact(s)
+ * Utility class for selecting an Account for importing contact(s)
  */
 public class AccountSelectionUtil {
     // TODO: maybe useful for EditContactActivity.java...
@@ -74,7 +74,7 @@ public class AccountSelectionUtil {
                 int resId) {
             // Subscription id is only needed for importing from SIM card. We can safely ignore
             // its value for SD card importing.
-            this(context, accountList, resId, SubscriptionManager.INVALID_SUBSCRIPTION_ID);
+            this(context, accountList, resId, /* subscriptionId = */ -1);
         }
 
         public void onClick(DialogInterface dialog, int which) {
