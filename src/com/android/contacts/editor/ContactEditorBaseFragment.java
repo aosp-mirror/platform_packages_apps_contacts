@@ -867,11 +867,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * successful saving a contact.
      */
     protected static Intent composeQuickContactsIntent(Context context, Uri contactLookupUri) {
-        final Intent intent = QuickContact.composeQuickContactsIntent(
-                context, (Rect) null, contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED,
-                /* excludedMimes =*/ null);
+        final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
+        intent.setData(contactLookupUri);
+        intent.putExtra(QuickContact.EXTRA_MODE, QuickContactActivity.MODE_FULLY_EXPANDED);
         // Make sure not to show QuickContacts on top of another QuickContacts.
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return intent;
     }
 }
