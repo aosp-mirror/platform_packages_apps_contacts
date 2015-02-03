@@ -29,8 +29,10 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.quickcontact.QuickContactActivity;
@@ -49,12 +51,16 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.graphics.Rect;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
@@ -185,6 +191,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected Context mContext;
     protected Listener mListener;
 
+    //
+    // Views
+    //
     protected LinearLayout mContent;
 
     //
@@ -207,12 +216,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     //
     // Loaded data
     //
-    // Used to temporarily store existing contact data during a rebind call (i.e. account switch)
+    // Used to store existing contact data so it can be re-applied during a rebind call,
+    // i.e. account switch.  Only used in {@link ContactEditorFragment}.
     protected ImmutableList<RawContact> mRawContacts;
     protected Cursor mGroupMetaData;
 
     //
-    // Contact editor state
+    // Editor state
     //
     protected RawContactDeltaList mState;
     protected int mStatus;
@@ -225,15 +235,27 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected boolean mIsEdit;
     protected boolean mExistingContactDataReady;
 
-    // Phone specific option menus
+    // Whether we are editing the "me" profile
+    protected boolean mIsUserProfile;
+
+    // Phone specific option menu items
     private boolean mSendToVoicemailState;
     private boolean mArePhoneOptionsChangable;
     private String mCustomRingtone;
 
-    protected boolean mIsUserProfile;
+    // Whether editor views and options menu items should be enabled
+    private boolean mEnabled = true;
 
-    // Whether editors and options menu items are enabled
-    protected boolean mEnabled = true;
+    //
+    // Editor state for {@link ContactEditorView}.
+    // (Not saved/restored on rotates)
+    //
+
+    // Used to pre-populate the editor with a display name when a user edits a read-only contact.
+    protected String mDefaultDisplayName;
+
+    // Whether the name editor should receive focus after being bound
+    protected boolean mRequestFocus;
 
     /**
      * The contact data loader listener.
@@ -250,10 +272,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 }
 
                 @Override
-                public void onLoadFinished(Loader<Contact> loader, Contact data) {
+                public void onLoadFinished(Loader<Contact> loader, Contact contact) {
                     final long loaderCurrentTime = SystemClock.elapsedRealtime();
                     Log.v(TAG, "Time needed for loading: " + (loaderCurrentTime-mLoaderStartTime));
-                    if (!data.isLoaded()) {
+                    if (!contact.isLoaded()) {
                         // Item has been deleted. Close activity without saving again.
                         Log.i(TAG, "No contact found. Closing activity");
                         mStatus = Status.CLOSING;
@@ -262,9 +284,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     }
 
                     mStatus = Status.EDITING;
-                    mLookupUri = data.getLookupUri();
+                    mLookupUri = contact.getLookupUri();
                     final long setDataStartTime = SystemClock.elapsedRealtime();
-                    setData(data);
+                    setState(contact);
+                    setStateForPhoneMenuItems(contact);
                     final long setDataEndTime = SystemClock.elapsedRealtime();
 
                     Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime - setDataStartTime));
@@ -289,7 +312,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 @Override
                 public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
                     mGroupMetaData = data;
-                    bindGroupMetaData();
+                    setGroupMetaData();
                 }
 
                 @Override
@@ -339,12 +362,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             mIsEdit = savedState.getBoolean(KEY_IS_EDIT);
             mExistingContactDataReady = savedState.getBoolean(KEY_EXISTING_CONTACT_READY);
 
+            mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
+
             // Phone specific options menus
             mSendToVoicemailState = savedState.getBoolean(KEY_SEND_TO_VOICE_MAIL_STATE);
             mArePhoneOptionsChangable = savedState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
             mCustomRingtone = savedState.getString(KEY_CUSTOM_RINGTONE);
-
-            mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
 
             mEnabled = savedState.getBoolean(KEY_ENABLED);
         }
@@ -447,17 +470,17 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         outState.putBoolean(KEY_IS_EDIT, mIsEdit);
         outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
 
+        outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
+
         // Phone specific options
         outState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
         outState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
         outState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
 
-        outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
         outState.putBoolean(KEY_ENABLED, mEnabled);
 
         super.onSaveInstanceState(outState);
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -487,14 +510,14 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 if (data != null) {
                     final Uri pickedUri = data.getParcelableExtra(
                             RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-                    handleRingtonePicked(pickedUri);
+                    onRingtonePicked(pickedUri);
                 }
                 break;
             }
         }
     }
 
-    private void handleRingtonePicked(Uri pickedUri) {
+    private void onRingtonePicked(Uri pickedUri) {
         if (pickedUri == null || RingtoneManager.isDefault(pickedUri)) {
             mCustomRingtone = null;
         } else {
@@ -503,6 +526,19 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         Intent intent = ContactSaveService.createSetRingtone(
                 mContext, mLookupUri, mCustomRingtone);
         mContext.startService(intent);
+    }
+
+    //
+    // Options menu
+    //
+
+    private void setStateForPhoneMenuItems(Contact contact) {
+        if (contact != null) {
+            mSendToVoicemailState = contact.isSendToVoicemail();
+            mCustomRingtone = contact.getCustomRingtone();
+            mArePhoneOptionsChangable = !contact.isDirectoryEntry()
+                    && PhoneCapabilityTester.isPhone(mContext);
+        }
     }
 
     @Override
@@ -661,6 +697,44 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
     }
 
+    @Override
+    public boolean save(int saveMode) {
+        if (!hasValidState() || mStatus != Status.EDITING) {
+            return false;
+        }
+
+        // If we are about to close the editor - there is no need to refresh the data
+        if (saveMode == SaveMode.CLOSE || saveMode == SaveMode.SPLIT) {
+            getLoaderManager().destroyLoader(LOADER_DATA);
+        }
+
+        mStatus = Status.SAVING;
+
+        if (!hasPendingChanges()) {
+            if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
+                // We don't have anything to save and there isn't even an existing contact yet.
+                // Nothing to do, simply go back to editing mode
+                mStatus = Status.EDITING;
+                return true;
+            }
+            onSaveCompleted(false, saveMode, /* saveSucceeded =*/ mLookupUri != null, mLookupUri);
+            return true;
+        }
+
+        maybeSetEnabled(false);
+
+        return doSaveAction(saveMode);
+    }
+
+    /**
+     * Persist the accumulated editor deltas.
+     */
+    abstract protected boolean doSaveAction(int saveMode);
+
+    //
+    // State accessor methods
+    //
+
     /**
      * Check if our internal {@link #mState} is valid, usually checked before
      * performing user actions.
@@ -680,6 +754,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected boolean hasPendingChanges() {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         return RawContactModifier.hasChanges(mState, accountTypes);
+    }
+
+    /**
+     * Whether editor inputs and the options menu should be enabled.
+     */
+    protected boolean isEnabled() {
+        return mEnabled;
     }
 
     //
@@ -740,7 +821,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 mListener.onCustomCreateContactActivityRequested(account, mIntentExtras);
             }
         } else {
-            bindEditorsForNewContact(account, accountType);
+            setStateForNewContact(account, accountType);
         }
     }
 
@@ -748,8 +829,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Data binding
     //
 
-    private void setData(Contact contact) {
-
+    private void setState(Contact contact) {
         // If we have already loaded data, we do not want to change it here to not confuse the user
         if (!mState.isEmpty()) {
             Log.v(TAG, "Ignoring background change. This will have to be rebased later");
@@ -790,28 +870,101 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // This also adds deltas to list
         // If displayName is null at this point it is simply ignored later on by the editor.
-        bindEditorsForExistingContact(displayName, contact.isUserProfile(),
-                mRawContacts);
-
-        bindMenuItemsForPhone(contact);
+        setStateForExistingContact(displayName, contact.isUserProfile(), mRawContacts);
     }
 
-    private void bindMenuItemsForPhone(Contact contact) {
-        if (contact != null) {
-            mSendToVoicemailState = contact.isSendToVoicemail();
-            mCustomRingtone = contact.getCustomRingtone();
-            mArePhoneOptionsChangable = !contact.isDirectoryEntry()
-                    && PhoneCapabilityTester.isPhone(mContext);
+    /**
+     * Prepare {@link #mState} for a newly created phone-local contact.
+     */
+    private void setStateForNewContact(AccountWithDataSet account, AccountType accountType) {
+        setStateForNewContact(account, accountType,
+                /* oldState =*/ null, /* oldAccountType =*/ null);
+    }
+
+    /**
+     * Prepare {@link #mState} for a newly created phone-local contact, migrating the state
+     * specified by oldState and oldAccountType.
+     */
+    protected void setStateForNewContact(AccountWithDataSet account, AccountType accountType,
+            RawContactDelta oldState, AccountType oldAccountType) {
+        mStatus = Status.EDITING;
+        mState.add(createNewRawContactDelta(mContext, mIntentExtras, account, accountType,
+                mIsUserProfile, oldState, oldAccountType));
+        mRequestFocus = true;
+        mNewContactDataReady = true;
+        bindEditors();
+    }
+
+    /**
+     * Prepare {@link #mState} for an existing contact.
+     */
+    protected void setStateForExistingContact(String displayName, boolean isUserProfile,
+            ImmutableList<RawContact> rawContacts) {
+        maybeSetEnabled(true);
+        mDefaultDisplayName = displayName;
+
+        mState.addAll(rawContacts.iterator());
+        setIntentExtras(mIntentExtras);
+        mIntentExtras = null;
+
+        // For user profile, change the contacts query URI
+        mIsUserProfile = isUserProfile;
+        boolean localProfileExists = false;
+
+        if (mIsUserProfile) {
+            for (RawContactDelta rawContactDelta : mState) {
+                // For profile contacts, we need a different query URI
+                rawContactDelta.setProfileQueryUri();
+                // Try to find a local profile contact
+                if (rawContactDelta.getValues().getAsString(RawContacts.ACCOUNT_TYPE) == null) {
+                    localProfileExists = true;
+                }
+            }
+            // Editor should always present a local profile for editing
+            if (!localProfileExists) {
+                mState.add(createLocalRawContactDelta());
+            }
+        }
+        mRequestFocus = true;
+        mExistingContactDataReady = true;
+        bindEditors();
+    }
+
+    /**
+     * Sets group metadata on all bound editors.
+     */
+    // TODO: can this be private? Does it really need to be called from
+    // {@link ContactEditFragment#bindEdtiors}?  If not we can remove mGroupMetaData too.
+    protected void setGroupMetaData() {
+        if (mGroupMetaData == null) {
+            return;
+        }
+        int editorCount = mContent.getChildCount();
+        for (int i = 0; i < editorCount; i++) {
+            BaseRawContactEditorView editor = (BaseRawContactEditorView) mContent.getChildAt(i);
+            editor.setGroupMetaData(mGroupMetaData);
         }
     }
 
-    // TODO: add javadocs after these are finalized
-    abstract protected void bindEditorsForExistingContact(String displayName, boolean isUserProfile,
-            ImmutableList<RawContact> rawContacts);
-    abstract protected void bindEditorsForNewContact(AccountWithDataSet account,
-            final AccountType accountType);
-    abstract protected void bindEditors();
-    abstract protected void bindGroupMetaData();
+    /**
+     * Bind editors using {@link #mState} and other members intialized from the loaded (or new)
+     * Contact.
+     */
+    abstract void bindEditors();
+
+    /**
+     * Set the enabled state of editors.
+     */
+    // TODO: The implementation in ContactEditorFragment can be moved to this class when
+    // the aggregation Views are moved to the base and we can get rid of maybeSetEnabled
+    abstract void setEnabled(boolean enabled);
+
+    private void maybeSetEnabled(boolean enabled) {
+        if (mEnabled != enabled) {
+            mEnabled = enabled;
+            setEnabled(mEnabled);
+        }
+    }
 
     //
     // ContactEditor
@@ -837,6 +990,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
         }
     }
+
+    //
+    // Utility methods
+    //
 
     /**
      * Returns a legacy version of the given contactLookupUri if a legacy Uri was originally
@@ -873,5 +1030,60 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // Make sure not to show QuickContacts on top of another QuickContacts.
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return intent;
+    }
+
+    /**
+     * Returns a {@link RawContactDelta} for a new contact suitable for addition into
+     * {@link #mState}.
+     *
+     * If oldState and oldAccountType are specified, the state specified by those parameters
+     * is migrated to the result {@link RawContactDelta}.
+     */
+    private static RawContactDelta createNewRawContactDelta(Context context, Bundle intentExtras,
+            AccountWithDataSet account, AccountType accountType, boolean isNewLocalProfile,
+            RawContactDelta oldState, AccountType oldAccountType) {
+        final RawContact rawContact = new RawContact();
+        rawContact.setAccount(account);
+
+        final RawContactDelta result = new RawContactDelta(
+                ValuesDelta.fromAfter(rawContact.getValues()));
+        if (oldState == null) {
+            // Parse any values from incoming intent
+            RawContactModifier.parseExtras(context, accountType, result, intentExtras);
+        } else {
+            RawContactModifier.migrateStateForNewContact(
+                    context, oldState, result, oldAccountType, accountType);
+        }
+
+        // Ensure we have some default fields (if the account type does not support a field,
+        // ensureKind will not add it, so it is safe to add e.g. Event)
+        RawContactModifier.ensureKindExists(result, accountType, Phone.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(result, accountType, Email.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(result, accountType, Organization.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(result, accountType, Event.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(result, accountType,
+                StructuredPostal.CONTENT_ITEM_TYPE);
+
+        // Set the correct URI for saving the contact as a profile
+        if (isNewLocalProfile) {
+            result.setProfileQueryUri();
+        }
+
+        return result;
+    }
+
+    /**
+     * Returns a {@link RawContactDelta} for a local contact suitable for addition into
+     * {@link #mState}.
+     */
+    private static RawContactDelta createLocalRawContactDelta() {
+        final RawContact rawContact = new RawContact();
+        rawContact.setAccountToLocal();
+
+        final RawContactDelta result = new RawContactDelta(
+                ValuesDelta.fromAfter(rawContact.getValues()));
+        result.setProfileQueryUri();
+
+        return result;
     }
 }

@@ -25,16 +25,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Event;
-import android.provider.ContactsContract.CommonDataKinds.Organization;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
@@ -53,7 +46,6 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
@@ -116,13 +108,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     // Used to store which raw contact editors have been expanded. Keyed on raw contact ids.
     private HashMap<Long, Boolean> mExpandedEditors = new HashMap<Long, Boolean>();
-
-    // Whether the name editor should receive focus after being bound
-    private boolean mRequestFocus;
-
-    // This is used to pre-populate the editor with a display name when a user edits a read-only
-    // contact.
-    private String mDefaultDisplayName;
 
     // Photos
     /**
@@ -205,19 +190,18 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     public ContactEditorFragment() {
     }
 
-    public void setEnabled(boolean enabled) {
-        if (mEnabled != enabled) {
-            mEnabled = enabled;
-            if (mContent != null) {
-                int count = mContent.getChildCount();
-                for (int i = 0; i < count; i++) {
-                    mContent.getChildAt(i).setEnabled(enabled);
-                }
+
+    @Override
+    protected void setEnabled(boolean enabled) {
+        if (mContent != null) {
+            int count = mContent.getChildCount();
+            for (int i = 0; i < count; i++) {
+                mContent.getChildAt(i).setEnabled(enabled);
             }
-            setAggregationSuggestionViewEnabled(enabled);
-            final Activity activity = getActivity();
-            if (activity != null) activity.invalidateOptionsMenu();
         }
+        setAggregationSuggestionViewEnabled(enabled);
+        final Activity activity = getActivity();
+        if (activity != null) activity.invalidateOptionsMenu();
     }
 
     @Override
@@ -269,8 +253,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mExpandedEditors = (HashMap<Long, Boolean>)
                     savedState.getSerializable(KEY_EXPANDED_EDITORS);
 
-            // NOTE: mRequestFocus and mDefaultDisplayName are not saved/restored
-
             // Photos
             mRawContactIdRequestingPhoto = savedState.getLong(
                     KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
@@ -291,45 +273,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     @Override
     public void onEditorExpansionChanged() {
         updatedExpandedEditorsMap();
-    }
-
-    @Override
-    protected void bindEditorsForExistingContact(String displayName, boolean isUserProfile,
-            ImmutableList<RawContact> rawContacts) {
-        setEnabled(true);
-        mDefaultDisplayName = displayName;
-
-        mState.addAll(rawContacts.iterator());
-        setIntentExtras(mIntentExtras);
-        mIntentExtras = null;
-
-        // For user profile, change the contacts query URI
-        mIsUserProfile = isUserProfile;
-        boolean localProfileExists = false;
-
-        if (mIsUserProfile) {
-            for (RawContactDelta state : mState) {
-                // For profile contacts, we need a different query URI
-                state.setProfileQueryUri();
-                // Try to find a local profile contact
-                if (state.getValues().getAsString(RawContacts.ACCOUNT_TYPE) == null) {
-                    localProfileExists = true;
-                }
-            }
-            // Editor should always present a local profile for editing
-            if (!localProfileExists) {
-                final RawContact rawContact = new RawContact();
-                rawContact.setAccountToLocal();
-
-                RawContactDelta insert = new RawContactDelta(ValuesDelta.fromAfter(
-                        rawContact.getValues()));
-                insert.setProfileQueryUri();
-                mState.add(insert);
-            }
-        }
-        mRequestFocus = true;
-        mExistingContactDataReady = true;
-        bindEditors();
     }
 
     @Override
@@ -373,57 +316,11 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mExistingContactDataReady = false;
             mNewContactDataReady = false;
             mState = new RawContactDeltaList();
-            bindEditorsForNewContact(newAccount, newAccountType, oldState, oldAccountType);
+            setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType);
             if (mIsEdit) {
-                bindEditorsForExistingContact(mDefaultDisplayName, mIsUserProfile, mRawContacts);
+                setStateForExistingContact(mDefaultDisplayName, mIsUserProfile, mRawContacts);
             }
         }
-    }
-
-    @Override
-    protected void bindEditorsForNewContact(AccountWithDataSet account,
-            final AccountType accountType) {
-        bindEditorsForNewContact(account, accountType, null, null);
-    }
-
-    private void bindEditorsForNewContact(AccountWithDataSet newAccount,
-            final AccountType newAccountType, RawContactDelta oldState,
-            AccountType oldAccountType) {
-        mStatus = Status.EDITING;
-
-        final RawContact rawContact = new RawContact();
-        rawContact.setAccount(newAccount);
-
-        final ValuesDelta valuesDelta = ValuesDelta.fromAfter(rawContact.getValues());
-        final RawContactDelta insert = new RawContactDelta(valuesDelta);
-        if (oldState == null) {
-            // Parse any values from incoming intent
-            RawContactModifier.parseExtras(mContext, newAccountType, insert, mIntentExtras);
-        } else {
-            RawContactModifier.migrateStateForNewContact(mContext, oldState, insert,
-                    oldAccountType, newAccountType);
-        }
-
-        // Ensure we have some default fields (if the account type does not support a field,
-        // ensureKind will not add it, so it is safe to add e.g. Event)
-        RawContactModifier.ensureKindExists(insert, newAccountType, Phone.CONTENT_ITEM_TYPE);
-        RawContactModifier.ensureKindExists(insert, newAccountType, Email.CONTENT_ITEM_TYPE);
-        RawContactModifier.ensureKindExists(insert, newAccountType, Organization.CONTENT_ITEM_TYPE);
-        RawContactModifier.ensureKindExists(insert, newAccountType, Event.CONTENT_ITEM_TYPE);
-        RawContactModifier.ensureKindExists(insert, newAccountType,
-                StructuredPostal.CONTENT_ITEM_TYPE);
-
-        // Set the correct URI for saving the contact as a profile
-        if (mNewLocalProfile) {
-            insert.setProfileQueryUri();
-        }
-
-        mState.add(insert);
-
-        mRequestFocus = true;
-
-        mNewContactDataReady = true;
-        bindEditors();
     }
 
     @Override
@@ -475,7 +372,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 addAccountSwitcher(mState.get(0), editor);
             }
 
-            editor.setEnabled(mEnabled);
+            editor.setEnabled(isEnabled());
 
             if (mExpandedEditors.containsKey(rawContactId)) {
                 editor.setCollapsed(mExpandedEditors.get(rawContactId));
@@ -548,7 +445,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
         mRequestFocus = false;
 
-        bindGroupMetaData();
+        setGroupMetaData();
 
         // Show editor now that we've loaded state
         mContent.setVisibility(View.VISIBLE);
@@ -633,19 +530,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         }
     }
 
-    @Override
-    protected void bindGroupMetaData() {
-        if (mGroupMetaData == null) {
-            return;
-        }
-
-        int editorCount = mContent.getChildCount();
-        for (int i = 0; i < editorCount; i++) {
-            BaseRawContactEditorView editor = (BaseRawContactEditorView) mContent.getChildAt(i);
-            editor.setGroupMetaData(mGroupMetaData);
-        }
-    }
-
     private void saveDefaultAccountIfNecessary() {
         // Verify that this is a newly created contact, that the contact is composed of only
         // 1 raw contact, and that the contact is not a user profile.
@@ -708,31 +592,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     }
 
     @Override
-    public boolean save(int saveMode) {
-        if (!hasValidState() || mStatus != Status.EDITING) {
-            return false;
-        }
-
-        // If we are about to close the editor - there is no need to refresh the data
-        if (saveMode == SaveMode.CLOSE || saveMode == SaveMode.SPLIT) {
-            getLoaderManager().destroyLoader(LOADER_DATA);
-        }
-
-        mStatus = Status.SAVING;
-
-        if (!hasPendingChanges()) {
-            if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
-                // We don't have anything to save and there isn't even an existing contact yet.
-                // Nothing to do, simply go back to editing mode
-                mStatus = Status.EDITING;
-                return true;
-            }
-            onSaveCompleted(false, saveMode, mLookupUri != null, mLookupUri);
-            return true;
-        }
-
-        setEnabled(false);
-
+    protected boolean doSaveAction(int saveMode) {
         // Store account as default account, only if this is a new contact
         saveDefaultAccountIfNecessary();
 

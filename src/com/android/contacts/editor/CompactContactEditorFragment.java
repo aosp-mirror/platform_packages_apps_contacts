@@ -16,13 +16,8 @@
 
 package com.android.contacts.editor;
 
-import com.google.common.collect.ImmutableList;
-
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
-import com.android.contacts.common.model.RawContact;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -61,21 +56,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
     //
 
     @Override
-    protected void bindEditorsForExistingContact(String displayName, boolean isUserProfile,
-            ImmutableList<RawContact> rawContacts) {
-    }
-
-    @Override
-    protected void bindEditorsForNewContact(AccountWithDataSet account,
-            AccountType accountType) {
-    }
-
-    @Override
     protected void bindEditors() {
     }
 
     @Override
-    protected void bindGroupMetaData() {
+    protected void setEnabled(boolean enabled) {
     }
 
     //
@@ -87,7 +72,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
     }
 
     @Override
-    public boolean save(int saveMode) {
+    protected boolean doSaveAction(int saveMode) {
         onSaveCompleted(/* hadChanges =*/ false, saveMode,
                 /* saveSucceeded =*/ mLookupUri != null, mLookupUri);
         return true;
