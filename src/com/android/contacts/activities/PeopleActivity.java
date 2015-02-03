@@ -894,9 +894,8 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
-            Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
-                    (Rect) null, contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED, null);
-            startActivity(intent);
+            QuickContact.showQuickContact(PeopleActivity.this, (Rect) null, contactLookupUri,
+                    QuickContactActivity.MODE_FULLY_EXPANDED, null);
         }
 
         @Override
@@ -958,9 +957,8 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onContactSelected(Uri contactUri, Rect targetRect) {
-            Intent intent = QuickContact.composeQuickContactsIntent(PeopleActivity.this,
-                    targetRect, contactUri, QuickContactActivity.MODE_FULLY_EXPANDED, null);
-            startActivity(intent);
+            QuickContact.showQuickContact(PeopleActivity.this, targetRect, contactUri,
+                    QuickContactActivity.MODE_FULLY_EXPANDED, null);
         }
 
         @Override
