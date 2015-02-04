@@ -130,7 +130,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     // Aggregations
     private long mAggregationSuggestionsRawContactId;
-    private View mAggregationSuggestionView;
     private ListPopupWindow mAggregationSuggestionPopup;
 
     private static final class AggregationSuggestionAdapter extends BaseAdapter {
@@ -188,20 +187,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     };
 
     public ContactEditorFragment() {
-    }
-
-
-    @Override
-    protected void setEnabled(boolean enabled) {
-        if (mContent != null) {
-            int count = mContent.getChildCount();
-            for (int i = 0; i < count; i++) {
-                mContent.getChildAt(i).setEnabled(enabled);
-            }
-        }
-        setAggregationSuggestionViewEnabled(enabled);
-        final Activity activity = getActivity();
-        if (activity != null) activity.invalidateOptionsMenu();
     }
 
     @Override
@@ -886,19 +871,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mStatus = Status.CLOSING;
             mListener.onEditOtherContactRequested(
                     contactUri, mState.get(0).getContentValues());
-        }
-    }
-
-    public void setAggregationSuggestionViewEnabled(boolean enabled) {
-        if (mAggregationSuggestionView == null) {
-            return;
-        }
-
-        LinearLayout itemList = (LinearLayout) mAggregationSuggestionView.findViewById(
-                R.id.aggregation_suggestions);
-        int count = itemList.getChildCount();
-        for (int i = 0; i < count; i++) {
-            itemList.getChildAt(i).setEnabled(enabled);
         }
     }
 

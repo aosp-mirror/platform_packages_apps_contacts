@@ -69,6 +69,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -195,6 +196,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Views
     //
     protected LinearLayout mContent;
+    protected View mAggregationSuggestionView;
 
     //
     // Parameters passed in on {@link #load}
@@ -721,7 +723,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             return true;
         }
 
-        maybeSetEnabled(false);
+        setEnabled(false);
 
         return doSaveAction(saveMode);
     }
@@ -900,7 +902,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      */
     protected void setStateForExistingContact(String displayName, boolean isUserProfile,
             ImmutableList<RawContact> rawContacts) {
-        maybeSetEnabled(true);
+        setEnabled(true);
         mDefaultDisplayName = displayName;
 
         mState.addAll(rawContacts.iterator());
@@ -933,8 +935,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * Sets group metadata on all bound editors.
      */
-    // TODO: can this be private? Does it really need to be called from
-    // {@link ContactEditFragment#bindEdtiors}?  If not we can remove mGroupMetaData too.
     protected void setGroupMetaData() {
         if (mGroupMetaData == null) {
             return;
@@ -955,14 +955,31 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * Set the enabled state of editors.
      */
-    // TODO: The implementation in ContactEditorFragment can be moved to this class when
-    // the aggregation Views are moved to the base and we can get rid of maybeSetEnabled
-    abstract void setEnabled(boolean enabled);
-
-    private void maybeSetEnabled(boolean enabled) {
+    private void setEnabled(boolean enabled) {
         if (mEnabled != enabled) {
             mEnabled = enabled;
-            setEnabled(mEnabled);
+
+            // Enable/disable editors
+            if (mContent != null) {
+                int count = mContent.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    mContent.getChildAt(i).setEnabled(enabled);
+                }
+            }
+
+            // Enable/disable aggregation suggestion vies
+            if (mAggregationSuggestionView != null) {
+                LinearLayout itemList = (LinearLayout) mAggregationSuggestionView.findViewById(
+                        R.id.aggregation_suggestions);
+                int count = itemList.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    itemList.getChildAt(i).setEnabled(enabled);
+                }
+            }
+
+            // Maybe invalidate the options menu
+            final Activity activity = getActivity();
+            if (activity != null) activity.invalidateOptionsMenu();
         }
     }
 

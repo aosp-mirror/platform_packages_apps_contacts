@@ -51,16 +51,8 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    //
-    // ContactEditorBaseFragment
-    //
-
     @Override
     protected void bindEditors() {
-    }
-
-    @Override
-    protected void setEnabled(boolean enabled) {
     }
 
     //
