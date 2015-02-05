@@ -23,6 +23,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
+import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -35,9 +36,12 @@ import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.UiClosables;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -66,11 +70,16 @@ import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -80,7 +89,8 @@ import java.util.List;
  * Base Fragment for contact editors.
  */
 abstract public class ContactEditorBaseFragment extends Fragment implements
-        ContactEditor, SplitContactConfirmationDialogFragment.Listener {
+        ContactEditor, SplitContactConfirmationDialogFragment.Listener,
+        AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener {
 
     protected static final String TAG = "ContactEditor";
 
@@ -114,6 +124,14 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private static final String KEY_IS_USER_PROFILE = "isUserProfile";
 
     private static final String KEY_ENABLED = "enabled";
+
+    // Aggregation PopupWindow
+    private static final String KEY_AGGREGATION_SUGGESTIONS_RAW_CONTACT_ID =
+            "aggregationSuggestionsRawContactId";
+
+    // Join Activity
+    private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
+    private static final String KEY_CONTACT_WRITABLE_FOR_JOIN = "contactwritableforjoin";
 
     protected static final int REQUEST_CODE_JOIN = 0;
     protected static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
@@ -189,6 +207,52 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         void onDeleteRequested(Uri contactUri);
     }
 
+    /**
+     * Adapter for aggregation suggestions displayed in a PopupWindow when
+     * editor fields change.
+     */
+    protected static final class AggregationSuggestionAdapter extends BaseAdapter {
+        private final LayoutInflater mLayoutInflater;
+        private final boolean mSetNewContact;
+        private final AggregationSuggestionView.Listener mListener;
+        private final List<AggregationSuggestionEngine.Suggestion> mSuggestions;
+
+        public AggregationSuggestionAdapter(Activity activity, boolean setNewContact,
+                AggregationSuggestionView.Listener listener, List<Suggestion> suggestions) {
+            mLayoutInflater = activity.getLayoutInflater();
+            mSetNewContact = setNewContact;
+            mListener = listener;
+            mSuggestions = suggestions;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final Suggestion suggestion = (Suggestion) getItem(position);
+            final AggregationSuggestionView suggestionView =
+                    (AggregationSuggestionView) mLayoutInflater.inflate(
+                            R.layout.aggregation_suggestions_item, null);
+            suggestionView.setNewContact(mSetNewContact);
+            suggestionView.setListener(mListener);
+            suggestionView.bindSuggestion(suggestion);
+            return suggestionView;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mSuggestions.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mSuggestions.size();
+        }
+    }
+
     protected Context mContext;
     protected Listener mListener;
 
@@ -197,6 +261,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     //
     protected LinearLayout mContent;
     protected View mAggregationSuggestionView;
+    protected ListPopupWindow mAggregationSuggestionPopup;
 
     //
     // Parameters passed in on {@link #load}
@@ -214,6 +279,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected ContactEditorUtils mEditorUtils;
     protected RawContactDeltaComparator mComparator;
     protected ViewIdGenerator mViewIdGenerator;
+    private AggregationSuggestionEngine mAggregationSuggestionEngine;
 
     //
     // Loaded data
@@ -247,6 +313,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     // Whether editor views and options menu items should be enabled
     private boolean mEnabled = true;
+
+    // Aggregation PopupWindow
+    private long mAggregationSuggestionsRawContactId;
+
+    // Join Activity
+    private long mContactIdForJoin;
+    private boolean mContactWritableForJoin;
 
     //
     // Editor state for {@link ContactEditorView}.
@@ -372,6 +445,14 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             mCustomRingtone = savedState.getString(KEY_CUSTOM_RINGTONE);
 
             mEnabled = savedState.getBoolean(KEY_ENABLED);
+
+            // Aggregation PopupWindow
+            mAggregationSuggestionsRawContactId = savedState.getLong(
+                    KEY_AGGREGATION_SUGGESTIONS_RAW_CONTACT_ID);
+
+            // Join Activity
+            mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
+            mContactWritableForJoin = savedState.getBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN);
         }
 
         // mState can still be null because it may not have have finished loading before
@@ -481,12 +562,49 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         outState.putBoolean(KEY_ENABLED, mEnabled);
 
+        // Aggregation PopupWindow
+        outState.putLong(KEY_AGGREGATION_SUGGESTIONS_RAW_CONTACT_ID,
+                mAggregationSuggestionsRawContactId);
+
+        // Join Activity
+        outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
+        outState.putBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN, mContactWritableForJoin);
+
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        UiClosables.closeQuietly(mAggregationSuggestionPopup);
+
+        // If anything was left unsaved, save it now but keep the editor open.
+        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
+            save(SaveMode.RELOAD);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mAggregationSuggestionEngine != null) {
+            mAggregationSuggestionEngine.quit();
+        }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
+            case REQUEST_CODE_JOIN: {
+                // Ignore failed requests
+                if (resultCode != Activity.RESULT_OK) return;
+                if (data != null) {
+                    final long contactId = ContentUris.parseId(data.getData());
+                    joinAggregate(contactId);
+                }
+                break;
+            }
             case REQUEST_CODE_ACCOUNTS_CHANGED: {
                 // Bail if the account selector was not successful.
                 if (resultCode != Activity.RESULT_OK) {
@@ -643,9 +761,17 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     @Override
     public void onSplitContactConfirmed() {
-        // When this Fragment is closed we don't want it to auto-save
-        mStatus = Status.CLOSING;
-        if (mListener != null) mListener.onReverted();
+        if (mState.isEmpty()) {
+            // This may happen when this Fragment is recreated by the system during users
+            // confirming the split action (and thus this method is called just before onCreate()),
+            // for example.
+            Log.e(TAG, "mState became null during the user's confirming split action. " +
+                    "Cannot perform the save action.");
+            return;
+        }
+
+        mState.markRawContactsForSplitting();
+        save(SaveMode.SPLIT);;
     }
 
     private boolean doSplitContactAction() {
@@ -947,7 +1073,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     /**
-     * Bind editors using {@link #mState} and other members intialized from the loaded (or new)
+     * Bind editors using {@link #mState} and other members initialized from the loaded (or new)
      * Contact.
      */
     abstract void bindEditors();
@@ -1006,6 +1132,268 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             mDisableDeleteMenuOption =
                     mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
         }
+    }
+
+    @Override
+    public void onJoinCompleted(Uri uri) {
+        onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri);
+    }
+
+    @Override
+    public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
+            Uri contactLookupUri) {
+        if (hadChanges) {
+            if (saveSucceeded) {
+                if (saveMode != SaveMode.JOIN) {
+                    Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+            }
+        }
+        switch (saveMode) {
+            case SaveMode.CLOSE:
+            case SaveMode.HOME:
+                final Intent resultIntent;
+                if (saveSucceeded && contactLookupUri != null) {
+                    final Uri lookupUri = maybeConvertToLegacyLookupUri(
+                            mContext, contactLookupUri, mLookupUri);
+                    resultIntent = composeQuickContactsIntent(mContext, lookupUri);
+                } else {
+                    resultIntent = null;
+                }
+                // It is already saved, so prevent that it is saved again
+                mStatus = Status.CLOSING;
+                if (mListener != null) mListener.onSaveFinished(resultIntent);
+                break;
+
+            case SaveMode.RELOAD:
+            case SaveMode.JOIN:
+                if (saveSucceeded && contactLookupUri != null) {
+                    // If it was a JOIN, we are now ready to bring up the join activity.
+                    if (saveMode == SaveMode.JOIN && hasValidState()) {
+                        showJoinAggregateActivity(contactLookupUri);
+                    }
+
+                    // If this was in INSERT, we are changing into an EDIT now.
+                    // If it already was an EDIT, we are changing to the new Uri now
+                    mState = new RawContactDeltaList();
+                    load(Intent.ACTION_EDIT, contactLookupUri, null);
+                    mStatus = Status.LOADING;
+                    getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
+                }
+                break;
+
+            case SaveMode.SPLIT:
+                mStatus = Status.CLOSING;
+                if (mListener != null) {
+                    mListener.onContactSplit(contactLookupUri);
+                } else {
+                    Log.d(TAG, "No listener registered, can not call onSplitFinished");
+                }
+                break;
+        }
+    }
+
+    /**
+     * Shows a list of aggregates that can be joined into the currently viewed aggregate.
+     *
+     * @param contactLookupUri the fresh URI for the currently edited contact (after saving it)
+     */
+    private void showJoinAggregateActivity(Uri contactLookupUri) {
+        if (contactLookupUri == null || !isAdded()) {
+            return;
+        }
+
+        mContactIdForJoin = ContentUris.parseId(contactLookupUri);
+        mContactWritableForJoin = isContactWritable();
+        final Intent intent = new Intent(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
+        intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, mContactIdForJoin);
+        startActivityForResult(intent, REQUEST_CODE_JOIN);
+    }
+
+    /**
+     * Returns true if there is at least one writable raw contact in the current contact.
+     */
+    private boolean isContactWritable() {
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+        int size = mState.size();
+        for (int i = 0; i < size; i++) {
+            RawContactDelta entity = mState.get(i);
+            final AccountType type = entity.getAccountType(accountTypes);
+            if (type.areContactsWritable()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //
+    // Aggregation PopupWindow
+    //
+
+    /**
+     * Triggers an asynchronous search for aggregation suggestions.
+     */
+    protected void acquireAggregationSuggestions(Context context,
+            RawContactEditorView rawContactEditor) {
+        long rawContactId = rawContactEditor.getRawContactId();
+        if (mAggregationSuggestionsRawContactId != rawContactId
+                && mAggregationSuggestionView != null) {
+            mAggregationSuggestionView.setVisibility(View.GONE);
+            mAggregationSuggestionView = null;
+            mAggregationSuggestionEngine.reset();
+        }
+
+        mAggregationSuggestionsRawContactId = rawContactId;
+
+        if (mAggregationSuggestionEngine == null) {
+            mAggregationSuggestionEngine = new AggregationSuggestionEngine(context);
+            mAggregationSuggestionEngine.setListener(this);
+            mAggregationSuggestionEngine.start();
+        }
+
+        mAggregationSuggestionEngine.setContactId(getContactId());
+
+        LabeledEditorView nameEditor = rawContactEditor.getNameEditor();
+        mAggregationSuggestionEngine.onNameChange(nameEditor.getValues());
+    }
+
+    /**
+     * Returns the contact ID for the currently edited contact or 0 if the contact is new.
+     */
+    private long getContactId() {
+        for (RawContactDelta rawContact : mState) {
+            Long contactId = rawContact.getValues().getAsLong(RawContacts.CONTACT_ID);
+            if (contactId != null) {
+                return contactId;
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public void onAggregationSuggestionChange() {
+        final Activity activity = getActivity();
+        if ((activity != null && activity.isFinishing())
+                || !isVisible() ||  mState.isEmpty() || mStatus != Status.EDITING) {
+            return;
+        }
+
+        UiClosables.closeQuietly(mAggregationSuggestionPopup);
+
+        if (mAggregationSuggestionEngine.getSuggestedContactCount() == 0) {
+            return;
+        }
+
+        final RawContactEditorView rawContactView = (RawContactEditorView)
+                getRawContactEditorView(mAggregationSuggestionsRawContactId);
+        if (rawContactView == null) {
+            return; // Raw contact deleted?
+        }
+        final View anchorView = rawContactView.findViewById(R.id.anchor_view);
+        mAggregationSuggestionPopup = new ListPopupWindow(mContext, null);
+        mAggregationSuggestionPopup.setAnchorView(anchorView);
+        mAggregationSuggestionPopup.setWidth(anchorView.getWidth());
+        mAggregationSuggestionPopup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
+        mAggregationSuggestionPopup.setAdapter(
+                new AggregationSuggestionAdapter(
+                        getActivity(),
+                        mState.size() == 1 && mState.get(0).isContactInsert(),
+                        /* listener =*/ this,
+                        mAggregationSuggestionEngine.getSuggestions()));
+        mAggregationSuggestionPopup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final AggregationSuggestionView suggestionView = (AggregationSuggestionView) view;
+                suggestionView.handleItemClickEvent();
+                UiClosables.closeQuietly(mAggregationSuggestionPopup);
+                mAggregationSuggestionPopup = null;
+            }
+        });
+        mAggregationSuggestionPopup.show();
+    }
+
+    /**
+     * Finds raw contact editor view for the given rawContactId.
+     */
+    private BaseRawContactEditorView getRawContactEditorView(long rawContactId) {
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            final View childView = mContent.getChildAt(i);
+            if (childView instanceof BaseRawContactEditorView) {
+                final BaseRawContactEditorView editor = (BaseRawContactEditorView) childView;
+                if (editor.getRawContactId() == rawContactId) {
+                    return editor;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Whether the given raw contact ID matches the one used to last load aggregation
+     * suggestions.
+     */
+    protected boolean isAggregationSuggestionRawContactId(long rawContactId) {
+        return mAggregationSuggestionsRawContactId == rawContactId;
+    }
+
+    @Override
+    public void onJoinAction(long contactId, List<Long> rawContactIdList) {
+        final long rawContactIds[] = new long[rawContactIdList.size()];
+        for (int i = 0; i < rawContactIds.length; i++) {
+            rawContactIds[i] = rawContactIdList.get(i);
+        }
+        try {
+            JoinSuggestedContactDialogFragment.show(this, rawContactIds);
+        } catch (Exception ignored) {
+            // No problem - the activity is no longer available to display the dialog
+        }
+    }
+
+    /**
+     * Joins the suggested contact (specified by the id's of constituent raw
+     * contacts), save all changes, and stay in the editor.
+     */
+    protected void doJoinSuggestedContact(long[] rawContactIds) {
+        if (!hasValidState() || mStatus != Status.EDITING) {
+            return;
+        }
+
+        mState.setJoinWithRawContacts(rawContactIds);
+        save(SaveMode.RELOAD);
+    }
+
+    @Override
+    public void onEditAction(Uri contactLookupUri) {
+        SuggestionEditConfirmationDialogFragment.show(this, contactLookupUri);
+    }
+
+    /**
+     * Abandons the currently edited contact and switches to editing the suggested
+     * one, transferring all the data there
+     */
+    protected void doEditSuggestedContact(Uri contactUri) {
+        if (mListener != null) {
+            // make sure we don't save this contact when closing down
+            mStatus = Status.CLOSING;
+            mListener.onEditOtherContactRequested(
+                    contactUri, mState.get(0).getContentValues());
+        }
+    }
+
+    //
+    // Join Activity
+    //
+
+    /**
+     * Performs aggregation with the contact selected by the user from suggestions or A-Z list.
+     */
+    private void joinAggregate(final long contactId) {
+        Intent intent = ContactSaveService.createJoinContactsIntent(mContext, mContactIdForJoin,
+                contactId, mContactWritableForJoin,
+                ContactEditorActivity.class, ContactEditorActivity.ACTION_JOIN_COMPLETED);
+        mContext.startService(intent);
     }
 
     //

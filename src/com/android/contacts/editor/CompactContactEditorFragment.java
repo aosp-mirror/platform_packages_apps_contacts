@@ -75,25 +75,4 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
         onSaveCompleted(/* hadChanges =*/ false, SaveMode.RELOAD,
                 /* saveSucceeded =*/ uri != null, uri);
     }
-
-    @Override
-    public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
-            Uri contactLookupUri) {
-        switch (saveMode) {
-            case SaveMode.CLOSE:
-            case SaveMode.HOME:
-                if (mListener != null) {
-                    final Intent resultIntent;
-                    if (saveSucceeded && contactLookupUri != null) {
-                        final Uri lookupUri = maybeConvertToLegacyLookupUri(
-                                mContext, contactLookupUri, mLookupUri);
-                        resultIntent = composeQuickContactsIntent(mContext, lookupUri);
-                    } else {
-                        resultIntent = null;
-                    }
-                    mListener.onSaveFinished(resultIntent);
-                }
-                break;
-        }
-    }
 }
