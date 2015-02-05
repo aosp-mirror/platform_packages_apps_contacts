@@ -29,6 +29,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -1043,8 +1044,7 @@ public class ContactListItemView extends ViewGroup
             mSnippetView.setVisibility(VISIBLE);
             if (ContactDisplayUtils.isPossiblePhoneNumber(text)) {
                 // Give the text-to-speech engine a hint that it's a phone number
-                mSnippetView.setContentDescription(
-                        ContactDisplayUtils.getTelephoneTtsSpannable(text));
+                mSnippetView.setContentDescription(PhoneNumberUtils.getPhoneTtsSpannable(text));
             } else {
                 mSnippetView.setContentDescription(null);
             }
@@ -1164,7 +1164,7 @@ public class ContactListItemView extends ViewGroup
         if (ContactDisplayUtils.isPossiblePhoneNumber(name)) {
             // Give the text-to-speech engine a hint that it's a phone number
             mNameTextView.setContentDescription(
-                    ContactDisplayUtils.getTelephoneTtsSpannable(name.toString()));
+                    PhoneNumberUtils.getPhoneTtsSpannable(name.toString()));
         } else {
             mNameTextView.setContentDescription(null);
         }

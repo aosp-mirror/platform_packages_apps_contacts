@@ -196,7 +196,7 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
             } else {
                 holder.numberTextView.setVisibility(View.VISIBLE);
                 holder.numberTextView.setText(
-                        PhoneNumberUtils.ttsSpanAsPhoneNumber(
+                        PhoneNumberUtils.getPhoneTtsSpannable(
                                 account.getAddress().getSchemeSpecificPart()));
             }
             holder.imageView.setImageDrawable(account.createIconDrawable(getContext()));
