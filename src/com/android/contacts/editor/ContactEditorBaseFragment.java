@@ -149,6 +149,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             "disableDeleteMenuOption";
 
     /**
+     * Intent extra to specify a {@link ContactEditor.SaveMode}.
+     */
+    public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
+
+    /**
      * Callbacks for Activities that host contact editors Fragments.
      */
     public interface Listener {
@@ -661,6 +666,16 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
     }
 
+    /**
+     * Invalidates the options menu if we are still associated with an Activity.
+     */
+    protected void invalidateOptionsMenu() {
+        final Activity activity = getActivity();
+        if (activity != null) {
+            activity.invalidateOptionsMenu();
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.edit_contact, menu);
@@ -1061,22 +1076,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * Sets group metadata on all bound editors.
      */
-    protected void setGroupMetaData() {
-        if (mGroupMetaData == null) {
-            return;
-        }
-        int editorCount = mContent.getChildCount();
-        for (int i = 0; i < editorCount; i++) {
-            BaseRawContactEditorView editor = (BaseRawContactEditorView) mContent.getChildAt(i);
-            editor.setGroupMetaData(mGroupMetaData);
-        }
-    }
+    abstract protected void setGroupMetaData();
 
     /**
      * Bind editors using {@link #mState} and other members initialized from the loaded (or new)
      * Contact.
      */
-    abstract void bindEditors();
+    abstract protected void bindEditors();
 
     /**
      * Set the enabled state of editors.
@@ -1131,6 +1137,23 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
             mDisableDeleteMenuOption =
                     mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
+        }
+    }
+
+    @Override
+    public void setIntentExtras(Bundle extras) {
+        if (extras == null || extras.size() == 0) {
+            return;
+        }
+
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+        for (RawContactDelta state : mState) {
+            final AccountType type = state.getAccountType(accountTypes);
+            if (type.areContactsWritable()) {
+                // Apply extras to the first writable raw contact only
+                RawContactModifier.parseExtras(mContext, type, state, extras);
+                break;
+            }
         }
     }
 

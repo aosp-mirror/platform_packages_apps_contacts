@@ -130,7 +130,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         void load(String action, Uri lookupUri, Bundle intentExtras);
 
         /**
-         * Merges extras from the intent.
+         * Applies extras from the hosting Activity to the first writable raw contact.
          */
         void setIntentExtras(Bundle extras);
 

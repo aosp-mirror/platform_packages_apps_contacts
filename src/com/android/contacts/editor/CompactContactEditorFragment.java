@@ -20,7 +20,6 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,24 +54,12 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
     protected void bindEditors() {
     }
 
-    //
-    // ContactEditor
-    //
-
     @Override
-    public void setIntentExtras(Bundle extras) {
+    protected void setGroupMetaData() {
     }
 
     @Override
     protected boolean doSaveAction(int saveMode) {
-        onSaveCompleted(/* hadChanges =*/ false, saveMode,
-                /* saveSucceeded =*/ mLookupUri != null, mLookupUri);
-        return true;
-    }
-
-    @Override
-    public void onJoinCompleted(Uri uri) {
-        onSaveCompleted(/* hadChanges =*/ false, SaveMode.RELOAD,
-                /* saveSucceeded =*/ uri != null, uri);
+        return false;
     }
 }

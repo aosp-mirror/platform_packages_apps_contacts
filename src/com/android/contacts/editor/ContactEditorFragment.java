@@ -71,8 +71,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     private static final String KEY_CURRENT_PHOTO_URI = "currentphotouri";
     private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
 
-    public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
-
     // Used to store which raw contact editors have been expanded. Keyed on raw contact ids.
     private HashMap<Long, Boolean> mExpandedEditors = new HashMap<Long, Boolean>();
 
@@ -132,23 +130,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         updatedExpandedEditorsMap();
     }
 
-    @Override
-    public void setIntentExtras(Bundle extras) {
-        if (extras == null || extras.size() == 0) {
-            return;
-        }
-
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        for (RawContactDelta state : mState) {
-            final AccountType type = state.getAccountType(accountTypes);
-            if (type.areContactsWritable()) {
-                // Apply extras to the first writable raw contact only
-                RawContactModifier.parseExtras(mContext, type, state, extras);
-                break;
-            }
-        }
-    }
-
     /**
      * Removes a current editor ({@link #mState}) and rebinds new editor for a new account.
      * Some of old data are reused with new restriction enforced by the new account.
@@ -177,6 +158,18 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             if (mIsEdit) {
                 setStateForExistingContact(mDefaultDisplayName, mIsUserProfile, mRawContacts);
             }
+        }
+    }
+
+    @Override
+    protected void setGroupMetaData() {
+        if (mGroupMetaData == null) {
+            return;
+        }
+        int editorCount = mContent.getChildCount();
+        for (int i = 0; i < editorCount; i++) {
+            BaseRawContactEditorView editor = (BaseRawContactEditorView) mContent.getChildAt(i);
+            editor.setGroupMetaData(mGroupMetaData);
         }
     }
 
@@ -309,8 +302,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
         // Refresh Action Bar as the visibility of the join command
         // Activity can be null if we have been detached from the Activity
-        final Activity activity = getActivity();
-        if (activity != null) activity.invalidateOptionsMenu();
+        invalidateOptionsMenu();
 
         updatedExpandedEditorsMap();
     }
