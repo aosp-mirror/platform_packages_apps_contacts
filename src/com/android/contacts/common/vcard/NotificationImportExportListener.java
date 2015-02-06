@@ -129,6 +129,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
         }
+        intent.setPackage(mContext.getPackageName());
         final Notification notification =
                 NotificationImportExportListener.constructFinishNotification(mContext,
                 description, null, intent);
@@ -249,7 +250,10 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
                 .setContentTitle(description)
                 .setContentText(description)
-                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(), 0))
+                // Launch an intent that won't resolve to anything. Restrict the intent to this
+                // app to make sure that no other app can steal this pending-intent b/19296918.
+                .setContentIntent(PendingIntent
+                        .getActivity(context, 0, new Intent(context.getPackageName(), null), 0))
                 .getNotification();
     }
 
@@ -268,8 +272,11 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .setSmallIcon(android.R.drawable.stat_sys_download_done)
                 .setContentTitle(title)
                 .setContentText(description)
+                // If no intent provided, include an intent that won't resolve to anything.
+                // Restrict the intent to this app to make sure that no other app can steal this
+                // pending-intent b/19296918.
                 .setContentIntent(PendingIntent.getActivity(context, 0,
-                        (intent != null ? intent : new Intent()), 0))
+                        (intent != null ? intent : new Intent(context.getPackageName(), null)), 0))
                 .getNotification();
     }
 
@@ -287,7 +294,10 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .setSmallIcon(android.R.drawable.stat_notify_error)
                 .setContentTitle(context.getString(R.string.vcard_import_failed))
                 .setContentText(reason)
-                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(), 0))
+                // Launch an intent that won't resolve to anything. Restrict the intent to this
+                // app to make sure that no other app can steal this pending-intent b/19296918.
+                .setContentIntent(PendingIntent
+                        .getActivity(context, 0, new Intent(context.getPackageName(), null), 0))
                 .getNotification();
     }
 
