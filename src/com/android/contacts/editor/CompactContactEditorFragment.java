@@ -21,6 +21,7 @@ import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,38 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
 
     @Override
     protected void bindEditors() {
+        if (!isReadyToBindEditors()) {
+            return;
+        }
+
+        CompactRawContactsEditorView editorView = (CompactRawContactsEditorView) mContent;
+        editorView.setState(mState, mViewIdGenerator);
+        editorView.setEnabled(isEnabled());
+        editorView.setVisibility(View.VISIBLE);
+
+        invalidateOptionsMenu();
+    }
+
+    private boolean isReadyToBindEditors() {
+        if (mState.isEmpty()) {
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "No data to bind editors");
+            }
+            return false;
+        }
+        if (mIsEdit && !mExistingContactDataReady) {
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Existing contact data is not ready to bind editors.");
+            }
+            return false;
+        }
+        if (mHasNewContact && !mNewContactDataReady) {
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "New contact data is not ready to bind editors.");
+            }
+            return false;
+        }
+        return true;
     }
 
     @Override
