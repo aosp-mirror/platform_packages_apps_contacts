@@ -1876,6 +1876,9 @@ public class QuickContactActivity extends ContactsActivity {
     private List<Entry> contactInteractionsToEntries(List<ContactInteraction> interactions) {
         final List<Entry> entries = new ArrayList<>();
         for (ContactInteraction interaction : interactions) {
+            if (interaction == null) {
+                continue;
+            }
             entries.add(new Entry(/* id = */ -1,
                     interaction.getIcon(this),
                     interaction.getViewHeader(this),
@@ -2030,20 +2033,37 @@ public class QuickContactActivity extends ContactsActivity {
         final List<ContactInteraction> allInteractions = new ArrayList<>();
         final List<List<Entry>> interactionsWrapper = new ArrayList<>();
 
+        // Serialize mRecentLoaderResults into a single list. This should be done on the main
+        // thread to avoid races against mRecentLoaderResults edits.
+        for (List<ContactInteraction> loaderInteractions : mRecentLoaderResults.values()) {
+            allInteractions.addAll(loaderInteractions);
+        }
+
         mRecentDataTask = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 Trace.beginSection("sort recent loader results");
 
-                for (List<ContactInteraction> loaderInteractions : mRecentLoaderResults.values()) {
-                    allInteractions.addAll(loaderInteractions);
-                }
-
                 // Sort the interactions by most recent
                 Collections.sort(allInteractions, new Comparator<ContactInteraction>() {
                     @Override
                     public int compare(ContactInteraction a, ContactInteraction b) {
-                        return a.getInteractionDate() >= b.getInteractionDate() ? -1 : 1;
+                        if (a == null && b == null) {
+                            return 0;
+                        }
+                        if (a == null) {
+                            return 1;
+                        }
+                        if (b == null) {
+                            return -1;
+                        }
+                        if (a.getInteractionDate() > b.getInteractionDate()) {
+                            return -1;
+                        }
+                        if (a.getInteractionDate() == b.getInteractionDate()) {
+                            return 0;
+                        }
+                        return 1;
                     }
                 });
 
