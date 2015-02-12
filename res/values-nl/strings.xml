@@ -69,7 +69,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Dit contact bevat gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen in uw contactenlijst, maar niet verwijderd."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Als u dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Dit contact wordt verwijderd."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Wijzigingen annuleren"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Wijzigingen niet opslaan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Het contact bestaat niet."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget voor contacten toegevoegd aan het startscherm."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Nieuw contact maken"</string>
@@ -206,7 +206,7 @@
     <string name="set_default" msgid="4417505153468300351">"Standaard instellen"</string>
     <string name="clear_default" msgid="7193185801596678067">"Standaardwaarden wissen"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst gekopieerd"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Uw wijzigingen annuleren?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Uw wijzigingen niet opslaan?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Mijn profiel instellen"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Typ de naam van de persoon"</string>

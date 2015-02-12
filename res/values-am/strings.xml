@@ -69,7 +69,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ይህ ዕውቂያ ከብዙ መለያዎች መረጃ ይዟል።ከንባብ-ብቻ መለያዎች ውስጥ ያሉ ዕውቂያዎች ይደበቃሉ፣አይሰረዙም።"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ይህን ዕውቂያ መሰረዝ ከብዙ መለያዎች ውስጥ መረጃ ይሰርዛል።"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"ይህ ማንቂያ ይሰረዛል።"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"ለውጦችን አስወግድ"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"ለውጦችን ጣለው"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"ዕውቅያው የለም።"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"የእውቂያ መግብር መነሻ ማያ ገጽ ላይ ታክሏል።"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"አዲስ ዕውቂያ ፍጠር"</string>
@@ -206,7 +206,7 @@
     <string name="set_default" msgid="4417505153468300351">"ነባሪ አዘጋጅ"</string>
     <string name="clear_default" msgid="7193185801596678067">"ነባሪ አጽዳ"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ፅሁፍ ገልብጧል"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">" ለውጦችህ ይወገዱ?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ለውጦችዎ ይጣሉ?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"መገለጫዬን አዘጋጅ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"የግለሰቡን ስም ተይብ"</string>
