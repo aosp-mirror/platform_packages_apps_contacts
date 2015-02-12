@@ -188,7 +188,7 @@
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nu s-au putut obține informații din baza de date."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Nu există persoane de contact care să poată fi exportate. Dacă aveți persoane de contact pe tabletă, este posibil ca exportul acestora de pe tabletă să fie interzis de unii furnizori de date."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nu există persoane de contact care să poată fi exportate. Dacă aveți persoane de contact pe telefon, este posibil ca exportul acestora de pe telefon să fie interzis de unii furnizori de date."</string>
-    <string name="composer_not_initialized" msgid="6514403866246950877">"Compozitorul vCard nu a pornit în mod corespunzător."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Editorul de vCard nu a pornit în mod corespunzător."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Nu s-a putut exporta"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Datele persoanelor de contact nu au fost exportate.\nMotivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Nu s-a găsit o stocare."</string>

@@ -221,14 +221,14 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"నిల్వను స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD కార్డును స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"నిల్వకు ఎగుమతి చేయి"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"నిల్వకు ఎగుమతి చేయండి"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ఇలా క్రమబద్ధీకరించు"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"మొదటి పేరు"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"చివరి పేరు"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"పేరు ఆకృతి"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ముందుగా మొదటి పేరు"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ముందుగా చివరి పేరు"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయి"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయండి"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"పరిచయాలను దిగుమతి/ఎగుమతి చేయండి"</string>
     <string name="dialog_import" msgid="5177004290082451296">"పరిచయాలను దిగుమతి చేయండి"</string>
     <string name="share_error" msgid="665756457151793108">"ఈ పరిచయాన్ని భాగస్వామ్యం చేయడం సాధ్యపడదు."</string>

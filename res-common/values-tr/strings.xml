@@ -154,7 +154,7 @@
     <string name="display_more_groups" msgid="6304997485733158224">"Diğer gruplar..."</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" adlı grubu senkronizasyondan kaldırmak, gruplanmamış tüm kişilerin de senkronizasyondan kaldırılmasına neden olur."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Görüntüleme seçenekleri kaydediliyor..."</string>
-    <string name="menu_done" msgid="32470053723443112">"Tamamlandı"</string>
+    <string name="menu_done" msgid="32470053723443112">"Tamam"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"İptal"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> hesabındaki kişiler"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Özel görünümdeki kişiler"</string>
