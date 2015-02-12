@@ -80,7 +80,7 @@ import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.HelpUtils;
+import com.android.contactsbind.HelpUtils;
 
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -1028,7 +1028,7 @@ public class PeopleActivity extends ContactsActivity implements
                     clearFrequentsMenu.setVisible(false);
                     break;
             }
-            HelpUtils.prepareHelpMenuItem(this, helpMenu, R.string.help_url_people_main);
+            helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
         }
         final boolean showMiscOptions = !isSearchMode;
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
@@ -1107,6 +1107,9 @@ public class PeopleActivity extends ContactsActivity implements
                 ClearFrequentsDialog.show(getFragmentManager());
                 return true;
             }
+            case R.id.menu_help:
+                HelpUtils.launchHelpAndFeedbackForMainScreen(this);
+                return true;
             case R.id.menu_accounts: {
                 final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
                 intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
