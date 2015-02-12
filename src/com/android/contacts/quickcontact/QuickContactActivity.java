@@ -144,8 +144,6 @@ import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
-import com.android.contactsbind.HelpUtils;
-
 import com.google.common.collect.Lists;
 
 import java.lang.SecurityException;
@@ -2311,9 +2309,6 @@ public class QuickContactActivity extends ContactsActivity {
             final MenuItem shortcutMenuItem = menu.findItem(R.id.menu_create_contact_shortcut);
             shortcutMenuItem.setVisible(isShortcutCreatable());
 
-            final MenuItem helpMenu = menu.findItem(R.id.menu_help);
-            helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
-
             return true;
         }
         return false;
@@ -2395,9 +2390,6 @@ public class QuickContactActivity extends ContactsActivity {
                 return true;
             case R.id.menu_create_contact_shortcut:
                 createLauncherShortcutWithContact();
-                return true;
-            case R.id.menu_help:
-                HelpUtils.launchHelpAndFeedbackForContactScreen(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
