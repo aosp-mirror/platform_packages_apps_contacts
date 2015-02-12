@@ -90,7 +90,8 @@ import java.util.List;
  */
 abstract public class ContactEditorBaseFragment extends Fragment implements
         ContactEditor, SplitContactConfirmationDialogFragment.Listener,
-        AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener {
+        AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
+        CancelEditDialogFragment.Listener {
 
     protected static final String TAG = "ContactEditor";
 
@@ -772,6 +773,15 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             CancelEditDialogFragment.show(this);
         }
         return true;
+    }
+
+    @Override
+    public void onCancelEditConfirmed() {
+        // When this Fragment is closed we don't want it to auto-save
+        mStatus = Status.CLOSING;
+        if (mListener != null) {
+            mListener.onReverted();
+        }
     }
 
     @Override
