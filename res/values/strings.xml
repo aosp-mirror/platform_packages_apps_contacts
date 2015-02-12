@@ -477,8 +477,8 @@
     <!-- Menu item for the settings activity [CHAR LIMIT=64] -->
     <string name="menu_settings" msgid="377929915873428211">Settings</string>
 
-    <!-- Menu item for invoking contextual Help & Feedback [CHAR LIMIT=64] -->
-    <string name="menu_help">Help &amp; feedback</string>
+    <!-- Menu item for invoking contextual help [CHAR LIMIT=64] -->
+    <string name="menu_help">Help</string>
 
     <!-- The preference section title for contact display options [CHAR LIMIT=128] -->
     <string name="preference_displayOptions">Display options</string>
