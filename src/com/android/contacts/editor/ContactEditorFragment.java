@@ -35,11 +35,9 @@ import android.widget.ListPopupWindow;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -62,7 +60,6 @@ import java.util.List;
  * Contact editor with all fields displayed.
  */
 public class ContactEditorFragment extends ContactEditorBaseFragment implements
-        ContactEditor, SplitContactConfirmationDialogFragment.Listener,
         RawContactReadOnlyEditorView.Listener {
 
     private static final String KEY_EXPANDED_EDITORS = "expandedEditors";
@@ -379,27 +376,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         }
     }
 
-    private void saveDefaultAccountIfNecessary() {
-        // Verify that this is a newly created contact, that the contact is composed of only
-        // 1 raw contact, and that the contact is not a user profile.
-        if (!Intent.ACTION_INSERT.equals(mAction) && mState.size() == 1 &&
-                !isEditingUserProfile()) {
-            return;
-        }
-
-        // Find the associated account for this contact (retrieve it here because there are
-        // multiple paths to creating a contact and this ensures we always have the correct
-        // account).
-        final RawContactDelta rawContactDelta = mState.get(0);
-        String name = rawContactDelta.getAccountName();
-        String type = rawContactDelta.getAccountType();
-        String dataSet = rawContactDelta.getDataSet();
-
-        AccountWithDataSet account = (name == null || type == null) ? null :
-                new AccountWithDataSet(name, type, dataSet);
-        mEditorUtils.saveDefaultAndAllAccounts(account);
-    }
-
     private void addAccountSwitcher(
             final RawContactDelta currentState, BaseRawContactEditorView editor) {
         final AccountWithDataSet currentAccount = new AccountWithDataSet(
@@ -480,6 +456,14 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void joinAggregate(final long contactId) {
+        final Intent intent = ContactSaveService.createJoinContactsIntent(
+                mContext, mContactIdForJoin, contactId, mContactWritableForJoin,
+                ContactEditorActivity.class, ContactEditorActivity.ACTION_JOIN_COMPLETED);
+        mContext.startService(intent);
     }
 
     /**

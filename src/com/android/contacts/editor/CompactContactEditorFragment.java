@@ -16,9 +16,11 @@
 
 package com.android.contacts.editor;
 
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
+import com.android.contacts.activities.CompactContactEditorActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +32,7 @@ import android.widget.LinearLayout;
 /**
  * Contact editor with only the most important fields displayed initially.
  */
-public class CompactContactEditorFragment extends ContactEditorBaseFragment
-        implements ContactEditor {
+public class CompactContactEditorFragment extends ContactEditorBaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
@@ -89,10 +90,31 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment
 
     @Override
     protected void setGroupMetaData() {
+        // The compact editor does not support groups.
     }
 
     @Override
     protected boolean doSaveAction(int saveMode) {
-        return false;
+        // Store account as default account, only if this is a new contact
+        saveDefaultAccountIfNecessary();
+
+        // Save contact
+        final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
+                SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
+                ((Activity) mContext).getClass(),
+                CompactContactEditorActivity.ACTION_SAVE_COMPLETED,
+                /* updatedPhotos =*/ new Bundle());
+        mContext.startService(intent);
+
+        return true;
+    }
+
+    @Override
+    protected void joinAggregate(final long contactId) {
+        final Intent intent = ContactSaveService.createJoinContactsIntent(
+                mContext, mContactIdForJoin, contactId, mContactWritableForJoin,
+                CompactContactEditorActivity.class,
+                CompactContactEditorActivity.ACTION_JOIN_COMPLETED);
+        mContext.startService(intent);
     }
 }

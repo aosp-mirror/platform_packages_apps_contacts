@@ -324,8 +324,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private long mAggregationSuggestionsRawContactId;
 
     // Join Activity
-    private long mContactIdForJoin;
-    private boolean mContactWritableForJoin;
+    protected long mContactIdForJoin;
+    protected boolean mContactWritableForJoin;
 
     //
     // Editor state for {@link ContactEditorView}.
@@ -978,6 +978,30 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
     }
 
+    /**
+     * Saves all writable accounts and the default account, but only for new contacts.
+     */
+    protected void saveDefaultAccountIfNecessary() {
+        // Verify that this is a newly created contact, that the contact is composed of only
+        // 1 raw contact, and that the contact is not a user profile.
+        if (!Intent.ACTION_INSERT.equals(mAction) && mState.size() == 1 &&
+                !isEditingUserProfile()) {
+            return;
+        }
+
+        // Find the associated account for this contact (retrieve it here because there are
+        // multiple paths to creating a contact and this ensures we always have the correct
+        // account).
+        final RawContactDelta rawContactDelta = mState.get(0);
+        String name = rawContactDelta.getAccountName();
+        String type = rawContactDelta.getAccountType();
+        String dataSet = rawContactDelta.getDataSet();
+
+        AccountWithDataSet account = (name == null || type == null) ? null :
+                new AccountWithDataSet(name, type, dataSet);
+        mEditorUtils.saveDefaultAndAllAccounts(account);
+    }
+
     //
     // Data binding
     //
@@ -1422,12 +1446,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * Performs aggregation with the contact selected by the user from suggestions or A-Z list.
      */
-    private void joinAggregate(final long contactId) {
-        Intent intent = ContactSaveService.createJoinContactsIntent(mContext, mContactIdForJoin,
-                contactId, mContactWritableForJoin,
-                ContactEditorActivity.class, ContactEditorActivity.ACTION_JOIN_COMPLETED);
-        mContext.startService(intent);
-    }
+    abstract protected void joinAggregate(long contactId);
 
     //
     // Utility methods
