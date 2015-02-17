@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
+import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditField;
@@ -119,20 +120,30 @@ public class CompactRawContactsEditorView extends LinearLayout {
         }
 
         mViewIdGenerator = viewIdGenerator;
-
         setId(mViewIdGenerator.getId(rawContactDeltas.get(0), /* dataKind =*/ null,
                 /* valuesDelta =*/ null, ViewIdGenerator.NO_VIEW_INDEX));
 
-        addEditorViews(rawContactDeltas);
-        removeExtraEmptyStructuredNames();
+        addEditorViews(rawContactDeltas, viewIdGenerator);
+        removeExtraEmptyTextFields(mNames);
+        removeExtraEmptyTextFields(mPhoneNumbers);
+        removeExtraEmptyTextFields(mEmails);
     }
 
-    private void addEditorViews(RawContactDeltaList rawContactDeltas) {
+    private void addEditorViews(RawContactDeltaList rawContactDeltas,
+            ViewIdGenerator viewIdGenerator) {
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
             if (!rawContactDelta.isVisible()) {
                 continue;
             }
+            setId(viewIdGenerator.getId(
+                    rawContactDelta, null, null, ViewIdGenerator.NO_VIEW_INDEX));
+
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+
+            // Make sure we have a StructuredName
+            RawContactModifier.ensureKindExists(
+                    rawContactDelta, accountType, StructuredName.CONTENT_ITEM_TYPE);
+
             for (DataKind dataKind : accountType.getSortedDataKinds()) {
                 if (!dataKind.editable) {
                     continue;
@@ -164,15 +175,11 @@ public class CompactRawContactsEditorView extends LinearLayout {
                                 mNicknames, dataKind, rawContactDelta));
                     }
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
-                        mPhoneNumbers.addView(inflateKindSectionView(
-                                mPhoneNumbers, dataKind, rawContactDelta));
-                    }
+                    mPhoneNumbers.addView(inflateKindSectionView(
+                            mPhoneNumbers, dataKind, rawContactDelta));
                 } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
-                        mEmails.addView(inflateKindSectionView(
-                                mEmails, dataKind, rawContactDelta));
-                    }
+                    mEmails.addView(inflateKindSectionView(
+                            mEmails, dataKind, rawContactDelta));
                 } else if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
                     mOther.addView(inflateKindSectionView(
                             mOther, dataKind, rawContactDelta));
@@ -181,38 +188,46 @@ public class CompactRawContactsEditorView extends LinearLayout {
         }
     }
 
-    private void removeExtraEmptyStructuredNames() {
-        // If there is one (or less) structured names, leave it whether it is empty or not
-        if (mNames.getChildCount() <= 1) {
+    // TODO: avoid inflating extra views and deleting them
+    private void removeExtraEmptyTextFields(ViewGroup viewGroup) {
+        // If there is one (or less) editors, leave it whether it is empty or not
+        if (viewGroup.getChildCount() <= 1) {
             return;
         }
-        // Determine if there are any non-empty names
-        boolean hasAtLeastOneNonEmptyName = false;
-        for (int i = 0; i < mNames.getChildCount(); i++) {
-            final StructuredNameEditorView childView =
-                    (StructuredNameEditorView) mNames.getChildAt(i);
-            if (!childView.isEmpty()) {
-                hasAtLeastOneNonEmptyName = true;
+        // Determine if there are any non-empty editors
+        boolean hasAtLeastOneNonEmptyEditorView = false;
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            if (!isEmptyEditorView(viewGroup.getChildAt(i))) {
+                hasAtLeastOneNonEmptyEditorView = true;
                 break;
             }
         }
-        if (hasAtLeastOneNonEmptyName) {
-            // There is at least one non-empty name, remove all the empty ones
-            for (int i = 0; i < mNames.getChildCount(); i++) {
-                final StructuredNameEditorView childView =
-                        (StructuredNameEditorView) mNames.getChildAt(i);
-                if (childView.isEmpty()) {
-                    childView.setVisibility(View.GONE);
+        if (hasAtLeastOneNonEmptyEditorView) {
+            // There is at least one non-empty editor, remove all the empty ones
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                if (isEmptyEditorView(viewGroup.getChildAt(i))) {
+                    viewGroup.getChildAt(i).setVisibility(View.GONE);
                 }
             }
         } else {
-            // There is no non-empty name, keep the first empty view and remove the rest
-            for (int i = 1; i < mNames.getChildCount(); i++) {
-                final StructuredNameEditorView childView =
-                        (StructuredNameEditorView) mNames.getChildAt(i);
-                childView.setVisibility(View.GONE);
+            // There is no non-empty editor, keep the first empty view and remove the rest
+            for (int i = 1; i < viewGroup.getChildCount(); i++) {
+                viewGroup.getChildAt(i).setVisibility(View.GONE);
             }
         }
+    }
+
+    // TODO: remove this after KindSectionView is rewritten
+    private static boolean isEmptyEditorView(View view) {
+        if (view instanceof TextFieldsEditorView) {
+            final TextFieldsEditorView textFieldsEditorView = (TextFieldsEditorView) view;
+            return textFieldsEditorView.isEmpty();
+        }
+        if (view instanceof KindSectionView) {
+            final KindSectionView kindSectionView = (KindSectionView) view;
+            return kindSectionView.hasEmptyEditor();
+        }
+        return false;
     }
 
     private static boolean hasNonEmptyValuesDelta(RawContactDelta rawContactDelta,

@@ -95,9 +95,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment {
 
     @Override
     protected boolean doSaveAction(int saveMode) {
-        // Store account as default account, only if this is a new contact
-        saveDefaultAccountIfNecessary();
-
         // Save contact
         final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),

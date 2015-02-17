@@ -876,6 +876,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         setEnabled(false);
 
+        // Store account as default account, only if this is a new contact
+        saveDefaultAccountIfNecessary();
+
         return doSaveAction(saveMode);
     }
 
@@ -1065,11 +1068,53 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected void setStateForNewContact(AccountWithDataSet account, AccountType accountType,
             RawContactDelta oldState, AccountType oldAccountType) {
         mStatus = Status.EDITING;
-        mState.add(createNewRawContactDelta(mContext, mIntentExtras, account, accountType,
-                mIsUserProfile, oldState, oldAccountType));
+        mState.add(createNewRawContactDelta(account, accountType, oldState, oldAccountType));
         mRequestFocus = true;
         mNewContactDataReady = true;
         bindEditors();
+    }
+
+    /**
+     * Returns a {@link RawContactDelta} for a new contact suitable for addition into
+     * {@link #mState}.
+     *
+     * If oldState and oldAccountType are specified, the state specified by those parameters
+     * is migrated to the result {@link RawContactDelta}.
+     */
+    private RawContactDelta createNewRawContactDelta(AccountWithDataSet account,
+            AccountType accountType, RawContactDelta oldState, AccountType oldAccountType) {
+        final RawContact rawContact = new RawContact();
+        if (account != null) {
+            rawContact.setAccount(account);
+        } else {
+            rawContact.setAccountToLocal();
+        }
+
+        final RawContactDelta result = new RawContactDelta(
+                ValuesDelta.fromAfter(rawContact.getValues()));
+        if (oldState == null) {
+            // Parse any values from incoming intent
+            RawContactModifier.parseExtras(mContext, accountType, result, mIntentExtras);
+        } else {
+            RawContactModifier.migrateStateForNewContact(
+                    mContext, oldState, result, oldAccountType, accountType);
+        }
+
+        // Ensure we have some default fields (if the account type does not support a field,
+        // ensureKind will not add it, so it is safe to add e.g. Event)
+        RawContactModifier.ensureKindExists(result, accountType, Phone.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(result, accountType, Email.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(result, accountType, Organization.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(result, accountType, Event.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(result, accountType,
+                StructuredPostal.CONTENT_ITEM_TYPE);
+
+        // Set the correct URI for saving the contact as a profile
+        if (mNewLocalProfile) {
+            result.setProfileQueryUri();
+        }
+
+        return result;
     }
 
     /**
@@ -1105,6 +1150,21 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         mRequestFocus = true;
         mExistingContactDataReady = true;
         bindEditors();
+    }
+
+    /**
+     * Returns a {@link RawContactDelta} for a local contact suitable for addition into
+     * {@link #mState}.
+     */
+    private static RawContactDelta createLocalRawContactDelta() {
+        final RawContact rawContact = new RawContact();
+        rawContact.setAccountToLocal();
+
+        final RawContactDelta result = new RawContactDelta(
+                ValuesDelta.fromAfter(rawContact.getValues()));
+        result.setProfileQueryUri();
+
+        return result;
     }
 
     /**
@@ -1215,7 +1275,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    resultIntent = composeQuickContactsIntent(mContext, lookupUri);
+                    resultIntent = composeQuickContactsIntent(lookupUri);
                 } else {
                     resultIntent = null;
                 }
@@ -1480,67 +1540,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Creates the result Intent for the given contactLookupUri that should started after a
      * successful saving a contact.
      */
-    protected static Intent composeQuickContactsIntent(Context context, Uri contactLookupUri) {
+    protected static Intent composeQuickContactsIntent(Uri contactLookupUri) {
         final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
         intent.setData(contactLookupUri);
         intent.putExtra(QuickContact.EXTRA_MODE, QuickContactActivity.MODE_FULLY_EXPANDED);
         // Make sure not to show QuickContacts on top of another QuickContacts.
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return intent;
-    }
-
-    /**
-     * Returns a {@link RawContactDelta} for a new contact suitable for addition into
-     * {@link #mState}.
-     *
-     * If oldState and oldAccountType are specified, the state specified by those parameters
-     * is migrated to the result {@link RawContactDelta}.
-     */
-    private static RawContactDelta createNewRawContactDelta(Context context, Bundle intentExtras,
-            AccountWithDataSet account, AccountType accountType, boolean isNewLocalProfile,
-            RawContactDelta oldState, AccountType oldAccountType) {
-        final RawContact rawContact = new RawContact();
-        rawContact.setAccount(account);
-
-        final RawContactDelta result = new RawContactDelta(
-                ValuesDelta.fromAfter(rawContact.getValues()));
-        if (oldState == null) {
-            // Parse any values from incoming intent
-            RawContactModifier.parseExtras(context, accountType, result, intentExtras);
-        } else {
-            RawContactModifier.migrateStateForNewContact(
-                    context, oldState, result, oldAccountType, accountType);
-        }
-
-        // Ensure we have some default fields (if the account type does not support a field,
-        // ensureKind will not add it, so it is safe to add e.g. Event)
-        RawContactModifier.ensureKindExists(result, accountType, Phone.CONTENT_ITEM_TYPE);
-        RawContactModifier.ensureKindExists(result, accountType, Email.CONTENT_ITEM_TYPE);
-        RawContactModifier.ensureKindExists(result, accountType, Organization.CONTENT_ITEM_TYPE);
-        RawContactModifier.ensureKindExists(result, accountType, Event.CONTENT_ITEM_TYPE);
-        RawContactModifier.ensureKindExists(result, accountType,
-                StructuredPostal.CONTENT_ITEM_TYPE);
-
-        // Set the correct URI for saving the contact as a profile
-        if (isNewLocalProfile) {
-            result.setProfileQueryUri();
-        }
-
-        return result;
-    }
-
-    /**
-     * Returns a {@link RawContactDelta} for a local contact suitable for addition into
-     * {@link #mState}.
-     */
-    private static RawContactDelta createLocalRawContactDelta() {
-        final RawContact rawContact = new RawContact();
-        rawContact.setAccountToLocal();
-
-        final RawContactDelta result = new RawContactDelta(
-                ValuesDelta.fromAfter(rawContact.getValues()));
-        result.setProfileQueryUri();
-
-        return result;
     }
 }

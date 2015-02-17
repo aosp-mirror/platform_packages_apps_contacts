@@ -261,6 +261,13 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     }
 
     /**
+     * Whether this section has any empty editors.
+     */
+    public boolean hasEmptyEditor() {
+        return !getEmptyEditors().isEmpty();
+    }
+
+    /**
      * Returns a list of empty editor views in this section.
      */
     private List<View> getEmptyEditors() {
