@@ -427,7 +427,7 @@
     <!-- Button used for changing a photo in the Raw Contact Editor [CHAR LIMIT=15] -->
     <string name="change_photo">Change</string>
 
-    <!-- RadioButton that determines whether a raw contact's photo should be used for the entire contact [CHAR LIMIT=15] -->
+    <!-- RadioButton that determines whether a raw contact's photo should be used for the entire contact [CHAR LIMIT=25] -->
     <string name="primary_photo">Primary photo</string>
 
     <!-- String describing the Star/Favorite checkbox
