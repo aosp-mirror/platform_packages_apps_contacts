@@ -36,6 +36,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -55,6 +56,8 @@ public class CompactRawContactsEditorView extends LinearLayout {
     private ViewIdGenerator mViewIdGenerator;
 
     private ViewGroup mNames;
+    private ViewGroup mPhoneticNames;
+    private ViewGroup mNicknames;
     private ViewGroup mPhoneNumbers;
     private ViewGroup mEmails;
     private ViewGroup mOther;
@@ -76,6 +79,8 @@ public class CompactRawContactsEditorView extends LinearLayout {
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         mNames = (LinearLayout) findViewById(R.id.names);
+        mPhoneticNames = (LinearLayout) findViewById(R.id.phonetic_names);
+        mNicknames = (LinearLayout) findViewById(R.id.nicknames);
         mPhoneNumbers = (LinearLayout) findViewById(R.id.phone_numbers);
         mEmails = (LinearLayout) findViewById(R.id.emails);
         mOther = (LinearLayout) findViewById(R.id.other);
@@ -85,6 +90,8 @@ public class CompactRawContactsEditorView extends LinearLayout {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         setEnabled(enabled, mNames);
+        setEnabled(enabled, mPhoneticNames);
+        setEnabled(enabled, mNicknames);
         setEnabled(enabled, mPhoneNumbers);
         setEnabled(enabled, mEmails);
         setEnabled(enabled, mOther);
@@ -101,6 +108,8 @@ public class CompactRawContactsEditorView extends LinearLayout {
 
     public void setState(RawContactDeltaList rawContactDeltas, ViewIdGenerator viewIdGenerator) {
         mNames.removeAllViews();
+        mPhoneticNames.removeAllViews();
+        mNicknames.removeAllViews();
         mPhoneNumbers.removeAllViews();
         mEmails.removeAllViews();
         mOther.removeAllViews();
@@ -115,6 +124,7 @@ public class CompactRawContactsEditorView extends LinearLayout {
                 /* valuesDelta =*/ null, ViewIdGenerator.NO_VIEW_INDEX));
 
         addEditorViews(rawContactDeltas);
+        removeExtraEmptyStructuredNames();
     }
 
     private void addEditorViews(RawContactDeltaList rawContactDeltas) {
@@ -135,7 +145,6 @@ public class CompactRawContactsEditorView extends LinearLayout {
                     continue;
                 } else if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     final ValuesDelta valuesDelta = rawContactDelta.getPrimaryEntry(mimeType);
-
                     if (valuesDelta != null) {
                         mNames.addView(inflateStructuredNameEditorView(
                                 mNames, accountType, valuesDelta, rawContactDelta));
@@ -146,16 +155,13 @@ public class CompactRawContactsEditorView extends LinearLayout {
                             rawContactDelta, StructuredName.CONTENT_ITEM_TYPE, dataKind)) {
                         final ValuesDelta valuesDelta = rawContactDelta.getPrimaryEntry(
                                 StructuredName.CONTENT_ITEM_TYPE);
-                        mNames.addView(inflatePhoneticNameEditorView(
-                                mNames, accountType, valuesDelta, rawContactDelta));
+                        mPhoneticNames.addView(inflatePhoneticNameEditorView(
+                                mPhoneticNames, accountType, valuesDelta, rawContactDelta));
                     }
                 } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
-                        for (ValuesDelta valuesDelta :
-                                getNonEmptyValuesDeltas(rawContactDelta, mimeType, dataKind)) {
-                            mNames.addView(inflateNicknameEditorView(
-                                    mNames, accountType, valuesDelta, rawContactDelta));
-                        }
+                        mNicknames.addView(inflateNicknameEditorView(
+                                mNicknames, dataKind, rawContactDelta));
                     }
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
@@ -171,6 +177,40 @@ public class CompactRawContactsEditorView extends LinearLayout {
                     mOther.addView(inflateKindSectionView(
                             mOther, dataKind, rawContactDelta));
                 }
+            }
+        }
+    }
+
+    private void removeExtraEmptyStructuredNames() {
+        // If there is one (or less) structured names, leave it whether it is empty or not
+        if (mNames.getChildCount() <= 1) {
+            return;
+        }
+        // Determine if there are any non-empty names
+        boolean hasAtLeastOneNonEmptyName = false;
+        for (int i = 0; i < mNames.getChildCount(); i++) {
+            final StructuredNameEditorView childView =
+                    (StructuredNameEditorView) mNames.getChildAt(i);
+            if (!childView.isEmpty()) {
+                hasAtLeastOneNonEmptyName = true;
+                break;
+            }
+        }
+        if (hasAtLeastOneNonEmptyName) {
+            // There is at least one non-empty name, remove all the empty ones
+            for (int i = 0; i < mNames.getChildCount(); i++) {
+                final StructuredNameEditorView childView =
+                        (StructuredNameEditorView) mNames.getChildAt(i);
+                if (childView.isEmpty()) {
+                    childView.setVisibility(View.GONE);
+                }
+            }
+        } else {
+            // There is no non-empty name, keep the first empty view and remove the rest
+            for (int i = 1; i < mNames.getChildCount(); i++) {
+                final StructuredNameEditorView childView =
+                        (StructuredNameEditorView) mNames.getChildAt(i);
+                childView.setVisibility(View.GONE);
             }
         }
     }
@@ -252,13 +292,12 @@ public class CompactRawContactsEditorView extends LinearLayout {
         return result;
     }
 
-    private TextFieldsEditorView inflateNicknameEditorView(ViewGroup viewGroup,
-            AccountType accountType, ValuesDelta valuesDelta, RawContactDelta rawContactDelta) {
-        final TextFieldsEditorView result = (TextFieldsEditorView) mLayoutInflater.inflate(
-                R.layout.text_fields_editor_view, viewGroup, /* attachToRoot =*/ false);
-        result.setValues(
-                accountType.getKindForMimetype(Nickname.CONTENT_ITEM_TYPE),
-                valuesDelta,
+    private KindSectionView inflateNicknameEditorView(ViewGroup viewGroup, DataKind dataKind,
+            RawContactDelta rawContactDelta) {
+        final KindSectionView result = (KindSectionView) mLayoutInflater.inflate(
+                R.layout.item_kind_section, viewGroup, /* attachToRoot =*/ false);
+        result.setState(
+                dataKind,
                 rawContactDelta,
                 /* readOnly =*/ false,
                 mViewIdGenerator);
