@@ -23,7 +23,6 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
-import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -93,7 +92,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         CancelEditDialogFragment.Listener {
 
-    protected static final String TAG = "ContactEditor";
+    static final String TAG = "ContactEditor";
 
     protected static final int LOADER_DATA = 1;
     protected static final int LOADER_GROUPS = 2;
