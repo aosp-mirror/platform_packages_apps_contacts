@@ -51,6 +51,7 @@ import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.common.list.ContactTileAdapter;
 import com.android.contacts.common.list.ContactTileView;
@@ -398,7 +399,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                     intent.setClassName(accountType.syncAdapterPackageName,
                             accountType.getViewGroupActivity());
                     try {
-                        startActivity(intent);
+                        ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
                     } catch (ActivityNotFoundException e) {
                         Log.e(TAG, "startActivity() failed: " + e);
                         Toast.makeText(getActivity(), R.string.missing_app,

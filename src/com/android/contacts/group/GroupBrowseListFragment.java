@@ -44,6 +44,7 @@ import android.widget.TextView;
 
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.group.GroupBrowseListAdapter.GroupListItemViewCache;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.list.AutoScrollListView;
@@ -141,7 +142,7 @@ public class GroupBrowseListFragment extends Fragment
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 intent.putExtra(Settings.EXTRA_AUTHORITIES,
                         new String[] { ContactsContract.AUTHORITY });
-                startActivity(intent);
+                ImplicitIntentsUtil.startActivityOutsideApp(getActivity(), intent);
             }
         });
         setAddAccountsVisibility(!ContactsUtils.areGroupWritableAccountsAvailable(mContext));

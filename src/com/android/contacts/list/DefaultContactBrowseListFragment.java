@@ -39,6 +39,7 @@ import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.ProfileAndContactsLoader;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
 
@@ -251,7 +252,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                 intent.putExtra(ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, true);
-                startActivity(intent);
+                ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
             }
         });
     }

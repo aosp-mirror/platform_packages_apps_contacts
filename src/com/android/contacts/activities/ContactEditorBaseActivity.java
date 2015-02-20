@@ -22,6 +22,7 @@ import com.android.contacts.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.editor.ContactEditorBaseFragment;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -261,7 +262,8 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
             if (mFinishActivityOnSaveCompleted) {
                 setResult(resultIntent == null ? RESULT_CANCELED : RESULT_OK, resultIntent);
             } else if (resultIntent != null) {
-                startActivity(resultIntent);
+                ImplicitIntentsUtil.startActivityInApp(ContactEditorBaseActivity.this,
+                        resultIntent);
             }
             finish();
         }
@@ -289,7 +291,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
                 intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, values);
             }
 
-            startActivity(intent);
+            ImplicitIntentsUtil.startActivityInApp(ContactEditorBaseActivity.this, intent);
             finish();
         }
 

@@ -31,6 +31,7 @@ import android.view.View.OnClickListener;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.group.GroupDetailDisplayUtils;
 import com.android.contacts.group.GroupDetailFragment;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -106,7 +107,7 @@ public class GroupDetailActivity extends ContactsActivity {
         @Override
         public void onContactSelected(Uri contactUri) {
             Intent intent = new Intent(Intent.ACTION_VIEW, contactUri);
-            startActivity(intent);
+            ImplicitIntentsUtil.startActivityInApp(GroupDetailActivity.this, intent);
         }
 
     };
@@ -149,7 +150,7 @@ public class GroupDetailActivity extends ContactsActivity {
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 intent.setClassName(accountType.syncAdapterPackageName,
                         accountType.getViewGroupActivity());
-                startActivity(intent);
+                ImplicitIntentsUtil.startActivityInApp(GroupDetailActivity.this, intent);
             }
         });
         groupSourceMenuItem.setActionView(groupSourceView);

@@ -31,7 +31,6 @@ import android.preference.PreferenceActivity;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
-import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -55,6 +54,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -267,18 +267,10 @@ public class PeopleActivity extends ContactsActivity implements
             return false;
         }
 
-        Intent redirect = mRequest.getRedirectIntent();
-        if (redirect != null) {
-            // Need to start a different activity
-            startActivity(redirect);
-            return false;
-        }
-
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
-            redirect = new Intent(this, QuickContactActivity.class);
-            redirect.setAction(Intent.ACTION_VIEW);
-            redirect.setData(mRequest.getContactUri());
-            startActivity(redirect);
+            final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
+                    mRequest.getContactUri(), QuickContactActivity.MODE_FULLY_EXPANDED);
+            ImplicitIntentsUtil.startActivityInApp(this, intent);
             return false;
         }
         return true;
@@ -894,8 +886,9 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
-            QuickContact.showQuickContact(PeopleActivity.this, (Rect) null, contactLookupUri,
-                    QuickContactActivity.MODE_FULLY_EXPANDED, null);
+            final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(contactLookupUri,
+                    QuickContactActivity.MODE_FULLY_EXPANDED);
+            ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
         }
 
         @Override
@@ -932,7 +925,8 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onCreateNewContactAction() {
-            startActivity(new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
+            ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this,
+                    new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
         }
 
         @Override
@@ -940,8 +934,8 @@ public class PeopleActivity extends ContactsActivity implements
             Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             intent.putExtra(Settings.EXTRA_AUTHORITIES,
-                    new String[] { ContactsContract.AUTHORITY });
-            startActivity(intent);
+                    new String[]{ContactsContract.AUTHORITY});
+            ImplicitIntentsUtil.startActivityOutsideApp(PeopleActivity.this, intent);
         }
 
         @Override
@@ -957,8 +951,9 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onContactSelected(Uri contactUri, Rect targetRect) {
-            QuickContact.showQuickContact(PeopleActivity.this, targetRect, contactUri,
-                    QuickContactActivity.MODE_FULLY_EXPANDED, null);
+            final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(contactUri,
+                    QuickContactActivity.MODE_FULLY_EXPANDED);
+            ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
         }
 
         @Override
@@ -1116,13 +1111,13 @@ public class PeopleActivity extends ContactsActivity implements
                     ContactsContract.AUTHORITY
                 });
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                startActivity(intent);
+                ImplicitIntentsUtil.startActivityInAppIfPossible(this, intent);
                 return true;
             }
             case R.id.export_database: {
                 final Intent intent = new Intent("com.android.providers.contacts.DUMP_DATABASE");
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                startActivity(intent);
+                ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
                 return true;
             }
         }
@@ -1263,7 +1258,7 @@ public class PeopleActivity extends ContactsActivity implements
                     intent.putExtras(extras);
                 }
                 try {
-                    startActivity(intent);
+                    ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
                 } catch (ActivityNotFoundException ex) {
                     Toast.makeText(PeopleActivity.this, R.string.missing_app,
                             Toast.LENGTH_SHORT).show();

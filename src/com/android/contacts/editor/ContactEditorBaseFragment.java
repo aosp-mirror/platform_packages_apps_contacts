@@ -36,6 +36,7 @@ import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.QuickContactActivity;
@@ -1275,7 +1276,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    resultIntent = composeQuickContactsIntent(lookupUri);
+                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(lookupUri,
+                            QuickContactActivity.MODE_FULLY_EXPANDED);
                 } else {
                     resultIntent = null;
                 }
@@ -1534,18 +1536,5 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
         // Otherwise pass back a lookup-style Uri
         return contactLookupUri;
-    }
-
-    /**
-     * Creates the result Intent for the given contactLookupUri that should started after a
-     * successful saving a contact.
-     */
-    protected static Intent composeQuickContactsIntent(Uri contactLookupUri) {
-        final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
-        intent.setData(contactLookupUri);
-        intent.putExtra(QuickContact.EXTRA_MODE, QuickContactActivity.MODE_FULLY_EXPANDED);
-        // Make sure not to show QuickContacts on top of another QuickContacts.
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        return intent;
     }
 }

@@ -121,6 +121,7 @@ import com.android.contacts.common.model.dataitem.SipAddressDataItem;
 import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.common.model.dataitem.WebsiteDataItem;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.DateUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
@@ -377,7 +378,7 @@ public class QuickContactActivity extends ContactsActivity {
 
             mHasIntentLaunched = true;
             try {
-                startActivity(intent);
+                ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this, intent);
             } catch (SecurityException ex) {
                 Toast.makeText(QuickContactActivity.this, R.string.missing_app,
                         Toast.LENGTH_SHORT).show();
@@ -2148,6 +2149,7 @@ public class QuickContactActivity extends ContactsActivity {
 
     private Intent getEditContactIntent() {
         final Intent intent = new Intent(Intent.ACTION_EDIT, mContactData.getLookupUri());
+        intent.setPackage(this.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         return intent;
     }
@@ -2229,7 +2231,7 @@ public class QuickContactActivity extends ContactsActivity {
 
         try {
             mHasIntentLaunched = true;
-            this.startActivity(chooseIntent);
+            ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
         } catch (final ActivityNotFoundException ex) {
             Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
         }

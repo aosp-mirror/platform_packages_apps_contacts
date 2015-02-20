@@ -82,7 +82,6 @@ public class ContactsRequest {
 
     private boolean mValid = true;
     private int mActionCode = ACTION_DEFAULT;
-    private Intent mRedirectIntent;
     private CharSequence mTitle;
     private boolean mSearchMode;
     private String mQueryString;
@@ -95,7 +94,6 @@ public class ContactsRequest {
     public String toString() {
         return "{ContactsRequest:mValid=" + mValid
                 + " mActionCode=" + mActionCode
-                + " mRedirectIntent=" + mRedirectIntent
                 + " mTitle=" + mTitle
                 + " mSearchMode=" + mSearchMode
                 + " mQueryString=" + mQueryString
@@ -112,14 +110,6 @@ public class ContactsRequest {
 
     public void setValid(boolean flag) {
         mValid = flag;
-    }
-
-    public Intent getRedirectIntent() {
-        return mRedirectIntent;
-    }
-
-    public void setRedirectIntent(Intent intent) {
-        mRedirectIntent = intent;
     }
 
     public void setActivityTitle(CharSequence title) {
