@@ -34,6 +34,7 @@ import android.util.Log;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryCounter;
 import com.android.vcard.VCardParser;
@@ -225,7 +226,7 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
         if (uri != null) {
             Uri contactUri = RawContacts.getContactLookupUri(getContentResolver(), uri);
             Intent intent = new Intent(Intent.ACTION_VIEW, contactUri);
-            startActivity(intent);
+            ImplicitIntentsUtil.startActivityInAppIfPossible(this, intent);
             finish();
         }
     }

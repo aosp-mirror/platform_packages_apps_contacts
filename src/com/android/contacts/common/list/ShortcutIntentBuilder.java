@@ -265,6 +265,9 @@ public class ShortcutIntentBuilder {
             String lookupKey, byte[] bitmapData) {
         Drawable drawable = getPhotoDrawable(bitmapData, displayName, lookupKey);
 
+        // Use an implicit intent without a package name set. It is reasonable for a disambiguation
+        // dialog to appear when opening QuickContacts from the launcher. Plus, this will be more
+        // resistant to future package name changes done to Contacts.
         Intent shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
 
         // When starting from the launcher, start in a new, cleared task.

@@ -48,11 +48,11 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountSelectionUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.vcard.ExportVCardActivity;
 import com.android.contacts.common.vcard.VCardCommonArguments;
 import com.android.contacts.commonbind.analytics.AnalyticsUtil;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -220,7 +220,7 @@ public class ImportExportDialogFragment extends DialogFragment
                 final Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType(Contacts.CONTENT_VCARD_TYPE);
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
-                getActivity().startActivity(intent);
+                ImplicitIntentsUtil.startActivityOutsideApp(getActivity(), intent);
             } finally {
                 cursor.close();
             }

@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.telephony.SubscriptionManager;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -185,7 +184,7 @@ public class AccountSelectionUtil {
         }
         importIntent.putExtra("subscription_id", (Integer) subscriptionId);
         importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
-        context.startActivity(importIntent);
+        ImplicitIntentsUtil.startActivityOutsideApp(context, importIntent);
     }
 
     public static void doImportFromSdCard(Context context, AccountWithDataSet account) {
