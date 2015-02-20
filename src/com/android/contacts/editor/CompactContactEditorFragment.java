@@ -28,11 +28,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * Contact editor with only the most important fields displayed initially.
  */
-public class CompactContactEditorFragment extends ContactEditorBaseFragment {
+public class CompactContactEditorFragment extends ContactEditorBaseFragment implements
+        CompactRawContactsEditorView.Listener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
@@ -59,6 +61,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment {
         }
 
         CompactRawContactsEditorView editorView = (CompactRawContactsEditorView) mContent;
+        editorView.setListener(this);
         editorView.setState(mState, mViewIdGenerator);
         editorView.setEnabled(isEnabled());
         editorView.setVisibility(View.VISIBLE);
@@ -113,5 +116,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment {
                 CompactContactEditorActivity.class,
                 CompactContactEditorActivity.ACTION_JOIN_COMPLETED);
         mContext.startService(intent);
+    }
+
+    @Override
+    public void onExpandEditor() {
+        Toast.makeText(mContext, "Not yet implemented", Toast.LENGTH_SHORT).show();
     }
 }
