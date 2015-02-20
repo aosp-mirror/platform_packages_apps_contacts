@@ -199,8 +199,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 /* valuesDelta =*/ null, ViewIdGenerator.NO_VIEW_INDEX));
 
         addHeaderView(rawContactDeltas, viewIdGenerator);
+        addStructuredNameView(rawContactDeltas);
         addEditorViews(rawContactDeltas);
-        removeExtraEmptyTextFields(mNames);
         removeExtraEmptyTextFields(mPhoneNumbers);
         removeExtraEmptyTextFields(mEmails);
     }
@@ -219,13 +219,36 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
             final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
             if (dataKind != null) {
-                final String mimeType = dataKind.mimeType;
-                if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                if (Photo.CONTENT_ITEM_TYPE.equals(dataKind.mimeType)) {
                     mPhotoRawContactId = rawContactDelta.getRawContactId();
                     final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
-                            mimeType, /* forceSelection =*/ true);
+                            dataKind.mimeType, /* forceSelection =*/ true);
                     mHeader.setValues(dataKind, valuesDelta, rawContactDelta,
                             /* readOnly =*/ !dataKind.editable, viewIdGenerator);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void addStructuredNameView(RawContactDeltaList rawContactDeltas) {
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (!rawContactDelta.isVisible()) {
+                continue;
+            }
+            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+
+            // Make sure we have a structured name
+            RawContactModifier.ensureKindExists(
+                    rawContactDelta, accountType, StructuredName.CONTENT_ITEM_TYPE);
+
+            final DataKind dataKind = accountType.getKindForMimetype(
+                    StructuredName.CONTENT_ITEM_TYPE);
+            if (dataKind != null) {
+                final ValuesDelta valuesDelta = rawContactDelta.getPrimaryEntry(dataKind.mimeType);
+                if (valuesDelta != null) {
+                    mNames.addView(inflateStructuredNameEditorView(
+                            mNames, accountType, valuesDelta, rawContactDelta));
                     return;
                 }
             }
@@ -239,10 +262,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             }
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
 
-            // Make sure we have a structured name
-            RawContactModifier.ensureKindExists(
-                    rawContactDelta, accountType, StructuredName.CONTENT_ITEM_TYPE);
-
             for (DataKind dataKind : accountType.getSortedDataKinds()) {
                 if (!dataKind.editable) {
                     continue;
@@ -250,15 +269,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 final String mimeType = dataKind.mimeType;
                 log(Log.VERBOSE, mimeType + " " + dataKind.fieldList.size() + " field(s)");
                 if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)
+                        || StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)
                         || GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    // Photos are handled separately and group membership is not supported
+                    // Photos and name are handled separately; group membership is not supported
                     continue;
-                } else if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final ValuesDelta valuesDelta = rawContactDelta.getPrimaryEntry(mimeType);
-                    if (valuesDelta != null) {
-                        mNames.addView(inflateStructuredNameEditorView(
-                                mNames, accountType, valuesDelta, rawContactDelta));
-                    }
                 } else if (DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
                     // Use the StructuredName mime type to get values
                     if (hasNonEmptyPrimaryValuesDelta(
@@ -414,6 +428,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 dataKind,
                 rawContactDelta,
                 /* readOnly =*/ false,
+                /* showOneEmptyEditor =*/ false,
                 mViewIdGenerator);
         return result;
     }
@@ -426,6 +441,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 dataKind,
                 rawContactDelta,
                 /* readOnly =*/ false,
+                /* showOneEmptyEditor =*/ false,
                 mViewIdGenerator);
         return result;
     }

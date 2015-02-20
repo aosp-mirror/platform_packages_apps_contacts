@@ -32,8 +32,8 @@
         <!-- TODO: remove hard coded dimensions when we have a split screen layout in landscape -->
         <com.android.contacts.editor.CompactHeaderView
                 android:id="@+id/header"
-                android:layout_width="@dimen/detail_contact_photo_expanded_size"
-                android:layout_height="@dimen/detail_contact_photo_expanded_size"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -96,12 +96,11 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/expanding_entry_card_item_image_spacing"
+                    android:paddingStart="@dimen/expanding_entry_card_item_image_spacing"
                     android:gravity="center_vertical"
                     android:paddingBottom="@dimen/expanding_entry_card_button_padding_vertical"
                     android:paddingTop="@dimen/expanding_entry_card_button_padding_vertical"
                     android:text="@string/compact_editor_more_fields"
-                    android:textAlignment="textEnd"
                     android:textColor="@color/expanding_entry_card_button_text_color"
                     android:textSize="@dimen/expanding_entry_card_title_text_size" />
 
