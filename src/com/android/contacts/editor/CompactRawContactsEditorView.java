@@ -119,7 +119,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mMoreFields.setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.more_fields && mListener != null ) {

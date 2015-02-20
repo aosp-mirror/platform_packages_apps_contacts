@@ -19,22 +19,28 @@ package com.android.contacts.editor;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
+import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Contacts;
+import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,9 +48,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 /**
  * Contact editor with only the most important fields displayed initially.
@@ -351,7 +357,44 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     @Override
     public void onExpandEditor() {
-        Toast.makeText(mContext, "Not yet implemented", Toast.LENGTH_SHORT).show();
+        // Determine if this is an insert (new contact) or edit
+        final String action = getActivity().getIntent().getAction();
+        final boolean isInsert = Intent.ACTION_INSERT.equals(action)
+                || ContactEditorBaseActivity.ACTION_INSERT.equals(action);
+
+        // Prepare an Intent to start the expanded editor
+        final Intent intent = isInsert
+                ? new Intent(ContactEditorBaseActivity.ACTION_INSERT,
+                        ContactsContract.Contacts.CONTENT_URI)
+                : new Intent(ContactEditorBaseActivity.ACTION_EDIT, mLookupUri);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+
+        if (isInsert) {
+            // For inserts, prevent any changes from being saved when the base fragment is destroyed
+            mStatus = Status.CLOSING;
+
+            // Pass on all the data that has been entered so far
+            ArrayList<ContentValues> contentValues = mState.get(0).getContentValues();
+            if (contentValues != null && contentValues.size() != 0) {
+                intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, contentValues);
+            }
+            // Name must be passed separately since it is skipped in RawContactModifier.parseValues
+            final StructuredNameEditorView structuredNameEditorView =
+                    getContent().getStructuredNameEditorView();
+            if (structuredNameEditorView != null) {
+                final String displayName = structuredNameEditorView.getDisplayName();
+                if (!TextUtils.isEmpty(displayName)) {
+                    intent.putExtra(ContactsContract.Intents.Insert.NAME, displayName);
+                }
+            }
+            getActivity().finish();
+        } else {
+            // Whatever is in the form will be saved when the hosting activity is finished
+            save(SaveMode.RELOAD);
+        }
+
+        ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
     }
 
     private CompactRawContactsEditorView getContent() {

@@ -20,7 +20,6 @@ import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.util.DialogManager;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -41,7 +40,8 @@ public class ContactEditorActivity extends ContactEditorBaseActivity
         mFragment.setListener(mFragmentListener);
 
         final String action = getIntent().getAction();
-        final Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
+        final Uri uri = ContactEditorBaseActivity.ACTION_EDIT.equals(action)
+                ? getIntent().getData() : null;
         mFragment.load(action, uri, getIntent().getExtras());
     }
 }

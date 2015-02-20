@@ -23,6 +23,7 @@ import android.widget.EditText;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 
 /**
@@ -94,6 +95,6 @@ public class GroupCreationDialogFragment extends GroupNameDialogFragment {
         activity.startService(ContactSaveService.createNewGroupIntent(activity,
                 new AccountWithDataSet(accountName, accountType, dataSet), groupLabel,
                 null /* no new members to add */,
-                activity.getClass(), Intent.ACTION_EDIT));
+                activity.getClass(), ContactEditorBaseActivity.ACTION_EDIT));
     }
 }

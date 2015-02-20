@@ -97,6 +97,14 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected static final int LOADER_DATA = 1;
     protected static final int LOADER_GROUPS = 2;
 
+    private static final List<String> VALID_INTENT_ACTIONS = new ArrayList() {{
+        add(Intent.ACTION_EDIT);
+        add(Intent.ACTION_INSERT);
+        add(ContactEditorBaseActivity.ACTION_EDIT);
+        add(ContactEditorBaseActivity.ACTION_INSERT);
+        add(ContactEditorBaseActivity.ACTION_SAVE_COMPLETED);
+    }};
+
     private static final String KEY_ACTION = "action";
     private static final String KEY_URI = "uri";
     private static final String KEY_AUTO_ADD_TO_DEFAULT_GROUP = "autoAddToDefaultGroup";
@@ -477,7 +485,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // The delta list may not have finished loading before orientation change happens.
             // In this case, there will be a saved state but deltas will be missing.  Reload from
             // database.
-            if (Intent.ACTION_EDIT.equals(mAction)) {
+            if (Intent.ACTION_EDIT.equals(mAction) ||
+                    ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
                 // Either...
                 // 1) orientation change but load never finished.
                 // or
@@ -491,9 +500,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // Handle initial actions only when existing state missing
         if (savedInstanceState == null) {
-            if (Intent.ACTION_EDIT.equals(mAction)) {
+            if (Intent.ACTION_EDIT.equals(mAction) ||
+                    ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
                 mIsEdit = true;
-            } else if (Intent.ACTION_INSERT.equals(mAction)) {
+            } else if (Intent.ACTION_INSERT.equals(mAction) ||
+                    ContactEditorBaseActivity.ACTION_INSERT.equals(mAction)) {
                 mHasNewContact = true;
                 final Account account = mIntentExtras == null ? null :
                         (Account) mIntentExtras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
@@ -519,13 +530,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * @throws IllegalArgumentException when the action is invalid.
      */
     private static void validateAction(String action) {
-        if (Intent.ACTION_EDIT.equals(action) || Intent.ACTION_INSERT.equals(action) ||
-                ContactEditorBaseActivity.ACTION_SAVE_COMPLETED.equals(action)) {
+        if (VALID_INTENT_ACTIONS.contains(action)) {
             return;
         }
-        throw new IllegalArgumentException("Unknown Action String " + action +
-                ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT + " or " +
-                ContactEditorBaseActivity.ACTION_SAVE_COMPLETED);
+        throw new IllegalArgumentException(
+                "Unknown action " + action + "; Supported actions: " + VALID_INTENT_ACTIONS);
     }
 
     @Override
@@ -705,12 +714,14 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 mState.getFirstWritableRawContact(mContext) != null);
 
         // help menu depending on whether this is inserting or editing
-        if (Intent.ACTION_INSERT.equals(mAction)) {
+        if (Intent.ACTION_INSERT.equals(mAction) ||
+                ContactEditorBaseActivity.ACTION_INSERT.equals(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
             splitMenu.setVisible(false);
             joinMenu.setVisible(false);
             deleteMenu.setVisible(false);
-        } else if (Intent.ACTION_EDIT.equals(mAction)) {
+        } else if (Intent.ACTION_EDIT.equals(mAction) ||
+                ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
             // Split only if more than one raw profile and not a user profile
             splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile());
@@ -986,8 +997,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected void saveDefaultAccountIfNecessary() {
         // Verify that this is a newly created contact, that the contact is composed of only
         // 1 raw contact, and that the contact is not a user profile.
-        if (!Intent.ACTION_INSERT.equals(mAction) && mState.size() == 1 &&
-                !isEditingUserProfile()) {
+        if (!Intent.ACTION_INSERT.equals(mAction)
+                && !ContactEditorBaseActivity.ACTION_INSERT.equals(mAction)
+                && mState.size() == 1
+                && !isEditingUserProfile()) {
             return;
         }
 
@@ -1294,8 +1307,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
                     // If this was in INSERT, we are changing into an EDIT now.
                     // If it already was an EDIT, we are changing to the new Uri now
+                    // Either way, open the editor with all input fields displayed.
                     mState = new RawContactDeltaList();
-                    load(Intent.ACTION_EDIT, contactLookupUri, null);
+                    load(ContactEditorBaseActivity.ACTION_EDIT, contactLookupUri, null);
                     mStatus = Status.LOADING;
                     getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
                 }
