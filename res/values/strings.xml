@@ -734,4 +734,7 @@
 
     <!-- When a user tries to create an IM Hangouts field, an alert dialog pops up displaying this message. We don't want users entering email addresses of phone numbers into the IM field. [CHAR LIMIT=200] -->
     <string name="contact_editor_hangouts_im_alert">Hangouts works better when you enter the person\'s Hangouts identifier into the email field or phone field.</string>
+
+    <!-- Button to expand the compact contact editor to show all available input fields. [CHAR LIMIT=60] -->
+    <string name="compact_editor_more_fields">More Fields</string>
 </resources>

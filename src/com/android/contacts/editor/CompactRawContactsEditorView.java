@@ -48,9 +48,22 @@ import java.util.List;
  * View to display information from multiple {@link RawContactDelta}s grouped together
  * (e.g. all the phone numbers from a {@link com.android.contacts.common.model.Contact} together.
  */
-public class CompactRawContactsEditorView extends LinearLayout {
+public class CompactRawContactsEditorView extends LinearLayout implements View.OnClickListener {
 
     private static final String TAG = "CompactEditorView";
+
+    /**
+     * Callbacks for hosts of {@link CompactRawContactsEditorView}s.
+     */
+    public interface Listener {
+
+        /**
+         * Invoked when the compact editor should be expanded to show all fields.
+         */
+        public void onExpandEditor();
+    }
+
+    private Listener mListener;
 
     private AccountTypeManager mAccountTypeManager;
     private LayoutInflater mLayoutInflater;
@@ -62,6 +75,7 @@ public class CompactRawContactsEditorView extends LinearLayout {
     private ViewGroup mPhoneNumbers;
     private ViewGroup mEmails;
     private ViewGroup mOther;
+    private View mMoreFields;
 
     public CompactRawContactsEditorView(Context context) {
         super(context);
@@ -69,6 +83,13 @@ public class CompactRawContactsEditorView extends LinearLayout {
 
     public CompactRawContactsEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    /**
+     * Sets the receiver for {@link CompactRawContactsEditorView} callbacks.
+     */
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
 
     @Override
@@ -85,6 +106,16 @@ public class CompactRawContactsEditorView extends LinearLayout {
         mPhoneNumbers = (LinearLayout) findViewById(R.id.phone_numbers);
         mEmails = (LinearLayout) findViewById(R.id.emails);
         mOther = (LinearLayout) findViewById(R.id.other);
+        mMoreFields = findViewById(R.id.more_fields);
+        mMoreFields.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.more_fields && mListener != null ) {
+            mListener.onExpandEditor();
+        }
     }
 
     @Override
