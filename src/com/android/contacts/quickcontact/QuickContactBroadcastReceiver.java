@@ -16,6 +16,8 @@
 
 package com.android.contacts.quickcontact;
 
+import com.android.contacts.common.util.ImplicitIntentsUtil;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +37,6 @@ public class QuickContactBroadcastReceiver extends BroadcastReceiver {
         newIntent.setSourceBounds(intent.getSourceBounds());
         newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         newIntent.setData(dataUri);
-        context.startActivity(newIntent);
+        ImplicitIntentsUtil.startActivityInApp(context, newIntent);
     }
 }

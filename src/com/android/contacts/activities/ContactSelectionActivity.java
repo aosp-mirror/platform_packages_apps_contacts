@@ -45,6 +45,7 @@ import android.widget.Toast;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListFragment;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -114,14 +115,6 @@ public class ContactSelectionActivity extends ContactsActivity
         mRequest = mIntentResolver.resolveIntent(getIntent());
         if (!mRequest.isValid()) {
             setResult(RESULT_CANCELED);
-            finish();
-            return;
-        }
-
-        Intent redirect = mRequest.getRedirectIntent();
-        if (redirect != null) {
-            // Need to start a different activity
-            startActivity(redirect);
             finish();
             return;
         }
@@ -650,7 +643,7 @@ public class ContactSelectionActivity extends ContactsActivity
         if (requestCode == SUBACTIVITY_ADD_TO_EXISTING_CONTACT) {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
-                    startActivity(data);
+                    ImplicitIntentsUtil.startActivityInAppIfPossible(this, data);
                 }
                 finish();
             }
