@@ -24,9 +24,11 @@ import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.SchedulingUtils;
+import com.android.contacts.widget.QuickContactImageView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -59,8 +61,9 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
     private ValuesDelta mValuesDelta;
     private boolean mReadOnly;
     private boolean mIsPhotoSet;
+    private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
 
-    private ImageView mPhotoImageView;
+    private QuickContactImageView mPhotoImageView;
 
     public CompactHeaderView(Context context) {
         this(context, null);
@@ -81,14 +84,17 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
         super.onFinishInflate();
         mContactPhotoManager = ContactPhotoManager.getInstance(getContext());
 
-        mPhotoImageView = (ImageView) findViewById(R.id.photo);
+        mPhotoImageView = (QuickContactImageView) findViewById(R.id.photo);
         mPhotoImageView.setOnClickListener(this);
     }
 
     public void setValues(DataKind dataKind, ValuesDelta valuesDelta,
-            RawContactDelta rawContactDelta, boolean readOnly, ViewIdGenerator viewIdGenerator) {
+            RawContactDelta rawContactDelta, boolean readOnly,
+            MaterialColorMapUtils.MaterialPalette materialPalette,
+            ViewIdGenerator viewIdGenerator) {
         mValuesDelta = valuesDelta;
         mReadOnly = readOnly;
+        mMaterialPalette = materialPalette;
 
         setId(viewIdGenerator.getId(rawContactDelta, dataKind, valuesDelta, /* viewIndex =*/ 0));
 
@@ -120,6 +126,10 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
                     }
                 }
             }
+        }
+
+        if (!mIsPhotoSet && mMaterialPalette != null) {
+            mPhotoImageView.setTint(materialPalette.mPrimaryColor);
         }
 
         // Make the photo a square
