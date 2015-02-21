@@ -25,13 +25,15 @@ import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -69,6 +71,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private LayoutInflater mLayoutInflater;
     private ViewIdGenerator mViewIdGenerator;
 
+    private CompactHeaderView mHeader;
     private ViewGroup mNames;
     private ViewGroup mPhoneticNames;
     private ViewGroup mNicknames;
@@ -76,6 +79,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ViewGroup mEmails;
     private ViewGroup mOther;
     private View mMoreFields;
+
+    // TODO: remove this after we handle account selection for photos
+    private long mPhotoRawContactId;
 
     public CompactRawContactsEditorView(Context context) {
         super(context);
@@ -100,6 +106,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mLayoutInflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        mHeader = (CompactHeaderView) findViewById(R.id.header);
         mNames = (LinearLayout) findViewById(R.id.names);
         mPhoneticNames = (LinearLayout) findViewById(R.id.phonetic_names);
         mNicknames = (LinearLayout) findViewById(R.id.nicknames);
@@ -138,6 +145,43 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
     }
 
+    /**
+     * Pass through to {@link CompactHeaderView#setPhotoHandler}.
+     */
+    public void setPhotoHandler(PhotoHandler photoHandler) {
+        mHeader.setPhotoHandler(photoHandler);
+    }
+
+    /**
+     * Pass through to {@link CompactHeaderView#setPhoto}.
+     */
+    public void setPhoto(Bitmap bitmap) {
+        mHeader.setPhoto(bitmap);
+    }
+
+    /**
+     * Pass through to {@link CompactHeaderView#isWritablePhotoSet}.
+     */
+    public boolean isWritablePhotoSet() {
+        return mHeader.isWritablePhotoSet();
+    }
+
+    /**
+     * Pass through to {@link CompactHeaderView#getPhotoPopupAnchorView}.
+     */
+    public View getPhotoPopupAnchorView() {
+        return mHeader.getPhotoPopupAnchorView();
+    }
+
+
+    /**
+     * Get the raw contact ID for the CompactHeaderView photo.
+     */
+    // TODO: remove me once we support multiple accounts
+    public long getPhotoRawContactId() {
+        return mPhotoRawContactId;
+    }
+
     public void setState(RawContactDeltaList rawContactDeltas, ViewIdGenerator viewIdGenerator) {
         mNames.removeAllViews();
         mPhoneticNames.removeAllViews();
@@ -154,24 +198,48 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         setId(mViewIdGenerator.getId(rawContactDeltas.get(0), /* dataKind =*/ null,
                 /* valuesDelta =*/ null, ViewIdGenerator.NO_VIEW_INDEX));
 
-        addEditorViews(rawContactDeltas, viewIdGenerator);
+        addHeaderView(rawContactDeltas, viewIdGenerator);
+        addEditorViews(rawContactDeltas);
         removeExtraEmptyTextFields(mNames);
         removeExtraEmptyTextFields(mPhoneNumbers);
         removeExtraEmptyTextFields(mEmails);
     }
 
-    private void addEditorViews(RawContactDeltaList rawContactDeltas,
+    private void addHeaderView(RawContactDeltaList rawContactDeltas,
             ViewIdGenerator viewIdGenerator) {
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
             if (!rawContactDelta.isVisible()) {
                 continue;
             }
-            setId(viewIdGenerator.getId(
-                    rawContactDelta, null, null, ViewIdGenerator.NO_VIEW_INDEX));
-
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
 
-            // Make sure we have a StructuredName
+            // Make sure we have a photo
+            RawContactModifier.ensureKindExists(
+                    rawContactDelta, accountType, Photo.CONTENT_ITEM_TYPE);
+
+            final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
+            if (dataKind != null) {
+                final String mimeType = dataKind.mimeType;
+                if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    mPhotoRawContactId = rawContactDelta.getRawContactId();
+                    final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
+                            mimeType, /* forceSelection =*/ true);
+                    mHeader.setValues(dataKind, valuesDelta, rawContactDelta,
+                            /* readOnly =*/ !dataKind.editable, viewIdGenerator);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void addEditorViews(RawContactDeltaList rawContactDeltas) {
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (!rawContactDelta.isVisible()) {
+                continue;
+            }
+            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+
+            // Make sure we have a structured name
             RawContactModifier.ensureKindExists(
                     rawContactDelta, accountType, StructuredName.CONTENT_ITEM_TYPE);
 

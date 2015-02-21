@@ -29,6 +29,22 @@
             android:orientation="vertical"
             android:visibility="invisible">
 
+        <!-- TODO: remove hard coded dimensions when we have a split screen layout in landscape -->
+        <com.android.contacts.editor.CompactHeaderView
+                android:id="@+id/header"
+                android:layout_width="@dimen/detail_contact_photo_expanded_size"
+                android:layout_height="@dimen/detail_contact_photo_expanded_size"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+            <ImageView android:id="@+id/photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:scaleType="centerCrop"/>
+
+        </com.android.contacts.editor.CompactHeaderView>
+
         <LinearLayout
                 android:id="@+id/names"
                 android:layout_width="match_parent"

@@ -469,7 +469,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     private void setPhoto(long rawContact, Bitmap photo, Uri photoUri) {
         BaseRawContactEditorView requestingEditor = getRawContactEditorView(rawContact);
 
-        if (photo == null || photo.getHeight() < 0 || photo.getWidth() < 0) {
+        if (photo == null || photo.getHeight() <= 0 || photo.getWidth() <= 0) {
             // This is unexpected.
             Log.w(TAG, "Invalid bitmap passed to setPhoto()");
         }
