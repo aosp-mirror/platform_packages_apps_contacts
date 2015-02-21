@@ -63,6 +63,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private DataKind mKind;
     private RawContactDelta mState;
     private boolean mReadOnly;
+    private boolean mShowOneEmptyEditor;
 
     private ViewIdGenerator mViewIdGenerator;
 
@@ -126,10 +127,16 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
     }
 
-    public void setState(DataKind kind, RawContactDelta state, boolean readOnly, ViewIdGenerator vig) {
+    /**
+     * @param showOneEmptyEditor If true, one empty input will always be displayed,
+     *         otherwise an empty input will only be displayed if there is no non-empty value.
+     */
+    public void setState(DataKind kind, RawContactDelta state, boolean readOnly,
+            boolean showOneEmptyEditor, ViewIdGenerator vig) {
         mKind = kind;
         mState = state;
         mReadOnly = readOnly;
+        mShowOneEmptyEditor = showOneEmptyEditor;
         mViewIdGenerator = vig;
 
         setId(mViewIdGenerator.getId(state, kind, null, ViewIdGenerator.NO_VIEW_INDEX));
@@ -250,7 +257,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         } else if (emptyEditors.size() == 1) {
             // We have already reached the maximum number of empty editors. Lets not add any more.
             return;
-        } else {
+        } else if (mShowOneEmptyEditor || !hasNonEmptyEditor()) {
             final ValuesDelta values = RawContactModifier.insertChild(mState, mKind);
             final View newField = createEditorView(values);
             if (shouldAnimate) {
@@ -258,6 +265,19 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 EditorAnimator.getInstance().showFieldFooter(newField);
             }
         }
+    }
+
+    /**
+     * Whether there is at least one non-empty editor.
+     */
+    private boolean hasNonEmptyEditor() {
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            View view = mEditors.getChildAt(i);
+            if (!((Editor) view).isEmpty()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

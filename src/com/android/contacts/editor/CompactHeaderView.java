@@ -26,6 +26,7 @@ import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
 import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contacts.util.SchedulingUtils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -36,7 +37,9 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -50,6 +53,9 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
     private ContactPhotoManager mContactPhotoManager;
     private PhotoHandler mPhotoHandler;
 
+    private final float mLandscapePhotoRatio;
+    private final boolean mIsTwoPanel;
+
     private ValuesDelta mValuesDelta;
     private boolean mReadOnly;
     private boolean mIsPhotoSet;
@@ -57,11 +63,17 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
     private ImageView mPhotoImageView;
 
     public CompactHeaderView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public CompactHeaderView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        final TypedValue landscapePhotoRatio = new TypedValue();
+        getResources().getValue(R.dimen.quickcontact_landscape_photo_ratio, landscapePhotoRatio,
+                /* resolveRefs =*/ true);
+        mLandscapePhotoRatio = landscapePhotoRatio.getFloat();
+        mIsTwoPanel = getResources().getBoolean(R.bool.quickcontact_two_panel);
     }
 
     @Override
@@ -82,31 +94,46 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
 
         if (valuesDelta == null) {
             setDefaultPhoto();
-            return;
-        }
-        final byte[] bytes = valuesDelta.getAsByteArray(Photo.PHOTO);
-        if (bytes == null) {
-            setDefaultPhoto();
-            return;
-        }
-        final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, /* offset =*/ 0, bytes.length);
-        mPhotoImageView.setImageBitmap(bitmap);
-        mIsPhotoSet = true;
-        mValuesDelta.setFromTemplate(false);
+        } else {
+            final byte[] bytes = valuesDelta.getAsByteArray(Photo.PHOTO);
+            if (bytes == null) {
+                setDefaultPhoto();
+            } else {
+                final Bitmap bitmap = BitmapFactory.decodeByteArray(
+                        bytes, /* offset =*/ 0, bytes.length);
+                mPhotoImageView.setImageBitmap(bitmap);
+                mIsPhotoSet = true;
+                mValuesDelta.setFromTemplate(false);
 
-        // Check if we can update to the full size photo immediately
-        if (valuesDelta.getAfter() == null || valuesDelta.getAfter().get(Photo.PHOTO) == null) {
-            // If the user hasn't updated the PHOTO value, then PHOTO_FILE_ID may contain
-            // a reference to a larger version of PHOTO that we can bind to the UI.
-            // Otherwise, we need to wait for a call to #setFullSizedPhoto() to update
-            // our full sized image.
-            final Integer fileId = valuesDelta.getAsInteger(Photo.PHOTO_FILE_ID);
-            if (fileId != null) {
-                final Uri photoUri = DisplayPhoto.CONTENT_URI.buildUpon()
-                        .appendPath(fileId.toString()).build();
-                setFullSizedPhoto(photoUri);
+                // Check if we can update to the full size photo immediately
+                if (valuesDelta.getAfter() == null
+                        || valuesDelta.getAfter().get(Photo.PHOTO) == null) {
+                    // If the user hasn't updated the PHOTO value, then PHOTO_FILE_ID may contain
+                    // a reference to a larger version of PHOTO that we can bind to the UI.
+                    // Otherwise, we need to wait for a call to #setFullSizedPhoto() to update
+                    // our full sized image.
+                    final Integer fileId = valuesDelta.getAsInteger(Photo.PHOTO_FILE_ID);
+                    if (fileId != null) {
+                        final Uri photoUri = DisplayPhoto.CONTENT_URI.buildUpon()
+                                .appendPath(fileId.toString()).build();
+                        setFullSizedPhoto(photoUri);
+                    }
+                }
             }
         }
+
+        // Make the photo a square
+        SchedulingUtils.doOnPreDraw(this, /* drawNextFrame =*/ false, new Runnable() {
+            @Override
+            public void run() {
+                final int photoHeight = mIsTwoPanel
+                        ? (int) (getWidth() * mLandscapePhotoRatio) : getWidth();
+                final ViewGroup.LayoutParams layoutParams = getLayoutParams();
+                layoutParams.height = photoHeight;
+                layoutParams.width = photoHeight;
+                setLayoutParams(layoutParams);
+            }
+        });
     }
 
     /**

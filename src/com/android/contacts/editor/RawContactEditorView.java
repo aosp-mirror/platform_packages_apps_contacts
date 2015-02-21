@@ -302,7 +302,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 final KindSectionView section = (KindSectionView)mInflater.inflate(
                         R.layout.item_kind_section, mFields, false);
                 section.setEnabled(isEnabled());
-                section.setState(kind, state, false, vig);
+                section.setState(kind, state, /* readOnly =*/ false,
+                        /* showOneEmptyEditor =*/ true, vig);
                 mFields.addView(section);
             }
         }
