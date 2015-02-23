@@ -261,4 +261,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"nýlegt símtal. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. smelltu til að hringja til baka"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Þú: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts virkar betur ef þú slærð Hangouts auðkenni viðkomandi inn í netfangsreitinn eða símanúmersreitinn."</string>
+    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
+    <skip />
 </resources>

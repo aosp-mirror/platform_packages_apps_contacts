@@ -268,4 +268,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"nedavni poziv. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. kliknite za uzvratni poziv"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vi: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funkcionira bolje kada unesete njegov identifikator osobe u polje e-adrese ili telefona."</string>
+    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
+    <skip />
 </resources>

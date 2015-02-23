@@ -261,4 +261,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"সাম্প্রতিক কল৷ <xliff:g id="CALL_TYPE">%s</xliff:g>৷ <xliff:g id="PHONE_NUMBER">%s</xliff:g>৷ <xliff:g id="DATE">%s</xliff:g>৷ ঘুরিয়ে কল করতে ক্লিক করুন"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"আপনি: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"আপনি যখন ইমেল বা ফোন নম্বর লেখার ক্ষেত্রটিতে ব্যক্তির Hangouts সনাক্তকারী লেখেন তখন Hangouts আরো ভালো কাজ করে৷"</string>
+    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
+    <skip />
 </resources>

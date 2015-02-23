@@ -261,4 +261,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"최근 통화내역은 다음과 같습니다. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. 연락 온 번호로 다시 전화하려면 클릭하세요."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"내가 보낸 메시지: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"사용자의 행아웃 식별자를 이메일 입력란 또는 휴대전화 입력란에 입력하면 행아웃이 더 잘 작동합니다."</string>
+    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
+    <skip />
 </resources>

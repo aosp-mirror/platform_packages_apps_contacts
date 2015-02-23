@@ -177,7 +177,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"Пользовательские"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Настройки"</string>
     <string name="menu_settings" msgid="377929915873428211">"Настройки"</string>
-    <string name="menu_help" msgid="1680178646764069976">"Справка и отзывы"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Справка/отзыв"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Варианты отображения"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Номер телефона"</string>
@@ -275,4 +275,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Недавний вызов. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Нажмите, чтобы перезвонить."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Вы: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Чтобы обеспечить надежную работу Hangouts, указывайте вместо адреса электронной почты или номера телефона идентификатор пользователя в Hangouts."</string>
+    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
+    <skip />
 </resources>
