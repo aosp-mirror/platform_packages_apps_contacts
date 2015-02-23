@@ -25,6 +25,7 @@ import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
 
 import android.content.Context;
@@ -70,6 +71,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private AccountTypeManager mAccountTypeManager;
     private LayoutInflater mLayoutInflater;
     private ViewIdGenerator mViewIdGenerator;
+    private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
 
     private CompactHeaderView mHeader;
     private ViewGroup mNames;
@@ -182,7 +184,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return mPhotoRawContactId;
     }
 
-    public void setState(RawContactDeltaList rawContactDeltas, ViewIdGenerator viewIdGenerator) {
+    public void setState(RawContactDeltaList rawContactDeltas,
+            MaterialColorMapUtils.MaterialPalette materialPalette,
+            ViewIdGenerator viewIdGenerator) {
         mNames.removeAllViews();
         mPhoneticNames.removeAllViews();
         mNicknames.removeAllViews();
@@ -197,6 +201,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mViewIdGenerator = viewIdGenerator;
         setId(mViewIdGenerator.getId(rawContactDeltas.get(0), /* dataKind =*/ null,
                 /* valuesDelta =*/ null, ViewIdGenerator.NO_VIEW_INDEX));
+        mMaterialPalette = materialPalette;
 
         addHeaderView(rawContactDeltas, viewIdGenerator);
         addStructuredNameView(rawContactDeltas);
@@ -224,7 +229,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
                             dataKind.mimeType, /* forceSelection =*/ true);
                     mHeader.setValues(dataKind, valuesDelta, rawContactDelta,
-                            /* readOnly =*/ !dataKind.editable, viewIdGenerator);
+                            /* readOnly =*/ !dataKind.editable, mMaterialPalette, viewIdGenerator);
                     return;
                 }
             }

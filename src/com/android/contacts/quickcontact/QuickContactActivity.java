@@ -92,6 +92,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
@@ -2151,6 +2152,10 @@ public class QuickContactActivity extends ContactsActivity {
         final Intent intent = new Intent(Intent.ACTION_EDIT, mContactData.getLookupUri());
         intent.setPackage(this.getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        if (mHasComputedThemeColor) {
+            intent.putExtra(ContactEditorBaseActivity.INTENT_KEY_MATERIAL_PALETTE,
+                    new MaterialPalette(mColorFilterColor, mStatusBarColor));
+        }
         return intent;
     }
 

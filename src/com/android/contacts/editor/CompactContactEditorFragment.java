@@ -19,10 +19,12 @@ package com.android.contacts.editor;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
+import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.util.ContactPhotoUtils;
 
@@ -50,6 +52,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     private static final String KEY_PHOTO_URI = "photo_uri";
     private static final String KEY_PHOTO_RAW_CONTACT_ID = "photo_raw_contact_id";
     private static final String KEY_UPDATED_PHOTOS = "updated_photos";
+    private static final String KEY_MATERIAL_PALETTE = "material_palette";
 
     /**
      * Displays a PopupWindow with photo edit options.
@@ -112,6 +115,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     private Uri mPhotoUri;
     private long mPhotoRawContactId;
     private Bundle mUpdatedPhotos = new Bundle();
+    private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -121,6 +125,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             mPhotoUri = savedState.getParcelable(KEY_PHOTO_URI);
             mPhotoRawContactId = savedState.getLong(KEY_PHOTO_RAW_CONTACT_ID);
             mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
+            mMaterialPalette = savedState.getParcelable(KEY_MATERIAL_PALETTE);
+        } else {
+            mMaterialPalette = getActivity().getIntent().getParcelableExtra(
+                    ContactEditorBaseActivity.INTENT_KEY_MATERIAL_PALETTE);
         }
     }
 
@@ -139,6 +147,9 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         outState.putParcelable(KEY_PHOTO_URI, mPhotoUri);
         outState.putLong(KEY_PHOTO_RAW_CONTACT_ID, mPhotoRawContactId);
         outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
+        if (mMaterialPalette != null) {
+            outState.putParcelable(KEY_MATERIAL_PALETTE, mMaterialPalette);
+        }
         super.onSaveInstanceState(outState);
     }
 
@@ -162,7 +173,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
-        editorView.setState(mState, mViewIdGenerator);
+        editorView.setState(mState, mMaterialPalette, mViewIdGenerator);
         editorView.setEnabled(isEnabled());
         editorView.setVisibility(View.VISIBLE);
 
