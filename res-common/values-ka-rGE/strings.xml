@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"ტექსტური შეტყობინების გაგზავნა MMS ნომერზე"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ვიდეოზარის განხორციელება"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"გსურთ ხშირი კონტაქტების წაშლა?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"თქვენ წაშლით ხშირი კონტაქტების სიას „ხალხის“ და „ტელეფონის“ აპებიდან და აიძულებთ ელფოსტის აპებს თავიდან ისწავლონ თქვენი დამისამართების პარამეტრები."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"თქვენ წაშლით ხშირად დაკავშირებულთა სიას კონტაქტებიდან და ტელეფონის აპლიკაციიდან და აიძულებთ ელ-ფოსტის აპლიკაციებს შეისწავლონ თქვენი ადრესატების პრიორიტეტები ნულიდან."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"ხშირი კონტაქტები იშლება…"</string>
     <string name="status_available" msgid="4832569677396634846">"ხელმისაწვდომი"</string>
     <string name="status_away" msgid="6267905184545881094">"გასული"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"ძიება..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"ნაპოვნია <xliff:g id="COUNT">%d</xliff:g>-ზე მეტი."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"კონტაქტები არ არის"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"მოიძებნა 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"მოიძებნა <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> მოიძებნა</item>
+      <item quantity="one">1 მოიძებნა</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"სწრაფი დაკავშირება <xliff:g id="NAME">%1$s</xliff:g>-თან"</string>
     <string name="missing_name" msgid="2633118852693000081">"(სახელის გარეშე)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"ხშირად დარეკილი"</string>

@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"SMS MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Lakukan video call"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Hapus yang sering dihubungi?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Anda akan menghapus daftar yang sering dihubungi pada aplikasi Orang dan Ponsel, serta memaksa aplikasi email untuk mempelajari preferensi penanganan Anda dari awal."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Anda akan menghapus daftar yang sering dihubungi pada aplikasi Kontak dan Ponsel, serta memaksa aplikasi email untuk mempelajari preferensi penanganan dari awal."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Menghapus yang sering dihubungi..."</string>
     <string name="status_available" msgid="4832569677396634846">"Ada"</string>
     <string name="status_away" msgid="6267905184545881094">"Keluar"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Menelusuri…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Ditemukan lebih dari <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Tidak ada kontak"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Ditemukan 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Ditemukan <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ditemukan</item>
+      <item quantity="one">1 ditemukan</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Kontak cepat untuk <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Tanpa nama)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Paling sering dipanggil"</string>

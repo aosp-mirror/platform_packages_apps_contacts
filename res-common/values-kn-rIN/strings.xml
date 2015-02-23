@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS ಸಂದೇಶ ಮಾಡಿ"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ವೀಡಿಯೊ ಕರೆ ಮಾಡಿ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ಪದೇ ಪದೇ ಸಂಪರ್ಕಿಸಿರುವುದನ್ನು ತೆರುವುಗೊಳಿಸುವುದೇ?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"ಜನರು ಮತ್ತು ಫೋನ್‌ ಅಪ್ಲಿಕೇಶನ್‌ಗಳಲ್ಲಿ ಪದೇ ಪದೇ ಸಂಪರ್ಕಿಸಿರುವ ಪಟ್ಟಿಯನ್ನು ನೀವು ತೆರುವುಗೊಳಿಸುತ್ತೀರಿ ಮತ್ತು ಮೊದಲಿನಿಂದ ನಿಮ್ಮ ವಿಳಾಸ ಪ್ರಾಶಸ್ತ್ಯಗಳನ್ನು ತಿಳಿಯಲು ಇಮೇಲ್‌ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಒತ್ತಾಯಿಸಿ."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"ಸಂಪರ್ಕಗಳು ಮತ್ತು ಫೋನ್‌ ಅಪ್ಲಿಕೇಶನ್‌ಗಳಲ್ಲಿ ಪದೇ ಪದೇ ಸಂಪರ್ಕಪಡಿಸಿರುವ ಪಟ್ಟಿಯನ್ನು ನೀವು ತೆರುವುಗೊಳಿಸುತ್ತೀರಿ ಮತ್ತು ಮೊದಲಿನಿಂದ ನಿಮ್ಮ ವಿಳಾಸ ಪ್ರಾಶಸ್ತ್ಯಗಳನ್ನು ತಿಳಿಯಲು ಇಮೇಲ್‌ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಒತ್ತಾಯಿಸಿ."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"ಪದೇ ಪದೇ ಸಂಪರ್ಕಿಸಿರುವುದನ್ನು ತೆರುವುಗೊಳಿಸಲಾಗುತ್ತಿದೆ…"</string>
     <string name="status_available" msgid="4832569677396634846">"ಲಭ್ಯವಿದೆ"</string>
     <string name="status_away" msgid="6267905184545881094">"ದೂರ"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> ಗಿಂತ ಹೆಚ್ಚಾಗಿ ಕಂಡುಬಂದಿದೆ."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 ಕಂಡುಬಂದಿದೆ"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ಕಂಡುಬಂದಿದೆ"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ಕಂಡುಬಂದಿದೆ</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ಕಂಡುಬಂದಿದೆ</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> ಇವರಿಗಾಗಿ ತಕ್ಷಣದ ಸಂಪರ್ಕ"</string>
     <string name="missing_name" msgid="2633118852693000081">"(ಯಾವುದೇ ಹೆಸರಿಲ್ಲ)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"ಪದೇ ಪದೇ ಕರೆ ಮಾಡಲಾಗಿದೆ"</string>

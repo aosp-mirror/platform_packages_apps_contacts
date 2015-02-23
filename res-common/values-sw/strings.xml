@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Tumia MMS ujmbe wa maandishi"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Piga Hangout ya video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Futa unaowasiliana nao mara kwa mara?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Utafuta orodha ya unaowasiliana nao mara kwa mara katika programu za Watu na Simu, na ulazimishe programu za barua pepe kujifunza mapendeleo yako ya anwani kutoka mwanzo."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Utafuta orodha ya unaowasiliana nao mara kwa mara katika programu za Anwani na Simu, na ulazimishe programu za barua pepe zitambue mapendeleo yako ya anwani kutoka mwanzo."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Inafuta unaowasiliana nao mara kwa mara..."</string>
     <string name="status_available" msgid="4832569677396634846">"Inapatikana"</string>
     <string name="status_away" msgid="6267905184545881094">"Mbali"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Inatafuta…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Zaidi ya <xliff:g id="COUNT">%d</xliff:g> zimepatikana."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Hakuna anwani"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Imepatikana 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Zimepatikana <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Zimepatikana <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Imepatikana 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Anwani ya haraka ya  <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Hakuna jina)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Zinazopigwa mara kwa mara"</string>

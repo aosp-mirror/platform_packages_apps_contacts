@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Enviar SMS a MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Hacer videollamada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"¿Borrar contactos frecuentes?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Vas a borrar la lista de contactos frecuentes de las aplicaciones Contactos y Teléfono y obligarás a las aplicaciones de correo electrónico a que memoricen tus preferencias de nuevo."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Vas a borrar la lista de contactos frecuentes de las aplicaciones Contactos y Teléfono y obligarás a las aplicaciones de correo electrónico a que memoricen tus preferencias de nuevo."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Borrando contactos frecuentes…"</string>
     <string name="status_available" msgid="4832569677396634846">"Disponible"</string>
     <string name="status_away" msgid="6267905184545881094">"Ausente"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Buscando..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Se han encontrado más de <xliff:g id="COUNT">%d</xliff:g> contactos."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ningún contacto"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 contacto encontrado"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> contactos encontrados"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
+      <item quantity="one">1 contacto encontrado</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido de <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sin nombre)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Más llamados"</string>

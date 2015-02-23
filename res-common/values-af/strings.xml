@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"SMS MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Maak video-oproep"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vee gereeld-gekontaktes uit?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Jy gaan die gereeld-gekontak-lys in die People- en Phone-programme uitvee en e-posprogramme forseer om jou adresvoorkeure van nuuts af te leer."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Jy gaan die gereeld-gekontak-lys in die Kontakte- en Foon-program uitvee en e-posprogramme dwing om jou adresvoorkeure van nuuts af te leer."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Vee tans gereeld-gekontaktes uit..."</string>
     <string name="status_available" msgid="4832569677396634846">"Beskikbaar"</string>
     <string name="status_away" msgid="6267905184545881094">"Weg"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Soek tans…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Meer as <xliff:g id="COUNT">%d</xliff:g> gevind."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Geen kontakte nie"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 gevind"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> gevind"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> gevind</item>
+      <item quantity="one">1 gevind</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Vinnige kontak vir <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Geen naam nie)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Gereeld gebel"</string>

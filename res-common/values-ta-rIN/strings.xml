@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="description_video_call" msgid="4907306403398614909">"வீடியோவில் அழை"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"அடிக்கடி தொடர்புகொண்ட தொடர்பை அழிக்கவா?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"நபர்கள் மற்றும் மொபைல் பயன்பாடுகளில் உள்ள அடிக்கடித் தொடர்புகொண்ட தொடர்பு பட்டியலை அழித்து, ஸ்க்ராட்ச்சில் இருந்து உங்களின் தெரியப்படுத்தல் விருப்பத்தேர்வுகளை அறிய மின்னஞ்சல் பயன்பாடுகளைச் செயல்படுத்தவும்."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"தொடர்புகள் மற்றும் ஃபோன் பயன்பாடுகளில் உள்ள அடிக்கடி தொடர்பு கொண்டவர்களின் பட்டியல் அழிக்கப்பட்டு, அகற்றியவற்றிலிருந்து உங்கள் முகவரியிடல் விருப்பத்தேர்வுகளை மின்னஞ்சல் பயன்பாடுகள் அறியும்படி செய்யப்படும்."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"அடிக்கடித் தொடர்புகொண்ட தொடர்பை அழிக்கிறது…"</string>
     <string name="status_available" msgid="4832569677396634846">"இருக்கிறார்"</string>
     <string name="status_away" msgid="6267905184545881094">"வெளியே"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"தேடுகிறது..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> க்கும் மேற்பட்டவை கண்டறியப்பட்டன."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"தொடர்புகள் இல்லை"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 கண்டறியப்பட்டது"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> கண்டறியப்பட்டன"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> தொடர்புகள் உள்ளன</item>
+      <item quantity="one">1 தொடர்பு உள்ளது</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> க்கான விரைவு தொடர்பு"</string>
     <string name="missing_name" msgid="2633118852693000081">"(பெயர் இல்லை)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"அடிக்கடி தொடர்புகொண்டவர்கள்"</string>

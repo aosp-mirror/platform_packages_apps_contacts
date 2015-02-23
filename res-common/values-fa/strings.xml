@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"‏ارسال پیامک به MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"برقراری تماس ویدیویی"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"لیست تماس مکرر پاک شود؟"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"با این کار شما در برنامه‌های «افراد» و «تلفن»، لیست افرادی را که با آن‌ها بیشترین تماس داشته‌اید پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"با این کار، فهرست افرادی را که بیشتر با آن‌ها تماس گرفته‌اید، در برنامه‌های «مخاطبین» و «تلفن» پاک می‌کنید و برنامه‌های ایمیل را وادار می‌کنید تنظیمات ترجیحی مخاطبین شما را از اول یاد بگیرند."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"در حال پاک کردن لیست تماس مکرر…"</string>
     <string name="status_available" msgid="4832569677396634846">"در دسترس"</string>
     <string name="status_away" msgid="6267905184545881094">"غایب"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"درحال جستجو..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"بیش از <xliff:g id="COUNT">%d</xliff:g> مورد یافت شد."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"مخاطبی موجود نیست"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"۱ مورد پیدا شد"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> مورد یافت شد"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مورد پیدا شد</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مورد پیدا شد</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"تماس سریع برای <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(بدون نام)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"بیشتر تماس‌ گرفته شده"</string>

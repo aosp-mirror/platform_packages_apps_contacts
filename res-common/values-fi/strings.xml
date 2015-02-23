@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Lähetä tekstiviesti MMS-numeroon"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Soita videopuhelu"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Tyhjennetäänkö usein käytetyt?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Toiminto tyhjentää Henkilöt- ja Puhelin-sovellusten usein käytettyjen kontaktien luettelon. Lisäksi sähköpostisovellukset pakotetaan opettelemaan osoiteasetuksesi uudestaan."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Toiminto tyhjentää Yhteystiedot- ja Puhelin-sovellusten usein käytettyjen kontaktien luettelon. Lisäksi sähköpostisovellukset pakotetaan opettelemaan osoiteasetuksesi uudestaan."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Tyhjennetään usein käytetyt..."</string>
     <string name="status_available" msgid="4832569677396634846">"Saatavilla"</string>
     <string name="status_away" msgid="6267905184545881094">"Poissa"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Haetaan..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Löytyi yli <xliff:g id="COUNT">%d</xliff:g> yhteystietoa."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ei yhteystietoja"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Löytyi 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Löytyi <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> löytyi</item>
+      <item quantity="one">1 löytyi</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Pikayhteys henkilöön <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Ei nimeä)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Soitettu usein"</string>

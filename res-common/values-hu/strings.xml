@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"SMS küldése MMS-ben szereplő számra"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Videohívás kezdeményezése"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Törli a gyakran keresetteket?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Törölni fogja a gyakran keresett személyek listáját a Személyek és a Telefon alkalmazásokban, és arra kényszeríti az e-mail alkalmazásokat, hogy újra, elölről megtanulják az Ön címzési beállításait."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Törölni fogja a gyakran keresett személyek listáját a Névjegyek és a Telefon alkalmazásban, és arra kényszeríti az e-mail alkalmazásokat, hogy elölről kezdjék az Ön címzési szokásainak megtanulását."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Gyakran keresettek törlése..."</string>
     <string name="status_available" msgid="4832569677396634846">"Elérhető"</string>
     <string name="status_away" msgid="6267905184545881094">"Nincs a gépnél"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Keresés…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Több mint <xliff:g id="COUNT">%d</xliff:g> találat."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Nincsenek névjegyek"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 találat"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> találat"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> találat</item>
+      <item quantity="one">1 találat</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> gyors elérése"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nincs név)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Gyakran hívott"</string>

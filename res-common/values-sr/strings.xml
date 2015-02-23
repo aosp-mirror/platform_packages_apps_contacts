@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Пошаљи SMS на број за MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Упути видео позив"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Бришете често контактиране?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Обрисаћете листу често контактираних у апликацијама Људи и Телефон, па ће апликације е-поште морати из почетка да прикупе информације о адресирању."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Обрисаћете листу често контактираних у апликацијама Контакти и Телефон, па ће имејл апликације морати поново да прикупе информације о адресирању."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Брисање често контактираних..."</string>
     <string name="status_available" msgid="4832569677396634846">"Доступан/на"</string>
     <string name="status_away" msgid="6267905184545881094">"Одсутан/на"</string>
@@ -75,10 +75,11 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Претраживање..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Пронађено је више од <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Нема контаката"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 је пронађен"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> је пронађено"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one">Пронађен је <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="few">Пронађена су <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">Пронађено је <xliff:g id="COUNT">%d</xliff:g></item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Брзи контакт за корисника <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Нема имена)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Често позивани"</string>

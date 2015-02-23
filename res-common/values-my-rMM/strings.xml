@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS နံပါတ်သို့ စာပို့ပါ"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ဗီဒီယို ခေါ်ဆိုမှု ပြုလုပ်ရန်"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"အသုံးများသောလိပ်စာများရှင်းပစ်မလား?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"သင့်အနေဖြင့် အသုံးများသော လိပ်စာများကို လူများနှင့် ဖုန်း အပ်ပလီကေးရှင်းမှ ရှင်းလင်းပစ်မှာဖြစ်ပြီး အီးမေးလ် အပ်ပလီကေးရှင်းမှာ သင့်နှစ်သက်ရာ လိပ်စာများကို အစကနေ ပြန်ပြီးမှတ်သားရမှာ ဖြစ်ပါသည်"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"အသုံးများသော အဆက်အသွယ်စာရင်းအား Contacts နှင့် Phone app များမှ သင် ရှင်းလင်းပစ်မှာဖြစ်ပြီး၊ အီးမေး app များအား သင့်နှစ်သက်ရာ ​ပ​ြောဆိုဆက်ဆံမှုပုံစံကို အစမှပြန်လည် လေ့လာခိုင်းမည်။"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"အသုံးများသောလိပ်စာများ ရှင်းလင်းနေစဉ်"</string>
     <string name="status_available" msgid="4832569677396634846">"ဆက်သွယ်နိုင်ပါသည်"</string>
     <string name="status_away" msgid="6267905184545881094">"အဝေးရောက်နေပါသည်"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"ရှာဖွေနေသည်…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> ထက်ပိုတွေ့ရှိသည်"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"အဆက်အသွယ်များမရှိပါ"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"၁ခု တွေ့ရှိသည်"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ခု တွေ့ရှိသည်"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> တွေ့ခဲ့၏</item>
+      <item quantity="one"> ၁ ခု တွေခဲ့၏</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> အတွက် အမြန်ဆက်သွယ်လိပ်စာ"</string>
     <string name="missing_name" msgid="2633118852693000081">"(အမည်မရှိ)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"မကြာခဏခေါ်ရန်သူများ"</string>

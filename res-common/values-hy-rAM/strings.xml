@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Հաղորդագրել MMS համարին"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Կատարել տեսազանգ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Մաքրե՞լ հաճախակի հաղորդակցվածները"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Դուք կմաքրեք ամենահաճախակի հաղորդակցումների ցանկը Մարդիկ և Հեռախոսներ ծրագրերում և կստիպեք էլփոտային ծրագրերին սովորել հասցեագրել ձեր նախընտրությունները զրոյից:"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Դուք կմաքրեք հաճախակի հաղորդակցվողների ցանկը Կոնտակտներ և Հեռախոս հավելվածներում, և ձեր էլփոստի ծրագիրը զրոյից կսովորի ձեր հասցեագրումների նախընտրությունները:"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Հաճախակի հաղորդակցումների մաքրում..."</string>
     <string name="status_available" msgid="4832569677396634846">"Հասանելի"</string>
     <string name="status_away" msgid="6267905184545881094">"Տեղում չէ"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Որոնում..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Գտնվել են <xliff:g id="COUNT">%d</xliff:g>-ից ավելի:"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Կոնտակտներ չկան"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"գտնվել է 1-ը"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> գտնված"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one">Գտնվել է <xliff:g id="COUNT">%d</xliff:g> կոնտակտ</item>
+      <item quantity="other">Գտնվել է <xliff:g id="COUNT">%d</xliff:g> կոնտակտ</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Արագ կապ <xliff:g id="NAME">%1$s</xliff:g>-ի հետ"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Անանուն)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Հաճախակի կանչվող"</string>

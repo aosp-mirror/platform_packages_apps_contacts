@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Siųsti MMS telefono numeriu"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Atlikti vaizdo skambutį"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Išvalyti dažniausius kontaktus?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Išvalysite dažniausių kontaktų sąrašą Žmonių ir Telefono programose, o el. pašto programoms reikės iš naujo gauti adresavimo nuostatas."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Išvalysite dažniausių kontaktų sąrašą Kontaktų ir Telefono programose, o el. pašto programoms reikės iš naujo gauti adresavimo nuostatas."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Valomi dažniausi kontaktai…"</string>
     <string name="status_available" msgid="4832569677396634846">"Galima"</string>
     <string name="status_away" msgid="6267905184545881094">"Pasišalinęs"</string>
@@ -75,10 +75,12 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Ieškoma…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Rasta daugiau nei <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Kontaktų nėra"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Rasta: 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Rasta: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one">Rastas <xliff:g id="COUNT">%d</xliff:g> kontaktas</item>
+      <item quantity="few">Rasti <xliff:g id="COUNT">%d</xliff:g> kontaktai</item>
+      <item quantity="many">Rasta <xliff:g id="COUNT">%d</xliff:g> kontakto</item>
+      <item quantity="other">Rasta <xliff:g id="COUNT">%d</xliff:g> kontaktų</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Spartusis <xliff:g id="NAME">%1$s</xliff:g> kontaktas"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nėra pavadinimo)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Dažniausiai skambinta"</string>

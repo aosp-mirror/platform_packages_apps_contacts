@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"إرسال رسالة نصية إلى هاتف رسائل الوسائط المتعددة"</string>
     <string name="description_video_call" msgid="4907306403398614909">"إجراء مكالمة فيديو"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"محو قائمة من يتم الاتصال بهم كثيرًا؟"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"ستمحو قائمة من يتم الاتصال بهم كثيرًا في تطبيقي الأشخاص والهاتف، وستفرض على تطبيقات البريد الإلكتروني التعرف على تفضيلات توجيه الرسائل من البداية."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"ستمحو قائمة من يتم الاتصال بهم كثيرًا في تطبيقي جهات الاتصال والهاتف، وستفرض على تطبيقات البريد الإلكتروني التعرف على تفضيلات توجيه الرسائل من البداية."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"جارٍ محو قائمة المُتصل بهم كثيرًا…"</string>
     <string name="status_available" msgid="4832569677396634846">"متاح"</string>
     <string name="status_away" msgid="6267905184545881094">"بالخارج"</string>
@@ -75,10 +75,14 @@
     <string name="search_results_searching" msgid="9022794597388306615">"جارٍ البحث..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"تم العثور على أكثر من <xliff:g id="COUNT">%d</xliff:g> من جهات الاتصال."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"ليست هناك جهات اتصال"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"تم العثور على جهة اتصال واحدة"</item>
-    <item quantity="other" msgid="4649647748678161594">"تم العثور على <xliff:g id="COUNT">%d</xliff:g> من جهات الاتصال"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="zero">لا توجد أية جهة اتصال (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="two">توجد جهتا اتصال (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="few">توجد <xliff:g id="COUNT">%d</xliff:g> جهات اتصال</item>
+      <item quantity="many">توجد <xliff:g id="COUNT">%d</xliff:g> جهة اتصال</item>
+      <item quantity="other">توجد <xliff:g id="COUNT">%d</xliff:g> من جهات الاتصال</item>
+      <item quantity="one">توجد جهة اتصال واحدة</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"اتصال سريع لـ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(بلا اسم)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"الأكثر اتصالاً"</string>

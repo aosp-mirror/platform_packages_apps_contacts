@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"पाठ MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"भिडियो कल बनाउनुहोस्"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"प्रायः सम्पर्क भएकालाई हटाउने?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"मानिसहरू र फोन अनुप्रयोगहरूमा बारम्बार सम्पर्क गरिएको सूची मेटाउनु हुने छ, र इमेल अनुप्रयोगहरूलाई तपाईँको ठेगाना प्राथमिकताहरू शून्यबाटै सिक्न बाध्य पार्दछ।"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"तपाईंले सम्पर्कहरू र फोन अनुप्रयोगहरूमा बारम्बार सम्पर्क गरेको सूची खाली गर्नुहुनेछ र स्क्रयाचबाट तपाईंको ठेगाना प्राथमिकताहरू सिक्नको लागि ईमेल अनुप्रयोगहरूलाई दबाब दिनुहुनेछ।"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"बारम्बार सम्पर्क गरिएकाहरूलाई मेटाउँदै ..."</string>
     <string name="status_available" msgid="4832569677396634846">"उपलब्ध"</string>
     <string name="status_away" msgid="6267905184545881094">"टाढा"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"खोजी गरिँदै..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>भन्दा बढी पाइयो।"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"कुनै सम्पर्कहरू छैनन्।"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"१ भेट्टाइयो"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> पाइयो"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> फेला पर्यो</item>
+      <item quantity="one">1 फेला पर्यो</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>लाई तत्काल सम्पर्क गर्नुहोस्"</string>
     <string name="missing_name" msgid="2633118852693000081">"(नाम छैन)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"बारम्बार कल गरिएको"</string>

@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Αποστολή μηνύματος κειμένου ως MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Πραγματοποίηση βιντεοκλήσης"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Διαγραφή ατόμων με συχνή επικοινωνία;"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Θα διαγράψετε τη λίστα ατόμων με τα οποία είχατε συχνή επικοινωνία στις εφαρμογές \"Άτομα\" και \"Τηλέφωνο\" και θα κάνετε τις εφαρμογές ηλεκτρονικού ταχυδρομείου να μάθουν τις προτιμήσεις επικοινωνίας σας από την αρχή."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Θα διαγράψετε τη λίστα συχνών επαφών στις εφαρμογές Επαφές και Τηλέφωνο και θα επιβάλλετε στις εφαρμογές ηλεκτρονικού ταχυδρομείου να μάθουν τις προτιμήσεις διευθύνσεών σας από την αρχή,"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Διαγρ. ατόμων με συχνή επικοινωνία…"</string>
     <string name="status_available" msgid="4832569677396634846">"Διαθέσιμος"</string>
     <string name="status_away" msgid="6267905184545881094">"Μη διαθέσιμος"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Αναζήτηση…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Βρέθηκαν περισσότερα από <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Δεν υπάρχουν επαφές"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Βρέθηκε 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Βρέθηκαν <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Βρέθηκαν <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Βρέθηκε 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Γρήγορη επαφή για <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Χωρίς όνομα)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Συχνές κλήσεις"</string>

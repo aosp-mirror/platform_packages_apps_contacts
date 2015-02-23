@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS telefonga sms jo‘natish"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Videoqo‘ng‘iroq qilish"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ko‘p gaplashilganlar tozalansinmi?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Siz \"Odamlar\" va \"Telefon\" ilovalaridagi ko‘p gaplashilgan kontaktlarni tozalaysiz va buning natijasida e-pochta ilovalarini manzillar tanlovlaringizni yangidan o‘rganishga majbur qilasiz."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Kontaktlar va Telefon ilovalaridagi tez-tez aloqa qilingan kontaktlar ro‘yxati tozalanadi hamda e-pochta ilovalari sizning shaxsiy sozlamalaringizga moslashadi."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Ko‘p gaplashilganlar tozalanmoqda…"</string>
     <string name="status_available" msgid="4832569677396634846">"Aloqada"</string>
     <string name="status_away" msgid="6267905184545881094">"Tashqarida"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Qidirmoqda…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>dan ko‘proq topildi."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Kontaktlar yo‘q"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 ta topildi"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ta topildi"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta topildi</item>
+      <item quantity="one">1 found</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> uchun tez kontakt"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nomi yo‘q)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Ko‘p qo‘ng‘iroq qilingan kontaktlar"</string>

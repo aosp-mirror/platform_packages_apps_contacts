@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Poslat SMS na číslo MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Uskutečnit videohovor"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vymazat často kontaktované osoby?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Vymažete seznam často kontaktovaných osob v aplikacích Lidé a Telefon a e-mailové aplikace budou muset nastavení adresátů vytvořit znovu."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Vymažete seznam často kontaktovaných osob v aplikacích Kontakty a Telefon a e-mailové aplikace budou muset nastavení adresátů vytvořit znovu."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Mazání často kontaktovaných osob..."</string>
     <string name="status_available" msgid="4832569677396634846">"K dispozici"</string>
     <string name="status_away" msgid="6267905184545881094">"Pryč"</string>
@@ -75,10 +75,12 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Vyhledávání…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Nalezeno více kontaktů než <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Žádné kontakty"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Nalezeno: 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Nalezeno: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="few">Nalezeno: <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="many">Nalezeno: <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">Nalezeno: <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Nalezeno: 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Rychlý kontakt <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Žádné jméno)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Často volané"</string>

@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Skicka SMS till MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Ring videosamtal"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vill du rensa listan?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Du rensar listan över personer som du kontaktar ofta i apparna Personer och Telefon. E-postappar tvingas lära sig dina mottagarinställningar från början."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Du rensar listan över personer som du kontaktar ofta i apparna Kontakter och Telefon. E-postappar tvingas lära sig dina mottagarinställningar från början."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Listan rensas …"</string>
     <string name="status_available" msgid="4832569677396634846">"Tillgänglig"</string>
     <string name="status_away" msgid="6267905184545881094">"Borta"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Söker ..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Fler än <xliff:g id="COUNT">%d</xliff:g> hittades."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Inga kontakter"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 hittades"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> hittades"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> hittades</item>
+      <item quantity="one">1 hittades</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Snabbkontakt för <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Inget namn)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Ringer ofta"</string>

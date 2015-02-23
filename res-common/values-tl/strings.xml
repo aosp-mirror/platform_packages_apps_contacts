@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"I-text sa MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Gumawa ng video call"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"I-clear ang mga madalas inuugnayan?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Iki-clear mo ang listahan ng mga madalas na inuugnayan sa Mga Tao at Telepono na apps, at pipilitin mo ang email apps na matutunan ang iyong mga kagustuhan sa pag-address mula sa simula."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Iki-clear mo ang listahan ng mga madalas na nakakaugnay sa mga app ng Mga Contact at Telepono at pupuwersahin mo ang mga app ng email na matutunan ang iyong mga kagustuhan sa pag-a-address mula sa simula."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Kini-clear madalas na inuugnayan…"</string>
     <string name="status_available" msgid="4832569677396634846">"Available"</string>
     <string name="status_away" msgid="6267905184545881094">"Wala"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Naghahanap…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Higit sa <xliff:g id="COUNT">%d</xliff:g> ang nakita."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Walang mga contact"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 ang nakita"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ang nakita"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ang nahanap</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ang nahanap</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Mabilisang contact para kay <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Walang pangalan)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Madalas na tinatawagan"</string>

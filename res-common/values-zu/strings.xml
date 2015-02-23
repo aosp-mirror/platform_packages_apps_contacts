@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Bhala i-MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Yenza ikholi yevidiyo"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Sula oxhumana nabo njalo?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Uzosula uhlu okuxhunyanwa nalo njalo kwizinhlelo zokusebenza zabantu nefoni, futhi iphoqelela izinhlelo zokusebenza ze-imeyili ukufunda okukhethayo kokuthintana kusuka ekuqaleni."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Uzosula uhlu loxhumana nabo kakhulu kuzinhelo zokusebenza zokuxhumana noma zefoni, futhi uphoqelele izinhlelo zokusebenza ze-imeyili ukufunda izintandokazi zakho zekheli kusuka ekuqaleni."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Isula oxhumana nabo njalo…"</string>
     <string name="status_available" msgid="4832569677396634846">"Ngiyatholakala"</string>
     <string name="status_away" msgid="6267905184545881094">"Ngiphumile"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Iyasesha…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Abangaphezu kuka-<xliff:g id="COUNT">%d</xliff:g> abatholakele."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Abekho oxhumana nabo"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 otholakele"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> abatholakele"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> abatholakele</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> abatholakele</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Oxhumene naye ngokushesha ku-<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Alikho igama)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Abashayelwa njalo"</string>

@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Senda textaskilaboð í MMS-númer"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Hringja myndsímtal"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Hreinsa mest notaða tengiliði?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Þetta hreinsar tengiliðina sem þú hefur mest samskipti við úr forritunum Fólk og Sími og þvingar tölvupóstforrit til að læra upp á nýtt hvernig þú notar netföng."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Þetta hreinsar tengiliðina sem þú hefur mest samskipti við úr forritunum Tengiliðir og Sími og þvingar tölvupóstforrit til að læra upp á nýtt hvernig þú notar netföng."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Hreinsar mest notaða tengiliði…"</string>
     <string name="status_available" msgid="4832569677396634846">"Laus"</string>
     <string name="status_away" msgid="6267905184545881094">"Í burtu"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Leitar…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Yfir <xliff:g id="COUNT">%d</xliff:g> fundust."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Engir tengiliðir"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Einn fannst"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> fundust"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> fannst</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> fundust</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Flýtitengiliður fyrir <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nafn vantar)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Oft hringt í"</string>

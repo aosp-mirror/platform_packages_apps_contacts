@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS руу зурвас илгээх"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Видео дуудлага хийх"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Байнга холбоо барьдаг харилцагчдын жагсаалтыг устгах уу?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Та People болон Phone апп-ууд дах байнга холбоо барьсан харилцагчдын жагсаалтыг устгаж, ингэснээрээ имэйл апп-уудыг таны имэйл хаяглах хандлагыг бүр эхнээс нь суралцахад хүргэнэ."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Та холбоо барих хэсэг болон утасны програмд байгаа тогтмол холбоо баридаг хаягуудыг устгах ба имэйл програмуудыг таны холбоо барих хаягуудыг эрэмбэлэх үйлдлийг идэвхжүүлэх болно."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Байнга холбоо барьдаг харилцагчдын жагсаалтыг устгаж байна…"</string>
     <string name="status_available" msgid="4832569677396634846">"Холбогдсон"</string>
     <string name="status_away" msgid="6267905184545881094">"Холдсон"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Хайж байна..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>-с олон олдлоо."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Харилцагч байхгүй"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 олдсон"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> олдсон"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> олдсон байна</item>
+      <item quantity="one">1 олдсон байна</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>-тай шууд холбогдох"</string>
     <string name="missing_name" msgid="2633118852693000081">"(нэр байхгүй)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Байнга залгасан"</string>

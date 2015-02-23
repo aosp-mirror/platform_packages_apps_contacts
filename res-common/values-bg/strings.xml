@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Изпращане на SMS на MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Провеждане на видеообаждане"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Да се изчистят ли често търсените?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Ще изчистите списъка с често търсените в приложенията Хора и Телефон и ще принудите приложенията за имейл да научат предпочитанията ви за адресите, започвайки отначало."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Ще изчистите списъка с често търсените в приложенията Контакти и Телефон и ще принудите приложенията за имейл да научат предпочитанията ви за адресите, започвайки отначало."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Често търсените се изчистват…"</string>
     <string name="status_available" msgid="4832569677396634846">"Налице"</string>
     <string name="status_away" msgid="6267905184545881094">"Отсъства"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Търси се…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Намерени са повече от <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Няма контакти"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 намерен"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> намерени"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Намерени са <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Намерен е 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Бърз контакт за <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Няма име)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Чести обаждания"</string>

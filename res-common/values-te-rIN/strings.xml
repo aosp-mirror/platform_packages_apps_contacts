@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMSకు వచనం పంపండి"</string>
     <string name="description_video_call" msgid="4907306403398614909">"వీడియో కాల్ చేయి"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేయాలా?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"మీరు వ్యక్తులు మరియు ఫోన్ అనువర్తనాల్లో తరచుగా సంప్రదించినవారి జాబితాను క్లియర్ చేస్తారు మరియు స్క్రాచ్ నుండి మీ చిరునామా ప్రాధాన్యతలను తెలుసుకునేలా ఇమెయిల్ అనువర్తనాలను నిర్బంధిస్తారు."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"మీరు పరిచయాలు మరియు ఫోన్ అనువర్తనాల్లో తరచుగా సంప్రదించిన పరిచయాల జాబితాను తీసివేస్తారు మరియు స్క్రాచ్ నుండి మీ చిరునామా ప్రాధాన్యతలను తెలుసుకునేలా ఇమెయిల్ అనువర్తనాలను నిర్బంధిస్తారు."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేస్తోంది…"</string>
     <string name="status_available" msgid="4832569677396634846">"అందుబాటులో ఉన్నారు"</string>
     <string name="status_away" msgid="6267905184545881094">"దూరంగా ఉన్నారు"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"శోధిస్తోంది..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> కంటే ఎక్కువ కనుగొనబడ్డాయి."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"పరిచయాలు లేవు"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 కనుగొనబడ్డారు"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> మంది కనుగొనబడ్డారు"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> కనుగొనబడ్డాయి</item>
+      <item quantity="one">1 కనుగొనబడింది</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> కోసం శీఘ్ర సంప్రదింపు"</string>
     <string name="missing_name" msgid="2633118852693000081">"(పేరు లేదు)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"తరచుగా కాల్ చేయబడినవి"</string>

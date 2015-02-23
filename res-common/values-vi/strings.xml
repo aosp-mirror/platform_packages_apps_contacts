@@ -62,7 +62,8 @@
     <string name="sms_mms" msgid="4887206338311086612">"Nhắn tin tới số điện thoại MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Gọi điện video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Xóa danh sách liên hệ thường xuyên?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Bạn sẽ xóa danh sách liên hệ thường xuyên trong ứng dụng Liên hệ và điện thoại cũng như buộc các ứng dụng email phải tìm hiểu các tùy chọn gửi của bạn từ đầu."</string>
+    <!-- no translation found for clearFrequentsConfirmation (1117709667923254374) -->
+    <skip />
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Đang xóa DS liên hệ thường xuyên…"</string>
     <string name="status_available" msgid="4832569677396634846">"Có mặt"</string>
     <string name="status_away" msgid="6267905184545881094">"Đã ra ngoài"</string>
@@ -75,10 +76,7 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Đang tìm kiếm…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Đã tìm thấy hơn <xliff:g id="COUNT">%d</xliff:g> người liên hệ."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Không có người liên hệ nào"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Đã tìm thấy 1 người liên hệ"</item>
-    <item quantity="other" msgid="4649647748678161594">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g> người liên hệ"</item>
-  </plurals>
+    <!-- no translation found for searchFoundContacts (4016164064185890420) -->
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Liên hệ nhanh của <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Không có tên)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Thường xuyên được gọi"</string>

@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Saada sõnum MMS-i numbrile"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Videokõne tegemine"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Kas kustutada sagedased kontaktid?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Kustutate rakendustes Inimesed ja Telefon loendi Sagedased kontaktid, mistõttu meilirakendused peavad teie adresseerimiseelistused uuesti omandama."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Kustutate rakendustes Kontaktid ja Telefon sagedaste kontaktide loendi, mistõttu meilirakendused peavad teie adresseerimiseelistused uuesti omandama."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Saged. kontaktide kustutamine ..."</string>
     <string name="status_available" msgid="4832569677396634846">"Saadaval"</string>
     <string name="status_away" msgid="6267905184545881094">"Eemal"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Otsimine ..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Leitud rohkem kui <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Kontaktid puuduvad"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 leitud"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> leitud"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Leiti <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Leiti 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Kiirkontakt: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nimi puudub)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Sageli valitud üksus"</string>

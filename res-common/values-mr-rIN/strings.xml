@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"MMS वर मजकूर पाठवा"</string>
     <string name="description_video_call" msgid="4907306403398614909">"व्‍हिडिओ कॉल करा"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"वारंवार सपर्क साधलेले साफ करायचे?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपण लोक आणि फोन अ‍ॅप्‍स मधील वारंवार संपर्क साधलेली सूची साफ कराल आणि ईमेल अ‍ॅप्‍सना सुरवातीपासून आपली पत्ता प्राधान्‍ये जाणून घेण्‍याची सक्ती कराल."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"आपण संपर्क आणि फोन अ‍ॅप्‍स मधील वारंवार संपर्क साधलेली सूची साफ कराल आणि ईमेल अ‍ॅप्‍सना सुरवातीपासून आपली पत्ता प्राधान्‍ये जाणून घेण्‍याची सक्ती कराल."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"वारंवार सपर्क साधलेले साफ करीत आहे..."</string>
     <string name="status_available" msgid="4832569677396634846">"उपलब्ध"</string>
     <string name="status_away" msgid="6267905184545881094">"दूर आहे"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"शोधत आहे..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> पेक्षा जास्त आढळले."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"कोणतेही संपर्क नाहीत"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 आढळला"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> आढळले"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> आढळला</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> आढळले</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> साठी दृत संपर्क"</string>
     <string name="missing_name" msgid="2633118852693000081">"(नाव नाही)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"वारंवार कॉल केलेले"</string>

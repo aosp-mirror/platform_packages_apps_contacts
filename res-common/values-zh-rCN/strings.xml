@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"向彩信电话号码发短信"</string>
     <string name="description_video_call" msgid="4907306403398614909">"发起视频通话"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"是否清除常用联系人？"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"此操作会清除“联系人”和“拨号”应用中的常用联系人列表，并强制电子邮件应用重新获取您最常使用的联系地址。"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"此操作会清除“通讯录”和“电话”应用中的常用联系人列表，并强制电子邮件应用重新获取您最常使用的联系地址。"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"正在清除常用联系人…"</string>
     <string name="status_available" msgid="4832569677396634846">"在线"</string>
     <string name="status_away" msgid="6267905184545881094">"离开"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"正在搜索…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"找到超过 <xliff:g id="COUNT">%d</xliff:g> 位联系人。"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"没有联系人"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"找到 1 位联系人"</item>
-    <item quantity="other" msgid="4649647748678161594">"找到 <xliff:g id="COUNT">%d</xliff:g> 位联系人"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">找到 <xliff:g id="COUNT">%d</xliff:g> 位联系人</item>
+      <item quantity="one">找到 1 位联系人</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>的快速联系人照片"</string>
     <string name="missing_name" msgid="2633118852693000081">"（无姓名）"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"经常呼叫的联系人"</string>
