@@ -64,8 +64,7 @@ public class PhotoActionPopup {
                 Flags.TAKE_OR_PICK_PHOTO_REPLACE_WORDING;
     }
 
-    public static ListPopupWindow createPopupMenu(Context context, View anchorView,
-            final Listener listener, int mode) {
+    public static ArrayList<ChoiceListItem> getChoices(Context context, int mode) {
         // Build choices, depending on the current mode. We assume this Dialog is never called
         // if there are NO choices (e.g. a read-only picture is already super-primary)
         final ArrayList<ChoiceListItem> choices = new ArrayList<ChoiceListItem>(4);
@@ -86,6 +85,12 @@ public class PhotoActionPopup {
             }
             choices.add(new ChoiceListItem(ChoiceListItem.ID_PICK_PHOTO, pickPhotoString));
         }
+        return choices;
+    }
+
+    public static ListPopupWindow createPopupMenu(Context context, View anchorView,
+            final Listener listener, int mode) {
+        final ArrayList<ChoiceListItem> choices = getChoices(context, mode);
 
         final ListAdapter adapter = new ArrayAdapter<ChoiceListItem>(context,
                 R.layout.select_dialog_item, choices);
@@ -124,7 +129,7 @@ public class PhotoActionPopup {
         return listPopupWindow;
     }
 
-    private static final class ChoiceListItem {
+    public static final class ChoiceListItem {
         private final int mId;
         private final String mCaption;
 

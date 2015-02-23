@@ -36,6 +36,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -47,7 +49,7 @@ import java.io.FileNotFoundException;
  * Contact editor with only the most important fields displayed initially.
  */
 public class CompactContactEditorFragment extends ContactEditorBaseFragment implements
-        CompactRawContactsEditorView.Listener {
+        CompactRawContactsEditorView.Listener, PhotoSourceDialogFragment.Listener {
 
     private static final String KEY_PHOTO_URI = "photo_uri";
     private static final String KEY_PHOTO_RAW_CONTACT_ID = "photo_raw_contact_id";
@@ -57,12 +59,13 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     /**
      * Displays a PopupWindow with photo edit options.
      */
-    final class PhotoHandler extends PhotoSelectionHandler {
+    final class PhotoHandler extends PhotoSelectionHandler implements View.OnClickListener {
 
         /**
          * Receiver of photo edit option callbacks.
          */
         private final class PhotoListener extends PhotoActionListener {
+
             @Override
             public void onRemovePictureChosen() {
                 getContent().setPhoto(/* bitmap =*/ null);
@@ -90,11 +93,21 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         }
 
         private PhotoListener mPhotoListener;
+        private int mPhotoMode;
 
-        public PhotoHandler(Context context, View changeAnchorView, int photoMode,
-                boolean isDirectoryContact, RawContactDeltaList state) {
-            super(context, changeAnchorView, photoMode, isDirectoryContact, state);
+        public PhotoHandler(Context context, int photoMode, RawContactDeltaList state) {
+            // We pass a null changeAnchorView since we are overriding onClick so that we
+            // can show the photo options in a dialog instead of a ListPopupWindow (which would
+            // be anchored at changeAnchorView).
+            super(context, /* changeAnchorView =*/ null, photoMode, /* isDirectoryContact =*/ false,
+                    state);
             mPhotoListener = new PhotoListener();
+            mPhotoMode = photoMode;
+        }
+
+        @Override
+        public void onClick(View view) {
+            PhotoSourceDialogFragment.show(CompactContactEditorFragment.this, mPhotoMode);
         }
 
         @Override
@@ -166,6 +179,26 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.menu_change_photo).setVisible(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (super.onOptionsItemSelected(item)) {
+            return true;
+        }
+        if (item.getItemId() == R.id.menu_change_photo) {
+            if (mPhotoHandler != null) {
+                mPhotoHandler.onClick(/* view =*/ null);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     protected void bindEditors() {
         if (!isReadyToBindEditors()) {
             return;
@@ -231,8 +264,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                     ? PhotoActionPopup.Modes.NO_PHOTO : PhotoActionPopup.Modes.READ_ONLY_PHOTO;
         }
 
-        return new PhotoHandler(getActivity(), getContent().getPhotoPopupAnchorView(),
-                photoMode, /* isDirectoryContact =*/ false, mState);
+        return new PhotoHandler(getActivity(), photoMode, mState);
     }
 
     @Override
@@ -260,6 +292,27 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                 CompactContactEditorActivity.class,
                 CompactContactEditorActivity.ACTION_JOIN_COMPLETED);
         mContext.startService(intent);
+    }
+
+    @Override
+    public void onRemovePictureChosen() {
+        if (mPhotoHandler != null) {
+            mPhotoHandler.getListener().onRemovePictureChosen();
+        }
+    }
+
+    @Override
+    public void onTakePhotoChosen() {
+        if (mPhotoHandler != null) {
+            mPhotoHandler.getListener().onTakePhotoChosen();
+        }
+    }
+
+    @Override
+    public void onPickFromGalleryChosen() {
+        if (mPhotoHandler != null) {
+            mPhotoHandler.getListener().onPickFromGalleryChosen();
+        }
     }
 
     @Override

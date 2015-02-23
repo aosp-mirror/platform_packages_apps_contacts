@@ -37,6 +37,15 @@
         android:id="@+id/menu_delete"
         android:title="@string/menu_deleteContact" />
 
+    <!-- The compact contact editor will set this to visible but we don't want it
+         in the fully expanded contact editor. -->
+    <item
+        android:id="@+id/menu_change_photo"
+        android:title="@string/menu_change_photo"
+        android:icon="@drawable/ic_photo_camera_white_24dp"
+        android:showAsAction="always"
+        android:visible="false" />
+
     <item
         android:id="@+id/menu_set_ringtone"
         android:title="@string/menu_set_ring_tone" />

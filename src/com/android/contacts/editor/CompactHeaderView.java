@@ -161,13 +161,6 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
     }
 
     /**
-     * Returns the View to anchor the PopupWindow with photo edit options to.
-     */
-    public View getPhotoPopupAnchorView() {
-        return mPhotoImageView;
-    }
-
-    /**
      * Set the given {@link Bitmap} as the photo in the underlying {@link ValuesDelta}
      * and bind a thumbnail to the UI.
      */

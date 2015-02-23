@@ -169,14 +169,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     /**
-     * Pass through to {@link CompactHeaderView#getPhotoPopupAnchorView}.
-     */
-    public View getPhotoPopupAnchorView() {
-        return mHeader.getPhotoPopupAnchorView();
-    }
-
-
-    /**
      * Get the raw contact ID for the CompactHeaderView photo.
      */
     // TODO: remove me once we support multiple accounts

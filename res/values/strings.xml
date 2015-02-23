@@ -114,6 +114,9 @@
     <!-- Menu item used to delete a specific contact -->
     <string name="menu_deleteContact">Delete</string>
 
+    <!-- Menu item used to change the photo for a specific contact [CHAR LIMIT=30]-->
+    <string name="menu_change_photo">Change photo</string>
+
     <!-- Menu item used to create a contact shortcut when viewing contact details. [CHAR LIMIT=30] -->
     <string name="menu_create_contact_shortcut">Place on Home screen</string>
 
