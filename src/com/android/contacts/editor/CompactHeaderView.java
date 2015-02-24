@@ -128,8 +128,12 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
             }
         }
 
-        if (!mIsPhotoSet && mMaterialPalette != null) {
-            mPhotoImageView.setTint(materialPalette.mPrimaryColor);
+        if (!mIsPhotoSet) {
+            final int color = materialPalette == null
+                    ? MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors(
+                            getResources()).mPrimaryColor
+                    : materialPalette.mPrimaryColor;
+            mPhotoImageView.setTint(color);
         }
 
         // Make the photo a square
