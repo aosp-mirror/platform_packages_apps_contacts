@@ -73,7 +73,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ViewIdGenerator mViewIdGenerator;
     private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
 
-    private CompactHeaderView mHeader;
+    private CompactPhotoEditorView mPhoto;
     private ViewGroup mNames;
     private ViewGroup mPhoneticNames;
     private ViewGroup mNicknames;
@@ -108,7 +108,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mLayoutInflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        mHeader = (CompactHeaderView) findViewById(R.id.header);
+        mPhoto = (CompactPhotoEditorView) findViewById(R.id.photo_editor);
         mNames = (LinearLayout) findViewById(R.id.names);
         mPhoneticNames = (LinearLayout) findViewById(R.id.phonetic_names);
         mNicknames = (LinearLayout) findViewById(R.id.nicknames);
@@ -148,24 +148,24 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     /**
-     * Pass through to {@link CompactHeaderView#setPhotoHandler}.
+     * Pass through to {@link CompactPhotoEditorView#setPhotoHandler}.
      */
     public void setPhotoHandler(PhotoHandler photoHandler) {
-        mHeader.setPhotoHandler(photoHandler);
+        mPhoto.setPhotoHandler(photoHandler);
     }
 
     /**
-     * Pass through to {@link CompactHeaderView#setPhoto}.
+     * Pass through to {@link CompactPhotoEditorView#setPhoto}.
      */
     public void setPhoto(Bitmap bitmap) {
-        mHeader.setPhoto(bitmap);
+        mPhoto.setPhoto(bitmap);
     }
 
     /**
-     * Pass through to {@link CompactHeaderView#isWritablePhotoSet}.
+     * Pass through to {@link CompactPhotoEditorView#isWritablePhotoSet}.
      */
     public boolean isWritablePhotoSet() {
-        return mHeader.isWritablePhotoSet();
+        return mPhoto.isWritablePhotoSet();
     }
 
     /**
@@ -220,7 +220,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     mPhotoRawContactId = rawContactDelta.getRawContactId();
                     final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
                             dataKind.mimeType, /* forceSelection =*/ true);
-                    mHeader.setValues(dataKind, valuesDelta, rawContactDelta,
+                    mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
                             /* readOnly =*/ !dataKind.editable, mMaterialPalette, viewIdGenerator);
                     return;
                 }
@@ -327,7 +327,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
     }
 
-    // TODO: remove this after KindSectionView is rewritten
     private static boolean isEmptyEditorView(View view) {
         if (view instanceof TextFieldsEditorView) {
             final TextFieldsEditorView textFieldsEditorView = (TextFieldsEditorView) view;

@@ -29,9 +29,8 @@
             android:orientation="vertical"
             android:visibility="invisible">
 
-        <!-- TODO: remove hard coded dimensions when we have a split screen layout in landscape -->
-        <com.android.contacts.editor.CompactHeaderView
-                android:id="@+id/header"
+        <com.android.contacts.editor.CompactPhotoEditorView
+                android:id="@+id/photo_editor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
@@ -44,73 +43,9 @@
                     android:clickable="true"
                     android:scaleType="centerCrop"/>
 
-        </com.android.contacts.editor.CompactHeaderView>
+        </com.android.contacts.editor.CompactPhotoEditorView>
 
-        <LinearLayout
-                android:id="@+id/names"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-        <LinearLayout
-                android:id="@+id/phonetic_names"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-        <LinearLayout
-                android:id="@+id/nicknames"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-        <LinearLayout
-                android:id="@+id/phone_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-        <LinearLayout
-                android:id="@+id/emails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-        <LinearLayout
-                android:id="@+id/other"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-        <LinearLayout
-                style="@style/SelectableItem"
-                android:id="@+id/more_fields"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/divider_line_height"
-                    android:background="@color/divider_line_color_light" />
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/expanding_entry_card_item_image_spacing"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="@dimen/expanding_entry_card_button_padding_vertical"
-                    android:paddingTop="@dimen/expanding_entry_card_button_padding_vertical"
-                    android:text="@string/compact_editor_more_fields"
-                    android:textColor="@color/expanding_entry_card_button_text_color"
-                    android:textSize="@dimen/expanding_entry_card_title_text_size" />
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/divider_line_height"
-                    android:background="@color/divider_line_color_light" />
-
-        </LinearLayout>
+        <include layout="@layout/compact_contact_editor_fields" />
 
     </com.android.contacts.editor.CompactRawContactsEditorView>
 

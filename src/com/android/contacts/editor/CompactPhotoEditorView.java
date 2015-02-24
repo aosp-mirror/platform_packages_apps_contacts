@@ -48,7 +48,7 @@ import android.widget.LinearLayout;
 /**
  * Displays the primary photo.
  */
-public class CompactHeaderView extends LinearLayout implements View.OnClickListener {
+public class CompactPhotoEditorView extends LinearLayout implements View.OnClickListener {
 
     private static final String TAG = CompactContactEditorFragment.TAG;
 
@@ -65,11 +65,11 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
 
     private QuickContactImageView mPhotoImageView;
 
-    public CompactHeaderView(Context context) {
+    public CompactPhotoEditorView(Context context) {
         this(context, null);
     }
 
-    public CompactHeaderView(Context context, AttributeSet attrs) {
+    public CompactPhotoEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         final TypedValue landscapePhotoRatio = new TypedValue();
@@ -136,15 +136,25 @@ public class CompactHeaderView extends LinearLayout implements View.OnClickListe
             mPhotoImageView.setTint(color);
         }
 
-        // Make the photo a square
+        // Adjust the photo dimensions following the same logic as in
+        // MultiShrinkScroll.initialize
         SchedulingUtils.doOnPreDraw(this, /* drawNextFrame =*/ false, new Runnable() {
             @Override
             public void run() {
-                final int photoHeight = mIsTwoPanel
-                        ? (int) (getWidth() * mLandscapePhotoRatio) : getWidth();
+
+                final int photoHeight, photoWidth;
+                if (mIsTwoPanel) {
+                    // Make the photo slightly more narrow than it is tall
+                    photoHeight = getHeight();
+                    photoWidth = (int) (photoHeight * mLandscapePhotoRatio);
+                } else {
+                    // Make the photo a square
+                    photoHeight = getHeight();
+                    photoWidth = photoHeight;
+                }
                 final ViewGroup.LayoutParams layoutParams = getLayoutParams();
                 layoutParams.height = photoHeight;
-                layoutParams.width = photoHeight;
+                layoutParams.width = photoWidth;
                 setLayoutParams(layoutParams);
             }
         });
