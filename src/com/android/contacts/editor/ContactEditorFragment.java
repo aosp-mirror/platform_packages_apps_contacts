@@ -48,9 +48,6 @@ import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.UiClosables;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-
 import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -252,7 +249,9 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                             return;
                         }
                         if (request == EditorListener.FIELD_CHANGED && !isEditingUserProfile()) {
-                            acquireAggregationSuggestions(activity, rawContactEditor);
+                            acquireAggregationSuggestions(activity,
+                                    rawContactEditor.getNameEditor().getRawContactId(),
+                                    rawContactEditor.getNameEditor().getValues());
                         } else if (request == EditorListener.EDITOR_FOCUS_CHANGED) {
                             adjustNameFieldsHintDarkness(rawContactEditor);
                         }
@@ -283,7 +282,9 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 nickNameEditor.setEditorListener(listener);
 
                 if (isAggregationSuggestionRawContactId(rawContactId)) {
-                    acquireAggregationSuggestions(activity, rawContactEditor);
+                    acquireAggregationSuggestions(activity,
+                            rawContactEditor.getNameEditor().getRawContactId(),
+                            rawContactEditor.getNameEditor().getValues());
                 }
 
                 adjustNameFieldsHintDarkness(rawContactEditor);
@@ -497,6 +498,12 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     /**
      * Finds raw contact editor view for the given rawContactId.
      */
+    @Override
+    protected View getAggregationAnchorView(long rawContactId) {
+        BaseRawContactEditorView editorView = getRawContactEditorView(rawContactId);
+        return editorView == null ? null : editorView.findViewById(R.id.anchor_view);
+    }
+
     public BaseRawContactEditorView getRawContactEditorView(long rawContactId) {
         for (int i = 0; i < mContent.getChildCount(); i++) {
             final View childView = mContent.getChildAt(i);

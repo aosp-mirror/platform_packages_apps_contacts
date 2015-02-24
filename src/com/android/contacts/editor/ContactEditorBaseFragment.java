@@ -1353,8 +1353,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Triggers an asynchronous search for aggregation suggestions.
      */
     protected void acquireAggregationSuggestions(Context context,
-            RawContactEditorView rawContactEditor) {
-        long rawContactId = rawContactEditor.getRawContactId();
+            long rawContactId, ValuesDelta valuesDelta) {
         if (mAggregationSuggestionsRawContactId != rawContactId
                 && mAggregationSuggestionView != null) {
             mAggregationSuggestionView.setVisibility(View.GONE);
@@ -1372,8 +1371,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         mAggregationSuggestionEngine.setContactId(getContactId());
 
-        LabeledEditorView nameEditor = rawContactEditor.getNameEditor();
-        mAggregationSuggestionEngine.onNameChange(nameEditor.getValues());
+        mAggregationSuggestionEngine.onNameChange(valuesDelta);
     }
 
     /**
@@ -1403,12 +1401,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             return;
         }
 
-        final RawContactEditorView rawContactView = (RawContactEditorView)
-                getRawContactEditorView(mAggregationSuggestionsRawContactId);
-        if (rawContactView == null) {
+        final View anchorView = getAggregationAnchorView(mAggregationSuggestionsRawContactId);
+        if (anchorView == null) {
             return; // Raw contact deleted?
         }
-        final View anchorView = rawContactView.findViewById(R.id.anchor_view);
         mAggregationSuggestionPopup = new ListPopupWindow(mContext, null);
         mAggregationSuggestionPopup.setAnchorView(anchorView);
         mAggregationSuggestionPopup.setWidth(anchorView.getWidth());
@@ -1432,20 +1428,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     /**
-     * Finds raw contact editor view for the given rawContactId.
+     * Returns the raw contact editor view for the given rawContactId that should be used as the
+     * anchor for aggregation suggestions.
      */
-    private BaseRawContactEditorView getRawContactEditorView(long rawContactId) {
-        for (int i = 0; i < mContent.getChildCount(); i++) {
-            final View childView = mContent.getChildAt(i);
-            if (childView instanceof BaseRawContactEditorView) {
-                final BaseRawContactEditorView editor = (BaseRawContactEditorView) childView;
-                if (editor.getRawContactId() == rawContactId) {
-                    return editor;
-                }
-            }
-        }
-        return null;
-    }
+    abstract protected View getAggregationAnchorView(long rawContactId);
 
     /**
      * Whether the given raw contact ID matches the one used to last load aggregation

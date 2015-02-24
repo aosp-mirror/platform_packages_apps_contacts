@@ -49,8 +49,8 @@ public class SuggestionEditConfirmationDialogFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                final ContactEditorFragment targetFragment =
-                                        (ContactEditorFragment) getTargetFragment();
+                                final ContactEditorBaseFragment targetFragment =
+                                        (ContactEditorBaseFragment) getTargetFragment();
                                 final Uri contactUri =
                                         getArguments().getParcelable(ARG_CONTACT_URI);
                                 targetFragment.doEditSuggestedContact(contactUri);

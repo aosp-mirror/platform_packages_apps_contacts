@@ -120,6 +120,10 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         init(context);
     }
 
+    public Long getRawContactId() {
+        return mState == null ? null : mState.getRawContactId();
+    }
+
     private void init(Context context) {
         mMinLineItemHeight = context.getResources().getDimensionPixelSize(
                 R.dimen.editor_min_line_item_height);

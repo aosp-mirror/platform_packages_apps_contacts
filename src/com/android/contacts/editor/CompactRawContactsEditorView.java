@@ -70,6 +70,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private AccountTypeManager mAccountTypeManager;
     private LayoutInflater mLayoutInflater;
+
     private ViewIdGenerator mViewIdGenerator;
     private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
 
@@ -82,7 +83,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ViewGroup mOther;
     private View mMoreFields;
 
-    // TODO: remove this after we handle account selection for photos
     private long mPhotoRawContactId;
 
     public CompactRawContactsEditorView(Context context) {
@@ -171,9 +171,23 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     /**
      * Get the raw contact ID for the CompactHeaderView photo.
      */
-    // TODO: remove me once we support multiple accounts
     public long getPhotoRawContactId() {
         return mPhotoRawContactId;
+    }
+
+    public StructuredNameEditorView getStructuredNameEditorView() {
+        // We only ever show one StructuredName
+        return mNames.getChildCount() == 0
+                ? null : (StructuredNameEditorView) mNames.getChildAt(0);
+    }
+
+    public View getAggregationAnchorView() {
+        // Since there is only one structured name we can just return it as the anchor for
+        // the aggregation suggestions popup
+        if (mNames.getChildCount() == 0) {
+            return null;
+        }
+        return mNames.getChildAt(0).findViewById(R.id.anchor_view);
     }
 
     public void setState(RawContactDeltaList rawContactDeltas,

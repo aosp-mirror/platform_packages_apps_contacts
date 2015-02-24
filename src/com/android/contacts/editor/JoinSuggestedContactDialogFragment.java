@@ -47,8 +47,8 @@ public class JoinSuggestedContactDialogFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                ContactEditorFragment targetFragment =
-                                        (ContactEditorFragment) getTargetFragment();
+                                ContactEditorBaseFragment targetFragment =
+                                        (ContactEditorBaseFragment) getTargetFragment();
                                 long rawContactIds[] =
                                         getArguments().getLongArray(ARG_RAW_CONTACT_IDS);
                                 targetFragment.doJoinSuggestedContact(rawContactIds);

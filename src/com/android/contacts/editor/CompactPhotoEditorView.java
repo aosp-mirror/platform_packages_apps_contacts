@@ -149,7 +149,7 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
                     photoWidth = (int) (photoHeight * mLandscapePhotoRatio);
                 } else {
                     // Make the photo a square
-                    photoHeight = getHeight();
+                    photoHeight = getWidth();
                     photoWidth = photoHeight;
                 }
                 final ViewGroup.LayoutParams layoutParams = getLayoutParams();

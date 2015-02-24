@@ -26,6 +26,7 @@ import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.detail.PhotoSelectionHandler;
+import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import android.app.Activity;
@@ -204,16 +205,44 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             return;
         }
 
+        // Add input fields for the loaded Contact
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
         editorView.setState(mState, mMaterialPalette, mViewIdGenerator);
-        editorView.setEnabled(isEnabled());
-        editorView.setVisibility(View.VISIBLE);
 
+        // Set up the photo widget
         mPhotoHandler = createPhotoHandler();
         mPhotoRawContactId = editorView.getPhotoRawContactId();
         editorView.setPhotoHandler(mPhotoHandler);
 
+        // Attach the aggregation suggestion engine to the structured name field
+        final StructuredNameEditorView nameEditorView = editorView.getStructuredNameEditorView();
+        if (nameEditorView != null) {
+            nameEditorView.setEditorListener(new EditorListener() {
+                @Override
+                public void onRequest(int request) {
+                    final Activity activity = getActivity();
+                    if (activity == null || activity.isFinishing()) {
+                        return;
+                    }
+                    if (request == EditorListener.FIELD_CHANGED && !mIsUserProfile) {
+                        acquireAggregationSuggestions(activity, nameEditorView.getRawContactId(),
+                                nameEditorView.getValues());
+                    }
+                }
+
+                @Override
+                public void onDeleteRequested(Editor editor) {
+                }
+            });
+        }
+
+        // The editor is ready now so make it visible
+        editorView.setEnabled(isEnabled());
+        editorView.setVisibility(View.VISIBLE);
+
+        // Refresh the ActionBar as the visibility of the join command
+        // Activity can be null if we have been detached from the Activity.
         invalidateOptionsMenu();
     }
 
@@ -265,6 +294,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         }
 
         return new PhotoHandler(getActivity(), photoMode, mState);
+    }
+
+    @Override
+    protected View getAggregationAnchorView(long rawContactId) {
+        return getContent().getAggregationAnchorView();
     }
 
     @Override
