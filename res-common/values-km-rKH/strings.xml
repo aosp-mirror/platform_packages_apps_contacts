@@ -62,8 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"អត្ថបទ MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ហៅ​ជា​វីដេអូ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"សម្អាត​ទំនាក់ទំនង​ញឹកញាប់?"</string>
-    <!-- no translation found for clearFrequentsConfirmation (1117709667923254374) -->
-    <skip />
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"អ្នកនឹងជម្រះបញ្ជីដែលអ្នកទាក់ទងជាញឹកញាប់នៅក្នុងកម្មវិធីទូរស័ព្ទ និងទំនាក់ទំនង ហើយបង្ខំឲ្យកម្មវិធីអ៊ីមែលស្វែងយល់ពីចំណូលចិត្តទំនាក់ទំនងរបស់អ្នកតាំងពីដំបូង។"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"សម្អាត​ទំនាក់ទំនង​ញឹកញាប់..."</string>
     <string name="status_available" msgid="4832569677396634846">"ទំនេរ"</string>
     <string name="status_away" msgid="6267905184545881094">"ចាក​ឆ្ងាយ"</string>
@@ -76,7 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"កំពុង​រក..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"បាន​រក​ឃើញ​ច្រើន​ជាង <xliff:g id="COUNT">%d</xliff:g> ។"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"មិន​មាន​ទំនាក់ទំនង។"</string>
-    <!-- no translation found for searchFoundContacts (4016164064185890420) -->
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">បានរកឃើញ <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">បានរកឃើញ 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"ទំនាក់ទំនង​រហ័ស​សម្រាប់ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(គ្មាន​ឈ្មោះ)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"បាន​ហៅ​ញឹកញាប់"</string>

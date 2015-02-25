@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"SMS an MMS senden"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Videoanruf starten"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Liste \"Häufig kontaktiert\" löschen?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Sie löschen die Liste \"Häufig kontaktiert\" in den Apps \"Kontakte\" und \"Telefon\" und geben Sie Ihre Adresseinstellungen für E-Mail-Apps neu ein."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Sie löschen die Liste \"Häufig kontaktiert\" in den Apps \"Kontakte\" und \"Telefon\" und bewirken so ein Zurücksetzen Ihrer Adresseinstellungen für E-Mail-Apps."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"\"Häufig kontaktiert\" wird gelöscht…"</string>
     <string name="status_available" msgid="4832569677396634846">"Verfügbar"</string>
     <string name="status_away" msgid="6267905184545881094">"Abwesend"</string>

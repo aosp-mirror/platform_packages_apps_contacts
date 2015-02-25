@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"पाठ MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"भिडियो कल बनाउनुहोस्"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"प्रायः सम्पर्क भएकालाई हटाउने?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"तपाईंले सम्पर्कहरू र फोन अनुप्रयोगहरूमा बारम्बार सम्पर्क गरेको सूची खाली गर्नुहुनेछ र स्क्रयाचबाट तपाईंको ठेगाना प्राथमिकताहरू सिक्नको लागि ईमेल अनुप्रयोगहरूलाई दबाब दिनुहुनेछ।"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"तपाईंले सम्पर्कहरू र फोन अनुप्रयोगहरूमा बारम्बार सम्पर्क गरेको सूची खाली गर्नुहुनेछ र स्क्रयाचबाट तपाईंको ठेगाना प्राथमिकताहरू सिक्नको लागि इमेल अनुप्रयोगहरूलाई दबाब दिनुहुनेछ।"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"बारम्बार सम्पर्क गरिएकाहरूलाई मेटाउँदै ..."</string>
     <string name="status_available" msgid="4832569677396634846">"उपलब्ध"</string>
     <string name="status_away" msgid="6267905184545881094">"टाढा"</string>

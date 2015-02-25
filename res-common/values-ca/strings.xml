@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Envia un MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Fes una videotrucada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vols esborrar els contactes freqüents?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"S\'esborrarà la llista de contactes més freqüents a les aplicacions Contactes i Telèfon i es forçarà les aplicacions de correu electrònic a obtenir informació sobre les teves preferències de direccionament des de zero."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"S\'esborrarà la llista de contactes més freqüents a les aplicacions Contactes i Telèfon i es forçarà les aplicacions de correu electrònic a obtenir informació nova sobre les teves preferències pel que fa a adreces."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"S\'estan esborrant contactes freq..."</string>
     <string name="status_available" msgid="4832569677396634846">"Disponible"</string>
     <string name="status_away" msgid="6267905184545881094">"Absent"</string>

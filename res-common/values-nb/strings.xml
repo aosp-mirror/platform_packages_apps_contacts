@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Send tekstmelding til multimediemeldingnummer"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Utfør videoanrop"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vil du fjerne ofte kontaktede personer?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Du fjerner listen over ofte kontaktede personer i Kontakter- og Telefon-appene og gjør slik at e-postappene legger inn adresseinnstillingene dine på nytt."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Du fjerner listen over ofte kontaktede personer i Kontakter- og Telefon-appene, og tvinger e-postappene til å lære seg adresseinnstillingene dine på nytt."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Fjerner ofte kontaktede personer ..."</string>
     <string name="status_available" msgid="4832569677396634846">"Tilgjengelig"</string>
     <string name="status_away" msgid="6267905184545881094">"Borte"</string>
