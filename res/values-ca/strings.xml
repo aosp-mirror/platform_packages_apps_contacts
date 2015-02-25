@@ -46,6 +46,8 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Afegit als preferits"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Edita"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Suprimeix"</string>
+    <!-- no translation found for menu_change_photo (7769177631511496210) -->
+    <skip />
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Afegeix a la pantalla d\'inici"</string>
     <string name="menu_call" msgid="3992595586042260618">"Truca al contacte"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envia un SMS al contacte"</string>
@@ -261,6 +263,5 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Trucada recent. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Fes clic per tornar la trucada."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Usuari: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funciona millor si introdueixes l\'identificador de Hangouts de la persona corresponent al camp de l\'adreça electrònica o del telèfon."</string>
-    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
-    <skip />
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Més camps"</string>
 </resources>

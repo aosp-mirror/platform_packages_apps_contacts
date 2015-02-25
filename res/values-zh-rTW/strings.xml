@@ -46,6 +46,8 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"已加到我的最愛"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
+    <!-- no translation found for menu_change_photo (7769177631511496210) -->
+    <skip />
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"放在主螢幕上"</string>
     <string name="menu_call" msgid="3992595586042260618">"去電聯絡人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
@@ -261,6 +263,5 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"近期通話。<xliff:g id="CALL_TYPE">%s</xliff:g>。<xliff:g id="PHONE_NUMBER">%s</xliff:g>。<xliff:g id="DATE">%s</xliff:g>。按一下即可回電"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"如果您在電子郵件欄位或電話欄位中輸入聯絡人的 Hangouts 識別碼，可讓 Hangouts 的運作效能更佳。"</string>
-    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
-    <skip />
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"更多欄位"</string>
 </resources>

@@ -46,6 +46,8 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Đã thêm vào mục ưa thích"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Chỉnh sửa"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Xóa"</string>
+    <!-- no translation found for menu_change_photo (7769177631511496210) -->
+    <skip />
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Đặt trên màn hình chính"</string>
     <string name="menu_call" msgid="3992595586042260618">"Gọi liên hệ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Nhắn tin tới liên hệ"</string>
@@ -178,7 +180,7 @@
     <string name="non_phone_close" msgid="7608506439725515667">"Đóng"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Cho biết năm"</string>
-    <string name="social_widget_label" msgid="6378905543028924592">"Địa chỉ liên hệ"</string>
+    <string name="social_widget_label" msgid="6378905543028924592">"Liên hệ"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Đang tải…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Tạo địa chỉ liên hệ mới"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Đăng nhập vào tài khoản"</string>
@@ -261,6 +263,5 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"cuộc gọi gần đây. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. nhấp để gọi lại"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Bạn: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts hoạt động tốt hơn khi bạn nhập số nhận dạng Hangouts của người đó vào trường email hoặc trường điện thoại."</string>
-    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
-    <skip />
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Trường khác"</string>
 </resources>

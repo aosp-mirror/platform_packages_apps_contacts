@@ -46,6 +46,8 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"အကြိုက်ဆုံးများ ထဲကို ထည့်ပြီး"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ပြင်ဆင်ရန်"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ဖျက်ရန်"</string>
+    <!-- no translation found for menu_change_photo (7769177631511496210) -->
+    <skip />
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ပင်မစာမျက်နှာတွင် တင်ထားပါ"</string>
     <string name="menu_call" msgid="3992595586042260618">"အဆက်အသွယ်ကို ခေါ်ပါ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"အဆက်အသွယ်ကို စာတိုပို့ရန်"</string>
@@ -261,6 +263,5 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"မကြာမီက ခေါ်ဆိုမှု။ <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ပြန်ခေါ်ရန် ကလစ်ပါ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"သင်: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"အီးမေးအကွက် သို့မဟုတ် ဖုန်းနံပါတ် အကွက်တွင် တစ်ခြားသူ၏ Hangouts  အမှတ်သညာအား သင်ရိုက်ထည့်သည့်အခါ Hangouts ပိုမိုလွယ်ကူကောင်းမွန်စွာ အလုပ်လုပ်သည်။"</string>
-    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
-    <skip />
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"နေရာပိုချဲ့ရန်"</string>
 </resources>

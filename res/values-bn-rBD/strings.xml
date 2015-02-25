@@ -46,6 +46,8 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"পছন্দসই এ জোড়া হয়েছে"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"সম্পাদনা করুন"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"মুছুন"</string>
+    <!-- no translation found for menu_change_photo (7769177631511496210) -->
+    <skip />
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"হোম স্ক্রীনে রাখুন"</string>
     <string name="menu_call" msgid="3992595586042260618">"পরিচিতিকে কল করুন"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"পরিচিতিকে পাঠ্য বার্তা পাঠান"</string>
@@ -261,6 +263,5 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"সাম্প্রতিক কল৷ <xliff:g id="CALL_TYPE">%s</xliff:g>৷ <xliff:g id="PHONE_NUMBER">%s</xliff:g>৷ <xliff:g id="DATE">%s</xliff:g>৷ ঘুরিয়ে কল করতে ক্লিক করুন"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"আপনি: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"আপনি যখন ইমেল বা ফোন নম্বর লেখার ক্ষেত্রটিতে ব্যক্তির Hangouts সনাক্তকারী লেখেন তখন Hangouts আরো ভালো কাজ করে৷"</string>
-    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
-    <skip />
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"আরো ফিল্ড"</string>
 </resources>

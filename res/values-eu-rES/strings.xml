@@ -46,6 +46,8 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Gogokoetan gehitu da"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editatu"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Ezabatu"</string>
+    <!-- no translation found for menu_change_photo (7769177631511496210) -->
+    <skip />
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Jarri hasierako pantailan"</string>
     <string name="menu_call" msgid="3992595586042260618">"Deitu kontaktuari"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Bidali testu-mezua kontaktuari"</string>
@@ -261,6 +263,5 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"duela gutxiko deia. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. sakatu deitzeko"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Zu: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts-ek hobeto funtzionatzen du pertsonaren Hangouts identifikatzailea idazten baduzu helbide elektronikoaren edo telefonoaren eremuan."</string>
-    <!-- no translation found for compact_editor_more_fields (2874181192382284115) -->
-    <skip />
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Eremu gehiago"</string>
 </resources>
