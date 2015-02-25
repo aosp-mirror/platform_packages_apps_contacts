@@ -50,6 +50,7 @@ import com.android.contacts.common.model.account.ExchangeAccountType;
 import com.android.contacts.common.model.account.ExternalAccountType;
 import com.android.contacts.common.model.account.FallbackAccountType;
 import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.common.model.account.SamsungAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.util.Constants;
@@ -413,6 +414,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 accountType = new GoogleAccountType(mContext, auth.packageName);
             } else if (ExchangeAccountType.isExchangeType(type)) {
                 accountType = new ExchangeAccountType(mContext, auth.packageName, type);
+            } else if (SamsungAccountType.isSamsungAccountType(mContext, type,
+                    auth.packageName)) {
+                accountType = new SamsungAccountType(mContext, auth.packageName, type);
             } else {
                 Log.d(TAG, "Registering external account type=" + type
                         + ", packageName=" + auth.packageName);

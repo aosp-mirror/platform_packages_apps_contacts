@@ -218,6 +218,13 @@ public class ExternalAccountType extends BaseAccountType {
         return null;
     }
 
+    /**
+     * Returns {@code TRUE} if the package contains CONTACTS_STRUCTURE metadata.
+     */
+    public static boolean hasContactsXml(Context context, String resPackageName) {
+        return loadContactsXml(context, resPackageName) != null;
+    }
+
     private void checkKindExists(String mimeType) throws DefinitionException {
         if (getKindForMimetype(mimeType) == null) {
             throw new DefinitionException(mimeType + " must be supported");
