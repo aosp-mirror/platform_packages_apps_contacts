@@ -60,7 +60,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Αποστολή μηνύματος κειμένου προς βομβητή εργασίας"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Αποστολή μηνύματος προς <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Αποστολή μηνύματος κειμένου ως MMS"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"Πραγματοποίηση βιντεοκλήσης"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Διαγραφή ατόμων με συχνή επικοινωνία;"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Θα διαγράψετε τη λίστα ατόμων με τα οποία είχατε συχνή επικοινωνία στις εφαρμογές \"Άτομα\" και \"Τηλέφωνο\" και θα κάνετε τις εφαρμογές ηλεκτρονικού ταχυδρομείου να μάθουν τις προτιμήσεις επικοινωνίας σας από την αρχή."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Διαγρ. ατόμων με συχνή επικοινωνία…"</string>
@@ -91,15 +90,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Όνομα"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Ψευδώνυμο"</string>
     <string name="full_name" msgid="885420216812981202">"Όνομα"</string>
-    <string name="name_given" msgid="4153709115654909377">"Όνομα"</string>
-    <string name="name_family" msgid="5317387657540738981">"Επώνυμο"</string>
+    <string name="name_given" msgid="1560204576305608571">"Όνομα"</string>
+    <string name="name_family" msgid="1267097554034721002">"Επώνυμο"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Πρόθεμα ονόματος"</string>
     <string name="name_middle" msgid="3951610314424632183">"Πατρώνυμο"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Επίθημα ονόματος"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Φωνητική μορφή ονόματος"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Φωνητικό όνομα"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"Φωνητική μορφή ονόματος"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Φωνητική μορφή πατρώνυμου"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Φωνητικό επώνυμο"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Φωνητική μορφή επωνύμου"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Τηλέφωνο"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Ηλεκτρονικό ταχυδρομείο"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Διεύθυνση"</string>
@@ -112,7 +111,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Εταιρεία"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Τίτλος"</string>
     <string name="label_notes" msgid="3997277594846722699">"Σημειώσεις"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"Κλήση διαδικτύου"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Ιστότοπος"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Ομάδες"</string>
     <string name="email_home" msgid="2230967805906450693">"Αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου προς οικία"</string>
@@ -161,8 +160,6 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Μία επαφή"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Δημιουργία επαφής στο λογαριασμό"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Εισαγωγή από κάρτα SIM"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"Εισαγωγή από κάρτα SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Εισαγωγή από κάρτα SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Εισαγωγή από χώρο αποθ."</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Ακύρωση της εισαγωγής του αρχείου <xliff:g id="FILENAME">%s</xliff:g>;"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Ακύρωση της εξαγωγής του αρχείου <xliff:g id="FILENAME">%s</xliff:g>;"</string>
@@ -206,6 +203,7 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Το αίτημα εξαγωγής vCard απορρίφθηκε. Δοκιμάστε ξανά αργότερα."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"επαφή"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Αλλαγή vCard σε τοπικό χώρο προσωρινής αποθήκευσης. Η εισαγωγή θα ξεκινήσει σύντομα."</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Δεν ήταν δυνατή η εισαγωγή κάρτας vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Δεν βρέθηκαν αρχεία vCard στο χώρο αποθήκευσης."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Δεν βρέθηκε αρχείο vCard στην κάρτα SD."</string>
@@ -222,12 +220,6 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Δεν ήταν δυνατή η σάρωση της κάρτας SD. (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Εισαγωγή <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Εξαγωγή στο χώρο αποθ."</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ταξινόμηση κατά"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Όνομα"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Επώνυμο"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Μορφή ονόματος"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Πρώτα το όνομα"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Πρώτα το επώνυμο"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Κοινή χρήση ορατών επαφών"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Εισαγωγή/Εξαγωγή επαφών"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Εισαγωγή επαφών"</string>
@@ -246,12 +238,11 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"Επιλογή κάρτας SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Λογαριασμοί"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Εισαγωγή/Εξαγωγή"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"Αποστολή μηνύματος προς <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"Κλήση αριθμού τηλεφώνου <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"Προσθήκη επαφής"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"μέσω <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> μέσω <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"τέλος αναζήτησης"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Εκκαθάριση αναζητήσεων"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Επιλογές εμφάνισης επαφών"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"Λογαριασμός"</string>
-    <string name="set_default_account" msgid="3865970860434642695">"Χρήση πάντα για κλήσεις"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Κλήση με"</string>
 </resources>

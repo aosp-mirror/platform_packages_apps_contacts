@@ -60,7 +60,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"SMS a cercapersone lavoro"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"SMS a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"SMS a MMS"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"Fai una videochiamata"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Cancellare contattati di frequente?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Cancellerai l\'elenco degli utenti contattati di frequente nelle applicazioni Persone e Telefono e imposterai l\'acquisizione forzata delle tue preferenze di indirizzamento da zero nelle applicazioni email."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Cancellazione contattati di frequente…"</string>
@@ -91,15 +90,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nickname"</string>
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
-    <string name="name_given" msgid="4153709115654909377">"Nome"</string>
-    <string name="name_family" msgid="5317387657540738981">"Cognome"</string>
+    <string name="name_given" msgid="1560204576305608571">"Nome"</string>
+    <string name="name_family" msgid="1267097554034721002">"Cognome"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Prefisso nome"</string>
     <string name="name_middle" msgid="3951610314424632183">"Secondo nome"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Suffisso nome"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nome fonetico"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Nome fonetico"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"Nome fonetico fornito"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Secondo nome fonetico"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Cognome fonetico"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"Cognome fonetico"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefono"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Email"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Indirizzo"</string>
@@ -112,7 +111,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Società"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Titolo"</string>
     <string name="label_notes" msgid="3997277594846722699">"Note"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"Chiamate Internet"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Sito web"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Gruppi"</string>
     <string name="email_home" msgid="2230967805906450693">"Invia email a indirizzo casa"</string>
@@ -161,8 +160,6 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Contatto singolo"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Crea contatto nell\'account"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importa da scheda SIM"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"Importa da SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importa da SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importa da archivio"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Annullare l\'importazione di <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Annullare l\'esportazione di <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -206,6 +203,7 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Richiesta esportazione vCard rifiutata. Riprova più tardi."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contatto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Memorizzazione delle vCard nella cache di archiviazione temporanea locale. L\'importazione reale inizierà a breve."</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Importazione vCard non riuscita."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Nessun file vCard trovato nell\'archivio."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Nessun file vCard trovato sulla scheda SD."</string>
@@ -222,12 +220,6 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Scansione della scheda SD non riuscita. Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importazione di <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Esporta in archivio"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordina per"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nome"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Cognome"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Formato nome"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prima il nome"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Prima il cognome"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Condividi contatti visibili"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importa/esporta contatti"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importa contatti"</string>
@@ -246,12 +238,11 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"Seleziona scheda SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Account"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importa/esporta"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"Invia messaggio a <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"Componi numero di telefono <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"Aggiungi contatto"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"tramite <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> tramite <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"interrompi ricerca"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Cancella ricerca"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opzioni di visualizzazione dei contatti"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"Account"</string>
-    <string name="set_default_account" msgid="3865970860434642695">"Usa sempre questa per chiamare"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Chiama con"</string>
 </resources>

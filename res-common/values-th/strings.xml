@@ -60,10 +60,9 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ส่งข้อความเข้าเพจเจอร์ที่ทำงาน"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"ส่งข้อความถึง MMS"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"ใช้แฮงเอาท์วิดีโอ"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ล้างรายชื่อที่ติดต่อบ่อยไหม"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ หรือไม่"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอปพลิเคชัน People และ Phone และบังคับให้แอปพลิเคชันอีเมลเรียนรู้ค่ากำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"กำลังล้างรายชื่อที่ติดต่อบ่อย…"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"กำลังล้างผู้ที่คุณติดต่อด้วยบ่อยๆ…"</string>
     <string name="status_available" msgid="4832569677396634846">"พร้อมใช้งาน"</string>
     <string name="status_away" msgid="6267905184545881094">"ไม่อยู่"</string>
     <string name="status_busy" msgid="7111912905211403545">"ไม่ว่าง"</string>
@@ -91,28 +90,28 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ชื่อ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ชื่อเล่น"</string>
     <string name="full_name" msgid="885420216812981202">"ชื่อ"</string>
-    <string name="name_given" msgid="4153709115654909377">"ชื่อ"</string>
-    <string name="name_family" msgid="5317387657540738981">"นามสกุล"</string>
+    <string name="name_given" msgid="1560204576305608571">"ชื่อ"</string>
+    <string name="name_family" msgid="1267097554034721002">"นามสกุล"</string>
     <string name="name_prefix" msgid="8219879405071462309">"คำนำหน้าชื่อ"</string>
     <string name="name_middle" msgid="3951610314424632183">"ชื่อกลาง"</string>
     <string name="name_suffix" msgid="5436984808550075931">"คำต่อท้ายชื่อ"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"คำอ่านชื่อ"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"การออกเสียงชื่อ"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"ชื่อแบบออกเสียง"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"ชื่อแบบออกเสียง"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ชื่อกลางแบบออกเสียง"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"การออกเสียงนามสกุล"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"นามสกุลแบบออกเสียง"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"โทรศัพท์"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"อีเมล"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"ที่อยู่"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"องค์กร"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"ความเกี่ยวข้อง"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"วันพิเศษ"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"วันที่พิเศษ"</string>
     <string name="sms" msgid="8086289395154598654">"ข้อความ"</string>
     <string name="postal_address" msgid="7692926530081579786">"ที่อยู่"</string>
     <string name="ghostData_company" msgid="22470841482615409">"บริษัท"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"ชื่อ"</string>
     <string name="label_notes" msgid="3997277594846722699">"หมายเหตุ"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"โทรทางอินเทอร์เน็ต"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"เว็บไซต์"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"กลุ่ม"</string>
     <string name="email_home" msgid="2230967805906450693">"ส่งไปที่อีเมลส่วนตัว"</string>
@@ -141,7 +140,7 @@
     <string name="chat_icq" msgid="7538190395602030726">"แชทโดยใช้ ICQ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"แชทโดยใช้ Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"แชท"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"ลบ"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"นำออก"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"ขยายหรือยุบฟิลด์ชื่อ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"รายชื่อติดต่อทั้งหมด"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"ที่ติดดาว"</string>
@@ -161,8 +160,6 @@
     <string name="listSingleContact" msgid="8525131203887307088">"รายชื่อติดต่อเดียว"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"สร้างรายชื่อภายในบัญชี"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"นำเข้าจากซิมการ์ด"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"นำเข้าจากซิม <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"นำเข้าจากซิม <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"นำเข้าจากที่เก็บข้อมูล"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"ยกเลิกการนำเข้า <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"ยกเลิกการส่งออก <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
@@ -206,6 +203,7 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"คำขอส่งออก vCard ถูกปฏิเสธ ลองใหม่ภายหลัง"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"รายชื่อติดต่อ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"กำลังแคช vCard ไปยังที่จัดเก็บข้อมูลชั่วคราวในตัวเครื่อง การนำเข้าจริงจะเริ่มต้นในอีกสักครู่"</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"ไม่สามารถนำเข้า vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ไม่พบไฟล์ vCard ในที่จัดเก็บข้อมูล"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"ไม่พบไฟล์ vCard บนการ์ด SD"</string>
@@ -222,12 +220,6 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"ไม่สามารถสแกนการ์ด SD (สาเหตุ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"กำลังนำเข้า <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ส่งออกไปยังที่เก็บข้อมูล"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"จัดเรียงตาม"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ชื่อ"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"นามสกุล"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"รูปแบบชื่อ"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ชื่อขึ้นก่อน"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"นามสกุลขึ้นก่อน"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"แชร์รายชื่อติดต่อที่มองเห็น"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"นำเข้า/ส่งออกรายชื่อติดต่อ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"นำเข้ารายชื่อติดต่อ"</string>
@@ -242,16 +234,15 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ไม่มีรายชื่อติดต่อที่แสดงไว้"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ไม่มีรายการโปรด"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"ไม่มีรายชื่อติดต่อใน <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"ล้างรายชื่อที่ติดต่อบ่อย"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"เลือกซิมการ์ด"</string>
     <string name="menu_accounts" msgid="795417468541517082">"บัญชี"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"นำเข้า/ส่งออก"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"ส่งข้อความให้ <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"หมายเลขโทรศัพท์ของ <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"เพิ่มที่อยู่ติดต่อ"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"ผ่านทาง <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> ผ่านทาง <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"หยุดการค้นหา"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"ล้างการค้นหา"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"ตัวเลือกการแสดงรายชื่อผู้ติดต่อ"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"บัญชี"</string>
-    <string name="set_default_account" msgid="3865970860434642695">"ใช้ในการโทรทุกครั้ง"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"โทรด้วย"</string>
 </resources>

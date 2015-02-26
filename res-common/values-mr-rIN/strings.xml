@@ -60,7 +60,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"कार्य पेजरवर मजकूर पाठवा"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> मजकूर पाठवा"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS वर मजकूर पाठवा"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"व्‍हिडिओ कॉल करा"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"वारंवार सपर्क साधलेले साफ करायचे?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"आपण लोक आणि फोन अ‍ॅप्‍स मधील वारंवार संपर्क साधलेली सूची साफ कराल आणि ईमेल अ‍ॅप्‍सना सुरवातीपासून आपली पत्ता प्राधान्‍ये जाणून घेण्‍याची सक्ती कराल."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"वारंवार सपर्क साधलेले साफ करीत आहे..."</string>
@@ -91,15 +90,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"नाव"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"टोपणनाव"</string>
     <string name="full_name" msgid="885420216812981202">"नाव"</string>
-    <string name="name_given" msgid="4153709115654909377">"नाव"</string>
-    <string name="name_family" msgid="5317387657540738981">"आडनाव"</string>
+    <string name="name_given" msgid="1560204576305608571">"दिलेले नाव"</string>
+    <string name="name_family" msgid="1267097554034721002">"कुटुंब नाव"</string>
     <string name="name_prefix" msgid="8219879405071462309">"नाव प्रत्यय"</string>
     <string name="name_middle" msgid="3951610314424632183">"मधले नाव"</string>
     <string name="name_suffix" msgid="5436984808550075931">"नाव प्रत्यय"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"ध्वन्यात्मक नाव"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"ध्वन्यात्मक नाव"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"ध्वन्यात्मक दिलेले नाव"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ध्वन्यात्मक मधले नाव"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ध्वन्यात्मक आडनाव"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"ध्वन्यात्मक कुटुंब नाव"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"फोन"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ईमेल"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"पत्ता"</string>
@@ -112,7 +111,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"कंपनी"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"शीर्षक"</string>
     <string name="label_notes" msgid="3997277594846722699">"टिपा"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"इंटरनेट कॉल"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"वेबसाइट"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"गट"</string>
     <string name="email_home" msgid="2230967805906450693">"निवासस्‍थानी ईमेल करा"</string>
@@ -161,8 +160,6 @@
     <string name="listSingleContact" msgid="8525131203887307088">"एकल संपर्क"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"खात्याअंतर्गत संपर्क तयार करा"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"सिमकार्डवरुन आयात करा"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM वरून आयात करा"</string>
-    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM वरून आयात करा"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"संचयनावरुन आयात करा"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> चे आयात रद्द करायचे?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> चे निर्यात रद्द करायचे?"</string>
@@ -206,6 +203,7 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard निर्यात विनंती नाकारली. नंतर पुन्हा प्रयत्न करा."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"संपर्क"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"स्‍थानिक तात्‍पुरत्‍या संचयनावर vCard(s) कॅशे करीत आहे. वास्‍तविक आयात लवकरच प्रारंभ होईल."</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCard आयात करू शकलो नाही."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"संचयनामध्ये कोणतीही vCard फाईल आढळली नाही."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD कार्डवर कोणतीही vCard फाईल आढळली नाही."</string>
@@ -222,12 +220,6 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD कार्ड स्कॅन होऊ शकले नाही. (कारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"आयात करत आहे <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"संचयनावर निर्यात करा"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"नुसार क्रमवारी लावा"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"नाव"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"आडनाव"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"नाव स्वरूपन"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाव प्रथम"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"आडनाव प्रथम"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दृश्यमान संपर्क सामायिक करा"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्क आयात/निर्यात करा"</string>
     <string name="dialog_import" msgid="5177004290082451296">"संपर्क आयात करा"</string>
@@ -246,12 +238,11 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"सिम कार्ड निवडा"</string>
     <string name="menu_accounts" msgid="795417468541517082">"खाती"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"आयात/निर्यात"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> ना संदेश पाठवा"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g> वर फोन डायल करा"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"संपर्क जोडा"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> द्वारे"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> द्वारे <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"शोध थांबवा"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"शोध साफ करा"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"संपर्क प्रदर्शन पर्याय"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"खाते"</string>
-    <string name="set_default_account" msgid="3865970860434642695">"कॉलसाठी हे नेहमी वापरा"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"यासह कॉल करा"</string>
 </resources>

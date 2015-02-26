@@ -60,7 +60,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"కార్యాలయ పేజర్‌కు వచనం పంపండి"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSకు వచనం పంపండి"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"వీడియో కాల్ చేయి"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేయాలా?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"మీరు వ్యక్తులు మరియు ఫోన్ అనువర్తనాల్లో తరచుగా సంప్రదించినవారి జాబితాను క్లియర్ చేస్తారు మరియు స్క్రాచ్ నుండి మీ చిరునామా ప్రాధాన్యతలను తెలుసుకునేలా ఇమెయిల్ అనువర్తనాలను నిర్బంధిస్తారు."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేస్తోంది…"</string>
@@ -91,17 +90,17 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"పేరు"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"మారుపేరు"</string>
     <string name="full_name" msgid="885420216812981202">"పేరు"</string>
-    <string name="name_given" msgid="4153709115654909377">"మొదటి పేరు"</string>
-    <string name="name_family" msgid="5317387657540738981">"చివరి పేరు"</string>
+    <string name="name_given" msgid="1560204576305608571">"పెట్టిన పేరు"</string>
+    <string name="name_family" msgid="1267097554034721002">"కుటుంబం పేరు"</string>
     <string name="name_prefix" msgid="8219879405071462309">"పేరు ఆదిప్రత్యయం"</string>
     <string name="name_middle" msgid="3951610314424632183">"మధ్య పేరు"</string>
     <string name="name_suffix" msgid="5436984808550075931">"పేరు అంత్యప్రత్యయం"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"ఫోనెటిక్ పేరు"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"ఫొనెటిక్ మొదటి పేరు"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"ఫోనెటిక్ పెట్టిన పేరు"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ఫోనెటిక్ మధ్య పేరు"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ఫొనెటిక్ చివరి పేరు"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"ఫోనెటిక్ కుటుంబం పేరు"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ఫోన్"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"ఇమెయిల్"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"ఇమెయిల్ చేయండి"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"చిరునామా"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"సంస్థ"</string>
@@ -112,7 +111,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"కంపెనీ"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"శీర్షిక"</string>
     <string name="label_notes" msgid="3997277594846722699">"గమనికలు"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"ఇంటర్నెట్ కాల్"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"వెబ్‌సైట్"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"సమూహాలు"</string>
     <string name="email_home" msgid="2230967805906450693">"ఇంటికి ఇమెయిల్ చేయండి"</string>
@@ -160,9 +159,7 @@
     <string name="listCustomView" msgid="1915154113477432033">"అనుకూల వీక్షణలో పరిచయాలు"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"ఒక పరిచయం"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"ఖాతాలో పరిచయాన్ని సృష్టించండి"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"సిమ్ కార్డు నుండి దిగుమతి చేయండి"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM నుండి దిగుమతి చేయండి"</string>
-    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM నుండి దిగుమతి చేయండి"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"SIM కార్డు నుండి దిగుమతి చేయండి"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"నిల్వ నుండి దిగుమతి చేయండి"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క దిగుమతిని రద్దు చేయాలా?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క ఎగుమతిని రద్దు చేయాలా?"</string>
@@ -206,6 +203,7 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard ఎగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"పరిచయం"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ల)ను స్థానిక తాత్కాలిక నిల్వకు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCardని దిగుమతి చేయడం సాధ్యపడలేదు."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"నిల్వలో vCard ఫైల్ ఏదీ కనుగొనబడలేదు."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD కార్డులో vCard ఫైల్ ఏదీ కనుగొనబడలేదు."</string>
@@ -221,14 +219,8 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"నిల్వను స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD కార్డును స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"నిల్వకు ఎగుమతి చేయండి"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ఇలా క్రమబద్ధీకరించు"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"మొదటి పేరు"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"చివరి పేరు"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"పేరు ఆకృతి"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ముందుగా మొదటి పేరు"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ముందుగా చివరి పేరు"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయండి"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"నిల్వకు ఎగుమతి చేయి"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయి"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"పరిచయాలను దిగుమతి/ఎగుమతి చేయండి"</string>
     <string name="dialog_import" msgid="5177004290082451296">"పరిచయాలను దిగుమతి చేయండి"</string>
     <string name="share_error" msgid="665756457151793108">"ఈ పరిచయాన్ని భాగస్వామ్యం చేయడం సాధ్యపడదు."</string>
@@ -243,15 +235,14 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ఇష్టమైనవి లేవు."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>లో పరిచయాలు లేవు"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"తరచుగా ఉన్నవాటిని క్లియర్ చేయి"</string>
-    <string name="menu_select_sim" msgid="7814841439832447299">"సిమ్ కార్డును ఎంచుకోండి"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"SIM కార్డును ఎంచుకోండి"</string>
     <string name="menu_accounts" msgid="795417468541517082">"ఖాతాలు"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"దిగుమతి చేయి/ఎగుమతి చేయి"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g>కు సందేశం పంపు"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"ఫోన్ <xliff:g id="NAME">%1$s</xliff:g>కు డయల్ చేయండి"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"పరిచయాన్ని జోడించు"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> ద్వారా <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"శోధించడం ఆపివేయి"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"శోధనను క్లియర్ చేయండి"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"పరిచయ ప్రదర్శన ఎంపికలు"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"ఖాతా"</string>
-    <string name="set_default_account" msgid="3865970860434642695">"కాల్‌ల కోసం ఎల్లప్పుడూ దీన్ని ఉపయోగించు"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"దీనితో కాల్ చేయండి"</string>
 </resources>

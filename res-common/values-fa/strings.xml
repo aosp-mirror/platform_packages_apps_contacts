@@ -60,7 +60,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ارسال پیامک به پیجر محل کار"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ارسال پیامک به <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"‏ارسال پیامک به MMS"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"برقراری تماس ویدیویی"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"لیست تماس مکرر پاک شود؟"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"با این کار شما در برنامه‌های «افراد» و «تلفن»، لیست افرادی را که با آن‌ها بیشترین تماس داشته‌اید پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"در حال پاک کردن لیست تماس مکرر…"</string>
@@ -91,15 +90,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"نام"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"نام مستعار"</string>
     <string name="full_name" msgid="885420216812981202">"نام"</string>
-    <string name="name_given" msgid="4153709115654909377">"نام"</string>
-    <string name="name_family" msgid="5317387657540738981">"نام خانوادگی"</string>
+    <string name="name_given" msgid="1560204576305608571">"نام"</string>
+    <string name="name_family" msgid="1267097554034721002">"نام خانوادگی"</string>
     <string name="name_prefix" msgid="8219879405071462309">"پیشوند نام"</string>
     <string name="name_middle" msgid="3951610314424632183">"نام میانی"</string>
     <string name="name_suffix" msgid="5436984808550075931">"پسوند نام"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"تلفظ نام"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"تلفظ نام"</string>
+    <string name="name_phonetic_given" msgid="993707744185923412">"تلفظ نام"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"تلفظ نام میانی"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"تلفظ نام خانوادگی"</string>
+    <string name="name_phonetic_family" msgid="8617732497578358951">"تلفظ نام خانوادگی"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"تلفن"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ایمیل"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"آدرس"</string>
@@ -112,7 +111,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"شرکت"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"عنوان"</string>
     <string name="label_notes" msgid="3997277594846722699">"یادداشت‌ها"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="label_sip_address" msgid="5849843867753601973">"تماس اینترنتی"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"وب سایت"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"گروه‌ها"</string>
     <string name="email_home" msgid="2230967805906450693">"ایمیل به منزل"</string>
@@ -161,8 +160,6 @@
     <string name="listSingleContact" msgid="8525131203887307088">"مخاطب تکی"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"ایجاد مخاطبین تحت حساب"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"وارد کردن از سیم کارت"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"وارد کردن از سیم‌کارت <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"وارد کردن از سیم کارت <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"وارد کردن از حافظه"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"وارد کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"صادر کردن به <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
@@ -206,6 +203,7 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"درخواست صدور کارت ویزیت رد شد. لطفاً بعداً امتحان کنید."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"مخاطب"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"در حال ذخیره کارت‌(های) ویزیت در حافظه موقت محلی است. وارد کردن واقعی به زودی آغاز خواهد شد."</string>
+    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"وارد کردن کارت ویزیت انجام نشد."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"هیچ فایل کارت ویزیتی در حافظه یافت نشد."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏هیچ فایل کارت ویزیتی در کارت SD یافت نشد."</string>
@@ -222,12 +220,6 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏کارت SD نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"وارد کردن <xliff:g id="CURRENT_NUMBER">%s</xliff:g><xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"صادر کردن به حافظه"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"مرتب‌سازی بر اساس"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"نام"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"نام خانوادگی"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"قالب نام"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ابتدا نام"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ابتدا نام خانوادگی"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"اشتراک‌گذاری مخاطبین قابل مشاهده"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"وارد کردن/صادر کردن مخاطبین"</string>
     <string name="dialog_import" msgid="5177004290082451296">"وارد کردن مخاطبین"</string>
@@ -240,18 +232,17 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"موارد دلخواه"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"مخاطبی موجود نیست."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"مخاطب قابل مشاهده‌ای موجود نیست."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"هیچ مورد دلخواهی وجود ندارد."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"برگزیده‌ای نیست."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"هیچ مخاطبی در <xliff:g id="NAME">%s</xliff:g> موجود نیست"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"پاک کردن موارد مکرر"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"انتخاب سیم‌کارت"</string>
     <string name="menu_accounts" msgid="795417468541517082">"حساب‌ها"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"وارد کردن/صادر کردن"</string>
+    <string name="description_send_message" msgid="2630211225573754774">"ارسال پیام به <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="7315580540586351853">"شماره‌گیری شماره <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_add_contact" msgid="2715346041773367686">"افزودن مخاطب"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"از طریق <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> از طریق <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"توقف جستجو"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"پاک کردن جستجو"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"گزینه‌های نمایش تماس"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"حساب"</string>
-    <string name="set_default_account" msgid="3865970860434642695">"همیشه این سیم برای تماس‌ استفاده شود"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"تماس با"</string>
 </resources>
