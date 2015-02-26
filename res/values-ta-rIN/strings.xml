@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"தொடர்புகள்"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"தொடர்புகள்"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"தொடர்புகள்"</string>
     <string name="contactsList" msgid="8661624236494819731">"தொடர்புகள்"</string>
     <string name="shortcutContact" msgid="749243779392912958">"தொடர்பு"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"நேரடி டயல்"</string>
@@ -24,7 +25,9 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"தொடர்பின் குறுக்குவழியைத் தேர்வுசெய்தல்"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"அழைப்பதற்கான எண்ணைத் தேர்வுசெய்யவும்"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"செய்தி அனுப்ப எண்ணைத் தேர்வுசெய்க"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"தொடர்பில் சேர்"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"தொடர்பைத் தேர்வுசெய்யவும்"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"புதிய தொடர்பை உருவாக்கவும்"</string>
     <string name="starredList" msgid="4817256136413959463">"நட்சத்திரமிட்டது"</string>
     <string name="frequentList" msgid="7154768136473953056">"அடிக்கடி"</string>
     <string name="strequentList" msgid="5640192862059373511">"பிடித்தவை"</string>
@@ -39,6 +42,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"தொடர்பைக் காட்டு"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"பிடித்தவற்றில் சேர்"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"பிடித்தவற்றிலிருந்து அகற்று"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"விருப்பங்களிலிருந்து அகற்றப்பட்டது"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"விருப்பங்களில் சேர்க்கப்பட்டது"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"திருத்து"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"நீக்கு"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"முகப்புத் திரையில் அமை"</string>
@@ -115,8 +120,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"உங்கள் தொடர்புகளின் பெயர்கள்"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"இந்தச் செயலைச் செய்வதற்கான பயன்பாடு எதுவுமில்லை."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"முந்தைய திரைக்குச் செல்ல கிளிக் செய்க"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ஃபோன் எண்ணைச் சேர்க்கவும்"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"மின்னஞ்சலைச் சேர்க்கவும்"</string>
     <string name="missing_app" msgid="1466111003546611387">"இந்தச் செயலைச் செய்ய பயன்பாடு எதுவுமில்லை."</string>
     <string name="menu_share" msgid="943789700636542260">"பகிர்"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"தொடர்புகளில் சேர்"</string>
     <string name="share_via" msgid="563121028023030093">"இதன் வழியாக தொடர்பைப் பகிர்"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"கணக்கின் கீழ் குழுவை உருவாக்கவும்"</string>
     <string name="audio_chat" msgid="2535716629358298691">"குரல் அரட்டை"</string>
@@ -128,16 +136,8 @@
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> தொடர்பு"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="use_photo_as_primary" msgid="8807110122951157246">"இந்தப் படத்தைப் பயன்படுத்து"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"இந்தப் பயன்பாட்டிலிருந்து திருத்த முடியாது."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"இந்தத் தொடர்புக்குக் கூடுதல் தகவல் இல்லை."</string>
     <string name="group_read_only" msgid="1061762906115697637">"இந்தச் சாதனத்தில் திருத்தக்கூடியதல்ல."</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"பட்டியலை இதன்படி அமை"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"வழங்கப்படும் பெயர்"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"குடும்பப் பெயர்"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"தொடர்பு பெயர்களைக் காட்டு"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"முதலில் வழங்கப்படும் பெயர்"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"முதலில் குடும்பப் பெயர்"</string>
     <string name="take_photo" msgid="7496128293167402354">"படமெடு"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"புதிய படத்தை எடு"</string>
     <string name="pick_photo" msgid="2129509985223564942">"படத்தைத் தேர்வுசெய்யவும்"</string>
@@ -152,11 +152,12 @@
     <string name="menu_display_all" msgid="8887488642609786198">"அனைத்தையும் காட்டு"</string>
     <string name="menu_select_all" msgid="621719255150713545">"எல்லாவற்றையும் தேர்ந்தெடு"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"எல்லாவற்றையும் தேர்வுநீக்கு"</string>
-    <string name="add_field" msgid="2384260056674995230">"வேறொரு கலத்தைச் சேர்"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"புதியதைச் சேர்"</string>
     <string name="add_organization" msgid="7311893231158291197">"நிறுவனத்தைச் சேர்"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"தேதி"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"குழு பெயர்"</string>
+    <string name="change_photo" msgid="8530597935483526383">"மாற்று"</string>
+    <string name="primary_photo" msgid="8517942231868516999">"முதன்மை படம்"</string>
     <string name="description_star" msgid="2605854427360036550">"பிடித்தது"</string>
     <string name="edit_contact" msgid="7529281274005689512">"தொடர்பைத் திருத்து"</string>
   <plurals name="merge_info">
@@ -169,8 +170,8 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"எனது தொடர்புகளில் சேர்"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"கோப்பகம் <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"தனிப்பயன்"</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"அமைப்புகள்"</string>
-    <string name="menu_settings" msgid="377929915873428211">"அமைப்புகள்"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"அமைப்பு"</string>
+    <string name="menu_settings" msgid="377929915873428211">"அமைப்பு"</string>
     <string name="menu_help" msgid="5123887102216637725">"உதவி"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"திரை விருப்பங்கள்"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
@@ -216,22 +217,21 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"Google கணக்குடன் தொடர்புகள் அம்சம் சிறந்த முறையில் வேலை செய்கிறது.\n\n• எந்த இணைய உலாவியிலிருந்தும் அணுகலாம்.\n• தொடர்புகளைப் பாதுகாப்பாகக் காப்புப்பிரதி எடுக்கலாம்."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"மொபைலை தொலைத்தாலும் தொடர்புகளைப் பாதுகாப்புடன் வைத்திருக்கலாம்: ஆன்லைன் சேவையுடன் ஒத்திசைக்கவும்."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"கணக்கைச் சேர்"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"புதிய தொடர்பைக் காப்புப் பிரதியெடுக்க முடியாது. தொடர்புகளை ஆன்லைனில் காப்புப் பிரதியெடுக்கும் கணக்கைச் சேர்க்கவா?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"புதிய தொடர்பை நகலெடுக்க முடியாது. தொடர்புகளை ஆன்லைனில் சேமிக்க, கணக்கைச் சேர்க்க விரும்புகிறீர்களா?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"புதிய தொடர்பு <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> உடன் ஒத்திசைக்கப்படும்."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"புதிய தொடர்பை பின்வரும் கணக்குகள் ஒன்றுடன் ஒத்திசைக்கலாம். எதைப் பயன்படுத்த விரும்புகிறீர்கள்?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"புதிய தொடர்பைச் சேர்"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"தொடர்பை மாற்று"</string>
-    <string name="keep_local" msgid="1258761699192993322">"அகத்திலேயே சேமி"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"தொடர்பைத் திருத்து"</string>
+    <string name="keep_local" msgid="1258761699192993322">"ஃபோனில் சேமி"</string>
     <string name="add_account" msgid="8201790677994503186">"கணக்கைச் சேர்"</string>
     <string name="add_new_account" msgid="5748627740680940264">"புதிய கணக்கைச் சேர்"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"தரவுத்தள கோப்புகளை ஏற்றுமதி செய்"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"படம். மாற்றுவதற்குத் தேர்ந்தெடுக்கவும்"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"புதிய தொடர்பைச் சேர்"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"மேலும் காட்டு"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"குறைவாகக் காட்டு"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"எல்லாம் காட்டு"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"தொடர்பு"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"சமீபத்தியவை"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"அறிமுகம்"</string>
     <string name="send_message" msgid="8938418965550543196">"செய்தி அனுப்பு"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"தனிப்பட்ட நகலை உருவாக்குகிறது..."</string>
     <string name="yesterday" msgid="6840858548955018569">"நேற்று"</string>
@@ -249,11 +249,19 @@
     <string name="header_website_entry" msgid="1411467850000824745">"இணையதளம்"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"நிகழ்வு"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"உறவு"</string>
+    <string name="header_account_entry" msgid="2684318506427891827">"கணக்கு"</string>
+    <string name="header_name_entry" msgid="1592791008096288306">"பெயர்"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"மின்னஞ்சல்"</string>
+    <string name="header_phone_entry" msgid="8450980572274173570">"ஃபோன்"</string>
+    <string name="header_photo_entry" msgid="4438023151411853238">"படம்"</string>
+    <string name="content_description_expand_editor" msgid="1111381475901897470">"தொடர்பு திருத்தியை விரிக்க, கிளிக் செய்க."</string>
+    <string name="content_description_collapse_editor" msgid="7598061318022977825">"தொடர்பு திருத்தியைச் சுருக்க, கிளிக் செய்க."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"இடத்தை நோக்கிய திசைகள்"</string>
-    <string name="content_description_recent_sms" msgid="6268563442222149676">"சமீபத்திய sms. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. பதிலளிக்க, கிளிக் செய்யவும்"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"சமீபத்திய sms. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. பதிலளிக்க, கிளிக் செய்க"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"உள்வரும் அழைப்பு"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"வெளிச்செல்லும் அழைப்பு"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"தவறிய அழைப்பு"</string>
-    <string name="content_description_recent_call" msgid="6204048362763219585">"சமீபத்திய அழைப்பு. <xliff:g id="CALL_DETAILS">%s</xliff:g>. திரும்ப அழைக்க, கிளிக் செய்யவும்"</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"சமீபத்திய அழைப்பு. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. திரும்ப அழைக்க, கிளிக் செய்க"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"நீங்கள்: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"பிறரின் Hangouts அடையாளத்தை மின்னஞ்சல் அல்லது ஃபோன் புலத்தில் உள்ளிடும் போது, Hangouts இன்னும் சிறப்பாகச் செயல்படும்."</string>
 </resources>

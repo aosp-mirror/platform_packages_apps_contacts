@@ -16,7 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1190841469952343354">"Oxhumana nabo"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"Oxhumana nabo"</string>
+    <string name="launcherActivityLabel" msgid="6497230399032392417">"Oxhumana nabo"</string>
     <string name="contactsList" msgid="8661624236494819731">"Othi tana nabo"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Othintana naye"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Ukudayela okuqondile"</string>
@@ -24,7 +25,9 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Khetha isinqamuleli sothintana naye"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Khetha inombolo ozoyishayela"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Khetha inombolo kumyalezo"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Faka koxhumana nabo"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Khetha oxhumana naye"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Dala othintana naye omusha"</string>
     <string name="starredList" msgid="4817256136413959463">"Okunenkanyezi"</string>
     <string name="frequentList" msgid="7154768136473953056">"Okuvamile"</string>
     <string name="strequentList" msgid="5640192862059373511">"Izintandokazi"</string>
@@ -39,6 +42,8 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Buka othintana naye"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Engeza ezintandokazini"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Susa ezintandokazini"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Kukhishiwe kusuka kuzintandokazi"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Kungezwe ezintandokazini"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Hlela"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Susa"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Indawo esikrinini sekhaya"</string>
@@ -115,8 +120,11 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Amagama othintana nabo"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Ayikho uhlelo lokusebenza etholakele ukubhekana nalengxenye."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Chofoza ukuze ubuyele kusikrini sangaphambilini"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Engeza inombolo yefoni"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Engeza i-imeyili"</string>
     <string name="missing_app" msgid="1466111003546611387">"Alukho uhlelo lokusebenza olutholakalele ukuphatha lesi senzo."</string>
     <string name="menu_share" msgid="943789700636542260">"Yabelana"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Engeza koxhumana nabo"</string>
     <string name="share_via" msgid="563121028023030093">"Abelana nothintana naye nge"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Yenza isigcawu ngaphansi kwe-akhawunti"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Ingxoxo yezw"</string>
@@ -128,16 +136,8 @@
     <string name="account_type_format" msgid="718948015590343010">"Othintana naye nge-<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="use_photo_as_primary" msgid="8807110122951157246">"Sebenzisa lesi sithombe"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Ayihleleki kulensiza"</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Alukho ulwazi olwengeziwe lwalona othintana naye"</string>
     <string name="group_read_only" msgid="1061762906115697637">"Ayihleleki kuledivayisi"</string>
-    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Hlunga uhlu nge"</string>
-    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Igama elinikeziwe"</string>
-    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Igama lomkhaya"</string>
-    <string name="display_options_view_names_as" msgid="4386932036180428374">"Buka amagama woxhumana nabo"</string>
-    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Igama elinikeziwe kuqala"</string>
-    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Igama lomkhaya kuqala"</string>
     <string name="take_photo" msgid="7496128293167402354">"Thatha isithombe"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Thatha isithombe esisha"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Khetha isithombe"</string>
@@ -152,11 +152,12 @@
     <string name="menu_display_all" msgid="8887488642609786198">"Bonisa konke"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Khetha konke"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Ungakhethi konke"</string>
-    <string name="add_field" msgid="2384260056674995230">"Yengeza enye inkambu"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Faka okusha"</string>
     <string name="add_organization" msgid="7311893231158291197">"Ngeza inhlangano"</string>
-    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Usuku"</string>
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Idethi"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Igama leqembu"</string>
+    <string name="change_photo" msgid="8530597935483526383">"Guqula"</string>
+    <string name="primary_photo" msgid="8517942231868516999">"Isithombe esiyinhloko"</string>
     <string name="description_star" msgid="2605854427360036550">"intandokazi"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Hlela othintana naye"</string>
   <plurals name="merge_info">
@@ -225,13 +226,12 @@
     <string name="add_account" msgid="8201790677994503186">"Engeza i-akhawunti"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Yengeza i-akhawunti enthsha"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Khipha amafayela emininingo egciniwe"</string>
-    <string name="contact_detail_picture_description" msgid="6083230522651287030">"Isithombe. Khetha ukuze ushintshe"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"engeza oxhumana naye omusha"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Buka okuningi"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Buka okuncane"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Buka konke"</string>
-    <string name="communication_card_title" msgid="7842656156852232185">"Oxhumana naye"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Okwakamuva"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Mayelana"</string>
     <string name="send_message" msgid="8938418965550543196">"Thumela umlayezo"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Idala ikhophi yomuntu siqu..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Izolo"</string>
@@ -249,11 +249,19 @@
     <string name="header_website_entry" msgid="1411467850000824745">"Iwebhusayithi"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Umcimbi"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Ubudlelwano"</string>
+    <string name="header_account_entry" msgid="2684318506427891827">"I-Akhawunti"</string>
+    <string name="header_name_entry" msgid="1592791008096288306">"Igama"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"I-imeyili"</string>
+    <string name="header_phone_entry" msgid="8450980572274173570">"Ifoni"</string>
+    <string name="header_photo_entry" msgid="4438023151411853238">"Isithombe"</string>
+    <string name="content_description_expand_editor" msgid="1111381475901897470">"Chofoza ukuze unwebe isihleli soxhumana naye."</string>
+    <string name="content_description_collapse_editor" msgid="7598061318022977825">"Chofoza ukuze ugoqe isihleli soxhumana naye."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"izikhombisi-ndlela eziya endaweni"</string>
-    <string name="content_description_recent_sms" msgid="6268563442222149676">"i-sms yakamuva. <xliff:g id="MESSAGE_DETAILS">%s</xliff:g>. chofoza ukuze uphendule"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"i-sms yakamuva. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. chofoza ukuze uphendule"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"angenayo"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"aphumayo"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"akuphuthele"</string>
-    <string name="content_description_recent_call" msgid="6204048362763219585">"ikholi yakamuva. <xliff:g id="CALL_DETAILS">%s</xliff:g>. chofoza ukuze uphinde ushayele"</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"ikholi yakamuva. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. chofoza ukuze uphinde ushaye"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Wena: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"I-Hangouts isebenza kangcono uma ufaka isikhombi somuntu se-Hangouts kunkambu ye-imeyili noma kunkambu yefoni."</string>
 </resources>
