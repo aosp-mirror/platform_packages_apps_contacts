@@ -211,6 +211,7 @@ public class QuickContactActivity extends ContactsActivity {
     private Uri mLookupUri;
     private String[] mExcludeMimes;
     private int mExtraMode;
+    private String mExtraPrioritizedMimeType;
     private int mStatusBarColor;
     private boolean mHasAlreadyBeenOpened;
     private boolean mOnlyOnePhoneNumber;
@@ -589,16 +590,31 @@ public class QuickContactActivity extends ContactsActivity {
 
     /**
      * Sorts among different mimetypes based off:
-     * 1. Times used
-     * 2. Last time used
-     * 3. Statically defined
+     * 1. Whether one of the mimetypes is the prioritized mimetype
+     * 2. Number of times used
+     * 3. Last time used
+     * 4. Statically defined
      */
     private final Comparator<List<DataItem>> mAmongstMimeTypeDataItemComparator =
             new Comparator<List<DataItem>> () {
         @Override
         public int compare(List<DataItem> lhsList, List<DataItem> rhsList) {
-            DataItem lhs = lhsList.get(0);
-            DataItem rhs = rhsList.get(0);
+            final DataItem lhs = lhsList.get(0);
+            final DataItem rhs = rhsList.get(0);
+            final String lhsMimeType = lhs.getMimeType();
+            final String rhsMimeType = rhs.getMimeType();
+
+            // 1. Whether one of the mimetypes is the prioritized mimetype
+            if (!TextUtils.isEmpty(mExtraPrioritizedMimeType) && !lhsMimeType.equals(rhsMimeType)) {
+                if (rhsMimeType.equals(mExtraPrioritizedMimeType)) {
+                    return 1;
+                }
+                if (lhsMimeType.equals(mExtraPrioritizedMimeType)) {
+                    return -1;
+                }
+            }
+
+            // 2. Number of times used
             final int lhsTimesUsed = lhs.getTimesUsed() == null ? 0 : lhs.getTimesUsed();
             final int rhsTimesUsed = rhs.getTimesUsed() == null ? 0 : rhs.getTimesUsed();
             final int timesUsedDifference = rhsTimesUsed - lhsTimesUsed;
@@ -606,6 +622,7 @@ public class QuickContactActivity extends ContactsActivity {
                 return timesUsedDifference;
             }
 
+            // 3. Last time used
             final long lhsLastTimeUsed =
                     lhs.getLastTimeUsed() == null ? 0 : lhs.getLastTimeUsed();
             final long rhsLastTimeUsed =
@@ -617,14 +634,14 @@ public class QuickContactActivity extends ContactsActivity {
                 return -1;
             }
 
-            // Times used and last time used are the same. Resort to statically defined.
-            final String lhsMimeType = lhs.getMimeType();
-            final String rhsMimeType = rhs.getMimeType();
-            for (String mimeType : LEADING_MIMETYPES) {
-                if (lhsMimeType.equals(mimeType)) {
-                    return -1;
-                } else if (rhsMimeType.equals(mimeType)) {
-                    return 1;
+            // 4. Resort to a statically defined mimetype order.
+            if (!lhsMimeType.equals(rhsMimeType)) {
+                for (String mimeType : LEADING_MIMETYPES) {
+                    if (lhsMimeType.equals(mimeType)) {
+                        return -1;
+                    } else if (rhsMimeType.equals(mimeType)) {
+                        return 1;
+                    }
                 }
             }
             return 0;
@@ -807,8 +824,8 @@ public class QuickContactActivity extends ContactsActivity {
             lookupUri = RawContacts.getContactLookupUri(getContentResolver(),
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
         }
-        mExtraMode = getIntent().getIntExtra(QuickContact.EXTRA_MODE,
-                QuickContact.MODE_LARGE);
+        mExtraMode = getIntent().getIntExtra(QuickContact.EXTRA_MODE, QuickContact.MODE_LARGE);
+        mExtraPrioritizedMimeType = getIntent().getStringExtra(QuickContact.EXTRA_PRIORITIZED_MIMETYPE);
         final Uri oldLookupUri = mLookupUri;
 
         if (lookupUri == null) {
@@ -1035,12 +1052,17 @@ public class QuickContactActivity extends ContactsActivity {
         final String customAboutCardName = cp2DataCardModel.customAboutCardName;
 
         if (contactCardEntries.size() > 0) {
+            final boolean firstEntriesArePrioritizedMimeType =
+                    !TextUtils.isEmpty(mExtraPrioritizedMimeType) &&
+                    mCachedCp2DataCardModel.dataItemsMap.containsKey(mExtraPrioritizedMimeType) &&
+                    mCachedCp2DataCardModel.dataItemsMap.get(mExtraPrioritizedMimeType).size() != 0;
             mContactCard.initialize(contactCardEntries,
                     /* numInitialVisibleEntries = */ MIN_NUM_CONTACT_ENTRIES_SHOWN,
                     /* isExpanded = */ mContactCard.isExpanded(),
                     /* isAlwaysExpanded = */ false,
                     mExpandingEntryCardViewListener,
-                    mScroller);
+                    mScroller,
+                    firstEntriesArePrioritizedMimeType);
             mContactCard.setVisibility(View.VISIBLE);
         } else {
             mContactCard.setVisibility(View.GONE);
