@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ポケベル（勤務先）にSMS"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>にSMS"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSにSMS"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"ビデオハングアウト"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"よく使う連絡先を消去しますか？"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"連絡帳アプリや電話アプリのよく使う連絡先リストを消去し、メールアプリがアドレス設定を初めから保存していくようにします。"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"よく使う連絡先を消去しています…"</string>
@@ -90,15 +91,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"名前"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ニックネーム"</string>
     <string name="full_name" msgid="885420216812981202">"名前"</string>
-    <string name="name_given" msgid="1560204576305608571">"名"</string>
-    <string name="name_family" msgid="1267097554034721002">"姓"</string>
+    <string name="name_given" msgid="4153709115654909377">"名"</string>
+    <string name="name_family" msgid="5317387657540738981">"姓"</string>
     <string name="name_prefix" msgid="8219879405071462309">"敬称（名前の前）"</string>
     <string name="name_middle" msgid="3951610314424632183">"ミドルネーム"</string>
     <string name="name_suffix" msgid="5436984808550075931">"敬称（名前の後）"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"よみがな"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"名のよみがな"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"フリガナ（名）"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ミドルネームのよみがな"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"姓のよみがな"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"フリガナ（姓）"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"電話"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"メール"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"住所"</string>
@@ -111,7 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"会社"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"役職"</string>
     <string name="label_notes" msgid="3997277594846722699">"メモ"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"インターネット通話"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"ウェブサイト"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"グループ"</string>
     <string name="email_home" msgid="2230967805906450693">"自宅にメール"</string>
@@ -160,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"単独の連絡先"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"アカウントに連絡先を作成"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIMカードからインポート"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM（<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>）からインポート"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM（<xliff:g id="SIM_NAME">%1$s</xliff:g>）からインポート"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ストレージからインポート"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g>のインポートをキャンセルしますか？"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートをキャンセルしますか？"</string>
@@ -203,7 +206,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCardのエクスポートリクエストは拒否されました。しばらくしてからもう一度お試しください。"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"連絡先"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCardをローカル一時ストレージにキャッシュしています。まもなくインポート処理を開始します。"</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCardをインポートできませんでした。"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ストレージ内にvCardファイルが見つかりません。"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SDカードにvCardファイルが見つかりません。"</string>
@@ -220,6 +222,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SDカードをスキャンできませんでした（理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」）。"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>件をインポート中: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ストレージにエクスポート"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"並べ替え"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"名"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"姓"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"名前の形式"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"名が先"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"姓が先"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"表示可能な連絡先を共有"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"連絡先のインポート/エクスポート"</string>
     <string name="dialog_import" msgid="5177004290082451296">"連絡先のインポート"</string>
@@ -238,11 +246,12 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"SIMカードを選択"</string>
     <string name="menu_accounts" msgid="795417468541517082">"アカウント"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"インポート/エクスポート"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g>さんにメッセージを送信"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g>さんの電話"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"連絡先を追加"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"更新元: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>、更新元: <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"検索を停止"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"検索をクリア"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"連絡先表示オプション"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"アカウント"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"このSIMを常に通話に使用する"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"発信用の端末アカウントを選択してください"</string>
 </resources>

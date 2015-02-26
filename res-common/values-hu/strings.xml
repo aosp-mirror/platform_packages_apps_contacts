@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"SMS küldése munkahelyi csipogóra"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"SMS küldése ide: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"SMS küldése MMS-ben szereplő számra"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Videohívás kezdeményezése"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Törli a gyakran keresetteket?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Törölni fogja a gyakran keresett személyek listáját a Személyek és a Telefon alkalmazásokban, és arra kényszeríti az e-mail alkalmazásokat, hogy újra, elölről megtanulják az Ön címzési beállításait."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Gyakran keresettek törlése..."</string>
@@ -90,15 +91,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Név"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Becenév"</string>
     <string name="full_name" msgid="885420216812981202">"Név"</string>
-    <string name="name_given" msgid="1560204576305608571">"Utónév"</string>
-    <string name="name_family" msgid="1267097554034721002">"Vezetéknév"</string>
+    <string name="name_given" msgid="4153709115654909377">"Utónév"</string>
+    <string name="name_family" msgid="5317387657540738981">"Vezetéknév"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Név előtagja"</string>
     <string name="name_middle" msgid="3951610314424632183">"Második utónév"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Név utótagja"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Név fonetikusan"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"Utónév fonetikusan"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Utónév fonetikusan"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Második utónév fonetikusan"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"Vezetéknév fonetikusan"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Vezetéknév fonetikusan"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefonszám"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-mail"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Cím"</string>
@@ -111,7 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Cég"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Cím"</string>
     <string name="label_notes" msgid="3997277594846722699">"Megjegyzések"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"Internetes hívás"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webhely"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Csoportok"</string>
     <string name="email_home" msgid="2230967805906450693">"E-mail küldése haza"</string>
@@ -160,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Egyetlen névjegy"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Névjegy létrehozása a következő fiókban:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importálás a SIM kártyáról"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"Importálás a következő SIM kártyáról: <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importálás a következő SIM kártyáról: <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importálás a tárhelyről"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Megszakítja <xliff:g id="FILENAME">%s</xliff:g> importálását?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Megszakítja <xliff:g id="FILENAME">%s</xliff:g> exportálását?"</string>
@@ -203,7 +206,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"A vCard-exportálási kérelem elutasítva. Próbálja újra később."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"névjegy"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ok) mentése az ideiglenes helyi tárolóba. A tényleges importálás hamarosan megkezdődik."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Nem sikerült a vCard importálása."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Nem található vCard fájl a tárhelyen."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Nem található vCard fájl az SD-kártyán"</string>
@@ -220,6 +222,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Az SD-kártyát nem lehet beolvasni. (Ok: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importálás – <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exportálás a tárhelyre"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Rendezés"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Utónév"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Vezetéknév"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Névformátum"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Utónév elöl"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Vezetéknév elöl"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Látható névjegyek megosztása"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Névjegyek importálása/exportálása"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Névjegyek importálása"</string>
@@ -238,11 +246,12 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM kártya kiválasztása"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Fiókok"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importálás/exportálás"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"Üzenet küldése a következőnek: <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"<xliff:g id="NAME">%1$s</xliff:g> tárcsázása"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"Névjegy hozzáadása"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"itt: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> itt: <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"keresés leállítása"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Keresés törlése"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Névjegy megjelenítési lehetőségei"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Fiók"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Mindig ezt használja hívásokhoz"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Hívás a következővel:"</string>
 </resources>

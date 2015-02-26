@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Trimiteţi un mesaj text către un număr de pager de serviciu"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Trimiteţi un mesaj text către <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Trimiteţi un mesaj text către un număr MMS"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Inițiați un apel video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ștergeţi pers. frecvent contactate?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Veţi şterge lista cu persoanele frecvent contactate din aplicaţiile Persoane şi Telefon şi veţi forţa aplicaţiile de e-mail să reţină preferinţele dvs. pentru adrese de la zero."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Se şterg pers. frecvent contactate…"</string>
@@ -90,15 +91,15 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nume"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Pseudonim"</string>
     <string name="full_name" msgid="885420216812981202">"Nume"</string>
-    <string name="name_given" msgid="1560204576305608571">"Prenume"</string>
-    <string name="name_family" msgid="1267097554034721002">"Nume de familie"</string>
+    <string name="name_given" msgid="4153709115654909377">"Prenume"</string>
+    <string name="name_family" msgid="5317387657540738981">"Nume"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Prefixul numelui"</string>
     <string name="name_middle" msgid="3951610314424632183">"Al doilea prenume"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Sufixul numelui"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nume fonetic"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"Prenume fonetic"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Prenume fonetic"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Al doilea prenume fonetic"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"Nume de familie fonetic"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Nume fonetic"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Adrese de e-mail"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adrese poştale"</string>
@@ -111,7 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Companie"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Titlu"</string>
     <string name="label_notes" msgid="3997277594846722699">"Note"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"Apel prin internet"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Site web"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Grupuri"</string>
     <string name="email_home" msgid="2230967805906450693">"Trimiteţi un e-mail la o adresă de e-mail de domiciliu"</string>
@@ -160,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"O singură persoană de contact"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Creați o persoană de contact în contul"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importați de pe cardul SIM"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"Importați de pe cardul SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importați de pe cardul SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importați din stocare"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Anulați importul fișierului <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Anulați exportul fișierului <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -185,7 +188,7 @@
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nu s-au putut obține informații din baza de date."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Nu există persoane de contact care să poată fi exportate. Dacă aveți persoane de contact pe tabletă, este posibil ca exportul acestora de pe tabletă să fie interzis de unii furnizori de date."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nu există persoane de contact care să poată fi exportate. Dacă aveți persoane de contact pe telefon, este posibil ca exportul acestora de pe telefon să fie interzis de unii furnizori de date."</string>
-    <string name="composer_not_initialized" msgid="6514403866246950877">"Compozitorul vCard nu a pornit în mod corespunzător."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Editorul de vCard nu a pornit în mod corespunzător."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Nu s-a putut exporta"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Datele persoanelor de contact nu au fost exportate.\nMotivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Nu s-a găsit o stocare."</string>
@@ -203,7 +206,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Solicitarea de export a fișierului vCard a fost respinsă. Încercați din nou mai târziu."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"persoană de contact"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Fișierele vCard se stochează în memoria cache într-un spațiu de stocare local temporar. Importul propriu-zis va începe în curând."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g> <xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Nu s-a putut importa fișierul vCard."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Nu s-a găsit niciun fișier vCard în stocare."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Nu s-a găsit niciun fișier vCard pe cardul SD."</string>
@@ -220,6 +222,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Cardul SD nu s-a putut scana. (Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Se importă <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exportați în stocare"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sortați după"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Prenume"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Nume"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Format pentru nume"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Întâi prenumele"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Întâi numele"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Distribuiți persoanele de contact vizibile"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importați/exportați agenda"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importați agenda"</string>
@@ -234,15 +242,16 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Nicio persoană de contact nu este vizibilă."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Nu există preferate."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nicio persoană de contact în <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"Șterg. pers. frecv. contact."</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Ștergeți contacte frecvente"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selectați cardul SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Conturi"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importați/exportați"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"Trimiteți un mesaj la <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"Apelați telefon <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_add_contact" msgid="2715346041773367686">"Adăugați o persoană de contact"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"prin <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> prin <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"nu mai căutați"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Ștergeți căutarea"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opțiuni de afișare pentru persoanele de contact"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Cont"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Utilizați mereu pentru apeluri"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Apelați cu"</string>
 </resources>
