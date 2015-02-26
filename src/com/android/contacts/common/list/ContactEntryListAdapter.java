@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
@@ -722,6 +723,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         QuickContactBadge quickContact = view.getQuickContact();
         quickContact.assignContactUri(
                 getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn));
+        // The Contacts app never uses the QuickContactBadge. Therefore, it is safe to assume
+        // that only Dialer will use this QuickContact badge. This means prioritizing the phone
+        // mimetype here is reasonable.
+        quickContact.setPrioritizedMimeType(Phone.CONTENT_ITEM_TYPE);
 
         if (photoId != 0 || photoUriColumn == -1) {
             getPhotoLoader().loadThumbnail(quickContact, photoId, mDarkTheme, mCircularPhotos,
