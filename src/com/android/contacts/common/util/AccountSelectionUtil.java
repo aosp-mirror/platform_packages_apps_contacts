@@ -184,7 +184,7 @@ public class AccountSelectionUtil {
         }
         importIntent.putExtra("subscription_id", (Integer) subscriptionId);
         importIntent.setClassName("com.android.phone", "com.android.phone.SimContacts");
-        ImplicitIntentsUtil.startActivityOutsideApp(context, importIntent);
+        context.startActivity(importIntent);
     }
 
     public static void doImportFromSdCard(Context context, AccountWithDataSet account) {
