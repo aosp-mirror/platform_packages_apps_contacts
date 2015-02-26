@@ -19,16 +19,15 @@ package com.android.contacts.editor;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
-import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
+import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.detail.PhotoSelectionHandler;
-import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import android.app.Activity;
@@ -38,7 +37,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
@@ -221,28 +219,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         mPhotoRawContactId = editorView.getPhotoRawContactId();
         editorView.setPhotoHandler(mPhotoHandler);
 
-        // Attach the aggregation suggestion engine to the structured name field
-        final StructuredNameEditorView nameEditorView = editorView.getStructuredNameEditorView();
-        if (nameEditorView != null) {
-            nameEditorView.setEditorListener(new EditorListener() {
-                @Override
-                public void onRequest(int request) {
-                    final Activity activity = getActivity();
-                    if (activity == null || activity.isFinishing()) {
-                        return;
-                    }
-                    if (request == EditorListener.FIELD_CHANGED && !mIsUserProfile) {
-                        acquireAggregationSuggestions(activity, nameEditorView.getRawContactId(),
-                                nameEditorView.getValues());
-                    }
-                }
-
-                @Override
-                public void onDeleteRequested(Editor editor) {
-                }
-            });
-        }
-
         // The editor is ready now so make it visible
         editorView.setEnabled(isEnabled());
         editorView.setVisibility(View.VISIBLE);
@@ -395,6 +371,17 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         }
 
         ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
+    }
+
+    @Override
+    public void onNameFieldChanged(long rawContactId, ValuesDelta valuesDelta) {
+        final Activity activity = getActivity();
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
+        if (!mIsUserProfile) {
+            acquireAggregationSuggestions(activity, rawContactId, valuesDelta);
+        }
     }
 
     private CompactRawContactsEditorView getContent() {
