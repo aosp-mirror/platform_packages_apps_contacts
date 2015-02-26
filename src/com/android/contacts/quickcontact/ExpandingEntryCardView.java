@@ -241,12 +241,18 @@ public class ExpandingEntryCardView extends CardView {
     private final ImageView mExpandCollapseArrow;
     private int mThemeColor;
     private ColorFilter mThemeColorFilter;
+    /**
+     * Whether to prioritize the first entry type. If prioritized, we should show at least two
+     * of this entry type.
+     */
+    private boolean mShowFirstEntryTypeTwice;
     private boolean mIsAlwaysExpanded;
     /** The ViewGroup to run the expand/collapse animation on */
     private ViewGroup mAnimationViewGroup;
     private LinearLayout mBadgeContainer;
     private final List<ImageView> mBadges;
     private final List<Integer> mBadgeIds;
+    private final int mDividerLineHeightPixels;
     /**
      * List to hold the separators. This saves us from reconstructing every expand/collapse and
      * provides a smoother animation.
@@ -284,9 +290,18 @@ public class ExpandingEntryCardView extends CardView {
         mExpandCollapseArrow = (ImageView) mExpandCollapseButton.findViewById(R.id.arrow);
         mExpandCollapseButton.setOnClickListener(mExpandCollapseButtonListener);
         mBadgeContainer = (LinearLayout) mExpandCollapseButton.findViewById(R.id.badge_container);
+        mDividerLineHeightPixels = getResources()
+                .getDimensionPixelSize(R.dimen.divider_line_height);
 
         mBadges = new ArrayList<ImageView>();
         mBadgeIds = new ArrayList<Integer>();
+    }
+
+    public void initialize(List<List<Entry>> entries, int numInitialVisibleEntries,
+            boolean isExpanded, boolean isAlwaysExpanded, ExpandingEntryCardViewListener listener,
+            ViewGroup animationViewGroup) {
+        initialize(entries, numInitialVisibleEntries, isExpanded, isAlwaysExpanded,
+                listener, animationViewGroup, /* showFirstEntryTypeTwice = */ false);
     }
 
     /**
@@ -296,7 +311,8 @@ public class ExpandingEntryCardView extends CardView {
      */
     public void initialize(List<List<Entry>> entries, int numInitialVisibleEntries,
             boolean isExpanded, boolean isAlwaysExpanded,
-            ExpandingEntryCardViewListener listener, ViewGroup animationViewGroup) {
+            ExpandingEntryCardViewListener listener, ViewGroup animationViewGroup,
+            boolean showFirstEntryTypeTwice) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         mIsExpanded = isExpanded;
         mIsAlwaysExpanded = isAlwaysExpanded;
@@ -306,6 +322,7 @@ public class ExpandingEntryCardView extends CardView {
         mEntries = entries;
         mNumEntries = 0;
         mAllEntriesInflated = false;
+        mShowFirstEntryTypeTwice = showFirstEntryTypeTwice;
         for (List<Entry> entryList : mEntries) {
             mNumEntries += entryList.size();
             mEntryViews.add(new ArrayList<View>());
@@ -428,8 +445,17 @@ public class ExpandingEntryCardView extends CardView {
                 }
                 viewsToDisplay.add(entryViewList.get(0));
                 numInViewGroup++;
+
+                int indexInEntryViewList = 1;
+                if (mShowFirstEntryTypeTwice && i == 0 && entryViewList.size() > 1) {
+                    viewsToDisplay.add(entryViewList.get(1));
+                    numInViewGroup++;
+                    extraEntries--;
+                    indexInEntryViewList++;
+                }
+
                 // Insert entries in this list to hit mCollapsedEntriesCount.
-                for (int j = 1;
+                for (int j = indexInEntryViewList;
                         j < entryViewList.size() && numInViewGroup < mCollapsedEntriesCount &&
                         extraEntries > 0;
                         j++) {
@@ -466,8 +492,7 @@ public class ExpandingEntryCardView extends CardView {
         separator.setBackgroundColor(res.getColor(
                 R.color.divider_line_color_light));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                res.getDimensionPixelSize(R.dimen.divider_line_height));
+                ViewGroup.LayoutParams.MATCH_PARENT, mDividerLineHeightPixels);
         // The separator is aligned with the text in the entry. This is offset by a default
         // margin. If there is an icon present, the icon's width and margin are added
         int marginStart = res.getDimensionPixelSize(
@@ -521,9 +546,20 @@ public class ExpandingEntryCardView extends CardView {
                 entryViewList.add(createEntryView(layoutInflater, entryList.get(0),
                         /* showIcon = */ View.VISIBLE));
                 numInflated++;
+
+                int indexInEntryViewList = 1;
+                if (mShowFirstEntryTypeTwice && i == 0 && entryList.size() > 1) {
+                    entryViewList.add(createEntryView(layoutInflater, entryList.get(1),
+                        /* showIcon = */ View.INVISIBLE));
+                    numInflated++;
+                    extraEntries--;
+                    indexInEntryViewList++;
+                }
+
                 // Inflate entries in this list to hit mCollapsedEntriesCount.
-                for (int j = 1; j < entryList.size() && numInflated < mCollapsedEntriesCount &&
-                        extraEntries > 0; j++) {
+                for (int j = indexInEntryViewList; j < entryList.size()
+                        && numInflated < mCollapsedEntriesCount
+                        && extraEntries > 0; j++) {
                     entryViewList.add(createEntryView(layoutInflater, entryList.get(j),
                             /* showIcon = */ View.INVISIBLE));
                     numInflated++;
@@ -761,9 +797,14 @@ public class ExpandingEntryCardView extends CardView {
         if (mIsExpanded) {
             mBadgeContainer.removeAllViews();
         } else {
+            int numberOfMimeTypesShown = mCollapsedEntriesCount;
+            if (mShowFirstEntryTypeTwice && mEntries.size() > 0
+                    && mEntries.get(0).size() > 1) {
+                numberOfMimeTypesShown--;
+            }
             // Inflate badges if not yet created
-            if (mBadges.size() < mEntries.size() - mCollapsedEntriesCount) {
-                for (int i = mCollapsedEntriesCount; i < mEntries.size(); i++) {
+            if (mBadges.size() < mEntries.size() - numberOfMimeTypesShown) {
+                for (int i = numberOfMimeTypesShown; i < mEntries.size(); i++) {
                     Drawable badgeDrawable = mEntries.get(i).get(0).getIcon();
                     int badgeResourceId = mEntries.get(i).get(0).getIconResourceId();
                     // Do not add the same badge twice
@@ -875,11 +916,14 @@ public class ExpandingEntryCardView extends CardView {
             public void onAnimationEnd(Animator animation) {
                 // Now that the views have been animated away, actually remove them from the view
                 // hierarchy. Reset their appearance so that they look appropriate when they
-                // get added back later. We know that all views originally used WRAP_CONTENT
-                // since no separators are ever removed during collapse().
+                // get added back later.
                 insertEntriesIntoViewGroup();
                 for (View view : views) {
-                    VIEW_LAYOUT_HEIGHT_PROPERTY.set(view, LayoutParams.WRAP_CONTENT);
+                    if (view instanceof EntryView) {
+                        VIEW_LAYOUT_HEIGHT_PROPERTY.set(view, LayoutParams.WRAP_CONTENT);
+                    } else {
+                        VIEW_LAYOUT_HEIGHT_PROPERTY.set(view, mDividerLineHeightPixels);
+                    }
                     view.animate().cancel();
                     view.setAlpha(1);
                 }
