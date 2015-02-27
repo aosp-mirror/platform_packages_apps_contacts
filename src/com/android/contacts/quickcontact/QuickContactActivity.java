@@ -1538,12 +1538,17 @@ public class QuickContactActivity extends ContactsActivity {
                 iconResourceId = R.drawable.ic_dialer_sip_black_24dp;
             }
         } else if (dataItem instanceof StructuredNameDataItem) {
-            final String givenName = ((StructuredNameDataItem) dataItem).getGivenName();
-            if (!TextUtils.isEmpty(givenName)) {
-                aboutCardName.value = res.getString(R.string.about_card_title) +
-                        " " + givenName;
-            } else {
-                aboutCardName.value = res.getString(R.string.about_card_title);
+            // If the name is already set and this is not the super primary value then leave the
+            // current value. This way we show the super primary value when we are able to.
+            if (dataItem.isSuperPrimary() || aboutCardName.value == null
+                    || aboutCardName.value.isEmpty()) {
+                final String givenName = ((StructuredNameDataItem) dataItem).getGivenName();
+                if (!TextUtils.isEmpty(givenName)) {
+                    aboutCardName.value = res.getString(R.string.about_card_title) +
+                            " " + givenName;
+                } else {
+                    aboutCardName.value = res.getString(R.string.about_card_title);
+                }
             }
         } else {
             // Custom DataItem
