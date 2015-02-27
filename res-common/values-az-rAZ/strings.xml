@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
   ~ Copyright (C) 2012 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -238,5 +238,4 @@
     <string name="menu_accounts" msgid="795417468541517082">"Hesablar"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"İmport/eksport"</string>
     <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> ünvanına mesaj göndərin"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"Yığım telefonu <xliff:g id="NAME">%1$s</xliff:g>"</string>
 </resources>
