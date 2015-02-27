@@ -167,7 +167,10 @@ public class AttachPhotoActivity extends ContactsActivity {
             // we can add the FLAG_GRANT_WRITE_URI_PERMISSION flag to the eventual
             // crop intent for read-only URI's.
             // TODO: With b/10837468 fixed should be able to avoid this copy.
-            ContactPhotoUtils.savePhotoFromUriToUri(this, inputUri, mTempPhotoUri, false);
+            if (!ContactPhotoUtils.savePhotoFromUriToUri(this, inputUri, mTempPhotoUri, false)) {
+                finish();
+                return;
+            }
             toCrop = mTempPhotoUri;
 
             final Intent intent = new Intent("com.android.camera.action.CROP", toCrop);

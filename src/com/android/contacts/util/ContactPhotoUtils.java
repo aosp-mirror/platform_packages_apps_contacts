@@ -148,6 +148,9 @@ public class ContactPhotoUtils {
      */
     public static boolean savePhotoFromUriToUri(Context context, Uri inputUri, Uri outputUri,
             boolean deleteAfterSave) {
+        if (inputUri == null || outputUri == null) {
+            return false;
+        }
         FileOutputStream outputStream = null;
         InputStream inputStream = null;
         try {

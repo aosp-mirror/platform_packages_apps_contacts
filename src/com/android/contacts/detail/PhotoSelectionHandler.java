@@ -161,8 +161,10 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
                     } else {
                         toCrop = mTempPhotoUri;
                         try {
-                            ContactPhotoUtils.savePhotoFromUriToUri(mContext, uri,
-                                    toCrop, false);
+                            if (!ContactPhotoUtils.savePhotoFromUriToUri(mContext, uri,
+                                            toCrop, false)) {
+                                return false;
+                            }
                         } catch (SecurityException e) {
                             Log.d(TAG, "Did not have read-access to uri : " + uri);
                             return false;
