@@ -214,6 +214,13 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         super.setValue(0, name);
     }
 
+    /**
+     * Returns the display name from the underlying ValuesDelta.
+     */
+    public String getDisplayName() {
+        return getValues().getDisplayName();
+    }
+
     @Override
     protected Parcelable onSaveInstanceState() {
         SavedState state = new SavedState(super.onSaveInstanceState());
