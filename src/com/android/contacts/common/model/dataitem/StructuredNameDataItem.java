@@ -95,4 +95,8 @@ public class StructuredNameDataItem extends DataItem {
     public void setPhoneticGivenName(String name) {
         getContentValues().put(StructuredName.PHONETIC_GIVEN_NAME, name);
     }
+
+    public boolean isSuperPrimary() {
+        return getContentValues().getAsBoolean(StructuredName.IS_SUPER_PRIMARY);
+    }
 }
