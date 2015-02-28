@@ -20,6 +20,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -61,11 +62,12 @@ import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.list.MultiSelectContactsListFragment;
+import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
 import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
-import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.list.OnContactBrowserActionListener;
@@ -82,6 +84,7 @@ import com.android.contacts.common.util.Constants;
 import com.android.contacts.util.DialogManager;
 import com.android.contactsbind.HelpUtils;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -124,7 +127,7 @@ public class PeopleActivity extends ContactsActivity implements
     /**
      * Showing a list of Contacts. Also used for showing search results in search mode.
      */
-    private DefaultContactBrowseListFragment mAllFragment;
+    private MultiSelectContactsListFragment mAllFragment;
     private ContactTileListFragment mFavoritesFragment;
 
     /** ViewPager for swipe */
@@ -322,12 +325,12 @@ public class PeopleActivity extends ContactsActivity implements
         // existing.
         mFavoritesFragment = (ContactTileListFragment)
                 fragmentManager.findFragmentByTag(FAVORITE_TAG);
-        mAllFragment = (DefaultContactBrowseListFragment)
+        mAllFragment = (MultiSelectContactsListFragment)
                 fragmentManager.findFragmentByTag(ALL_TAG);
 
         if (mFavoritesFragment == null) {
             mFavoritesFragment = new ContactTileListFragment();
-            mAllFragment = new DefaultContactBrowseListFragment();
+            mAllFragment = new MultiSelectContactsListFragment();
 
             transaction.add(R.id.tab_pager, mFavoritesFragment, FAVORITE_TAG);
             transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
@@ -336,6 +339,7 @@ public class PeopleActivity extends ContactsActivity implements
         mFavoritesFragment.setListener(mFavoritesFragmentListener);
 
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
+        mAllFragment.setCheckBoxListListener(new CheckBoxListListener());
 
         // Hide all fragments for now.  We adjust visibility when we get onSelectedTabChanged()
         // from ActionBarAdapter.
@@ -505,13 +509,16 @@ public class PeopleActivity extends ContactsActivity implements
     @Override
     public void onAction(int action) {
         switch (action) {
+            case ActionBarAdapter.Listener.Action.START_SELECTION_MODE:
+                mAllFragment.displayCheckBoxes(true);
+                // Fall through:
             case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
-                // Tell the fragments that we're in the search mode
+                // Tell the fragments that we're in the search mode or selection mode
                 configureFragments(false /* from request */);
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
                 break;
-            case ActionBarAdapter.Listener.Action.STOP_SEARCH_MODE:
+            case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
                 setQueryTextToFragment("");
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
@@ -551,14 +558,15 @@ public class PeopleActivity extends ContactsActivity implements
     private void updateFragmentsVisibility() {
         int tab = mActionBarAdapter.getCurrentTab();
 
-        if (mActionBarAdapter.isSearchMode()) {
-            mTabPagerAdapter.setSearchMode(true);
+        if (mActionBarAdapter.isSearchMode() || mActionBarAdapter.isSelectionMode()) {
+            mTabPagerAdapter.setTabsHidden(true);
         } else {
-            // No smooth scrolling if quitting from the search mode.
-            final boolean wasSearchMode = mTabPagerAdapter.isSearchMode();
-            mTabPagerAdapter.setSearchMode(false);
+            // No smooth scrolling if quitting from the search/selection mode.
+            final boolean wereTabsHidden = mTabPagerAdapter.areTabsHidden()
+                    || mActionBarAdapter.isSelectionMode();
+            mTabPagerAdapter.setTabsHidden(false);
             if (mTabPager.getCurrentItem() != tab) {
-                mTabPager.setCurrentItem(tab, !wasSearchMode);
+                mTabPager.setCurrentItem(tab, !wereTabsHidden);
             }
         }
         invalidateOptionsMenu();
@@ -601,14 +609,14 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (!mTabPagerAdapter.isSearchMode()) {
+            if (!mTabPagerAdapter.areTabsHidden()) {
                 mViewPagerTabs.onPageScrollStateChanged(state);
             }
         }
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            if (!mTabPagerAdapter.isSearchMode()) {
+            if (!mTabPagerAdapter.areTabsHidden()) {
                 mViewPagerTabs.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
         }
@@ -616,7 +624,7 @@ public class PeopleActivity extends ContactsActivity implements
         @Override
         public void onPageSelected(int position) {
             // Make sure not in the search mode, in which case position != TabState.ordinal().
-            if (!mTabPagerAdapter.isSearchMode()) {
+            if (!mTabPagerAdapter.areTabsHidden()) {
                 mActionBarAdapter.setCurrentTab(position, false);
                 mViewPagerTabs.onPageSelected(position);
                 showEmptyStateForTab(position);
@@ -639,7 +647,7 @@ public class PeopleActivity extends ContactsActivity implements
         private final FragmentManager mFragmentManager;
         private FragmentTransaction mCurTransaction = null;
 
-        private boolean mTabPagerAdapterSearchMode;
+        private boolean mAreTabsHiddenInTabPager;
 
         private Fragment mCurrentPrimaryItem;
 
@@ -647,27 +655,27 @@ public class PeopleActivity extends ContactsActivity implements
             mFragmentManager = getFragmentManager();
         }
 
-        public boolean isSearchMode() {
-            return mTabPagerAdapterSearchMode;
+        public boolean areTabsHidden() {
+            return mAreTabsHiddenInTabPager;
         }
 
-        public void setSearchMode(boolean searchMode) {
-            if (searchMode == mTabPagerAdapterSearchMode) {
+        public void setTabsHidden(boolean hideTabs) {
+            if (hideTabs == mAreTabsHiddenInTabPager) {
                 return;
             }
-            mTabPagerAdapterSearchMode = searchMode;
+            mAreTabsHiddenInTabPager = hideTabs;
             notifyDataSetChanged();
         }
 
         @Override
         public int getCount() {
-            return mTabPagerAdapterSearchMode ? 1 : TabState.COUNT;
+            return mAreTabsHiddenInTabPager ? 1 : TabState.COUNT;
         }
 
         /** Gets called when the number of items changes. */
         @Override
         public int getItemPosition(Object object) {
-            if (mTabPagerAdapterSearchMode) {
+            if (mAreTabsHiddenInTabPager) {
                 if (object == mAllFragment) {
                     return 0; // Only 1 page in search mode
                 }
@@ -688,7 +696,7 @@ public class PeopleActivity extends ContactsActivity implements
 
         private Fragment getFragment(int position) {
             position = getTabPositionForTextDirection(position);
-            if (mTabPagerAdapterSearchMode) {
+            if (mAreTabsHiddenInTabPager) {
                 if (position != 0) {
                     // This has only been observed in monkey tests.
                     // Let's log this issue, but not crash
@@ -919,6 +927,20 @@ public class PeopleActivity extends ContactsActivity implements
         }
     }
 
+    private final class CheckBoxListListener implements OnCheckBoxListActionListener {
+        @Override
+        public void onStartDisplayingCheckBoxes() {
+            mActionBarAdapter.setSelectionMode(true);
+            invalidateOptionsMenu();
+        }
+
+        @Override
+        public void onSelectedContactIdsChanged() {
+            mActionBarAdapter.setSelectionCount(mAllFragment.getSelectedContactIds().size());
+            invalidateOptionsMenu();
+        }
+    }
+
     private class ContactsUnavailableFragmentListener
             implements OnContactsUnavailableActionListener {
         ContactsUnavailableFragmentListener() {}
@@ -1007,8 +1029,9 @@ public class PeopleActivity extends ContactsActivity implements
         final MenuItem clearFrequentsMenu = menu.findItem(R.id.menu_clear_frequents);
         final MenuItem helpMenu = menu.findItem(R.id.menu_help);
 
-        final boolean isSearchMode = mActionBarAdapter.isSearchMode();
-        if (isSearchMode) {
+        final boolean isSearchOrSelectionMode = mActionBarAdapter.isSearchMode()
+                || mActionBarAdapter.isSelectionMode();
+        if (isSearchOrSelectionMode) {
             contactsFilterMenu.setVisible(false);
             clearFrequentsMenu.setVisible(false);
             helpMenu.setVisible(false);
@@ -1025,12 +1048,17 @@ public class PeopleActivity extends ContactsActivity implements
             }
             helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
         }
-        final boolean showMiscOptions = !isSearchMode;
+        final boolean showMiscOptions = !isSearchOrSelectionMode;
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_settings,
                 showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
+
+        final boolean showSelectedContactOptions = mActionBarAdapter.isSelectionMode()
+                && mAllFragment.getSelectedContactIds().size() != 0;
+        makeMenuItemVisible(menu, R.id.menu_share, showSelectedContactOptions);
+        makeMenuItemVisible(menu, R.id.menu_delete, showSelectedContactOptions);
 
         // Debug options need to be visible even in search mode.
         makeMenuItemVisible(menu, R.id.export_database, mEnableDebugMenuOptions);
@@ -1093,6 +1121,9 @@ public class PeopleActivity extends ContactsActivity implements
                 onSearchRequested();
                 return true;
             }
+            case R.id.menu_share:
+                shareSelectedContacts();
+                return true;
             case R.id.menu_import_export: {
                 ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
                         PeopleActivity.class);
@@ -1126,8 +1157,35 @@ public class PeopleActivity extends ContactsActivity implements
 
     @Override
     public boolean onSearchRequested() { // Search key pressed.
-        mActionBarAdapter.setSearchMode(true);
+        if (!mActionBarAdapter.isSelectionMode()) {
+            mActionBarAdapter.setSearchMode(true);
+        }
         return true;
+    }
+
+    /**
+     * Share all contacts that are currently selected in mAllFragment. This method is pretty
+     * inefficient for handling large numbers of contacts. I don't expect this to be a problem.
+     */
+    private void shareSelectedContacts() {
+        final StringBuilder uriListBuilder = new StringBuilder();
+        boolean firstIteration = true;
+        for (Long contactId : mAllFragment.getSelectedContactIds()) {
+            if (!firstIteration)
+                uriListBuilder.append(':');
+            final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+            final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), contactUri);
+            List<String> pathSegments = lookupUri.getPathSegments();
+            uriListBuilder.append(pathSegments.get(pathSegments.size() - 2));
+            firstIteration = false;
+        }
+        final Uri uri = Uri.withAppendedPath(
+                Contacts.CONTENT_MULTI_VCARD_URI,
+                Uri.encode(uriListBuilder.toString()));
+        final Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType(Contacts.CONTENT_VCARD_TYPE);
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
     }
 
     @Override
@@ -1159,34 +1217,22 @@ public class PeopleActivity extends ContactsActivity implements
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO move to the fragment
-        switch (keyCode) {
-//            case KeyEvent.KEYCODE_CALL: {
-//                if (callSelection()) {
-//                    return true;
-//                }
-//                break;
-//            }
 
-            case KeyEvent.KEYCODE_DEL: {
-                if (deleteSelection()) {
-                    return true;
-                }
-                break;
+        // Bring up the search UI if the user starts typing
+        final int unicodeChar = event.getUnicodeChar();
+        if ((unicodeChar != 0)
+                // If COMBINING_ACCENT is set, it's not a unicode character.
+                && ((unicodeChar & KeyCharacterMap.COMBINING_ACCENT) == 0)
+                && !Character.isWhitespace(unicodeChar)) {
+            if (mActionBarAdapter.isSelectionMode()) {
+                // Ignore keyboard input when in selection mode.
+                return true;
             }
-            default: {
-                // Bring up the search UI if the user starts typing
-                final int unicodeChar = event.getUnicodeChar();
-                if ((unicodeChar != 0)
-                        // If COMBINING_ACCENT is set, it's not a unicode character.
-                        && ((unicodeChar & KeyCharacterMap.COMBINING_ACCENT) == 0)
-                        && !Character.isWhitespace(unicodeChar)) {
-                    String query = new String(new int[]{ unicodeChar }, 0, 1);
-                    if (!mActionBarAdapter.isSearchMode()) {
-                        mActionBarAdapter.setSearchMode(true);
-                        mActionBarAdapter.setQueryString(query);
-                        return true;
-                    }
-                }
+            String query = new String(new int[]{unicodeChar}, 0, 1);
+            if (!mActionBarAdapter.isSearchMode()) {
+                mActionBarAdapter.setSearchMode(true);
+                mActionBarAdapter.setQueryString(query);
+                return true;
             }
         }
 
@@ -1195,26 +1241,14 @@ public class PeopleActivity extends ContactsActivity implements
 
     @Override
     public void onBackPressed() {
-        if (mActionBarAdapter.isSearchMode()) {
+        if (mActionBarAdapter.isSelectionMode()) {
+            mActionBarAdapter.setSelectionMode(false);
+            mAllFragment.displayCheckBoxes(false);
+        } else if (mActionBarAdapter.isSearchMode()) {
             mActionBarAdapter.setSearchMode(false);
         } else {
             super.onBackPressed();
         }
-    }
-
-    private boolean deleteSelection() {
-        // TODO move to the fragment
-//        if (mActionCode == ContactsRequest.ACTION_DEFAULT) {
-//            final int position = mListView.getSelectedItemPosition();
-//            if (position != ListView.INVALID_POSITION) {
-//                Uri contactUri = getContactUri(position);
-//                if (contactUri != null) {
-//                    doContactDelete(contactUri);
-//                    return true;
-//                }
-//            }
-//        }
-        return false;
     }
 
     @Override

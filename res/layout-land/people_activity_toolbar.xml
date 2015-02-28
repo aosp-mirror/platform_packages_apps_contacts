@@ -25,11 +25,18 @@
     android:elevation="@dimen/tab_elevation"
     android:layout_height="wrap_content" >
 
-    <Toolbar
+    <FrameLayout
+        android:id="@+id/toolbar_frame"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/actionbar_background_color"
-        android:id="@+id/toolbar"
-        style="@style/ContactsToolbarStyle" />
+        android:background="@color/actionbar_background_color">
+
+        <Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:id="@+id/toolbar"
+            style="@style/ContactsToolbarStyle" />
+
+    </FrameLayout>
 
 </LinearLayout>
