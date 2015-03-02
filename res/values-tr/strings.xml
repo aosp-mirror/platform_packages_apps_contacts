@@ -38,7 +38,7 @@
     <string name="insertGroupDescription" msgid="5658512271662210139">"Grup oluştur"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Hakkında"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Güncellemlr"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Kişileri ara"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Kişilerde ara"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Kişiyi görüntüle"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Sık kullanılanlara ekle"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Sık kullanılanlardan kaldır"</string>
@@ -46,8 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Favorilere eklendi"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Düzenle"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Sil"</string>
-    <!-- no translation found for menu_change_photo (7769177631511496210) -->
-    <skip />
+    <string name="menu_change_photo" msgid="7769177631511496210">"Fotoğrafı değiştir"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Ana ekrana yerleştir"</string>
     <string name="menu_call" msgid="3992595586042260618">"Çağrı yap"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Kısa mesaj gönder"</string>
@@ -66,7 +65,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tüm kişiler"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kişiler birleştirildi"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Zil sesi ayarla"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Sesli mesaja gelen tüm çağrlr"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Tüm çağrıları sesli mesaja"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Kişileri salt okunur hesaplardan silemezsiniz, ancak bu kişileri kişiler listenizde gizleyebilirsiniz."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Bu kişi birden fazla hesaptan bilgiler içeriyor. Salt okunur hesaplardaki bilgiler silinmez, kişiler listelerinizde gizlenir."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Bu kişiyi silmek, birden fazla hesaba ait bilgileri de siler."</string>
@@ -127,7 +126,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Bu işlemi gerçekleştirecek uygulama bulunamadı."</string>
     <string name="menu_share" msgid="943789700636542260">"Paylaş"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Kişilere ekle"</string>
-    <string name="share_via" msgid="563121028023030093">"Şunu kullanarak kişi paylaş:"</string>
+    <string name="share_via" msgid="563121028023030093">"Kişiyi şunu kullanarak paylaş:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Grubu şu hesabın altında oluştur:"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Sesli sohbet"</string>
     <string name="video_chat" msgid="1872255818640336072">"Görüntülü sohbet"</string>

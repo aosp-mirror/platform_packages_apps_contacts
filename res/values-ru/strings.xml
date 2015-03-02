@@ -46,8 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Добавлено в избранное"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Изменить"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Удалить"</string>
-    <!-- no translation found for menu_change_photo (7769177631511496210) -->
-    <skip />
+    <string name="menu_change_photo" msgid="7769177631511496210">"Сменить фото"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Поместить на главный экран"</string>
     <string name="menu_call" msgid="3992595586042260618">"Позвонить"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Отправить SMS/MMS"</string>
@@ -60,7 +59,7 @@
     <string name="splitConfirmation" msgid="740190210499587175">"Этот контакт будет разделен."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Объединить"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Объединить контакты"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Выберите контакт, который хотите объединить с \"<xliff:g id="NAME">%s</xliff:g>\":"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Выберите контакт, который нужно объединить с \"<xliff:g id="NAME">%s</xliff:g>\":"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показать все контакты"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Предлагаемые контакты"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Все контакты"</string>
@@ -214,7 +213,7 @@
       <item quantity="many">В группе <xliff:g id="COUNT_1">%1$d</xliff:g> человек</item>
       <item quantity="other">В группе <xliff:g id="COUNT_1">%1$d</xliff:g> человек</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Укажите имя контакта, который хотите объединить."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Укажите имя контакта, который нужно объединить."</string>
     <string name="copy_text" msgid="3257145021583508761">"Копировать в буфер обмена"</string>
     <string name="set_default" msgid="4417505153468300351">"Установить по умолчанию"</string>
     <string name="clear_default" msgid="7193185801596678067">"Удалить настройки по умолчанию"</string>

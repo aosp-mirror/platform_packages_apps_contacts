@@ -46,8 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"मनपर्नेमा थपियो"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"सम्पादन गर्नुहोस्"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"मेट्नुहोस्"</string>
-    <!-- no translation found for menu_change_photo (7769177631511496210) -->
-    <skip />
+    <string name="menu_change_photo" msgid="7769177631511496210">"तस्बिर परिवर्तन गर्नुहोस्"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"होम स्क्रिनमा राख्नुहोस्"</string>
     <string name="menu_call" msgid="3992595586042260618">"सम्पर्कलाई कल गर्नुहोस्"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"पाठ सम्पर्क"</string>

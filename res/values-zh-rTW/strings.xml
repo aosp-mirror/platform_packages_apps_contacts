@@ -46,8 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"已加到我的最愛"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
-    <!-- no translation found for menu_change_photo (7769177631511496210) -->
-    <skip />
+    <string name="menu_change_photo" msgid="7769177631511496210">"更換相片"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"放在主螢幕上"</string>
     <string name="menu_call" msgid="3992595586042260618">"去電聯絡人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>

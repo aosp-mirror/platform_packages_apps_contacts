@@ -46,8 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಲಾಗಿದೆ"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ಸಂಪಾದಿಸು"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ಅಳಿಸು"</string>
-    <!-- no translation found for menu_change_photo (7769177631511496210) -->
-    <skip />
+    <string name="menu_change_photo" msgid="7769177631511496210">"ಫೋಟೋ ಬದಲಾಯಿಸು"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ಮುಖಪುಟ ಪರದೆಯ ಮೇಲೆ ಇರಿಸು"</string>
     <string name="menu_call" msgid="3992595586042260618">"ಕರೆಯ ಸಂಪರ್ಕ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ಪಠ್ಯ ಸಂಪರ್ಕ"</string>

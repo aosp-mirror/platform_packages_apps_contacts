@@ -46,8 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"ఇష్టమైనవికి జోడించబడింది"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"సవరించు"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"తొలగించు"</string>
-    <!-- no translation found for menu_change_photo (7769177631511496210) -->
-    <skip />
+    <string name="menu_change_photo" msgid="7769177631511496210">"ఫోటోను మార్చు"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"హోమ్ స్క్రీన్‌లో ఉంచు"</string>
     <string name="menu_call" msgid="3992595586042260618">"పరిచయానికి కాల్ చేయి"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"పరిచయానికి వచనం పంపు"</string>
