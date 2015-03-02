@@ -92,9 +92,14 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     public void displayCheckBoxes(boolean displayCheckBoxes) {
         getAdapter().setDisplayCheckBoxes(displayCheckBoxes);
         if (!displayCheckBoxes) {
-            getAdapter().setSelectedContactIds(new TreeSet<Long>());
+            clearCheckBoxes();
         }
     }
+
+    public void clearCheckBoxes() {
+        getAdapter().setSelectedContactIds(new TreeSet<Long>());
+    }
+
     @Override
     protected boolean onItemLongClick(int position, long id) {
         final MultiSelectEntryContactListAdapter adapter = getAdapter();

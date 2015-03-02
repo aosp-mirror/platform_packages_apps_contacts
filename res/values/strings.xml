@@ -180,6 +180,15 @@
     <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. -->
     <string name="readOnlyContactDeleteConfirmation">This contact contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
 
+    <!-- Confirmation dialog. Shown after user selects to delete writable contacts. [CHAR LIMIT=NONE]  -->
+    <string name="batch_delete_confirmation">The selected contacts will be deleted.</string>
+
+    <!-- Confirmation dialog. Shown after user selects to delete readonly contacts. [CHAR LIMIT=NONE]  -->
+    <string name="batch_delete_read_only_contact_confirmation">Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
+
+    <!-- Confirmation dialog. Shown after user selects to delete contacts from multiple accounts. [CHAR LIMIT=NONE]  -->
+    <string name="batch_delete_multiple_accounts_confirmation">These contacts contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
+
     <!-- Warning dialog contents after users selects to delete a contact with multiple Writable sources. -->
     <string name="multipleContactDeleteConfirmation">Deleting this contact will delete information from multiple accounts.</string>
 

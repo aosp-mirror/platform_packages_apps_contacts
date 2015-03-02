@@ -99,7 +99,9 @@ public class ContactSaveService extends IntentService {
 
     public static final String ACTION_SET_STARRED = "setStarred";
     public static final String ACTION_DELETE_CONTACT = "delete";
+    public static final String ACTION_DELETE_MULTIPLE_CONTACTS = "deleteMultipleContacts";
     public static final String EXTRA_CONTACT_URI = "contactUri";
+    public static final String EXTRA_CONTACT_IDS = "contactIds";
     public static final String EXTRA_STARRED_FLAG = "starred";
 
     public static final String ACTION_SET_SUPER_PRIMARY = "setSuperPrimary";
@@ -203,6 +205,8 @@ public class ContactSaveService extends IntentService {
             setSuperPrimary(intent);
         } else if (ACTION_CLEAR_PRIMARY.equals(action)) {
             clearPrimary(intent);
+        } else if (ACTION_DELETE_MULTIPLE_CONTACTS.equals(action)) {
+            deleteMultipleContacts(intent);
         } else if (ACTION_DELETE_CONTACT.equals(action)) {
             deleteContact(intent);
         } else if (ACTION_JOIN_CONTACTS.equals(action)) {
@@ -945,6 +949,17 @@ public class ContactSaveService extends IntentService {
         return serviceIntent;
     }
 
+    /**
+     * Creates an intent that can be sent to this service to delete multiple contacts.
+     */
+    public static Intent createDeleteMultipleContactsIntent(Context context,
+            long[] contactIds) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_DELETE_MULTIPLE_CONTACTS);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_IDS, contactIds);
+        return serviceIntent;
+    }
+
     private void deleteContact(Intent intent) {
         Uri contactUri = intent.getParcelableExtra(EXTRA_CONTACT_URI);
         if (contactUri == null) {
@@ -953,6 +968,19 @@ public class ContactSaveService extends IntentService {
         }
 
         getContentResolver().delete(contactUri, null, null);
+    }
+
+    private void deleteMultipleContacts(Intent intent) {
+        final long[] contactIds = intent.getLongArrayExtra(EXTRA_CONTACT_IDS);
+        if (contactIds == null) {
+            Log.e(TAG, "Invalid arguments for deleteMultipleContacts request");
+            return;
+        }
+        for (long contactId : contactIds) {
+            final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+            getContentResolver().delete(contactUri, null, null);
+        }
+
     }
 
     /**

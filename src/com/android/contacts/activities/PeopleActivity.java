@@ -62,6 +62,8 @@ import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.interactions.ContactMultiDeletionInteraction;
+import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
 import com.android.contacts.list.ContactTileListFragment;
@@ -97,7 +99,8 @@ public class PeopleActivity extends ContactsActivity implements
         ActionBarAdapter.Listener,
         DialogManager.DialogShowingViewActivity,
         ContactListFilterController.ContactListFilterListener,
-        ProviderStatusListener {
+        ProviderStatusListener,
+        MultiContactDeleteListener {
 
     private static final String TAG = "PeopleActivity";
 
@@ -568,6 +571,9 @@ public class PeopleActivity extends ContactsActivity implements
             if (mTabPager.getCurrentItem() != tab) {
                 mTabPager.setCurrentItem(tab, !wereTabsHidden);
             }
+        }
+        if (!mActionBarAdapter.isSelectionMode()) {
+            mAllFragment.displayCheckBoxes(false);
         }
         invalidateOptionsMenu();
         showEmptyStateForTab(tab);
@@ -1124,6 +1130,9 @@ public class PeopleActivity extends ContactsActivity implements
             case R.id.menu_share:
                 shareSelectedContacts();
                 return true;
+            case R.id.menu_delete:
+                deleteSelectedContacts();
+                return true;
             case R.id.menu_import_export: {
                 ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
                         PeopleActivity.class);
@@ -1186,6 +1195,16 @@ public class PeopleActivity extends ContactsActivity implements
         intent.setType(Contacts.CONTENT_VCARD_TYPE);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
+    }
+
+    private void deleteSelectedContacts() {
+        ContactMultiDeletionInteraction.start(PeopleActivity.this,
+                mAllFragment.getSelectedContactIds());
+    }
+
+    @Override
+    public void onDeletionFinished() {
+        mAllFragment.clearCheckBoxes();
     }
 
     @Override

@@ -192,6 +192,7 @@ public class ActionBarAdapter implements OnCloseListener {
             mSearchMode = request.isSearchMode();
             mQueryString = request.getQueryString();
             mCurrentTab = loadLastTabPreference();
+            mSelectionMode = false;
         } else {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
             mSelectionMode = savedState.getBoolean(EXTRA_KEY_SELECTED_MODE);
