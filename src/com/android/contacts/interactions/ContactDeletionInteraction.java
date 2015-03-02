@@ -32,6 +32,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
+import android.util.Log;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
@@ -48,6 +49,7 @@ import java.util.HashSet;
 public class ContactDeletionInteraction extends Fragment
         implements LoaderCallbacks<Cursor>, OnDismissListener {
 
+    private static final String TAG = "ContactDeletionInteraction";
     private static final String FRAGMENT_TAG = "deleteContact";
 
     private static final String KEY_ACTIVE = "active";
@@ -221,6 +223,11 @@ public class ContactDeletionInteraction extends Fragment
         }
 
         if (!mActive) {
+            return;
+        }
+
+        if (cursor == null || cursor.isClosed()) {
+            Log.e(TAG, "Failed to load contacts");
             return;
         }
 
