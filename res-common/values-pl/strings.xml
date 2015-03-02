@@ -161,7 +161,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakty na koncie <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Kontakty w widoku niestandardowym"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Jeden kontakt"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Utwórz kontakt na koncie"</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Utwórz kontakt na koncie:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importuj z karty SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importuj z karty SIM <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importuj z karty SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -227,7 +227,7 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sortuj według"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Imię"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Nazwisko"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Format imienia i nazwiska lub nazwy"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Format imienia i nazwiska"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Najpierw imię"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Najpierw nazwisko"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Udostępnij widoczne kontakty"</string>

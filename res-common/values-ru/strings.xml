@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"SMS: номер MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Начать видеовстречу"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Очистить список популярных контактов?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Список популярных контактов в приложениях \"Контакты\" и \"Телефон\" будет очищен, и почтовые приложения начнут заносить в него данные заново."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Список популярных контактов в приложениях \"Контакты\" и \"Телефон\" будет очищен, а приложения электронной почты начнут запоминать адреса заново."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Подождите…"</string>
     <string name="status_available" msgid="4832569677396634846">"Доступен"</string>
     <string name="status_away" msgid="6267905184545881094">"Отсутствует"</string>
@@ -98,9 +98,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"Префикс имени"</string>
     <string name="name_middle" msgid="3951610314424632183">"Отчество"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Суффикс имени"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Имя (транскрипция)"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Транскрипция имени"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Транскрипция имени"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Отчество (транскрипция)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Транскрипция отчества"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Транскрипция фамилии"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Эл. почта"</string>
@@ -224,7 +224,7 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Не удалось сканировать SD-карту. <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>..."</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Экспорт на накопитель"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортировать"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортировка"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Имя"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилия"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат имени"</string>

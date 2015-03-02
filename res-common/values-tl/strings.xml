@@ -61,7 +61,7 @@
     <string name="sms_assistant" msgid="2677586547377136683">"I-text sa <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"I-text sa MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Gumawa ng video call"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"I-clear ang mga madalas inuugnayan?"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"I-clear ang madalas na kinontak"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Iki-clear mo ang listahan ng mga madalas na nakakaugnay sa mga app ng Mga Contact at Telepono at pupuwersahin mo ang mga app ng email na matutunan ang iyong mga kagustuhan sa pag-a-address mula sa simula."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Kini-clear madalas na inuugnayan…"</string>
     <string name="status_available" msgid="4832569677396634846">"Available"</string>
