@@ -41,6 +41,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView.SelectionBoundsAdjuster;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
@@ -161,6 +162,7 @@ public class ContactListItemView extends ViewGroup
     private TextView mSnippetView;
     private TextView mStatusView;
     private ImageView mPresenceIcon;
+    private CheckBox mCheckBox;
 
     private ColorStateList mSecondaryTextColor;
 
@@ -201,6 +203,8 @@ public class ContactListItemView extends ViewGroup
     private int mDataViewHeight;
     private int mSnippetTextViewHeight;
     private int mStatusTextViewHeight;
+    private int mCheckBoxHeight;
+    private int mCheckBoxWidth;
 
     // Holds Math.max(mLabelTextViewHeight, mDataViewHeight), assuming Label and Data share the
     // same row.
@@ -323,6 +327,8 @@ public class ContactListItemView extends ViewGroup
         mLabelAndDataViewMaxHeight = 0;
         mSnippetTextViewHeight = 0;
         mStatusTextViewHeight = 0;
+        mCheckBoxWidth = 0;
+        mCheckBoxHeight = 0;
 
         ensurePhotoViewSize();
 
@@ -342,6 +348,15 @@ public class ContactListItemView extends ViewGroup
 
         // Go over all visible text views and measure actual width of each of them.
         // Also calculate their heights to get the total height for this entire view.
+
+        if (isVisible(mCheckBox)) {
+            mCheckBox.measure(
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+            mCheckBoxWidth = mCheckBox.getMeasuredWidth();
+            mCheckBoxHeight = mCheckBox.getMeasuredHeight();
+            effectiveWidth -= mCheckBoxWidth + mGapBetweenImageAndText;
+        }
 
         if (isVisible(mNameTextView)) {
             // Calculate width for name text - this parallels similar measurement in onLayout.
@@ -501,6 +516,21 @@ public class ContactListItemView extends ViewGroup
             mActivatedBackgroundDrawable.setBounds(mBoundsWithoutHeader);
         }
 
+        if (isVisible(mCheckBox)) {
+            final int photoTop = topBound + (bottomBound - topBound - mCheckBoxHeight) / 2;
+            if (mPhotoPosition == PhotoPosition.LEFT) {
+                mCheckBox.layout(rightBound - mCheckBoxWidth,
+                        photoTop,
+                        rightBound,
+                        photoTop + mCheckBoxHeight);
+            } else {
+                mCheckBox.layout(leftBound,
+                        photoTop,
+                        leftBound + mCheckBoxWidth,
+                        photoTop + mCheckBoxHeight);
+            }
+        }
+
         final View photoView = mQuickContact != null ? mQuickContact : mPhotoView;
         if (mPhotoPosition == PhotoPosition.LEFT) {
             // Photo is the left most view. All the other Views should on the right of the photo.
@@ -545,10 +575,19 @@ public class ContactListItemView extends ViewGroup
         // Layout all text view and presence icon
         // Put name TextView first
         if (isVisible(mNameTextView)) {
-            mNameTextView.layout(leftBound,
-                    textTopBound,
-                    rightBound,
-                    textTopBound + mNameTextViewHeight);
+            final int distanceFromEnd = mCheckBoxWidth > 0
+                    ? mCheckBoxWidth + mGapBetweenImageAndText : 0;
+            if (mPhotoPosition == PhotoPosition.LEFT) {
+                mNameTextView.layout(leftBound,
+                        textTopBound,
+                        rightBound - distanceFromEnd,
+                        textTopBound + mNameTextViewHeight);
+            } else {
+                mNameTextView.layout(leftBound + distanceFromEnd,
+                        textTopBound,
+                        rightBound,
+                        textTopBound + mNameTextViewHeight);
+            }
             textTopBound += mNameTextViewHeight;
         }
 
@@ -1014,6 +1053,19 @@ public class ContactListItemView extends ViewGroup
     }
 
     /**
+     * Returns the {@link CheckBox} view, creating it if necessary.
+     */
+    public CheckBox getCheckBox() {
+        if (mCheckBox == null) {
+            mCheckBox = new CheckBox(getContext());
+            // Make non-focusable, so the rest of the ContactListItemView can be clicked.
+            mCheckBox.setFocusable(false);
+            addView(mCheckBox);
+        }
+        return mCheckBox;
+    }
+
+    /**
      * Returns the text view for the data text, creating it if necessary.
      */
     public TextView getDataView() {
@@ -1167,6 +1219,13 @@ public class ContactListItemView extends ViewGroup
                     PhoneNumberUtils.getPhoneTtsSpannable(name.toString()));
         } else {
             mNameTextView.setContentDescription(null);
+        }
+    }
+
+    public void hideCheckBox() {
+        if (mCheckBox != null) {
+            removeView(mCheckBox);
+            mCheckBox = null;
         }
     }
 

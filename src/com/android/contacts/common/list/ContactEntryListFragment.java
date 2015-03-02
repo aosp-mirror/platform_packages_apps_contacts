@@ -42,6 +42,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
@@ -57,7 +58,7 @@ import java.util.Locale;
 public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter>
         extends Fragment
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener,
-                LoaderCallbacks<Cursor> {
+                OnItemLongClickListener, LoaderCallbacks<Cursor> {
     private static final String TAG = "ContactEntryListFragment";
 
     // TODO: Make this protected. This should not be used from the PeopleActivity but
@@ -164,6 +165,15 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      *            views.
      */
     protected abstract void onItemClick(int position, long id);
+
+    /**
+     * @param position Please note that the position is already adjusted for
+     *            header views, so "0" means the first list item below header
+     *            views.
+     */
+    protected boolean onItemLongClick(int position, long id) {
+        return false;
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -723,6 +733,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
 
         mListView.setOnItemClickListener(this);
+        mListView.setOnItemLongClickListener(this);
         mListView.setOnFocusChangeListener(this);
         mListView.setOnTouchListener(this);
         mListView.setFastScrollEnabled(!isSearchMode());
@@ -807,6 +818,16 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (adjPosition >= 0) {
             onItemClick(adjPosition, id);
         }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        int adjPosition = position - mListView.getHeaderViewsCount();
+
+        if (adjPosition >= 0) {
+            return onItemLongClick(adjPosition, id);
+        }
+        return false;
     }
 
     private void hideSoftKeyboard() {
