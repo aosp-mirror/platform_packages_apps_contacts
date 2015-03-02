@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import android.animation.ValueAnimator;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -26,13 +27,17 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.SearchView.OnCloseListener;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.android.contacts.R;
@@ -48,7 +53,8 @@ public class ActionBarAdapter implements OnCloseListener {
         public abstract class Action {
             public static final int CHANGE_SEARCH_QUERY = 0;
             public static final int START_SEARCH_MODE = 1;
-            public static final int STOP_SEARCH_MODE = 2;
+            public static final int START_SELECTION_MODE = 2;
+            public static final int STOP_SEARCH_AND_SELECTION_MODE = 3;
         }
 
         void onAction(int action);
@@ -65,9 +71,11 @@ public class ActionBarAdapter implements OnCloseListener {
     private static final String EXTRA_KEY_SEARCH_MODE = "navBar.searchMode";
     private static final String EXTRA_KEY_QUERY = "navBar.query";
     private static final String EXTRA_KEY_SELECTED_TAB = "navBar.selectedTab";
+    private static final String EXTRA_KEY_SELECTED_MODE = "navBar.selectionMode";
 
     private static final String PERSISTENT_LAST_TAB = "actionBarAdapter.lastTab";
 
+    private boolean mSelectionMode;
     private boolean mSearchMode;
     private String mQueryString;
 
@@ -77,17 +85,23 @@ public class ActionBarAdapter implements OnCloseListener {
     /** The view that represents tabs when we are in landscape mode **/
     private View mLandscapeTabs;
     private View mSearchContainer;
+    private View mSelectionContainer;
 
     private int mMaxPortraitTabHeight;
     private int mMaxToolbarContentInsetStart;
 
-    private final Context mContext;
+    private final Activity mActivity;
     private final SharedPreferences mPrefs;
 
     private Listener mListener;
 
     private final ActionBar mActionBar;
     private final Toolbar mToolbar;
+    /**
+     *  Frame that contains the toolbar and draws the toolbar's background color. This is useful
+     *  for placing things behind the toolbar.
+     */
+    private final FrameLayout mToolBarFrame;
 
     private boolean mShowHomeIcon;
 
@@ -101,20 +115,21 @@ public class ActionBarAdapter implements OnCloseListener {
 
     private int mCurrentTab = TabState.DEFAULT;
 
-    public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar,
+    public ActionBarAdapter(Activity activity, Listener listener, ActionBar actionBar,
             View portraitTabs, View landscapeTabs, Toolbar toolbar) {
-        mContext = context;
+        mActivity = activity;
         mListener = listener;
         mActionBar = actionBar;
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(mActivity);
         mPortraitTabs = portraitTabs;
         mLandscapeTabs = landscapeTabs;
         mToolbar = toolbar;
+        mToolBarFrame = (FrameLayout) mToolbar.getParent();
         mMaxToolbarContentInsetStart = mToolbar.getContentInsetStart();
-        mShowHomeIcon = mContext.getResources().getBoolean(R.bool.show_home_icon);
+        mShowHomeIcon = mActivity.getResources().getBoolean(R.bool.show_home_icon);
 
-        setupSearchView();
-        setupTabs(context);
+        setupSearchAndSelectionViews();
+        setupTabs(mActivity);
     }
 
     private void setupTabs(Context context) {
@@ -124,19 +139,19 @@ public class ActionBarAdapter implements OnCloseListener {
         // Hide tabs initially
         setPortraitTabHeight(0);
     }
-
-    private void setupSearchView() {
+    private void setupSearchAndSelectionViews() {
         final LayoutInflater inflater = (LayoutInflater) mToolbar.getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
+
+        // Setup search bar
         mSearchContainer = inflater.inflate(R.layout.search_bar_expanded, mToolbar,
                 /* attachToRoot = */ false);
         mSearchContainer.setVisibility(View.VISIBLE);
         mToolbar.addView(mSearchContainer);
-
-        mSearchContainer.setBackgroundColor(mContext.getResources().getColor(
+        mSearchContainer.setBackgroundColor(mActivity.getResources().getColor(
                 R.color.searchbox_background_color));
         mSearchView = (EditText) mSearchContainer.findViewById(R.id.search_view);
-        mSearchView.setHint(mContext.getString(R.string.hint_findContacts));
+        mSearchView.setHint(mActivity.getString(R.string.hint_findContacts));
         mSearchView.addTextChangedListener(new SearchTextWatcher());
         mSearchContainer.findViewById(R.id.search_close_button).setOnClickListener(
                 new OnClickListener() {
@@ -154,6 +169,22 @@ public class ActionBarAdapter implements OnCloseListener {
                 }
             }
         });
+
+        // Setup selection bar
+        mSelectionContainer = inflater.inflate(R.layout.selection_bar, mToolbar,
+                /* attachToRoot = */ false);
+        // Insert the selection container into mToolBarFrame behind the Toolbar, so that
+        // the Toolbar's MenuItems can appear on top of the selection container.
+        mToolBarFrame.addView(mSelectionContainer, 0);
+        mSelectionContainer.findViewById(R.id.selection_close).setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mListener != null) {
+                            mListener.onUpButtonPressed();
+                        }
+                    }
+                });
     }
 
     public void initialize(Bundle savedState, ContactsRequest request) {
@@ -163,6 +194,7 @@ public class ActionBarAdapter implements OnCloseListener {
             mCurrentTab = loadLastTabPreference();
         } else {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
+            mSelectionMode = savedState.getBoolean(EXTRA_KEY_SELECTED_MODE);
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
 
             // Just set to the field here.  The listener will be notified by update().
@@ -244,6 +276,13 @@ public class ActionBarAdapter implements OnCloseListener {
         return mSearchMode;
     }
 
+    /**
+     * @return Whether in selection mode, i.e. if the selection view is visible/expanded.
+     */
+    public boolean isSelectionMode() {
+        return mSelectionMode;
+    }
+
     public void setSearchMode(boolean flag) {
         if (mSearchMode != flag) {
             mSearchMode = flag;
@@ -262,6 +301,13 @@ public class ActionBarAdapter implements OnCloseListener {
         } else if (flag) {
             // Everything is already set up. Still make sure the keyboard is up
             if (mSearchView != null) setFocusOnSearchView();
+        }
+    }
+
+    public void setSelectionMode(boolean flag) {
+        if (mSelectionMode != flag) {
+            mSelectionMode = flag;
+            update(false /* skipAnimation */);
         }
     }
 
@@ -288,25 +334,43 @@ public class ActionBarAdapter implements OnCloseListener {
     private void updateDisplayOptionsInner() {
         // All the flags we may change in this method.
         final int MASK = ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME
-                | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_CUSTOM;
+                | ActionBar.DISPLAY_HOME_AS_UP;
 
         // The current flags set to the action bar.  (only the ones that we may change here)
         final int current = mActionBar.getDisplayOptions() & MASK;
 
+        final boolean isSearchOrSelectionMode = mSearchMode || mSelectionMode;
+
         // Build the new flags...
         int newFlags = 0;
-        if (mShowHomeIcon && !mSearchMode) {
+        if (mShowHomeIcon && !isSearchOrSelectionMode) {
             newFlags |= ActionBar.DISPLAY_SHOW_HOME;
         }
         if (mSearchMode) {
-            newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
+            // The search container is placed inside the toolbar. So we need to disable the
+            // Toolbar's content inset in order to allow the search container to be the width of
+            // the window.
             mToolbar.setContentInsetsRelative(0, mToolbar.getContentInsetEnd());
-        } else {
+        }
+        if (!isSearchOrSelectionMode) {
             newFlags |= ActionBar.DISPLAY_SHOW_TITLE;
             mToolbar.setContentInsetsRelative(mMaxToolbarContentInsetStart,
                     mToolbar.getContentInsetEnd());
         }
 
+        if (mSelectionMode) {
+            // Minimize the horizontal width of the Toolbar since the selection container is placed
+            // behind the toolbar and its left hand side needs to be clickable.
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mToolbar.getLayoutParams();
+            params.width = LayoutParams.WRAP_CONTENT;
+            params.gravity = Gravity.END;
+            mToolbar.setLayoutParams(params);
+        } else {
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mToolbar.getLayoutParams();
+            params.width = LayoutParams.MATCH_PARENT;
+            params.gravity = Gravity.END;
+            mToolbar.setLayoutParams(params);
+        }
 
         if (current != newFlags) {
             // Pass the mask here to preserve other flags that we're not interested here.
@@ -315,43 +379,105 @@ public class ActionBarAdapter implements OnCloseListener {
     }
 
     private void update(boolean skipAnimation) {
-        final boolean isIconifiedChanging
+        updateStatusBarColor();
+
+        final boolean isSelectionModeChanging
+                = (mSelectionContainer.getParent() == null) == mSelectionMode;
+        final boolean isSearchModeChanging
                 = (mSearchContainer.getParent() == null) == mSearchMode;
-        if (isIconifiedChanging && !skipAnimation) {
+        final boolean isTabHeightChanging = isSearchModeChanging || isSelectionModeChanging;
+
+        // When skipAnimation=true, it is possible that we will switch from search mode
+        // to selection mode directly. So we need to remove the undesired container in addition
+        // to adding the desired container.
+        if (skipAnimation) {
+            if (isTabHeightChanging) {
+                mToolbar.removeView(mLandscapeTabs);
+                if (mSearchMode) {
+                    setPortraitTabHeight(0);
+                    mToolBarFrame.removeView(mSelectionContainer);
+                    addSearchContainer();
+                } else if (mSelectionMode) {
+                    setPortraitTabHeight(0);
+                    mToolbar.removeView(mSearchContainer);
+                    addSelectionContainer();
+                } else {
+                    setPortraitTabHeight(mMaxPortraitTabHeight);
+                    mToolbar.removeView(mSearchContainer);
+                    mToolBarFrame.removeView(mSelectionContainer);
+                    addLandscapeViewPagerTabs();
+                }
+                updateDisplayOptions(isSearchModeChanging);
+            }
+            return;
+        }
+
+        // Handle a switch to/from selection mode, due to UI interaction.
+        if (isSelectionModeChanging) {
+            mToolbar.removeView(mLandscapeTabs);
+            if (mSelectionMode) {
+                addSelectionContainer();
+                mSelectionContainer.setAlpha(0);
+                mSelectionContainer.animate().alpha(1);
+                animateTabHeightChange(mMaxPortraitTabHeight, 0);
+                updateDisplayOptions(isSearchModeChanging);
+            } else {
+                mSelectionContainer.setAlpha(1);
+                animateTabHeightChange(0, mMaxPortraitTabHeight);
+                mSelectionContainer.animate().alpha(0).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateDisplayOptions(isSearchModeChanging);
+                        addLandscapeViewPagerTabs();
+                        mToolBarFrame.removeView(mSelectionContainer);
+                    }
+                });
+            }
+        }
+
+        // Handle a switch to/from search mode, due to UI interaction.
+        if (isSearchModeChanging) {
             mToolbar.removeView(mLandscapeTabs);
             if (mSearchMode) {
                 addSearchContainer();
                 mSearchContainer.setAlpha(0);
                 mSearchContainer.animate().alpha(1);
                 animateTabHeightChange(mMaxPortraitTabHeight, 0);
-                updateDisplayOptions(isIconifiedChanging);
+                updateDisplayOptions(isSearchModeChanging);
             } else {
                 mSearchContainer.setAlpha(1);
                 animateTabHeightChange(0, mMaxPortraitTabHeight);
                 mSearchContainer.animate().alpha(0).withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        updateDisplayOptionsInner();
-                        updateDisplayOptions(isIconifiedChanging);
+                        updateDisplayOptions(isSearchModeChanging);
                         addLandscapeViewPagerTabs();
                         mToolbar.removeView(mSearchContainer);
                     }
                 });
             }
-            return;
         }
-        if (isIconifiedChanging && skipAnimation) {
-            mToolbar.removeView(mLandscapeTabs);
-            if (mSearchMode) {
-                setPortraitTabHeight(0);
-                addSearchContainer();
-            } else {
-                setPortraitTabHeight(mMaxPortraitTabHeight);
-                mToolbar.removeView(mSearchContainer);
-                addLandscapeViewPagerTabs();
-            }
+    }
+
+    public void setSelectionCount(int selectionCount) {
+        TextView textView = (TextView) mSelectionContainer.findViewById(R.id.selection_count_text);
+        if (selectionCount == 0) {
+            textView.setVisibility(View.GONE);
+        } else {
+            textView.setVisibility(View.VISIBLE);
         }
-        updateDisplayOptions(isIconifiedChanging);
+        textView.setText(String.valueOf(selectionCount));
+    }
+
+    private void updateStatusBarColor() {
+        if (mSelectionMode) {
+            int cabStatusBarColor = mActivity.getResources().getColor(
+                    R.color.contextual_selection_bar_status_bar_color);
+            mActivity.getWindow().setStatusBarColor(cabStatusBarColor);
+        } else {
+            int normalStatusBarColor = mActivity.getColor(R.color.primary_color_dark);
+            mActivity.getWindow().setStatusBarColor(normalStatusBarColor);
+        }
     }
 
     private void addLandscapeViewPagerTabs() {
@@ -366,24 +492,33 @@ public class ActionBarAdapter implements OnCloseListener {
         mToolbar.addView(mSearchContainer);
     }
 
-    private void updateDisplayOptions(boolean isIconifiedChanging) {
+    private void addSelectionContainer() {
+        mToolBarFrame.removeView(mSelectionContainer);
+        mToolBarFrame.addView(mSelectionContainer, 0);
+    }
+
+    private void updateDisplayOptions(boolean isSearchModeChanging) {
         if (mSearchMode) {
             setFocusOnSearchView();
             // Since we have the {@link SearchView} in a custom action bar, we must manually handle
             // expanding the {@link SearchView} when a search is initiated. Note that a side effect
             // of this method is that the {@link SearchView} query text is set to empty string.
-            if (isIconifiedChanging) {
+            if (isSearchModeChanging) {
                 final CharSequence queryText = mSearchView.getText();
                 if (!TextUtils.isEmpty(queryText)) {
                     mSearchView.setText(queryText);
                 }
             }
-            if (mListener != null) {
+        }
+        if (mListener != null) {
+            if (mSearchMode) {
                 mListener.onAction(Action.START_SEARCH_MODE);
             }
-        } else {
-            if (mListener != null) {
-                mListener.onAction(Action.STOP_SEARCH_MODE);
+            if (mSelectionMode) {
+                mListener.onAction(Action.START_SELECTION_MODE);
+            }
+            if (!mSearchMode && !mSelectionMode) {
+                mListener.onAction(Action.STOP_SEARCH_AND_SELECTION_MODE);
                 mListener.onSelectedTabChanged();
             }
         }
@@ -398,6 +533,7 @@ public class ActionBarAdapter implements OnCloseListener {
 
     public void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(EXTRA_KEY_SEARCH_MODE, mSearchMode);
+        outState.putBoolean(EXTRA_KEY_SELECTED_MODE, mSelectionMode);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
         outState.putInt(EXTRA_KEY_SELECTED_TAB, mCurrentTab);
     }
@@ -408,7 +544,7 @@ public class ActionBarAdapter implements OnCloseListener {
     }
 
     private void showInputMethod(View view) {
-        final InputMethodManager imm = (InputMethodManager) mContext.getSystemService(
+        final InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.showSoftInput(view, 0);
