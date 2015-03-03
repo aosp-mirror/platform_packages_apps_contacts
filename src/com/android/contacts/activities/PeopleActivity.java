@@ -426,11 +426,6 @@ public class PeopleActivity extends ContactsActivity implements
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
     protected void onDestroy() {
         mProviderStatusWatcher.removeListener(this);
 
@@ -1211,14 +1206,13 @@ public class PeopleActivity extends ContactsActivity implements
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
     }
-
     private void joinSelectedContacts() {
         JoinContactsDialogFragment.start(this, mAllFragment.getSelectedContactIds());
     }
 
     @Override
     public void onContactsJoined() {
-        mAllFragment.clearCheckBoxes();
+        mActionBarAdapter.setSelectionMode(false);
     }
 
     private void deleteSelectedContacts() {
@@ -1228,7 +1222,7 @@ public class PeopleActivity extends ContactsActivity implements
 
     @Override
     public void onDeletionFinished() {
-        mAllFragment.clearCheckBoxes();
+        mActionBarAdapter.setSelectionMode(false);
     }
 
     @Override
