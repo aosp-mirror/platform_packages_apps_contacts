@@ -310,8 +310,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     @Override
     protected void joinAggregate(final long contactId) {
         final Intent intent = ContactSaveService.createJoinContactsIntent(
-                mContext, mContactIdForJoin, contactId, mContactWritableForJoin,
-                CompactContactEditorActivity.class,
+                mContext, mContactIdForJoin, contactId, CompactContactEditorActivity.class,
                 CompactContactEditorActivity.ACTION_JOIN_COMPLETED);
         mContext.startService(intent);
     }

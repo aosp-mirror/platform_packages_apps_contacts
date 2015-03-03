@@ -64,6 +64,8 @@ import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
+import com.android.contacts.interactions.JoinContactsDialogFragment;
+import com.android.contacts.interactions.JoinContactsDialogFragment.JoinContactsListener;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
 import com.android.contacts.list.ContactTileListFragment;
@@ -100,7 +102,8 @@ public class PeopleActivity extends ContactsActivity implements
         DialogManager.DialogShowingViewActivity,
         ContactListFilterController.ContactListFilterListener,
         ProviderStatusListener,
-        MultiContactDeleteListener {
+        MultiContactDeleteListener,
+        JoinContactsListener {
 
     private static final String TAG = "PeopleActivity";
 
@@ -1065,6 +1068,8 @@ public class PeopleActivity extends ContactsActivity implements
                 && mAllFragment.getSelectedContactIds().size() != 0;
         makeMenuItemVisible(menu, R.id.menu_share, showSelectedContactOptions);
         makeMenuItemVisible(menu, R.id.menu_delete, showSelectedContactOptions);
+        makeMenuItemVisible(menu, R.id.menu_join, showSelectedContactOptions);
+        makeMenuItemEnabled(menu, R.id.menu_join, mAllFragment.getSelectedContactIds().size() > 1);
 
         // Debug options need to be visible even in search mode.
         makeMenuItemVisible(menu, R.id.export_database, mEnableDebugMenuOptions);
@@ -1081,9 +1086,16 @@ public class PeopleActivity extends ContactsActivity implements
     }
 
     private void makeMenuItemVisible(Menu menu, int itemId, boolean visible) {
-        MenuItem item =menu.findItem(itemId);
+        final MenuItem item = menu.findItem(itemId);
         if (item != null) {
             item.setVisible(visible);
+        }
+    }
+
+    private void makeMenuItemEnabled(Menu menu, int itemId, boolean visible) {
+        final MenuItem item = menu.findItem(itemId);
+        if (item != null) {
+            item.setEnabled(visible);
         }
     }
 
@@ -1129,6 +1141,9 @@ public class PeopleActivity extends ContactsActivity implements
             }
             case R.id.menu_share:
                 shareSelectedContacts();
+                return true;
+            case R.id.menu_join:
+                joinSelectedContacts();
                 return true;
             case R.id.menu_delete:
                 deleteSelectedContacts();
@@ -1195,6 +1210,15 @@ public class PeopleActivity extends ContactsActivity implements
         intent.setType(Contacts.CONTENT_VCARD_TYPE);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
+    }
+
+    private void joinSelectedContacts() {
+        JoinContactsDialogFragment.start(this, mAllFragment.getSelectedContactIds());
+    }
+
+    @Override
+    public void onContactsJoined() {
+        mAllFragment.clearCheckBoxes();
     }
 
     private void deleteSelectedContacts() {

@@ -139,7 +139,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     // Join Activity
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
-    private static final String KEY_CONTACT_WRITABLE_FOR_JOIN = "contactwritableforjoin";
 
     protected static final int REQUEST_CODE_JOIN = 0;
     protected static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
@@ -332,7 +331,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     // Join Activity
     protected long mContactIdForJoin;
-    protected boolean mContactWritableForJoin;
 
     //
     // Editor state for {@link ContactEditorView}.
@@ -465,7 +463,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
             // Join Activity
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
-            mContactWritableForJoin = savedState.getBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN);
         }
 
         // mState can still be null because it may not have have finished loading before
@@ -582,7 +579,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // Join Activity
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
-        outState.putBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN, mContactWritableForJoin);
 
         super.onSaveInstanceState(outState);
     }
@@ -1345,7 +1341,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
 
         mContactIdForJoin = ContentUris.parseId(contactLookupUri);
-        mContactWritableForJoin = isContactWritable();
         final Intent intent = new Intent(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
         intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, mContactIdForJoin);
         startActivityForResult(intent, REQUEST_CODE_JOIN);
