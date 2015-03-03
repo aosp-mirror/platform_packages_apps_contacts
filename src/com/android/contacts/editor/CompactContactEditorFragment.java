@@ -134,6 +134,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     private long mPhotoRawContactId;
     private Bundle mUpdatedPhotos = new Bundle();
     private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
+    private boolean mShowToastAfterSave = true;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -289,6 +290,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     @Override
+    protected boolean showToastAfterSave() {
+        return mShowToastAfterSave;
+    }
+
+    @Override
     protected boolean doSaveAction(int saveMode) {
         // Save contact
         final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
@@ -353,7 +359,8 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             // Pass on all the data that has been entered so far
             ArrayList<ContentValues> contentValues = mState.get(0).getContentValues();
             if (contentValues != null && contentValues.size() != 0) {
-                intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, contentValues);
+                intent.putParcelableArrayListExtra(
+                        ContactsContract.Intents.Insert.DATA, contentValues);
             }
             // Name must be passed separately since it is skipped in RawContactModifier.parseValues
             final StructuredNameEditorView structuredNameEditorView =
@@ -366,7 +373,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             }
             getActivity().finish();
         } else {
-            // Whatever is in the form will be saved when the hosting activity is finished
+            // Prevent a Toast from being displayed as we transition to the full editor
+            mShowToastAfterSave = false;
+
+            // Save whatever is in the form
             save(SaveMode.RELOAD);
         }
 

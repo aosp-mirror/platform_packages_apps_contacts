@@ -1273,7 +1273,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             Uri contactLookupUri) {
         if (hadChanges) {
             if (saveSucceeded) {
-                if (saveMode != SaveMode.JOIN) {
+                if (saveMode != SaveMode.JOIN && showToastAfterSave()) {
                     Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
                 }
             } else {
@@ -1324,6 +1324,14 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 }
                 break;
         }
+    }
+
+    /**
+     * Whether to show a Toast message after saves have completed.
+     * Does not affect successful toasts shown after joins, which are never displayed.
+     */
+    protected boolean showToastAfterSave() {
+        return true;
     }
 
     /**
