@@ -163,6 +163,7 @@
         <item name="android:textColor">@color/tab_text_color</item>
         <item name="android:textSize">@dimen/tab_text_size</item>
         <item name="android:fontFamily">@string/tab_font_family</item>
+        <item name="android:elevation">0dp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
