@@ -934,8 +934,10 @@ public class PeopleActivity extends ContactsActivity implements
     private final class CheckBoxListListener implements OnCheckBoxListActionListener {
         @Override
         public void onStartDisplayingCheckBoxes() {
-            mActionBarAdapter.setSelectionMode(true);
-            invalidateOptionsMenu();
+            if (!mActionBarAdapter.isSearchMode()) {
+                mActionBarAdapter.setSelectionMode(true);
+                invalidateOptionsMenu();
+            }
         }
 
         @Override
