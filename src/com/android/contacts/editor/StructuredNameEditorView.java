@@ -196,12 +196,6 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         }
     }
 
-    private static void appendQueryParameter(Uri.Builder builder, String field, String value) {
-        if (!TextUtils.isEmpty(value)) {
-            builder.appendQueryParameter(field, value);
-        }
-    }
-
     /**
      * Set the display name onto the text field directly.  This does not affect the underlying
      * data structure so it is similar to the user typing the value in on the field directly.
@@ -215,10 +209,15 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
     }
 
     /**
-     * Returns the display name from the underlying ValuesDelta.
+     * Returns the display name currently displayed in the editor.
      */
     public String getDisplayName() {
-        return getValues().getDisplayName();
+        final ValuesDelta valuesDelta = getValues();
+        if (hasShortAndLongForms() && areOptionalFieldsVisible()) {
+            return valuesDelta.getDisplayName();
+        }
+        final Map<String, String> structuredNameMap = valuesToStructuredNameMap(valuesDelta);
+        return NameConverter.structuredNameToDisplayName(getContext(), structuredNameMap);
     }
 
     @Override
