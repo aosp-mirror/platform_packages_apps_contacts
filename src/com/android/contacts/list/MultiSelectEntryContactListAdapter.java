@@ -111,10 +111,10 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
     private void bindCheckBox(ContactListItemView view, Cursor cursor, int position) {
         // Disable clicking on the first entry when showing check boxes. We do this by
         // telling the view to handle clicking itself.
-        view.setClickable(position == 0 && mDisplayCheckBoxes);
-        // Only show checkboxes is mDisplayCheckBoxes is enabled. Also, never show the
-        // checkbox for the first entry in the list (the Me profile).
-        if (position == 0 || !mDisplayCheckBoxes) {
+        view.setClickable(position == 0 && hasProfile() && mDisplayCheckBoxes);
+        // Only show checkboxes if mDisplayCheckBoxes is enabled. Also, never show the
+        // checkbox for the Me profile entry.
+        if (position == 0 && hasProfile() || !mDisplayCheckBoxes) {
             view.hideCheckBox();
             return;
         }

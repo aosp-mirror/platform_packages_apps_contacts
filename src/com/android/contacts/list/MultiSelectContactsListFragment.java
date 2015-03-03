@@ -23,6 +23,7 @@ import com.android.contacts.list.MultiSelectEntryContactListAdapter.SelectedCont
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import java.util.TreeSet;
 
@@ -102,9 +103,11 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
             mCheckBoxListListener.onStartDisplayingCheckBoxes();
         }
         final Uri uri = getAdapter().getContactUri(position);
-        if (position > 0 && uri != null) {
+        if (uri != null && (position > 0 || !getAdapter().hasProfile())) {
             final String contactId = uri.getLastPathSegment();
-            getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
+            if (!TextUtils.isEmpty(contactId)) {
+                getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
+            }
         }
         return true;
     }
@@ -117,7 +120,9 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
         }
         if (getAdapter().isDisplayingCheckBoxes()) {
             final String contactId = uri.getLastPathSegment();
-            getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
+            if (!TextUtils.isEmpty(contactId)) {
+                getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
+            }
         } else {
             super.onItemClick(position, id);
         }
