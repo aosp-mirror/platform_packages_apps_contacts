@@ -509,8 +509,8 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     @Override
     protected void joinAggregate(final long contactId) {
         final Intent intent = ContactSaveService.createJoinContactsIntent(
-                mContext, mContactIdForJoin, contactId, mContactWritableForJoin,
-                ContactEditorActivity.class, ContactEditorActivity.ACTION_JOIN_COMPLETED);
+                mContext, mContactIdForJoin, contactId, ContactEditorActivity.class,
+                ContactEditorActivity.ACTION_JOIN_COMPLETED);
         mContext.startService(intent);
     }
 

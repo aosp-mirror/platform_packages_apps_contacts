@@ -109,9 +109,9 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_DATA_ID = "dataId";
 
     public static final String ACTION_JOIN_CONTACTS = "joinContacts";
+    public static final String ACTION_JOIN_SEVERAL_CONTACTS = "joinSeveralContacts";
     public static final String EXTRA_CONTACT_ID1 = "contactId1";
     public static final String EXTRA_CONTACT_ID2 = "contactId2";
-    public static final String EXTRA_CONTACT_WRITABLE = "contactWritable";
 
     public static final String ACTION_SET_SEND_TO_VOICEMAIL = "sendToVoicemail";
     public static final String EXTRA_SEND_TO_VOICEMAIL_FLAG = "sendToVoicemailFlag";
@@ -211,6 +211,8 @@ public class ContactSaveService extends IntentService {
             deleteContact(intent);
         } else if (ACTION_JOIN_CONTACTS.equals(action)) {
             joinContacts(intent);
+        } else if (ACTION_JOIN_SEVERAL_CONTACTS.equals(action)) {
+            joinSeveralContacts(intent);
         } else if (ACTION_SET_SEND_TO_VOICEMAIL.equals(action)) {
             setSendToVoicemail(intent);
         } else if (ACTION_SET_RINGTONE.equals(action)) {
@@ -985,21 +987,31 @@ public class ContactSaveService extends IntentService {
 
     /**
      * Creates an intent that can be sent to this service to join two contacts.
+     * The resulting contact uses the name from {@param contactId1} if possible.
      */
     public static Intent createJoinContactsIntent(Context context, long contactId1,
-            long contactId2, boolean contactWritable,
-            Class<? extends Activity> callbackActivity, String callbackAction) {
+            long contactId2, Class<? extends Activity> callbackActivity, String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_JOIN_CONTACTS);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_ID1, contactId1);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_ID2, contactId2);
-        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_WRITABLE, contactWritable);
 
         // Callback intent will be invoked by the service once the contacts are joined.
         Intent callbackIntent = new Intent(context, callbackActivity);
         callbackIntent.setAction(callbackAction);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
 
+        return serviceIntent;
+    }
+
+    /**
+     * Creates an intent to join all raw contacts inside {@param contactIds}'s contacts.
+     * No special attention is paid to where the resulting contact's name is taken from.
+     */
+    public static Intent createJoinSeveralContactsIntent(Context context, long[] contactIds) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_JOIN_SEVERAL_CONTACTS);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_IDS, contactIds);
         return serviceIntent;
     }
 
@@ -1010,8 +1022,6 @@ public class ContactSaveService extends IntentService {
                 RawContacts.CONTACT_ID,
                 RawContacts.DISPLAY_NAME_SOURCE,
         };
-
-        String SELECTION = RawContacts.CONTACT_ID + "=? OR " + RawContacts.CONTACT_ID + "=?";
 
         int _ID = 0;
         int CONTACT_ID = 1;
@@ -1034,22 +1044,48 @@ public class ContactSaveService extends IntentService {
         int IS_SUPER_PRIMARY = 2;
     }
 
-    private void joinContacts(Intent intent) {
-        long contactId1 = intent.getLongExtra(EXTRA_CONTACT_ID1, -1);
-        long contactId2 = intent.getLongExtra(EXTRA_CONTACT_ID2, -1);
+    private void joinSeveralContacts(Intent intent) {
+        final long[] contactIds = intent.getLongArrayExtra(EXTRA_CONTACT_IDS);
 
-        if (contactId1 == -1 || contactId2 == -1) {
-            Log.e(TAG, "Invalid arguments for joinContacts request");
+        // Load raw contact IDs for all contacts involved.
+        long rawContactIds[] = getRawContactIdsForAggregation(contactIds);
+        if (rawContactIds == null) {
+            Log.e(TAG, "Invalid arguments for joinSeveralContacts request");
             return;
         }
 
+        // For each pair of raw contacts, insert an aggregation exception
         final ContentResolver resolver = getContentResolver();
+        final ArrayList<ContentProviderOperation> operations
+                = new ArrayList<ContentProviderOperation>();
+        for (int i = 0; i < rawContactIds.length; i++) {
+            for (int j = 0; j < rawContactIds.length; j++) {
+                if (i != j) {
+                    buildJoinContactDiff(operations, rawContactIds[i], rawContactIds[j]);
+                }
+            }
+        }
+
+        // Apply all aggregation exceptions as one batch
+        try {
+            resolver.applyBatch(ContactsContract.AUTHORITY, operations);
+            showToast(R.string.contactsJoinedMessage);
+        } catch (RemoteException | OperationApplicationException e) {
+            Log.e(TAG, "Failed to apply aggregation exception batch", e);
+            showToast(R.string.contactSavedErrorToast);
+        }
+    }
+
+
+    private void joinContacts(Intent intent) {
+        long contactId1 = intent.getLongExtra(EXTRA_CONTACT_ID1, -1);
+        long contactId2 = intent.getLongExtra(EXTRA_CONTACT_ID2, -1);
 
         // Load raw contact IDs for all raw contacts involved - currently edited and selected
         // in the join UIs.
         long rawContactIds[] = getRawContactIdsForAggregation(contactId1, contactId2);
         if (rawContactIds == null) {
-            // Error.
+            Log.e(TAG, "Invalid arguments for joinContacts request");
             return;
         }
 
@@ -1063,6 +1099,8 @@ public class ContactSaveService extends IntentService {
                 }
             }
         }
+
+        final ContentResolver resolver = getContentResolver();
 
         // Use the name for contactId1 as the name for the newly aggregated contact.
         final Uri contactId1Uri = ContentUris.withAppendedId(
@@ -1101,10 +1139,7 @@ public class ContactSaveService extends IntentService {
             resolver.applyBatch(ContactsContract.AUTHORITY, operations);
             showToast(R.string.contactsJoinedMessage);
             success = true;
-        } catch (RemoteException e) {
-            Log.e(TAG, "Failed to apply aggregation exception batch", e);
-            showToast(R.string.contactSavedErrorToast);
-        } catch (OperationApplicationException e) {
+        } catch (RemoteException | OperationApplicationException e) {
             Log.e(TAG, "Failed to apply aggregation exception batch", e);
             showToast(R.string.contactSavedErrorToast);
         }
@@ -1118,13 +1153,32 @@ public class ContactSaveService extends IntentService {
         deliverCallback(callbackIntent);
     }
 
-    private long[] getRawContactIdsForAggregation(long contactId1, long contactId2) {
+    private long[] getRawContactIdsForAggregation(long[] contactIds) {
+        if (contactIds == null) {
+            return null;
+        }
+
         final ContentResolver resolver = getContentResolver();
         long rawContactIds[];
+
+        final StringBuilder queryBuilder = new StringBuilder();
+        final String stringContactIds[] = new String[contactIds.length];
+        for (int i = 0; i < contactIds.length; i++) {
+            queryBuilder.append(RawContacts.CONTACT_ID + "=?");
+            stringContactIds[i] = String.valueOf(contactIds[i]);
+            if (contactIds[i] == -1) {
+                return null;
+            }
+            if (i == contactIds.length -1) {
+                break;
+            }
+            queryBuilder.append(" OR ");
+        }
+
         final Cursor c = resolver.query(RawContacts.CONTENT_URI,
                 JoinContactQuery.PROJECTION,
-                JoinContactQuery.SELECTION,
-                new String[]{String.valueOf(contactId1), String.valueOf(contactId2)}, null);
+                queryBuilder.toString(),
+                stringContactIds, null);
         if (c == null) {
             Log.e(TAG, "Unable to open Contacts DB cursor");
             showToast(R.string.contactSavedErrorToast);
@@ -1132,7 +1186,7 @@ public class ContactSaveService extends IntentService {
         }
         try {
             if (c.getCount() < 2) {
-                Log.e(TAG, "Not enough raw contacts to aggregate toghether.");
+                Log.e(TAG, "Not enough raw contacts to aggregate together.");
                 return null;
             }
             rawContactIds = new long[c.getCount()];
@@ -1145,6 +1199,10 @@ public class ContactSaveService extends IntentService {
             c.close();
         }
         return rawContactIds;
+    }
+
+    private long[] getRawContactIdsForAggregation(long contactId1, long contactId2) {
+        return getRawContactIdsForAggregation(new long[] {contactId1, contactId2});
     }
 
     /**

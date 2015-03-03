@@ -148,7 +148,7 @@
     <string name="splitConfirmation">This contact will be separated into multiple contacts.</string>
 
     <!-- Menu item that joins an aggregate with another aggregate -->
-    <string name="menu_joinAggregate">Join</string>
+    <string name="menu_joinAggregate">Merge</string>
 
     <!-- Heading of the Join Contact screen -->
     <string name="titleJoinContactDataWith">Join contacts</string>
@@ -180,10 +180,16 @@
     <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. -->
     <string name="readOnlyContactDeleteConfirmation">This contact contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
 
+    <!-- Warning dialog. Shown if user selects a single contact to merge. [CHAR LIMIT=NONE]  -->
+    <string name="batch_merge_single_contact_warning">You need at least two contacts selected to perform a merge.</string>
+
+    <!-- Confirmation dialog. Shown after user selects to merge contacts. [CHAR LIMIT=NONE]  -->
+    <string name="batch_merge_confirmation">The selected contacts will be merged into a single contact.</string>
+
     <!-- Confirmation dialog. Shown after user selects to delete writable contacts. [CHAR LIMIT=NONE]  -->
     <string name="batch_delete_confirmation">The selected contacts will be deleted.</string>
 
-    <!-- Confirmation dialog. Shown after user selects to delete readonly contacts. [CHAR LIMIT=NONE]  -->
+    <!-- Confirmation dialog. Shown after user selects to delete readonly contacts. [CHAR LIMIT=NONE] -->
     <string name="batch_delete_read_only_contact_confirmation">Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete contacts from multiple accounts. [CHAR LIMIT=NONE]  -->
