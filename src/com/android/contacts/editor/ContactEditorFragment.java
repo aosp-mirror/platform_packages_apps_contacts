@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.text.TextUtils;
 import android.util.Log;
@@ -241,18 +243,49 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             if (editor instanceof RawContactEditorView) {
                 final Activity activity = getActivity();
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
-                EditorListener listener = new EditorListener() {
+                final ValuesDelta nameValuesDelta = rawContactEditor.getNameEditor().getValues();
+                final EditorListener structuredNameListener = new EditorListener() {
 
                     @Override
                     public void onRequest(int request) {
-                        if (activity.isFinishing()) { // Make sure activity is still running.
+                        // Make sure the activity is running
+                        if (activity.isFinishing()) {
                             return;
                         }
-                        if (request == EditorListener.FIELD_CHANGED && !isEditingUserProfile()) {
-                            acquireAggregationSuggestions(activity,
-                                    rawContactEditor.getNameEditor().getRawContactId(),
-                                    rawContactEditor.getNameEditor().getValues());
-                        } else if (request == EditorListener.EDITOR_FOCUS_CHANGED) {
+                        if (request == EditorListener.EDITOR_FOCUS_CHANGED) {
+                            adjustNameFieldsHintDarkness(rawContactEditor);
+                            return;
+                        }
+                        if (!isEditingUserProfile()) {
+                            if (request == EditorListener.FIELD_CHANGED) {
+                                if (!nameValuesDelta.isSuperPrimary()) {
+                                    unsetSuperPrimaryForAllNameEditors();
+                                    nameValuesDelta.setSuperPrimary(true);
+                                }
+                                acquireAggregationSuggestions(activity,
+                                        rawContactEditor.getNameEditor().getRawContactId(),
+                                        rawContactEditor.getNameEditor().getValues());
+                            } else if (request == EditorListener.FIELD_TURNED_EMPTY) {
+                                if (nameValuesDelta.isSuperPrimary()) {
+                                    nameValuesDelta.setSuperPrimary(false);
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onDeleteRequested(Editor removedEditor) {
+                    }
+                };
+                final EditorListener otherNamesListener = new EditorListener() {
+
+                    @Override
+                    public void onRequest(int request) {
+                        // Make sure the activity is running
+                        if (activity.isFinishing()) {
+                            return;
+                        }
+                        if (request == EditorListener.EDITOR_FOCUS_CHANGED) {
                             adjustNameFieldsHintDarkness(rawContactEditor);
                         }
                     }
@@ -267,19 +300,19 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                     nameEditor.requestFocus();
                     mRequestFocus = false;
                 }
-                nameEditor.setEditorListener(listener);
+                nameEditor.setEditorListener(structuredNameListener);
                 if (!TextUtils.isEmpty(mDefaultDisplayName)) {
                     nameEditor.setDisplayName(mDefaultDisplayName);
                 }
 
                 final TextFieldsEditorView phoneticNameEditor =
                         rawContactEditor.getPhoneticNameEditor();
-                phoneticNameEditor.setEditorListener(listener);
+                phoneticNameEditor.setEditorListener(otherNamesListener);
                 rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);
 
                 final TextFieldsEditorView nickNameEditor =
                         rawContactEditor.getNickNameEditor();
-                nickNameEditor.setEditorListener(listener);
+                nickNameEditor.setEditorListener(otherNamesListener);
 
                 if (isAggregationSuggestionRawContactId(rawContactId)) {
                     acquireAggregationSuggestions(activity,
@@ -303,6 +336,23 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         invalidateOptionsMenu();
 
         updatedExpandedEditorsMap();
+    }
+
+    private void unsetSuperPrimaryForAllNameEditors() {
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            final View view = mContent.getChildAt(i);
+            if (view instanceof RawContactEditorView) {
+                final RawContactEditorView rawContactEditorView = (RawContactEditorView) view;
+                final StructuredNameEditorView nameEditorView =
+                        rawContactEditorView.getNameEditor();
+                if (nameEditorView != null) {
+                    final ValuesDelta valuesDelta = nameEditorView.getValues();
+                    if (valuesDelta != null) {
+                        valuesDelta.setSuperPrimary(false);
+                    }
+                }
+            }
+        }
     }
 
     /**
