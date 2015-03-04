@@ -389,13 +389,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 } else if (DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
                     // Only add phonetic names if there is a non-empty one. Note the use of
                     // StructuredName mimeType below, even though we matched a pseudo mime type.
-                    if (hasNonEmptyValuesDelta(
-                            rawContactDelta, StructuredName.CONTENT_ITEM_TYPE, dataKind)) {
-                        for (ValuesDelta valuesDelta : getNonEmptyValuesDeltas(
-                                rawContactDelta, StructuredName.CONTENT_ITEM_TYPE, dataKind)) {
-                            mPhoneticNames.addView(inflatePhoneticNameEditorView(
-                                    mPhoneticNames, accountType, valuesDelta, rawContactDelta));
-                        }
+                    final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
+                            StructuredName.CONTENT_ITEM_TYPE, /* forceSelection =*/ true);
+                    if (hasNonEmptyValue(dataKind, valuesDelta)) {
+                        mPhoneticNames.addView(inflatePhoneticNameEditorView(
+                                mPhoneticNames, accountType, valuesDelta, rawContactDelta));
                     }
                 } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     // Only add nicknames if there is a non-empty one
@@ -486,20 +484,28 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             return result;
         }
         for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(mimeType)) {
-            if (valuesDelta == null) {
-                log(Log.VERBOSE, "Null valuesDelta");
-            }
-            for (EditField editField : dataKind.fieldList) {
-                final String column = editField.column;
-                final String value = valuesDelta == null ? null : valuesDelta.getAsString(column);
-                log(Log.VERBOSE, "Field " + column + " empty=" + TextUtils.isEmpty(value) +
-                        " value=" + value);
-                if (!TextUtils.isEmpty(value)) {
-                    result.add(valuesDelta);
-                }
+            if (hasNonEmptyValue(dataKind, valuesDelta)) {
+                result.add(valuesDelta);
             }
         }
         return result;
+    }
+
+    private static boolean hasNonEmptyValue(DataKind dataKind, ValuesDelta valuesDelta) {
+        if (valuesDelta == null) {
+            log(Log.VERBOSE, "Null valuesDelta");
+            return false;
+        }
+        for (EditField editField : dataKind.fieldList) {
+            final String column = editField.column;
+            final String value = valuesDelta == null ? null : valuesDelta.getAsString(column);
+            log(Log.VERBOSE, "Field " + column + " empty=" + TextUtils.isEmpty(value) +
+                    " value=" + value);
+            if (!TextUtils.isEmpty(value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private StructuredNameEditorView inflateStructuredNameEditorView(ViewGroup viewGroup,
@@ -510,6 +516,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         if (nameEditorListener != null) {
             result.setEditorListener(nameEditorListener);
         }
+        result.setDeletable(false);
         result.setValues(
                 accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
                 valuesDelta,
@@ -523,6 +530,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             AccountType accountType, ValuesDelta valuesDelta, RawContactDelta rawContactDelta) {
         final PhoneticNameEditorView result = (PhoneticNameEditorView) mLayoutInflater.inflate(
                 R.layout.phonetic_name_editor_view, viewGroup, /* attachToRoot =*/ false);
+        result.setDeletable(false);
         result.setValues(
                 accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
                 valuesDelta,
