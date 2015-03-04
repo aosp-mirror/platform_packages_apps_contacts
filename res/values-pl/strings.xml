@@ -56,8 +56,9 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Dodaj kontakt"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Dodaj grupę"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Podzielić kontakt?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Ten kontakt zostanie podzielony na wiele wpisów."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Połącz"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Ten kontakt zostanie podzielony na kilka wpisów."</string>
+    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Połącz kontakty"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Wybierz kontakt, który chcesz połączyć z <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Pokaż wszystkie kontakty"</string>
@@ -68,6 +69,16 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Łącz na pocztę głosową"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Nie możesz usunąć kontaktów z kont tylko do odczytu, ale możesz ukryć je na swoich listach kontaktów."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ten kontakt zawiera informacje pochodzące z wielu kont. Informacje z kont przeznaczonych tylko do odczytu zostaną na listach kontaktów ukryte, a nie usunięte."</string>
+    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
+    <skip />
+    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
+    <skip />
+    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
+    <skip />
+    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
+    <skip />
+    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
+    <skip />
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Usunięcie tego kontaktu spowoduje usunięcie informacji z wielu kont."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Ten kontakt zostanie usunięty."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Odrzuć zmiany"</string>
@@ -132,7 +143,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Nie znaleziono aplikacji do obsługi tego działania."</string>
     <string name="menu_share" msgid="943789700636542260">"Udostępnij"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Dodaj do kontaktów"</string>
-    <string name="share_via" msgid="563121028023030093">"Udostępnij kontakt przez"</string>
+    <string name="share_via" msgid="563121028023030093">"Udostępnij kontakt przez:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Utwórz grupę na koncie"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Czat głosowy"</string>
     <string name="video_chat" msgid="1872255818640336072">"Czat wideo"</string>
@@ -220,7 +231,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst skopiowany"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Odrzucić zmiany?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Konfiguruj profil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Skonfiguruj swój profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Wpisz imię osoby"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nazwa grupy"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mój profil lokalny"</string>

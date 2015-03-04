@@ -57,7 +57,8 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"ಗುಂಪು ಸೇರಿಸು"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"ಸಂಪರ್ಕವನ್ನು ಪ್ರತ್ಯೇಕಿಸುವುದೇ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"ಈ ಸಂಪರ್ಕವನ್ನು ಬಹು ಸಂಪರ್ಕಗಳಾಗಿ ಪ್ರತ್ಯೇಕಿಸಲಾಗುವುದು."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"ಸೇರಿಕೊಳ್ಳಿ"</string>
+    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿ"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> ಅವರೊಂದಿಗೆ ನೀವು ಸೇರಿಸಲು ಬಯಸುವ ಸಂಪರ್ಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸು"</string>
@@ -68,6 +69,16 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ಧ್ವನಿಮೇಲ್‌ಗೆ ಎಲ್ಲ ಕರೆಗಳು"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ಓದಲು ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ನಿಮಗೆ ಅಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಆದರೆ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ಅವುಗಳನ್ನು ನೀವು ಮರೆಮಾಡಬಹುದು."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ಈ ಸಂಪರ್ಕವು ಬಹು ಖಾತೆಗಳಿಂದ ಮಾಹಿತಿಯನ್ನು ಹೊಂದಿದೆ. ಓದಲು ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಮಾಹಿತಿಯನ್ನು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಗಳಿಂದ ಮರೆಮಾಡಲಾಗಿರುತ್ತದೆ, ಅಳಿಸುವುದಿಲ್ಲ."</string>
+    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
+    <skip />
+    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
+    <skip />
+    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
+    <skip />
+    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
+    <skip />
+    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
+    <skip />
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ಬಹು ಖಾತೆಗಳಿಂದ ಮಾಹಿತಿಯನ್ನು ಅಳಿಸಿಹಾಕಲು ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತಿದೆ."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ."</string>
     <string name="menu_discard" msgid="6854657936970228164">"ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಿ"</string>

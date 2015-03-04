@@ -57,7 +57,8 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Lisää ryhmä"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Erota yhteystieto?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Tämä yhteystieto erotetaan useisiin yhteystietoihin."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Yhdistä"</string>
+    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Yhdistä yhteystiedot"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Valitse yhteystieto, jonka haluat yhdistää kontaktiin <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Näytä kaikki yhteystiedot"</string>
@@ -68,6 +69,16 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Kaikki puhelut vastaajaan"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Et voi poistaa yhteystietoja vain luku -tilassa olevista tileistä. Voit kuitenkin piilottaa yhteystietoja yhteystietoluetteloissasi."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Tämä yhteystieto sisältää tietoja useista tileistä. Vain luku -tilassa olevien tilien tietoja ei poisteta, mutta ne piilotetaan yhteystietoluettelosta."</string>
+    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
+    <skip />
+    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
+    <skip />
+    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
+    <skip />
+    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
+    <skip />
+    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
+    <skip />
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Kun tämä yhteystieto poistetaan, tietoja poistetaan useilta tileiltä."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tämä yhteystieto poistetaan."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Hylkää muutokset"</string>

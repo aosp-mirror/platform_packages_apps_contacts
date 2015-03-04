@@ -57,7 +57,8 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"समूह थप्नुहोस्"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"सम्पर्क अलग गर्ने हो?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"यो सम्पर्क अनेक सम्पर्कहरूमा अलग गरिने छ।"</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"सामेल हुनुहोस्"</string>
+    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"सम्पर्कहरू जोड्नुहोस्"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"तपाईँले सहभागी हुन चाहनु भएको सम्पर्क <xliff:g id="NAME">%s</xliff:g>: चयन गर्नुहोस्"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सबै सम्पर्कहरू देखाउनुहोस्"</string>
@@ -68,6 +69,16 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"भ्वाइसमेलमा सम्पूर्ण कल"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"तपाईँले पढ्ने-मात्र खाताबाट सम्पर्कहरू हटाउन सक्नु हुन्न, तर तपाईँको सम्पर्क सूचीहरूबाट लुकाउन सक्नु हुन्छ।"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"यो सम्पर्कमा जानकारीहरू धेरै खाताहरूबाट उपलब्ध छन्। पढ्ने-मात्र खातामा भएका जानकारीहरू तपाईँको सम्पर्क सूचीमा लुकेका हुने छन्, हटाइने छैन।"</string>
+    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
+    <skip />
+    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
+    <skip />
+    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
+    <skip />
+    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
+    <skip />
+    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
+    <skip />
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"यो सम्पर्कलाइ हटाउनाले धेरै खाताहरूबाट जानकारीहरू नष्ट गर्ने छ।"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"यो सम्पर्क हटाइने छ।"</string>
     <string name="menu_discard" msgid="6854657936970228164">"परिवर्तनहरू रद्द गर्नुहोस्"</string>

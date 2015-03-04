@@ -57,7 +57,8 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"குழுவைச் சேர்"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"தொடர்பைப் பிரிக்கவா?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"இந்தத் தொடர்பு பல தொடர்புகளாகப் பிரிக்கப்படும்."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"இணை"</string>
+    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"தொடர்புகளில் இணை"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> உடன் இணைய விரும்பும் தொடர்பைத் தேர்வுசெய்யவும்:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"எல்லா தொடர்புகளையும் காட்டு"</string>
@@ -68,6 +69,16 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"எல்லா அழைப்புகளையும் குரலஞ்சலிற்கு திருப்பு"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"படிக்க மட்டுமேயான கணக்குகளின் தொடர்புகளை நீக்க முடியாது, ஆனால் தொடர்புகள் பட்டியல்களில் அவற்றை மறைக்கலாம்."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"தொடர்பில் பல கணக்குகளின் தகவல் உள்ளது. படிக்க மட்டுமேயான கணக்குகளின் தகவல் தொடர்புகள் பட்டியல்களில் மறைக்கப்படும், ஆனால் நீக்கப்படாது."</string>
+    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
+    <skip />
+    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
+    <skip />
+    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
+    <skip />
+    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
+    <skip />
+    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
+    <skip />
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"தொடர்பை நீக்குவது பல கணக்குகளில் உள்ள தகவலை நீக்கும்."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"தொடர்பு நீக்கப்படும்."</string>
     <string name="menu_discard" msgid="6854657936970228164">"மாற்றங்களை நிராகரி"</string>

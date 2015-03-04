@@ -57,7 +57,8 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Magdagdag ng Pangkat"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Ihiwalay ang contact?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Paghihiwa-hiwalayin ang contact na ito patungo sa maramihang contact."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Sumali"</string>
+    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Sumali sa mga contact"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Piliin ang contact na gusto mong isama sa/kay <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Ipakita ang lahat ng mga contact"</string>
@@ -68,6 +69,16 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Lahat ng tawag sa voicemail"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Hindi ka makakapagtanggal ng mga contact mula sa mga read-only na account, ngunit maitatago mo ang mga ito sa iyong mga listahan ng mga contact."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Naglalaman ang contact na ito ng impormasyon mula sa maramihang account. Itatago ang impormasyon mula sa mga account na read-only sa mga listahan ng iyong mga contact, hindi tatanggalin."</string>
+    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
+    <skip />
+    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
+    <skip />
+    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
+    <skip />
+    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
+    <skip />
+    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
+    <skip />
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Tatanggalin ng pagtanggal sa account na ito ang impormasyon mula sa maramihang account."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tatanggalin ang contact na ito."</string>
     <string name="menu_discard" msgid="6854657936970228164">"I-discard ang mga pagbabago"</string>

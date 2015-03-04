@@ -57,7 +57,8 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"গোষ্ঠী যোগ করুন"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"পরিচিতি বিভক্ত করবেন?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"এই পরিচিতি একাধিক পরিচিতিগুলির মধ্যে বিভক্ত করা হবে৷"</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"যুক্ত হন"</string>
+    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"পরিচিতিগুলিকে যোগ করুন"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> এর সাথে যোগ করতে চান সেই পরিচিতিটি চয়ন করুন:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"সকল পরিচিতি দেখান"</string>
@@ -68,6 +69,16 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ভয়েসমেলে সকল কল"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"আপনি শুধুমাত্র-পাঠযোগ্য অ্যাকাউন্টগুলির পরিচিতিগুলিকে মুছতে পারবেন না, কিন্তু আপনি আপনার পরিচিতি তালিকায় তাদের লুকিয়ে রাখতে পারেন৷"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"এই পরিচিতিটিতে একাধিক অ্যাকাউন্ট থেকে তথ্য উপস্থিত রয়েছে৷ শুধুমাত্র-পাঠযোগ্য অ্যাকাউন্টগুলির তথ্য আপনার পরিচিতিগুলির তালিকাতে লুকানো থাকবে,  মুছে ফেলা হবে না৷"</string>
+    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
+    <skip />
+    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
+    <skip />
+    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
+    <skip />
+    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
+    <skip />
+    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
+    <skip />
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"এই পরিচিতিটি মোছা হলে সেটি একাধিক অ্যাকাউন্ট থেকে তথ্য মুছবে৷"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"এই পরিচিতিটিকে মুছে ফেলা হবে৷"</string>
     <string name="menu_discard" msgid="6854657936970228164">"পরিবর্তনগুলি খারিজ করুন"</string>

@@ -57,7 +57,8 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"グループを追加"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"連絡先を分けますか？"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"この連絡先を複数の連絡先に分割します。"</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"統合"</string>
+    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"連絡先の統合"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g>と統合する連絡先を選択します:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"すべての連絡先を表示"</string>
@@ -68,6 +69,16 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"すべての通話をボイスメールへ"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"読み取り専用アカウントの連絡先は削除できません。ただし、連絡先リストで非表示にすることができます。"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"この連絡先には、複数のアカウント情報が含まれています。読み取り専用アカウントの情報を連絡先リストで非表示にすることはできますが、削除はできません。"</string>
+    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
+    <skip />
+    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
+    <skip />
+    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
+    <skip />
+    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
+    <skip />
+    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
+    <skip />
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"この連絡先を削除すると、複数のアカウント情報が削除されます。"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"この連絡先を削除します。"</string>
     <string name="menu_discard" msgid="6854657936970228164">"変更を破棄"</string>
