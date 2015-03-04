@@ -276,27 +276,64 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private void addPhotoView(RawContactDeltaList rawContactDeltas,
             ViewIdGenerator viewIdGenerator) {
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) {
-                continue;
-            }
+            if (!rawContactDelta.isVisible()) continue;
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
 
             // Make sure we have a photo
             RawContactModifier.ensureKindExists(
                     rawContactDelta, accountType, Photo.CONTENT_ITEM_TYPE);
 
+            // Look for a non-empty super primary photo
             final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
             if (dataKind != null) {
-                if (Photo.CONTENT_ITEM_TYPE.equals(dataKind.mimeType)) {
+                final ValuesDelta valuesDelta = getNonEmptySuperPrimaryValuesDeltas(
+                        rawContactDelta, Photo.CONTENT_ITEM_TYPE, dataKind);
+                if (valuesDelta != null) {
                     mPhotoRawContactId = rawContactDelta.getRawContactId();
-                    final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
-                            dataKind.mimeType, /* forceSelection =*/ true);
                     mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
-                            /* readOnly =*/ !dataKind.editable, mMaterialPalette, viewIdGenerator);
+                            /* readOnly =*/ !dataKind.editable, mMaterialPalette,
+                            viewIdGenerator);
                     return;
                 }
             }
         }
+        // We didn't find a non-empty super primary photo, use the first non-empty one
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (!rawContactDelta.isVisible()) continue;
+            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+            final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
+            if (dataKind != null) {
+                final List<ValuesDelta> valuesDeltas = getNonEmptyValuesDeltas(
+                        rawContactDelta, Photo.CONTENT_ITEM_TYPE, dataKind);
+                if (valuesDeltas != null && !valuesDeltas.isEmpty()) {
+                    mPhotoRawContactId = rawContactDelta.getRawContactId();
+                    mPhoto.setValues(dataKind, valuesDeltas.get(0), rawContactDelta,
+                            /* readOnly =*/ !dataKind.editable, mMaterialPalette,
+                            viewIdGenerator);
+                    return;
+                }
+            }
+        }
+        // No suitable non-empty photo
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (!rawContactDelta.isVisible()) continue;
+            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+            final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
+            if (dataKind != null) {
+                final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
+                        dataKind.mimeType, /* forceSelection =*/ true);
+                if (valuesDelta != null) {
+                    mPhotoRawContactId = rawContactDelta.getRawContactId();
+                    mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
+                            /* readOnly =*/ !dataKind.editable, mMaterialPalette,
+                            viewIdGenerator);
+                    return;
+                }
+            }
+        }
+        // Should not happen since we ensure the kind exists but if we unexpectedly get here
+        // we must remove the photo section so that it does not take up the entire view
+        mPhoto.setVisibility(View.GONE);
     }
 
     private void addStructuredNameView(RawContactDeltaList rawContactDeltas) {
