@@ -182,14 +182,10 @@ public class TextFieldsEditorView extends LabeledEditorView {
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
      */
     private void setupExpansionView(boolean shouldExist, boolean collapsed) {
-        if (shouldExist) {
-            mExpansionViewContainer.setVisibility(View.VISIBLE);
-            mExpansionView.setImageResource(collapsed
-                    ? R.drawable.ic_menu_expander_minimized_holo_light
-                    : R.drawable.ic_menu_expander_maximized_holo_light);
-        } else {
-            mExpansionViewContainer.setVisibility(View.GONE);
-        }
+        mExpansionView.setImageResource(collapsed
+                ? R.drawable.ic_menu_expander_minimized_holo_light
+                : R.drawable.ic_menu_expander_maximized_holo_light);
+        mExpansionViewContainer.setVisibility(shouldExist ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
