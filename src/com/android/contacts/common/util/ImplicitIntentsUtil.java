@@ -23,6 +23,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract.QuickContact;
+import android.text.TextUtils;
 
 import java.util.List;
 
@@ -107,18 +108,28 @@ public class ImplicitIntentsUtil {
     private static Intent getIntentInAppIfExists(Context context, Intent intent) {
         try {
             final Intent intentCopy = new Intent(intent);
+            // Force this intentCopy to open inside the current app.
             intentCopy.setPackage(context.getPackageName());
             final List<ResolveInfo> list = context.getPackageManager().queryIntentActivities(
                     intentCopy, PackageManager.MATCH_DEFAULT_ONLY);
             if (list != null && list.size() != 0) {
-                intentCopy.setClass(context, list.get(0).getClass());
+                // Now that we know the intentCopy will work inside the current app, we
+                // can return this intent non-null.
+                if (list.get(0).activityInfo != null
+                        && !TextUtils.isEmpty(list.get(0).activityInfo.name)) {
+                    // Now that we know the class name, we may as well attach it to intentCopy
+                    // to prevent the package manager from needing to find it again inside
+                    // startActivity(). This is only needed for efficiency.
+                    intentCopy.setClassName(context.getPackageName(),
+                            list.get(0).activityInfo.name);
+                }
                 return intentCopy;
             }
+            return null;
         } catch (Exception e) {
             // Don't let the package manager crash our app. If the package manager can't resolve the
             // intent here, then we can still call startActivity without calling setClass() first.
             return null;
         }
-        return null;
     }
 }
