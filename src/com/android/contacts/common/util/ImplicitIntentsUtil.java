@@ -18,6 +18,7 @@ package com.android.contacts.common.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -104,13 +105,19 @@ public class ImplicitIntentsUtil {
      * has a corresponding intent filter.
      */
     private static Intent getIntentInAppIfExists(Context context, Intent intent) {
-        final Intent intentCopy = new Intent(intent);
-        intentCopy.setPackage(context.getPackageName());
-        final List<ResolveInfo> list = context.getPackageManager().queryIntentActivities(
-                intentCopy, 0);
-        if (list != null && list.size() != 0) {
-            intentCopy.setClass(context, list.get(0).getClass());
-            return intentCopy;
+        try {
+            final Intent intentCopy = new Intent(intent);
+            intentCopy.setPackage(context.getPackageName());
+            final List<ResolveInfo> list = context.getPackageManager().queryIntentActivities(
+                    intentCopy, PackageManager.MATCH_DEFAULT_ONLY);
+            if (list != null && list.size() != 0) {
+                intentCopy.setClass(context, list.get(0).getClass());
+                return intentCopy;
+            }
+        } catch (Exception e) {
+            // Don't let the package manager crash our app. If the package manager can't resolve the
+            // intent here, then we can still call startActivity without calling setClass() first.
+            return null;
         }
         return null;
     }
