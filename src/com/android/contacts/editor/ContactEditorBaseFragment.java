@@ -774,7 +774,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     private boolean revert() {
         if (mState.isEmpty() || !hasPendingChanges()) {
-            onSplitContactConfirmed();
+            onCancelEditConfirmed();
         } else {
             CancelEditDialogFragment.show(this);
         }
