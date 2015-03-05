@@ -37,6 +37,7 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     public interface OnCheckBoxListActionListener {
         void onStartDisplayingCheckBoxes();
         void onSelectedContactIdsChanged();
+        void onStopDisplayingCheckBoxes();
     }
 
     private static final String EXTRA_KEY_SELECTED_CONTACTS = "selected_contacts";
@@ -51,6 +52,16 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     public void onSelectedContactsChanged() {
         if (mCheckBoxListListener != null) {
             mCheckBoxListListener.onSelectedContactIdsChanged();
+        }
+    }
+
+    @Override
+    public void onSelectedContactsChangedViaCheckBox() {
+        if (getAdapter().getSelectedContactIds().size() == 0) {
+            // Last checkbox has been unchecked. So we should stop displaying checkboxes.
+            mCheckBoxListListener.onStopDisplayingCheckBoxes();
+        } else {
+            onSelectedContactsChanged();
         }
     }
 
@@ -102,16 +113,22 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
 
     @Override
     protected boolean onItemLongClick(int position, long id) {
-        final MultiSelectEntryContactListAdapter adapter = getAdapter();
-        if (mCheckBoxListListener != null) {
-            mCheckBoxListListener.onStartDisplayingCheckBoxes();
-        }
+        final int previouslySelectedCount = getAdapter().getSelectedContactIds().size();
         final Uri uri = getAdapter().getContactUri(position);
         if (uri != null && (position > 0 || !getAdapter().hasProfile())) {
             final String contactId = uri.getLastPathSegment();
             if (!TextUtils.isEmpty(contactId)) {
+                if (mCheckBoxListListener != null) {
+                    mCheckBoxListListener.onStartDisplayingCheckBoxes();
+                }
                 getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
             }
+        }
+        final int nowSelectedCount = getAdapter().getSelectedContactIds().size();
+        if (mCheckBoxListListener != null
+                && previouslySelectedCount != 0 && nowSelectedCount == 0) {
+            // Last checkbox has been unchecked. So we should stop displaying checkboxes.
+            mCheckBoxListListener.onStopDisplayingCheckBoxes();
         }
         return true;
     }
@@ -129,6 +146,9 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
             }
         } else {
             super.onItemClick(position, id);
+        }
+        if (mCheckBoxListListener != null && getAdapter().getSelectedContactIds().size() == 0) {
+            mCheckBoxListListener.onStopDisplayingCheckBoxes();
         }
     }
 
