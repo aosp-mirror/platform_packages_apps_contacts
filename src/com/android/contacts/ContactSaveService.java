@@ -982,7 +982,7 @@ public class ContactSaveService extends IntentService {
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
             getContentResolver().delete(contactUri, null, null);
         }
-
+        showToast(R.string.contacts_deleted_toast);
     }
 
     /**
