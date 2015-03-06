@@ -945,6 +945,11 @@ public class PeopleActivity extends ContactsActivity implements
             mActionBarAdapter.setSelectionCount(mAllFragment.getSelectedContactIds().size());
             invalidateOptionsMenu();
         }
+
+        @Override
+        public void onStopDisplayingCheckBoxes() {
+            mActionBarAdapter.setSelectionMode(false);
+        }
     }
 
     private class ContactsUnavailableFragmentListener

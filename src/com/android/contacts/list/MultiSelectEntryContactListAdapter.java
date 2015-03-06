@@ -39,6 +39,7 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
 
     public interface SelectedContactsListener {
         void onSelectedContactsChanged();
+        void onSelectedContactsChangedViaCheckBox();
     }
 
     public MultiSelectEntryContactListAdapter(Context context) {
@@ -139,7 +140,7 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
                 mSelectedContactIds.remove(contactId);
             }
             if (mSelectedContactsListener != null) {
-                mSelectedContactsListener.onSelectedContactsChanged();
+                mSelectedContactsListener.onSelectedContactsChangedViaCheckBox();
             }
         }
     };
