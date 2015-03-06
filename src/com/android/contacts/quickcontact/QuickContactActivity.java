@@ -92,7 +92,6 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
@@ -129,6 +128,7 @@ import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.editor.ContactEditorFragment;
+import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -2176,14 +2176,9 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     private Intent getEditContactIntent() {
-        final Intent intent = new Intent(Intent.ACTION_EDIT, mContactData.getLookupUri());
-        intent.setPackage(this.getPackageName());
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        if (mHasComputedThemeColor) {
-            intent.putExtra(ContactEditorBaseActivity.INTENT_KEY_MATERIAL_PALETTE,
-                    new MaterialPalette(mColorFilterColor, mStatusBarColor));
-        }
-        return intent;
+        return EditorIntents.createCompactEditContactIntent(
+                mContactData.getLookupUri(), mHasComputedThemeColor
+                        ? new MaterialPalette(mColorFilterColor, mStatusBarColor) : null);
     }
 
     private void editContact() {

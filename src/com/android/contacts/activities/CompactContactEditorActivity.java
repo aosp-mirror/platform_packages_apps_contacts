@@ -42,4 +42,11 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity {
         final Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
         mFragment.load(action, uri, getIntent().getExtras());
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mFragment != null) {
+            mFragment.save(ContactEditor.SaveMode.CLOSE);
+        }
+    }
 }

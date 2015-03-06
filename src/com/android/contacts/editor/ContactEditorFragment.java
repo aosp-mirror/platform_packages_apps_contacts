@@ -28,6 +28,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -45,6 +46,7 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.util.ContactPhotoUtils;
@@ -117,8 +119,27 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+
+        // If anything was left unsaved, save it now and return to the compact editor.
+        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
+            save(SaveMode.COMPACT);
+        }
+    }
+
+    @Override
     public void onExternalEditorRequest(AccountWithDataSet account, Uri uri) {
         mListener.onCustomEditContactActivityRequested(account, uri, null, false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Override the home/done options to return to the compact editor
+        if (item.getItemId() == android.R.id.home || item.getItemId() == R.id.menu_done) {
+            return save(SaveMode.COMPACT);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -353,6 +374,53 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 }
             }
         }
+    }
+
+    @Override
+    public String getDisplayName() {
+        // Return the super primary name if it is non-empty
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            final View view = mContent.getChildAt(i);
+            if (view instanceof RawContactEditorView) {
+                final RawContactEditorView rawContactEditorView = (RawContactEditorView) view;
+                final StructuredNameEditorView nameEditorView =
+                        rawContactEditorView.getNameEditor();
+                if (nameEditorView != null) {
+                    final ValuesDelta valuesDelta = nameEditorView.getValues();
+                    if (valuesDelta != null && valuesDelta.isSuperPrimary()) {
+                        final String displayName = valuesDelta.getDisplayName();
+                        if (!TextUtils.isEmpty(displayName)) {
+                            return displayName;
+                        }
+                    }
+                }
+            }
+        }
+        // Return the first non-empty name
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            final View view = mContent.getChildAt(i);
+            if (view instanceof RawContactEditorView) {
+                final RawContactEditorView rawContactEditorView = (RawContactEditorView) view;
+                final StructuredNameEditorView nameEditorView =
+                        rawContactEditorView.getNameEditor();
+                if (nameEditorView != null) {
+                    final ValuesDelta valuesDelta = nameEditorView.getValues();
+                    if (valuesDelta != null) {
+                        final String displayName = valuesDelta.getDisplayName();
+                        if (!TextUtils.isEmpty(displayName)) {
+                            return displayName;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public MaterialColorMapUtils.MaterialPalette getMaterialPalette() {
+        // There is no color for default photos on the fully expanded editor
+        return null;
     }
 
     /**

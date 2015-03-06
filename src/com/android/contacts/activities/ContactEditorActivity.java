@@ -45,4 +45,11 @@ public class ContactEditorActivity extends ContactEditorBaseActivity
                 || Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
         mFragment.load(action, uri, getIntent().getExtras());
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mFragment != null) {
+            mFragment.save(ContactEditor.SaveMode.COMPACT);
+        }
+    }
 }

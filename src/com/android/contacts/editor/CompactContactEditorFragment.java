@@ -31,14 +31,11 @@ import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -48,7 +45,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 /**
  * Contact editor with only the most important fields displayed initially.
@@ -182,6 +178,16 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // If anything was left unsaved, save it now
+        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
+            save(SaveMode.RELOAD);
+        }
     }
 
     @Override
@@ -339,38 +345,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     @Override
     public void onExpandEditor() {
         // Determine if this is an insert (new contact) or edit
-        final String action = getActivity().getIntent().getAction();
-        final boolean isInsert = Intent.ACTION_INSERT.equals(action)
-                || ContactEditorBaseActivity.ACTION_INSERT.equals(action);
-
-        // Prepare an Intent to start the expanded editor
-        final Intent intent = isInsert
-                ? new Intent(ContactEditorBaseActivity.ACTION_INSERT,
-                        ContactsContract.Contacts.CONTENT_URI)
-                : new Intent(ContactEditorBaseActivity.ACTION_EDIT, mLookupUri);
-        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-                | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+        final boolean isInsert = isInsert(getActivity().getIntent());
 
         if (isInsert) {
             // For inserts, prevent any changes from being saved when the base fragment is destroyed
             mStatus = Status.CLOSING;
-
-            // Pass on all the data that has been entered so far
-            ArrayList<ContentValues> contentValues = mState.get(0).getContentValues();
-            if (contentValues != null && contentValues.size() != 0) {
-                intent.putParcelableArrayListExtra(
-                        ContactsContract.Intents.Insert.DATA, contentValues);
-            }
-            // Name must be passed separately since it is skipped in RawContactModifier.parseValues
-            final StructuredNameEditorView structuredNameEditorView =
-                    getContent().getStructuredNameEditorView();
-            if (structuredNameEditorView != null) {
-                final String displayName = structuredNameEditorView.getDisplayName();
-                if (!TextUtils.isEmpty(displayName)) {
-                    intent.putExtra(ContactsContract.Intents.Insert.NAME, displayName);
-                }
-            }
-            getActivity().finish();
         } else {
             // Prevent a Toast from being displayed as we transition to the full editor
             mShowToastAfterSave = false;
@@ -379,7 +358,16 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             save(SaveMode.RELOAD);
         }
 
+        // Prepare an Intent to start the expanded editor
+        final Intent intent = isInsert
+                ? EditorIntents.createInsertContactIntent(mState, getDisplayName())
+                : EditorIntents.createEditContactIntent(mLookupUri);
         ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
+
+        final Activity activity = getActivity();
+        if (activity != null) {
+            activity.finish();
+        }
     }
 
     @Override
@@ -391,6 +379,19 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (!mIsUserProfile) {
             acquireAggregationSuggestions(activity, rawContactId, valuesDelta);
         }
+    }
+
+    @Override
+    public MaterialColorMapUtils.MaterialPalette getMaterialPalette() {
+        return mMaterialPalette;
+    }
+
+    @Override
+    public String getDisplayName() {
+        final StructuredNameEditorView structuredNameEditorView =
+                getContent().getStructuredNameEditorView();
+        return structuredNameEditorView == null
+                ? null : structuredNameEditorView.getDisplayName();
     }
 
     private CompactRawContactsEditorView getContent() {

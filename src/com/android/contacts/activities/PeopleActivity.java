@@ -56,6 +56,7 @@ import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -959,7 +960,7 @@ public class PeopleActivity extends ContactsActivity implements
         @Override
         public void onCreateNewContactAction() {
             ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this,
-                    new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
+                    EditorIntents.createCompactInsertContactIntent());
         }
 
         @Override

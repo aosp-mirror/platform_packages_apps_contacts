@@ -36,6 +36,7 @@ import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.QuickContactActivity;
@@ -588,11 +589,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         super.onStop();
 
         UiClosables.closeQuietly(mAggregationSuggestionPopup);
-
-        // If anything was left unsaved, save it now but keep the editor open.
-        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            save(SaveMode.RELOAD);
-        }
     }
 
     @Override
@@ -863,7 +859,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
 
         // If we are about to close the editor - there is no need to refresh the data
-        if (saveMode == SaveMode.CLOSE || saveMode == SaveMode.SPLIT) {
+        if (saveMode == SaveMode.CLOSE || saveMode == SaveMode.COMPACT
+                || saveMode == SaveMode.SPLIT) {
             getLoaderManager().destroyLoader(LOADER_DATA);
         }
 
@@ -885,6 +882,16 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // Store account as default account, only if this is a new contact
         saveDefaultAccountIfNecessary();
 
+        if (isInsert(getActivity().getIntent())
+                && saveMode == SaveMode.COMPACT && mListener != null) {
+            // If we're coming back from the fully expanded editor and this is an insert, just
+            // pass any values entered by the user back to the compact editor without doing a save
+            final Intent resultIntent = EditorIntents.createCompactInsertContactIntent(
+                    getMaterialPalette(), mState, getDisplayName());
+            mListener.onSaveFinished(resultIntent);
+            return true;
+        }
+        // Otherwise this is an edit or a back press on the compact editor so do an actual save
         return doSaveAction(saveMode);
     }
 
@@ -924,6 +931,16 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected boolean isEnabled() {
         return mEnabled;
     }
+
+    /**
+     * Returns the palette extra that was passed in.
+     */
+    abstract protected MaterialColorMapUtils.MaterialPalette getMaterialPalette();
+
+    /**
+     * Returns the currently displayed displayName;
+     */
+    abstract protected String getDisplayName();
 
     //
     // Account creation
@@ -1077,6 +1094,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             RawContactDelta oldState, AccountType oldAccountType) {
         mStatus = Status.EDITING;
         mState.add(createNewRawContactDelta(account, accountType, oldState, oldAccountType));
+        // We bind field values that may be present on inserts (as well as edits) since
+        // the caller may want certain fields pre-populated or we may be returning to
+        // the compact editor from the fully expanded one.
+        setIntentExtras(mIntentExtras);
         mRequestFocus = true;
         mNewContactDataReady = true;
         bindEditors();
@@ -1278,13 +1299,25 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
         switch (saveMode) {
             case SaveMode.CLOSE:
-            case SaveMode.HOME:
+            case SaveMode.COMPACT:
                 final Intent resultIntent;
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(lookupUri,
-                            QuickContactActivity.MODE_FULLY_EXPANDED);
+                    if (saveMode == SaveMode.CLOSE) {
+                        resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(lookupUri,
+                                QuickContactActivity.MODE_FULLY_EXPANDED);
+                    } else if (saveMode == SaveMode.COMPACT) {
+                        if (isInsert(getActivity().getIntent())) {
+                            resultIntent = EditorIntents.createCompactInsertContactIntent(
+                                    getMaterialPalette(), mState, getDisplayName());
+                        } else {
+                            resultIntent = EditorIntents.createCompactEditContactIntent(
+                                    lookupUri, getMaterialPalette());
+                        }
+                    } else {
+                        resultIntent = null;
+                    }
                 } else {
                     resultIntent = null;
                 }
@@ -1537,5 +1570,15 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
         // Otherwise pass back a lookup-style Uri
         return contactLookupUri;
+    }
+
+    /**
+     * Whether the argument Intent requested a contact insert action or not.
+     */
+    protected static boolean isInsert(Intent intent) {
+        if (intent == null) return false;
+        final String action = intent.getAction();
+        return Intent.ACTION_INSERT.equals(action)
+                || ContactEditorBaseActivity.ACTION_INSERT.equals(action);
     }
 }

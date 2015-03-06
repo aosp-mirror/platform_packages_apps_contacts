@@ -25,6 +25,7 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.editor.ContactEditorBaseFragment;
 import com.android.contacts.editor.ContactEditorFragment;
+import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.util.DialogManager;
 
@@ -95,9 +96,9 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
             public static final int JOIN = 3;
 
             /**
-             * Navigate to Contacts Home activity after saving.
+             * Navigate to the compact editor view after saving.
              */
-            public static final int HOME = 4;
+            public static final int COMPACT = 4;
         }
 
         /**
@@ -258,13 +259,6 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         return null;
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mFragment != null) {
-            mFragment.save(ContactEditor.SaveMode.CLOSE);
-        }
-    }
-
     protected final ContactEditorBaseFragment.Listener  mFragmentListener =
             new ContactEditorBaseFragment.Listener() {
 
@@ -302,16 +296,8 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         @Override
         public void onEditOtherContactRequested(
                 Uri contactLookupUri, ArrayList<ContentValues> values) {
-            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-            intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-                    | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-            intent.putExtra(ContactEditorFragment.INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY, "");
-
-            // Pass on all the data that has been entered so far
-            if (values != null && values.size() != 0) {
-                intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, values);
-            }
-
+            final Intent intent = EditorIntents.createEditOtherContactIntent(
+                    contactLookupUri, values);
             ImplicitIntentsUtil.startActivityInApp(ContactEditorBaseActivity.this, intent);
             finish();
         }
