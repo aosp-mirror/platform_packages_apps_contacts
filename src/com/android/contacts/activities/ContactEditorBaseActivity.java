@@ -236,7 +236,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         }
 
         String action = intent.getAction();
-        if (Intent.ACTION_EDIT.equals(action) || Intent.ACTION_EDIT.equals(action)) {
+        if (Intent.ACTION_EDIT.equals(action) || ACTION_EDIT.equals(action)) {
             mFragment.setIntentExtras(intent.getExtras());
         } else if (ACTION_SAVE_COMPLETED.equals(action)) {
             mFragment.onSaveCompleted(true,
