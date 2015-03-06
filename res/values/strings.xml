@@ -165,8 +165,11 @@
     <!-- List separator for the Join Contact list: A-Z -->
     <string name="separatorJoinAggregateAll">All contacts</string>
 
-    <!-- Toast shown after two contacts have been joined by a user action -->
-    <string name="contactsJoinedMessage">Contacts joined</string>
+    <!-- Toast shown after two contacts have been joined by a user action. [CHAR LIMIT=NONE] -->
+    <string name="contactsJoinedMessage">Contacts merged</string>
+
+    <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=NONE] -->
+    <string name="contacts_deleted_toast">Contacts deleted</string>
 
     <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=15] -->
     <string name="menu_set_ring_tone">Set ringtone</string>
