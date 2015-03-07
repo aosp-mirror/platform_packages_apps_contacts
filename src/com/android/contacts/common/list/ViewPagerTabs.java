@@ -56,6 +56,8 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
     int mPrevSelected = -1;
     int mSidePadding;
 
+    private int[] mTabIcons;
+
     private static final ViewOutlineProvider VIEW_BOUNDS_OUTLINE_PROVIDER =
             new ViewOutlineProvider() {
         @Override
@@ -140,6 +142,10 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
         addTabs(mPager.getAdapter());
     }
 
+    public void setTabIcons(int [] tabIcons) {
+        mTabIcons = tabIcons;
+    }
+
     private void addTabs(PagerAdapter adapter) {
         mTabStrip.removeAllViews();
 
@@ -150,37 +156,51 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
     }
 
     private void addTab(CharSequence tabTitle, final int position) {
-        final TextView textView = new TextView(getContext());
-        textView.setText(tabTitle);
-        textView.setBackgroundResource(R.drawable.view_pager_tab_background);
-        textView.setGravity(Gravity.CENTER);
-        textView.setOnClickListener(new OnClickListener() {
+        View tabView;
+        if (mTabIcons != null && position < mTabIcons.length) {
+            View iconView = new View(getContext());
+            iconView.setBackgroundResource(mTabIcons[position]);
+            iconView.setContentDescription(tabTitle);
+
+            tabView = iconView;
+        } else {
+            final TextView textView = new TextView(getContext());
+            textView.setText(tabTitle);
+            textView.setBackgroundResource(R.drawable.view_pager_tab_background);
+
+            // Assign various text appearance related attributes to child views.
+            if (mTextStyle > 0) {
+                textView.setTypeface(textView.getTypeface(), mTextStyle);
+            }
+            if (mTextSize > 0) {
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
+            }
+            if (mTextColor != null) {
+                textView.setTextColor(mTextColor);
+            }
+            textView.setAllCaps(mTextAllCaps);
+            textView.setGravity(Gravity.CENTER);
+
+            tabView = textView;
+        }
+
+        tabView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mPager.setCurrentItem(getRtlPosition(position));
             }
         });
 
-        textView.setOnLongClickListener(new OnTabLongClickListener(position));
+        tabView.setOnLongClickListener(new OnTabLongClickListener(position));
 
-        // Assign various text appearance related attributes to child views.
-        if (mTextStyle > 0) {
-            textView.setTypeface(textView.getTypeface(), mTextStyle);
-        }
-        if (mTextSize > 0) {
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
-        }
-        if (mTextColor != null) {
-            textView.setTextColor(mTextColor);
-        }
-        textView.setAllCaps(mTextAllCaps);
-        textView.setPadding(mSidePadding, 0, mSidePadding, 0);
-        mTabStrip.addView(textView, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
+        tabView.setPadding(mSidePadding, 0, mSidePadding, 0);
+        mTabStrip.addView(tabView, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.MATCH_PARENT, 1));
+
         // Default to the first child being selected
         if (position == 0) {
             mPrevSelected = 0;
-            textView.setSelected(true);
+            tabView.setSelected(true);
         }
     }
 
