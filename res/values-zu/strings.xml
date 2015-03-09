@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Engeza iqembu"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Oxhumana naye oseceleni"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Lona oxhumana naye uyocazwa abe oxhumana nabo bningi."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"Hlanganisa"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Joyina othintana nabo"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Khetha oxhumana naye ofuna ukujoyina naye <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Bonakalisa bonke  othintana nabo"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Othintana nabo abasikiselwayo"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Bonke othintana nabo"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Othintana nabo abahlanganisiwe"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Hlela iringithoni"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Wonke amakholi aya kwimeyili yezwi"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Awukwazi ukususa othintana nabo ema-akhawuntini okufunda kuphela, kodwa ungabafihla ohlwini lwakho loxhumana nabo."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Lona othintana naye uqukethe ulwazi olusuka ema-akhawuntini amaningi. Ulwazi olusuka ema-akhawuntini okufunda kuphela kuzofihlwa ohlwini lwakho lothintana nabo, ngeke kususwe."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Udinga okungenani oxh"</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Oxhumana nabo abakhethiwe bazohlanganiswa benziwe oxhumana naye oyedwa."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Oxhumana nabo abakhethiwe bazosuswa."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Ulwazi kusukela kuma-akhawunti wokufunda kuphela luzofihlwa kuhlu lwakho loxhumana nabo, lungasuswa."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Laba oxhumana nabo baqukethe ulwazi oluvela kuma-akhawunti amaningi. Ulwazi oluvela kusukela kuma-akhawunti wokufunda kuphela luzofihlwa kuhlu loxhumana nabo, lungasuswa."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ukususa lona othintana naye kuzosusa ulwazi olusuka kuma-akhawuntini amaningi."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Lo na othintana naye uzosuswa."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Lahla izinguquko"</string>

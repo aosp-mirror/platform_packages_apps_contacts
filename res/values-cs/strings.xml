@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Přidat skupinu"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Rozdělit kontakt?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Tento kontakt bude rozdělen do několika kontaktů."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"Sloučit"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Spojit kontakty"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Vyberte kontakt, který chcete spojit s kontaktem <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Zobrazit všechny kontakty"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Navrhované kontakty"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Všechny kontakty"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakty byly spojeny"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastavit vyzvánění"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Hovory do hlas. schránky"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Z účtů pouze pro čtení není možné kontakty mazat, můžete je však ve svých seznamech kontaktů skrýt."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Tento kontakt obsahuje informace z několika účtů. Informace z účtů pouze pro čtení budou v seznamech kontaktů skryty, ale nebudou smazány."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Chcete-li provést sloučení, vyberte alespoň dva kontakty."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Vybrané kontakty budou sloučeny do jednoho kontaktu."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Vybrané kontakty budou smazány."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Informace z účtů pouze ke čtení budou v seznamech kontaktů skryty, ale nebudou smazány."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Tyto kontakty obsahují informace z několika účtů. Informace z účtů pouze ke čtení budou v seznamech kontaktů skryty, ale nebudou smazány."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Smazáním tohoto kontaktu smažete informace z více účtů."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tento kontakt bude smazán."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Zahodit změny"</string>

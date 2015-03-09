@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"گروپ شامل کریں"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"رابطہ الگ کریں؟"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"یہ رابطہ متعدد رابطوں میں الگ کیا جائے گا۔"</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"ضم کریں"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"رابطوں کو ملائیں"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> کے ساتھ جس رابطہ کو ملانا ہے اسے منتخب کریں:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"سبھی رابطے دکھائیں"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"مجوزہ رابطے"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"سبھی رابطے"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"رابطے ملا دیے گئے"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"رنگ ٹون طے کریں"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"صوتی میل پر سبھی کالیں"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"آپ صرف پڑھنے کے اکاؤنٹس سے رابطوں کو حذف نہیں کر سکتے ہیں لیکن آپ اپنے رابطوں کی فہرست میں انہیں چھپا سکتے ہیں۔"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"یہ رابطہ متعدد اکاؤنٹس کی معلومات پر مشتمل ہے۔ صرف پڑھنے کے اکاؤنٹس کی معلومات آپ کے رابطوں کی فہرست میں چھپا دی جائیں گی، حذف نہیں ہوں گی۔"</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ضم کرنے کیلئے آپ کو کم از کم دو رابطے منتخب کرنے کی ضرورت ہے۔"</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"منتخب کردہ رابطوں کو ایک رابطہ میں ضم کر دیا جائے گا۔"</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"منتخب کردہ رابطے حذف کر دیے جائیں گے۔"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"صرف پڑھنے کیلئے اکاؤنٹس کی معلومات آپ کے رابطوں کی فہرست میں چھپا دی جائیں گی، حذف نہیں ہوں گی۔"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"یہ رابطے متعدد اکاؤنٹس کی معلومات پر مشتمل ہیں۔ صرف پڑھنے کیلئے اکاؤنٹس کی معلومات آپ کے رابطوں کی فہرست میں چھپا دی جائیں گی، حذف نہیں ہوں گی۔"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"یہ رابطہ حذف کرنے سے متعدد اکاؤنٹس کی معلومات حذف ہوجائے گی۔"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"یہ رابطہ حذف ہوجائے گا۔"</string>
     <string name="menu_discard" msgid="6854657936970228164">"تبدیلیاں رد کریں"</string>

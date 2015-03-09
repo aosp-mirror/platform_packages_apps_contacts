@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Rühma lisamine"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Eraldada kontakt?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"See kontakt eraldatakse mitmeks kontaktiks."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"Ühenda"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Ühenda kontaktid"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Valige kontakt, keda soovite kasutajaga <xliff:g id="NAME">%s</xliff:g> liita."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Kuva kõik kontaktid"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Soovitatud kontaktid"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Kõik kontaktid"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontaktid ühendatud"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Määrake helin"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Kõik kõned kõneposti"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Te ei saa kontakte kirjutuskaitstud kontodest kustutada, kuid saate need oma kontaktide loendis peita."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"See kontakt sisaldab teavet mitmelt kontolt. Kirjutuskaitstud teabega kontod peidetakse teie kontaktiloendites, mitte ei kustutata."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Ühendamiseks peate valima vähemalt kaks kontakti."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Valitud kontaktid ühendatakse üheks kontaktiks."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Valitud kontaktid kustutatakse."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Kirjutuskaitstud teabega kontod peidetakse teie kontaktiloendites, mitte ei kustutata."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Need kontaktid sisaldavad teavet mitmelt kontolt. Kirjutuskaitstud teabega kontod peidetakse teie kontaktiloendites, mitte ei kustutata."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Selle kontakti kustutamisel kustutatakse andmed mitmelt kontolt."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"See kontakt kustutatakse."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Loobu muudatustest"</string>

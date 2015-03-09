@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Adicionar grupo"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Dividir contato?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Este contato será separado em vários contatos."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"Mesclar"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unir contatos"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Selecione o contato que deseja mesclar com <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contatos"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contatos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contatos"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contatos unificados"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Definir toque"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Todas as cham. p/ correio voz"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Não é possível excluir os contatos das contas somente leitura, mas você pode ocultá-los nas suas listas de contatos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contato contém informações de diversas contas. As informações de contas somente de leitura ficarão ocultas nas suas listas de contatos, mas não serão excluídas."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Selecione pelo menos dois contatos para realizar uma mesclagem."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Os contatos selecionados serão mesclados em um único contato."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Os contatos selecionados serão excluídos."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"As informações de contas somente de leitura ficarão ocultas nas suas listas de contatos, mas não serão excluídas."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Esses contatos contêm informações de diversas contas. As informações de contas somente de leitura ficarão ocultas nas suas listas de contatos, mas não serão excluídas."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Excluir este contato irá excluir informações de várias contas."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Este contato será excluído."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Descartar alterações"</string>

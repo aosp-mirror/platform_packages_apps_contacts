@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"गट जोडा"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"संपर्क विभाजित करायचा?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"हा संपर्क एकाधिक संपर्कांमध्‍ये विभाजित केला जाईल."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"विलीन करा"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"संपर्कांमध्‍ये सामील व्हा"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"आपण <xliff:g id="NAME">%s</xliff:g> सह सामील होऊ इच्‍छिता तो संपर्क निवडा:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सर्व संपर्क दर्शवा"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सूचित संपर्क"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"सर्व संपर्क"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"संपर्क सामील झाले"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करा"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"व्हॉइसमेलवरील सर्व कॉल"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"आपण केवळ-वाचनीय खात्‍यांमधून संपर्क हटवू शकत नाही परंतु आपण ते आपल्‍या संपर्क सूचींमध्‍ये लपवू शकता."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"या संपर्कात एकाधिक खात्‍यांमधील माहिती आहे. केवळ-वाचनीय खात्यांमधील माहिती आपल्‍या संपर्क सूचींमध्‍ये लपविली जाईल, हटविली जाणार नाही."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"विलीन करण्‍यासाठी आपण कमीतकमी दोन संपर्क निवडलेले असणे आवश्‍यक आहे."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"निवडलेले संपर्क एकाच संपर्कामध्‍ये विलीन केले जातील."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"निवडलेले संपर्क हटविले जातील."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"केवळ-वाचनीय खात्यांमधील माहिती आपल्‍या संपर्क सूचींमध्‍ये लपविली जाईल, ती हटविली जाणार नाही."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"या संपर्कांमध्‍ये एकाधिक खात्यांमधील माहिती आहे. केवळ-वाचनीय खात्यांमधील माहिती आपल्‍या संपर्क सूचींमध्‍ये लपविली जाईल, ती हटविली जाणार नाही."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"हा संपर्क हटविल्याने एकाधिक खात्‍यांमधून माहिती हटवली जाईल."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"हा संपर्क हटविला जाईल."</string>
     <string name="menu_discard" msgid="6854657936970228164">"बदल टाकून द्या"</string>

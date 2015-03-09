@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Bæta hóp við"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Skipta tengilið upp?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Þessum tengilið verður skipt upp í fleiri tengiliði."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"Sameina"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Sameina tengiliði"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Veldu tengiliðinn sem þú vilt að <xliff:g id="NAME">%s</xliff:g> sameinist:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Sýna alla tengiliði"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Tillögur að tengiliðum"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Allir tengiliðir"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Tengiliðirnir voru sameinaðir"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Velja hringitón"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Öll símtöl í talhólf"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ekki er hægt að eyða tengiliðum af skrifvörðum reikningum en hægt er að fela þá í tengliðalistanum."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Þessi tengiliður inniheldur upplýsingar af mörgum reikningum. Upplýsingar af skrifvörðum reikningum verða faldar í tengiliðalistanum en ekki eytt."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Þú þarft að velja a.m.k. tvo tengiliði til að sameina."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Valdir tengiliðir verða sameinaðir í einn tengilið."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Völdum tengiliðum verður eytt."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Upplýsingar af skrifvörðum reikningum verða faldar í tengiliðalistanum en ekki eytt."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Þessir tengiliðir innihalda upplýsingar af mörgum reikningum. Upplýsingar af skrifvörðum reikningum verða faldar í tengiliðalistanum en ekki eytt."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ef þessum tengilið er eytt verður upplýsingum eytt af mörgum reikningum."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Þessum tengilið verður eytt."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Hætta við breytingar"</string>

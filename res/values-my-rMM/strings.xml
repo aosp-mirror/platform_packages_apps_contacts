@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"အုပ်စု ထပ်ထည့်ပါ"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"အဆက်အသွယ်ခွဲမည်လား?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"ဒီအဆက်အသွယ်အား အဆက်အသွယ်အများအပြားအဖြစ် ခွဲပစ်လိုက်မည်ဖြစ်ပါသည်"</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"ပေါင်းစည်းပါ"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"အဆက်အသွယ်များကို ပူးပေါင်းလိုက်သည်"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> နှင့် ပေါင်းချင်သော လိပ်စာအားရွေးပါ:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"အဆက်အသွယ်များ ပူးပေါင်းပြီး"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ဖုန်းမြည်သံသတ်မှတ်ရန်"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ဖုန်းအားလုံးအသံစာပို့စနစ်သို့"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ဖတ်ရန်အတွက်သာ အကောင့်များမှ အဆက်အသွယ်များကို ဖျက်ပစ်လို့ မရပါ၊ ဒါပေမယ့် အဆက်အသွယ်များစာရင်းမှ ဖျောက်ထားလို့ ရပါသည်"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ဒီအဆက်အသွယ်မှာ အကောင့်အများအပြား၏ အချက်အလက်များ ပါဝင်ပါသည်။ ဖတ်ရန်အတွက်သာ အကောင့်များမှ အချက်အလက်များကို ဖျောက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်ထားတာ မဟုတ်ပါ"</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ပေါင်းစည်းမှုတစ်ခုလုပ်ဆောင်ရန် အနည်းဆုံးအဆက်အသွယ်နှစ်ခု ရွေးချယ်ရန် လိုအပ်သည်။"</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"ရွေးချယ်ထားသောအကောင့်များအား အဆက်အသွယ်တစ်ခုတည်းသို့ ပေါင်းစည်းပါလိမ့်မည်။"</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"ရွေးချယ်ထားသောအဆက်အသွယ်များ ဖျက်ပစ်လိမ့်မည်။"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"ဖတ်ရန်အတွက်သာ အကောင့်များမှ အချက်အလက်များကို ဖျောက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်ထားတာ မဟုတ်ပါ။"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"ဒီအဆက်အသွယ်များတွင် အကောင့်အများအပြား၏ အချက်အလက်များ ပါဝင်ပါသည်။ ဖတ်ရန်အတွက်သာ အကောင့်များမှ အချက်အလက်များကို ဖျောက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်ထားတာ မဟုတ်ပါ"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ဤအဆက်အသွယ်အားဖျက်ခြင်းကြောင့် တခြားအကောင့်များမှ အချက်အလက်များလည်း ပျက်ပါလိမ့်မည်"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"ဒီလိပ်စာကို ဖျက်ပစ်ပါလိမ့်မည်"</string>
     <string name="menu_discard" msgid="6854657936970228164">"အပြောင်းအလဲများ စွန့်ပစ်ရန်"</string>

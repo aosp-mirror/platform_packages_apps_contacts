@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"ഗ്രൂപ്പ് ചേർക്കുക"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"കോൺടാക്റ്റ് വിഭജിക്കണോ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"ഈ കോൺടാക്റ്റ് ഒന്നിലധികം കോൺടാക്റ്റുകളായി വിഭജിക്കപ്പെടും."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"ലയിപ്പിക്കുക"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"കോൺടാക്റ്റുകൾ ബന്ധിപ്പിക്കുക"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> എന്നതുമായി കൂട്ടിച്ചേർക്കേണ്ട കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"എല്ലാ കോൺടാക്റ്റുകളും കാണിക്കുക"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"നിര്‍ദ്ദേശിച്ച കോണ്‍ടാക്റ്റുകള്‍"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"എല്ലാ കോൺടാക്റ്റുകളും"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"കൂട്ടിച്ചേർത്ത കോൺടാക്റ്റുകൾ"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"റിംഗ്‌ടോൺ സജ്ജമാക്കുക"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"വോയ്‌സ്‌മെയിലിലേക്കുള്ള എല്ലാ കോളുകളും"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള കോൺടാക്റ്റുകൾ നിങ്ങൾക്ക് ഇല്ലാതാക്കാനാകില്ലെങ്കിലും കോൺടാക്റ്ററ്റ് ലിസ്റ്റുകളിൽ നിന്ന് അവ മറയ്‌ക്കാനാകും."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ഈ കോൺടാക്റ്റിൽ ഒന്നിലധികം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം അടങ്ങിയിരിക്കുന്നു. വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ ലിസ്റ്റിൽ നിന്നും മറയ്‌ക്കുമെങ്കിലും അവ ഇല്ലാതാക്കില്ല."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ലയിപ്പിക്കാനായി രണ്ട് കോൺടാക്‌റ്റുകളെങ്കിലും തിരഞ്ഞെടുക്കണം."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"തിരഞ്ഞെടുത്ത കോൺടാക്‌റ്റുകൾ ഒരൊറ്റ കോൺടാക്‌റ്റിലേക്ക് ലയിപ്പിക്കും."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"തിരഞ്ഞെടുത്ത കോൺടാക്‌റ്റുകൾ ഇല്ലാതാക്കും."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ ലിസ്റ്റിൽ നിന്നും മറയ്‌ക്കുമെങ്കിലും അവ ഇല്ലാതാക്കില്ല."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"ഈ കോൺടാക്റ്റുകളിൽ ഒന്നിലധികം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം അടങ്ങിയിരിക്കുന്നു. വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ ലിസ്റ്റിൽ നിന്നും മറയ്‌ക്കുമെങ്കിലും അവ ഇല്ലാതാക്കില്ല."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ഈ കോൺടാക്റ്റ് ഇല്ലാതാക്കുന്നത്, ഒന്നിലധികം അക്കൗണ്ടുകളിൽ നിന്ന് വിവരം ഇല്ലാതാക്കുന്നതിനിടയാക്കും."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"ഈ കോൺടാക്‌റ്റിനെ ഇല്ലാതാക്കും."</string>
     <string name="menu_discard" msgid="6854657936970228164">"മാറ്റങ്ങള്‍‌ നിരാകരിക്കുക"</string>

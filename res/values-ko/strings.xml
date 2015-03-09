@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"그룹 추가"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"주소록을 분리하시겠습니까?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"연락처가 여러 주소록으로 분리됩니다."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"병합"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"연락처 통합"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g>와(과) 통합할 연락처를 선택하세요."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"모든 연락처 표시"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"추천 연락처"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"모든 연락처"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"연락처 결합됨"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"벨소리 설정"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"음성사서함 자동 연결"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"연락처를 읽기 전용 계정에서 삭제할 수는 없지만 주소록에서 숨길 수는 있습니다."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"연락처에 여러 계정의 정보가 들어 있습니다. 읽기 전용 계정의 정보는 주소록 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"병합하려면 두 개 이상의 연락처를 선택해야 합니다."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"선택한 연락처를 하나의 연락처로 병합합니다."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"선택한 연락처를 삭제합니다."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"읽기 전용 계정의 정보는 연락처 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"연락처에 여러 계정의 정보가 들어 있습니다. 읽기 전용 계정의 정보는 연락처 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"이 연락처를 삭제하면 여러 계정의 정보가 삭제됩니다."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"이 연락처를 삭제합니다."</string>
     <string name="menu_discard" msgid="6854657936970228164">"변경사항 취소"</string>

@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"新增群組"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"要分拆聯絡人記錄嗎？"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"這個聯絡人記錄即將分拆為多個。"</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"合併"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合併聯絡人"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"選擇要與<xliff:g id="NAME">%s</xliff:g>合併的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議的聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"已合併聯絡人"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"設定鈴聲"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"所有來電轉到留言信箱"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"您無法刪除唯讀帳戶的聯絡人，但可在聯絡人名單中隱藏這些聯絡人。"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"這個聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"您至少需要選取兩個聯絡人才能執行合併。"</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"已選的聯絡人將會合併為單一聯絡人。"</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"已選的聯絡人將被刪除。"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"唯讀帳戶的資訊會從您的聯絡人名單隱藏，而不是刪除。"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"這些聯絡人包含來自多個帳戶的資訊。唯讀帳戶的資訊會從您的聯絡人名單隱藏，而不是刪除。"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"刪除這個聯絡人將刪除多個帳戶的資訊。"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"刪除此聯絡人？"</string>
     <string name="menu_discard" msgid="6854657936970228164">"放棄變更"</string>

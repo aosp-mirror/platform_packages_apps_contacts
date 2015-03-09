@@ -57,28 +57,25 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Бүлгэм нэмэх"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Харилцагчийг хуваах уу?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Энэ харилцагч олон харилцагчид хуваагдах болно."</string>
-    <!-- no translation found for menu_joinAggregate (4050157483569357666) -->
-    <skip />
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"Нэгтгэх"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Харилцагчдыг холбох"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g>-тай холбохыг хүсэж буй харилцагчийг сонгоно уу:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Бүх харилцагчдыг харуулах"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Санал болгосон харилцагчид"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Бүх харилцагчид"</string>
-    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Харилцагчид холбогдсон"</string>
+    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
+    <skip />
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Хонхны ая суулгах"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Бүх дуудлагыг дуут шуудан руу"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Та зөвхөн-унших акаунтаас харилцагчдыг устгаж чадахгүй, харин харилцагчдын жагсаалтаасаас нууцлаж болно."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Энэ харилцагчид олон акаунтын мэдээлэл агуулагдаж байна. Зөвхөн-унших акаунтуудын мэдээллийг харилцагчийн жагсаалтаас устгахгүйгээр нууцлах болно."</string>
-    <!-- no translation found for batch_merge_single_contact_warning (982585201970392110) -->
-    <skip />
-    <!-- no translation found for batch_merge_confirmation (8551299480317422420) -->
-    <skip />
-    <!-- no translation found for batch_delete_confirmation (2564172328268885394) -->
-    <skip />
-    <!-- no translation found for batch_delete_read_only_contact_confirmation (6614878716815412523) -->
-    <skip />
-    <!-- no translation found for batch_delete_multiple_accounts_confirmation (5189722181586680185) -->
-    <skip />
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Та нэгтгэх үйлдэл хийхдээ доод тал нь хоёр хаяг сонгох ёстой."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Сонгосон хаягуудыг нэг хаяг руу нэгтгэнэ."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Сонгосон харилцах хаягуудыг устгах болно."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Зөвхөн унших зориулалттай акаунтуудын мэдээлэл таны харилцах жагсаалтанд нуугдсан байдалтай үлдэх бөгөөд устгагдахгүй."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Эдгээр харилцах хаягууд нь олон тооны акаунтын мэдээллийг агуулж байна. Зөвхөн унших зориулалттай акаунтуудын мэдээлэл таны харилцах жагсаалтанд нуугдсан байдалтай үлдэх бөгөөд устгагдахгүй."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Энэ харилцагчийг устгаснаар олон акаунтаас мэдээллийг устгах болно."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Энэ харилцагч устгагдах болно."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Өөрчлөлтүүдийг цуцлах"</string>
