@@ -153,9 +153,13 @@ public class TextFieldsEditorView extends LabeledEditorView {
         public void onFocusChange(View v, boolean hasFocus) {
             // Check whether this field contains focus by calling findFocus() instead of
             // hasFocus(). The hasFocus() value is not necessarily up to date.
-            setHintColorDark(TextFieldsEditorView.this.findFocus() != null);
+            final boolean foundFocus = TextFieldsEditorView.this.findFocus() != null;
+            setHintColorDark(foundFocus);
             if (getEditorListener() != null) {
                 getEditorListener().onRequest(EditorListener.EDITOR_FOCUS_CHANGED);
+            }
+            if (foundFocus && !isTypeVisible()) {
+                showType();
             }
             // Rebuild the label spinner using the new colors.
             rebuildLabel();
@@ -265,6 +269,11 @@ public class TextFieldsEditorView extends LabeledEditorView {
             final String column = field.column;
             final String value = entry.getAsString(column);
             fieldView.setText(value);
+
+            // Show the type drop down if we have a non-empty value.
+            if (!isTypeVisible() && !TextUtils.isEmpty(value)) {
+                showType();
+            }
 
             // Show the delete button if we have a non-null value
             setDeleteButtonVisible(value != null);

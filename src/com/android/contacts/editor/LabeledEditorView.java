@@ -79,6 +79,8 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private boolean mWasEmpty = true;
     private boolean mIsDeletable = true;
     private boolean mIsAttachedToWindow;
+    private boolean mHideTypeInitially;
+    private boolean mHasTypes;
 
     private EditType mType;
 
@@ -232,6 +234,30 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         }
     }
 
+    /**
+     * Whether to hide the type dropdown after values have been set.
+     * By default the drop down is always displayed if there are types to display.
+     */
+    public void setHideTypeInitially(boolean hideTypeInitially) {
+        mHideTypeInitially = hideTypeInitially;
+    }
+
+    /**
+     * Whether the type drop down is visible.
+     */
+    public boolean isTypeVisible() {
+        return mLabel == null ? false : mLabel.getVisibility() == View.VISIBLE;
+    }
+
+    /**
+     * Makes the type drop down visible if it is not already so, and there are types to display.
+     */
+    public void showType() {
+        if (mHasTypes && mLabel != null && mLabel.getVisibility() != View.VISIBLE) {
+            mLabel.setVisibility(View.VISIBLE);
+        }
+    }
+
     protected void onOptionalFieldVisibilityChange() {
         if (mListener != null) {
             mListener.onRequest(EditorListener.EDITOR_FORM_CHANGED);
@@ -379,12 +405,15 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         setVisibility(View.VISIBLE);
 
         // Display label selector if multiple types available
-        final boolean hasTypes = RawContactModifier.hasEditTypes(kind);
-        setupLabelButton(hasTypes);
+        mHasTypes = RawContactModifier.hasEditTypes(kind);
+        setupLabelButton(mHasTypes);
         mLabel.setEnabled(!readOnly && isEnabled());
-        if (hasTypes) {
+        if (mHasTypes) {
             mType = RawContactModifier.getCurrentType(entry, kind);
             rebuildLabel();
+            if (mHideTypeInitially) {
+                mLabel.setVisibility(View.GONE);
+            }
         }
     }
 
