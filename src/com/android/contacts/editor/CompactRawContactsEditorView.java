@@ -30,6 +30,7 @@ import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
@@ -216,6 +217,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      */
     public void setPhoto(Bitmap bitmap) {
         mPhoto.setPhoto(bitmap);
+    }
+
+    /**
+     * Pass through to {@link CompactPhotoEditorView#setFullSizedPhoto(Uri)}.
+     */
+    public void setFullSizePhoto(Uri photoUri) {
+        mPhoto.setFullSizedPhoto(photoUri);
     }
 
     /**
