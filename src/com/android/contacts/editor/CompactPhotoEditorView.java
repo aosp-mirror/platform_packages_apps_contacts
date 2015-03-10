@@ -61,7 +61,6 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
     private ValuesDelta mValuesDelta;
     private boolean mReadOnly;
     private boolean mIsPhotoSet;
-    private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
 
     private QuickContactImageView mPhotoImageView;
 
@@ -94,7 +93,6 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
             ViewIdGenerator viewIdGenerator) {
         mValuesDelta = valuesDelta;
         mReadOnly = readOnly;
-        mMaterialPalette = materialPalette;
 
         setId(viewIdGenerator.getId(rawContactDelta, dataKind, valuesDelta, /* viewIndex =*/ 0));
 

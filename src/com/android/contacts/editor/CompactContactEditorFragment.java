@@ -80,7 +80,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                     Log.w(TAG, "Invalid photo selected");
                 }
                 getContent().setPhoto(bitmap);
+
+                // If a new photo was chosen but not yet saved,
+                // we need to update the UI immediately
                 mUpdatedPhotos.putParcelable(String.valueOf(mPhotoRawContactId), uri);
+                getContent().setFullSizePhoto(uri);
             }
 
             @Override
@@ -224,6 +228,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // Set up the photo widget
         mPhotoHandler = createPhotoHandler();
         mPhotoRawContactId = editorView.getPhotoRawContactId();
+        if (mUpdatedPhotos.containsKey(String.valueOf(mPhotoRawContactId))) {
+            editorView.setFullSizePhoto((Uri) mUpdatedPhotos.getParcelable(
+                    String.valueOf(mPhotoRawContactId)));
+        }
         editorView.setPhotoHandler(mPhotoHandler);
 
         // The editor is ready now so make it visible
