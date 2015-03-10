@@ -111,6 +111,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private static final String KEY_AUTO_ADD_TO_DEFAULT_GROUP = "autoAddToDefaultGroup";
     private static final String KEY_DISABLE_DELETE_MENU_OPTION = "disableDeleteMenuOption";
     private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
+    private static final String KEY_MATERIAL_PALETTE = "materialPalette";
 
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
 
@@ -155,6 +156,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     public static final String INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION =
             "disableDeleteMenuOption";
+
+    /**
+     * Intent key to pass the photo palette calculated by
+     * {@link com.android.contacts.quickcontact.QuickContactActivity} to and between the compact
+     * editor and fully expanded editor.
+     */
+    public static final String INTENT_EXTRA_MATERIAL_PALETTE = "material_palette";
 
     /**
      * Intent extra to specify a {@link ContactEditor.SaveMode}.
@@ -285,6 +293,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected boolean mAutoAddToDefaultGroup;
     protected boolean mDisableDeleteMenuOption;
     protected boolean mNewLocalProfile;
+    protected MaterialColorMapUtils.MaterialPalette mMaterialPalette;
 
     //
     // Helpers
@@ -434,6 +443,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             mAutoAddToDefaultGroup = savedState.getBoolean(KEY_AUTO_ADD_TO_DEFAULT_GROUP);
             mDisableDeleteMenuOption = savedState.getBoolean(KEY_DISABLE_DELETE_MENU_OPTION);
             mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
+            mMaterialPalette = savedState.getParcelable(KEY_MATERIAL_PALETTE);
 
             mRawContacts = ImmutableList.copyOf(savedState.<RawContact>getParcelableArrayList(
                     KEY_RAW_CONTACTS));
@@ -548,6 +558,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         outState.putBoolean(KEY_AUTO_ADD_TO_DEFAULT_GROUP, mAutoAddToDefaultGroup);
         outState.putBoolean(KEY_DISABLE_DELETE_MENU_OPTION, mDisableDeleteMenuOption);
         outState.putBoolean(KEY_NEW_LOCAL_PROFILE, mNewLocalProfile);
+        if (mMaterialPalette != null) {
+            outState.putParcelable(KEY_MATERIAL_PALETTE, mMaterialPalette);
+        }
 
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
 
@@ -866,7 +879,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         mStatus = Status.SAVING;
 
-        if (!hasPendingChanges()) {
+        // Don't abort if there are no changes and we are returning to the compact editor --
+        // the user may have simply expanded the editor then hit back
+        if (!hasPendingChanges() && saveMode != SaveMode.COMPACT) {
             if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
                 // We don't have anything to save and there isn't even an existing contact yet.
                 // Nothing to do, simply go back to editing mode
@@ -887,11 +902,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // If we're coming back from the fully expanded editor and this is an insert, just
             // pass any values entered by the user back to the compact editor without doing a save
             final Intent resultIntent = EditorIntents.createCompactInsertContactIntent(
-                    getMaterialPalette(), mState, getDisplayName());
+                    mState, getDisplayName());
             mListener.onSaveFinished(resultIntent);
             return true;
         }
-        // Otherwise this is an edit or a back press on the compact editor so do an actual save
+        // Otherwise this is an edit or a back press so do an actual save
         return doSaveAction(saveMode);
     }
 
@@ -935,7 +950,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * Returns the palette extra that was passed in.
      */
-    abstract protected MaterialColorMapUtils.MaterialPalette getMaterialPalette();
+    protected MaterialColorMapUtils.MaterialPalette getMaterialPalette() {
+        return mMaterialPalette;
+    }
 
     /**
      * Returns the currently displayed displayName;
@@ -1094,9 +1111,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             RawContactDelta oldState, AccountType oldAccountType) {
         mStatus = Status.EDITING;
         mState.add(createNewRawContactDelta(account, accountType, oldState, oldAccountType));
-        // We bind field values that may be present on inserts (as well as edits) since
-        // the caller may want certain fields pre-populated or we may be returning to
-        // the compact editor from the fully expanded one.
+        // We bind field values that may be present on inserts since the caller may want certain
+        // fields pre-populated or we may be returning to the compact editor from the fully
+        // expanded one.
         setIntentExtras(mIntentExtras);
         mRequestFocus = true;
         mNewContactDataReady = true;
@@ -1260,6 +1277,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
             mDisableDeleteMenuOption =
                     mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
+            mMaterialPalette =
+                    mIntentExtras.getParcelable(INTENT_EXTRA_MATERIAL_PALETTE);
         }
     }
 
@@ -1310,7 +1329,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     } else if (saveMode == SaveMode.COMPACT) {
                         if (isInsert(getActivity().getIntent())) {
                             resultIntent = EditorIntents.createCompactInsertContactIntent(
-                                    getMaterialPalette(), mState, getDisplayName());
+                                    mState, getDisplayName());
                         } else {
                             resultIntent = EditorIntents.createCompactEditContactIntent(
                                     lookupUri, getMaterialPalette());

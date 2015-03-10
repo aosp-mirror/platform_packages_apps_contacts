@@ -45,11 +45,7 @@ public class EditorIntents {
     public static Intent createCompactEditContactIntent(Uri contactLookupUri,
             MaterialPalette materialPalette) {
         final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        if (materialPalette != null) {
-            intent.putExtra(ContactEditorBaseActivity.INTENT_KEY_MATERIAL_PALETTE,
-                    materialPalette);
-        }
+        putMaterialPalette(intent, materialPalette);
         return intent;
     }
 
@@ -57,22 +53,17 @@ public class EditorIntents {
      * Returns an Intent to start the {@link CompactContactEditorActivity} for a new contact.
      */
     public static Intent createCompactInsertContactIntent() {
-        return createCompactInsertContactIntent(/* materialPalette =*/ null,
-                /* rawContactDeltaList =*/ null, /* displayName =*/ null);
+        return createCompactInsertContactIntent(/* rawContactDeltaList =*/ null,
+                /* displayName =*/ null);
     }
 
     /**
      * Returns an Intent to start the {@link CompactContactEditorActivity} for a new contact with
      * the field values specified by rawContactDeltaList pre-populate in the form.
      */
-    public static Intent createCompactInsertContactIntent(MaterialPalette materialPalette,
-            RawContactDeltaList rawContactDeltaList, String displayName) {
+    public static Intent createCompactInsertContactIntent(RawContactDeltaList rawContactDeltaList,
+            String displayName) {
         final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        if (materialPalette != null) {
-            intent.putExtra(ContactEditorBaseActivity.INTENT_KEY_MATERIAL_PALETTE,
-                    materialPalette);
-        }
         if (rawContactDeltaList != null || displayName != null) {
             putRawContactDeltaValues(intent, rawContactDeltaList, displayName);
         }
@@ -101,9 +92,11 @@ public class EditorIntents {
      * Returns an Intent to start the fully expanded {@link ContactEditorActivity} for a
      * new contact.
      */
-    public static Intent createEditContactIntent(Uri contactLookupUri) {
+    public static Intent createEditContactIntent(Uri contactLookupUri,
+            MaterialPalette materialPalette) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_EDIT, contactLookupUri);
         addContactIntentFlags(intent);
+        putMaterialPalette(intent, materialPalette);
         return intent;
     }
 
@@ -114,7 +107,7 @@ public class EditorIntents {
     public static Intent createInsertContactIntent(RawContactDeltaList rawContactDeltaList,
             String displayName) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_INSERT,
-                ContactsContract.Contacts.CONTENT_URI);
+                Contacts.CONTENT_URI);
         addContactIntentFlags(intent);
         putRawContactDeltaValues(intent, rawContactDeltaList, displayName);
         return intent;
@@ -126,13 +119,22 @@ public class EditorIntents {
                 | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
     }
 
+    private static void putMaterialPalette(Intent intent, MaterialPalette materialPalette) {
+        if (materialPalette != null) {
+            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_MATERIAL_PALETTE,
+                    materialPalette);
+        }
+    }
+
     private static void putRawContactDeltaValues(Intent intent,
             RawContactDeltaList rawContactDeltaList, String displayName) {
         // Pass on all the data that has been entered so far
-        ArrayList<ContentValues> contentValues = rawContactDeltaList.get(0).getContentValues();
-        if (contentValues != null && contentValues.size() != 0) {
-            intent.putParcelableArrayListExtra(
-                    ContactsContract.Intents.Insert.DATA, contentValues);
+        if (rawContactDeltaList != null && !rawContactDeltaList.isEmpty()) {
+            ArrayList<ContentValues> contentValues = rawContactDeltaList.get(0).getContentValues();
+            if (contentValues != null && contentValues.size() != 0) {
+                intent.putParcelableArrayListExtra(
+                        ContactsContract.Intents.Insert.DATA, contentValues);
+            }
         }
         // Name must be passed separately since it is skipped in RawContactModifier.parseValues
         if (!TextUtils.isEmpty(displayName)) {

@@ -417,12 +417,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         return null;
     }
 
-    @Override
-    public MaterialColorMapUtils.MaterialPalette getMaterialPalette() {
-        // There is no color for default photos on the fully expanded editor
-        return null;
-    }
-
     /**
      * Adjust how dark the hint text should be on all the names' text fields.
      *
@@ -537,10 +531,10 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     @Override
     protected boolean doSaveAction(int saveMode) {
-        // Save contact
+        // Save contact and reload the compact editor after saving.
         Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
-                ((Activity)mContext).getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED,
+                ((Activity) mContext).getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED,
                 mUpdatedPhotos);
         mContext.startService(intent);
 

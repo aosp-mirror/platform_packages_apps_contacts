@@ -19,14 +19,12 @@ package com.android.contacts.editor;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.util.ContactPhotoUtils;
 
@@ -55,7 +53,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     private static final String KEY_PHOTO_URI = "photo_uri";
     private static final String KEY_PHOTO_RAW_CONTACT_ID = "photo_raw_contact_id";
     private static final String KEY_UPDATED_PHOTOS = "updated_photos";
-    private static final String KEY_MATERIAL_PALETTE = "material_palette";
 
     /**
      * Displays a PopupWindow with photo edit options.
@@ -133,7 +130,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     private Uri mPhotoUri;
     private long mPhotoRawContactId;
     private Bundle mUpdatedPhotos = new Bundle();
-    private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
     private boolean mShowToastAfterSave = true;
 
     @Override
@@ -144,10 +140,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             mPhotoUri = savedState.getParcelable(KEY_PHOTO_URI);
             mPhotoRawContactId = savedState.getLong(KEY_PHOTO_RAW_CONTACT_ID);
             mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
-            mMaterialPalette = savedState.getParcelable(KEY_MATERIAL_PALETTE);
-        } else {
-            mMaterialPalette = getActivity().getIntent().getParcelableExtra(
-                    ContactEditorBaseActivity.INTENT_KEY_MATERIAL_PALETTE);
         }
     }
 
@@ -166,9 +158,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         outState.putParcelable(KEY_PHOTO_URI, mPhotoUri);
         outState.putLong(KEY_PHOTO_RAW_CONTACT_ID, mPhotoRawContactId);
         outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
-        if (mMaterialPalette != null) {
-            outState.putParcelable(KEY_MATERIAL_PALETTE, mMaterialPalette);
-        }
         super.onSaveInstanceState(outState);
     }
 
@@ -223,7 +212,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // Add input fields for the loaded Contact
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
-        editorView.setState(mState, mMaterialPalette, mViewIdGenerator);
+        editorView.setState(mState, getMaterialPalette(), mViewIdGenerator);
 
         // Set up the photo widget
         mPhotoHandler = createPhotoHandler();
@@ -310,12 +299,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     @Override
     protected boolean doSaveAction(int saveMode) {
-        // Save contact
+        // Save contact. No need to pass the palette since we are finished editing after the save.
         final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(),
-                CompactContactEditorActivity.ACTION_SAVE_COMPLETED,
-                mUpdatedPhotos);
+                CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos);
         mContext.startService(intent);
 
         return true;
@@ -369,13 +357,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // Prepare an Intent to start the expanded editor
         final Intent intent = isInsert
                 ? EditorIntents.createInsertContactIntent(mState, getDisplayName())
-                : EditorIntents.createEditContactIntent(mLookupUri);
+                : EditorIntents.createEditContactIntent(mLookupUri, getMaterialPalette());
         ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
 
-        final Activity activity = getActivity();
-        if (activity != null) {
-            activity.finish();
-        }
+        getActivity().finish();
     }
 
     @Override
@@ -387,11 +372,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (!mIsUserProfile) {
             acquireAggregationSuggestions(activity, rawContactId, valuesDelta);
         }
-    }
-
-    @Override
-    public MaterialColorMapUtils.MaterialPalette getMaterialPalette() {
-        return mMaterialPalette;
     }
 
     @Override

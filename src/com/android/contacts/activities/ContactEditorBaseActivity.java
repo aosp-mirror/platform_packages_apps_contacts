@@ -177,12 +177,6 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
     public static final String INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED =
             "finishActivityOnSaveCompleted";
 
-    /**
-     * Intent key to pass the calculated photo palette calculated by
-     * {@link com.android.contacts.quickcontact.QuickContactActivity} to the compact editor.
-     */
-    public static final String INTENT_KEY_MATERIAL_PALETTE = "materialPalette";
-
     protected ContactEditor mFragment;
     private boolean mFinishActivityOnSaveCompleted;
 
