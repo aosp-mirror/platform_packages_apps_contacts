@@ -142,6 +142,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Join Activity
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
 
+    private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
+
     protected static final int REQUEST_CODE_JOIN = 0;
     protected static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
     protected static final int REQUEST_CODE_PICK_RINGTONE = 2;
@@ -163,6 +165,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * editor and fully expanded editor.
      */
     public static final String INTENT_EXTRA_MATERIAL_PALETTE = "material_palette";
+
+    /**
+     * Intent key to pass a Bundle of raw contact IDs to photos URIs between the compact editor
+     * and the fully expanded one.
+     */
+    public static final String INTENT_EXTRA_UPDATED_PHOTOS = "updated_photos";
 
     /**
      * Intent extra to specify a {@link ContactEditor.SaveMode}.
@@ -342,6 +350,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Join Activity
     protected long mContactIdForJoin;
 
+    // Full resolution photo URIs
+    protected Bundle mUpdatedPhotos = new Bundle();
+
     //
     // Editor state for {@link ContactEditorView}.
     // (Not saved/restored on rotates)
@@ -474,6 +485,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
             // Join Activity
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
+
+            // Full resolution photo URIs
+            mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
         }
 
         // mState can still be null because it may not have have finished loading before
@@ -593,6 +607,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // Join Activity
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
+
+        // Full resolution photo URIs
+        outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
 
         super.onSaveInstanceState(outState);
     }
@@ -888,7 +905,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 mStatus = Status.EDITING;
                 return true;
             }
-            onSaveCompleted(false, saveMode, /* saveSucceeded =*/ mLookupUri != null, mLookupUri);
+            onSaveCompleted(false, saveMode, /* saveSucceeded =*/ mLookupUri != null, mLookupUri,
+                    /* updatedPhotos =*/ null);
             return true;
         }
 
@@ -902,7 +920,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // If we're coming back from the fully expanded editor and this is an insert, just
             // pass any values entered by the user back to the compact editor without doing a save
             final Intent resultIntent = EditorIntents.createCompactInsertContactIntent(
-                    mState, getDisplayName());
+                    mState, getDisplayName(), mUpdatedPhotos);
             mListener.onSaveFinished(resultIntent);
             return true;
         }
@@ -1277,8 +1295,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
             mDisableDeleteMenuOption =
                     mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
-            mMaterialPalette =
-                    mIntentExtras.getParcelable(INTENT_EXTRA_MATERIAL_PALETTE);
+            mMaterialPalette = mIntentExtras.getParcelable(INTENT_EXTRA_MATERIAL_PALETTE);
+            if (mIntentExtras.containsKey(INTENT_EXTRA_UPDATED_PHOTOS)) {
+                mUpdatedPhotos = mIntentExtras.getParcelable(INTENT_EXTRA_UPDATED_PHOTOS);
+            }
         }
     }
 
@@ -1301,12 +1321,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     @Override
     public void onJoinCompleted(Uri uri) {
-        onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri);
+        onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri, /* updatedPhotos =*/ null);
     }
 
     @Override
     public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
-            Uri contactLookupUri) {
+            Uri contactLookupUri, Bundle updatedPhotos) {
         if (hadChanges) {
             if (saveSucceeded) {
                 if (saveMode != SaveMode.JOIN && showToastAfterSave()) {
@@ -1329,10 +1349,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     } else if (saveMode == SaveMode.COMPACT) {
                         if (isInsert(getActivity().getIntent())) {
                             resultIntent = EditorIntents.createCompactInsertContactIntent(
-                                    mState, getDisplayName());
+                                    mState, getDisplayName(), updatedPhotos);
                         } else {
                             resultIntent = EditorIntents.createCompactEditContactIntent(
-                                    lookupUri, getMaterialPalette());
+                                    lookupUri, getMaterialPalette(), updatedPhotos);
                         }
                     } else {
                         resultIntent = null;
@@ -1562,6 +1582,25 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Performs aggregation with the contact selected by the user from suggestions or A-Z list.
      */
     abstract protected void joinAggregate(long contactId);
+
+    //
+    // Photos
+    //
+
+    /**
+     * Removes the full resolution photo URIs for new raw contacts (identified by negative raw
+     * contact IDs) from the member Bundle of updated photos.
+     */
+    protected void removeNewRawContactPhotos() {
+        for (String key : mUpdatedPhotos.keySet()) {
+            try {
+                if (Integer.parseInt(key) < 0) {
+                    mUpdatedPhotos.remove(key);
+                }
+            } catch (NumberFormatException ignored) {
+            }
+        }
+    }
 
     //
     // Utility methods

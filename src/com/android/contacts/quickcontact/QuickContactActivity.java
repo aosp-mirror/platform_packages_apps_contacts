@@ -2177,8 +2177,10 @@ public class QuickContactActivity extends ContactsActivity {
 
     private Intent getEditContactIntent() {
         return EditorIntents.createCompactEditContactIntent(
-                mContactData.getLookupUri(), mHasComputedThemeColor
-                        ? new MaterialPalette(mColorFilterColor, mStatusBarColor) : null);
+                mContactData.getLookupUri(),
+                mHasComputedThemeColor
+                        ? new MaterialPalette(mColorFilterColor, mStatusBarColor) : null,
+                /* updatedPhotos =*/ null);
     }
 
     private void editContact() {

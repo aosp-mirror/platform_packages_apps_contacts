@@ -88,7 +88,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
      */
     private PhotoHandler mCurrentPhotoHandler;
     private Uri mCurrentPhotoUri;
-    private Bundle mUpdatedPhotos = new Bundle();
 
     public ContactEditorFragment() {
     }
@@ -114,7 +113,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mRawContactIdRequestingPhoto = savedState.getLong(
                     KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mCurrentPhotoUri = savedState.getParcelable(KEY_CURRENT_PHOTO_URI);
-            mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
         }
     }
 
@@ -532,6 +530,10 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     @Override
     protected boolean doSaveAction(int saveMode) {
         // Save contact and reload the compact editor after saving.
+        // Note, the full resolution photos Bundle must be passed to the ContactSaveService
+        // and then passed along in the result Intent in order for the compact editor to
+        // receive it, instead of mUpdatedPhotos being accessed directly in onSaveCompleted,
+        // because we clear mUpdatedPhotos after starting the save service below.
         Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED,
@@ -549,7 +551,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         outState.putSerializable(KEY_EXPANDED_EDITORS, mExpandedEditors);
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_CURRENT_PHOTO_URI, mCurrentPhotoUri);
-        outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
         super.onSaveInstanceState(outState);
     }
 
@@ -604,6 +605,12 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
 
+        // For inserts where the raw contact ID is a negative number, we must clear any previously
+        // saved full resolution photos under negative raw contact IDs so that the compact editor
+        // will use the newly selected photo, instead of an old one.
+        if (isInsert(getActivity().getIntent()) && rawContact < 0) {
+            removeNewRawContactPhotos();
+        }
         mUpdatedPhotos.putParcelable(String.valueOf(rawContact), photoUri);
     }
 

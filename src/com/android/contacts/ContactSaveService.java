@@ -330,6 +330,9 @@ public class ContactSaveService extends IntentService {
             Intent callbackIntent = new Intent(context, callbackActivity);
             callbackIntent.putExtra(saveModeExtraKey, saveMode);
             callbackIntent.setAction(callbackAction);
+            if (updatedPhotos != null) {
+                callbackIntent.putExtra(EXTRA_UPDATED_PHOTOS, (Parcelable) updatedPhotos);
+            }
             serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
         }
         return serviceIntent;

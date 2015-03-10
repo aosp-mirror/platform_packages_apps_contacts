@@ -24,6 +24,7 @@ import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
@@ -43,9 +44,10 @@ public class EditorIntents {
      * existing contact.
      */
     public static Intent createCompactEditContactIntent(Uri contactLookupUri,
-            MaterialPalette materialPalette) {
+            MaterialPalette materialPalette, Bundle updatedPhotos) {
         final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
         putMaterialPalette(intent, materialPalette);
+        putUpdatedPhotos(intent, updatedPhotos);
         return intent;
     }
 
@@ -54,7 +56,7 @@ public class EditorIntents {
      */
     public static Intent createCompactInsertContactIntent() {
         return createCompactInsertContactIntent(/* rawContactDeltaList =*/ null,
-                /* displayName =*/ null);
+                /* displayName =*/ null, /* updatedPhotos =*/ null);
     }
 
     /**
@@ -62,11 +64,12 @@ public class EditorIntents {
      * the field values specified by rawContactDeltaList pre-populate in the form.
      */
     public static Intent createCompactInsertContactIntent(RawContactDeltaList rawContactDeltaList,
-            String displayName) {
+            String displayName, Bundle updatedPhotos) {
         final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
         if (rawContactDeltaList != null || displayName != null) {
             putRawContactDeltaValues(intent, rawContactDeltaList, displayName);
         }
+        putUpdatedPhotos(intent, updatedPhotos);
         return intent;
     }
 
@@ -105,11 +108,12 @@ public class EditorIntents {
      * existing contact.
      */
     public static Intent createInsertContactIntent(RawContactDeltaList rawContactDeltaList,
-            String displayName) {
+            String displayName, Bundle updatedPhotos) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_INSERT,
                 Contacts.CONTENT_URI);
         addContactIntentFlags(intent);
         putRawContactDeltaValues(intent, rawContactDeltaList, displayName);
+        putUpdatedPhotos(intent, updatedPhotos);
         return intent;
     }
 
@@ -123,6 +127,12 @@ public class EditorIntents {
         if (materialPalette != null) {
             intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_MATERIAL_PALETTE,
                     materialPalette);
+        }
+    }
+
+    private static void putUpdatedPhotos(Intent intent, Bundle updatedPhotos) {
+        if (updatedPhotos != null && !updatedPhotos.isEmpty()) {
+            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_UPDATED_PHOTOS, updatedPhotos);
         }
     }
 

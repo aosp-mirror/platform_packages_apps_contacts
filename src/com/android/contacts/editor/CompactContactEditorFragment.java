@@ -78,6 +78,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                 }
                 getContent().setPhoto(bitmap);
 
+                // Clear any previously saved full resolution photos under negative raw contact IDs
+                // so that we will use the newly selected photo, instead of an old one on rotations.
+                removeNewRawContactPhotos();
+
                 // If a new photo was chosen but not yet saved,
                 // we need to update the UI immediately
                 mUpdatedPhotos.putParcelable(String.valueOf(mPhotoRawContactId), uri);
@@ -129,7 +133,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     private PhotoHandler mPhotoHandler;
     private Uri mPhotoUri;
     private long mPhotoRawContactId;
-    private Bundle mUpdatedPhotos = new Bundle();
     private boolean mShowToastAfterSave = true;
 
     @Override
@@ -139,7 +142,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (savedState != null) {
             mPhotoUri = savedState.getParcelable(KEY_PHOTO_URI);
             mPhotoRawContactId = savedState.getLong(KEY_PHOTO_RAW_CONTACT_ID);
-            mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
         }
     }
 
@@ -157,7 +159,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelable(KEY_PHOTO_URI, mPhotoUri);
         outState.putLong(KEY_PHOTO_RAW_CONTACT_ID, mPhotoRawContactId);
-        outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
         super.onSaveInstanceState(outState);
     }
 
@@ -217,7 +218,19 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // Set up the photo widget
         mPhotoHandler = createPhotoHandler();
         mPhotoRawContactId = editorView.getPhotoRawContactId();
-        if (mUpdatedPhotos.containsKey(String.valueOf(mPhotoRawContactId))) {
+        if (mPhotoRawContactId < 0) {
+            // Since the raw contact IDs for new contacts are random negative numbers
+            // we consider any negative key a match
+            for (String key : mUpdatedPhotos.keySet()) {
+                try {
+                    if (Integer.parseInt(key) < 0) {
+                        editorView.setFullSizePhoto((Uri) mUpdatedPhotos.getParcelable(key));
+                        break;
+                    }
+                } catch (NumberFormatException ignored) {
+                }
+            }
+        } else if (mUpdatedPhotos.containsKey(String.valueOf(mPhotoRawContactId))) {
             editorView.setFullSizePhoto((Uri) mUpdatedPhotos.getParcelable(
                     String.valueOf(mPhotoRawContactId)));
         }
@@ -356,7 +369,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
         // Prepare an Intent to start the expanded editor
         final Intent intent = isInsert
-                ? EditorIntents.createInsertContactIntent(mState, getDisplayName())
+                ? EditorIntents.createInsertContactIntent(mState, getDisplayName(), mUpdatedPhotos)
                 : EditorIntents.createEditContactIntent(mLookupUri, getMaterialPalette());
         ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
 
