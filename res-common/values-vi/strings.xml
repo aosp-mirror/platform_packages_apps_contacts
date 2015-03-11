@@ -93,7 +93,7 @@
     <string name="full_name" msgid="885420216812981202">"Tên"</string>
     <string name="name_given" msgid="4153709115654909377">"Tên"</string>
     <string name="name_family" msgid="5317387657540738981">"Họ"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Tiền tố tên"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Danh xưng"</string>
     <string name="name_middle" msgid="3951610314424632183">"Tên đệm"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Hậu tố tên"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Tên theo phiên âm"</string>
