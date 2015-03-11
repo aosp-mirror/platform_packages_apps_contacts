@@ -73,9 +73,9 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"এই পরিচিতিটিতে একাধিক অ্যাকাউন্ট থেকে তথ্য উপস্থিত রয়েছে৷ শুধুমাত্র-পাঠযোগ্য অ্যাকাউন্টগুলির তথ্য আপনার পরিচিতিগুলির তালিকাতে লুকানো থাকবে,  মুছে ফেলা হবে না৷"</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"একটি মার্জ কার্য সম্পাদনা করতে আপনার কমপক্ষে দুটি পরিচিতি নির্বাচন করা দরকার৷"</string>
     <string name="batch_merge_confirmation" msgid="8551299480317422420">"নির্বাচিত পরিচিতিগুলিকে একটি একক পরিচিতির মধ্যে মার্জ করা হবে৷"</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"নির্বাচিত যোগাযোগগুলি মুছে ফেলা হবে৷"</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"নির্বাচিত পরিচিতিগুলি মুছে ফেলা হবে৷"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"শুধুমাত্র-পাঠযোগ্য অ্যাকাউন্টগুলির তথ্য আপনার পরিচিতিগুলির তালিকাতে লুকানো থাকবে, মুছে ফেলা হবে না৷"</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"এই পরিচিতিগুলিতে একাধিক অ্যাকাউন্ট থেকে তথ্য উপস্থিত রয়েছে৷ শুধুমাত্র-পাঠযোগ্য অ্যাকাউন্টগুলির তথ্য আপনার পরিচিতিগুলির তালিকাতে লুকানো থাকবে,  মুছে ফেলা হবে না৷"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"এই পরিচিতিগুলিতে একাধিক অ্যাকাউন্ট থেকে তথ্য উপস্থিত রয়েছে৷ শুধুমাত্র-পাঠযোগ্য অ্যাকাউন্টগুলির তথ্য আপনার পরিচিতিগুলির তালিকাতে লুকানো থাকবে, মুছে ফেলা হবে না৷"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"এই পরিচিতিটি মোছা হলে সেটি একাধিক অ্যাকাউন্ট থেকে তথ্য মুছবে৷"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"এই পরিচিতিটিকে মুছে ফেলা হবে৷"</string>
     <string name="menu_discard" msgid="6854657936970228164">"পরিবর্তনগুলি খারিজ করুন"</string>

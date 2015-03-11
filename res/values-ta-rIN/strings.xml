@@ -72,8 +72,8 @@
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"படிக்க மட்டுமேயான கணக்குகளின் தொடர்புகளை நீக்க முடியாது, ஆனால் தொடர்புகள் பட்டியல்களில் அவற்றை மறைக்கலாம்."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"தொடர்பில் பல கணக்குகளின் தகவல் உள்ளது. படிக்க மட்டுமேயான கணக்குகளின் தகவல் தொடர்புகள் பட்டியல்களில் மறைக்கப்படும், ஆனால் நீக்கப்படாது."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ஒன்றிணைப்பதற்கு, குறைந்தபட்சம் இரண்டு தொடர்புகளையாவது தேர்ந்தெடுத்திருக்க வேண்டும்."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"தேர்ந்தெடுத்த தொடர்புகள் ஒரு தொடர்பாக்கப்படும்."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"தேர்ந்தெடுத்த தொடர்புகள் அழிக்கப்படும்."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"தேர்ந்தெடுத்த தொடர்புகள் ஒரே தொடர்பாக்கப்படும்."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"தேர்ந்தெடுத்த தொடர்புகள் நீக்கப்படும்."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"படிக்க மட்டுமேயான கணக்குகளின் தகவல்கள் உங்கள் தொடர்புப் பட்டியல்களில் மறைக்கப்படும் ஆனால் நீக்கப்படாது."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"இந்தத் தொடர்புகள் பல கணக்குகளின் தகவலைக் கொண்டுள்ளன. படிக்க மட்டுமேயான கணக்குகளின் தகவல்கள் உங்கள் தொடர்புப் பட்டியல்களில் மறைக்கப்படும் ஆனால் நீக்கப்படாது."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"தொடர்பை நீக்குவது பல கணக்குகளில் உள்ள தகவலை நீக்கும்."</string>

@@ -57,7 +57,7 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"समूह जोड़ें"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"संपर्क अलग करें?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"यह संपर्क एकाधिक संपर्कों में अलग कर दिया जाएगा."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"मर्ज करें"</string>
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"एक बनाएं"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"संपर्क जोड़ें"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"वह संपर्क चुनें जिसे आप <xliff:g id="NAME">%s</xliff:g> के साथ जोड़ना चाहते हैं:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सभी संपर्क दिखाएं"</string>
@@ -71,10 +71,10 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ध्‍वनि‍मेल से सभी कॉल"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"आप केवल-पढ़ने के लिए खातों से संपर्क नहीं हटा सकते, लेकिन आप उन्‍हें अपनी संपर्क सूचियों में छुपा सकते हैं."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"इस संपर्क में एकाधिक खातों की जानकारी है. केवल-पढ़ने के लिए खातों की जानकारी आपकी संपर्क सूचियों में छिपी रहेगी, उसे हटाया नहीं जाएगा."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"मर्ज करने के लिए आपको कम से कम दो संपर्कों को चुनने की आवश्‍यकता होगी."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"चयनित संपर्कों को किसी एकल संपर्क में मर्ज कर दिया जाएगा."</string>
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"एक करने के लिए आपको कम से कम दो संपर्कों को चुनने की आवश्‍यकता होगी."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"चयनित संपर्कों को किसी एकल संपर्क में एक कर दिया जाएगा."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"चयनित संपर्क हटा दिए जाएंगे."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"केवल पढ़ने के लिए खातों की जानकारी आपकी संपर्क सूचियों में छिपाई जाएगी, हटाई नहीं जाएगी."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"केवल पढ़ने के लिए खातों की जानकारी को आपकी संपर्क सूचियों में छिपाया जाएगा, हटाया नहीं जाएगा."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"इन संपर्कों में एकाधिक खातों की जानकारी शामिल है. केवल पढ़ने के लिए खातों की जानकारी को आपकी संपर्क सूचियों में छिपाया जाएगा, हटाया नहीं जाएगा."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"इस संपर्क को हटाने से एकाधिक खातों से जानकारी हट जाएगी."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"यह संपर्क हटा दिया जाएगा."</string>

@@ -73,9 +73,9 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"此聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"您至少要選取兩個聯絡人才可執行合併。"</string>
     <string name="batch_merge_confirmation" msgid="8551299480317422420">"您所選的聯絡人將合併為單一聯絡人。"</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"所選的聯絡人將會刪除。"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會刪除)。"</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"這些聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會刪除)。"</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"所選的聯絡人將被刪除。"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"您的聯絡人清單不會顯示唯讀帳戶的資訊 (系統不會刪除這些資訊)。"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"這些聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (系統不會刪除這些資訊)。"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"刪除此聯絡人將會刪除多個帳戶的資訊。"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"刪除此聯絡人？"</string>
     <string name="menu_discard" msgid="6854657936970228164">"捨棄變更"</string>

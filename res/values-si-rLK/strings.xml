@@ -71,11 +71,11 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"හඬ තැපෑල වෙත සියලු ඇමතුම්"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ඔබට සම්බන්ධතා කියවීමට-පමණයි ගිණුම් වලින් මැකිය නොහැක, නමුත් ඔබගේ සම්බන්ධතා ලැයිස්තු තුළ ඔබට ඒවා සැඟවිය හැක."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"මෙම සම්බන්ධතාවයෙහි ගිණුම් කිහිපයකින් තොරතුරු අඩංගු වේ. කියවීමට-පමණයි ගිණුම් වලින් තොරතුරු ඔබගේ සම්බන්ධතා ලැයිස්තු තුළ සඟවා දැමෙන අතර, මකා දැමීම නොකරයි."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ඒකාබද්ධ කිරීමක් සිදු කිරීමට ඔබ විසින් අවම වශයෙන් සබඳතා දෙකක් තෝරාගත යුතුය."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"තෝරාගත් සබඳතා තනි සබඳතාවයක් ලෙස ඒකාබද්ධ කෙරෙනු ඇත."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"තෝරාගත් සබඳතා මකා දැමෙනු ඇත."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"කියවීමට-පමණක් වූ ගිණුම්වල තොරතුරු  ඔබේ සබඳතා ලැයිස්තුවේ සඟවනු ඇත, ඒවා මැකෙනු නොලැබේ."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"මෙම සබඳතාවල ගිණුම් කිහිපයක තොරතුරු අන්තර්ගතයි. කියවීමට-පමණක් වූ ගිණුම්වල තොරතුරු  ඔබේ සබඳතා ලැයිස්තුවේ සඟවනු ඇත, ඒවා මැකෙනු නොලැබේ."</string>
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ඒකාබද්ධ කිරීමක් සිදු කිරීමට ඔබ විසින් අවම වශයෙන් සම්බන්ධතා දෙකක් තෝරාගත යුතුය."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"තෝරාගත් සම්බන්ධතා තනි සම්බන්ධතාවයක් ලෙස ඒකාබද්ධ කෙරෙනු ඇත."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"තෝරාගත් සම්බන්ධතා මකා දැමෙනු ඇත."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"කියවීමට-පමණක් වූ ගිණුම්වල තොරතුරු  ඔබේ සම්බන්ධතා ලැයිස්තුවේ සඟවනු ඇත, ඒවා මැකෙනු නොලැබේ."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"මෙම සම්බන්ධතා වල ගිණුම් කිහිපයක තොරතුරු අන්තර්ගතයි. කියවීමට-පමණක් වූ ගිණුම්වල තොරතුරු ඔබේ සම්බන්ධතා ලැයිස්තුවේ සඟවනු ඇත, ඒවා මකාදමනු නොලැබේ."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"මෙම සම්බන්ධතාවය මකා දැමීමෙන් ගිණුම් කිහිපයකින් තොරතුරු මකා දැමෙනු ඇත."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"මෙම සම්බන්ධතාවය මකා දැමෙනු ඇත."</string>
     <string name="menu_discard" msgid="6854657936970228164">"වෙනස්කම් ඉවතලන්න"</string>

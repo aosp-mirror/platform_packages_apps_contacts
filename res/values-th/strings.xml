@@ -74,8 +74,8 @@
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"คุณต้องเลือกรายชื่อติดต่อไว้อย่างน้อย 2 รายการเพื่อดำเนินการรวม"</string>
     <string name="batch_merge_confirmation" msgid="8551299480317422420">"รายชื่อติดต่อที่เลือกไว้จะรวมเป็นรายชื่อเดียว"</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"ระบบจะลบรายชื่อติดต่อที่เลือก"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"ระบบจะซ่อนข้อมูลจากบัญชีที่อ่านอย่างเดียวไว้ในรายชื่อติดต่อ ซึ่งจะไม่มีการลบ"</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"รายชื่อติดต่อเหล่านี้มีข้อมูลจากหลายบัญชี ระบบจะซ่อนข้อมูลจากบัญชีที่อ่านอย่างเดียวไว้ในรายชื่อติดต่อของคุณ ซึ่งจะไม่มีการลบ"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"ระบบจะซ่อนข้อมูลจากบัญชีที่อ่านอย่างเดียวไว้ในรายชื่อติดต่อโดยไม่ลบออก"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"รายชื่อติดต่อเหล่านี้มีข้อมูลจากหลายบัญชี ระบบจะซ่อนข้อมูลจากบัญชีที่อ่านอย่างเดียวไว้ในรายชื่อติดต่อของคุณโดยไม่ลบออก"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"การลบสมุดโทรศัพท์นี้จะลบข้อมูลจากบัญชีแบบหลายรายการ"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"รายชื่อนี้จะถูกลบ"</string>
     <string name="menu_discard" msgid="6854657936970228164">"ยกเลิกการเปลี่ยนแปลง"</string>
