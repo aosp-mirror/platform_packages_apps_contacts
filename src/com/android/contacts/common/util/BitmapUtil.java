@@ -127,7 +127,9 @@ public class BitmapUtil {
         if (input == null) {
             return null;
         }
-        final Bitmap result = Bitmap.createBitmap(targetWidth, targetHeight, input.getConfig());
+        final Bitmap.Config inputConfig = input.getConfig();
+        final Bitmap result = Bitmap.createBitmap(targetWidth, targetHeight,
+                inputConfig != null ? inputConfig : Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(result);
         final Paint paint = new Paint();
         canvas.drawARGB(0, 0, 0, 0);
