@@ -53,7 +53,6 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     private ContactPhotoManager mContactPhotoManager;
 
     private boolean mHasSetPhoto = false;
-    private boolean mReadOnly;
 
     public PhotoEditorView(Context context) {
         super(context);
@@ -116,7 +115,6 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     public void setValues(DataKind kind, ValuesDelta values, RawContactDelta state, boolean readOnly,
             ViewIdGenerator vig) {
         mEntry = values;
-        mReadOnly = readOnly;
 
         setId(vig.getId(state, kind, values, 0));
 

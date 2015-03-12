@@ -98,7 +98,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected static final int LOADER_DATA = 1;
     protected static final int LOADER_GROUPS = 2;
 
-    private static final List<String> VALID_INTENT_ACTIONS = new ArrayList() {{
+    private static final List<String> VALID_INTENT_ACTIONS = new ArrayList<String>() {{
         add(Intent.ACTION_EDIT);
         add(Intent.ACTION_INSERT);
         add(ContactEditorBaseActivity.ACTION_EDIT);
@@ -1412,22 +1412,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         final Intent intent = new Intent(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
         intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, mContactIdForJoin);
         startActivityForResult(intent, REQUEST_CODE_JOIN);
-    }
-
-    /**
-     * Returns true if there is at least one writable raw contact in the current contact.
-     */
-    private boolean isContactWritable() {
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        int size = mState.size();
-        for (int i = 0; i < size; i++) {
-            RawContactDelta entity = mState.get(i);
-            final AccountType type = entity.getAccountType(accountTypes);
-            if (type.areContactsWritable()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     //

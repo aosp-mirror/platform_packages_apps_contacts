@@ -55,7 +55,6 @@ import java.util.List;
  * section header and a trigger for adding new {@link Data} rows.
  */
 public class KindSectionView extends LinearLayout implements EditorListener {
-    private static final String TAG = "KindSectionView";
 
     private ViewGroup mEditors;
     private ImageView mIcon;

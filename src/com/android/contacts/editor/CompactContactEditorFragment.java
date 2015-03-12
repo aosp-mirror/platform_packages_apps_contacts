@@ -52,7 +52,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     private static final String KEY_PHOTO_URI = "photo_uri";
     private static final String KEY_PHOTO_RAW_CONTACT_ID = "photo_raw_contact_id";
-    private static final String KEY_UPDATED_PHOTOS = "updated_photos";
 
     /**
      * Displays a PopupWindow with photo edit options.
