@@ -67,6 +67,9 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             public void onRemovePictureChosen() {
                 getContent().setPhoto(/* bitmap =*/ null);
                 mUpdatedPhotos.remove(String.valueOf(mPhotoRawContactId));
+
+                // Update the mode so the options change if user clicks the photo again
+                mPhotoMode = getPhotoMode();
             }
 
             @Override
@@ -85,6 +88,9 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                 // we need to update the UI immediately
                 mUpdatedPhotos.putParcelable(String.valueOf(mPhotoRawContactId), uri);
                 getContent().setFullSizePhoto(uri);
+
+                // Update the mode so the options change if user clicks the photo again
+                mPhotoMode = getPhotoMode();
             }
 
             @Override
@@ -107,6 +113,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             super(context, /* changeAnchorView =*/ null, photoMode, /* isDirectoryContact =*/ false,
                     state);
             mPhotoListener = new PhotoListener();
+            mPhotoMode = photoMode;
+        }
+
+        public void setPhotoMode(int photoMode) {
             mPhotoMode = photoMode;
         }
 
@@ -266,6 +276,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     private PhotoHandler createPhotoHandler() {
+        return new PhotoHandler(getActivity(), getPhotoMode(), mState);
+    }
+
+    private int getPhotoMode() {
         // To determine the options that are available to the user to update their photo
         // (i.e. the photo mode), check if any of the writable raw contacts has a photo set
         Integer photoMode = null;
@@ -289,8 +303,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             photoMode = hasWritableAccountType
                     ? PhotoActionPopup.Modes.NO_PHOTO : PhotoActionPopup.Modes.READ_ONLY_PHOTO;
         }
-
-        return new PhotoHandler(getActivity(), photoMode, mState);
+        return photoMode;
     }
 
     @Override
