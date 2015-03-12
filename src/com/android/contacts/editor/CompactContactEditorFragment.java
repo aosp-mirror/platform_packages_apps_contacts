@@ -133,7 +133,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     private PhotoHandler mPhotoHandler;
     private Uri mPhotoUri;
     private long mPhotoRawContactId;
-    private boolean mShowToastAfterSave = true;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -303,11 +302,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     @Override
     protected void setGroupMetaData() {
         // The compact editor does not support groups.
-    }
-
-    @Override
-    protected boolean showToastAfterSave() {
-        return mShowToastAfterSave;
     }
 
     @Override
