@@ -25,6 +25,7 @@ import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.MaterialColorMapUtils;
+import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.SchedulingUtils;
@@ -61,6 +62,7 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
     private ValuesDelta mValuesDelta;
     private boolean mReadOnly;
     private boolean mIsPhotoSet;
+    private MaterialPalette mMaterialPalette;
 
     private QuickContactImageView mPhotoImageView;
 
@@ -88,11 +90,11 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
     }
 
     public void setValues(DataKind dataKind, ValuesDelta valuesDelta,
-            RawContactDelta rawContactDelta, boolean readOnly,
-            MaterialColorMapUtils.MaterialPalette materialPalette,
+            RawContactDelta rawContactDelta, boolean readOnly, MaterialPalette materialPalette,
             ViewIdGenerator viewIdGenerator) {
         mValuesDelta = valuesDelta;
         mReadOnly = readOnly;
+        mMaterialPalette = materialPalette;
 
         setId(viewIdGenerator.getId(rawContactDelta, dataKind, valuesDelta, /* viewIndex =*/ 0));
 
@@ -127,11 +129,7 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
         }
 
         if (!mIsPhotoSet) {
-            final int color = materialPalette == null
-                    ? MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors(
-                            getResources()).mPrimaryColor
-                    : materialPalette.mPrimaryColor;
-            mPhotoImageView.setTint(color);
+            setDefaultPhotoTint();
         }
 
         // Adjust the photo dimensions following the same logic as in
@@ -216,8 +214,17 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
     private void setDefaultPhoto() {
         mPhotoImageView.setImageDrawable(ContactPhotoManager.getDefaultAvatarDrawableForContact(
                 getResources(), /* hires =*/ false, /* defaultImageRequest =*/ null));
+        setDefaultPhotoTint();
         mIsPhotoSet = false;
         mValuesDelta.setFromTemplate(true);
+    }
+
+    private void setDefaultPhotoTint() {
+        final int color = mMaterialPalette == null
+                ? MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors(
+                getResources()).mPrimaryColor
+                : mMaterialPalette.mPrimaryColor;
+        mPhotoImageView.setTint(color);
     }
 
     /**
