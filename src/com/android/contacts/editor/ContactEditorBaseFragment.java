@@ -354,8 +354,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected Bundle mUpdatedPhotos = new Bundle();
 
     //
-    // Editor state for {@link ContactEditorView}.
-    // (Not saved/restored on rotates)
+    // Not saved/restored on rotates
     //
 
     // Used to pre-populate the editor with a display name when a user edits a read-only contact.
@@ -363,6 +362,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     // Whether the name editor should receive focus after being bound
     protected boolean mRequestFocus;
+
+    // Whether to show a Toast message after saves have completed.
+    // Does not affect successful toasts shown after joins, which are never displayed.
+    protected boolean mShowToastAfterSave = true;
 
     /**
      * The contact data loader listener.
@@ -896,16 +899,15 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         mStatus = Status.SAVING;
 
-        // Don't abort if there are no changes and we are returning to the compact editor --
-        // the user may have simply expanded the editor then hit back
-        if (!hasPendingChanges() && saveMode != SaveMode.COMPACT) {
+        if (!hasPendingChanges()) {
             if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
                 // We don't have anything to save and there isn't even an existing contact yet.
                 // Nothing to do, simply go back to editing mode
                 mStatus = Status.EDITING;
                 return true;
             }
-            onSaveCompleted(false, saveMode, /* saveSucceeded =*/ mLookupUri != null, mLookupUri,
+            onSaveCompleted(/* hadChanges =*/ false, saveMode,
+                    /* saveSucceeded =*/ mLookupUri != null, mLookupUri,
                     /* updatedPhotos =*/ null);
             return true;
         }
@@ -1329,7 +1331,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             Uri contactLookupUri, Bundle updatedPhotos) {
         if (hadChanges) {
             if (saveSucceeded) {
-                if (saveMode != SaveMode.JOIN && showToastAfterSave()) {
+                if (saveMode != SaveMode.JOIN && mShowToastAfterSave) {
                     Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
                 }
             } else {
@@ -1340,26 +1342,28 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             case SaveMode.CLOSE:
             case SaveMode.COMPACT:
                 final Intent resultIntent;
-                if (saveSucceeded && contactLookupUri != null) {
+                if (!saveSucceeded || contactLookupUri == null) {
+                    resultIntent = saveMode == SaveMode.COMPACT
+                            ? EditorIntents.createCompactInsertContactIntent(
+                                    mState, getDisplayName(), updatedPhotos)
+                            : null;
+                } else {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
                     if (saveMode == SaveMode.CLOSE) {
                         resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(lookupUri,
                                 QuickContactActivity.MODE_FULLY_EXPANDED);
                     } else if (saveMode == SaveMode.COMPACT) {
-                        if (isInsert(getActivity().getIntent())) {
-                            resultIntent = EditorIntents.createCompactInsertContactIntent(
-                                    mState, getDisplayName(), updatedPhotos);
-                        } else {
-                            resultIntent = EditorIntents.createCompactEditContactIntent(
-                                    lookupUri, getMaterialPalette(), updatedPhotos);
-                        }
+                        resultIntent = isInsert(getActivity().getIntent())
+                                ? EditorIntents.createCompactInsertContactIntent(
+                                        mState, getDisplayName(), updatedPhotos)
+                                : EditorIntents.createCompactEditContactIntent(
+                                        lookupUri, getMaterialPalette(), updatedPhotos);
                     } else {
                         resultIntent = null;
                     }
-                } else {
-                    resultIntent = null;
                 }
+
                 // It is already saved, so prevent that it is saved again
                 mStatus = Status.CLOSING;
                 if (mListener != null) mListener.onSaveFinished(resultIntent);
@@ -1392,14 +1396,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 }
                 break;
         }
-    }
-
-    /**
-     * Whether to show a Toast message after saves have completed.
-     * Does not affect successful toasts shown after joins, which are never displayed.
-     */
-    protected boolean showToastAfterSave() {
-        return true;
     }
 
     /**
