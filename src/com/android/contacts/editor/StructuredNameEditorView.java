@@ -287,12 +287,4 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
             return 0;
         }
     }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        // Remove padding below this view.
-        setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), 0);
-    }
 }

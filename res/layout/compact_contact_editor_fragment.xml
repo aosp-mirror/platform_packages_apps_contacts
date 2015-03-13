@@ -29,21 +29,7 @@
             android:orientation="vertical"
             android:visibility="invisible">
 
-        <com.android.contacts.editor.CompactPhotoEditorView
-                android:id="@+id/photo_editor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:orientation="vertical">
-
-            <com.android.contacts.widget.QuickContactImageView
-                    android:id="@+id/photo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:scaleType="centerCrop"/>
-
-        </com.android.contacts.editor.CompactPhotoEditorView>
+        <include layout="@layout/compact_photo_editor_view" />
 
         <include layout="@layout/compact_contact_editor_fields" />
 

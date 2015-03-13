@@ -116,10 +116,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             mPhotoMode = photoMode;
         }
 
-        public void setPhotoMode(int photoMode) {
-            mPhotoMode = photoMode;
-        }
-
         @Override
         public void onClick(View view) {
             PhotoSourceDialogFragment.show(CompactContactEditorFragment.this, mPhotoMode);

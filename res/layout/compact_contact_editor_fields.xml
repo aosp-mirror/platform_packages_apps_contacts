@@ -60,27 +60,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider_line_height"
-                android:background="@color/divider_line_color_light"/>
-
+        <!-- See the comment for EditKindIconStyle in styles.xml, we use (16 + 24 + 32) dp of
+             padding (start margin + icon width + end margin) for this to line up with the start
+             of the edit fields. -->
         <TextView
+                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingEnd="@dimen/expanding_entry_card_item_image_spacing"
+                android:minHeight="@dimen/editor_min_line_item_height"
+                android:paddingStart="72dp"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/expanding_entry_card_button_padding_vertical"
-                android:paddingTop="@dimen/expanding_entry_card_button_padding_vertical"
                 android:text="@string/compact_editor_more_fields"
-                android:textAlignment="viewEnd"
-                android:textColor="@color/expanding_entry_card_button_text_color"
+                android:textColor="?android:attr/colorAccent"
                 android:textSize="@dimen/expanding_entry_card_title_text_size"/>
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider_line_height"
-                android:background="@color/divider_line_color_light"/>
 
     </LinearLayout>
 

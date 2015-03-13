@@ -15,31 +15,17 @@
      limitations under the License.
 -->
 
-<com.android.contacts.editor.CompactRawContactsEditorView
+<com.android.contacts.editor.CompactPhotoEditorView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/editors"
+        android:id="@+id/photo_editor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background_primary"
-        android:orientation="horizontal"
-        android:visibility="invisible">
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
 
-    <include layout="@layout/compact_photo_editor_view" />
-
-    <ScrollView
+    <com.android.contacts.widget.QuickContactImageView
+            android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fadingEdge="none"
-            android:fillViewport="true">
+            android:scaleType="centerCrop"/>
 
-        <LinearLayout android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-            <include layout="@layout/compact_contact_editor_fields"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</com.android.contacts.editor.CompactRawContactsEditorView>
+</com.android.contacts.editor.CompactPhotoEditorView>

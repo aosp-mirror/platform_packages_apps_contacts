@@ -62,6 +62,6 @@
     <!-- Color of the mime-type icons inside the editor. 50% black. -->
     <color name="editor_icon_color">#7f7f7f</color>
 
-    <!-- Color of disabled text and unfocused hint text inside the contact editor. -->
-    <color name="editor_disabled_text_color">#989898</color>
+    <!-- Color of disabled text and unfocused hint text inside the contact editor. 25% black. -->
+    <color name="editor_disabled_text_color">#40000000</color>
 </resources>
