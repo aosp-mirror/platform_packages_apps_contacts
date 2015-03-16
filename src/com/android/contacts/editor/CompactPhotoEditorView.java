@@ -44,12 +44,12 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 /**
  * Displays the primary photo.
  */
-public class CompactPhotoEditorView extends LinearLayout implements View.OnClickListener {
+public class CompactPhotoEditorView extends RelativeLayout implements View.OnClickListener {
 
     private static final String TAG = CompactContactEditorFragment.TAG;
 
@@ -90,7 +90,7 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
         mContactPhotoManager = ContactPhotoManager.getInstance(getContext());
 
         mPhotoImageView = (QuickContactImageView) findViewById(R.id.photo);
-        mPhotoImageView.setOnClickListener(this);
+        findViewById(R.id.photo_touch_intercept_overlay).setOnClickListener(this);
     }
 
     public void setValues(DataKind dataKind, ValuesDelta valuesDelta,

@@ -189,26 +189,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.menu_change_photo).setVisible(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (super.onOptionsItemSelected(item)) {
-            return true;
-        }
-        if (item.getItemId() == R.id.menu_change_photo) {
-            if (mPhotoHandler != null) {
-                mPhotoHandler.onClick(/* view =*/ null);
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
     protected void bindEditors() {
         if (!isReadyToBindEditors()) {
             return;

@@ -28,4 +28,21 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
 
+    <ImageView
+            android:id="@+id/photo_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_photo_camera_white_24dp" />
+
+    <View
+            android:id="@+id/photo_touch_intercept_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/item_background_material_dark" />
+
 </com.android.contacts.editor.CompactPhotoEditorView>
