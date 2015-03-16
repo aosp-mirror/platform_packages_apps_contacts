@@ -39,8 +39,9 @@
     <dimen name="editor_round_button_padding_top">16dip</dimen>
     <dimen name="editor_round_button_padding_bottom">16dip</dimen>
 
-    <!-- Minimum height of a row in the Editor -->
-    <dimen name="editor_min_line_item_height">48dip</dimen>
+    <!-- Minimum height of a row in the Editor. This is the target height for editor "rows",
+        including the "More fields" button/row. -->
+    <dimen name="editor_min_line_item_height">54dp</dimen>
 
     <!-- Width of the delete button (X) in the raw contact editor -->
     <dimen name="editor_delete_button_width">48dp</dimen>
@@ -69,21 +70,21 @@
     <dimen name="editor_kind_icon_total_width">68dp</dimen>
 
     <!-- Padding below every editor view, such as LabeledEditorView. This value is chosen
-        to give 32dp of apparent padding between EditText's in the Raw Contact Editor. -->
-    <dimen name="editor_padding_between_editor_views">15dp</dimen>
+        to give 19dp of apparent padding between EditText's in the Raw Contact Editor. -->
+    <dimen name="editor_padding_between_editor_views">2dp</dimen>
 
-    <!-- Padding below every readonly editor view. This value is chosen to give 32dp of apparent padding
-        between TextView's in the readonly Raw Contact Editor. -->
-    <dimen name="editor_padding_between_read_only_editor_views">25dp</dimen>
+    <!-- Padding below every readonly editor view. This value is chosen to give 19dp of apparent
+        padding between TextView's in the readonly Raw Contact Editor. -->
+    <dimen name="editor_padding_between_read_only_editor_views">9dp</dimen>
 
-    <!-- Padding above and below the photo editor. This value is chosen to give 32dp of apparent
+    <!-- Padding above and below the photo editor. This value is chosen to give 19dp of apparent
         padding between TextView's and the photo's ImageView. -->
-    <dimen name="editor_padding_around_read_only_photo_editor">28dp</dimen>
+    <dimen name="editor_padding_around_read_only_photo_editor">15dp</dimen>
 
     <!-- Padding below the photo editor. This value is larger than
         editor_padding_between_editor_views, since ImageView's don't have space between the bottom
         of their visual bottom, like an EditText does. -->
-    <dimen name="editor_padding_below_photo">21dp</dimen>
+    <dimen name="editor_padding_below_photo">9dp</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">150dip</dimen>
