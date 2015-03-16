@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"ဆက်သွယ်မှုစာရင်း ပေါင်းကူးပြီး"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"ဆက်သွယ်မှုစာရင်း ဖျက်ပြီး"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ဖုန်းမြည်သံသတ်မှတ်ရန်"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ဖုန်းအားလုံးအသံစာပို့စနစ်သို့"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ဖတ်ရန်အတွက်သာ အကောင့်များမှ အဆက်အသွယ်များကို ဖျက်ပစ်လို့ မရပါ၊ ဒါပေမယ့် အဆက်အသွယ်များစာရင်းမှ ဖျောက်ထားလို့ ရပါသည်"</string>

@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ყველა კონტაქტის ჩვენება"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"შემოთავაზებული კონტაქტები"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ყველა კონტაქტი"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"კონტაქტები გაერთიანდა"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"კონტაქტები წაიშალა"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ზარის დაყენება"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ყველა ზარი ხმოვან ფოსტაში"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"მხოლოდ კითხვადი ანგარიშებიდან კონტაქტების წაშლა შეუძლებელია, თუმცა შეგიძლიათ დამალოთ ისინი კონტაქტების სიაში."</string>

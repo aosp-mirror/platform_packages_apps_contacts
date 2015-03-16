@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"모든 연락처 표시"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"추천 연락처"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"모든 연락처"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"연락처가 병합되었습니다."</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"연락처가 삭제되었습니다."</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"벨소리 설정"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"음성사서함 자동 연결"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"연락처를 읽기 전용 계정에서 삭제할 수는 없지만 주소록에서 숨길 수는 있습니다."</string>

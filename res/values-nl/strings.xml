@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle contacten weergeven"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mogelijke contacten"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle contacten"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Contacten samengevoegd"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Contacten verwijderd"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Beltoon instellen"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle oproepen naar voicemail"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"U kunt contacten niet verwijderen uit alleen-lezen-accounts, maar u kunt ze verbergen in uw contactenlijst."</string>

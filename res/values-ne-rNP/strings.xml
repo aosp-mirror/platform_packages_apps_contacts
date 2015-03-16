@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सबै सम्पर्कहरू देखाउनुहोस्"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सुझाव गरिएका सम्पर्कहरू"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"सबै सम्पर्कहरू"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"सम्पर्कहरू मर्ज गरिए"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"सम्पर्कहरू मेटाइए"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिङ्टोन मिलाउनुहोस्"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"भ्वाइसमेलमा सम्पूर्ण कल"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"तपाईँले पढ्ने-मात्र खाताबाट सम्पर्कहरू हटाउन सक्नु हुन्न, तर तपाईँको सम्पर्क सूचीहरूबाट लुकाउन सक्नु हुन्छ।"</string>

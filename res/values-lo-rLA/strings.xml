@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ສະແດງລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ແນະນຳ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດ"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"ລວມ​ລາຍ​ຊື່​ເຂົ້າ​ກັນ​ແລ້ວ"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"ລຶບ​ລາຍ​ຊື່​ແລ້ວ"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ຕັ້ງສຽງຣິງໂທນ"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ໂອນທຸກສາຍໄປຂໍ້ຄວາມສຽງ"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ທ່ານບໍ່ສາມາດລຶບລາຍຊື່ຜູ່ຕິດຕໍ່ຈາກບັນຊີທີ່ອ່ານໄດ້ເທົ່ານັ້ນ ແຕ່ທ່ານສາມາດເຊື່ອງມັນໄວ້ໃນລາຍຊື່ຜູ່ຕິດຕໍ່ຂອງທ່ານ."</string>

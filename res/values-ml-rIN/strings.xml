@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"എല്ലാ കോൺടാക്റ്റുകളും കാണിക്കുക"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"നിര്‍ദ്ദേശിച്ച കോണ്‍ടാക്റ്റുകള്‍"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"എല്ലാ കോൺടാക്റ്റുകളും"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"കോൺടാക്റ്റുകൾ ലയിപ്പിച്ചു"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"കോൺടാക്റ്റുകൾ ഇല്ലാതാക്കി"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"റിംഗ്‌ടോൺ സജ്ജമാക്കുക"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"വോയ്‌സ്‌മെയിലിലേക്കുള്ള എല്ലാ കോളുകളും"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള കോൺടാക്റ്റുകൾ നിങ്ങൾക്ക് ഇല്ലാതാക്കാനാകില്ലെങ്കിലും കോൺടാക്റ്ററ്റ് ലിസ്റ്റുകളിൽ നിന്ന് അവ മറയ്‌ക്കാനാകും."</string>

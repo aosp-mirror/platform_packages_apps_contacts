@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"显示所有联系人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建议的联系人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有联系人"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"已合并联系人"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"已删除联系人"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"设置铃声"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"所有来电转至语音信箱"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"您无法删除只读帐户中的联系人，但可以在联系人列表中将他们隐藏。"</string>

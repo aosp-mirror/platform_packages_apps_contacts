@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸು"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ಸೂಚಿಸಲಾದ ಸಂಪರ್ಕಗಳು"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"ಸಂಪರ್ಕಗಳನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಲಾಗಿದೆ"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ರಿಂಗ್‌ಟೋನ್‌ ಹೊಂದಿಸಿ"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ಧ್ವನಿಮೇಲ್‌ಗೆ ಎಲ್ಲ ಕರೆಗಳು"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ಓದಲು ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ನಿಮಗೆ ಅಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಆದರೆ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ಅವುಗಳನ್ನು ನೀವು ಮರೆಮಾಡಬಹುದು."</string>

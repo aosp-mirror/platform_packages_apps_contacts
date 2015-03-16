@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Εμφάνιση όλων των επαφών"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Προτεινόμενες επαφές"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Όλες οι επαφές"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Οι επαφές συγχωνεύτηκαν"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Οι επαφές διαγράφηκαν"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ήχος κλήσης"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Κλήσεις στον τηλεφωνητή"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Δεν μπορείτε να διαγράψετε επαφές από λογαριασμούς οι οποίοι προορίζονται μόνο για ανάγνωση, αλλά μπορείτε να τις αποκρύψετε στις λίστες επαφών σας."</string>

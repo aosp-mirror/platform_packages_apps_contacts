@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Hiển thị tất cả liên hệ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Liên hệ được đề xuất"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tất cả liên hệ"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Đã hợp nhất các địa chỉ liên hệ"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Đã xóa các địa chỉ liên hệ"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Đặt nhạc chuông"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Các cuộc gọi tới thư thoại"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Bạn không thể xóa địa chỉ liên hệ từ tài khoản chỉ đọc, nhưng bạn có thể ẩn chúng trong danh sách địa chỉ liên hệ của mình."</string>

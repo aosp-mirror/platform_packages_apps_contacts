@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"எல்லா தொடர்புகளையும் காட்டு"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்பட்ட தொடர்புகள்"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"எல்லா தொடர்புகளும்"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"தொடர்புகள் இணைக்கப்பட்டன"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"தொடர்புகள் நீக்கப்பட்டன"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ரிங்டோனை அமை"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"எல்லா அழைப்புகளையும் குரலஞ்சலிற்கு திருப்பு"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"படிக்க மட்டுமேயான கணக்குகளின் தொடர்புகளை நீக்க முடியாது, ஆனால் தொடர்புகள் பட்டியல்களில் அவற்றை மறைக்கலாம்."</string>

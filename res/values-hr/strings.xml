@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Prikaži sve kontakte"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Predloženi kontakti"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Svi kontakti"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Kontakti su spojeni"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontakti su izbrisani"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Postavi zvuk zvona"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Svi pozivi na govornu poštu"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ne možete izbrisati kontakte s računa samo za čitanje, ali možete ih sakriti na svojim popisima kontakata."</string>

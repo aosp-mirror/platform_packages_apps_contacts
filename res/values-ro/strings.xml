@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afişaţi toate persoanele din agendă"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toate persoanele din agendă"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Persoane de contact îmbinate"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Persoane de contact șterse"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setaţi ton apel"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Toate apel. către mesag. voc."</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Nu puteţi şterge persoane din agendă, din conturi cu permisiuni doar de citire, însă puteţi să le ascundeţi în lista dvs. de persoane din agendă."</string>
@@ -130,7 +128,7 @@
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> din <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (de) persoane din agendă"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Numele persoanelor din agenda dvs."</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Nu s-a găsit o aplicaţie care să gestioneze această acţiune."</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Nu s-a găsit o aplicație care să gestioneze această acţiune."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Dați clic pentru a reveni la ecranul anterior"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Adăugați un număr de telefon"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Adăugaţi o adresă de e-mail"</string>
@@ -148,7 +146,7 @@
     <string name="account_type_format" msgid="718948015590343010">"Persoana din agendă din <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Nu se poate edita din această aplicaţie"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"Nu se poate edita din această aplicație"</string>
     <string name="group_read_only" msgid="1061762906115697637">"Nu poate fi editat pe acest dispozitiv."</string>
     <string name="take_photo" msgid="7496128293167402354">"Fotografiaţi"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Creaţi o fotografie nouă"</string>

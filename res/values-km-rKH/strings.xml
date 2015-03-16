@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"បង្ហាញ​ទំនាក់​ទំនង​ទាំងអស់"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ទំនាក់ទំនង​ដែល​បាន​ស្នើ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ទំនាក់ទំនង​ទាំងអស់"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"ទំនាក់ទំនងត្រូវបានរួមបញ្ចូលគ្នា"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"ទំនាក់ទំនងត្រូវបានលុប"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"កំណត់​សំឡេង​រោទ៍"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ការ​ហៅ​ទាំងអស់​ទៅ​សារ​ជា​សំឡេង"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"អ្នក​មិន​អាច​លុប​ទំនាក់ទំនង​ពី​គណនី​បាន​តែ​អាន​ទេ ប៉ុន្តែ​អ្នក​អាច​លាក់​ពួក​វា​នៅ​ក្នុង​បញ្ជី​ទំនាក់ទំនង​របស់​អ្នក​បាន។"</string>

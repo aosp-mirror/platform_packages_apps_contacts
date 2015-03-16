@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contactos"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos suxeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contactos"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Contactos combinados"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Contactos eliminados"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Definir ton"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Todas as chamadas a correo voz"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Non podes eliminar contactos das contas de só lectura, pero podes ocultalos nas túas listas de contactos."</string>

@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"سبھی رابطے دکھائیں"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"مجوزہ رابطے"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"سبھی رابطے"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"رابطے ضم کر دیے گئے"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"رابطے حذف کر دیے گئے"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"رنگ ٹون طے کریں"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"صوتی میل پر سبھی کالیں"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"آپ صرف پڑھنے کے اکاؤنٹس سے رابطوں کو حذف نہیں کر سکتے ہیں لیکن آپ اپنے رابطوں کی فہرست میں انہیں چھپا سکتے ہیں۔"</string>

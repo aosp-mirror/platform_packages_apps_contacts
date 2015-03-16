@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Ipakita ang lahat ng mga contact"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mga iminumungkahing contact"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Lahat ng mga contact"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Pinagsama ang mga contact"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Na-delete ang mga contact"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Itakda ang ringtone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Lahat ng tawag sa voicemail"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Hindi ka makakapagtanggal ng mga contact mula sa mga read-only na account, ngunit maitatago mo ang mga ito sa iyong mga listahan ng mga contact."</string>

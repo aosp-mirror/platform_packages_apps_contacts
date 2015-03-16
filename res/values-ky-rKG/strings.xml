@@ -91,10 +91,8 @@
     <skip />
     <!-- no translation found for separatorJoinAggregateAll (7939932265026181043) -->
     <skip />
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Байланыштар бириктирилди"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Байланыштар жок кылынды"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Рингтон орнотуу"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Үн почтасына бардык чалуулар"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Сиз окуганга гана болгон эсебиңизден байланыштарыңызды өчүрө албайсыз, бирок аларды жашырсаңыз болот."</string>

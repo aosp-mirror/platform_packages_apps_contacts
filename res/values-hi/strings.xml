@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सभी संपर्क दिखाएं"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सुझाए गए संपर्क"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"सभी संपर्क"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"संपर्क एक बनाए गए"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"संपर्क हटा दिए गए"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करें"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ध्‍वनि‍मेल से सभी कॉल"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"आप केवल-पढ़ने के लिए खातों से संपर्क नहीं हटा सकते, लेकिन आप उन्‍हें अपनी संपर्क सूचियों में छुपा सकते हैं."</string>

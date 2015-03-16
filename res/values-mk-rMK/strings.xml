@@ -63,10 +63,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Прикажи ги сите контакти"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Препорачани контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Сите контакти"</string>
-    <!-- no translation found for contactsJoinedMessage (656936718666768589) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_toast (286851430992788215) -->
-    <skip />
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Контактите се споени"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Контактите се избришани"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Подеси мелодија"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Сите повици кон говорна пошта"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Не можете да избришете контакти од сметки само за читање, но можете да ги сокриете во вашите списоци со контакти."</string>
@@ -190,7 +188,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Се вчитува..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Создај нов контакт"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Пријави се на сметка"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Најави се на сметка"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Увези контакти"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Создај нова група"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Создај нова група"</string>
