@@ -33,6 +33,9 @@
         snaps to the top of the window. -->
     <dimen name="quickcontact_snap_to_top_slop_height">33dp</dimen>
 
+    <!-- The ratio of width:height (360:184) for the compact editor contact photo in portrait -->
+    <item name="editor_portrait_photo_ratio" type="dimen" format="float">1.96</item>
+
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
     <dimen name="editor_round_button_padding_left">16dip</dimen>
     <dimen name="editor_round_button_padding_right">16dip</dimen>

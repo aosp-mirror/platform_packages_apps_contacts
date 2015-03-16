@@ -57,6 +57,7 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
     private PhotoHandler mPhotoHandler;
 
     private final float mLandscapePhotoRatio;
+    private final float mPortraitPhotoRatio;
     private final boolean mIsTwoPanel;
 
     private ValuesDelta mValuesDelta;
@@ -73,6 +74,7 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
     public CompactPhotoEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mLandscapePhotoRatio = getTypedFloat(R.dimen.quickcontact_landscape_photo_ratio);
+        mPortraitPhotoRatio = getTypedFloat(R.dimen.editor_portrait_photo_ratio);
         mIsTwoPanel = getResources().getBoolean(R.bool.quickcontact_two_panel);
     }
 
@@ -145,9 +147,9 @@ public class CompactPhotoEditorView extends LinearLayout implements View.OnClick
                     photoHeight = getHeight();
                     photoWidth = (int) (photoHeight * mLandscapePhotoRatio);
                 } else {
-                    // Make the photo a square
+                    // Make the photo slightly shorter that it is wide
                     photoWidth = getWidth();
-                    photoHeight = photoWidth;
+                    photoHeight = (int) (photoWidth / mPortraitPhotoRatio);
                 }
                 final ViewGroup.LayoutParams layoutParams = getLayoutParams();
                 layoutParams.height = photoHeight;
