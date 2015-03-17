@@ -17,6 +17,7 @@
 package com.android.contacts.common.util;
 
 import android.net.Uri;
+import android.provider.ContactsContract;
 
 /**
  * Utility methods for dealing with URIs.
@@ -58,5 +59,16 @@ public class UriUtils {
             return false;
         }
         return lastPathSegment.equals(Constants.LOOKUP_URI_ENCODED);
+    }
+
+    /**
+     * @return {@code uri} as-is if the authority is of contacts provider.  Otherwise
+     * or {@code uri} is null, return null otherwise
+     */
+    public static Uri nullForNonContactsUri(Uri uri) {
+        if (uri == null) {
+            return null;
+        }
+        return ContactsContract.AUTHORITY.equals(uri.getAuthority()) ? uri : null;
     }
 }
