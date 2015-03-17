@@ -34,6 +34,7 @@ import com.android.contacts.widget.QuickContactImageView;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
@@ -66,6 +67,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
     private MaterialPalette mMaterialPalette;
 
     private QuickContactImageView mPhotoImageView;
+    private View mPhotoIconOverlay;
 
     public CompactPhotoEditorView(Context context) {
         this(context, null);
@@ -90,6 +92,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
         mContactPhotoManager = ContactPhotoManager.getInstance(getContext());
 
         mPhotoImageView = (QuickContactImageView) findViewById(R.id.photo);
+        mPhotoIconOverlay = findViewById(R.id.photo_icon_overlay);
         findViewById(R.id.photo_touch_intercept_overlay).setOnClickListener(this);
     }
 
@@ -132,7 +135,12 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
             }
         }
 
-        if (!mIsPhotoSet) {
+        if (mIsPhotoSet) {
+            // Add background color behind the white photo icon so that it's visible even
+            // if the contact photo is white.
+            mPhotoIconOverlay.setBackground(new GradientDrawable(
+                    GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, 0x88000000}));
+        } else {
             setDefaultPhotoTint();
         }
 

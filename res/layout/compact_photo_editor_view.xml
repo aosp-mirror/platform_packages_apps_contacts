@@ -28,6 +28,12 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
 
+    <View
+            android:id="@+id/photo_icon_overlay"
+            android:layout_height="56dp"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true" />
+
     <ImageView
             android:id="@+id/photo_icon"
             android:layout_width="24dp"
