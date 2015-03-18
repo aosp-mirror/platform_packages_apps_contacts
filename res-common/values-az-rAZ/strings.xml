@@ -203,7 +203,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Vizit kart eksport sorğusu rədd edildi. Daha sonra cəhd edin."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Vizit kart yerli müvəqqəti yaddaşa keşlənir. Hazırkı import tezliklə başlayacaq."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Vizit kart import edilə bilmədi."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Yaddaşda vizit kartı faylı tapılmadı."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD kartda heç bir vizit kart tapılmadı."</string>
@@ -237,5 +236,4 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Müntəzəmləri təmizləyin"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Hesablar"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"İmport/eksport"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> ünvanına mesaj göndərin"</string>
 </resources>
