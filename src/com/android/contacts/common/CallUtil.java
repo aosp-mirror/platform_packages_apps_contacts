@@ -28,8 +28,6 @@ import android.telecom.TelecomManager;
 import android.telecom.VideoProfile;
 import android.text.TextUtils;
 
-import java.util.List;
-
 /**
  * Utilities related to calls that can be used by non system apps. These
  * use {@link Intent#ACTION_CALL} instead of ACTION_CALL_PRIVILEGED.
@@ -76,15 +74,8 @@ public class CallUtil {
              return Uri.fromParts(PhoneAccount.SCHEME_SIP, number, null);
         }
         return Uri.fromParts(PhoneAccount.SCHEME_TEL, number, null);
-    }
+     }
 
-    /**
-     * Determines if one of the call capable phone accounts defined supports video calling.
-     *
-     * @param context The context.
-     * @return {@code true} if one of the call capable phone accounts supports video calling,
-     *      {@code false} otherwise.
-     */
     public static boolean isVideoEnabled(Context context) {
         TelecomManager telecommMgr = (TelecomManager)
                 context.getSystemService(Context.TELECOM_SERVICE);
@@ -92,13 +83,8 @@ public class CallUtil {
             return false;
         }
 
-        List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
-        for (PhoneAccountHandle accountHandle : accountHandles) {
-            PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
-            if (account.hasCapabilities(PhoneAccount.CAPABILITY_VIDEO_CALLING)) {
-                return true;
-            }
-        }
+        // TODO: Check telecommManager for value instead.
+        // return telecommMgr.isVideoEnabled();
         return false;
     }
 }
