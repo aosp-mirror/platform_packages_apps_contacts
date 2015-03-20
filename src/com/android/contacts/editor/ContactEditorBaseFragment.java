@@ -1129,10 +1129,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             RawContactDelta oldState, AccountType oldAccountType) {
         mStatus = Status.EDITING;
         mState.add(createNewRawContactDelta(account, accountType, oldState, oldAccountType));
-        // We bind field values that may be present on inserts since the caller may want certain
-        // fields pre-populated or we may be returning to the compact editor from the fully
-        // expanded one.
-        setIntentExtras(mIntentExtras);
         mRequestFocus = true;
         mNewContactDataReady = true;
         bindEditors();
