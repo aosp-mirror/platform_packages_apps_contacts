@@ -17,5 +17,4 @@
 
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
     android:src="@drawable/ic_person_add_24dp"
-    android:autoMirrored="true"
-    android:tint="@color/search_shortcut_icon_color" />
+    android:autoMirrored="true" />
