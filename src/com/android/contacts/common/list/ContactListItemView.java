@@ -23,6 +23,7 @@ import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -1499,17 +1500,16 @@ public class ContactListItemView extends ViewGroup
     }
 
     /**
-     * Set drawable resources directly for both the background and the drawable resource
-     * of the photo view
+     * Set drawable resources directly for the drawable resource of the photo view.
      *
-     * @param backgroundId Id of background resource
-     * @param drawableId Id of drawable resource
+     * @param drawableId Id of drawable resource.
      */
-    public void setDrawableResource(int backgroundId, int drawableId) {
-        final ImageView photo = getPhotoView();
+    public void setDrawableResource(int drawableId) {
+        ImageView photo = getPhotoView();
         photo.setScaleType(ImageView.ScaleType.CENTER);
-        photo.setBackgroundResource(backgroundId);
-        photo.setImageResource(drawableId);
+        photo.setImageDrawable(getContext().getDrawable(drawableId));
+        photo.setImageTintList(ColorStateList.valueOf(
+                getContext().getColor(R.color.search_shortcut_icon_color)));
     }
 
     @Override
