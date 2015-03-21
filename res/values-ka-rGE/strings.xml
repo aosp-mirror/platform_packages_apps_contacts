@@ -212,7 +212,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"კოპირებული ტექსტი"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"გსურთ ცვლილებების გაუქმება?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"ჩემი პროფილის პარამეტრების დაყენება"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"პროფ. დაყენება"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"აკრიფეთ კონტაქტის სახელი"</string>
     <string name="group_name_hint" msgid="238359485263401293">"ჯგუფის სახელი"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ჩემი ადგილობრივი პროფილი"</string>
