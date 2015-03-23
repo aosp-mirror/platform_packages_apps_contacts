@@ -64,10 +64,9 @@ public class HeaderEntryContactListAdapter extends DefaultContactListAdapter {
                 // Pass the cursor down. Don't worry, it isn't used.
                 itemView = newView(getContext(), 0, getCursor(0), 0, parent);
             } else {
-                itemView = (ContactListItemView ) convertView;
+                itemView = (ContactListItemView) convertView;
             }
-            itemView.setDrawableResource(R.drawable.search_shortcut_background,
-                    R.drawable.ic_search_add_contact);
+            itemView.setDrawableResource(R.drawable.ic_search_add_contact);
             itemView.setDisplayName(getContext().getResources().getString(
                     R.string.header_entry_contact_list_adapter_header_title));
             return itemView;
