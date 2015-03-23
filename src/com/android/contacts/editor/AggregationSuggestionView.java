@@ -20,6 +20,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -138,6 +139,9 @@ public class AggregationSuggestionView extends LinearLayout {
     public boolean handleItemClickEvent() {
         if (mListener != null && isEnabled()) {
             if (canEditSuggestedContact()) {
+                if (TextUtils.isEmpty(mLookupKey)) {
+                    return false;
+                }
                 mListener.onEditAction(Contacts.getLookupUri(mContactId, mLookupKey));
             } else {
                 ArrayList<Long> rawContactIds = Lists.newArrayList();

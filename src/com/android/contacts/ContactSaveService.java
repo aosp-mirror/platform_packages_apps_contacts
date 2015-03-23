@@ -387,6 +387,9 @@ public class ContactSaveService extends IntentService {
                     Cursor c = resolver.query(Profile.CONTENT_URI,
                             new String[] {Contacts._ID, Contacts.LOOKUP_KEY},
                             null, null, null);
+                    if (c == null) {
+                        continue;
+                    }
                     try {
                         if (c.moveToFirst()) {
                             final long contactId = c.getLong(0);
@@ -401,7 +404,9 @@ public class ContactSaveService extends IntentService {
                                     rawContactId);
                     lookupUri = RawContacts.getContactLookupUri(resolver, rawContactUri);
                 }
-                Log.v(TAG, "Saved contact. New URI: " + lookupUri);
+                if (lookupUri != null) {
+                    Log.v(TAG, "Saved contact. New URI: " + lookupUri);
+                }
 
                 // We can change this back to false later, if we fail to save the contact photo.
                 succeeded = true;

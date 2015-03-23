@@ -32,6 +32,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.ContactSaveService;
@@ -253,6 +254,11 @@ public class ContactDeletionInteraction extends Fragment
             } else {
                 readOnlyRawContacts.add(rawContactId);
             }
+        }
+        if (TextUtils.isEmpty(lookupKey)) {
+            Log.e(TAG, "Failed to find contact lookup key");
+            getActivity().finish();
+            return;
         }
 
         int readOnlyCount = readOnlyRawContacts.size();

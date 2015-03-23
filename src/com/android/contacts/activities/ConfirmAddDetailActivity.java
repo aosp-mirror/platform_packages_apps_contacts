@@ -495,6 +495,9 @@ public class ConfirmAddDetailActivity extends Activity implements
                             if (photoId == 0) {
                                 mContactId = cursor.getLong(ContactQuery._ID);
                                 startDisambiguationQuery(mDisplayName);
+                            } else if (TextUtils.isEmpty(mLookupKey)) {
+                                finish();
+                                return;
                             } else {
                                 // Otherwise do the photo query.
                                 Uri lookupUri = Contacts.getLookupUri(mContactId, mLookupKey);

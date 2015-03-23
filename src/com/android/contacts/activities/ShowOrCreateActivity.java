@@ -31,6 +31,7 @@ import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.telecom.PhoneAccount;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.ContactsUtils;
@@ -170,7 +171,7 @@ public final class ShowOrCreateActivity extends ContactsActivity
             cursor.close();
         }
 
-        if (count == 1 && contactId != -1) {
+        if (count == 1 && contactId != -1 && !TextUtils.isEmpty(lookupKey)) {
             // If we only found one item, jump right to viewing it
             final Uri contactUri = Contacts.getLookupUri(contactId, lookupKey);
             final Intent viewIntent = new Intent(Intent.ACTION_VIEW, contactUri);
