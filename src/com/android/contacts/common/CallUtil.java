@@ -171,7 +171,7 @@ public class CallUtil {
         List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
         for (PhoneAccountHandle accountHandle : accountHandles) {
             PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
-            if (account.hasCapabilities(PhoneAccount.CAPABILITY_VIDEO_CALLING)) {
+            if (account != null && account.hasCapabilities(PhoneAccount.CAPABILITY_VIDEO_CALLING)) {
                 return true;
             }
         }
