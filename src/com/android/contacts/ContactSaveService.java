@@ -343,6 +343,11 @@ public class ContactSaveService extends IntentService {
         boolean isProfile = intent.getBooleanExtra(EXTRA_SAVE_IS_PROFILE, false);
         Bundle updatedPhotos = intent.getParcelableExtra(EXTRA_UPDATED_PHOTOS);
 
+        if (state == null) {
+            Log.e(TAG, "Invalid arguments for saveContact request");
+            return;
+        }
+
         // Trim any empty fields, and RawContacts, before persisting
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
         RawContactModifier.trimEmpty(state, accountTypes);
