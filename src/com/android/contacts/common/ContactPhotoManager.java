@@ -59,6 +59,7 @@ import com.android.contacts.common.util.BitmapUtil;
 import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.commonbind.util.UserAgentGenerator;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -105,11 +106,11 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
     private static final String DEFAULT_IMAGE_URI_SCHEME = "defaultimage";
     private static final Uri DEFAULT_IMAGE_URI = Uri.parse(DEFAULT_IMAGE_URI_SCHEME + "://");
 
-    public static final String CONTACT_PHOTO_SERVICE = "contactPhotos";
-
     // Static field used to cache the default letter avatar drawable that is created
     // using a null {@link DefaultImageRequest}
     private static Drawable sDefaultLetterAvatar = null;
+
+    private static ContactPhotoManager sInstance;
 
     /**
      * Given a {@link DefaultImageRequest}, returns a {@link Drawable}, that when drawn, will
@@ -429,18 +430,22 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
     public static final DefaultImageProvider DEFAULT_BLANK = new BlankDefaultImageProvider();
 
     public static ContactPhotoManager getInstance(Context context) {
-        Context applicationContext = context.getApplicationContext();
-        ContactPhotoManager service =
-                (ContactPhotoManager) applicationContext.getSystemService(CONTACT_PHOTO_SERVICE);
-        if (service == null) {
-            service = createContactPhotoManager(applicationContext);
-            Log.e(TAG, "No contact photo service in context: " + applicationContext);
+        if (sInstance == null) {
+            Context applicationContext = context.getApplicationContext();
+            sInstance = createContactPhotoManager(applicationContext);
+            applicationContext.registerComponentCallbacks(sInstance);
+            sInstance.preloadPhotosInBackground();
         }
-        return service;
+        return sInstance;
     }
 
     public static synchronized ContactPhotoManager createContactPhotoManager(Context context) {
         return new ContactPhotoManagerImpl(context);
+    }
+
+    @VisibleForTesting
+    public static void injectContactPhotoManagerForTesting(ContactPhotoManager photoManager) {
+        sInstance = photoManager;
     }
 
     /**
