@@ -66,6 +66,25 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private long mFirstExtendedDirectoryId = Long.MAX_VALUE;
 
     public static class PhoneQuery {
+
+        /**
+         * Optional key used as part of a JSON lookup key to specify an analytics category
+         * associated with the row.
+         */
+        public static final String ANALYTICS_CATEGORY = "analytics_category";
+
+        /**
+         * Optional key used as part of a JSON lookup key to specify an analytics action associated
+         * with the row.
+         */
+        public static final String ANALYTICS_ACTION = "analytics_action";
+
+        /**
+         * Optional key used as part of a JSON lookup key to specify an analytics value associated
+         * with the row.
+         */
+        public static final String ANALYTICS_VALUE = "analytics_value";
+
         public static final String[] PROJECTION_PRIMARY = new String[] {
             Phone._ID,                          // 0
             Phone.TYPE,                         // 1
@@ -287,6 +306,17 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             return ContentUris.withAppendedId(Data.CONTENT_URI, phoneId);
         }
         return null;
+    }
+
+    /**
+     * Retrieves the lookup key for the given cursor position.
+     *
+     * @param position The cursor position.
+     * @return The lookup key.
+     */
+    public String getLookupKey(int position) {
+        final Cursor item = (Cursor)getItem(position);
+        return item != null ? item.getString(PhoneQuery.LOOKUP_KEY) : null;
     }
 
     @Override
