@@ -95,15 +95,6 @@ public final class ContactsApplication extends Application {
             }
         }
 
-        if (ContactPhotoManager.CONTACT_PHOTO_SERVICE.equals(name)) {
-            if (mContactPhotoManager == null) {
-                mContactPhotoManager = ContactPhotoManager.createContactPhotoManager(this);
-                registerComponentCallbacks(mContactPhotoManager);
-                mContactPhotoManager.preloadPhotosInBackground();
-            }
-            return mContactPhotoManager;
-        }
-
         return super.getSystemService(name);
     }
 

@@ -90,8 +90,7 @@ public class PeopleActivityTest
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
         services.setSharedPreferences(new MockSharedPreferences());
-        services.setSystemService(ContactPhotoManager.CONTACT_PHOTO_SERVICE,
-                new MockContactPhotoManager());
+        ContactPhotoManager.injectContactPhotoManagerForTesting(new MockContactPhotoManager());
         AccountType accountType = new BaseAccountType() {
             @Override
             public boolean areContactsWritable() {
