@@ -312,7 +312,7 @@ public class ShortcutIntentBuilder {
             // Make the URI a direct tel: URI so that it will always continue to work
             phoneUri = Uri.fromParts(PhoneAccount.SCHEME_TEL, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
-                    R.drawable.ic_call_36dp);
+                    R.drawable.ic_call);
         } else {
             phoneUri = Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
