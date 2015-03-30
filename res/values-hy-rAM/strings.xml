@@ -218,7 +218,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Իմ տեղային պրոֆիլը"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Իմ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> պրոֆիլը"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ցուցադրվում են բոլոր կոնտակտները"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Կոնտակտների հավելվածն ավելի լավ է աշխատում Google հաշվի հետ:\n\n• Մուտք գործեք ցանկացած վեբ դիտարկչով:\n• Պահուստավորեք ձեր կոնտակտներն ապահով ճանապարհով:"</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"Կոնտակտների հավելվածն ավելի լավ է աշխատում Google հաշվի հետ:\n\n• Մուտք գործեք ցանկացած վեբ դիտարկիչով:\n• Պահուստավորեք ձեր կոնտակտներն ապահով ճանապարհով:"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Պահեք ձեր կոնտակտները ապահով, նույնիսկ եթե կորցնեք ձեր հեռախոսը. համաժամեցրեք առցանց ծառայության հետ:"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ավելացնել հաշիվ"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ձեր նոր կոնտակտը չի պահուստավորվի: Ավելացնե՞լ հաշիվ, որն առցանց է պահուստավորում կոնտակտները:"</string>
