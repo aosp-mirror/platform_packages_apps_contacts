@@ -376,6 +376,11 @@ public class ContactSaveService extends IntentService {
                 ContentProviderResult[] results = null;
                 if (!diff.isEmpty()) {
                     results = resolver.applyBatch(ContactsContract.AUTHORITY, diff);
+                    if (results == null) {
+                        Log.w(TAG, "Resolver.applyBatch failed in saveContacts");
+                        // Retry save
+                        continue;
+                    }
                 }
 
                 final long rawContactId = getRawContactId(state, diff, results);
@@ -478,13 +483,12 @@ public class ContactSaveService extends IntentService {
                 // replace the bogus ID with the new one that we actually saved the contact at.
                 if (rawContactId < 0) {
                     rawContactId = insertedRawContactId;
-                    if (rawContactId == -1) {
-                        throw new IllegalStateException(
-                                "Could not determine RawContact ID for image insertion");
-                    }
                 }
 
-                if (!saveUpdatedPhoto(rawContactId, photoUri)) succeeded = false;
+                // If the save failed, insertedRawContactId will be -1
+                if (rawContactId < 0 || !saveUpdatedPhoto(rawContactId, photoUri)) {
+                    succeeded = false;
+                }
             }
         }
 
