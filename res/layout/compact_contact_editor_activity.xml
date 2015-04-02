@@ -16,13 +16,7 @@
 -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/compact_contact_editor_fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <fragment android:id="@+id/compact_contact_editor_fragment"
-        class="com.android.contacts.editor.CompactContactEditorFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</FrameLayout>
+    android:layout_height="match_parent"/>
 

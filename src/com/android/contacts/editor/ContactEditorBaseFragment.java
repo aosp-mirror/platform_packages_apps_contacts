@@ -647,7 +647,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             case REQUEST_CODE_ACCOUNTS_CHANGED: {
                 // Bail if the account selector was not successful.
                 if (resultCode != Activity.RESULT_OK) {
-                    mListener.onReverted();
+                    if (mListener != null) {
+                        mListener.onReverted();
+                    }
                     return;
                 }
                 // If there's an account specified, use it.
@@ -993,6 +995,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // prompt the user again, then launch the account prompt.
         if (mEditorUtils.shouldShowAccountChangedNotification()) {
             Intent intent = new Intent(mContext, ContactEditorAccountsChangedActivity.class);
+            // Prevent a second instance from being started on rotates
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mStatus = Status.SUB_ACTIVITY;
             startActivityForResult(intent, REQUEST_CODE_ACCOUNTS_CHANGED);
         } else {

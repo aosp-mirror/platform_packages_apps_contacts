@@ -124,7 +124,9 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     @Override
     public void onExternalEditorRequest(AccountWithDataSet account, Uri uri) {
-        mListener.onCustomEditContactActivityRequested(account, uri, null, false);
+        if (mListener != null) {
+            mListener.onCustomEditContactActivityRequested(account, uri, null, false);
+        }
     }
 
     @Override
