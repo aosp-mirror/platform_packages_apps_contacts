@@ -52,6 +52,7 @@
         android:taskAffinity="android.task.contacts"
         android:hardwareAccelerated="true"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="false"
     >
 
         <!-- The main Contacts activity with the contact list, favorites, and groups. -->
