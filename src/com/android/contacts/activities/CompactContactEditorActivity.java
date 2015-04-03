@@ -36,6 +36,13 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity {
 
         mFragment = (CompactContactEditorFragment) getFragmentManager().findFragmentById(
                 R.id.compact_contact_editor_fragment);
+        if (mFragment == null) {
+            mFragment = new CompactContactEditorFragment();
+            getFragmentManager().beginTransaction()
+                    .add(R.id.compact_contact_editor_fragment_container,
+                            (CompactContactEditorFragment) mFragment)
+                    .commit();
+        }
         mFragment.setListener(mFragmentListener);
 
         final String action = getIntent().getAction();
