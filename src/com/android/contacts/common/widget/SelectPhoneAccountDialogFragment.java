@@ -228,10 +228,10 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onPause() {
+    public void onStop() {
         if (!mIsSelected) {
             mListener.onDialogDismissed();
         }
-        super.onPause();
+        super.onStop();
     }
 }
