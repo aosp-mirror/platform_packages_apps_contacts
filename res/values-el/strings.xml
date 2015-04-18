@@ -130,7 +130,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Προσθήκη αριθμού τηλεφώνου"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Προσθήκη email"</string>
     <string name="missing_app" msgid="1466111003546611387">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας."</string>
-    <string name="menu_share" msgid="943789700636542260">"Κοινή χρήση"</string>
+    <string name="menu_share" msgid="943789700636542260">"Κοινοποίηση"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Προσθήκη στις επαφές"</string>
     <string name="share_via" msgid="563121028023030093">"Κοινή επαφή μέσω"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Δημιουργία ομάδας στο λογαριασμό"</string>
