@@ -22,6 +22,7 @@
     android:layout_height="@dimen/floating_action_button_height"
     android:layout_marginEnd="@dimen/floating_action_button_margin_right"
     android:layout_marginBottom="@dimen/floating_action_button_margin_bottom"
+    android:background="@drawable/fab_blue"
     android:layout_alignParentEnd="true"
     android:layout_alignParentBottom="true">
 
