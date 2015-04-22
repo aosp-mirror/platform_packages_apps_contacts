@@ -56,6 +56,7 @@ import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.common.widget.FloatingActionButtonController;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
@@ -119,6 +120,9 @@ public class PeopleActivity extends ContactsActivity implements
     private ContactsRequest mRequest;
 
     private ActionBarAdapter mActionBarAdapter;
+    private FloatingActionButtonController mFloatingActionButtonController;
+    private View mFloatingActionButtonContainer;
+    private boolean wasLastFabAnimationScaleIn = false;
 
     private ContactTileListFragment.Listener mFavoritesFragmentListener =
             new StrequentContactListFragmentListener();
@@ -366,12 +370,14 @@ public class PeopleActivity extends ContactsActivity implements
         // Add shadow under toolbar
         ViewUtil.addRectangularOutlineProvider(findViewById(R.id.toolbar_parent), getResources());
 
-        // Configure action button
-        final View floatingActionButtonContainer = findViewById(
-                R.id.floating_action_button_container);
-        ViewUtil.setupFloatingActionButton(floatingActionButtonContainer, getResources());
-        final ImageButton floatingActionButton = (ImageButton) findViewById(R.id.floating_action_button);
+        // Configure floating action button
+        mFloatingActionButtonContainer = findViewById(R.id.floating_action_button_container);
+        final ImageButton floatingActionButton
+                = (ImageButton) findViewById(R.id.floating_action_button);
         floatingActionButton.setOnClickListener(this);
+        initializeFabVisibility();
+        mFloatingActionButtonController = new FloatingActionButtonController(this,
+                mFloatingActionButtonContainer, floatingActionButton);
 
         invalidateOptionsMenuIfNeeded();
     }
@@ -494,6 +500,33 @@ public class PeopleActivity extends ContactsActivity implements
         invalidateOptionsMenuIfNeeded();
     }
 
+    private void initializeFabVisibility() {
+        final boolean hideFab = mActionBarAdapter.isSearchMode()
+                || mActionBarAdapter.isSelectionMode();
+        mFloatingActionButtonContainer.setVisibility(hideFab ? View.GONE : View.VISIBLE);
+        wasLastFabAnimationScaleIn = !hideFab;
+    }
+
+    private void showFabWithAnimation(boolean showFab) {
+        if (mFloatingActionButtonContainer == null) {
+            return;
+        }
+        if (showFab) {
+            if (!wasLastFabAnimationScaleIn) {
+                mFloatingActionButtonContainer.setVisibility(View.VISIBLE);
+                mFloatingActionButtonController.scaleIn(0);
+            }
+            wasLastFabAnimationScaleIn = true;
+
+        } else {
+            if (wasLastFabAnimationScaleIn) {
+                mFloatingActionButtonContainer.setVisibility(View.VISIBLE);
+                mFloatingActionButtonController.scaleOut();
+            }
+            wasLastFabAnimationScaleIn = false;
+        }
+    }
+
     @Override
     public void onContactListFilterChanged() {
         if (mAllFragment == null || !mAllFragment.isAdded()) {
@@ -519,11 +552,16 @@ public class PeopleActivity extends ContactsActivity implements
                 configureFragments(false /* from request */);
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
+                showFabWithAnimation(/* showFabWithAnimation = */ false);
+                break;
+            case ActionBarAdapter.Listener.Action.BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE:
+                showFabWithAnimation(/* showFabWithAnimation = */ true);
                 break;
             case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
                 setQueryTextToFragment("");
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
+                showFabWithAnimation(/* showFabWithAnimation = */ true);
                 break;
             case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
                 final String queryString = mActionBarAdapter.getQueryString();
@@ -935,10 +973,8 @@ public class PeopleActivity extends ContactsActivity implements
     private final class CheckBoxListListener implements OnCheckBoxListActionListener {
         @Override
         public void onStartDisplayingCheckBoxes() {
-            if (!mActionBarAdapter.isSearchMode()) {
-                mActionBarAdapter.setSelectionMode(true);
-                invalidateOptionsMenu();
-            }
+            mActionBarAdapter.setSelectionMode(true);
+            invalidateOptionsMenu();
         }
 
         @Override

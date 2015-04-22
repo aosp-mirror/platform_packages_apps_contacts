@@ -55,6 +55,7 @@ public class ActionBarAdapter implements OnCloseListener {
             public static final int START_SEARCH_MODE = 1;
             public static final int START_SELECTION_MODE = 2;
             public static final int STOP_SEARCH_AND_SELECTION_MODE = 3;
+            public static final int BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE = 4;
         }
 
         void onAction(int action);
@@ -347,7 +348,7 @@ public class ActionBarAdapter implements OnCloseListener {
         if (mShowHomeIcon && !isSearchOrSelectionMode) {
             newFlags |= ActionBar.DISPLAY_SHOW_HOME;
         }
-        if (mSearchMode) {
+        if (mSearchMode && !mSelectionMode) {
             // The search container is placed inside the toolbar. So we need to disable the
             // Toolbar's content inset in order to allow the search container to be the width of
             // the window.
@@ -384,6 +385,8 @@ public class ActionBarAdapter implements OnCloseListener {
 
         final boolean isSelectionModeChanging
                 = (mSelectionContainer.getParent() == null) == mSelectionMode;
+        final boolean isSwitchingFromSearchToSelection =
+                mSearchMode && isSelectionModeChanging || mSearchMode && mSelectionMode;
         final boolean isSearchModeChanging
                 = (mSearchContainer.getParent() == null) == mSearchMode;
         final boolean isTabHeightChanging = isSearchModeChanging || isSelectionModeChanging;
@@ -391,21 +394,19 @@ public class ActionBarAdapter implements OnCloseListener {
         // When skipAnimation=true, it is possible that we will switch from search mode
         // to selection mode directly. So we need to remove the undesired container in addition
         // to adding the desired container.
-        if (skipAnimation) {
-            if (isTabHeightChanging) {
+        if (skipAnimation || isSwitchingFromSearchToSelection) {
+            if (isTabHeightChanging || isSwitchingFromSearchToSelection) {
                 mToolbar.removeView(mLandscapeTabs);
-                if (mSearchMode) {
+                mToolbar.removeView(mSearchContainer);
+                mToolBarFrame.removeView(mSelectionContainer);
+                if (mSelectionMode) {
                     setPortraitTabHeight(0);
-                    mToolBarFrame.removeView(mSelectionContainer);
-                    addSearchContainer();
-                } else if (mSelectionMode) {
-                    setPortraitTabHeight(0);
-                    mToolbar.removeView(mSearchContainer);
                     addSelectionContainer();
+                } else if (mSearchMode) {
+                    setPortraitTabHeight(0);
+                    addSearchContainer();
                 } else {
                     setPortraitTabHeight(mMaxPortraitTabHeight);
-                    mToolbar.removeView(mSearchContainer);
-                    mToolBarFrame.removeView(mSelectionContainer);
                     addLandscapeViewPagerTabs();
                 }
                 updateDisplayOptions(isSearchModeChanging);
@@ -423,6 +424,9 @@ public class ActionBarAdapter implements OnCloseListener {
                 animateTabHeightChange(mMaxPortraitTabHeight, 0);
                 updateDisplayOptions(isSearchModeChanging);
             } else {
+                if (mListener != null) {
+                    mListener.onAction(Action.BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE);
+                }
                 mSelectionContainer.setAlpha(1);
                 animateTabHeightChange(0, mMaxPortraitTabHeight);
                 mSelectionContainer.animate().alpha(0).withEndAction(new Runnable() {
@@ -491,15 +495,17 @@ public class ActionBarAdapter implements OnCloseListener {
     private void addSearchContainer() {
         mToolbar.removeView(mSearchContainer);
         mToolbar.addView(mSearchContainer);
+        mSearchContainer.setAlpha(1);
     }
 
     private void addSelectionContainer() {
         mToolBarFrame.removeView(mSelectionContainer);
         mToolBarFrame.addView(mSelectionContainer, 0);
+        mSelectionContainer.setAlpha(1);
     }
 
     private void updateDisplayOptions(boolean isSearchModeChanging) {
-        if (mSearchMode) {
+        if (mSearchMode && !mSelectionMode) {
             setFocusOnSearchView();
             // Since we have the {@link SearchView} in a custom action bar, we must manually handle
             // expanding the {@link SearchView} when a search is initiated. Note that a side effect
