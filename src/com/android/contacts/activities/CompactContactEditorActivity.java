@@ -28,19 +28,21 @@ import android.os.Bundle;
  */
 public class CompactContactEditorActivity extends ContactEditorBaseActivity {
 
+    private static final String TAG_COMPACT_EDITOR = "compact_editor";
+
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
         setContentView(R.layout.compact_contact_editor_activity);
 
-        mFragment = (CompactContactEditorFragment) getFragmentManager().findFragmentById(
-                R.id.compact_contact_editor_fragment);
+        mFragment = (CompactContactEditorFragment) getFragmentManager().findFragmentByTag(
+                TAG_COMPACT_EDITOR);
         if (mFragment == null) {
             mFragment = new CompactContactEditorFragment();
             getFragmentManager().beginTransaction()
                     .add(R.id.compact_contact_editor_fragment_container,
-                            (CompactContactEditorFragment) mFragment)
+                            (CompactContactEditorFragment) mFragment, TAG_COMPACT_EDITOR)
                     .commit();
         }
         mFragment.setListener(mFragmentListener);
