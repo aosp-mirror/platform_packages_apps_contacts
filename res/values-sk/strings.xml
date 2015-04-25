@@ -140,7 +140,7 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"Pridať do kontaktov"</string>
     <string name="share_via" msgid="563121028023030093">"Zdieľať kontakt pomocou"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Vytvoriť skupinu v účte"</string>
-    <string name="audio_chat" msgid="2535716629358298691">"Hlasový rozhovor"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Hlasový čet"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videohovor"</string>
     <string name="connections" msgid="8098440723172028350">"Spojenia"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Pridať spojenie"</string>
