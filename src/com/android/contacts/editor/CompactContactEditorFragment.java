@@ -91,6 +91,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
                 // Update the mode so the options change if user clicks the photo again
                 mPhotoMode = getPhotoMode();
+
+                // Re-create the photo handler so that any additional photo selections create a
+                // new temp file (and don't hit the one that was just added to the cache).
+                mPhotoHandler = createPhotoHandler();
             }
 
             @Override
