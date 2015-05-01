@@ -2317,7 +2317,8 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     private boolean isShortcutCreatable() {
-        if (mContactData == null || mContactData.isUserProfile()) {
+        if (mContactData == null || mContactData.isUserProfile() ||
+                mContactData.isDirectoryEntry()) {
             return false;
         }
         final Intent createShortcutIntent = new Intent();
@@ -2440,7 +2441,9 @@ public class QuickContactActivity extends ContactsActivity {
                 }
                 return true;
             case R.id.menu_delete:
-                deleteContact();
+                if (isContactEditable()) {
+                    deleteContact();
+                }
                 return true;
             case R.id.menu_share:
                 if (isContactShareable()) {
@@ -2448,7 +2451,9 @@ public class QuickContactActivity extends ContactsActivity {
                 }
                 return true;
             case R.id.menu_create_contact_shortcut:
-                createLauncherShortcutWithContact();
+                if (isShortcutCreatable()) {
+                    createLauncherShortcutWithContact();
+                }
                 return true;
             case R.id.menu_help:
                 HelpUtils.launchHelpAndFeedbackForContactScreen(this);
