@@ -149,6 +149,16 @@ public class FloatingActionButtonController {
     }
 
     /**
+     * Immediately remove the affects of the last call to {@link #scaleOut}.
+     */
+    public void resetIn() {
+        mFloatingActionButton.setAlpha(1);
+        mFloatingActionButton.setVisibility(View.VISIBLE);
+        mFloatingActionButtonContainer.setScaleX(1);
+        mFloatingActionButtonContainer.setScaleY(1);
+    }
+
+    /**
      * Scales the floating action button from its actual dimensions to no height and width. This is
      * an animation for hiding the floating action button.
      */
