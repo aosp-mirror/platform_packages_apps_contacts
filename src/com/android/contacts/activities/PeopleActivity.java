@@ -257,6 +257,7 @@ public class PeopleActivity extends ContactsActivity implements
 
         // Re-configure fragments.
         configureFragments(true /* from request */);
+        initializeFabVisibility();
         invalidateOptionsMenuIfNeeded();
     }
 
@@ -375,9 +376,9 @@ public class PeopleActivity extends ContactsActivity implements
         final ImageButton floatingActionButton
                 = (ImageButton) findViewById(R.id.floating_action_button);
         floatingActionButton.setOnClickListener(this);
-        initializeFabVisibility();
         mFloatingActionButtonController = new FloatingActionButtonController(this,
                 mFloatingActionButtonContainer, floatingActionButton);
+        initializeFabVisibility();
 
         invalidateOptionsMenuIfNeeded();
     }
@@ -504,6 +505,7 @@ public class PeopleActivity extends ContactsActivity implements
         final boolean hideFab = mActionBarAdapter.isSearchMode()
                 || mActionBarAdapter.isSelectionMode();
         mFloatingActionButtonContainer.setVisibility(hideFab ? View.GONE : View.VISIBLE);
+        mFloatingActionButtonController.resetIn();
         wasLastFabAnimationScaleIn = !hideFab;
     }
 
