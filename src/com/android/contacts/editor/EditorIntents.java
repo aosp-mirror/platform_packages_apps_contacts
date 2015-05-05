@@ -56,7 +56,7 @@ public class EditorIntents {
      */
     public static Intent createCompactInsertContactIntent() {
         return createCompactInsertContactIntent(/* rawContactDeltaList =*/ null,
-                /* displayName =*/ null, /* updatedPhotos =*/ null);
+                /* displayName =*/ null, /* phoneticName =*/ null, /* updatedPhotos =*/ null);
     }
 
     /**
@@ -64,10 +64,10 @@ public class EditorIntents {
      * the field values specified by rawContactDeltaList pre-populate in the form.
      */
     public static Intent createCompactInsertContactIntent(RawContactDeltaList rawContactDeltaList,
-            String displayName, Bundle updatedPhotos) {
+            String displayName, String phoneticName, Bundle updatedPhotos) {
         final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-        if (rawContactDeltaList != null || displayName != null) {
-            putRawContactDeltaValues(intent, rawContactDeltaList, displayName);
+        if (rawContactDeltaList != null || displayName != null || phoneticName != null) {
+            putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
         }
         putUpdatedPhotos(intent, updatedPhotos);
         return intent;
@@ -108,11 +108,11 @@ public class EditorIntents {
      * existing contact.
      */
     public static Intent createInsertContactIntent(RawContactDeltaList rawContactDeltaList,
-            String displayName, Bundle updatedPhotos) {
+            String displayName, String phoneticName, Bundle updatedPhotos) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_INSERT,
                 Contacts.CONTENT_URI);
         addContactIntentFlags(intent);
-        putRawContactDeltaValues(intent, rawContactDeltaList, displayName);
+        putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
         putUpdatedPhotos(intent, updatedPhotos);
         return intent;
     }
@@ -137,7 +137,7 @@ public class EditorIntents {
     }
 
     private static void putRawContactDeltaValues(Intent intent,
-            RawContactDeltaList rawContactDeltaList, String displayName) {
+            RawContactDeltaList rawContactDeltaList, String displayName, String phoneticName) {
         // Pass on all the data that has been entered so far
         if (rawContactDeltaList != null && !rawContactDeltaList.isEmpty()) {
             ArrayList<ContentValues> contentValues = rawContactDeltaList.get(0).getContentValues();
@@ -146,9 +146,12 @@ public class EditorIntents {
                         ContactsContract.Intents.Insert.DATA, contentValues);
             }
         }
-        // Name must be passed separately since it is skipped in RawContactModifier.parseValues
+        // Names must be passed separately since they are skipped in RawContactModifier.parseValues
         if (!TextUtils.isEmpty(displayName)) {
             intent.putExtra(ContactsContract.Intents.Insert.NAME, displayName);
+        }
+        if (!TextUtils.isEmpty(phoneticName)) {
+            intent.putExtra(ContactsContract.Intents.Insert.PHONETIC_NAME, phoneticName);
         }
     }
 }
