@@ -113,7 +113,7 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position == 0 && mCreateContactEnabled) {
+        if (position == 0 && mCreateContactEnabled && mListener != null) {
             mListener.onCreateNewContactAction();
         } else {
             super.onItemClick(parent, view, position, id);
@@ -142,15 +142,21 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     }
 
     public void createNewContact() {
-        mListener.onCreateNewContactAction();
+        if (mListener != null) {
+            mListener.onCreateNewContactAction();
+        }
     }
 
     public void editContact(Uri contactUri) {
-        mListener.onEditContactAction(contactUri);
+        if (mListener != null) {
+            mListener.onEditContactAction(contactUri);
+        }
     }
 
     public void pickContact(Uri uri) {
-        mListener.onPickContactAction(uri);
+        if (mListener != null) {
+            mListener.onPickContactAction(uri);
+        }
     }
 
     @Override
@@ -190,11 +196,15 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
 
     @Override
     public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
-        mListener.onShortcutIntentCreated(shortcutIntent);
+        if (mListener != null) {
+            mListener.onShortcutIntentCreated(shortcutIntent);
+        }
     }
 
     @Override
     public void onPickerResult(Intent data) {
-        mListener.onPickContactAction(data.getData());
+        if (mListener != null) {
+            mListener.onPickContactAction(data.getData());
+        }
     }
 }
