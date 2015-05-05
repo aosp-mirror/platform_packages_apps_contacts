@@ -206,6 +206,9 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
 
             PhoneAccountHandle accountHandle = getItem(position);
             PhoneAccount account = mTelecomManager.getPhoneAccount(accountHandle);
+            if (account == null) {
+                return rowView;
+            }
             holder.labelTextView.setText(account.getLabel());
             if (account.getAddress() == null ||
                     TextUtils.isEmpty(account.getAddress().getSchemeSpecificPart())) {
