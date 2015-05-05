@@ -98,6 +98,9 @@
     <!-- Left padding of the label in the add field button for the contact editor -->
     <dimen name="editor_add_field_label_left_padding">16dip</dimen>
 
+    <!-- Top margin for the first field of the compact contact editor -->
+    <dimen name="editor_compact_first_field_padding">10dp</dimen>
+
     <!-- Width and height of the expanded contact photo on the contact detail page -->
     <dimen name="detail_contact_photo_expanded_size">400dip</dimen>
 
