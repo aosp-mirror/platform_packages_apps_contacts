@@ -18,9 +18,11 @@ package com.android.contacts.common.widget;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.common.R;
@@ -42,11 +44,11 @@ public class FloatingActionButtonController {
     private final int mFloatingActionButtonWidth;
     private final int mFloatingActionButtonMarginRight;
     private final View mFloatingActionButtonContainer;
-    private final View mFloatingActionButton;
+    private final ImageButton mFloatingActionButton;
     private final Interpolator mFabInterpolator;
     private int mScreenWidth;
 
-    public FloatingActionButtonController(Activity activity, View container, View button) {
+    public FloatingActionButtonController(Activity activity, View container, ImageButton button) {
         Resources resources = activity.getResources();
         mFabInterpolator = AnimationUtils.loadInterpolator(activity,
                 android.R.interpolator.fast_out_slow_in);
@@ -78,6 +80,14 @@ public class FloatingActionButtonController {
      */
     public void setVisible(boolean visible) {
         mFloatingActionButtonContainer.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    public void changeIcon(Drawable icon, String description) {
+        if (mFloatingActionButton.getDrawable() != icon
+                || !mFloatingActionButton.getContentDescription().equals(description)) {
+            mFloatingActionButton.setImageDrawable(icon);
+            mFloatingActionButton.setContentDescription(description);
+        }
     }
 
     /**
