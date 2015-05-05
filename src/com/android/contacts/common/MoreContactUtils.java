@@ -67,6 +67,14 @@ public class MoreContactUtils {
 
     // TODO: Move this to PhoneDataItem.shouldCollapse override
     private static boolean shouldCollapsePhoneNumbers(String number1, String number2) {
+        // Work around to address b/20724444. We want to distinguish between #555, *555 and 555.
+        // This makes no attempt to distinguish between 555 and 55*5, since 55*5 is an improbable
+        // number. PhoneNumberUtil already distinguishes between 555 and 55#5.
+        if (number1.contains("#") != number2.contains("#")
+                || number1.contains("*") != number2.contains("*")) {
+            return false;
+        }
+
         // Now do the full phone number thing. split into parts, separated by waiting symbol
         // and compare them individually
         final String[] dataParts1 = number1.split(WAIT_SYMBOL_AS_STRING);
