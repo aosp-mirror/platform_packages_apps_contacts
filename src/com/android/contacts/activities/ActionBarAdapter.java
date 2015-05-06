@@ -81,6 +81,7 @@ public class ActionBarAdapter implements OnCloseListener {
     private String mQueryString;
 
     private EditText mSearchView;
+    private View mClearSearchView;
     /** The view that represents tabs when we are in portrait mode **/
     private View mPortraitTabs;
     /** The view that represents tabs when we are in landscape mode **/
@@ -140,6 +141,7 @@ public class ActionBarAdapter implements OnCloseListener {
         // Hide tabs initially
         setPortraitTabHeight(0);
     }
+
     private void setupSearchAndSelectionViews() {
         final LayoutInflater inflater = (LayoutInflater) mToolbar.getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
@@ -154,13 +156,6 @@ public class ActionBarAdapter implements OnCloseListener {
         mSearchView = (EditText) mSearchContainer.findViewById(R.id.search_view);
         mSearchView.setHint(mActivity.getString(R.string.hint_findContacts));
         mSearchView.addTextChangedListener(new SearchTextWatcher());
-        mSearchContainer.findViewById(R.id.search_close_button).setOnClickListener(
-                new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setQueryString(null);
-            }
-        });
         mSearchContainer.findViewById(R.id.search_back_button).setOnClickListener(
                 new OnClickListener() {
             @Override
@@ -168,6 +163,15 @@ public class ActionBarAdapter implements OnCloseListener {
                 if (mListener != null) {
                     mListener.onUpButtonPressed();
                 }
+            }
+        });
+
+        mClearSearchView = mSearchContainer.findViewById(R.id.search_close_button);
+        mClearSearchView.setOnClickListener(
+                new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setQueryString(null);
             }
         });
 
@@ -235,6 +239,8 @@ public class ActionBarAdapter implements OnCloseListener {
             } else if (mListener != null) {
                 mListener.onAction(Action.CHANGE_SEARCH_QUERY);
             }
+            mClearSearchView.setVisibility(
+                    TextUtils.isEmpty(queryString) ? View.GONE : View.VISIBLE);
         }
 
         @Override
