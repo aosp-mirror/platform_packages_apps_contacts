@@ -42,6 +42,12 @@ public class LegacyPhoneNumberPickerFragment extends PhoneNumberPickerFragment {
     }
 
     @Override
+    protected String getLookupKey(int position) {
+        // There is no lookup key for the legacy adapter.
+        return null;
+    }
+
+    @Override
     protected ContactEntryListAdapter createListAdapter() {
         LegacyPhoneNumberListAdapter adapter = new LegacyPhoneNumberListAdapter(getActivity());
         adapter.setDisplayPhotos(true);
