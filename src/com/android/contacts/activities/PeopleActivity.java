@@ -54,6 +54,7 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
@@ -224,6 +225,10 @@ public class PeopleActivity extends ContactsActivity implements
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate start");
         }
         super.onCreate(savedState);
+
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         if (!processIntent(false)) {
             finish();

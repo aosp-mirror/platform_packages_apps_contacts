@@ -38,6 +38,7 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContactDelta;
@@ -84,6 +85,10 @@ public class AttachPhotoActivity extends ContactsActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         if (icicle != null) {
             final String uri = icicle.getString(KEY_CONTACT_URI);

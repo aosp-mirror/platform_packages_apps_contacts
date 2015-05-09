@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.editor.CompactContactEditorFragment;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -33,6 +34,10 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity {
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         setContentView(R.layout.compact_contact_editor_activity);
 
