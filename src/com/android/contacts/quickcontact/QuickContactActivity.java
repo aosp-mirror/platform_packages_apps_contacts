@@ -96,6 +96,7 @@ import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.interactions.TouchPointManager;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
@@ -685,6 +686,10 @@ public class QuickContactActivity extends ContactsActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Trace.beginSection("onCreate()");
         super.onCreate(savedInstanceState);
+
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 

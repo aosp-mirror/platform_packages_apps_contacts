@@ -37,6 +37,7 @@ import android.util.Log;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
@@ -86,6 +87,10 @@ public final class ShowOrCreateActivity extends ContactsActivity
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         // Create handler if doesn't exist, otherwise cancel any running
         if (mQueryHandler == null) {

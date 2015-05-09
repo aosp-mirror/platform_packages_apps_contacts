@@ -17,6 +17,7 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.R;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.util.DialogManager;
 
@@ -33,6 +34,10 @@ public class ContactEditorActivity extends ContactEditorBaseActivity
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         setContentView(R.layout.contact_editor_activity);
 

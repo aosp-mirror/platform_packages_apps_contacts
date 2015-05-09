@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.list.ContactPickerFragment;
@@ -105,6 +106,10 @@ public class ContactSelectionActivity extends ContactsActivity
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         if (savedState != null) {
             mActionCode = savedState.getInt(KEY_ACTION_CODE);
