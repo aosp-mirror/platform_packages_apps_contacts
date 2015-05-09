@@ -46,6 +46,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountSelectionUtil;
@@ -823,6 +824,10 @@ public class ImportVCardActivity extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         String accountName = null;
         String accountType = null;
