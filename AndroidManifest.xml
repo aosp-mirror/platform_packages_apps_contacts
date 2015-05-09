@@ -20,6 +20,8 @@
 
     <original-package android:name="com.android.contacts" />
 
+    <!-- Whenever a permission is added here, it should also be added to
+         RequestPermissionsActivity so it can be requested at runtime. -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -44,6 +46,7 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="com.android.voicemail.permission.READ_VOICEMAIL" />
 
     <application
         android:name="com.android.contacts.ContactsApplication"
@@ -215,6 +218,12 @@
             android:theme="@style/ContactListFilterTheme" />
 
         <activity
+            android:name=".common.activity.RequestPermissionsActivity"
+            android:label="@string/launcherActivityLabel"
+            android:theme="@style/PeopleTheme"
+            android:exported="false"/>
+
+        <activity
             android:name=".activities.ShowOrCreateActivity"
             android:label="@string/launcherActivityLabel"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar">
@@ -321,6 +330,29 @@
             android:theme="@style/ContactEditorAccountsChangedActivityTheme"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
+
+        <!-- Edit or create a contact with only the most important fields displayed initially. -->
+        <activity
+            android:name=".activities.CompactContactEditorActivity"
+            android:label="@string/launcherActivityLabel"
+            android:theme="@style/EditorActivityTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+
+            <intent-filter android:label="@string/editContactDescription">
+                <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/person" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" />
+            </intent-filter>
+            <intent-filter android:label="@string/insertContactDescription">
+                <action android:name="android.intent.action.INSERT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/person" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" />
+                <data android:mimeType="vnd.android.cursor.dir/raw_contact" />
+            </intent-filter>
+        </activity>
 
         <!-- Create a new or edit an existing contact -->
         <activity
