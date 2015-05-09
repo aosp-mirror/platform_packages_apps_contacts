@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.list.PinnedHeaderListAdapter;
 
 /**
@@ -98,6 +99,9 @@ public class PinnedHeaderListDemoActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         setContentView(R.layout.pinned_header_list_demo);
 

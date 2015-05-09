@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 
 import android.app.Activity;
@@ -43,6 +44,10 @@ public class NonPhoneActivity extends ContactsActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
+
         final String phoneNumber = getPhoneNumber();
         if (TextUtils.isEmpty(phoneNumber)) {
             finish();
