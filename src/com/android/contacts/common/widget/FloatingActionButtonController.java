@@ -162,7 +162,7 @@ public class FloatingActionButtonController {
      * Immediately remove the affects of the last call to {@link #scaleOut}.
      */
     public void resetIn() {
-        mFloatingActionButton.setAlpha(1);
+        mFloatingActionButton.setAlpha(1f);
         mFloatingActionButton.setVisibility(View.VISIBLE);
         mFloatingActionButtonContainer.setScaleX(1);
         mFloatingActionButtonContainer.setScaleY(1);
