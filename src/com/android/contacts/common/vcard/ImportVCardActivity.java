@@ -46,7 +46,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.contacts.common.R;
-import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.activity.RequestImportVCardPermissionsActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountSelectionUtil;
@@ -825,7 +825,7 @@ public class ImportVCardActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
             return;
         }
 
