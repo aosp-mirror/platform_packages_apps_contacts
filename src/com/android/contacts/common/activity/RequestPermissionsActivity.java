@@ -27,7 +27,14 @@ import android.os.Trace;
 
 /**
  * Repeatedly ask the user for runtime permissions, until they grant all the permissions.
- * For now only handles activities that are only designed for use in Contacts.
+ * For now this is designed for activities used in Contacts. However, the ImportVCardActivity is
+ * also used in the Dialer. When Dialer begins to support runtime permissions in their app, they
+ * may wish to use a more targeted list of permissions or allow the user to reject using
+ * some permissions.
+ *
+ * At the time of writing this Activity, most permissions cause crashes when not granted.
+ * So it is risky to not possess them.
+ *
  */
 public class RequestPermissionsActivity extends Activity {
     public static final String PREVIOUS_ACTIVITY_INTENT = "previous_intent";
