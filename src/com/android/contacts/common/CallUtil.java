@@ -60,7 +60,7 @@ public class CallUtil {
     public static Intent getVideoCallIntent(String number, String callOrigin) {
         final Intent intent = new Intent(Intent.ACTION_CALL, getCallUri(number));
         intent.putExtra(TelecomManager.EXTRA_START_CALL_WITH_VIDEO_STATE,
-                VideoProfile.VideoState.BIDIRECTIONAL);
+                VideoProfile.STATE_BIDIRECTIONAL);
         if (!TextUtils.isEmpty(callOrigin)) {
             intent.putExtra(PhoneConstants.EXTRA_CALL_ORIGIN, callOrigin);
         }
