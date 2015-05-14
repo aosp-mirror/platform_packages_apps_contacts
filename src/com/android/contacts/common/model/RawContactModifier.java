@@ -653,7 +653,10 @@ public class RawContactModifier {
 
         final String phoneticName = extras.getString(Insert.PHONETIC_NAME);
         if (ContactsUtils.isGraphic(phoneticName)) {
-            child.put(StructuredName.PHONETIC_GIVEN_NAME, phoneticName);
+            StructuredNameDataItem dataItem = NameConverter.parsePhoneticName(phoneticName, null);
+            child.put(StructuredName.PHONETIC_FAMILY_NAME, dataItem.getPhoneticFamilyName());
+            child.put(StructuredName.PHONETIC_MIDDLE_NAME, dataItem.getPhoneticMiddleName());
+            child.put(StructuredName.PHONETIC_GIVEN_NAME, dataItem.getPhoneticGivenName());
         }
     }
 
