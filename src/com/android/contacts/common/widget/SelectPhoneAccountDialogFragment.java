@@ -219,7 +219,7 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
                         PhoneNumberUtils.getPhoneTtsSpannable(
                                 account.getAddress().getSchemeSpecificPart()));
             }
-            holder.imageView.setImageDrawable(account.createIconDrawable(getContext()));
+            holder.imageView.setImageDrawable(account.getIcon().loadDrawable(getContext()));
             return rowView;
         }
 
