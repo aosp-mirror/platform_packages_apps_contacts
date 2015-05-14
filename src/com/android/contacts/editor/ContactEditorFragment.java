@@ -382,12 +382,9 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 final StructuredNameEditorView nameEditorView =
                         rawContactEditorView.getNameEditor();
                 if (nameEditorView != null) {
-                    final ValuesDelta valuesDelta = nameEditorView.getValues();
-                    if (valuesDelta != null && valuesDelta.isSuperPrimary()) {
-                        final String displayName = valuesDelta.getDisplayName();
-                        if (!TextUtils.isEmpty(displayName)) {
-                            return displayName;
-                        }
+                    final String displayName = nameEditorView.getDisplayName();
+                    if (!TextUtils.isEmpty(displayName)) {
+                        return displayName;
                     }
                 }
             }
@@ -400,12 +397,28 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 final StructuredNameEditorView nameEditorView =
                         rawContactEditorView.getNameEditor();
                 if (nameEditorView != null) {
-                    final ValuesDelta valuesDelta = nameEditorView.getValues();
-                    if (valuesDelta != null) {
-                        final String displayName = valuesDelta.getDisplayName();
-                        if (!TextUtils.isEmpty(displayName)) {
-                            return displayName;
-                        }
+                    final String displayName = nameEditorView.getDisplayName();
+                    if (!TextUtils.isEmpty(displayName)) {
+                        return displayName;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getPhoneticName() {
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            final View view = mContent.getChildAt(i);
+            if (view instanceof RawContactEditorView) {
+                final RawContactEditorView rawContactEditorView = (RawContactEditorView) view;
+                final PhoneticNameEditorView phoneticNameEditorView =
+                        (PhoneticNameEditorView) rawContactEditorView.getPhoneticNameEditor();
+                if (phoneticNameEditorView != null) {
+                    final String phoneticName = phoneticNameEditorView.getPhoneticName();
+                    if (!TextUtils.isEmpty(phoneticName)) {
+                        return phoneticName;
                     }
                 }
             }
