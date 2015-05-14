@@ -21,6 +21,8 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
@@ -46,6 +48,7 @@ import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.UiClosables;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * Handles displaying a photo selection popup for a given photo view and dealing with the results
@@ -237,9 +240,19 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      * Sends a newly acquired photo to Gallery for cropping
      */
     private void doCropPhoto(Uri inputUri, Uri outputUri) {
+        final Intent intent = getCropImageIntent(inputUri, outputUri);
+        if (!hasIntentHandler(intent)) {
+            try {
+                getListener().onPhotoSelected(inputUri);
+            } catch (FileNotFoundException e) {
+                Log.e(TAG, "Cannot save uncropped photo", e);
+                Toast.makeText(mContext, R.string.contactPhotoSavedErrorToast,
+                        Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
         try {
             // Launch gallery to crop the photo
-            final Intent intent = getCropImageIntent(inputUri, outputUri);
             startPhotoActivity(intent, REQUEST_CROP_PHOTO, inputUri);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
@@ -306,6 +319,12 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         intent.setType("image/*");
         ContactPhotoUtils.addPhotoPickerExtras(intent, outputUri);
         return intent;
+    }
+
+    private boolean hasIntentHandler(Intent intent) {
+        final List<ResolveInfo> resolveInfo = mContext.getPackageManager()
+                .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        return resolveInfo != null && resolveInfo.size() > 0;
     }
 
     /**

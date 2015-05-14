@@ -23,6 +23,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.Loader.OnLoadCompleteListener;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -52,6 +54,7 @@ import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * Provides an external interface for other applications to attach images
@@ -167,7 +170,7 @@ public class AttachPhotoActivity extends ContactsActivity {
             final Intent myIntent = getIntent();
             final Uri inputUri = myIntent.getData();
 
-            final Uri toCrop;
+
             // Save the URI into a temporary file provider URI so that
             // we can add the FLAG_GRANT_WRITE_URI_PERMISSION flag to the eventual
             // crop intent for read-only URI's.
@@ -176,14 +179,26 @@ public class AttachPhotoActivity extends ContactsActivity {
                 finish();
                 return;
             }
-            toCrop = mTempPhotoUri;
 
-            final Intent intent = new Intent("com.android.camera.action.CROP", toCrop);
+            final Intent intent = new Intent("com.android.camera.action.CROP", mTempPhotoUri);
             if (myIntent.getStringExtra("mimeType") != null) {
-                intent.setDataAndType(toCrop, myIntent.getStringExtra("mimeType"));
+                intent.setDataAndType(mTempPhotoUri, myIntent.getStringExtra("mimeType"));
             }
             ContactPhotoUtils.addPhotoPickerExtras(intent, mCroppedPhotoUri);
             ContactPhotoUtils.addCropExtras(intent, mPhotoDim != 0 ? mPhotoDim : mDefaultPhotoDim);
+            if (!hasIntentHandler(intent)) {
+                // No activity supports the crop action. So skip cropping and set the photo
+                // without performing any cropping.
+                mCroppedPhotoUri = mTempPhotoUri;
+                mContactUri = result.getData();
+                loadContact(mContactUri, new Listener() {
+                    @Override
+                    public void onContactLoaded(Contact contact) {
+                        saveContact(contact);
+                    }
+                });
+                return;
+            }
 
             try {
                 startActivityForResult(intent, REQUEST_CROP_PHOTO);
@@ -209,6 +224,12 @@ public class AttachPhotoActivity extends ContactsActivity {
                 }
             });
         }
+    }
+
+    private boolean hasIntentHandler(Intent intent) {
+        final List<ResolveInfo> resolveInfo = getPackageManager()
+                .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        return resolveInfo != null && resolveInfo.size() > 0;
     }
 
     // TODO: consider moving this to ContactLoader, especially if we keep adding similar
