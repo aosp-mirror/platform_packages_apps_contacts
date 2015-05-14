@@ -246,6 +246,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 ? null : (StructuredNameEditorView) mNames.getChildAt(0);
     }
 
+    public PhoneticNameEditorView getFirstPhoneticNameEditorView() {
+        // There should only ever be one phonetic name
+        return mPhoneticNames.getChildCount() == 0
+                ? null : (PhoneticNameEditorView) mPhoneticNames.getChildAt(0);
+    }
+
     public View getAggregationAnchorView() {
         // Since there is only one structured name we can just return it as the anchor for
         // the aggregation suggestions popup
@@ -274,6 +280,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 /* valuesDelta =*/ null, ViewIdGenerator.NO_VIEW_INDEX));
         mMaterialPalette = materialPalette;
 
+        vlog("Setting compact editor state from " + rawContactDeltas);
         addPhotoView(rawContactDeltas, viewIdGenerator);
         addStructuredNameView(rawContactDeltas);
         addEditorViews(rawContactDeltas);
@@ -424,7 +431,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     continue;
                 }
                 final String mimeType = dataKind.mimeType;
-                log(Log.VERBOSE, mimeType + " " + dataKind.fieldList.size() + " field(s)");
+                vlog(mimeType + " " + dataKind.fieldList.size() + " field(s)");
                 if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)
                         || StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)
                         || GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
@@ -521,11 +528,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             String mimeType, DataKind dataKind) {
         final List<ValuesDelta> result = new ArrayList<>();
         if (rawContactDelta == null) {
-            log(Log.VERBOSE, "Null RawContactDelta");
+            vlog("Null RawContactDelta");
             return result;
         }
         if (!rawContactDelta.hasMimeEntries(mimeType)) {
-            log(Log.VERBOSE, "No ValueDeltas");
+            vlog("No ValueDeltas");
             return result;
         }
         for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(mimeType)) {
@@ -538,14 +545,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private static boolean hasNonEmptyValue(DataKind dataKind, ValuesDelta valuesDelta) {
         if (valuesDelta == null) {
-            log(Log.VERBOSE, "Null valuesDelta");
+            vlog("Null valuesDelta");
             return false;
         }
         for (EditField editField : dataKind.fieldList) {
             final String column = editField.column;
             final String value = valuesDelta == null ? null : valuesDelta.getAsString(column);
-            log(Log.VERBOSE, "Field " + column + " empty=" + TextUtils.isEmpty(value) +
-                    " value=" + value);
+            vlog("Field " + column + " empty=" + TextUtils.isEmpty(value) + " value=" + value);
             if (!TextUtils.isEmpty(value)) {
                 return true;
             }
@@ -598,32 +604,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return result;
     }
 
-    private static void log(int level, String message) {
-        log(TAG, level, message);
-    }
-
-    private static void log(String tag, int level, String message) {
-        if (Log.isLoggable(tag, level)) {
-            switch (level) {
-                case Log.VERBOSE:
-                    Log.v(tag, message);
-                    break;
-                case Log.DEBUG:
-                    Log.d(tag, message);
-                    break;
-                case Log.INFO:
-                    Log.i(tag, message);
-                    break;
-                case Log.WARN:
-                    Log.w(tag, message);
-                    break;
-                case Log.ERROR:
-                    Log.e(tag, message);
-                    break;
-                default:
-                    Log.v(tag, message);
-                    break;
-            }
+    private static void vlog(String message) {
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, message);
         }
     }
 }
