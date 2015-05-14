@@ -355,7 +355,8 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
         // Prepare an Intent to start the expanded editor
         final Intent intent = isInsert
-                ? EditorIntents.createInsertContactIntent(mState, getDisplayName(), mUpdatedPhotos)
+                ? EditorIntents.createInsertContactIntent(
+                        mState, getDisplayName(), getPhoneticName(), mUpdatedPhotos)
                 : EditorIntents.createEditContactIntent(mLookupUri, getMaterialPalette());
         ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
 
@@ -379,6 +380,14 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                 getContent().getStructuredNameEditorView();
         return structuredNameEditorView == null
                 ? null : structuredNameEditorView.getDisplayName();
+    }
+
+    @Override
+    public String getPhoneticName() {
+        final PhoneticNameEditorView phoneticNameEditorView =
+                getContent().getFirstPhoneticNameEditorView();
+        return phoneticNameEditorView == null
+                ? null : phoneticNameEditorView.getPhoneticName();
     }
 
     private CompactRawContactsEditorView getContent() {

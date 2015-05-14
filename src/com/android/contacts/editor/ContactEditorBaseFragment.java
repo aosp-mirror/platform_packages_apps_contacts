@@ -922,7 +922,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // If we're coming back from the fully expanded editor and this is an insert, just
             // pass any values entered by the user back to the compact editor without doing a save
             final Intent resultIntent = EditorIntents.createCompactInsertContactIntent(
-                    mState, getDisplayName(), mUpdatedPhotos);
+                    mState, getDisplayName(), getPhoneticName(), mUpdatedPhotos);
             mListener.onSaveFinished(resultIntent);
             return true;
         }
@@ -978,6 +978,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Returns the currently displayed displayName;
      */
     abstract protected String getDisplayName();
+
+    /**
+     * Returns the currently displayed phonetic name;
+     */
+    abstract protected String getPhoneticName();
 
     //
     // Account creation
@@ -1343,7 +1348,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 if (!saveSucceeded || contactLookupUri == null) {
                     resultIntent = saveMode == SaveMode.COMPACT
                             ? EditorIntents.createCompactInsertContactIntent(
-                                    mState, getDisplayName(), updatedPhotos)
+                                    mState, getDisplayName(), getPhoneticName(), updatedPhotos)
                             : null;
                 } else {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
@@ -1354,7 +1359,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     } else if (saveMode == SaveMode.COMPACT) {
                         resultIntent = isInsert(getActivity().getIntent())
                                 ? EditorIntents.createCompactInsertContactIntent(
-                                        mState, getDisplayName(), updatedPhotos)
+                                        mState, getDisplayName(), getPhoneticName(), updatedPhotos)
                                 : EditorIntents.createCompactEditContactIntent(
                                         lookupUri, getMaterialPalette(), updatedPhotos);
                     } else {
