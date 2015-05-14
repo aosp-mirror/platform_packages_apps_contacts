@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Dërgo mesazh te numri i MMS-së"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Bëj një telefonatë me video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Të pastrohen kontaktet e shpeshta?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Do ta pastrosh listën e kontakteve të shpeshta në aplikacionet Kontaktet dhe Telefoni dhe do t\'i detyrosh aplikacionet e emailit të mësojnë preferencat e tua të adresimit nga e para."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Do ta pastrosh listën e kontakteve të shpeshta në aplikacionet \"Kontaktet\" dhe \"Telefoni\" dhe do t\'i detyrosh aplikacionet e mail-it të mësojnë preferencat e tua të adresimit nga e para."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Po pastron kontaktet e shpeshta…"</string>
     <string name="status_available" msgid="4832569677396634846">"I gatshëm"</string>
     <string name="status_away" msgid="6267905184545881094">"I larguar"</string>
