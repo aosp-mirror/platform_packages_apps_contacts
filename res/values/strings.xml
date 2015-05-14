@@ -275,6 +275,9 @@
     <!-- Toast displayed when saving a contact failed. [CHAR LIMIT=NONE] -->
     <string name="contactSavedErrorToast">Couldn\'t save contact changes.</string>
 
+    <!-- Toast displayed when saving a contact photo failed. [CHAR LIMIT=NONE] -->
+    <string name="contactPhotoSavedErrorToast">Couldn\'t save contact photo changes.</string>
+
     <!-- Toast displayed when a group is saved [CHAR LIMIT=NONE] -->
     <string name="groupSavedToast">Group saved.</string>
 
