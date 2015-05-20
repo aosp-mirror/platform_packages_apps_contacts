@@ -273,7 +273,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             if (accountType.areContactsWritable()) {
                 hasWritableAccountType = true;
                 if (getContent().isWritablePhotoSet()) {
-                    photoMode = PhotoActionPopup.Modes.WRITE_ABLE_PHOTO;
+                    photoMode = PhotoActionPopup.Modes.MULTIPLE_WRITE_ABLE_PHOTOS;
                     break;
                 }
             }
