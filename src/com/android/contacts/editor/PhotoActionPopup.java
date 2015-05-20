@@ -62,6 +62,12 @@ public class PhotoActionPopup {
                 Flags.REMOVE_PHOTO |
                 Flags.TAKE_OR_PICK_PHOTO |
                 Flags.TAKE_OR_PICK_PHOTO_REPLACE_WORDING;
+        // When the popup represents multiple photos, the REMOVE_PHOTO option doesn't make sense.
+        // The REMOVE_PHOTO option would have to remove all photos. And sometimes some of the
+        // photos are readonly.
+        public static final int MULTIPLE_WRITE_ABLE_PHOTOS =
+                Flags.TAKE_OR_PICK_PHOTO |
+                Flags.TAKE_OR_PICK_PHOTO_REPLACE_WORDING;
     }
 
     public static ArrayList<ChoiceListItem> getChoices(Context context, int mode) {
