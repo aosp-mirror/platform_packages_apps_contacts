@@ -48,6 +48,7 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
+            android:singleLine="false"
             android:layout_weight="1" />
 
         <Button
