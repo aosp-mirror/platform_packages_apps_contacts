@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"পরিচিতি সংরক্ষণ করা হচ্ছে…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"পরিচিতি সংরক্ষিত হয়েছে৷"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"পরিচিতির পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"পরিচিতির ফটোর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"গোষ্ঠী সংরক্ষিত হয়েছে৷"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"গোষ্ঠীর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

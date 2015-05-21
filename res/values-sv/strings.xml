@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Sparar kontakt..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt sparad."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Det gick inte att spara ändringarna i kontakten."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Det gick inte att spara ändringarna av kontaktfotot."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen sparades."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Det gick inte att spara ändringarna i gruppen."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

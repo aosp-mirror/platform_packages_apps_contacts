@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"ਸੰਪਰਕ ਸੁਰੱਖਿਅਤ ਕਰ ਰਿਹਾ ਹੈ…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"ਸੰਪਰਕ ਸੁਰੱਖਿਅਤ ਕੀਤਾ।"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ਸੰਪਰਕ ਬਦਲਾਵਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕਰ ਸਕਿਆ।"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"ਸੰਪਰਕ ਫੋਟੋ ਦੇ ਪਰਿਵਰਤਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕਰ ਸਕਿਆ।"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"ਸਮੂਹ ਸੁਰੱਖਿਅਤ ਕੀਤਾ।"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"ਸਮੂਹ ਬਦਲਾਵਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕਰ ਸਕਿਆ।"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Po ruan kontaktin…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakti u ruajt."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ndryshimet e kontaktit nuk mund të ruheshin."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Ndryshimet e fotografisë së kontaktit nuk mund të ruheshin."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupi u ruajt."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Ndryshimet e grupit nuk mund të ruheshin."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

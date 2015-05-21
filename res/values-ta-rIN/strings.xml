@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"தொடர்பைச் சேமிக்கிறது…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"தொடர்பு சேமிக்கப்பட்டது."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"தொடர்பின் மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"தொடர்பின் பட மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"குழு சேமிக்கப்பட்டது."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"குழு மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

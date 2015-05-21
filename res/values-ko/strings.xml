@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"연락처 저장 중..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"연락처를 저장했습니다."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"연락처 변경사항을 저장할 수 없습니다."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"연락처 사진 변경사항을 저장하지 못했습니다."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"그룹이 저장되었습니다."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"그룹 변경사항을 저장할 수 없습니다."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"កំពុង​រក្សាទុក​ទំនាក់ទំនង..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"បាន​រក្សាទុក​ទំនាក់ទំនង។"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"មិន​អាច​រក្សាទុក​ការ​ប្ដូរ​ទំនាក់ទំនង។"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"មិនអាចរក្សាទុកការប្ដូររូបថតទំនាក់ទំនង។"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"បាន​រក្សាទុក​ក្រុម។"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"មិន​អាច​រក្សាទុក​ការ​ប្ដូរ​ក្រុម។"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

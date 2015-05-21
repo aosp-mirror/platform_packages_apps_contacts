@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Kontakti salvestamine ..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt on salvestatud."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kontaktide muudatuste salvestamine ebaõnnestus."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Kontakti foto muudatusi ei õnnestunud salvestada."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupp on salvestatud."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Rühmade muudatuste salvestamine ebaõnnestus."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
