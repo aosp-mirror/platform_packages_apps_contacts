@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Igcina othintana naye..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Othintana naye ulondoloziwe"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Yehlulekile ukulondoloza izinguquko zoxhumana nabo."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Ayikwazanga ukulondoloza izinguquko zesithombe sokuxhumana."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Isigcawu silondiwe"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Yehlulekile ukulana izinguquko zeqembu."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

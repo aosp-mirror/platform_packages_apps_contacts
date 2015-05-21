@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Se salvează persoana din agendă..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Persoana din agendă a fost salvată."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nu s-au putut salva modificările aduse persoanei de contact."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Modificările privind fotografia persoanei de contact nu au putut fi salvate."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupul a fost salvat."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nu s-au putut salva modificările aduse grupului."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Контактът се запазва..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контактът е запазен."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Промените в контакта не можаха да бъдат запазени."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Промените в снимката на контакта не можаха да се запазят."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Групата е запазена."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Промените в групата не можаха да бъдат запазени."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

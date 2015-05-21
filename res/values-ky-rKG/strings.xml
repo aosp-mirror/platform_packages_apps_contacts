@@ -139,6 +139,7 @@
     <!-- no translation found for contactSavedToast (7152589189385441091) -->
     <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Байланыштын өзгөрүүлөрү сакталган жок."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Байланыштын сүрөт өзгөрүүлөрү сакталган жок."</string>
     <!-- no translation found for groupSavedToast (1168756874239833756) -->
     <skip />
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Топтун өзгөртүүлөрү сакталган жок."</string>

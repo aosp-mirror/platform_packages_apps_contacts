@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"සම්බන්ධතාවය සුරකමින්…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"සම්බන්ධතාවය සුරකින ලදි."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"සම්බන්ධතා වෙනස්කම් සුරැකීමට නොහැක."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"සම්බන්ධතා ඡායාරූපය වෙනස් කිරීම් සුරැකිය නොහැකි විය."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"කණ්ඩායම සුරකින ලදි."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"කණ්ඩායම් වෙනස්කම් සුරැකීමට නොහැක."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

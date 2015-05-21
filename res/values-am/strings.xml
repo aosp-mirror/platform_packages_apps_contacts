@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"ዕውቂያ በማስቀመጥ ላይ..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"ዕውቂያተቀምጧል።"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"የእውቂያ ለውጦች ማስቀመጥ አልተቻለም::"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"የእውቂያ ፎቶ ለውጦችን ማስቀመጥ አልተቻለም።"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"ቡድን ተቀምጧል።"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"የቡድን ለውጦች ማስቀመጥ አልተቻለም::"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

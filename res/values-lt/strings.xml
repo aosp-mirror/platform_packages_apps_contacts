@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Išsaugomas adresatas..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Adresatas išsaugotas."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nepavyko išsaugoti kontakto pakeitimų."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nepavyko išsaugoti kontakto nuotraukos pakeitimų."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupė išsaugota."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nepavyko išsaugoti grupės pakeitimų."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

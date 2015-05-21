@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"جارٍ حفظ جهة الاتصال..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"تم حفظ جهة الاتصال."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"تعذر حفظ التغييرات التي تم إجراؤها على جهة الاتصال."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"تعذر حفظ تغييرات صورة جهة الاتصال."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"تم حفظ المجموعة."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"تعذر حفظ التغييرات التي تم إجراؤها على المجموعة."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"संपर्क सहेज रहा है…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"संपर्क सहेजा गया."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"संपर्क परिवर्तन सहेजे नहीं जा सके."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"संपर्क फ़ोटो के बदलाव नहीं सहेजे जा सके."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"समूह सहेजा गया."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"समूह परिवर्तन सहेजे नहीं जा सके."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

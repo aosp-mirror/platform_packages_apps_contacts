@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"กำลังบันทึกรายชื่อ…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"บันทึกรายชื่อ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ไม่สามารถบันทึกการเปลี่ยนแปลงรายชื่อติดต่อ"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"ไม่สามารถบันทึกการเปลี่ยนแปลงในรูปภาพรายชื่อติดต่อ"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"บันทึกกลุ่มแล้ว"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"ไม่สามารถบันทึกการเปลี่ยนแปลงในกลุ่ม"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
