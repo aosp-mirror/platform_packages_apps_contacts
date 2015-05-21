@@ -49,6 +49,7 @@
             android:id="@+id/photo_touch_intercept_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/item_background_material_dark" />
+            android:background="@drawable/item_background_material_dark"
+            android:contentDescription="@string/compact_editor_change_photo_content_description" />
 
 </com.android.contacts.editor.CompactPhotoEditorView>
