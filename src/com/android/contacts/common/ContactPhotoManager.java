@@ -56,6 +56,7 @@ import android.widget.ImageView;
 
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.util.BitmapUtil;
+import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.commonbind.util.UserAgentGenerator;
 
@@ -434,7 +435,9 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
             Context applicationContext = context.getApplicationContext();
             sInstance = createContactPhotoManager(applicationContext);
             applicationContext.registerComponentCallbacks(sInstance);
-            sInstance.preloadPhotosInBackground();
+            if (PermissionsUtil.hasContactsPermissions(context)) {
+                sInstance.preloadPhotosInBackground();
+            }
         }
         return sInstance;
     }

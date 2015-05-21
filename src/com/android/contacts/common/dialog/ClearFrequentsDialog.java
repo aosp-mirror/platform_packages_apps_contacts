@@ -21,6 +21,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
@@ -28,6 +29,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.util.PermissionsUtil;
 
 /**
  * Dialog that clears the frequently contacted list after confirming with the user.
@@ -41,10 +43,14 @@ public class ClearFrequentsDialog extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        final Context context = getActivity().getApplicationContext();
         final ContentResolver resolver = getActivity().getContentResolver();
         final OnClickListener okListener = new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                if (!PermissionsUtil.hasContactsPermissions(context)) {
+                    return;
+                }
                 final IndeterminateProgressDialog progressDialog = IndeterminateProgressDialog.show(
                         getFragmentManager(), getString(R.string.clearFrequentsProgress_title),
                         null, 500);

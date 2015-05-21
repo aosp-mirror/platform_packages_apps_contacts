@@ -11,8 +11,10 @@ import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.contacts.common.testing.NeededForTesting;
+import com.android.contacts.common.util.PermissionsUtil;
 
 import java.util.Locale;
 
@@ -91,6 +93,11 @@ public class CountryDetector {
 
     public static void registerForLocationUpdates(Context context,
             LocationManager locationManager) {
+        if (!PermissionsUtil.hasLocationPermissions(context)) {
+            Log.w(TAG, "No location permissions, not registering for location updates.");
+            return;
+        }
+
         if (!Geocoder.isPresent()) {
             // Certain devices do not have an implementation of a geocoder - in that case there is
             // no point trying to get location updates because we cannot retrieve the country based
@@ -158,7 +165,7 @@ public class CountryDetector {
      * @return the geocoded country code detected by the {@link LocationManager}.
      */
     private String getLocationBasedCountryIso() {
-        if (!Geocoder.isPresent()) {
+        if (!Geocoder.isPresent() || !PermissionsUtil.hasLocationPermissions(mContext)) {
             return null;
         }
         final SharedPreferences sharedPreferences =
