@@ -761,4 +761,7 @@
 
     <!-- Button to expand the compact contact editor to show all available input fields. [CHAR LIMIT=60] -->
     <string name="compact_editor_more_fields">More Fields</string>
+
+    <!-- Content description for the compact contact editor photo overlay which, when clicked, shows a dialog with the options for changing the contact photo. [CHAR LIMIT=30] -->
+    <string name="compact_editor_change_photo_content_description">Change photo</string>
 </resources>
