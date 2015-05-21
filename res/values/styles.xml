@@ -219,6 +219,7 @@
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
         <item name="android:listViewStyle">@style/ListViewStyle</item>
+        <item name="android:colorAccent">@color/primary_color</item>
     </style>
 
     <style name="SectionDivider">
