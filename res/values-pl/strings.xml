@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Trwa zapisywanie kontaktu..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt został zapisany."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nie można zapisać zmian kontaktu."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nie udało się zapisać zmian wprowadzonych w zdjęciu kontaktu."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupa została zapisana."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nie można zapisać zmian grupy."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

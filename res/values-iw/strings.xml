@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"שומר איש קשר…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"איש הקשר נשמר."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"לא ניתן לשמור את השינויים באנשי הקשר."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"לא ניתן היה לשמור את השינויים בתמונות של אנשי הקשר."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"הקבוצה נשמרה."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"לא ניתן לשמור את השינויים בקבוצות."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

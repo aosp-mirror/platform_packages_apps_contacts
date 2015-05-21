@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Kontaktua gordetzen…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontaktua gorde da."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ezin izan dira gorde kontaktuari egindako aldaketak."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Ezin izan dira gorde kontaktuaren argazkiari egindako aldaketak."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Taldea gorde da."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Ezin izan dira gorde taldeari egindako aldaketak."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"ກຳລັງບັນທຶກລາຍຊື່ຜູ່ຕິດຕໍ່..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"ບັນທຶກລາຍຊື່ຜູ່ຕິດຕໍ່ແລ້ວ."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ບໍ່ສາມາດບັນທຶກການແກ້ໄຂລາຍຊື່ຜູ່ຕິດຕໍ່ໄດ້."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"ບໍ່​ສາ​ມາດ​ບັນ​ທຶກ​ການ​ປ່ຽນ​ແປງ​ຮູບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໄດ້."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"ບັນທຶກກຸ່ມແລ້ວ."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"ບໍ່ສາມາດບັນທຶກການແກ້ໄຂກຸ່ມໄດ້."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

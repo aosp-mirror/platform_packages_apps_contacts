@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Đang lưu liên hệ…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Đã lưu liên hệ."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Không thể lưu thay đổi của địa chỉ liên hệ."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Không thể lưu thay đổi đối với ảnh của liên hệ."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Đã lưu nhóm."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Không thể lưu thay đổi nhóm."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

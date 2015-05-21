@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"S\'està desant el contacte..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"S\'ha desat el contacte."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No s\'han pogut desar els canvis al contacte."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"No s\'han pogut desar els canvis de la foto de contacte."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grup desat."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"No s\'han pogut desar els canvis al grup."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">

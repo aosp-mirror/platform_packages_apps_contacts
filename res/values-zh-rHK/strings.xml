@@ -99,6 +99,7 @@
     <string name="savingContact" msgid="4075751076741924939">"正在儲存聯絡人…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"聯絡人已儲存。"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"無法儲存聯絡人變更。"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"無法儲存聯絡人相片變更。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"群組已儲存。"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"無法儲存群組變更。"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
