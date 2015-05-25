@@ -270,4 +270,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"如果您在電子郵件欄位或電話欄位中輸入聯絡人的 Hangouts 識別碼，可讓 Hangouts 的運作效能更佳。"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"更多欄位"</string>
+    <!-- no translation found for compact_editor_change_photo_content_description (5495487714301211540) -->
+    <skip />
 </resources>

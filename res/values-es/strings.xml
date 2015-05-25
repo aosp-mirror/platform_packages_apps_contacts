@@ -270,4 +270,5 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Tú: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funciona mejor si se introduce el identificador de Hangouts de la persona en el campo del correo electrónico o en el campo del teléfono."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Más campos"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Cambiar foto"</string>
 </resources>

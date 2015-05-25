@@ -270,4 +270,5 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ön: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"A Hangouts jobban működik, ha a személy Hangouts-azonosítóját adja meg az e-mail vagy telefonszám mezőben."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"További mezők"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Fénykép lecserélése"</string>
 </resources>
