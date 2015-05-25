@@ -270,4 +270,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"请将联系人的环聊帐户信息输入到电子邮件地址字段或电话号码字段，以便获得更佳的环聊使用体验。"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"更多字段"</string>
+    <!-- no translation found for compact_editor_change_photo_content_description (5495487714301211540) -->
+    <skip />
 </resources>

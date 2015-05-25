@@ -270,4 +270,5 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ඔබ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ඔබ පුද්ගලයාගේ Hangouts හඳුන්වනය ඊ-තැපැල් හෝ දුරකථන ක්ෂේත්‍රයට ඇතුළත් කළ විටHangouts වඩා හොඳින් ක්‍රියා කරයි."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"තව ක්ෂේත්‍ර"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ඡායාරූපය වෙනස් කරන්න"</string>
 </resources>

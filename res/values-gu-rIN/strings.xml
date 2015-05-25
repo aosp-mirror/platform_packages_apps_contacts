@@ -270,4 +270,5 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"તમે: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"જ્યારે તમે વ્યક્તિના Hangouts ઓળખકર્તાને ઇમેઇલ ફીલ્ડ અથવા ફોન ફીલ્ડમાં દાખલ કરો છો ત્યારે Hangouts વધુ સારું કામ કરે છે."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"વધુ ફીલ્ડ્સ"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ફોટો બદલો"</string>
 </resources>
