@@ -213,7 +213,10 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
     public String getDisplayName() {
         final ValuesDelta valuesDelta = getValues();
         if (hasShortAndLongForms() && areOptionalFieldsVisible()) {
-            return valuesDelta.getDisplayName();
+            final String displayName = valuesDelta.getDisplayName();
+            if (!TextUtils.isEmpty(displayName)) {
+                return displayName;
+            }
         }
         final Map<String, String> structuredNameMap = valuesToStructuredNameMap(valuesDelta);
         final String displayName = NameConverter.structuredNameToDisplayName(
