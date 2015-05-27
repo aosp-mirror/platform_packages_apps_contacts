@@ -188,7 +188,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
         // If anything was left unsaved, save it now
         if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            save(SaveMode.RELOAD);
+            save(SaveMode.RELOAD, /* backPressed =*/ false);
         }
     }
 
@@ -297,12 +297,12 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     @Override
-    protected boolean doSaveAction(int saveMode) {
+    protected boolean doSaveAction(int saveMode, boolean backPressed) {
         // Save contact. No need to pass the palette since we are finished editing after the save.
         final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(),
-                CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos);
+                CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos, backPressed);
         mContext.startService(intent);
 
         return true;
@@ -350,7 +350,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             mShowToastAfterSave = false;
 
             // Save whatever is in the form
-            save(SaveMode.RELOAD);
+            save(SaveMode.RELOAD, /* backPressed =*/ false);
         }
 
         // Prepare an Intent to start the expanded editor
