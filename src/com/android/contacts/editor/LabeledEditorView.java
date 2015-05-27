@@ -254,7 +254,16 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
      */
     public void showType() {
         if (mHasTypes && mLabel != null && mLabel.getVisibility() != View.VISIBLE) {
-            mLabel.setVisibility(View.VISIBLE);
+            EditorAnimator.getInstance().slideAndFadeIn(mLabel, mLabel.getHeight());
+        }
+    }
+
+    /**
+     * Hides the type drop down if there are types to display and it is not already hidden.
+     */
+    public void hideType() {
+        if (mHasTypes && mLabel != null && mLabel.getVisibility() != View.GONE) {
+            EditorAnimator.getInstance().hideEditorView(mLabel);
         }
     }
 
