@@ -54,7 +54,7 @@ public class ContactEditorActivity extends ContactEditorBaseActivity
     @Override
     public void onBackPressed() {
         if (mFragment != null) {
-            mFragment.save(ContactEditor.SaveMode.COMPACT);
+            mFragment.save(ContactEditor.SaveMode.COMPACT, /* backPressed =*/ true);
         }
     }
 }
