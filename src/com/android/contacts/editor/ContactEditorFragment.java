@@ -118,7 +118,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
         // If anything was left unsaved, save it now and return to the compact editor.
         if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            save(SaveMode.COMPACT);
+            save(SaveMode.COMPACT, /* backPressed =*/ false);
         }
     }
 
@@ -133,7 +133,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         // Override the home/done options to return to the compact editor
         if (item.getItemId() == android.R.id.home || item.getItemId() == R.id.menu_done) {
-            return save(SaveMode.COMPACT);
+            return save(SaveMode.COMPACT, /* backPressed =*/ true);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -539,7 +539,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     }
 
     @Override
-    protected boolean doSaveAction(int saveMode) {
+    protected boolean doSaveAction(int saveMode, boolean backPressed) {
         // Save contact and reload the compact editor after saving.
         // Note, the full resolution photos Bundle must be passed to the ContactSaveService
         // and then passed along in the result Intent in order for the compact editor to
@@ -548,7 +548,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED,
-                mUpdatedPhotos);
+                mUpdatedPhotos, backPressed);
         mContext.startService(intent);
 
         // Don't try to save the same photos twice.

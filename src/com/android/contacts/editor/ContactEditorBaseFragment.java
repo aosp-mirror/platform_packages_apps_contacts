@@ -178,6 +178,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
     /**
+     * Intent extra to specify whether the save was initiated as a result of a back button press
+     * or because the framework stopped the editor Activity.
+     */
+    public static final String INTENT_EXTRA_SAVE_BACK_PRESSED = "saveBackPressed";
+
+    /**
      * Callbacks for Activities that host contact editors Fragments.
      */
     public interface Listener {
@@ -775,7 +781,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         switch (item.getItemId()) {
             case android.R.id.home:
             case R.id.menu_done:
-                return save(SaveMode.CLOSE);
+                return save(SaveMode.CLOSE, /* backPressed =*/ true);
             case R.id.menu_discard:
                 return revert();
             case R.id.menu_delete:
@@ -831,7 +837,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
 
         mState.markRawContactsForSplitting();
-        save(SaveMode.SPLIT);;
+        save(SaveMode.SPLIT, /* backPressed =*/ false);
     }
 
     private boolean doSplitContactAction() {
@@ -854,7 +860,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             return true;
         }
 
-        return save(SaveMode.JOIN);
+        return save(SaveMode.JOIN, /* backPressed =*/ false);
     }
 
     private void doPickRingtone() {
@@ -886,7 +892,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     @Override
-    public boolean save(int saveMode) {
+    public boolean save(int saveMode, boolean backPressed) {
         if (!hasValidState() || mStatus != Status.EDITING) {
             return false;
         }
@@ -908,7 +914,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             }
             onSaveCompleted(/* hadChanges =*/ false, saveMode,
                     /* saveSucceeded =*/ mLookupUri != null, mLookupUri,
-                    /* updatedPhotos =*/ null);
+                    /* updatedPhotos =*/ null, backPressed);
             return true;
         }
 
@@ -917,23 +923,24 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // Store account as default account, only if this is a new contact
         saveDefaultAccountIfNecessary();
 
-        if (isInsert(getActivity().getIntent())
-                && saveMode == SaveMode.COMPACT && mListener != null) {
+        if (isInsert(getActivity().getIntent()) && saveMode == SaveMode.COMPACT
+                && mListener != null && backPressed) {
             // If we're coming back from the fully expanded editor and this is an insert, just
             // pass any values entered by the user back to the compact editor without doing a save
             final Intent resultIntent = EditorIntents.createCompactInsertContactIntent(
                     mState, getDisplayName(), getPhoneticName(), mUpdatedPhotos);
+            resultIntent.putExtra(INTENT_EXTRA_SAVE_BACK_PRESSED, backPressed);
             mListener.onSaveFinished(resultIntent);
             return true;
         }
         // Otherwise this is an edit or a back press so do an actual save
-        return doSaveAction(saveMode);
+        return doSaveAction(saveMode, backPressed);
     }
 
     /**
      * Persist the accumulated editor deltas.
      */
-    abstract protected boolean doSaveAction(int saveMode);
+    abstract protected boolean doSaveAction(int saveMode, boolean backPressed);
 
     //
     // State accessor methods
@@ -1326,12 +1333,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     @Override
     public void onJoinCompleted(Uri uri) {
-        onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri, /* updatedPhotos =*/ null);
+        onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri, /* updatedPhotos =*/ null,
+                /* backPressed =*/ false);
     }
 
     @Override
     public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
-            Uri contactLookupUri, Bundle updatedPhotos) {
+            Uri contactLookupUri, Bundle updatedPhotos, boolean backPressed) {
         if (hadChanges) {
             if (saveSucceeded) {
                 if (saveMode != SaveMode.JOIN && mShowToastAfterSave) {
@@ -1342,36 +1350,41 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             }
         }
         switch (saveMode) {
-            case SaveMode.CLOSE:
-            case SaveMode.COMPACT:
+            case SaveMode.CLOSE: {
                 final Intent resultIntent;
-                if (!saveSucceeded || contactLookupUri == null) {
-                    resultIntent = saveMode == SaveMode.COMPACT
-                            ? EditorIntents.createCompactInsertContactIntent(
-                                    mState, getDisplayName(), getPhoneticName(), updatedPhotos)
-                            : null;
-                } else {
+                if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    if (saveMode == SaveMode.CLOSE) {
-                        resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(lookupUri,
-                                QuickContactActivity.MODE_FULLY_EXPANDED);
-                    } else if (saveMode == SaveMode.COMPACT) {
-                        resultIntent = isInsert(getActivity().getIntent())
-                                ? EditorIntents.createCompactInsertContactIntent(
-                                        mState, getDisplayName(), getPhoneticName(), updatedPhotos)
-                                : EditorIntents.createCompactEditContactIntent(
-                                        lookupUri, getMaterialPalette(), updatedPhotos);
-                    } else {
-                        resultIntent = null;
-                    }
+                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(lookupUri,
+                            QuickContactActivity.MODE_FULLY_EXPANDED);
+                    resultIntent.putExtra(INTENT_EXTRA_SAVE_BACK_PRESSED, backPressed);
+                } else {
+                    resultIntent = null;
                 }
-
-                // It is already saved, so prevent that it is saved again
                 mStatus = Status.CLOSING;
                 if (mListener != null) mListener.onSaveFinished(resultIntent);
                 break;
-
+            }
+            case SaveMode.COMPACT: {
+                if (!hadChanges && !backPressed && isInsert(getActivity().getIntent())) {
+                    // Reload the empty editor when the Contacts app is resumed
+                    mStatus = Status.EDITING;
+                } else if (backPressed) {
+                    final Uri lookupUri = maybeConvertToLegacyLookupUri(
+                            mContext, contactLookupUri, mLookupUri);
+                    final Intent resultIntent = isInsert(getActivity().getIntent())
+                            ? EditorIntents.createCompactInsertContactIntent(
+                                    mState, getDisplayName(), getPhoneticName(), updatedPhotos)
+                            : EditorIntents.createCompactEditContactIntent(
+                                    lookupUri, getMaterialPalette(), updatedPhotos);
+                    resultIntent.putExtra(INTENT_EXTRA_SAVE_BACK_PRESSED, true);
+                    mStatus = Status.CLOSING;
+                    if (mListener != null) mListener.onSaveFinished(resultIntent);
+                } else {
+                    reloadFullEditor(contactLookupUri);
+                }
+                break;
+            }
             case SaveMode.RELOAD:
             case SaveMode.JOIN:
                 if (saveSucceeded && contactLookupUri != null) {
@@ -1379,14 +1392,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     if (saveMode == SaveMode.JOIN && hasValidState()) {
                         showJoinAggregateActivity(contactLookupUri);
                     }
-
-                    // If this was in INSERT, we are changing into an EDIT now.
-                    // If it already was an EDIT, we are changing to the new Uri now
-                    // Either way, open the editor with all input fields displayed.
-                    mState = new RawContactDeltaList();
-                    load(ContactEditorBaseActivity.ACTION_EDIT, contactLookupUri, null);
-                    mStatus = Status.LOADING;
-                    getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
+                    reloadFullEditor(contactLookupUri);
                 }
                 break;
 
@@ -1399,6 +1405,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 }
                 break;
         }
+    }
+
+    private void reloadFullEditor(Uri contactLookupUri) {
+        mState = new RawContactDeltaList();
+        load(ContactEditorBaseActivity.ACTION_EDIT, contactLookupUri, null);
+        mStatus = Status.LOADING;
+        getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
     }
 
     /**
@@ -1536,7 +1549,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
 
         mState.setJoinWithRawContacts(rawContactIds);
-        save(SaveMode.RELOAD);
+        save(SaveMode.RELOAD, /* backPressed =*/ false);
     }
 
     @Override
