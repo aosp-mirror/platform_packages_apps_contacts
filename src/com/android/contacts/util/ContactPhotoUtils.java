@@ -148,13 +148,9 @@ public class ContactPhotoUtils {
      */
     public static boolean savePhotoFromUriToUri(Context context, Uri inputUri, Uri outputUri,
             boolean deleteAfterSave) {
-        FileOutputStream outputStream = null;
-        InputStream inputStream = null;
-        try {
-            outputStream = context.getContentResolver()
-                    .openAssetFileDescriptor(outputUri, "rw").createOutputStream();
-            inputStream = context.getContentResolver().openInputStream(
-                    inputUri);
+        try (FileOutputStream outputStream = context.getContentResolver()
+                 .openAssetFileDescriptor(outputUri, "rw").createOutputStream();
+             InputStream inputStream = context.getContentResolver().openInputStream(inputUri)) {
 
             final byte[] buffer = new byte[16 * 1024];
             int length;
@@ -168,8 +164,6 @@ public class ContactPhotoUtils {
             Log.e(TAG, "Failed to write photo: " + inputUri.toString() + " because: " + e);
             return false;
         } finally {
-            Closeables.closeQuietly(inputStream);
-            Closeables.closeQuietly(outputStream);
             if (deleteAfterSave) {
                 context.getContentResolver().delete(inputUri, null, null);
             }
