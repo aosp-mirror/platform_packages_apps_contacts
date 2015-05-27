@@ -269,10 +269,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                         if (activity.isFinishing()) {
                             return;
                         }
-                        if (request == EditorListener.EDITOR_FOCUS_CHANGED) {
-                            adjustNameFieldsHintDarkness(rawContactEditor);
-                            return;
-                        }
                         if (!isEditingUserProfile()) {
                             if (request == EditorListener.FIELD_CHANGED) {
                                 if (!nameValuesDelta.isSuperPrimary()) {
@@ -294,23 +290,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                     public void onDeleteRequested(Editor removedEditor) {
                     }
                 };
-                final EditorListener otherNamesListener = new EditorListener() {
-
-                    @Override
-                    public void onRequest(int request) {
-                        // Make sure the activity is running
-                        if (activity.isFinishing()) {
-                            return;
-                        }
-                        if (request == EditorListener.EDITOR_FOCUS_CHANGED) {
-                            adjustNameFieldsHintDarkness(rawContactEditor);
-                        }
-                    }
-
-                    @Override
-                    public void onDeleteRequested(Editor removedEditor) {
-                    }
-                };
 
                 final StructuredNameEditorView nameEditor = rawContactEditor.getNameEditor();
                 if (mRequestFocus) {
@@ -322,22 +301,13 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                     nameEditor.setDisplayName(mDefaultDisplayName);
                 }
 
-                final TextFieldsEditorView phoneticNameEditor =
-                        rawContactEditor.getPhoneticNameEditor();
-                phoneticNameEditor.setEditorListener(otherNamesListener);
                 rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);
-
-                final TextFieldsEditorView nickNameEditor =
-                        rawContactEditor.getNickNameEditor();
-                nickNameEditor.setEditorListener(otherNamesListener);
 
                 if (isAggregationSuggestionRawContactId(rawContactId)) {
                     acquireAggregationSuggestions(activity,
                             rawContactEditor.getNameEditor().getRawContactId(),
                             rawContactEditor.getNameEditor().getValues());
                 }
-
-                adjustNameFieldsHintDarkness(rawContactEditor);
             }
         }
 
@@ -424,23 +394,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             }
         }
         return null;
-    }
-
-    /**
-     * Adjust how dark the hint text should be on all the names' text fields.
-     *
-     * @param rawContactEditor editor to update
-     */
-    private void adjustNameFieldsHintDarkness(RawContactEditorView rawContactEditor) {
-        // Check whether fields contain focus by calling findFocus() instead of hasFocus().
-        // The hasFocus() value is not necessarily up to date.
-        final boolean nameFieldsAreNotFocused
-                = rawContactEditor.getNameEditor().findFocus() == null
-                && rawContactEditor.getPhoneticNameEditor().findFocus() == null
-                && rawContactEditor.getNickNameEditor().findFocus() == null;
-        rawContactEditor.getNameEditor().setHintColorDark(!nameFieldsAreNotFocused);
-        rawContactEditor.getPhoneticNameEditor().setHintColorDark(!nameFieldsAreNotFocused);
-        rawContactEditor.getNickNameEditor().setHintColorDark(!nameFieldsAreNotFocused);
     }
 
     /**
