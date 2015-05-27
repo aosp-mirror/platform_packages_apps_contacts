@@ -159,7 +159,11 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 getEditorListener().onRequest(EditorListener.EDITOR_FOCUS_CHANGED);
             }
             if (foundFocus && !isTypeVisible()) {
+                // We just got focus and the types are not visible
                 showType();
+            } else if (isEmpty()) {
+                // We just lost focus and the field is empty
+                hideType();
             }
             // Rebuild the label spinner using the new colors.
             rebuildLabel();
