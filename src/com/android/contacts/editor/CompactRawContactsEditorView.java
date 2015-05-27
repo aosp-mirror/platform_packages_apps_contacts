@@ -369,8 +369,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     rawContactDelta, StructuredName.CONTENT_ITEM_TYPE, dataKind);
             if (superPrimaryValuesDelta != null) {
                 // Our first preference is for a non-empty super primary name
+                final NameEditorListener nameEditorListener = new NameEditorListener(
+                        superPrimaryValuesDelta, rawContactDelta.getRawContactId(), mListener);
                 mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                        superPrimaryValuesDelta, rawContactDelta, /* nameEditorListener =*/ null));
+                        superPrimaryValuesDelta, rawContactDelta, nameEditorListener));
                 return;
             }
         }
