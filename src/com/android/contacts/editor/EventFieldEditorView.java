@@ -173,7 +173,7 @@ public class EventFieldEditorView extends LabeledEditorView {
         final int defaultYear = calendar.get(Calendar.YEAR);
 
         // Check whether the year is optional
-        final boolean isYearOptional = getType().isYearOptional();
+        final boolean isYearOptional = getType() != null && getType().isYearOptional();
 
         if (!isYearOptional && !TextUtils.isEmpty(oldValue)) {
             final ParsePosition position = new ParsePosition(0);
