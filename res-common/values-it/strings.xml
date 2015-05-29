@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Indirizzo"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Società"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Titolo"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Ruolo"</string>
     <string name="label_notes" msgid="3997277594846722699">"Note"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Sito web"</string>
@@ -235,7 +235,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Cerca"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contatti da visualizzare"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contatti da visualizzare"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definisci visualizzazione personalizzata"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Visualizzazione personalizzata"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Trova contatti"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferiti"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nessun contatto."</string>
