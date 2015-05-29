@@ -213,7 +213,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Kopieret tekst"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Skal ændringerne slettes?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Opret min profil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer min profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Indtast personens navn"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Gruppens navn"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
