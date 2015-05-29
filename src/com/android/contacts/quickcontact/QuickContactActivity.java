@@ -2251,38 +2251,17 @@ public class QuickContactActivity extends ContactsActivity {
         }
     }
 
-    /**
-     * Calls into the contacts provider to get a pre-authorized version of the given URI.
-     */
-    private Uri getPreAuthorizedUri(Uri uri) {
-        final Bundle uriBundle = new Bundle();
-        uriBundle.putParcelable(ContactsContract.Authorization.KEY_URI_TO_AUTHORIZE, uri);
-        final Bundle authResponse = getContentResolver().call(
-                ContactsContract.AUTHORITY_URI,
-                ContactsContract.Authorization.AUTHORIZATION_METHOD,
-                null,
-                uriBundle);
-        if (authResponse != null) {
-            return (Uri) authResponse.getParcelable(
-                    ContactsContract.Authorization.KEY_AUTHORIZED_URI);
-        } else {
-            return uri;
-        }
-    }
-
     private void shareContact() {
         final String lookupKey = mContactData.getLookupKey();
-        Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
-        if (mContactData.isUserProfile()) {
-            // User is sharing the profile.  We don't want to force the receiver to have
-            // the highly-privileged READ_PROFILE permission, so we need to request a
-            // pre-authorized URI from the provider.
-            shareUri = getPreAuthorizedUri(shareUri);
-        }
-
+        final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
         final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType(Contacts.CONTENT_VCARD_TYPE);
         intent.putExtra(Intent.EXTRA_STREAM, shareUri);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        // Even though the data doesn't need to be set for ACTION_SEND, it does need
+        // to be set so that FLAG_GRANT_READ_URI_PERMISSION can create a URI permission grant.
+        intent.setData(shareUri);
 
         // Launch chooser to share contact via
         final CharSequence chooseTitle = getText(R.string.share_via);
@@ -2290,7 +2269,7 @@ public class QuickContactActivity extends ContactsActivity {
 
         try {
             mHasIntentLaunched = true;
-            ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
+            ImplicitIntentsUtil.startActivityOutsideApp(this, chooseIntent);
         } catch (final ActivityNotFoundException ex) {
             Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
         }
