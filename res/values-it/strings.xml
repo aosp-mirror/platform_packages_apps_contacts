@@ -141,7 +141,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Aggiungi connessione"</string>
     <string name="recent" msgid="2659189233141493004">"Recenti"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Aggiornamenti recenti"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Contatto da <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Contatto <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Non modificabile da questa applicazione."</string>
@@ -269,6 +269,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"chiamata recente. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. fai clic per richiamare"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Tu: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funziona meglio se inserisci l\'identificatore Hangouts della persona nel campo dell\'indirizzo email o del numero di telefono."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Atri campi"</string>
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Altri campi"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Cambia foto"</string>
 </resources>
