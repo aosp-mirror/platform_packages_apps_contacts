@@ -152,7 +152,7 @@
     <string name="menu_sync_remove" msgid="6581565236520430269">"Eliminar grupo de sincronización"</string>
     <string name="dialog_sync_add" msgid="1795682729089027675">"Añadir grupo de sincronización"</string>
     <string name="display_more_groups" msgid="6304997485733158224">"Más grupos…"</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Si eliminas \"<xliff:g id="GROUP">%s</xliff:g>\" de las sincronización, también se eliminarán todos los contactos no agrupados."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Si quitas \"<xliff:g id="GROUP">%s</xliff:g>\" de las sincronización, también se quitarán todos los contactos no agrupados."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Guardando opciones de visualización…"</string>
     <string name="menu_done" msgid="32470053723443112">"Listo"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Cancelar"</string>
