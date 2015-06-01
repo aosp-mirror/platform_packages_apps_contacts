@@ -87,15 +87,15 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
     public static SelectPhoneAccountDialogFragment newInstance(int titleResId,
             boolean canSetDefault, List<PhoneAccountHandle> accountHandles,
             SelectPhoneAccountListener listener) {
-        if (accountHandles == null) {
-            accountHandles = new ArrayList<PhoneAccountHandle>();
+        ArrayList<PhoneAccountHandle> accountHandlesCopy = new ArrayList<PhoneAccountHandle>();
+        if (accountHandles != null) {
+            accountHandlesCopy.addAll(accountHandles);
         }
         SelectPhoneAccountDialogFragment fragment = new SelectPhoneAccountDialogFragment();
         final Bundle args = new Bundle();
         args.putInt(ARG_TITLE_RES_ID, titleResId);
         args.putBoolean(ARG_CAN_SET_DEFAULT, canSetDefault);
-        args.putParcelableArrayList(ARG_ACCOUNT_HANDLES,
-                new ArrayList<PhoneAccountHandle>(accountHandles));
+        args.putParcelableArrayList(ARG_ACCOUNT_HANDLES, accountHandlesCopy);
         fragment.setArguments(args);
         fragment.setListener(listener);
         return fragment;
