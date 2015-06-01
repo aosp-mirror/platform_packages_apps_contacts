@@ -34,6 +34,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.media.ThumbnailUtils;
+import android.net.TrafficStats;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Handler;
@@ -57,6 +58,7 @@ import android.widget.ImageView;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.util.BitmapUtil;
 import com.android.contacts.common.util.PermissionsUtil;
+import com.android.contacts.common.util.TrafficStatsTags;
 import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.commonbind.util.UserAgentGenerator;
 
@@ -1559,6 +1561,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                     final String scheme = uri.getScheme();
                     InputStream is = null;
                     if (scheme.equals("http") || scheme.equals("https")) {
+                        TrafficStats.setThreadStatsTag(TrafficStatsTags.CONTACT_PHOTO_DOWNLOAD_TAG);
                         final HttpURLConnection connection =
                                 (HttpURLConnection) new URL(uri.toString()).openConnection();
 
@@ -1572,6 +1575,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                             connection.disconnect();
                             is = null;
                         }
+                        TrafficStats.clearThreadStatsTag();
                     } else {
                         is = mResolver.openInputStream(uri);
                     }
