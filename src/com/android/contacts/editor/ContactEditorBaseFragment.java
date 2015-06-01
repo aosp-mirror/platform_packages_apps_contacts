@@ -112,6 +112,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private static final String KEY_DISABLE_DELETE_MENU_OPTION = "disableDeleteMenuOption";
     private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
     private static final String KEY_MATERIAL_PALETTE = "materialPalette";
+    private static final String KEY_PHOTO_ID = "photoId";
 
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
 
@@ -171,6 +172,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * and the fully expanded one.
      */
     public static final String INTENT_EXTRA_UPDATED_PHOTOS = "updated_photos";
+
+    /**
+     * Intent key to pass the ID of the photo to display on the editor.
+     */
+    public static final String INTENT_EXTRA_PHOTO_ID = "photo_id";
 
     /**
      * Intent extra to specify a {@link ContactEditor.SaveMode}.
@@ -308,6 +314,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected boolean mDisableDeleteMenuOption;
     protected boolean mNewLocalProfile;
     protected MaterialColorMapUtils.MaterialPalette mMaterialPalette;
+    protected long mPhotoId = -1;
 
     //
     // Helpers
@@ -464,6 +471,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             mDisableDeleteMenuOption = savedState.getBoolean(KEY_DISABLE_DELETE_MENU_OPTION);
             mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
             mMaterialPalette = savedState.getParcelable(KEY_MATERIAL_PALETTE);
+            mPhotoId = savedState.getLong(KEY_PHOTO_ID);
 
             mRawContacts = ImmutableList.copyOf(savedState.<RawContact>getParcelableArrayList(
                     KEY_RAW_CONTACTS));
@@ -584,6 +592,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         if (mMaterialPalette != null) {
             outState.putParcelable(KEY_MATERIAL_PALETTE, mMaterialPalette);
         }
+        outState.putLong(KEY_PHOTO_ID, mPhotoId);
 
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
 
@@ -915,7 +924,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             }
             onSaveCompleted(/* hadChanges =*/ false, saveMode,
                     /* saveSucceeded =*/ mLookupUri != null, mLookupUri,
-                    /* updatedPhotos =*/ null, backPressed);
+                    /* updatedPhotos =*/ null, backPressed, mPhotoId);
             return true;
         }
 
@@ -1312,6 +1321,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             if (mIntentExtras.containsKey(INTENT_EXTRA_UPDATED_PHOTOS)) {
                 mUpdatedPhotos = mIntentExtras.getParcelable(INTENT_EXTRA_UPDATED_PHOTOS);
             }
+            mPhotoId = mIntentExtras.getLong(INTENT_EXTRA_PHOTO_ID);
         }
     }
 
@@ -1335,12 +1345,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     @Override
     public void onJoinCompleted(Uri uri) {
         onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri, /* updatedPhotos =*/ null,
-                /* backPressed =*/ false);
+                /* backPressed =*/ false, /* photoId =*/ mPhotoId);
     }
 
     @Override
     public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
-            Uri contactLookupUri, Bundle updatedPhotos, boolean backPressed) {
+            Uri contactLookupUri, Bundle updatedPhotos, boolean backPressed, long photoId) {
         if (hadChanges) {
             if (saveSucceeded) {
                 if (saveMode != SaveMode.JOIN && mShowToastAfterSave) {
@@ -1377,7 +1387,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                             ? EditorIntents.createCompactInsertContactIntent(
                                     mState, getDisplayName(), getPhoneticName(), updatedPhotos)
                             : EditorIntents.createCompactEditContactIntent(
-                                    lookupUri, getMaterialPalette(), updatedPhotos);
+                                    lookupUri, getMaterialPalette(), updatedPhotos, photoId);
                     resultIntent.putExtra(INTENT_EXTRA_SAVE_BACK_PRESSED, true);
                     mStatus = Status.CLOSING;
                     if (mListener != null) mListener.onSaveFinished(resultIntent);
