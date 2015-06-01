@@ -88,7 +88,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Планшетте ешқандай фотосуреттер жоқ."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Телефонда ешқандай фотосуреттер жоқ."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Контакт фотосуреті"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Белгі атауын қалауыңызша өзгерту"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Реттелмелі белгі атауы"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Қоңырауларды тікелей дауыс хабарына жіберу"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Фотосуретті алу"</string>
     <string name="noContacts" msgid="8579310973261953559">"Ешқандай контактілер жоқ."</string>
