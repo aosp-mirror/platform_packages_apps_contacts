@@ -87,6 +87,9 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
     public static SelectPhoneAccountDialogFragment newInstance(int titleResId,
             boolean canSetDefault, List<PhoneAccountHandle> accountHandles,
             SelectPhoneAccountListener listener) {
+        if (accountHandles == null) {
+            accountHandles = new ArrayList<PhoneAccountHandle>();
+        }
         SelectPhoneAccountDialogFragment fragment = new SelectPhoneAccountDialogFragment();
         final Bundle args = new Bundle();
         args.putInt(ARG_TITLE_RES_ID, titleResId);
