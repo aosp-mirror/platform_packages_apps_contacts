@@ -1252,6 +1252,9 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         while (iterator.hasNext()) {
             Request request = iterator.next();
             final BitmapHolder holder = mBitmapHolderCache.get(request.getKey());
+            if (holder == BITMAP_UNAVAILABLE) {
+                continue;
+            }
             if (holder != null && holder.bytes != null && holder.fresh &&
                     (holder.bitmapRef == null || holder.bitmapRef.get() == null)) {
                 // This was previously loaded but we don't currently have the inflated Bitmap
