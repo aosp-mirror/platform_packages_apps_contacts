@@ -59,7 +59,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private boolean mHasShortAndLongForms;
     private int mMinFieldHeight;
     private int mPreviousViewHeight;
-    private int mHintTextColor;
     private int mHintTextColorUnfocused;
 
     public TextFieldsEditorView(Context context) {
@@ -85,7 +84,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
         mMinFieldHeight = getContext().getResources().getDimensionPixelSize(
                 R.dimen.editor_min_line_item_height);
         mFields = (ViewGroup) findViewById(R.id.editors);
-        mHintTextColor = getResources().getColor(R.color.secondary_text_color);
         mHintTextColorUnfocused = getResources().getColor(R.color.editor_disabled_text_color);
         mExpansionView = (ImageView) findViewById(R.id.expansion_view);
         mExpansionViewContainer = findViewById(R.id.expansion_view_container);
@@ -151,13 +149,12 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private OnFocusChangeListener mTextFocusChangeListener = new OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
-            // Check whether this field contains focus by calling findFocus() instead of
-            // hasFocus(). The hasFocus() value is not necessarily up to date.
-            final boolean foundFocus = TextFieldsEditorView.this.findFocus() != null;
-            setHintColorDark(foundFocus);
             if (getEditorListener() != null) {
                 getEditorListener().onRequest(EditorListener.EDITOR_FOCUS_CHANGED);
             }
+            // Check whether this field contains focus by calling findFocus() instead of
+            // hasFocus(). The hasFocus() value is not necessarily up to date.
+            final boolean foundFocus = TextFieldsEditorView.this.findFocus() != null;
             if (foundFocus && !isTypeVisible()) {
                 // We just got focus and the types are not visible
                 showType();
@@ -169,22 +166,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
             rebuildLabel();
         }
     };
-
-    /**
-     * Set the hint color. If {@param isHintDark} is TRUE, then the hint color is set to a
-     * a darker color.
-     */
-    public void setHintColorDark(boolean isHintDark) {
-        if (mFieldEditTexts != null) {
-            for (EditText text : mFieldEditTexts) {
-                if (isHintDark) {
-                    text.setHintTextColor(mHintTextColor);
-                } else {
-                    text.setHintTextColor(mHintTextColorUnfocused);
-                }
-            }
-        }
-    }
 
     /**
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
