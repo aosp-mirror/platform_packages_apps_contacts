@@ -577,14 +577,12 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         private boolean mHasCustomSelection;
         private int mTextColorHintUnfocused;
         private int mTextColorDark;
-        private int mTextColorSecondary;
 
         public EditTypeAdapter(Context context) {
             super(context, 0);
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mTextColorHintUnfocused = context.getResources().getColor(
                     R.color.editor_disabled_text_color);
-            mTextColorSecondary = context.getResources().getColor(R.color.secondary_text_color);
             mTextColorDark = context.getResources().getColor(R.color.primary_text_color);
 
 
@@ -617,8 +615,6 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
             // color.
             if (!LabeledEditorView.this.isEmpty()) {
                 view.setTextColor(mTextColorDark);
-            } else if (LabeledEditorView.this.hasFocus()) {
-                view.setTextColor(mTextColorSecondary);
             } else {
                 view.setTextColor(mTextColorHintUnfocused);
             }
