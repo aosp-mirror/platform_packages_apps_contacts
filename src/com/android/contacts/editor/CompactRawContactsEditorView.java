@@ -452,18 +452,18 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     // Only add nicknames if there is a non-empty one
                     if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
-                        mNicknames.addView(inflateKindSectionView(
-                                mNicknames, dataKind, rawContactDelta));
+                        mNicknames.addView(inflateKindSectionView(mNicknames, dataKind,
+                                rawContactDelta, /* showOneEmptyEditor =*/ false));
                     }
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    mPhoneNumbers.addView(inflateKindSectionView(
-                            mPhoneNumbers, dataKind, rawContactDelta));
+                    mPhoneNumbers.addView(inflateKindSectionView(mPhoneNumbers, dataKind,
+                            rawContactDelta, /* showOneEmptyEditor =*/ true));
                 } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    mEmails.addView(inflateKindSectionView(
-                            mEmails, dataKind, rawContactDelta));
+                    mEmails.addView(inflateKindSectionView(mEmails, dataKind, rawContactDelta,
+                            /* showOneEmptyEditor =*/ true));
                 } else if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
-                    mOther.addView(inflateKindSectionView(
-                            mOther, dataKind, rawContactDelta));
+                    mOther.addView(inflateKindSectionView(mOther, dataKind, rawContactDelta,
+                            /* showOneEmptyEditor =*/ false));
                 }
             }
         }
@@ -594,14 +594,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private KindSectionView inflateKindSectionView(ViewGroup viewGroup, DataKind dataKind,
-            RawContactDelta rawContactDelta) {
+            RawContactDelta rawContactDelta, boolean showOneEmptyEditor) {
         final KindSectionView result = (KindSectionView) mLayoutInflater.inflate(
                 R.layout.item_kind_section, viewGroup, /* attachToRoot =*/ false);
         result.setState(
                 dataKind,
                 rawContactDelta,
                 /* readOnly =*/ false,
-                /* showOneEmptyEditor =*/ false,
+                showOneEmptyEditor,
                 mViewIdGenerator);
         return result;
     }
