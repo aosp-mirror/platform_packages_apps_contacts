@@ -88,7 +88,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
             return;
         }
         switch (providerStatus) {
-            case ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS:
+            case ProviderStatus.STATUS_EMPTY:
                 setMessageText(mNoContactsMsgResId, mNSecNoContactsMsgResId);
                 mCreateContactButton.setVisibility(View.VISIBLE);
                 mAddAccountButton.setVisibility(View.VISIBLE);
@@ -96,17 +96,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mProgress.setVisibility(View.GONE);
                 break;
 
-            case ProviderStatus.STATUS_CHANGING_LOCALE:
-                mMessageView.setText(R.string.locale_change_in_progress);
-                mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
-                mMessageView.setVisibility(View.VISIBLE);
-                mCreateContactButton.setVisibility(View.GONE);
-                mAddAccountButton.setVisibility(View.GONE);
-                mImportContactsButton.setVisibility(View.GONE);
-                mProgress.setVisibility(View.VISIBLE);
-                break;
-
-            case ProviderStatus.STATUS_UPGRADING:
+            case ProviderStatus.STATUS_BUSY:
                 mMessageView.setText(R.string.upgrade_in_progress);
                 mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
                 mMessageView.setVisibility(View.VISIBLE);
@@ -144,7 +134,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mNoContactsMsgResId = resId;
         mNSecNoContactsMsgResId = secResId;
         if ((mMessageView != null) && (mProviderStatus != null) &&
-                (mProviderStatus.equals(ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS))) {
+                (mProviderStatus.equals(ProviderStatus.STATUS_EMPTY))) {
             if (resId != -1) {
                 mMessageView.setText(mNoContactsMsgResId);
                 mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);

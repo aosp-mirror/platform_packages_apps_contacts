@@ -415,9 +415,6 @@
     <!-- An option in the 'Contact photo' dialog, if there is already a photo [CHAR LIMIT=50] -->
     <string name="pick_new_photo">Select new photo</string>
 
-    <!-- Text shown in the contacts app while the background process updates contacts after a locale change [CHAR LIMIT=300] -->
-    <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.</string>
-
     <!-- Text shown in the contacts app while the background process updates contacts after a system upgrade [CHAR LIMIT=300] -->
     <string name="upgrade_in_progress">Contact list is being updated.</string>
 
