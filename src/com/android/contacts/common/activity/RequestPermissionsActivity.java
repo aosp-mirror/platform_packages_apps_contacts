@@ -48,8 +48,6 @@ public class RequestPermissionsActivity extends Activity {
             permission.GET_ACCOUNTS,
             permission.ACCESS_FINE_LOCATION,
             permission.ACCESS_COARSE_LOCATION,
-            permission.READ_PROFILE,
-            permission.WRITE_PROFILE,
             permission.INTERNET,
             permission.NFC,
             permission.READ_PHONE_STATE,

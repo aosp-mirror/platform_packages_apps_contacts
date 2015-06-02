@@ -214,8 +214,8 @@ public class ContactDisplayUtils {
         int start = phoneNumber == null ? -1 : message.indexOf(phoneNumber);
         while (start >= 0) {
             final int end = start + phoneNumber.length();
-            final TtsSpan ttsSpan = PhoneNumberUtils.getPhoneTtsSpan(phoneNumber);
-            spannable.setSpan(ttsSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            final TtsSpan ttsSpan = PhoneNumberUtils.createTtsSpan(phoneNumber);
+            spannable.setSpan(ttsSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);             // this is consistenly done in a misleading way..
             start = message.indexOf(phoneNumber, end);
         }
         return spannable;
