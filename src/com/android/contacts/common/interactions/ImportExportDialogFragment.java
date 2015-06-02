@@ -289,7 +289,7 @@ public class ImportExportDialogFragment extends DialogFragment
         return TextUtils.expandTemplate(
                 getString(R.string.import_from_sim_summary),
                 name,
-                PhoneNumberUtils.getPhoneTtsSpannable(record.getNumber()));
+                PhoneNumberUtils.createTtsSpannable(record.getNumber()));
     }
 
     private static class AdapterEntry {

@@ -23,7 +23,6 @@ import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -1097,7 +1096,7 @@ public class ContactListItemView extends ViewGroup
             mSnippetView.setVisibility(VISIBLE);
             if (ContactDisplayUtils.isPossiblePhoneNumber(text)) {
                 // Give the text-to-speech engine a hint that it's a phone number
-                mSnippetView.setContentDescription(PhoneNumberUtils.getPhoneTtsSpannable(text));
+                mSnippetView.setContentDescription(PhoneNumberUtils.createTtsSpannable(text));
             } else {
                 mSnippetView.setContentDescription(null);
             }
@@ -1217,7 +1216,7 @@ public class ContactListItemView extends ViewGroup
         if (ContactDisplayUtils.isPossiblePhoneNumber(name)) {
             // Give the text-to-speech engine a hint that it's a phone number
             mNameTextView.setContentDescription(
-                    PhoneNumberUtils.getPhoneTtsSpannable(name.toString()));
+                    PhoneNumberUtils.createTtsSpannable(name.toString()));
         } else {
             mNameTextView.setContentDescription(null);
         }

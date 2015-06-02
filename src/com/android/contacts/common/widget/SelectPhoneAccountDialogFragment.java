@@ -21,7 +21,6 @@ import android.telecom.PhoneAccountHandle;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -216,7 +215,7 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
             } else {
                 holder.numberTextView.setVisibility(View.VISIBLE);
                 holder.numberTextView.setText(
-                        PhoneNumberUtils.getPhoneTtsSpannable(
+                        PhoneNumberUtils.createTtsSpannable(
                                 account.getAddress().getSchemeSpecificPart()));
             }
             holder.imageView.setImageDrawable(account.getIcon().loadDrawable(getContext()));
