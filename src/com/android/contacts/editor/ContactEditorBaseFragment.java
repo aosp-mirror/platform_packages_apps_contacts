@@ -754,8 +754,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         } else if (Intent.ACTION_EDIT.equals(mAction) ||
                 ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
-            // Split only if more than one raw profile and not a user profile
-            splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile());
+            // Split only if there is more than one raw (non-user profile) contact and doing so
+            // won't result in an empty contact
+            splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile() && !mHasNewContact);
             // Cannot join a user profile
             joinMenu.setVisible(!isEditingUserProfile());
             deleteMenu.setVisible(!mDisableDeleteMenuOption);
