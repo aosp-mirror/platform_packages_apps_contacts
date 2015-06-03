@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"新增聯絡人"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"新增群組"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"確定要分割聯絡人？"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"這位聯絡人即將分割成多份聯絡人資料。"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"系統會將這位聯絡人拆分成多個聯絡人。"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"合併"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合併聯絡人"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"選擇要與<xliff:g id="NAME">%s</xliff:g>合併的聯絡人："</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"拍攝新相片"</string>
     <string name="pick_photo" msgid="2129509985223564942">"選擇相片"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"選取新相片"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"正在更新聯絡人清單以反映語言變更。"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"正在更新聯絡人清單。"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"搜尋中…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"顯示已選取的項目"</string>

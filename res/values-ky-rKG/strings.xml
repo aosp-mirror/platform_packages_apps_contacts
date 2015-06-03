@@ -206,8 +206,6 @@
     <skip />
     <string name="pick_photo" msgid="2129509985223564942">"Сүрөт тандаңыз"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Жаңы сүрөт тандоо"</string>
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
     <!-- no translation found for upgrade_in_progress (474511436863451061) -->
     <skip />
     <string name="search_results_searching" msgid="3984833028938569930">"Изделүүдө…"</string>

@@ -47,7 +47,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Szerkesztés"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Törlés"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Fénykép lecserélése"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Helyezze el a kezdőképernyőn"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Kezdőképernyőre"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ismerős hívása"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS küldése ismerősnek"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Szétválasztás"</string>
@@ -75,7 +75,7 @@
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Az írásvédett fiókokból származó adatok nem jelennek meg a névjegyek között, de nem kerülnek törlésre."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Ezek a névjegyek több fiókból is tartalmaznak adatokat. Az írásvédett fiókokból származó adatok nem jelennek meg a névjegyek között, de nem kerülnek törlésre."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"A névjegy törlésével több fiókból is töröl adatokat."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"A névjegy törlésre kerül."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Törölni fogja a névjegyet."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Módosítások elvetése"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"A névjegy nem létezik."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"A Névjegy modul felkerült a kezdőképernyőre."</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Új fénykép készítése"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Fotó kiválasztása"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Új fotó kiválasztása"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Az ismerőslista frissítése folyamatban van, hogy tükrözze a nyelv módosítását."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Az ismerőslista frissítése folyamatban van."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Keresés..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Kiválasztottak megjelenítése"</string>
@@ -189,7 +188,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Névjegy"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Betöltés..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Új névjegy létrehozása"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Jelentkezzen be fiókjába"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Bejelentkezés egy fiókba"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Névjegyek importálása"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Új csoport létrehozása"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Új csoport létrehozása"</string>
@@ -222,13 +221,13 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"A Névjegyek alkalmazás jobban működik egy Google-fiókkal.\n\n• Bármilyen böngészőből elérheti.\n• Biztonsági másolatot készíthet névjegyeiről."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tartsa névjegyeit biztonságban akkor is, ha elveszíti a telefont: szinkronizáljon egy online szolgáltatással."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Fiók hozzáadása"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Az Ön új névjegyéről nem készül biztonsági másolat. Hozzáad egy olyan fiókot, amelyik online biztonsági másolatot készít a névjegyekről?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Az új névjegyről nem készül biztonsági másolat. Hozzáad egy olyan fiókot, amelyik online biztonsági másolatot készít a névjegyekről?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Az új névjegyet a következő fiókkal fogjuk szinkronizálni: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Szinkronizálhatja az új névjegyet a következő fiókok valamelyikével. Melyiket kívánja használni?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Névjegy hozzáadása"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Névjegy szerkesztése"</string>
     <string name="keep_local" msgid="1258761699192993322">"Tárolás helyben"</string>
-    <string name="add_account" msgid="8201790677994503186">"Fiók hozzáadása"</string>
+    <string name="add_account" msgid="8201790677994503186">"Fiók megadása"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Új fiók hozzáadása"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Adatbázisfájlok exportálása"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"új névjegy hozzáadása"</string>

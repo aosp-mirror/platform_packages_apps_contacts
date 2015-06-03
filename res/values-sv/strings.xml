@@ -76,7 +76,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"De här kontakterna har information från flera konton. Information från skrivskyddade konton döljs i kontaktlistan, men tas inte bort."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Om du tar bort den här kontakten tar du bort information från flera konton."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Kontakten kommer att tas bort."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Ignorera ändringar"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Ta bort ändringar"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakten finns inte."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget för kontakt har lagts till på startskärmen."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Skapa ny kontakt"</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Ta ny bild"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Välj foto"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Välj ett nytt foto"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktlistan uppdateras så att språkändringen visas."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlistan uppdateras."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Söker …"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Visa markerade"</string>

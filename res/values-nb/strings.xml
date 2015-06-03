@@ -75,7 +75,7 @@
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Informasjon fra skrivebeskyttede kontoer blir skjult i kontaktlistene dine, ikke slettet."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Disse kontaktene inneholder informasjon fra flere kontoer. Informasjon fra skrivebeskyttede kontoer blir skjult i kontaktlistene dine, ikke slettet."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Sletter du denne kontakten, vil du slette informasjon fra flere kontoer."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Denne kontakten vil bli slettet."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Denne kontakten blir slettet."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Forkast endringene"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakten finnes ikke."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktmodulen ble lagt til på startsiden."</string>
@@ -116,7 +116,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> er funnet</item>
       <item quantity="one">1 er funnet</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle kontaktene"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle kontakter"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoritter"</string>
     <string name="callBack" msgid="5498224409038809224">"Ring tilbake"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ring på nytt"</string>
@@ -141,7 +141,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Legg til tilknytning"</string>
     <string name="recent" msgid="2659189233141493004">"Nylige"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nylige oppdateringer"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-kontakt"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Kontakt: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Kan ikke redigeres fra denne appen."</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Ta nytt bilde"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Velg et bilde"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Velg et nytt bilde"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktlisten er oppdatert med nytt språk."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlisten er under oppdatering."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Søker …"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Vis valgte"</string>

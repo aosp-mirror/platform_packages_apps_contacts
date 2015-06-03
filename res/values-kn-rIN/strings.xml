@@ -65,7 +65,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
     <string name="contactsJoinedMessage" msgid="656936718666768589">"ಸಂಪರ್ಕಗಳನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಲಾಗಿದೆ"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"ರಿಂಗ್‌ಟೋನ್‌ ಹೊಂದಿಸಿ"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"ರಿಂಗ್‌ಟೋನ್‌‌"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ಧ್ವನಿಮೇಲ್‌ಗೆ ಎಲ್ಲ ಕರೆಗಳು"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ಓದಲು ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ನಿಮಗೆ ಅಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಆದರೆ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ಅವುಗಳನ್ನು ನೀವು ಮರೆಮಾಡಬಹುದು."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ಈ ಸಂಪರ್ಕವು ಬಹು ಖಾತೆಗಳಿಂದ ಮಾಹಿತಿಯನ್ನು ಹೊಂದಿದೆ. ಓದಲು ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಮಾಹಿತಿಯನ್ನು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಗಳಿಂದ ಮರೆಮಾಡಲಾಗಿರುತ್ತದೆ, ಅಳಿಸುವುದಿಲ್ಲ."</string>
@@ -76,7 +76,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"ಈ ಸಂಪರ್ಕಗಳು ಬಹು ಖಾತೆಗಳಿಂದ ಮಾಹಿತಿಯನ್ನು ಹೊಂದಿವೆ. ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಮಾಹಿತಿಯನ್ನು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ಮರೆಮಾಡಲಾಗಿರುತ್ತದೆ, ಅಳಿಸಲಾಗುವುದಿಲ್ಲ."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ಬಹು ಖಾತೆಗಳಿಂದ ಮಾಹಿತಿಯನ್ನು ಅಳಿಸಿಹಾಕಲು ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತಿದೆ."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಿ"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸು"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"ಸಂಪರ್ಕವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"ಮುಖಪುಟ ಪರದೆಗೆ ಸಂಪರ್ಕ ವಿಜೆಟ್ ಸೇರಿಸಲಾಗಿದೆ."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"ಹೊಸ ಸಂಪರ್ಕ ರಚಿಸಿ"</string>
@@ -131,7 +131,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ಇಮೇಲ್ ಸೇರಿಸಿ"</string>
     <string name="missing_app" msgid="1466111003546611387">"ಈ ಕ್ರಿಯೆಯನ್ನು ನಿರ್ವಹಿಸಲು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
-    <string name="menu_share" msgid="943789700636542260">"ಹಂಚಿಕೊಳ್ಳಿ"</string>
+    <string name="menu_share" msgid="943789700636542260">"ಹಂಚಿಕೊಳ್ಳು"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸು"</string>
     <string name="share_via" msgid="563121028023030093">"ಸಂಪರ್ಕದ ಮೂಲಕ ಹಂಚಿಕೊಳ್ಳಿ"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ಖಾತೆಯ ಅಡಿಯಲ್ಲಿ ಗುಂಪನ್ನು ರಚಿಸಿ"</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ಹೊಸ ಫೋಟೋ ತೆಗೆಯಿರಿ"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ಹೊಸ ಫೋಟೋವನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"ಭಾಷೆಯ ಬದಲಾವಣೆಯನ್ನು ಬಿಂಬಿಸಲು ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ಆಯ್ಕೆಮಾಡಿರುವುದನ್ನು ತೋರಿಸು"</string>
@@ -222,12 +221,12 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"Google ಖಾತೆಯಲ್ಲಿ ಸಂಪರ್ಕಗಳ ಕಾರ್ಯ ಉತ್ತಮವಾಗಿರುತ್ತದೆ.\n\n• ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್‌ನಿಂದ ಪ್ರವೇಶಿಸಿ.\n• ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿ."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"ನಿಮ್ಮ ಫೋನ್‌ ಅನ್ನು ಕಳೆದುಕೊಂಡರೂ ಸಹ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಇರಿಸಿಕೊಳ್ಳಿ: ಆನ್‌‌ಲೈನ್‌ ಸೇವೆಯೊಂದಿಗೆ ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಿ."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ಖಾತೆಯೊಂದನ್ನು ಸೇರಿಸು"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಬ್ಯಾಕಪ್‌ ಮಾಡುವುದಿಲ್ಲ. ಸಂಪರ್ಕಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬ್ಯಾಕಪ್‌ ಇರಿಸುವ ಖಾತೆಯನ್ನು ಸೇರಿಸುವುದೇ?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಬ್ಯಾಕಪ್‌ ಮಾಡಲಾಗುವುದಿಲ್ಲ. ಸಂಪರ್ಕಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬ್ಯಾಕಪ್‌ ಇರಿಸುವಂತಹ ಖಾತೆಯನ್ನು ಸೇರಿಸುವುದೇ?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ಜೊತೆಗೆ ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಸಿಂಕ್ರೊನೈಜ್ ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ಕೆಳಗಿನ ಖಾತೆಗಳೊಂದಿಗೆ ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ನೀವು ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಬಹುದು. ಯಾವುದನ್ನು ಬಳಸಲು ನೀವು ಬಯಸುತ್ತೀರಿ?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ಹೊಸ ಸಂಪರ್ಕ ಸೇರಿಸಿ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ಸಂಪರ್ಕವನ್ನು ಸಂಪಾದಿಸಿ"</string>
-    <string name="keep_local" msgid="1258761699192993322">"ಸ್ಥಳೀಯವಾಗಿ ಇರಿಸಿ"</string>
+    <string name="keep_local" msgid="1258761699192993322">"ಸ್ಥಳೀಯವಾಗಿರಿಸು"</string>
     <string name="add_account" msgid="8201790677994503186">"ಖಾತೆ ಸೇರಿಸು"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ಹೊಸ ಖಾತೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ಡೇಟಾಬೇಸ್‌‌ ಫೈಲ್‌ಗಳನ್ನು ರಫ್ತು ಮಾಡಿ"</string>

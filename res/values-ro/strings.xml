@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Adăugaţi o persoană de contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Adăugaţi un grup"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Intrare separată?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Această persoană de contact va fi separată în mai multe intrări în Agendă."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Această intrare din Agendă va fi separată în mai multe intrări."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Îmbinați"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Îmbinați intrările din Agendă"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Alegeţi persoana de contact de asociat cu <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -97,7 +97,7 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Nu există persoane în acest grup."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Pentru a adăuga persoane, editaţi grupul."</string>
     <string name="savingContact" msgid="4075751076741924939">"Se salvează persoana din agendă..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Persoana din agendă a fost salvată."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Intrarea din agendă a fost salvată."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nu s-au putut salva modificările aduse persoanei de contact."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Modificările privind fotografia persoanei de contact nu au putut fi salvate."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupul a fost salvat."</string>
@@ -153,7 +153,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Creaţi o fotografie nouă"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Alegeți o fotografie"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Selectați o fotografie nouă"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Se actualizează lista de persoane din agendă pentru a reflecta schimbarea limbii."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Se actualizează lista de persoane din agendă."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Se caută..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Afişaţi elementele selectate"</string>

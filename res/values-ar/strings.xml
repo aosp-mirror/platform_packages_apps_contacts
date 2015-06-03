@@ -162,7 +162,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"التقاط صورة جديدة"</string>
     <string name="pick_photo" msgid="2129509985223564942">"اختيار صورة"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"تحديد صورة جديدة"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"يجري تحديث قائمة جهات الاتصال لتعكس التغير في اللغة."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"يجري تحديث قائمة جهات الاتصال."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"جارٍ البحث..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"عرض العناصر المحددة"</string>

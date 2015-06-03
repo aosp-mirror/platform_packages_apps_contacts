@@ -156,7 +156,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Zrób nowe zdjęcie"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Wybierz zdjęcie"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Wybierz nowe zdjęcie"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Lista kontaktów jest aktualizowana, aby odzwierciedlić zmianę języka."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Lista kontaktów jest aktualizowana."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Wyszukiwanie…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Pokaż wybrane"</string>
@@ -227,7 +226,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst skopiowany"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Odrzucić zmiany?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Skonfiguruj swój profil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Skonfiguruj profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Wpisz imię osoby"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nazwa grupy"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mój profil lokalny"</string>
