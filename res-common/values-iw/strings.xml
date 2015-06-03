@@ -112,7 +112,7 @@
     <string name="sms" msgid="8086289395154598654">"הודעת טקסט"</string>
     <string name="postal_address" msgid="7692926530081579786">"כתובת"</string>
     <string name="ghostData_company" msgid="22470841482615409">"חברה"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"כותרת"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"תפקיד"</string>
     <string name="label_notes" msgid="3997277594846722699">"הערות"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"אתר"</string>
@@ -227,7 +227,7 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"מיין לפי"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"שם פרטי"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"שם משפחה"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"פורמט שם"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"פורמט השם"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"שם פרטי תחילה"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"שם משפחה תחילה"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר שמוצגים כעת"</string>
@@ -237,7 +237,7 @@
     <string name="menu_search" msgid="7464453023659824700">"חפש"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"אנשי קשר להצגה"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"אנשי קשר להצגה"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"הגדרת תצוגה מותאמת אישית"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"תצוגה מותאמת אישית"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"חפש אנשי קשר"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"מועדפים"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"אין אנשי קשר."</string>

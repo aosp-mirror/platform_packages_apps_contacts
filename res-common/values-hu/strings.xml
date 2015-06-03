@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"Szöveges üzenet"</string>
     <string name="postal_address" msgid="7692926530081579786">"Cím"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Cég"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Cím"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Beosztás"</string>
     <string name="label_notes" msgid="3997277594846722699">"Megjegyzések"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webhely"</string>
@@ -157,10 +157,10 @@
     <string name="menu_done" msgid="32470053723443112">"Kész"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Mégse"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Ismerősök itt: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Névjegyek egyéni nézetben"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Egyéni nézet névjegyei"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Egyetlen névjegy"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Névjegy létrehozása a következő fiókban:"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Importálás a SIM kártyáról"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Importálás SIM kártyáról"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importálás a következő SIM kártyáról: <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importálás a következő SIM kártyáról: <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importálás a tárhelyről"</string>

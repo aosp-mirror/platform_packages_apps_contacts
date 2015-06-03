@@ -105,12 +105,12 @@
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresse"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"Chat"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Unternehmen"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"Beziehung"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Art der Beziehung"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Besondere Termine"</string>
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adresse"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Unternehmen"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Titel"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Position"</string>
     <string name="label_notes" msgid="3997277594846722699">"Notizen"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Website"</string>
@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"Fertig"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Abbrechen"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakte in <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontakte in benutzerdefinierter Ansicht"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Kontakte in benutzerdef. Ansicht"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Einzelner Kontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Neuen Kontakt unter Konto erstellen"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Von SIM-Karte importieren"</string>

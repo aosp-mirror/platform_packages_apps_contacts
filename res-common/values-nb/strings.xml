@@ -71,7 +71,7 @@
     <string name="local_invisible_directory" msgid="8934840494825588347">"Andre"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Katalog"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Alle kontakter"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Meg"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Jeg"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Søker ..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Fant mer enn <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ingen kontakter"</string>
@@ -160,10 +160,10 @@
     <string name="listCustomView" msgid="1915154113477432033">"Kontakter i tilpasset visning"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Enkeltkontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Opprett kontakt under konto"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Importer fra SIM-kort"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Importér fra SIM-kort"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importer fra lagring"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importér fra lagring"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vil du avbryte importeringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vil du avbryte eksporteringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Kunne ikke avbryte imp./eksp. av vCard"</string>
@@ -221,7 +221,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Lagringsenheten kunne ikke skannes. (Årsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD-kortet kan ikke skannes. (Årsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importerer <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Eksporter til lagring"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Eksportér til lagring"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sortér etter"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Fornavn"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Etternavn"</string>

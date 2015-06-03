@@ -96,9 +96,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"敬称（名前の前）"</string>
     <string name="name_middle" msgid="3951610314424632183">"ミドルネーム"</string>
     <string name="name_suffix" msgid="5436984808550075931">"敬称（名前の後）"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"よみがな"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"フリガナ"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"フリガナ（名）"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"ミドルネームのよみがな"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"フリガナ（ミドルネーム）"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"フリガナ（姓）"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"電話"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"メール"</string>

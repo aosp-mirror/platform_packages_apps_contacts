@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos los contactos con número"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizaciones"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Solo en el tablet (sin sincronizar)"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Solo en el teléfono, no sincronizado"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Solo en teléfono, no sincronizar"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nombre"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Apodo"</string>
     <string name="full_name" msgid="885420216812981202">"Nombre"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"Mensaje de texto"</string>
     <string name="postal_address" msgid="7692926530081579786">"Dirección"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Empresa"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Nombre"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Cargo"</string>
     <string name="label_notes" msgid="3997277594846722699">"Notas"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Sitio web"</string>
@@ -231,11 +231,11 @@
     <string name="share_visible_contacts" msgid="2150662668080757107">"Compartir contactos visibles"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importar/exportar contactos"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importar contactos"</string>
-    <string name="share_error" msgid="665756457151793108">"No se puede compartir este contacto."</string>
+    <string name="share_error" msgid="665756457151793108">"Este contacto no se puede compartir."</string>
     <string name="menu_search" msgid="7464453023659824700">"Buscar"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contactos que mostrar"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contactos que mostrar"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definición de vista personalizada"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Definir vista personalizada"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Buscar contactos"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoritos"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No hay ningún contacto."</string>

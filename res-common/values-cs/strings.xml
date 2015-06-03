@@ -96,7 +96,7 @@
     <string name="name_given" msgid="4153709115654909377">"Jméno"</string>
     <string name="name_family" msgid="5317387657540738981">"Příjmení"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Titul před jménem"</string>
-    <string name="name_middle" msgid="3951610314424632183">"Další jméno"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Druhé jméno"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Titul za jménem"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Jméno (foneticky)"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetické jméno"</string>
@@ -112,7 +112,7 @@
     <string name="sms" msgid="8086289395154598654">"Textová zpráva"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adresa"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Společnost"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Název"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Pozice"</string>
     <string name="label_notes" msgid="3997277594846722699">"Poznámky"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Web"</string>
@@ -237,7 +237,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Hledat"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakty k zobrazení"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakty k zobrazení"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definice vlastního zobrazení"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Definice vl. zobrazení"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Najít kontakty"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Oblíbené"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Žádné kontakty."</string>

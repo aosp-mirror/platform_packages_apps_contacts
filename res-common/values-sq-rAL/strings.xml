@@ -103,7 +103,7 @@
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefoni"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Mail-i"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresa"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"Mesazh i çastit"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizata"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Marrëdhënia"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Datat e veçanta"</string>

@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"OK"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Annuler"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Contacts du compte \"<xliff:g id="NAME">%s</xliff:g>\""</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Contacts en affichage personnalisé"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Contacts avec affichage perso."</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Contact"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Créer un contact sous le compte"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importer depuis la carte SIM"</string>
@@ -235,7 +235,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Rechercher"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contacts à afficher"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contacts à afficher"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Définir un affichage personnalisé"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Définir affichage perso"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Rechercher des contacts"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoris"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Aucun contact"</string>
