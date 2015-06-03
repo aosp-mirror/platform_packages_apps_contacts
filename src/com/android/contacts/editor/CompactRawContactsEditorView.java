@@ -263,7 +263,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette,
-            ViewIdGenerator viewIdGenerator) {
+            ViewIdGenerator viewIdGenerator, long photoId) {
         mNames.removeAllViews();
         mPhoneticNames.removeAllViews();
         mNicknames.removeAllViews();
@@ -281,7 +281,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mMaterialPalette = materialPalette;
 
         vlog("Setting compact editor state from " + rawContactDeltas);
-        addPhotoView(rawContactDeltas, viewIdGenerator);
+        addPhotoView(rawContactDeltas, viewIdGenerator, photoId);
         addStructuredNameView(rawContactDeltas);
         addEditorViews(rawContactDeltas);
         removeExtraEmptyTextFields(mPhoneNumbers);
@@ -289,7 +289,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private void addPhotoView(RawContactDeltaList rawContactDeltas,
-            ViewIdGenerator viewIdGenerator) {
+            ViewIdGenerator viewIdGenerator, long photoId) {
+        // Look for a match for the photo ID that was passed in
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
             if (!rawContactDelta.isVisible()) continue;
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
@@ -299,6 +300,26 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     rawContactDelta, accountType, Photo.CONTENT_ITEM_TYPE);
 
             // Look for a non-empty super primary photo
+            final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
+            if (dataKind != null) {
+                for (ValuesDelta valuesDelta
+                        : rawContactDelta.getMimeEntries(Photo.CONTENT_ITEM_TYPE)) {
+                    if (valuesDelta != null && valuesDelta.getId() != null
+                            && valuesDelta.getId().equals(photoId)) {
+                        mPhotoRawContactId = rawContactDelta.getRawContactId();
+                        mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
+                                /* readOnly =*/ !dataKind.editable, mMaterialPalette,
+                                viewIdGenerator);
+                        return;
+                    }
+                }
+            }
+        }
+
+        // Look for a non-empty super primary photo
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (!rawContactDelta.isVisible()) continue;
+            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
             final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
             if (dataKind != null) {
                 final ValuesDelta valuesDelta = getNonEmptySuperPrimaryValuesDeltas(
