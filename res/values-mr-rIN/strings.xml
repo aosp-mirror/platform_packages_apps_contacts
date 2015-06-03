@@ -47,7 +47,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"संपादित करा"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"हटवा"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"फोटो बदला"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुख्‍यपृष्‍ठ स्क्रीन वर ठेवा"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुख्‍य स्क्रीन वर ठेवा"</string>
     <string name="menu_call" msgid="3992595586042260618">"संपर्कास कॉल करा"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"संपर्कास मजकूर पाठवा"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"वेगळे"</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"नवीन फोटो घ्या"</string>
     <string name="pick_photo" msgid="2129509985223564942">"फोटो निवडा"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"नवीन फोटो निवडा"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषेचा बदल प्रतिबिंबित करण्यासाठी संपर्क सूची सुधारित केली जात आहे."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची अद्यतनित केली जात आहे."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"शोधत आहे..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"निवडलेले दर्शवा"</string>

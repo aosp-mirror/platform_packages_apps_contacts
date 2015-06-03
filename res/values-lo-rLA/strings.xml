@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ຖ່າຍຮູບໃໝ່"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ເລືອກ​ຮູບ"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ເລືອກຮູບໃໝ່"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"ລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດຕາມການປ່ຽນແປງຂອງພາສາ."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"ລາຍການລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດ."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ກຳລັງຊອກຫາ..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ສະແດງສິ່ງທີ່ເລືອກ"</string>

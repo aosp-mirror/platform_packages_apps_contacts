@@ -156,7 +156,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Pořídit novou fotografii"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Vybrat fotku"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Vybrat novou fotku"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Probíhá aktualizace seznamu kontaktů související se změnou jazyka."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Probíhá aktualizace seznamu kontaktů."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Vyhledávání..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Zobrazit vybrané"</string>
@@ -221,7 +220,7 @@
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> člověk</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Před spojením s jiným kontaktem je třeba zadat jméno kontaktu."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Zkopírovat do schránky"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Zkopírovat do schránky"</string>
     <string name="set_default" msgid="4417505153468300351">"Výchozí nastavení"</string>
     <string name="clear_default" msgid="7193185801596678067">"Vymazat výchozí nastavení"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text zkopírován"</string>
@@ -241,7 +240,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nový kontakt můžete synchronizovat s jedním z následujících účtů. Který z nich chcete použít?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Přidat nový kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Upravit kontakt"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Zachovat jako místní"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Ponechat místně"</string>
     <string name="add_account" msgid="8201790677994503186">"Přidat účet"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Přidat nový účet"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportovat soubory databáze"</string>

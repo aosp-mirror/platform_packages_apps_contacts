@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ဓာတ်ပုံအသစ်ရိုက်ပါ"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ပုံရွေးရန်"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ပုံသစ်ရွေးရန်"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"ဘာသာစကားပြောင်းမှုနဲ့ ကိုက်ညီအောင် အဆက်အသွယ်စာရင်းအား ပြင်ဆင်နေပါသည်"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"အဆက်အသွယ်စာရင်းအား ပြုပြင်နေစဉ်"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ရှာဖွေနေသည်…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ရွေးချယ်ထားသည်ကိုပြပါ"</string>

@@ -50,12 +50,12 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Placer sur l\'écran d\'accueil"</string>
     <string name="menu_call" msgid="3992595586042260618">"Appeler le contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envoyer un SMS au contact"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Séparer"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Dissocier"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Modifier"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Supprimer"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Ajouter un contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Ajouter un groupe"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Séparer le contact ?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Dissocier le contact ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ce contact va être séparé en plusieurs contacts."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Fusionner"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Joindre les contacts"</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Prendre une autre photo"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Sélectionner une photo"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Sélectionner une nouvelle photo"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Mise à jour de la liste des contacts en cours suite au changement de langue."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"La liste de contacts est en cours de mise à jour."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Recherche…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Afficher la sélection"</string>

@@ -55,8 +55,8 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"মুছুন"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"পরিচিতি যুক্ত করুন"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"গোষ্ঠী যোগ করুন"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"পরিচিতি বিভক্ত করবেন?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"এই পরিচিতি একাধিক পরিচিতিগুলির মধ্যে বিভক্ত করা হবে৷"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"পরিচিতি আদালা করবেন?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"এই পরিচিতিটি একাধিক পরিচিতিগুলির মধ্যে বিভক্ত করা হবে৷"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"মার্জ করুন"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"পরিচিতিগুলিকে যোগ করুন"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> এর সাথে যোগ করতে চান সেই পরিচিতিটি চয়ন করুন:"</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ফটো চয়ন করুন"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো নির্বাচন করুন"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"যোগাযোগ তালিকার ভাষা পরিবর্তন প্রতিফলিত করতে আপডেট করা হচ্ছে৷"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"পরিচিতি তালিকা আপডেট করা হচ্ছে৷"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"নির্বাচিত দেখান"</string>

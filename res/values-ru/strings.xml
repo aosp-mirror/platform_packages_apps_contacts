@@ -156,7 +156,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Сфотографировать"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Выбрать фото"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Выбрать другое фото"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Список контактов обновляется после смены языка интерфейса."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Список контактов обновляется..."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Поиск…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Показать выбранные"</string>

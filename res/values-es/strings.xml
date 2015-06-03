@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Añadir contacto"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Añadir grupo"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"¿Dividir contacto?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Este contacto se dividirá en varios contactos."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Este contacto se dividirá en varios."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Combinar"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Agrupar contactos"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Selecciona el nombre del contacto que quieras agrupar con <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Hacer una foto nueva"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Elegir foto"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Seleccionar nueva foto"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"La lista de contactos se está actualizando para reflejar el cambio de idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"La lista de contactos se está actualizando."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Buscando..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Mostrar seleccionados"</string>
@@ -191,8 +190,8 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Crear nuevo contacto"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Iniciar sesión en una cuenta"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importar contactos"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"Crear grupo nuevo"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Crear grupo nuevo"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"Crear nuevo grupo"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"Crear nuevo grupo"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupos</item>
       <item quantity="one">1 grupo</item>
@@ -225,11 +224,11 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No se hará una copia de seguridad del nuevo contacto. ¿Quieres añadir una cuenta para hacer copias de seguridad online de los contactos?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Tu nuevo contacto se sincronizará con <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puedes sincronizar tu nuevo contacto con una de las siguientes cuentas. ¿Cuál quieres usar?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Añadir nuevo contacto"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Añadir contacto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Guardar localmente"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Copia local"</string>
     <string name="add_account" msgid="8201790677994503186">"Añadir cuenta"</string>
-    <string name="add_new_account" msgid="5748627740680940264">"Añadir una cuenta"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Añadir cuenta"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportar archivos de base de datos"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"añadir nuevo contacto"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Ver más"</string>

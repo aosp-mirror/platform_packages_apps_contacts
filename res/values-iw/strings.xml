@@ -63,7 +63,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"הצג את כל אנשי הקשר"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"אנשי קשר מוצעים"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"כל אנשי הקשר"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"אנשי הקשר שולבו"</string>
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"נעשה מיזוג של אנשי הקשר"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"אנשי הקשר נמחקו"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"הגדר רינגטון"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"כל השיחות לתא הקולי"</string>
@@ -156,7 +156,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"צלם תמונה חדשה"</string>
     <string name="pick_photo" msgid="2129509985223564942">"בחר תמונה"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"בחר תמונה חדשה"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"רשימת אנשי הקשר מתעדכנת כדי לשקף את שינוי השפה."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"רשימת אנשי הקשר מתעדכנת."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"מחפש..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"הצג פריטים שנבחרו"</string>
@@ -227,7 +226,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"טקסט שהועתק"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"למחוק את השינויים שביצעת?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"הגדר את הפרופיל שלי"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"הגדרת הפרופיל שלי"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"הקלד שם של אדם"</string>
     <string name="group_name_hint" msgid="238359485263401293">"שם הקבוצה"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"הפרופיל המקומי שלי"</string>
@@ -239,7 +238,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"איש הקשר החדש שלך לא יגובה. להוסיף חשבון שמגבה אנשי קשר באופן מקוון?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"איש הקשר החדש שלך יסונכרן עם <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ניתן לסנכרן את איש הקשר החדש שלך עם אחד מהחשבונות הבאים. באיזה מהם ברצונך להשתמש?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"הוסף איש קשר חדש"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"הוספת איש קשר חדש"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ערוך איש קשר"</string>
     <string name="keep_local" msgid="1258761699192993322">"שמור באופן מקומי"</string>
     <string name="add_account" msgid="8201790677994503186">"הוסף חשבון"</string>
@@ -283,6 +282,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"שיחה אחרונה. <xliff:g id="CALL_TYPE">%s</xliff:g>‏. <xliff:g id="PHONE_NUMBER">%s</xliff:g>‏. <xliff:g id="DATE">%s</xliff:g>‏. לחץ כדי להתקשר חזרה"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"אתה: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏Hangouts פועל טוב יותר כשאתה מזין את מזהה ה-Hangouts של המשתמש בשדה האימייל או בשדה הטלפון."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"עוד שדות"</string>
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"שדות נוספים"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"שנה תמונה"</string>
 </resources>

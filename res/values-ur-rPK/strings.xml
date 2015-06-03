@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"نئی تصویر لیں"</string>
     <string name="pick_photo" msgid="2129509985223564942">"تصویر منتخب کریں"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"نئی تصویر منتخب کریں"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"زبان کی تبدیلی کی عکاسی کرنے کیلئے رابطہ کی فہرست اپ ڈیٹ کی جا رہی ہے۔"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"رابطہ کی فہرست اپ ڈیٹ ہو رہی ہے۔"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"تلاش کر رہا ہے…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"منتخب کردہ کو دکھائیں"</string>

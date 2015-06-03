@@ -55,7 +55,7 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Löschen"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Kontakt hinzufügen"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Gruppe hinzufügen"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Kontakt aufteilen?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Kontakt trennen?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Dieser Kontakt wird in mehrere Kontakte aufgeteilt."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Zusammenführen"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontakte zusammenführen"</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Neues Foto aufnehmen"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Foto auswählen"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Neues Foto auswählen"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktliste wird an die geänderte Sprache angepasst..."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktliste wird aktualisiert..."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Suche..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Auswahl anzeigen"</string>

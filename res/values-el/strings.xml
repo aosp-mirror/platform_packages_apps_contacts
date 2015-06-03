@@ -141,7 +141,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Προσθ. σύνδεσης"</string>
     <string name="recent" msgid="2659189233141493004">"Πρόσφατες"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Πρόσφατες ενημερώσεις"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> επαφή"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Επαφή <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Αδυναμία επεξεργασ. από αυτήν την εφαρμ."</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Λήψη νέας φωτογραφίας"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Επιλογή φωτογραφίας"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Επιλογή νέας φωτογραφίας"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Γίνεται ενημέρωση της λίστας επαφών για να αντικατοπτριστεί η αλλαγή γλώσσας."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Γίνεται ενημέρωση της λίστας επαφών."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Αναζήτηση…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Εμφάνιση επιλεγμένων"</string>
@@ -185,7 +184,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Προσθ.σε επαφή"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Κλείσιμο"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"Εισαγάγετε έτος"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Επιλέξτε έτος"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Επαφή"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Φόρτωση…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Δημιουργία νέας επαφής"</string>
@@ -227,7 +226,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Μπορείτε να συγχρονίσετε τη νέα επαφή με έναν από τους παρακάτω λογαριασμούς. Ποιον θέλετε να χρησιμοποιήσετε;"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Προσθήκης επαφής"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Επεξεργασία επαφής"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Αποθήκευση τοπικά"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Αποθ. τοπικά"</string>
     <string name="add_account" msgid="8201790677994503186">"Προσθήκη λογαριασμού"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Προσθήκη νέου λογαριασμού"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Εξαγωγή αρχείων βάσης δεδομένων"</string>

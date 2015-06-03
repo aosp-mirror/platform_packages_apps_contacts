@@ -76,7 +76,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Kontak ini berisi informasi dari beberapa akun. Informasi dari akun hanya-baca akan disembunyikan dalam daftar kontak Anda, tidak dihapus."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Menghapus kontak ini akan menghapus informasi dari beberapa akun."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Kontak ini akan dihapus."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Batalkan perubahan"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Buang perubahan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontak tidak ada."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget kontak ditambahkan ke layar Utama."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Buat kontak baru"</string>
@@ -150,7 +150,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Ambil foto baru"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Pilih foto"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Pilih foto baru"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Daftar kontak sedang diperbarui untuk mencerminkan perubahan bahasa."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Daftar kontak sedang diperbarui."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Menelusuri..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Tampilkan yang dipilih"</string>
