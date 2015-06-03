@@ -47,6 +47,7 @@ import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -425,7 +426,8 @@ public class ContactSelectionActivity extends ContactsActivity
                 startActivityForResult(intent, SUBACTIVITY_ADD_TO_EXISTING_CONTACT);
             } else {
                 // Otherwise launch the full contact editor.
-                startActivityAndForwardResult(new Intent(Intent.ACTION_EDIT, contactLookupUri));
+                startActivityAndForwardResult(EditorIntents.createEditContactIntent(
+                        contactLookupUri, /* materialPalette =*/ null, /* photoId =*/ -1));
             }
         }
 

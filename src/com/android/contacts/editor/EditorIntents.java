@@ -44,10 +44,11 @@ public class EditorIntents {
      * existing contact.
      */
     public static Intent createCompactEditContactIntent(Uri contactLookupUri,
-            MaterialPalette materialPalette, Bundle updatedPhotos) {
+            MaterialPalette materialPalette, Bundle updatedPhotos, long photoId) {
         final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
         putMaterialPalette(intent, materialPalette);
         putUpdatedPhotos(intent, updatedPhotos);
+        putPhotoId(intent, photoId);
         return intent;
     }
 
@@ -96,10 +97,11 @@ public class EditorIntents {
      * new contact.
      */
     public static Intent createEditContactIntent(Uri contactLookupUri,
-            MaterialPalette materialPalette) {
+            MaterialPalette materialPalette, long photoId) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_EDIT, contactLookupUri);
         addContactIntentFlags(intent);
         putMaterialPalette(intent, materialPalette);
+        putPhotoId(intent, photoId);
         return intent;
     }
 
@@ -135,6 +137,13 @@ public class EditorIntents {
             intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_UPDATED_PHOTOS, updatedPhotos);
         }
     }
+
+    private static void putPhotoId(Intent intent, long photoId) {
+        if (photoId >= 0) {
+            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_PHOTO_ID, photoId);
+        }
+    }
+
 
     private static void putRawContactDeltaValues(Intent intent,
             RawContactDeltaList rawContactDeltaList, String displayName, String phoneticName) {
