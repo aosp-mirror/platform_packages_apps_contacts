@@ -38,6 +38,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 
@@ -221,6 +222,15 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
             }
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
 
