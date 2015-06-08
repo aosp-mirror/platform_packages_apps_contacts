@@ -474,17 +474,15 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     // Only add nicknames if there is a non-empty one
                     if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
                         mNicknames.addView(inflateKindSectionView(mNicknames, dataKind,
-                                rawContactDelta, /* showOneEmptyEditor =*/ false));
+                                rawContactDelta));
                     }
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     mPhoneNumbers.addView(inflateKindSectionView(mPhoneNumbers, dataKind,
-                            rawContactDelta, /* showOneEmptyEditor =*/ true));
+                            rawContactDelta));
                 } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    mEmails.addView(inflateKindSectionView(mEmails, dataKind, rawContactDelta,
-                            /* showOneEmptyEditor =*/ true));
+                    mEmails.addView(inflateKindSectionView(mEmails, dataKind, rawContactDelta));
                 } else if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
-                    mOther.addView(inflateKindSectionView(mOther, dataKind, rawContactDelta,
-                            /* showOneEmptyEditor =*/ false));
+                    mOther.addView(inflateKindSectionView(mOther, dataKind, rawContactDelta));
                 }
             }
         }
@@ -615,14 +613,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private KindSectionView inflateKindSectionView(ViewGroup viewGroup, DataKind dataKind,
-            RawContactDelta rawContactDelta, boolean showOneEmptyEditor) {
+            RawContactDelta rawContactDelta) {
         final KindSectionView result = (KindSectionView) mLayoutInflater.inflate(
                 R.layout.item_kind_section, viewGroup, /* attachToRoot =*/ false);
         result.setState(
                 dataKind,
                 rawContactDelta,
                 /* readOnly =*/ false,
-                showOneEmptyEditor,
                 mViewIdGenerator);
         return result;
     }
