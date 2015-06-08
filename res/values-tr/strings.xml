@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Kişi Ekle"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Grup Ekle"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Kişi ayrılsın mı?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Kişi birden çok kişiye ayrılacak."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Bu kişi birden çok kişiye ayrılacak."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Birleştir"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kişileri birleştir"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> ile birleştirmek istediğiniz kişiyi seçin:"</string>
@@ -91,7 +91,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Özel etiket adı"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Çağrıları doğrudan sesli mesaja gönder"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fotoğrafı kaldır"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Hiçbir kişi yok."</string>
+    <string name="noContacts" msgid="8579310973261953559">"Kişi listesi boş."</string>
     <string name="noGroups" msgid="8614664663561385253">"Grup yok."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Grup oluşturmanız için hesap gerekir."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Bu grupta hiç kimse yok."</string>

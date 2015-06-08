@@ -76,7 +76,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Эти контакты содержат данные из нескольких аккаунтов. Информация из аккаунтов, доступных только для чтения, будет скрыта в списках контактов, но не удалена."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Удаление этого контакта приведет к потере данных из нескольких аккаунтов."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Этот контакт будет удален."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Отмена"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Удалить изменения"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Нет такого контакта."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Виджет \"Контакты\" добавлен на главный экран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
@@ -91,13 +91,13 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Название"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Направлять вызовы в голосовую почту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Удалить фото"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Нет контактов."</string>
+    <string name="noContacts" msgid="8579310973261953559">"Нет контактов"</string>
     <string name="noGroups" msgid="8614664663561385253">"Нет групп."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для создания групп нужен аккаунт."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Здесь пока никого нет."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Чтобы добавить участников, откройте меню и нажмите \"Изменить\"."</string>
     <string name="savingContact" msgid="4075751076741924939">"Контакт сохраняется..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не удалось сохранить изменения."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Не удалось сохранить изменения"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Группа сохранена."</string>
@@ -224,7 +224,7 @@
     <string name="set_default" msgid="4417505153468300351">"Установить по умолчанию"</string>
     <string name="clear_default" msgid="7193185801596678067">"Удалить настройки по умолчанию"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текст скопирован"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Отменить изменения?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Удалить изменения?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> (<xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>)"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Настроить профиль"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Имя контакта"</string>

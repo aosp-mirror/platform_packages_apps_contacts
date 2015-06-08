@@ -151,10 +151,10 @@
     <string name="group_read_only" msgid="1061762906115697637">"Не може да се мења на овом уређају."</string>
     <string name="take_photo" msgid="7496128293167402354">"Сними фотографију"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Направи нову фотографију"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Изаберите слику"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Изабери слику"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Изаберите нову слику"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Контакт листа се ажурира."</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"Претраживање..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Претражује се..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Прикажи изабрано"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Прикажи све"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Изабери све"</string>
@@ -228,7 +228,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"Контакти боље функционишу са Google налогом.\n\n• Приступајте из било ког веб-прегледача.\n• Безбедно направите резервне копије контаката."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Очувајте безбедност контаката чак и ако изгубите телефон – синхронизујте са услугом на мрежи."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додавање налога"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Неће бити направљена резервна копија новог контакта. Желите ли да додате налог који прави резервну копију контаката на мрежи?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Неће бити направљена резервна копија новог контакта. Желите ли да додате налог који прави резервну копију контаката онлајн?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Нови контакт ће бити синхронизован са налогом <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Можете да синхронизујете нови контакт са једним од следећих налога. Који желите да користите?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додај нови контакт"</string>

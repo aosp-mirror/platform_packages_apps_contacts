@@ -117,7 +117,7 @@
       <item quantity="one">1 gevonden</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle contacten"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Favoriet"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"Favorieten"</string>
     <string name="callBack" msgid="5498224409038809224">"Terugbellen"</string>
     <string name="callAgain" msgid="3197312117049874778">"Opnieuw bellen"</string>
     <string name="returnCall" msgid="8171961914203617813">"Terugbellen"</string>
@@ -141,7 +141,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Connectie toevoegen"</string>
     <string name="recent" msgid="2659189233141493004">"Recent"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Recente updates"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contact"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-contact"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Kan niet worden bewerkt vanuit deze app."</string>
@@ -210,7 +210,7 @@
     <string name="set_default" msgid="4417505153468300351">"Standaard instellen"</string>
     <string name="clear_default" msgid="7193185801596678067">"Standaardwaarden wissen"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst gekopieerd"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Uw wijzigingen niet opslaan?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Wijzigingen weggooien?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Mijn profiel instellen"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Typ de naam van de persoon"</string>
