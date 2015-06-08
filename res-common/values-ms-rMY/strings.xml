@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"Mesej teks"</string>
     <string name="postal_address" msgid="7692926530081579786">"Alamat"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Syarikat"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Tajuk"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Jawatan"</string>
     <string name="label_notes" msgid="3997277594846722699">"Nota"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Tapak web"</string>
@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"Selesai"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Batal"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kenalan dalam <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kenalan dalam pandangan tersuai"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Kenalan dalam paparan tersuai"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Kenalan tunggal"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Wujudkan kenalan di bawah akaun"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Import dari kad SIM"</string>
@@ -237,7 +237,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Cari"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kenalan untuk dipaparkan"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kenalan untuk dipaparkan"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Tentukan paparan peribadi"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Tentukan paparan tersuai"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Cari kenalan"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Kegemaran"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Tiada kenalan."</string>

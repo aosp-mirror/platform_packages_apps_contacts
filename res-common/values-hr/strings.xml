@@ -236,7 +236,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Pretraži"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakti za prikaz"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakti za prikaz"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definiranje prilagođenog prikaza"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Prilagodba prikaza"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Pronađi kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriti"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nema kontakata."</string>

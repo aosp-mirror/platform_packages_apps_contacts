@@ -193,7 +193,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"పరిచయ డేటా ఎగుమతి చేయబడలేదు.\nకారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"నిల్వ కనుగొనబడలేదు."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD కార్డు కనుగొనబడలేదు."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"మీ పరిచయ జాబితా ఫైల్‌కు ఎగుమతి చేయబడుతుంది: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"మీ పరిచయ జాబితా ఈ ఫైల్‌కు ఎగుమతి చేయబడుతుంది: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g>ని దిగుమతి చేస్తోంది"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard డేటాను చదవడం సాధ్యపడలేదు"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard డేటాను చదవడం రద్దయింది"</string>
