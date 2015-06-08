@@ -65,7 +65,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kenalan"</string>
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Kenalan digabungkan"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Kenalan dipadamkan"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ttpkn nd dering"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Tetapkan nada dering"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Semua panggilan ke mel suara"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Anda tidak boleh memadamkan kenalan daripada akaun baca sahaja, tetapi anda boleh menyembunyikan mereka dalam senarai kenalan anda."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Kenalan ini mengandungi maklumat daripada berbilang akaun. Maklumat daripada akaun baca sahaja akan disembunyikan dalam senarai kenalan anda, dan bukannya dipadamkan."</string>
@@ -79,7 +79,7 @@
     <string name="menu_discard" msgid="6854657936970228164">"Buang perubahan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kenalan tidak wujud."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget kenalan telah ditambahkan ke skrin Utama."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Wujudkan kenalan baru"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Buat kenalan baharu"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Buat kenalan baharu"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organisasi"</item>
@@ -184,10 +184,10 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Tambah ke kenalan"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Tutup"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"Berikan tahun"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Nyatakan tahun"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kenalan"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Memuatkan…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kenalan baru"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kenalan baharu"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Log masuk ke akaun"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Import kenalan"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Buat kumpulan baru"</string>

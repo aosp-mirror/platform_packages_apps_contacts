@@ -50,12 +50,12 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Mjesto na početnom zaslonu"</string>
     <string name="menu_call" msgid="3992595586042260618">"Nazovi kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Poruka kontaktu"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Zasebno"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Razdvoji"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Uredi"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Izbriši"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Dodavanje kontakta"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Dodavanje grupe"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Odvojiti kontakt?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Razdvojiti kontakt?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ovaj će se kontakt razdvojiti na više kontakata."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Spoji"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Pridruži kontakte"</string>
@@ -151,7 +151,7 @@
     <string name="group_read_only" msgid="1061762906115697637">"Na ovom uređaju ne može se uređivati"</string>
     <string name="take_photo" msgid="7496128293167402354">"Snimi fotografiju"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Snimi novu fotografiju"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Odaberite fotografiju"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Odaberi fotografiju"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Odaberite novu fotografiju"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Popis kontakata ažurira se."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Pretraživanje..."</string>

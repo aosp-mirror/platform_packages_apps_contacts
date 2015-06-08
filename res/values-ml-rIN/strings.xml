@@ -27,7 +27,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"സന്ദേശമയയ്‌ക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ഒരു കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയ കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="starredList" msgid="4817256136413959463">"നക്ഷത്രമിട്ടവ"</string>
     <string name="frequentList" msgid="7154768136473953056">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവർ"</string>
     <string name="strequentList" msgid="5640192862059373511">"പ്രിയപ്പെട്ടവർ"</string>
@@ -79,8 +79,8 @@
     <string name="menu_discard" msgid="6854657936970228164">"മാറ്റങ്ങള്‍‌ നിരാകരിക്കുക"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"കോൺടാക്റ്റ് നിലവിലില്ല."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"ഹോം സ്‌ക്രീനിൽ കോൺടാക്റ്റ് വിജറ്റ് ചേർത്തു."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"പുതിയ കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"പുതിയ കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"ഓര്‍ഗനൈസേഷന്‍"</item>
     <item msgid="7196592230748086755">"കുറിപ്പ്"</item>
@@ -187,11 +187,11 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"ഒരു വർഷം നൽകുക"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"കോൺടാക്റ്റ്"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ലോഡുചെയ്യുന്നു..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ഒരു പുതിയ കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ഒരു അക്കൗണ്ടിൽ സൈൻ ഇൻ ചെയ്യുക"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"പുതിയ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുക"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"പുതിയ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുക"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"പുതുഗ്രൂപ്പ് സൃഷ്‌ടിക്കൂ"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"പുതുഗ്രൂപ്പ് സൃഷ്‌ടിക്കൂ"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> ഗ്രൂപ്പുകൾ</item>
       <item quantity="one">ഒരു ഗ്രൂപ്പ്</item>
@@ -224,13 +224,13 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് ബാക്കപ്പുചെയ്യില്ല. കോൺടാക്റ്റുകളെ ഓൺലൈനിൽ ബാക്കപ്പുചെയ്യുന്ന ഒരു അക്കൗണ്ട് ചേർക്കണോ?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> എന്നതിൽ സമന്വയിപ്പിക്കും."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"നിങ്ങൾക്ക് പുതിയ കോൺടാക്റ്റ് ഇനിപ്പറയുന്ന അക്കൗണ്ടുകളിൽ ഒന്നുമായി സമന്വയിപ്പിക്കാം. ഏതാണ് ഉപയോഗിക്കേണ്ടത്?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"പുതിയ കോൺടാക്‌റ്റ് ചേർക്കുക"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"പുതിയവ ചേർക്കൂ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുക"</string>
     <string name="keep_local" msgid="1258761699192993322">"പ്രാദേശികമായി സൂക്ഷിക്കുക"</string>
     <string name="add_account" msgid="8201790677994503186">"അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="add_new_account" msgid="5748627740680940264">"പുതിയ അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ഡാറ്റാബേസ് ഫയലുകൾ എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"പുതിയ കോൺടാക്‌റ്റ് ചേർക്കുക"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"പുതിയവ ചേർക്കൂ"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"കൂടുതല്‍ കാണുക"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"കുറച്ച് കാണുക"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"എല്ലാം കാണുക"</string>

@@ -47,7 +47,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Редагувати"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Видалити"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Змінити фото"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Місце на головному екрані"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Помістити на головний екран"</string>
     <string name="menu_call" msgid="3992595586042260618">"Набрати конт."</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Повід. контакт"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Розділити"</string>
@@ -137,7 +137,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Додайте номер телефону"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Додайте електронну адресу"</string>
     <string name="missing_app" msgid="1466111003546611387">"Не знайдено програму для обробки цієї дії."</string>
-    <string name="menu_share" msgid="943789700636542260">"Надісл."</string>
+    <string name="menu_share" msgid="943789700636542260">"Надіслати"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Додати в контакти"</string>
     <string name="share_via" msgid="563121028023030093">"Надісл. контакт через"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Створити групу в обліковому записі"</string>
@@ -238,8 +238,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Для вашого нового контакта не буде створено резервні копії. Додати обліковий запис, у якому буде збережено резервні копії контактів в Інтернеті?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Новий контакт буде синхронізовано з обліковим записом <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Свій новий контакт можна синхронізувати з одним з указаних нижче облікових записів. Який із них використати?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додавання контакта"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Редагування контакта"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додати контакт"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Змінити контакт"</string>
     <string name="keep_local" msgid="1258761699192993322">"Зберегти локально"</string>
     <string name="add_account" msgid="8201790677994503186">"Додати обліковий запис"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Додати новий обліковий запис"</string>
@@ -248,7 +248,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Показати більше"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Показати менше"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Показати все"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"Остання підказка"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"Нещодавні"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Інформація"</string>
     <string name="send_message" msgid="8938418965550543196">"Надіслати повідомлення"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Створення особистої копії…"</string>
