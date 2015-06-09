@@ -140,11 +140,20 @@ public class IntegrationTestUtils {
      */
     public List<TextView> getTextViewsWithString(final Activity activity, final String text)
             throws Throwable {
+        return getTextViewsWithString(getRootView(activity), text);
+    }
+
+    /**
+     * Gets all {@link TextView} objects whose {@link TextView#getText()} contains the given text as
+     * a substring for the given root view.
+     */
+    public List<TextView> getTextViewsWithString(final View rootView, final String text)
+            throws Throwable {
         return runOnUiThreadAndGetTheResult(new Callable<List<TextView>>() {
             @Override
             public List<TextView> call() throws Exception {
                 List<TextView> matchingViews = new ArrayList<TextView>();
-                for (TextView textView : getAllViews(TextView.class, getRootView(activity))) {
+                for (TextView textView : getAllViews(TextView.class, rootView)) {
                     if (textView.getText().toString().contains(text)) {
                         matchingViews.add(textView);
                     }
