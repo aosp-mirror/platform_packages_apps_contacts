@@ -24,6 +24,8 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -52,6 +54,7 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
     private static final String ARG_CAN_SET_DEFAULT = "can_set_default";
     private static final String ARG_ACCOUNT_HANDLES = "account_handles";
     private static final String ARG_IS_DEFAULT_CHECKED = "is_default_checked";
+    private static final String ARG_LISTENER = "listener";
 
     private int mTitleResId;
     private boolean mCanSetDefault;
@@ -95,6 +98,7 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
         args.putInt(ARG_TITLE_RES_ID, titleResId);
         args.putBoolean(ARG_CAN_SET_DEFAULT, canSetDefault);
         args.putParcelableArrayList(ARG_ACCOUNT_HANDLES, accountHandlesCopy);
+        args.putParcelable(ARG_LISTENER, listener);
         fragment.setArguments(args);
         fragment.setListener(listener);
         return fragment;
@@ -107,9 +111,33 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
         mListener = listener;
     }
 
-    public interface SelectPhoneAccountListener {
-        void onPhoneAccountSelected(PhoneAccountHandle selectedAccountHandle, boolean setDefault);
-        void onDialogDismissed();
+    public static class SelectPhoneAccountListener extends ResultReceiver {
+        static final int RESULT_SELECTED = 1;
+        static final int RESULT_DISMISSED = 2;
+
+        static final String EXTRA_SELECTED_ACCOUNT_HANDLE = "extra_selected_account_handle";
+        static final String EXTRA_SET_DEFAULT = "extra_set_default";
+
+        public SelectPhoneAccountListener() {
+            super(new Handler());
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            if (resultCode == RESULT_SELECTED) {
+                onPhoneAccountSelected(
+                        (PhoneAccountHandle) resultData.getParcelable(
+                                EXTRA_SELECTED_ACCOUNT_HANDLE),
+                        resultData.getBoolean(EXTRA_SET_DEFAULT));
+            } else if (resultCode == RESULT_DISMISSED) {
+                onDialogDismissed();
+            }
+        }
+
+        public void onPhoneAccountSelected(PhoneAccountHandle selectedAccountHandle,
+                boolean setDefault) {}
+
+        public void onDialogDismissed() {}
     }
 
     @Override
@@ -123,6 +151,7 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
         mTitleResId = getArguments().getInt(ARG_TITLE_RES_ID);
         mCanSetDefault = getArguments().getBoolean(ARG_CAN_SET_DEFAULT);
         mAccountHandles = getArguments().getParcelableArrayList(ARG_ACCOUNT_HANDLES);
+        mListener = getArguments().getParcelable(ARG_LISTENER);
         if (savedInstanceState != null) {
             mIsDefaultChecked = savedInstanceState.getBoolean(ARG_IS_DEFAULT_CHECKED);
         }
@@ -136,7 +165,14 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 mIsSelected = true;
                 PhoneAccountHandle selectedAccountHandle = mAccountHandles.get(which);
-                mListener.onPhoneAccountSelected(selectedAccountHandle, mIsDefaultChecked);
+                final Bundle result = new Bundle();
+                result.putParcelable(SelectPhoneAccountListener.EXTRA_SELECTED_ACCOUNT_HANDLE,
+                        selectedAccountHandle);
+                result.putBoolean(SelectPhoneAccountListener.EXTRA_SET_DEFAULT,
+                        mIsDefaultChecked);
+                if (mListener != null) {
+                    mListener.onReceiveResult(SelectPhoneAccountListener.RESULT_SELECTED, result);
+                }
             }
         };
 
@@ -235,8 +271,8 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
 
     @Override
     public void onStop() {
-        if (!mIsSelected) {
-            mListener.onDialogDismissed();
+        if (!mIsSelected && mListener != null) {
+            mListener.onReceiveResult(SelectPhoneAccountListener.RESULT_DISMISSED, null);
         }
         super.onStop();
     }
