@@ -157,7 +157,7 @@
     <string name="pick_photo" msgid="2129509985223564942">"Vybrať fotku"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Vybrať novú fotku"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Prebieha aktualizácia zoznamu kontaktov."</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"Vyhľadávanie..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Hľadá sa…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Zobraziť vybraté"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Zobraziť všetky"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Vybrať všetko"</string>

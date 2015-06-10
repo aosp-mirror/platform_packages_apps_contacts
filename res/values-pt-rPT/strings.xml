@@ -210,7 +210,7 @@
     <string name="set_default" msgid="4417505153468300351">"Definir a predefinição"</string>
     <string name="clear_default" msgid="7193185801596678067">"Limpar predefinição"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Rejeitar as suas alterações?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Rejeitar as alterações?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configurar o meu perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Introduza o nome da pessoa"</string>
@@ -224,7 +224,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Adicionar uma conta que efetua a cópia de segurança dos contactos on-line?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"O novo contacto será sincronizado com <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pode sincronizar o novo contacto com uma das seguintes contas. Qual a conta que deseja utilizar?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adicionar novo contacto"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adic. novo contacto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
     <string name="keep_local" msgid="1258761699192993322">"Manter localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Adicionar conta"</string>
