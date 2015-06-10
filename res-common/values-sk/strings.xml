@@ -72,7 +72,7 @@
     <string name="directory_search_label" msgid="4484648822765516947">"Adresár"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Všetky kontakty"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ja"</string>
-    <string name="search_results_searching" msgid="9022794597388306615">"Hľadá sa..."</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Hľadá sa…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Našlo sa viac ako <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Žiadne kontakty"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">

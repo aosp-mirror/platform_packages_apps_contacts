@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"Færdig"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Annuller"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontaktpersoner i <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontaktpersoner i tilpasset visning"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Kontakter i tilpasset visning"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Enkelt kontaktperson"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Opret kontaktperson på konto"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importér fra SIM-kort"</string>
