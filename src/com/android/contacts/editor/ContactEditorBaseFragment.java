@@ -373,9 +373,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Used to pre-populate the editor with a display name when a user edits a read-only contact.
     protected String mDefaultDisplayName;
 
-    // Whether the name editor should receive focus after being bound
-    protected boolean mRequestFocus;
-
     // Whether to show a Toast message after saves have completed.
     // Does not affect successful toasts shown after joins, which are never displayed.
     protected boolean mShowToastAfterSave = true;
@@ -1155,7 +1152,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             RawContactDelta oldState, AccountType oldAccountType) {
         mStatus = Status.EDITING;
         mState.add(createNewRawContactDelta(account, accountType, oldState, oldAccountType));
-        mRequestFocus = true;
         mNewContactDataReady = true;
         bindEditors();
     }
@@ -1233,7 +1229,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 mState.add(createLocalRawContactDelta());
             }
         }
-        mRequestFocus = true;
         mExistingContactDataReady = true;
         bindEditors();
     }
