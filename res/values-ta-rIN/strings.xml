@@ -117,7 +117,7 @@
       <item quantity="one">1 கண்டறியப்பட்டது</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"எல்லா தொடர்புகளும்"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"விருப்பங்கள்"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"பிடித்தவை"</string>
     <string name="callBack" msgid="5498224409038809224">"திருப்பி அழை"</string>
     <string name="callAgain" msgid="3197312117049874778">"மீண்டும் அழை"</string>
     <string name="returnCall" msgid="8171961914203617813">"திரும்பி அழை"</string>
@@ -184,7 +184,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"தொடர்பில் சேர்"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"மூடு"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"ஆண்டை வழங்கு"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"ஆண்டை வழங்கவும்"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"தொடர்பு"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ஏற்றுகிறது..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"புதிய தொடர்பை உருவாக்கு"</string>

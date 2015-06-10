@@ -67,7 +67,7 @@
     <string name="contacts_deleted_toast" msgid="286851430992788215">"S\'han suprimit els contactes"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Estableix so"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Trucades a la bústia de veu"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"No pots suprimir cap contacte dels comptes de només lectura, però pots amagar-los a les llistes de contactes."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"No pots suprimir cap contacte dels comptes només de lectura, però pots amagar-los a les llistes de contactes."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Aquest contacte inclou informació de diversos comptes. La informació dels comptes només de lectura s\'ocultarà a les llistes de contactes, però no se suprimirà."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Has de tenir com a mínim dos contactes seleccionats per combinar-los."</string>
     <string name="batch_merge_confirmation" msgid="8551299480317422420">"Els contactes seleccionats es combinaran i se\'n crearà un de sol."</string>
