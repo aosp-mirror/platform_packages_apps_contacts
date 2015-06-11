@@ -292,10 +292,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 };
 
                 final StructuredNameEditorView nameEditor = rawContactEditor.getNameEditor();
-                if (mRequestFocus) {
-                    nameEditor.requestFocus();
-                    mRequestFocus = false;
-                }
                 nameEditor.setEditorListener(structuredNameListener);
                 if (!TextUtils.isEmpty(mDefaultDisplayName)) {
                     nameEditor.setDisplayName(mDefaultDisplayName);
@@ -310,8 +306,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 }
             }
         }
-
-        mRequestFocus = false;
 
         setGroupMetaData();
 

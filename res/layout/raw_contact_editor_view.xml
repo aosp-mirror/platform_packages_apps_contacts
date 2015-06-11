@@ -34,6 +34,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <!-- Dummy view so the first input field is not initially focused. b/21644158 -->
+        <View
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:focusable="true"
+           android:focusableInTouchMode="true"/>
+
         <include
             android:id="@+id/edit_name"
             layout="@layout/structured_name_editor_view" />
