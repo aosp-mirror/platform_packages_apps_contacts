@@ -1066,26 +1066,21 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Saves all writable accounts and the default account, but only for new contacts.
      */
     protected void saveDefaultAccountIfNecessary() {
-        // Verify that this is a newly created contact, that the contact is composed of only
-        // 1 raw contact, and that the contact is not a user profile.
-        if (!Intent.ACTION_INSERT.equals(mAction)
-                && !ContactEditorBaseActivity.ACTION_INSERT.equals(mAction)
-                && mState.size() == 1
-                && !isEditingUserProfile()) {
-            return;
+        // Verify that this is a newly created contact composed of only 1 raw contact
+        // and not a user profile
+        if (isInsert(mAction) && mState.size() == 1 && !isEditingUserProfile()) {
+            // Find the associated account for this contact (retrieve it here because there are
+            // multiple paths to creating a contact and this ensures we always have the correct
+            // account).
+            final RawContactDelta rawContactDelta = mState.get(0);
+            String name = rawContactDelta.getAccountName();
+            String type = rawContactDelta.getAccountType();
+            String dataSet = rawContactDelta.getDataSet();
+
+            AccountWithDataSet account = (name == null || type == null) ? null :
+                    new AccountWithDataSet(name, type, dataSet);
+            mEditorUtils.saveDefaultAndAllAccounts(account);
         }
-
-        // Find the associated account for this contact (retrieve it here because there are
-        // multiple paths to creating a contact and this ensures we always have the correct
-        // account).
-        final RawContactDelta rawContactDelta = mState.get(0);
-        String name = rawContactDelta.getAccountName();
-        String type = rawContactDelta.getAccountType();
-        String dataSet = rawContactDelta.getDataSet();
-
-        AccountWithDataSet account = (name == null || type == null) ? null :
-                new AccountWithDataSet(name, type, dataSet);
-        mEditorUtils.saveDefaultAndAllAccounts(account);
     }
 
     //
@@ -1636,8 +1631,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Whether the argument Intent requested a contact insert action or not.
      */
     protected static boolean isInsert(Intent intent) {
-        if (intent == null) return false;
-        final String action = intent.getAction();
+        return intent == null ? false : isInsert(intent.getAction());
+    }
+
+    protected static boolean isInsert(String action) {
         return Intent.ACTION_INSERT.equals(action)
                 || ContactEditorBaseActivity.ACTION_INSERT.equals(action);
     }
