@@ -212,21 +212,27 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
      */
     public String getDisplayName() {
         final ValuesDelta valuesDelta = getValues();
-        if (hasShortAndLongForms() && areOptionalFieldsVisible()) {
-            final String displayName = valuesDelta.getDisplayName();
-            if (!TextUtils.isEmpty(displayName)) {
-                return displayName;
+        if (hasShortAndLongForms()) {
+            if (areOptionalFieldsVisible()) {
+                final Map<String, String> structuredNameMap = valuesToStructuredNameMap(valuesDelta);
+                final String displayName = NameConverter.structuredNameToDisplayName(
+                        getContext(), structuredNameMap);
+                if (!TextUtils.isEmpty(displayName)) {
+                    return displayName;
+                }
+            } else {
+                final String displayName = valuesDelta.getDisplayName();
+                if (!TextUtils.isEmpty(displayName)) {
+                    return displayName;
+                }
             }
         }
-        final Map<String, String> structuredNameMap = valuesToStructuredNameMap(valuesDelta);
-        final String displayName = NameConverter.structuredNameToDisplayName(
-                getContext(), structuredNameMap);
-        if (!TextUtils.isEmpty(displayName)) {
-            return displayName;
-        }
-        // The name may have been passed to the compact editor and not written to the underlying
-        // data structure.
         return valuesDelta.getDisplayName();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return TextUtils.isEmpty(getDisplayName());
     }
 
     @Override
