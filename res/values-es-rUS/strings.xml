@@ -63,7 +63,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos los contactos"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos los contactos"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"Contactos fusionados"</string>
+    <string name="contactsJoinedMessage" msgid="656936718666768589">"Contactos combinados"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Contactos eliminados"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Establecer tono"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Llamadas al buzón de voz"</string>
@@ -97,7 +97,7 @@
     <string name="emptyGroup" msgid="7502116218697177370">"No hay contactos en este grupo."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Para agregar alguno, edita el grupo."</string>
     <string name="savingContact" msgid="4075751076741924939">"Guardando contacto..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Contacto guardado."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Contacto guardado"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No se pudieron guardar los cambios realizados al contacto."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"No se pudieron guardar los cambios que se realizaron en la foto de contacto."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupo guardado."</string>
@@ -188,7 +188,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Contacto"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Cargando..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Crear un contacto nuevo"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Accede a una cuenta"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Acceder a una cuenta"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importar contactos"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Crear grupo nuevo"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Crear grupo nuevo"</string>
@@ -221,14 +221,14 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"La aplicación Contactos funciona mejor con una cuenta de Google.\n\n• Accede desde cualquier navegador web.\n• Haz copias de seguridad de tus contactos de forma segura."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén tus contactos a salvo aunque pierdas el dispositivo: sincronízalos con un servicio online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Agregar una cuenta"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No se hará una copia de seguridad del nuevo contacto. ¿Quieres agregar una cuenta para hacer copias de seguridad en línea de los contactos?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No se hará una copia de seguridad del contacto nuevo. ¿Quieres agregar una cuenta para hacer copias de seguridad en línea de los contactos?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Tu nuevo contacto se sincronizará con <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puedes sincronizar tu nuevo contacto con una de las siguientes cuentas. ¿Cuál quieres usar?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Agregar contacto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Guardar localmente"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Copia local"</string>
     <string name="add_account" msgid="8201790677994503186">"Agregar una cuenta"</string>
-    <string name="add_new_account" msgid="5748627740680940264">"Agregar una cuenta nueva"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Agregar cuenta"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportar archivos de base de datos"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"agregar contacto nuevo"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Ver más"</string>
