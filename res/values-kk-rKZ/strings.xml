@@ -227,7 +227,7 @@
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Жаңа контакт қосу"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өңдеу"</string>
     <string name="keep_local" msgid="1258761699192993322">"Жергілікті сақтау"</string>
-    <string name="add_account" msgid="8201790677994503186">"Есептік жазба қосу"</string>
+    <string name="add_account" msgid="8201790677994503186">"Ес. жазба қосу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңа есептік жазба қосу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Дерекқор файлдарын экспорттау"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"жаңа контакт қосу"</string>

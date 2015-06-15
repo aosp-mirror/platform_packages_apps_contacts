@@ -37,7 +37,7 @@
     <string name="editGroupDescription" msgid="6321161304201540561">"ಗುಂಪು ಸಂಪಾದಿಸು"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"ಗುಂಪು ರಚಿಸಿ"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"ಕುರಿತು"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"ನವೀಕರಣಗಳು"</string>
+    <string name="contactDetailUpdates" msgid="3780588624763446941">"ಅಪ್‌ಡೇಟ್‌ಗಳು"</string>
     <string name="searchHint" msgid="8482945356247760701">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"ಸಂಪರ್ಕವನ್ನು ವೀಕ್ಷಿಸಿ"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ"</string>
@@ -140,7 +140,7 @@
     <string name="connections" msgid="8098440723172028350">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"ಸಂಪರ್ಕವನ್ನು ಸೇರಿಸಿ"</string>
     <string name="recent" msgid="2659189233141493004">"ಇತ್ತೀಚಿನದು"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"ಇತ್ತೀಚಿನ ನವೀಕರಣಗಳು"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"ಇತ್ತೀಚಿನ ಅಪ್‌ಡೇಟ್‌ಗಳು"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> ಸಂಪರ್ಕ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
