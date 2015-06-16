@@ -73,7 +73,9 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
     private MaterialPalette mMaterialPalette;
 
     private QuickContactImageView mPhotoImageView;
+    private View mPhotoIcon;
     private View mPhotoIconOverlay;
+    private View mPhotoTouchInterceptOverlay;
 
     public CompactPhotoEditorView(Context context) {
         this(context, null);
@@ -107,8 +109,9 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
         mContactPhotoManager = ContactPhotoManager.getInstance(getContext());
 
         mPhotoImageView = (QuickContactImageView) findViewById(R.id.photo);
+        mPhotoIcon = findViewById(R.id.photo_icon);
         mPhotoIconOverlay = findViewById(R.id.photo_icon_overlay);
-        findViewById(R.id.photo_touch_intercept_overlay).setOnClickListener(this);
+        mPhotoTouchInterceptOverlay = findViewById(R.id.photo_touch_intercept_overlay);
     }
 
     public void setValues(DataKind dataKind, ValuesDelta valuesDelta,
@@ -117,6 +120,13 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
         mValuesDelta = valuesDelta;
         mReadOnly = readOnly;
         mMaterialPalette = materialPalette;
+
+        if (mReadOnly) {
+            mPhotoIcon.setVisibility(View.GONE);
+            mPhotoIconOverlay.setVisibility(View.GONE);
+        } else {
+            mPhotoTouchInterceptOverlay.setOnClickListener(this);
+        }
 
         setId(viewIdGenerator.getId(rawContactDelta, dataKind, valuesDelta, /* viewIndex =*/ 0));
 
