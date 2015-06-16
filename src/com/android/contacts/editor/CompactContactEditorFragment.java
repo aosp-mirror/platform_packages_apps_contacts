@@ -201,7 +201,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // Add input fields for the loaded Contact
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
-        editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId);
+        editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId, mNameId);
 
         // Set up the photo widget
         mPhotoHandler = createPhotoHandler();
@@ -355,7 +355,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                 ? EditorIntents.createInsertContactIntent(
                         mState, getDisplayName(), getPhoneticName(), mUpdatedPhotos)
                 : EditorIntents.createEditContactIntent(mLookupUri, getMaterialPalette(),
-                        mPhotoId);
+                        mPhotoId, mNameId);
         ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
 
         getActivity().finish();
