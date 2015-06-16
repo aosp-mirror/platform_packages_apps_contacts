@@ -365,7 +365,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private void addStructuredNameView(RawContactDeltaList rawContactDeltas, long nameId) {
-        // Look for a match for the photo ID that was passed in
+        // Look for a match for the name ID that was passed in
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
             if (!rawContactDelta.isVisible()) continue;
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
@@ -387,7 +387,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     final NameEditorListener nameEditorListener = new NameEditorListener(
                             mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
                     mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                            mNameValuesDelta, rawContactDelta, nameEditorListener));
+                            mNameValuesDelta, rawContactDelta, nameEditorListener,
+                            !accountType.areContactsWritable()));
                     return;
                 }
             }
@@ -408,7 +409,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 final NameEditorListener nameEditorListener = new NameEditorListener(
                         superPrimaryValuesDelta, rawContactDelta.getRawContactId(), mListener);
                 mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                        superPrimaryValuesDelta, rawContactDelta, nameEditorListener));
+                        superPrimaryValuesDelta, rawContactDelta, nameEditorListener,
+                        !accountType.areContactsWritable()));
                 return;
             }
         }
@@ -424,14 +426,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             final List<ValuesDelta> nonEmptyValuesDeltas = getNonEmptyValuesDeltas(
                     rawContactDelta, StructuredName.CONTENT_ITEM_TYPE, dataKind);
             if (nonEmptyValuesDeltas != null && !nonEmptyValuesDeltas.isEmpty()) {
-                // Take the first non-empty name, also make it super primary before expanding to the
-                // full editor (see #onCLick) so that name does not change if the user saves from
-                // the fully expanded editor.
+                // Take the first non-empty name
                 mNameValuesDelta = nonEmptyValuesDeltas.get(0);
                 final NameEditorListener nameEditorListener = new NameEditorListener(
                         mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
                 mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                        mNameValuesDelta, rawContactDelta, nameEditorListener));
+                        mNameValuesDelta, rawContactDelta, nameEditorListener,
+                        !accountType.areContactsWritable()));
                 return;
             }
         }
@@ -451,7 +452,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 final NameEditorListener nameEditorListener = new NameEditorListener(
                         mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
                 mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                        mNameValuesDelta, rawContactDelta, nameEditorListener));
+                        mNameValuesDelta, rawContactDelta, nameEditorListener,
+                        !accountType.areContactsWritable()));
                 return;
             }
         }
@@ -597,7 +599,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private StructuredNameEditorView inflateStructuredNameEditorView(ViewGroup viewGroup,
             AccountType accountType, ValuesDelta valuesDelta, RawContactDelta rawContactDelta,
-            NameEditorListener nameEditorListener) {
+            NameEditorListener nameEditorListener, boolean readOnly) {
         final StructuredNameEditorView result = (StructuredNameEditorView) mLayoutInflater.inflate(
                 R.layout.structured_name_editor_view, viewGroup, /* attachToRoot =*/ false);
         if (nameEditorListener != null) {
@@ -608,7 +610,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
                 valuesDelta,
                 rawContactDelta,
-                /* readOnly =*/ false,
+                readOnly,
                 mViewIdGenerator);
         return result;
     }
