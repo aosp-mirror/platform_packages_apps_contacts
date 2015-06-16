@@ -55,14 +55,14 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
      *
      * Only used to open the "fully expanded" editor -- {@link ContactEditorActivity}.
      */
-    public static final String ACTION_EDIT = "com.google.android.contacts.action.EDIT";
+    public static final String ACTION_EDIT = "com.android.contacts.action.FULL_EDIT";
 
     /**
      * Intent action to insert a new contact with all available field inputs displayed.
      *
      * Only used to open the "fully expanded" editor -- {@link ContactEditorActivity}.
      */
-    public static final String ACTION_INSERT = "com.google.android.contacts.action.INSERT";
+    public static final String ACTION_INSERT = "com.android.contacts.action.FULL_INSERT";
 
     public static final String ACTION_JOIN_COMPLETED = "joinCompleted";
     public static final String ACTION_SAVE_COMPLETED = "saveCompleted";

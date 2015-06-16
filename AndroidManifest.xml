@@ -359,22 +359,23 @@
             </intent-filter>
         </activity>
 
-        <!-- Create a new or edit an existing contact -->
+        <!-- Edit or create a contact with all fields displayed. -->
         <activity
             android:name=".activities.ContactEditorActivity"
             android:label="@string/launcherActivityLabel"
             android:theme="@style/EditorActivityTheme"
-            android:windowSoftInputMode="stateHidden|adjustResize">
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false">
 
             <intent-filter android:label="@string/editContactDescription">
-                <action android:name="android.intent.action.EDIT" />
+                <action android:name="com.android.contacts.action.FULL_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
                 <data android:mimeType="vnd.android.cursor.item/contact" />
                 <data android:mimeType="vnd.android.cursor.item/raw_contact" />
             </intent-filter>
             <intent-filter android:label="@string/insertContactDescription">
-                <action android:name="android.intent.action.INSERT" />
+                <action android:name="com.android.contacts.action.FULL_INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/person" />
                 <data android:mimeType="vnd.android.cursor.dir/contact" />
