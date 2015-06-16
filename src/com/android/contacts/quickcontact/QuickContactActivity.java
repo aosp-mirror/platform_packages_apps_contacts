@@ -2256,13 +2256,11 @@ public class QuickContactActivity extends ContactsActivity {
         final String lookupKey = mContactData.getLookupKey();
         final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
         final Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType(Contacts.CONTENT_VCARD_TYPE);
-        intent.putExtra(Intent.EXTRA_STREAM, shareUri);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
         // Even though the data doesn't need to be set for ACTION_SEND, it does need
         // to be set so that FLAG_GRANT_READ_URI_PERMISSION can create a URI permission grant.
-        intent.setData(shareUri);
+        intent.setDataAndType(shareUri, Contacts.CONTENT_VCARD_TYPE);
+        intent.putExtra(Intent.EXTRA_STREAM, shareUri);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         // Launch chooser to share contact via
         final CharSequence chooseTitle = getText(R.string.share_via);
