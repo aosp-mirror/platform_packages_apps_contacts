@@ -427,7 +427,8 @@ public class ContactSelectionActivity extends ContactsActivity
             } else {
                 // Otherwise launch the full contact editor.
                 startActivityAndForwardResult(EditorIntents.createEditContactIntent(
-                        contactLookupUri, /* materialPalette =*/ null, /* photoId =*/ -1));
+                        contactLookupUri, /* materialPalette =*/ null, /* photoId =*/ -1,
+                        /* nameId =*/ -1));
             }
         }
 
