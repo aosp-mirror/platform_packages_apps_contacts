@@ -373,10 +373,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Used to pre-populate the editor with a display name when a user edits a read-only contact.
     protected String mDefaultDisplayName;
 
-    // Whether to show a Toast message after saves have completed.
-    // Does not affect successful toasts shown after joins, which are never displayed.
-    protected boolean mShowToastAfterSave = true;
-
     /**
      * The contact data loader listener.
      */
@@ -1343,7 +1339,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             Uri contactLookupUri, Bundle updatedPhotos, boolean backPressed, long photoId) {
         if (hadChanges) {
             if (saveSucceeded) {
-                if (saveMode != SaveMode.JOIN && mShowToastAfterSave) {
+                if (saveMode != SaveMode.JOIN) {
                     Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
                 }
             } else {

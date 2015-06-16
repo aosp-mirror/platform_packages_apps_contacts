@@ -345,12 +345,9 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (isInsert) {
             // For inserts, prevent any changes from being saved when the base fragment is destroyed
             mStatus = Status.CLOSING;
-        } else {
-            // Prevent a Toast from being displayed as we transition to the full editor
-            mShowToastAfterSave = false;
-
+        } else if (hasPendingChanges()) {
             // Save whatever is in the form
-            save(SaveMode.RELOAD, /* backPressed =*/ false);
+            save(SaveMode.CLOSE, /* backPressed =*/ false);
         }
 
         // Prepare an Intent to start the expanded editor

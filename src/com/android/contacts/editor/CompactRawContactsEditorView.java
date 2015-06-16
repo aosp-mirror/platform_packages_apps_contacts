@@ -174,13 +174,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.more_fields && mListener != null ) {
-            // We mark the name that was displayed as super primary before expanding
-            // so that a save on the expanded editor (without a name change) does not
-            // cause the displayed name to change.
-            if (mNameValuesDelta != null) {
-                mNameValuesDelta.setSuperPrimary(true);
-            }
-
             mListener.onExpandEditor();
         }
     }
