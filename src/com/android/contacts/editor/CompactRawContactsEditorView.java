@@ -256,7 +256,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette,
-            ViewIdGenerator viewIdGenerator, long photoId) {
+            ViewIdGenerator viewIdGenerator, long photoId, long nameId) {
         mNames.removeAllViews();
         mPhoneticNames.removeAllViews();
         mNicknames.removeAllViews();
@@ -275,7 +275,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         vlog("Setting compact editor state from " + rawContactDeltas);
         addPhotoView(rawContactDeltas, viewIdGenerator, photoId);
-        addStructuredNameView(rawContactDeltas);
+        addStructuredNameView(rawContactDeltas, nameId);
         addEditorViews(rawContactDeltas);
         removeExtraEmptyTextFields(mPhoneNumbers);
         removeExtraEmptyTextFields(mEmails);
@@ -292,7 +292,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             RawContactModifier.ensureKindExists(
                     rawContactDelta, accountType, Photo.CONTENT_ITEM_TYPE);
 
-            // Look for a non-empty super primary photo
             final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
             if (dataKind != null) {
                 for (ValuesDelta valuesDelta
@@ -365,7 +364,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mPhoto.setVisibility(View.GONE);
     }
 
-    private void addStructuredNameView(RawContactDeltaList rawContactDeltas) {
+    private void addStructuredNameView(RawContactDeltaList rawContactDeltas, long nameId) {
+        // Look for a match for the photo ID that was passed in
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
             if (!rawContactDelta.isVisible()) continue;
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
@@ -375,6 +375,28 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     rawContactDelta, accountType, StructuredName.CONTENT_ITEM_TYPE);
 
             // Note use of pseudo mime type to get the DataKind and StructuredName to get value
+            final DataKind dataKind = accountType.getKindForMimetype(
+                    DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME);
+            if (dataKind == null || !dataKind.editable) continue;
+
+            for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(
+                    StructuredName.CONTENT_ITEM_TYPE)) {
+                if (valuesDelta != null && valuesDelta.getId() != null
+                        && valuesDelta.getId().equals(nameId)) {
+                    mNameValuesDelta = valuesDelta;
+                    final NameEditorListener nameEditorListener = new NameEditorListener(
+                            mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
+                    mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
+                            mNameValuesDelta, rawContactDelta, nameEditorListener));
+                    return;
+                }
+            }
+        }
+        // Look for a super primary name
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (!rawContactDelta.isVisible()) continue;
+            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+
             final DataKind dataKind = accountType.getKindForMimetype(
                     DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME);
             if (dataKind == null || !dataKind.editable) continue;
