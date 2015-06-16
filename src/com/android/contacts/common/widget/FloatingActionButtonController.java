@@ -82,6 +82,10 @@ public class FloatingActionButtonController {
         mFloatingActionButtonContainer.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
+    private boolean isVisible() {
+        return mFloatingActionButtonContainer.getVisibility() == View.VISIBLE;
+    }
+
     public void changeIcon(Drawable icon, String description) {
         if (mFloatingActionButton.getDrawable() != icon
                 || !mFloatingActionButton.getContentDescription().equals(description)) {
@@ -152,6 +156,10 @@ public class FloatingActionButtonController {
      * @param delayMs The delay for the effect, in milliseconds.
      */
     public void scaleIn(int delayMs) {
+        if (isVisible()) {
+            return;
+        }
+
         setVisible(true);
         AnimUtils.scaleIn(mFloatingActionButtonContainer, FAB_SCALE_IN_DURATION, delayMs);
         AnimUtils.fadeIn(mFloatingActionButton, FAB_SCALE_IN_DURATION,
