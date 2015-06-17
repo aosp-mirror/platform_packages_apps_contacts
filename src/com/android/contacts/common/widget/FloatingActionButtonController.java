@@ -108,10 +108,21 @@ public class FloatingActionButtonController {
     }
 
     /**
+     * Aligns the FAB to the described location
+     *
+     * @param align One of ALIGN_MIDDLE, ALIGN_QUARTER_RIGHT, or ALIGN_RIGHT.
+     * @param animate Whether or not to animate the transition.
+     */
+    public void align(int align, boolean animate) {
+        align(align, 0 /*offsetX */, 0 /* offsetY */, animate);
+    }
+
+    /**
      * Aligns the FAB to the described location plus specified additional offsets.
      *
      * @param align One of ALIGN_MIDDLE, ALIGN_QUARTER_RIGHT, or ALIGN_RIGHT.
      * @param offsetX Additional offsetX to translate by.
+     * @param offsetY Additional offsetY to translate by.
      * @param animate Whether or not to animate the transition.
      */
     public void align(int align, int offsetX, int offsetY, boolean animate) {
