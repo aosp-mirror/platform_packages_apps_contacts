@@ -169,7 +169,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mState = new RawContactDeltaList();
             setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType);
             if (mIsEdit) {
-                setStateForExistingContact(mDefaultDisplayName, mIsUserProfile, mRawContacts);
+                setStateForExistingContact(mReadOnlyDisplayName, mIsUserProfile, mRawContacts);
             }
         }
     }
@@ -293,8 +293,10 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
                 final StructuredNameEditorView nameEditor = rawContactEditor.getNameEditor();
                 nameEditor.setEditorListener(structuredNameListener);
-                if (!TextUtils.isEmpty(mDefaultDisplayName)) {
-                    nameEditor.setDisplayName(mDefaultDisplayName);
+                if (TextUtils.isEmpty(nameEditor.getDisplayName()) &&
+                        !TextUtils.isEmpty(mReadOnlyDisplayName)) {
+                    nameEditor.setDisplayName(mReadOnlyDisplayName);
+                    mReadOnlyNameEditorView = nameEditor;
                 }
 
                 rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);

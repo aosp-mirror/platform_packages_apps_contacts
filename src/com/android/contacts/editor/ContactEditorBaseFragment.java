@@ -378,7 +378,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     //
 
     // Used to pre-populate the editor with a display name when a user edits a read-only contact.
-    protected String mDefaultDisplayName;
+    protected String mReadOnlyDisplayName;
+
+    // The name editor view for the new raw contact that was created so that the user can
+    // edit a read-only contact (to which the new raw contact was joined)
+    protected StructuredNameEditorView mReadOnlyNameEditorView;
 
     /**
      * The contact data loader listener.
@@ -917,7 +921,35 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         mStatus = Status.SAVING;
 
-        if (!hasPendingChanges()) {
+        // Determine if changes were made in the editor that need to be saved
+        // See go/editing-read-only-contacts
+        boolean hasPendingChanges;
+        if (mReadOnlyNameEditorView == null || mReadOnlyDisplayName == null) {
+            hasPendingChanges = hasPendingChanges();
+        } else {
+            // We created a new raw contact delta with a default display name. We must test for
+            // pending changes while ignoring the default display name.
+            final String displayName = mReadOnlyNameEditorView.getDisplayName();
+            if (mReadOnlyDisplayName.equals(displayName)) {
+                // The user did not modify the default display name, erase it and
+                // check if the user made any other changes
+                mReadOnlyNameEditorView.setDisplayName(null);
+                if (hasPendingChanges()) {
+                    // Other changes were made to the aggregate contact, restore
+                    // the display name and proceed.
+                    mReadOnlyNameEditorView.setDisplayName(displayName);
+                    hasPendingChanges = true;
+                } else {
+                    // No other changes were made to the aggregate contact. Don't add back
+                    // the displayName so that a "bogus" contact is not created.
+                    hasPendingChanges = false;
+                }
+            } else {
+                hasPendingChanges = true;
+            }
+        }
+
+        if (!hasPendingChanges) {
             if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
                 // We don't have anything to save and there isn't even an existing contact yet.
                 // Nothing to do, simply go back to editing mode
@@ -1120,7 +1152,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             }
         }
 
-        String displayName = null;
+        String readOnlyDisplayName = null;
         // Check for writable raw contacts.  If there are none, then we need to create one so user
         // can edit.  For the user profile case, there is already an editable contact.
         if (!contact.isUserProfile() && !contact.isWritableContact(mContext)) {
@@ -1128,12 +1160,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
             // This is potentially an asynchronous call and will add deltas to list.
             selectAccountAndCreateContact();
-            displayName = contact.getDisplayName();
+
+            readOnlyDisplayName = contact.getDisplayName();
         }
 
-        // This also adds deltas to list
-        // If displayName is null at this point it is simply ignored later on by the editor.
-        setStateForExistingContact(displayName, contact.isUserProfile(), mRawContacts);
+        // This also adds deltas to list.  If readOnlyDisplayName is null at this point it is
+        // simply ignored later on by the editor.
+        setStateForExistingContact(readOnlyDisplayName, contact.isUserProfile(), mRawContacts);
     }
 
     /**
@@ -1202,10 +1235,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * Prepare {@link #mState} for an existing contact.
      */
-    protected void setStateForExistingContact(String displayName, boolean isUserProfile,
+    protected void setStateForExistingContact(String readOnlyDisplayName, boolean isUserProfile,
             ImmutableList<RawContact> rawContacts) {
         setEnabled(true);
-        mDefaultDisplayName = displayName;
+        mReadOnlyDisplayName = readOnlyDisplayName;
 
         mState.addAll(rawContacts.iterator());
         setIntentExtras(mIntentExtras);
