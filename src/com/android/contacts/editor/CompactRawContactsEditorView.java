@@ -137,6 +137,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private long mPhotoRawContactId;
 
+    private StructuredNameEditorView mDefaultNameEditorView;
+
     public CompactRawContactsEditorView(Context context) {
         super(context);
     }
@@ -233,6 +235,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return mPhotoRawContactId;
     }
 
+    public StructuredNameEditorView getDefaultNameEditorView() {
+        return mDefaultNameEditorView;
+    }
+
     public StructuredNameEditorView getStructuredNameEditorView() {
         // We only ever show one StructuredName
         return mNames.getChildCount() == 0
@@ -254,9 +260,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return mNames.getChildAt(0).findViewById(R.id.anchor_view);
     }
 
+    /**
+     * @param readOnlyDisplayName The display name to set on the new raw contact created in order
+     *         to edit a read-only contact.
+     */
     public void setState(RawContactDeltaList rawContactDeltas,
-            MaterialColorMapUtils.MaterialPalette materialPalette,
-            ViewIdGenerator viewIdGenerator, long photoId, long nameId) {
+            MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
+            long photoId, long nameId, String readOnlyDisplayName) {
         mNames.removeAllViews();
         mPhoneticNames.removeAllViews();
         mNicknames.removeAllViews();
@@ -275,7 +285,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         vlog("Setting compact editor state from " + rawContactDeltas);
         addPhotoView(rawContactDeltas, viewIdGenerator, photoId);
-        addStructuredNameView(rawContactDeltas, nameId);
+        addStructuredNameView(rawContactDeltas, nameId, readOnlyDisplayName);
         addEditorViews(rawContactDeltas);
         removeExtraEmptyTextFields(mPhoneNumbers);
         removeExtraEmptyTextFields(mEmails);
@@ -364,7 +374,42 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mPhoto.setVisibility(View.GONE);
     }
 
-    private void addStructuredNameView(RawContactDeltaList rawContactDeltas, long nameId) {
+    private void addStructuredNameView(RawContactDeltaList rawContactDeltas, long nameId,
+            String readOnlyDisplayName) {
+        // If we're editing a read-only contact we want to display the name from the read-only
+        // contact in a structured name editor backed by the new raw contact that was created.
+        // The new raw contact is writable and merging it with the read-only contact allows us
+        // to edit the read-only contact. See go/editing-read-only-contacts
+        if (!TextUtils.isEmpty(readOnlyDisplayName)) {
+            for (RawContactDelta rawContactDelta : rawContactDeltas) {
+                if (!rawContactDelta.isVisible()) continue;
+                final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+
+                // Make sure we have a structured name
+                RawContactModifier.ensureKindExists(
+                        rawContactDelta, accountType, StructuredName.CONTENT_ITEM_TYPE);
+
+                if (accountType.areContactsWritable()) {
+                    for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(
+                            StructuredName.CONTENT_ITEM_TYPE)) {
+                        if (valuesDelta != null) {
+                            mNameValuesDelta = valuesDelta;
+                            final NameEditorListener nameEditorListener = new NameEditorListener(
+                                    mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
+                            final StructuredNameEditorView nameEditorView =
+                                    inflateStructuredNameEditorView(mNames, accountType,
+                                            mNameValuesDelta, rawContactDelta, nameEditorListener,
+                                            !accountType.areContactsWritable());
+                            nameEditorView.setDisplayName(readOnlyDisplayName);
+                            mNames.addView(nameEditorView);
+                            mDefaultNameEditorView = nameEditorView;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
         // Look for a match for the name ID that was passed in
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
             if (!rawContactDelta.isVisible()) continue;
