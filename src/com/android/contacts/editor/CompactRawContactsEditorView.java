@@ -284,7 +284,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mMaterialPalette = materialPalette;
 
         vlog("Setting compact editor state from " + rawContactDeltas);
-        addPhotoView(rawContactDeltas, viewIdGenerator, photoId);
+        addPhotoView(rawContactDeltas, viewIdGenerator, photoId, readOnlyDisplayName);
         addStructuredNameView(rawContactDeltas, nameId, readOnlyDisplayName);
         addEditorViews(rawContactDeltas);
         removeExtraEmptyTextFields(mPhoneNumbers);
@@ -292,7 +292,37 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private void addPhotoView(RawContactDeltaList rawContactDeltas,
-            ViewIdGenerator viewIdGenerator, long photoId) {
+            ViewIdGenerator viewIdGenerator, long photoId, String readOnlyDisplayName) {
+        // If we're editing a read-only contact, the display name from the read-only
+        // contact is non empty and we can use it determine whether to back the photo editor with
+        // the empty new raw contact delta.  See go/editing-read-only-contacts
+        final boolean readOnlyContact = !TextUtils.isEmpty(readOnlyDisplayName);
+        if (readOnlyContact) {
+            for (RawContactDelta rawContactDelta : rawContactDeltas) {
+                if (!rawContactDelta.isVisible()) continue;
+                final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+
+                // Make sure we have a photo
+                RawContactModifier.ensureKindExists(
+                        rawContactDelta, accountType, Photo.CONTENT_ITEM_TYPE);
+
+                final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
+                if (accountType.areContactsWritable()) {
+                    for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(
+                            Photo.CONTENT_ITEM_TYPE)) {
+                        if (valuesDelta != null) {
+                            // Break the loop but don't return because we need to keep going to
+                            // in order to show the photo from the read-only contact.
+                            mPhotoRawContactId = rawContactDelta.getRawContactId();
+                            mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
+                                    /* readOnly =*/ false, mMaterialPalette, viewIdGenerator);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         // Look for a match for the photo ID that was passed in
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
             if (!rawContactDelta.isVisible()) continue;
@@ -308,10 +338,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                         : rawContactDelta.getMimeEntries(Photo.CONTENT_ITEM_TYPE)) {
                     if (valuesDelta != null && valuesDelta.getId() != null
                             && valuesDelta.getId().equals(photoId)) {
-                        mPhotoRawContactId = rawContactDelta.getRawContactId();
-                        mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
-                                !accountType.areContactsWritable(),
-                                mMaterialPalette, viewIdGenerator);
+                        if (readOnlyContact) {
+                            mPhoto.setPhoto(valuesDelta);
+                        } else {
+                            mPhotoRawContactId = rawContactDelta.getRawContactId();
+                            mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
+                                    !accountType.areContactsWritable(),
+                                    mMaterialPalette, viewIdGenerator);
+                        }
                         return;
                     }
                 }
@@ -327,10 +361,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 final ValuesDelta valuesDelta = getNonEmptySuperPrimaryValuesDeltas(
                         rawContactDelta, Photo.CONTENT_ITEM_TYPE, dataKind);
                 if (valuesDelta != null) {
-                    mPhotoRawContactId = rawContactDelta.getRawContactId();
-                    mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
-                            !accountType.areContactsWritable(), mMaterialPalette,
-                            viewIdGenerator);
+                    if (readOnlyContact) {
+                        mPhoto.setPhoto(valuesDelta);
+                    } else {
+                        mPhotoRawContactId = rawContactDelta.getRawContactId();
+                        mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
+                                !accountType.areContactsWritable(), mMaterialPalette,
+                                viewIdGenerator);
+                    }
                     return;
                 }
             }
@@ -344,10 +382,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 final List<ValuesDelta> valuesDeltas = getNonEmptyValuesDeltas(
                         rawContactDelta, Photo.CONTENT_ITEM_TYPE, dataKind);
                 if (valuesDeltas != null && !valuesDeltas.isEmpty()) {
-                    mPhotoRawContactId = rawContactDelta.getRawContactId();
-                    mPhoto.setValues(dataKind, valuesDeltas.get(0), rawContactDelta,
-                            !accountType.areContactsWritable(), mMaterialPalette,
-                            viewIdGenerator);
+                    if (readOnlyContact) {
+                        mPhoto.setPhoto(valuesDeltas.get(0));
+                    } else {
+                        mPhotoRawContactId = rawContactDelta.getRawContactId();
+                        mPhoto.setValues(dataKind, valuesDeltas.get(0), rawContactDelta,
+                                !accountType.areContactsWritable(), mMaterialPalette,
+                                viewIdGenerator);
+                    }
                     return;
                 }
             }
@@ -361,10 +403,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
                         dataKind.mimeType, /* forceSelection =*/ true);
                 if (valuesDelta != null) {
-                    mPhotoRawContactId = rawContactDelta.getRawContactId();
-                    mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
-                            !accountType.areContactsWritable(), mMaterialPalette,
-                            viewIdGenerator);
+                    if (readOnlyContact) {
+                        mPhoto.setPhoto(valuesDelta);
+                    } else {
+                        mPhotoRawContactId = rawContactDelta.getRawContactId();
+                        mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
+                                !accountType.areContactsWritable(), mMaterialPalette,
+                                viewIdGenerator);
+                    }
                     return;
                 }
             }
