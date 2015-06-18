@@ -130,6 +130,17 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
 
         setId(viewIdGenerator.getId(rawContactDelta, dataKind, valuesDelta, /* viewIndex =*/ 0));
 
+        setPhoto(valuesDelta);
+    }
+
+    /**
+     * Sets the photo bitmap on this view from the given ValuesDelta. Note that the
+     * RawContactDelta underlying this view is not modified in any way.  Using this method allows
+     * you to show one photo (from a read-only contact, for example) and yet have a different
+     * raw contact updated when a new photo is set (from the new raw contact created and attached
+     * to the read-only contact). See go/editing-read-only-contacts
+     */
+    public void setPhoto(ValuesDelta valuesDelta) {
         if (valuesDelta == null) {
             setDefaultPhoto();
         } else {
