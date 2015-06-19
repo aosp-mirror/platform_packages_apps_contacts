@@ -197,12 +197,8 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
     protected void updateAccountHeaderContentDescription() {
         final StringBuilder builder = new StringBuilder();
-        if (!TextUtils.isEmpty(mAccountType.getText())) {
-            builder.append(mAccountType.getText()).append('\n');
-        }
-        if (!TextUtils.isEmpty(mAccountName.getText())) {
-            builder.append(mAccountName.getText()).append('\n');
-        }
+        builder.append(EditorUiUtils.getAccountInfoContentDescription(
+                mAccountName.getText(), mAccountType.getText()));
         if (mExpandAccountButton.getVisibility() == View.VISIBLE) {
             builder.append(getResources().getString(isCollapsed()
                     ? R.string.content_description_expand_editor
