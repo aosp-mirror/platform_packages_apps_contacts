@@ -162,6 +162,12 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         boolean save(int saveMode, boolean backPressed);
 
         /**
+         * If there are no unsaved changes, just close the editor, otherwise the user is prompted
+         * before discarding unsaved changes.
+         */
+        boolean revert();
+
+        /**
          * Invoked after the contact is saved.
          */
         void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
