@@ -36,6 +36,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -188,6 +189,14 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
             save(SaveMode.RELOAD, /* backPressed =*/ false);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            return revert();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -347,7 +356,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (isInsert) {
             // For inserts, prevent any changes from being saved when the base fragment is destroyed
             mStatus = Status.CLOSING;
-        } else if (hasPendingChanges()) {
+        } else if (hasPendingRawContactChanges()) {
             // Save whatever is in the form
             save(SaveMode.CLOSE, /* backPressed =*/ false);
         }

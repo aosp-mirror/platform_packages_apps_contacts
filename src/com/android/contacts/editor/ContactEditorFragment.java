@@ -131,8 +131,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Override the home/done options to return to the compact editor
-        if (item.getItemId() == android.R.id.home || item.getItemId() == R.id.menu_done) {
+        if (item.getItemId() == android.R.id.home) {
             return save(SaveMode.COMPACT, /* backPressed =*/ true);
         }
         return super.onOptionsItemSelected(item);

@@ -150,6 +150,9 @@
     <!-- Menu item that joins an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Merge</string>
 
+    <!-- Menu item (in the action bar) to indicate that changes should be saved [CHAR LIMIT=20] -->
+    <string name="menu_save">Save</string>
+
     <!-- Heading of the Join Contact screen -->
     <string name="titleJoinContactDataWith">Join contacts</string>
 

@@ -743,7 +743,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // This supports the keyboard shortcut to save changes to a contact but shouldn't be visible
         // because the custom action bar contains the "save" button now (not the overflow menu).
         // TODO: Find a better way to handle shortcuts, i.e. onKeyDown()?
-        final MenuItem doneMenu = menu.findItem(R.id.menu_done);
+        final MenuItem saveMenu = menu.findItem(R.id.menu_save);
         final MenuItem splitMenu = menu.findItem(R.id.menu_split);
         final MenuItem joinMenu = menu.findItem(R.id.menu_join);
         final MenuItem helpMenu = menu.findItem(R.id.menu_help);
@@ -753,21 +753,18 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
 
         // Set visibility of menus
-        doneMenu.setVisible(false);
-
         // Discard menu is only available if at least one raw contact is editable
         discardMenu.setVisible(mState != null &&
                 mState.getFirstWritableRawContact(mContext) != null);
 
         // help menu depending on whether this is inserting or editing
-        if (Intent.ACTION_INSERT.equals(mAction) ||
-                ContactEditorBaseActivity.ACTION_INSERT.equals(mAction)) {
+        if (isInsert(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
+            discardMenu.setVisible(false);
             splitMenu.setVisible(false);
             joinMenu.setVisible(false);
             deleteMenu.setVisible(false);
-        } else if (Intent.ACTION_EDIT.equals(mAction) ||
-                ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
+        } else if (isEdit(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
             // Split only if there is more than one raw (non-user profile) contact and doing so
             // won't result in an empty contact
@@ -795,8 +792,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-            case R.id.menu_done:
+            case R.id.menu_save:
                 return save(SaveMode.CLOSE, /* backPressed =*/ true);
             case R.id.menu_discard:
                 return revert();
@@ -823,7 +819,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         return false;
     }
 
-    private boolean revert() {
+    @Override
+    public boolean revert() {
         if (mState.isEmpty() || !hasPendingChanges()) {
             onCancelEditConfirmed();
         } else {
@@ -870,7 +867,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // If we just started creating a new contact and haven't added any data, it's too
         // early to do a join
-        if (mState.size() == 1 && mState.get(0).isContactInsert() && !hasPendingChanges()) {
+        if (mState.size() == 1 && mState.get(0).isContactInsert()
+                && !hasPendingRawContactChanges()) {
             Toast.makeText(mContext, R.string.toast_join_with_empty_contact,
                     Toast.LENGTH_LONG).show();
             return true;
@@ -923,33 +921,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // Determine if changes were made in the editor that need to be saved
         // See go/editing-read-only-contacts
-        boolean hasPendingChanges;
-        if (mReadOnlyNameEditorView == null || mReadOnlyDisplayName == null) {
-            hasPendingChanges = hasPendingChanges();
-        } else {
-            // We created a new raw contact delta with a default display name. We must test for
-            // pending changes while ignoring the default display name.
-            final String displayName = mReadOnlyNameEditorView.getDisplayName();
-            if (mReadOnlyDisplayName.equals(displayName)) {
-                // The user did not modify the default display name, erase it and
-                // check if the user made any other changes
-                mReadOnlyNameEditorView.setDisplayName(null);
-                if (hasPendingChanges()) {
-                    // Other changes were made to the aggregate contact, restore
-                    // the display name and proceed.
-                    mReadOnlyNameEditorView.setDisplayName(displayName);
-                    hasPendingChanges = true;
-                } else {
-                    // No other changes were made to the aggregate contact. Don't add back
-                    // the displayName so that a "bogus" contact is not created.
-                    hasPendingChanges = false;
-                }
-            } else {
-                hasPendingChanges = true;
-            }
-        }
-
-        if (!hasPendingChanges) {
+        if (!hasPendingChanges()) {
             if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
                 // We don't have anything to save and there isn't even an existing contact yet.
                 // Nothing to do, simply go back to editing mode
@@ -1006,9 +978,39 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Return true if there are any edits to the current contact which need to
      * be saved.
      */
-    protected boolean hasPendingChanges() {
+    protected boolean hasPendingRawContactChanges() {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         return RawContactModifier.hasChanges(mState, accountTypes);
+    }
+
+    /**
+     * Determines if changes were made in the editor that need to be saved, while taking into
+     * account that name changes are not realfor read-only contacts.
+     * See go/editing-read-only-contacts
+     */
+    protected boolean hasPendingChanges() {
+        if (mReadOnlyNameEditorView == null || mReadOnlyDisplayName == null) {
+            return hasPendingRawContactChanges();
+        }
+        // We created a new raw contact delta with a default display name. We must test for
+        // pending changes while ignoring the default display name.
+        final String displayName = mReadOnlyNameEditorView.getDisplayName();
+        if (mReadOnlyDisplayName.equals(displayName)) {
+            // The user did not modify the default display name, erase it and
+            // check if the user made any other changes
+            mReadOnlyNameEditorView.setDisplayName(null);
+            if (hasPendingRawContactChanges()) {
+                // Other changes were made to the aggregate contact, restore
+                // the display name and proceed.
+                mReadOnlyNameEditorView.setDisplayName(displayName);
+                return true;
+            } else {
+                // No other changes were made to the aggregate contact. Don't add back
+                // the displayName so that a "bogus" contact is not created.
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -1678,5 +1680,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected static boolean isInsert(String action) {
         return Intent.ACTION_INSERT.equals(action)
                 || ContactEditorBaseActivity.ACTION_INSERT.equals(action);
+    }
+
+    protected static boolean isEdit(String action) {
+        return Intent.ACTION_EDIT.equals(action)
+                || ContactEditorBaseActivity.ACTION_EDIT.equals(action);
     }
 }
