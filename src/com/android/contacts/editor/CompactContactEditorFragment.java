@@ -209,7 +209,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
         editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId, mNameId,
-                mReadOnlyDisplayName);
+                mReadOnlyDisplayName, mHasNewContact, mIsUserProfile);
         if (mReadOnlyDisplayName != null) {
             mReadOnlyNameEditorView = editorView.getDefaultNameEditorView();
         }

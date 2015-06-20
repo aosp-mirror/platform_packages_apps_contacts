@@ -124,6 +124,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     private static final String KEY_HAS_NEW_CONTACT = "hasNewContact";
     private static final String KEY_NEW_CONTACT_READY = "newContactDataReady";
+    private static final String KEY_NEW_CONTACT_ACCOUNT_CHANGED = "newContactAccountChanged";
 
     private static final String KEY_IS_EDIT = "isEdit";
     private static final String KEY_EXISTING_CONTACT_READY = "existingContactDataReady";
@@ -348,6 +349,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Whether to show the new contact blank form and if it's corresponding delta is ready.
     protected boolean mHasNewContact;
     protected boolean mNewContactDataReady;
+    protected boolean mNewContactAccountChanged;
 
     // Whether it's an edit of existing contact and if it's corresponding delta is ready.
     protected boolean mIsEdit;
@@ -488,6 +490,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
             mHasNewContact = savedState.getBoolean(KEY_HAS_NEW_CONTACT);
             mNewContactDataReady = savedState.getBoolean(KEY_NEW_CONTACT_READY);
+            mNewContactAccountChanged = savedState.getBoolean(KEY_NEW_CONTACT_ACCOUNT_CHANGED);
 
             mIsEdit = savedState.getBoolean(KEY_IS_EDIT);
             mExistingContactDataReady = savedState.getBoolean(KEY_EXISTING_CONTACT_READY);
@@ -613,6 +616,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         outState.putInt(KEY_STATUS, mStatus);
         outState.putBoolean(KEY_HAS_NEW_CONTACT, mHasNewContact);
         outState.putBoolean(KEY_NEW_CONTACT_READY, mNewContactDataReady);
+        outState.putBoolean(KEY_NEW_CONTACT_ACCOUNT_CHANGED, mNewContactAccountChanged);
         outState.putBoolean(KEY_IS_EDIT, mIsEdit);
         outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
 
@@ -919,9 +923,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         mStatus = Status.SAVING;
 
-        // Determine if changes were made in the editor that need to be saved
-        // See go/editing-read-only-contacts
-        if (!hasPendingChanges()) {
+        // If the user did nothing else expect change the account type, we must still
+        // consider this as an unsaved change so the new rawcontact is passed back to the
+        // compact editor on inserts.
+        if (!mNewContactAccountChanged && !hasPendingChanges()) {
             if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
                 // We don't have anything to save and there isn't even an existing contact yet.
                 // Nothing to do, simply go back to editing mode
@@ -992,8 +997,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         if (mReadOnlyNameEditorView == null || mReadOnlyDisplayName == null) {
             return hasPendingRawContactChanges();
         }
-        // We created a new raw contact delta with a default display name. We must test for
-        // pending changes while ignoring the default display name.
+        // We created a new raw contact delta with a default display name.
+        // We must test for pending changes while ignoring the default display name.
         final String displayName = mReadOnlyNameEditorView.getDisplayName();
         if (mReadOnlyDisplayName.equals(displayName)) {
             // The user did not modify the default display name, erase it and
