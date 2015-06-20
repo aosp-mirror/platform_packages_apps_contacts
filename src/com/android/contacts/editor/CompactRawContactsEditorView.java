@@ -24,6 +24,7 @@ import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditField;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
@@ -40,10 +41,12 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,6 +126,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ViewIdGenerator mViewIdGenerator;
     private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
 
+    private View mAccountContainer;
+    private TextView mAccountTypeView;
+    private TextView mAccountNameView;
     private CompactPhotoEditorView mPhoto;
     private ViewGroup mNames;
     private ViewGroup mPhoneticNames;
@@ -162,6 +168,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mLayoutInflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        mAccountContainer = findViewById(R.id.account_container);
+        mAccountTypeView = (TextView) findViewById(R.id.account_type);
+        mAccountNameView = (TextView) findViewById(R.id.account_name);
         mPhoto = (CompactPhotoEditorView) findViewById(R.id.photo_editor);
         mNames = (LinearLayout) findViewById(R.id.names);
         mPhoneticNames = (LinearLayout) findViewById(R.id.phonetic_names);
@@ -266,7 +275,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      */
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
-            long photoId, long nameId, String readOnlyDisplayName) {
+            long photoId, long nameId, String readOnlyDisplayName, boolean hasNewContact,
+            boolean isUserProfile) {
         mNames.removeAllViews();
         mPhoneticNames.removeAllViews();
         mNicknames.removeAllViews();
@@ -284,11 +294,77 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mMaterialPalette = materialPalette;
 
         vlog("Setting compact editor state from " + rawContactDeltas);
+        addAccountInfo(rawContactDeltas, hasNewContact, readOnlyDisplayName, isUserProfile);
         addPhotoView(rawContactDeltas, viewIdGenerator, photoId, readOnlyDisplayName);
         addStructuredNameView(rawContactDeltas, nameId, readOnlyDisplayName);
         addEditorViews(rawContactDeltas);
         removeExtraEmptyTextFields(mPhoneNumbers);
         removeExtraEmptyTextFields(mEmails);
+    }
+
+    private void addAccountInfo(RawContactDeltaList rawContactDeltas, boolean hasNewContact,
+            String readOnlyDisplayName, boolean isUserProfile) {
+        // Only show account info for inserts and first time edits of read-only accounts
+        if (!hasNewContact && TextUtils.isEmpty(readOnlyDisplayName)) {
+            vlog("Account info hidden");
+            mAccountContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        // Get the default account
+        final AccountWithDataSet defaultAccountWithDataSet =
+                ContactEditorUtils.getInstance(getContext()).getDefaultAccount();
+        if (defaultAccountWithDataSet == null) {
+            vlog("Account info hidden because default account not set");
+            mAccountContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        // We can assume the first writable raw contact is the newly created one because
+        // inserts have a delta list of size 1 and read-only contacts are should be of size 2
+        RawContactDelta defaultAccountRawContactDelta = null;
+        AccountType accountType = null;
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (!rawContactDelta.isVisible()) continue;
+            accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+            if (accountType != null && accountType.areContactsWritable()) {
+                defaultAccountRawContactDelta = rawContactDelta;
+                break;
+            }
+        }
+        if (defaultAccountRawContactDelta == null) {
+            vlog("Account info hidden because no raw contact delta matched");
+            mAccountContainer.setVisibility(View.GONE);
+            return;
+        }
+        if (accountType == null) {
+            vlog("Account info hidden because no account type returned from raw contact delta");
+            mAccountContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        // Get the account information for the default account RawContactDelta
+        final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
+                isUserProfile, defaultAccountRawContactDelta.getAccountName(),
+                accountType.getDisplayLabel(getContext()));
+
+        // Set the account information already
+        if (accountInfo == null) {
+            vlog("Account info hidden because no account info could be composed");
+            mAccountContainer.setVisibility(View.GONE);
+            return;
+        }
+        vlog("Account info loaded");
+        if (accountInfo.first == null) {
+            mAccountNameView.setVisibility(View.GONE);
+        } else {
+            mAccountNameView.setVisibility(View.VISIBLE);
+            mAccountNameView.setText(accountInfo.first);
+        }
+        mAccountTypeView.setText(accountInfo.second);
+
+        mAccountContainer.setContentDescription(EditorUiUtils.getAccountInfoContentDescription(
+                accountInfo.first, accountInfo.second));
     }
 
     private void addPhotoView(RawContactDeltaList rawContactDeltas,

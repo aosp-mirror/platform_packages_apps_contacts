@@ -43,6 +43,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+            <include layout="@layout/compact_account_info" />
+
             <include layout="@layout/compact_contact_editor_fields"/>
 
         </LinearLayout>
