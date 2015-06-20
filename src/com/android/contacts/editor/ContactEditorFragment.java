@@ -477,6 +477,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                         UiClosables.closeQuietly(popup);
                         AccountWithDataSet newAccount = adapter.getItem(position);
                         if (!newAccount.equals(currentAccount)) {
+                            mNewContactAccountChanged = true;
                             rebindEditorsForNewContact(currentState, currentAccount, newAccount);
                         }
                     }
