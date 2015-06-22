@@ -58,6 +58,8 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"ಸಂಪರ್ಕವನ್ನು ಪ್ರತ್ಯೇಕಿಸುವುದೇ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"ಈ ಸಂಪರ್ಕವನ್ನು ಬಹು ಸಂಪರ್ಕಗಳಾಗಿ ಪ್ರತ್ಯೇಕಿಸಲಾಗುವುದು."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"ವಿಲೀನಗೊಳಿಸು"</string>
+    <!-- no translation found for menu_save (1727844363591825909) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿ"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> ಅವರೊಂದಿಗೆ ನೀವು ಸೇರಿಸಲು ಬಯಸುವ ಸಂಪರ್ಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸು"</string>

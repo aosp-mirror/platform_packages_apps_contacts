@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"فصل جهة الاتصال؟"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"سيتم فصل جهة الاتصال هذه إلى عدة جهات اتصال."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"دمج"</string>
+    <string name="menu_save" msgid="1727844363591825909">"حفظ"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ضم جهات الاتصال"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"اختر جهة الاتصال التي تريد ضمها إلى <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"عرض جميع جهات الاتصال"</string>

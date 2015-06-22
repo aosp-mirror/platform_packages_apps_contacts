@@ -58,6 +58,8 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"مخاطب تفکیک شود؟"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"این مخاطب، به چندین مخاطب تفکیک خواهد شد."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"ادغام"</string>
+    <!-- no translation found for menu_save (1727844363591825909) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"پیوستن به مخاطبین"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"مخاطبی را که می‌خواهید با <xliff:g id="NAME">%s</xliff:g> ادغام شود، انتخاب کنید:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"نمایش همه مخاطبین"</string>

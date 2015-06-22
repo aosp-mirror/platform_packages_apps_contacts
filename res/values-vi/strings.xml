@@ -58,6 +58,8 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Tách địa chỉ liên hệ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Địa chỉ liên hệ này sẽ được tách thành nhiều địa chỉ liên hệ."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Hợp nhất"</string>
+    <!-- no translation found for menu_save (1727844363591825909) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kết hợp danh bạ"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Chọn địa chỉ liên hệ bạn muốn kết hợp với <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Hiển thị tất cả liên hệ"</string>

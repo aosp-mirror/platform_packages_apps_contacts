@@ -58,6 +58,8 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Të veçohet kontakti?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ky kontakt do të shpërbëhet në disa kontakte."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Shkri"</string>
+    <!-- no translation found for menu_save (1727844363591825909) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Bashkoji kontaktet"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Zgjidh kontaktin që dëshiron të bashkosh me <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Shfaq të gjitha kontaktet"</string>
@@ -141,7 +143,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Shto një lidhje"</string>
     <string name="recent" msgid="2659189233141493004">"Të fundit"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Përditësimet së fundi"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Kontakt i <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Nuk mund të redaktohet nga ky aplikacion."</string>

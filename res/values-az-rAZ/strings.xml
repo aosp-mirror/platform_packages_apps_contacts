@@ -58,6 +58,8 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Kontakt bölünsün?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Bu kontakt çoxsaylı kontaktlara bölünəcək."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Birləşdir"</string>
+    <!-- no translation found for menu_save (1727844363591825909) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontaktları birləşdirin"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> ilə birləşdirmək istədiyiniz kontaktı seçin:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Bütün kontaktları göstərin"</string>
@@ -226,7 +228,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Kontaktlarınızı aşağıdakı hesablardan biri ilə sinxronlaşdıra bilərsiniz. Hansını istifadə etmək istəyirsiniz?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Yeni kontakt əlavə edin"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontakta düzəliş edin"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Lokal olaraq saxlayın"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Lokal saxlayın"</string>
     <string name="add_account" msgid="8201790677994503186">"Hesab əlavə edin"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Yeni hesab əlavə edin"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Data baza fayllarını eksport edin"</string>

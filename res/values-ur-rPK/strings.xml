@@ -58,6 +58,8 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"رابطہ الگ کریں؟"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"یہ رابطہ متعدد رابطوں میں الگ کیا جائے گا۔"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"ضم کریں"</string>
+    <!-- no translation found for menu_save (1727844363591825909) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"رابطوں کو ملائیں"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> کے ساتھ جس رابطہ کو ملانا ہے اسے منتخب کریں:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"سبھی رابطے دکھائیں"</string>

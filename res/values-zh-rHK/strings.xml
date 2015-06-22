@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"要分拆聯絡人記錄嗎？"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"這個聯絡人記錄即將分拆為多個。"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"合併"</string>
+    <string name="menu_save" msgid="1727844363591825909">"儲存"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合併聯絡人"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"選擇要與<xliff:g id="NAME">%s</xliff:g>合併的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>

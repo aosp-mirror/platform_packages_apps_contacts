@@ -58,6 +58,8 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"संपर्क विभाजित करायचा?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"हा संपर्क एकाधिक संपर्कांमध्‍ये विभाजित केला जाईल."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"विलीन करा"</string>
+    <!-- no translation found for menu_save (1727844363591825909) -->
+    <skip />
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"संपर्कांमध्‍ये सामील व्हा"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"आपण <xliff:g id="NAME">%s</xliff:g> सह सामील होऊ इच्‍छिता तो संपर्क निवडा:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सर्व संपर्क दर्शवा"</string>
