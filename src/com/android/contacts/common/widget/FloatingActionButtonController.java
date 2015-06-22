@@ -168,6 +168,8 @@ public class FloatingActionButtonController {
      */
     public void scaleIn(int delayMs) {
         if (isVisible()) {
+            mFloatingActionButtonContainer.setScaleX(1);
+            mFloatingActionButtonContainer.setScaleY(1);
             return;
         }
 
