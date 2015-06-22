@@ -161,7 +161,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
                     // a reference to a larger version of PHOTO that we can bind to the UI.
                     // Otherwise, we need to wait for a call to #setFullSizedPhoto() to update
                     // our full sized image.
-                    final Integer fileId = valuesDelta.getAsInteger(Photo.PHOTO_FILE_ID);
+                    final Long fileId = valuesDelta.getAsLong(Photo.PHOTO_FILE_ID);
                     if (fileId != null) {
                         final Uri photoUri = DisplayPhoto.CONTENT_URI.buildUpon()
                                 .appendPath(fileId.toString()).build();
