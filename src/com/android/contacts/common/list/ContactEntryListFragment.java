@@ -31,6 +31,7 @@ import android.os.Message;
 import android.os.Parcelable;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -346,7 +347,19 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     public CursorLoader createCursorLoader(Context context) {
-        return new CursorLoader(context, null, null, null, null, null);
+        return new CursorLoader(context, null, null, null, null, null) {
+            @Override
+            protected Cursor onLoadInBackground() {
+                try {
+                    return super.onLoadInBackground();
+                } catch (RuntimeException e) {
+                    // We don't even know what the projection should be, so no point trying to
+                    // return an empty MatrixCursor with the correct projection here.
+                    Log.w(TAG, "RuntimeException while trying to query ContactsProvider.");
+                    return null;
+                }
+            }
+        };
     }
 
     private void startLoadingDirectoryPartition(int partitionIndex) {
