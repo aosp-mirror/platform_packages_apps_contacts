@@ -36,6 +36,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.activity.RequestImportVCardPermissionsActivity;
 
 import java.io.File;
 
@@ -150,6 +151,10 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+
+        if (RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
 
         // Check directory is available.
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
