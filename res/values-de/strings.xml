@@ -58,8 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Kontakt trennen?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Dieser Kontakt wird in mehrere Kontakte aufgeteilt."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Zusammenführen"</string>
-    <!-- no translation found for menu_save (1727844363591825909) -->
-    <skip />
+    <string name="menu_save" msgid="1727844363591825909">"Speichern"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontakte zusammenführen"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Wählen Sie den Kontakt aus, den Sie mit <xliff:g id="NAME">%s</xliff:g> zusammenführen möchten."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle Kontakte anzeigen"</string>

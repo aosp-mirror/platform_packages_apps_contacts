@@ -58,8 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Ihiwalay ang contact?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Paghihiwa-hiwalayin ang contact na ito sa maraming contact."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Pagsamahin"</string>
-    <!-- no translation found for menu_save (1727844363591825909) -->
-    <skip />
+    <string name="menu_save" msgid="1727844363591825909">"I-save"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Sumali sa mga contact"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Piliin ang contact na gusto mong isama sa/kay <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Ipakita ang lahat ng mga contact"</string>

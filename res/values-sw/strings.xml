@@ -58,8 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Tenganisha anwani?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Mwasiliani atatenganishwa kwa anwani kadha."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Unganisha"</string>
-    <!-- no translation found for menu_save (1727844363591825909) -->
-    <skip />
+    <string name="menu_save" msgid="1727844363591825909">"Hifadhi"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unganisha anwani"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Chagua mwasiliani unayetaka kuugana naye kwa <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Onyesha anwani zote"</string>

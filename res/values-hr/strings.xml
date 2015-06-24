@@ -58,8 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Razdvojiti kontakt?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ovaj će se kontakt razdvojiti na više kontakata."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Spoji"</string>
-    <!-- no translation found for menu_save (1727844363591825909) -->
-    <skip />
+    <string name="menu_save" msgid="1727844363591825909">"Spremi"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Pridruži kontakte"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Odaberite kontakt koji želite pridružiti imenu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Prikaži sve kontakte"</string>

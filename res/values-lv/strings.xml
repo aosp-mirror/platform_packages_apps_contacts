@@ -58,8 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Atdalīt kontaktp.?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Šī kontaktpersona tiks sadalīta vairākās kontaktpersonās."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Apvienot"</string>
-    <!-- no translation found for menu_save (1727844363591825909) -->
-    <skip />
+    <string name="menu_save" msgid="1727844363591825909">"Saglabāt"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontaktpersonu apvienošana"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Izvēlieties kontaktpersonu, kuru vēlaties apvienot ar kontaktpersonu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Rādīt visas kontaktpersonas"</string>

@@ -58,8 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Kontaktua banandu?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Kontaktua hainbat kontaktutan bananduko da."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Bateratu"</string>
-    <!-- no translation found for menu_save (1727844363591825909) -->
-    <skip />
+    <string name="menu_save" msgid="1727844363591825909">"Gorde"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Batu kontaktuak"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Aukeratu <xliff:g id="NAME">%s</xliff:g> kontaktuarekin batu nahi duzun kontaktua:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Erakutsi kontaktu guztiak"</string>

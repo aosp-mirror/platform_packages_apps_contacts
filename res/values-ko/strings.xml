@@ -58,8 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"연락처를 분리하시겠습니까?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"여러 연락처로 분리됩니다."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"병합"</string>
-    <!-- no translation found for menu_save (1727844363591825909) -->
-    <skip />
+    <string name="menu_save" msgid="1727844363591825909">"저장"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"연락처 통합"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g>와(과) 통합할 연락처를 선택하세요."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"모든 연락처 표시"</string>
