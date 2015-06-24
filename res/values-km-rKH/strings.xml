@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"បំបែក​ទំនាក់ទំនង?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"នឹង​បំបែក​ទំនាក់ទំនង​នេះ​ទៅជា​ទំនាក់ទំនង​ច្រើន។"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"បញ្ចូលគ្នា"</string>
+    <string name="menu_save" msgid="1727844363591825909">"រក្សាទុក"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ភ្ជាប់​ទំនាក់ទំនង"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"ជ្រើស​ទំនាក់ទំនង​ដែល​អ្នក​ចង់​ភ្ជាប់​ជាមួយ <xliff:g id="NAME">%s</xliff:g>៖"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"បង្ហាញ​ទំនាក់​ទំនង​ទាំងអស់"</string>

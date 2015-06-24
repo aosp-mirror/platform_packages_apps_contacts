@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Skipta tengilið upp?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Þessum tengilið verður skipt upp í fleiri tengiliði."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Sameina"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Vista"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Sameina tengiliði"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Veldu tengiliðinn sem þú vilt að <xliff:g id="NAME">%s</xliff:g> sameinist:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Sýna alla tengiliði"</string>

@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"संपर्क अलग करें?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"यह संपर्क एकाधिक संपर्कों में अलग कर दिया जाएगा."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"एक बनाएं"</string>
+    <string name="menu_save" msgid="1727844363591825909">"सहेजें"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"संपर्क जोड़ें"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"वह संपर्क चुनें जिसे आप <xliff:g id="NAME">%s</xliff:g> के साथ जोड़ना चाहते हैं:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सभी संपर्क दिखाएं"</string>

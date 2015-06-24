@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Харилцагчийг хуваах уу?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Энэ харилцагч олон харилцагчид хуваагдах болно."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Нэгтгэх"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Хадгалах"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Харилцагчдыг холбох"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g>-тай холбохыг хүсэж буй харилцагчийг сонгоно уу:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Бүх харилцагчдыг харуулах"</string>

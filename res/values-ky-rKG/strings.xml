@@ -82,6 +82,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Байланыш бөлүнсүнбү?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Бул байланыш бир нече байланыштарга бөлүнөт."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Бириктирүү"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Сактоо"</string>
     <!-- no translation found for titleJoinContactDataWith (7684875775798635354) -->
     <skip />
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> менен бириктиргиңиз келген байланышты тандаңыз."</string>

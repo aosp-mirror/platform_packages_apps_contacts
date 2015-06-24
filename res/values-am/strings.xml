@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"ዕውቂያ ለይ"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"ይህ ዕውቅያ ወደ ብዙ ዕውቅያዎች ይለያል፡፡"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"አዋህድ"</string>
+    <string name="menu_save" msgid="1727844363591825909">"አስቀምጥ"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ዕውቄያዎችን አገናኝ"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"ከ<xliff:g id="NAME">%s</xliff:g> ጋር ለመቀላቀል የምትፈልገውን ዕውቂያ ምረጥ።"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ሁሉንም ዕውቂያዎች አሳይ"</string>

@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Контакт бөлінсін бе?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Бұл контакт бірнешеге бөлінеді."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Біріктіру"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Сақтау"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Контактілерді біріктіру"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> екеуі бірігетін контактіні таңдаңыз:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Барлық контактілерді көрсету"</string>

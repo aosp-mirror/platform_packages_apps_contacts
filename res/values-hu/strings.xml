@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Szétválasztja?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ezt a névjegyet több névjegyre osztja."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Egyesítés"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Mentés"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Névjegyek összekapcsolása"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Válassza ki azt a névjegyet, amelyet össze kíván kapcsolni ezzel a névjeggyel: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Az összes névjegy megjelenítése"</string>

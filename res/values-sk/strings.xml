@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Rozdeliť kontakt?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Tento kontakt sa rozdelí do viacerých kontaktov."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Zlúčiť"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Uložiť"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Spojiť kontakty"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Vyberte kontakt, ktorý chcete spojiť s kontaktom <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Zobraziť všetky kontakty"</string>

@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Dela upp kontakten?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Kontakten kommer att delas upp i flera kontakter."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Sammanfoga"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Spara"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kombinera kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Välj en kontakt som du vill slå ihop med <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Visa alla kontakter"</string>

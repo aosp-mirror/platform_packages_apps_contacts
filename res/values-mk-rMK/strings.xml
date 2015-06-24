@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Раздели контакт?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Овој контакт ќе се раздели во повеќе контакти."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Спои"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Зачувај"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Поврзи контакти"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Изберете го контактот што сакате да го поврзете со <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Прикажи ги сите контакти"</string>
