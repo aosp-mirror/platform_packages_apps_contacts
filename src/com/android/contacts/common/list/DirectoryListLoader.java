@@ -144,13 +144,15 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
                 throw new RuntimeException(
                         "Unsupported directory search mode: " + mDirectorySearchMode);
         }
-
-        Cursor cursor = context.getContentResolver().query(DirectoryQuery.URI,
-                DirectoryQuery.PROJECTION, selection, null, DirectoryQuery.ORDER_BY);
-        if (cursor == null) {
-            return result;
-        }
+        Cursor cursor = null;
         try {
+            cursor = context.getContentResolver().query(DirectoryQuery.URI,
+                    DirectoryQuery.PROJECTION, selection, null, DirectoryQuery.ORDER_BY);
+
+            if (cursor == null) {
+                return result;
+            }
+
             while(cursor.moveToNext()) {
                 long directoryId = cursor.getLong(DirectoryQuery.ID);
                 String directoryType = null;
@@ -169,8 +171,12 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
                 int photoSupport = cursor.getInt(DirectoryQuery.PHOTO_SUPPORT);
                 result.addRow(new Object[]{directoryId, directoryType, displayName, photoSupport});
             }
+        } catch (RuntimeException e) {
+            Log.w(TAG, "Runtime Exception when querying directory");
         } finally {
-            cursor.close();
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
         return result;
