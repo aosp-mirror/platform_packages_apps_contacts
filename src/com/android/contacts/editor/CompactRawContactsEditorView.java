@@ -345,8 +345,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         // Get the account information for the default account RawContactDelta
         final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
-                isUserProfile, defaultAccountRawContactDelta.getAccountName(),
-                accountType.getDisplayLabel(getContext()));
+                isUserProfile, defaultAccountRawContactDelta.getAccountName(), accountType);
 
         // Set the account information already
         if (accountInfo == null) {

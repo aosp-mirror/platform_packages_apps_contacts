@@ -28,6 +28,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -114,32 +115,19 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         mAccountType = state.getAccountType();
         mDataSet = state.getDataSet();
 
-        if (isProfile) {
-            if (TextUtils.isEmpty(mAccountName)) {
-                mAccountHeaderNameTextView.setVisibility(View.GONE);
-                mAccountHeaderTypeTextView.setText(R.string.local_profile_title);
-            } else {
-                CharSequence accountType = type.getDisplayLabel(getContext());
-                mAccountHeaderTypeTextView.setText(getContext().getString(
-                        R.string.external_profile_title,
-                        accountType));
-                mAccountHeaderNameTextView.setText(mAccountName);
-            }
+        final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
+                isProfile, state.getAccountName(), type);
+        if (accountInfo == null) {
+            // Hide this view so the other text view will be centered vertically
+            mAccountHeaderNameTextView.setVisibility(View.GONE);
         } else {
-            CharSequence accountType = type.getDisplayLabel(getContext());
-            if (TextUtils.isEmpty(accountType)) {
-                accountType = getContext().getString(R.string.account_phone);
-            }
-            if (!TextUtils.isEmpty(mAccountName)) {
-                mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
-                mAccountHeaderNameTextView.setText(
-                        getContext().getString(R.string.from_account_format, mAccountName));
-            } else {
-                // Hide this view so the other text view will be centered vertically
+            if (accountInfo.first == null) {
                 mAccountHeaderNameTextView.setVisibility(View.GONE);
+            } else {
+                mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
+                mAccountHeaderNameTextView.setText(accountInfo.first);
             }
-            mAccountHeaderTypeTextView.setText(getContext().getString(R.string.account_type_format,
-                    accountType));
+            mAccountHeaderTypeTextView.setText(accountInfo.second);
         }
         updateAccountHeaderContentDescription();
 
