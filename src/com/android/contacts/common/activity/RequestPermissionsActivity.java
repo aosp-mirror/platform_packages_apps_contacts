@@ -41,26 +41,12 @@ public class RequestPermissionsActivity extends Activity {
 
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
     private static String[] permissions = new String[]{
-            permission.CALL_PHONE,
-            permission.READ_CONTACTS,
-            permission.WRITE_CONTACTS,
-            permission.GET_ACCOUNTS,
-            permission.ACCESS_FINE_LOCATION,
-            permission.ACCESS_COARSE_LOCATION,
-            permission.INTERNET,
-            permission.NFC,
-            permission.READ_PHONE_STATE,
-            permission.WAKE_LOCK,
-            permission.WRITE_EXTERNAL_STORAGE,
-            permission.WRITE_SETTINGS,
-            permission.VIBRATE,
-            permission.READ_SYNC_SETTINGS,
-            permission.INSTALL_SHORTCUT,
-            permission.READ_CALL_LOG,
-            permission.READ_SMS,
-            permission.READ_CALENDAR,
-            // This following permission can't be requested as a runtime permission.
-            //permission.READ_VOICEMAIL
+            permission.ACCESS_FINE_LOCATION, // Location Group
+            permission.READ_CONTACTS, // Contacts group
+            permission.READ_CALL_LOG, // Permission group phone
+            permission.READ_CALENDAR, // Calendar group
+            permission.READ_SMS, // SMS group
+            permission.WRITE_EXTERNAL_STORAGE, // Storage group
     };
 
     private Intent mPreviousActivityIntent;
@@ -69,7 +55,10 @@ public class RequestPermissionsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPreviousActivityIntent = (Intent) getIntent().getExtras().get(PREVIOUS_ACTIVITY_INTENT);
-        requestPermissions();
+
+        if (savedInstanceState == null) {
+            requestPermissions();
+        }
     }
 
     /**
