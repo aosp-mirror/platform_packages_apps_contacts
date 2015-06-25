@@ -18,10 +18,9 @@
     package="com.android.contacts"
     android:sharedUserId="android.uid.shared">
 
+    <uses-sdk android:minSdkVersion="MNC" android:targetSdkVersion="MNC" />
     <original-package android:name="com.android.contacts" />
 
-    <!-- Whenever a permission is added here, it should also be added to
-         RequestPermissionsActivity so it can be requested at runtime. -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
