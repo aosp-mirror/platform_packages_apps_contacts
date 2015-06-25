@@ -25,6 +25,8 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Pair;
 import com.android.contacts.R;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.google.common.collect.Maps;
 
@@ -85,24 +87,37 @@ public class EditorUiUtils {
      * in no account information should be displayed. The account name may also be null.
      */
     public static Pair<String,String> getAccountInfo(Context context, boolean isProfile,
-            String accountName, CharSequence accountType) {
+            String accountName, AccountType accountType) {
+        CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(context);
+
         if (isProfile) {
             if (TextUtils.isEmpty(accountName)) {
                 return new Pair<>(
                         /* accountName =*/ null,
                         context.getString(R.string.local_profile_title));
-            } else {
-                return new Pair<>(
-                        accountName,
-                        context.getString(R.string.external_profile_title, accountType));
-            }
-        } else if (!TextUtils.isEmpty(accountName)) {
-            if (TextUtils.isEmpty(accountType)) {
-                accountType = context.getString(R.string.account_phone);
             }
             return new Pair<>(
-                    context.getString(R.string.from_account_format, accountName),
-                    context.getString(R.string.account_type_format, accountType));
+                    accountName,
+                    context.getString(R.string.external_profile_title, accountTypeDisplayLabel));
+        }
+        if (!TextUtils.isEmpty(accountName)) {
+            final String accountNameDisplayLabel =
+                    context.getString(R.string.from_account_format, accountName);
+
+            if (TextUtils.isEmpty(accountTypeDisplayLabel)) {
+                accountTypeDisplayLabel = context.getString(R.string.account_phone);
+            }
+
+            if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType.accountType)
+                    && accountType.dataSet == null) {
+                return new Pair<>(
+                        accountNameDisplayLabel,
+                        context.getString(R.string.google_account_type_format,
+                                accountTypeDisplayLabel));
+            }
+            return new Pair<>(
+                    accountNameDisplayLabel,
+                    context.getString(R.string.account_type_format, accountTypeDisplayLabel));
         }
         return null;
     }
