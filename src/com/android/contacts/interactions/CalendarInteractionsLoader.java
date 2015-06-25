@@ -2,6 +2,8 @@ package com.android.contacts.interactions;
 
 import com.google.common.base.Preconditions;
 
+import com.android.contacts.common.util.PermissionsUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import android.Manifest.permission;
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
 import android.content.Context;
@@ -55,7 +58,8 @@ public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInte
 
     @Override
     public List<ContactInteraction> loadInBackground() {
-        if (mEmailAddresses == null || mEmailAddresses.size() < 1) {
+        if (!PermissionsUtil.hasPermission(getContext(), permission.READ_CALENDAR)
+                || mEmailAddresses == null || mEmailAddresses.size() < 1) {
             return Collections.emptyList();
         }
         // Perform separate calendar queries for events in the past and future.
