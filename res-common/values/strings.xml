@@ -459,6 +459,10 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          exported because of security/permission reasons. [CHAR LIMIT=NONE] -->
     <string name="fail_reason_no_exportable_contact">There is no exportable contact.</string>
 
+    <!-- The user doesn't have all permissions required to use the current screen. So
+         close the current screen and show the user this message. -->
+    <string name="missing_required_permission">You have disabled a required permission.</string>
+
     <!-- The failed reason shown when some error happend during contacts export.
          Some exact reason must follow this. [CHAR LIMIT=NONE] -->
     <string name="fail_reason_error_occurred_during_export">An error occurred during export: \"<xliff:g id="exact_reason">%s</xliff:g>\".</string>
