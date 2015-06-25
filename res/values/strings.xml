@@ -397,6 +397,9 @@
     <!-- String describing which account type a contact came from when editing it -->
     <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>
 
+    <!-- String describing that a contact came from the google account type when editing it.  -->
+    <string name="google_account_type_format"><xliff:g id="source" example="Google">%1$s</xliff:g> account</string>
+
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format"><xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
 
