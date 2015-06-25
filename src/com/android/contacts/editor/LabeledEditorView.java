@@ -340,8 +340,6 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
         // Notify listener if applicable
         notifyEditorListener();
-
-        rebuildLabel();
     }
 
     protected void saveValue(String column, String value) {
