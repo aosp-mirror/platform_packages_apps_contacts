@@ -103,6 +103,7 @@ public class AttachPhotoActivity extends ContactsActivity {
             mCroppedPhotoUri = ContactPhotoUtils.generateTempCroppedImageUri(this);
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType(Contacts.CONTENT_TYPE);
+            intent.setPackage(getPackageName());
             startActivityForResult(intent, REQUEST_PICK_CONTACT);
         }
 
