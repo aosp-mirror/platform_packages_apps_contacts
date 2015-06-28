@@ -682,6 +682,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
 
+    <!-- A framework exception (ie, transaction too large) can be thrown while attempting to share all visible contacts. If so, show this toast. -->
+    <string name="share_visible_contacts_failure">Failed to share visible contacts.</string>
+
     <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=36] -->
     <string name="dialog_import_export">Import/export contacts</string>
 
