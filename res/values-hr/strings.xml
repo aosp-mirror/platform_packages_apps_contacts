@@ -146,6 +146,8 @@
     <string name="recent" msgid="2659189233141493004">"Nedavni"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nedavna ažuriranja"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
+    <!-- no translation found for google_account_type_format (5283997303922067997) -->
+    <skip />
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Iz ove aplikacije ne može se uređivati."</string>
