@@ -143,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"சமீபத்தியவை"</string>
     <string name="recent_updates" msgid="4267258535615860710">"சமீபத்திய புதுப்பிப்புகள்"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> தொடர்பு"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> கணக்கு"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"இந்தப் பயன்பாட்டிலிருந்து திருத்த முடியாது."</string>
@@ -192,7 +193,7 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"கணக்கில் உள்நுழைக"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"தொடர்புகளை இறக்குமதி செய்"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"புதிய குழுவை உருவாக்கு"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"புதிய குழுவை உருவாக்கு"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"புதிய குழு"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> குழுக்கள்</item>
       <item quantity="one">1 குழு</item>

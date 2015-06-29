@@ -143,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"လတ်တလော"</string>
     <string name="recent_updates" msgid="4267258535615860710">"လတ်တလောအဆင့်မြင့်ခြင်းများ"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> လိပ်စာ"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> အကောင့်"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"ဤအပ်ပလီကေးရှင်းမှ ပြင်ခွင့်မရှိပါ"</string>
