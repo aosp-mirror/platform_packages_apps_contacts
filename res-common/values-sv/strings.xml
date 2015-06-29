@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adress"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Företag"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Rubrik"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Befattning"</string>
     <string name="label_notes" msgid="3997277594846722699">"Kommentarer"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webbplats"</string>
@@ -171,6 +171,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Det gick inte att öppna <xliff:g id="FILE_NAME">%s</xliff:g>: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Det gick inte att starta exportverktyget: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Det finns ingen kontakt att exportera."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Du har inaktiverat en behörighet som krävs."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Ett fel inträffade under exporten: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Det obligatoriska filnamnet är för långt (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Det finns för många vCard-filer på lagringsenheten."</string>
@@ -229,6 +230,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Förnamn först"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Efternamn först"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Dela synliga kontakter"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Importera/exportera kontakter"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importera kontakter"</string>
     <string name="share_error" msgid="665756457151793108">"Den här kontakten kan inte delas."</string>

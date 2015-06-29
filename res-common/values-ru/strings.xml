@@ -173,6 +173,8 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Не удалось открыть файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\". <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Не удалось запустить инструмент экспорта. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Нет контактов для экспорта."</string>
+    <!-- no translation found for missing_required_permission (3120850759881656369) -->
+    <skip />
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Произошла ошибка экспорта. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Слишком длинное название файла (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Слишком много файлов vCard на накопителе."</string>
@@ -195,7 +197,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Не удалось экспортировать данные.\nПричина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Накопитель не обнаружен"</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD-карта не обнаружена"</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Список контактов будет экспортирован в файл \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Список контактов будет экспортирован в файл <xliff:g id="VCARD_FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Импорт файла \"<xliff:g id="NAME">%s</xliff:g>\"…"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Данные файла vCard не прочитаны"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Чтение данных vCard отменено"</string>
@@ -231,13 +233,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Сначала имя"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Сначала фамилия"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Передать видимые контакты"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Импорт/экспорт контактов"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Импорт контактов"</string>
     <string name="share_error" msgid="665756457151793108">"Не удалось передать данные"</string>
     <string name="menu_search" msgid="7464453023659824700">"Поиск"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Фильтр контактов"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Фильтр контактов"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Выберите группы контактов"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Выберите группы"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Поиск контактов"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Избранное"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нет контактов"</string>

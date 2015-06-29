@@ -171,6 +171,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ਨੂੰ ਖੋਲ੍ਹ ਨਹੀਂ ਸਕਿਆ: <xliff:g id="EXACT_REASON">%s</xliff:g>।"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ਐਕਸਪੋਰਟ ਚਾਲੂ ਨਹੀੰ ਕਰ ਸਕਿਆ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"।"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ਕੋਈ ਵੀ ਨਿਰਯਾਤ ਕਰਨ ਯੋਗ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"ਤੁਸੀਂ ਇੱਕ ਲੁੜੀਂਦੀ ਅਨੁਮਤੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਇਆ ਹੈ।"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ਨਿਰਯਾਤ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਅਸ਼ੁੱਧੀ ਵਾਪਰੀ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"।"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ਲੁੜੀਂਦਾ ਫਾਈਲ ਨਾਮ ਬਹੁਤ ਜ਼ਿਆਦਾ ਵੱਡਾ ਹੈ (\"<xliff:g id="FILENAME">%s</xliff:g>\")।"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"ਸਟੋਰੇਜ ਵਿੱਚ ਬਹੁਤ ਜ਼ਿਆਦਾ vCard ਫਾਈਲਾਂ ਹਨ।"</string>
@@ -229,6 +230,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ਪਹਿਲਾਂ ਪਹਿਲਾ ਨਾਮ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ਪਹਿਲਾਂ ਆਖ਼ਰੀ ਨਾਮ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ਦਿੱਸਦੇ ਸੰਪਰਕ ਸ਼ੇਅਰ ਕਰੋ"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"ਸੰਪਰਕ ਆਯਾਤ/ਨਿਰਯਾਤ ਕਰੋ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ਸੰਪਰਕ ਆਯਾਤ ਕਰੋ"</string>
     <string name="share_error" msgid="665756457151793108">"ਇਸ ਸੰਪਰਕ ਸ਼ੇਅਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"</string>

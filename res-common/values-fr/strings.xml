@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"OK"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Annuler"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Contacts du compte \"<xliff:g id="NAME">%s</xliff:g>\""</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Contacts en affichage personnalisé"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Contacts avec affichage perso."</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Contact"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Créer un contact sous le compte"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importer depuis la carte SIM"</string>
@@ -171,6 +171,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Impossible d\'ouvrir le fichier <xliff:g id="FILE_NAME">%s</xliff:g> pour la raison suivante : <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Impossible de démarrer le programme d\'exportation pour la raison suivante : <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Aucun contact ne peut être exporté."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Vous avez désactivé une autorisation nécessaire."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Une erreur s\'est produite lors de l\'exportation : <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Le nom de fichier requis est trop long (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"La mémoire de stockage contient trop de fichiers vCard."</string>
@@ -229,13 +230,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prénom en premier"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nom en premier"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partager les contacts visibles"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Importer/Exporter des contacts"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importer des contacts"</string>
     <string name="share_error" msgid="665756457151793108">"Impossible de partager ce contact."</string>
     <string name="menu_search" msgid="7464453023659824700">"Rechercher"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contacts à afficher"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contacts à afficher"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Définir un affichage personnalisé"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Définir affichage perso"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Rechercher des contacts"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoris"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Aucun contact"</string>

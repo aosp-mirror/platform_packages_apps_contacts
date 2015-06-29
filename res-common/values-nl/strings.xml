@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Alle contacten met telefoonnummers"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Updates bekijken"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Alleen tablet, niet gesynchroniseerd"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Alleen voor telefoon, niet gesynchroniseerd"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Telefoon-contact, synchr. uit"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Naam"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Bijnaam"</string>
     <string name="full_name" msgid="885420216812981202">"Naam"</string>
@@ -96,9 +96,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"Voorvoegsel van naam"</string>
     <string name="name_middle" msgid="3951610314424632183">"Tweede voornaam"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Achtervoegsel van naam"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Fonetisch gespelde naam"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Fonetische naam"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetische voornaam"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetisch gespelde tweede voornaam"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetische tweede voornaam"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Fonetische achternaam"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefoon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-mail"</string>
@@ -171,6 +171,8 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Kan \'<xliff:g id="FILE_NAME">%s</xliff:g>\' niet openen: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Kan het exportprogramma niet starten: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Er is geen contact dat kan worden geëxporteerd."</string>
+    <!-- no translation found for missing_required_permission (3120850759881656369) -->
+    <skip />
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Er is een fout opgetreden tijdens het exporteren: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Vereiste bestandsnaam is te lang (\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Er staan te veel vCard-bestanden in de opslag."</string>
@@ -229,6 +231,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Voornaam eerst"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Achternaam eerst"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Zichtbare contacten delen"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Contacten importeren/exporteren"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Contacten importeren"</string>
     <string name="share_error" msgid="665756457151793108">"Dit contact kan niet worden gedeeld."</string>
@@ -236,7 +240,7 @@
     <string name="menu_contacts_filter" msgid="586356478145511794">"Zichtbare contacten"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Zichtbare contacten"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Aangepaste weergave definiëren"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Contacten vinden"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Contacten zoeken"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favorieten"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Geen contacten."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Geen zichtbare contacten."</string>

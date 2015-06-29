@@ -72,7 +72,7 @@
     <string name="directory_search_label" msgid="4484648822765516947">"Direktoriya"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Barcha kontaktlar"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Men"</string>
-    <string name="search_results_searching" msgid="9022794597388306615">"Qidirmoqda…"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Qidirilmoqda…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>dan ko‘proq topildi."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Hech qanday kontakt yo‘q"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
@@ -171,6 +171,8 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ochilmadi: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Eksport qiluvchini ishga tushirib bo‘lmaydi: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Eksport qilsa bo‘ladigan kontakt mavjud emas."</string>
+    <!-- no translation found for missing_required_permission (3120850759881656369) -->
+    <skip />
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Eksport jarayonida xato yuz berdi: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"So‘ralgan fayl nomi juda uzun (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Xotirada juda ko‘p tashrifnoma fayllari bor."</string>
@@ -229,6 +231,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Avval ismi"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Avval familiyasi"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Ko‘rinadigan kontaktlarni yuborish"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktlarni import/eksport qilish"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktlarni import qilish"</string>
     <string name="share_error" msgid="665756457151793108">"Kontaktni yuborib bo‘lmadi."</string>

@@ -96,11 +96,11 @@
     <string name="name_given" msgid="4153709115654909377">"Ім’я"</string>
     <string name="name_family" msgid="5317387657540738981">"Прізвище"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Префікс імені"</string>
-    <string name="name_middle" msgid="3951610314424632183">"По-батькові"</string>
+    <string name="name_middle" msgid="3951610314424632183">"По батькові"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Суфікс імені"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Вимова імені"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Вимова імені"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Вимова по-батькові"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Вимова по батькові"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Вимова прізвища"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Електронна адреса"</string>
@@ -159,7 +159,7 @@
     <string name="menu_done" msgid="32470053723443112">"Готово"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Скасувати"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Контакти в обліковому записі <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Контакти в спеціальному перегляді"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Користувацький фільтр"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Один контакт"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Створити контакт в обліковому записі"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Імпорт із SIM-карти"</string>
@@ -173,6 +173,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Не вдалося відкрити файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Не вдалося запустити експортер: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Немає контактів, які можна експортувати."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Ви вимкнули обов’язковий дозвіл."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Під час експорту сталася помилка: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Потрібна назва файлу задовга (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"У пам’яті забагато файлів vCard."</string>
@@ -231,13 +232,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Ім’я спочатку"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Прізвище спочатку"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Надіслати видимі контакти"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Імпорт/експорт контактів"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Імпорт контактів"</string>
     <string name="share_error" msgid="665756457151793108">"Цей контакт неможливо надіслати."</string>
     <string name="menu_search" msgid="7464453023659824700">"Пошук"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти для показу"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти для показу"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Налаштувати спеціальний перегляд"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Вибрати групи"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Пошук контактів"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Вибране"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Контактів немає."</string>

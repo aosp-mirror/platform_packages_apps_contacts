@@ -105,7 +105,7 @@
     <string name="postalLabelsGroup" msgid="3727124282406728557">"முகவரி"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"நிறுவனம்"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"தொடர்புமுறை"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"உறவுமுறை"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"முக்கிய தேதிகள்"</string>
     <string name="sms" msgid="8086289395154598654">"உரைச் செய்தி"</string>
     <string name="postal_address" msgid="7692926530081579786">"முகவரி"</string>
@@ -171,6 +171,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ஐத் திறக்க முடியவில்லை: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ஏற்றுமதியைத் தொடங்க முடியவில்லை: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ஏற்றுமதி செய்யக்கூடிய தொடர்பு இல்லை."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"தேவைப்படும் அனுமதியை முடக்கியுள்ளீர்கள்."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ஏற்றுமதி செய்யும்போது பிழை: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"தேவையான கோப்பின் பெயர் மிகவும் நீளமாக உள்ளது (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"சேமிப்பிடத்தில் அதிகமான vCard கோப்புகள் உள்ளன."</string>
@@ -229,6 +230,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"முதல் பெயர் முதலில்"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"இறுதிப் பெயர் முதலில்"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"தெரியும் தொடர்புகளைப் பகிர்"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"தொடர்புகளை இறக்கு/ஏற்று"</string>
     <string name="dialog_import" msgid="5177004290082451296">"தொடர்புகளை இறக்குமதி செய்தல்"</string>
     <string name="share_error" msgid="665756457151793108">"தொடர்பைப் பகிர முடியவில்லை."</string>

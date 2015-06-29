@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Tất cả người liên hệ có số điện thoại"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Xem thông tin cập nhật"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Chỉ trên máy tính bảng, chưa được đồng bộ hóa"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Chỉ trên điện thoại, chưa đồng bộ hóa"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Chỉ trên điện thoại, ko đồng bộ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Tên"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Biệt hiệu"</string>
     <string name="full_name" msgid="885420216812981202">"Tên"</string>
@@ -171,6 +171,8 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Không thể mở \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Không thể chạy trình xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Không thể xuất liên hệ nào."</string>
+    <!-- no translation found for missing_required_permission (3120850759881656369) -->
+    <skip />
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Đã xảy ra lỗi khi xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Tên tệp yêu cầu quá dài (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Quá nhiều tệp vCard trong bộ nhớ."</string>
@@ -229,18 +231,20 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Tên trước"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Họ trước"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Chia sẻ liên hệ hiển thị"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Nhập/xuất danh bạ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Nhập danh bạ"</string>
     <string name="share_error" msgid="665756457151793108">"Không thể chia sẻ liên hệ này."</string>
     <string name="menu_search" msgid="7464453023659824700">"Tìm kiếm"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Danh bạ để hiển thị"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"DS liên hệ để hiển thị"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Xác định chế độ xem tùy chỉnh"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Tìm địa chỉ liên hệ"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Danh bạ hiển thị"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Danh bạ hiển thị"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Xác định kiểu xem tùy chỉnh"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Tìm liên hệ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Mục yêu thích"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Không có địa chỉ liên hệ nào."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Không có địa chỉ liên hệ nào hiển thị."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Không có địa chỉ liên hệ yêu thích nào."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Không có liên hệ yêu thích nào."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Không có địa chỉ liên hệ nào trong <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Xóa DS liên hệ thường xuyên"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Chọn thẻ SIM"</string>

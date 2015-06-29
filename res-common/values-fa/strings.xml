@@ -103,7 +103,7 @@
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"تلفن"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ایمیل"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"آدرس"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"پیام فوری"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"سازمان"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"نسبت"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"تاریخ‌های ویژه"</string>
@@ -171,6 +171,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" باز نشد: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"صادر کننده راه‌اندازی نشد: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"هیچ مخاطب قابل صدوری موجود نیست."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"یک مجوز الزامی را غیرفعال کرده‌اید."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"خطایی در هنگام صادر کردن روی داد: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"نام فایل خیلی طولانی است (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"تعداد فایل‌های کارت ویزیت در حافظه بسیار زیاد است."</string>
@@ -229,6 +230,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ابتدا نام"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ابتدا نام خانوادگی"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"اشتراک‌گذاری مخاطبین قابل مشاهده"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"وارد کردن/صادر کردن مخاطبین"</string>
     <string name="dialog_import" msgid="5177004290082451296">"وارد کردن مخاطبین"</string>
     <string name="share_error" msgid="665756457151793108">"این مخاطب قابل اشتراک‌گذاری نیست."</string>
