@@ -171,6 +171,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ಅನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ರಫ್ತುದಾರರನ್ನು ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ಯಾವುದೇ ರಫ್ತುಮಾಡಬಹುದಾದ ಸಂಪರ್ಕವಿಲ್ಲ."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"ನೀವು ಅಗತ್ಯವಿರುವ ಅನುಮತಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿರುವಿರಿ."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ರಫ್ತು ಮಾಡುವ ಸಂದರ್ಭದಲ್ಲಿ ದೋಷವೊಂದು ಕಂಡುಬಂದಿದೆ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ಅಗತ್ಯವಿರುವ ಫೈಲ್‌‌ ಹೆಸರು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"ಸಂಗ್ರಹಣೆಯಲ್ಲಿ ಹಲವಾರು vCard ಫೈಲ್‌ಗಳಿವೆ."</string>
@@ -229,6 +230,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ಮೊದಲ ಹೆಸರು ಮೊದಲು"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ಕೊನೆಯ ಹೆಸರು ಮೊದಲು"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ಗೋಚರಿಸುವ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು/ರವಾನೆ ಮಾಡಿ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="share_error" msgid="665756457151793108">"ಈ ಸಂಪರ್ಕವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>

@@ -171,6 +171,8 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Faili „<xliff:g id="FILE_NAME">%s</xliff:g>” ei saa avada: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Eksportijat ei saa käivitada: „<xliff:g id="EXACT_REASON">%s</xliff:g>”."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Eksporditavad kontaktid puuduvad."</string>
+    <!-- no translation found for missing_required_permission (3120850759881656369) -->
+    <skip />
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Viga eksportimisel: „<xliff:g id="EXACT_REASON">%s</xliff:g>”."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Kohustuslik failinimi on liiga pikk („<xliff:g id="FILENAME">%s</xliff:g>”)."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Mälus on liiga palju vCardi faile."</string>
@@ -229,6 +231,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Eesnimi enne"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Perekonnanimi enne"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Jaga nähtavaid kontakte"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktide import/eksport"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Impordi kontaktid"</string>
     <string name="share_error" msgid="665756457151793108">"Seda kontakti ei saa jagada."</string>

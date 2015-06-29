@@ -171,6 +171,8 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Kan \'<xliff:g id="FILE_NAME">%s</xliff:g>\' niet openen: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Kan het exportprogramma niet starten: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Er is geen contact dat kan worden geëxporteerd."</string>
+    <!-- no translation found for missing_required_permission (3120850759881656369) -->
+    <skip />
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Er is een fout opgetreden tijdens het exporteren: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Vereiste bestandsnaam is te lang (\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Er staan te veel vCard-bestanden in de opslag."</string>
@@ -229,6 +231,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Voornaam eerst"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Achternaam eerst"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Zichtbare contacten delen"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Contacten importeren/exporteren"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Contacten importeren"</string>
     <string name="share_error" msgid="665756457151793108">"Dit contact kan niet worden gedeeld."</string>

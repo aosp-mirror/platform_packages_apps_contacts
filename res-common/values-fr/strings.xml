@@ -171,6 +171,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Impossible d\'ouvrir le fichier <xliff:g id="FILE_NAME">%s</xliff:g> pour la raison suivante : <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Impossible de démarrer le programme d\'exportation pour la raison suivante : <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Aucun contact ne peut être exporté."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Vous avez désactivé une autorisation nécessaire."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Une erreur s\'est produite lors de l\'exportation : <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Le nom de fichier requis est trop long (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"La mémoire de stockage contient trop de fichiers vCard."</string>
@@ -229,6 +230,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prénom en premier"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nom en premier"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partager les contacts visibles"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Importer/Exporter des contacts"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importer des contacts"</string>
     <string name="share_error" msgid="665756457151793108">"Impossible de partager ce contact."</string>

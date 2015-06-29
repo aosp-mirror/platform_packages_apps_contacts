@@ -171,6 +171,8 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" файлын аша алмады: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Экспорттаушыны бастау мүмкін болмады: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Экспортталатын контакт жоқ."</string>
+    <!-- no translation found for missing_required_permission (3120850759881656369) -->
+    <skip />
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Экспорттау кезінде қателік орын алды: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Қажетті файл атауы тым ұзақ (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Жадта тым көп vКарта файлдары."</string>
@@ -229,6 +231,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Алдымен аты"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Алдымен тегі"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Көрінетін контактілерді бөлісу"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Контактілерді импорттау/экспорттау"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Контактілерді импорттау"</string>
     <string name="share_error" msgid="665756457151793108">"Бұл контактіні бөлісу мүмкін болмады"</string>

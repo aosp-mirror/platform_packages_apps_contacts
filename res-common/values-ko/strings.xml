@@ -171,6 +171,8 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\'<xliff:g id="FILE_NAME">%s</xliff:g>\'을(를) 열지 못했습니다. 이유: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"내보내기를 시작하지 못했습니다. 이유: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"내보낼 수 있는 연락처가 없습니다."</string>
+    <!-- no translation found for missing_required_permission (3120850759881656369) -->
+    <skip />
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"내보내는 중에 오류가 발생했습니다. 이유: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"필수 파일 이름이 너무 깁니다(\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"저장공간에 vCard 파일이 너무 많습니다."</string>
@@ -229,6 +231,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"이름 먼저"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"성 먼저"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"표시되는 연락처 모두 공유"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"주소록 가져오기/내보내기"</string>
     <string name="dialog_import" msgid="5177004290082451296">"주소록 가져오기"</string>
     <string name="share_error" msgid="665756457151793108">"연락처를 공유할 수 없습니다."</string>

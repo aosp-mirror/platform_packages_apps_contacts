@@ -171,6 +171,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" খোলা যায়নি: <xliff:g id="EXACT_REASON">%s</xliff:g>৷"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"রপ্তানিকারক শুরু করা যায়নি: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"৷"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"রপ্তানিযোগ্য কোনো পরিচিতি নেই৷"</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"আপনি একটি প্রয়োজনীয় অনুমতি অক্ষম করেছেন৷"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"রপ্তানির সময় একটি ত্রুটি ঘটেছে: \" <xliff:g id="EXACT_REASON">%s</xliff:g> \"৷"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"প্রয়োজনীয় ফাইলের নামটি  (\"<xliff:g id="FILENAME">%s</xliff:g>\") অত্যন্ত দীর্ঘ৷"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"সংগ্রহস্থলে অনেকগুলি vCard ফাইল রয়েছে৷"</string>
@@ -229,6 +230,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"প্রথমে আদ্য নাম"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"প্রথমে পারিবারিক নাম"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"দৃশ্যমান পরিচিতিগুলিকে ভাগ করুন"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"পরিচিতিগুলি আমদানি/রপ্তানি করুন"</string>
     <string name="dialog_import" msgid="5177004290082451296">"পরিচিতিগুলি আমদানি করুন"</string>
     <string name="share_error" msgid="665756457151793108">"এই পরিচিতিটিকে ভাগ করা যাবে না৷"</string>
