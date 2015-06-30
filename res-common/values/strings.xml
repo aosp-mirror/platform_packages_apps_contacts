@@ -18,7 +18,8 @@
 
     <!-- Toast shown when text is copied to the clipboard [CHAR LIMIT=64] -->
     <string name="toast_text_copied">Text copied</string>
-
+    <!-- Option displayed in context menu to copy long pressed item to clipboard [CHAR LIMIT=64] -->
+    <string name="copy_text">Copy to clipboard</string>
 
     <!-- Action string for calling a custom phone number -->
     <string name="call_custom">Call
