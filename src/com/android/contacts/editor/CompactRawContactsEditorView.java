@@ -298,8 +298,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         addPhotoView(rawContactDeltas, viewIdGenerator, photoId, readOnlyDisplayName);
         addStructuredNameView(rawContactDeltas, nameId, readOnlyDisplayName);
         addEditorViews(rawContactDeltas);
-        removeExtraEmptyTextFields(mPhoneNumbers);
-        removeExtraEmptyTextFields(mEmails);
+        updateKindEditorEmptyFieldsAndIcons(mPhoneNumbers);
+        updateKindEditorEmptyFieldsAndIcons(mEmails);
     }
 
     private void addAccountInfo(RawContactDeltaList rawContactDeltas, boolean hasNewContact,
@@ -657,10 +657,25 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                                 rawContactDelta));
                     }
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    mPhoneNumbers.addView(inflateKindSectionView(mPhoneNumbers, dataKind,
-                            rawContactDelta));
+                    final KindSectionView kindSectionView =
+                            inflateKindSectionView(mPhoneNumbers, dataKind, rawContactDelta);
+                    kindSectionView.setListener(new KindSectionView.Listener() {
+                        @Override
+                        public void onDeleteRequested() {
+                            updateKindEditorEmptyFieldsAndIcons(mPhoneNumbers);
+                        }
+                    });
+                    mPhoneNumbers.addView(kindSectionView);
                 } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    mEmails.addView(inflateKindSectionView(mEmails, dataKind, rawContactDelta));
+                    final KindSectionView kindSectionView =
+                            inflateKindSectionView(mEmails, dataKind, rawContactDelta);
+                    kindSectionView.setListener(new KindSectionView.Listener() {
+                        @Override
+                        public void onDeleteRequested() {
+                            updateKindEditorEmptyFieldsAndIcons(mEmails);
+                        }
+                    });
+                    mEmails.addView(kindSectionView);
                 } else if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
                     mOther.addView(inflateKindSectionView(mOther, dataKind, rawContactDelta));
                 }
@@ -668,45 +683,37 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
     }
 
-    // TODO: avoid inflating extra views and deleting them
-    private void removeExtraEmptyTextFields(ViewGroup viewGroup) {
-        // If there is one (or less) editors, leave it whether it is empty or not
-        if (viewGroup.getChildCount() <= 1) {
-            return;
-        }
-        // Determine if there are any non-empty editors
-        boolean hasAtLeastOneNonEmptyEditorView = false;
-        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-            if (!isEmptyEditorView(viewGroup.getChildAt(i))) {
-                hasAtLeastOneNonEmptyEditorView = true;
-                break;
-            }
-        }
-        if (hasAtLeastOneNonEmptyEditorView) {
-            // There is at least one non-empty editor, remove all the empty ones
-            for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                if (isEmptyEditorView(viewGroup.getChildAt(i))) {
-                    viewGroup.getChildAt(i).setVisibility(View.GONE);
+    private void updateKindEditorEmptyFieldsAndIcons(ViewGroup viewGroup) {
+        if (viewGroup.getChildCount() > 0) {
+            // Only the last editor should show an empty editor
+            final KindSectionView lastKindSectionView = (KindSectionView) viewGroup.getChildAt(
+                    viewGroup.getChildCount() - 1);
+            lastKindSectionView.setShowOneEmptyEditor(true);
+            lastKindSectionView.updateEmptyEditors(/* shouldAnimate =*/ false);
+
+            // For all the other editors, if there is nothing to show, hide the section entirely
+            for (int i = 0; i < viewGroup.getChildCount() - 1; i++) {
+                final KindSectionView kindSectionView = (KindSectionView) viewGroup.getChildAt(i);
+                if (kindSectionView.getEditorCount() == 0) {
+                    kindSectionView.setVisibility(View.GONE);
                 }
             }
-        } else {
-            // There is no non-empty editor, keep the first empty view and remove the rest
-            for (int i = 1; i < viewGroup.getChildCount(); i++) {
-                viewGroup.getChildAt(i).setVisibility(View.GONE);
+        }
+
+        // Show the icon on the first visible kind editor
+        boolean iconVisible = false;
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            final KindSectionView kindSectionView = (KindSectionView) viewGroup.getChildAt(i);
+            if (kindSectionView.getVisibility() != View.VISIBLE) {
+                continue;
+            }
+            if (!iconVisible) {
+                kindSectionView.setIconVisibility(true);
+                iconVisible = true;
+            } else {
+                kindSectionView.setIconVisibility(false);
             }
         }
-    }
-
-    private static boolean isEmptyEditorView(View view) {
-        if (view instanceof TextFieldsEditorView) {
-            final TextFieldsEditorView textFieldsEditorView = (TextFieldsEditorView) view;
-            return textFieldsEditorView.isEmpty();
-        }
-        if (view instanceof KindSectionView) {
-            final KindSectionView kindSectionView = (KindSectionView) view;
-            return kindSectionView.hasEmptyEditor();
-        }
-        return false;
     }
 
     private static boolean hasNonEmptyValuesDelta(RawContactDelta rawContactDelta,
