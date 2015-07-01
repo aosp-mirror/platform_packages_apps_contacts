@@ -143,8 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"ເມື່ອບໍ່ດົນມານີ້"</string>
     <string name="recent_updates" msgid="4267258535615860710">"ອັບເດດເມື່ອໄວໆນີ້"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
-    <!-- no translation found for google_account_type_format (5283997303922067997) -->
-    <skip />
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> ບັນ​ຊີ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"ບໍ່ສາມາດແກ້ໄຂໄດ້ຈາກແອັບຯນີ້."</string>

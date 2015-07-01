@@ -149,8 +149,7 @@
     <string name="recent" msgid="2659189233141493004">"Nedávne"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nedávne aktualizácie"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <!-- no translation found for google_account_type_format (5283997303922067997) -->
-    <skip />
+    <string name="google_account_type_format" msgid="5283997303922067997">"Účet <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Nemožno upraviť pomocou tejto aplikácie."</string>

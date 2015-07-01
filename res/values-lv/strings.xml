@@ -146,8 +146,7 @@
     <string name="recent" msgid="2659189233141493004">"Jaunākās"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nesen veiktie atj."</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontaktpersona"</string>
-    <!-- no translation found for google_account_type_format (5283997303922067997) -->
-    <skip />
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> konts"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Nevar rediģēt šajā lietotnē."</string>
@@ -235,7 +234,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Jaunā kontaktinformācija tiks sinhronizēta ar kontu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Varat sinhronizēt jauno kontaktinformāciju ar vienu no tālāk norādītajiem kontiem. Kuru kontu vēlaties izmantot?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Pievienošana"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Personas rediģēšana"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediģēšana"</string>
     <string name="keep_local" msgid="1258761699192993322">"Saglabāt vietēji"</string>
     <string name="add_account" msgid="8201790677994503186">"Pievienot kontu"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pievienot jaunu kontu"</string>
