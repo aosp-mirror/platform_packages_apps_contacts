@@ -18,6 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Мәтін көшірілді"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> нөміріне қоңырау шалу"</string>
     <string name="call_home" msgid="1479549630992276827">"Үйге қоңырау шалу"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Ұялы телефонға қоңырау шалу"</string>
@@ -171,8 +173,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" файлын аша алмады: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Экспорттаушыны бастау мүмкін болмады: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Экспортталатын контакт жоқ."</string>
-    <!-- no translation found for missing_required_permission (3120850759881656369) -->
-    <skip />
+    <string name="missing_required_permission" msgid="3120850759881656369">"Сіз міндетті рұқсатты өшірдіңіз."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Экспорттау кезінде қателік орын алды: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Қажетті файл атауы тым ұзақ (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Жадта тым көп vКарта файлдары."</string>

@@ -18,6 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"បាន​ចម្លង​អត្ថបទ"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"ហៅ <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"ហៅ​ទៅ​ផ្ទះ"</string>
     <string name="call_mobile" msgid="8618334085824709009">"ហៅ​ទៅ​ទូរស័ព្ទ​ចល័ត"</string>
@@ -171,8 +173,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"មិន​អាច​បើក \"<xliff:g id="FILE_NAME">%s</xliff:g>\"៖ <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"មិន​អាច​ចាប់ផ្ដើម​កម្មវិធី​នាំ​ចេញ៖ \"<xliff:g id="EXACT_REASON">%s</xliff:g>\" ។"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"មិន​មាន​ទំនាក់ទំនង​ដើម្បី​នាំចេញ​ទេ។"</string>
-    <!-- no translation found for missing_required_permission (3120850759881656369) -->
-    <skip />
+    <string name="missing_required_permission" msgid="3120850759881656369">"អ្នកបានបិទសិទ្ធិអនុញ្ញាតដែលតម្រូវឲ្យមាន។"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"មាន​កំហុស​កើតឡើង​ពេល​នាំចេញ៖ \"<xliff:g id="EXACT_REASON">%s</xliff:g>\" ។"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ឈ្មោះ​ឯកសារ​ដែល​បាន​ទាមទារ​គឺ​វែង​ពេក (\"<xliff:g id="FILENAME">%s</xliff:g>\") ។"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"មាន​ឯកសារ vCard ច្រើន​ពេក​នៅ​ក្នុង​ឧបករណ៍​ផ្ទុក។"</string>

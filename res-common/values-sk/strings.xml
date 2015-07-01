@@ -18,6 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Text bol skopírovaný"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Volať kontakt <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Volať na domáci telefón"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Volať na mobil"</string>
@@ -173,8 +175,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Súbor „<xliff:g id="FILE_NAME">%s</xliff:g>“ sa nepodarilo otvoriť: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Nástroj na exportovanie sa nepodarilo spustiť: „<xliff:g id="EXACT_REASON">%s</xliff:g>“."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Nedá sa exportovať žiadny kontakt."</string>
-    <!-- no translation found for missing_required_permission (3120850759881656369) -->
-    <skip />
+    <string name="missing_required_permission" msgid="3120850759881656369">"Zakázali ste požadované povolenie."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Počas exportovania sa vyskytla chyba: „<xliff:g id="EXACT_REASON">%s</xliff:g>“."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Požadovaný názov súboru (<xliff:g id="FILENAME">%s</xliff:g>) je príliš dlhý."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"V ukladacom priestore je príliš veľa súborov vCard."</string>
