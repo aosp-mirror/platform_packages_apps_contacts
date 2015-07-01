@@ -72,6 +72,13 @@ public class ViewPagerTabStrip extends LinearLayout {
         // Thick colored underline below the current selection
         if (childCount > 0) {
             View selectedTitle = getChildAt(mIndexForSelection);
+
+            if (selectedTitle == null) {
+                // The view pager's tab count changed but we weren't notified yet. Ignore this draw
+                // pass, when we get a new selection we will update and draw the selection strip in
+                // the correct place.
+                return;
+            }
             int selectedLeft = selectedTitle.getLeft();
             int selectedRight = selectedTitle.getRight();
             final boolean isRtl = isRtl();
