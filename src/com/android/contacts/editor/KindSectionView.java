@@ -40,11 +40,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.contacts.R;
-import com.android.contacts.editor.Editor.EditorListener;
-import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.editor.Editor.EditorListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,16 +56,27 @@ import java.util.List;
  */
 public class KindSectionView extends LinearLayout implements EditorListener {
 
+    public interface Listener {
+
+        /**
+         * Invoked when any editor that is displayed in this section view is deleted by the user.
+         */
+        public void onDeleteRequested();
+    }
+
     private ViewGroup mEditors;
     private ImageView mIcon;
 
     private DataKind mKind;
     private RawContactDelta mState;
     private boolean mReadOnly;
+    private boolean mShowOneEmptyEditor;
 
     private ViewIdGenerator mViewIdGenerator;
 
     private LayoutInflater mInflater;
+
+    private Listener mListener;
 
     public KindSectionView(Context context) {
         this(context, null);
@@ -106,13 +117,19 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     @Override
     public void onDeleteRequested(Editor editor) {
-        // If there is only 1 editor in the section, then don't allow the user to delete it.
-        // Just clear the fields in the editor.
-        if (getEditorCount() == 1) {
+        // If there is only 1 editor in the section, or it is the last editor in a list of editors,
+        // then don't allow the user to delete it.  Just clear the fields in the editor.
+        if (getEditorCount() == 1 && mShowOneEmptyEditor) {
             editor.clearAllFields();
         } else {
             // Otherwise it's okay to delete this {@link Editor}
+            if (!mShowOneEmptyEditor) {
+                setVisibility(View.GONE);
+            }
             editor.deleteEditor();
+        }
+        if (mListener != null) {
+            mListener.onDeleteRequested();
         }
     }
 
@@ -123,6 +140,22 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         if (request == FIELD_TURNED_EMPTY || request == FIELD_TURNED_NON_EMPTY) {
             updateEmptyEditors(/* shouldAnimate = */ true);
         }
+    }
+
+    /**
+     * @param showOneEmptyEditor If true, one empty input will always be displayed,
+     *         otherwise an empty input will only be displayed if there is no non-empty value.
+     */
+    public void setShowOneEmptyEditor(boolean showOneEmptyEditor) {
+        mShowOneEmptyEditor = showOneEmptyEditor;
+    }
+
+    public void setListener(Listener listener) {
+        mListener = listener;
+    }
+
+    public void setIconVisibility(boolean visible) {
+        mIcon.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void setState(DataKind kind, RawContactDelta state, boolean readOnly,
@@ -222,7 +255,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
      * Updates the editors being displayed to the user removing extra empty
      * {@link Editor}s, so there is only max 1 empty {@link Editor} view at a time.
      */
-    private void updateEmptyEditors(boolean shouldAnimate) {
+    public void updateEmptyEditors(boolean shouldAnimate) {
 
         final List<View> emptyEditors = getEmptyEditors();
 
@@ -254,7 +287,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         } else if (emptyEditors.size() == 1) {
             // We have already reached the maximum number of empty editors. Lets not add any more.
             return;
-        } else {
+        } else if (mShowOneEmptyEditor) {
             final ValuesDelta values = RawContactModifier.insertChild(mState, mKind);
             final View newField = createEditorView(values);
             if (shouldAnimate) {
@@ -262,13 +295,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 EditorAnimator.getInstance().showFieldFooter(newField);
             }
         }
-    }
-
-    /**
-     * Whether this section has any empty editors.
-     */
-    public boolean hasEmptyEditor() {
-        return !getEmptyEditors().isEmpty();
     }
 
     /**
