@@ -18,6 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Teks disalin"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Hubungi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Telepon rumah"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Hubungi nomor seluler"</string>
@@ -230,8 +232,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nama depan pertama"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama belakang pertama"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Bagikan kontak yang terlihat"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Gagal membagikan kontak yang terlihat."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Impor/ekspor kontak"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Impor kontak"</string>
     <string name="share_error" msgid="665756457151793108">"Kontak ini tidak dapat dibagi."</string>

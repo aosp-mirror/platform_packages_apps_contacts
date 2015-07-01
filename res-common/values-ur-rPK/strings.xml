@@ -18,6 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"متن کاپی ہوگیا"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> کو کال کریں"</string>
     <string name="call_home" msgid="1479549630992276827">"گھر پر کال کریں"</string>
     <string name="call_mobile" msgid="8618334085824709009">"موبائل پر کال کریں"</string>
@@ -171,8 +173,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" کو نہیں کھول سکا: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"برآمد کنندہ شروع نہیں ہو سکا: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"کوئی قابل برآمد رابطہ نہیں ہے۔"</string>
-    <!-- no translation found for missing_required_permission (3120850759881656369) -->
-    <skip />
+    <string name="missing_required_permission" msgid="3120850759881656369">"آپ نے ایک درکار اجازت غیر فعال کر دی ہے۔"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"برآمد کرنے کے دوران ایک غلطی ہوگئی: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"مطلوبہ فائل کا نام کافی لمبا (\"<xliff:g id="FILENAME">%s</xliff:g>\") ہے۔"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"اسٹوریج میں بہت زیادہ وی کارڈ فائلیں ہیں۔"</string>

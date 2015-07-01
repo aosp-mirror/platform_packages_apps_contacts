@@ -18,6 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Текст скопирован"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Вызов:<xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Домашний"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Мобильный"</string>
@@ -173,8 +175,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Не удалось открыть файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\". <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Не удалось запустить инструмент экспорта. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Нет контактов для экспорта."</string>
-    <!-- no translation found for missing_required_permission (3120850759881656369) -->
-    <skip />
+    <string name="missing_required_permission" msgid="3120850759881656369">"Отсутствует необходимое разрешение."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Произошла ошибка экспорта. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Слишком длинное название файла (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Слишком много файлов vCard на накопителе."</string>
