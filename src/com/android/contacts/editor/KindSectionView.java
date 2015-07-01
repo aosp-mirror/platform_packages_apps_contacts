@@ -117,15 +117,12 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     @Override
     public void onDeleteRequested(Editor editor) {
-        // If there is only 1 editor in the section, or it is the last editor in a list of editors,
-        // then don't allow the user to delete it.  Just clear the fields in the editor.
+        // If there is only 1 editor in the section, then don't allow the user to delete it.
+        // Just clear the fields in the editor.
         if (getEditorCount() == 1 && mShowOneEmptyEditor) {
             editor.clearAllFields();
         } else {
             // Otherwise it's okay to delete this {@link Editor}
-            if (!mShowOneEmptyEditor) {
-                setVisibility(View.GONE);
-            }
             editor.deleteEditor();
         }
         if (mListener != null) {
@@ -313,6 +310,16 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     public int getEditorCount() {
         return mEditors.getChildCount();
+    }
+
+    public int getVisibleEditorCount() {
+        int count = 0;
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            if (mEditors.getChildAt(i).getVisibility() == View.VISIBLE) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public DataKind getKind() {
