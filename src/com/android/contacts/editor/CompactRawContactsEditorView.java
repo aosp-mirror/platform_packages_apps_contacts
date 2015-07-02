@@ -49,7 +49,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * View to display information from multiple {@link RawContactDelta}s grouped together
@@ -136,6 +138,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ViewGroup mPhoneNumbers;
     private ViewGroup mEmails;
     private ViewGroup mOther;
+    private Map<String,LinearLayout> mOtherMap = new HashMap<>();
     private View mMoreFields;
 
     // The ValuesDelta for the non super primary name that was displayed to the user.
@@ -197,7 +200,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         setEnabled(enabled, mNicknames);
         setEnabled(enabled, mPhoneNumbers);
         setEnabled(enabled, mEmails);
-        setEnabled(enabled, mOther);
+        for (Map.Entry<String,LinearLayout> other : mOtherMap.entrySet()) {
+            setEnabled(enabled, other.getValue());
+        }
     }
 
     private void setEnabled(boolean enabled, ViewGroup viewGroup) {
@@ -283,6 +288,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mPhoneNumbers.removeAllViews();
         mEmails.removeAllViews();
         mOther.removeAllViews();
+        mOtherMap.clear();
 
         if (rawContactDeltas == null || rawContactDeltas.isEmpty()) {
             return;
@@ -298,8 +304,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         addPhotoView(rawContactDeltas, viewIdGenerator, photoId, readOnlyDisplayName);
         addStructuredNameView(rawContactDeltas, nameId, readOnlyDisplayName);
         addEditorViews(rawContactDeltas);
-        updateKindEditorEmptyFieldsAndIcons(mPhoneNumbers);
-        updateKindEditorEmptyFieldsAndIcons(mEmails);
+        updateKindEditorEmptyFields(mPhoneNumbers);
+        updateKindEditorIcons(mPhoneNumbers);
+        updateKindEditorEmptyFields(mEmails);
+        updateKindEditorIcons(mEmails);
+        for (Map.Entry<String,LinearLayout> other : mOtherMap.entrySet()) {
+            updateKindEditorIcons(other.getValue());
+        }
     }
 
     private void addAccountInfo(RawContactDeltaList rawContactDeltas, boolean hasNewContact,
@@ -662,7 +673,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     kindSectionView.setListener(new KindSectionView.Listener() {
                         @Override
                         public void onDeleteRequested() {
-                            updateKindEditorEmptyFieldsAndIcons(mPhoneNumbers);
+                            kindSectionView.setVisibility(View.GONE);
+                            updateKindEditorEmptyFields(mPhoneNumbers);
+                            updateKindEditorIcons(mPhoneNumbers);
                         }
                     });
                     mPhoneNumbers.addView(kindSectionView);
@@ -672,34 +685,54 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     kindSectionView.setListener(new KindSectionView.Listener() {
                         @Override
                         public void onDeleteRequested() {
-                            updateKindEditorEmptyFieldsAndIcons(mEmails);
+                            kindSectionView.setVisibility(View.GONE);
+                            updateKindEditorEmptyFields(mEmails);
+                            updateKindEditorIcons(mEmails);
                         }
                     });
                     mEmails.addView(kindSectionView);
                 } else if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
-                    mOther.addView(inflateKindSectionView(mOther, dataKind, rawContactDelta));
+                    final LinearLayout otherViewGroup;
+                    if (mOtherMap.containsKey(mimeType)) {
+                        otherViewGroup = mOtherMap.get(mimeType);
+                    } else {
+                        otherViewGroup = new LinearLayout(getContext());
+                        otherViewGroup.setOrientation(LinearLayout.VERTICAL);
+                        mOther.addView(otherViewGroup);
+                        mOtherMap.put(mimeType, otherViewGroup);
+                    }
+                    final KindSectionView kindSectionView =
+                            inflateKindSectionView(mOther, dataKind, rawContactDelta);
+                    kindSectionView.setListener(new KindSectionView.Listener() {
+                        @Override
+                        public void onDeleteRequested() {
+                            if (kindSectionView.getVisibleEditorCount() == 1) {
+                                kindSectionView.setVisibility(View.GONE);
+                            }
+                            updateKindEditorIcons(otherViewGroup);
+                        }
+                    });
+                    otherViewGroup.addView(kindSectionView);
                 }
             }
         }
     }
 
-    private void updateKindEditorEmptyFieldsAndIcons(ViewGroup viewGroup) {
-        if (viewGroup.getChildCount() > 0) {
-            // Only the last editor should show an empty editor
-            final KindSectionView lastKindSectionView = (KindSectionView) viewGroup.getChildAt(
-                    viewGroup.getChildCount() - 1);
-            lastKindSectionView.setShowOneEmptyEditor(true);
-            lastKindSectionView.updateEmptyEditors(/* shouldAnimate =*/ false);
-
-            // For all the other editors, if there is nothing to show, hide the section entirely
-            for (int i = 0; i < viewGroup.getChildCount() - 1; i++) {
-                final KindSectionView kindSectionView = (KindSectionView) viewGroup.getChildAt(i);
-                if (kindSectionView.getEditorCount() == 0) {
-                    kindSectionView.setVisibility(View.GONE);
-                }
+    private static void updateKindEditorEmptyFields(ViewGroup viewGroup) {
+        KindSectionView lastVisibleKindSectionView = null;
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            if (viewGroup.getChildAt(i).getVisibility() == View.VISIBLE) {
+                lastVisibleKindSectionView = (KindSectionView) viewGroup.getChildAt(i);
             }
         }
+        // Only the last editor should show an empty editor
+        if (lastVisibleKindSectionView != null) {
+            lastVisibleKindSectionView.setShowOneEmptyEditor(true);
+            lastVisibleKindSectionView.updateEmptyEditors(/* shouldAnimate =*/ false);
+        }
+    }
 
+    private static void updateKindEditorIcons(ViewGroup viewGroup) {
         // Show the icon on the first visible kind editor
         boolean iconVisible = false;
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
