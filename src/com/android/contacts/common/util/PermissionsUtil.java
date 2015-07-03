@@ -65,9 +65,9 @@ public class PermissionsUtil {
      * @param context A valid context.
      */
     public static void updateCachedPermissions(Context context) {
-        hasPermission(context, PHONE);
-        hasPermission(context, CONTACTS);
-        hasPermission(context, LOCATION);
+        sHasPhonePermissions = hasPermission(context, PHONE);
+        sHasContactsPermissions = hasPermission(context, CONTACTS);
+        sHasLocationPermissions = hasPermission(context, LOCATION);
     }
 
     public static boolean hasPermission(Context context, String permission) {
