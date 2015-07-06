@@ -67,7 +67,7 @@
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Οι επαφές συγχωνεύτηκαν"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Οι επαφές διαγράφηκαν"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ήχος κλήσης"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Κλήσεις στον τηλεφωνητή"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Όλες οι κλήσ. στον τηλεφωνητή"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Δεν μπορείτε να διαγράψετε επαφές από λογαριασμούς οι οποίοι προορίζονται μόνο για ανάγνωση, αλλά μπορείτε να τις αποκρύψετε στις λίστες επαφών σας."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Αυτή η επαφή περιέχει πληροφορίες από πολλούς λογαριασμούς. Θα γίνει απόκρυψη και όχι διαγραφή των πληροφοριών που προέρχονται από λογαριασμούς μόνο για ανάγνωση στις λίστες επαφών σας."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Θα πρέπει να έχουν επιλεγεί τουλάχιστον δύο επαφές για να πραγματοποιηθεί μια συγχώνευση."</string>
@@ -134,7 +134,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας."</string>
     <string name="menu_share" msgid="943789700636542260">"Κοινοποίηση"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Προσθήκη στις επαφές"</string>
-    <string name="share_via" msgid="563121028023030093">"Κοινή επαφή μέσω"</string>
+    <string name="share_via" msgid="563121028023030093">"Κοινοποίηση μέσω"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Δημιουργία ομάδας στο λογαριασμό"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Φωνητική συνομιλία"</string>
     <string name="video_chat" msgid="1872255818640336072">"Συζήτηση μέσω βίντεο"</string>
@@ -165,7 +165,7 @@
     <string name="change_photo" msgid="8530597935483526383">"Αλλαγή"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Κύρια φωτογραφία"</string>
     <string name="description_star" msgid="2605854427360036550">"αγαπημένο"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Επεξεργασία επαφής"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Επεξεργασία"</string>
     <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
       <item quantity="other">συγχωνεύτηκαν από <xliff:g id="COUNT">%0$d</xliff:g> πηγές</item>
       <item quantity="one">δεν συγχωνεύτηκαν</item>

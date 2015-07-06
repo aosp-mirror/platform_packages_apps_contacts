@@ -47,7 +47,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Muokkaa"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Poista"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Vaihda kuva"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Paikka aloitusruudussa"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Aloitusnäytöksi"</string>
     <string name="menu_call" msgid="3992595586042260618">"Soita"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Lähetä tekstiviesti yhteystiedolle"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Erota"</string>
@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Lisää yhteystieto"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Lisää ryhmä"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Erota yhteystieto?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Tämä yhteystieto erotetaan useisiin yhteystietoihin."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Yhteystieto jaetaan useammaksi yhteystiedoksi."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Yhdistä"</string>
     <string name="menu_save" msgid="1727844363591825909">"Tallenna"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Yhdistä yhteystiedot"</string>
@@ -89,7 +89,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tablet-laitteella ei ole kuvia."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tässä puhelimessa ei ole käytettäviä kuvia."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Yhteyshenkilön valokuva"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Oma tunnisteen nimi"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Oman luokituksen nimi"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Ohjaa puheluja suoraan vastaajaan"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Poista kuva"</string>
     <string name="noContacts" msgid="8579310973261953559">"Ei yhteystietoja."</string>
@@ -142,7 +142,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Lisää yhteys"</string>
     <string name="recent" msgid="2659189233141493004">"Viimeisimmät"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Uusimmat päivitykset"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Tilin <xliff:g id="SOURCE">%1$s</xliff:g> yhteystieto"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-osoite"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-tili"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -173,7 +173,7 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Yhdistetäänkö nykyiset yhteystiedot valittujen yhteystietojen kanssa?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Haluatko muokata valittuja yhteystietoja? Antamasi tiedot kopioidaan."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopioi yhteystietoihini"</string>
-    <string name="add_to_my_contacts" msgid="1068274916793627723">"Lisää kontakteihin"</string>
+    <string name="add_to_my_contacts" msgid="1068274916793627723">"Lisää yhteystietoihin"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Hakemisto <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Oma"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Asetukset"</string>
@@ -224,9 +224,9 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Pidä kontaktisi turvassa, vaikka puhelimesi katoaisi: synkronoi ne verkkopalvelun avulla."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Lisää tili"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Uutta kontaktiasi ei varmuuskopioida. Lisätäänkö tili, joka varmuuskopioi uudet kontaktit verkossa?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Uusi kontaktisi synkronoidaan tilillä <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Uusi kontaktisi yhdistetään <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> -tiliin."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Voit synkronoida uuden kontaktisi jollakin seuraavista tileistä. Mitä niistä haluat käyttää?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Lisää uusi yhteystieto"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Lisää yhteystieto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Muokkaa yhteystietoa"</string>
     <string name="keep_local" msgid="1258761699192993322">"Säilytä paikallisena"</string>
     <string name="add_account" msgid="8201790677994503186">"Lisää tili"</string>

@@ -67,7 +67,7 @@
     <string name="contactsJoinedMessage" msgid="656936718666768589">"കോൺടാക്റ്റുകൾ ലയിപ്പിച്ചു"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"കോൺടാക്റ്റുകൾ ഇല്ലാതാക്കി"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"റിംഗ്‌ടോൺ സജ്ജമാക്കുക"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"വോയ്‌സ്‌മെയിലിലേക്കുള്ള എല്ലാ കോളുകളും"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"എല്ലാം വോയ്‌സ്‌മെയിലിലേക്ക്"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള കോൺടാക്റ്റുകൾ നിങ്ങൾക്ക് ഇല്ലാതാക്കാനാകില്ലെങ്കിലും കോൺടാക്റ്ററ്റ് ലിസ്റ്റുകളിൽ നിന്ന് അവ മറയ്‌ക്കാനാകും."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ഈ കോൺടാക്റ്റിൽ ഒന്നിലധികം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം അടങ്ങിയിരിക്കുന്നു. വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ ലിസ്റ്റിൽ നിന്നും മറയ്‌ക്കുമെങ്കിലും അവ ഇല്ലാതാക്കില്ല."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ലയിപ്പിക്കാനായി രണ്ട് കോൺടാക്‌റ്റുകളെങ്കിലും തിരഞ്ഞെടുക്കണം."</string>
@@ -214,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"വാചകം പകർത്തി"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"നിങ്ങളുടെ മാറ്റങ്ങൾ നിരസിക്കണോ?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"എന്റെ പ്രൊഫൈൽ സജ്ജീകരിക്കുക"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"പ്രൊഫൈൽ സജ്ജമാക്കൂ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"വ്യക്തിയുടെ പേര് ടൈപ്പുചെയ്യുക"</string>
     <string name="group_name_hint" msgid="238359485263401293">"ഗ്രൂപ്പിന്റെ പേര്"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"എന്റെ പ്രാദേശിക പ്രൊഫൈൽ"</string>
@@ -224,10 +224,10 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"നിങ്ങൾക്ക് ഫോൺ നഷ്‌ടമാകുകയാണെങ്കിൽപ്പോലും നിങ്ങളുടെ കോൺടാക്റ്റുകൾ സുരക്ഷിതമായി സൂക്ഷിക്കുക: ഒരു ഓൺലൈൻ സേവനവുമായി സമന്വയിപ്പിക്കുക."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ഒരു അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് ബാക്കപ്പുചെയ്യില്ല. കോൺടാക്റ്റുകളെ ഓൺലൈനിൽ ബാക്കപ്പുചെയ്യുന്ന ഒരു അക്കൗണ്ട് ചേർക്കണോ?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> എന്നതിൽ സമന്വയിപ്പിക്കും."</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> -ൽ സമന്വയിപ്പിക്കും."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"നിങ്ങൾക്ക് പുതിയ കോൺടാക്റ്റ് ഇനിപ്പറയുന്ന അക്കൗണ്ടുകളിൽ ഒന്നുമായി സമന്വയിപ്പിക്കാം. ഏതാണ് ഉപയോഗിക്കേണ്ടത്?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"പുതിയവ ചേർക്കൂ"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുക"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"എഡിറ്റുചെയ്യുക"</string>
     <string name="keep_local" msgid="1258761699192993322">"പ്രാദേശികമായി സൂക്ഷിക്കുക"</string>
     <string name="add_account" msgid="8201790677994503186">"അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="add_new_account" msgid="5748627740680940264">"പുതിയ അക്കൗണ്ട് ചേർക്കുക"</string>

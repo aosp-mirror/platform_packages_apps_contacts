@@ -222,7 +222,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Barcha kontaktlar ko‘rsatilmoqda"</string>
     <string name="no_account_prompt" msgid="6424883302325061025">"Kontaktlar Google hisobi bilan yaxshi ishlaydi.\n\n• Xohlagan veb-brauzerdan kirishingiz mumkin.\n• Kontaktlaringizni nusxasini xavfsiz joyga zaxiralang."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Onlayn xizmat yordamida sinxronlab, telefoningiz yo‘qolganda ham kontaktlaringizni saqlab qoling."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Yangi hisob qo‘shish"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Hisob qo‘shish"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Yangi kontaktning zaxira nusxasi saqlanmaydi. Kontaktlarni internetga saqlash uchun hisob qo‘shilsinmi?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Yangi kontakt <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> hisobiga saqlanadi."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Yangi kontaktlaringizni quyidagi hisoblar bilan sinxronlashingiz mumkin. Qaysi biridan foydalanmoqchisiz?"</string>

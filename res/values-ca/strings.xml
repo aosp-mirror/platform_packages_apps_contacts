@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Afegeix el contacte"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Afegeix un grup"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Separar contacte?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Aquest contacte es separarà en diversos contactes."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Aquest contacte se separarà en diversos contactes."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Combina"</string>
     <string name="menu_save" msgid="1727844363591825909">"Desa"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unió de contactes"</string>
@@ -119,7 +119,7 @@
     </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tots els contactes"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Preferits"</string>
-    <string name="callBack" msgid="5498224409038809224">"Torna la trucada"</string>
+    <string name="callBack" msgid="5498224409038809224">"Truca"</string>
     <string name="callAgain" msgid="3197312117049874778">"Torna a trucar"</string>
     <string name="returnCall" msgid="8171961914203617813">"Retorna la trucada"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Voleu afegir \"<xliff:g id="EMAIL">%s</xliff:g>\" als contactes?"</string>
@@ -165,7 +165,7 @@
     <string name="change_photo" msgid="8530597935483526383">"Canvia"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Foto principal"</string>
     <string name="description_star" msgid="2605854427360036550">"preferit"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Edita el contacte"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Edita contacte"</string>
     <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
       <item quantity="other">combinats de <xliff:g id="COUNT">%0$d</xliff:g> fonts</item>
       <item quantity="one">no combinat</item>
@@ -214,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Text copiat"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vols descartar els canvis?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Configura el meu perfil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Configura el perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Escriu el nom de la persona"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nom del grup"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
@@ -247,7 +247,7 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"Demà a les <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Esdeveniment sense títol)"</string>
-    <string name="date_time_set" msgid="4761419824439606690">"Configura"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"Estableix"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"MI"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organització"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Àlies"</string>

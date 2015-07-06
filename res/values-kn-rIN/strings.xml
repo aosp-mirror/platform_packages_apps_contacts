@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"ಸಂಪರ್ಕದ ಶಾರ್ಟ್‌ಕಟ್‌‌ ಆರಿಸಿ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ಕೆರಮಾಡಲು ಸಂಖ್ಯೆಯೊಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ಸಂದೇಶಕ್ಕಾಗಿ ಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸಿ"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸು"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ಸಂಪರ್ಕ ಆಯ್ಕೆ ಮಾಡಿ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ಹೊಸ ಸಂಪರ್ಕ ರಚಿಸಿ"</string>
     <string name="starredList" msgid="4817256136413959463">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
@@ -183,7 +183,7 @@
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ಫೋನ್ ಸಂಖ್ಯೆ"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸು"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸಿ"</string>
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸು"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"ಮುಚ್ಚು"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"ವರ್ಷವನ್ನು ಒದಗಿಸಿ"</string>
@@ -270,6 +270,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"ಇತ್ತೀಚಿನ ಕರೆ. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ಪುನಃ ಕರೆ ಮಾಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ನೀವು: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ಇಮೇಲ್ ಕ್ಷೇತ್ರ ಅಥವಾ ಫೋನ್ ಕ್ಷೇತ್ರದಲ್ಲಿ ವ್ಯಕ್ತಿಯ Hangouts ಗುರುತಿಸುವಿಕೆಯನ್ನು ನೀವು ನಮೂದಿಸಿದಾಗ Hangouts ಉತ್ತಮವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"ಹೆಚ್ಚು ಫೀಲ್ಡ್‌ಗಳು"</string>
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"ಇನ್ನಷ್ಟು ಫೀಲ್ಡ್‌ಗಳು"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ಫೋಟೋ ಬದಲಾಯಿಸು"</string>
 </resources>
