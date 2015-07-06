@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Đã sao chép văn bản"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"Sao chép vào khay nhớ tạm"</string>
     <string name="call_custom" msgid="2786306789889210756">"Gọi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Gọi số điện thoại nhà riêng"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Gọi số điện thoại di động"</string>

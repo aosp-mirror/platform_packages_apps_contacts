@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Text bol skopírovaný"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"Kopírovať do schránky"</string>
     <string name="call_custom" msgid="2786306789889210756">"Volať kontakt <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Volať na domáci telefón"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Volať na mobil"</string>
@@ -101,7 +100,7 @@
     <string name="name_middle" msgid="3951610314424632183">"Stredné meno"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Titul za menom"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Meno (foneticky)"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Meno (foneticky)"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Krstné meno (foneticky)"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Stredné meno (foneticky)"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Priezvisko (foneticky)"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefón"</string>
@@ -234,11 +233,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Najprv meno"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Najprv priezvisko"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Zdieľať viditeľné kontakty"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Nepodarilo sa zdieľať viditeľné kontakty"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Import a export kontaktov"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importovať kontakty"</string>
-    <string name="share_error" msgid="665756457151793108">"Tento kontakt nie je možné zdieľať."</string>
+    <string name="share_error" msgid="665756457151793108">"Tento kontakt nie je možné zdieľať"</string>
     <string name="menu_search" msgid="7464453023659824700">"Hľadať"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakty na zobrazenie"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakty na zobrazenie"</string>

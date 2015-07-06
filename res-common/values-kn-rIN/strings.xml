@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"ಪಠ್ಯವನ್ನು ನಕಲಿಸಲಾಗಿದೆ"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸಿ"</string>
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> ಕರೆ ಮಾಡಿ"</string>
     <string name="call_home" msgid="1479549630992276827">"ಮನೆಗೆ ಕರೆ ಮಾಡಿ"</string>
     <string name="call_mobile" msgid="8618334085824709009">"ಮೊಬೈಲ್‌‌ಗೆ ಕರೆ ಮಾಡಿ"</string>
@@ -100,7 +99,7 @@
     <string name="name_suffix" msgid="5436984808550075931">"ಹೆಸರಿನ ಪ್ರತ್ಯಯ"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"ಫೋನೆಟಿಕ್‌‌ ಹೆಸರು"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"ಫೋನೆಟಿಕ್‌ ಮೊದಲ ಹೆಸರು"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"ಉಚ್ಚಾರಣಾನುರೂಪವಾಗಿ ಮಧ್ಯದ ಹೆಸರು"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"ಫೋನೆಟಿಕ್‌‌ ಮಧ್ಯ ಹೆಸರು"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"ಫೋನೆಟಿಕ್‌‌ ಕೊನೆಯ ಹೆಸರು"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ಫೋನ್"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ಇಮೇಲ್"</string>
@@ -232,8 +231,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ಮೊದಲ ಹೆಸರು ಮೊದಲು"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ಕೊನೆಯ ಹೆಸರು ಮೊದಲು"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ಗೋಚರಿಸುವ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ಗೋಚರಿಸುವ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ವಿಫಲವಾಗಿದೆ."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು/ರವಾನೆ ಮಾಡಿ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="share_error" msgid="665756457151793108">"ಈ ಸಂಪರ್ಕವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>

@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Teksti u kopjua"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"Kopjo në kujtesën e fragmenteve"</string>
     <string name="call_custom" msgid="2786306789889210756">"Telefono <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Telefono numrin e shtëpisë"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Telefono numrin celular"</string>
@@ -159,7 +158,7 @@
     <string name="menu_done" msgid="32470053723443112">"U krye!"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Anulo"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontaktet në <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontaktet në pamjen e personalizuar"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Pamja e personalizuar"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Një kontakt i vetëm"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Krijo një kontakt nën llogari"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importo nga karta SIM"</string>
@@ -232,15 +231,14 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Emri në fillim"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Mbiemri në fillim"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Shpërnda kontaktet e dukshme"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Ndarja e kontakteve të dukshme dështoi."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importo/eksporto kontaktet"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importo kontaktet"</string>
     <string name="share_error" msgid="665756457151793108">"Ky kontakt nuk mund të shpërndahet"</string>
     <string name="menu_search" msgid="7464453023659824700">"Kërko"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontaktet për t\'u paraqitur"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontaktet për t\'u paraqitur"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Përcakto pamjen e personalizuar"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakte për t\'u shfaqur"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakte për t\'u shfaqur"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Pamja e personalizuar"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Gjej kontaktet"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Të preferuarat"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nuk ka asnjë kontakt."</string>
