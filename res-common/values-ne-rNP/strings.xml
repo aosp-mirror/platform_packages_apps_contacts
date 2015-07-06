@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"पाठको प्रतिलिपि गरियो"</string>
-    <string name="copy_text" msgid="3424081789297978355">"क्लिपबोर्डमा प्रतिलिपि गर्नुहोस्"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> लाई कल गर्नुहोस्"</string>
     <string name="call_home" msgid="1479549630992276827">"घरमा कल गर्नुहोस्"</string>
     <string name="call_mobile" msgid="8618334085824709009">"मोबाइलमा कल गर्नुहोस्"</string>
@@ -231,7 +232,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहिले"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"थर पहिला"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"देखिने सम्पर्कहरू साझेदारी गर्नुहोस्"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"देख्न सकिने सम्पर्कहरू साझेदारी गर्न असफल भयो।"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"आयात/निर्यात सम्पर्कहरू"</string>
     <string name="dialog_import" msgid="5177004290082451296">"सम्पर्क आयात गर्नुहोस्"</string>
     <string name="share_error" msgid="665756457151793108">"यस सम्पर्कलाई साझेदारी गर्न सकिँदैन।"</string>

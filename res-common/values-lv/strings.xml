@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Teksts ir nokopēts."</string>
-    <string name="copy_text" msgid="3424081789297978355">"Kopēt starpliktuvē"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Zvanīt: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Zvanīt uz mājas tālruni"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Zvanīt uz mobilo tālruni"</string>
@@ -232,7 +233,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Vispirms rādīt vārdu"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Vispirms rādīt uzvārdu"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Kopīgot redzamo kontaktpersonu datus"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Neizdevās kopīgot redzamās kontaktpersonas."</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktpersonu importēšana/eksportēšana"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktpersonu datu importēšana"</string>
     <string name="share_error" msgid="665756457151793108">"Šīs kontaktpersonas datus nevar kopīgot."</string>

@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Matndan nusxa olindi"</string>
-    <string name="copy_text" msgid="3424081789297978355">"Vaqtinchalik xotiraga nusxalash"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Qo‘ng‘iroq: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Uy telefoniga qo‘ng‘iroq qilish"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Mobil"</string>
@@ -161,7 +162,7 @@
     <string name="listCustomView" msgid="1915154113477432033">"Filtrlangan kontaktlar"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Bitta kontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Hisob ostida kontakt yaratish"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"SIM-kartadan import qilish"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"SIM kartadan import qilish"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Quyidagi SIM-kartadan import qilish: <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Quyidagi SIM-kartadan import qilish: <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Xotira kartasidan import q-sh"</string>
@@ -209,8 +210,8 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Tashrifnoma(lar) telefondagi vaqtinchalik xotira keshiga yuklanmoqda. Import qilish jarayoni tezda boshlanadi."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Tashrifnoma import qilinmadi."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Xotira kartasida hech qanday vCard fayli yo‘q."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD-kartada hech qanday vCard fayli yo‘q."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Xotira kartasi hech qanday vCard fayli yo‘q."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD kartada hech qanday vCard fayli yo‘q."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt NFC orqali olindi"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Kontaktlar eksport qilinsinmi?"</string>
     <string name="select_vcard_title" msgid="1536575036597557639">"Tashrifnomani tanlang"</string>
@@ -231,7 +232,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Avval ismi"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Avval familiyasi"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Ko‘rinadigan kontaktlarni yuborish"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Ko‘rinadigan kontaktlarni yuborib bo‘lmadi."</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktlarni import/eksport qilish"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktlarni import qilish"</string>
     <string name="share_error" msgid="665756457151793108">"Kontaktni yuborib bo‘lmadi."</string>
