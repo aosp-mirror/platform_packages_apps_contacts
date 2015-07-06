@@ -224,7 +224,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Skydda dina kontakter även om du förlorar mobilen. Synkronisera med en onlinetjänst."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Lägg till ett konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nya kontakt kommer inte att säkerhetskopieras. Vill du lägga till ett konto så att kontakterna säkerhetskopieras online?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nya kontakt kommer att synkroniseras med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ."</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nya kontakt kommer att synkroniseras med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisera din nya kontakt med något av följande konton. Vilket konto vill du använda?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Lägg till ny kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Redigera kontakt"</string>

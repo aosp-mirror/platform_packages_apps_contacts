@@ -140,7 +140,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Nerasta jokių programų šiam veiksmui apdoroti."</string>
     <string name="menu_share" msgid="943789700636542260">"Bendrinti"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Pridėti prie kontaktų"</string>
-    <string name="share_via" msgid="563121028023030093">"Bendrinti adresatą naudojant"</string>
+    <string name="share_via" msgid="563121028023030093">"Bendrinti kontaktą naudojant"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Kurti grupę paskyroje"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Balso pokalbis"</string>
     <string name="video_chat" msgid="1872255818640336072">"Vaizdo pokalbis"</string>

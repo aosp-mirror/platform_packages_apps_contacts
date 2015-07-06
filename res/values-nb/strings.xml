@@ -50,13 +50,13 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plassér på startsiden"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send SMS til kontakt"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Del"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Adskill"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Rediger"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Slett"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Legg til kontakt"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Legg til gruppe"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Dele opp kontakt?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Denne kontakten kommer til å deles opp i flere kontakter."</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Vil du adskille?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Denne kontakten blir delt opp i flere kontakter."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Slå sammen"</string>
     <string name="menu_save" msgid="1727844363591825909">"Lagre"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Slå sammen kontakter"</string>
@@ -98,7 +98,7 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Det er ingen personer i denne gruppen."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Rediger gruppen for å legge til noen."</string>
     <string name="savingContact" msgid="4075751076741924939">"Lagrer kontakt…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt lagret."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakten er lagret."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kunne ikke lagre kontaktendringene."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Kunne ikke lagre endringene av kontaktbildene."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppe er lagret."</string>
@@ -134,7 +134,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Kunne ikke finne noen app som kan håndtere denne handlingen."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Legg til i kontakter"</string>
-    <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
+    <string name="share_via" msgid="563121028023030093">"Del kontakten via"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Opprett gruppe under konto"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Taleprat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videonettprat"</string>
@@ -142,7 +142,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Legg til tilknytning"</string>
     <string name="recent" msgid="2659189233141493004">"Nylige"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nylige oppdateringer"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Kontakt: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-kontakt"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-konto"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -214,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst kopiert"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vil du forkaste endringene?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer profilen min"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer profilen"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Tast inn personens navn"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Gruppens navn"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
@@ -247,7 +247,7 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"I morgen kl.<xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Aktivitet uten navn)"</string>
-    <string name="date_time_set" msgid="4761419824439606690">"Still inn"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"Angi"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"Nettprat"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisasjon"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Kallenavn"</string>

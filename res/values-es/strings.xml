@@ -89,7 +89,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"No hay ninguna imagen disponible en el tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"No hay ninguna imagen disponible en el teléfono."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacto"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre de campo personalizado"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre del campo personalizado"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al buzón de voz"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"No hay ningún contacto."</string>
@@ -98,7 +98,7 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Este grupo está vacío."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Para añadir contactos al grupo, edítalo."</string>
     <string name="savingContact" msgid="4075751076741924939">"Guardando contacto…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"El contacto se ha guardado."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Se ha guardado el contacto."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No se han guardado los cambios del contacto."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"No se han podido guardar los cambios de la foto de contacto."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupo guardado"</string>

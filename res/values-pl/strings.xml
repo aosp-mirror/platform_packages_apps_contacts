@@ -98,7 +98,7 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Brak osób w grupie"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Aby dodać członków, zmodyfikuj grupę."</string>
     <string name="savingContact" msgid="4075751076741924939">"Trwa zapisywanie kontaktu..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt został zapisany."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt został zapisany"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nie można zapisać zmian kontaktu."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nie udało się zapisać zmian wprowadzonych w zdjęciu kontaktu."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupa została zapisana."</string>

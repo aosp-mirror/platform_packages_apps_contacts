@@ -227,7 +227,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Votre nouveau contact va être synchronisé avec <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Vous pouvez synchroniser votre nouveau contact avec l\'un des comptes suivants. Lequel souhaitez-vous utiliser ?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ajouter un contact"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier le contact"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier contact"</string>
     <string name="keep_local" msgid="1258761699192993322">"Enregistrer localement"</string>
     <string name="add_account" msgid="8201790677994503186">"Ajouter un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ajouter un compte"</string>

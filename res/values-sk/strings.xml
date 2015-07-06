@@ -50,7 +50,7 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Umiestniť na plochu"</string>
     <string name="menu_call" msgid="3992595586042260618">"Zavolať kontaktu"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Odoslať správu kontaktu"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Oddeliť"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Rozdeliť"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Upraviť"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Odstrániť"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Pridať kontakt"</string>
@@ -148,7 +148,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Pridať spojenie"</string>
     <string name="recent" msgid="2659189233141493004">"Nedávne"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nedávne aktualizácie"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Kontakt z účtu <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Účet <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

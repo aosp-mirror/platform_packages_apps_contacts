@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Shto një kontakt"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Shto një grup"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Të veçohet kontakti?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Ky kontakt do të shpërbëhet në disa kontakte."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Ky kontakt do të ndahet në shumë kontakte."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Shkri"</string>
     <string name="menu_save" msgid="1727844363591825909">"Ruaj"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Bashkoji kontaktet"</string>
@@ -66,7 +66,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Të gjitha kontaktet"</string>
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Kontaktet u shkrinë"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontaktet u fshinë"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Cakto tonin e ziles"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Vendos zilen e preferuar"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Gjithë telefonatat te posta zanore"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Nuk mund t\'i fshish kontaktet nga llogaritë \"vetëm për lexim\", por mund t\'i fshehësh në listat e tua të kontakteve."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ky kontakt përmban informacione nga shumë llogari. Informacionet nga llogaritë \"vetëm për lexim\", nuk do të shfaqen në listën tënde të kontakteve. Megjithatë, kjo nuk do të thotë se ato do të fshihen."</string>
@@ -270,6 +270,6 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"telefonata e fundit. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. kliko për të ri-telefonuar"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ti: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Shërbimi \"Hangouts\" funksionon më mirë kur fut identifikuesin e personit në fushën e mail-it ose në fushën e telefonit."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Më shumë fusha"</string>
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Fusha të tjera"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Ndrysho fotografinë"</string>
 </resources>

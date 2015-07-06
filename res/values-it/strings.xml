@@ -226,7 +226,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Non verrà effettuato il backup del nuovo contatto. Aggiungere un account che effettua il backup dei contatti online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Il nuovo contatto verrà sincronizzato con <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puoi sincronizzare il nuovo contatto con uno dei seguenti account. Quale desideri utilizzare?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Aggiungi nuovo contatto"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Nuovo contatto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifica contatto"</string>
     <string name="keep_local" msgid="1258761699192993322">"Memorizza in locale"</string>
     <string name="add_account" msgid="8201790677994503186">"Aggiungi account"</string>
