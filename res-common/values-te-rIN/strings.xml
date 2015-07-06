@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"వచనం కాపీ చేయబడింది"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"క్లిప్‌బోర్డ్‌కు కాపీ చేయి"</string>
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g>కు కాల్ చేయండి"</string>
     <string name="call_home" msgid="1479549630992276827">"ఇంటికి కాల్ చేయండి"</string>
     <string name="call_mobile" msgid="8618334085824709009">"మొబైల్‌కు కాల్ చేయండి"</string>
@@ -232,15 +231,14 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ముందుగా మొదటి పేరు"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ముందుగా చివరి పేరు"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయండి"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయడం విఫలమైంది."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"పరిచయాలను దిగుమతి/ఎగుమతి చేయండి"</string>
     <string name="dialog_import" msgid="5177004290082451296">"పరిచయాలను దిగుమతి చేయండి"</string>
     <string name="share_error" msgid="665756457151793108">"ఈ పరిచయాన్ని భాగస్వామ్యం చేయడం సాధ్యపడదు."</string>
     <string name="menu_search" msgid="7464453023659824700">"శోధించు"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"అనుకూల వీక్షణను నిర్వచించండి"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"అనుకూల వీక్షణ నిర్వచనం"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"పరిచయాలను కనుగొనండి"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ఇష్టమైనవి"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"పరిచయాలు లేవు."</string>

@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Teksti kopioitu"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"Kopioi leikepöydälle"</string>
     <string name="call_custom" msgid="2786306789889210756">"Soita: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Soita kotinumeroon"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Soita matkapuhelimeen"</string>
@@ -159,7 +158,7 @@
     <string name="menu_done" msgid="32470053723443112">"Valmis"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Peruuta"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Yhteystiedot tilissä <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Yhteystiedot muokatussa näkymässä"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Muokatun näkymän yhteystiedot"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Yksi yhteystieto"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Luo yhteystieto tilissä"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Tuo SIM-kortilta"</string>
@@ -232,11 +231,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Etunimi ensin"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Sukunimi ensin"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Jaa näkyvät yhteystiedot"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Näkyvien yhteystietojen jakaminen epäonnistui."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Tuo/vie yhteystietoja"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Tuo yhteystietoja"</string>
-    <string name="share_error" msgid="665756457151793108">"Tätä yhteystietoa ei voi jakaa."</string>
+    <string name="share_error" msgid="665756457151793108">"Yhteystieto ei jaettavissa"</string>
     <string name="menu_search" msgid="7464453023659824700">"Haku"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Näytettävät yhteystiedot"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Näytettävät yhteystiedot"</string>

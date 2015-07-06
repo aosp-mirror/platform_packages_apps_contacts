@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Tekst skopiowany"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"Skopiuj do schowka"</string>
     <string name="call_custom" msgid="2786306789889210756">"Połącz – <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Połącz – domowy"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Połącz – komórka"</string>
@@ -149,7 +148,7 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Rozwiń lub zwiń pola imion i nazwisk"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Wszystkie kontakty"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Oznaczone gwiazdką"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Dostosuj"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Zdefiniuj filtr"</string>
     <string name="list_filter_single" msgid="4553809449379139446">"Kontakt"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"Wszystkie inne kontakty"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"Wszystkie kontakty"</string>
@@ -161,7 +160,7 @@
     <string name="menu_done" msgid="32470053723443112">"Gotowe"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Anuluj"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakty na koncie <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontakty w widoku niestandardowym"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Kontakty spełniające kryteria"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Jeden kontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Utwórz kontakt na koncie:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importuj z karty SIM"</string>
@@ -234,15 +233,14 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Najpierw imię"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Najpierw nazwisko"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Udostępnij widoczne kontakty"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Nie udało się udostępnić widocznych kontaktów."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importuj/eksportuj kontakty"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importuj kontakty"</string>
     <string name="share_error" msgid="665756457151793108">"Tego kontaktu nie można udostępnić."</string>
     <string name="menu_search" msgid="7464453023659824700">"Wyszukiwarka"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakty do wyświetlenia"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakty do wyświetlenia"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Zdefiniuj widok niestandardowy"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Zdefiniuj filtr"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Znajdź kontakty"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Ulubione"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Brak kontaktów"</string>
