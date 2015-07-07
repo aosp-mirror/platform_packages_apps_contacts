@@ -61,7 +61,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         /**
          * Invoked when any editor that is displayed in this section view is deleted by the user.
          */
-        public void onDeleteRequested();
+        public void onDeleteRequested(Editor editor);
     }
 
     private ViewGroup mEditors;
@@ -71,6 +71,14 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private RawContactDelta mState;
     private boolean mReadOnly;
     private boolean mShowOneEmptyEditor;
+
+    /**
+     * Whether this KindSectionView will be removed from the layout.
+     * We need this because we want to animate KindSectionViews away (which takes time),
+     * but calculate which KindSectionViews will be visible immediately after starting removal
+     * animations.
+     */
+    private boolean mMarkedForRemoval;
 
     private ViewIdGenerator mViewIdGenerator;
 
@@ -117,17 +125,27 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     @Override
     public void onDeleteRequested(Editor editor) {
-        // If there is only 1 editor in the section, then don't allow the user to delete it.
-        // Just clear the fields in the editor.
-        if (getEditorCount() == 1 && mShowOneEmptyEditor) {
+        if (mShowOneEmptyEditor && getEditorCount() == 1) {
+            // If there is only 1 editor in the section, then don't allow the user to delete it.
+            // Just clear the fields in the editor.
             editor.clearAllFields();
         } else {
-            // Otherwise it's okay to delete this {@link Editor}
-            editor.deleteEditor();
+            // If there is a listener, let it decide whether to delete the Editor or the entire
+            // KindSectionView so that there is no jank from both animations happening in succession.
+            if (mListener != null) {
+                mListener.onDeleteRequested(editor);
+            } else {
+                editor.deleteEditor();
+            }
         }
-        if (mListener != null) {
-            mListener.onDeleteRequested();
-        }
+    }
+
+    public void markForRemoval() {
+        mMarkedForRemoval = true;
+    }
+
+    public boolean isMarkedForRemoval() {
+        return mMarkedForRemoval;
     }
 
     @Override
@@ -310,16 +328,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     public int getEditorCount() {
         return mEditors.getChildCount();
-    }
-
-    public int getVisibleEditorCount() {
-        int count = 0;
-        for (int i = 0; i < mEditors.getChildCount(); i++) {
-            if (mEditors.getChildAt(i).getVisibility() == View.VISIBLE) {
-                count++;
-            }
-        }
-        return count;
     }
 
     public DataKind getKind() {
