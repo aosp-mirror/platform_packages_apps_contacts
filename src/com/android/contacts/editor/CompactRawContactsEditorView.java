@@ -666,7 +666,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     final List<ValuesDelta> valuesDeltas = getNonEmptyValuesDeltas(
                             rawContactDelta, Nickname.CONTENT_ITEM_TYPE, dataKind);
                     if (valuesDeltas != null && !valuesDeltas.isEmpty()) {
-                        for (ValuesDelta valuesDelta : valuesDeltas){
+                        for (ValuesDelta valuesDelta : valuesDeltas) {
                             mNicknames.addView(inflateNicknameEditorView(
                                     mNicknames, dataKind, valuesDelta, rawContactDelta));
                         }
@@ -744,6 +744,15 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
         // Only the last editor should show an empty editor
         if (lastVisibleKindSectionView != null) {
+            // Hide all empty kind sections except the last one
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                final KindSectionView kindSectionView = (KindSectionView) viewGroup.getChildAt(i);
+                if (kindSectionView != lastVisibleKindSectionView
+                        && kindSectionView.areAllEditorsEmpty()) {
+                    kindSectionView.setVisibility(View.GONE);
+                }
+            }
+            // Set the last editor to show empty editor fields
             lastVisibleKindSectionView.setShowOneEmptyEditor(true);
             lastVisibleKindSectionView.updateEmptyEditors(/* shouldAnimate =*/ false);
         }
