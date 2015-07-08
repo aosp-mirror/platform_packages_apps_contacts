@@ -81,7 +81,13 @@ public interface Editor {
     public void onFieldChanged(String column, String value);
 
     /**
-     * Performs the delete operation for this {@link Editor}.
+     * Marks the underlying ValuesDelta as deleted, but does not update the view.
+     */
+    public void markDeleted();
+
+    /**
+     * Performs the delete operation for this {@link Editor}, which involves both
+     * marking the underlying ValuesDelta as deleted and updating the view.
      */
     public void deleteEditor();
 

@@ -133,6 +133,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
             // If there is a listener, let it decide whether to delete the Editor or the entire
             // KindSectionView so that there is no jank from both animations happening in succession.
             if (mListener != null) {
+                editor.markDeleted();
                 mListener.onDeleteRequested(editor);
             } else {
                 editor.deleteEditor();
@@ -140,10 +141,21 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
     }
 
+    /**
+     * Calling this signifies that this entire section view is intended to be removed from the
+     * layout. Note, calling this does not change the deleted state of any underlying
+     * {@link Editor}, i.e. {@link com.android.contacts.common.model.ValuesDelta#markDeleted()}
+     * is not invoked on any editor in this section.  It is purely marked for higher level UI
+     * layers to manipulate the layout w/o introducing jank.
+     * See b/22228718 for context.
+     */
     public void markForRemoval() {
         mMarkedForRemoval = true;
     }
 
+    /**
+     * Whether the entire section view is intended to be removed from the layout.
+     */
     public boolean isMarkedForRemoval() {
         return mMarkedForRemoval;
     }

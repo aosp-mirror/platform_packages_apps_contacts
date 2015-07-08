@@ -252,6 +252,11 @@ public class PhotoEditorView extends LinearLayout implements Editor {
     }
 
     @Override
+    public void markDeleted() {
+        // Photo is not deletable
+    }
+
+    @Override
     public void deleteEditor() {
         // Photo is not deletable
     }

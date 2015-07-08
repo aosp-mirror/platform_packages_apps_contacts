@@ -185,9 +185,14 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     }
 
     @Override
-    public void deleteEditor() {
+    public void markDeleted() {
         // Keep around in model, but mark as deleted
         mEntry.markDeleted();
+    }
+
+    @Override
+    public void deleteEditor() {
+        markDeleted();
 
         // Remove the view
         EditorAnimator.getInstance().removeEditorView(this);
