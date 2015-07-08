@@ -1476,7 +1476,9 @@ public class QuickContactActivity extends ContactsActivity {
                 if (phone.hasKindTypeColumn(kind)) {
                     text = Phone.getTypeLabel(res, phone.getKindTypeColumn(kind),
                             phone.getLabel()).toString();
-                    primaryContentDescription.append(text).append(" ");
+                    if (!TextUtils.isEmpty(text)) {
+                        primaryContentDescription.append(text).append(" ");
+                    }
                 }
                 primaryContentDescription.append(header);
                 icon = res.getDrawable(R.drawable.ic_phone_24dp);
