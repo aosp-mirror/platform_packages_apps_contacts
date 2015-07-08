@@ -161,10 +161,10 @@
     <string name="listCustomView" msgid="1915154113477432033">"Kenalan dalam paparan tersuai"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Kenalan tunggal"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Wujudkan kenalan di bawah akaun"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Import dari kad SIM"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Import daripada kad SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Import dari SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Import dari SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Import dari storan"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Import daripada storan"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Batalkan import <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Batalkan eksport <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Tidak dapat membatalkan import/eksport vCard"</string>
@@ -234,7 +234,7 @@
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama keluarga dahulu"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Kongsi kenalan yang kelihatan"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Gagal berkongsi kenalan yang kelihatan"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Import/Eksport kenalan"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Import/eksport kenalan"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Import kenalan"</string>
     <string name="share_error" msgid="665756457151793108">"Kenalan ini tidak boleh dikongsi."</string>
     <string name="menu_search" msgid="7464453023659824700">"Cari"</string>

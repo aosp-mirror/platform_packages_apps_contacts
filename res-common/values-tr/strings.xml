@@ -29,7 +29,7 @@
     <string name="call_other" msgid="4472141328347894937">"Sesli arama yap"</string>
     <string name="call_callback" msgid="687494744634190411">"Sesli arama yap (geri arama)"</string>
     <string name="call_car" msgid="9078083109758282133">"Sesli arama yap (araç)"</string>
-    <string name="call_company_main" msgid="8768047233970315359">"Sesli arama yap (şirket ana hattı)"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Sesli arama yap (şirket santrali)"</string>
     <string name="call_isdn" msgid="3342482563847537747">"Sesli arama yap (ISDN)"</string>
     <string name="call_main" msgid="4640261071249938558">"Sesli arama yap (santral)"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"Sesli arama yap (faks)"</string>

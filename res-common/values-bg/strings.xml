@@ -106,7 +106,7 @@
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Адрес"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"Незабавни съобщения"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Организация"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"Взаимоотношения"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Връзки"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Специални дати"</string>
     <string name="sms" msgid="8086289395154598654">"Текстово съобщение"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адрес"</string>
@@ -228,8 +228,8 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Собствено име"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилно име"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат на името"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Собственото име първо"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Фамилното име първо"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Първо собственото име"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Първо фамилното име"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Споделяне на видимите контакти"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Споделянето на видимите контакти не бе успешно."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Импортиране/eкспортиране на контакти"</string>
