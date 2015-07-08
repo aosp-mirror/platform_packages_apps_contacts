@@ -326,6 +326,16 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         return emptyEditorViews;
     }
 
+    public boolean areAllEditorsEmpty() {
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            final View view = mEditors.getChildAt(i);
+            if (!((Editor) view).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public int getEditorCount() {
         return mEditors.getChildCount();
     }
