@@ -31,7 +31,6 @@
     <item type="id" name="dialog_cancel_failed"/>
 
     <!-- For ExportVCardActivity -->
-    <item type="id" name="dialog_export_confirmation"/>
     <item type="id" name="dialog_exporting_vcard"/>
     <item type="id" name="dialog_fail_to_export_with_reason"/>
 
