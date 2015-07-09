@@ -157,9 +157,11 @@ public class NotificationImportExportListener implements VCardImportExportListen
 
     @Override
     public void onExportProcessed(ExportRequest request, int jobId) {
-        final String displayName = request.destUri.getLastPathSegment();
-        final String message = mContext.getString(R.string.vcard_export_will_start_message,
-                displayName);
+        final String displayName = ExportVCardActivity.getOpenableUriDisplayName(mContext,
+                request.destUri);
+        final String message = displayName == null
+                ? mContext.getString(R.string.vcard_export_will_start_message_fallback)
+                : mContext.getString(R.string.vcard_export_will_start_message, displayName);
 
         mHandler.obtainMessage(0, message).sendToTarget();
         final Notification notification =

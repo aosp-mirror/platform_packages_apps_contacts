@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -30,6 +31,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.provider.OpenableColumns;
 import android.text.BidiFormatter;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
@@ -205,6 +207,23 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     public void unbindService(ServiceConnection conn) {
         mProcessOngoing = false;
         super.unbindService(conn);
+    }
+
+    /**
+     * Returns the display name for the given openable Uri or null if it could not be resolved. */
+    static String getOpenableUriDisplayName(Context context, Uri uri) {
+        if (uri == null) return null;
+        final Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
+        try {
+            if (cursor != null && cursor.moveToFirst()) {
+                return cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+            }
+        } finally {
+            if (cursor != null)  {
+                cursor.close();
+            }
+        }
+        return null;
     }
 
     private synchronized void unbindAndFinish() {
