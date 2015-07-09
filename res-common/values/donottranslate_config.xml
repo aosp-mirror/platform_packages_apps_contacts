@@ -78,8 +78,8 @@
          entirely disable SIM import on a per-product basis. -->
     <bool name="config_allow_sim_import">true</bool>
 
-    <!-- Flag indicating whether Contacts app is allowed to export contacts to SDCard -->
-    <bool name="config_allow_export_to_sdcard">true</bool>
+    <!-- Flag indicating whether Contacts app is allowed to export contacts -->
+    <bool name="config_allow_export">true</bool>
 
     <!-- Flag indicating whether Contacts app is allowed to share contacts with devices outside -->
     <bool name="config_allow_share_visible_contacts">true</bool>

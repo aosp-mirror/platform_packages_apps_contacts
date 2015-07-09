@@ -507,6 +507,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- The title shown when exporting vCard is successfuly finished [CHAR LIMIT=40] -->
     <string name="exporting_vcard_finished_title">Finished exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g>.</string>
 
+    <!-- The filename that is suggested that users use when exporting vCards. Should include the .vcf extension. CHAR LIMIT=40] -->
+    <string name="exporting_vcard_filename">contacts.vcf</string>
+
     <!-- The title shown when exporting vCard is canceled (probably by a user)
          The argument is file name the user canceled importing.
          [CHAR LIMIT=40] -->
@@ -546,9 +549,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <string name="no_sdcard_message" product="nosdcard">No storage was found.</string>
     <!-- Dialog message shown when SDcard does not exist. [CHAR LIMIT=30] -->
     <string name="no_sdcard_message" product="default">No SD card was found.</string>
-
-    <!-- Dialog message shown when a user confirms whether he/she export Contact data [CHAR LIMIT=NONE] -->
-    <string name="confirm_export_message">Your contact list will be exported to file: <xliff:g id="vcard_filename">%s</xliff:g>.</string>
 
     <!-- Description shown when importing vCard data.
          The argument is the name of a contact which is being read.
@@ -657,8 +657,8 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          [CHAR LIMIT=20] -->
     <string name="progress_notifier_message">Importing <xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
 
-    <!-- Action that exports all contacts to (USB) storage [CHAR LIMIT=25] -->
-    <string name="export_to_sdcard" product="default">Export to storage</string>
+    <!-- Action that exports all contacts to a user selected destination. [CHAR LIMIT=25] -->
+    <string name="export" product="default">Export</string>
 
     <!-- Contact preferences related strings -->
 
