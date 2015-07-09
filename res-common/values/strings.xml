@@ -507,6 +507,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- The title shown when exporting vCard is successfuly finished [CHAR LIMIT=40] -->
     <string name="exporting_vcard_finished_title">Finished exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g>.</string>
 
+    <!-- The title shown when exporting vCard has finished successfully but the destination filename could not be resolved. [CHAR LIMIT=NONE] -->
+    <string name="exporting_vcard_finished_title_fallback">Finished exporting contacts.</string>
+
     <!-- The filename that is suggested that users use when exporting vCards. Should include the .vcf extension. CHAR LIMIT=40] -->
     <string name="exporting_vcard_filename">contacts.vcf</string>
 
@@ -588,6 +591,10 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          The argument is file name the user exported.
          [CHAR LIMIT=40] -->
     <string name="vcard_export_will_start_message"><xliff:g id="filename" example="import.vcf">%s</xliff:g> will be exported shortly.</string>
+
+    <!-- The message shown when a vCard export request is accepted but the destination filename could not be resolved. [CHAR LIMIT=NONE] -->
+    <string name="vcard_export_will_start_message_fallback">The file will be exported shortly.</string>
+
     <!-- The message shown when a given vCard export request is rejected by the system. [CHAR LIMIT=NONE] -->
     <string name="vcard_export_request_rejected_message">vCard export request was rejected. Try again later.</string>
     <!-- Used when file name is unknown in vCard processing. It typically happens
