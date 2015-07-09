@@ -197,9 +197,10 @@ public class ExportProcessor extends ProcessorBase {
             mService.updateMediaScanner(request.destUri.getPath());
 
             successful = true;
-            final String filename = uri.getLastPathSegment();
-            final String title = mService.getString(R.string.exporting_vcard_finished_title,
-                    filename);
+            final String filename = ExportVCardActivity.getOpenableUriDisplayName(mService, uri);
+            final String title = filename == null
+                    ? mService.getString(R.string.exporting_vcard_finished_title_fallback)
+                    : mService.getString(R.string.exporting_vcard_finished_title, filename);
             doFinishNotification(title, null);
         } finally {
             if (composer != null) {
