@@ -136,10 +136,9 @@ public class ImportExportDialogFragment extends DialogFragment
                 }
             }
         }
-        if (res.getBoolean(R.bool.config_allow_export_to_sdcard)) {
+        if (res.getBoolean(R.bool.config_allow_export)) {
             if (contactsAreAvailable) {
-                adapter.add(new AdapterEntry(getString(R.string.export_to_sdcard),
-                        R.string.export_to_sdcard));
+                adapter.add(new AdapterEntry(getString(R.string.export), R.string.export));
             }
         }
         if (res.getBoolean(R.bool.config_allow_share_visible_contacts)) {
@@ -162,7 +161,7 @@ public class ImportExportDialogFragment extends DialogFragment
                                 adapter.getItem(which).mSubscriptionId);
                         break;
                     }
-                    case R.string.export_to_sdcard: {
+                    case R.string.export: {
                         dismissDialog = true;
                         Intent exportIntent = new Intent(getActivity(), ExportVCardActivity.class);
                         exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,
