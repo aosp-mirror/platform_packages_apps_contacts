@@ -770,9 +770,15 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             deleteMenu.setVisible(false);
         } else if (isEdit(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
-            // Split only if there is more than one raw (non-user profile) contact and doing so
-            // won't result in an empty contact
-            splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile() && !mHasNewContact);
+            // Split only if there is more than one raw contact, it is not a user-profile, and
+            // splitting won't result in an empty contact. For the empty contact case, we only guard
+            // against this when there is a single read-only contact in the aggregate.  If the user
+            // has joined >1 read-only contacts together, we allow them to split it,
+            // even if they have never added their own information and splitting will create a
+            // name only contact.
+            final boolean isSingleReadOnlyContact = mHasNewContact && mState.size() == 2;
+            splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile()
+                    && !isSingleReadOnlyContact);
             // Cannot join a user profile
             joinMenu.setVisible(!isEditingUserProfile());
             deleteMenu.setVisible(!mDisableDeleteMenuOption);
