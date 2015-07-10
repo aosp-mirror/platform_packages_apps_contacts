@@ -427,6 +427,7 @@ public abstract class BaseAccountType extends AccountType {
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(SipAddress.SIP_ADDRESS,
                                          R.string.label_sip_address, FLAGS_SIP_ADDRESS));
+        kind.typeOverallMax = 1;
 
         return kind;
     }
