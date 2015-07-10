@@ -382,10 +382,14 @@ public class QuickContactActivity extends ContactsActivity {
                         .appendPath(String.valueOf(dataId))
                         .appendQueryParameter(DataUsageFeedback.USAGE_TYPE, usageType)
                         .build();
-                final boolean successful = getContentResolver().update(
-                        dataUsageUri, new ContentValues(), null, null) > 0;
-                if (!successful) {
-                    Log.w(TAG, "DataUsageFeedback increment failed");
+                try {
+                    final boolean successful = getContentResolver().update(
+                            dataUsageUri, new ContentValues(), null, null) > 0;
+                    if (!successful) {
+                        Log.w(TAG, "DataUsageFeedback increment failed");
+                    }
+                } catch (SecurityException ex) {
+                    Log.w(TAG, "DataUsageFeedback increment failed", ex);
                 }
             } else {
                 Log.w(TAG, "Invalid Data ID");
