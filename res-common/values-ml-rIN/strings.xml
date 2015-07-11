@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"വാചകം പകർത്തി"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തുക"</string>
     <string name="call_custom" msgid="2786306789889210756">"വിളിക്കുക <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"വീട്ടിലെ ഫോണിലേക്ക് വിളിക്കുക"</string>
     <string name="call_mobile" msgid="8618334085824709009">"മൊബൈലിലേക്ക് വിളിക്കുക"</string>
@@ -185,6 +184,10 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"നൽകിയിരിക്കുന്ന vCard ഫയലിന്റെ (ഫയലുകളുടെ) മീറ്റ വിവരം ശേഖരിക്കാനായില്ല."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ഒന്നോ അതിലധികമോ ഫയലുകൾ ഇമ്പോർട്ടുചെയ്യാനായില്ല (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
+    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ റദ്ദാക്കി."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്യുന്നു"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"നിങ്ങളുടെ കോൺടാക്റ്റ് ഡാറ്റ ഇതിലേക്ക് എക്‌സ്‌പോർട്ടുചെയ്യുന്നു: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -196,7 +199,6 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്‌തില്ല.\nകാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"സംഭരണമൊന്നും കണ്ടെത്തിയില്ല."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD കാർഡൊന്നും കണ്ടെത്തിയില്ല"</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"നിങ്ങളുടെ കോൺടാക്റ്റ് ലിസ്റ്റ് ഫയലിലേക്ക് എക്‌സ്‌പോർട്ടുചെയ്യും: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> എന്നയാളെ ഇമ്പോർട്ടുചെയ്യുന്നു."</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard ഡാറ്റ വായിക്കാനായില്ല"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard ഡാറ്റ വായിക്കുന്നത് റദ്ദാക്കി"</string>
@@ -206,6 +208,8 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ഈ ഫയൽ ഉടൻ ഇമ്പോർട്ടുചെയ്യും."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard ഇമ്പോർട്ടുചെയ്യൽ അഭ്യർത്ഥന നിരസിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് ഉടൻ എക്‌സ്‌പോർട്ടുചെയ്യും."</string>
+    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard എക്‌സ്‌പോർട്ടുചെയ്യൽ അഭ്യർത്ഥന നിരസിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"കോൺടാക്റ്റ്"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"പ്രാദേശിക താൽക്കാലിക സംഭരണത്തിലേക്ക് vCard (vCard-കൾ) കാഷെ ചെയ്യുന്നു. യഥാർത്ഥ ഇമ്പോർട്ടുചെയ്യൽ ഉടൻ ആരംഭിക്കും."</string>
@@ -221,10 +225,11 @@
     <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"സംഭരണത്തിൽ vCard ഡാറ്റയ്‌ക്കായി തിരയുന്നു…"</string>
     <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD കാർഡിൽ vCard ഡാറ്റയ്‌ക്കായി തിരയുന്നു…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"കാഷെ ചെയ്യൽ"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"സംഭരണം സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"സ്റ്റോറേജ്  സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD കാർഡ് സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ഇമ്പോർട്ടുചെയ്യുന്നു: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"സംഭരണത്തിലേക്ക് എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
+    <!-- no translation found for export (2217626703274766523) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ഇതുപ്രകാരം അടുക്കുക"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"പേരിന്‍റെ ആദ്യഭാഗം"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"പേരിന്റെ അവസാനഭാഗം"</string>
@@ -232,8 +237,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"പേരിന്റെ ആദ്യഭാഗം ആദ്യം"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"പേരിന്റെ അവസാന ഭാഗം ആദ്യം"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുക"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുന്നത് പരാജയപ്പെട്ടു."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"കോൺടാക്റ്റ് ഡൗൺലോഡ്/അപ്‌ലോഡ്"</string>
     <string name="dialog_import" msgid="5177004290082451296">"കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="share_error" msgid="665756457151793108">"ഈ കോൺടാക്റ്റ് പങ്കിടാനാകില്ല."</string>

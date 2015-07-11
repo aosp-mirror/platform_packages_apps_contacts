@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Текст је копиран"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"Копирај у привремену меморију"</string>
     <string name="call_custom" msgid="2786306789889210756">"Позови <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Позови кућни телефон"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Позови мобилни телефон"</string>
@@ -186,6 +185,10 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Није могуће прикупити метаподатке наведених vCard датотека."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Није могућ увоз једне или више датотека (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Извоз датотеке <xliff:g id="FILENAME">%s</xliff:g> је завршен."</string>
+    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Извоз датотеке <xliff:g id="FILENAME">%s</xliff:g> је отказан."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Извоз података о контактима је у току"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Подаци о контактима се извозе у: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -197,7 +200,6 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Подаци о контактима низу извезени.\nРазлог: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Меморија није пронађена."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD картица није пронађена."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Листа контаката ће бити извезена у датотеку: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Увоз контакта <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Читање vCard података није могуће"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Читање vCard података је отказано"</string>
@@ -207,6 +209,8 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Датотека ће ускоро бити увезена."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Захтев за увоз vCard датотеке је одбијен. Покушајте поново касније."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Датотека <xliff:g id="FILENAME">%s</xliff:g> ће ускоро бити извезена."</string>
+    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Захтев за извоз vCard датотеке је одбијен. Покушајте поново касније."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Кеширање vCard датотекa у локалну привремену меморију. Увоз ће ускоро започети."</string>
@@ -225,7 +229,8 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Није могуће скенирати меморију. (Разлог: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Није могуће скенирати SD картицу. (Разлог: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Увози се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Извези у меморију"</string>
+    <!-- no translation found for export (2217626703274766523) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортирај према"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Имену"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Презимену"</string>
@@ -233,8 +238,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Прво име"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Прво презиме"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Дели видљиве контакте"</string>
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Није успело дељење видљивих контаката."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Увоз/извоз контаката"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Увоз контаката"</string>
     <string name="share_error" msgid="665756457151793108">"Овај контакт не може да се дели."</string>

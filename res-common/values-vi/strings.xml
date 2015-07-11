@@ -18,8 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Đã sao chép văn bản"</string>
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
+    <string name="copy_text" msgid="3424081789297978355">"Sao chép vào khay nhớ tạm"</string>
     <string name="call_custom" msgid="2786306789889210756">"Gọi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Gọi số điện thoại nhà riêng"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Gọi số điện thoại di động"</string>
@@ -185,6 +184,10 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Không thể thu thập thông tin meta của (các) tệp vCard cụ thể."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Không thể nhập một hoặc nhiều tệp (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Đã xuất xong <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Quá trình xuất <xliff:g id="FILENAME">%s</xliff:g> bị hủy."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Đang xuất dữ liệu liên hệ"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Dữ liệu liên hệ của bạn đang được xuất sang: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -196,7 +199,6 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Không xuất được dữ liệu liên hệ.\nLý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Không tìm thấy bộ nhớ nào."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Không tìm thấy thẻ SD nào."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Danh bạ của bạn sẽ được xuất sang tệp: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Đang nhập <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Không thể đọc dữ liệu vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Thao tác đọc dữ liệu vCard bị hủy"</string>
@@ -206,6 +208,8 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Tệp sẽ sớm được nhập."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Yêu cầu nhập vCard bị từ chối. Hãy thử lại sau."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> sẽ sớm được xuất."</string>
+    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Yêu cầu xuất vCard bị từ chối. Hãy thử lại sau."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"liên hệ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Đang lưu vào bộ nhớ cache các tệp vCard sẽ được nhập vào bộ nhớ cục bộ tạm thời. Thao tác nhập thực sự sẽ sớm bắt đầu."</string>
@@ -224,7 +228,8 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Không thể quét bộ nhớ. (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Không thể quét thẻ SD. (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Đang nhập <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Xuất sang bộ nhớ"</string>
+    <!-- no translation found for export (2217626703274766523) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sắp xếp theo"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Tên"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Họ"</string>
