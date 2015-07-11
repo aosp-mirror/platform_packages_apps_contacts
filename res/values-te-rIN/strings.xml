@@ -192,8 +192,8 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"కొత్త పరిచయాన్ని సృష్టించు"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ఖాతాకు సైన్ ఇన్ చేయి"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"పరిచయాలను దిగుమతి చేయి"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"కొత్త సమూహాన్ని సృష్టించండి"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"కొత్త సమూహాన్ని సృష్టించండి"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"సమూహాన్ని సృష్టించండి"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"సమూహాన్ని సృష్టించండి"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> సమూహాలు</item>
       <item quantity="one">1 సమూహం</item>
@@ -227,7 +227,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"మీ కొత్త పరిచయం <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>తో సమకాలీకరించబడుతుంది."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"మీరు క్రింది ఖాతాల్లో ఒకదానితో మీ కొత్త పరిచయాన్ని సమకాలీకరించవచ్చు. మీరు దేన్ని ఉపయోగించాలనుకుంటున్నారు?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"కొత్త పరిచయం చేర్చు"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"పరిచయాన్ని సవరించండి"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"సవరించండి"</string>
     <string name="keep_local" msgid="1258761699192993322">"స్థానికంగా ఉంచండి"</string>
     <string name="add_account" msgid="8201790677994503186">"ఖాతాను జోడించు"</string>
     <string name="add_new_account" msgid="5748627740680940264">"కొత్త ఖాతాను జోడించు"</string>

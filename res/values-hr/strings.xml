@@ -47,7 +47,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Izbriši"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Promijeni fotografiju"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Mjesto na početnom zaslonu"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Stavi na početni zaslon"</string>
     <string name="menu_call" msgid="3992595586042260618">"Nazovi kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Poruka kontaktu"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Razdvoji"</string>
@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Dodavanje kontakta"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Dodavanje grupe"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Razdvojiti kontakt?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Ovaj će se kontakt razdvojiti na više kontakata."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Kontakt će se razdvojiti na više kontakata."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Spoji"</string>
     <string name="menu_save" msgid="1727844363591825909">"Spremi"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Pridruži kontakte"</string>
@@ -76,7 +76,7 @@
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Podaci s računa koji su samo za čitanje bit će skriveni na popisu kontakata, a ne izbrisani."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Ti kontakti sadrže podatke s više računa. Podaci s računa koji su samo za čitanje bit će skriveni na popisu kontakata, a ne izbrisani."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Brisanjem ovog kontakta izbrisat ćete podatke s više računa."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Ovaj će kontakt biti izbrisan."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Kontakt će se izbrisati."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Odbaci promjene"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt ne postoji."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget za kontakte dodan je na vaš početni zaslon."</string>

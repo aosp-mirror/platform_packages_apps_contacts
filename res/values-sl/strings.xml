@@ -156,7 +156,7 @@
     <string name="group_read_only" msgid="1061762906115697637">"V tej napravi ni mogoče urejati skupine."</string>
     <string name="take_photo" msgid="7496128293167402354">"Posnemi fotografijo"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Posnemi novo fotografijo"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Izberite fotografijo"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Izberi fotografijo"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Izberite novo fotografijo"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Seznam stikov se posodablja."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Iskanje ..."</string>
@@ -240,7 +240,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nov stik ne bo varnostno kopiran. Želite dodati račun za varnostno kopiranje stikov v internetu?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nov stik bo sinhroniziran z računom <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nov stik lahko sinhronizirate z enim od teh računov. Katerega želite uporabiti?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj. novega stika"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dod. novega stika"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Urejanje stika"</string>
     <string name="keep_local" msgid="1258761699192993322">"Ohrani lokalno"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>

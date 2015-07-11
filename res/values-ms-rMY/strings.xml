@@ -89,7 +89,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tiada gambar yang tersedia pada tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tidak ada gambar yang tersedia pada telefon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto kenalan"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Label nama peribadi"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label peribadi"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Hantar panggilan terus ke peti suara"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alih keluar foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"Tiada kenalan."</string>
@@ -134,7 +134,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Tiada apl ditemui untuk mengendalikan tindakan ini."</string>
     <string name="menu_share" msgid="943789700636542260">"Kongsi"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Tambahkan pada kenalan"</string>
-    <string name="share_via" msgid="563121028023030093">"Kongsi gambar melalui"</string>
+    <string name="share_via" msgid="563121028023030093">"Kongsi kenalan melalui"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Buat kumpulan di bawah akaun"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Sembang suara"</string>
     <string name="video_chat" msgid="1872255818640336072">"Sembang video"</string>
@@ -142,7 +142,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Tambah sambungan"</string>
     <string name="recent" msgid="2659189233141493004">"Terbaru"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Kemas kini terbaru"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kenalan"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Kenalan <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Akaun <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

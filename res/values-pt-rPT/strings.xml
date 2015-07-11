@@ -142,7 +142,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Adicionar ligação"</string>
     <string name="recent" msgid="2659189233141493004">"Recentes"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Atualiz. recentes"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Contacto do <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Conta <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -214,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Rejeitar as alterações?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Configurar o meu perfil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Config. o perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Introduza o nome da pessoa"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nome do Grupo"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"O meu perfil local"</string>
