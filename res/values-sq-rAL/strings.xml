@@ -227,7 +227,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Kontakti yt i ri do të sinkronizohet me <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Mund ta sinkronizosh kontaktin tënd të ri me një nga llogaritë e mëposhtme. Cilën dëshiron të përdorësh?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Shto një kontakt të ri"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Redakto kontaktin"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Redakto"</string>
     <string name="keep_local" msgid="1258761699192993322">"Mbaje në nivel lokal"</string>
     <string name="add_account" msgid="8201790677994503186">"Shto një llogari"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Shto një llogari të re"</string>
