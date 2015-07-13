@@ -58,7 +58,10 @@
     <string name="config_export_file_suffix" translatable="false"></string>
 
     <!-- Extension for exported VCard files -->
-    <string name="config_export_file_extension" translatable="false">vcf</string>
+    <string name="config_export_file_extension">vcf</string>
+
+    <!-- The filename that is suggested that users use when exporting vCards. Should include the .vcf extension. -->
+    <string name="exporting_vcard_filename" translatable="false">contacts.vcf</string>
 
     <!-- Minimum number of exported VCard file index -->
     <integer name="config_export_file_min_index">1</integer>
