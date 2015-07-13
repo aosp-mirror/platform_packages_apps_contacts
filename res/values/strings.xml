@@ -767,4 +767,7 @@
 
     <!-- Content description for the compact contact editor photo overlay which, when clicked, shows a dialog with the options for changing the contact photo. [CHAR LIMIT=30] -->
     <string name="compact_editor_change_photo_content_description">Change photo</string>
+
+    <!-- Quick contact display name with phonetic name -->
+    <string name="quick_contact_display_name_with_phonetic"><xliff:g id="display_name">%s</xliff:g> (<xliff:g id="phonetic_name">%s</xliff:g>)</string>
 </resources>
