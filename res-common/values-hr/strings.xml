@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Tekst kopiran"</string>
-    <string name="copy_text" msgid="3424081789297978355">"Kopiraj u međuspremnik"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Nazovi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Nazovi kućni broj"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Nazovi mobitel"</string>
@@ -100,7 +101,7 @@
     <string name="name_suffix" msgid="5436984808550075931">"Sufiks imena"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Ime fonetski"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetski zapis imena"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetski zapis srednjeg imena"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Srednje ime fonetski"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Fonetski zapis prezimena"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-pošta"</string>
@@ -185,10 +186,6 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Neuspješno prikupljanje metainformacija danih datoteka kartice vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Uvoz jedne ili više datoteka nije uspio (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Završetak izvoza datoteke <xliff:g id="FILENAME">%s</xliff:g>."</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> otkazan je."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Izvoz podataka o kontaktu"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Vaši podaci o kontaktu izvoze se u datoteku <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -200,6 +197,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Podaci o kontaktu nisu izvezeni.\nRazlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Pohrana nije pronađena."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Nije pronađena SD kartica."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Vaš popis kontakata bit će izvezen u datoteku: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Uvozi se <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Čitanje podataka vCarda nije uspjelo"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Čitanje podataka kartice vCard otkazano"</string>
@@ -209,8 +207,6 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Datoteka će uskoro biti uvezena."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Zahtjev za uvoz formata vCard odbijen je. Pokušajte ponovo kasnije."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Datoteka <xliff:g id="FILENAME">%s</xliff:g> uskoro će biti izvezena."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Zahtjev za izvoz formata vCard odbijen je. Pokušajte ponovo kasnije."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Spremanje vCard datoteka u lokalnu privremenu pohranu. Stvarni uvoz počet će uskoro."</string>
@@ -229,8 +225,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Pohrana se ne može skenirati. (Razlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD kartica ne može se skenirati. (Razlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Uvoz <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export (2217626703274766523) -->
-    <skip />
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Izvoz u pohranu"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Poredaj po"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ime"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Prezime"</string>
@@ -238,7 +233,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Najprije ime"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Najprije prezime"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Dijeli vidljive kontakte"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Nije uspjelo dijeljenje vidljivih kontakata"</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Uvoz/izvoz kontakata"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Uvoz kontakata"</string>
     <string name="share_error" msgid="665756457151793108">"Ovaj kontakt nije moguće dijeliti."</string>

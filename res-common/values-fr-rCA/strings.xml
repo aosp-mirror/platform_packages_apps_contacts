@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Texte copié."</string>
-    <string name="copy_text" msgid="3424081789297978355">"Copier dans le presse-papiers"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Appeler le <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Appeler le numéro de téléphone du domicile"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Appeler le numéro de téléphone mobile"</string>
@@ -184,10 +185,6 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Impossible de collecter des métadonnées contenues dans le ou les fichiers vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Impossible d\'importer un ou plusieurs fichiers (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Exportation du fichier <xliff:g id="FILENAME">%s</xliff:g> terminée"</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exportation du fichier <xliff:g id="FILENAME">%s</xliff:g> annulée"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Exportation des données des contacts en cours"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Vos données de contact sont en cours d\'exportation vers le fichier <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -199,6 +196,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Les données du contact n\'ont pas été exportées.\nMotif : <xliff:g id="FAIL_REASON">%s</xliff:g>."</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Aucune mémoire stock. détectée."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Aucune carte SD trouvée."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Votre liste de contacts va être exportée vers le fichier <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Importation (<xliff:g id="NAME">%s</xliff:g>)"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Impossible de lire les données vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Lecture des données vCard annulée"</string>
@@ -208,8 +206,6 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Le fichier va bientôt être importé."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"La demande d\'importation du fichier vCard a été rejetée. Veuillez réessayer plus tard."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Le fichier <xliff:g id="FILENAME">%s</xliff:g> va bientôt être exporté."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"La demande d\'exportation du fichier vCard a été rejetée. Veuillez réessayer plus tard."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contact"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Mise en cache des fichiers vCard dans l\'espace de stockage temporaire local. L\'importation va bientôt démarrer."</string>
@@ -228,8 +224,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Impossible d\'analyser la mémoire de stockage pour la raison suivante : <xliff:g id="FAIL_REASON">%s</xliff:g>."</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Impossible d\'analyser la carte SD pour la raison suivante : <xliff:g id="FAIL_REASON">%s</xliff:g>."</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importation <xliff:g id="CURRENT_NUMBER">%s</xliff:g> sur <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (<xliff:g id="NAME">%s</xliff:g>)"</string>
-    <!-- no translation found for export (2217626703274766523) -->
-    <skip />
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exporter vers la mémoire"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Trier par"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Prénom"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Nom de famille"</string>
@@ -237,7 +232,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prénom en premier"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nom de famille en premier"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partager les contacts visibles"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Échec du partage des contacts visibles."</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Importer/Exporter des contacts"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Téléverser des contacts"</string>
     <string name="share_error" msgid="665756457151793108">"Impossible de partager ce contact."</string>

@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Testua kopiatu da"</string>
-    <string name="copy_text" msgid="3424081789297978355">"Kopiatu arbelean"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Deitu <xliff:g id="CUSTOM">%s</xliff:g> zenbakira"</string>
     <string name="call_home" msgid="1479549630992276827">"Deitu etxera"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Deitu mugikorrera"</string>
@@ -184,10 +185,6 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Ezin izan da emandako vCard txartelaren fitxategien meta-informazioa bildu."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ezin izan da fitxategi bat edo gehiago inportatu (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Amaitu <xliff:g id="FILENAME">%s</xliff:g> esportatzen."</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> fitxategia esportatzeari utzi zaio."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktatzeko datuak esportatzen"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Zurekin kontaktatzeko datuak fitxategi honetara esportatzen ari dira: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -199,6 +196,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Ez dira kontaktuaren datuak esportatu.\nArrazoia: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Ez da memoriarik aurkitu."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Ez da SD txartelik aurkitu."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Zure kontaktuen zerrenda fitxategi honetara esportatuko da: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> inportatzen"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Ezin izan dira vCard datuak irakurri"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard datuen irakurketa utzi da"</string>
@@ -208,8 +206,6 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Fitxategia laster inportatuko da."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard fitxategia inportatzeko eskaera ukatu da. Saiatu geroago."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> fitxategia laster esportatuko da."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard fitxategia esportatzeko eskaera ukatu da. Saiatu berriro geroago."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontaktua"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-ak aldi baterako biltegi lokalaren cachean gordetzen ari dira. Inportazioa bera laster hasiko da."</string>
@@ -228,8 +224,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Ezin izan da memorian bilatu. (Arrazoia: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Ezin izan da SD txartelean bilatu. (Arrazoia: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> inportatzen: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export (2217626703274766523) -->
-    <skip />
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Esportatu memoriara"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordenatzeko irizpidea"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Izena"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Abizena"</string>
@@ -237,7 +232,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Izena lehenengo"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Abizena lehenengo"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partekatu ikusgai dauden kontaktuak"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Ezin izan dira partekatu ikusgai dauden kontaktuak."</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Inportatu edo esportatu kontaktuak"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Inportatu kontaktuak"</string>
     <string name="share_error" msgid="665756457151793108">"Ezin da kontaktua partekatu."</string>

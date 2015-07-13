@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Texti afritaður"</string>
-    <string name="copy_text" msgid="3424081789297978355">"Afrita á klippiborð"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Hringja í <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Hringja heim"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Hringa í farsíma"</string>
@@ -184,10 +185,6 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Ekki tókst að safna lýsigögnum fyrir uppgefna(r) vCard-skrá(r)."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ekki tókst að flytja inn eina eða fleiri skrár (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Útflutningi á <xliff:g id="FILENAME">%s</xliff:g> lokið."</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Hætt við útflutning á <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Flytur út tengiliðagögn"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Verið er að flytja tengiliðagögnin þín út í skrána: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -199,6 +196,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Tengiliðagögn voru ekki flutt út.\nÁstæða: „<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Engin geymsla fannst."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Ekkert SD-kort fannst."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Tengiliðalistinn þinn verður fluttur út í skrána: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Flytur inn <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Ekki tókst að lesa gögn úr vCard-skrá"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Hætt við lestur vCard-gagna"</string>
@@ -208,8 +206,6 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Skráin verður flutt inn innan skamms."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Beiðni um innflutning vCard-skrár hafnað. Reyndu aftur síðar."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> verður flutt út innan skamms."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Beiðni um útflutning vCard-skrár hafnað. Reyndu aftur síðar."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"tengiliður"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Setur vCard í skyndiminni í staðbundinni geymslu. Raunverulegur innflutningur hefst innan skamms."</string>
@@ -228,8 +224,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Ekki tókst að leita í geymslunni. (Ástæða: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Ekki tókst að leita á SD-kortinu. (Ástæða: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Flytur inn <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export (2217626703274766523) -->
-    <skip />
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Flytja út í geymslu"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Raða eftir"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Fornafn"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Eftirnafn"</string>
@@ -237,7 +232,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Fornafn fyrst"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Eftirnafn fyrst"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Deila sýnilegum tengiliðum"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Mistókst að deila sýnilegum tengiliðum."</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Tengiliðir fluttir inn/út"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Flytja tengiliði inn"</string>
     <string name="share_error" msgid="665756457151793108">"Ekki er hægt að deila þessum tengilið."</string>

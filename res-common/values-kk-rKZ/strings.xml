@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Мәтін көшірілді"</string>
-    <string name="copy_text" msgid="3424081789297978355">"Аралық сақтағышқа көшіру"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> нөміріне қоңырау шалу"</string>
     <string name="call_home" msgid="1479549630992276827">"Үйге қоңырау шалу"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Ұялы телефонға қоңырау шалу"</string>
@@ -184,10 +185,6 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Осы vКарта файлдары туралы мета ақпарат жинай алмады."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Бір немесе бірнеше карталарды импорттау мүмкін болмады (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> экспорттау аяқталды."</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> экспорттау тоқтатылды."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Контакт дерекқор экспортталуда"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Контакт дерекқорыңыз келесі файлға экспортталуда: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -199,6 +196,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Контакт деректері экспортталмады. \nСебебі: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Ешқандай жад табылмады."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Ешқандай SD картасы табылмады."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Контактілер тізімі келесі файлға экспортталады: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> импортталуда"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vКарта дерекқорын оқи алмады"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vКарта дерекқорын оқу тоқтатылды"</string>
@@ -208,8 +206,6 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Файл жуық арада импортталады."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vКартасын импорттау өтініші қабылданбады. Кейінірек қайта әрекеттеніп көріңіз."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> жуық арада экспортталады."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vКартасын экспорттау өтініші қабылданбады. Кейінірек қайта әрекеттеніп көріңіз."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vКарталарын жергілікті уақытша жадқа кэштеу. Импорттау жуық арада басталады."</string>
@@ -228,8 +224,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Ешқандай жадты скандау мүмкін болмады. (Себеп: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD картасын скандау мүмкін болмады. (Себеп: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> импорттауда: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export (2217626703274766523) -->
-    <skip />
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Жадқа экспорттау"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сұрыптау шарты"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Аты"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Тегі"</string>
@@ -237,7 +232,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Алдымен аты"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Алдымен тегі"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Көрінетін контактілерді бөлісу"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Көрінетін контактілерді бөлісу сәтсіз аяқталды."</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Контактілерді импорттау/экспорттау"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Контактілерді импорттау"</string>
     <string name="share_error" msgid="665756457151793108">"Бұл контактіні бөлісу мүмкін болмады"</string>

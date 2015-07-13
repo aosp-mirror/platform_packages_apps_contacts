@@ -18,7 +18,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Teksti kopioitu"</string>
-    <string name="copy_text" msgid="3424081789297978355">"Kopioi leikepöydälle"</string>
+    <!-- no translation found for copy_text (3424081789297978355) -->
+    <skip />
     <string name="call_custom" msgid="2786306789889210756">"Soita: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Soita kotinumeroon"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Soita matkapuhelimeen"</string>
@@ -158,7 +159,7 @@
     <string name="menu_done" msgid="32470053723443112">"Valmis"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Peruuta"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Yhteystiedot tilissä <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Muokatun näkymän yhteystiedot"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Yhteystiedot muokatussa näkymässä"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Yksi yhteystieto"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Luo yhteystieto tilissä"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Tuo SIM-kortilta"</string>
@@ -184,10 +185,6 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Annettujen vCard-tiedostojen sisällönkuvaustietojen noutaminen epäonnistui."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ainakin yhden tiedoston tuominen epäonnistui (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Kohde <xliff:g id="FILENAME">%s</xliff:g> on viety."</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti peruutettiin."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Viedään yhteystietoja"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Yhteystietosi viedään kohteeseen <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -199,6 +196,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Yhteystietoja ei viety.\nSyy: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Tallennustilaa ei löydy."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD-korttia ei löydy."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Yhteystietoluettelosi viedään tiedostoon <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Tuodaan kohdetta <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard-tietojen lukeminen epäonnistui"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard-tietojen lukeminen peruutettiin"</string>
@@ -208,8 +206,6 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Tiedosto tuodaan pian."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard-tuontipyyntö hylättiin. Yritä myöhemmin uudelleen."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> viedään pian."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard-vientipyyntö hylättiin. Yritä myöhemmin uudelleen."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"yhteystieto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Lisätään vCard-tietojen välimuistiversiot paikalliseen väliaikaistallennustilaan. Tuonti alkaa pian."</string>
@@ -228,8 +224,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Tallennustilaa ei voi lukea. (Syy: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD-korttia ei voi lukea. (Syy: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Tuodaan <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export (2217626703274766523) -->
-    <skip />
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Vie tallennustilaan"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Lajitteluperuste"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Etunimi"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Sukunimi"</string>
@@ -237,10 +232,11 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Etunimi ensin"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Sukunimi ensin"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Jaa näkyvät yhteystiedot"</string>
-    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Näkyvien yhteystietojen jakaminen epäonnistui."</string>
+    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
+    <skip />
     <string name="dialog_import_export" msgid="1125776851100740858">"Tuo/vie yhteystietoja"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Tuo yhteystietoja"</string>
-    <string name="share_error" msgid="665756457151793108">"Yhteystieto ei jaettavissa"</string>
+    <string name="share_error" msgid="665756457151793108">"Tätä yhteystietoa ei voi jakaa."</string>
     <string name="menu_search" msgid="7464453023659824700">"Haku"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Näytettävät yhteystiedot"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Näytettävät yhteystiedot"</string>
