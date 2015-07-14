@@ -33,41 +33,16 @@ public class PermissionsUtil {
     public static final String CONTACTS = permission.READ_CONTACTS;
     public static final String LOCATION = permission.ACCESS_FINE_LOCATION;
 
-    private static Boolean sHasPhonePermissions;
-    private static Boolean sHasContactsPermissions;
-    private static Boolean sHasLocationPermissions;
-
     public static boolean hasPhonePermissions(Context context) {
-        if (sHasPhonePermissions == null) {
-            sHasPhonePermissions = hasPermission(context, PHONE);
-        }
-        return sHasPhonePermissions;
+        return hasPermission(context, PHONE);
     }
 
     public static boolean hasContactsPermissions(Context context) {
-        if (sHasContactsPermissions == null) {
-            sHasContactsPermissions = hasPermission(context, CONTACTS);
-        }
-        return sHasContactsPermissions;
+        return hasPermission(context, CONTACTS);
     }
 
     public static boolean hasLocationPermissions(Context context) {
-        if (sHasLocationPermissions == null) {
-            sHasLocationPermissions = hasPermission(context, LOCATION);
-        }
-        return sHasLocationPermissions;
-    }
-
-    /**
-     * To be called during various activity lifecycle events to update the cached versions of the
-     * permissions.
-     *
-     * @param context A valid context.
-     */
-    public static void updateCachedPermissions(Context context) {
-        sHasPhonePermissions = hasPermission(context, PHONE);
-        sHasContactsPermissions = hasPermission(context, CONTACTS);
-        sHasLocationPermissions = hasPermission(context, LOCATION);
+        return hasPermission(context, LOCATION);
     }
 
     public static boolean hasPermission(Context context, String permission) {
