@@ -510,9 +510,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- The title shown when exporting vCard has finished successfully but the destination filename could not be resolved. [CHAR LIMIT=NONE] -->
     <string name="exporting_vcard_finished_title_fallback">Finished exporting contacts.</string>
 
-    <!-- The filename that is suggested that users use when exporting vCards. Should include the .vcf extension. CHAR LIMIT=40] -->
-    <string name="exporting_vcard_filename">contacts.vcf</string>
-
     <!-- The title shown when exporting vCard is canceled (probably by a user)
          The argument is file name the user canceled importing.
          [CHAR LIMIT=40] -->
