@@ -117,9 +117,9 @@ public class ImportExportDialogFragment extends DialogFragment
 
         mSubscriptionManager = SubscriptionManager.from(getActivity());
 
-        if (res.getBoolean(R.bool.config_allow_import_from_sdcard)) {
-            adapter.add(new AdapterEntry(getString(R.string.import_from_sdcard),
-                    R.string.import_from_sdcard));
+        if (res.getBoolean(R.bool.config_allow_import_from_vcf_file)) {
+            adapter.add(new AdapterEntry(getString(R.string.import_from_vcf_file),
+                    R.string.import_from_vcf_file));
         }
         if (manager != null && res.getBoolean(R.bool.config_allow_sim_import)) {
             final List<SubscriptionInfo> subInfoRecords =
@@ -138,7 +138,8 @@ public class ImportExportDialogFragment extends DialogFragment
         }
         if (res.getBoolean(R.bool.config_allow_export)) {
             if (contactsAreAvailable) {
-                adapter.add(new AdapterEntry(getString(R.string.export), R.string.export));
+                adapter.add(new AdapterEntry(getString(R.string.export_to_vcf_file),
+                        R.string.export_to_vcf_file));
             }
         }
         if (res.getBoolean(R.bool.config_allow_share_visible_contacts)) {
@@ -156,12 +157,12 @@ public class ImportExportDialogFragment extends DialogFragment
                 final int resId = adapter.getItem(which).mChoiceResourceId;
                 switch (resId) {
                     case R.string.import_from_sim:
-                    case R.string.import_from_sdcard: {
+                    case R.string.import_from_vcf_file: {
                         dismissDialog = handleImportRequest(resId,
                                 adapter.getItem(which).mSubscriptionId);
                         break;
                     }
-                    case R.string.export: {
+                    case R.string.export_to_vcf_file: {
                         dismissDialog = true;
                         Intent exportIntent = new Intent(getActivity(), ExportVCardActivity.class);
                         exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,

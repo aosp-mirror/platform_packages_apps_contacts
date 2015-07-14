@@ -166,8 +166,8 @@ public class AccountSelectionUtil {
                 doImportFromSim(context, account, subscriptionId);
                 break;
             }
-            case R.string.import_from_sdcard: {
-                doImportFromSdCard(context, account);
+            case R.string.import_from_vcf_file: {
+                doImportFromVcfFile(context, account);
                 break;
             }
         }
@@ -187,7 +187,7 @@ public class AccountSelectionUtil {
         context.startActivity(importIntent);
     }
 
-    public static void doImportFromSdCard(Context context, AccountWithDataSet account) {
+    public static void doImportFromVcfFile(Context context, AccountWithDataSet account) {
         Intent importIntent = new Intent(context, ImportVCardActivity.class);
         if (account != null) {
             importIntent.putExtra("account_name", account.name);

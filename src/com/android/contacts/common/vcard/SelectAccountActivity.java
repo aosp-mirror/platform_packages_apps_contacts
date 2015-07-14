@@ -56,7 +56,7 @@ public class SelectAccountActivity extends Activity {
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
         // - no account -> use phone-local storage without asking the user
-        final int resId = R.string.import_from_sdcard;
+        final int resId = R.string.import_from_vcf_file;
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
         final List<AccountWithDataSet> accountList = accountTypes.getAccounts(true);
         if (accountList.size() == 0) {
@@ -99,7 +99,7 @@ public class SelectAccountActivity extends Activity {
     @Override
     protected Dialog onCreateDialog(int resId, Bundle bundle) {
         switch (resId) {
-            case R.string.import_from_sdcard: {
+            case R.string.import_from_vcf_file: {
                 if (mAccountSelectionListener == null) {
                     throw new NullPointerException(
                             "mAccountSelectionListener must not be null.");
