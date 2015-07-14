@@ -18,7 +18,7 @@
     package="com.android.contacts"
     android:sharedUserId="android.uid.shared">
 
-    <uses-sdk android:minSdkVersion="MNC" android:targetSdkVersion="MNC" />
+    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="23" />
     <original-package android:name="com.android.contacts" />
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
