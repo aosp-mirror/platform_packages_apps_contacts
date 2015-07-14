@@ -1456,6 +1456,10 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         }
 
         private void loadPhotosInBackground() {
+            if (!PermissionsUtil.hasPermission(mContext,
+                    android.Manifest.permission.READ_CONTACTS)) {
+                return;
+            }
             obtainPhotoIdsAndUrisToLoad(mPhotoIds, mPhotoIdsAsStrings, mPhotoUris);
             loadThumbnails(false);
             loadUriBasedPhotos();
