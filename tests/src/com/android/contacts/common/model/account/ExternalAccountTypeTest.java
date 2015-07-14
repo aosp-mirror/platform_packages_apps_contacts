@@ -69,27 +69,13 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
     }
 
     /**
-     * Initialize with an invalid package name and see if type type will *not* be initialized.
+     * Initialize with an invalid package name and see if type will be initialized, but empty.
      */
     public void testNoPackage() {
         final ExternalAccountType type = new ExternalAccountType(getContext(),
                 "!!!no such package name!!!", false);
-        assertFalse(type.isInitialized());
-    }
-
-    /**
-     * Initialize with the name of an existing package, which has no contacts.xml metadata.
-     */
-    /*
-    public void testNoMetadata() {
-        // Use the main application package, which does exist, but has no contacts.xml in it.
-        String packageName = getContext().getPackageName();
-        Log.e("TEST", packageName);
-        final ExternalAccountType type = new ExternalAccountType(getContext(),
-                packageName, false);
         assertTrue(type.isInitialized());
     }
-    */
 
     /**
      * Initialize with the test package itself and see if EditSchema is correctly parsed.
