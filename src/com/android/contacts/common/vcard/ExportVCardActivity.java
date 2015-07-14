@@ -26,21 +26,14 @@ import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
 import android.provider.OpenableColumns;
 import android.text.BidiFormatter;
 import android.text.TextDirectionHeuristics;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.activity.RequestImportVCardPermissionsActivity;
-
-import java.io.File;
 
 /**
  * Shows a dialog confirming the export and asks actual vCard export to {@link VCardService}
@@ -54,7 +47,6 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     private static final String LOG_TAG = "VCardExport";
     private static final boolean DEBUG = VCardService.DEBUG;
     private static final int REQUEST_CREATE_DOCUMENT = 100;
-    private static final String VCARD_MIME_TYPE = "text/vcard";
 
     /**
      * True when this Activity is connected to {@link VCardService}.
@@ -134,7 +126,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
         // Have the user choose where vcards will be exported to
         final Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType(VCARD_MIME_TYPE);
+        intent.setType(VCardService.VCARD_MIME_TYPE);
         intent.putExtra(Intent.EXTRA_TITLE, mBidiFormatter.unicodeWrap(
                 getString(R.string.exporting_vcard_filename), TextDirectionHeuristics.LTR));
         startActivityForResult(intent, REQUEST_CREATE_DOCUMENT);
