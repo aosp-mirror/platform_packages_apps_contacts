@@ -15,18 +15,8 @@
   -->
 
 <resources>
-    <!-- Flag indicating whether Contacts app is allowed to import contacts from SDCard -->
-    <bool name="config_allow_import_from_sdcard">true</bool>
-    <!-- If true, all vcard files are imported from SDCard without asking a user.
-    If not, dialog shows to let the user to select whether all vcard files are imported or not.
-    If the user selects "not", then the application ask the user to select a file.-->
-    <bool name="config_import_all_vcard_from_sdcard_automatically">false</bool>
-    <!-- If true, vcard importer shows a dialog which asks the user whether the user wants
-    to import all vcard files in SDCard or select one vcard file. If false, the dialog is
-    skipped and the importer asks the user to choose one vcard file.
-    If config_import_all_vcard_from_sdcard_automatically is set true, this configuration
-    is ignored. -->
-    <bool name="config_allow_users_select_all_vcard_import">true</bool>
+    <!-- Flag indicating whether Contacts app is allowed to import contacts -->
+    <bool name="config_allow_import_from_vcf_file">true</bool>
 
     <!-- If true, an option is shown in Display Options UI to choose a sort order -->
     <bool name="config_sort_order_user_changeable">true</bool>
