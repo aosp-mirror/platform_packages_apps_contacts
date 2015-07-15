@@ -164,7 +164,8 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Import from SIM card"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Import from SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Import from SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Import from storage"</string>
+    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Cancel import of <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Cancel export of <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Couldn\'t cancel vCard import/export"</string>
@@ -184,6 +185,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Couldn\'t collect meta information of given vCard file(s)."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"One or more files couldn\'t be imported (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Finished exporting <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Finished exporting contacts."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exporting <xliff:g id="FILENAME">%s</xliff:g> cancelled."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Exporting contact data"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Your contact data is being exported to: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -193,9 +195,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"The vCard composer didn\'t start properly."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Couldn\'t export"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"The contact data wasn\'t exported.\nReason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"No storage was found."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"No SD card was found."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Your contact list will be exported to file: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Importing <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Couldn\'t read vCard data"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Reading vCard data cancelled"</string>
@@ -205,6 +204,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"The file will be imported shortly."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard import request was rejected. Try again later."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> will be exported shortly."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"The file will be exported shortly."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard export request was rejected. Try again later."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contact"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Caching vCard(s) to local temporary storage. The actual import will start soon."</string>
@@ -213,17 +213,12 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"No vCard file found on the SD card."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Contact received over NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Export contacts?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Choose vCard file"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Import one vCard file"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Import multiple vCard files"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Import all vCard files"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Searching for vCard data in storage…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Searching for vCard data on SD card"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Caching"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"The storage couldn\'t be scanned. (Reason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"The SD card couldn\'t be scanned. (Reason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importing <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Export to storage"</string>
+    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sort by"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"First name"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Surname"</string>

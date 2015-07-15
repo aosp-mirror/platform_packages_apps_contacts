@@ -164,7 +164,8 @@
     <string name="import_from_sim" msgid="4749894687871835873">"సిమ్ కార్డు నుండి దిగుమతి చేయండి"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM నుండి దిగుమతి చేయండి"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM నుండి దిగుమతి చేయండి"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"నిల్వ నుండి దిగుమతి చేయండి"</string>
+    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క దిగుమతిని రద్దు చేయాలా?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క ఎగుమతిని రద్దు చేయాలా?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard దిగుమతి/ఎగుమతిని రద్దు చేయడం సాధ్యపడలేదు"</string>
@@ -184,6 +185,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"అందించిన vCard ఫైల్(లు) యొక్క మెటా డేటా సమాచారాన్ని సేకరించడం సాధ్యపడలేదు."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ఒకటి లేదా అంతకంటే ఎక్కువ ఫైల్‌లను (%s) దిగుమతి చేయడం సాధ్యపడలేదు."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం పూర్తయింది."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"పరిచయాలను ఎగుమతి చేయడం పూర్తయింది."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం రద్దు చేయబడింది."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"పరిచయ డేటాను ఎగుమతి చేస్తోంది"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"మీ పరిచయ డేటా దీనికి ఎగుమతి చేయబడుతోంది: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -193,9 +195,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard కంపోజర్ సరిగ్గా ప్రారంభించబడలేదు."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ఎగుమతి చేయడం సాధ్యపడలేదు"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"పరిచయ డేటా ఎగుమతి చేయబడలేదు.\nకారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"నిల్వ కనుగొనబడలేదు."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD కార్డు కనుగొనబడలేదు."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"మీ పరిచయ జాబితా ఈ ఫైల్‌కు ఎగుమతి చేయబడుతుంది: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g>ని దిగుమతి చేస్తోంది"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard డేటాను చదవడం సాధ్యపడలేదు"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard డేటాను చదవడం రద్దయింది"</string>
@@ -205,6 +204,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ఫైల్ కొద్దిసేపట్లో దిగుమతి చేయబడుతుంది."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard దిగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> కొద్దిసేపట్లో ఎగుమతి చేయబడుతుంది."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ఫైల్ కాసేపట్లో ఎగుమతి చేయబడుతుంది."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard ఎగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"పరిచయం"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ల)ను స్థానిక తాత్కాలిక నిల్వకు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
@@ -213,17 +213,12 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD కార్డులో vCard ఫైల్ ఏదీ కనుగొనబడలేదు."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"పరిచయం NFC ద్వారా స్వీకరించబడింది"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"పరిచయాలను ఎగుమతి చేయాలా?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCard ఫైల్‌ను ఎంచుకోండి"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"ఒక vCard ఫైల్‌ను దిగుమతి చేయండి"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"బహుళ vCard ఫైల్‌లను దిగుమతి చేయండి"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"అన్ని vCard ఫైల్‌లను దిగుమతి చేయండి"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"నిల్వలో vCard డేటా కోసం శోధిస్తోంది…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD కార్డులో vCard డేటా కోసం శోధిస్తోంది…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"కాష్ చేస్తోంది"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"నిల్వను స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD కార్డును స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"నిల్వకు ఎగుమతి చేయండి"</string>
+    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ఇలా క్రమబద్ధీకరించు"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"మొదటి పేరు"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"చివరి పేరు"</string>

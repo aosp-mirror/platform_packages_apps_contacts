@@ -166,7 +166,8 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Імпорт із SIM-карти"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Імпортувати із SIM-карти \"<xliff:g id="SIM_NAME">^1</xliff:g>\" – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Імпортувати із SIM-карти \"<xliff:g id="SIM_NAME">%1$s</xliff:g>\""</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Імпорт із носія"</string>
+    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Скасувати імпорт файлу <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Скасувати експорт файлу <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Не вдалося скасув. імпорт/експорт vCard"</string>
@@ -186,6 +187,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Не вдалося зібрати мета-інформацію файлів цієї vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Не вдалось імпортувати один або декілька файлів (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Експорт файлу <xliff:g id="FILENAME">%s</xliff:g> завершено."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Контакти експортовано."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Експорт файлу <xliff:g id="FILENAME">%s</xliff:g> скасовано."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Експортувати контактні дані"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Ваші контактні дані експортуються у файл: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -195,9 +197,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"Майстер vCard не запущено належним чином."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Помилка експорту"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Контактні дані не експортовано.\nПричина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Пам’ять не знайдено."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Карту SD не знайдено."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Ваш список контактів буде експортовано у файл: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Імпорт контакта <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Не вдалося прочитати дані vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Читання даних vCard скасовано"</string>
@@ -207,6 +206,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Файл незабаром буде імпортовано."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Запит на імпорт файлу vCard відхилено. Повторіть спробу пізніше."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Файл <xliff:g id="FILENAME">%s</xliff:g> незабаром буде експортовано."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Невдовзі файл буде експортовано."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Запит на експорт файлу vCard відхилено. Повторіть спробу пізніше."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Кешування файлів vCard у локальну тимчасову пам’ять. Імпорт почнеться незабаром."</string>
@@ -215,17 +215,12 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На карті SD не знайдено жодного файлу vCard."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Контакт через NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Експортувати контакти?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Вибрати файл vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Імпортувати 1 файл vCard"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Імпортувати декілька файлів vCard"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Імпортувати всі файли vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Пошук даних vCard у пам’яті…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Пошук даних vCard на карті SD…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кешування"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Не вдалося просканувати пам’ять. (Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Не вдалося просканувати карту SD. (Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Імпорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> з <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Експорт на носій"</string>
+    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Параметри сортування"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ім’я"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Прізвище"</string>
