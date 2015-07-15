@@ -940,7 +940,16 @@ public class QuickContactActivity extends ContactsActivity {
         mPhotoView.setIsBusiness(mContactData.isDisplayNameFromOrganization());
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
         extractAndApplyTintFromPhotoViewAsynchronously();
-        setHeaderNameText(ContactDisplayUtils.getDisplayName(this, data).toString());
+        String phoneticName = ContactDisplayUtils.getPhoneticName(this, data);
+        String displayName = ContactDisplayUtils.getDisplayName(this, data).toString();
+        if (mContactData.getDisplayNameSource() != DisplayNameSources.STRUCTURED_PHONETIC_NAME
+                && !TextUtils.isEmpty(phoneticName)) {
+            displayName = getResources().getString(
+                    R.string.quick_contact_display_name_with_phonetic, displayName, phoneticName);
+            setHeaderNameText(displayName);
+        } else {
+            setHeaderNameText(displayName);
+        }
 
         Trace.endSection();
 
