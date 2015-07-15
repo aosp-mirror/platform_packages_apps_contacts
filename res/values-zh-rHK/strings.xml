@@ -272,4 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"當您在電郵欄或手機欄中輸入個人的 Hangouts 識別碼時，Hangouts 會提供更卓越的服務。"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"更多欄位"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"變更相片"</string>
+    <!-- no translation found for quick_contact_display_name_with_phonetic (3692038078718876610) -->
+    <skip />
 </resources>
