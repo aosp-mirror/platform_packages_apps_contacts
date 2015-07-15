@@ -272,4 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ਜਦੋਂ ਤੁਸੀਂ ਈਮੇਲ ਖੇਤਰ ਜਾਂ ਫੋਨ ਖੇਤਰ ਵਿੱਚ ਵਿਅਕਤੀ ਦਾ ਹੈਂਗਆਊਟਸ ਆਈਡੈਂਟੀਫਾਇਰ ਦਰਜ ਕਰਦੇ ਹੋ ਤਾਂ ਹੈਂਗਆਊਟਸ ਬਿਹਤਰ ਕੰਮ ਕਰਦਾ ਹੈ।"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"ਹੋਰ ਖੇਤਰ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ਫੋਟੋ ਬਦਲੋ"</string>
+    <!-- no translation found for quick_contact_display_name_with_phonetic (3692038078718876610) -->
+    <skip />
 </resources>

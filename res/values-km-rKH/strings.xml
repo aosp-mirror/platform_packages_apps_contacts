@@ -272,4 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ដំណើរការបានយ៉ាងល្អ នៅពេលដែលអ្នកបញ្ចូលអត្តសញ្ញាណ Hangouts របស់បុគ្គលនោះទៅក្នុងប្រអប់អ៊ីម៉ែល ឬប្រអប់លេខទូរស័ព្ទ។"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"ប្រអប់ច្រើនទៀត"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ប្ដូររូបថត"</string>
+    <!-- no translation found for quick_contact_display_name_with_phonetic (3692038078718876610) -->
+    <skip />
 </resources>

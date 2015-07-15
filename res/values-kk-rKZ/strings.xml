@@ -272,4 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts қолданбасы электрондық пошта өрісіне немесе телефон өрісіне адамның Hangouts идентификаторын енгізгенде жақсырақ жұмыс істейді."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Қосымша өрістер"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Фотосуретті өзгерту"</string>
+    <!-- no translation found for quick_contact_display_name_with_phonetic (3692038078718876610) -->
+    <skip />
 </resources>

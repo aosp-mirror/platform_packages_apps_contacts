@@ -272,4 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"사용자의 행아웃 식별자를 이메일 입력란 또는 휴대전화 입력란에 입력하면 행아웃이 더 잘 작동합니다."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"입력란 더보기"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"사진 변경"</string>
+    <!-- no translation found for quick_contact_display_name_with_phonetic (3692038078718876610) -->
+    <skip />
 </resources>
