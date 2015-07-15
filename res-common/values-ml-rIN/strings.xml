@@ -164,7 +164,8 @@
     <string name="import_from_sim" msgid="4749894687871835873">"സിം കാർഡിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM-ൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM-ൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"സംഭരണത്തിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
+    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് ഇമ്പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് എക്‌സ്‌പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ഡൗൺലോഡ്/അപ്‌ലോഡ് റദ്ദാക്കാനായില്ല"</string>
@@ -184,10 +185,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"നൽകിയിരിക്കുന്ന vCard ഫയലിന്റെ (ഫയലുകളുടെ) മീറ്റ വിവരം ശേഖരിക്കാനായില്ല."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ഒന്നോ അതിലധികമോ ഫയലുകൾ ഇമ്പോർട്ടുചെയ്യാനായില്ല (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ റദ്ദാക്കി."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്യുന്നു"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"നിങ്ങളുടെ കോൺടാക്റ്റ് ഡാറ്റ ഇതിലേക്ക് എക്‌സ്‌പോർട്ടുചെയ്യുന്നു: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -197,8 +195,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard കമ്പോസർ ശരിയായി ആരംഭിച്ചില്ല."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"എക്‌സ്‌പോർട്ടുചെയ്യാനായില്ല"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്‌തില്ല.\nകാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"സംഭരണമൊന്നും കണ്ടെത്തിയില്ല."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD കാർഡൊന്നും കണ്ടെത്തിയില്ല"</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> എന്നയാളെ ഇമ്പോർട്ടുചെയ്യുന്നു."</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard ഡാറ്റ വായിക്കാനായില്ല"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard ഡാറ്റ വായിക്കുന്നത് റദ്ദാക്കി"</string>
@@ -208,8 +204,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ഈ ഫയൽ ഉടൻ ഇമ്പോർട്ടുചെയ്യും."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard ഇമ്പോർട്ടുചെയ്യൽ അഭ്യർത്ഥന നിരസിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് ഉടൻ എക്‌സ്‌പോർട്ടുചെയ്യും."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ഫയൽ ഉടൻ എക്സ്പോർട്ടുചെയ്യും."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard എക്‌സ്‌പോർട്ടുചെയ്യൽ അഭ്യർത്ഥന നിരസിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"കോൺടാക്റ്റ്"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"പ്രാദേശിക താൽക്കാലിക സംഭരണത്തിലേക്ക് vCard (vCard-കൾ) കാഷെ ചെയ്യുന്നു. യഥാർത്ഥ ഇമ്പോർട്ടുചെയ്യൽ ഉടൻ ആരംഭിക്കും."</string>
@@ -218,17 +213,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD കാർഡിൽ vCard ഫയലുകളൊന്നും കണ്ടെത്തിയില്ല."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC മുഖേന ലഭിച്ച കോൺടാക്റ്റ്"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യണോ?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCard ഫയൽ തിരഞ്ഞെടുക്കുക"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"ഒരു vCard ഫയൽ ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"ഒന്നിലധികം vCard ഫയലുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"എല്ലാ vCard ഫയലുകളും ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"സംഭരണത്തിൽ vCard ഡാറ്റയ്‌ക്കായി തിരയുന്നു…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD കാർഡിൽ vCard ഡാറ്റയ്‌ക്കായി തിരയുന്നു…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"കാഷെ ചെയ്യൽ"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"സ്റ്റോറേജ്  സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD കാർഡ് സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ഇമ്പോർട്ടുചെയ്യുന്നു: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export (2217626703274766523) -->
+    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
     <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ഇതുപ്രകാരം അടുക്കുക"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"പേരിന്‍റെ ആദ്യഭാഗം"</string>

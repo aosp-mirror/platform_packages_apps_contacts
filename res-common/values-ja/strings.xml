@@ -164,7 +164,8 @@
     <string name="import_from_sim" msgid="4749894687871835873">"SIMカードからインポート"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM（<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>）からインポート"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM（<xliff:g id="SIM_NAME">%1$s</xliff:g>）からインポート"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ストレージからインポート"</string>
+    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g>のインポートをキャンセルしますか？"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートをキャンセルしますか？"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCardインポート/エクスポート取り消し不可"</string>
@@ -184,10 +185,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"指定されたvCardファイルのメタ情報を取得できませんでした。"</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"1つ以上のファイルをインポートできませんでした（%s）。"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートの完了"</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"連絡先のエクスポートの完了"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートのキャンセル"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"連絡先データのエクスポート"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"連絡先データを<xliff:g id="FILE_NAME">%s</xliff:g>にエクスポートします。"</string>
@@ -197,8 +195,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCardコンポーザーが正しく起動しませんでした。"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"エクスポート失敗"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"連絡先データはエクスポートされませんでした。\n理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"ストレージはありませんでした。"</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SDカードが見つかりません。"</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g>をインポート中"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCardデータの読み取りの失敗"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCardデータの読み取りのキャンセル"</string>
@@ -208,8 +204,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ファイルはまもなくインポートされます。"</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCardのインポートリクエストは拒否されました。しばらくしてからもう一度お試しください。"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>はまもなくエクスポートされます。"</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ファイルはまもなくエクスポートされます。"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCardのエクスポートリクエストは拒否されました。しばらくしてからもう一度お試しください。"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"連絡先"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCardをローカル一時ストレージにキャッシュしています。まもなくインポート処理を開始します。"</string>
@@ -218,17 +213,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SDカードにvCardファイルが見つかりません。"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC受信の連絡先"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"連絡先をエクスポートしますか？"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCardファイルの選択"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"vCardファイルを1つインポート"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"複数のvCardファイルをインポート"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"すべてのvCardファイルをインポート"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"ストレージ内でvCardデータを検索しています…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SDカードでvCardデータを検索しています…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"キャッシュ中"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"ストレージをスキャンできませんでした（理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」）。"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SDカードをスキャンできませんでした（理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」）。"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>件をインポート中: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export (2217626703274766523) -->
+    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
     <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"並べ替え"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"名"</string>

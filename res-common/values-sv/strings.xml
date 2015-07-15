@@ -164,7 +164,8 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Importera från SIM-kort"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importera från SIM-kort <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importera från SIM-kort <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importera från USB"</string>
+    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vill du avbryta importen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vill du avbryta exporten av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Kunde ej avbryta import/export av vCard"</string>
@@ -184,10 +185,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Det gick inte att samla in metainformation för de angivna vCard-filerna."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"En eller flera filer kunde inte importeras (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> har exporterats."</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_filename (7258769443324609098) -->
-    <skip />
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Kontakterna har exporterats."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exporten av <xliff:g id="FILENAME">%s</xliff:g> avbröts."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktuppgifter exporteras"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Kontaktuppgifterna exporteras till: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -197,8 +195,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard-kompositören initierades inte korrekt."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Kunde inte exportera"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kontaktuppgifterna exporterades inte.\nOrsak: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Ingen lagringsenhet hittades."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Inget SD-kort hittades."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Importerar <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Det gick inte att läsa vCard-data"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Inläsningen av vCard-data avbröts"</string>
@@ -208,8 +204,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Filen kommer snart att importeras."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Begäran om vCard-import avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> exporteras snart."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Filen kommer snart att exporteras."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Begäran om vCard-export avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-fil(er) cachelagras till en lokal tillfällig lagringsenhet. Den faktiska importen börjar snart."</string>
@@ -218,17 +213,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Det finns ingen vCard-fil på SD-kortet."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Mott. v. NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Vill du exportera kontakter?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Välj vCard-fil"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Importera en vCard-fil"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Importera flera vCard-filer"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Importera alla vCard-filer"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Söker efter vCard-data på lagringsenheten ..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Söker efter vCard-data på SD-kortet ..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Cachelagrar"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Det gick inte att skanna lagringsenheten. (Orsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Det gick inte att skanna SD-kortet. (Orsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importerar <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export (2217626703274766523) -->
+    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
     <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sortera efter"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Förnamn"</string>
