@@ -164,7 +164,8 @@
     <string name="import_from_sim" msgid="4749894687871835873">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ಸಂಗ್ರಹಣೆಯಿಂದ ಆಮದು ಮಾಡಿ"</string>
+    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> ಆಮದು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> ಅನ್ನು ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ಆಮದು/ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
@@ -184,6 +185,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"ನೀಡಿದ vCard ಫೈಲ್‌(ಗಳ) ಮೆಟಾ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಫೈಲ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗುವುದಿಲ್ಲ (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮುಗಿದಿದೆ."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ಸಂಪರ್ಕಗಳ ರಫ್ತು ಮಾಡುವಿಕೆ ಮುಗಿದಿದೆ."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತುಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"ನಿಮ್ಮ ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ಇದಕ್ಕೆ ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -193,9 +195,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard ಸಂಯೋಜಕ ಸರಿಯಾಗಿ ಪ್ರಾರಂಭವಾಗಿಲ್ಲ."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ರಫ್ತು ಮಾಡಲಾಗುವುದಿಲ್ಲ"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತು ಮಾಡಲಿಲ್ಲ.\nಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"ಯಾವುದೇ ಸಂಗ್ರಹಣೆ ಪತ್ತೆಯಾಗಿಲ್ಲ."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"ಯಾವುದೇ SD ಕಾರ್ಡ್‌ ಪತ್ತೆಯಾಗಿಲ್ಲ."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"ನಿಮ್ಮ ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ಫೈಲ್‌ಗೆ ರವಾನಿಸಲಾಗುತ್ತದೆ: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard ಡೇಟಾವನ್ನು ಓದಲಾಗಲಿಲ್ಲ"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard ಡೇಟಾ ಓದುವಿಕೆ ರದ್ದಗೊಳಿಸಲಾಗಿದೆ"</string>
@@ -205,6 +204,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ಫೈಲ್‌ ಅನ್ನು ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ಆಮದು ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard ಆಮದು ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ. ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ರಫ್ತು ಮಾಡಲಾಗುತ್ತದೆ."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ಫೈಲ್‌ ಅನ್ನು ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ರಪ್ತು ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard ರಫ್ತು ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ಸಂಪರ್ಕ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ಗಳು) ಅನ್ನು ಸ್ಥಳೀಯ ತಾತ್ಕಾಲಿಕ ಸಂಗ್ರಹಣೆಗೆ ಸಂಗ್ರಹ ಮಾಡಲಾಗುತ್ತಿದೆ. ನಿಜವಾದ ಆಮದು ಶೀಘ್ರದಲ್ಲೇ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ."</string>
@@ -213,17 +213,12 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD ಕಾರ್ಡ್‌ನಲ್ಲಿ ಯಾವುದೇ vCard ಫೈಲ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC ಮೂಲಕ ಸ್ವೀಕರಿಸಲಾದ ಸಂಪರ್ಕ"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"ಸಂಪರ್ಕಗಳನ್ನು ರವಾನಿಸುವುದೇ?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCard ಫೈಲ್‌ ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"ಒಂದು vCard ಫೈಲ್‌ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"ಬಹು vCard ಫೈಲ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"ಎಲ್ಲ vCard ಫೈಲ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"ಸಂಗ್ರಹಣೆಯಲ್ಲಿ vCard ಡೇಟಾಗಾಗಿ ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD ಕಾರ್ಡ್‌ನಲ್ಲಿ vCard ಡೇಟಾಗಾಗಿ ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"ಸಂಗ್ರಹಿಸಲಾಗುತ್ತಿದೆ"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"ಸಂಗ್ರಹಣೆಯನ್ನು ಸ್ಕ್ಯಾನ್‌ ಮಾಡಲಾಗಲಿಲ್ಲ. (ಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD ಕಾಡ್‌ ಸ್ಕ್ಯಾನ್‌ ಮಾಡಲಾಗಲಿಲ್ಲ. (ಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ಸಂಗ್ರಹಣೆಗೆ ರವಾನಿಸಿ"</string>
+    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ಈ ಪ್ರಕಾರ ವಿಂಗಡಿಸು"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ಮೊದಲ ಹೆಸರು"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ಕೊನೆಯ ಹೆಸರು"</string>
