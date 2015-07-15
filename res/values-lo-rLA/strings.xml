@@ -272,4 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ເຮັດ​ວຽກ​ໄດ້​ດີ​ຂຶ້ນ ເມື່ອ​ທ່ານ​ປ້ອນ​ຕົວ​ລະ​ບຸ​ Hangouts ຂອງ​ບຸກ​ຄົນ​ໃສ່​ບ່ອນ​ໃສ່ອີເມວ ຫຼື​ບ່ອນ​ໃສ່​ໂທ​ລະ​ສັບ​ຂອງ​ທ່ານ."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"ຊ່ອງ​ເພີ່ມ​ເຕີມ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ປ່ຽນຮູບ"</string>
+    <!-- no translation found for quick_contact_display_name_with_phonetic (3692038078718876610) -->
+    <skip />
 </resources>
