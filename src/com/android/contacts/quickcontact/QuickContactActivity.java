@@ -1487,9 +1487,12 @@ public class QuickContactActivity extends ContactsActivity {
                         res.getString(R.string.phoneLabelsGroup), dataItem.getMimeType(),
                         dataItem.getId(), dataItem.isSuperPrimary());
                 if (phone.hasKindTypeColumn(kind)) {
-                    text = Phone.getTypeLabel(res, phone.getKindTypeColumn(kind),
-                            phone.getLabel()).toString();
-                    if (!TextUtils.isEmpty(text)) {
+                    final int kindTypeColumn = phone.getKindTypeColumn(kind);
+                    final String label = phone.getLabel();
+                    if (kindTypeColumn == Phone.TYPE_CUSTOM && TextUtils.isEmpty(label)) {
+                        text = "";
+                    } else {
+                        text = Phone.getTypeLabel(res, kindTypeColumn, label).toString();
                         primaryContentDescription.append(text).append(" ");
                     }
                 }
