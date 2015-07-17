@@ -46,7 +46,6 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
                 permission.READ_CALL_LOG, // Permission group phone
                 permission.READ_CALENDAR, // Calendar group
                 permission.READ_SMS, // SMS group
-                permission.WRITE_EXTERNAL_STORAGE, // Storage group
         };
     }
     public static boolean startPermissionActivity(Activity activity) {
