@@ -168,8 +168,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"‏استيراد من شريحة SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"‏استيراد من شريحة SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"‏استيراد من شريحة SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
-    <skip />
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"‏الاستيراد من ملف vcf."</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"هل تريد إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"هل تريد إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"‏تعذر إلغاء استيراد/تصدير vCard"</string>
@@ -221,8 +220,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"تعذر فحص وحدة التخزين. (السبب:\"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏تعذر فحص بطاقة SD. (السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"جارٍ استيراد <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
-    <skip />
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"‏تصدير إلى ملف vcf."</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ترتيب بحسب"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"الاسم الأول"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"اسم العائلة"</string>

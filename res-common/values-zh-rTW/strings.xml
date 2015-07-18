@@ -164,8 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"從 SIM 卡匯入"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"從 SIM 卡 <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> 匯入"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"從 SIM 卡 <xliff:g id="SIM_NAME">%1$s</xliff:g> 匯入"</string>
-    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
-    <skip />
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"從 .vcf 檔案匯入"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"確定要取消匯入 <xliff:g id="FILENAME">%s</xliff:g>？"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"確定要取消匯出 <xliff:g id="FILENAME">%s</xliff:g>？"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"無法取消匯入/匯出 vCard"</string>
@@ -185,7 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"無法從指定的 vCard 檔案收集中繼資料。"</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"無法匯入一或多個檔案 (%s)。"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"已完成 <xliff:g id="FILENAME">%s</xliff:g> 匯出作業。"</string>
-    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"完成匯出聯絡人。"</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"匯出聯絡人完成。"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"已取消匯出 <xliff:g id="FILENAME">%s</xliff:g>。"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"正在匯出聯絡人資料"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"正在將您的聯絡人資料匯出至以下檔案：<xliff:g id="FILE_NAME">%s</xliff:g>。"</string>
@@ -217,8 +216,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"無法掃描儲存裝置 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)。"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"無法掃描 SD 卡 (原因：「<xliff:g id="FAIL_REASON">%s</xliff:g>」)。"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"正在匯入第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 筆資料 (共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 筆)：<xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
-    <skip />
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"匯出成 .vcf 檔案"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"排序依據"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"名字"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"姓氏"</string>

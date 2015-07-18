@@ -164,8 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"SIM-kartadan import qilish"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Quyidagi SIM-kartadan import qilish: <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Quyidagi SIM-kartadan import qilish: <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
-    <skip />
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"VCF fayldan import qilish"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g>ni import qilish bekor qilinsinmi?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g>ni eksport qilish bekor qilinsinmi?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Tashrifnomani import/eksport qilishni bekor qilib bo‘lmadi"</string>
@@ -217,8 +216,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Xotirani tekshirib bo‘lmaydi. (Sababi: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD kartani tekshirib bo‘lmaydi. (Sababi: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g> import qilinmoqda"</string>
-    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
-    <skip />
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"VCF faylga eksport qilish"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Saralash"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ismi"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Familiyasi"</string>

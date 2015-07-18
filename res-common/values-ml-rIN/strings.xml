@@ -164,8 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"സിം കാർഡിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM-ൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM-ൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
-    <skip />
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">".vcf ഫയലിൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യൂ"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് ഇമ്പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് എക്‌സ്‌പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ഡൗൺലോഡ്/അപ്‌ലോഡ് റദ്ദാക്കാനായില്ല"</string>
@@ -217,8 +216,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"സ്റ്റോറേജ്  സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD കാർഡ് സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ഇമ്പോർട്ടുചെയ്യുന്നു: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
-    <skip />
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ഫയലിലേക്ക് എക്സ്പോർട്ട് ചെയ്യൂ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ഇതുപ്രകാരം അടുക്കുക"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"പേരിന്‍റെ ആദ്യഭാഗം"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"പേരിന്റെ അവസാനഭാഗം"</string>
