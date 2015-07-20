@@ -278,7 +278,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
     private void setDefaultPhotoTint() {
         final int color = mMaterialPalette == null
                 ? MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors(
-                getResources()).mPrimaryColor
+                        getResources()).mPrimaryColor
                 : mMaterialPalette.mPrimaryColor;
         mPhotoImageView.setTint(color);
     }

@@ -163,11 +163,20 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             "disableDeleteMenuOption";
 
     /**
-     * Intent key to pass the photo palette calculated by
-     * {@link com.android.contacts.quickcontact.QuickContactActivity} to and between the compact
-     * editor and fully expanded editor.
+     * Intent key to pass the photo palette primary color calculated by
+     * {@link com.android.contacts.quickcontact.QuickContactActivity} to the editor and between
+     * the compact and fully expanded editors.
      */
-    public static final String INTENT_EXTRA_MATERIAL_PALETTE = "material_palette";
+    public static final String INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR =
+            "material_palette_primary_color";
+
+    /**
+     * Intent key to pass the photo palette secondary color calculated by
+     * {@link com.android.contacts.quickcontact.QuickContactActivity} to the editor and between
+     * the compact and fully expanded editors.
+     */
+    public static final String INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR =
+            "material_palette_secondary_color";
 
     /**
      * Intent key to pass a Bundle of raw contact IDs to photos URIs between the compact editor
@@ -1358,7 +1367,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
             mDisableDeleteMenuOption =
                     mIntentExtras.getBoolean(INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION);
-            mMaterialPalette = mIntentExtras.getParcelable(INTENT_EXTRA_MATERIAL_PALETTE);
+            if (mIntentExtras.containsKey(INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR)
+                    && mIntentExtras.containsKey(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR)) {
+                mMaterialPalette = new MaterialColorMapUtils.MaterialPalette(
+                        mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR),
+                        mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR));
+            }
             if (mIntentExtras.containsKey(INTENT_EXTRA_UPDATED_PHOTOS)) {
                 mUpdatedPhotos = mIntentExtras.getParcelable(INTENT_EXTRA_UPDATED_PHOTOS);
             }
