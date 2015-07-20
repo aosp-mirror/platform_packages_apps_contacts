@@ -129,8 +129,10 @@ public class EditorIntents {
 
     private static void putMaterialPalette(Intent intent, MaterialPalette materialPalette) {
         if (materialPalette != null) {
-            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_MATERIAL_PALETTE,
-                    materialPalette);
+            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR,
+                    materialPalette.mPrimaryColor);
+            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR,
+                    materialPalette.mSecondaryColor);
         }
     }
 
