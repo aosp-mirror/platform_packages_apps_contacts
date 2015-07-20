@@ -145,7 +145,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Adăugaţi o conexiune"</string>
     <string name="recent" msgid="2659189233141493004">"Recente"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Actualizări recente"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Persoana din agendă din <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Intrare: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Contul <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -279,6 +279,5 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funcționează mai bine când introduceți identificatorul Hangouts al persoanei în câmpul pentru adresa de e-mail sau în câmpul pentru numărul de telefon."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Mai multe câmpuri"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Schimbați fotografia"</string>
-    <!-- no translation found for quick_contact_display_name_with_phonetic (3692038078718876610) -->
-    <skip />
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>
