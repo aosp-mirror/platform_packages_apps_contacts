@@ -164,8 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
-    <skip />
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">".vcf ಫೈಲ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> ಆಮದು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> ಅನ್ನು ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ಆಮದು/ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
@@ -217,8 +216,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"ಸಂಗ್ರಹಣೆಯನ್ನು ಸ್ಕ್ಯಾನ್‌ ಮಾಡಲಾಗಲಿಲ್ಲ. (ಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD ಕಾಡ್‌ ಸ್ಕ್ಯಾನ್‌ ಮಾಡಲಾಗಲಿಲ್ಲ. (ಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
-    <skip />
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ಫೈಲ್‌ಗೆ ರಫ್ತು ಮಾಡಿ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ಈ ಪ್ರಕಾರ ವಿಂಗಡಿಸು"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ಮೊದಲ ಹೆಸರು"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ಕೊನೆಯ ಹೆಸರು"</string>
