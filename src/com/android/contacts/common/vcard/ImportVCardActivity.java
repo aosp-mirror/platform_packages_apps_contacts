@@ -246,7 +246,15 @@ public class ImportVCardActivity extends Activity {
                                 cache_index++;
                             }
                         }
-                        final Uri localDataUri = copyTo(sourceUri, filename);
+                        Uri localDataUri = null;
+
+                        try {
+                            localDataUri = copyTo(sourceUri, filename);
+                        } catch (SecurityException e) {
+                            Log.e(LOG_TAG, "SecurityException", e);
+                            showFailureNotification(R.string.fail_reason_io_error);
+                            return;
+                        }
                         if (mCanceled) {
                             Log.i(LOG_TAG, "vCard cache operation is canceled.");
                             break;
