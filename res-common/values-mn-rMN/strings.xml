@@ -218,7 +218,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Хадгалах сан скан хийгдэхгүй байна. (Шалтгаан: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD карт скан хийгдэхгүй байна. (Шалтгаан: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импорт хийж байна <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf файл руу экспортлох"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf файл болгож экспортлох"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Эрэмбэлэх"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Өөрийн нэр"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Овог"</string>
