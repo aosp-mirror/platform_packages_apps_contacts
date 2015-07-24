@@ -272,6 +272,5 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts werk beter as jy die persoon se Hangouts-identifiseerder in die e-posveld of foonveld invoer."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Meer velde"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Verander foto"</string>
-    <!-- no translation found for quick_contact_display_name_with_phonetic (3692038078718876610) -->
-    <skip />
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>
