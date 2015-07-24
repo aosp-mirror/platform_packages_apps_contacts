@@ -17,6 +17,7 @@
 package com.android.contacts.common.activity;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.model.AccountTypeManager;
 
 import android.app.Activity;
 import android.content.Context;
@@ -82,6 +83,13 @@ public abstract class RequestPermissionsActivityBase extends Activity {
             activity.finish();
             return true;
         }
+
+        // Account type initialization must be delayed until the Contacts permission group
+        // has been granted (since GET_ACCOUNTS) falls under that groups.  Previously it
+        // was initialized in ContactApplication which would cause problems as
+        // AccountManager.getAccounts would return an empty array. See b/22690336
+        AccountTypeManager.getInstance(activity);
+
         return false;
     }
 
