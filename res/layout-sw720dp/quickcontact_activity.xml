@@ -71,5 +71,5 @@
     <!-- This title's maximum height must be less than the minimum size of its
      parent ViewGroup because of an oddity in the way View#setScaleY() works. As a result,
      this title can not be inside @style/quickcontact_header. -->
-    <include layout="@layout/quickcontact_title" />
+    <include layout="@layout/quickcontact_title_and_phoneticname" />
 </com.android.contacts.widget.MultiShrinkScroller>
