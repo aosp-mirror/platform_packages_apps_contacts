@@ -17,11 +17,13 @@
 package com.android.contacts.common.util;
 
 import android.Manifest.permission;
+import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.Process;
 import android.support.v4.content.LocalBroadcastManager;
 
 /**
@@ -51,6 +53,14 @@ public class PermissionsUtil {
 
     public static boolean hasPermission(Context context, String permission) {
         return context.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static boolean hasAppOp(Context context, String appOp) {
+        final AppOpsManager appOpsManager =
+                (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+        final int mode = appOpsManager.checkOpNoThrow(appOp, Process.myUid(),
+                context.getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED;
     }
 
     /**
