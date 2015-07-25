@@ -130,10 +130,12 @@ public final class ContactsApplication extends Application {
         protected Void doInBackground(Void... params) {
             final Context context = ContactsApplication.this;
 
-            // Warm up the preferences, the account type manager and the contacts provider.
+            // Warm up the preferences and the contacts provider.  We delay initialization
+            // of the account type manager because we may not have the contacts group permission
+            // (and thus not have the get accounts permission).
             PreferenceManager.getDefaultSharedPreferences(context);
-            AccountTypeManager.getInstance(context);
             getContentResolver().getType(ContentUris.withAppendedId(Contacts.CONTENT_URI, 1));
+
             return null;
         }
 
