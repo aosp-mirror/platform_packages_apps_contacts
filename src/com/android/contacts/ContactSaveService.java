@@ -142,6 +142,8 @@ public class ContactSaveService extends IntentService {
 
     private static final int PERSIST_TRIES = 3;
 
+    private static final int MAX_CONTACTS_PROVIDER_BATCH_SIZE = 499;
+
     public interface Listener {
         public void onServiceCompleted(Intent callbackIntent);
     }
@@ -1078,23 +1080,39 @@ public class ContactSaveService extends IntentService {
 
         // For each pair of raw contacts, insert an aggregation exception
         final ContentResolver resolver = getContentResolver();
-        final ArrayList<ContentProviderOperation> operations
-                = new ArrayList<ContentProviderOperation>();
+        // The maximum number of operations per batch (aka yield point) is 500. See b/22480225
+        final int batchSize = MAX_CONTACTS_PROVIDER_BATCH_SIZE;
+        final ArrayList<ContentProviderOperation> operations = new ArrayList<>(batchSize);
         for (int i = 0; i < rawContactIds.length; i++) {
             for (int j = 0; j < rawContactIds.length; j++) {
                 if (i != j) {
                     buildJoinContactDiff(operations, rawContactIds[i], rawContactIds[j]);
                 }
+                // Before we get to 500 we need to flush the operations list
+                if (operations.size() > 0 && operations.size() % batchSize == 0) {
+                    if (!applyJoinOperations(resolver, operations)) {
+                        return;
+                    }
+                    operations.clear();
+                }
             }
         }
+        if (operations.size() > 0 && !applyJoinOperations(resolver, operations)) {
+            return;
+        }
+        showToast(R.string.contactsJoinedMessage);
+    }
 
-        // Apply all aggregation exceptions as one batch
+    /** Returns true if the batch was successfully applied and false otherwise. */
+    private boolean applyJoinOperations(ContentResolver resolver,
+            ArrayList<ContentProviderOperation> operations) {
         try {
             resolver.applyBatch(ContactsContract.AUTHORITY, operations);
-            showToast(R.string.contactsJoinedMessage);
+            return true;
         } catch (RemoteException | OperationApplicationException e) {
             Log.e(TAG, "Failed to apply aggregation exception batch", e);
             showToast(R.string.contactSavedErrorToast);
+            return false;
         }
     }
 
