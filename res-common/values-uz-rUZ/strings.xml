@@ -134,7 +134,7 @@
     <string name="map_other" msgid="55098598855607997">"Manzilni ko‘rish"</string>
     <string name="map_custom" msgid="4943554530347163288">"<xliff:g id="CUSTOM">%s</xliff:g> manzillarni ko‘rish"</string>
     <string name="chat_aim" msgid="6479001490307452172">"AIM’da suhbatlashish"</string>
-    <string name="chat_msn" msgid="627481952525245054">"Windows Live’da suhbatlashish"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Windows Live orqali chat"</string>
     <string name="chat_yahoo" msgid="5542489454092719897">"Yahoo’da suhbatlashish"</string>
     <string name="chat_skype" msgid="3145166404699830256">"Skype’da suhbatlashish"</string>
     <string name="chat_qq" msgid="2811762660890755082">"QQ’da suhbatlashish"</string>
