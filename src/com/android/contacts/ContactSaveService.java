@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import static android.Manifest.permission.WRITE_CONTACTS;
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
@@ -54,6 +55,7 @@ import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.util.ContactPhotoUtils;
 
@@ -187,6 +189,14 @@ public class ContactSaveService extends IntentService {
             Log.d(TAG, "onHandleIntent: could not handle null intent");
             return;
         }
+        if (!PermissionsUtil.hasPermission(this, WRITE_CONTACTS)) {
+            Log.w(TAG, "No WRITE_CONTACTS permission, unable to write to CP2");
+            // TODO: add more specific error string such as "Turn on Contacts
+            // permission to update your contacts"
+            showToast(R.string.contactSavedErrorToast);
+            return;
+        }
+
         // Call an appropriate method. If we're sure it affects how incoming phone calls are
         // handled, then notify the fact to in-call screen.
         String action = intent.getAction();
