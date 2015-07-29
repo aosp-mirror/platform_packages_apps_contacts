@@ -21,6 +21,7 @@ import com.android.contacts.common.list.DefaultContactListAdapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
@@ -108,17 +109,19 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         super.bindView(itemView, partition, cursor, position);
-        final ContactListItemView view = (ContactListItemView)itemView;
-        bindCheckBox(view, cursor, position);
+        final ContactListItemView view = (ContactListItemView) itemView;
+        bindCheckBox(view, cursor, position, partition == ContactsContract.Directory.DEFAULT);
     }
 
-    private void bindCheckBox(ContactListItemView view, Cursor cursor, int position) {
-        // Disable clicking on the first entry when showing check boxes. We do this by
-        // telling the view to handle clicking itself.
-        view.setClickable(position == 0 && hasProfile() && mDisplayCheckBoxes);
+    private void bindCheckBox(ContactListItemView view, Cursor cursor, int position,
+            boolean isLocalDirectory) {
+        // Disable clicking on the ME profile and all contacts from remote directories
+        // when showing check boxes. We do this by telling the view to handle clicking itself.
+        view.setClickable((position == 0 && hasProfile() || !isLocalDirectory)
+                && mDisplayCheckBoxes);
         // Only show checkboxes if mDisplayCheckBoxes is enabled. Also, never show the
-        // checkbox for the Me profile entry.
-        if (position == 0 && hasProfile() || !mDisplayCheckBoxes) {
+        // checkbox for the Me profile entry and other directory contacts except local directory.
+        if (position == 0 && hasProfile() || !mDisplayCheckBoxes || !isLocalDirectory) {
             view.hideCheckBox();
             return;
         }

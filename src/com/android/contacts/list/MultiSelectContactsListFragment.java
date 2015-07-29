@@ -23,6 +23,7 @@ import com.android.contacts.list.MultiSelectEntryContactListAdapter.SelectedCont
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import java.util.TreeSet;
@@ -115,7 +116,9 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     protected boolean onItemLongClick(int position, long id) {
         final int previouslySelectedCount = getAdapter().getSelectedContactIds().size();
         final Uri uri = getAdapter().getContactUri(position);
-        if (uri != null && (position > 0 || !getAdapter().hasProfile())) {
+        final int partition = getAdapter().getPartitionForPosition(position);
+        if (uri != null && (partition == ContactsContract.Directory.DEFAULT
+                && (position > 0 || !getAdapter().hasProfile()))) {
             final String contactId = uri.getLastPathSegment();
             if (!TextUtils.isEmpty(contactId)) {
                 if (mCheckBoxListListener != null) {
