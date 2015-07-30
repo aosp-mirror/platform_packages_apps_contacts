@@ -80,10 +80,6 @@ public class StructuredNameDataItem extends DataItem {
         return getContentValues().getAsString(StructuredName.FULL_NAME_STYLE);
     }
 
-    public String getPhoneticNameStyle() {
-        return getContentValues().getAsString(StructuredName.PHONETIC_NAME_STYLE);
-    }
-
     public void setPhoneticFamilyName(String name) {
         getContentValues().put(StructuredName.PHONETIC_FAMILY_NAME, name);
     }

@@ -277,7 +277,9 @@ public class ValuesDelta implements Parcelable {
 
     public void copyStringFrom(ValuesDelta from, String key) {
         ensureUpdate();
-        put(key, from.getAsString(key));
+        if (containsKey(key) || from.containsKey(key)) {
+            put(key, from.getAsString(key));
+        }
     }
 
     /**
@@ -532,7 +534,7 @@ public class ValuesDelta implements Parcelable {
         copyStringFrom(name, ContactsContract.CommonDataKinds.StructuredName.PHONETIC_FAMILY_NAME);
 
         copyStringFrom(name, ContactsContract.CommonDataKinds.StructuredName.FULL_NAME_STYLE);
-        copyStringFrom(name, ContactsContract.CommonDataKinds.StructuredName.PHONETIC_NAME_STYLE);
+        copyStringFrom(name, ContactsContract.Data.DATA11);
     }
 
     public String getPhoneNumber() {

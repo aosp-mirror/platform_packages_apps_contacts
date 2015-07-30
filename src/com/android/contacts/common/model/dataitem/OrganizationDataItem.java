@@ -61,8 +61,4 @@ public class OrganizationDataItem extends DataItem {
     public String getOfficeLocation() {
         return getContentValues().getAsString(Organization.OFFICE_LOCATION);
     }
-
-    public String getPhoneticNameStyle() {
-        return getContentValues().getAsString(Organization.PHONETIC_NAME_STYLE);
-    }
 }
