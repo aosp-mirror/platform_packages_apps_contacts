@@ -106,7 +106,7 @@
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Adrese de e-mail"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adrese poştale"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
-    <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizaţie"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizație"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Relaţie"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Date speciale"</string>
     <string name="sms" msgid="8086289395154598654">"Mesaj text"</string>
