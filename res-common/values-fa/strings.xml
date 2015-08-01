@@ -217,7 +217,7 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏کارت SD نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"وارد کردن <xliff:g id="CURRENT_NUMBER">%s</xliff:g><xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"‏صادر کردن به فایل ‎.vcf"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"مرتب‌سازی بر اساس"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"مرتب‌سازی براساس"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"نام"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"نام خانوادگی"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"قالب نام"</string>
