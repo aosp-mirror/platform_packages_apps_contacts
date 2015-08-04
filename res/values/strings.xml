@@ -529,8 +529,8 @@
     <!-- Format string that combines the name and the phonetic name for the widget. if the phonetic name is empty, only the display name is used instead [CHAR LIMIT=25] -->
     <string name="widget_name_and_phonetic"><xliff:g id="display_name" example="John Huber">%1$s</xliff:g> (<xliff:g id="phonetic_name">%2$s</xliff:g>)</string>
 
-    <!-- Checkbox whether to provide a year for a birthday [CHAR LIMIT=30] -->
-    <string name="date_year_toggle">Provide a year</string>
+    <!-- Checkbox whether to include a year for a birthday [CHAR LIMIT=30] -->
+    <string name="date_year_toggle">Include year</string>
 
     <!-- Label for the widget that shows picture and social status of a contact [CHAR LIMIT=20] -->
     <string name="social_widget_label">Contact</string>
