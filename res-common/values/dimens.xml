@@ -145,4 +145,18 @@
     <dimen name="search_shortcut_radius">40dp</dimen>
 
     <dimen name="contact_list_card_elevation">2dp</dimen>
+
+    <!-- Padding used around the periphery of the call subject dialog, as well as in between the
+         items. -->
+    <dimen name="call_subject_dialog_margin">20dp</dimen>
+    <!-- Padding used between lines of text in the call subject dialog. -->
+    <dimen name="call_subject_dialog_between_line_margin">8dp</dimen>
+    <!-- Size of the contact photo in the call subject dialog. -->
+    <dimen name="call_subject_dialog_contact_photo_size">50dp</dimen>
+    <!-- Margin above the edit text in the call subject dialog. -->
+    <dimen name="call_subject_dialog_edit_spacing">60dp</dimen>
+    <!-- Size of primary text in the call subject dialog. -->
+    <dimen name="call_subject_dialog_primary_text_size">16sp</dimen>
+    <!-- Size of secondary text in the call subject dialog. -->
+    <dimen name="call_subject_dialog_secondary_text_size">14sp</dimen>
 </resources>
