@@ -755,4 +755,24 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Title for dialog to select Phone Account for outgoing call.  [CHAR LIMIT=40] -->
     <string name="select_phone_account_for_calls">Call with</string>
+
+    <!-- String used for actions in the dialer call log and the quick contact card to initiate
+         a call to an individual.  The user is prompted to enter a note which is sent along with
+         the call (e.g. a call subject). [CHAR LIMIT=40] -->
+    <string name="call_with_a_note">Call with a note</string>
+
+    <!-- Hint text shown in the call subject dialog. [CHAR LIMIT=255] -->
+    <string name="call_subject_hint">Type a note to send with call ...</string>
+
+    <!-- Button used to start a new call with the user entered subject. [CHAR LIMIT=32] -->
+    <string name="send_and_call_button">SEND &amp; CALL</string>
+
+    <!-- String used to represent the total number of characters entered for a call subject,
+         compared to the character limit.  Example: 2 / 64 -->
+    <string name="call_subject_limit"><xliff:g id="count" example="4">%1$s</xliff:g> / <xliff:g id="limit" example="64">%2$s</xliff:g></string>
+
+    <!-- String used to build a phone number bype and phone number string.
+         Example: Mobile • 650-555-1212  -->
+    <string name="call_subject_type_and_number"><xliff:g id="type" example="Mobile">%1$s</xliff:g> • <xliff:g id="number" example="(650) 555-1212">%2$s</xliff:g></string>
+
 </resources>
