@@ -88,4 +88,14 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:windowNoDisplay">false</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
+    <style name="CallSubjectDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
 </resources>
