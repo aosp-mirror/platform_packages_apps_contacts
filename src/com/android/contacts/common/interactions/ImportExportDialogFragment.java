@@ -122,8 +122,13 @@ public class ImportExportDialogFragment extends DialogFragment
                     R.string.import_from_vcf_file));
         }
         if (manager != null && res.getBoolean(R.bool.config_allow_sim_import)) {
-            final List<SubscriptionInfo> subInfoRecords =
-                    mSubscriptionManager.getActiveSubscriptionInfoList();
+            List<SubscriptionInfo> subInfoRecords = null;
+            try {
+                subInfoRecords =  mSubscriptionManager.getActiveSubscriptionInfoList();
+            } catch (SecurityException e) {
+                Log.w(TAG, "SecurityException thrown, lack permission for"
+                        + " getActiveSubscriptionInfoList", e);
+            }
             if (subInfoRecords != null) {
                 if (subInfoRecords.size() == 1) {
                     adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
