@@ -23,17 +23,24 @@ import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -43,6 +50,9 @@ import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
 import com.android.contacts.common.util.UriUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Implements a dialog which prompts for a call subject for an outgoing call.
  */
@@ -50,19 +60,25 @@ public class CallSubjectDialog extends DialogFragment {
     private static final String TAG = "CallSubjectDialog";
     private static final String FRAGMENT_TAG = "callSubject";
     private static final int CALL_SUBJECT_LIMIT = 16;
+    private static final int CALL_SUBJECT_HISTORY_SIZE = 5;
+
+    private static final int REQUEST_SUBJECT = 1001;
+
+    public static final String PREF_KEY_SUBJECT_HISTORY_COUNT = "subject_history_count";
+    public static final String PREF_KEY_SUBJECT_HISTORY_ITEM = "subject_history_item";
 
     /**
      * Fragment argument bundle keys:
      */
-    private static final String ARG_PHOTO_ID = "PHOTO_ID";
-    private static final String ARG_PHOTO_URI = "PHOTO_URI";
-    private static final String ARG_CONTACT_URI = "CONTACT_URI";
-    private static final String ARG_NAME_OR_NUMBER = "NAME_OR_NUMBER";
-    private static final String ARG_IS_BUSINESS = "IS_BUSINESS";
-    private static final String ARG_NUMBER = "NUMBER";
-    private static final String ARG_DISPLAY_NUMBER = "DISPLAY_NUMBER";
-    private static final String ARG_NUMBER_LABEL = "NUMBER_LABEL";
-    private static final String ARG_PHONE_ACCOUNT_HANDLE = "PHONE_ACCOUNT_HANDLE";
+    public static final String ARG_PHOTO_ID = "PHOTO_ID";
+    public static final String ARG_PHOTO_URI = "PHOTO_URI";
+    public static final String ARG_CONTACT_URI = "CONTACT_URI";
+    public static final String ARG_NAME_OR_NUMBER = "NAME_OR_NUMBER";
+    public static final String ARG_IS_BUSINESS = "IS_BUSINESS";
+    public static final String ARG_NUMBER = "NUMBER";
+    public static final String ARG_DISPLAY_NUMBER = "DISPLAY_NUMBER";
+    public static final String ARG_NUMBER_LABEL = "NUMBER_LABEL";
+    public static final String ARG_PHONE_ACCOUNT_HANDLE = "PHONE_ACCOUNT_HANDLE";
 
     private Context mContext;
     private QuickContactBadge mContactPhoto;
@@ -75,6 +91,8 @@ public class CallSubjectDialog extends DialogFragment {
 
     private int mLimit = CALL_SUBJECT_LIMIT;
     private int mPhotoSize;
+    private SharedPreferences mPrefs;
+    private List<String> mSubjectHistory;
 
     private long mPhotoID;
     private Uri mPhotoUri;
@@ -112,7 +130,10 @@ public class CallSubjectDialog extends DialogFragment {
     private final View.OnClickListener mHistoryOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            // TODO: Implement this (future CL).
+            hideSoftKeyboard(mContext, mCallSubjectView);
+            Intent intent = new Intent(mContext, CallSubjectHistory.class);
+            setTargetFragment(CallSubjectDialog.this, REQUEST_SUBJECT);
+            startActivityForResult(intent, REQUEST_SUBJECT);
         }
     };
 
@@ -122,15 +143,39 @@ public class CallSubjectDialog extends DialogFragment {
     private final View.OnClickListener mSendAndCallOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            hideSoftKeyboard(mContext, mCallSubjectView);
+            String subject = mCallSubjectView.getText().toString();
             Intent intent = CallUtil.getCallWithSubjectIntent(mNumber, mPhoneAccountHandle,
-                    mCallSubjectView.getText().toString());
+                    subject);
 
             final TelecomManager tm =
                     (TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
             tm.placeCall(intent.getData(), intent.getExtras());
+
+            mSubjectHistory.add(subject);
+            saveSubjectHistory(mSubjectHistory);
             getDialog().dismiss();
         }
     };
+
+    /**
+     * Show the call subhect dialog given a phone number to dial (e.g. from the dialpad).
+     *
+     * @param activity The activity.
+     * @param number The number to dial.
+     */
+    public static void start(Activity activity, String number) {
+        start(activity,
+                -1 /* photoId */,
+                null /* photoUri */,
+                null /* contactUri */,
+                number /* nameOrNumber */,
+                false /* isBusiness */,
+                number /* number */,
+                null /* displayNumber */,
+                null /* numberLabel */,
+                null /* phoneAccountHandle */);
+    }
 
     /**
      * Creates a call subject dialog.
@@ -149,8 +194,6 @@ public class CallSubjectDialog extends DialogFragment {
     public static void start(Activity activity, long photoId, Uri photoUri, Uri contactUri,
             String nameOrNumber, boolean isBusiness, String number, String displayNumber,
             String numberLabel, PhoneAccountHandle phoneAccountHandle) {
-        final FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
-        final CallSubjectDialog fragment = new CallSubjectDialog();
         Bundle arguments = new Bundle();
         arguments.putLong(ARG_PHOTO_ID, photoId);
         arguments.putParcelable(ARG_PHOTO_URI, photoUri);
@@ -161,6 +204,19 @@ public class CallSubjectDialog extends DialogFragment {
         arguments.putString(ARG_DISPLAY_NUMBER, displayNumber);
         arguments.putString(ARG_NUMBER_LABEL, numberLabel);
         arguments.putParcelable(ARG_PHONE_ACCOUNT_HANDLE, phoneAccountHandle);
+        start(activity, arguments);
+    }
+
+    /**
+     * Shows the call subject dialog given a Bundle containing all the arguments required to
+     * display the dialog (e.g. from Quick Contacts).
+     *
+     * @param activity The activity.
+     * @param arguments The arguments bundle.
+     */
+    public static void start(Activity activity, Bundle arguments) {
+        final FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
+        final CallSubjectDialog fragment = new CallSubjectDialog();
         fragment.setArguments(arguments);
         fragment.show(ft, FRAGMENT_TAG);
     }
@@ -176,9 +232,11 @@ public class CallSubjectDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         mContext = getActivity();
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         mPhotoSize = mContext.getResources().getDimensionPixelSize(
                 R.dimen.call_subject_dialog_contact_photo_size);
         readArguments();
+        mSubjectHistory = loadSubjectHistory(mPrefs);
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_call_subject, null);
@@ -188,21 +246,23 @@ public class CallSubjectDialog extends DialogFragment {
         mNumberView = (TextView) view.findViewById(R.id.number);
         mCallSubjectView = (EditText) view.findViewById(R.id.call_subject);
         mCallSubjectView.addTextChangedListener(mTextWatcher);
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter.LengthFilter(mLimit);
+        mCallSubjectView.setFilters(filters);
+
         mCharacterLimitView = (TextView) view.findViewById(R.id.character_limit);
         mHistoryButton = view.findViewById(R.id.history_button);
         mHistoryButton.setOnClickListener(mHistoryOnClickListener);
+        mHistoryButton.setVisibility(mSubjectHistory.isEmpty() ? View.GONE : View.VISIBLE);
         mSendAndCallButton = view.findViewById(R.id.send_and_call_button);
         mSendAndCallButton.setOnClickListener(mSendAndCallOnClickListener);
 
+        showSoftKeyboard(mContext, mCallSubjectView);
         updateContactInfo();
         updateCharacterLimit();
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(view);
-        final AlertDialog dialog = dialogBuilder.create();
-
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.FILL_PARENT,
-                ViewGroup.LayoutParams.FILL_PARENT);
         return dialogBuilder.create();
     }
 
@@ -210,7 +270,11 @@ public class CallSubjectDialog extends DialogFragment {
      * Populates the contact info fields based on the current contact information.
      */
     private void updateContactInfo() {
-        setPhoto(mPhotoID, mPhotoUri, mContactUri, mNameOrNumber, mIsBusiness);
+        if (mContactUri != null) {
+            setPhoto(mPhotoID, mPhotoUri, mContactUri, mNameOrNumber, mIsBusiness);
+        } else {
+            mContactPhoto.setVisibility(View.GONE);
+        }
         mNameView.setText(mNameOrNumber);
         if (!TextUtils.isEmpty(mNumberLabel) && !TextUtils.isEmpty(mDisplayNumber)) {
             mNumberView.setVisibility(View.VISIBLE);
@@ -229,6 +293,7 @@ public class CallSubjectDialog extends DialogFragment {
         Bundle arguments = getArguments();
         if (arguments == null) {
             Log.e(TAG, "Arguments cannot be null.");
+            return;
         }
         mPhotoID = arguments.getLong(ARG_PHOTO_ID);
         mPhotoUri = arguments.getParcelable(ARG_PHOTO_URI);
@@ -294,6 +359,100 @@ public class CallSubjectDialog extends DialogFragment {
         } else {
             ContactPhotoManager.getInstance(mContext).loadThumbnail(mContactPhoto, photoId,
                     false /* darkTheme */, true /* isCircular */, request);
+        }
+    }
+
+    /**
+     * Loads the subject history from shared preferences.
+     *
+     * @param prefs Shared preferences.
+     * @return List of subject history strings.
+     */
+    public static List<String> loadSubjectHistory(SharedPreferences prefs) {
+        int historySize = prefs.getInt(PREF_KEY_SUBJECT_HISTORY_COUNT, 0);
+        List<String> subjects = new ArrayList(historySize);
+
+        for (int ix = 0 ; ix < historySize; ix++) {
+            String historyItem = prefs.getString(PREF_KEY_SUBJECT_HISTORY_ITEM + ix, null);
+            if (!TextUtils.isEmpty(historyItem)) {
+                subjects.add(historyItem);
+            }
+        }
+
+        return subjects;
+    }
+
+    /**
+     * Saves the subject history list to shared prefs, removing older items so that there are only
+     * {@link #CALL_SUBJECT_HISTORY_SIZE} items at most.
+     *
+     * @param history The history.
+     */
+    private void saveSubjectHistory(List<String> history) {
+        // Remove oldest subject(s).
+        while (history.size() > CALL_SUBJECT_HISTORY_SIZE) {
+            history.remove(0);
+        }
+
+        SharedPreferences.Editor editor = mPrefs.edit();
+        int historyCount = 0;
+        for (String subject : history) {
+            if (!TextUtils.isEmpty(subject)) {
+                editor.putString(PREF_KEY_SUBJECT_HISTORY_ITEM + historyCount,
+                        subject);
+                historyCount++;
+            }
+        }
+        editor.putInt(PREF_KEY_SUBJECT_HISTORY_COUNT, historyCount);
+        editor.apply();
+    }
+
+    /**
+     * Handles results from the CallSubjectHistory activity.
+     *
+     * @param requestCode The integer request code originally supplied to
+     *                    startActivityForResult(), allowing you to identify who this
+     *                    result came from.
+     * @param resultCode The integer result code returned by the child activity
+     *                   through its setResult().
+     * @param data An Intent, which can return result data to the caller
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != REQUEST_SUBJECT || data == null) {
+            return;
+        }
+
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        String chosenSubject = data.getStringExtra(CallSubjectHistory.EXTRA_CHOSEN_SUBJECT);
+        mCallSubjectView.setText(chosenSubject);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * Hide software keyboard for the given {@link View}.
+     */
+    public void hideSoftKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * Show software keyboard for the given {@link View}.
+     */
+    public void showSoftKeyboard(Context context, View view) {
+        view.requestFocus();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                    InputMethodManager.HIDE_IMPLICIT_ONLY);
         }
     }
 }
