@@ -163,4 +163,7 @@
 
     <!-- Text color for the SEND & CALL button on the call subject dialog. -->
     <color name="call_subject_button">#00c853</color>
+
+    <!-- Background color for the call subject history view. -->
+    <color name="call_subject_history_background">#ffffff</color>
 </resources>
