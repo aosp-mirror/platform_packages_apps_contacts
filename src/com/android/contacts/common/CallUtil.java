@@ -116,4 +116,29 @@ public class CallUtil {
         }
         return false;
     }
+
+    /**
+     * Determines if one of the call capable phone accounts defined supports calling with a subject
+     * specified.
+     *
+     * @param context The context.
+     * @return {@code true} if one of the call capable phone accounts supports calling with a
+     *      subject specified, {@code false} otherwise.
+     */
+    public static boolean isCallWithSubjectSupported(Context context) {
+        TelecomManager telecommMgr = (TelecomManager)
+                context.getSystemService(Context.TELECOM_SERVICE);
+        if (telecommMgr == null) {
+            return false;
+        }
+
+        List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
+        for (PhoneAccountHandle accountHandle : accountHandles) {
+            PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
+            if (account != null && account.hasCapabilities(PhoneAccount.CAPABILITY_CALL_SUBJECT)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
