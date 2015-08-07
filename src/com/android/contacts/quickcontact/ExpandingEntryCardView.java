@@ -19,12 +19,14 @@ import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Spannable;
 import android.text.TextUtils;
@@ -50,6 +52,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.dialog.CallSubjectDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +90,12 @@ public class ExpandingEntryCardView extends CardView {
      * Entry data.
      */
     public static final class Entry {
+        // No action when clicking a button is specified.
+        public static final int ACTION_NONE = 1;
+        // Button action is an intent.
+        public static final int ACTION_INTENT = 2;
+        // Button action will open the call with subject dialog.
+        public static final int ACTION_CALL_WITH_SUBJECT = 3;
 
         private final int mId;
         private final Drawable mIcon;
@@ -107,6 +116,8 @@ public class ExpandingEntryCardView extends CardView {
         private final Intent mThirdIntent;
         private final String mThirdContentDescription;
         private final int mIconResourceId;
+        private final int mThirdAction;
+        private final Bundle mThirdExtras;
 
         public Entry(int id, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon,
@@ -114,7 +125,8 @@ public class ExpandingEntryCardView extends CardView {
                 Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
                 boolean shouldApplyColor, boolean isEditable,
                 EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
-                String thirdContentDescription, int iconResourceId) {
+                String thirdContentDescription, int thirdAction, Bundle thirdExtras,
+                int iconResourceId) {
             mId = id;
             mIcon = mainIcon;
             mHeader = header;
@@ -133,6 +145,8 @@ public class ExpandingEntryCardView extends CardView {
             mThirdIcon = thirdIcon;
             mThirdIntent = thirdIntent;
             mThirdContentDescription = thirdContentDescription;
+            mThirdAction = thirdAction;
+            mThirdExtras = thirdExtras;
             mIconResourceId = iconResourceId;
         }
 
@@ -210,6 +224,14 @@ public class ExpandingEntryCardView extends CardView {
 
         int getIconResourceId() {
             return mIconResourceId;
+        }
+
+        public int getThirdAction() {
+            return mThirdAction;
+        }
+
+        public Bundle getThirdExtras() {
+            return mThirdExtras;
         }
     }
 
@@ -761,10 +783,28 @@ public class ExpandingEntryCardView extends CardView {
             alternateIcon.setContentDescription(entry.getAlternateContentDescription());
         }
 
-        if (entry.getThirdIcon() != null && entry.getThirdIntent() != null) {
+        if (entry.getThirdIcon() != null && entry.getThirdAction() != Entry.ACTION_NONE) {
             thirdIcon.setImageDrawable(entry.getThirdIcon());
-            thirdIcon.setOnClickListener(mOnClickListener);
-            thirdIcon.setTag(new EntryTag(entry.getId(), entry.getThirdIntent()));
+            if (entry.getThirdAction() == Entry.ACTION_INTENT) {
+                thirdIcon.setOnClickListener(mOnClickListener);
+                thirdIcon.setTag(new EntryTag(entry.getId(), entry.getThirdIntent()));
+            } else if (entry.getThirdAction() == Entry.ACTION_CALL_WITH_SUBJECT) {
+                thirdIcon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Object tag = v.getTag();
+                        if (!(tag instanceof Bundle)) {
+                            return;
+                        }
+
+                        Context context = getContext();
+                        if (context instanceof Activity) {
+                            CallSubjectDialog.start((Activity) context, entry.getThirdExtras());
+                        }
+                    }
+                });
+                thirdIcon.setTag(entry.getThirdExtras());
+            }
             thirdIcon.setVisibility(View.VISIBLE);
             thirdIcon.setContentDescription(entry.getThirdContentDescription());
         }
