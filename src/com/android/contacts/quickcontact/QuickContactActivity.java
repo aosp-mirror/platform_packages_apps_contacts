@@ -96,6 +96,7 @@ import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.dialog.CallSubjectDialog;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.interactions.TouchPointManager;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
@@ -125,6 +126,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.DateUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
+import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.editor.ContactEditorFragment;
@@ -1135,7 +1137,9 @@ public class QuickContactActivity extends ContactsActivity {
                     /* thirdIcon = */ null,
                     /* thirdIntent = */ null,
                     /* thirdContentDescription = */ null,
-                    /* iconResourceId = */ 0);
+                    /* thirdAction = */ Entry.ACTION_NONE,
+                    /* thirdExtras = */ null,
+                    /* iconResourceId = */  0);
             List<Entry> phoneticList = new ArrayList<>();
             phoneticList.add(phoneticEntry);
             // Phonetic name comes after nickname. Check to see if the first entry type is nickname
@@ -1187,7 +1191,10 @@ public class QuickContactActivity extends ContactsActivity {
                 /* alternateContentDescription = */ null, /* shouldApplyColor = */ true,
                 /* isEditable = */ false, /* EntryContextMenuInfo = */ null,
                 /* thirdIcon = */ null, /* thirdIntent = */ null,
-                /* thirdContentDescription = */ null, R.drawable.ic_phone_24dp);
+                /* thirdContentDescription = */ null,
+                /* thirdAction = */ Entry.ACTION_NONE,
+                /* thirdExtras = */ null,
+                R.drawable.ic_phone_24dp);
 
         final Drawable emailIcon = getResources().getDrawable(
                 R.drawable.ic_email_24dp).mutate();
@@ -1200,6 +1207,7 @@ public class QuickContactActivity extends ContactsActivity {
                 /* shouldApplyColor = */ true, /* isEditable = */ false,
                 /* EntryContextMenuInfo = */ null, /* thirdIcon = */ null,
                 /* thirdIntent = */ null, /* thirdContentDescription = */ null,
+                /* thirdAction = */ Entry.ACTION_NONE, /* thirdExtras = */ null,
                 R.drawable.ic_email_24dp);
 
         final List<List<Entry>> promptEntries = new ArrayList<>();
@@ -1366,7 +1374,9 @@ public class QuickContactActivity extends ContactsActivity {
         EntryContextMenuInfo entryContextMenuInfo = null;
         Drawable thirdIcon = null;
         Intent thirdIntent = null;
+        int thirdAction = Entry.ACTION_NONE;
         String thirdContentDescription = null;
+        Bundle thirdExtras = null;
         int iconResourceId = 0;
 
         context = context.getApplicationContext();
@@ -1479,6 +1489,7 @@ public class QuickContactActivity extends ContactsActivity {
             }
         } else if (dataItem instanceof PhoneDataItem) {
             final PhoneDataItem phone = (PhoneDataItem) dataItem;
+            String phoneLabel = null;
             if (!TextUtils.isEmpty(phone.getNumber())) {
                 primaryContentDescription.append(res.getString(R.string.call_other)).append(" ");
                 header = sBidiFormatter.unicodeWrap(phone.buildDataStringForDisplay(context, kind),
@@ -1489,10 +1500,12 @@ public class QuickContactActivity extends ContactsActivity {
                 if (phone.hasKindTypeColumn(kind)) {
                     final int kindTypeColumn = phone.getKindTypeColumn(kind);
                     final String label = phone.getLabel();
+                    phoneLabel = label;
                     if (kindTypeColumn == Phone.TYPE_CUSTOM && TextUtils.isEmpty(label)) {
                         text = "";
                     } else {
                         text = Phone.getTypeLabel(res, kindTypeColumn, label).toString();
+                        phoneLabel= text;
                         primaryContentDescription.append(text).append(" ");
                     }
                 }
@@ -1508,9 +1521,33 @@ public class QuickContactActivity extends ContactsActivity {
                 alternateIcon = res.getDrawable(R.drawable.ic_message_24dp);
                 alternateContentDescription.append(res.getString(R.string.sms_custom, header));
 
-                // Add video call button if supported
-                if (CallUtil.isVideoEnabled(context)) {
+                if (CallUtil.isCallWithSubjectSupported(context)) {
+                    thirdIcon = res.getDrawable(R.drawable.ic_call_note_white_24dp);
+                    thirdAction = Entry.ACTION_CALL_WITH_SUBJECT;
+                    thirdContentDescription =
+                            res.getString(R.string.call_with_a_note);
+
+                    // Create a bundle containing the data the call subject dialog requires.
+                    thirdExtras = new Bundle();
+                    thirdExtras.putLong(CallSubjectDialog.ARG_PHOTO_ID,
+                            contactData.getPhotoId());
+                    thirdExtras.putParcelable(CallSubjectDialog.ARG_PHOTO_URI,
+                            UriUtils.parseUriOrNull(contactData.getPhotoUri()));
+                    thirdExtras.putParcelable(CallSubjectDialog.ARG_CONTACT_URI,
+                            contactData.getLookupUri());
+                    thirdExtras.putString(CallSubjectDialog.ARG_NAME_OR_NUMBER,
+                            contactData.getDisplayName());
+                    thirdExtras.putBoolean(CallSubjectDialog.ARG_IS_BUSINESS, false);
+                    thirdExtras.putString(CallSubjectDialog.ARG_NUMBER,
+                            phone.getNumber());
+                    thirdExtras.putString(CallSubjectDialog.ARG_DISPLAY_NUMBER,
+                            phone.getFormattedPhoneNumber());
+                    thirdExtras.putString(CallSubjectDialog.ARG_NUMBER_LABEL,
+                            phoneLabel);
+                } else if (CallUtil.isVideoEnabled(context)) {
+                    // Add video call button if supported
                     thirdIcon = res.getDrawable(R.drawable.ic_videocam);
+                    thirdAction = Entry.ACTION_INTENT;
                     thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
                             CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
                     thirdContentDescription =
@@ -1707,8 +1744,8 @@ public class QuickContactActivity extends ContactsActivity {
                 new SpannableString(primaryContentDescription.toString()),
                 intent, alternateIcon, alternateIntent,
                 alternateContentDescription.toString(), shouldApplyColor, isEditable,
-                entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription,
-                iconResourceId);
+                entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription, thirdAction,
+                thirdExtras, iconResourceId);
     }
 
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems,
@@ -1979,6 +2016,8 @@ public class QuickContactActivity extends ContactsActivity {
                     /* thirdIcon = */ null,
                     /* thirdIntent = */ null,
                     /* thirdContentDescription = */ null,
+                    /* thirdAction = */ Entry.ACTION_NONE,
+                    /* thirdActionExtras = */ null,
                     interaction.getIconResourceId()));
         }
         return entries;
