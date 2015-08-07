@@ -98,4 +98,16 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
+    <!-- Theme used for the call subjection history selection activity.  -->
+    <style name="Theme.CallSubjectSelector" parent="android:Theme.Material.Light">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>
