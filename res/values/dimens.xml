@@ -19,9 +19,13 @@
     <!-- Initial height of transparent space above QuickContacts -->
     <dimen name="quickcontact_starting_empty_height">150dp</dimen>
     <!-- Initial size of QuickContact's title size -->
-    <dimen name="quickcontact_maximum_title_size">30dp</dimen>
-    <!-- When QC is uncollapsed, the title has this much margin on its left, right and bottom -->
+    <dimen name="quickcontact_maximum_title_size">32dp</dimen>
+    <!-- Initial size of QuickContact's phonetic name size -->
+    <dimen name="quickcontact_maximum_phonetic_name_size">28dp</dimen>
+    <!-- When QC is uncollapsed, the title has this much margin on its left and right. -->
     <dimen name="quickcontact_title_initial_margin">16dp</dimen>
+    <!-- When QC is uncollapsed, the title has this much margin on its bottom -->
+    <dimen name="quickcontact_title_initial_bottom_margin">8dp</dimen>
     <!-- The ratio of width:height for the contact's photo in landscape -->
     <item name="quickcontact_landscape_photo_ratio" type="dimen" format="float">0.7</item>
     <!-- How far QuickContacts can be dragged and released from the top of the window before we dismiss it. -->

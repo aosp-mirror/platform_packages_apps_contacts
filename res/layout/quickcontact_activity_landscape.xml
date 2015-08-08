@@ -51,7 +51,7 @@
 
                 <include layout="@layout/quickcontact_header" />
 
-                <include layout="@layout/quickcontact_title" />
+                <include layout="@layout/quickcontact_title_and_phoneticname" />
 
             </FrameLayout>
 
