@@ -194,7 +194,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Persoană din agendă"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Se încarcă..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Creaţi o intrare nouă în Agendă"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Conectaţi-vă la un cont"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Conectați-vă la un cont"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importaţi Agenda"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Creaţi un grup nou"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Creaţi un grup nou"</string>
