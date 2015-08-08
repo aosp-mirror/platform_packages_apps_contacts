@@ -263,8 +263,7 @@
     <skip />
     <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
     <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
+    <string name="date_year_toggle" msgid="7122002148518724139">"Жылы көрсөтүлсүн"</string>
     <!-- no translation found for social_widget_label (6378905543028924592) -->
     <skip />
     <string name="social_widget_loading" msgid="5327336597364074608">"Жүктөлүүдө…"</string>

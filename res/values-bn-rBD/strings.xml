@@ -186,7 +186,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"পরিচিতিতে যুক্ত করুন"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"বন্ধ"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"বছর লিখুন"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"বছর অন্তর্ভুক্ত করুন"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"পরিচিতি"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"লোড হচ্ছে..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"একটি নতুন পরিচিতি তৈরি করুন"</string>

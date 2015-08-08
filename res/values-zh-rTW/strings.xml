@@ -186,7 +186,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"加入聯絡人"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"關閉"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"輸入年份"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"包含年份"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"聯絡人"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"載入中…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"建立新聯絡人"</string>

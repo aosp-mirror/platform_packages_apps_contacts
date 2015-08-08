@@ -186,7 +186,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"დაემატოს კონტაქტს"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"დახურვა"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"მიუთითეთ წელი"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"შეიტანე წელიც"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"კონტაქტი"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"იტვირთება…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ახალი კონტაქტის შექმნა"</string>
