@@ -18,7 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"نوشتار کپی شد"</string>
-    <string name="copy_text" msgid="3424081789297978355">"کپی در کلیپ‌بورد"</string>
+    <string name="copy_text" msgid="3424081789297978355">"کپی در بریده‌دان"</string>
     <string name="call_custom" msgid="2786306789889210756">"تماس با <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"تماس با منزل"</string>
     <string name="call_mobile" msgid="8618334085824709009">"تماس با تلفن همراه"</string>
@@ -250,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"حساب"</string>
     <string name="set_default_account" msgid="3865970860434642695">"همیشه این سیم برای تماس‌ استفاده شود"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"تماس با"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"تماس به همراه یادداشت"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"یادداشتی بنویسید که همراه تماس ارسال شود…"</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ارسال و تماس"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / ‏<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

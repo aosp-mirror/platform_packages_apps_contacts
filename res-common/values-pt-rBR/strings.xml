@@ -250,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Conta"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Sempre usar esta opção para chamadas"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Ligar com"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Chamada com uma nota"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Escreva uma nota para enviar com a chamada..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ENVIAR E LIGAR"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>
