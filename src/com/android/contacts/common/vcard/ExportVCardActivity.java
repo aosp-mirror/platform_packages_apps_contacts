@@ -126,7 +126,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
         // Have the user choose where vcards will be exported to
         final Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType(VCardService.VCARD_MIME_TYPE);
+        intent.setType(VCardService.X_VCARD_MIME_TYPE);
         intent.putExtra(Intent.EXTRA_TITLE, mBidiFormatter.unicodeWrap(
                 getString(R.string.exporting_vcard_filename), TextDirectionHeuristics.LTR));
         startActivityForResult(intent, REQUEST_CREATE_DOCUMENT);
