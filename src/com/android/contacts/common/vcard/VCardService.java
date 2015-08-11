@@ -66,7 +66,7 @@ public class VCardService extends Service {
 
     /* package */ static final String CACHE_FILE_PREFIX = "import_tmp_";
 
-    /* package */ static final String VCARD_MIME_TYPE = "text/vcard";
+    /* package */ static final String X_VCARD_MIME_TYPE = "text/x-vcard";
 
     private class CustomMediaScannerConnectionClient implements MediaScannerConnectionClient {
         final MediaScannerConnection mConnection;
