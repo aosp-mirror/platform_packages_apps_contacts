@@ -593,9 +593,9 @@ public class ImportVCardActivity extends Activity {
             importVCard(uri);
         } else {
             Log.i(LOG_TAG, "Start vCard without Uri. The user will select vCard manually.");
-            final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            final Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
-            intent.setType(VCardService.VCARD_MIME_TYPE);
+            intent.setType(VCardService.X_VCARD_MIME_TYPE);
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
             startActivityForResult(intent, REQUEST_OPEN_DOCUMENT);
