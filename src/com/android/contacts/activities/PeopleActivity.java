@@ -1246,7 +1246,7 @@ public class PeopleActivity extends ContactsActivity implements
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
             final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), contactUri);
             List<String> pathSegments = lookupUri.getPathSegments();
-            uriListBuilder.append(pathSegments.get(pathSegments.size() - 2));
+            uriListBuilder.append(Uri.encode(pathSegments.get(pathSegments.size() - 2)));
             firstIteration = false;
         }
         final Uri uri = Uri.withAppendedPath(
