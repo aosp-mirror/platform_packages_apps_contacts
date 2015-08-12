@@ -96,7 +96,8 @@ public abstract class RequestPermissionsActivityBase extends Activity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[],
             int[] grantResults) {
-        if (isAllGranted(permissions, grantResults)) {
+        if (permissions != null && permissions.length > 0
+                && isAllGranted(permissions, grantResults)) {
             mPreviousActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(mPreviousActivityIntent);
             finish();
