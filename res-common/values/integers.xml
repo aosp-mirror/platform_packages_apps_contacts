@@ -30,4 +30,7 @@
     <!-- Layout weight of card in contact list view.
     Default to 0 to indicate no padding -->
     <integer name="contact_list_card_layout_weight">0</integer>
+
+    <!-- Duration of the animations on the call subject dialog. -->
+    <integer name="call_subject_animation_duration">250</integer>
 </resources>
