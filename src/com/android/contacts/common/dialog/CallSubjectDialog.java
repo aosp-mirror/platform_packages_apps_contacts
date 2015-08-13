@@ -16,16 +16,18 @@
 
 package com.android.contacts.common.dialog;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.ResultReceiver;
 import android.preference.PreferenceManager;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
@@ -34,14 +36,15 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
@@ -49,16 +52,17 @@ import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
 import com.android.contacts.common.util.UriUtils;
+import com.android.phone.common.animation.AnimUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implements a dialog which prompts for a call subject for an outgoing call.
+ * Implements a dialog which prompts for a call subject for an outgoing call.  The dialog includes
+ * a pop up list of historical call subjects.
  */
-public class CallSubjectDialog extends DialogFragment {
+public class CallSubjectDialog extends Activity {
     private static final String TAG = "CallSubjectDialog";
-    private static final String FRAGMENT_TAG = "callSubject";
     private static final int CALL_SUBJECT_LIMIT = 16;
     private static final int CALL_SUBJECT_HISTORY_SIZE = 5;
 
@@ -68,7 +72,7 @@ public class CallSubjectDialog extends DialogFragment {
     public static final String PREF_KEY_SUBJECT_HISTORY_ITEM = "subject_history_item";
 
     /**
-     * Fragment argument bundle keys:
+     * Activity intent argument bundle keys:
      */
     public static final String ARG_PHOTO_ID = "PHOTO_ID";
     public static final String ARG_PHOTO_URI = "PHOTO_URI";
@@ -80,7 +84,9 @@ public class CallSubjectDialog extends DialogFragment {
     public static final String ARG_NUMBER_LABEL = "NUMBER_LABEL";
     public static final String ARG_PHONE_ACCOUNT_HANDLE = "PHONE_ACCOUNT_HANDLE";
 
-    private Context mContext;
+    private int mAnimationDuration;
+    private View mBackgroundView;
+    private View mDialogView;
     private QuickContactBadge mContactPhoto;
     private TextView mNameView;
     private TextView mNumberView;
@@ -88,6 +94,7 @@ public class CallSubjectDialog extends DialogFragment {
     private TextView mCharacterLimitView;
     private View mHistoryButton;
     private View mSendAndCallButton;
+    private ListView mSubjectList;
 
     private int mLimit = CALL_SUBJECT_LIMIT;
     private int mPhotoSize;
@@ -125,15 +132,23 @@ public class CallSubjectDialog extends DialogFragment {
     };
 
     /**
+     * Click listener which handles user clicks outside of the dialog.
+     */
+    private View.OnClickListener mBackgroundListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    };
+
+    /**
      * Handles displaying the list of past call subjects.
      */
     private final View.OnClickListener mHistoryOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            hideSoftKeyboard(mContext, mCallSubjectView);
-            Intent intent = new Intent(mContext, CallSubjectHistory.class);
-            setTargetFragment(CallSubjectDialog.this, REQUEST_SUBJECT);
-            startActivityForResult(intent, REQUEST_SUBJECT);
+            hideSoftKeyboard(CallSubjectDialog.this, mCallSubjectView);
+            showCallHistory(mSubjectList.getVisibility() == View.GONE);
         }
     };
 
@@ -143,20 +158,46 @@ public class CallSubjectDialog extends DialogFragment {
     private final View.OnClickListener mSendAndCallOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            hideSoftKeyboard(mContext, mCallSubjectView);
             String subject = mCallSubjectView.getText().toString();
             Intent intent = CallUtil.getCallWithSubjectIntent(mNumber, mPhoneAccountHandle,
                     subject);
 
             final TelecomManager tm =
-                    (TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
+                    (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
             tm.placeCall(intent.getData(), intent.getExtras());
 
             mSubjectHistory.add(subject);
             saveSubjectHistory(mSubjectHistory);
-            getDialog().dismiss();
+            finish();
         }
     };
+
+    /**
+     * Handles auto-hiding the call history when user clicks in the call subject field to give it
+     * focus.
+     */
+    private final View.OnClickListener mCallSubjectClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mSubjectList.getVisibility() == View.VISIBLE) {
+                showCallHistory(false);
+            }
+        }
+    };
+
+    /**
+     * Item click listener which handles user clicks on the items in the list view.  Dismisses
+     * the activity, returning the subject to the caller and closing the activity with the
+     * {@link Activity#RESULT_OK} result code.
+     */
+    private AdapterView.OnItemClickListener mItemClickListener =
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
+                    mCallSubjectView.setText(mSubjectHistory.get(position));
+                    showCallHistory(false);
+                }
+            };
 
     /**
      * Show the call subhect dialog given a phone number to dial (e.g. from the dialpad).
@@ -215,10 +256,9 @@ public class CallSubjectDialog extends DialogFragment {
      * @param arguments The arguments bundle.
      */
     public static void start(Activity activity, Bundle arguments) {
-        final FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
-        final CallSubjectDialog fragment = new CallSubjectDialog();
-        fragment.setArguments(arguments);
-        fragment.show(ft, FRAGMENT_TAG);
+        Intent intent = new Intent(activity, CallSubjectDialog.class);
+        intent.putExtras(arguments);
+        activity.startActivity(intent);
     }
 
     /**
@@ -230,40 +270,42 @@ public class CallSubjectDialog extends DialogFragment {
      * @return Dialog instance.
      */
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        mContext = getActivity();
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        mPhotoSize = mContext.getResources().getDimensionPixelSize(
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAnimationDuration = getResources().getInteger(R.integer.call_subject_animation_duration);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPhotoSize = getResources().getDimensionPixelSize(
                 R.dimen.call_subject_dialog_contact_photo_size);
         readArguments();
         mSubjectHistory = loadSubjectHistory(mPrefs);
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_call_subject, null);
-
-        mContactPhoto = (QuickContactBadge) view.findViewById(R.id.contact_photo);
-        mNameView = (TextView) view.findViewById(R.id.name);
-        mNumberView = (TextView) view.findViewById(R.id.number);
-        mCallSubjectView = (EditText) view.findViewById(R.id.call_subject);
+        setContentView(R.layout.dialog_call_subject);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        mBackgroundView = findViewById(R.id.call_subject_dialog);
+        mBackgroundView.setOnClickListener(mBackgroundListener);
+        mDialogView = findViewById(R.id.dialog_view);
+        mContactPhoto = (QuickContactBadge) findViewById(R.id.contact_photo);
+        mNameView = (TextView) findViewById(R.id.name);
+        mNumberView = (TextView) findViewById(R.id.number);
+        mCallSubjectView = (EditText) findViewById(R.id.call_subject);
         mCallSubjectView.addTextChangedListener(mTextWatcher);
+        mCallSubjectView.setOnClickListener(mCallSubjectClickListener);
         InputFilter[] filters = new InputFilter[1];
         filters[0] = new InputFilter.LengthFilter(mLimit);
         mCallSubjectView.setFilters(filters);
-
-        mCharacterLimitView = (TextView) view.findViewById(R.id.character_limit);
-        mHistoryButton = view.findViewById(R.id.history_button);
+        mCharacterLimitView = (TextView) findViewById(R.id.character_limit);
+        mHistoryButton = findViewById(R.id.history_button);
         mHistoryButton.setOnClickListener(mHistoryOnClickListener);
         mHistoryButton.setVisibility(mSubjectHistory.isEmpty() ? View.GONE : View.VISIBLE);
-        mSendAndCallButton = view.findViewById(R.id.send_and_call_button);
+        mSendAndCallButton = findViewById(R.id.send_and_call_button);
         mSendAndCallButton.setOnClickListener(mSendAndCallOnClickListener);
+        mSubjectList = (ListView) findViewById(R.id.subject_list);
+        mSubjectList.setOnItemClickListener(mItemClickListener);
+        mSubjectList.setVisibility(View.GONE);
 
-        showSoftKeyboard(mContext, mCallSubjectView);
         updateContactInfo();
         updateCharacterLimit();
-
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-        dialogBuilder.setView(view);
-        return dialogBuilder.create();
     }
 
     /**
@@ -278,8 +320,8 @@ public class CallSubjectDialog extends DialogFragment {
         mNameView.setText(mNameOrNumber);
         if (!TextUtils.isEmpty(mNumberLabel) && !TextUtils.isEmpty(mDisplayNumber)) {
             mNumberView.setVisibility(View.VISIBLE);
-            mNumberView.setText(mContext.getString(R.string.call_subject_type_and_number, mNumberLabel,
-                    mDisplayNumber));
+            mNumberView.setText(getString(R.string.call_subject_type_and_number,
+                    mNumberLabel, mDisplayNumber));
         } else {
             mNumberView.setVisibility(View.GONE);
             mNumberView.setText(null);
@@ -290,7 +332,7 @@ public class CallSubjectDialog extends DialogFragment {
      * Reads arguments from the fragment arguments and populates the necessary instance variables.
      */
     private void readArguments() {
-        Bundle arguments = getArguments();
+        Bundle arguments = getIntent().getExtras();
         if (arguments == null) {
             Log.e(TAG, "Arguments cannot be null.");
             return;
@@ -313,12 +355,12 @@ public class CallSubjectDialog extends DialogFragment {
     private void updateCharacterLimit() {
         int length = mCallSubjectView.length();
         mCharacterLimitView.setText(
-                mContext.getString(R.string.call_subject_limit, length, mLimit));
+                getString(R.string.call_subject_limit, length, mLimit));
         if (length >= mLimit) {
-            mCharacterLimitView.setTextColor(mContext.getResources().getColor(
+            mCharacterLimitView.setTextColor(getResources().getColor(
                     R.color.call_subject_limit_exceeded));
         } else {
-            mCharacterLimitView.setTextColor(mContext.getResources().getColor(
+            mCharacterLimitView.setTextColor(getResources().getColor(
                     R.color.dialtacts_secondary_text_color));
         }
     }
@@ -354,10 +396,10 @@ public class CallSubjectDialog extends DialogFragment {
                 displayName, lookupKey, contactType, true /* isCircular */);
 
         if (photoId == 0 && photoUri != null) {
-            ContactPhotoManager.getInstance(mContext).loadPhoto(mContactPhoto, photoUri,
+            ContactPhotoManager.getInstance(this).loadPhoto(mContactPhoto, photoUri,
                     mPhotoSize, false /* darkTheme */, true /* isCircular */, request);
         } else {
-            ContactPhotoManager.getInstance(mContext).loadThumbnail(mContactPhoto, photoId,
+            ContactPhotoManager.getInstance(this).loadThumbnail(mContactPhoto, photoId,
                     false /* darkTheme */, true /* isCircular */, request);
         }
     }
@@ -408,51 +450,112 @@ public class CallSubjectDialog extends DialogFragment {
     }
 
     /**
-     * Handles results from the CallSubjectHistory activity.
-     *
-     * @param requestCode The integer request code originally supplied to
-     *                    startActivityForResult(), allowing you to identify who this
-     *                    result came from.
-     * @param resultCode The integer result code returned by the child activity
-     *                   through its setResult().
-     * @param data An Intent, which can return result data to the caller
-     */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode != REQUEST_SUBJECT || data == null) {
-            return;
-        }
-
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-
-        String chosenSubject = data.getStringExtra(CallSubjectHistory.EXTRA_CHOSEN_SUBJECT);
-        mCallSubjectView.setText(chosenSubject);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    /**
      * Hide software keyboard for the given {@link View}.
      */
     public void hideSoftKeyboard(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 
     /**
-     * Show software keyboard for the given {@link View}.
+     * Hides or shows the call history list.
+     *
+     * @param show {@code true} if the call history should be shown, {@code false} otherwise.
      */
-    public void showSoftKeyboard(Context context, View view) {
-        view.requestFocus();
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(
-                Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
-                    InputMethodManager.HIDE_IMPLICIT_ONLY);
+    private void showCallHistory(final boolean show) {
+        // Bail early if the visibility has not changed.
+        if ((show && mSubjectList.getVisibility() == View.VISIBLE) ||
+                (!show && mSubjectList.getVisibility() == View.GONE)) {
+            return;
         }
+
+        final int dialogStartingBottom = mDialogView.getBottom();
+        if (show) {
+            // Showing the subject list; bind the list of history items to the list and show it.
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(CallSubjectDialog.this,
+                    R.layout.call_subject_history_list_item, mSubjectHistory);
+            mSubjectList.setAdapter(adapter);
+            mSubjectList.setVisibility(View.VISIBLE);
+        } else {
+            // Hiding the subject list.
+            mSubjectList.setVisibility(View.GONE);
+        }
+
+        // Use a ViewTreeObserver so that we can animate between the pre-layout and post-layout
+        // states.
+        final ViewTreeObserver observer = mBackgroundView.getViewTreeObserver();
+        observer.addOnPreDrawListener(
+                new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        // We don't want to continue getting called.
+                        if (observer.isAlive()) {
+                            observer.removeOnPreDrawListener(this);
+                        }
+
+                        // Determine the amount the dialog has shifted due to the relayout.
+                        int shiftAmount = dialogStartingBottom - mDialogView.getBottom();
+
+                        // If the dialog needs to be shifted, do that now.
+                        if (shiftAmount != 0) {
+                            // Start animation in translated state and animate to translationY 0.
+                            mDialogView.setTranslationY(shiftAmount);
+                            mDialogView.animate()
+                                    .translationY(0)
+                                    .setInterpolator(AnimUtils.EASE_OUT_EASE_IN)
+                                    .setDuration(mAnimationDuration)
+                                    .start();
+                        }
+
+                        if (show) {
+                            // Show the subhect list.
+                            mSubjectList.setTranslationY(mSubjectList.getHeight());
+
+                            mSubjectList.animate()
+                                    .translationY(0)
+                                    .setInterpolator(AnimUtils.EASE_OUT_EASE_IN)
+                                    .setDuration(mAnimationDuration)
+                                    .setListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            super.onAnimationEnd(animation);
+                                        }
+
+                                        @Override
+                                        public void onAnimationStart(Animator animation) {
+                                            super.onAnimationStart(animation);
+                                            mSubjectList.setVisibility(View.VISIBLE);
+                                        }
+                                    })
+                                    .start();
+                        } else {
+                            // Hide the subject list.
+                            mSubjectList.setTranslationY(0);
+
+                            mSubjectList.animate()
+                                    .translationY(mSubjectList.getHeight())
+                                    .setInterpolator(AnimUtils.EASE_OUT_EASE_IN)
+                                    .setDuration(mAnimationDuration)
+                                    .setListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            super.onAnimationEnd(animation);
+                                            mSubjectList.setVisibility(View.GONE);
+                                        }
+
+                                        @Override
+                                        public void onAnimationStart(Animator animation) {
+                                            super.onAnimationStart(animation);
+                                        }
+                                    })
+                                    .start();
+                        }
+                        return true;
+                    }
+                }
+        );
     }
 }
