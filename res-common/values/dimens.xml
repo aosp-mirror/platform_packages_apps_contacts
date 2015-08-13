@@ -159,4 +159,6 @@
     <dimen name="call_subject_dialog_primary_text_size">16sp</dimen>
     <!-- Size of secondary text in the call subject dialog. -->
     <dimen name="call_subject_dialog_secondary_text_size">14sp</dimen>
+    <!-- Row padding for call subject history items. -->
+    <dimen name="call_subject_history_item_padding">15dp</dimen>
 </resources>
