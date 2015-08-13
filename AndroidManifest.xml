@@ -490,8 +490,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.android.contacts.common.dialog.CallSubjectHistory"
-                  android:theme="@style/Theme.CallSubjectSelector">
+        <activity android:name="com.android.contacts.common.dialog.CallSubjectDialog"
+                  android:theme="@style/Theme.CallSubjectDialogTheme"
+                  android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
