@@ -57,6 +57,7 @@ public class ResolveCache {
             "com.google.android.apps.maps",
 
             "com.android.chrome",
+            "org.chromium.webview_shell",
             "com.google.android.browser",
             "com.android.browser");
 
