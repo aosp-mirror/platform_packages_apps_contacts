@@ -22,10 +22,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.contacts.common.R;
 import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
@@ -44,10 +44,7 @@ import java.util.Set;
 public class ContactEditorUtils {
     private static final String TAG = "ContactEditorUtils";
 
-    private static final String KEY_DEFAULT_ACCOUNT = "ContactEditorUtils_default_account";
     private static final String KEY_KNOWN_ACCOUNTS = "ContactEditorUtils_known_accounts";
-    // Key to tell the first time launch.
-    private static final String KEY_ANYTHING_SAVED = "ContactEditorUtils_anything_saved";
 
     private static final List<AccountWithDataSet> EMPTY_ACCOUNTS = ImmutableList.of();
 
@@ -56,6 +53,9 @@ public class ContactEditorUtils {
     private final Context mContext;
     private final SharedPreferences mPrefs;
     private final AccountTypeManager mAccountTypes;
+    private final String mDefaultAccountKey;
+    // Key to tell the first time launch.
+    private final String mAnythingSavedKey;
 
     private ContactEditorUtils(Context context) {
         this(context, AccountTypeManager.getInstance(context));
@@ -64,8 +64,12 @@ public class ContactEditorUtils {
     @VisibleForTesting
     ContactEditorUtils(Context context, AccountTypeManager accountTypes) {
         mContext = context.getApplicationContext();
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mPrefs = mContext.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         mAccountTypes = accountTypes;
+        mDefaultAccountKey = mContext.getResources().getString(
+                R.string.contact_editor_default_account_key);
+        mAnythingSavedKey = mContext.getResources().getString(
+                R.string.contact_editor_anything_saved_key);
     }
 
     public static synchronized ContactEditorUtils getInstance(Context context) {
@@ -77,21 +81,21 @@ public class ContactEditorUtils {
 
     @NeededForTesting
     void cleanupForTest() {
-        mPrefs.edit().remove(KEY_DEFAULT_ACCOUNT).remove(KEY_KNOWN_ACCOUNTS)
-                .remove(KEY_ANYTHING_SAVED).apply();
+        mPrefs.edit().remove(mDefaultAccountKey).remove(KEY_KNOWN_ACCOUNTS)
+                .remove(mAnythingSavedKey).apply();
     }
 
     @NeededForTesting
     void removeDefaultAccountForTest() {
-        mPrefs.edit().remove(KEY_DEFAULT_ACCOUNT).apply();
+        mPrefs.edit().remove(mDefaultAccountKey).apply();
     }
 
     /**
-     * Sets the {@link #KEY_KNOWN_ACCOUNTS} and {@link #KEY_DEFAULT_ACCOUNT} preference values to
+     * Sets the {@link #KEY_KNOWN_ACCOUNTS} and {@link #mDefaultAccountKey} preference values to
      * empty strings to reset the state of the preferences file.
      */
     private void resetPreferenceValues() {
-        mPrefs.edit().putString(KEY_KNOWN_ACCOUNTS, "").putString(KEY_DEFAULT_ACCOUNT, "").apply();
+        mPrefs.edit().putString(KEY_KNOWN_ACCOUNTS, "").putString(mDefaultAccountKey, "").apply();
     }
 
     private List<AccountWithDataSet> getWritableAccounts() {
@@ -103,7 +107,7 @@ public class ContactEditorUtils {
      *     been called.
      */
     private boolean isFirstLaunch() {
-        return !mPrefs.getBoolean(KEY_ANYTHING_SAVED, false);
+        return !mPrefs.getBoolean(mAnythingSavedKey, false);
     }
 
     /**
@@ -117,19 +121,19 @@ public class ContactEditorUtils {
      */
     public void saveDefaultAndAllAccounts(AccountWithDataSet defaultAccount) {
         final SharedPreferences.Editor editor = mPrefs.edit()
-                .putBoolean(KEY_ANYTHING_SAVED, true);
+                .putBoolean(mAnythingSavedKey, true);
 
         if (defaultAccount == null || defaultAccount.isLocalAccount()) {
             // If the default is "local only", there should be no writable accounts.
             // This should always be the case with our spec, but because we load the account list
             // asynchronously using a worker thread, it is possible that there are accounts at this
             // point. So if the default is null always clear the account list.
-            editor.putString(KEY_KNOWN_ACCOUNTS, "");
-            editor.putString(KEY_DEFAULT_ACCOUNT, "");
+            editor.remove(KEY_KNOWN_ACCOUNTS);
+            editor.remove(mDefaultAccountKey);
         } else {
             editor.putString(KEY_KNOWN_ACCOUNTS,
                     AccountWithDataSet.stringifyList(getWritableAccounts()));
-            editor.putString(KEY_DEFAULT_ACCOUNT, defaultAccount.stringify());
+            editor.putString(mDefaultAccountKey, defaultAccount.stringify());
         }
         editor.apply();
     }
@@ -144,7 +148,7 @@ public class ContactEditorUtils {
      * Also note that the returned account may have been removed already.
      */
     public AccountWithDataSet getDefaultAccount() {
-        final String saved = mPrefs.getString(KEY_DEFAULT_ACCOUNT, null);
+        final String saved = mPrefs.getString(mDefaultAccountKey, null);
         if (TextUtils.isEmpty(saved)) {
             return null;
         }
@@ -194,7 +198,6 @@ public class ContactEditorUtils {
     /**
      * @return true if the contact editor should show the "accounts changed" notification, that is:
      * - If it's the first launch.
-     * - Or, if an account has been added.
      * - Or, if the default account has been removed.
      * (And some extra sanity check)
      *
@@ -207,14 +210,7 @@ public class ContactEditorUtils {
             return true;
         }
 
-        // Account added?
-        final List<AccountWithDataSet> savedAccounts = getSavedAccounts();
         final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
-        for (AccountWithDataSet account : currentWritableAccounts) {
-            if (!savedAccounts.contains(account)) {
-                return true; // New account found.
-            }
-        }
 
         final AccountWithDataSet defaultAccount = getDefaultAccount();
 
