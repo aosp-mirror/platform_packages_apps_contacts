@@ -453,14 +453,6 @@
             android:exported="false" />
         <!-- end vCard related -->
 
-        <!-- Pinned header list demo -->
-        <activity android:name=".widget.PinnedHeaderListDemoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <!-- Intercept Dialer Intents for devices without a phone.
              This activity should have the same intent filters as the DialtactsActivity,
              so that its capturing the same events. Omit android.intent.category.LAUNCHER, because
