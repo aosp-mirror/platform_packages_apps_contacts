@@ -1239,15 +1239,24 @@ public class PeopleActivity extends ContactsActivity implements
      */
     private void shareSelectedContacts() {
         final StringBuilder uriListBuilder = new StringBuilder();
-        boolean firstIteration = true;
         for (Long contactId : mAllFragment.getSelectedContactIds()) {
-            if (!firstIteration)
-                uriListBuilder.append(':');
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
             final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), contactUri);
-            List<String> pathSegments = lookupUri.getPathSegments();
-            uriListBuilder.append(Uri.encode(pathSegments.get(pathSegments.size() - 2)));
-            firstIteration = false;
+            if (lookupUri == null) {
+                continue;
+            }
+            final List<String> pathSegments = lookupUri.getPathSegments();
+            if (pathSegments.size() < 2) {
+                continue;
+            }
+            final String lookupKey = pathSegments.get(pathSegments.size() - 2);
+            if (uriListBuilder.length() > 0) {
+                uriListBuilder.append(':');
+            }
+            uriListBuilder.append(Uri.encode(lookupKey));
+        }
+        if (uriListBuilder.length() == 0) {
+            return;
         }
         final Uri uri = Uri.withAppendedPath(
                 Contacts.CONTENT_MULTI_VCARD_URI,
