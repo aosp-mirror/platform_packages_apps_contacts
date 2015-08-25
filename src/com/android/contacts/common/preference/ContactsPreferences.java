@@ -26,8 +26,10 @@ import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
+import android.text.TextUtils;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
 /**
  * Manages user preferences for contacts.
@@ -64,15 +66,22 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
     private final Context mContext;
     private int mSortOrder = -1;
     private int mDisplayOrder = -1;
+    private String mDefaultAccount = null;
     private ChangeListener mListener = null;
     private Handler mHandler;
     private final SharedPreferences mPreferences;
+    private String mDefaultAccountKey;
+    private String mDefaultAccountSavedKey;
 
     public ContactsPreferences(Context context) {
         mContext = context;
         mHandler = new Handler();
         mPreferences = mContext.getSharedPreferences(context.getPackageName(),
                 Context.MODE_PRIVATE);
+        mDefaultAccountKey = mContext.getResources().getString(
+                R.string.contact_editor_default_account_key);
+        mDefaultAccountSavedKey = mContext.getResources().getString(
+                R.string.contact_editor_anything_saved_key);
         maybeMigrateSystemSettings();
     }
 
@@ -131,6 +140,37 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
         mDisplayOrder = displayOrder;
         final Editor editor = mPreferences.edit();
         editor.putInt(DISPLAY_ORDER_KEY, displayOrder);
+        editor.commit();
+    }
+
+    public boolean isDefaultAccountUserChangeable() {
+        return mContext.getResources().getBoolean(R.bool.config_default_account_user_changeable);
+    }
+
+    public String getDefaultAccount() {
+        if (!isDefaultAccountUserChangeable()) {
+            return mDefaultAccount;
+        }
+        if (TextUtils.isEmpty(mDefaultAccount)) {
+            final String accountString = mPreferences.getString(mDefaultAccountKey, mDefaultAccount);
+            if (!TextUtils.isEmpty(accountString)) {
+                final AccountWithDataSet accountWithDataSet = AccountWithDataSet.unstringify(
+                        accountString);
+                mDefaultAccount = accountWithDataSet.name;
+            }
+        }
+        return mDefaultAccount;
+    }
+
+    public void setDefaultAccount(AccountWithDataSet accountWithDataSet) {
+        mDefaultAccount = accountWithDataSet == null ? null : accountWithDataSet.name;
+        final Editor editor = mPreferences.edit();
+        if (TextUtils.isEmpty(mDefaultAccount)) {
+            editor.remove(mDefaultAccountKey);
+        } else {
+            editor.putString(mDefaultAccountKey, accountWithDataSet.stringify());
+        }
+        editor.putBoolean(mDefaultAccountSavedKey, true);
         editor.commit();
     }
 
