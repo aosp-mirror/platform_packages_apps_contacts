@@ -24,4 +24,9 @@
         android:key="displayOrder"
         android:title="@string/display_options_view_names_as"
         android:dialogTitle="@string/display_options_view_names_as" />
+
+    <com.android.contacts.common.preference.DefaultAccountPreference
+        android:key="accounts"
+        android:title="@string/default_editor_account"
+        android:dialogTitle="@string/default_editor_account" />
 </PreferenceScreen>

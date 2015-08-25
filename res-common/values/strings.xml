@@ -656,6 +656,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- An allowable value for the "view names as" contact display option  -->
     <string name="display_options_view_family_name_first">Last name first</string>
 
+    <!--Label of the "default account" setting option to set default editor account-->
+    <string name="default_editor_account">Default account</string>
+
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
 
