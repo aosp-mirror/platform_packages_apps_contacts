@@ -26,7 +26,6 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -192,18 +191,14 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         // Fill in the account info
         final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
                 isProfile, state.getAccountName(), type);
-        if (accountInfo == null) {
+        if (accountInfo.first == null) {
             // Hide this view so the other text view will be centered vertically
             mAccountHeaderNameTextView.setVisibility(View.GONE);
         } else {
-            if (accountInfo.first == null) {
-                mAccountHeaderNameTextView.setVisibility(View.GONE);
-            } else {
-                mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
-                mAccountHeaderNameTextView.setText(accountInfo.first);
-            }
-            mAccountHeaderTypeTextView.setText(accountInfo.second);
+            mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
+            mAccountHeaderNameTextView.setText(accountInfo.first);
         }
+        mAccountHeaderTypeTextView.setText(accountInfo.second);
         updateAccountHeaderContentDescription();
 
         // The account selector and header are both used to display the same information.

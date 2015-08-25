@@ -117,18 +117,14 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
 
         final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
                 isProfile, state.getAccountName(), type);
-        if (accountInfo == null) {
+        if (accountInfo.first == null) {
             // Hide this view so the other text view will be centered vertically
             mAccountHeaderNameTextView.setVisibility(View.GONE);
         } else {
-            if (accountInfo.first == null) {
-                mAccountHeaderNameTextView.setVisibility(View.GONE);
-            } else {
-                mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
-                mAccountHeaderNameTextView.setText(accountInfo.first);
-            }
-            mAccountHeaderTypeTextView.setText(accountInfo.second);
+            mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
+            mAccountHeaderNameTextView.setText(accountInfo.first);
         }
+        mAccountHeaderTypeTextView.setText(accountInfo.second);
         updateAccountHeaderContentDescription();
 
         // TODO: Expose data set in the UI somehow?

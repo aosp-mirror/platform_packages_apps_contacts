@@ -357,15 +357,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         // Get the account information for the default account RawContactDelta
         final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
                 isUserProfile, defaultAccountRawContactDelta.getAccountName(), accountType);
-
-        // Set the account information already
-        if (accountInfo == null) {
-            vlog("Account info hidden because no account info could be composed");
-            mAccountContainer.setVisibility(View.GONE);
-            return;
-        }
         vlog("Account info loaded");
         if (accountInfo.first == null) {
+             // Hide this view so the other text view will be centered vertically
             mAccountNameView.setVisibility(View.GONE);
         } else {
             mAccountNameView.setVisibility(View.VISIBLE);
