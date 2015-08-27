@@ -28,7 +28,7 @@ import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.test.AndroidTestCase;
+import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
@@ -45,11 +45,11 @@ import java.util.List;
        com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
 @SmallTest
-public class ExternalAccountTypeTest extends AndroidTestCase {
+public class ExternalAccountTypeTest extends InstrumentationTestCase {
     public void testResolveExternalResId() {
         final Context c = getContext();
         // In this test we use the test package itself as an external package.
-        final String packageName = getTestContext().getPackageName();
+        final String packageName = getInstrumentation().getContext().getPackageName();
 
         // Resource name empty.
         assertEquals(-1, ExternalAccountType.resolveExternalResId(c, null, packageName, ""));
@@ -82,7 +82,7 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
      */
     public void testEditSchema() {
         final ExternalAccountType type = new ExternalAccountType(getContext(),
-                getTestContext().getPackageName(), false);
+                getInstrumentation().getContext().getPackageName(), false);
 
         assertTrue(type.isInitialized());
 
@@ -108,8 +108,8 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
      */
     public void testEditSchema_fallback() {
         final ExternalAccountType type = new ExternalAccountType(getContext(),
-                getTestContext().getPackageName(), false,
-                getTestContext().getResources().getXml(R.xml.contacts_fallback)
+                getInstrumentation().getContext().getPackageName(), false,
+                getInstrumentation().getContext().getResources().getXml(R.xml.contacts_fallback)
                 );
 
         assertTrue(type.isInitialized());
@@ -137,8 +137,8 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
 
     private void checkEditSchema_mustHaveChecks(int xmlResId, boolean expectInitialized) {
         final ExternalAccountType type = new ExternalAccountType(getContext(),
-                getTestContext().getPackageName(), false,
-                getTestContext().getResources().getXml(xmlResId)
+                getInstrumentation().getContext().getPackageName(), false,
+                getInstrumentation().getContext().getResources().getXml(xmlResId)
                 );
 
         assertEquals(expectInitialized, type.isInitialized());
@@ -149,8 +149,8 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
      */
     public void testReadOnlyDefinition() {
         final ExternalAccountType type = new ExternalAccountType(getContext(),
-                getTestContext().getPackageName(), false,
-                getTestContext().getResources().getXml(R.xml.contacts_readonly)
+                getInstrumentation().getContext().getPackageName(), false,
+                getInstrumentation().getContext().getResources().getXml(R.xml.contacts_readonly)
                 );
         assertTrue(type.isInitialized());
 

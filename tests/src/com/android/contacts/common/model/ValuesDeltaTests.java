@@ -16,9 +16,6 @@
 
 package com.android.contacts.common.model;
 
-import static android.content.ContentProviderOperation.TYPE_INSERT;
-import static android.content.ContentProviderOperation.TYPE_UPDATE;
-
 import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -48,8 +45,8 @@ public class ValuesDeltaTests extends TestCase {
 
         // Should produce an insert action
         final Builder builder = values.buildDiff(Data.CONTENT_URI);
-        final int type = builder.build().getType();
-        assertEquals("Didn't produce insert action", TYPE_INSERT, type);
+        final boolean isInsert = builder.build().isInsert();
+        assertTrue("Didn't produce insert action", isInsert);
     }
 
     /**
@@ -79,7 +76,7 @@ public class ValuesDeltaTests extends TestCase {
 
         // Should produce an update action
         final Builder builder = values.buildDiff(Data.CONTENT_URI);
-        final int type = builder.build().getType();
-        assertEquals("Didn't produce update action", TYPE_UPDATE, type);
+        final boolean isUpdate = builder.build().isUpdate();
+        assertTrue("Didn't produce update action", isUpdate);
     }
 }

@@ -17,7 +17,7 @@
 package com.android.contacts.common.model.account;
 
 import android.content.Context;
-import android.test.AndroidTestCase;
+import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.common.unittest.R;
@@ -29,10 +29,10 @@ import com.android.contacts.common.unittest.R;
        com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
 @SmallTest
-public class AccountTypeTest extends AndroidTestCase {
+public class AccountTypeTest extends InstrumentationTestCase {
     public void testGetResourceText() {
         // In this test we use the test package itself as an external package.
-        final String packageName = getTestContext().getPackageName();
+        final String packageName = getInstrumentation().getContext().getPackageName();
 
         final Context c = getContext();
         final String DEFAULT = "ABC";
@@ -45,7 +45,7 @@ public class AccountTypeTest extends AndroidTestCase {
 
         // Load from an external package.  (here, we use this test package itself)
         final int externalResID = R.string.test_string;
-        assertEquals(getTestContext().getString(externalResID),
+        assertEquals(getInstrumentation().getContext().getString(externalResID),
                 AccountType.getResourceText(c, packageName, externalResID, DEFAULT));
 
         // Load from the contacts package itself.
@@ -59,7 +59,7 @@ public class AccountTypeTest extends AndroidTestCase {
      * from {@link AccountType#getInviteContactActionResId}
      */
     public void testGetInviteContactActionLabel() {
-        final String packageName = getTestContext().getPackageName();
+        final String packageName = getInstrumentation().getContext().getPackageName();
         final Context c = getContext();
 
         final int externalResID = R.string.test_string;
@@ -82,7 +82,7 @@ public class AccountTypeTest extends AndroidTestCase {
             }
         };
 
-        assertEquals(getTestContext().getString(externalResID),
+        assertEquals(getInstrumentation().getContext().getString(externalResID),
                 accountType.getInviteContactActionLabel(c));
     }
 

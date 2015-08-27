@@ -16,11 +16,6 @@
 
 package com.android.contacts.common;
 
-import static android.content.ContentProviderOperation.TYPE_ASSERT;
-import static android.content.ContentProviderOperation.TYPE_DELETE;
-import static android.content.ContentProviderOperation.TYPE_INSERT;
-import static android.content.ContentProviderOperation.TYPE_UPDATE;
-
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
@@ -153,8 +148,8 @@ public class RawContactDeltaTests extends AndroidTestCase {
 
         // Should produce a delete action
         final Builder builder = values.buildDiff(Data.CONTENT_URI);
-        final int type = builder.build().getType();
-        assertEquals("Didn't produce delete action", TYPE_DELETE, type);
+        final boolean isDelete = builder.build().isDelete();
+        assertTrue("Didn't produce delete action", isDelete);
     }
 
     /**
@@ -191,21 +186,21 @@ public class RawContactDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 4, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
+            assertTrue("Expected version enforcement", oper.isAssertQuery());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(2);
-            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(3);
-            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -231,26 +226,26 @@ public class RawContactDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 5, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
+            assertTrue("Expected version enforcement", oper.isAssertQuery());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(2);
-            assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
+            assertTrue("Incorrect type", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(3);
-            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(4);
-            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -270,21 +265,21 @@ public class RawContactDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 4, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
+            assertTrue("Expected version enforcement", oper.isAssertQuery());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(2);
-            assertEquals("Incorrect type", TYPE_UPDATE, oper.getType());
+            assertTrue("Incorrect type", oper.isUpdate());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(3);
-            assertEquals("Expected aggregation mode change", TYPE_UPDATE, oper.getType());
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -303,11 +298,11 @@ public class RawContactDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Expected version enforcement", TYPE_ASSERT, oper.getType());
+            assertTrue("Expected version enforcement", oper.isAssertQuery());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Incorrect type", TYPE_DELETE, oper.getType());
+            assertTrue("Incorrect type", oper.isDelete());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -328,7 +323,7 @@ public class RawContactDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 2, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -356,12 +351,12 @@ public class RawContactDeltaTests extends AndroidTestCase {
         assertEquals("Unexpected operations", 3, diff.size());
         {
             final ContentProviderOperation oper = diff.get(0);
-            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
             final ContentProviderOperation oper = diff.get(1);
-            assertEquals("Incorrect type", TYPE_INSERT, oper.getType());
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
 
         }

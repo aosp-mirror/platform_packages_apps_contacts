@@ -16,11 +16,6 @@
 
 package com.android.contacts.common;
 
-import static android.content.ContentProviderOperation.TYPE_ASSERT;
-import static android.content.ContentProviderOperation.TYPE_DELETE;
-import static android.content.ContentProviderOperation.TYPE_INSERT;
-import static android.content.ContentProviderOperation.TYPE_UPDATE;
-
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
@@ -55,6 +50,12 @@ import java.util.Collections;
 @LargeTest
 public class RawContactDeltaListTests extends AndroidTestCase {
     public static final String TAG = RawContactDeltaListTests.class.getSimpleName();
+
+    // From android.content.ContentProviderOperation
+    public static final int TYPE_INSERT = 1;
+    public static final int TYPE_UPDATE = 2;
+    public static final int TYPE_DELETE = 3;
+    public static final int TYPE_ASSERT = 4;
 
     private static final long CONTACT_FIRST = 1;
     private static final long CONTACT_SECOND = 2;
@@ -195,11 +196,11 @@ public class RawContactDeltaListTests extends AndroidTestCase {
 
             assertEquals("Unexpected uri", expected.getUri(), found.getUri());
 
-            final String expectedType = getStringForType(expected.getType());
-            final String foundType = getStringForType(found.getType());
+            final String expectedType = getTypeString(expected);
+            final String foundType = getTypeString(found);
             assertEquals("Unexpected type", expectedType, foundType);
 
-            if (expected.getType() == TYPE_DELETE) continue;
+            if (expected.isDelete()) continue;
 
             try {
                 final ContentValues expectedValues = getValues(expected);
@@ -217,14 +218,17 @@ public class RawContactDeltaListTests extends AndroidTestCase {
         }
     }
 
-    static String getStringForType(int type) {
-        switch (type) {
-            case TYPE_ASSERT: return "TYPE_ASSERT";
-            case TYPE_INSERT: return "TYPE_INSERT";
-            case TYPE_UPDATE: return "TYPE_UPDATE";
-            case TYPE_DELETE: return "TYPE_DELETE";
-            default: return Integer.toString(type);
+    static String getTypeString(ContentProviderOperation op) {
+        if (op.isAssertQuery()) {
+            return "TYPE_ASSERT";
+        } else if (op.isInsert()) {
+            return "TYPE_INSERT";
+        } else if (op.isUpdate()) {
+            return "TYPE_UPDATE";
+        } else if (op.isDelete()) {
+            return "TYPE_DELETE";
         }
+        return "TYPE_UNKNOWN";
     }
 
     static ContentProviderOperation buildAssertVersion(long version) {
@@ -294,7 +298,7 @@ public class RawContactDeltaListTests extends AndroidTestCase {
         int updateCount = 0;
         for (ContentProviderOperation oper : diff) {
             if (AggregationExceptions.CONTENT_URI.equals(oper.getUri())
-                    && oper.getType() == ContentProviderOperation.TYPE_UPDATE) {
+                    && oper.isUpdate()) {
                 updateCount++;
             }
         }
