@@ -19,14 +19,14 @@ package com.android.contacts.tests;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.location.CountryDetector;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
-import com.android.i18n.phonenumbers.NumberParseException;
-import com.android.i18n.phonenumbers.PhoneNumberUtil;
-import com.android.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
-import com.android.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.android.contacts.common.GeoUtil;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -112,9 +112,6 @@ public class PhoneNumberTestService extends IntentService {
     }
 
     private String getCurrentCountryCode() {
-        final CountryDetector countryDetector =
-                (CountryDetector) getSystemService(Context.COUNTRY_DETECTOR);
-        return countryDetector.detectCountry().getCountryIso();
+        return GeoUtil.getCurrentCountryIso(getApplicationContext());
     }
 }
-

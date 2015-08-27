@@ -20,7 +20,8 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.test.LaunchPerformanceBase;
+
+import com.android.contacts.common.test.LaunchPerformanceBase;
 
 /**
  * Instrumentation class for Address Book launch performance testing.

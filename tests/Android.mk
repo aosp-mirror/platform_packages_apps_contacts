@@ -5,10 +5,10 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := tests
 LOCAL_CERTIFICATE := shared
 
-LOCAL_JAVA_LIBRARIES := android.test.runner
+LOCAL_STATIC_JAVA_LIBRARIES := android-support-test
 
 src_dirs := src \
-    ../../ContactsCommon/TestCommon/src 
+    ../../ContactsCommon/TestCommon/src
 
 # Include all test java files.
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
@@ -16,5 +16,7 @@ LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_PACKAGE_NAME := ContactsTests
 
 LOCAL_INSTRUMENTATION_FOR := Contacts
+
+LOCAL_SDK_VERSION := current
 
 include $(BUILD_PACKAGE)
