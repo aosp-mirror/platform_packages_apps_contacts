@@ -36,6 +36,7 @@ public class PhoneNumberHelper {
 
     private static final String LOG_TAG = PhoneNumberHelper.class.getSimpleName();
 
+    private static final String KOREA_ISO_COUNTRY_CODE = "KR";
     /**
      * Determines if the specified number is actually a URI (i.e. a SIP address) rather than a
      * regular PSTN phone number, based on whether or not the number contains an "@" character.
