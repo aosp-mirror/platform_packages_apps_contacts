@@ -223,6 +223,7 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"नाव स्वरूपन"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाव प्रथम"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"आडनाव प्रथम"</string>
+    <string name="default_editor_account" msgid="646471755212285574">"डीफॉल्ट खाते"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दृश्यमान संपर्क सामायिक करा"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"दृश्यमान संपर्क सामायिक करण्‍यात अयशस्वी झाले."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्क आयात/निर्यात करा"</string>

@@ -223,6 +223,7 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"이름 형식"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"이름 먼저"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"성 먼저"</string>
+    <string name="default_editor_account" msgid="646471755212285574">"기본 계정"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"표시되는 연락처 모두 공유"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"표시되는 연락처를 공유하지 못했습니다."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"주소록 가져오기/내보내기"</string>
