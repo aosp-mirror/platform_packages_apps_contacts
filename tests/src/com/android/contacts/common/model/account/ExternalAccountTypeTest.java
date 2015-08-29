@@ -47,7 +47,7 @@ import java.util.List;
 @SmallTest
 public class ExternalAccountTypeTest extends InstrumentationTestCase {
     public void testResolveExternalResId() {
-        final Context c = getContext();
+        final Context c = getInstrumentation().getTargetContext();
         // In this test we use the test package itself as an external package.
         final String packageName = getInstrumentation().getContext().getPackageName();
 
@@ -72,7 +72,7 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
      * Initialize with an invalid package name and see if type will be initialized, but empty.
      */
     public void testNoPackage() {
-        final ExternalAccountType type = new ExternalAccountType(getContext(),
+        final ExternalAccountType type = new ExternalAccountType(getInstrumentation().getTargetContext(),
                 "!!!no such package name!!!", false);
         assertTrue(type.isInitialized());
     }
@@ -81,7 +81,7 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
      * Initialize with the test package itself and see if EditSchema is correctly parsed.
      */
     public void testEditSchema() {
-        final ExternalAccountType type = new ExternalAccountType(getContext(),
+        final ExternalAccountType type = new ExternalAccountType(getInstrumentation().getTargetContext(),
                 getInstrumentation().getContext().getPackageName(), false);
 
         assertTrue(type.isInitialized());
@@ -107,7 +107,7 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
      * {@link com.android.contacts.common.model.account.FallbackAccountType}.
      */
     public void testEditSchema_fallback() {
-        final ExternalAccountType type = new ExternalAccountType(getContext(),
+        final ExternalAccountType type = new ExternalAccountType(getInstrumentation().getTargetContext(),
                 getInstrumentation().getContext().getPackageName(), false,
                 getInstrumentation().getContext().getResources().getXml(R.xml.contacts_fallback)
                 );
@@ -117,7 +117,7 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
         // Create a fallback type with the same resource package name, and compare all the data
         // kinds to its.
         final AccountType reference = FallbackAccountType.createWithPackageNameForTest(
-                getContext(), type.resourcePackageName);
+                getInstrumentation().getTargetContext(), type.resourcePackageName);
 
         assertsDataKindEquals(reference.getSortedDataKinds(), type.getSortedDataKinds());
     }
@@ -136,7 +136,7 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
     }
 
     private void checkEditSchema_mustHaveChecks(int xmlResId, boolean expectInitialized) {
-        final ExternalAccountType type = new ExternalAccountType(getContext(),
+        final ExternalAccountType type = new ExternalAccountType(getInstrumentation().getTargetContext(),
                 getInstrumentation().getContext().getPackageName(), false,
                 getInstrumentation().getContext().getResources().getXml(xmlResId)
                 );
@@ -148,7 +148,7 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
      * Initialize with "contacts_readonly.xml" and see if all data kinds are correctly registered.
      */
     public void testReadOnlyDefinition() {
-        final ExternalAccountType type = new ExternalAccountType(getContext(),
+        final ExternalAccountType type = new ExternalAccountType(getInstrumentation().getTargetContext(),
                 getInstrumentation().getContext().getPackageName(), false,
                 getInstrumentation().getContext().getResources().getXml(R.xml.contacts_readonly)
                 );

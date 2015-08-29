@@ -34,7 +34,7 @@ public class AccountTypeTest extends InstrumentationTestCase {
         // In this test we use the test package itself as an external package.
         final String packageName = getInstrumentation().getContext().getPackageName();
 
-        final Context c = getContext();
+        final Context c = getInstrumentation().getTargetContext();
         final String DEFAULT = "ABC";
 
         // Package name null, resId -1, use the default
@@ -60,7 +60,7 @@ public class AccountTypeTest extends InstrumentationTestCase {
      */
     public void testGetInviteContactActionLabel() {
         final String packageName = getInstrumentation().getContext().getPackageName();
-        final Context c = getContext();
+        final Context c = getInstrumentation().getTargetContext();
 
         final int externalResID = R.string.test_string;
 
@@ -104,7 +104,8 @@ public class AccountTypeTest extends InstrumentationTestCase {
     }
 
     private int compareDisplayLabel(AccountType lhs, AccountType rhs) {
-        return new AccountType.DisplayLabelComparator(getContext()).compare(lhs, rhs);
+        return new AccountType.DisplayLabelComparator(
+                getInstrumentation().getTargetContext()).compare(lhs, rhs);
     }
 
     private class AccountTypeForDisplayLabelTest extends AccountType {
