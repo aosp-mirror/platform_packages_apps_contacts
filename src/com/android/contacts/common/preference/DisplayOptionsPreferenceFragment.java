@@ -17,9 +17,15 @@
 package com.android.contacts.common.preference;
 
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+
+import java.util.List;
 
 /**
  * This fragment shows the preferences for the first header.
@@ -32,6 +38,15 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preference_display_options);
+
+        // Remove "Default account" setting if no writable accounts.
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
+        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(
+                /* contactWritableOnly */ true);
+        if (accounts.isEmpty()) {
+            final PreferenceScreen preferenceScreen = getPreferenceScreen();
+            preferenceScreen.removePreference((ListPreference) findPreference("accounts"));
+        }
     }
 }
 
