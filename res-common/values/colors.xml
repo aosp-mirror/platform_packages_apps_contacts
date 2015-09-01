@@ -129,6 +129,7 @@
     <color name="tab_ripple_color">@color/tab_accent_color</color>
     <color name="tab_accent_color">#ffffff</color>
     <color name="tab_selected_underline_color">@color/tab_accent_color</color>
+    <color name="tab_unread_count_background_color">#700f4b70</color>
 
     <!-- Color of the title to the Frequently Contacted section -->
     <color name="frequently_contacted_title_color">@color/actionbar_background_color</color>
