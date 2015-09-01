@@ -183,6 +183,7 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
         // listener was unregistered.
         mDisplayOrder = -1;
         mSortOrder = -1;
+        mDefaultAccount = null;
 
         mPreferences.registerOnSharedPreferenceChangeListener(this);
     }
@@ -206,6 +207,8 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
                     mDisplayOrder = getDisplayOrder();
                 } else if (SORT_ORDER_KEY.equals(key)) {
                     mSortOrder = getSortOrder();
+                } else if (mDefaultAccountKey.equals(key)) {
+                    mDefaultAccount = getDefaultAccount();
                 }
                 if (mListener != null) mListener.onChange();
             }
