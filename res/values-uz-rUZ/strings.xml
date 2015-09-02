@@ -36,7 +36,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"Kontakt yaratish"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Guruhni tahrirlash"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Guruh yaratish"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Haqida"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Aloqa ma’lumoti"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Yangilanishlar"</string>
     <string name="searchHint" msgid="8482945356247760701">"Kontaktlarni izlash"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Kontaktni ko‘rish"</string>
