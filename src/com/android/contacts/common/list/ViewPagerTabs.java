@@ -24,6 +24,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
@@ -57,6 +58,8 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
     int mSidePadding;
 
     private int[] mTabIcons;
+    // For displaying the unread count next to the tab icon.
+    private int[] mUnreadCounts;
 
     private static final ViewOutlineProvider VIEW_BOUNDS_OUTLINE_PROVIDER =
             new ViewOutlineProvider() {
@@ -142,8 +145,22 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
         addTabs(mPager.getAdapter());
     }
 
-    public void setTabIcons(int [] tabIcons) {
+    /**
+     * Set the tab icons and initialize an array for unread counts the same length as the icon
+     * array.
+     *
+     * @param tabIcons An array representing the tab icons in order.
+     */
+    public void configureTabIcons(int[] tabIcons) {
         mTabIcons = tabIcons;
+        mUnreadCounts = new int[tabIcons.length];
+    }
+
+    public void setUnreadCount(int count, int position) {
+        if (mUnreadCounts == null || position >= mUnreadCounts.length) {
+            return;
+        }
+        mUnreadCounts[position] = count;
     }
 
     private void addTabs(PagerAdapter adapter) {
@@ -158,11 +175,19 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
     private void addTab(CharSequence tabTitle, final int position) {
         View tabView;
         if (mTabIcons != null && position < mTabIcons.length) {
-            View iconView = new View(getContext());
+            View layout = LayoutInflater.from(getContext()).inflate(
+                    R.layout.unread_count_tab, null);
+            View iconView = layout.findViewById(R.id.icon);
             iconView.setBackgroundResource(mTabIcons[position]);
             iconView.setContentDescription(tabTitle);
-
-            tabView = iconView;
+            TextView textView = (TextView) layout.findViewById(R.id.count);
+            if (mUnreadCounts != null && mUnreadCounts[position] > 0) {
+                textView.setText(Integer.toString(mUnreadCounts[position]));
+                textView.setVisibility(View.VISIBLE);
+            } else {
+                textView.setVisibility(View.INVISIBLE);
+            }
+            tabView = layout;
         } else {
             final TextView textView = new TextView(getContext());
             textView.setText(tabTitle);
