@@ -195,8 +195,8 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         // User added a new writable account, ACCOUNT_1_B.
         setAccounts(ACCOUNT_1_A, ACCOUNT_1_B);
 
-        // Now we show the notification again.
-        assertTrue(mTarget.shouldShowAccountChangedNotification());
+        // Since default account is still ACCOUNT_1_A, we don't show the notification.
+        assertFalse(mTarget.shouldShowAccountChangedNotification());
 
         // User saved a new contact.  We update the account list and the default account.
         mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_B);
@@ -211,8 +211,8 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         // Add new accounts: ACCOUNT_2_A, ACCOUNT_2EX_A.
         setAccounts(ACCOUNT_1_A, ACCOUNT_1_B, ACCOUNT_2_A, ACCOUNT_2EX_A);
 
-        // New account means another notification.
-        assertTrue(mTarget.shouldShowAccountChangedNotification());
+        // New added account but default account is still not changed, so no notification.
+        assertFalse(mTarget.shouldShowAccountChangedNotification());
 
         // User saves a new contact, with a different default account.
         mTarget.saveDefaultAndAllAccounts(ACCOUNT_2_A);
@@ -232,6 +232,13 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         setAccounts(ACCOUNT_1_A, ACCOUNT_1_B);
 
         // Now we show the notification.
+        assertTrue(mTarget.shouldShowAccountChangedNotification());
+
+        // Do not save the default account, and add a new account now.
+        setAccountTypes(TYPE1, TYPE2, TYPE2EX);
+        setAccounts(ACCOUNT_1_A, ACCOUNT_1_B, ACCOUNT_2EX_A);
+
+        // No default account, so show notification.
         assertTrue(mTarget.shouldShowAccountChangedNotification());
     }
 
