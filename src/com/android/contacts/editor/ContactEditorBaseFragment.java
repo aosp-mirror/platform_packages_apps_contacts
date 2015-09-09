@@ -964,7 +964,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // If we're coming back from the fully expanded editor and this is an insert, just
             // pass any values entered by the user back to the compact editor without doing a save
             final Intent resultIntent = EditorIntents.createCompactInsertContactIntent(
-                    mState, getDisplayName(), getPhoneticName(), mUpdatedPhotos);
+                    mState, getDisplayName(), getPhoneticName(), mUpdatedPhotos, mNewLocalProfile);
             resultIntent.putExtra(INTENT_EXTRA_SAVE_BACK_PRESSED, backPressed);
             mListener.onSaveFinished(resultIntent);
             return true;
@@ -1117,7 +1117,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 mListener.onCustomCreateContactActivityRequested(account, mIntentExtras);
             }
         } else {
-            setStateForNewContact(account, accountType);
+            setStateForNewContact(account, accountType, isEditingUserProfile());
         }
     }
 
@@ -1194,9 +1194,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * Prepare {@link #mState} for a newly created phone-local contact.
      */
-    private void setStateForNewContact(AccountWithDataSet account, AccountType accountType) {
-        setStateForNewContact(account, accountType,
-                /* oldState =*/ null, /* oldAccountType =*/ null);
+    private void setStateForNewContact(AccountWithDataSet account, AccountType accountType,
+            boolean isUserProfile) {
+        setStateForNewContact(account, accountType, /* oldState =*/ null,
+                /* oldAccountType =*/ null, isUserProfile);
     }
 
     /**
@@ -1204,9 +1205,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * specified by oldState and oldAccountType.
      */
     protected void setStateForNewContact(AccountWithDataSet account, AccountType accountType,
-            RawContactDelta oldState, AccountType oldAccountType) {
+            RawContactDelta oldState, AccountType oldAccountType, boolean isUserProfile) {
         mStatus = Status.EDITING;
         mState.add(createNewRawContactDelta(account, accountType, oldState, oldAccountType));
+        mIsUserProfile = isUserProfile;
         mNewContactDataReady = true;
         bindEditors();
     }
@@ -1442,7 +1444,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                             mContext, contactLookupUri, mLookupUri);
                     final Intent resultIntent = isInsert(getActivity().getIntent())
                             ? EditorIntents.createCompactInsertContactIntent(
-                                    mState, getDisplayName(), getPhoneticName(), updatedPhotos)
+                                    mState, getDisplayName(), getPhoneticName(), updatedPhotos,
+                                    mNewLocalProfile)
                             : EditorIntents.createCompactEditContactIntent(
                                     lookupUri, getMaterialPalette(), updatedPhotos, photoId,
                                     nameId);

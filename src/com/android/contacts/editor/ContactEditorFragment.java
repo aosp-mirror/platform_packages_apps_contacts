@@ -166,9 +166,11 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mExistingContactDataReady = false;
             mNewContactDataReady = false;
             mState = new RawContactDeltaList();
-            setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType);
+            setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType,
+                    isEditingUserProfile());
             if (mIsEdit) {
-                setStateForExistingContact(mReadOnlyDisplayName, mIsUserProfile, mRawContacts);
+                setStateForExistingContact(mReadOnlyDisplayName, isEditingUserProfile(),
+                        mRawContacts);
             }
         }
     }
@@ -300,7 +302,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
                 rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);
 
-                if (isAggregationSuggestionRawContactId(rawContactId)) {
+                if (!isEditingUserProfile() && isAggregationSuggestionRawContactId(rawContactId)) {
                     acquireAggregationSuggestions(activity,
                             rawContactEditor.getNameEditor().getRawContactId(),
                             rawContactEditor.getNameEditor().getValues());
