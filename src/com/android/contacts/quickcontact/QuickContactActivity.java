@@ -2396,7 +2396,7 @@ public class QuickContactActivity extends ContactsActivity {
             }
 
             final MenuItem deleteMenuItem = menu.findItem(R.id.menu_delete);
-            deleteMenuItem.setVisible(isContactEditable());
+            deleteMenuItem.setVisible(isContactEditable() && !mContactData.isUserProfile());
 
             final MenuItem shareMenuItem = menu.findItem(R.id.menu_share);
             shareMenuItem.setVisible(isContactShareable());

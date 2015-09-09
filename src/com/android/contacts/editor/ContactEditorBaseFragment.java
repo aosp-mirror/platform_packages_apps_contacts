@@ -790,7 +790,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     && !isSingleReadOnlyContact);
             // Cannot join a user profile
             joinMenu.setVisible(!isEditingUserProfile());
-            deleteMenu.setVisible(!mDisableDeleteMenuOption);
+            deleteMenu.setVisible(!mDisableDeleteMenuOption && !isEditingUserProfile());
         } else {
             // something else, so don't show the help menu
             helpMenu.setVisible(false);
