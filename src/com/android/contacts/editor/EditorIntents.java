@@ -58,7 +58,8 @@ public class EditorIntents {
      */
     public static Intent createCompactInsertContactIntent() {
         return createCompactInsertContactIntent(/* rawContactDeltaList =*/ null,
-                /* displayName =*/ null, /* phoneticName =*/ null, /* updatedPhotos =*/ null);
+                /* displayName =*/ null, /* phoneticName =*/ null, /* updatedPhotos =*/ null,
+                /* isNewLocalProfile =*/ false);
     }
 
     /**
@@ -66,8 +67,10 @@ public class EditorIntents {
      * the field values specified by rawContactDeltaList pre-populate in the form.
      */
     public static Intent createCompactInsertContactIntent(RawContactDeltaList rawContactDeltaList,
-            String displayName, String phoneticName, Bundle updatedPhotos) {
+            String displayName, String phoneticName, Bundle updatedPhotos,
+            boolean isNewLocalProfile) {
         final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+        intent.putExtra(ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, isNewLocalProfile);
         if (rawContactDeltaList != null || displayName != null || phoneticName != null) {
             putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
         }
@@ -112,9 +115,11 @@ public class EditorIntents {
      * existing contact.
      */
     public static Intent createInsertContactIntent(RawContactDeltaList rawContactDeltaList,
-            String displayName, String phoneticName, Bundle updatedPhotos) {
+            String displayName, String phoneticName, Bundle updatedPhotos,
+            boolean isNewLocalProfile) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_INSERT,
                 Contacts.CONTENT_URI);
+        intent.putExtra(ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, isNewLocalProfile);
         addContactIntentFlags(intent);
         putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
         putUpdatedPhotos(intent, updatedPhotos);

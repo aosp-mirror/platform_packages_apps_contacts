@@ -363,8 +363,8 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
         // Prepare an Intent to start the expanded editor
         final Intent intent = isInsert
-                ? EditorIntents.createInsertContactIntent(
-                        mState, getDisplayName(), getPhoneticName(), mUpdatedPhotos)
+                ? EditorIntents.createInsertContactIntent(mState, getDisplayName(),
+                        getPhoneticName(), mUpdatedPhotos, mNewLocalProfile)
                 : EditorIntents.createEditContactIntent(mLookupUri, getMaterialPalette(),
                         mPhotoId, mNameId);
         ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
