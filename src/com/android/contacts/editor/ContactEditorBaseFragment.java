@@ -357,6 +357,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     // Whether to show the new contact blank form and if it's corresponding delta is ready.
     protected boolean mHasNewContact;
+    protected AccountWithDataSet mAccountWithDataSet;
     protected boolean mNewContactDataReady;
     protected boolean mNewContactAccountChanged;
 
@@ -556,20 +557,22 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // Handle initial actions only when existing state missing
         if (savedInstanceState == null) {
+            final Account account = mIntentExtras == null ? null :
+                    (Account) mIntentExtras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
+            final String dataSet = mIntentExtras == null ? null :
+                    mIntentExtras.getString(Intents.Insert.EXTRA_DATA_SET);
+            if (account != null) {
+                mAccountWithDataSet = new AccountWithDataSet(account.name, account.type, dataSet);
+            }
+
             if (Intent.ACTION_EDIT.equals(mAction) ||
                     ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
                 mIsEdit = true;
             } else if (Intent.ACTION_INSERT.equals(mAction) ||
                     ContactEditorBaseActivity.ACTION_INSERT.equals(mAction)) {
                 mHasNewContact = true;
-                final Account account = mIntentExtras == null ? null :
-                        (Account) mIntentExtras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
-                final String dataSet = mIntentExtras == null ? null :
-                        mIntentExtras.getString(Intents.Insert.EXTRA_DATA_SET);
-
-                if (account != null) {
-                    // Account specified in Intent
-                    createContact(new AccountWithDataSet(account.name, account.type, dataSet));
+                if (mAccountWithDataSet != null) {
+                    createContact(mAccountWithDataSet);
                 } else {
                     // No Account specified. Let the user choose
                     // Load Accounts async so that we can present them
@@ -1061,12 +1064,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     /**
-     * Returns the currently displayed displayName;
+     * Returns the currently displayed display name.
      */
     abstract protected String getDisplayName();
 
     /**
-     * Returns the currently displayed phonetic name;
+     * Returns the currently displayed phonetic name.
      */
     abstract protected String getPhoneticName();
 
@@ -1357,6 +1360,39 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // Maybe invalidate the options menu
             final Activity activity = getActivity();
             if (activity != null) activity.invalidateOptionsMenu();
+        }
+    }
+
+    /**
+     * Removes a current editor ({@link #mState}) and rebinds new editor for a new account.
+     * Some of old data are reused with new restriction enforced by the new account.
+     *
+     * @param oldState Old data being edited.
+     * @param oldAccount Old account associated with oldState.
+     * @param newAccount New account to be used.
+     */
+    protected void rebindEditorsForNewContact(
+            RawContactDelta oldState, AccountWithDataSet oldAccount,
+            AccountWithDataSet newAccount) {
+        AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+        AccountType oldAccountType = accountTypes.getAccountTypeForAccount(oldAccount);
+        AccountType newAccountType = accountTypes.getAccountTypeForAccount(newAccount);
+
+        if (newAccountType.getCreateContactActivityClassName() != null) {
+            Log.w(TAG, "external activity called in rebind situation");
+            if (mListener != null) {
+                mListener.onCustomCreateContactActivityRequested(newAccount, mIntentExtras);
+            }
+        } else {
+            mExistingContactDataReady = false;
+            mNewContactDataReady = false;
+            mState = new RawContactDeltaList();
+            setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType,
+                    isEditingUserProfile());
+            if (mIsEdit) {
+                setStateForExistingContact(mReadOnlyDisplayName, isEditingUserProfile(),
+                        mRawContacts);
+            }
         }
     }
 

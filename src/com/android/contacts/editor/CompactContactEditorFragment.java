@@ -24,6 +24,7 @@ import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.util.ContactPhotoUtils;
@@ -209,7 +210,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
         editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId, mNameId,
-                mReadOnlyDisplayName, mHasNewContact, mIsUserProfile);
+                mReadOnlyDisplayName, mHasNewContact, mIsUserProfile, mAccountWithDataSet);
         if (mReadOnlyDisplayName != null) {
             mReadOnlyNameEditorView = editorView.getDefaultNameEditorView();
         }
@@ -381,6 +382,14 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (!mIsUserProfile) {
             acquireAggregationSuggestions(activity, rawContactId, valuesDelta);
         }
+    }
+
+    @Override
+    public void onRebindEditorsForNewContact(RawContactDelta oldState,
+            AccountWithDataSet oldAccount, AccountWithDataSet newAccount) {
+        mNewContactAccountChanged = true;
+        mAccountWithDataSet = newAccount;
+        rebindEditorsForNewContact(oldState, oldAccount, newAccount);
     }
 
     @Override
