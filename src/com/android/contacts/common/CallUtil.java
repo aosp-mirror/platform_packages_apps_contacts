@@ -94,6 +94,13 @@ public class CallUtil {
     }
 
     /**
+     * @return Uri that directly dials a user's voicemail inbox.
+     */
+    public static Uri getVoicemailUri() {
+        return Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null);
+    }
+
+    /**
      * Determines if one of the call capable phone accounts defined supports video calling.
      *
      * @param context The context.
