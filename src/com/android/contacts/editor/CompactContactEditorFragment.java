@@ -159,7 +159,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
         final View view = inflater.inflate(
                 R.layout.compact_contact_editor_fragment, container, false);
-        mContent = (LinearLayout) view.findViewById(R.id.editors);
+        mContent = (LinearLayout) view.findViewById(R.id.raw_contacts_editor_view);
         return view;
     }
 
@@ -347,30 +347,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (mPhotoHandler != null) {
             mPhotoHandler.getListener().onPickFromGalleryChosen();
         }
-    }
-
-    @Override
-    public void onExpandEditor() {
-        // Determine if this is an insert (new contact) or edit
-        final boolean isInsert = isInsert(getActivity().getIntent());
-
-        if (isInsert) {
-            // For inserts, prevent any changes from being saved when the base fragment is destroyed
-            mStatus = Status.CLOSING;
-        } else if (hasPendingRawContactChanges()) {
-            // Save whatever is in the form
-            save(SaveMode.CLOSE, /* backPressed =*/ false);
-        }
-
-        // Prepare an Intent to start the expanded editor
-        final Intent intent = isInsert
-                ? EditorIntents.createInsertContactIntent(mState, getDisplayName(),
-                        getPhoneticName(), mUpdatedPhotos, mNewLocalProfile)
-                : EditorIntents.createEditContactIntent(mLookupUri, getMaterialPalette(),
-                        mPhotoId, mNameId);
-        ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
-
-        getActivity().finish();
     }
 
     @Override

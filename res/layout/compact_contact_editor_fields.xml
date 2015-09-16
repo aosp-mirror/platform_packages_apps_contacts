@@ -25,34 +25,11 @@
             android:orientation="vertical"/>
 
     <LinearLayout
-            android:id="@+id/phonetic_names"
+            android:id="@+id/kind_section_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-
-    <LinearLayout
-            android:id="@+id/nicknames"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-
-    <LinearLayout
-            android:id="@+id/phone_numbers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-
-    <LinearLayout
-            android:id="@+id/emails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-
-    <LinearLayout
-            android:id="@+id/other"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            android:animateLayoutChanges="true"/>
 
     <LinearLayout
             style="@style/SelectableItem"

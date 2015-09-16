@@ -17,19 +17,6 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.provider.Contacts.GroupMembership;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Event;
-import android.provider.ContactsContract.CommonDataKinds.Im;
-import android.provider.ContactsContract.CommonDataKinds.Note;
-import android.provider.ContactsContract.CommonDataKinds.Organization;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.CommonDataKinds.Relation;
-import android.provider.ContactsContract.CommonDataKinds.SipAddress;
-import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -200,7 +187,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 : getResources().getString(kind.titleRes);
         mIcon.setContentDescription(titleString);
 
-        mIcon.setImageDrawable(getMimeTypeDrawable(kind.mimeType));
+        mIcon.setImageDrawable(EditorUiUtils.getMimeTypeDrawable(getContext(), kind.mimeType));
         if (mIcon.getDrawable() == null) {
             mIcon.setContentDescription(null);
         }
@@ -354,39 +341,5 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     public DataKind getKind() {
         return mKind;
-    }
-
-    /**
-     * Return an icon that represents {@param mimeType}.
-     */
-    private Drawable getMimeTypeDrawable(String mimeType) {
-        switch (mimeType) {
-            case StructuredPostal.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_place_24dp);
-            case SipAddress.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_dialer_sip_black_24dp);
-            case Phone.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_phone_24dp);
-            case Im.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_message_24dp);
-            case Event.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_event_24dp);
-            case Email.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_email_24dp);
-            case Website.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_public_black_24dp);
-            case Photo.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_camera_alt_black_24dp);
-            case GroupMembership.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_people_black_24dp);
-            case Organization.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_business_black_24dp);
-            case Note.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_insert_comment_black_24dp);
-            case Relation.CONTENT_ITEM_TYPE:
-                return getResources().getDrawable(R.drawable.ic_circles_extended_black_24dp);
-            default:
-                return null;
-        }
     }
 }
