@@ -114,7 +114,7 @@ public class ContactDeletionInteraction extends Fragment
     static ContactDeletionInteraction startWithTestLoaderManager(
             Activity activity, Uri contactUri, boolean finishActivityWhenDone,
             TestLoaderManagerBase testLoaderManager) {
-        if (contactUri == null) {
+        if (contactUri == null || activity.isDestroyed()) {
             return null;
         }
 
