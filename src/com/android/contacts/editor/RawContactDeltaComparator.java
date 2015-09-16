@@ -120,12 +120,14 @@ class RawContactDeltaComparator implements Comparator<RawContactDelta> {
         // Both are in the same account, fall back to contact ID
         Long oneId = one.getRawContactId();
         Long twoId = two.getRawContactId();
-        if (oneId == null) {
+        if (oneId == null && twoId == null) {
+            return 0;
+        } else if (oneId == null) {
             return -1;
         } else if (twoId == null) {
             return 1;
         }
 
-        return (int) (oneId - twoId);
+        return Long.compare(oneId, twoId);
     }
 }
