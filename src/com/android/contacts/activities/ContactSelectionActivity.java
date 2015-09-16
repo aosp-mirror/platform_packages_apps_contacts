@@ -484,17 +484,13 @@ public class ContactSelectionActivity extends ContactsActivity
     private final class PhoneNumberPickerActionListener implements
             OnPhoneNumberPickerActionListener {
         @Override
-        public void onPickPhoneNumberAction(Uri dataUri) {
+        public void onPickPhoneNumberAction(Uri dataUri, int callInitiationType) {
             returnPickerResult(dataUri);
         }
 
         @Override
-        public void onCallNumberDirectly(String phoneNumber) {
-            Log.w(TAG, "Unsupported call.");
-        }
-
-        @Override
-        public void onCallNumberDirectly(String phoneNumber, boolean isVideoCall) {
+        public void onCallNumberDirectly(String phoneNumber, boolean isVideoCall,
+                int callInitiationType) {
             Log.w(TAG, "Unsupported call.");
         }
 
@@ -503,6 +499,7 @@ public class ContactSelectionActivity extends ContactsActivity
             returnPickerResult(intent);
         }
 
+        @Override
         public void onHomeInActionBarSelected() {
             ContactSelectionActivity.this.onBackPressed();
         }
