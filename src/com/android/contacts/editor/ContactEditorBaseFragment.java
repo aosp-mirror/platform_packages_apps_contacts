@@ -810,6 +810,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        final Activity activity = getActivity();
+        if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+            // If we no longer are attached to a running activity want to
+            // drain this event.
+            return true;
+        }
+
         switch (item.getItemId()) {
             case R.id.menu_save:
                 return save(SaveMode.CLOSE, /* backPressed =*/ true);
