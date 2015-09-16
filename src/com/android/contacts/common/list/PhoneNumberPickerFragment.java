@@ -196,7 +196,8 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             final String number = getPhoneNumber(position);
             if (!TextUtils.isEmpty(number)) {
                 cacheContactInfo(position);
-                mListener.onCallNumberDirectly(number);
+                mListener.onCallNumberDirectly(number, false /* isVideoCall */,
+                        getCallInitiationType(true /* isRemoteDirectory */));
             } else {
                 Log.w(TAG, "Item at " + position + " was clicked before"
                         + " adapter is ready. Ignoring");
@@ -286,7 +287,8 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     public void pickPhoneNumber(Uri uri) {
         if (mShortcutAction == null) {
-            mListener.onPickPhoneNumberAction(uri);
+            mListener.onPickPhoneNumberAction(uri,
+                    getCallInitiationType(false /* isRemoteDirectory */));
         } else {
             startPhoneNumberShortcutIntent(uri);
         }
@@ -297,13 +299,15 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         builder.createPhoneNumberShortcutIntent(uri, mShortcutAction);
     }
 
+    @Override
     public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
         mListener.onShortcutIntentCreated(shortcutIntent);
     }
 
     @Override
     public void onPickerResult(Intent data) {
-        mListener.onPickPhoneNumberAction(data.getData());
+        mListener.onPickPhoneNumberAction(data.getData(),
+                getCallInitiationType(false /* isRemoteDirectory */));
     }
 
     @Override
@@ -342,6 +346,14 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         if (adapter != null) {
             adapter.setPhotoPosition(photoPosition);
         }
+    }
+
+    /**
+     * @param isRemoteDirectory {@code true} if the call was initiated using a contact/phone number
+     *         not in the local contacts database
+     */
+    protected int getCallInitiationType(boolean isRemoteDirectory) {
+        return OnPhoneNumberPickerActionListener.CALL_INITIATION_UNKNOWN;
     }
 
     /**
