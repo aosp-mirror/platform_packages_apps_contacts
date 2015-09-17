@@ -713,8 +713,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     private void onRingtonePicked(Uri pickedUri) {
-        if (pickedUri == null || RingtoneManager.isDefault(pickedUri)) {
-            mCustomRingtone = null;
+        if (pickedUri == null) {
+            mCustomRingtone = ""; // silent ringtone
+        } else if (RingtoneManager.isDefault(pickedUri)){
+            mCustomRingtone = null; // default ringtone
         } else {
             mCustomRingtone = pickedUri.toString();
         }
@@ -907,7 +909,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         final Uri ringtoneUri;
         if (mCustomRingtone != null) {
-            ringtoneUri = Uri.parse(mCustomRingtone);
+            if ("".equals(mCustomRingtone)) { // select silent ringtone in RingtonePickerActivity
+                ringtoneUri = null;
+            } else {
+                ringtoneUri = Uri.parse(mCustomRingtone);
+            }
         } else {
             // Otherwise pick default ringtone Uri so that something is selected.
             ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
