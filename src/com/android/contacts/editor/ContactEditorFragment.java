@@ -142,39 +142,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         updatedExpandedEditorsMap();
     }
 
-    /**
-     * Removes a current editor ({@link #mState}) and rebinds new editor for a new account.
-     * Some of old data are reused with new restriction enforced by the new account.
-     *
-     * @param oldState Old data being edited.
-     * @param oldAccount Old account associated with oldState.
-     * @param newAccount New account to be used.
-     */
-    private void rebindEditorsForNewContact(
-            RawContactDelta oldState, AccountWithDataSet oldAccount,
-            AccountWithDataSet newAccount) {
-        AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        AccountType oldAccountType = accountTypes.getAccountTypeForAccount(oldAccount);
-        AccountType newAccountType = accountTypes.getAccountTypeForAccount(newAccount);
-
-        if (newAccountType.getCreateContactActivityClassName() != null) {
-            Log.w(TAG, "external activity called in rebind situation");
-            if (mListener != null) {
-                mListener.onCustomCreateContactActivityRequested(newAccount, mIntentExtras);
-            }
-        } else {
-            mExistingContactDataReady = false;
-            mNewContactDataReady = false;
-            mState = new RawContactDeltaList();
-            setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType,
-                    isEditingUserProfile());
-            if (mIsEdit) {
-                setStateForExistingContact(mReadOnlyDisplayName, isEditingUserProfile(),
-                        mRawContacts);
-            }
-        }
-    }
-
     @Override
     protected void setGroupMetaData() {
         if (mGroupMetaData == null) {
