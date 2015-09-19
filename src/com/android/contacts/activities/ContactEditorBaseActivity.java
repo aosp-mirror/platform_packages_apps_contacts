@@ -155,11 +155,8 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         /**
          * Saves or creates the contact based on the mode, and if successful
          * finishes the activity.
-         *
-         * @param backPressed whether the save was initiated as a result of a back button press
-         *         or because the framework stopped the editor Activity
          */
-        boolean save(int saveMode, boolean backPressed);
+        boolean save(int saveMode);
 
         /**
          * If there are no unsaved changes, just close the editor, otherwise the user is prompted
@@ -171,8 +168,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
          * Invoked after the contact is saved.
          */
         void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
-                Uri contactLookupUri, Bundle updatedPhotos, boolean backPressed, long photoId,
-                long nameId);
+                Uri contactLookupUri);
 
         /**
          * Invoked after the contact is joined.
@@ -259,12 +255,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
                     intent.getIntExtra(ContactEditorFragment.SAVE_MODE_EXTRA_KEY,
                             ContactEditor.SaveMode.CLOSE),
                     intent.getBooleanExtra(ContactSaveService.EXTRA_SAVE_SUCCEEDED, false),
-                    intent.getData(),
-                    (Bundle) intent.getParcelableExtra(ContactSaveService.EXTRA_UPDATED_PHOTOS),
-                    intent.getBooleanExtra(ContactEditorFragment.INTENT_EXTRA_SAVE_BACK_PRESSED,
-                            false),
-                    intent.getLongExtra(ContactEditorFragment.INTENT_EXTRA_PHOTO_ID, -1),
-                    intent.getLongExtra(ContactEditorFragment.INTENT_EXTRA_NAME_ID, -1));
+                    intent.getData());
         } else if (ACTION_JOIN_COMPLETED.equals(action)) {
             mFragment.onJoinCompleted(intent.getData());
         }
@@ -277,6 +268,13 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         // Nobody knows about the Dialog
         Log.w(TAG, "Unknown dialog requested, id: " + id + ", args: " + args);
         return null;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mFragment != null) {
+            mFragment.save(ContactEditor.SaveMode.CLOSE);
+        }
     }
 
     protected final ContactEditorBaseFragment.Listener  mFragmentListener =
@@ -294,15 +292,11 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
 
         @Override
         public void onSaveFinished(Intent resultIntent) {
-            final boolean backPressed = resultIntent == null ? false : resultIntent.getBooleanExtra(
-                    ContactEditorBaseFragment.INTENT_EXTRA_SAVE_BACK_PRESSED, false);
             if (mFinishActivityOnSaveCompleted) {
                 setResult(resultIntent == null ? RESULT_CANCELED : RESULT_OK, resultIntent);
             } else if (resultIntent != null) {
-                if (backPressed) {
-                    ImplicitIntentsUtil.startActivityInApp(ContactEditorBaseActivity.this,
-                            resultIntent);
-                }
+                ImplicitIntentsUtil.startActivityInApp(ContactEditorBaseActivity.this,
+                        resultIntent);
             }
             finish();
         }

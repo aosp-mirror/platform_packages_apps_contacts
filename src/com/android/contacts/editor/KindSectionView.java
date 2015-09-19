@@ -57,15 +57,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private DataKind mKind;
     private RawContactDelta mState;
     private boolean mReadOnly;
-    private boolean mShowOneEmptyEditor;
-
-    /**
-     * Whether this KindSectionView will be removed from the layout.
-     * We need this because we want to animate KindSectionViews away (which takes time),
-     * but calculate which KindSectionViews will be visible immediately after starting removal
-     * animations.
-     */
-    private boolean mMarkedForRemoval;
 
     private ViewIdGenerator mViewIdGenerator;
 
@@ -112,7 +103,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     @Override
     public void onDeleteRequested(Editor editor) {
-        if (mShowOneEmptyEditor && getEditorCount() == 1) {
+        if (getEditorCount() == 1) {
             // If there is only 1 editor in the section, then don't allow the user to delete it.
             // Just clear the fields in the editor.
             editor.clearAllFields();
@@ -128,25 +119,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
     }
 
-    /**
-     * Calling this signifies that this entire section view is intended to be removed from the
-     * layout. Note, calling this does not change the deleted state of any underlying
-     * {@link Editor}, i.e. {@link com.android.contacts.common.model.ValuesDelta#markDeleted()}
-     * is not invoked on any editor in this section.  It is purely marked for higher level UI
-     * layers to manipulate the layout w/o introducing jank.
-     * See b/22228718 for context.
-     */
-    public void markForRemoval() {
-        mMarkedForRemoval = true;
-    }
-
-    /**
-     * Whether the entire section view is intended to be removed from the layout.
-     */
-    public boolean isMarkedForRemoval() {
-        return mMarkedForRemoval;
-    }
-
     @Override
     public void onRequest(int request) {
         // If a field has become empty or non-empty, then check if another row
@@ -156,20 +128,8 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
     }
 
-    /**
-     * @param showOneEmptyEditor If true, one empty input will always be displayed,
-     *         otherwise an empty input will only be displayed if there is no non-empty value.
-     */
-    public void setShowOneEmptyEditor(boolean showOneEmptyEditor) {
-        mShowOneEmptyEditor = showOneEmptyEditor;
-    }
-
     public void setListener(Listener listener) {
         mListener = listener;
-    }
-
-    public void setIconVisibility(boolean visible) {
-        mIcon.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void setState(DataKind kind, RawContactDelta state, boolean readOnly,
@@ -301,7 +261,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         } else if (emptyEditors.size() == 1) {
             // We have already reached the maximum number of empty editors. Lets not add any more.
             return;
-        } else if (mShowOneEmptyEditor) {
+        } else {
             final ValuesDelta values = RawContactModifier.insertChild(mState, mKind);
             final View newField = createEditorView(values);
             if (shouldAnimate) {
@@ -323,16 +283,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
             }
         }
         return emptyEditorViews;
-    }
-
-    public boolean areAllEditorsEmpty() {
-        for (int i = 0; i < mEditors.getChildCount(); i++) {
-            final View view = mEditors.getChildAt(i);
-            if (!((Editor) view).isEmpty()) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public int getEditorCount() {

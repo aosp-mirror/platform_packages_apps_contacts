@@ -344,25 +344,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return mDefaultNameEditorView;
     }
 
-    public StructuredNameEditorView getStructuredNameEditorView() {
-        // We only ever show one StructuredName
-        return mNames.getChildCount() == 0
-                ? null : (StructuredNameEditorView) mNames.getChildAt(0);
-    }
-
-    public PhoneticNameEditorView getFirstPhoneticNameEditorView() {
-        // There should only ever be one phonetic name, it is enforced by dataKind.typeOverallMax
-        final CompactKindSectionView kindSectionView = (CompactKindSectionView)
-                mKindSectionViewsMap.get(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME);
-        if (kindSectionView != null && kindSectionView.getChildCount() > 0) {
-            final View editorView = kindSectionView.getEditorView(0);
-            if (editorView instanceof PhoneticNameEditorView) {
-                return ((PhoneticNameEditorView) editorView);
-            }
-        }
-        return null;
-    }
-
     public View getAggregationAnchorView() {
         // Since there is only one structured name we can just return it as the anchor for
         // the aggregation suggestions popup
