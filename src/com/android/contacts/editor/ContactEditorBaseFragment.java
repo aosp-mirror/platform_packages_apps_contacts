@@ -972,9 +972,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         setEnabled(false);
 
-        // Store account as default account, only if this is a new contact
-        saveDefaultAccountIfNecessary();
-
         if (isInsert(getActivity().getIntent()) && saveMode == SaveMode.COMPACT
                 && mListener != null && backPressed) {
             // If we're coming back from the fully expanded editor and this is an insert, just
@@ -1134,27 +1131,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             }
         } else {
             setStateForNewContact(account, accountType, isEditingUserProfile());
-        }
-    }
-
-    /**
-     * Saves all writable accounts and the default account, but only for new contacts.
-     */
-    protected void saveDefaultAccountIfNecessary() {
-        // Verify that this is a newly created contact composed of only 1 raw contact
-        // and not a user profile
-        if (isInsert(mAction) && mState.size() == 1 && !isEditingUserProfile()) {
-            // Find the associated account for this contact (retrieve it here because there are
-            // multiple paths to creating a contact and this ensures we always have the correct
-            // account).
-            final RawContactDelta rawContactDelta = mState.get(0);
-            String name = rawContactDelta.getAccountName();
-            String type = rawContactDelta.getAccountType();
-            String dataSet = rawContactDelta.getDataSet();
-
-            AccountWithDataSet account = (name == null || type == null) ? null :
-                    new AccountWithDataSet(name, type, dataSet);
-            mEditorUtils.saveDefaultAndAllAccounts(account);
         }
     }
 
