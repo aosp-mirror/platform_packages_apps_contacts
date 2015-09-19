@@ -364,12 +364,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private void parseRawContactDeltas(RawContactDeltaList rawContactDeltas) {
         // Get the raw contact delta for the primary account (the one displayed at the top)
-        if (mPrimaryAccount == null || mPrimaryAccount.name == null
-                || mReadOnlyDisplayName != null) {
-            // Use the first writable contact if this is 1) a phone local contact or 2) an insert,
-            // for a read-only contact.  For the last case, we can assume the first writable
-            // raw contact is the newly created one because inserts have a raw contact delta list
-            // of size 1 and read-only contacts have a list of size 2
+        if (mPrimaryAccount == null || TextUtils.isEmpty(mPrimaryAccount.name)
+                || !TextUtils.isEmpty(mReadOnlyDisplayName)) {
+            // Use the first writable contact if this is an insert for a read-only contact.
+            // In this case we can assume the first writable raw contact is the newly created one
+            // because inserts have a raw contact delta list of size 1 and read-only contacts have
+            // a list of size 2.
             for (RawContactDelta rawContactDelta : rawContactDeltas) {
                 if (!rawContactDelta.isVisible()) continue;
                 final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
@@ -564,7 +564,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private void addAccountHeader(Pair<String,String> accountInfo) {
-        if (accountInfo.first == null) {
+        if (TextUtils.isEmpty(accountInfo.first)) {
             // Hide this view so the other text view will be centered vertically
             mAccountHeaderName.setVisibility(View.GONE);
         } else {
@@ -581,7 +581,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private void addAccountSelector(Pair<String,String> accountInfo) {
         mAccountSelectorContainer.setVisibility(View.VISIBLE);
 
-        if (accountInfo.first == null) {
+        if (TextUtils.isEmpty(accountInfo.first)) {
             // Hide this view so the other text view will be centered vertically
             mAccountSelectorName.setVisibility(View.GONE);
         } else {
