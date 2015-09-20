@@ -65,6 +65,7 @@ public final class KindSectionData {
         return mValuesDeltas;
     }
 
+    /** Returns the super primary ValuesDelta for the data kind this section represents. */
     public ValuesDelta getSuperPrimaryValuesDelta() {
         for (ValuesDelta valuesDelta : mValuesDeltas) {
             if (valuesDelta.isSuperPrimary()) return valuesDelta;
@@ -72,6 +73,7 @@ public final class KindSectionData {
         return null;
     }
 
+    /** Returns the ValuesDelta with the given ID. */
     public ValuesDelta getValuesDeltaById(Long id) {
         for (ValuesDelta valuesDelta : mValuesDeltas) {
             if (valuesDelta.getId().equals(id)) return valuesDelta;
@@ -79,35 +81,26 @@ public final class KindSectionData {
         return null;
     }
 
+    /** Returns the first non empty ValuesDelta for the data kind this section represents. */
     public ValuesDelta getFirstNonEmptyValuesDelta() {
-        if (mDataKind.fieldList != null) {
-            for (ValuesDelta valuesDelta : mValuesDeltas) {
-                for (EditField editField : mDataKind.fieldList) {
-                    final String column = editField.column;
-                    final String value = valuesDelta.getAsString(column);
-                    if (!TextUtils.isEmpty(value)) return valuesDelta;
-                }
-            }
+        for (ValuesDelta valuesDelta : mValuesDeltas) {
+            if (!isEmpty(valuesDelta)) return valuesDelta;
         }
         return null;
     }
 
-    public boolean hasNonEmptyValuesDelta() {
-        return !getNonEmptyValuesDeltas().isEmpty();
-    }
+    /** Whether the given ValuesDelta is empty for the data kind this section represents. */
+    public boolean isEmpty(ValuesDelta valuesDelta) {
+        if (valuesDelta.isNoop()) return true;
 
-    public List<ValuesDelta> getNonEmptyValuesDeltas() {
-        final List<ValuesDelta> valuesDeltas = new ArrayList<>();
         if (mDataKind.fieldList != null) {
-            for (ValuesDelta valuesDelta : mValuesDeltas) {
-                for (EditField editField : mDataKind.fieldList) {
-                    final String column = editField.column;
-                    final String value = valuesDelta.getAsString(column);
-                    if (!TextUtils.isEmpty(value)) valuesDeltas.add(valuesDelta);
-                }
+            for (EditField editField : mDataKind.fieldList) {
+                final String column = editField.column;
+                final String value = valuesDelta.getAsString(column);
+                if (TextUtils.isEmpty(value)) return true;
             }
         }
-        return valuesDeltas;
+        return false;
     }
 
     public DataKind getDataKind() {

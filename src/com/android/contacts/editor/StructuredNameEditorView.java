@@ -16,6 +16,7 @@
 
 package com.android.contacts.editor;
 
+import com.android.contacts.R;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.Parcel;
@@ -23,9 +24,14 @@ import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.NameConverter;
@@ -73,6 +79,18 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
             mChanged = false;
         }
         updateEmptiness();
+    }
+
+    /**
+     * Displays the icon and name for the given account under the name name input fields.
+     */
+    public void setAccountType(AccountType accountType) {
+        final LinearLayout layout = (LinearLayout) findViewById(R.id.account_type);
+        layout.setVisibility(View.VISIBLE);
+        final ImageView imageView = (ImageView) layout.findViewById(R.id.account_type_icon);
+        imageView.setImageDrawable(accountType.getDisplayIcon(getContext()));
+        final TextView textView = (TextView) layout.findViewById(R.id.account_type_name);
+        textView.setText(accountType.getDisplayLabel(getContext()));
     }
 
     @Override

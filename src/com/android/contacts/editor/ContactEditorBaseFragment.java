@@ -113,7 +113,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
     private static final String KEY_MATERIAL_PALETTE = "materialPalette";
     private static final String KEY_PHOTO_ID = "photoId";
-    private static final String KEY_NAME_ID = "nameId";
 
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
 
@@ -180,11 +179,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Intent key to pass the ID of the photo to display on the editor.
      */
     public static final String INTENT_EXTRA_PHOTO_ID = "photo_id";
-
-    /**
-     * Intent key to pass the ID of the name to display on the editor.
-     */
-    public static final String INTENT_EXTRA_NAME_ID = "name_id";
 
     /**
      * Intent extra to specify a {@link ContactEditor.SaveMode}.
@@ -317,7 +311,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected boolean mNewLocalProfile;
     protected MaterialColorMapUtils.MaterialPalette mMaterialPalette;
     protected long mPhotoId = -1;
-    protected long mNameId = -1;
 
     //
     // Helpers
@@ -367,17 +360,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     // Join Activity
     protected long mContactIdForJoin;
-
-    //
-    // Not saved/restored on rotates
-    //
-
-    // Used to pre-populate the editor with a display name when a user edits a read-only contact.
-    protected String mReadOnlyDisplayName;
-
-    // The name editor view for the new raw contact that was created so that the user can
-    // edit a read-only contact (to which the new raw contact was joined)
-    protected StructuredNameEditorView mReadOnlyNameEditorView;
 
     /**
      * The contact data loader listener.
@@ -471,7 +453,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
             mMaterialPalette = savedState.getParcelable(KEY_MATERIAL_PALETTE);
             mPhotoId = savedState.getLong(KEY_PHOTO_ID);
-            mNameId = savedState.getLong(KEY_NAME_ID);
 
             mRawContacts = ImmutableList.copyOf(savedState.<RawContact>getParcelableArrayList(
                     KEY_RAW_CONTACTS));
@@ -593,7 +574,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             outState.putParcelable(KEY_MATERIAL_PALETTE, mMaterialPalette);
         }
         outState.putLong(KEY_PHOTO_ID, mPhotoId);
-        outState.putLong(KEY_NAME_ID, mNameId);
 
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
 
@@ -1096,7 +1076,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             }
         }
 
-        String readOnlyDisplayName = null;
         // Check for writable raw contacts.  If there are none, then we need to create one so user
         // can edit.  For the user profile case, there is already an editable contact.
         if (!contact.isUserProfile() && !contact.isWritableContact(mContext)) {
@@ -1104,13 +1083,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
             // This is potentially an asynchronous call and will add deltas to list.
             selectAccountAndCreateContact();
-
-            readOnlyDisplayName = contact.getDisplayName();
         }
 
         // This also adds deltas to list.  If readOnlyDisplayName is null at this point it is
         // simply ignored later on by the editor.
-        setStateForExistingContact(readOnlyDisplayName, contact.isUserProfile(), mRawContacts);
+        setStateForExistingContact(contact.isUserProfile(), mRawContacts);
     }
 
     /**
@@ -1181,10 +1158,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * Prepare {@link #mState} for an existing contact.
      */
-    protected void setStateForExistingContact(String readOnlyDisplayName, boolean isUserProfile,
+    protected void setStateForExistingContact(boolean isUserProfile,
             ImmutableList<RawContact> rawContacts) {
         setEnabled(true);
-        mReadOnlyDisplayName = readOnlyDisplayName;
 
         mState.addAll(rawContacts.iterator());
         setIntentExtras(mIntentExtras);
@@ -1296,8 +1272,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType,
                     isEditingUserProfile());
             if (mIsEdit) {
-                setStateForExistingContact(mReadOnlyDisplayName, isEditingUserProfile(),
-                        mRawContacts);
+                setStateForExistingContact(isEditingUserProfile(), mRawContacts);
             }
         }
     }
@@ -1331,7 +1306,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR));
             }
             mPhotoId = mIntentExtras.getLong(INTENT_EXTRA_PHOTO_ID);
-            mNameId = mIntentExtras.getLong(INTENT_EXTRA_NAME_ID);
         }
     }
 

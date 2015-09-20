@@ -158,6 +158,8 @@ public class EditorUiUtils {
      */
     public static Drawable getMimeTypeDrawable(Context context, String mimeType) {
         switch (mimeType) {
+            case StructuredName.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_person_black_24dp);
             case StructuredPostal.CONTENT_ITEM_TYPE:
                 return context.getResources().getDrawable(R.drawable.ic_place_24dp);
             case SipAddress.CONTENT_ITEM_TYPE:
