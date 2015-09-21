@@ -313,7 +313,7 @@ public class ContactSaveService extends IntentService {
         Bundle bundle = new Bundle();
         bundle.putParcelable(String.valueOf(rawContactId), updatedPhotoPath);
         return createSaveContactIntent(context, state, saveModeExtraKey, saveMode, isProfile,
-                callbackActivity, callbackAction, bundle, /* backPressed =*/ false);
+                callbackActivity, callbackAction, bundle);
     }
 
     /**
@@ -322,13 +322,11 @@ public class ContactSaveService extends IntentService {
      * This variant is used when multiple contacts' photos may be updated, as in the
      * Contact Editor.
      * @param updatedPhotos maps each raw-contact's ID to the file-path of the new photo.
-     * @param backPressed whether the save was initiated as a result of a back button press
-     *         or because the framework stopped the editor Activity
      */
     public static Intent createSaveContactIntent(Context context, RawContactDeltaList state,
             String saveModeExtraKey, int saveMode, boolean isProfile,
             Class<? extends Activity> callbackActivity, String callbackAction,
-            Bundle updatedPhotos, boolean backPressed) {
+            Bundle updatedPhotos) {
         Intent serviceIntent = new Intent(
                 context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_SAVE_CONTACT);
@@ -347,11 +345,6 @@ public class ContactSaveService extends IntentService {
             Intent callbackIntent = new Intent(context, callbackActivity);
             callbackIntent.putExtra(saveModeExtraKey, saveMode);
             callbackIntent.setAction(callbackAction);
-            if (updatedPhotos != null) {
-                callbackIntent.putExtra(EXTRA_UPDATED_PHOTOS, (Parcelable) updatedPhotos);
-            }
-            callbackIntent.putExtra(ContactEditorFragment.INTENT_EXTRA_SAVE_BACK_PRESSED,
-                    backPressed);
             serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
         }
         return serviceIntent;

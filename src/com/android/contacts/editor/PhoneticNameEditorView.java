@@ -151,8 +151,4 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
         return !TextUtils.isEmpty(family) || !TextUtils.isEmpty(middle)
                 || !TextUtils.isEmpty(given);
     }
-
-    public String getPhoneticName() {
-        return getEntry().getAsString(DataKind.PSEUDO_COLUMN_PHONETIC_NAME);
-    }
 }

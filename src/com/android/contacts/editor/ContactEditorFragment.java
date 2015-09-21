@@ -26,7 +26,6 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -64,6 +63,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
     private static final String KEY_CURRENT_PHOTO_URI = "currentphotouri";
+    private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
 
     // Used to store which raw contact editors have been expanded. Keyed on raw contact ids.
     private HashMap<Long, Boolean> mExpandedEditors = new HashMap<Long, Boolean>();
@@ -84,6 +84,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
      */
     private PhotoHandler mCurrentPhotoHandler;
     private Uri mCurrentPhotoUri;
+    private Bundle mUpdatedPhotos = new Bundle();
 
     public ContactEditorFragment() {
     }
@@ -109,16 +110,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mRawContactIdRequestingPhoto = savedState.getLong(
                     KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mCurrentPhotoUri = savedState.getParcelable(KEY_CURRENT_PHOTO_URI);
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // If anything was left unsaved, save it now and return to the compact editor.
-        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            save(SaveMode.COMPACT, /* backPressed =*/ false);
+            mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
         }
     }
 
@@ -127,14 +119,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         if (mListener != null) {
             mListener.onCustomEditContactActivityRequested(account, uri, null, false);
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            return save(SaveMode.COMPACT, /* backPressed =*/ true);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -261,8 +245,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
                 final StructuredNameEditorView nameEditor = rawContactEditor.getNameEditor();
                 nameEditor.setEditorListener(structuredNameListener);
-                if (TextUtils.isEmpty(nameEditor.getDisplayName()) &&
-                        !TextUtils.isEmpty(mReadOnlyDisplayName)) {
+                if (!TextUtils.isEmpty(mReadOnlyDisplayName)) {
                     nameEditor.setDisplayName(mReadOnlyDisplayName);
                     mReadOnlyNameEditorView = nameEditor;
                 }
@@ -304,60 +287,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 }
             }
         }
-    }
-
-    @Override
-    public String getDisplayName() {
-        // Return the super primary name if it is non-empty
-        for (int i = 0; i < mContent.getChildCount(); i++) {
-            final View view = mContent.getChildAt(i);
-            if (view instanceof RawContactEditorView) {
-                final RawContactEditorView rawContactEditorView = (RawContactEditorView) view;
-                final StructuredNameEditorView nameEditorView =
-                        rawContactEditorView.getNameEditor();
-                if (nameEditorView != null) {
-                    final String displayName = nameEditorView.getDisplayName();
-                    if (!TextUtils.isEmpty(displayName)) {
-                        return displayName;
-                    }
-                }
-            }
-        }
-        // Return the first non-empty name
-        for (int i = 0; i < mContent.getChildCount(); i++) {
-            final View view = mContent.getChildAt(i);
-            if (view instanceof RawContactEditorView) {
-                final RawContactEditorView rawContactEditorView = (RawContactEditorView) view;
-                final StructuredNameEditorView nameEditorView =
-                        rawContactEditorView.getNameEditor();
-                if (nameEditorView != null) {
-                    final String displayName = nameEditorView.getDisplayName();
-                    if (!TextUtils.isEmpty(displayName)) {
-                        return displayName;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public String getPhoneticName() {
-        for (int i = 0; i < mContent.getChildCount(); i++) {
-            final View view = mContent.getChildAt(i);
-            if (view instanceof RawContactEditorView) {
-                final RawContactEditorView rawContactEditorView = (RawContactEditorView) view;
-                final PhoneticNameEditorView phoneticNameEditorView =
-                        (PhoneticNameEditorView) rawContactEditorView.getPhoneticNameEditor();
-                if (phoneticNameEditorView != null) {
-                    final String phoneticName = phoneticNameEditorView.getPhoneticName();
-                    if (!TextUtils.isEmpty(phoneticName)) {
-                        return phoneticName;
-                    }
-                }
-            }
-        }
-        return null;
     }
 
     /**
@@ -457,21 +386,12 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     }
 
     @Override
-    protected boolean doSaveAction(int saveMode, boolean backPressed) {
-        // Save contact and reload the compact editor after saving.
-        // Note, the full resolution photos Bundle must be passed to the ContactSaveService
-        // and then passed along in the result Intent in order for the compact editor to
-        // receive it, instead of mUpdatedPhotos being accessed directly in onSaveCompleted,
-        // because we clear mUpdatedPhotos after starting the save service below.
-        Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
+    protected boolean doSaveAction(int saveMode) {
+        final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED,
-                mUpdatedPhotos, backPressed);
+                mUpdatedPhotos);
         mContext.startService(intent);
-
-        // Don't try to save the same photos twice.
-        mUpdatedPhotos = new Bundle();
-
         return true;
     }
 
@@ -480,6 +400,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         outState.putSerializable(KEY_EXPANDED_EDITORS, mExpandedEditors);
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_CURRENT_PHOTO_URI, mCurrentPhotoUri);
+        outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
         super.onSaveInstanceState(outState);
     }
 
@@ -534,12 +455,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
 
-        // For inserts where the raw contact ID is a negative number, we must clear any previously
-        // saved full resolution photos under negative raw contact IDs so that the compact editor
-        // will use the newly selected photo, instead of an old one.
-        if (isInsert(getActivity().getIntent()) && rawContact < 0) {
-            removeNewRawContactPhotos();
-        }
         mUpdatedPhotos.putParcelable(String.valueOf(rawContact), photoUri);
     }
 

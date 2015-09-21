@@ -25,7 +25,6 @@ import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.util.ContactPhotoUtils;
 
@@ -52,6 +51,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     private static final String KEY_PHOTO_URI = "photo_uri";
     private static final String KEY_PHOTO_RAW_CONTACT_ID = "photo_raw_contact_id";
+    private static final String KEY_UPDATED_PHOTOS = "updated_photos";
 
     /**
      * Displays a PopupWindow with photo edit options.
@@ -79,10 +79,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                     Log.w(TAG, "Invalid photo selected");
                 }
                 getContent().setPhoto(bitmap);
-
-                // Clear any previously saved full resolution photos under negative raw contact IDs
-                // so that we will use the newly selected photo, instead of an old one on rotations.
-                removeNewRawContactPhotos();
 
                 // If a new photo was chosen but not yet saved,
                 // we need to update the UI immediately
@@ -142,6 +138,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     private PhotoHandler mPhotoHandler;
     private Uri mPhotoUri;
     private long mPhotoRawContactId;
+    private Bundle mUpdatedPhotos = new Bundle();
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -150,6 +147,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (savedState != null) {
             mPhotoUri = savedState.getParcelable(KEY_PHOTO_URI);
             mPhotoRawContactId = savedState.getLong(KEY_PHOTO_RAW_CONTACT_ID);
+            mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
         }
     }
 
@@ -167,6 +165,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelable(KEY_PHOTO_URI, mPhotoUri);
         outState.putLong(KEY_PHOTO_RAW_CONTACT_ID, mPhotoRawContactId);
+        outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
         super.onSaveInstanceState(outState);
     }
 
@@ -188,7 +187,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
         // If anything was left unsaved, save it now
         if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            save(SaveMode.RELOAD, /* backPressed =*/ false);
+            save(SaveMode.RELOAD);
         }
     }
 
@@ -218,19 +217,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // Set up the photo widget
         mPhotoHandler = createPhotoHandler();
         mPhotoRawContactId = editorView.getPhotoRawContactId();
-        if (mPhotoRawContactId < 0) {
-            // Since the raw contact IDs for new contacts are random negative numbers
-            // we consider any negative key a match
-            for (String key : mUpdatedPhotos.keySet()) {
-                try {
-                    if (Integer.parseInt(key) < 0) {
-                        editorView.setFullSizePhoto((Uri) mUpdatedPhotos.getParcelable(key));
-                        break;
-                    }
-                } catch (NumberFormatException ignored) {
-                }
-            }
-        } else if (mUpdatedPhotos.containsKey(String.valueOf(mPhotoRawContactId))) {
+        if (mUpdatedPhotos.containsKey(String.valueOf(mPhotoRawContactId))) {
             editorView.setFullSizePhoto((Uri) mUpdatedPhotos.getParcelable(
                     String.valueOf(mPhotoRawContactId)));
         }
@@ -309,12 +296,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     @Override
-    protected boolean doSaveAction(int saveMode, boolean backPressed) {
-        // Save contact. No need to pass the palette since we are finished editing after the save.
+    protected boolean doSaveAction(int saveMode) {
         final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(),
-                CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos, backPressed);
+                CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos);
         mContext.startService(intent);
 
         return true;
@@ -366,22 +352,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         mNewContactAccountChanged = true;
         mAccountWithDataSet = newAccount;
         rebindEditorsForNewContact(oldState, oldAccount, newAccount);
-    }
-
-    @Override
-    public String getDisplayName() {
-        final StructuredNameEditorView structuredNameEditorView =
-                getContent().getStructuredNameEditorView();
-        return structuredNameEditorView == null
-                ? null : structuredNameEditorView.getDisplayName();
-    }
-
-    @Override
-    public String getPhoneticName() {
-        final PhoneticNameEditorView phoneticNameEditorView =
-                getContent().getFirstPhoneticNameEditorView();
-        return phoneticNameEditorView == null
-                ? null : phoneticNameEditorView.getPhoneticName();
     }
 
     private CompactRawContactsEditorView getContent() {
