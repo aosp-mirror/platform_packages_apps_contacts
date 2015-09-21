@@ -16,12 +16,22 @@
 
 package com.android.contacts.editor;
 
-import static android.provider.ContactsContract.CommonDataKinds.Event;
 import static android.provider.ContactsContract.CommonDataKinds.GroupMembership;
-import static android.provider.ContactsContract.CommonDataKinds.Photo;
 import static android.provider.ContactsContract.CommonDataKinds.StructuredName;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Note;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.Relation;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.text.TextUtils;
 import android.util.Pair;
 import com.android.contacts.R;
@@ -141,5 +151,40 @@ public class EditorUiUtils {
             builder.append(accountName).append('\n');
         }
         return builder.toString();
+    }
+
+    /**
+     * Return an icon that represents {@param mimeType}.
+     */
+    public static Drawable getMimeTypeDrawable(Context context, String mimeType) {
+        switch (mimeType) {
+            case StructuredPostal.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_place_24dp);
+            case SipAddress.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_dialer_sip_black_24dp);
+            case Phone.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_phone_24dp);
+            case Im.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_message_24dp);
+            case Event.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_event_24dp);
+            case Email.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_email_24dp);
+            case Website.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_public_black_24dp);
+            case Photo.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_camera_alt_black_24dp);
+            case GroupMembership.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_people_black_24dp);
+            case Organization.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_business_black_24dp);
+            case Note.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(R.drawable.ic_insert_comment_black_24dp);
+            case Relation.CONTENT_ITEM_TYPE:
+                return context.getResources().getDrawable(
+                        R.drawable.ic_circles_extended_black_24dp);
+            default:
+                return null;
+        }
     }
 }

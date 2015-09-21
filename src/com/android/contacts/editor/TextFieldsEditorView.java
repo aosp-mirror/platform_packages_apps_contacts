@@ -213,7 +213,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
         }
         boolean hidePossible = false;
 
-        int fieldCount = kind.fieldList.size();
+        int fieldCount = kind.fieldList == null ? 0 : kind.fieldList.size();
         mFieldEditTexts = new EditText[fieldCount];
         for (int index = 0; index < fieldCount; index++) {
             final EditField field = kind.fieldList.get(index);

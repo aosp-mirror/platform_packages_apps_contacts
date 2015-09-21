@@ -23,7 +23,6 @@ import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.AccountsListAdapter;
@@ -35,11 +34,19 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
+import android.provider.ContactsContract.CommonDataKinds.Note;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.Relation;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -53,28 +60,27 @@ import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeSet;
 
 /**
- * View to display information from multiple {@link RawContactDelta}s grouped together
- * (e.g. all the phone numbers from a {@link com.android.contacts.common.model.Contact} together.
+ * View to display information from multiple {@link RawContactDelta}s grouped together.
  */
 public class CompactRawContactsEditorView extends LinearLayout implements View.OnClickListener {
 
     private static final String TAG = "CompactEditorView";
 
+    private static final MimeTypeComparator MIME_TYPE_COMPARATOR = new MimeTypeComparator();
+
     /**
      * Callbacks for hosts of {@link CompactRawContactsEditorView}s.
      */
     public interface Listener {
-
-        /**
-         * Invoked when the compact editor should be expanded to show all fields.
-         */
-        public void onExpandEditor();
 
         /**
          * Invoked when the structured name editor field has changed.
@@ -135,6 +141,55 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
     }
 
+    /** Used to sort kind sections. */
+    private static final class MimeTypeComparator implements
+            Comparator<Map.Entry<String,List<KindSectionData>>> {
+
+        // Order of kinds roughly matches quick contacts; we diverge in the following ways:
+        // 1) all names are together at the top (in quick contacts the nickname and phonetic name
+        //    are in the about card)
+        // 2) IM is moved up after addresses
+        // 3) SIP addresses are moved to below phone numbers
+        private static final List<String> MIME_TYPE_ORDER = Arrays.asList(new String[] {
+                StructuredName.CONTENT_ITEM_TYPE,
+                DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
+                DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
+                Nickname.CONTENT_ITEM_TYPE,
+                Phone.CONTENT_ITEM_TYPE,
+                SipAddress.CONTENT_ITEM_TYPE,
+                Email.CONTENT_ITEM_TYPE,
+                StructuredPostal.CONTENT_ITEM_TYPE,
+                Im.CONTENT_ITEM_TYPE,
+                Website.CONTENT_ITEM_TYPE,
+                Organization.CONTENT_ITEM_TYPE,
+                Event.CONTENT_ITEM_TYPE,
+                Relation.CONTENT_ITEM_TYPE,
+                Note.CONTENT_ITEM_TYPE
+        });
+
+        @Override
+        public int compare(Map.Entry<String, List<KindSectionData>> entry1,
+                Map.Entry<String, List<KindSectionData>> entry2) {
+            if (entry1 == entry2) return 0;
+            if (entry1 == null) return -1;
+            if (entry2 == null) return 1;
+
+            final String mimeType1 = entry1.getKey();
+            final String mimeType2 = entry2.getKey();
+
+            int index1 = MIME_TYPE_ORDER.indexOf(mimeType1);
+            int index2 = MIME_TYPE_ORDER.indexOf(mimeType2);
+
+            // Fallback to alphabetical ordering of the mime type if both are not found
+            if (index1 < 0 && index2 < 0) return mimeType1.compareTo(mimeType2);
+            if (index1 < 0) return 1;
+            if (index2 < 0) return -1;
+
+            return index1 < index2 ? -1 : 1;
+        }
+    }
+
+
     private Listener mListener;
 
     private AccountTypeManager mAccountTypeManager;
@@ -164,12 +219,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private CompactPhotoEditorView mPhoto;
     private ViewGroup mNames;
-    private ViewGroup mPhoneticNames;
-    private ViewGroup mNicknames;
-    private ViewGroup mPhoneNumbers;
-    private ViewGroup mEmails;
-    private ViewGroup mOtherTypes;
-    private Map<String,LinearLayout> mOtherTypesMap = new HashMap<>();
+    private ViewGroup mKindSectionViews;
+    // Map of mime types to KindSectionViews
+    private Map<String,LinearLayout> mKindSectionViewsMap = new HashMap<>();
     private View mMoreFields;
 
     // The ValuesDelta for the non super primary name that was displayed to the user.
@@ -216,19 +268,24 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         mPhoto = (CompactPhotoEditorView) findViewById(R.id.photo_editor);
         mNames = (LinearLayout) findViewById(R.id.names);
-        mPhoneticNames = (LinearLayout) findViewById(R.id.phonetic_names);
-        mNicknames = (LinearLayout) findViewById(R.id.nicknames);
-        mPhoneNumbers = (LinearLayout) findViewById(R.id.phone_numbers);
-        mEmails = (LinearLayout) findViewById(R.id.emails);
-        mOtherTypes = (LinearLayout) findViewById(R.id.other);
+        mKindSectionViews = (LinearLayout) findViewById(R.id.kind_section_views);
         mMoreFields = findViewById(R.id.more_fields);
         mMoreFields.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.more_fields && mListener != null ) {
-            mListener.onExpandEditor();
+        if (view.getId() == R.id.more_fields) {
+            // Stop hiding empty editors and allow the user to enter values for all kinds now
+            for (int i = 0; i < mKindSectionViews.getChildCount(); i++) {
+                final CompactKindSectionView kindSectionView =
+                        (CompactKindSectionView) mKindSectionViews.getChildAt(i);
+                kindSectionView.setHideWhenEmpty(false);
+                kindSectionView.setShowOneEmptyEditor(true);
+                kindSectionView.updateEmptyEditors(/* shouldAnimate =*/ false);
+            }
+
+            updateMoreFieldsButton();
         }
     }
 
@@ -236,13 +293,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         setEnabled(enabled, mNames);
-        setEnabled(enabled, mPhoneticNames);
-        setEnabled(enabled, mNicknames);
-        setEnabled(enabled, mPhoneNumbers);
-        setEnabled(enabled, mEmails);
-        for (Map.Entry<String,LinearLayout> otherType : mOtherTypesMap.entrySet()) {
-            setEnabled(enabled, otherType.getValue());
-        }
+        setEnabled(enabled, mKindSectionViews);
     }
 
     private void setEnabled(boolean enabled, ViewGroup viewGroup) {
@@ -300,9 +351,16 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public PhoneticNameEditorView getFirstPhoneticNameEditorView() {
-        // There should only ever be one phonetic name
-        return mPhoneticNames.getChildCount() == 0
-                ? null : (PhoneticNameEditorView) mPhoneticNames.getChildAt(0);
+        // There should only ever be one phonetic name, it is enforced by dataKind.typeOverallMax
+        final CompactKindSectionView kindSectionView = (CompactKindSectionView)
+                mKindSectionViewsMap.get(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME);
+        if (kindSectionView != null && kindSectionView.getChildCount() > 0) {
+            final View editorView = kindSectionView.getEditorView(0);
+            if (editorView instanceof PhoneticNameEditorView) {
+                return ((PhoneticNameEditorView) editorView);
+            }
+        }
+        return null;
     }
 
     public View getAggregationAnchorView() {
@@ -325,12 +383,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mKindSectionDataMap.clear();
 
         mNames.removeAllViews();
-        mPhoneticNames.removeAllViews();
-        mNicknames.removeAllViews();
-        mPhoneNumbers.removeAllViews();
-        mEmails.removeAllViews();
-        mOtherTypes.removeAllViews();
-        mOtherTypesMap.clear();
+        mKindSectionViews.removeAllViews();
+        mKindSectionViewsMap.clear();
         mMoreFields.setVisibility(View.VISIBLE);
 
         if (rawContactDeltas == null || rawContactDeltas.isEmpty()) {
@@ -352,19 +406,19 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
         vlog("state: primary " + mPrimaryAccount);
 
-        vlog("state: setting compact editor state from " + rawContactDeltas);
+
+        vlog("state: setting editor state from " + rawContactDeltas.size() + " RawContactDelta(s)");
         parseRawContactDeltas(rawContactDeltas);
+        if (mKindSectionDataMap == null || mKindSectionDataMap.isEmpty()) {
+            elog("No kind section data parsed from raw contact deltas");
+            return;
+        }
         addAccountInfo();
         addPhotoView();
-        addStructuredNameView();
-        addEditorViews(rawContactDeltas);
-        updateKindEditorEmptyFields(mPhoneNumbers);
-        updateKindEditorIcons(mPhoneNumbers);
-        updateKindEditorEmptyFields(mEmails);
-        updateKindEditorIcons(mEmails);
-        for (Map.Entry<String,LinearLayout> otherTypes : mOtherTypesMap.entrySet()) {
-            updateKindEditorIcons(otherTypes.getValue());
-        }
+        addNameView();
+        addKindSectionViews();
+
+        updateMoreFieldsButton();
     }
 
     private void parseRawContactDeltas(RawContactDeltaList rawContactDeltas) {
@@ -563,8 +617,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 mViewIdGenerator);
     }
 
-    private void addStructuredNameView() {
-        // Get the kind section data and values delta that will back the name view
+    private void addNameView() {
+        // Get the kind section data and values delta that will back the photo view
         final String mimeType = StructuredName.CONTENT_ITEM_TYPE;
         Pair<KindSectionData,ValuesDelta> pair = getPrimaryKindSectionData(mimeType, mNameId);
         if (pair == null) {
@@ -578,7 +632,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         // read-only contact in the name editor backed by the new raw contact
         // that was created. The new raw contact is the first writable one.
         // See go/editing-read-only-contacts
-        // TODO
         if (!TextUtils.isEmpty(mReadOnlyDisplayName)) {
             for (KindSectionData data : mKindSectionDataMap.get(mimeType)) {
                 if (data.getAccountType().areContactsWritable()) {
@@ -658,195 +711,35 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 ? new Pair<>(resultKindSectionData, resultValuesDelta) : null;
     }
 
-    private void addEditorViews(RawContactDeltaList rawContactDeltas) {
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+    private void addKindSectionViews() {
+        // Sort the kinds
+        final TreeSet<Map.Entry<String,List<KindSectionData>>> entries =
+                new TreeSet<>(MIME_TYPE_COMPARATOR);
+        entries.addAll(mKindSectionDataMap.entrySet());
 
-            for (DataKind dataKind : accountType.getSortedDataKinds()) {
-                if (!dataKind.editable) continue;
+        vlog("kind: " + entries.size() + " kindSection(s)");
+        int i = 0;
+        for (Map.Entry<String, List<KindSectionData>> entry : entries) {
+            final String mimeType = entry.getKey();
+            final List<KindSectionData> kindSectionDataList = entry.getValue();
+            vlog("kind: " + i++ + " " + mimeType + ": " + (kindSectionDataList == null ? 0
+                    : kindSectionDataList.size()) + " kindSectionData(s)");
 
-                final String mimeType = dataKind.mimeType;
-                vlog(mimeType + " " + dataKind.fieldList.size() + " field(s)");
-                if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)
-                        || StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)
-                        || GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    // Photos and structured names are handled separately and
-                    // group membership is not supported
-                    continue;
-                } else if (DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
-                    // Only add phonetic names if there is a non-empty one. Note the use of
-                    // StructuredName mimeType below, even though we matched a pseudo mime type.
-                    final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
-                            StructuredName.CONTENT_ITEM_TYPE, /* forceSelection =*/ true);
-                    if (hasNonEmptyValue(dataKind, valuesDelta)) {
-                        mPhoneticNames.addView(inflatePhoneticNameEditorView(
-                                mPhoneticNames, accountType, valuesDelta, rawContactDelta));
-                    }
-                } else if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    // Add all non-empty nicknames
-                    final List<ValuesDelta> valuesDeltas = getNonEmptyValuesDeltas(
-                            rawContactDelta, Nickname.CONTENT_ITEM_TYPE, dataKind);
-                    if (valuesDeltas != null && !valuesDeltas.isEmpty()) {
-                        for (ValuesDelta valuesDelta : valuesDeltas) {
-                            mNicknames.addView(inflateNicknameEditorView(
-                                    mNicknames, dataKind, valuesDelta, rawContactDelta));
-                        }
-                    }
-                } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final KindSectionView kindSectionView =
-                            inflateKindSectionView(mPhoneNumbers, dataKind, rawContactDelta);
-                    kindSectionView.setListener(new KindSectionView.Listener() {
-                        @Override
-                        public void onDeleteRequested(Editor editor) {
-                            if (kindSectionView.getEditorCount() == 1) {
-                                kindSectionView.markForRemoval();
-                                EditorAnimator.getInstance().removeEditorView(kindSectionView);
-                            } else {
-                                editor.deleteEditor();
-                            }
-                            updateKindEditorEmptyFields(mPhoneNumbers);
-                            updateKindEditorIcons(mPhoneNumbers);
-                        }
-                    });
-                    mPhoneNumbers.addView(kindSectionView);
-                } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    final KindSectionView kindSectionView =
-                            inflateKindSectionView(mEmails, dataKind, rawContactDelta);
-                    kindSectionView.setListener(new KindSectionView.Listener() {
-                        @Override
-                        public void onDeleteRequested(Editor editor) {
-                            if (kindSectionView.getEditorCount() == 1) {
-                                kindSectionView.markForRemoval();
-                                EditorAnimator.getInstance().removeEditorView(kindSectionView);
-                            } else {
-                                editor.deleteEditor();
-                            }
-                            updateKindEditorEmptyFields(mEmails);
-                            updateKindEditorIcons(mEmails);
-                        }
-                    });
-                    mEmails.addView(kindSectionView);
-                } else if (hasNonEmptyValuesDelta(rawContactDelta, mimeType, dataKind)) {
-                    final LinearLayout otherTypeViewGroup;
-                    if (mOtherTypesMap.containsKey(mimeType)) {
-                        otherTypeViewGroup = mOtherTypesMap.get(mimeType);
-                    } else {
-                        otherTypeViewGroup = new LinearLayout(getContext());
-                        otherTypeViewGroup.setOrientation(LinearLayout.VERTICAL);
-                        mOtherTypes.addView(otherTypeViewGroup);
-                        mOtherTypesMap.put(mimeType, otherTypeViewGroup);
-                    }
-                    final KindSectionView kindSectionView =
-                            inflateKindSectionView(mOtherTypes, dataKind, rawContactDelta);
-                    kindSectionView.setListener(new KindSectionView.Listener() {
-                        @Override
-                        public void onDeleteRequested(Editor editor) {
-                            if (kindSectionView.getEditorCount() == 1) {
-                                kindSectionView.markForRemoval();
-                                EditorAnimator.getInstance().removeEditorView(kindSectionView);
-                            } else {
-                                editor.deleteEditor();
-                            }
-                            updateKindEditorIcons(otherTypeViewGroup);
-                        }
-                    });
-                    otherTypeViewGroup.addView(kindSectionView);
-                }
+            // Ignore mime types that we've already handled
+            if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)
+                    || StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)
+                    || DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME.equals(mimeType)) continue;
+
+            // Ignore mime types that we don't handle
+            if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) continue;
+
+            if (kindSectionDataList != null) {
+                final CompactKindSectionView kindSectionView = inflateKindSectionView(
+                        mKindSectionViews, kindSectionDataList, mimeType);
+                mKindSectionViewsMap.put(mimeType, kindSectionView);
+                mKindSectionViews.addView(kindSectionView);
             }
         }
-    }
-
-    private static void updateKindEditorEmptyFields(ViewGroup viewGroup) {
-        KindSectionView lastVisibleKindSectionView = null;
-        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-            if (viewGroup.getChildAt(i).getVisibility() == View.VISIBLE) {
-                lastVisibleKindSectionView = (KindSectionView) viewGroup.getChildAt(i);
-            }
-        }
-        // Only the last editor should show an empty editor
-        if (lastVisibleKindSectionView != null) {
-            // Hide all empty kind sections except the last one
-            for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                final KindSectionView kindSectionView = (KindSectionView) viewGroup.getChildAt(i);
-                if (kindSectionView != lastVisibleKindSectionView
-                        && kindSectionView.areAllEditorsEmpty()) {
-                    kindSectionView.setVisibility(View.GONE);
-                }
-            }
-            // Set the last editor to show empty editor fields
-            lastVisibleKindSectionView.setShowOneEmptyEditor(true);
-            lastVisibleKindSectionView.updateEmptyEditors(/* shouldAnimate =*/ false);
-        }
-    }
-
-    private static void updateKindEditorIcons(ViewGroup viewGroup) {
-        // Show the icon on the first visible kind editor
-        boolean iconVisible = false;
-        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-            final KindSectionView kindSectionView = (KindSectionView) viewGroup.getChildAt(i);
-            if (kindSectionView.getVisibility() != View.VISIBLE
-                    || kindSectionView.isMarkedForRemoval()) {
-                continue;
-            }
-            if (!iconVisible) {
-                kindSectionView.setIconVisibility(true);
-                iconVisible = true;
-            } else {
-                kindSectionView.setIconVisibility(false);
-            }
-        }
-    }
-
-    private static boolean hasNonEmptyValuesDelta(RawContactDelta rawContactDelta,
-            String mimeType, DataKind dataKind) {
-        return !getNonEmptyValuesDeltas(rawContactDelta, mimeType, dataKind).isEmpty();
-    }
-
-    private static ValuesDelta getNonEmptySuperPrimaryValuesDeltas(RawContactDelta rawContactDelta,
-            String mimeType, DataKind dataKind) {
-        for (ValuesDelta valuesDelta : getNonEmptyValuesDeltas(
-                rawContactDelta, mimeType, dataKind)) {
-            if (valuesDelta.isSuperPrimary()) {
-                return valuesDelta;
-            }
-        }
-        return null;
-    }
-
-    static List<ValuesDelta> getNonEmptyValuesDeltas(RawContactDelta rawContactDelta,
-            String mimeType, DataKind dataKind) {
-        final List<ValuesDelta> result = new ArrayList<>();
-        if (rawContactDelta == null) {
-            vlog("Null RawContactDelta");
-            return result;
-        }
-        if (!rawContactDelta.hasMimeEntries(mimeType)) {
-            vlog("No ValueDeltas");
-            return result;
-        }
-        for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(mimeType)) {
-            if (hasNonEmptyValue(dataKind, valuesDelta)) {
-                result.add(valuesDelta);
-            }
-        }
-        return result;
-    }
-
-    private static boolean hasNonEmptyValue(DataKind dataKind, ValuesDelta valuesDelta) {
-        if (valuesDelta == null) {
-            vlog("Null valuesDelta");
-            return false;
-        }
-        for (EditField editField : dataKind.fieldList) {
-            final String column = editField.column;
-            final String value = valuesDelta == null ? null : valuesDelta.getAsString(column);
-            vlog("Field " + column + " empty=" + TextUtils.isEmpty(value) + " value=" + value);
-            if (!TextUtils.isEmpty(value)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private StructuredNameEditorView inflateStructuredNameEditorView(ViewGroup viewGroup,
@@ -858,54 +751,45 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             result.setEditorListener(nameEditorListener);
         }
         result.setDeletable(false);
-        result.setValues(
-                accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
-                valuesDelta,
-                rawContactDelta,
-                readOnly,
-                mViewIdGenerator);
+        result.setValues(accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
+                valuesDelta, rawContactDelta, readOnly, mViewIdGenerator);
         return result;
     }
 
-    private PhoneticNameEditorView inflatePhoneticNameEditorView(ViewGroup viewGroup,
-            AccountType accountType, ValuesDelta valuesDelta, RawContactDelta rawContactDelta) {
-        final PhoneticNameEditorView result = (PhoneticNameEditorView) mLayoutInflater.inflate(
-                R.layout.phonetic_name_editor_view, viewGroup, /* attachToRoot =*/ false);
-        result.setDeletable(false);
-        result.setValues(
-                accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
-                valuesDelta,
-                rawContactDelta,
-                /* readOnly =*/ false,
+    private CompactKindSectionView inflateKindSectionView(ViewGroup viewGroup,
+            List<KindSectionData> kindSectionDataList, String mimeType) {
+        final CompactKindSectionView kindSectionView = (CompactKindSectionView)
+                mLayoutInflater.inflate(R.layout.compact_item_kind_section, viewGroup,
+                        /* attachToRoot =*/ false);
+
+        if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)
+                || Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            // Phone numbers and emails address are always displayed and are
+            // the only types you add new values to initially
+            kindSectionView.setHideWhenEmpty(false);
+        }
+        // TODO: talk to Ricardo about when to allow adding new entries in compact mode
+        kindSectionView.setShowOneEmptyEditor(true);
+
+        kindSectionView.setState(kindSectionDataList, /* readOnly =*/ false,
                 mViewIdGenerator);
-        return result;
+
+        return kindSectionView;
     }
 
-    private TextFieldsEditorView inflateNicknameEditorView(ViewGroup viewGroup, DataKind dataKind,
-            ValuesDelta valuesDelta, RawContactDelta rawContactDelta) {
-        final TextFieldsEditorView result = (TextFieldsEditorView) mLayoutInflater.inflate(
-                R.layout.nick_name_editor_view, viewGroup, /* attachToRoot =*/ false);
-        result.setDeletable(false);
-        result.setValues(
-                dataKind,
-                valuesDelta,
-                rawContactDelta,
-                /* readOnly =*/ false,
-                mViewIdGenerator);
-        return result;
-    }
-
-
-    private KindSectionView inflateKindSectionView(ViewGroup viewGroup, DataKind dataKind,
-            RawContactDelta rawContactDelta) {
-        final KindSectionView result = (KindSectionView) mLayoutInflater.inflate(
-                R.layout.item_kind_section, viewGroup, /* attachToRoot =*/ false);
-        result.setState(
-                dataKind,
-                rawContactDelta,
-                /* readOnly =*/ false,
-                mViewIdGenerator);
-        return result;
+    private void updateMoreFieldsButton() {
+        // If any kind section views are hidden then show the link
+        for (int i = 0; i < mKindSectionViews.getChildCount(); i++) {
+            final CompactKindSectionView kindSectionView =
+                    (CompactKindSectionView) mKindSectionViews.getChildAt(i);
+            if (kindSectionView.getVisibility() == View.GONE) {
+                // Show the more fields button
+                mMoreFields.setVisibility(View.VISIBLE);
+                return;
+            }
+        }
+        // Hide the more fields button
+        mMoreFields.setVisibility(View.GONE);
     }
 
     private static void vlog(String message) {

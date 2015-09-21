@@ -24,7 +24,7 @@
         android:fillViewport="true">
 
     <com.android.contacts.editor.CompactRawContactsEditorView
-            android:id="@+id/editors"
+            android:id="@+id/raw_contacts_editor_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
