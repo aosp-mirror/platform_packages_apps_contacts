@@ -149,6 +149,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private boolean mIsUserProfile;
     private AccountWithDataSet mPrimaryAccount;
     private RawContactDelta mPrimaryRawContactDelta;
+    private Map<String,List<KindSectionData>> mKindSectionDataMap = new HashMap<>();
 
     // Account header
     private View mAccountHeaderContainer;
@@ -176,6 +177,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private long mPhotoRawContactId;
 
+    private boolean mUsingDefaultNameEditorView;
     private StructuredNameEditorView mDefaultNameEditorView;
 
     public CompactRawContactsEditorView(Context context) {
@@ -320,6 +322,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
             long photoId, long nameId, String readOnlyDisplayName, boolean hasNewContact,
             boolean isUserProfile, AccountWithDataSet primaryAccount) {
+        mKindSectionDataMap.clear();
+
         mNames.removeAllViews();
         mPhoneticNames.removeAllViews();
         mNicknames.removeAllViews();
@@ -327,6 +331,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mEmails.removeAllViews();
         mOtherTypes.removeAllViews();
         mOtherTypesMap.clear();
+        mMoreFields.setVisibility(View.VISIBLE);
 
         if (rawContactDeltas == null || rawContactDeltas.isEmpty()) {
             return;
@@ -350,8 +355,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         vlog("state: setting compact editor state from " + rawContactDeltas);
         parseRawContactDeltas(rawContactDeltas);
         addAccountInfo();
-        addPhotoView(rawContactDeltas, viewIdGenerator, photoId, readOnlyDisplayName);
-        addStructuredNameView(rawContactDeltas, nameId, readOnlyDisplayName);
+        addPhotoView();
+        addStructuredNameView();
         addEditorViews(rawContactDeltas);
         updateKindEditorEmptyFields(mPhoneNumbers);
         updateKindEditorIcons(mPhoneNumbers);
@@ -406,140 +411,46 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 }
             }
         }
-    }
 
-    private void addPhotoView(RawContactDeltaList rawContactDeltas,
-            ViewIdGenerator viewIdGenerator, long photoId, String readOnlyDisplayName) {
-        // If we're editing a read-only contact, the display name from the read-only
-        // contact is non empty and we can use it determine whether to back the photo editor with
-        // the empty new raw contact delta.  See go/editing-read-only-contacts
-        final boolean readOnlyContact = !TextUtils.isEmpty(readOnlyDisplayName);
-        if (readOnlyContact) {
-            for (RawContactDelta rawContactDelta : rawContactDeltas) {
-                if (!rawContactDelta.isVisible()) continue;
-                final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+        RawContactModifier.ensureKindExists(mPrimaryRawContactDelta,
+                mPrimaryRawContactDelta.getAccountType(mAccountTypeManager),
+                StructuredName.CONTENT_ITEM_TYPE);
 
-                // Make sure we have a photo
-                RawContactModifier.ensureKindExists(
-                        rawContactDelta, accountType, Photo.CONTENT_ITEM_TYPE);
+        RawContactModifier.ensureKindExists(mPrimaryRawContactDelta,
+                mPrimaryRawContactDelta.getAccountType(mAccountTypeManager),
+                Photo.CONTENT_ITEM_TYPE);
 
-                final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
-                if (accountType.areContactsWritable()) {
-                    for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(
-                            Photo.CONTENT_ITEM_TYPE)) {
-                        if (valuesDelta != null) {
-                            // Break the loop but don't return because we need to keep going to
-                            // in order to show the photo from the read-only contact.
-                            mPhotoRawContactId = rawContactDelta.getRawContactId();
-                            mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
-                                    /* readOnly =*/ false, mMaterialPalette, viewIdGenerator);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        // Look for a match for the photo ID that was passed in
+        // Build the kind section data list map
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
+            if (rawContactDelta == null || !rawContactDelta.isVisible()) continue;
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
-
-            // Make sure we have a photo
-            RawContactModifier.ensureKindExists(
-                    rawContactDelta, accountType, Photo.CONTENT_ITEM_TYPE);
-
-            final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
-            if (dataKind != null && dataKind.editable) {
-                for (ValuesDelta valuesDelta
-                        : rawContactDelta.getMimeEntries(Photo.CONTENT_ITEM_TYPE)) {
-                    if (valuesDelta != null && valuesDelta.getId() != null
-                            && valuesDelta.getId().equals(photoId)) {
-                        if (readOnlyContact) {
-                            mPhoto.setPhoto(valuesDelta);
-                        } else {
-                            mPhotoRawContactId = rawContactDelta.getRawContactId();
-                            mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
-                                    !accountType.areContactsWritable(),
-                                    mMaterialPalette, viewIdGenerator);
-                        }
-                        return;
-                    }
+            if (accountType == null) continue;
+            final List<DataKind> dataKinds = accountType.getSortedDataKinds();
+            final int dataKindSize = dataKinds == null ? 0 : dataKinds.size();
+            vlog("parse: " + dataKindSize + " dataKinds(s)");
+            for (int i = 0; i < dataKindSize; i++) {
+                final DataKind dataKind = dataKinds.get(i);
+                // Don't show read only values
+                if (dataKind == null || !dataKind.editable) continue;
+                // Get the kind section data list to add the new field to
+                List<KindSectionData> kindSectionDataList =
+                        mKindSectionDataMap.get(dataKind.mimeType);
+                if (kindSectionDataList == null) {
+                    kindSectionDataList = new ArrayList<>();
+                    mKindSectionDataMap.put(dataKind.mimeType, kindSectionDataList);
                 }
+                final KindSectionData kindSectionData =
+                        new KindSectionData(accountType, dataKind, rawContactDelta);
+                kindSectionDataList.add(kindSectionData);
+                vlog("parse: " + i + " " + dataKind.mimeType + " " +
+                        (kindSectionData.hasValuesDeltas()
+                                ? kindSectionData.getValuesDeltas().size() : null) + " value(s)");
             }
         }
-
-        // Look for a non-empty super primary photo
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
-            final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
-            if (dataKind != null && dataKind.editable) {
-                final ValuesDelta valuesDelta = getNonEmptySuperPrimaryValuesDeltas(
-                        rawContactDelta, Photo.CONTENT_ITEM_TYPE, dataKind);
-                if (valuesDelta != null) {
-                    if (readOnlyContact) {
-                        mPhoto.setPhoto(valuesDelta);
-                    } else {
-                        mPhotoRawContactId = rawContactDelta.getRawContactId();
-                        mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
-                                !accountType.areContactsWritable(), mMaterialPalette,
-                                viewIdGenerator);
-                    }
-                    return;
-                }
-            }
-        }
-        // We didn't find a non-empty super primary photo, use the first non-empty one
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
-            final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
-            if (dataKind != null && dataKind.editable) {
-                final List<ValuesDelta> valuesDeltas = getNonEmptyValuesDeltas(
-                        rawContactDelta, Photo.CONTENT_ITEM_TYPE, dataKind);
-                if (valuesDeltas != null && !valuesDeltas.isEmpty()) {
-                    if (readOnlyContact) {
-                        mPhoto.setPhoto(valuesDeltas.get(0));
-                    } else {
-                        mPhotoRawContactId = rawContactDelta.getRawContactId();
-                        mPhoto.setValues(dataKind, valuesDeltas.get(0), rawContactDelta,
-                                !accountType.areContactsWritable(), mMaterialPalette,
-                                viewIdGenerator);
-                    }
-                    return;
-                }
-            }
-        }
-        // No suitable non-empty photo
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
-            final DataKind dataKind = accountType.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
-            if (dataKind != null && dataKind.editable) {
-                final ValuesDelta valuesDelta = rawContactDelta.getSuperPrimaryEntry(
-                        dataKind.mimeType, /* forceSelection =*/ true);
-                if (valuesDelta != null) {
-                    if (readOnlyContact) {
-                        mPhoto.setPhoto(valuesDelta);
-                    } else {
-                        mPhotoRawContactId = rawContactDelta.getRawContactId();
-                        mPhoto.setValues(dataKind, valuesDelta, rawContactDelta,
-                                !accountType.areContactsWritable(), mMaterialPalette,
-                                viewIdGenerator);
-                    }
-                    return;
-                }
-            }
-        }
-        // Should not happen since we ensure the kind exists but if we unexpectedly get here
-        // we must remove the photo section so that it does not take up the entire view
-        mPhoto.setVisibility(View.GONE);
     }
 
     private void addAccountInfo() {
         if (mPrimaryRawContactDelta == null) {
-            vlog("account info: hidden because no raw contact delta");
             mAccountHeaderContainer.setVisibility(View.GONE);
             mAccountSelectorContainer.setVisibility(View.GONE);
             return;
@@ -626,134 +537,125 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         });
     }
 
-    private void addStructuredNameView(RawContactDeltaList rawContactDeltas, long nameId,
-            String readOnlyDisplayName) {
-        // If we're editing a read-only contact we want to display the name from the read-only
-        // contact in a structured name editor backed by the new raw contact that was created.
-        // The new raw contact is writable and merging it with the read-only contact allows us
-        // to edit the read-only contact. See go/editing-read-only-contacts
-        if (!TextUtils.isEmpty(readOnlyDisplayName)) {
-            for (RawContactDelta rawContactDelta : rawContactDeltas) {
-                if (!rawContactDelta.isVisible()) continue;
-                final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+    private void addPhotoView() {
+        // Get the kind section data and values delta that will back the photo view
+        final String mimeType = Photo.CONTENT_ITEM_TYPE;
+        Pair<KindSectionData,ValuesDelta> pair = getPrimaryKindSectionData(mimeType, mPhotoId);
+        if (pair == null) {
+            wlog(mimeType + ": no kind section data parsed");
+            return;
+        }
+        final KindSectionData kindSectionData = pair.first;
+        final ValuesDelta valuesDelta = pair.second;
 
-                // Make sure we have a structured name
-                RawContactModifier.ensureKindExists(
-                        rawContactDelta, accountType, StructuredName.CONTENT_ITEM_TYPE);
+        // If we're editing a read-only contact we want to display the photo from the
+        // read-only contact in a photo editor backed by the new raw contact
+        // that was created. The new raw contact is the first writable one.
+        // See go/editing-read-only-contacts
+        if (mReadOnlyDisplayName != null) {
+            mPhotoRawContactId = mPrimaryRawContactDelta.getRawContactId();
+        }
 
-                if (accountType.areContactsWritable()) {
-                    for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(
-                            StructuredName.CONTENT_ITEM_TYPE)) {
-                        if (valuesDelta != null) {
-                            mNameValuesDelta = valuesDelta;
-                            final NameEditorListener nameEditorListener = new NameEditorListener(
-                                    mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
-                            final StructuredNameEditorView nameEditorView =
-                                    inflateStructuredNameEditorView(mNames, accountType,
-                                            mNameValuesDelta, rawContactDelta, nameEditorListener,
-                                            !accountType.areContactsWritable());
-                            nameEditorView.setDisplayName(readOnlyDisplayName);
-                            mNames.addView(nameEditorView);
-                            mDefaultNameEditorView = nameEditorView;
-                            return;
-                        }
-                    }
+        mPhotoRawContactId = kindSectionData.getRawContactDelta().getRawContactId();
+        mPhoto.setValues(kindSectionData.getDataKind(), valuesDelta,
+                kindSectionData.getRawContactDelta(),
+                !kindSectionData.getAccountType().areContactsWritable(), mMaterialPalette,
+                mViewIdGenerator);
+    }
+
+    private void addStructuredNameView() {
+        // Get the kind section data and values delta that will back the name view
+        final String mimeType = StructuredName.CONTENT_ITEM_TYPE;
+        Pair<KindSectionData,ValuesDelta> pair = getPrimaryKindSectionData(mimeType, mNameId);
+        if (pair == null) {
+            wlog(mimeType + ": no kind section data parsed");
+            return;
+        }
+        final KindSectionData kindSectionData = pair.first;
+        final ValuesDelta valuesDelta = pair.second;
+
+        // If we're editing a read-only contact we want to display the name from the
+        // read-only contact in the name editor backed by the new raw contact
+        // that was created. The new raw contact is the first writable one.
+        // See go/editing-read-only-contacts
+        // TODO
+        if (!TextUtils.isEmpty(mReadOnlyDisplayName)) {
+            for (KindSectionData data : mKindSectionDataMap.get(mimeType)) {
+                if (data.getAccountType().areContactsWritable()) {
+                    vlog(mimeType + ": using name from read-only contact");
+                    mUsingDefaultNameEditorView = true;
+                    break;
                 }
             }
         }
 
-        // Look for a match for the name ID that was passed in
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
+        final NameEditorListener nameEditorListener = new NameEditorListener(valuesDelta,
+                kindSectionData.getRawContactDelta().getRawContactId(), mListener);
+        final StructuredNameEditorView nameEditorView = inflateStructuredNameEditorView(
+                mNames, kindSectionData.getAccountType(), valuesDelta,
+                kindSectionData.getRawContactDelta(), nameEditorListener,
+                !kindSectionData.getAccountType().areContactsWritable());
+        mNames.addView(nameEditorView);
 
-            // Make sure we have a structured name
-            RawContactModifier.ensureKindExists(
-                    rawContactDelta, accountType, StructuredName.CONTENT_ITEM_TYPE);
+        // TODO: Remove this after eliminating the full editor
+        mNameValuesDelta = valuesDelta;
+        if (mUsingDefaultNameEditorView) {
+            mDefaultNameEditorView = nameEditorView;
+        }
+    }
 
-            // Note use of pseudo mime type to get the DataKind and StructuredName to get value
-            final DataKind dataKind = accountType.getKindForMimetype(
-                    DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME);
-            if (dataKind == null || !dataKind.editable) continue;
+    private Pair<KindSectionData,ValuesDelta> getPrimaryKindSectionData(String mimeType, long id) {
+        final List<KindSectionData> kindSectionDataList = mKindSectionDataMap.get(mimeType);
+        if (kindSectionDataList == null || kindSectionDataList.isEmpty()) {
+            wlog(mimeType + ": no kind section data parsed");
+            return null;
+        }
 
-            for (ValuesDelta valuesDelta : rawContactDelta.getMimeEntries(
-                    StructuredName.CONTENT_ITEM_TYPE)) {
-                if (valuesDelta != null && valuesDelta.getId() != null
-                        && valuesDelta.getId().equals(nameId)) {
-                    mNameValuesDelta = valuesDelta;
-                    final NameEditorListener nameEditorListener = new NameEditorListener(
-                            mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
-                    mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                            mNameValuesDelta, rawContactDelta, nameEditorListener,
-                            !accountType.areContactsWritable()));
-                    return;
+        KindSectionData resultKindSectionData = null;
+        ValuesDelta resultValuesDelta = null;
+        if (id > 0) {
+            // Look for a match for the ID that was passed in
+            for (KindSectionData kindSectionData : kindSectionDataList) {
+                resultValuesDelta = kindSectionData.getValuesDeltaById(id);
+                if (resultValuesDelta != null) {
+                    vlog(mimeType + ": matched kind section data by ID");
+                    resultKindSectionData = kindSectionData;
+                    break;
                 }
             }
         }
-        // Look for a super primary name
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
-
-            final DataKind dataKind = accountType.getKindForMimetype(
-                    DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME);
-            if (dataKind == null || !dataKind.editable) continue;
-
-            final ValuesDelta superPrimaryValuesDelta = getNonEmptySuperPrimaryValuesDeltas(
-                    rawContactDelta, StructuredName.CONTENT_ITEM_TYPE, dataKind);
-            if (superPrimaryValuesDelta != null) {
-                // Our first preference is for a non-empty super primary name
-                final NameEditorListener nameEditorListener = new NameEditorListener(
-                        superPrimaryValuesDelta, rawContactDelta.getRawContactId(), mListener);
-                mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                        superPrimaryValuesDelta, rawContactDelta, nameEditorListener,
-                        !accountType.areContactsWritable()));
-                return;
+        if (resultKindSectionData == null) {
+            // Look for a super primary photo
+            for (KindSectionData kindSectionData : kindSectionDataList) {
+                resultValuesDelta = kindSectionData.getSuperPrimaryValuesDelta();
+                if (resultValuesDelta != null) {
+                    wlog(mimeType + ": matched super primary kind section data");
+                    resultKindSectionData = kindSectionData;
+                    break;
+                }
             }
         }
-        // We didn't find a super primary name
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
-
-            final DataKind dataKind = accountType.getKindForMimetype(
-                    DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME);
-            if (dataKind == null || !dataKind.editable) continue;
-
-            final List<ValuesDelta> nonEmptyValuesDeltas = getNonEmptyValuesDeltas(
-                    rawContactDelta, StructuredName.CONTENT_ITEM_TYPE, dataKind);
-            if (nonEmptyValuesDeltas != null && !nonEmptyValuesDeltas.isEmpty()) {
-                // Take the first non-empty name
-                mNameValuesDelta = nonEmptyValuesDeltas.get(0);
-                final NameEditorListener nameEditorListener = new NameEditorListener(
-                        mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
-                mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                        mNameValuesDelta, rawContactDelta, nameEditorListener,
-                        !accountType.areContactsWritable()));
-                return;
+        if (resultKindSectionData == null) {
+            // Fall back to the first non-empty value
+            for (KindSectionData kindSectionData : kindSectionDataList) {
+                resultValuesDelta = kindSectionData.getFirstNonEmptyValuesDelta();
+                if (resultValuesDelta != null) {
+                    vlog(mimeType + ": using first non empty value");
+                    resultKindSectionData = kindSectionData;
+                    break;
+                }
             }
         }
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
-
-            final DataKind dataKind = accountType.getKindForMimetype(
-                    DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME);
-            if (dataKind == null || !dataKind.editable) continue;
-
-            // Fall back to the first entry
-            final ArrayList<ValuesDelta> valuesDeltas = rawContactDelta.getMimeEntries(
-                    StructuredName.CONTENT_ITEM_TYPE);
-            if (valuesDeltas != null && !valuesDeltas.isEmpty()) {
-                mNameValuesDelta = valuesDeltas.get(0);
-                final NameEditorListener nameEditorListener = new NameEditorListener(
-                        mNameValuesDelta, rawContactDelta.getRawContactId(), mListener);
-                mNames.addView(inflateStructuredNameEditorView(mNames, accountType,
-                        mNameValuesDelta, rawContactDelta, nameEditorListener,
-                        !accountType.areContactsWritable()));
-                return;
+        if (resultKindSectionData == null || resultValuesDelta == null) {
+            final List<ValuesDelta> valuesDeltaList = kindSectionDataList.get(0).getValuesDeltas();
+            if (valuesDeltaList != null && !valuesDeltaList.isEmpty()) {
+                vlog(mimeType + ": falling back to first empty entry");
+                resultValuesDelta = valuesDeltaList.get(0);
+                resultKindSectionData = kindSectionDataList.get(0);
             }
         }
+        return resultKindSectionData != null && resultValuesDelta != null
+                ? new Pair<>(resultKindSectionData, resultValuesDelta) : null;
     }
 
     private void addEditorViews(RawContactDeltaList rawContactDeltas) {
@@ -1010,5 +912,15 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         if (Log.isLoggable(TAG, Log.VERBOSE)) {
             Log.v(TAG, message);
         }
+    }
+
+    private static void wlog(String message) {
+        if (Log.isLoggable(TAG, Log.WARN)) {
+            Log.w(TAG, message);
+        }
+    }
+
+    private static void elog(String message) {
+        Log.e(TAG, message);
     }
 }
