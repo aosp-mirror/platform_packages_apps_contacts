@@ -245,10 +245,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
                 final StructuredNameEditorView nameEditor = rawContactEditor.getNameEditor();
                 nameEditor.setEditorListener(structuredNameListener);
-                if (!TextUtils.isEmpty(mReadOnlyDisplayName)) {
-                    nameEditor.setDisplayName(mReadOnlyDisplayName);
-                    mReadOnlyNameEditorView = nameEditor;
-                }
 
                 rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);
 

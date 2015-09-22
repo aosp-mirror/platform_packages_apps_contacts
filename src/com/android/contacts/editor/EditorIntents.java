@@ -44,11 +44,10 @@ public class EditorIntents {
      * existing contact.
      */
     public static Intent createCompactEditContactIntent(Uri contactLookupUri,
-            MaterialPalette materialPalette, long photoId, long nameId) {
+            MaterialPalette materialPalette, long photoId) {
         final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
         putMaterialPalette(intent, materialPalette);
         putPhotoId(intent, photoId);
-        putNameId(intent, nameId);
         return intent;
     }
 
@@ -99,12 +98,11 @@ public class EditorIntents {
      * existing contact.
      */
     public static Intent createEditContactIntent(Uri contactLookupUri,
-            MaterialPalette materialPalette, long photoId, long nameId) {
+            MaterialPalette materialPalette, long photoId) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_EDIT, contactLookupUri);
         addContactIntentFlags(intent);
         putMaterialPalette(intent, materialPalette);
         putPhotoId(intent, photoId);
-        putNameId(intent, nameId);
         return intent;
     }
 
@@ -112,9 +110,9 @@ public class EditorIntents {
      * Returns an Intent to start the fully expanded {@link ContactEditorActivity} for a
      * new contact.
      */
+    // TODO: Delete this if we don't need it to load the full editor for read only accounts
     public static Intent createInsertContactIntent(RawContactDeltaList rawContactDeltaList,
-            String displayName, String phoneticName, Bundle updatedPhotos,
-            boolean isNewLocalProfile) {
+            String displayName, String phoneticName, boolean isNewLocalProfile) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_INSERT,
                 Contacts.CONTENT_URI);
         intent.putExtra(ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, isNewLocalProfile);
@@ -140,12 +138,6 @@ public class EditorIntents {
     private static void putPhotoId(Intent intent, long photoId) {
         if (photoId >= 0) {
             intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_PHOTO_ID, photoId);
-        }
-    }
-
-    private static void putNameId(Intent intent, long nameId) {
-        if (nameId >= 0) {
-            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_NAME_ID, nameId);
         }
     }
 

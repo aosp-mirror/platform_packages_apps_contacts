@@ -208,11 +208,8 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // Add input fields for the loaded Contact
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
-        editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId, mNameId,
-                mReadOnlyDisplayName, mHasNewContact, mIsUserProfile, mAccountWithDataSet);
-        if (mReadOnlyDisplayName != null) {
-            mReadOnlyNameEditorView = editorView.getDefaultNameEditorView();
-        }
+        editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId,
+                mHasNewContact, mIsUserProfile, mAccountWithDataSet);
 
         // Set up the photo widget
         mPhotoHandler = createPhotoHandler();

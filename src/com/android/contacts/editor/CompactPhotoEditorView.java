@@ -138,7 +138,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
      * RawContactDelta underlying this view is not modified in any way.  Using this method allows
      * you to show one photo (from a read-only contact, for example) and yet have a different
      * raw contact updated when a new photo is set (from the new raw contact created and attached
-     * to the read-only contact). See go/editing-read-only-contacts
+     * to the read-only contact).
      */
     public void setPhoto(ValuesDelta valuesDelta) {
         if (valuesDelta == null) {

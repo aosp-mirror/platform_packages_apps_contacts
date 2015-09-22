@@ -17,6 +17,7 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -29,10 +30,13 @@ import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.editor.Editor.EditorListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -40,19 +44,82 @@ import java.util.List;
  */
 public class CompactKindSectionView extends LinearLayout implements EditorListener {
 
+    /** Sorts google account types before others. */
+    private static final class KindSectionComparator implements Comparator<KindSectionData> {
+
+        private RawContactDeltaComparator mRawContactDeltaComparator;
+
+        private KindSectionComparator(Context context) {
+            mRawContactDeltaComparator = new RawContactDeltaComparator(context);
+        }
+
+        @Override
+        public int compare(KindSectionData kindSectionData1, KindSectionData kindSectionData2) {
+            if (kindSectionData1 == kindSectionData2) return 0;
+            if (kindSectionData1 == null) return -1;
+            if (kindSectionData2 == null) return 1;
+
+            return mRawContactDeltaComparator.compare(kindSectionData1.getRawContactDelta(),
+                    kindSectionData2.getRawContactDelta());
+        }
+    }
+
+    /**
+     * Marks a name as super primary when it is changed.
+     *
+     * This is for the case when two or more raw contacts with names are joined where neither is
+     * marked as super primary.  If the user hits back (which causes a save) after changing the
+     * name that was arbitrarily displayed, we want that to be the name that is used.
+     *
+     * Should only be set when a super primary name does not already exist since we only show
+     * one name field.
+     */
+    static final class NameEditorListener implements Editor.EditorListener {
+
+        private final ValuesDelta mValuesDelta;
+        private final long mRawContactId;
+        private final CompactRawContactsEditorView.Listener mListener;
+
+        public NameEditorListener(ValuesDelta valuesDelta, long rawContactId,
+                CompactRawContactsEditorView.Listener listener) {
+            mValuesDelta = valuesDelta;
+            mRawContactId = rawContactId;
+            mListener = listener;
+        }
+
+        @Override
+        public void onRequest(int request) {
+            if (request == Editor.EditorListener.FIELD_CHANGED) {
+                mValuesDelta.setSuperPrimary(true);
+                if (mListener != null) {
+                    mListener.onNameFieldChanged(mRawContactId, mValuesDelta);
+                }
+            } else if (request == Editor.EditorListener.FIELD_TURNED_EMPTY) {
+                mValuesDelta.setSuperPrimary(false);
+            }
+        }
+
+        @Override
+        public void onDeleteRequested(Editor editor) {
+        }
+    }
+
     private ViewGroup mEditors;
     private ImageView mIcon;
 
     private List<KindSectionData> mKindSectionDatas;
     private boolean mReadOnly;
+    private ViewIdGenerator mViewIdGenerator;
+    private CompactRawContactsEditorView.Listener mListener;
+    private String mMimeType;
+
     private boolean mShowOneEmptyEditor = false;
     private boolean mHideIfEmpty = true;
 
-    private ViewIdGenerator mViewIdGenerator;
     private LayoutInflater mInflater;
 
     public CompactKindSectionView(Context context) {
-        this(context, /** attrs =*/ null);
+        this(context, /* attrs =*/ null);
     }
 
     public CompactKindSectionView(Context context, AttributeSet attrs) {
@@ -121,10 +188,12 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
     }
 
     public void setState(List<KindSectionData> kindSectionDatas, boolean readOnly,
-            ViewIdGenerator viewIdGenerator) {
+            ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener) {
         mKindSectionDatas = kindSectionDatas;
+        Collections.sort(mKindSectionDatas, new KindSectionComparator(getContext()));
         mReadOnly = readOnly;
         mViewIdGenerator = viewIdGenerator;
+        mListener = listener;
 
         // Set the icon using the first DataKind (all DataKinds should be the same type)
         final DataKind dataKind = mKindSectionDatas.isEmpty()
@@ -135,6 +204,7 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
             mIcon.setImageDrawable(EditorUiUtils.getMimeTypeDrawable(getContext(),
                     dataKind.mimeType));
             if (mIcon.getDrawable() == null) mIcon.setContentDescription(null);
+            mMimeType = dataKind.mimeType;
         }
 
         rebuildFromState();
@@ -145,7 +215,6 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
      * Build editors for all current rows.
      */
     private void rebuildFromState() {
-        // Remove any existing editors
         mEditors.removeAllViews();
 
         // Check if we are displaying anything here
@@ -156,18 +225,38 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
                 break;
             }
         }
+        if (!hasValuesDeltas) return;
 
-        if (hasValuesDeltas) {
-            for (KindSectionData kindSectionData : mKindSectionDatas) {
+        for (KindSectionData kindSectionData : mKindSectionDatas) {
+            if (StructuredName.CONTENT_ITEM_TYPE.equals(kindSectionData.getDataKind().mimeType)) {
                 for (ValuesDelta valuesDelta : kindSectionData.getValuesDeltas()) {
-                    // Skip entries that aren't visible
-                    if (!valuesDelta.isVisible()) continue;
-                    if (isUnchanged(kindSectionData.getDataKind(), valuesDelta)) continue;
+                    createStructuredNameEditorView(kindSectionData.getAccountType(),
+                            valuesDelta, kindSectionData.getRawContactDelta());
+                }
+            } else {
+                for (ValuesDelta valuesDelta : kindSectionData.getValuesDeltas()) {
                     createEditorView(kindSectionData.getRawContactDelta(),
                             kindSectionData.getDataKind(), valuesDelta);
                 }
             }
         }
+    }
+
+    private void createStructuredNameEditorView(AccountType accountType,
+            ValuesDelta valuesDelta, RawContactDelta rawContactDelta) {
+        final StructuredNameEditorView view = (StructuredNameEditorView) mInflater.inflate(
+                R.layout.structured_name_editor_view, mEditors, /* attachToRoot =*/ false);
+        view.setEditorListener(new NameEditorListener(valuesDelta,
+                rawContactDelta.getRawContactId(), mListener));
+        view.findViewById(R.id.kind_icon).setVisibility(View.GONE);
+        view.setDeletable(false);
+        final boolean readOnly = !accountType.areContactsWritable();
+        view.setValues(accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
+                valuesDelta, rawContactDelta, readOnly, mViewIdGenerator);
+        if (readOnly) {
+            view.setAccountType(accountType);
+        }
+        mEditors.addView(view);
     }
 
     /**
@@ -176,7 +265,7 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
      * also added to the end of mEditors
      */
     private View createEditorView(RawContactDelta rawContactDelta, DataKind dataKind,
-            ValuesDelta entry) {
+            ValuesDelta valuesDelta) {
         // Inflate the layout
         final View view;
         final int layoutResId = EditorUiUtils.getLayoutResourceId(dataKind.mimeType);
@@ -204,27 +293,14 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
         view.setEnabled(isEnabled());
 
         if (view instanceof Editor) {
-            Editor editor = (Editor) view;
+            final Editor editor = (Editor) view;
             editor.setDeletable(true);
-            editor.setValues(dataKind, entry, rawContactDelta, !dataKind.editable, mViewIdGenerator);
             editor.setEditorListener(this);
+            editor.setValues(dataKind, valuesDelta, rawContactDelta, !dataKind.editable,
+                    mViewIdGenerator);
         }
         mEditors.addView(view);
         return view;
-    }
-
-    /**
-     * Whether the given values delta has no changes (i.e. it exists in the database but is empty).
-     */
-    private static boolean isUnchanged(DataKind dataKind, ValuesDelta item) {
-        if (!item.isNoop()) return false;
-        final int fieldCount = dataKind.fieldList == null ? 0 : dataKind.fieldList.size();
-        for (int i = 0; i < fieldCount; i++) {
-            final String column = dataKind.fieldList.get(i).column;
-            final String value = item.getAsString(column);
-            if (!TextUtils.isEmpty(value)) return false;
-        }
-        return true;
     }
 
     /**
@@ -313,10 +389,9 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
     }
 
     /**
-     * Returns the editor View at the given index.
+     * Returns the mime type the kind being edited in this section.
      */
-    public View getEditorView(int index) {
-        return mEditors == null || mEditors.getChildCount() == 0 || mEditors.getChildCount() > index
-                ? null : mEditors.getChildAt(index);
+    public String getMimeType() {
+        return mMimeType;
     }
 }
