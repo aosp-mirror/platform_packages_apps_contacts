@@ -17,7 +17,8 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
-import android.provider.ContactsContract;
+import android.database.Cursor;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.util.AttributeSet;
@@ -178,6 +179,15 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
         mHideIfEmpty = hideWhenEmpty;
     }
 
+    public void setGroupMetaData(Cursor cursor) {
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            final View view = mEditors.getChildAt(i);
+            if (view instanceof GroupMembershipView) {
+                ((GroupMembershipView) view).setGroupMetaData(cursor);
+            }
+        }
+    }
+
     public void setState(List<KindSectionData> kindSectionDataList, boolean readOnly,
             ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener) {
         mKindSectionDataList = kindSectionDataList;
@@ -208,11 +218,15 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
         mEditors.removeAllViews();
 
         for (KindSectionData kindSectionData : mKindSectionDataList) {
-            if (StructuredName.CONTENT_ITEM_TYPE.equals(kindSectionData.getDataKind().mimeType)) {
+            final String mimeType = kindSectionData.getDataKind().mimeType;
+            if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 for (ValuesDelta valuesDelta : kindSectionData.getValuesDeltas()) {
                     createNameEditorViews(kindSectionData.getAccountType(),
                             valuesDelta, kindSectionData.getRawContactDelta());
                 }
+            } else if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                createGroupEditorView(kindSectionData.getRawContactDelta(),
+                        kindSectionData.getDataKind());
             } else {
                 for (ValuesDelta valuesDelta : kindSectionData.getValuesDeltas()) {
                     createEditorView(kindSectionData.getRawContactDelta(),
@@ -257,6 +271,19 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
         layoutParams.setMargins(0, 0, 0, 0);
         phoneticNameView.setLayoutParams(layoutParams);
         mEditors.addView(phoneticNameView);
+    }
+
+    private void createGroupEditorView(RawContactDelta rawContactDelta, DataKind dataKind) {
+        final GroupMembershipView view = (GroupMembershipView) mInflater.inflate(
+                R.layout.item_group_membership, mEditors, /* attachToRoot =*/ false);
+        view.setKind(dataKind);
+        view.setEnabled(isEnabled());
+        view.setState(rawContactDelta);
+
+        // Correct start margin since there is another icon in the group layout
+        view.findViewById(R.id.kind_icon).setVisibility(View.GONE);
+
+        mEditors.addView(view);
     }
 
     /**
@@ -426,8 +453,8 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
     private List<View> getEmptyEditors() {
         List<View> emptyEditorViews = new ArrayList<View>();
         for (int i = 0; i < mEditors.getChildCount(); i++) {
-            View view = mEditors.getChildAt(i);
-            if (((Editor) view).isEmpty()) {
+            final View view = mEditors.getChildAt(i);
+            if (view instanceof Editor && ((Editor) view).isEmpty()) {
                 emptyEditorViews.add(view);
             }
         }

@@ -289,7 +289,9 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     @Override
     protected void setGroupMetaData() {
-        // The compact editor does not support groups.
+        if (mGroupMetaData != null) {
+            getContent().setGroupMetaData(mGroupMetaData);
+        }
     }
 
     @Override
