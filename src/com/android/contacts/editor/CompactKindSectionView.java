@@ -17,8 +17,9 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,34 +36,12 @@ import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.editor.Editor.EditorListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
  * Version of {@link KindSectionView} that supports multiple RawContactDeltas.
  */
 public class CompactKindSectionView extends LinearLayout implements EditorListener {
-
-    /** Sorts google account types before others. */
-    private static final class KindSectionComparator implements Comparator<KindSectionData> {
-
-        private RawContactDeltaComparator mRawContactDeltaComparator;
-
-        private KindSectionComparator(Context context) {
-            mRawContactDeltaComparator = new RawContactDeltaComparator(context);
-        }
-
-        @Override
-        public int compare(KindSectionData kindSectionData1, KindSectionData kindSectionData2) {
-            if (kindSectionData1 == kindSectionData2) return 0;
-            if (kindSectionData1 == null) return -1;
-            if (kindSectionData2 == null) return 1;
-
-            return mRawContactDeltaComparator.compare(kindSectionData1.getRawContactDelta(),
-                    kindSectionData2.getRawContactDelta());
-        }
-    }
 
     /**
      * Marks a name as super primary when it is changed.
@@ -74,7 +53,7 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
      * Should only be set when a super primary name does not already exist since we only show
      * one name field.
      */
-    static final class NameEditorListener implements Editor.EditorListener {
+    private static final class NameEditorListener implements Editor.EditorListener {
 
         private final ValuesDelta mValuesDelta;
         private final long mRawContactId;
@@ -101,13 +80,23 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
 
         @Override
         public void onDeleteRequested(Editor editor) {
+            editor.clearAllFields();
         }
     }
 
-    private ViewGroup mEditors;
-    private ImageView mIcon;
+    private static final class NicknameEditorListener implements Editor.EditorListener {
 
-    private List<KindSectionData> mKindSectionDatas;
+        @Override
+        public void onRequest(int request) {
+        }
+
+        @Override
+        public void onDeleteRequested(Editor editor) {
+            editor.clearAllFields();
+        }
+    }
+
+    private List<KindSectionData> mKindSectionDataList;
     private boolean mReadOnly;
     private ViewIdGenerator mViewIdGenerator;
     private CompactRawContactsEditorView.Listener mListener;
@@ -117,6 +106,8 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
     private boolean mHideIfEmpty = true;
 
     private LayoutInflater mInflater;
+    private ViewGroup mEditors;
+    private ImageView mIcon;
 
     public CompactKindSectionView(Context context) {
         this(context, /* attrs =*/ null);
@@ -135,8 +126,6 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
                 mEditors.getChildAt(i).setEnabled(enabled);
             }
         }
-        // TODO: why is this necessary?
-        updateEmptyEditors(/* shouldAnimate = */ true);
     }
 
     /** {@inheritDoc} */
@@ -172,8 +161,9 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
     }
 
     /**
-     * @param showOneEmptyEditor If true, we will always show one empty, otherwise an empty editor
-     *         will not be shown until the user enters a value.
+     * @param showOneEmptyEditor If true, we will always show one empty editor, otherwise an empty
+     *         editor will not be shown until the user enters a value.  Note, this has no effect
+     *         on name editors since the policy is to always show names.
      */
     public void setShowOneEmptyEditor(boolean showOneEmptyEditor) {
         mShowOneEmptyEditor = showOneEmptyEditor;
@@ -181,23 +171,23 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
 
     /**
      * @param hideWhenEmpty If true, the entire section will be hidden if all inputs are empty,
-     *         otherwise one empty input will always be displayed.
+     *         otherwise one empty input will always be displayed.  Note, this has no effect
+     *         on name editors since the policy is to always show names.
      */
     public void setHideWhenEmpty(boolean hideWhenEmpty) {
         mHideIfEmpty = hideWhenEmpty;
     }
 
-    public void setState(List<KindSectionData> kindSectionDatas, boolean readOnly,
+    public void setState(List<KindSectionData> kindSectionDataList, boolean readOnly,
             ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener) {
-        mKindSectionDatas = kindSectionDatas;
-        Collections.sort(mKindSectionDatas, new KindSectionComparator(getContext()));
+        mKindSectionDataList = kindSectionDataList;
         mReadOnly = readOnly;
         mViewIdGenerator = viewIdGenerator;
         mListener = listener;
 
         // Set the icon using the first DataKind (all DataKinds should be the same type)
-        final DataKind dataKind = mKindSectionDatas.isEmpty()
-                ? null : mKindSectionDatas.get(0).getDataKind();
+        final DataKind dataKind = mKindSectionDataList.isEmpty()
+                ? null : mKindSectionDataList.get(0).getDataKind();
         if (dataKind != null) {
             mIcon.setContentDescription(dataKind.titleRes == -1 || dataKind.titleRes == 0
                     ? "" : getResources().getString(dataKind.titleRes));
@@ -217,20 +207,10 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
     private void rebuildFromState() {
         mEditors.removeAllViews();
 
-        // Check if we are displaying anything here
-        boolean hasValuesDeltas = false;
-        for (KindSectionData kindSectionData : mKindSectionDatas) {
-            if (kindSectionData.hasValuesDeltas()) {
-                hasValuesDeltas = true;
-                break;
-            }
-        }
-        if (!hasValuesDeltas) return;
-
-        for (KindSectionData kindSectionData : mKindSectionDatas) {
+        for (KindSectionData kindSectionData : mKindSectionDataList) {
             if (StructuredName.CONTENT_ITEM_TYPE.equals(kindSectionData.getDataKind().mimeType)) {
                 for (ValuesDelta valuesDelta : kindSectionData.getValuesDeltas()) {
-                    createStructuredNameEditorView(kindSectionData.getAccountType(),
+                    createNameEditorViews(kindSectionData.getAccountType(),
                             valuesDelta, kindSectionData.getRawContactDelta());
                 }
             } else {
@@ -242,21 +222,41 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
         }
     }
 
-    private void createStructuredNameEditorView(AccountType accountType,
+    private void createNameEditorViews(AccountType accountType,
             ValuesDelta valuesDelta, RawContactDelta rawContactDelta) {
-        final StructuredNameEditorView view = (StructuredNameEditorView) mInflater.inflate(
-                R.layout.structured_name_editor_view, mEditors, /* attachToRoot =*/ false);
-        view.setEditorListener(new NameEditorListener(valuesDelta,
-                rawContactDelta.getRawContactId(), mListener));
-        view.findViewById(R.id.kind_icon).setVisibility(View.GONE);
-        view.setDeletable(false);
         final boolean readOnly = !accountType.areContactsWritable();
-        view.setValues(accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
+
+        // Structured name
+        final StructuredNameEditorView nameView = (StructuredNameEditorView) mInflater.inflate(
+                R.layout.structured_name_editor_view, mEditors, /* attachToRoot =*/ false);
+        nameView.setEditorListener(new NameEditorListener(valuesDelta,
+                rawContactDelta.getRawContactId(), mListener));
+        nameView.setDeletable(false);
+        nameView.setValues(
+                accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
                 valuesDelta, rawContactDelta, readOnly, mViewIdGenerator);
-        if (readOnly) {
-            view.setAccountType(accountType);
-        }
-        mEditors.addView(view);
+        if (readOnly) nameView.setAccountType(accountType);
+
+        // Correct start margin since there is another icon in the structured name layout
+        nameView.findViewById(R.id.kind_icon).setVisibility(View.GONE);
+        mEditors.addView(nameView);
+
+        // Phonetic name
+        if (readOnly) return;
+
+        final PhoneticNameEditorView phoneticNameView = (PhoneticNameEditorView) mInflater.inflate(
+                R.layout.phonetic_name_editor_view, mEditors, /* attachToRoot =*/ false);
+        phoneticNameView.setDeletable(false);
+        phoneticNameView.setValues(
+                accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
+                valuesDelta, rawContactDelta, readOnly, mViewIdGenerator);
+
+        // Fix the start margin for phonetic name views
+        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0, 0, 0, 0);
+        phoneticNameView.setLayoutParams(layoutParams);
+        mEditors.addView(phoneticNameView);
     }
 
     /**
@@ -281,21 +281,18 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
             ((LabeledEditorView) view).setHideTypeInitially(true);
         }
 
-        // Fix the start margin for phonetic name views
-        if (view instanceof PhoneticNameEditorView) {
-            final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(0, 0, 0, 0);
-            view.setLayoutParams(layoutParams);
-        }
-
         // Set whether the editor is enabled
         view.setEnabled(isEnabled());
 
         if (view instanceof Editor) {
             final Editor editor = (Editor) view;
             editor.setDeletable(true);
-            editor.setEditorListener(this);
+            // TODO: it's awkward to be doing something special for nicknames here
+            if (Nickname.CONTENT_ITEM_TYPE.equals(dataKind.mimeType)) {
+                editor.setEditorListener(new NicknameEditorListener());
+            } else {
+                editor.setEditorListener(this);
+            }
             editor.setValues(dataKind, valuesDelta, rawContactDelta, !dataKind.editable,
                     mViewIdGenerator);
         }
@@ -310,10 +307,46 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
      * then the entire section is hidden.
      */
     public void updateEmptyEditors(boolean shouldAnimate) {
-        if (mKindSectionDatas.isEmpty()) return;
-        final DataKind dataKind = mKindSectionDatas.get(0).getDataKind();
-        final RawContactDelta rawContactDelta = mKindSectionDatas.get(0).getRawContactDelta();
+        if (mKindSectionDataList.get(0).isNameDataKind()) {
+            updateEmptyNameEditors(shouldAnimate);
+        } else {
+            updateEmptyNonNameEditors(shouldAnimate);
+        }
+    }
 
+    private void updateEmptyNameEditors(boolean shouldAnimate) {
+        boolean isEmptyNameEditorVisible = false;
+
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            final View view = mEditors.getChildAt(i);
+            final Editor editor = (Editor) view;
+            if (view instanceof StructuredNameEditorView) {
+                // We always show one empty structured name view
+                if (editor.isEmpty()) {
+                    if (isEmptyNameEditorVisible) {
+                        // If we're already showing an empty editor then hide any other empties
+                        if (mHideIfEmpty) {
+                            view.setVisibility(View.GONE);
+                        }
+                    } else {
+                        isEmptyNameEditorVisible = true;
+                    }
+                } else {
+                    showView(view, shouldAnimate);
+                    isEmptyNameEditorVisible = true;
+                }
+            } else {
+                // For phonetic names and nicknames, which can't be added, just show or hide them
+                if (mHideIfEmpty && editor.isEmpty()) {
+                    hideView(view, shouldAnimate);
+                } else {
+                    showView(view, shouldAnimate);
+                }
+            }
+        }
+    }
+
+    private void updateEmptyNonNameEditors(boolean shouldAnimate) {
         // Update whether the entire section is visible or not
         final int editorCount = getEditorCount();
         final List<View> emptyEditors = getEmptyEditors();
@@ -323,36 +356,28 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
         }
         setVisibility(VISIBLE);
 
-        // Update the number of empty editors
+        // Prune excess empty editors
         if (emptyEditors.size() > 1) {
             // If there is more than 1 empty editor, then remove it from the list of editors.
             int deleted = 0;
-            for (final View emptyEditorView : emptyEditors) {
+            for (final View view : emptyEditors) {
                 // If no child {@link View}s are being focused on within this {@link View}, then
-                // remove this empty editor. We can assume that at least one empty editor has focus.
-                // One way to get two empty editors is by deleting characters from a non-empty
-                // editor, in which case this editor has focus.  Another way is if there is more
-                // values delta so we must also count number of editors deleted.
-
-                // TODO: we must not delete the editor for the "primary" account. It's working
-                // because the primary account is always the last one when the account is changed
-                // in the editor but it is a bit brittle to rely on that (though that is what is
-                // happening in LMP).
-                if (emptyEditorView.findFocus() == null) {
-                    final Editor editor = (Editor) emptyEditorView;
-                    if (shouldAnimate) {
-                        editor.deleteEditor();
-                    } else {
-                        mEditors.removeView(emptyEditorView);
-                    }
+                // remove this empty editor. We can assume that at least one empty editor has
+                // focus. One way to get two empty editors is by deleting characters from a
+                // non-empty editor, in which case this editor has focus.  Another way is if
+                // there is more values delta so we must also count number of editors deleted.
+                if (view.findFocus() == null) {
+                    deleteView(view, shouldAnimate);
                     deleted++;
-                    if (deleted == emptyEditors.size() -1) break;
+                    if (deleted == emptyEditors.size() - 1) break;
                 }
             }
             return;
         }
-        if (dataKind == null // There is nothing we can do.
-                || mReadOnly // We don't show empty editors for read only data kinds.
+        // Determine if we should add a new empty editor
+        final DataKind dataKind = mKindSectionDataList.get(0).getDataKind();
+        if (mReadOnly // We don't show empty editors for read only data kinds.
+                || dataKind == null // There is nothing we can do.
                 // We have already reached the maximum number of editors, don't add any more.
                 || (dataKind.typeOverallMax == editorCount && dataKind.typeOverallMax != 0)
                 // We have already reached the maximum number of empty editors, don't add any more.
@@ -361,12 +386,37 @@ public class CompactKindSectionView extends LinearLayout implements EditorListen
         }
         // Add a new empty editor
         if (mShowOneEmptyEditor) {
+            final RawContactDelta rawContactDelta = mKindSectionDataList.get(0).getRawContactDelta();
             final ValuesDelta values = RawContactModifier.insertChild(rawContactDelta, dataKind);
-            final View editorView = createEditorView(rawContactDelta, dataKind, values);
-            if (shouldAnimate) {
-                editorView.setVisibility(View.GONE);
-                EditorAnimator.getInstance().showFieldFooter(editorView);
-            }
+            final View view = createEditorView(rawContactDelta, dataKind, values);
+            showView(view, shouldAnimate);
+        }
+    }
+
+    private void hideView(View view, boolean shouldAnimate) {
+        if (shouldAnimate) {
+            EditorAnimator.getInstance().hideEditorView(view);
+        } else {
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    private void deleteView(View view, boolean shouldAnimate) {
+        if (shouldAnimate) {
+            final Editor editor = (Editor) view;
+            editor.deleteEditor();
+        } else {
+            mEditors.removeView(view);
+        }
+    }
+
+    private void showView(View view, boolean shouldAnimate) {
+        if (shouldAnimate) {
+            view.setVisibility(View.GONE);
+            // TODO: still need this since we have animateLayoutChanges="true" on the parent layout?
+            EditorAnimator.getInstance().showFieldFooter(view);
+        } else {
+            view.setVisibility(View.VISIBLE);
         }
     }
 
