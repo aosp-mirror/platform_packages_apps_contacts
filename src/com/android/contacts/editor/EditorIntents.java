@@ -110,7 +110,6 @@ public class EditorIntents {
      * Returns an Intent to start the fully expanded {@link ContactEditorActivity} for a
      * new contact.
      */
-    // TODO: Delete this if we don't need it to load the full editor for read only accounts
     public static Intent createInsertContactIntent(RawContactDeltaList rawContactDeltaList,
             String displayName, String phoneticName, boolean isNewLocalProfile) {
         final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_INSERT,

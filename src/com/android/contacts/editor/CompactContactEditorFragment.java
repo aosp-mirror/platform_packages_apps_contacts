@@ -40,6 +40,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 
@@ -351,6 +352,17 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         mNewContactAccountChanged = true;
         mAccountWithDataSet = newAccount;
         rebindEditorsForNewContact(oldState, oldAccount, newAccount);
+    }
+
+    @Override
+    public void onBindEditorsFailed() {
+        final Activity activity = getActivity();
+        if (activity != null && !activity.isFinishing()) {
+            Toast.makeText(activity, R.string.compact_editor_failed_to_load,
+                    Toast.LENGTH_SHORT).show();
+            activity.setResult(Activity.RESULT_CANCELED);
+            activity.finish();
+        }
     }
 
     private CompactRawContactsEditorView getContent() {

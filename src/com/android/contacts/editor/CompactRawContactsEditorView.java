@@ -34,6 +34,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -102,6 +104,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
          */
         public void onRebindEditorsForNewContact(RawContactDelta oldState,
                 AccountWithDataSet oldAccount, AccountWithDataSet newAccount);
+
+        /**
+         * Invoked when no editors could be bound for the contact.
+         */
+        public void onBindEditorsFailed();
     }
 
     /** Used to sort entire kind sections. */
@@ -130,7 +137,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      *     <li>All names are together at the top.</li>
      *     <li>IM is moved up after addresses</li>
      *     <li>SIP addresses are moved to below phone numbers</li>
-     *     <li>Group membership is palced at the end</li>
+     *     <li>Group membership is placed at the end</li>
      * </ol>
      */
     private static final class MimeTypeComparator implements Comparator<String> {
@@ -240,10 +247,40 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             }
 
             // The primary account name should be before all others
-            if (isRawContactDelta1Primary) return 1;
-            if (isRawContactDelta2Primary) return -1;
+            if (isRawContactDelta1Primary) return -1;
+            if (isRawContactDelta2Primary) return 1;
 
            return mRawContactDeltaComparator.compare(rawContactDelta1, rawContactDelta2);
+        }
+    }
+
+    public static class SavedState extends BaseSavedState {
+
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+                    public SavedState createFromParcel(Parcel in) {
+                        return new SavedState(in);
+                    }
+                    public SavedState[] newArray(int size) {
+                        return new SavedState[size];
+                    }
+                };
+
+        private boolean mIsExpanded;
+
+        public SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+            mIsExpanded = in.readInt() != 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeInt(mIsExpanded ? 1 : 0);
         }
     }
 
@@ -277,6 +314,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private Map<String,List<CompactKindSectionView>> mKindSectionViewsMap = new HashMap<>();
     private View mMoreFields;
 
+    private boolean mIsExpanded;
     private long mPhotoRawContactId;
 
     public CompactRawContactsEditorView(Context context) {
@@ -322,19 +360,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.more_fields) {
-            // Stop hiding empty editors and allow the user to enter values for all kinds now
-            for (int i = 0; i < mKindSectionViews.getChildCount(); i++) {
-                final CompactKindSectionView kindSectionView =
-                        (CompactKindSectionView) mKindSectionViews.getChildAt(i);
-                kindSectionView.setHideWhenEmpty(false);
-                // Except the user is never allowed to add new names
-                final String mimeType = kindSectionView.getMimeType();
-                if (!StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    kindSectionView.setShowOneEmptyEditor(true);
-                }
-                kindSectionView.updateEmptyEditors(/* shouldAnimate =*/ false);
-            }
-
+            showMoreFields();
             updateMoreFieldsButton();
         }
     }
@@ -345,6 +371,28 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         final int childCount = mKindSectionViews.getChildCount();
         for (int i = 0; i < childCount; i++) {
             mKindSectionViews.getChildAt(i).setEnabled(enabled);
+        }
+    }
+
+    @Override
+    public Parcelable onSaveInstanceState() {
+        final Parcelable superState = super.onSaveInstanceState();
+        final SavedState savedState = new SavedState(superState);
+        savedState.mIsExpanded = mIsExpanded;
+        return savedState;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        if(!(state instanceof SavedState)) {
+            super.onRestoreInstanceState(state);
+            return;
+        }
+        final SavedState savedState = (SavedState) state;
+        super.onRestoreInstanceState(savedState.getSuperState());
+        mIsExpanded = savedState.mIsExpanded;
+        if (mIsExpanded && !mKindSectionDataMap.isEmpty()) {
+            showMoreFields();
         }
     }
 
@@ -398,6 +446,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         for (CompactKindSectionView kindSectionView : kindSectionViews) {
             kindSectionView.setGroupMetaData(groupMetaData);
         }
+
+        // Groups metadata may be set after we restore expansion state so just do it again
+        if (mIsExpanded) {
+            showMoreFields();
+        }
+        updateMoreFieldsButton();
     }
 
     public void setState(RawContactDeltaList rawContactDeltas,
@@ -423,11 +477,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         // Parse the given raw contact deltas
         if (rawContactDeltas == null || rawContactDeltas.isEmpty()) {
             elog("No raw contact deltas");
+            if (mListener != null) mListener.onBindEditorsFailed();
             return;
         }
         parseRawContactDeltas(rawContactDeltas, mPrimaryAccount);
-        if (mKindSectionDataMap == null || mKindSectionDataMap.isEmpty()) {
+        if (mKindSectionDataMap.isEmpty()) {
             elog("No kind section data parsed from RawContactDelta(s)");
+            if (mListener != null) mListener.onBindEditorsFailed();
             return;
         }
 
@@ -437,6 +493,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         addAccountInfo();
         addPhotoView();
         addKindSectionViews();
+
         updateMoreFieldsButton();
     }
 
@@ -509,10 +566,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                         new KindSectionData(accountType, dataKind, rawContactDelta);
                 kindSectionDataList.add(kindSectionData);
 
-                // Note we must create a nickname entry on inserts
+                // Note we must create nickname entries
                 if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)
-                        && kindSectionData.getValuesDeltas().isEmpty()
-                        && mHasNewContact) {
+                        && kindSectionData.getValuesDeltas().isEmpty()) {
                     RawContactModifier.insertChild(rawContactDelta, dataKind);
                 }
 
@@ -659,10 +715,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private Pair<KindSectionData,ValuesDelta> getPrimaryKindSectionData(long id) {
         final String mimeType = Photo.CONTENT_ITEM_TYPE;
         final List<KindSectionData> kindSectionDataList = mKindSectionDataMap.get(mimeType);
-        if (kindSectionDataList == null || kindSectionDataList.isEmpty()) {
-            wlog("photo: no kind section data parsed");
-            return null;
-        }
 
         KindSectionData resultKindSectionData = null;
         ValuesDelta resultValuesDelta = null;
@@ -779,10 +831,20 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             Collections.sort(kindSectionDataList, new EditorComparator(getContext()));
         }
 
-        kindSectionView.setState(kindSectionDataList, /* readOnly =*/ false, mViewIdGenerator,
-                mListener);
+        kindSectionView.setState(kindSectionDataList, mViewIdGenerator, mListener);
 
         return kindSectionView;
+    }
+
+    private void showMoreFields() {
+        // Stop hiding empty editors and allow the user to enter values for all kinds now
+        for (int i = 0; i < mKindSectionViews.getChildCount(); i++) {
+            final CompactKindSectionView kindSectionView =
+                    (CompactKindSectionView) mKindSectionViews.getChildAt(i);
+            kindSectionView.setHideWhenEmpty(false);
+            kindSectionView.updateEmptyEditors(/* shouldAnimate =*/ true);
+        }
+        mIsExpanded = true;
     }
 
     private void updateMoreFieldsButton() {
