@@ -22,10 +22,10 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.dataitem.DataKind;
 
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,21 +44,11 @@ public final class KindSectionData {
         mAccountType = accountType;
         mDataKind = dataKind;
         mRawContactDelta = rawContactDelta;
-
-        // Note that for phonetic names we use the structured name mime type to look up values
-        final String mimeType = DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(dataKind.mimeType)
-                ? StructuredName.CONTENT_ITEM_TYPE : dataKind.mimeType;
-        mValuesDeltas = mRawContactDelta.hasMimeEntries(mimeType)
-                ? mRawContactDelta.getMimeEntries(mimeType)
-                : Collections.EMPTY_LIST;
+        mValuesDeltas = mRawContactDelta.getMimeEntries(dataKind.mimeType, /* lazyCreate= */ true);
     }
 
     public AccountType getAccountType() {
         return mAccountType;
-    }
-
-    public boolean hasValuesDeltas() {
-        return !mValuesDeltas.isEmpty();
     }
 
     public List<ValuesDelta> getValuesDeltas() {
@@ -107,6 +97,11 @@ public final class KindSectionData {
         return mDataKind;
     }
 
+    public boolean isNameDataKind() {
+        return StructuredName.CONTENT_ITEM_TYPE.equals(mDataKind.mimeType)
+                || Nickname.CONTENT_ITEM_TYPE.equals(mDataKind.mimeType);
+    }
+
     public RawContactDelta getRawContactDelta() {
         return mRawContactDelta;
     }
@@ -116,6 +111,6 @@ public final class KindSectionData {
                 KindSectionData.class.getSimpleName(),
                 mAccountType.accountType,
                 mAccountType.dataSet,
-                hasValuesDeltas() ? getValuesDeltas().size() : "null");
+                getValuesDeltas().size());
     }
 }
