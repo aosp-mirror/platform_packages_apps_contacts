@@ -31,6 +31,7 @@ import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
 import com.android.contacts.util.UiClosables;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -129,6 +130,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      *     <li>All names are together at the top.</li>
      *     <li>IM is moved up after addresses</li>
      *     <li>SIP addresses are moved to below phone numbers</li>
+     *     <li>Group membership is palced at the end</li>
      * </ol>
      */
     private static final class MimeTypeComparator implements Comparator<String> {
@@ -145,7 +147,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 Organization.CONTENT_ITEM_TYPE,
                 Event.CONTENT_ITEM_TYPE,
                 Relation.CONTENT_ITEM_TYPE,
-                Note.CONTENT_ITEM_TYPE
+                Note.CONTENT_ITEM_TYPE,
+                GroupMembership.CONTENT_ITEM_TYPE
         });
 
         @Override
@@ -271,6 +274,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private CompactPhotoEditorView mPhotoView;
     private ViewGroup mKindSectionViews;
+    private Map<String,List<CompactKindSectionView>> mKindSectionViewsMap = new HashMap<>();
     private View mMoreFields;
 
     private long mPhotoRawContactId;
@@ -380,13 +384,20 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public View getAggregationAnchorView() {
-        // The kind section for the primary account is sorted to the front
-        final List<KindSectionData> kindSectionDataList = getKindSectionDataList(
+        final List<CompactKindSectionView> kindSectionViews = getKindSectionViews(
                 StructuredName.CONTENT_ITEM_TYPE);
-        if (kindSectionDataList != null && !kindSectionDataList.isEmpty()) {
+        if (!kindSectionViews.isEmpty()) {
             return mKindSectionViews.getChildAt(0).findViewById(R.id.anchor_view);
         }
         return null;
+    }
+
+    public void setGroupMetaData(Cursor groupMetaData) {
+        final List<CompactKindSectionView> kindSectionViews = getKindSectionViews(
+                GroupMembership.CONTENT_ITEM_TYPE);
+        for (CompactKindSectionView kindSectionView : kindSectionViews) {
+            kindSectionView.setGroupMetaData(groupMetaData);
+        }
     }
 
     public void setState(RawContactDeltaList rawContactDeltas,
@@ -720,12 +731,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 continue;
             }
 
-            // Ignore mime types that we don't handle
-            if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                vlog("kind: " + i + " " + mimeType + " dropped");
-                continue;
-            }
-
             if (kindSectionDataList != null && !kindSectionDataList.isEmpty()) {
                 vlog("kind: " + i + " " + mimeType + ": " + kindSectionDataList.size() +
                         " kindSectionData(s)");
@@ -733,8 +738,20 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 final CompactKindSectionView kindSectionView = inflateKindSectionView(
                         mKindSectionViews, kindSectionDataList, mimeType);
                 mKindSectionViews.addView(kindSectionView);
+
+                // Keep a pointer to all the KindSectionsViews for each mimeType
+                getKindSectionViews(mimeType).add(kindSectionView);
             }
         }
+    }
+
+    private List<CompactKindSectionView> getKindSectionViews(String mimeType) {
+        List<CompactKindSectionView> kindSectionViews = mKindSectionViewsMap.get(mimeType);
+        if (kindSectionViews == null) {
+            kindSectionViews = new ArrayList<>();
+            mKindSectionViewsMap.put(mimeType, kindSectionViews);
+        }
+        return kindSectionViews;
     }
 
     private CompactKindSectionView inflateKindSectionView(ViewGroup viewGroup,
