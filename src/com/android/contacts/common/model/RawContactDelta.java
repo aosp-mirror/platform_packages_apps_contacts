@@ -243,7 +243,7 @@ public class RawContactDelta implements Parcelable {
      * Return the list of child {@link ValuesDelta} from our optimized map,
      * creating the list if requested.
      */
-    private ArrayList<ValuesDelta> getMimeEntries(String mimeType, boolean lazyCreate) {
+    public ArrayList<ValuesDelta> getMimeEntries(String mimeType, boolean lazyCreate) {
         ArrayList<ValuesDelta> mimeEntries = mEntries.get(mimeType);
         if (mimeEntries == null && lazyCreate) {
             mimeEntries = Lists.newArrayList();
