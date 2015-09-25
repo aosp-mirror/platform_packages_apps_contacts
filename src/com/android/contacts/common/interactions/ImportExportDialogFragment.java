@@ -62,9 +62,15 @@ public class ImportExportDialogFragment extends DialogFragment
         implements SelectAccountDialogFragment.Listener {
     public static final String TAG = "ImportExportDialogFragment";
 
+    public static final int EXPORT_MODE_FAVORITES = 0;
+    public static final int EXPORT_MODE_ALL_CONTACTS = 1;
+    public static final int EXPORT_MODE_DEFAULT = -1;
+
     private static final String KEY_RES_ID = "resourceId";
     private static final String KEY_SUBSCRIPTION_ID = "subscriptionId";
     private static final String ARG_CONTACTS_ARE_AVAILABLE = "CONTACTS_ARE_AVAILABLE";
+
+    private static int mExportMode = EXPORT_MODE_DEFAULT;
 
     private final String[] LOOKUP_PROJECTION = new String[] {
             Contacts.LOOKUP_KEY
@@ -74,13 +80,14 @@ public class ImportExportDialogFragment extends DialogFragment
 
     /** Preferred way to show this dialog */
     public static void show(FragmentManager fragmentManager, boolean contactsAreAvailable,
-            Class callingActivity) {
+                            Class callingActivity, int exportMode) {
         final ImportExportDialogFragment fragment = new ImportExportDialogFragment();
         Bundle args = new Bundle();
         args.putBoolean(ARG_CONTACTS_ARE_AVAILABLE, contactsAreAvailable);
         args.putString(VCardCommonArguments.ARG_CALLING_ACTIVITY, callingActivity.getName());
         fragment.setArguments(args);
         fragment.show(fragmentManager, ImportExportDialogFragment.TAG);
+        mExportMode = exportMode;
     }
 
     @Override
@@ -202,13 +209,20 @@ public class ImportExportDialogFragment extends DialogFragment
     private void doShareVisibleContacts() {
         try {
             // TODO move the query into a loader and do this in a background thread
-            final Cursor cursor = getActivity().getContentResolver().query(Contacts.CONTENT_URI,
-                    LOOKUP_PROJECTION, Contacts.IN_VISIBLE_GROUP + "!=0", null, null);
+            final Cursor cursor;
+            if (mExportMode == EXPORT_MODE_FAVORITES) {
+                cursor = getActivity().getContentResolver().query(Contacts.CONTENT_STREQUENT_URI,
+                        LOOKUP_PROJECTION, null, null,
+                        Contacts.DISPLAY_NAME + " COLLATE NOCASE ASC");
+            } else { // EXPORT_MODE_ALL_CONTACTS
+                cursor = getActivity().getContentResolver().query(Contacts.CONTENT_URI,
+                        LOOKUP_PROJECTION, Contacts.IN_VISIBLE_GROUP + "!=0", null, null);
+            }
             if (cursor != null) {
                 try {
                     if (!cursor.moveToFirst()) {
-                        Toast.makeText(getActivity(), R.string.share_error, Toast.LENGTH_SHORT)
-                                .show();
+                        Toast.makeText(getActivity(), R.string.no_contact_to_share,
+                                Toast.LENGTH_SHORT).show();
                         return;
                     }
 
