@@ -268,7 +268,7 @@ public class Contact {
      * Returns the contact ID.
      */
     @VisibleForTesting
-    /* package */ long getId() {
+    public long getId() {
         return mId;
     }
 
