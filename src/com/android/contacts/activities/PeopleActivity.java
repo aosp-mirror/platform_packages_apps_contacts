@@ -1034,8 +1034,7 @@ public class PeopleActivity extends ContactsActivity implements
 
         @Override
         public void onImportContactsFromFileAction() {
-            ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
-                    PeopleActivity.class);
+            showImportExportDialogFragment();
         }
     }
 
@@ -1212,8 +1211,7 @@ public class PeopleActivity extends ContactsActivity implements
                 deleteSelectedContacts();
                 return true;
             case R.id.menu_import_export: {
-                ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
-                        PeopleActivity.class);
+                showImportExportDialogFragment();
                 return true;
             }
             case R.id.menu_clear_frequents: {
@@ -1240,6 +1238,17 @@ public class PeopleActivity extends ContactsActivity implements
             }
         }
         return false;
+    }
+
+    private void showImportExportDialogFragment(){
+        final boolean isOnFavoriteTab = mTabPagerAdapter.mCurrentPrimaryItem == mFavoritesFragment;
+        if (isOnFavoriteTab) {
+            ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
+                    PeopleActivity.class, ImportExportDialogFragment.EXPORT_MODE_FAVORITES);
+        } else {
+            ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
+                    PeopleActivity.class, ImportExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
+        }
     }
 
     @Override
