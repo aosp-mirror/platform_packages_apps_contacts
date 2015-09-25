@@ -202,6 +202,11 @@ public class GroupMembershipView extends LinearLayout
         }
     }
 
+    /** Whether {@link #setGroupMetaData} has been invoked yet. */
+    public boolean wasGroupMetaDataBound() {
+        return mGroupMetaData != null;
+    }
+
     public void setState(RawContactDelta state) {
         mState = state;
         mAccountType = mState.getAccountType();

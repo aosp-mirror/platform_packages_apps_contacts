@@ -273,7 +273,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
     @Override
     public void onBackPressed() {
         if (mFragment != null) {
-            mFragment.save(ContactEditor.SaveMode.CLOSE);
+            mFragment.revert();
         }
     }
 

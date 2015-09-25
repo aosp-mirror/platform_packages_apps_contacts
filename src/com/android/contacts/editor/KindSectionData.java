@@ -98,8 +98,11 @@ public final class KindSectionData {
     }
 
     public boolean isNameDataKind() {
-        return StructuredName.CONTENT_ITEM_TYPE.equals(mDataKind.mimeType)
-                || Nickname.CONTENT_ITEM_TYPE.equals(mDataKind.mimeType);
+        return StructuredName.CONTENT_ITEM_TYPE.equals(mDataKind.mimeType);
+    }
+
+    public boolean isNicknameDataKind() {
+        return Nickname.CONTENT_ITEM_TYPE.equals(mDataKind.mimeType);
     }
 
     public RawContactDelta getRawContactDelta() {
