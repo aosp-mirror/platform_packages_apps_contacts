@@ -155,7 +155,7 @@
     <string name="display_more_groups" msgid="6304997485733158224">"گروه‌های بیشتر..."</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"حذف «<xliff:g id="GROUP">%s</xliff:g>» از همگام‌سازی نیز هر گونه مخاطب گروه‌بندی نشده‌ای را از همگام‌سازی حذف می‌کند."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"در حال ذخیره گزینه‌های نمایش..."</string>
-    <string name="menu_done" msgid="32470053723443112">"انجام شد"</string>
+    <string name="menu_done" msgid="32470053723443112">"تمام"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"لغو"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"مخاطبین در <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"مخاطبین در نمای سفارشی"</string>
