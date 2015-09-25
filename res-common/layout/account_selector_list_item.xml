@@ -21,7 +21,7 @@
     <ImageView android:id="@android:id/icon"
         android:layout_width="@dimen/detail_network_icon_size"
         android:layout_height="@dimen/detail_network_icon_size"
-        android:layout_margin="8dip"
+        android:layout_margin="16dip"
         android:layout_gravity="center_vertical" />
 
     <LinearLayout
