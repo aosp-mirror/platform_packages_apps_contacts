@@ -770,4 +770,22 @@
 
     <!-- Quick contact display name with phonetic name -->
     <string name="quick_contact_display_name_with_phonetic"><xliff:g id="display_name">%s</xliff:g> (<xliff:g id="phonetic_name">%s</xliff:g>)</string>
+
+    <!-- Button used in quick contact suggestion card to merge selected contacts. [CHAR LIMIT=30]-->
+    <string name="quickcontact_suggestion_merge_button">Merge</string>
+
+    <!-- Suggestions number in quick contact suggestion card [CHAR LIMIT=30] -->
+    <plurals name="quickcontact_suggestions_number">
+        <item quantity="one">1 suggested contact</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> suggested contacts</item>
+    </plurals>
+
+    <!-- Account type number for suggestions in quick contact suggestion card [CHAR LIMIT=30]-->
+    <plurals name="quickcontact_suggestion_account_type_number">
+        <item quantity="one"></item>
+        <item quantity="other">(<xliff:g id="count">%d</xliff:g>)</item>
+    </plurals>
+
+    <!-- Account type with number in quick contact suggestion card [CHAR LIMIT=30]-->
+    <string name="quickcontact_suggestion_account_type"><xliff:g id="account_type">%s</xliff:g><xliff:g id="account_type_number">%s</xliff:g></string>
 </resources>
