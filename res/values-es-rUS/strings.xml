@@ -65,14 +65,14 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos los contactos"</string>
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Contactos combinados"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Contactos eliminados"</string>
+    <string name="contacts_deleted_toast" msgid="286851430992788215">"Contactos borrados"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Establecer tono"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Llamadas al buzón de voz"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"No puedes eliminar contactos de cuentas de solo lectura, pero puedes ocultarlos en tus listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contiene información de varias cuentas. La información de las cuentas de solo lectura se ocultará en tus listas de contactos, pero no se eliminará."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Debes seleccionar al menos dos contactos para efectuar una combinación."</string>
     <string name="batch_merge_confirmation" msgid="8551299480317422420">"Los contactos seleccionados se combinarán en un solo contacto."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Se eliminarán los contactos seleccionados."</string>
+    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Se borrarán los contactos seleccionados."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"La información de las cuentas de solo lectura no se eliminará, sino que se ocultará en las listas de contactos."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Estos contactos contienen información de varias cuentas. La información de las cuentas de solo lectura no se eliminará, sino que se ocultará en las listas de contactos."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Eliminar este contacto suprimirá la información de mútliples cuentas."</string>
