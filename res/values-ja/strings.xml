@@ -214,11 +214,11 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"テキストをコピーしました"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"変更を破棄しますか？"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"プロフィールを設定"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"プロファイルを設定"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"名前を入力"</string>
     <string name="group_name_hint" msgid="238359485263401293">"グループの名前"</string>
-    <string name="local_profile_title" msgid="2021416826991393684">"ローカルプロフィール"</string>
-    <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>のプロフィール"</string>
+    <string name="local_profile_title" msgid="2021416826991393684">"ローカルプロファイル"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>のプロファイル"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"すべての連絡先を表示しています"</string>
     <string name="no_account_prompt" msgid="6424883302325061025">"Googleアカウントがあれば連絡先をもっと活用できます。\n\n• どのウェブブラウザからもアクセスできます。\n• 連絡先を安全にバックアップできます。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"携帯端末を紛失したときにも連絡先を保護するため、オンラインサービスと同期させます。"</string>

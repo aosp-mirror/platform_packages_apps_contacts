@@ -47,9 +47,9 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Editaţi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Ștergeţi"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Schimbați fotografia"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plasaţi în ecranul de pornire"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plasați în ecranul de pornire"</string>
     <string name="menu_call" msgid="3992595586042260618">"Apelaţi persoana din agendă"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteţi mesaj text către o persoană din agendă"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteți mesaj text către o persoană din agendă"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separaţi"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editaţi"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ștergeţi"</string>
@@ -83,14 +83,14 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Creaţi o intrare nouă în agendă"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Creaţi o intrare nouă în Agendă"</string>
   <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"Organizaţie"</item>
+    <item msgid="8287841928119937597">"Organizație"</item>
     <item msgid="7196592230748086755">"Notă"</item>
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nu există imagini disponibile pe tabletă."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Nicio fotografie disponibilă în telefon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Fotografie persoană din agendă"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Numele etichetei personalizate"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Trimiteţi apelurile direct către mesageria vocală"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Trimiteți apelurile direct către mesageria vocală"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminaţi fotografia"</string>
     <string name="noContacts" msgid="8579310973261953559">"Nicio persoană în agendă."</string>
     <string name="noGroups" msgid="8614664663561385253">"Nu există grupuri."</string>
@@ -158,11 +158,11 @@
     <string name="upgrade_in_progress" msgid="474511436863451061">"Se actualizează lista de persoane din agendă."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Se caută..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Afişaţi elementele selectate"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"Afişaţi-i pe toţi"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"Afișați-i pe toţi"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Selectaţi-le pe toate"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Deselectaţi-le pe toate"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Adăugaţi intrare nouă"</string>
-    <string name="add_organization" msgid="7311893231158291197">"Adăugaţi o organizaţie"</string>
+    <string name="add_organization" msgid="7311893231158291197">"Adăugaţi o organizație"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Dată"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Nume grup"</string>
     <string name="change_photo" msgid="8530597935483526383">"Modificați"</string>
@@ -232,7 +232,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adăugaţi un cont"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noul contact nu se va crea o copie de rezervă. Adăugați un cont care creează online copii de rezervă pentru contacte?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Noul dvs. contact va fi sincronizat cu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puteţi să sincronizaţi noul dvs. contact cu unul dintre următoarele conturi. Pe care doriţi să îl utilizaţi?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puteţi să sincronizați noul dvs. contact cu unul dintre următoarele conturi. Pe care doriţi să îl utilizaţi?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adăugați contact nou"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editați intrarea"</string>
     <string name="keep_local" msgid="1258761699192993322">"Păstraţi local"</string>
