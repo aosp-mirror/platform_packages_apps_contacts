@@ -32,6 +32,9 @@ import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Pair;
 import com.android.contacts.R;
@@ -188,5 +191,32 @@ public class EditorUiUtils {
             default:
                 return null;
         }
+    }
+
+    /**
+     * Returns a ringtone string based on the ringtone URI and version #.
+     */
+    public static String getRingtoneStringFromUri(Uri pickedUri, int currentVersion) {
+        if (isNewerThanM(currentVersion)) {
+            if (pickedUri == null) return ""; // silent ringtone
+            if (RingtoneManager.isDefault(pickedUri)) return null; // default ringtone
+        }
+        if (pickedUri == null || RingtoneManager.isDefault(pickedUri)) return null;
+        return pickedUri.toString();
+    }
+
+    /**
+     * Returns a ringtone URI, based on the string and version #.
+     */
+    public static Uri getRingtoneUriFromString(String str, int currentVersion) {
+        if (str != null) {
+            if (isNewerThanM(currentVersion) && TextUtils.isEmpty(str)) return null;
+            return Uri.parse(str);
+        }
+        return RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+    }
+
+    private static boolean isNewerThanM(int currentVersion) {
+        return currentVersion > Build.VERSION_CODES.M;
     }
 }

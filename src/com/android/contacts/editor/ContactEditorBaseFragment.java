@@ -148,6 +148,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
     protected static final int REQUEST_CODE_PICK_RINGTONE = 2;
 
+    private static final int CURRENT_API_VERSION = android.os.Build.VERSION.SDK_INT;
+
     /**
      * An intent extra that forces the editor to add the edited contact
      * to the default group (e.g. "My Contacts").
@@ -678,13 +680,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     private void onRingtonePicked(Uri pickedUri) {
-        if (pickedUri == null) {
-            mCustomRingtone = ""; // silent ringtone
-        } else if (RingtoneManager.isDefault(pickedUri)){
-            mCustomRingtone = null; // default ringtone
-        } else {
-            mCustomRingtone = pickedUri.toString();
-        }
+        mCustomRingtone = EditorUiUtils.getRingtoneStringFromUri(pickedUri, CURRENT_API_VERSION);
         Intent intent = ContactSaveService.createSetRingtone(
                 mContext, mLookupUri, mCustomRingtone);
         mContext.startService(intent);
@@ -879,17 +875,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // Allow the user to pick a silent ringtone
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
 
-        final Uri ringtoneUri;
-        if (mCustomRingtone != null) {
-            if ("".equals(mCustomRingtone)) { // select silent ringtone in RingtonePickerActivity
-                ringtoneUri = null;
-            } else {
-                ringtoneUri = Uri.parse(mCustomRingtone);
-            }
-        } else {
-            // Otherwise pick default ringtone Uri so that something is selected.
-            ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-        }
+        final Uri ringtoneUri = EditorUiUtils.getRingtoneUriFromString(mCustomRingtone,
+                CURRENT_API_VERSION);
 
         // Put checkmark next to the current ringtone for this contact
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
