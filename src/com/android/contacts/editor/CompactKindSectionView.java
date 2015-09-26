@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
@@ -254,6 +255,28 @@ public class CompactKindSectionView extends LinearLayout {
             ValuesDelta valuesDelta, RawContactDelta rawContactDelta) {
         final boolean readOnly = !accountType.areContactsWritable();
 
+        if (readOnly) {
+            final View nameView = mLayoutInflater.inflate(
+                    R.layout.structured_name_readonly_editor_view, mEditors,
+                    /* attachToRoot =*/ false);
+
+            // Display name
+            ((TextView) nameView.findViewById(R.id.display_name))
+                    .setText(valuesDelta.getDisplayName());
+
+            // Account type info
+            final LinearLayout accountTypeLayout = (LinearLayout)
+                    nameView.findViewById(R.id.account_type);
+            accountTypeLayout.setVisibility(View.VISIBLE);
+            ((ImageView) accountTypeLayout.findViewById(R.id.account_type_icon))
+                    .setImageDrawable(accountType.getDisplayIcon(getContext()));
+            ((TextView) accountTypeLayout.findViewById(R.id.account_type_name))
+                    .setText(accountType.getDisplayLabel(getContext()));
+
+            mEditors.addView(nameView);
+            return;
+        }
+
         // Structured name
         final StructuredNameEditorView nameView = (StructuredNameEditorView) mLayoutInflater
                 .inflate(R.layout.structured_name_editor_view, mEditors, /* attachToRoot =*/ false);
@@ -263,15 +286,12 @@ public class CompactKindSectionView extends LinearLayout {
         nameView.setValues(
                 accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
                 valuesDelta, rawContactDelta, readOnly, mViewIdGenerator);
-        if (readOnly) nameView.setAccountType(accountType);
 
         // Correct start margin since there is a second icon in the structured name layout
         nameView.findViewById(R.id.kind_icon).setVisibility(View.GONE);
         mEditors.addView(nameView);
 
         // Phonetic name
-        if (readOnly) return;
-
         final PhoneticNameEditorView phoneticNameView = (PhoneticNameEditorView) mLayoutInflater
                 .inflate(R.layout.phonetic_name_editor_view, mEditors, /* attachToRoot =*/ false);
         phoneticNameView.setEditorListener(new OtherNameKindEditorListener());
@@ -378,6 +398,7 @@ public class CompactKindSectionView extends LinearLayout {
 
         for (int i = 0; i < mEditors.getChildCount(); i++) {
             final View view = mEditors.getChildAt(i);
+            if (!(view instanceof Editor)) continue; // Skip read-only names
             final Editor editor = (Editor) view;
             if (view instanceof StructuredNameEditorView) {
                 // We always show one empty structured name view
