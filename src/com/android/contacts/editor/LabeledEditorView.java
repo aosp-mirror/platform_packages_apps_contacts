@@ -378,6 +378,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 if (mIsDeletable) mDeleteContainer.setVisibility(View.VISIBLE);
             }
             mWasEmpty = isEmpty;
+
+            // Update the label text color
+            mEditTypeAdapter.notifyDataSetChanged();
         }
     }
 
