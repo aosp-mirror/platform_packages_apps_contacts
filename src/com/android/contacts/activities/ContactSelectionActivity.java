@@ -84,8 +84,6 @@ public class ContactSelectionActivity extends ContactsActivity
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
 
-    private boolean mIsVisible;
-
     private int mActionCode = -1;
     private boolean mIsSearchMode;
     private boolean mIsSearchSupported;
@@ -137,25 +135,6 @@ public class ContactSelectionActivity extends ContactsActivity
         }
 
         prepareSearchViewAndActionBar();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mIsVisible = true;
-    }
-
-    @Override
-    protected void onStop() {
-        mIsVisible = false;
-        super.onStop();
-    }
-
-    /**
-     * Returns true when the Activity is currently visible (between onStart and onStop).
-     */
-    /* package */ boolean isVisible() {
-        return mIsVisible;
     }
 
     private void prepareSearchViewAndActionBar() {
@@ -233,7 +212,6 @@ public class ContactSelectionActivity extends ContactsActivity
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        mIsVisible = false;
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_ACTION_CODE, mActionCode);
         outState.putBoolean(KEY_SEARCH_MODE, mIsSearchMode);
@@ -690,7 +668,7 @@ public class ContactSelectionActivity extends ContactsActivity
 
     @Override
     public void onBackPressed() {
-        if (!isVisible()) {
+        if (!isSafeToCommitTransactions()) {
             return;
         }
 
