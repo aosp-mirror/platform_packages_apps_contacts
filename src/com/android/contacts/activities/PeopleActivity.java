@@ -142,8 +142,6 @@ public class PeopleActivity extends ContactsActivity implements
     private MultiSelectContactsListFragment mAllFragment;
     private ContactTileListFragment mFavoritesFragment;
 
-    private boolean mIsVisible;
-
     /** ViewPager for swipe */
     private ViewPager mTabPager;
     private ViewPagerTabs mViewPagerTabs;
@@ -412,14 +410,6 @@ public class PeopleActivity extends ContactsActivity implements
             configureFragments(!mIsRecreatedInstance);
         }
         super.onStart();
-
-        mIsVisible = true;
-    }
-
-    @Override
-    protected void onStop() {
-        mIsVisible = false;
-        super.onStop();
     }
 
     @Override
@@ -462,13 +452,6 @@ public class PeopleActivity extends ContactsActivity implements
         }
 
         super.onDestroy();
-    }
-
-    /**
-     * Returns true when the Activity is currently visible (between onStart and onStop).
-     */
-    /* package */ boolean isVisible() {
-        return mIsVisible;
     }
 
     private void configureFragments(boolean fromRequest) {
@@ -1364,7 +1347,7 @@ public class PeopleActivity extends ContactsActivity implements
 
     @Override
     public void onBackPressed() {
-        if (!isVisible()) {
+        if (!isSafeToCommitTransactions()) {
             return;
         }
 
@@ -1380,8 +1363,6 @@ public class PeopleActivity extends ContactsActivity implements
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        mIsVisible = false;
-
         super.onSaveInstanceState(outState);
         mActionBarAdapter.onSaveInstanceState(outState);
 
