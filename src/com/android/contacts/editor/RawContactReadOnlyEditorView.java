@@ -170,7 +170,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
                         phoneNumber, phone.getPhoneNormalizedNumber(),
                         GeoUtil.getCurrentCountryIso(getContext()));
                 CharSequence phoneType = null;
-                if (phone.phoneHasType()) {
+                if (phone.hasPhoneType()) {
                     phoneType = Phone.getTypeLabel(
                             res, phone.getPhoneType(), phone.getPhoneLabel());
                 }
@@ -192,7 +192,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
                     continue;
                 }
                 CharSequence emailType = null;
-                if (email.emailHasType()) {
+                if (email.hasEmailType()) {
                     emailType = Email.getTypeLabel(
                             res, email.getEmailType(), email.getEmailLabel());
                 }
