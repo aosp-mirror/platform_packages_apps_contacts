@@ -33,7 +33,6 @@ import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCr
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.commonbind.analytics.AnalyticsUtil;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -196,7 +195,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             final String number = getPhoneNumber(position);
             if (!TextUtils.isEmpty(number)) {
                 cacheContactInfo(position);
-                mListener.onCallNumberDirectly(number, false /* isVideoCall */,
+                mListener.onPickPhoneNumber(number, false /* isVideoCall */,
                         getCallInitiationType(true /* isRemoteDirectory */));
             } else {
                 Log.w(TAG, "Item at " + position + " was clicked before"
@@ -287,7 +286,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     public void pickPhoneNumber(Uri uri) {
         if (mShortcutAction == null) {
-            mListener.onPickPhoneNumberAction(uri,
+            mListener.onPickDataUri(uri,
                     getCallInitiationType(false /* isRemoteDirectory */));
         } else {
             startPhoneNumberShortcutIntent(uri);
@@ -306,7 +305,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     @Override
     public void onPickerResult(Intent data) {
-        mListener.onPickPhoneNumberAction(data.getData(),
+        mListener.onPickDataUri(data.getData(),
                 getCallInitiationType(false /* isRemoteDirectory */));
     }
 
