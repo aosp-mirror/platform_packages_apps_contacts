@@ -26,14 +26,15 @@ public interface OnPhoneNumberPickerActionListener  {
     public static final int CALL_INITIATION_UNKNOWN = 0;
 
     /**
-     * Returns the selected phone number to the requester.
+     * Returns the selected phone number uri to the requester.
      */
-    void onPickPhoneNumberAction(Uri dataUri, int callInitiationType);
+    void onPickDataUri(Uri dataUri, int callInitiationType);
 
     /**
-     * Calls the specified phone number, either as an audio or video call.
+     * Returns the specified phone number to the requester.
+     * May call the specified phone number, either as an audio or video call.
      */
-    void onCallNumberDirectly(String phoneNumber, boolean isVideoCall, int callInitiationType);
+    void onPickPhoneNumber(String phoneNumber, boolean isVideoCall, int callInitiationType);
 
     /**
      * Returns the selected number as a shortcut intent.
