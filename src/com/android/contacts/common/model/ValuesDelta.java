@@ -545,11 +545,11 @@ public class ValuesDelta implements Parcelable {
         return getAsString(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER);
     }
 
-    public boolean phoneHasType() {
-        return containsKey(ContactsContract.CommonDataKinds.Phone.TYPE);
+    public boolean hasPhoneType() {
+        return getPhoneType() != null;
     }
 
-    public int getPhoneType() {
+    public Integer getPhoneType() {
         return getAsInteger(ContactsContract.CommonDataKinds.Phone.TYPE);
     }
 
@@ -561,11 +561,11 @@ public class ValuesDelta implements Parcelable {
         return getAsString(ContactsContract.CommonDataKinds.Email.DATA);
     }
 
-    public boolean emailHasType() {
-        return containsKey(ContactsContract.CommonDataKinds.Email.TYPE);
+    public boolean hasEmailType() {
+        return getEmailType() != null;
     }
 
-    public int getEmailType() {
+    public Integer getEmailType() {
         return getAsInteger(ContactsContract.CommonDataKinds.Email.TYPE);
     }
 
