@@ -255,7 +255,7 @@
     <string name="removePhoto">Remove photo</string>
 
     <!-- The text displayed when the contacts list is empty while displaying all contacts [CHAR LIMIT=NONE] -->
-    <string name="noContacts">No contacts.</string>
+    <string name="noContacts">No contacts</string>
 
     <!-- The text displayed when the groups list is empty while displaying all groups [CHAR LIMIT=NONE] -->
     <string name="noGroups">No groups.</string>
@@ -544,7 +544,7 @@
 
     <!-- Button shown on the main contacts screen when there are no contacts on the device.
     Navigates to account setup [CHAR LIMIT=128] -->
-    <string name="contacts_unavailable_add_account">Sign in to an account</string>
+    <string name="contacts_unavailable_add_account">Add account</string>
 
     <!-- Button shown on the main contacts screen when there are no contacts on the device.
     Initiates a contact import dialog [CHAR LIMIT=128] -->
