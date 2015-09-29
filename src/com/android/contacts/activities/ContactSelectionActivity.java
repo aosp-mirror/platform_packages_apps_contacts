@@ -483,13 +483,13 @@ public class ContactSelectionActivity extends ContactsActivity
     private final class PhoneNumberPickerActionListener implements
             OnPhoneNumberPickerActionListener {
         @Override
-        public void onPickPhoneNumberAction(Uri dataUri, int callInitiationType) {
+        public void onPickDataUri(Uri dataUri, int callInitiationType) {
             returnPickerResult(dataUri);
         }
 
         @Override
-        public void onCallNumberDirectly(String phoneNumber, boolean isVideoCall,
-                int callInitiationType) {
+        public void onPickPhoneNumber(String phoneNumber, boolean isVideoCall,
+                                      int callInitiationType) {
             Log.w(TAG, "Unsupported call.");
         }
 
