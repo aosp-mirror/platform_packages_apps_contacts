@@ -228,6 +228,12 @@
     <dimen name="expanding_entry_card_item_header_only_margin_bottom">2dp</dimen>
     <dimen name="expanding_entry_card_item_no_icon_margin_top">6dp</dimen>
 
+    <dimen name="quickcontact_suggestion_card_icon_height">24dp</dimen>
+    <dimen name="quickcontact_suggestion_card_icon_width">24dp</dimen>
+    <dimen name="quickcontact_suggestion_card_image_spacing">20dp</dimen>
+    <dimen name="quickcontact_suggestion_card_layout_margin">8dp</dimen>
+    <dimen name="quickcontact_suggestion_card_checkbox_right_margin">16dp</dimen>
+
     <!-- The width the that the tabs occupy in the ActionBar when in landscape mode.
          426dp is the height of a "small" screen. We should leave 240dp for
          the title and menu items -->

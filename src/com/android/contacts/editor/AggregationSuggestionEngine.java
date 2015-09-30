@@ -103,8 +103,6 @@ public class AggregationSuggestionEngine extends HandlerThread {
 
     private static final long SUGGESTION_LOOKUP_DELAY_MILLIS = 300;
 
-    private static final int MAX_SUGGESTION_COUNT = 3;
-
     private final Context mContext;
 
     private long[] mSuggestedContactIds = new long[0];
@@ -116,6 +114,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
     private Cursor mDataCursor;
     private ContentObserver mContentObserver;
     private Uri mSuggestionsUri;
+    private int mSuggestionsLimit = 3;
 
     public AggregationSuggestionEngine(Context context) {
         super("AggregationSuggestions", Process.THREAD_PRIORITY_BACKGROUND);
@@ -145,6 +144,10 @@ public class AggregationSuggestionEngine extends HandlerThread {
             mContactId = contactId;
             reset();
         }
+    }
+
+    public void setSuggestionsLimit(int suggestionsLimit) {
+        mSuggestionsLimit = suggestionsLimit;
     }
 
     public void setListener(Listener listener) {
@@ -219,7 +222,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
         }
 
         Builder builder = new AggregationSuggestions.Builder()
-                .setLimit(MAX_SUGGESTION_COUNT)
+                .setLimit(mSuggestionsLimit)
                 .setContactId(mContactId);
 
         if (nameSb.length() != 0) {
