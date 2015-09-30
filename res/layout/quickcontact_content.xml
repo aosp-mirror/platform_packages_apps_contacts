@@ -54,6 +54,8 @@
             android:visibility="gone"
             cardview:cardCornerRadius="@dimen/expanding_entry_card_card_corner_radius" />
 
+        <include layout="@layout/quickcontact_suggestion_card" />
+
     </LinearLayout>
 
 </com.android.contacts.widget.TouchlessScrollView>
