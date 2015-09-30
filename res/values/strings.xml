@@ -777,7 +777,7 @@
     <!-- Button used in quick contact suggestion card to merge selected contacts. [CHAR LIMIT=30]-->
     <string name="quickcontact_suggestion_merge_button">Merge</string>
 
-    <!-- Suggestions number in quick contact suggestion card [CHAR LIMIT=30] -->
+    <!-- Suggestions number in quick contact suggestion card [CHAR LIMIT=60] -->
     <plurals name="quickcontact_suggestions_number">
         <item quantity="one">1 suggested contact</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> suggested contacts</item>
