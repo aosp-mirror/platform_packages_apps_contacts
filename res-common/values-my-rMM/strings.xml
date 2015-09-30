@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များ သွင်းယူ၊ ထုတ်ယူရန်"</string>
     <string name="dialog_import" msgid="5177004290082451296">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
     <string name="share_error" msgid="665756457151793108">"ဒီလိပ်စာအား မျှဝေလို့ မရပါ"</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"မျှဝေရန် အဆက်အသွယ်များမရှိပါ။"</string>
     <string name="menu_search" msgid="7464453023659824700">"ရှာဖွေခြင်း"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ပြရန် အဆက်အသွယ်များ"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"အဆက်အသွယ်များပြရန်"</string>

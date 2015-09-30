@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"导入/导出联系人"</string>
     <string name="dialog_import" msgid="5177004290082451296">"导入联系人"</string>
     <string name="share_error" msgid="665756457151793108">"无法分享此联系人。"</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"没有可供分享的联系人。"</string>
     <string name="menu_search" msgid="7464453023659824700">"搜索"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"要显示的联系人"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"要显示的联系人"</string>

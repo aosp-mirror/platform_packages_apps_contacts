@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Импортиране/eкспортиране на контакти"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Импортиране на контактите"</string>
     <string name="share_error" msgid="665756457151793108">"Този контакт не може да бъде споделен."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Няма контакти за споделяне."</string>
     <string name="menu_search" msgid="7464453023659824700">"Търсене"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти за показване"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти за показване"</string>

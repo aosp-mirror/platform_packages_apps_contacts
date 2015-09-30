@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्कों को आयात/निर्यात करें"</string>
     <string name="dialog_import" msgid="5177004290082451296">"संपर्कों को आयात करें"</string>
     <string name="share_error" msgid="665756457151793108">"यह संपर्क साझा नहीं किया जा सकता."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"साझा करने के लिए कोई भी संपर्क नहीं है."</string>
     <string name="menu_search" msgid="7464453023659824700">"खोजें"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"दिखाने के लिए संपर्क"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"दिखाने के लिए संपर्क"</string>

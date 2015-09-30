@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"കോൺടാക്റ്റ് ഡൗൺലോഡ്/അപ്‌ലോഡ്"</string>
     <string name="dialog_import" msgid="5177004290082451296">"കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="share_error" msgid="665756457151793108">"ഈ കോൺടാക്റ്റ് പങ്കിടാനാകില്ല."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"പങ്കിടാൻ കോൺടാക്റ്റുകളൊന്നും ഇല്ല."</string>
     <string name="menu_search" msgid="7464453023659824700">"തിരയുക"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ദൃശ്യമാക്കേണ്ടവ"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ദൃശ്യമാക്കേണ്ടവ"</string>

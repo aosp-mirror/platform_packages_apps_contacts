@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು/ರವಾನೆ ಮಾಡಿ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="share_error" msgid="665756457151793108">"ಈ ಸಂಪರ್ಕವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"ಹಂಚಿಕೊಳ್ಳಲು ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ."</string>
     <string name="menu_search" msgid="7464453023659824700">"ಹುಡುಕು"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ಪ್ರದರ್ಶಿಸಲು ಸಂಪರ್ಕಗಳು"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ಪ್ರದರ್ಶಿಸಲು ಸಂಪರ್ಕಗಳು"</string>
