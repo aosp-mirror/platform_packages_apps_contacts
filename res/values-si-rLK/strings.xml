@@ -272,5 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ඔබ පුද්ගලයාගේ Hangouts හඳුන්වනය ඊ-තැපැල් හෝ දුරකථන ක්ෂේත්‍රයට ඇතුළත් කළ විටHangouts වඩා හොඳින් ක්‍රියා කරයි."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"තව ක්ෂේත්‍ර"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ඡායාරූපය වෙනස් කරන්න"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"සංස්කාරකය විවෘත කිරීමට නොහැකි විය."</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

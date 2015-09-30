@@ -272,5 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funciona millor si introdueixes l\'identificador de Hangouts de la persona corresponent al camp de l\'adreça electrònica o del telèfon."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Més camps"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Canvia la foto"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"No s\'ha pogut obrir l\'editor."</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

@@ -286,5 +286,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Služba Hangouts funguje lepšie, keď do poľa pre e-mailovú adresu alebo telefón zadáte identifikátor osoby v službe Hangouts."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Ďalšie polia"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Zmeniť fotku"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Nepodarilo sa otvoriť editor."</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

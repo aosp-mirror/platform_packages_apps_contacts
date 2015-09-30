@@ -272,5 +272,6 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"જ્યારે તમે વ્યક્તિના Hangouts ઓળખકર્તાને ઇમેઇલ ફીલ્ડ અથવા ફોન ફીલ્ડમાં દાખલ કરો છો ત્યારે Hangouts વધુ સારું કામ કરે છે."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"વધુ ફીલ્ડ્સ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ફોટો બદલો"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"સંપાદક ખોલવામાં નિષ્ફળ થયાં."</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>
