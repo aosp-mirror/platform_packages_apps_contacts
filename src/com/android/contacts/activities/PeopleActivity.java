@@ -627,11 +627,11 @@ public class PeopleActivity extends ContactsActivity implements
         if (mContactsUnavailableFragment != null) {
             switch (getTabPositionForTextDirection(tab)) {
                 case TabState.FAVORITES:
-                    mContactsUnavailableFragment.setMessageText(
-                            R.string.listTotalAllContactsZeroStarred, -1);
+                    mContactsUnavailableFragment.setTabInfo(
+                            R.string.listTotalAllContactsZeroStarred, TabState.FAVORITES);
                     break;
                 case TabState.ALL:
-                    mContactsUnavailableFragment.setMessageText(R.string.noContacts, -1);
+                    mContactsUnavailableFragment.setTabInfo(R.string.noContacts, TabState.ALL);
                     break;
             }
             // When using the mContactsUnavailableFragment the ViewPager doesn't contain two views.
