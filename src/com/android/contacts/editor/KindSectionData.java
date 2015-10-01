@@ -24,6 +24,7 @@ import com.android.contacts.common.model.dataitem.DataKind;
 
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.text.TextUtils;
 
 import java.util.Collections;
@@ -103,6 +104,10 @@ public final class KindSectionData {
 
     public boolean isNicknameDataKind() {
         return Nickname.CONTENT_ITEM_TYPE.equals(mDataKind.mimeType);
+    }
+
+    public boolean isEventDataKind() {
+        return Event.CONTENT_ITEM_TYPE.equals(mDataKind.mimeType);
     }
 
     public RawContactDelta getRawContactDelta() {

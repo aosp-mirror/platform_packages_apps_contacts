@@ -101,7 +101,7 @@ public class CompactKindSectionView extends LinearLayout {
      * Whether a new empty editor is added is controlled by {@link #setShowOneEmptyEditor} and
      * {@link #setHideWhenEmpty}.
      */
-    private final class NonNameEditorListener implements Editor.EditorListener {
+    private class NonNameEditorListener implements Editor.EditorListener {
 
         @Override
         public void onRequest(int request) {
@@ -121,6 +121,27 @@ public class CompactKindSectionView extends LinearLayout {
             } else {
                 editor.deleteEditor();
             }
+        }
+    }
+
+    private class EventEditorListener extends NonNameEditorListener {
+
+        @Override
+        public void onRequest(int request) {
+            super.onRequest(request);
+        }
+
+        @Override
+        public void onDeleteRequested(Editor editor) {
+            if (editor instanceof EventFieldEditorView){
+                final EventFieldEditorView delView = (EventFieldEditorView) editor;
+                if (delView.isBirthdayType() && mEditors.getChildCount() > 1) {
+                    final EventFieldEditorView bottomView = (EventFieldEditorView) mEditors
+                            .getChildAt(mEditors.getChildCount() - 1);
+                    bottomView.restoreBirthday();
+                }
+            }
+            super.onDeleteRequested(editor);
         }
     }
 
@@ -241,8 +262,14 @@ public class CompactKindSectionView extends LinearLayout {
                 addGroupEditorView(kindSectionData.getRawContactDelta(),
                         kindSectionData.getDataKind());
             } else {
-                final Editor.EditorListener editorListener = kindSectionData.isNicknameDataKind()
-                        ? new OtherNameKindEditorListener() : new NonNameEditorListener();
+                final Editor.EditorListener editorListener;
+                if (kindSectionData.isNicknameDataKind()) {
+                    editorListener = new OtherNameKindEditorListener();
+                } else if (kindSectionData.isEventDataKind()) {
+                    editorListener = new EventEditorListener();
+                } else {
+                    editorListener = new NonNameEditorListener();
+                }
                 for (ValuesDelta valuesDelta : kindSectionData.getValuesDeltas()) {
                     addNonNameEditorView(kindSectionData.getRawContactDelta(),
                             kindSectionData.getDataKind(), valuesDelta, editorListener);
@@ -461,8 +488,10 @@ public class CompactKindSectionView extends LinearLayout {
             final RawContactDelta rawContactDelta =
                     mKindSectionDataList.get(0).getRawContactDelta();
             final ValuesDelta values = RawContactModifier.insertChild(rawContactDelta, dataKind);
+            final Editor.EditorListener editorListener = mKindSectionDataList.get(0)
+                    .isEventDataKind() ? new EventEditorListener() : new NonNameEditorListener();
             final View view = addNonNameEditorView(rawContactDelta, dataKind, values,
-                    new NonNameEditorListener());
+                    editorListener);
             showView(view, shouldAnimate);
         }
     }
