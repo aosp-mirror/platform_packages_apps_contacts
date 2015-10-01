@@ -707,7 +707,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <string name="listTotalAllContactsZeroCustom">No visible contacts.</string>
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when starred contact list is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZeroStarred">No favorites.</string>
+    <string name="listTotalAllContactsZeroStarred">No favorites</string>
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when a group or account is selected  [CHAR LIMIT=64]-->
     <string name="listTotalAllContactsZeroGroup">No contacts in <xliff:g id="name" example="Friends">%s</xliff:g></string>
