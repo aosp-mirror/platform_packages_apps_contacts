@@ -255,6 +255,7 @@ public class QuickContactActivity extends ContactsActivity
     private View mSuggestionSeparator;
     private Button mSuggestionsMergeButton;
     private boolean mIsSuggestionListCollapsed;
+    private long mPreviousSuggestionForContactId = 0;
 
     private MultiShrinkScroller mScroller;
     private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
@@ -489,44 +490,51 @@ public class QuickContactActivity extends ContactsActivity
         final int suggestionNumber = mSuggestions.size();
         final String suggestionSummary = getSuggestionAccountSummary(mSuggestions);
 
-        if (suggestionNumber > 0) {
-            mSuggestionCardView.setVisibility(View.VISIBLE);
-
-            // Take the first suggestion 's photo as the summary photo.
-            // TODO: take all suggestions' photos.
-            final Suggestion firstSuggestion = mSuggestions.get(0);
-            if (firstSuggestion.photo != null) {
-                mSuggestionSummaryPhoto.setImageBitmap(BitmapFactory.decodeByteArray(
-                        firstSuggestion.photo, 0, firstSuggestion.photo.length));
-            } else {
-                mSuggestionSummaryPhoto.setImageDrawable(
-                        ContactPhotoManager.getDefaultAvatarDrawableForContact(
-                                getResources(), false, null));
-            }
-
-            mSuggestionForName.setText(suggestionForName);
-            mSuggestionNumber.setText(getResources().getQuantityString(
-                    R.plurals.quickcontact_suggestions_number, suggestionNumber, suggestionNumber));
-            mSuggestionSummary.setText(suggestionSummary);
-
-            for (Suggestion suggestion : mSuggestions) {
-                mSuggestionList.addView(inflateSuggestionListView(suggestion));
-            }
-
-            mSuggestionExpansionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mIsSuggestionListCollapsed) {
-                        expandSuggestionList();
-                    } else {
-                        collapseSuggestionList();
-                    }
-                }
-            });
-
-        } else {
-            mSuggestionCardView.setVisibility(View.GONE);
+        if (suggestionNumber <= 0) {
+            mSelectedAggregationIds.clear();
+            return;
         }
+
+        mSuggestionCardView.setVisibility(View.VISIBLE);
+
+        // Take the first suggestion 's photo as the summary photo.
+        // TODO: take all suggestions' photos.
+        final Suggestion firstSuggestion = mSuggestions.get(0);
+        if (firstSuggestion.photo != null) {
+            mSuggestionSummaryPhoto.setImageBitmap(BitmapFactory.decodeByteArray(
+                    firstSuggestion.photo, 0, firstSuggestion.photo.length));
+        } else {
+            mSuggestionSummaryPhoto.setImageDrawable(
+                    ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                            getResources(), false, null));
+        }
+
+        mSuggestionForName.setText(suggestionForName);
+        mSuggestionNumber.setText(getResources().getQuantityString(
+                R.plurals.quickcontact_suggestions_number, suggestionNumber, suggestionNumber));
+        mSuggestionSummary.setText(suggestionSummary);
+
+        final Set<Long> suggestionContactIds = new HashSet<>();
+        for (Suggestion suggestion : mSuggestions) {
+            mSuggestionList.addView(inflateSuggestionListView(suggestion));
+            suggestionContactIds.add(suggestion.contactId);
+        }
+
+        // Remove contact Ids that are not suggestions.
+        final Set<Long> selectedSuggestionIds = com.google.common.collect.Sets.intersection(
+                mSelectedAggregationIds, suggestionContactIds);
+        mSelectedAggregationIds = new TreeSet<>(selectedSuggestionIds);
+
+        mSuggestionExpansionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mIsSuggestionListCollapsed) {
+                    expandSuggestionList();
+                } else {
+                    collapseSuggestionList();
+                }
+            }
+        });
     }
 
     private void collapseSuggestionList() {
@@ -563,7 +571,7 @@ public class QuickContactActivity extends ContactsActivity
             }
         }
 
-        Set<String> accountTypeWithNumber = new HashSet<>();
+        final Set<String> accountTypeWithNumber = new HashSet<>();
         for (String accountType : accountTypeMap.keySet()) {
             final String number = getResources().getQuantityString(
                     R.plurals.quickcontact_suggestion_account_type_number,
@@ -927,9 +935,8 @@ public class QuickContactActivity extends ContactsActivity
                 if (!mSelectedAggregationIds.contains(mContactData.getId())) {
                     mSelectedAggregationIds.add(mContactData.getId());
                 }
-                TreeSet<Long> mergedContactIds = new TreeSet<Long>(mSelectedAggregationIds);
-                mSelectedAggregationIds.clear(); // Clear selected ids for merged contact.
-                JoinContactsDialogFragment.start(QuickContactActivity.this, mergedContactIds);
+                JoinContactsDialogFragment.start(
+                        QuickContactActivity.this, mSelectedAggregationIds);
             }
         });
 
@@ -1320,11 +1327,18 @@ public class QuickContactActivity extends ContactsActivity
         if (mAggregationSuggestionEngine == null) {
             mAggregationSuggestionEngine = new AggregationSuggestionEngine(this);
             mAggregationSuggestionEngine.setListener(this);
-            mAggregationSuggestionEngine.setSuggestionsLimit(10);
+            mAggregationSuggestionEngine.setSuggestionsLimit(getResources().getInteger(
+                    R.integer.quickcontact_suggestions_limit));
             mAggregationSuggestionEngine.start();
         }
 
         mAggregationSuggestionEngine.setContactId(mContactData.getId());
+        if (mPreviousSuggestionForContactId != 0
+                && mPreviousSuggestionForContactId != mContactData.getId()) {
+            // Clear selected Ids when listing suggestions for new contact Id.
+            mSelectedAggregationIds.clear();
+        }
+        mPreviousSuggestionForContactId = mContactData.getId();
 
         // Trigger suggestion engine to compute suggestions.
         final ContentValues values = new ContentValues();

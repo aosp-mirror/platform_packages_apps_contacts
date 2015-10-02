@@ -24,4 +24,7 @@
     <!-- Number of lines the QuickContact title can have -->
     <integer name="quickcontact_title_lines">1</integer>
 
+    <!-- Max suggestions limit showing in quick contact suggestion card [CHAR LIMIT=30]-->
+    <integer name="quickcontact_suggestions_limit">10</integer>
+
 </resources>
