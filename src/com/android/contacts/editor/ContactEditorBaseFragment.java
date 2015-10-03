@@ -95,7 +95,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     static final String TAG = "ContactEditor";
 
-    protected static final int LOADER_DATA = 1;
+    protected static final int LOADER_CONTACT = 1;
     protected static final int LOADER_GROUPS = 2;
 
     private static final List<String> VALID_INTENT_ACTIONS = new ArrayList<String>() {{
@@ -366,7 +366,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     /**
      * The contact data loader listener.
      */
-    protected final LoaderManager.LoaderCallbacks<Contact> mDataLoaderListener =
+    protected final LoaderManager.LoaderCallbacks<Contact> mContactLoaderListener =
             new LoaderManager.LoaderCallbacks<Contact>() {
 
                 protected long mLoaderStartTime;
@@ -405,9 +405,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             };
 
     /**
-     * The group meta data loader listener.
+     * The groups meta data loader listener.
      */
-    protected final LoaderManager.LoaderCallbacks<Cursor> mGroupLoaderListener =
+    protected final LoaderManager.LoaderCallbacks<Cursor> mGroupsLoaderListener =
             new LoaderManager.LoaderCallbacks<Cursor>() {
 
                 @Override
@@ -507,11 +507,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // database.
             if (Intent.ACTION_EDIT.equals(mAction) ||
                     ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
-                // Either...
+                // Either
                 // 1) orientation change but load never finished.
-                // or
-                // 2) not an orientation change.  data needs to be loaded for first time.
-                getLoaderManager().initLoader(LOADER_DATA, null, mDataLoaderListener);
+                // 2) not an orientation change so data needs to be loaded for first time.
+                getLoaderManager().initLoader(LOADER_CONTACT, null, mContactLoaderListener);
+                getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupsLoaderListener);
             }
         } else {
             // Orientation change, we already have mState, it was loaded by onCreate
@@ -557,12 +557,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
         throw new IllegalArgumentException(
                 "Unknown action " + action + "; Supported actions: " + VALID_INTENT_ACTIONS);
-    }
-
-    @Override
-    public void onStart() {
-        getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupLoaderListener);
-        super.onStart();
     }
 
     @Override
@@ -898,7 +892,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // If we are about to close the editor - there is no need to refresh the data
         if (saveMode == SaveMode.CLOSE || saveMode == SaveMode.COMPACT
                 || saveMode == SaveMode.SPLIT) {
-            getLoaderManager().destroyLoader(LOADER_DATA);
+            getLoaderManager().destroyLoader(LOADER_CONTACT);
         }
 
         mStatus = Status.SAVING;
@@ -1360,7 +1354,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                     mState = new RawContactDeltaList();
                     load(Intent.ACTION_EDIT, contactLookupUri, null);
                     mStatus = Status.LOADING;
-                    getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
+                    getLoaderManager().restartLoader(LOADER_CONTACT, null, mContactLoaderListener);
                 }
                 break;
 

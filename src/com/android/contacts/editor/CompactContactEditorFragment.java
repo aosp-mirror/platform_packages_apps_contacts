@@ -365,6 +365,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         }
     }
 
+    @Override
+    public void onEditorsBound() {
+        getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupsLoaderListener);
+    }
+
     private CompactRawContactsEditorView getContent() {
         return (CompactRawContactsEditorView) mContent;
     }

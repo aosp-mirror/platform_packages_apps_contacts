@@ -109,6 +109,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
          * Invoked when no editors could be bound for the contact.
          */
         public void onBindEditorsFailed();
+
+        /**
+         * Invoked after editors have been bound for the contact.
+         */
+        public void onEditorsBound();
     }
 
     /** Used to sort entire kind sections. */
@@ -360,8 +365,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.more_fields) {
-            showMoreFields();
-            updateMoreFieldsButton();
+            showAllFields();
         }
     }
 
@@ -391,8 +395,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         final SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
         mIsExpanded = savedState.mIsExpanded;
-        if (mIsExpanded && !mKindSectionDataMap.isEmpty()) {
-            showMoreFields();
+        if (mIsExpanded) {
+            showAllFields();
         }
     }
 
@@ -445,20 +449,17 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 GroupMembership.CONTENT_ITEM_TYPE);
         for (CompactKindSectionView kindSectionView : kindSectionViews) {
             kindSectionView.setGroupMetaData(groupMetaData);
+            if (mIsExpanded) {
+                kindSectionView.setHideWhenEmpty(false);
+                kindSectionView.updateEmptyEditors(/* shouldAnimate =*/ true);
+            }
         }
-
-        // Groups metadata may be set after we restore expansion state so just do it again
-        if (mIsExpanded) {
-            showMoreFields();
-        }
-        updateMoreFieldsButton();
     }
 
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
             long photoId, boolean hasNewContact, boolean isUserProfile,
             AccountWithDataSet primaryAccount) {
-        // Clear previous state and reset views
         mKindSectionDataMap.clear();
         mKindSectionViews.removeAllViews();
         mMoreFields.setVisibility(View.VISIBLE);
@@ -488,13 +489,15 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
 
         // Setup the view
-        setId(mViewIdGenerator.getId(rawContactDeltas.get(0), /* dataKind =*/ null,
-                /* valuesDelta =*/ null, ViewIdGenerator.NO_VIEW_INDEX));
         addAccountInfo();
         addPhotoView();
         addKindSectionViews();
 
-        updateMoreFieldsButton();
+        if (mIsExpanded) {
+            showAllFields();
+        }
+
+        if (mListener != null) mListener.onEditorsBound();
     }
 
     private void parseRawContactDeltas(RawContactDeltaList rawContactDeltas,
@@ -836,7 +839,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return kindSectionView;
     }
 
-    private void showMoreFields() {
+    private void showAllFields() {
         // Stop hiding empty editors and allow the user to enter values for all kinds now
         for (int i = 0; i < mKindSectionViews.getChildCount(); i++) {
             final CompactKindSectionView kindSectionView =
@@ -845,19 +848,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             kindSectionView.updateEmptyEditors(/* shouldAnimate =*/ true);
         }
         mIsExpanded = true;
-    }
 
-    private void updateMoreFieldsButton() {
-        // If any kind section views are hidden then show the link
-        for (int i = 0; i < mKindSectionViews.getChildCount(); i++) {
-            final CompactKindSectionView kindSectionView =
-                    (CompactKindSectionView) mKindSectionViews.getChildAt(i);
-            if (kindSectionView.getVisibility() == View.GONE) {
-                // Show the more fields button
-                mMoreFields.setVisibility(View.VISIBLE);
-                return;
-            }
-        }
         // Hide the more fields button
         mMoreFields.setVisibility(View.GONE);
     }
