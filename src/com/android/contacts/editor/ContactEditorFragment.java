@@ -115,6 +115,12 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     }
 
     @Override
+    public void onStart() {
+        getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupsLoaderListener);
+        super.onStart();
+    }
+
+    @Override
     public void onExternalEditorRequest(AccountWithDataSet account, Uri uri) {
         if (mListener != null) {
             mListener.onCustomEditContactActivityRequested(account, uri, null, false);
