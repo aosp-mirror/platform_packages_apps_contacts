@@ -27,7 +27,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.text.TextUtils;
 
-import java.util.Collections;
 import java.util.List;
 
 /**

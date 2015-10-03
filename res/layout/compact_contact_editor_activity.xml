@@ -15,8 +15,8 @@
     limitations under the License.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/compact_contact_editor_fragment_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>

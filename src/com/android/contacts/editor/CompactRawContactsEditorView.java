@@ -17,6 +17,7 @@
 package com.android.contacts.editor;
 
 import com.android.contacts.R;
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
@@ -27,7 +28,7 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.AccountsListAdapter;
 import com.android.contacts.common.util.MaterialColorMapUtils;
-import com.android.contacts.editor.CompactContactEditorFragment.PhotoHandler;
+import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.UiClosables;
 
 import android.content.Context;
@@ -62,6 +63,8 @@ import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -321,6 +324,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private boolean mIsExpanded;
     private long mPhotoRawContactId;
+    private ValuesDelta mPhotoValuesDelta;
 
     public CompactRawContactsEditorView(Context context) {
         super(context);
@@ -401,23 +405,45 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     /**
-     * Pass through to {@link CompactPhotoEditorView#setPhotoHandler}.
+     * Pass through to {@link CompactPhotoEditorView#setListener}.
      */
-    public void setPhotoHandler(PhotoHandler photoHandler) {
-        mPhotoView.setPhotoHandler(photoHandler);
+    public void setPhotoListener(CompactPhotoEditorView.Listener listener) {
+        mPhotoView.setListener(listener);
     }
 
-    /**
-     * Pass through to {@link CompactPhotoEditorView#setPhoto}.
-     */
-    public void setPhoto(Bitmap bitmap) {
-        mPhotoView.setPhoto(bitmap);
+    public void removePhoto() {
+        mPhotoValuesDelta.setFromTemplate(false);
+        mPhotoValuesDelta.put(Photo.PHOTO, (byte[]) null);
+
+        mPhotoView.removePhoto();
     }
 
     /**
      * Pass through to {@link CompactPhotoEditorView#setFullSizedPhoto(Uri)}.
      */
     public void setFullSizePhoto(Uri photoUri) {
+        mPhotoView.setFullSizedPhoto(photoUri);
+    }
+
+    public void updatePhoto(Uri photoUri) {
+        // Even though high-res photos cannot be saved by passing them via
+        // an EntityDeltaList (since they cause the Bundle size limit to be
+        // exceeded), we still pass a low-res thumbnail. This simplifies
+        // code all over the place, because we don't have to test whether
+        // there is a change in EITHER the delta-list OR a changed photo...
+        // this way, there is always a change in the delta-list.
+        mPhotoValuesDelta.setFromTemplate(false);
+        mPhotoValuesDelta.setSuperPrimary(true);
+        try {
+            final byte[] bytes = EditorUiUtils.getCompressedThumbnailBitmapBytes(
+                    getContext(), photoUri);
+            if (bytes != null) {
+                mPhotoValuesDelta.setPhoto(bytes);
+            }
+        } catch (FileNotFoundException e) {
+            elog("Failed to get bitmap from photo Uri");
+        }
+
         mPhotoView.setFullSizedPhoto(photoUri);
     }
 
@@ -433,6 +459,77 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      */
     public long getPhotoRawContactId() {
         return mPhotoRawContactId;
+    }
+
+    /**
+     * Returns a data holder for every non-default/non-empty photo from each raw contact, whether
+     * the raw contact is writable or not.
+     */
+    public ArrayList<CompactPhotoSelectionFragment.Photo> getPhotos() {
+        final ArrayList<CompactPhotoSelectionFragment.Photo> photos = new ArrayList<>();
+
+        final List<KindSectionData> kindSectionDataList =
+                mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
+        for (int i = 0; i < kindSectionDataList.size(); i++) {
+            final KindSectionData kindSectionData = kindSectionDataList.get(i);
+            final AccountType accountType = kindSectionData.getAccountType();
+            final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
+            if (valuesDeltaList == null || valuesDeltaList.isEmpty()) continue;
+            for (int j = 0; j < valuesDeltaList.size(); j++) {
+                final ValuesDelta valuesDelta = valuesDeltaList.get(j);
+                final Bitmap bitmap = EditorUiUtils.getPhotoBitmap(valuesDelta);
+                if (bitmap == null) continue;
+
+                final CompactPhotoSelectionFragment.Photo photo =
+                        new CompactPhotoSelectionFragment.Photo();
+                photo.titleRes = accountType.titleRes;
+                photo.iconRes = accountType.iconRes;
+                photo.syncAdapterPackageName = accountType.syncAdapterPackageName;
+                photo.valuesDelta = valuesDelta;
+                photo.primary = valuesDelta.isSuperPrimary();
+                photo.kindSectionDataListIndex = i;
+                photo.valuesDeltaListIndex = j;
+                photos.add(photo);
+            }
+        }
+
+        return photos;
+    }
+
+    /**
+     * Marks the raw contact photo given as primary for the aggregate contact and updates the
+     * UI.
+     */
+    public void setPrimaryPhoto(CompactPhotoSelectionFragment.Photo photo) {
+        // Unset primary for all other photos
+        final List<KindSectionData> kindSectionDataList =
+                mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
+        for (KindSectionData kindSectionData : kindSectionDataList) {
+            final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
+            for (ValuesDelta valuesDelta : valuesDeltaList) {
+                valuesDelta.setSuperPrimary(false);
+            }
+        }
+
+        // Find the values delta to mark as primary
+        if (photo.kindSectionDataListIndex < 0
+                || photo.kindSectionDataListIndex >= kindSectionDataList.size()) {
+            wlog("Invalid kind section data list index");
+            return;
+        }
+        final KindSectionData kindSectionData =
+                kindSectionDataList.get(photo.kindSectionDataListIndex);
+        final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
+        if (photo.valuesDeltaListIndex >= valuesDeltaList.size()) {
+            wlog("Invalid values delta list index");
+            return;
+        }
+        final ValuesDelta valuesDelta = valuesDeltaList.get(photo.valuesDeltaListIndex);
+        valuesDelta.setFromTemplate(false);
+        valuesDelta.setSuperPrimary(true);
+
+        // Update the UI
+        mPhotoView.setPhoto(valuesDelta, mMaterialPalette);
     }
 
     public View getAggregationAnchorView() {
@@ -691,31 +788,50 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private void addPhotoView() {
-        // Get the kind section data and values delta that will back the photo view
-        Pair<KindSectionData,ValuesDelta> pair = getPrimaryKindSectionData(mPhotoId);
+        // Get the kind section data and values delta that we will display in the photo view
+        Pair<KindSectionData,ValuesDelta> pair = getPrimaryPhotoKindSectionData(mPhotoId);
         if (pair == null) {
             wlog("photo: no kind section data parsed");
+            mPhotoView.setReadOnly(true);
             return;
         }
-        final KindSectionData kindSectionData = pair.first;
-        final ValuesDelta valuesDelta = pair.second;
 
-        // If we're editing a read-only contact we want to display the photo from the
-        // read-only contact in a photo editor backed by the new raw contact
-        // that was created.
-        if (mHasNewContact) {
-            mPhotoRawContactId = mPrimaryRawContactDelta == null
-                    ? null : mPrimaryRawContactDelta.getRawContactId();
+        // Set the photo view
+        final ValuesDelta primaryValuesDelta = pair.second;
+        mPhotoView.setPhoto(primaryValuesDelta, mMaterialPalette);
+
+        // Find the raw contact ID and values delta that will be written when the photo is edited
+        final KindSectionData primaryKindSectionData = pair.first;
+        if (mHasNewContact && mPrimaryRawContactDelta != null
+                && !primaryKindSectionData.getValuesDeltas().isEmpty()) {
+            // If we're editing a read-only contact we want to display the photo from the
+            // read-only contact in a photo editor view, but update the new raw contact
+            // that was created.
+            mPhotoRawContactId = mPrimaryRawContactDelta.getRawContactId();
+            mPhotoValuesDelta = primaryKindSectionData.getValuesDeltas().get(0);
+            mPhotoView.setReadOnly(false);
+            return;
+        }
+        if (primaryKindSectionData.getAccountType().areContactsWritable() &&
+                !primaryKindSectionData.getValuesDeltas().isEmpty()) {
+            mPhotoRawContactId = primaryKindSectionData.getRawContactDelta().getRawContactId();
+            mPhotoValuesDelta = primaryKindSectionData.getValuesDeltas().get(0);
+            mPhotoView.setReadOnly(false);
+            return;
         }
 
-        mPhotoRawContactId = kindSectionData.getRawContactDelta().getRawContactId();
-        mPhotoView.setValues(kindSectionData.getDataKind(), valuesDelta,
-                kindSectionData.getRawContactDelta(),
-                !kindSectionData.getAccountType().areContactsWritable(), mMaterialPalette,
-                mViewIdGenerator);
+        final KindSectionData writableKindSectionData = getFirstWritablePhotoKindSectionData();
+        if (writableKindSectionData == null
+                || writableKindSectionData.getValuesDeltas().isEmpty()) {
+            mPhotoView.setReadOnly(true);
+            return;
+        }
+        mPhotoRawContactId = writableKindSectionData.getRawContactDelta().getRawContactId();
+        mPhotoValuesDelta = writableKindSectionData.getValuesDeltas().get(0);
+        mPhotoView.setReadOnly(false);
     }
 
-    private Pair<KindSectionData,ValuesDelta> getPrimaryKindSectionData(long id) {
+    private Pair<KindSectionData,ValuesDelta> getPrimaryPhotoKindSectionData(long id) {
         final String mimeType = Photo.CONTENT_ITEM_TYPE;
         final List<KindSectionData> kindSectionDataList = mKindSectionDataMap.get(mimeType);
 
@@ -764,6 +880,17 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
         return resultKindSectionData != null && resultValuesDelta != null
                 ? new Pair<>(resultKindSectionData, resultValuesDelta) : null;
+    }
+
+    private KindSectionData getFirstWritablePhotoKindSectionData() {
+        final String mimeType = Photo.CONTENT_ITEM_TYPE;
+        final List<KindSectionData> kindSectionDataList = mKindSectionDataMap.get(mimeType);
+        for (KindSectionData kindSectionData : kindSectionDataList) {
+            if (kindSectionData.getAccountType().areContactsWritable()) {
+                return kindSectionData;
+            }
+        }
+        return null;
     }
 
     private void addKindSectionViews() {
