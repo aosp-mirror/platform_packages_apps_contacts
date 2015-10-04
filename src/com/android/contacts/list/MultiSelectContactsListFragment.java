@@ -126,11 +126,8 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
                     mCheckBoxListListener.onStartDisplayingCheckBoxes();
                 }
                 getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
-                // Sending an accessibility event of TYPE_VIEW_CLICKED and forcing Talkback to be
-                // performed on the checkbox.
-                // We need to:
-                // 1. consider the difference between position and adjPosition;
-                // 2. make sure the list item is not null before sending the event.
+                // Manually send clicked event if there is a checkbox.
+                // See b/24098561.  TalkBack will not read it otherwise.
                 final int adjPosition = position + getListView().getHeaderViewsCount();
                 if (getListView() != null && adjPosition < getListView().getChildCount()) {
                     getListView().getChildAt(adjPosition).sendAccessibilityEvent(AccessibilityEvent
