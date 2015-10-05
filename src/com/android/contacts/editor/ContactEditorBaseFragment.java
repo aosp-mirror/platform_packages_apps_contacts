@@ -743,7 +743,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // even if they have never added their own information and splitting will create a
             // name only contact.
             final boolean isSingleReadOnlyContact = mHasNewContact && mState.size() == 2;
-            splitMenu.setVisible(mState.size() > 1 && !isEditingUserProfile()
+            splitMenu.setVisible(isMultiAccountContact() && !isEditingUserProfile()
                     && !isSingleReadOnlyContact);
             // Cannot join a user profile
             joinMenu.setVisible(!isEditingUserProfile());
@@ -936,6 +936,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     protected boolean isEditingUserProfile() {
         return mNewLocalProfile || mIsUserProfile;
+    }
+
+    protected boolean isMultiAccountContact() {
+        return mState.size() > 1;
     }
 
     /**

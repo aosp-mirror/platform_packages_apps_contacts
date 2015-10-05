@@ -19,6 +19,7 @@ package com.android.contacts.editor;
 import com.android.contacts.R;
 import com.android.contacts.editor.PhotoActionPopup.ChoiceListItem;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -44,14 +45,17 @@ public class PhotoSourceDialogFragment extends DialogFragment {
         void onPickFromGalleryChosen();
     }
 
-    public static void show(CompactContactEditorFragment fragment, int photoMode) {
+    public static void show(Activity activity, int photoMode) {
+        if (!(activity instanceof Listener)) {
+            throw new IllegalArgumentException(
+                    "Activity must implement " + Listener.class.getName());
+        }
         final Bundle args = new Bundle();
         args.putInt(ARG_PHOTO_MODE, photoMode);
 
         PhotoSourceDialogFragment dialog = new PhotoSourceDialogFragment();
-        dialog.setTargetFragment(fragment, 0);
         dialog.setArguments(args);
-        dialog.show(fragment.getFragmentManager(), "photoSource");
+        dialog.show(activity.getFragmentManager(), "photoSource");
     }
 
     @Override
@@ -69,7 +73,7 @@ public class PhotoSourceDialogFragment extends DialogFragment {
         final OnClickListener clickListener = new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
-                final Listener listener = (Listener) getTargetFragment();
+                final Listener listener = (Listener) getActivity();
                 final ChoiceListItem choice = choices.get(which);
                 switch (choice.getId()) {
                     case ChoiceListItem.ID_REMOVE:
