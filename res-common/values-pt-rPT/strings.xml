@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoritos"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Sem contactos."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Sem contactos visíveis"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Sem favoritos."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Sem favoritos"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Sem contactos em <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Limpar frequentes"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selecionar cartão SIM"</string>

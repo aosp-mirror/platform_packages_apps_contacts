@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Αγαπημένα"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Δεν υπάρχουν επαφές."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Δεν υπάρχουν ορατές επαφές."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Δεν υπάρχουν αγαπημένα."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Δεν υπάρχουν αγαπημένα"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Δεν υπάρχουν επαφές στο <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Διαγραφή ατόμ. με συχνή επικ."</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Επιλογή κάρτας SIM"</string>

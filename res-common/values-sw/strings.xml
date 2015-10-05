@@ -240,7 +240,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Vipendwa"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Hakuna anwani."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Hakuna anwani zinazoonekana"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Hakuna vipendwa."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Hakuna vipendwa"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Hakuna anwani kwenye <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Futa za mara kwa mara"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Chagua SIM kadi"</string>

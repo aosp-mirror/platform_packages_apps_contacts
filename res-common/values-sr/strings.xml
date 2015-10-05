@@ -239,7 +239,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Омиљено"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нема контаката."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Нема видљивих контаката."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Нема омиљених."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Нема омиљених"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Нема контаката у групи <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Обриши често контактиране"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Изаберите SIM картицу"</string>

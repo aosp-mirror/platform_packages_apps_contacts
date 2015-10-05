@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Gogokoak"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ez dago kontakturik."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ez dago ikusgai dagoen kontakturik."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Ez dago gogokorik."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Ez dago gogokorik"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Ez dago kontakturik hemen: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Garbitu sarri erabilitakoak"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Hautatu SIM txartela"</string>

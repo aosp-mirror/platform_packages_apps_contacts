@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ລາຍການທີ່ມັກ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ເບິ່ງເຫັນໄດ້."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ບໍ່ມີລາຍການທີ່ມັກ"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"ບໍ່ມີລາຍການທີ່ມັກ"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ໃນ <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"ລຶບລາຍຊື່ຄົນທີ່ຕິດຕໍ່ຫາເລື້ອຍໆ"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"ເລືອກ SIM ກາດ"</string>

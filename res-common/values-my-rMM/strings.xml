@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"အနှစ်သက်ဆုံးများ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"အဆက်အသွယ်များမရှိပါ"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"မြင်နိုင်သော အဆက်အသွယ်မရှိပါ"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"အနှစ်သက်ဆုံး မရှိပါ"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"အနှစ်သက်ဆုံး မရှိပါ"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> ထဲတွင် အဆက်အသွယ်မရှိပါ"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"မကြာခဏအရာများအား ဖယ်ရှားရန်"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM ကဒ်ကို ရွေးရန်"</string>

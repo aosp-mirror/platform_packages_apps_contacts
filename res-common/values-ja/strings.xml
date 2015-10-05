@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"お気に入り"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"連絡先がありません。"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"表示できる連絡先はありません。"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"お気に入りはありません。"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"お気に入りはありません"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>の連絡先はありません"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"よく使う連絡先のクリア"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIMカードを選択"</string>

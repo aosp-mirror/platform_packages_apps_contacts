@@ -240,7 +240,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Вибране"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Контактів немає."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Видимих контактів немає."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Немає вибраних."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Немає вибраних контактів"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> – контактів немає"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Очистити часті контакти"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Вибрати SIM-карту"</string>

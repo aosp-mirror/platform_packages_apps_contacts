@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ප්‍රියතම"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"සම්බන්ධතා නැත."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"දෘශ්‍ය සම්බන්ධතා නැත."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ප්‍රියතමයන් නැත."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"ප්‍රියතම නැත"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> හි සම්බන්ධතා නැත"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"නිතරමයන් හිස් කරන්න"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM කාඩ්පත තෝරන්න"</string>

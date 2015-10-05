@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Foretrukne"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ingen kontaktpersoner."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ingen synlige kontaktpersoner."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Der er ingen foretrukne."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Der er ingen favoritter"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Ingen kontaktpersoner i <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Ryd hyppige"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Vælg SIM-kort"</string>

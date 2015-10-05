@@ -238,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoritlər"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Kontakt yoxdur."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Görünən kontakt yoxdur."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Favoritlər yoxdur."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Favoritlər yoxdur."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> daxilində kontakt yoxdur"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Müntəzəmləri təmizləyin"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM kart seçin"</string>
