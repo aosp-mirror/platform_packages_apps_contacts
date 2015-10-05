@@ -277,11 +277,16 @@ public abstract class AccountType {
     }
 
     public Drawable getDisplayIcon(Context context) {
-        if (this.titleRes != -1 && this.syncAdapterPackageName != null) {
+        return getDisplayIcon(context, titleRes, iconRes, syncAdapterPackageName);
+    }
+
+    public static Drawable getDisplayIcon(Context context, int titleRes, int iconRes,
+            String syncAdapterPackageName) {
+        if (titleRes != -1 && syncAdapterPackageName != null) {
             final PackageManager pm = context.getPackageManager();
-            return pm.getDrawable(this.syncAdapterPackageName, this.iconRes, null);
-        } else if (this.titleRes != -1) {
-            return context.getResources().getDrawable(this.iconRes);
+            return pm.getDrawable(syncAdapterPackageName, iconRes, null);
+        } else if (titleRes != -1) {
+            return context.getResources().getDrawable(iconRes);
         } else {
             return null;
         }
