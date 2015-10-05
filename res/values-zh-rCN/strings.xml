@@ -92,7 +92,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"自定义标签名称"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接将来电转到语音信箱"</string>
     <string name="removePhoto" msgid="4898105274130284565">"删除照片"</string>
-    <string name="noContacts" msgid="8579310973261953559">"没有联系人。"</string>
+    <string name="noContacts" msgid="4955659076981974652">"没有联系人"</string>
     <string name="noGroups" msgid="8614664663561385253">"没有任何群组。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"您需要拥有一个帐户才能创建群组。"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"此群组中没有联系人。"</string>
@@ -190,7 +190,8 @@
     <string name="social_widget_label" msgid="6378905543028924592">"联系人"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"正在加载..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"创建新联系人"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"登录帐户"</string>
+    <!-- no translation found for contacts_unavailable_add_account (4347232421410561500) -->
+    <skip />
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"导入联系人"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"创建新群组"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"创建新群组"</string>
@@ -274,4 +275,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"更换照片"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"无法开启编辑器。"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"合并"</string>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位系统提示的联系人</item>
+      <item quantity="one">1 位系统提示的联系人</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g> <xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
 </resources>

@@ -92,7 +92,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ഇഷ്‌ടാനുസൃത ലേബൽ പേര്"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"കോളുകൾ നേരിട്ട് വോയ്‌സ്‌മെയിലിലേക്ക് അയയ്‌ക്കുക"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ഫോട്ടോ നീക്കംചെയ്യുക"</string>
-    <string name="noContacts" msgid="8579310973261953559">"കോൺടാക്റ്റുകൾ ഒന്നുമില്ല."</string>
+    <string name="noContacts" msgid="4955659076981974652">"കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
     <string name="noGroups" msgid="8614664663561385253">"ഗ്രൂപ്പുകൾ ഒന്നുമില്ല."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ഗ്രൂപ്പുകൾ സൃഷ്‌ടിക്കാൻ നിങ്ങൾക്ക് ഒരു അക്കൗണ്ട് ആവശ്യമാണ്."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ഈ ഗ്രൂപ്പിൽ ആരുമില്ല."</string>
@@ -190,7 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"കോൺടാക്റ്റ്"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ലോഡുചെയ്യുന്നു..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ഒരു അക്കൗണ്ടിൽ സൈൻ ഇൻ ചെയ്യുക"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"പുതുഗ്രൂപ്പ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"പുതുഗ്രൂപ്പ് സൃഷ്‌ടിക്കൂ"</string>
@@ -274,4 +274,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ഫോട്ടോ മാറ്റുക"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"എഡിറ്റർ തുറക്കുന്നത് പരാജയപ്പെട്ടു."</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"ലയിപ്പിക്കുക"</string>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
+      <item quantity="other">നിർദ്ദേശിക്കപ്പെടുന്ന <xliff:g id="COUNT">%d</xliff:g> കോൺടാക്റ്റുകൾ</item>
+      <item quantity="one">നിർദ്ദേശിക്കപ്പെടുന്ന ഒരു കോൺടാക്റ്റ്</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
 </resources>

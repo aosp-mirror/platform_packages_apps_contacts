@@ -128,8 +128,7 @@
     <skip />
     <!-- no translation found for removePhoto (4898105274130284565) -->
     <skip />
-    <!-- no translation found for noContacts (8579310973261953559) -->
-    <skip />
+    <string name="noContacts" msgid="4955659076981974652">"Байланыштар жок"</string>
     <!-- no translation found for noGroups (8614664663561385253) -->
     <skip />
     <string name="noAccounts" msgid="7768267764545265909">"Топторду түзүш үчүн эсеп керек."</string>
@@ -269,8 +268,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Жүктөлүүдө…"</string>
     <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
     <skip />
-    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
-    <skip />
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Каттоо эсебин кошуу"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Байланыштарды импорттоо"</string>
     <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
     <skip />
@@ -356,4 +354,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Сүрөттү өзгөртүү"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Түзөткүч ачылбай калды."</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"Бириктирүү"</string>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> байланыш сунушталган</item>
+      <item quantity="one">1 байланыш сунушталган</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
 </resources>

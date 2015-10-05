@@ -92,7 +92,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ឈ្មោះ​ស្លាក​ផ្ទាល់ខ្លួន"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"បញ្ជូន​ការ​ហៅ​ដោយ​ផ្ទាល់​ទៅ​សារ​ជា​សំឡេង"</string>
     <string name="removePhoto" msgid="4898105274130284565">"លុប​រូបថត​ចេញ"</string>
-    <string name="noContacts" msgid="8579310973261953559">"មិន​មាន​ទំនាក់ទំនង។"</string>
+    <string name="noContacts" msgid="4955659076981974652">"គ្មាន​ទំនាក់ទំនង"</string>
     <string name="noGroups" msgid="8614664663561385253">"មិន​មាន​ក្រុម។"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ដើម្បី​បង្កើត​ក្រុម​អ្នក​ចាំបាច់​ត្រូវ​មាន​គណនី​មួយ។"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"មិន​មាន​មនុស្ស​នៅ​ក្នុង​ក្រុម​នេះ​ទេ។"</string>
@@ -190,7 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"ទំនាក់ទំនង"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"កំពុង​ផ្ទុក..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"បង្កើត​ទំនាក់ទំនង​ថ្មី"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ចូល​គណនី"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"បន្ថែមគណនី"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"នាំចូល​ទំនាក់ទំនង"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"បង្កើត​ក្រុម​ថ្មី"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"បង្កើត​ក្រុម​ថ្មី"</string>
@@ -274,4 +274,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ប្ដូររូបថត"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"បានបរាជ័យក្នុងការបើកកម្មវិធីកែ"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"បញ្ចូលគ្នា"</string>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
+      <item quantity="other">ទំនាក់ទំនងដែលបានស្នើ <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">ទំនាក់ទំនងដែលបានស្នើ 1</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
 </resources>

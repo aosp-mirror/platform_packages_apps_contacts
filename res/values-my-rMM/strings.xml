@@ -92,7 +92,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"စိတ်ကြိုက် လေဘယ်လ်နာမည်"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ဖုန်းများအား အသံစာပို့စနစ်သို့ ပို့လိုက်ပါ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ပုံအားဖယ်ရှားပါ"</string>
-    <string name="noContacts" msgid="8579310973261953559">"အဆက်အသွယ်များမရှိပါ"</string>
+    <string name="noContacts" msgid="4955659076981974652">"အဆက်အသွယ်များမရှိပါ"</string>
     <string name="noGroups" msgid="8614664663561385253">"အုပ်စုများမရှိပါ"</string>
     <string name="noAccounts" msgid="7768267764545265909">"အုပ်စုများ ပြုလုပ်ရန် အကောင့်တစ်ခု လိုအပ်ပါသည်"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ဒီအုပ်စုထဲမှာ လူတစ်ယောက်မှမရှိပါ"</string>
@@ -190,7 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"အဆက်အသွယ်"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ဖွင့်နေစဉ်…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"အဆက်အသွယ်သစ်တစ်ခု ပြုလုပ်ပါ"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"အကောင့်တစ်ခုထဲသို့ ဝင်ပါ"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"အကောင့် ထည့်ရန်"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"အုပ်စုသစ်ပြုလုပ်ရန်"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"အုပ်စုအသစ်ပြုလုပ်ရန်"</string>
@@ -274,4 +274,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ဓာတ်ပုံ ပြောင်းလဲ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"တည်းဖြတ်သူကို ဖွင့်ခြင်းမအောင်မြင်ပါ။"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"ပေါင်းစည်းပါ"</string>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> မှအကြံပြုထားသည့် အဆက်အသွယ်များ</item>
+      <item quantity="one"> မှ အဆက်အသွယ်တစ်ခုအကြံပြုထားသည်</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
 </resources>

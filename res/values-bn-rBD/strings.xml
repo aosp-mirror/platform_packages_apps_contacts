@@ -92,7 +92,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"কাস্টম লেবেল নাম"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"কলগুলিকে সরাসরি ভয়েসমেলে পাঠান"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ফটো সরান"</string>
-    <string name="noContacts" msgid="8579310973261953559">"কোনো পরিচিতি নেই৷"</string>
+    <string name="noContacts" msgid="4955659076981974652">"কোনো পরিচিতি নেই"</string>
     <string name="noGroups" msgid="8614664663561385253">"কোনো গোষ্ঠী নেই৷"</string>
     <string name="noAccounts" msgid="7768267764545265909">"গোষ্ঠীগুলি তৈরি করার জন্য আপনার একটি অ্যাকাউন্টের প্রয়োজন৷"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"এই গোষ্ঠীতে কেউ নেই৷"</string>
@@ -190,7 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"পরিচিতি"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"লোড হচ্ছে..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"একটি নতুন পরিচিতি তৈরি করুন"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"একটি অ্যাকাউন্টে সাইন ইন করুন"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"অ্যাকাউন্ট যোগ করুন"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"পরিচিতিগুলি আমদানি করুন"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"নতুন গোষ্ঠী তৈরি করুন"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"নতুন গোষ্ঠী তৈরি করুন"</string>
@@ -274,4 +274,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ফটো পরিবর্তন করুন"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"সম্পাদক খুলতে ব্যর্থ হচ্ছে৷"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"একত্রিত করুন"</string>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি প্রস্তাবিত পরিচিতি</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি প্রস্তাবিত পরিচিতি</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="one">(<xliff:g id="COUNT">%d</xliff:g>টি)</item>
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>টি)</item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
 </resources>
