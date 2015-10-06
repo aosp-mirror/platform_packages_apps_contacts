@@ -791,4 +791,7 @@
 
     <!-- Account type with number in quick contact suggestion card [CHAR LIMIT=30]-->
     <string name="quickcontact_suggestion_account_type"><xliff:g id="account_type">%s</xliff:g><xliff:g id="account_type_number">%s</xliff:g></string>
+
+    <!-- Merged contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
+    <string name="compact_editor_linked_contacts_title">Merged contacts</string>
 </resources>
