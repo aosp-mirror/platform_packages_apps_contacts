@@ -145,7 +145,7 @@ public class CompactKindSectionView extends LinearLayout {
         }
     }
 
-    private List<KindSectionData> mKindSectionDataList;
+    private KindSectionDataList mKindSectionDataList;
     private ViewIdGenerator mViewIdGenerator;
     private CompactRawContactsEditorView.Listener mListener;
 
@@ -225,15 +225,14 @@ public class CompactKindSectionView extends LinearLayout {
      * Empty name editors are never added and at least one structured name editor is always
      * displayed, even if it is empty.
      */
-    public void setState(List<KindSectionData> kindSectionDataList,
+    public void setState(KindSectionDataList kindSectionDataList,
             ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener) {
         mKindSectionDataList = kindSectionDataList;
         mViewIdGenerator = viewIdGenerator;
         mListener = listener;
 
         // Set the icon using the first DataKind
-        final DataKind dataKind = mKindSectionDataList.isEmpty()
-                ? null : mKindSectionDataList.get(0).getDataKind();
+        final DataKind dataKind = mKindSectionDataList.getDataKind();
         if (dataKind != null) {
             mIcon.setImageDrawable(EditorUiUtils.getMimeTypeDrawable(getContext(),
                     dataKind.mimeType));
@@ -379,9 +378,10 @@ public class CompactKindSectionView extends LinearLayout {
      * then the entire section is hidden.
      */
     public void updateEmptyEditors(boolean shouldAnimate) {
-        final boolean isNameKindSection = mKindSectionDataList.get(0).isNameDataKind();
+        final boolean isNameKindSection = StructuredName.CONTENT_ITEM_TYPE.equals(
+                mKindSectionDataList.getMimeType());
         final boolean isGroupKindSection = GroupMembership.CONTENT_ITEM_TYPE.equals(
-                mKindSectionDataList.get(0).getDataKind().mimeType);
+                mKindSectionDataList.getMimeType());
 
         if (isNameKindSection) {
             // The name kind section is always visible
