@@ -190,8 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"联系人"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"正在加载..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"创建新联系人"</string>
-    <!-- no translation found for contacts_unavailable_add_account (4347232421410561500) -->
-    <skip />
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"添加帐号"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"导入联系人"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"创建新群组"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"创建新群组"</string>

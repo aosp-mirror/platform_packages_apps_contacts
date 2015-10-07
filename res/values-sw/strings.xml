@@ -276,8 +276,8 @@
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>(<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"Unganisha"</string>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="other">Anwani <xliff:g id="COUNT">%d</xliff:g> zilizopendekezwa</item>
-      <item quantity="one">Anwani 1 iliyopendekezwa</item>
+      <item quantity="other">Anwani <xliff:g id="COUNT">%d</xliff:g> zinazopendekezwa</item>
+      <item quantity="one">Anwani 1 inayopendekezwa</item>
     </plurals>
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
