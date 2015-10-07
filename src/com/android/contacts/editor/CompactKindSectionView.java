@@ -18,7 +18,9 @@ package com.android.contacts.editor;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -30,6 +32,7 @@ import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
@@ -216,10 +219,65 @@ public class CompactKindSectionView extends LinearLayout {
     }
 
     /**
+     * Whether this is a name kind section view and all name fields (structured, phonetic,
+     * and nicknames) are empty.
+     */
+    public boolean isEmptyName() {
+        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionDataList.getMimeType())) {
+            return false;
+        }
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            final View view = mEditors.getChildAt(i);
+            if (view instanceof Editor) {
+                final Editor editor = (Editor) view;
+                if (!editor.isEmpty()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Sets the given display name as the structured name as if the user input it, but
+     * without informing editor listeners.
+     */
+    public void setName(String displayName) {
+        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionDataList.getMimeType())) {
+            return;
+        }
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            final View view = mEditors.getChildAt(i);
+            if (view instanceof StructuredNameEditorView) {
+                final StructuredNameEditorView editor = (StructuredNameEditorView) view;
+
+                // Detach listeners since so we don't show suggested aggregations
+                final Editor.EditorListener editorListener = editor.getEditorListener();
+                editor.setEditorListener(null);
+
+                editor.setDisplayName(displayName);
+
+                // Reattach listeners
+                editor.setEditorListener(editorListener);
+
+                return;
+            }
+        }
+    }
+
+    public StructuredNameEditorView getPrimaryNameEditorView() {
+        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionDataList.getMimeType())
+            || mEditors.getChildCount() == 0) {
+            return null;
+        }
+        return (StructuredNameEditorView) mEditors.getChildAt(0);
+    }
+
+    /**
      * Binds views for the given {@link KindSectionData} list.
      *
      * We create a structured name and phonetic name editor for each {@link DataKind} with a
-     * {@link }StructuredName#CONTENT_ITEM_TYPE} mime type.  The number and order of editors are
+     * {@link StructuredName#CONTENT_ITEM_TYPE} mime type.  The number and order of editors are
      * rendered as they are given to {@link #setState}.
      *
      * Empty name editors are never added and at least one structured name editor is always
@@ -262,9 +320,9 @@ public class CompactKindSectionView extends LinearLayout {
                         kindSectionData.getDataKind());
             } else {
                 final Editor.EditorListener editorListener;
-                if (kindSectionData.isNicknameDataKind()) {
+                if (Nickname.CONTENT_ITEM_TYPE.equals(kindSectionData.getDataKind().mimeType)) {
                     editorListener = new OtherNameKindEditorListener();
-                } else if (kindSectionData.isEventDataKind()) {
+                } else if (Event.CONTENT_ITEM_TYPE.equals(kindSectionData.getDataKind().mimeType)) {
                     editorListener = new EventEditorListener();
                 } else {
                     editorListener = new NonNameEditorListener();
@@ -386,7 +444,6 @@ public class CompactKindSectionView extends LinearLayout {
         if (isNameKindSection) {
             // The name kind section is always visible
             setVisibility(VISIBLE);
-
             updateEmptyNameEditors(shouldAnimate);
         } else if (isGroupKindSection) {
             // Check whether metadata has been bound for all group views
@@ -425,29 +482,37 @@ public class CompactKindSectionView extends LinearLayout {
 
         for (int i = 0; i < mEditors.getChildCount(); i++) {
             final View view = mEditors.getChildAt(i);
-            if (!(view instanceof Editor)) continue; // Skip read-only names
-            final Editor editor = (Editor) view;
-            if (view instanceof StructuredNameEditorView) {
-                // We always show one empty structured name view
-                if (editor.isEmpty()) {
-                    if (isEmptyNameEditorVisible) {
-                        // If we're already showing an empty editor then hide any other empties
-                        if (mHideIfEmpty) {
-                            view.setVisibility(View.GONE);
+            if (view instanceof Editor) {
+                final Editor editor = (Editor) view;
+                if (view instanceof StructuredNameEditorView) {
+                    // We always show one empty structured name view
+                    if (editor.isEmpty()) {
+                        if (isEmptyNameEditorVisible) {
+                            // If we're already showing an empty editor then hide any other empties
+                            if (mHideIfEmpty) {
+                                view.setVisibility(View.GONE);
+                            }
+                        } else {
+                            isEmptyNameEditorVisible = true;
                         }
                     } else {
+                        showView(view, shouldAnimate);
                         isEmptyNameEditorVisible = true;
                     }
                 } else {
-                    showView(view, shouldAnimate);
-                    isEmptyNameEditorVisible = true;
+                    // Since we can't add phonetic names and nicknames, just show or hide them
+                    if (mHideIfEmpty && editor.isEmpty()) {
+                        hideView(view);
+                    } else {
+                        showView(view, /* shouldAnimate =*/ false); // Animation here causes jank
+                    }
                 }
             } else {
-                // For phonetic names and nicknames, which can't be added, just show or hide them
-                if (mHideIfEmpty && editor.isEmpty()) {
+                // For read only names, only show them if we're not hiding empty views
+                if (mHideIfEmpty) {
                     hideView(view);
                 } else {
-                    showView(view, /* shouldAnimate =*/ false); // Animation here causes jank
+                    showView(view, shouldAnimate);
                 }
             }
         }
@@ -488,8 +553,9 @@ public class CompactKindSectionView extends LinearLayout {
             final RawContactDelta rawContactDelta =
                     mKindSectionDataList.get(0).getRawContactDelta();
             final ValuesDelta values = RawContactModifier.insertChild(rawContactDelta, dataKind);
-            final Editor.EditorListener editorListener = mKindSectionDataList.get(0)
-                    .isEventDataKind() ? new EventEditorListener() : new NonNameEditorListener();
+            final String mimeType = mKindSectionDataList.getMimeType();
+            final Editor.EditorListener editorListener = Event.CONTENT_ITEM_TYPE.equals(mimeType)
+                    ? new EventEditorListener() : new NonNameEditorListener();
             final View view = addNonNameEditorView(rawContactDelta, dataKind, values,
                     editorListener);
             showView(view, shouldAnimate);

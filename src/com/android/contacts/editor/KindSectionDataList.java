@@ -36,7 +36,7 @@ import java.util.Objects;
  */
 public class KindSectionDataList extends ArrayList<KindSectionData> {
 
-    private static final String TAG = "CompactEditorView";
+    private static final String TAG = CompactRawContactsEditorView.TAG;
 
     /**
      * Returns the mime type for all DataKinds in this List.

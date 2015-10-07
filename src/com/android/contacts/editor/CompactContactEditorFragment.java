@@ -21,17 +21,12 @@ import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity;
-import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -114,7 +109,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
         editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId,
-                mHasNewContact, mIsUserProfile, mAccountWithDataSet);
+                mReadOnlyDisplayName, mHasNewContact, mIsUserProfile, mAccountWithDataSet);
+        if (mReadOnlyDisplayName != null) {
+            mReadOnlyNameEditorView = editorView.getPrimaryNameEditorView();
+        }
 
         // Set up the photo widget
         editorView.setPhotoListener(this);

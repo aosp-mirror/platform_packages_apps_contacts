@@ -84,7 +84,7 @@ import java.util.TreeSet;
  */
 public class CompactRawContactsEditorView extends LinearLayout implements View.OnClickListener {
 
-    private static final String TAG = "CompactEditorView";
+    static final String TAG = "CompactEditorView";
 
     private static final KindSectionDataMapEntryComparator
             KIND_SECTION_DATA_MAP_ENTRY_COMPARATOR = new KindSectionDataMapEntryComparator();
@@ -287,9 +287,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      */
     private static final class NameEditorComparator implements Comparator<KindSectionData> {
 
-        private RawContactDeltaComparator mRawContactDeltaComparator;
-        private MimeTypeComparator mMimeTypeComparator;
-        private RawContactDelta mPrimaryRawContactDelta;
+        private final RawContactDeltaComparator mRawContactDeltaComparator;
+        private final MimeTypeComparator mMimeTypeComparator;
+        private final RawContactDelta mPrimaryRawContactDelta;
 
         private NameEditorComparator(Context context, RawContactDelta primaryRawContactDelta) {
             mRawContactDeltaComparator = new RawContactDeltaComparator(context);
@@ -368,6 +368,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ViewIdGenerator mViewIdGenerator;
     private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
     private long mPhotoId;
+    private String mReadOnlyDisplayName;
     private boolean mHasNewContact;
     private boolean mIsUserProfile;
     private AccountWithDataSet mPrimaryAccount;
@@ -399,6 +400,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private long mPhotoRawContactId;
     private ValuesDelta mPhotoValuesDelta;
+    private StructuredNameEditorView mPrimaryNameEditorView;
 
     public CompactRawContactsEditorView(Context context) {
         super(context);
@@ -540,6 +542,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return mPhotoRawContactId;
     }
 
+    public StructuredNameEditorView getPrimaryNameEditorView() {
+        return mPrimaryNameEditorView;
+    }
+
     /**
      * Returns a data holder for every non-default/non-empty photo from each raw contact, whether
      * the raw contact is writable or not.
@@ -634,8 +640,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
-            long photoId, boolean hasNewContact, boolean isUserProfile,
-            AccountWithDataSet primaryAccount) {
+            long photoId, String readOnlyDisplayName, boolean hasNewContact,
+            boolean isUserProfile, AccountWithDataSet primaryAccount) {
         mKindSectionDataMap.clear();
         mKindSectionViews.removeAllViews();
         mMoreFields.setVisibility(View.VISIBLE);
@@ -643,6 +649,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mMaterialPalette = materialPalette;
         mViewIdGenerator = viewIdGenerator;
         mPhotoId = photoId;
+        mReadOnlyDisplayName = readOnlyDisplayName;
         mHasNewContact = hasNewContact;
         mIsUserProfile = isUserProfile;
         mPrimaryAccount = primaryAccount;
@@ -678,10 +685,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         addAccountInfo(rawContactDeltas);
         addPhotoView();
         addKindSectionViews();
-
-        if (mIsExpanded) {
-            showAllFields();
+        if (mHasNewContact) {
+            maybeCopyPrimaryDisplayName();
         }
+        if (mIsExpanded) showAllFields();
 
         if (mListener != null) mListener.onEditorsBound();
     }
@@ -1019,6 +1026,19 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         kindSectionView.setState(kindSectionDataList, mViewIdGenerator, mListener);
 
         return kindSectionView;
+    }
+
+    private void maybeCopyPrimaryDisplayName() {
+        if (TextUtils.isEmpty(mReadOnlyDisplayName)) return;
+        final List<CompactKindSectionView> kindSectionViews
+                = mKindSectionViewsMap.get(StructuredName.CONTENT_ITEM_TYPE);
+        if (kindSectionViews.isEmpty()) return;
+        final CompactKindSectionView primaryNameKindSectionView = kindSectionViews.get(0);
+        if (primaryNameKindSectionView.isEmptyName()) {
+            vlog("name: using read only display name as primary name");
+            primaryNameKindSectionView.setName(mReadOnlyDisplayName);
+            mPrimaryNameEditorView = primaryNameKindSectionView.getPrimaryNameEditorView();
+        }
     }
 
     private void showAllFields() {

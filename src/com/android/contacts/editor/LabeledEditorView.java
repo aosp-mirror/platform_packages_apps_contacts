@@ -380,7 +380,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
             mWasEmpty = isEmpty;
 
             // Update the label text color
-            mEditTypeAdapter.notifyDataSetChanged();
+            if (mEditTypeAdapter != null) {
+                mEditTypeAdapter.notifyDataSetChanged();
+            }
         }
     }
 
