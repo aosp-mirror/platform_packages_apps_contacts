@@ -238,8 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"收藏"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"没有联系人。"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"没有可显示的联系人。"</string>
-    <!-- no translation found for listTotalAllContactsZeroStarred (2747107662985362061) -->
-    <skip />
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"没有收藏的联系人"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>中没有联系人"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"清除常用联系人"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"选择SIM卡"</string>
