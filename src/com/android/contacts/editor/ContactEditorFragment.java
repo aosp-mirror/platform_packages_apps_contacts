@@ -36,6 +36,7 @@ import android.widget.ListPopupWindow;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
+import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
@@ -168,6 +169,8 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             return revert();
+        } else if (item.getItemId() == R.id.menu_save && mRawContactIdToDisplayAlone != -1) {
+            return super.save(SaveMode.COMPACT);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -354,7 +357,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     private void bindPhotoHandler(BaseRawContactEditorView editor, AccountType type,
             RawContactDeltaList state) {
         final int mode;
-        final boolean showIsPrimaryOption;
+        boolean showIsPrimaryOption;
         if (type.areContactsWritable()) {
             if (editor.hasSetPhoto()) {
                 mode = PhotoActionPopup.Modes.WRITE_ABLE_PHOTO;
@@ -371,6 +374,9 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             editor.getPhotoEditor().setEditorListener(null);
             editor.getPhotoEditor().setShowPrimary(false);
             return;
+        }
+        if (mRawContactIdToDisplayAlone != -1) {
+            showIsPrimaryOption = false;
         }
         final PhotoHandler photoHandler = new PhotoHandler(mContext, editor, mode, state);
         editor.getPhotoEditor().setEditorListener(

@@ -21,7 +21,9 @@ import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 
+import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -117,6 +119,23 @@ public class EditorIntents {
         intent.putExtra(ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, isNewLocalProfile);
         addContactIntentFlags(intent);
         putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
+        return intent;
+    }
+
+    /**
+     * Returns an Intent to start the full editor for the given raw contact. The full editor will
+     * only display this one raw contact.
+     */
+    public static Intent createEditContactIntentForRawContact(Context context,
+            Uri rawContactUri, long rawContactId, boolean isReadOnly) {
+        final Intent intent = new Intent(context, ContactEditorActivity.class);
+        intent.setAction(ContactEditorBaseActivity.ACTION_EDIT);
+        intent.setData(rawContactUri);
+        intent.putExtra(ContactEditorFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
+                rawContactId);
+        intent.putExtra(
+                ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY,
+                isReadOnly);
         return intent;
     }
 

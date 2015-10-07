@@ -128,6 +128,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private static final String KEY_IS_EDIT = "isEdit";
     private static final String KEY_EXISTING_CONTACT_READY = "existingContactDataReady";
 
+    private static final String KEY_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY = "isReadOnly";
+
     // Phone option menus
     private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
     private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
@@ -181,6 +183,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Intent key to pass the ID of the photo to display on the editor.
      */
     public static final String INTENT_EXTRA_PHOTO_ID = "photo_id";
+
+    /**
+     * Intent key to pass the boolean value of if the raw contact id that should be displayed
+     * in the full editor by itself is read-only.
+     */
+    public static final String INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY =
+            "raw_contact_display_alone_is_read_only";
 
     /**
      * Intent extra to specify a {@link ContactEditor.SaveMode}.
@@ -335,6 +344,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     //
     protected RawContactDeltaList mState;
     protected int mStatus;
+    protected boolean mRawContactDisplayAloneIsReadOnly = false;
 
     // Whether to show the new contact blank form and if it's corresponding delta is ready.
     protected boolean mHasNewContact;
@@ -474,6 +484,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // Read state from savedState. No loading involved here
             mState = savedState.<RawContactDeltaList> getParcelable(KEY_EDIT_STATE);
             mStatus = savedState.getInt(KEY_STATUS);
+            mRawContactDisplayAloneIsReadOnly = savedState.getBoolean(
+                    KEY_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY);
 
             mHasNewContact = savedState.getBoolean(KEY_HAS_NEW_CONTACT);
             mNewContactDataReady = savedState.getBoolean(KEY_NEW_CONTACT_READY);
@@ -598,6 +610,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         outState.putBoolean(KEY_NEW_CONTACT_ACCOUNT_CHANGED, mNewContactAccountChanged);
         outState.putBoolean(KEY_IS_EDIT, mIsEdit);
         outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
+        outState.putBoolean(KEY_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY,
+                mRawContactDisplayAloneIsReadOnly);
 
         outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
 
@@ -763,6 +777,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // something else, so don't show the help menu
             helpMenu.setVisible(false);
         }
+
+        // Save menu is invisible when there's only one read only contact in the editor.
+        saveMenu.setVisible(!mRawContactDisplayAloneIsReadOnly);
 
         // Hide telephony-related settings (ringtone, send to voicemail)
         // if we don't have a telephone or are editing a new contact.
@@ -1337,6 +1354,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR));
             }
             mPhotoId = mIntentExtras.getLong(INTENT_EXTRA_PHOTO_ID);
+            mRawContactDisplayAloneIsReadOnly = mIntentExtras.getBoolean(
+                    INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY);
         }
     }
 
@@ -1375,8 +1394,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             }
         }
         switch (saveMode) {
-            case SaveMode.CLOSE:
-            case SaveMode.COMPACT: {
+            case SaveMode.CLOSE: {
                 final Intent resultIntent;
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
@@ -1389,6 +1407,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 // It is already saved, so prevent it from being saved again
                 mStatus = Status.CLOSING;
                 if (mListener != null) mListener.onSaveFinished(resultIntent);
+                break;
+            }
+            case SaveMode.COMPACT: {
+                // It is already saved, so prevent it from being saved again
+                mStatus = Status.CLOSING;
+                if (mListener != null) mListener.onSaveFinished(/* resultIntent= */ null);
                 break;
             }
             case SaveMode.RELOAD:
