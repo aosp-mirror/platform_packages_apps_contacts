@@ -236,7 +236,7 @@ public class EditorUiUtils {
         return currentVersion > Build.VERSION_CODES.M;
     }
 
-    /** Returns teh {@link Photo#PHOTO_FILE_ID} from the given ValuesDelta. */
+    /** Returns the {@link Photo#PHOTO_FILE_ID} from the given ValuesDelta. */
     public static Long getPhotoFileId(ValuesDelta valuesDelta) {
         if (valuesDelta == null) return null;
         if (valuesDelta.getAfter() == null || valuesDelta.getAfter().get(Photo.PHOTO) == null) {

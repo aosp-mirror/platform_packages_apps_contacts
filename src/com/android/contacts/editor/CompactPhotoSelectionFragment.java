@@ -17,14 +17,19 @@
 package com.android.contacts.editor;
 
 import com.android.contacts.R;
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -105,6 +110,9 @@ public class CompactPhotoSelectionFragment extends Fragment {
         public int kindSectionDataListIndex = -1;
         public int valuesDeltaListIndex = -1;
 
+        /** Newly taken or selected photo that has not yet been saved to CP2. */
+        public Uri updatedPhotoUri;
+
         @Override
         public int describeContents() {
             return 0;
@@ -119,6 +127,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
             dest.writeInt(primary ? 1 : 0);
             dest.writeInt(kindSectionDataListIndex);
             dest.writeInt(valuesDeltaListIndex);
+            dest.writeParcelable(updatedPhotoUri, flags);
         }
 
         private void readFromParcel(Parcel source) {
@@ -130,6 +139,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
             primary = source.readInt() == 1;
             kindSectionDataListIndex = source.readInt();
             valuesDeltaListIndex = source.readInt();
+            updatedPhotoUri = source.readParcelable(classLoader);
         }
     }
 
@@ -174,7 +184,20 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
             // Bind the photo
             final ImageView imageView = (ImageView) photoItemView.findViewById(R.id.image);
-            imageView.setImageBitmap(EditorUiUtils.getPhotoBitmap(photo.valuesDelta));
+            if (photo.updatedPhotoUri != null) {
+                EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(getContext()),
+                        imageView, photo.updatedPhotoUri);
+            } else {
+                final Long photoFileId = EditorUiUtils.getPhotoFileId(photo.valuesDelta);
+                if (photoFileId != null) {
+                    final Uri photoUri = ContactsContract.DisplayPhoto.CONTENT_URI.buildUpon()
+                            .appendPath(photoFileId.toString()).build();
+                    EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(getContext()),
+                            imageView, photoUri);
+                } else {
+                    imageView.setImageBitmap(EditorUiUtils.getPhotoBitmap(photo.valuesDelta));
+                }
+            }
 
             // Add the account type icon
             final ImageView accountTypeImageView = (ImageView)

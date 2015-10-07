@@ -36,6 +36,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
@@ -126,6 +127,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
          * Invoked when a rawcontact from merged contacts is selected in editor.
          */
         public void onRawContactSelected(Uri uri, long rawContactId, boolean isReadOnly);
+
+        /**
+         * Returns the map of raw contact IDs to newly taken or selected photos that have not
+         * yet been saved to CP2.
+         */
+        public Bundle getUpdatedPhotos();
     }
 
     /**
@@ -509,25 +516,24 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public void updatePhoto(Uri photoUri) {
-        // Even though high-res photos cannot be saved by passing them via
-        // an EntityDeltaList (since they cause the Bundle size limit to be
-        // exceeded), we still pass a low-res thumbnail. This simplifies
-        // code all over the place, because we don't have to test whether
-        // there is a change in EITHER the delta-list OR a changed photo...
-        // this way, there is always a change in the delta-list.
-        mPhotoValuesDelta.setFromTemplate(false);
+        // Unset primary for all photos
+        unsetSuperPrimary();
+
+        // Mark the currently displayed photo as primary
         mPhotoValuesDelta.setSuperPrimary(true);
-        try {
-            final byte[] bytes = EditorUiUtils.getCompressedThumbnailBitmapBytes(
-                    getContext(), photoUri);
-            if (bytes != null) {
-                mPhotoValuesDelta.setPhoto(bytes);
-            }
-        } catch (FileNotFoundException e) {
-            elog("Failed to get bitmap from photo Uri");
-        }
 
         mPhotoView.setFullSizedPhoto(photoUri);
+    }
+
+    private void unsetSuperPrimary() {
+        final List<KindSectionData> kindSectionDataList =
+                mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
+        for (KindSectionData kindSectionData : kindSectionDataList) {
+            final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
+            for (ValuesDelta valuesDelta : valuesDeltaList) {
+                valuesDelta.setSuperPrimary(false);
+            }
+        }
     }
 
     /**
@@ -555,6 +561,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     public ArrayList<CompactPhotoSelectionFragment.Photo> getPhotos() {
         final ArrayList<CompactPhotoSelectionFragment.Photo> photos = new ArrayList<>();
 
+        final Bundle updatedPhotos = mListener == null ? null : mListener.getUpdatedPhotos();
+
         final List<KindSectionData> kindSectionDataList =
                 mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
         for (int i = 0; i < kindSectionDataList.size(); i++) {
@@ -576,6 +584,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 photo.primary = valuesDelta.isSuperPrimary();
                 photo.kindSectionDataListIndex = i;
                 photo.valuesDeltaListIndex = j;
+
+                if (updatedPhotos != null) {
+                    photo.updatedPhotoUri = (Uri) updatedPhotos.get(String.valueOf(
+                            kindSectionData.getRawContactDelta().getRawContactId()));
+                }
+
                 photos.add(photo);
             }
         }
@@ -588,17 +602,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      * UI.
      */
     public void setPrimaryPhoto(CompactPhotoSelectionFragment.Photo photo) {
-        // Unset primary for all other photos
-        final List<KindSectionData> kindSectionDataList =
-                mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
-        for (KindSectionData kindSectionData : kindSectionDataList) {
-            final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
-            for (ValuesDelta valuesDelta : valuesDeltaList) {
-                valuesDelta.setSuperPrimary(false);
-            }
-        }
+        // Unset primary for all photos
+        unsetSuperPrimary();
 
         // Find the values delta to mark as primary
+        final KindSectionDataList kindSectionDataList =
+                mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
         if (photo.kindSectionDataListIndex < 0
                 || photo.kindSectionDataListIndex >= kindSectionDataList.size()) {
             wlog("Invalid kind section data list index");
@@ -722,7 +731,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     continue;
                 }
 
-                final List<KindSectionData> kindSectionDataList =
+                final KindSectionDataList kindSectionDataList =
                         getOrCreateKindSectionDataList(mimeType);
                 final KindSectionData kindSectionData =
                         new KindSectionData(accountType, dataKind, rawContactDelta);
@@ -740,7 +749,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
     }
 
-    private List<KindSectionData> getOrCreateKindSectionDataList(String mimeType) {
+    private KindSectionDataList getOrCreateKindSectionDataList(String mimeType) {
         // Put structured names and nicknames together
         mimeType = Nickname.CONTENT_ITEM_TYPE.equals(mimeType)
                 ? StructuredName.CONTENT_ITEM_TYPE : mimeType;
