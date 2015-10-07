@@ -260,14 +260,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     @Override
-    public void onRawContactSelected(Uri uri, long rawContactId) {
+    public void onRawContactSelected(Uri uri, long rawContactId, boolean isReadOnly) {
         final Activity activity = getActivity();
         if (activity != null && !activity.isFinishing()) {
-            final Intent intent = new Intent(activity, ContactEditorActivity.class);
-            intent.setAction(ContactEditorBaseActivity.ACTION_EDIT);
-            intent.setData(uri);
-            intent.putExtra(ContactEditorFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
-                    rawContactId);
+            final Intent intent = EditorIntents.createEditContactIntentForRawContact(
+                    activity, uri, rawContactId, isReadOnly);
             activity.startActivity(intent);
         }
     }

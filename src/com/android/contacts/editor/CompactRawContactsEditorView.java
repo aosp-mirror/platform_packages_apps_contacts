@@ -129,7 +129,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         /**
          * Invoked when a rawcontact from merged contacts is selected in editor.
          */
-        public void onRawContactSelected(Uri uri, long rawContactId);
+        public void onRawContactSelected(Uri uri, long rawContactId, boolean isReadOnly);
     }
 
     /**
@@ -382,6 +382,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private View mAccountHeaderContainer;
     private TextView mAccountHeaderType;
     private TextView mAccountHeaderName;
+    private ImageView mAccountHeaderIcon;
 
     // Account selector
     private View mAccountSelectorContainer;
@@ -430,6 +431,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mAccountHeaderContainer = findViewById(R.id.account_container);
         mAccountHeaderType = (TextView) findViewById(R.id.account_type);
         mAccountHeaderName = (TextView) findViewById(R.id.account_name);
+        mAccountHeaderIcon = (ImageView) findViewById(R.id.account_type_icon);
 
         // Account selector
         mAccountSelectorContainer = findViewById(R.id.account_selector_container);
@@ -824,6 +826,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
         mAccountHeaderType.setText(accountInfo.second);
 
+        final AccountType primaryAccountType = mPrimaryRawContactDelta.getRawContactAccountType(
+                getContext());
+        mAccountHeaderIcon.setImageDrawable(primaryAccountType.getDisplayIcon(getContext()));
+
         mAccountHeaderContainer.setContentDescription(
                 EditorUiUtils.getAccountInfoContentDescription(
                         accountInfo.first, accountInfo.second));
@@ -906,19 +912,19 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     public void onItemClick(AdapterView<?> parent, View view, int position,
                                             long id) {
                         UiClosables.closeQuietly(popup);
-                        final RawContactDelta rawContactDelta = adapter.getItem(position);
-                        final long rawContactId = adapter.getItemId(position);
-                        final Uri rawContactUri = ContentUris.withAppendedId(
-                                ContactsContract.RawContacts.CONTENT_URI, rawContactId);
-                        // Start new activity for the raw contact in selected account.
-                        final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                        intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-
-                        ArrayList<ContentValues> values = rawContactDelta.getContentValues();
-                        intent.putExtra(ContactsContract.Intents.Insert.DATA, values);
 
                         if (mListener != null) {
-                            mListener.onRawContactSelected(rawContactUri, rawContactId);
+                            final long rawContactId = adapter.getItemId(position);
+                            final Uri rawContactUri = ContentUris.withAppendedId(
+                                    ContactsContract.RawContacts.CONTENT_URI, rawContactId);
+                            final RawContactDelta rawContactDelta = adapter.getItem(position);
+                            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
+                                    getContext());
+                            final AccountType accountType = rawContactDelta.getAccountType(
+                                    accountTypes);
+                            final boolean isReadOnly = !accountType.areContactsWritable();
+
+                            mListener.onRawContactSelected(rawContactUri, rawContactId, isReadOnly);
                         }
                     }
                 });
