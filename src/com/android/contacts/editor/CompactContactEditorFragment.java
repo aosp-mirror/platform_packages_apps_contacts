@@ -19,6 +19,8 @@ package com.android.contacts.editor;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
+import com.android.contacts.activities.ContactEditorActivity;
+import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
@@ -255,6 +257,19 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // For contacts composed of a single writable raw contact, or no raw contacts have photos,
         // clicking the photo view simply opens the source photo dialog
         getEditorActivity().changePhoto(getPhotoMode());
+    }
+
+    @Override
+    public void onRawContactSelected(Uri uri, long rawContactId) {
+        final Activity activity = getActivity();
+        if (activity != null && !activity.isFinishing()) {
+            final Intent intent = new Intent(activity, ContactEditorActivity.class);
+            intent.setAction(ContactEditorBaseActivity.ACTION_EDIT);
+            intent.setData(uri);
+            intent.putExtra(ContactEditorFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
+                    rawContactId);
+            activity.startActivity(intent);
+        }
     }
 
     private int getPhotoMode() {

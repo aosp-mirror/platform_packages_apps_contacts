@@ -26,6 +26,7 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -59,6 +60,13 @@ import java.util.List;
 public class ContactEditorFragment extends ContactEditorBaseFragment implements
         RawContactReadOnlyEditorView.Listener {
 
+    /**
+     * Intent key to pass the ID of the raw contact id that should be displayed in the full editor
+     * by itself.
+     */
+    public static final String INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE =
+            "raw_contact_id_to_display_alone";
+
     private static final String KEY_EXPANDED_EDITORS = "expandedEditors";
 
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
@@ -85,6 +93,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     private PhotoHandler mCurrentPhotoHandler;
     private Uri mCurrentPhotoUri;
     private Bundle mUpdatedPhotos = new Bundle();
+    private long mRawContactIdToDisplayAlone = -1;
 
     public ContactEditorFragment() {
     }
@@ -111,6 +120,17 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                     KEY_RAW_CONTACT_ID_REQUESTING_PHOTO);
             mCurrentPhotoUri = savedState.getParcelable(KEY_CURRENT_PHOTO_URI);
             mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
+            mRawContactIdToDisplayAlone = savedState.getLong(
+                    INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
+        }
+    }
+
+    @Override
+    public void load(String action, Uri lookupUri, Bundle intentExtras) {
+        super.load(action, lookupUri, intentExtras);
+        if (intentExtras != null) {
+            mRawContactIdToDisplayAlone = intentExtras.getLong(
+                    INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
         }
     }
 
@@ -142,6 +162,14 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             BaseRawContactEditorView editor = (BaseRawContactEditorView) mContent.getChildAt(i);
             editor.setGroupMetaData(mGroupMetaData);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            return revert();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -178,6 +206,10 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             final AccountType type = rawContactDelta.getAccountType(accountTypes);
             final long rawContactId = rawContactDelta.getRawContactId();
 
+            if (mRawContactIdToDisplayAlone != -1 && mRawContactIdToDisplayAlone != rawContactId) {
+                continue;
+            }
+
             final BaseRawContactEditorView editor;
             if (!type.areContactsWritable()) {
                 editor = (BaseRawContactEditorView) inflater.inflate(
@@ -195,7 +227,9 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
             editor.setEnabled(isEnabled());
 
-            if (mExpandedEditors.containsKey(rawContactId)) {
+            if (mRawContactIdToDisplayAlone != -1) {
+                editor.setCollapsed(false);
+            } else if (mExpandedEditors.containsKey(rawContactId)) {
                 editor.setCollapsed(mExpandedEditors.get(rawContactId));
             } else {
                 // By default, only the first editor will be expanded.
@@ -205,7 +239,11 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mContent.addView(editor);
 
             editor.setState(rawContactDelta, type, mViewIdGenerator, isEditingUserProfile());
-            editor.setCollapsible(numRawContacts > 1);
+            if (mRawContactIdToDisplayAlone != -1) {
+                editor.setCollapsible(false);
+            } else {
+                editor.setCollapsible(numRawContacts > 1);
+            }
 
             // Set up the photo handler.
             bindPhotoHandler(editor, type, mState);
@@ -403,6 +441,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_CURRENT_PHOTO_URI, mCurrentPhotoUri);
         outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
+        outState.putLong(INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE, mRawContactIdToDisplayAlone);
         super.onSaveInstanceState(outState);
     }
 
