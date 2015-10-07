@@ -225,6 +225,22 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         super.setValue(0, name);
     }
 
+    /**
+     * Returns the display name currently displayed in the editor.
+     */
+    public String getDisplayName() {
+        final ValuesDelta valuesDelta = getValues();
+        if (hasShortAndLongForms() && areOptionalFieldsVisible()) {
+            final Map<String, String> structuredNameMap = valuesToStructuredNameMap(valuesDelta);
+            final String displayName = NameConverter.structuredNameToDisplayName(
+                    getContext(), structuredNameMap);
+            if (!TextUtils.isEmpty(displayName)) {
+                return displayName;
+            }
+        }
+        return valuesDelta.getDisplayName();
+    }
+
     @Override
     protected Parcelable onSaveInstanceState() {
         SavedState state = new SavedState(super.onSaveInstanceState());
