@@ -284,4 +284,5 @@
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
+    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"Liidetud kontaktid"</string>
 </resources>
