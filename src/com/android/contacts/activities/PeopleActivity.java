@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.UserManager;
+import android.os.Handler;
 import android.preference.PreferenceActivity;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
@@ -436,6 +437,16 @@ public class PeopleActivity extends ContactsActivity implements
         // Current tab may have changed since the last onSaveInstanceState().  Make sure
         // the actual contents match the tab.
         updateFragmentsVisibility();
+
+        if (mActionBarAdapter.shouldOpenOverflow() && !mActionBarAdapter.isOverflowOpen()) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    openOptionsMenu();
+                }
+            }, /* delayMillis = */ getResources().getInteger(R.integer.
+                    open_overflow_menu_delay_millis));
+        }
     }
 
     @Override
@@ -1421,5 +1432,25 @@ public class PeopleActivity extends ContactsActivity implements
             return TabState.COUNT - 1 - position;
         }
         return position;
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        // When the overflow menu button opens (both manually and automatically), we need to
+        // update both variables; same for closing event.
+        mActionBarAdapter.setOverflowOpen(true);
+        mActionBarAdapter.setShouldOpenOverflow(true);
+        return super.onMenuOpened(featureId, menu);
+    }
+
+    @Override
+    public void onPanelClosed(int featureId, Menu menu) {
+        // Since onPanelClosed will be called when the activity is destroyed on rotation even if
+        // user leaves the menu open, we are relying on onSaveInstanceState being called before
+        // onDestroy and onPanelClosed are invoked in order to store the "opening" status of the
+        // menu.
+        mActionBarAdapter.setOverflowOpen(false);
+        mActionBarAdapter.setShouldOpenOverflow(false);
+        super.onMenuOpened(featureId, menu);
     }
 }
