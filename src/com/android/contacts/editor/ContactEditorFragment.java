@@ -61,13 +61,6 @@ import java.util.List;
 public class ContactEditorFragment extends ContactEditorBaseFragment implements
         RawContactReadOnlyEditorView.Listener {
 
-    /**
-     * Intent key to pass the ID of the raw contact id that should be displayed in the full editor
-     * by itself.
-     */
-    public static final String INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE =
-            "raw_contact_id_to_display_alone";
-
     private static final String KEY_EXPANDED_EDITORS = "expandedEditors";
 
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
@@ -94,7 +87,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     private PhotoHandler mCurrentPhotoHandler;
     private Uri mCurrentPhotoUri;
     private Bundle mUpdatedPhotos = new Bundle();
-    private long mRawContactIdToDisplayAlone = -1;
 
     public ContactEditorFragment() {
     }
@@ -122,7 +114,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mCurrentPhotoUri = savedState.getParcelable(KEY_CURRENT_PHOTO_URI);
             mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
             mRawContactIdToDisplayAlone = savedState.getLong(
-                    INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
+                    ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
         }
     }
 
@@ -131,7 +123,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         super.load(action, lookupUri, intentExtras);
         if (intentExtras != null) {
             mRawContactIdToDisplayAlone = intentExtras.getLong(
-                    INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
+                    ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
         }
     }
 
@@ -169,8 +161,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             return revert();
-        } else if (item.getItemId() == R.id.menu_save && mRawContactIdToDisplayAlone != -1) {
-            return super.save(SaveMode.COMPACT);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -447,7 +437,8 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         outState.putLong(KEY_RAW_CONTACT_ID_REQUESTING_PHOTO, mRawContactIdRequestingPhoto);
         outState.putParcelable(KEY_CURRENT_PHOTO_URI, mCurrentPhotoUri);
         outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
-        outState.putLong(INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE, mRawContactIdToDisplayAlone);
+        outState.putLong(ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
+                mRawContactIdToDisplayAlone);
         super.onSaveInstanceState(outState);
     }
 
