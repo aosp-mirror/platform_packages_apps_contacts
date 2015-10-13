@@ -663,7 +663,6 @@ public class ImportVCardActivity extends Activity {
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType(VCardService.X_VCARD_MIME_TYPE);
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
             startActivityForResult(intent, REQUEST_OPEN_DOCUMENT);
         }
     }
