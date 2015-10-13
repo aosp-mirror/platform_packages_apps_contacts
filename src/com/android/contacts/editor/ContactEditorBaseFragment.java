@@ -185,6 +185,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     public static final String INTENT_EXTRA_PHOTO_ID = "photo_id";
 
     /**
+     * Intent key to pass the ID of the raw contact id that should be displayed in the full editor
+     * by itself.
+     */
+    public static final String INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE =
+            "raw_contact_id_to_display_alone";
+
+    /**
      * Intent key to pass the boolean value of if the raw contact id that should be displayed
      * in the full editor by itself is read-only.
      */
@@ -344,6 +351,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     //
     protected RawContactDeltaList mState;
     protected int mStatus;
+    protected long mRawContactIdToDisplayAlone = -1;
     protected boolean mRawContactDisplayAloneIsReadOnly = false;
 
     // Whether to show the new contact blank form and if it's corresponding delta is ready.
@@ -753,7 +761,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 mState.getFirstWritableRawContact(mContext) != null);
 
         // help menu depending on whether this is inserting or editing
-        if (isInsert(mAction)) {
+        if (isInsert(mAction) || mRawContactIdToDisplayAlone != -1) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
             discardMenu.setVisible(false);
             splitMenu.setVisible(false);
@@ -781,11 +789,16 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // Save menu is invisible when there's only one read only contact in the editor.
         saveMenu.setVisible(!mRawContactDisplayAloneIsReadOnly);
 
-        // Hide telephony-related settings (ringtone, send to voicemail)
-        // if we don't have a telephone or are editing a new contact.
-        sendToVoiceMailMenu.setChecked(mSendToVoicemailState);
-        sendToVoiceMailMenu.setVisible(mArePhoneOptionsChangable);
-        ringToneMenu.setVisible(mArePhoneOptionsChangable);
+        if (mRawContactIdToDisplayAlone != -1) {
+            sendToVoiceMailMenu.setVisible(false);
+            ringToneMenu.setVisible(false);
+        } else {
+            // Hide telephony-related settings (ringtone, send to voicemail)
+            // if we don't have a telephone or are editing a new contact.
+            sendToVoiceMailMenu.setChecked(mSendToVoicemailState);
+            sendToVoiceMailMenu.setVisible(mArePhoneOptionsChangable);
+            ringToneMenu.setVisible(mArePhoneOptionsChangable);
+        }
 
         int size = menu.size();
         for (int i = 0; i < size; i++) {
@@ -1354,6 +1367,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR));
             }
             mPhotoId = mIntentExtras.getLong(INTENT_EXTRA_PHOTO_ID);
+            mRawContactIdToDisplayAlone = mIntentExtras.getLong(
+                    INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
             mRawContactDisplayAloneIsReadOnly = mIntentExtras.getBoolean(
                     INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY);
         }
