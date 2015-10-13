@@ -90,7 +90,7 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
         }
 
         private final CompactPhotoActionListener mPhotoActionListener;
-        private final boolean mIsPhotoSelection;
+        private boolean mIsPhotoSelection;
 
         public CompactPhotoSelectionHandler(int photoMode, boolean isPhotoSelection) {
             // We pass a null changeAnchorView since we are overriding onClick so that we
@@ -178,7 +178,11 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        getPhotoSelectionHandler().handlePhotoActivityResult(requestCode, resultCode, data);
+        if (mPhotoSelectionHandler != null &&
+                mPhotoSelectionHandler.handlePhotoActivityResult(requestCode, resultCode, data)) {
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -225,6 +229,8 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
                 .hide(mPhotoSelectionFragment)
                 .show((CompactContactEditorFragment) mFragment)
                 .commit();
+
+        mIsPhotoSelection = false;
     }
 
     @Override

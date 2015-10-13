@@ -245,15 +245,15 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     public void onPhotoEditorViewClicked() {
         if (isMultiAccountContact()) {
             final ArrayList<CompactPhotoSelectionFragment.Photo> photos = getContent().getPhotos();
-            if (!photos.isEmpty()) {
+            if (photos.size() > 1) {
                 // For aggregate contacts, the user may select a new super primary photo from among
                 // the (non-default) raw contact photos, or source a new photo from the ActionBar
                 getEditorActivity().selectPhoto(photos, getPhotoMode());
                 return;
             }
         }
-        // For contacts composed of a single writable raw contact, or no raw contacts have photos,
-        // clicking the photo view simply opens the source photo dialog
+        // For contacts composed of a single writable raw contact, or raw contacts have no more
+        // than 1 photo, clicking the photo view simply opens the source photo dialog
         getEditorActivity().changePhoto(getPhotoMode());
     }
 
@@ -265,6 +265,11 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                     activity, uri, rawContactId, isReadOnly);
             activity.startActivity(intent);
         }
+    }
+
+    @Override
+    public Bundle getUpdatedPhotos() {
+        return mUpdatedPhotos;
     }
 
     private int getPhotoMode() {
