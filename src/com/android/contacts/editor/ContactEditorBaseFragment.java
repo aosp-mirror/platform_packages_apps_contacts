@@ -643,13 +643,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     @Override
     public void onStop() {
         super.onStop();
-
         UiClosables.closeQuietly(mAggregationSuggestionPopup);
-
-        // If anything was left unsaved, save it now but keep the editor open.
-        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            save(SaveMode.RELOAD);
-        }
     }
 
     @Override

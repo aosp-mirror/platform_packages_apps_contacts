@@ -82,16 +82,6 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-
-        // If anything was left unsaved, save it now
-        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            save(SaveMode.RELOAD);
-        }
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             return revert();
