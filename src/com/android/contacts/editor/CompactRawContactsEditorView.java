@@ -30,9 +30,7 @@ import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.util.UiClosables;
 
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -74,7 +72,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -169,8 +168,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             // For email addresses, we don't want to truncate at end, which might cut off the domain
             // name.
             final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
-            text2.setText(accountName);
-            text2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+            if (TextUtils.isEmpty(accountName)) {
+                text2.setVisibility(View.GONE);
+            } else {
+                text2.setText(accountName);
+                text2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+            }
 
             final ImageView icon = (ImageView) resultView.findViewById(android.R.id.icon);
             icon.setImageDrawable(accountType.getDisplayIcon(mContext));
@@ -864,6 +867,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private void addRawContactAccountSelector(final RawContactDeltaList rawContactDeltas) {
         mRawContactContainer.setVisibility(View.VISIBLE);
 
+        Collections.sort(rawContactDeltas, new RawContactDeltaComparator(getContext()));
+
         final String accountsSummary = getRawContactsAccountsSummary(
                 getContext(), rawContactDeltas);
         mRawContactSummary.setText(accountsSummary);
@@ -913,7 +918,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private static String getRawContactsAccountsSummary(
             Context context, RawContactDeltaList rawContactDeltas) {
-        final Map<String, Integer> accountTypeNumber = new HashMap<>();
+        final LinkedHashMap<String, Integer> accountTypeNumber = new LinkedHashMap<>();
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
             if (rawContactDelta.isVisible()) {
                 final AccountType accountType = rawContactDelta.getRawContactAccountType(context);
@@ -928,7 +933,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             }
         }
 
-        final Set<String> linkedAccounts = new HashSet<>();
+        final LinkedHashSet<String> linkedAccounts = new LinkedHashSet<>();
         for (String accountTypeLabel : accountTypeNumber.keySet()) {
             final String number = context.getResources().getQuantityString(
                     R.plurals.quickcontact_suggestion_account_type_number,
