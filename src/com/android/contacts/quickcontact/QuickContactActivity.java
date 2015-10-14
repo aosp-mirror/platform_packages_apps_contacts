@@ -1321,8 +1321,10 @@ public class QuickContactActivity extends ContactsActivity
         } else {
             expandSuggestionList();
         }
-        mSuggestionCardView.setVisibility(View.GONE);
-        mSuggestionList.removeAllViews();
+        if (mPreviousSuggestionForContactId != mContactData.getId()) {
+            mSuggestionCardView.setVisibility(View.GONE);
+            mSuggestionList.removeAllViews();
+        }
 
         if (mAggregationSuggestionEngine == null) {
             mAggregationSuggestionEngine = new AggregationSuggestionEngine(this);
