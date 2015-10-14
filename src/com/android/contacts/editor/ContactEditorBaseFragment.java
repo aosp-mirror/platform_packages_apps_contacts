@@ -1368,7 +1368,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             }
             mPhotoId = mIntentExtras.getLong(INTENT_EXTRA_PHOTO_ID);
             mRawContactIdToDisplayAlone = mIntentExtras.getLong(
-                    INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
+                    INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE, -1);
             mRawContactDisplayAloneIsReadOnly = mIntentExtras.getBoolean(
                     INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY);
         }

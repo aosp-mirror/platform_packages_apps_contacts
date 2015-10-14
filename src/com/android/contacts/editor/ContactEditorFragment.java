@@ -114,7 +114,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
             mCurrentPhotoUri = savedState.getParcelable(KEY_CURRENT_PHOTO_URI);
             mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
             mRawContactIdToDisplayAlone = savedState.getLong(
-                    ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
+                    ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE, -1);
         }
     }
 
@@ -123,7 +123,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         super.load(action, lookupUri, intentExtras);
         if (intentExtras != null) {
             mRawContactIdToDisplayAlone = intentExtras.getLong(
-                    ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
+                    ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE, -1);
         }
     }
 
