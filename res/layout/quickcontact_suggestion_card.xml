@@ -126,11 +126,11 @@
             android:visibility="gone"/>
 
         <Button
-            android:id="@+id/merge_button"
+            android:id="@+id/link_button"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/quickcontact_suggestion_merge_button"
+            android:text="@string/quickcontact_suggestion_link_button"
             android:textColor="@color/quickcontact_entry_sub_header_text_color"
             android:paddingStart="@dimen/quickcontact_suggestion_card_image_spacing"/>
     </LinearLayout>

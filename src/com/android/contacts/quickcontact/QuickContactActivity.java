@@ -253,7 +253,7 @@ public class QuickContactActivity extends ContactsActivity
     private ImageView mSuggestionExpansionButton;
     private LinearLayout mSuggestionList;
     private View mSuggestionSeparator;
-    private Button mSuggestionsMergeButton;
+    private Button mSuggestionsLinkButton;
     private boolean mIsSuggestionListCollapsed;
     private long mPreviousSuggestionForContactId = 0;
 
@@ -916,7 +916,7 @@ public class QuickContactActivity extends ContactsActivity
         mSuggestionExpansionButton = (ImageView) findViewById(R.id.expand_suggestion_button);
         mSuggestionSeparator = findViewById(R.id.title_separator2);
         mSuggestionList = (LinearLayout) findViewById(R.id.suggestion_list);
-        mSuggestionsMergeButton = (Button) findViewById(R.id.merge_button);
+        mSuggestionsLinkButton = (Button) findViewById(R.id.link_button);
         if (savedInstanceState != null) {
             mIsSuggestionListCollapsed = savedInstanceState.getBoolean(
                     KEY_IS_SUGGESTION_LIST_COLLAPSED, true);
@@ -928,7 +928,7 @@ public class QuickContactActivity extends ContactsActivity
         }
 
         mSuggestionExpansionButton.setClickable(true);
-        mSuggestionsMergeButton.setOnClickListener(new OnClickListener() {
+        mSuggestionsLinkButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Join selected contacts.
