@@ -65,13 +65,13 @@ public class JoinContactsDialogFragment extends DialogFragment {
         if (contactIds.size() <= 1) {
             return new AlertDialog.Builder(getActivity())
                     .setIconAttribute(android.R.attr.alertDialogIcon)
-                    .setMessage(R.string.batch_merge_single_contact_warning)
+                    .setMessage(R.string.batch_link_single_contact_warning)
                     .setPositiveButton(android.R.string.ok, null)
                     .create();
         }
         return new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
-                .setMessage(R.string.batch_merge_confirmation)
+                .setMessage(R.string.batch_link_confirmation)
                 .setNegativeButton(android.R.string.cancel, null)
                 .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {

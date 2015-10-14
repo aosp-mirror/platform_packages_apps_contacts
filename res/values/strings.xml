@@ -127,7 +127,7 @@
     <string name="menu_sendSMS">Text contact</string>
 
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
-    <string name="menu_splitAggregate">Separate</string>
+    <string name="menu_splitAggregate">Unlink</string>
 
     <!-- Menu item that edits the currently selected group [CHAR LIMIT=30] -->
     <string name="menu_editGroup">Edit</string>
@@ -142,13 +142,13 @@
     <string name="menu_new_group_action_bar">Add Group</string>
 
     <!-- Title of the confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=26] -->
-    <string name="splitConfirmation_title">Separate contact?</string>
+    <string name="splitConfirmation_title">Unlink contact?</string>
 
-    <!-- Confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=NONE] -->
-    <string name="splitConfirmation">This contact will be separated into multiple contacts.</string>
+    <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
+    <string name="splitConfirmation">This contact will be unlinked into multiple contacts.</string>
 
     <!-- Menu item that joins an aggregate with another aggregate -->
-    <string name="menu_joinAggregate">Merge</string>
+    <string name="menu_joinAggregate">Link</string>
 
     <!-- Menu item (in the action bar) to indicate that changes should be saved [CHAR LIMIT=20] -->
     <string name="menu_save">Save</string>
@@ -169,7 +169,7 @@
     <string name="separatorJoinAggregateAll">All contacts</string>
 
     <!-- Toast shown after two contacts have been joined by a user action. [CHAR LIMIT=NONE] -->
-    <string name="contactsJoinedMessage">Contacts merged</string>
+    <string name="contactsJoinedMessage">Contacts linked</string>
 
     <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=NONE] -->
     <string name="contacts_deleted_toast">Contacts deleted</string>
@@ -186,11 +186,11 @@
     <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. -->
     <string name="readOnlyContactDeleteConfirmation">This contact contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
 
-    <!-- Warning dialog. Shown if user selects a single contact to merge. [CHAR LIMIT=NONE]  -->
-    <string name="batch_merge_single_contact_warning">You need at least two contacts selected to perform a merge.</string>
+    <!-- Warning dialog. Shown if user selects a single contact to link. [CHAR LIMIT=NONE]  -->
+    <string name="batch_link_single_contact_warning">You need at least two contacts selected to perform a link.</string>
 
-    <!-- Confirmation dialog. Shown after user selects to merge contacts. [CHAR LIMIT=NONE]  -->
-    <string name="batch_merge_confirmation">The selected contacts will be merged into a single contact.</string>
+    <!-- Confirmation dialog. Shown after user selects to link contacts. [CHAR LIMIT=NONE]  -->
+    <string name="batch_link_confirmation">The selected contacts will be linked into a single contact.</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete writable contacts. [CHAR LIMIT=NONE]  -->
     <string name="batch_delete_confirmation">The selected contacts will be deleted.</string>
@@ -466,11 +466,11 @@
     <!-- The title of the Edit-Contact screen -->
     <string name="edit_contact">Edit contact</string>
 
-    <!-- Shows how many contacts have been merged. The value 1 is not shown but should be translated
+    <!-- Shows how many contacts have been linked. The value 1 is not shown but should be translated
          anyway if we change our mind later -->
-    <plurals name="merge_info">
-        <item quantity="one">not merged</item>
-        <item quantity="other">merged from <xliff:g id="count">%0$d</xliff:g> sources</item>
+    <plurals name="link_info">
+        <item quantity="one">not linked</item>
+        <item quantity="other">linked from <xliff:g id="count">%0$d</xliff:g> sources</item>
     </plurals>
 
     <!-- The message in a confirmation dialog shown when the user selects a
@@ -774,8 +774,8 @@
     <!-- Quick contact display name with phonetic name -->
     <string name="quick_contact_display_name_with_phonetic"><xliff:g id="display_name">%s</xliff:g> (<xliff:g id="phonetic_name">%s</xliff:g>)</string>
 
-    <!-- Button used in quick contact suggestion card to merge selected contacts. [CHAR LIMIT=30]-->
-    <string name="quickcontact_suggestion_merge_button">Merge</string>
+    <!-- Button used in quick contact suggestion card to link selected contacts. [CHAR LIMIT=30]-->
+    <string name="quickcontact_suggestion_link_button">Link</string>
 
     <!-- Suggestions number in quick contact suggestion card [CHAR LIMIT=60] -->
     <plurals name="quickcontact_suggestions_number">
@@ -792,6 +792,6 @@
     <!-- Account type with number in quick contact suggestion card [CHAR LIMIT=30]-->
     <string name="quickcontact_suggestion_account_type"><xliff:g id="account_type">%s</xliff:g><xliff:g id="account_type_number">%s</xliff:g></string>
 
-    <!-- Merged contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
-    <string name="compact_editor_linked_contacts_title">Merged contacts</string>
+    <!-- Linked contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
+    <string name="compact_editor_linked_contacts_title">Linked contacts</string>
 </resources>

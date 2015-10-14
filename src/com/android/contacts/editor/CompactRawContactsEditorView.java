@@ -123,7 +123,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         public void onEditorsBound();
 
         /**
-         * Invoked when a rawcontact from merged contacts is selected in editor.
+         * Invoked when a rawcontact from linked contacts is selected in editor.
          */
         public void onRawContactSelected(Uri uri, long rawContactId, boolean isReadOnly);
 
