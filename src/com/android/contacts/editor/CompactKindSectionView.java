@@ -16,6 +16,13 @@
 
 package com.android.contacts.editor;
 
+import com.android.contacts.R;
+import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.dataitem.DataKind;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.Event;
@@ -29,14 +36,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.android.contacts.R;
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.common.model.RawContactModifier;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.dataitem.DataKind;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,6 +151,7 @@ public class CompactKindSectionView extends LinearLayout {
     private ViewIdGenerator mViewIdGenerator;
     private CompactRawContactsEditorView.Listener mListener;
 
+    private boolean mIsUserProfile;
     private boolean mShowOneEmptyEditor = false;
     private boolean mHideIfEmpty = true;
 
@@ -188,6 +188,10 @@ public class CompactKindSectionView extends LinearLayout {
 
         mEditors = (ViewGroup) findViewById(R.id.kind_editors);
         mIcon = (ImageView) findViewById(R.id.kind_icon);
+    }
+
+    public void setIsUserProfile(boolean isUserProfile) {
+        mIsUserProfile = isUserProfile;
     }
 
     /**
@@ -364,8 +368,11 @@ public class CompactKindSectionView extends LinearLayout {
         // Structured name
         final StructuredNameEditorView nameView = (StructuredNameEditorView) mLayoutInflater
                 .inflate(R.layout.structured_name_editor_view, mEditors, /* attachToRoot =*/ false);
-        nameView.setEditorListener(new StructuredNameEditorListener(valuesDelta,
-                rawContactDelta.getRawContactId(), mListener));
+        if (!mIsUserProfile) {
+            // Don't set super primary for the me contact
+            nameView.setEditorListener(new StructuredNameEditorListener(
+                    valuesDelta, rawContactDelta.getRawContactId(), mListener));
+        }
         nameView.setDeletable(false);
         nameView.setValues(
                 accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),

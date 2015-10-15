@@ -19,8 +19,6 @@ package com.android.contacts.editor;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
-import com.android.contacts.activities.ContactEditorActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -202,9 +200,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (activity == null || activity.isFinishing()) {
             return;
         }
-        if (!mIsUserProfile) {
-            acquireAggregationSuggestions(activity, rawContactId, valuesDelta);
-        }
+        acquireAggregationSuggestions(activity, rawContactId, valuesDelta);
     }
 
     @Override
