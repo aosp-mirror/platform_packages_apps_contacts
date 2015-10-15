@@ -66,7 +66,6 @@ import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -76,7 +75,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeSet;
 
 /**
@@ -991,6 +989,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
             // Ignore mime types that we've already handled
             if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                vlog("kind: " + i + " " + mimeType + " dropped");
+                continue;
+            }
+
+            // Don't show more than one group editor on the compact editor.
+            // Groups will still be editable for each raw contact individually on the full editor.
+            if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)
+                    && kindSectionDataList.size() > 1) {
                 vlog("kind: " + i + " " + mimeType + " dropped");
                 continue;
             }
