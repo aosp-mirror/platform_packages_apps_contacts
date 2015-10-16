@@ -141,7 +141,7 @@
     <!-- Menu item (in the action bar) that creates a new group [CHAR LIMIT=30] -->
     <string name="menu_new_group_action_bar">Add Group</string>
 
-    <!-- Title of the confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=26] -->
+    <!-- Title of the confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=40] -->
     <string name="splitConfirmation_title">Unlink contact?</string>
 
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
