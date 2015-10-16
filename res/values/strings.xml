@@ -466,13 +466,6 @@
     <!-- The title of the Edit-Contact screen -->
     <string name="edit_contact">Edit contact</string>
 
-    <!-- Shows how many contacts have been linked. The value 1 is not shown but should be translated
-         anyway if we change our mind later -->
-    <plurals name="link_info">
-        <item quantity="one">not linked</item>
-        <item quantity="other">linked from <xliff:g id="count">%0$d</xliff:g> sources</item>
-    </plurals>
-
     <!-- The message in a confirmation dialog shown when the user selects a
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
     <string name="aggregation_suggestion_join_dialog_message">Join
