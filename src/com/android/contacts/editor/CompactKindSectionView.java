@@ -25,10 +25,12 @@ import com.android.contacts.common.model.dataitem.DataKind;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -344,24 +346,6 @@ public class CompactKindSectionView extends LinearLayout {
         final boolean readOnly = !accountType.areContactsWritable();
 
         if (readOnly) {
-            final View nameView = mLayoutInflater.inflate(
-                    R.layout.structured_name_readonly_editor_view, mEditors,
-                    /* attachToRoot =*/ false);
-
-            // Display name
-            ((TextView) nameView.findViewById(R.id.display_name))
-                    .setText(valuesDelta.getDisplayName());
-
-            // Account type info
-            final LinearLayout accountTypeLayout = (LinearLayout)
-                    nameView.findViewById(R.id.account_type);
-            accountTypeLayout.setVisibility(View.VISIBLE);
-            ((ImageView) accountTypeLayout.findViewById(R.id.account_type_icon))
-                    .setImageDrawable(accountType.getDisplayIcon(getContext()));
-            ((TextView) accountTypeLayout.findViewById(R.id.account_type_name))
-                    .setText(accountType.getDisplayLabel(getContext()));
-
-            mEditors.addView(nameView);
             return;
         }
 
@@ -557,10 +541,13 @@ public class CompactKindSectionView extends LinearLayout {
         }
         // Add a new empty editor
         if (mShowOneEmptyEditor) {
+            final String mimeType = mKindSectionDataList.getMimeType();
+            if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) && mEditors.getChildCount() > 0) {
+                return;
+            }
             final RawContactDelta rawContactDelta =
                     mKindSectionDataList.get(0).getRawContactDelta();
             final ValuesDelta values = RawContactModifier.insertChild(rawContactDelta, dataKind);
-            final String mimeType = mKindSectionDataList.getMimeType();
             final Editor.EditorListener editorListener = Event.CONTENT_ITEM_TYPE.equals(mimeType)
                     ? new EventEditorListener() : new NonNameEditorListener();
             final View view = addNonNameEditorView(rawContactDelta, dataKind, values,

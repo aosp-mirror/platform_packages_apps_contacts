@@ -686,6 +686,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mViewIdGenerator = viewIdGenerator;
         mPhotoId = photoId;
         mReadOnlyDisplayName = readOnlyDisplayName;
+
         mHasNewContact = hasNewContact;
         mIsUserProfile = isUserProfile;
         mPrimaryAccount = primaryAccount;
@@ -762,12 +763,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                         new KindSectionData(accountType, dataKind, rawContactDelta);
                 kindSectionDataList.add(kindSectionData);
 
-                // Note we must create nickname entries
-                if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)
-                        && kindSectionData.getValuesDeltas().isEmpty()) {
-                    RawContactModifier.insertChild(rawContactDelta, dataKind);
-                }
-
                 vlog("parse: " + i + " " + dataKind.mimeType + " " +
                         kindSectionData.getValuesDeltas().size() + " value(s)");
             }
@@ -775,9 +770,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private KindSectionDataList getOrCreateKindSectionDataList(String mimeType) {
-        // Put structured names and nicknames together
-        mimeType = Nickname.CONTENT_ITEM_TYPE.equals(mimeType)
-                ? StructuredName.CONTENT_ITEM_TYPE : mimeType;
         KindSectionDataList kindSectionDataList = mKindSectionDataMap.get(mimeType);
         if (kindSectionDataList == null) {
             kindSectionDataList = new KindSectionDataList();
@@ -1009,7 +1001,20 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             i++;
 
             final String mimeType = entry.getKey();
-            final KindSectionDataList kindSectionDataList = entry.getValue();
+            KindSectionDataList kindSectionDataList = entry.getValue();
+            if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                // Only show one name editor view. Select one matched name to display according to
+                // the order: super primary name, first non-empty name, first empty name, null.
+                // The name should be the name displayed in Quick contact.
+                final Pair<KindSectionData,ValuesDelta> nameToDisplay =
+                        kindSectionDataList.getEntryToDisplay(0L);
+                if (nameToDisplay != null) {
+                    final KindSectionData nameKindSectionData = nameToDisplay.first;
+                    kindSectionDataList = new KindSectionDataList();
+                    kindSectionDataList.add(nameKindSectionData);
+                }
+            }
+
 
             // Ignore mime types that we've already handled
             if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {

@@ -43,13 +43,7 @@ public class KindSectionDataList extends ArrayList<KindSectionData> {
      */
     public String getMimeType() {
         if (isEmpty()) return null;
-        final String mimeType = get(0).getDataKind().mimeType;
-        // StructuredNames and Nicknames are a special case and go together under the
-        // StructuredName mime type
-        if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            return StructuredName.CONTENT_ITEM_TYPE;
-        }
-        return mimeType;
+        return get(0).getDataKind().mimeType;
     }
 
     /**
@@ -161,23 +155,12 @@ public class KindSectionDataList extends ArrayList<KindSectionData> {
         final String listMimeType = getMimeType();
         if (listMimeType != null) {
             final String newEntryMimeType = kindSectionData.getDataKind().mimeType;
-            if (isNameMimeType(listMimeType)) {
-                if (!isNameMimeType(newEntryMimeType)) {
-                    throw new IllegalArgumentException(
-                            "Can't add " + newEntryMimeType + " to list with type " + listMimeType);
-                }
-            } else if (!listMimeType.equals(newEntryMimeType)) {
+            if (!listMimeType.equals(newEntryMimeType)) {
                 throw new IllegalArgumentException(
                         "Can't add " + newEntryMimeType + " to list with type " + listMimeType);
             }
         }
         return super.add(kindSectionData);
-    }
-
-    // StructuredNames and Nicknames are a special case and go together
-    private static boolean isNameMimeType(String mimeType) {
-        return StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)
-                || Nickname.CONTENT_ITEM_TYPE.equals(mimeType);
     }
 
     private static void vlog(String message) {
