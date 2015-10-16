@@ -23,16 +23,14 @@ import com.android.contacts.common.model.account.AccountType;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +48,12 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
     private static final String STATE_PHOTOS = "photos";
     private static final String STATE_PHOTO_MODE = "photoMode";
+    private final int VIEW_TYPE_TAKE_PHOTO = 0;
+    private final int VIEW_TYPE_ALL_PHOTOS = 1;
+    private final int VIEW_TYPE_IMAGE = 2;
+    private final int NUMBER_OF_COLUMNS_PORTRAIT = 3;
+    private final int NUMBER_OF_COLUMNS_LANDSCAPE = 5;
+    private int mNumberOfColumns;
 
     /**
      * Callbacks hosts this Fragment.
@@ -155,7 +159,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return mPhotos == null ? 0 : mPhotos.size();
+            return mPhotos == null ? 2 : mPhotos.size() + 2;
         }
 
         @Override
@@ -169,11 +173,46 @@ public class CompactPhotoSelectionFragment extends Fragment {
         }
 
         @Override
+        public int getItemViewType(int index) {
+            if (index == 0) {
+                return VIEW_TYPE_TAKE_PHOTO;
+            } else if (index == 1) {
+                return VIEW_TYPE_ALL_PHOTOS;
+            } else {
+                return VIEW_TYPE_IMAGE;
+            }
+        }
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (mPhotos == null) return null;
 
+            // when position is 0 or 1, we should make sure account_type *is not* in convertView
+            // before reusing it.
+            if (getItemViewType(position) == 0){
+                if (convertView == null || convertView.findViewById(R.id.account_type) != null) {
+                    return mLayoutInflater.inflate(R.layout.take_a_photo_button, /* root =*/ null);
+                }
+                else{
+                    return convertView;
+                }
+            }
+
+            if (getItemViewType(position) == 1) {
+                if (convertView == null || convertView.findViewById(R.id.account_type) != null) {
+                    return mLayoutInflater.inflate(R.layout.all_photos_button, /* root =*/ null);
+                }
+                else {
+                    return convertView;
+                }
+            }
+
+            // when position greater than 1, we should make sure account_type *is* in convertView
+            // before reusing it.
+            position -= 2;
+
             final View photoItemView;
-            if (convertView == null) {
+            if (convertView == null || convertView.findViewById(R.id.account_type) == null) {
                 photoItemView = mLayoutInflater.inflate(
                         R.layout.compact_photo_selection_item, /* root =*/ null);
             } else {
@@ -247,13 +286,36 @@ public class CompactPhotoSelectionFragment extends Fragment {
         gridView.setAdapter(photoAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Call the host back so it can set the new photo as primary
-                final Photo photo = (Photo) photoAdapter.getItem(position);
-                if (mListener != null) {
-                    mListener.onPhotoSelected(photo);
+                final PhotoSourceDialogFragment.Listener listener = (PhotoSourceDialogFragment.Listener)
+                        getActivity();
+                if (position == 0){
+                    listener.onTakePhotoChosen();
+                } else if (position == 1) {
+                    listener.onPickFromGalleryChosen();
+                } else {
+                    // Call the host back so it can set the new photo as primary
+                    final Photo photo = (Photo) photoAdapter.getItem(position - 2);
+                    if (mListener != null) {
+                        mListener.onPhotoSelected(photo);
+                    }
                 }
             }
         });
+
+        final Display display = getActivity().getWindowManager().getDefaultDisplay();
+        final DisplayMetrics outMetrics = new DisplayMetrics ();
+        display.getMetrics(outMetrics);
+
+        // portrait -- 3 columns; landscape -- 5 columns.
+        mNumberOfColumns = outMetrics.heightPixels > outMetrics.widthPixels ?
+                NUMBER_OF_COLUMNS_PORTRAIT : NUMBER_OF_COLUMNS_LANDSCAPE;
+        final int paddingWidth = (int) getResources().getDimension(R.dimen
+                .photo_picker_column_padding_width);
+        float density  = getResources().getDisplayMetrics().density;
+        float dpScreenWidth  = outMetrics.widthPixels / density;
+        float dpColumnWidth = (dpScreenWidth - paddingWidth * mNumberOfColumns) * density /
+                mNumberOfColumns;
+        gridView.setColumnWidth((int) dpColumnWidth);
 
         return view;
     }
@@ -266,18 +328,10 @@ public class CompactPhotoSelectionFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-        menuInflater.inflate(R.menu.edit_contact_photo, menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 getActivity().onBackPressed();
-                return true;
-            case R.id.menu_photo:
-                PhotoSourceDialogFragment.show(getActivity(), mPhotoMode);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
