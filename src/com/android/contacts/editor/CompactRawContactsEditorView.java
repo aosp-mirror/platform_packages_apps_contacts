@@ -503,7 +503,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public void removePhoto() {
-        mPhotoValuesDelta.setFromTemplate(false);
+        mPhotoValuesDelta.setFromTemplate(true);
         mPhotoValuesDelta.put(Photo.PHOTO, (byte[]) null);
 
         mPhotoView.removePhoto();
@@ -517,11 +517,15 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public void updatePhoto(Uri photoUri) {
-        // Unset primary for all photos
-        unsetSuperPrimary();
+        mPhotoValuesDelta.setFromTemplate(false);
 
-        // Mark the currently displayed photo as primary
-        mPhotoValuesDelta.setSuperPrimary(true);
+        if (!mIsUserProfile) {
+            // Unset primary for all photos
+            unsetSuperPrimary();
+
+            // Mark the currently displayed photo as primary
+            mPhotoValuesDelta.setSuperPrimary(true);
+        }
 
         mPhotoView.setFullSizedPhoto(photoUri);
     }
@@ -603,9 +607,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      * UI.
      */
     public void setPrimaryPhoto(CompactPhotoSelectionFragment.Photo photo) {
-        // Unset primary for all photos
-        unsetSuperPrimary();
-
         // Find the values delta to mark as primary
         final KindSectionDataList kindSectionDataList =
                 mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
@@ -623,7 +624,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
         final ValuesDelta valuesDelta = valuesDeltaList.get(photo.valuesDeltaListIndex);
         valuesDelta.setFromTemplate(false);
-        valuesDelta.setSuperPrimary(true);
+
+        if (!mIsUserProfile) {
+            // Unset primary for all other photos
+            unsetSuperPrimary();
+
+            valuesDelta.setSuperPrimary(true);
+        }
 
         // Update the UI
         mPhotoView.setPhoto(valuesDelta, mMaterialPalette);
@@ -1029,6 +1036,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         final CompactKindSectionView kindSectionView = (CompactKindSectionView)
                 mLayoutInflater.inflate(R.layout.compact_item_kind_section, viewGroup,
                         /* attachToRoot =*/ false);
+        kindSectionView.setIsUserProfile(mIsUserProfile);
 
         if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)
                 || Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
