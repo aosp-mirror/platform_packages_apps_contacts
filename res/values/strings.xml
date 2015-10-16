@@ -768,12 +768,21 @@
     <string name="quick_contact_display_name_with_phonetic"><xliff:g id="display_name">%s</xliff:g> (<xliff:g id="phonetic_name">%s</xliff:g>)</string>
 
     <!-- Button used in quick contact suggestion card to link selected contacts. [CHAR LIMIT=30]-->
-    <string name="quickcontact_suggestion_link_button">Link</string>
+    <string name="quickcontact_suggestion_link_button">LINK CONTACTS</string>
+
+    <!-- Button used in quick contact suggestion card to collapse suggestion card. [CHAR LIMIT=30]-->
+    <string name="quickcontact_suggestion_cancel_button">CANCEL</string>
+
+    <!-- Suggestion card title in quick contact UI [CHAR LIMIT=100] -->
+    <plurals name="quickcontact_suggestion_card_title">
+        <item quantity="one">1 Duplicate Detected</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> Duplicates Detected</item>
+    </plurals>
 
     <!-- Suggestions number in quick contact suggestion card [CHAR LIMIT=60] -->
     <plurals name="quickcontact_suggestions_number">
-        <item quantity="one">1 suggested contact</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> suggested contacts</item>
+        <item quantity="one">1 linked contact</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> linked contacts</item>
     </plurals>
 
     <!-- Account type number for suggestions in quick contact suggestion card [CHAR LIMIT=30]-->
@@ -787,4 +796,13 @@
 
     <!-- Linked contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
     <string name="compact_editor_linked_contacts_title">Linked contacts</string>
+
+    <!-- "This contact" title showing in suggestion card in Quick contact. [CHAR LIMIT=30]-->
+    <string name="suggestion_card_this_contact_title">This contact</string>
+
+    <!-- "Duplicates" title showing in suggestion card in Quick contact. [CHAR LIMIT=30]-->
+    <string name="suggestion_card_duplicates_title">Duplicates</string>
+
+    <!-- Help message showing in suggestion card in Quick contact. [CHAR LIMIT=500]-->
+    <string name="suggestion_card_help_message">Clean up duplicate contacts to see all info in one place. For more details on a contact tap on the avatar. You can always change the profile photo or separate contacts at anytime.</string>
 </resources>
