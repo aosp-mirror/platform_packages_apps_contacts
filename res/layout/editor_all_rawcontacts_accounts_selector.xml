@@ -28,42 +28,22 @@
         android:visibility="gone" >
 
     <ImageView
-            android:id="@+id/primary_account_icon"
-            android:src="@drawable/ic_account_circle_black_24dp"
+            android:src="@drawable/ic_link_grey600_drawable_24dp"
             android:layout_width="@dimen/detail_network_icon_size"
             android:layout_height="@dimen/detail_network_icon_size"
             android:layout_margin="16dip"
             android:layout_gravity="center_vertical"/>
 
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+    <TextView
+            android:id="@+id/rawcontacts_accounts_summary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:textColor="@color/primary_text_color"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1">
-
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/compact_editor_linked_contacts_title"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:textColor="@color/primary_text_color"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:ellipsize="end" />
-
-        <TextView
-                android:id="@+id/rawcontacts_accounts_summary"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:singleLine="true"
-                android:textColor="@color/primary_text_color"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:ellipsize="end" />
-    </LinearLayout>
+            android:gravity="center_vertical"
+            android:ellipsize="end" />
 
     <ImageView
             android:src="@drawable/ic_menu_expander_minimized_holo_light"
