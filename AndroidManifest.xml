@@ -15,8 +15,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.contacts"
-    android:sharedUserId="android.uid.shared">
+    package="com.android.contacts">
 
     <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="23" />
     <original-package android:name="com.android.contacts" />
