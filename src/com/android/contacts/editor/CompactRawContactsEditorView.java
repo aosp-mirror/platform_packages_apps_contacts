@@ -522,6 +522,22 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         // Mark the currently displayed photo as primary
         mPhotoValuesDelta.setSuperPrimary(true);
 
+        // Even though high-res photos cannot be saved by passing them via
+        // an EntityDeltaList (since they cause the Bundle size limit to be
+        // exceeded), we still pass a low-res thumbnail. This simplifies
+        // code all over the place, because we don't have to test whether
+        // there is a change in EITHER the delta-list OR a changed photo...
+        // this way, there is always a change in the delta-list.
+        try {
+            final byte[] bytes = EditorUiUtils.getCompressedThumbnailBitmapBytes(
+                    getContext(), photoUri);
+            if (bytes != null) {
+                mPhotoValuesDelta.setPhoto(bytes);
+            }
+        } catch (FileNotFoundException e) {
+            elog("Failed to get bitmap from photo Uri");
+        }
+
         mPhotoView.setFullSizedPhoto(photoUri);
     }
 
