@@ -30,6 +30,7 @@
         android:layout_gravity="center_vertical" />
 
     <LinearLayout
+        android:id="@+id/suggestion_contact_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/expanding_entry_card_item_image_spacing"
@@ -41,22 +42,20 @@
             android:id="@+id/aggregation_suggestion_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/expanding_entry_card_title_text_size"
-            android:textColor="@color/quickcontact_entry_sub_header_text_color"
             android:layout_marginTop="@dimen/quickcontact_suggestion_card_layout_margin"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/quickcontact_entry_header_text_color" />
 
         <TextView
-            android:id="@+id/aggregation_suggestion_account_type"
+            android:id="@+id/aggregation_suggestion_account_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_marginBottom="@dimen/quickcontact_suggestion_card_layout_margin"
             android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@color/quickcontact_entry_sub_header_text_color" />
+            android:ellipsize="end" />
 
     </LinearLayout>
 

@@ -54,7 +54,8 @@
             android:visibility="gone"
             cardview:cardCornerRadius="@dimen/expanding_entry_card_card_corner_radius" />
 
-        <include layout="@layout/quickcontact_suggestion_card" />
+        <include layout="@layout/quickcontact_collapsed_suggestion_card" />
+        <include layout="@layout/quickcontact_expand_suggestion_card" />
 
     </LinearLayout>
 

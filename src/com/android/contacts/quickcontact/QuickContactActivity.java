@@ -200,6 +200,8 @@ public class QuickContactActivity extends ContactsActivity
     private static final String KEY_THEME_COLOR = "theme_color";
     private static final String KEY_IS_SUGGESTION_LIST_COLLAPSED = "is_suggestion_list_collapsed";
     private static final String KEY_SELECTED_SUGGESTION_CONTACTS = "selected_suggestion_contacts";
+    private static final String KEY_PREVIOUS_CONTACT_ID = "previous_contact_id";
+    private static final String KEY_SUGGESTIONS_AUTO_SELECTED = "suggestions_auto_seleted";
 
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
@@ -245,17 +247,19 @@ public class QuickContactActivity extends ContactsActivity
     private ExpandingEntryCardView mAboutCard;
 
     // Suggestion card.
-    private CardView mSuggestionCardView;
+    private CardView mCollapsedSuggestionCardView;
+    private CardView mExpandSuggestionCardView;
+    private View mCollapasedSuggestionHeader;
+    private TextView mCollapsedSuggestionCardTitle;
+    private TextView mExpandSuggestionCardTitle;
     private ImageView mSuggestionSummaryPhoto;
     private TextView mSuggestionForName;
-    private TextView mSuggestionNumber;
-    private TextView mSuggestionSummary;
-    private ImageView mSuggestionExpansionButton;
     private LinearLayout mSuggestionList;
-    private View mSuggestionSeparator;
+    private Button mSuggestionsCancelButton;
     private Button mSuggestionsLinkButton;
     private boolean mIsSuggestionListCollapsed;
-    private long mPreviousSuggestionForContactId = 0;
+    private boolean mSuggestionsShouldAutoSelected = true;
+    private long mPreviousContactId = 0;
 
     private MultiShrinkScroller mScroller;
     private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
@@ -483,36 +487,34 @@ public class QuickContactActivity extends ContactsActivity
     @Override
     public void onAggregationSuggestionChange() {
         mSuggestions = mAggregationSuggestionEngine.getSuggestions();
-        mSuggestionCardView.setVisibility(View.GONE);
+        mCollapsedSuggestionCardView.setVisibility(View.GONE);
+        mExpandSuggestionCardView.setVisibility(View.GONE);
         mSuggestionList.removeAllViews();
 
         final String suggestionForName = mContactData.getDisplayName();
         final int suggestionNumber = mSuggestions.size();
-        final String suggestionSummary = getSuggestionAccountSummary(mSuggestions);
 
         if (suggestionNumber <= 0) {
             mSelectedAggregationIds.clear();
             return;
         }
 
-        mSuggestionCardView.setVisibility(View.VISIBLE);
-
-        // Take the first suggestion 's photo as the summary photo.
-        // TODO: take all suggestions' photos.
-        final Suggestion firstSuggestion = mSuggestions.get(0);
-        if (firstSuggestion.photo != null) {
+        final byte[] photoBytes = mContactData.getThumbnailPhotoBinaryData();
+        if (photoBytes != null) {
             mSuggestionSummaryPhoto.setImageBitmap(BitmapFactory.decodeByteArray(
-                    firstSuggestion.photo, 0, firstSuggestion.photo.length));
+                    photoBytes, 0, photoBytes.length));
         } else {
             mSuggestionSummaryPhoto.setImageDrawable(
                     ContactPhotoManager.getDefaultAvatarDrawableForContact(
                             getResources(), false, null));
         }
 
+        final String suggestionTitle = getResources().getQuantityString(
+                R.plurals.quickcontact_suggestion_card_title, suggestionNumber, suggestionNumber);
+        mCollapsedSuggestionCardTitle.setText(suggestionTitle);
+        mExpandSuggestionCardTitle.setText(suggestionTitle);
+
         mSuggestionForName.setText(suggestionForName);
-        mSuggestionNumber.setText(getResources().getQuantityString(
-                R.plurals.quickcontact_suggestions_number, suggestionNumber, suggestionNumber));
-        mSuggestionSummary.setText(suggestionSummary);
 
         final Set<Long> suggestionContactIds = new HashSet<>();
         for (Suggestion suggestion : mSuggestions) {
@@ -520,77 +522,31 @@ public class QuickContactActivity extends ContactsActivity
             suggestionContactIds.add(suggestion.contactId);
         }
 
+        if (mIsSuggestionListCollapsed) {
+            collapseSuggestionList();
+        } else {
+            expandSuggestionList();
+        }
+
         // Remove contact Ids that are not suggestions.
         final Set<Long> selectedSuggestionIds = com.google.common.collect.Sets.intersection(
                 mSelectedAggregationIds, suggestionContactIds);
         mSelectedAggregationIds = new TreeSet<>(selectedSuggestionIds);
-
-        mSuggestionExpansionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mIsSuggestionListCollapsed) {
-                    expandSuggestionList();
-                } else {
-                    collapseSuggestionList();
-                }
-            }
-        });
     }
 
     private void collapseSuggestionList() {
-        mSuggestionList.setVisibility(View.GONE);
-        mSuggestionSeparator.setVisibility(View.GONE);
-        mSuggestionExpansionButton.setImageResource(
-                R.drawable.ic_menu_expander_minimized_holo_light);
+        mCollapsedSuggestionCardView.setVisibility(View.VISIBLE);
+        mExpandSuggestionCardView.setVisibility(View.GONE);
         mIsSuggestionListCollapsed = true;
     }
 
     private void expandSuggestionList() {
-        mSuggestionList.setVisibility(View.VISIBLE);
-        mSuggestionSeparator.setVisibility(View.VISIBLE);
-        mSuggestionExpansionButton.setImageResource(
-                R.drawable.ic_menu_expander_maximized_holo_light);
+        mCollapsedSuggestionCardView.setVisibility(View.GONE);
+        mExpandSuggestionCardView.setVisibility(View.VISIBLE);
         mIsSuggestionListCollapsed = false;
     }
-    /**
-     * Return summary like "Google(2),LinkedIn" for 3 suggestions.
-     */
-    private String getSuggestionAccountSummary(List<Suggestion> suggestions) {
-        Map<String, Integer> accountTypeMap = new HashMap<String, Integer>();
-        for (Suggestion suggestion : suggestions) {
-            final com.android.contacts.editor.AggregationSuggestionEngine.RawContact rawContact =
-                    suggestion.rawContacts.get(0);
-            final String displayAccountType = getDisplayAccountType(
-                    rawContact.accountType, rawContact.dataSet);
-            if (accountTypeMap.containsKey(displayAccountType)) {
-                int count = accountTypeMap.get(displayAccountType);
-                count++;
-                accountTypeMap.put(displayAccountType, count);
-            } else {
-                accountTypeMap.put(displayAccountType, 1);
-            }
-        }
 
-        final Set<String> accountTypeWithNumber = new HashSet<>();
-        for (String accountType : accountTypeMap.keySet()) {
-            final String number = getResources().getQuantityString(
-                    R.plurals.quickcontact_suggestion_account_type_number,
-                    accountTypeMap.get(accountType),
-                    accountTypeMap.get(accountType));
-            accountTypeWithNumber.add(getResources().getString(
-                    R.string.quickcontact_suggestion_account_type, accountType, number));
-        }
-        return TextUtils.join(",", accountTypeWithNumber);
-    }
-
-    private String getDisplayAccountType(String accountTypeString, String dataSet) {
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(this);
-        final AccountType accountType = accountTypeManager.getAccountType(
-                accountTypeString, dataSet);
-        return accountType.getDisplayLabel(this).toString();
-    }
-
-    private View inflateSuggestionListView(Suggestion suggestion) {
+    private View inflateSuggestionListView(final Suggestion suggestion) {
         final LayoutInflater layoutInflater = LayoutInflater.from(this);
         final View suggestionView = layoutInflater.inflate(
                 R.layout.quickcontact_suggestion_contact_item, null);
@@ -608,17 +564,21 @@ public class QuickContactActivity extends ContactsActivity
         final TextView name = (TextView) suggestionView.findViewById(R.id.aggregation_suggestion_name);
         name.setText(suggestion.name);
 
-        final TextView accountTypeView = (TextView) suggestionView.findViewById(
-                R.id.aggregation_suggestion_account_type);
-        final String accountTypeString = suggestion.rawContacts.get(0).accountType;
-        final String dataSet = suggestion.rawContacts.get(0).dataSet;
-        final String displayAccountType = getDisplayAccountType(accountTypeString, dataSet);
-        if (!TextUtils.isEmpty(displayAccountType)) {
-            accountTypeView.setText(displayAccountType);
+        final TextView accountNameView = (TextView) suggestionView.findViewById(
+                R.id.aggregation_suggestion_account_name);
+        final String accountName = suggestion.rawContacts.get(0).accountName;
+        if (!TextUtils.isEmpty(accountName)) {
+            accountNameView.setText("From " + accountName);
+        } else {
+            accountNameView.setVisibility(View.GONE);
         }
 
         final CheckBox checkbox = (CheckBox) suggestionView.findViewById(R.id.suggestion_checkbox);
-        checkbox.setChecked(mSelectedAggregationIds.contains(suggestion.contactId));
+        checkbox.setChecked(mSuggestionsShouldAutoSelected ||
+                mSelectedAggregationIds.contains(suggestion.contactId));
+        if (checkbox.isChecked()) {
+            mSelectedAggregationIds.add(suggestion.contactId);
+        }
         checkbox.setTag(suggestion.contactId);
         checkbox.setOnClickListener(new OnClickListener() {
             @Override
@@ -629,9 +589,11 @@ public class QuickContactActivity extends ContactsActivity
                     mSelectedAggregationIds.add(contactId);
                 } else {
                     mSelectedAggregationIds.remove(contactId);
+                    mSuggestionsShouldAutoSelected = false;
                 }
             }
         });
+
         return suggestionView;
     }
 
@@ -908,18 +870,23 @@ public class QuickContactActivity extends ContactsActivity
         mRecentCard = (ExpandingEntryCardView) findViewById(R.id.recent_card);
         mAboutCard = (ExpandingEntryCardView) findViewById(R.id.about_card);
 
-        mSuggestionCardView = (CardView) findViewById(R.id.suggestion_card_view);
+        mCollapsedSuggestionCardView = (CardView) findViewById(R.id.collapsed_suggestion_card);
+        mExpandSuggestionCardView = (CardView) findViewById(R.id.expand_suggestion_card);
+        mCollapasedSuggestionHeader = findViewById(R.id.collapsed_suggestion_header);
+        mCollapsedSuggestionCardTitle = (TextView) findViewById(
+                R.id.collapsed_suggestion_card_title);
+        mExpandSuggestionCardTitle = (TextView) findViewById(R.id.expand_suggestion_card_title);
         mSuggestionSummaryPhoto = (ImageView) findViewById(R.id.suggestion_icon);
         mSuggestionForName = (TextView) findViewById(R.id.suggestion_for_name);
-        mSuggestionNumber = (TextView) findViewById(R.id.suggestion_number);
-        mSuggestionSummary = (TextView) findViewById(R.id.suggestion_summary);
-        mSuggestionExpansionButton = (ImageView) findViewById(R.id.expand_suggestion_button);
-        mSuggestionSeparator = findViewById(R.id.title_separator2);
         mSuggestionList = (LinearLayout) findViewById(R.id.suggestion_list);
+        mSuggestionsCancelButton= (Button) findViewById(R.id.cancel_button);
         mSuggestionsLinkButton = (Button) findViewById(R.id.link_button);
         if (savedInstanceState != null) {
             mIsSuggestionListCollapsed = savedInstanceState.getBoolean(
                     KEY_IS_SUGGESTION_LIST_COLLAPSED, true);
+            mPreviousContactId = savedInstanceState.getLong(KEY_PREVIOUS_CONTACT_ID);
+            mSuggestionsShouldAutoSelected = savedInstanceState.getBoolean(
+                    KEY_SUGGESTIONS_AUTO_SELECTED, true);
             mSelectedAggregationIds = (TreeSet<Long>)
                     savedInstanceState.getSerializable(KEY_SELECTED_SUGGESTION_CONTACTS);
         } else {
@@ -927,7 +894,25 @@ public class QuickContactActivity extends ContactsActivity
             mSelectedAggregationIds.clear();
         }
 
-        mSuggestionExpansionButton.setClickable(true);
+        mCollapasedSuggestionHeader.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCollapsedSuggestionCardView.setVisibility(View.GONE);
+                mExpandSuggestionCardView.setVisibility(View.VISIBLE);
+                mIsSuggestionListCollapsed = false;
+                mSuggestionsShouldAutoSelected = true;
+            }
+        });
+
+        mSuggestionsCancelButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCollapsedSuggestionCardView.setVisibility(View.VISIBLE);
+                mExpandSuggestionCardView.setVisibility(View.GONE);
+                mIsSuggestionListCollapsed = true;
+            }
+        });
+
         mSuggestionsLinkButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1070,6 +1055,9 @@ public class QuickContactActivity extends ContactsActivity
             savedInstanceState.putInt(KEY_THEME_COLOR, mColorFilterColor);
         }
         savedInstanceState.putBoolean(KEY_IS_SUGGESTION_LIST_COLLAPSED, mIsSuggestionListCollapsed);
+        savedInstanceState.putLong(KEY_PREVIOUS_CONTACT_ID, mPreviousContactId);
+        savedInstanceState.putBoolean(
+                KEY_SUGGESTIONS_AUTO_SELECTED, mSuggestionsShouldAutoSelected);
         savedInstanceState.putSerializable(
                 KEY_SELECTED_SUGGESTION_CONTACTS, mSelectedAggregationIds);
     }
@@ -1316,13 +1304,10 @@ public class QuickContactActivity extends ContactsActivity
 
     private void populateSuggestionCard() {
         // Initialize suggestion related view and data.
-        if (mIsSuggestionListCollapsed) {
-            collapseSuggestionList();
-        } else {
-            expandSuggestionList();
-        }
-        if (mPreviousSuggestionForContactId != mContactData.getId()) {
-            mSuggestionCardView.setVisibility(View.GONE);
+        if (mPreviousContactId != mContactData.getId()) {
+            mCollapsedSuggestionCardView.setVisibility(View.GONE);
+            mExpandSuggestionCardView.setVisibility(View.GONE);
+            mIsSuggestionListCollapsed = true;
             mSuggestionList.removeAllViews();
         }
 
@@ -1335,12 +1320,12 @@ public class QuickContactActivity extends ContactsActivity
         }
 
         mAggregationSuggestionEngine.setContactId(mContactData.getId());
-        if (mPreviousSuggestionForContactId != 0
-                && mPreviousSuggestionForContactId != mContactData.getId()) {
+        if (mPreviousContactId != 0
+                && mPreviousContactId != mContactData.getId()) {
             // Clear selected Ids when listing suggestions for new contact Id.
             mSelectedAggregationIds.clear();
         }
-        mPreviousSuggestionForContactId = mContactData.getId();
+        mPreviousContactId = mContactData.getId();
 
         // Trigger suggestion engine to compute suggestions.
         final ContentValues values = new ContentValues();
