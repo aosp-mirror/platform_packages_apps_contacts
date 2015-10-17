@@ -764,6 +764,12 @@
     <!-- Toast message displayed when the editor fails to load for a contacts. [CHAR LIMIT=NONE] -->
     <string name="compact_editor_failed_to_load">Failed to open editor.</string>
 
+    <!-- Label for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=30] -->
+    <string name="compact_editor_account_selector_title">Saving to</string>
+
+    <!-- Label for the linked contacts selector which indicates the number of raw contacts which have been linked together into the aggregate being viewed. [CHAR LIMIT=40] -->
+    <string name="compact_editor_linked_contacts_selector_title">Linked contacts (<xliff:g id="count">%d</xliff:g>)</string>
+
     <!-- Quick contact display name with phonetic name -->
     <string name="quick_contact_display_name_with_phonetic"><xliff:g id="display_name">%s</xliff:g> (<xliff:g id="phonetic_name">%s</xliff:g>)</string>
 
@@ -794,9 +800,6 @@
     <!-- Account type with number in quick contact suggestion card [CHAR LIMIT=30]-->
     <string name="quickcontact_suggestion_account_type"><xliff:g id="account_type">%s</xliff:g><xliff:g id="account_type_number">%s</xliff:g></string>
 
-    <!-- Linked contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
-    <string name="compact_editor_linked_contacts_title">Linked contacts</string>
-
     <!-- "This contact" title showing in suggestion card in Quick contact. [CHAR LIMIT=30]-->
     <string name="suggestion_card_this_contact_title">This contact</string>
 
@@ -805,4 +808,5 @@
 
     <!-- Help message showing in suggestion card in Quick contact. [CHAR LIMIT=500]-->
     <string name="suggestion_card_help_message">Clean up duplicate contacts to see all info in one place. For more details on a contact tap on the avatar. You can always change the profile photo or separate contacts at anytime.</string>
+
 </resources>

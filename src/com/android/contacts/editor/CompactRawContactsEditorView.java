@@ -72,8 +72,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
@@ -158,18 +156,17 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                     : mInflater.inflate(R.layout.account_selector_list_item, parent, false);
 
             final RawContactDelta rawContactDelta = mRawContactDeltas.get(position);
-            final String accountName = rawContactDelta.getAccountName();
-            final AccountType accountType = rawContactDelta.getRawContactAccountType(mContext);
 
             final TextView text1 = (TextView) resultView.findViewById(android.R.id.text1);
+            final AccountType accountType = rawContactDelta.getRawContactAccountType(mContext);
             text1.setText(accountType.getDisplayLabel(mContext));
 
-            // For email addresses, we don't want to truncate at end, which might cut off the domain
-            // name.
             final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
+            final String accountName = rawContactDelta.getAccountName();
             if (TextUtils.isEmpty(accountName)) {
                 text2.setVisibility(View.GONE);
             } else {
+                // Truncate email addresses in the middle so we don't lose the domain
                 text2.setText(accountName);
                 text2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
             }
@@ -399,7 +396,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     // Raw contacts selector
     private View mRawContactContainer;
     private TextView mRawContactSummary;
-    private ImageView mPrimaryAccountIcon;
 
     private CompactPhotoEditorView mPhotoView;
     private ViewGroup mKindSectionViews;
@@ -450,7 +446,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         // Raw contacts selector
         mRawContactContainer = findViewById(R.id.all_rawcontacts_accounts_container);
         mRawContactSummary = (TextView) findViewById(R.id.rawcontacts_accounts_summary);
-        mPrimaryAccountIcon = (ImageView) findViewById(R.id.primary_account_icon);
 
         mPhotoView = (CompactPhotoEditorView) findViewById(R.id.photo_editor);
         mKindSectionViews = (LinearLayout) findViewById(R.id.kind_section_views);
@@ -819,7 +814,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             mAccountHeaderName.setVisibility(View.VISIBLE);
             mAccountHeaderName.setText(accountInfo.first);
         }
-        mAccountHeaderType.setText(accountInfo.second);
+
+        final String selectorTitle = getResources().getString(
+                R.string.compact_editor_account_selector_title);
+        mAccountHeaderType.setText(selectorTitle);
 
         final AccountType primaryAccountType = mPrimaryRawContactDelta.getRawContactAccountType(
                 getContext());
@@ -827,7 +825,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         mAccountHeaderContainer.setContentDescription(
                 EditorUiUtils.getAccountInfoContentDescription(
-                        accountInfo.first, accountInfo.second));
+                        accountInfo.first, selectorTitle));
     }
 
     private void addAccountSelector(Pair<String,String> accountInfo) {
@@ -840,11 +838,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             mAccountSelectorName.setVisibility(View.VISIBLE);
             mAccountSelectorName.setText(accountInfo.first);
         }
-        mAccountSelectorType.setText(accountInfo.second);
+
+        final String selectorTitle = getResources().getString(
+                R.string.compact_editor_account_selector_title);
+        mAccountSelectorType.setText(selectorTitle);
 
         mAccountSelectorContainer.setContentDescription(
                 EditorUiUtils.getAccountInfoContentDescription(
-                        accountInfo.first, accountInfo.second));
+                        accountInfo.first, selectorTitle));
 
         mAccountSelector.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -883,15 +884,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         Collections.sort(rawContactDeltas, new RawContactDeltaComparator(getContext()));
 
-        final String accountsSummary = getRawContactsAccountsSummary(
-                getContext(), rawContactDeltas);
+        final String accountsSummary = getResources().getString(
+                R.string.compact_editor_linked_contacts_selector_title, rawContactDeltas.size());
         mRawContactSummary.setText(accountsSummary);
-        mRawContactContainer.setContentDescription(accountsSummary);
-        if (mPrimaryRawContactDelta != null) {
-            final AccountType primaryAccountType = mPrimaryRawContactDelta.getRawContactAccountType(
-                    getContext());
-            mPrimaryAccountIcon.setImageDrawable(primaryAccountType.getDisplayIcon(getContext()));
-        }
 
         mRawContactContainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -928,38 +923,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 popup.show();
             }
         });
-    }
-
-    private static String getRawContactsAccountsSummary(
-            Context context, RawContactDeltaList rawContactDeltas) {
-        final LinkedHashMap<String, Integer> accountTypeNumber = new LinkedHashMap<>();
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (rawContactDelta.isVisible()) {
-                final AccountType accountType = rawContactDelta.getRawContactAccountType(context);
-                final String accountTypeLabel = accountType.getDisplayLabel(context).toString();
-                if (accountTypeNumber.containsKey(accountTypeLabel)) {
-                    int number = accountTypeNumber.get(accountTypeLabel);
-                    number++;
-                    accountTypeNumber.put(accountTypeLabel, number);
-                } else {
-                    accountTypeNumber.put(accountTypeLabel, 1);
-                }
-            }
-        }
-
-        final LinkedHashSet<String> linkedAccounts = new LinkedHashSet<>();
-        for (String accountTypeLabel : accountTypeNumber.keySet()) {
-            final String number = context.getResources().getQuantityString(
-                    R.plurals.quickcontact_suggestion_account_type_number,
-                    accountTypeNumber.get(accountTypeLabel),
-                    accountTypeNumber.get(accountTypeLabel));
-            final String accountWithNumber = context.getResources().getString(
-                    R.string.quickcontact_suggestion_account_type,
-                    accountTypeLabel,
-                    number);
-            linkedAccounts.add(accountWithNumber);
-        }
-        return TextUtils.join(",", linkedAccounts);
     }
 
     private void addPhotoView() {
