@@ -189,8 +189,9 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         mRawContactId = state.getRawContactId();
 
         // Fill in the account info
-        final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
-                isProfile, state.getAccountName(), type);
+        final Pair<String,String> accountInfo = isProfile
+                ? EditorUiUtils.getLocalAccountInfo(getContext(), state.getAccountName(), type)
+                : EditorUiUtils.getAccountInfo(getContext(), state.getAccountName(), type);
         if (accountInfo.first == null) {
             // Hide this view so the other text view will be centered vertically
             mAccountHeaderNameTextView.setVisibility(View.GONE);

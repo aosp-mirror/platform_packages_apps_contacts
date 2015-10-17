@@ -68,7 +68,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     }
 
     public void testGetProfileAccountInfo_AccountName() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(), /* isProfile =*/ true,
+        final Pair pair = EditorUiUtils.getLocalAccountInfo(getContext(),
                 ACCOUNT_NAME, new MockAccountType(DISPLAY_LABEL));
 
         assertNotNull(pair);
@@ -78,7 +78,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     }
 
     public void testGetProfileAccountInfo_NoAccountName() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(), /* isProfile =*/ true,
+        final Pair pair = EditorUiUtils.getLocalAccountInfo(getContext(),
                 /* accountName =*/ null, new MockAccountType(DISPLAY_LABEL));
 
         assertNotNull(pair);
@@ -88,7 +88,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     }
 
     public void testGetAccountInfo_AccountName_DisplayLabel() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(), /* isProfile =*/ false,
+        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
                 ACCOUNT_NAME, new MockAccountType(DISPLAY_LABEL));
 
         assertNotNull(pair);
@@ -101,7 +101,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     public void testGetAccountInfo_AccountName_DisplayLabel_GoogleAccountType() {
         final AccountType accountType = new MockAccountType(GOOGLE_DISPLAY_LABEL);
         accountType.accountType = GoogleAccountType.ACCOUNT_TYPE;
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(), /* isProfile =*/ false,
+        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
                 GOOGLE_ACCOUNT_NAME, accountType);
 
         assertNotNull(pair);
@@ -113,7 +113,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     }
 
     public void testGetAccountInfo_AccountName_NoDisplayLabel() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(), /* isProfile =*/ false,
+        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
                 ACCOUNT_NAME, new MockAccountType(/* displayLabel =*/ null));
 
         assertNotNull(pair);
@@ -126,7 +126,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     }
 
     public void testGetAccountInfo_NoAccountName_DisplayLabel() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(), /* isProfile =*/ false,
+        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
                 /* accountName =*/ null, new MockAccountType(DISPLAY_LABEL));
 
         assertNotNull(pair);
@@ -136,7 +136,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     }
 
     public void testGetAccountInfo_NoAccountName_NoDisplayLabel() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(), /* isProfile =*/ false,
+        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
                 /* accountName =*/ null, new MockAccountType(/* displayLabel =*/ null));
 
         assertNotNull(pair);
