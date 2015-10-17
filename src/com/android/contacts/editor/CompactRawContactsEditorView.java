@@ -781,9 +781,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
 
         // Get the account information for the primary raw contact delta
-        final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
-                mIsUserProfile, mPrimaryRawContactDelta.getAccountName(),
-                mPrimaryRawContactDelta.getAccountType(mAccountTypeManager));
+        final Pair<String,String> accountInfo = mIsUserProfile
+                ? EditorUiUtils.getLocalAccountInfo(getContext(),
+                        mPrimaryRawContactDelta.getAccountName(),
+                        mPrimaryRawContactDelta.getAccountType(mAccountTypeManager))
+                : EditorUiUtils.getAccountInfo(getContext(),
+                        mPrimaryRawContactDelta.getAccountName(),
+                        mPrimaryRawContactDelta.getAccountType(mAccountTypeManager));
 
         // The account header and selector show the same information so both shouldn't be visible
         // at the same time
@@ -801,12 +805,39 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             mAccountSelectorContainer.setVisibility(View.GONE);
             addRawContactAccountSelector(rawContactDeltas);
         } else {
-            addAccountHeader(accountInfo);
+            if (mIsUserProfile) {
+                addLocalAccountHeader(accountInfo);
+            } else {
+                addAccountHeader(accountInfo);
+            }
             mAccountSelectorContainer.setVisibility(View.GONE);
         }
     }
 
+    private void addLocalAccountHeader(Pair<String,String> accountInfo) {
+        // Set the account name
+        final String accountName = TextUtils.isEmpty(accountInfo.first)
+                ? accountInfo.second : accountInfo.first;
+        mAccountHeaderName.setVisibility(View.VISIBLE);
+        mAccountHeaderName.setText(accountName);
+
+        // Set the account type
+        final String selectorTitle = getResources().getString(
+                R.string.compact_editor_account_selector_title);
+        mAccountHeaderType.setText(selectorTitle);
+
+        // Set the icon
+        final AccountType primaryAccountType =
+                mPrimaryRawContactDelta.getRawContactAccountType(getContext());
+        mAccountHeaderIcon.setImageDrawable(primaryAccountType.getDisplayIcon(getContext()));
+
+        // Set the content description
+        mAccountHeaderContainer.setContentDescription(
+                EditorUiUtils.getAccountInfoContentDescription(accountName, selectorTitle));
+    }
+
     private void addAccountHeader(Pair<String,String> accountInfo) {
+        // Set the account name
         if (TextUtils.isEmpty(accountInfo.first)) {
             // Hide this view so the other text view will be centered vertically
             mAccountHeaderName.setVisibility(View.GONE);
@@ -815,14 +846,17 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             mAccountHeaderName.setText(accountInfo.first);
         }
 
+        // Set the account type
         final String selectorTitle = getResources().getString(
                 R.string.compact_editor_account_selector_title);
         mAccountHeaderType.setText(selectorTitle);
 
+        // Set the icon
         final AccountType primaryAccountType = mPrimaryRawContactDelta.getRawContactAccountType(
                 getContext());
         mAccountHeaderIcon.setImageDrawable(primaryAccountType.getDisplayIcon(getContext()));
 
+        // Set the content description
         mAccountHeaderContainer.setContentDescription(
                 EditorUiUtils.getAccountInfoContentDescription(
                         accountInfo.first, selectorTitle));

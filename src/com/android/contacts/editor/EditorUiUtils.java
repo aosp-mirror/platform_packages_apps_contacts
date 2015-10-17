@@ -112,25 +112,26 @@ public class EditorUiUtils {
     }
 
     /**
-     * Returns the account name and account type labels to display for the given account type.
-     *
-     * @param isProfile True to get the labels for the "me" profile or a phone only (local) contact
-     *         and false otherwise.
+     * Returns the account name and account type labels to display for local accounts.
      */
-    public static Pair<String,String> getAccountInfo(Context context,
-            boolean isProfile, String accountName, AccountType accountType) {
-        if (isProfile) {
-            if (TextUtils.isEmpty(accountName)) {
-                return new Pair<>(
-                        /* accountName =*/ null,
-                        context.getString(R.string.local_profile_title));
-            }
+    public static Pair<String,String> getLocalAccountInfo(Context context,
+            String accountName, AccountType accountType) {
+        if (TextUtils.isEmpty(accountName)) {
             return new Pair<>(
-                    accountName,
-                    context.getString(R.string.external_profile_title,
-                            accountType.getDisplayLabel(context)));
+                    /* accountName =*/ null,
+                    context.getString(R.string.local_profile_title));
         }
+        return new Pair<>(
+                accountName,
+                context.getString(R.string.external_profile_title,
+                        accountType.getDisplayLabel(context)));
+    }
 
+    /**
+     * Returns the account name and account type labels to display for the given account type.
+     */
+    public static Pair<String,String> getAccountInfo(Context context, String accountName,
+            AccountType accountType) {
         CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(context);
         if (TextUtils.isEmpty(accountTypeDisplayLabel)) {
             accountTypeDisplayLabel = context.getString(R.string.account_phone);
@@ -167,7 +168,7 @@ public class EditorUiUtils {
             builder.append(accountType).append('\n');
         }
         if (!TextUtils.isEmpty(accountName)) {
-            builder.append(accountName).append('\n');
+            builder.append(accountName);
         }
         return builder.toString();
     }

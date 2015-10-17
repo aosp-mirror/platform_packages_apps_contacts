@@ -115,8 +115,9 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         mAccountType = state.getAccountType();
         mDataSet = state.getDataSet();
 
-        final Pair<String,String> accountInfo = EditorUiUtils.getAccountInfo(getContext(),
-                isProfile, state.getAccountName(), type);
+        final Pair<String,String> accountInfo = isProfile
+                ? EditorUiUtils.getLocalAccountInfo(getContext(), state.getAccountName(), type)
+                : EditorUiUtils.getAccountInfo(getContext(), state.getAccountName(), type);
         if (accountInfo.first == null) {
             // Hide this view so the other text view will be centered vertically
             mAccountHeaderNameTextView.setVisibility(View.GONE);
