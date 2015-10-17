@@ -20,8 +20,6 @@ import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
 
-import android.provider.ContactsContract.CommonDataKinds.Nickname;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.util.Log;
 import android.util.Pair;
 
@@ -54,97 +52,121 @@ public class KindSectionDataList extends ArrayList<KindSectionData> {
     }
 
     /**
-     * Returns the "primary" KindSectionData and ValuesDelta that should be written for this List.
+     * Returns the primary KindSectionData and ValuesDelta that should be written for this List.
      */
-    public Pair<KindSectionData,ValuesDelta> getEntryToWrite(AccountWithDataSet primaryAccount,
-            boolean hasNewContact) {
-        // Use the first writable contact that matches the primary account
-        if (primaryAccount != null && !hasNewContact) {
+    public Pair<KindSectionData,ValuesDelta> getEntryToWrite(long id,
+            AccountWithDataSet primaryAccount, boolean isUserProfile) {
+        final String mimeType = getMimeType();
+        if (mimeType == null) return null;
+
+        if (!isUserProfile) {
+            if (id > 0) {
+                // Look for a match for the ID that was passed in
+                for (KindSectionData kindSectionData : this) {
+                    if (kindSectionData.getAccountType().areContactsWritable()) {
+                        final ValuesDelta valuesDelta = kindSectionData.getValuesDeltaById(id);
+                        if (valuesDelta != null) {
+                            vlog(mimeType + ": matched kind section data to write by ID");
+                            return new Pair<>(kindSectionData, valuesDelta);
+                        }
+                    }
+                }
+            }
+
+            // Look for a super primary entry
             for (KindSectionData kindSectionData : this) {
-                if (kindSectionData.getAccountType().areContactsWritable()
-                        && !kindSectionData.getValuesDeltas().isEmpty()) {
-                    if (matchesAccount(primaryAccount, kindSectionData.getRawContactDelta())) {
-                        return new Pair<>(kindSectionData,
-                                kindSectionData.getValuesDeltas().get(0));
+                if (kindSectionData.getAccountType().areContactsWritable()) {
+                    final ValuesDelta valuesDelta = kindSectionData.getSuperPrimaryValuesDelta();
+                    if (valuesDelta != null) {
+                        vlog(mimeType + ": matched kind section data to write by super primary");
+                        return new Pair<>(kindSectionData, valuesDelta);
+                    }
+                }
+            }
+
+            // Use the first writable contact that matches the primary account
+            if (primaryAccount != null) {
+                for (KindSectionData kindSectionData : this) {
+                    if (kindSectionData.getAccountType().areContactsWritable()) {
+                        if (matchesAccount(primaryAccount, kindSectionData.getRawContactDelta())
+                            && !kindSectionData.getValuesDeltas().isEmpty()) {
+                            vlog(mimeType + ": matched kind section data to write by primary " +
+                                    "account");
+                            return new Pair<>(kindSectionData,
+                                    kindSectionData.getValuesDeltas().get(0));
+                        }
                     }
                 }
             }
         }
 
-        // If no writable raw contact matched the primary account, or we're editing a read-only
-        // contact, just return the first writable entry.
+        // Just return the first writable entry.
         for (KindSectionData kindSectionData : this) {
-            if (kindSectionData.getAccountType().areContactsWritable()) {
-                if (!kindSectionData.getValuesDeltas().isEmpty()) {
-                    return new Pair<>(kindSectionData, kindSectionData.getValuesDeltas().get(0));
-                }
+            if (kindSectionData.getAccountType().areContactsWritable()
+                    && !kindSectionData.getValuesDeltas().isEmpty()) {
+                vlog(mimeType + ": falling back to first kind section data to write");
+                return new Pair<>(kindSectionData, kindSectionData.getValuesDeltas().get(0));
             }
         }
 
+        wlog(mimeType+ ": no writable kind section data found");
         return null;
     }
 
     /** Whether the given RawContactDelta belong to the given account. */
     private static boolean matchesAccount(AccountWithDataSet accountWithDataSet,
             RawContactDelta rawContactDelta) {
-        if (accountWithDataSet == null) return false;
         return Objects.equals(accountWithDataSet.name, rawContactDelta.getAccountName())
                 && Objects.equals(accountWithDataSet.type, rawContactDelta.getAccountType())
                 && Objects.equals(accountWithDataSet.dataSet, rawContactDelta.getDataSet());
     }
 
     /**
-     * Returns the "primary" KindSectionData and ValuesDelta that should be displayed to the user.
+     * Returns the KindSectionData and ValuesDelta that should be displayed to the user.
      */
     public Pair<KindSectionData,ValuesDelta> getEntryToDisplay(long id) {
         final String mimeType = getMimeType();
         if (mimeType == null) return null;
 
-        KindSectionData resultKindSectionData = null;
-        ValuesDelta resultValuesDelta = null;
         if (id > 0) {
             // Look for a match for the ID that was passed in
             for (KindSectionData kindSectionData : this) {
-                resultValuesDelta = kindSectionData.getValuesDeltaById(id);
-                if (resultValuesDelta != null) {
-                    vlog(mimeType + ": matched kind section data by ID");
-                    resultKindSectionData = kindSectionData;
-                    break;
+                final ValuesDelta valuesDelta = kindSectionData.getValuesDeltaById(id);
+                if (valuesDelta != null) {
+                    vlog(mimeType + ": matched kind section data to display by ID");
+                    return new Pair<>(kindSectionData, valuesDelta);
                 }
             }
         }
-        if (resultKindSectionData == null) {
-            // Look for a super primary entry
-            for (KindSectionData kindSectionData : this) {
-                resultValuesDelta = kindSectionData.getSuperPrimaryValuesDelta();
-                if (resultValuesDelta != null) {
-                    vlog(mimeType + ": matched super primary kind section data");
-                    resultKindSectionData = kindSectionData;
-                    break;
+        // Look for a super primary entry
+        for (KindSectionData kindSectionData : this) {
+            final ValuesDelta valuesDelta = kindSectionData.getSuperPrimaryValuesDelta();
+                if (valuesDelta != null) {
+                    vlog(mimeType + ": matched kind section data to display by super primary");
+                    return new Pair<>(kindSectionData, valuesDelta);
                 }
+        }
+
+        // Fall back to the first non-empty value
+        for (KindSectionData kindSectionData : this) {
+            final ValuesDelta valuesDelta = kindSectionData.getFirstNonEmptyValuesDelta();
+            if (valuesDelta != null) {
+                vlog(mimeType + ": using first non empty value to display");
+                return new Pair<>(kindSectionData, valuesDelta);
             }
         }
-        if (resultKindSectionData == null) {
-            // Fall back to the first non-empty value
-            for (KindSectionData kindSectionData : this) {
-                resultValuesDelta = kindSectionData.getFirstNonEmptyValuesDelta();
-                if (resultValuesDelta != null) {
-                    vlog(mimeType + ": using first non empty value");
-                    resultKindSectionData = kindSectionData;
-                    break;
-                }
-            }
-        }
-        if (resultKindSectionData == null || resultValuesDelta == null) {
-            final List<ValuesDelta> valuesDeltaList = get(0).getValuesDeltas();
+
+        for (KindSectionData kindSectionData : this) {
+            final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
             if (valuesDeltaList != null && !valuesDeltaList.isEmpty()) {
-                vlog(mimeType + ": falling back to first empty entry");
-                resultValuesDelta = valuesDeltaList.get(0);
-                resultKindSectionData = get(0);
+                vlog(mimeType + ": falling back to first empty entry to display");
+                final ValuesDelta valuesDelta = valuesDeltaList.get(0);
+                return new Pair<>(kindSectionData, valuesDelta);
             }
         }
-        return resultKindSectionData != null && resultValuesDelta != null
-                ? new Pair<>(resultKindSectionData, resultValuesDelta) : null;
+
+        wlog(mimeType + ": no kind section data found to display");
+        return null;
     }
 
     @Override
@@ -161,6 +183,12 @@ public class KindSectionDataList extends ArrayList<KindSectionData> {
             }
         }
         return super.add(kindSectionData);
+    }
+
+    private static void wlog(String message) {
+        if (Log.isLoggable(TAG, Log.WARN)) {
+            Log.w(TAG, message);
+        }
     }
 
     private static void vlog(String message) {

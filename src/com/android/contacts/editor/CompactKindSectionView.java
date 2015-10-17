@@ -25,12 +25,10 @@ import com.android.contacts.common.model.dataitem.DataKind;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -290,7 +288,8 @@ public class CompactKindSectionView extends LinearLayout {
      * displayed, even if it is empty.
      */
     public void setState(KindSectionDataList kindSectionDataList,
-            ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener) {
+            ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener,
+            ValuesDelta primaryValuesDelta) {
         mKindSectionDataList = kindSectionDataList;
         mViewIdGenerator = viewIdGenerator;
         mListener = listener;
@@ -306,29 +305,27 @@ public class CompactKindSectionView extends LinearLayout {
             }
         }
 
-        rebuildFromState();
+        rebuildFromState(primaryValuesDelta);
 
         updateEmptyEditors(/* shouldAnimate = */ false);
     }
 
-    private void rebuildFromState() {
+    private void rebuildFromState(ValuesDelta primaryValuesDelta) {
         mEditors.removeAllViews();
 
+        final String mimeType = mKindSectionDataList.getMimeType();
         for (KindSectionData kindSectionData : mKindSectionDataList) {
-            final String mimeType = kindSectionData.getDataKind().mimeType;
             if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                for (ValuesDelta valuesDelta : kindSectionData.getValuesDeltas()) {
-                    addNameEditorViews(kindSectionData.getAccountType(),
-                            valuesDelta, kindSectionData.getRawContactDelta());
-                }
+                addNameEditorViews(kindSectionData.getAccountType(),
+                        primaryValuesDelta, kindSectionData.getRawContactDelta());
             } else if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 addGroupEditorView(kindSectionData.getRawContactDelta(),
                         kindSectionData.getDataKind());
             } else {
                 final Editor.EditorListener editorListener;
-                if (Nickname.CONTENT_ITEM_TYPE.equals(kindSectionData.getDataKind().mimeType)) {
+                if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     editorListener = new OtherNameKindEditorListener();
-                } else if (Event.CONTENT_ITEM_TYPE.equals(kindSectionData.getDataKind().mimeType)) {
+                } else if (Event.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     editorListener = new EventEditorListener();
                 } else {
                     editorListener = new NonNameEditorListener();
@@ -346,6 +343,24 @@ public class CompactKindSectionView extends LinearLayout {
         final boolean readOnly = !accountType.areContactsWritable();
 
         if (readOnly) {
+            final View nameView = mLayoutInflater.inflate(
+                    R.layout.structured_name_readonly_editor_view, mEditors,
+                    /* attachToRoot =*/ false);
+
+            // Display name
+            ((TextView) nameView.findViewById(R.id.display_name))
+                    .setText(valuesDelta.getDisplayName());
+
+            // Account type info
+            final LinearLayout accountTypeLayout = (LinearLayout)
+                    nameView.findViewById(R.id.account_type);
+            accountTypeLayout.setVisibility(View.VISIBLE);
+            ((ImageView) accountTypeLayout.findViewById(R.id.account_type_icon))
+                    .setImageDrawable(accountType.getDisplayIcon(getContext()));
+            ((TextView) accountTypeLayout.findViewById(R.id.account_type_name))
+                    .setText(accountType.getDisplayLabel(getContext()));
+
+            mEditors.addView(nameView);
             return;
         }
 
@@ -360,7 +375,7 @@ public class CompactKindSectionView extends LinearLayout {
         nameView.setDeletable(false);
         nameView.setValues(
                 accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
-                valuesDelta, rawContactDelta, readOnly, mViewIdGenerator);
+                valuesDelta, rawContactDelta, /* readOnly =*/ false, mViewIdGenerator);
 
         // Correct start margin since there is a second icon in the structured name layout
         nameView.findViewById(R.id.kind_icon).setVisibility(View.GONE);
@@ -373,7 +388,7 @@ public class CompactKindSectionView extends LinearLayout {
         phoneticNameView.setDeletable(false);
         phoneticNameView.setValues(
                 accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
-                valuesDelta, rawContactDelta, readOnly, mViewIdGenerator);
+                valuesDelta, rawContactDelta, /* readOnly =*/ false, mViewIdGenerator);
 
         // Fix the start margin for phonetic name views
         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
