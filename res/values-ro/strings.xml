@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plasați în ecranul de pornire"</string>
     <string name="menu_call" msgid="3992595586042260618">"Apelaţi persoana din agendă"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteți mesaj text către o persoană din agendă"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Separaţi"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Separați"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editaţi"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ștergeţi"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Adăugaţi o persoană de contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Adăugaţi un grup"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Intrare separată?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Această intrare din Agendă va fi separată în mai multe intrări."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"Îmbinați"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"Persoană de contact separată?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"Această persoană de contact va fi separată în mai multe persoane de contact."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Asociați"</string>
     <string name="menu_save" msgid="1727844363591825909">"Salvați"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Îmbinați intrările din Agendă"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Alegeţi persoana de contact de asociat cu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afişaţi toate persoanele din agendă"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toate persoanele din agendă"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"Persoane de contact îmbinate"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"Persoanele de contact au fost asociate"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Persoane de contact șterse"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setaţi ton apel"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Toate apel. către mesag. voc."</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Nu puteţi șterge persoane din agendă, din conturi cu permisiuni doar de citire, însă puteţi să le ascundeţi în lista dvs. de persoane din agendă."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Informaţiile despre această persoană din agendă provin din mai multe conturi. Informaţiile provenite din conturile numai în citire nu vor fi şterse din lista dvs., ci doar ascunse."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Pentru o îmbinare aveți nevoie de cel puțin două persoane de contact selectate."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Persoanele de contact selectate vor fi îmbinate într-o singură persoană de contact."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Pentru o asociere aveți nevoie de cel puțin două persoane de contact selectate."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"Persoanele de contact selectate vor fi asociate într-o singură persoană de contact."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"Persoanele de contact selectate vor fi șterse."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Informațiile din conturile numai în citire vor fi ascunse în lista persoanelor de contact, nu vor fi șterse."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Pentru aceste persoane de contact există informații din mai multe conturi. Informațiile din conturile numai în citire vor fi ascunse în lista persoanelor de contact, nu vor fi șterse."</string>
@@ -169,11 +169,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"Foto. de bază"</string>
     <string name="description_star" msgid="2605854427360036550">"preferate"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editaţi informaţiile despre persoana din agendă"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="few">au fost îmbinate din <xliff:g id="COUNT">%0$d</xliff:g> surse</item>
-      <item quantity="other">au fost îmbinate din <xliff:g id="COUNT">%0$d</xliff:g> de surse</item>
-      <item quantity="one">nu au fost îmbinate</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Îmbinați intrarea curentă din agendă cu intrarea selectată?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Comutaţi la funcţia de editare a persoanei din agendă selectate? Informaţiile introduse până acum vor fi copiate."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copiați în Agendă"</string>
@@ -280,18 +275,27 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Mai multe câmpuri"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Schimbați fotografia"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Editorul nu a putut fi deschis."</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"Îmbinați"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> persoane de contact sugerate</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> de persoane de contact sugerate</item>
-      <item quantity="one">O persoană de contact sugerată</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="few">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"Persoane de contact îmbinate"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>

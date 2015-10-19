@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"วางบนหน้าจอหลัก"</string>
     <string name="menu_call" msgid="3992595586042260618">"โทรหารายชื่อในสมุดโทรศัพท์"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ส่งข้อความถึงรายชื่อในสมุดโทรศัพท์"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"แยก"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"ยกเลิกการลิงก์"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"แก้ไข"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"ลบ"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"เพิ่มรายชื่อผู้ติดต่อ"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"เพิ่มกลุ่ม"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"แยกรายชื่อหรือไม่"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"รายชื่อติดต่อนี้จะถูกแยกออกเป็นหลายรายชื่อ"</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"รวม"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"ยกเลิกการลิงก์รายชื่อไหม"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"รายชื่อติดต่อนี้จะถูกยกเลิกการลิงก์ออกเป็นหลายรายการ"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"ลิงก์"</string>
     <string name="menu_save" msgid="1727844363591825909">"บันทึก"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"รวมรายชื่อ"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"เลือกรายชื่อติดต่อที่คุณต้องการรวมกับ <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"แสดงรายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"รายชื่อที่แนะนำ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"รายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"รวมรายชื่อติดต่อแล้ว"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"ลิงก์รายชื่อติดต่อแล้ว"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"ลบรายชื่อติดต่อแล้ว"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ตั้งเสียงเรียกเข้า"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"โอนทุกสายไปยังข้อความเสียง"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"คุณไม่สามารถลบรายชื่อติดต่อจากบัญชีแบบอ่านอย่างเดียวได้ แต่ซ่อนไว้ในรายการรายชื่อได้"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"สมุดโทรศัพท์นี้มีข้อมูลจากหลายบัญชี ข้อมูลจากบัญชีแบบอ่านอย่างเดียวจะถูกซ่อนในรายการรายชื่อของคุณโดยไม่ถูกลบออก"</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"คุณต้องเลือกรายชื่อติดต่อไว้อย่างน้อย 2 รายการเพื่อดำเนินการรวม"</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"รายชื่อติดต่อที่เลือกไว้จะรวมเป็นรายชื่อเดียว"</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"คุณต้องเลือกรายชื่อติดต่ออย่างน้อย 2 รายการเพื่อทำการลิงก์"</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"รายชื่อติดต่อที่เลือกไว้จะลิงก์เข้าด้วยกันเป็นรายการเดียว"</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"ระบบจะลบรายชื่อติดต่อที่เลือก"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"ระบบจะซ่อนข้อมูลจากบัญชีที่อ่านอย่างเดียวไว้ในรายชื่อติดต่อโดยไม่ลบออก"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"รายชื่อติดต่อเหล่านี้มีข้อมูลจากหลายบัญชี ระบบจะซ่อนข้อมูลจากบัญชีที่อ่านอย่างเดียวไว้ในรายชื่อติดต่อของคุณโดยไม่ลบออก"</string>
@@ -166,10 +166,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"รูปภาพหลัก"</string>
     <string name="description_star" msgid="2605854427360036550">"รายการโปรด"</string>
     <string name="edit_contact" msgid="7529281274005689512">"แก้ไขรายชื่อติดต่อ"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other">รวมจาก <xliff:g id="COUNT">%0$d</xliff:g> แหล่งที่มา</item>
-      <item quantity="one">ไม่ได้รวม</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"รวมรายชื่อติดต่อปัจจุบันกับรายชื่อติดต่อที่เลือกหรือไม่"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"เปลี่ยนไปแก้ไขรายชื่อติดต่อที่เลือกหรือไม่ ข้อมูลที่คุณป้อนไว้จนถึงขณะนี้จะถูกคัดลอก"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"คัดลอกไปยังสมุดโทรศัพท์ของฉัน"</string>
@@ -273,16 +269,26 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"ช่องเพิ่มเติม"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"เปลี่ยนรูปภาพ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ไม่สามารถเปิดตัวแก้ไข"</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"รวม"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> รายชื่อแนะนำ</item>
-      <item quantity="one">1 รายชื่อแนะนำ</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"รายชื่อติดต่อที่รวมแล้ว"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>

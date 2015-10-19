@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Stavi na početni zaslon"</string>
     <string name="menu_call" msgid="3992595586042260618">"Nazovi kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Poruka kontaktu"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Razdvoji"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Prekini vezu"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Uredi"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Izbriši"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Dodavanje kontakta"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Dodavanje grupe"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Razdvojiti kontakt?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Kontakt će se razdvojiti na više kontakata."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"Spoji"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"Prekinuti vezu kontakata?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"Kontakt će se razdvojiti na više kontakata."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Poveži"</string>
     <string name="menu_save" msgid="1727844363591825909">"Spremi"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Pridruži kontakte"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Odaberite kontakt koji želite pridružiti imenu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Prikaži sve kontakte"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Predloženi kontakti"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Svi kontakti"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"Kontakti su spojeni"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontakti su povezani"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontakti su izbrisani"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Postavi zvuk zvona"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Svi pozivi na govornu poštu"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ne možete izbrisati kontakte s računa samo za čitanje, ali možete ih sakriti na svojim popisima kontakata."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ovaj kontakt sadrži informacije iz više računa. Informacije iz računa koji su samo za čitanje bit će skrivene na popise kontakata, a ne izbrisane."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Da biste izvršili spajanje, morate odabrati barem dva kontakta."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Odabrani kontakti spojit će se u jedan kontakt."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Da biste izvršili povezivanje, morate odabrati barem dva kontakta."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"Odabrani kontakti povezat će se u jedan kontakt."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"Odabrani će se kontakti izbrisati."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Podaci s računa koji su samo za čitanje bit će skriveni na popisu kontakata, a ne izbrisani."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Ti kontakti sadrže podatke s više računa. Podaci s računa koji su samo za čitanje bit će skriveni na popisu kontakata, a ne izbrisani."</string>
@@ -169,11 +169,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"Primarna slika"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Uredi kontakt"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="one">spojen iz <xliff:g id="COUNT">%0$d</xliff:g> izvora</item>
-      <item quantity="few">spojen iz <xliff:g id="COUNT">%0$d</xliff:g> izvora</item>
-      <item quantity="other">spojen iz <xliff:g id="COUNT">%0$d</xliff:g> izvora</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Pridružiti trenutačni kontakt odabranom kontaktu?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Prebaciti se na uređivanje odabranog kontakta? Informacije koje ste unijeli dosad kopirat će se."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiraj u Moje kontakte"</string>
@@ -280,18 +275,27 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Više polja"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Promijeni fotografiju"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Otvaranje alata za uređivanje nije uspjelo."</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"Spoji"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> predloženi kontakt</item>
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> predložena kontakta</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> predloženih kontakata</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="one">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="few">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"Spojeni kontakti"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>

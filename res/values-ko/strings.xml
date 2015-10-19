@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"홈 화면에 만들기"</string>
     <string name="menu_call" msgid="3992595586042260618">"연락처로 전화 걸기"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"연락처에 문자 보내기"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"분리"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"연결 해제"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"수정"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"삭제"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"연락처 추가"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"그룹 추가"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"연락처를 분리하시겠습니까?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"여러 연락처로 분리됩니다."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"병합"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"연락처를 연결 해제할까요?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"이 연락처가 여러 연락처로 연결 해제됩니다."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"연결"</string>
     <string name="menu_save" msgid="1727844363591825909">"저장"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"연락처 통합"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g>와(과) 통합할 연락처를 선택하세요."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"모든 연락처 표시"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"추천 연락처"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"모든 연락처"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"연락처가 병합되었습니다."</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"연락처가 연결되었습니다."</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"연락처가 삭제되었습니다."</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"벨소리 설정"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"음성사서함 자동 연결"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"연락처를 읽기 전용 계정에서 삭제할 수는 없지만 주소록에서 숨길 수는 있습니다."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"연락처에 여러 계정의 정보가 들어 있습니다. 읽기 전용 계정의 정보는 주소록 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"병합하려면 두 개 이상의 연락처를 선택해야 합니다."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"선택한 연락처를 하나의 연락처로 병합합니다."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"연결하려면 두 개 이상의 연락처를 선택해야 합니다."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"선택한 연락처가 하나의 연락처로 연결됩니다."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"선택한 연락처를 삭제합니다."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"읽기 전용 계정의 정보는 연락처 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"연락처에 여러 계정의 정보가 들어 있습니다. 읽기 전용 계정의 정보는 연락처 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
@@ -166,10 +166,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"기본 사진"</string>
     <string name="description_star" msgid="2605854427360036550">"즐겨찾기"</string>
     <string name="edit_contact" msgid="7529281274005689512">"연락처 수정"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g>개 출처에서 병합되었습니다.</item>
-      <item quantity="one">병합되지 않았습니다.</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"이 연락처와 선택한 연락처를 통합하시겠습니까?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"선택한 연락처를 수정하시겠습니까? 지금까지 입력하신 정보는 복사됩니다."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"내 주소록에 복사"</string>
@@ -273,16 +269,26 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"입력란 더보기"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"사진 변경"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"편집기를 열지 못했습니다."</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>(<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"병합"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="other">추천 연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
-      <item quantity="one">추천 연락처 1개</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>개)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"병합된 연락처"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>

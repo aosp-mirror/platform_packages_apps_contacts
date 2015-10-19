@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面上"</string>
     <string name="menu_call" msgid="3992595586042260618">"致電聯絡人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"分割"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"解除連結"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"編輯"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"刪除"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"新增聯絡人"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"新增群組"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"要分拆聯絡人記錄嗎？"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"這個聯絡人記錄即將分拆為多個。"</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"合併"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"要解除連結聯絡人嗎？"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"將會解除連結此聯絡人為多個聯絡人。"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"連結"</string>
     <string name="menu_save" msgid="1727844363591825909">"儲存"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合併聯絡人"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"選擇要與<xliff:g id="NAME">%s</xliff:g>合併的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議的聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"已合併聯絡人"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"已連結聯絡人"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"已刪除聯絡人"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"設定鈴聲"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"所有來電轉到留言信箱"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"您無法刪除唯讀帳戶的聯絡人，但可在聯絡人名單中隱藏這些聯絡人。"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"這個聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"您至少需要選取兩個聯絡人才能執行合併。"</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"已選的聯絡人將會合併為單一聯絡人。"</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"您必須選擇最少兩個聯絡人方可連結。"</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"已選的聯絡人將會連結為單一聯絡人。"</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"已選的聯絡人將被刪除。"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"唯讀帳戶的資訊會從您的聯絡人名單隱藏，而不是刪除。"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"這些聯絡人包含來自多個帳戶的資訊。唯讀帳戶的資訊會從您的聯絡人名單隱藏，而不是刪除。"</string>
@@ -166,10 +166,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"主要相片"</string>
     <string name="description_star" msgid="2605854427360036550">"我的最愛"</string>
     <string name="edit_contact" msgid="7529281274005689512">"編輯聯絡人"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other">已從 <xliff:g id="COUNT">%0$d</xliff:g> 個來源合併</item>
-      <item quantity="one">未合併</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"要將目前聯絡人與所選聯絡人合併嗎？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？您目前已輸入的資訊將會被複製。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"複製到我的通訊錄"</string>
@@ -273,16 +269,26 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"更多欄位"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"變更相片"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"無法打開編輯器。"</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"合併"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 個建議聯絡人</item>
-      <item quantity="one">1 個建議聯絡人</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"已合併的聯絡人"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>

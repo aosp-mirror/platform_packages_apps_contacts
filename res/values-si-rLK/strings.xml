@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"මුල් තිරයෙහි තබන්න"</string>
     <string name="menu_call" msgid="3992595586042260618">"සම්බන්ධතාව අමතන්න"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"සම්බන්ධතාවයට කෙටි පණිවිඩයක් යවන්න"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"වෙන් කරන්න"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"සබැඳි ඉවත් කරන්න"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"සංස්කරණය කරන්න"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"මකන්න"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"සම්බන්ධතාවය එක් කරන්න"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"කණ්ඩායමක් එක් කරන්න"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"සම්බන්ධතාව වෙන් කරන්නද?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"මෙම සම්බන්ධතාවය සම්බන්ධතා කිහිපයකට වෙන් කෙරෙනු ඇත."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"ඒකාබද්ධ කරන්න"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"සම්බන්ධතා වෙන් කරන්නද?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"මෙම සම්බන්ධතාව සම්බන්ධතා කිහිපයකට වෙන් කරනු ඇත."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"සබැඳි කරන්න"</string>
     <string name="menu_save" msgid="1727844363591825909">"සුරකින්න"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"සම්බන්ධතා එකතු කරන්න"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> සමඟ එක් කළ යුතු සම්බන්ධතාවය තෝරන්න:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"සියලු සම්බන්ධතා පෙන්වන්න"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"යෝජිත සම්බන්ධතා"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"සියලුම සම්බන්ධතා"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"සම්බන්ධතා ඒකාබද්ධ කරන ලදි"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"සම්බන්ධතා සබැඳි කරන ලදී"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"සම්බන්ධතා ඉවත් කරන ලදි"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"රිංග්ටෝනය සකසන්න"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"හඬ තැපෑල වෙත සියලු ඇමතුම්"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ඔබට සම්බන්ධතා කියවීමට-පමණයි ගිණුම් වලින් මැකිය නොහැක, නමුත් ඔබගේ සම්බන්ධතා ලැයිස්තු තුළ ඔබට ඒවා සැඟවිය හැක."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"මෙම සම්බන්ධතාවයෙහි ගිණුම් කිහිපයකින් තොරතුරු අඩංගු වේ. කියවීමට-පමණයි ගිණුම් වලින් තොරතුරු ඔබගේ සම්බන්ධතා ලැයිස්තු තුළ සඟවා දැමෙන අතර, මකා දැමීම නොකරයි."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ඒකාබද්ධ කිරීමක් සිදු කිරීමට ඔබ විසින් අවම වශයෙන් සම්බන්ධතා දෙකක් තෝරාගත යුතුය."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"තෝරාගත් සම්බන්ධතා තනි සම්බන්ධතාවයක් ලෙස ඒකාබද්ධ කෙරෙනු ඇත."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"සබැඳි කිරීමට ඔබ විසින් අවම වශයෙන් සම්බන්ධතා දෙකක් තෝරා ගත යුතුය."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"තෝරා ගත් සම්බන්ධතා තනි සම්බන්ධතාවක් ලෙස සබැඳි කරනු ඇත."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"තෝරාගත් සම්බන්ධතා මකා දැමෙනු ඇත."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"කියවීමට-පමණක් වූ ගිණුම්වල තොරතුරු  ඔබේ සම්බන්ධතා ලැයිස්තුවේ සඟවනු ඇත, ඒවා මැකෙනු නොලැබේ."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"මෙම සම්බන්ධතා වල ගිණුම් කිහිපයක තොරතුරු අන්තර්ගතයි. කියවීමට-පමණක් වූ ගිණුම්වල තොරතුරු ඔබේ සම්බන්ධතා ලැයිස්තුවේ සඟවනු ඇත, ඒවා මකාදමනු නොලැබේ."</string>
@@ -166,10 +166,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"ප්‍රාථමික රූප"</string>
     <string name="description_star" msgid="2605854427360036550">"ප්‍රියතම"</string>
     <string name="edit_contact" msgid="7529281274005689512">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> මූලාශ්‍රයකින් ඒකාබද්ධ කර තිබේ</item>
-      <item quantity="other">මූලාශ්‍ර <xliff:g id="COUNT">%0$d</xliff:g> කින් ඒකාබද්ධ කර තිබේ</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"වත්මන් සම්බන්ධතාවය තෝරාගෙන ඇති සම්බන්ධතාවය සමඟ එකතු කරන්නද?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"තෝරාගෙන ඇති සම්බන්ධතාවය සංස්කරණය කිරීමට මාරු වෙන්නද? ඔබ දැනට ඇතුළු කළ තොරතුරු පිටපත් වනු ඇත."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"මගේ සම්බන්ධතා වෙතට පිටපත් කරන්න"</string>
@@ -273,16 +269,26 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"තව ක්ෂේත්‍ර"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ඡායාරූපය වෙනස් කරන්න"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"සංස්කාරකය විවෘත කිරීමට නොහැකි විය."</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"ඒකාබද්ධ කරන්න"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="one">යෝජිත සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g></item>
-      <item quantity="other">යෝජිත සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g></item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="one">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"ඒකාබද්ධ කළ සම්බන්ධතා"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>

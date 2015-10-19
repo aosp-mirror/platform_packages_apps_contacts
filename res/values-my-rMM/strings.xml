@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ပင်မစာမျက်နှာတွင် တင်ထားပါ"</string>
     <string name="menu_call" msgid="3992595586042260618">"အဆက်အသွယ်ကို ခေါ်ပါ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"အဆက်အသွယ်ကို စာတိုပို့ရန်"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"ခွဲခြားခြင်း"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"လင့်ခ် ဖြုတ်ရန်"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"ပြင်ဆင်ရန်"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"ဖျက်ရန်"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"လိပ်စာထပ်ထည့်ပါ"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"အုပ်စု ထပ်ထည့်ပါ"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"အဆက်အသွယ်ခွဲမည်လား?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"ဒီအဆက်အသွယ်အား အဆက်အသွယ်အများအပြားအဖြစ် ခွဲပစ်လိုက်မည်ဖြစ်ပါသည်"</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"ပေါင်းစည်းပါ"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"အဆက်အသွယ် ကွင်းဆက်မှု ခွဲပစ်ရမလား။"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"ဤအဆက်အသွယ် ကွင်းဆက်ထားမှုကို အဆက်အသွယ် အများအပြားအဖြစ် ခွဲပစ်လိုက်မည်။"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"လင့်ခ်"</string>
     <string name="menu_save" msgid="1727844363591825909">"သိမ်းဆည်းရန်"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"အဆက်အသွယ်များကို ပူးပေါင်းလိုက်သည်"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> နှင့် ပေါင်းချင်သော လိပ်စာအားရွေးပါ:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"ဆက်သွယ်မှုစာရင်း ပေါင်းကူးပြီး"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"ကွင်းဆက်ထားသည့် အဆက်အသွယ်များ"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"ဆက်သွယ်မှုစာရင်း ဖျက်ပြီး"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ဖုန်းမြည်သံသတ်မှတ်ရန်"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ဖုန်းအားလုံးအသံစာပို့စနစ်သို့"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ဖတ်ရန်အတွက်သာ အကောင့်များမှ အဆက်အသွယ်များကို ဖျက်ပစ်လို့ မရပါ၊ ဒါပေမယ့် အဆက်အသွယ်များစာရင်းမှ ဖျောက်ထားလို့ ရပါသည်"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ဒီအဆက်အသွယ်မှာ အကောင့်အများအပြား၏ အချက်အလက်များ ပါဝင်ပါသည်။ ဖတ်ရန်အတွက်သာ အကောင့်များမှ အချက်အလက်များကို ဖျောက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်ထားတာ မဟုတ်ပါ"</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ပေါင်းစည်းမှုတစ်ခုလုပ်ဆောင်ရန် အနည်းဆုံးအဆက်အသွယ်နှစ်ခု ရွေးချယ်ရန် လိုအပ်သည်။"</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"ရွေးချယ်ထားသောအကောင့်များအား အဆက်အသွယ်တစ်ခုတည်းသို့ ပေါင်းစည်းပါလိမ့်မည်။"</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"လင့်ခ်တစ်ခုကို ဖန်တီးရန် ရွေးထားသည့် အဆက်အသွယ် အနည်းဆုံး နှစ်ခု လိုအပ်သည်။"</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"ရွေးချယ်ထားသော အကောင့်များကို အဆက်အသွယ် တစ်ခုတည်းအဖြစ် ကွင်းဆက်ထားမည်။"</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"ရွေးချယ်ထားသောအဆက်အသွယ်များ ဖျက်ပစ်လိမ့်မည်။"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"ဖတ်ရန်အတွက်သာ အကောင့်များမှ အချက်အလက်များကို ဖျောက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်ထားတာ မဟုတ်ပါ။"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"ဒီအဆက်အသွယ်များတွင် အကောင့်အများအပြား၏ အချက်အလက်များ ပါဝင်ပါသည်။ ဖတ်ရန်အတွက်သာ အကောင့်များမှ အချက်အလက်များကို ဖျောက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်ထားတာ မဟုတ်ပါ"</string>
@@ -166,10 +166,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"အဓိက ဓာတ်ပုံ"</string>
     <string name="description_star" msgid="2605854427360036550">"အနှစ်သက်ဆုံး"</string>
     <string name="edit_contact" msgid="7529281274005689512">"အဆက်အသွယ်အားပြင်ရန်"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other">ရင်းမြစ် <xliff:g id="COUNT">%0$d</xliff:g> ခုမှ ပူးပေါင်းထားသည်</item>
-      <item quantity="one">မပူးပေါင်းပါ</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"လက်ရှိလိပ်စာအား ရွေးထားသောလိပ်စာနှင့် ပေါင်းမည်လား"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ရွေးထားသော လိပ်စာအား ပြင်ဆင်ခြင်းသို့ပြောင်းမလား? သင် အခုထိ ရိုက်ထားသော စာများအားလုံး ကူးယူပြီးဖြစ်ပါလိမ့်မည်"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"ကျွန်ုပ်၏လိပ်စာများထဲ ထည့်ပါ"</string>
@@ -273,16 +269,26 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"နေရာပိုချဲ့ရန်"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ဓာတ်ပုံ ပြောင်းလဲ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"တည်းဖြတ်သူကို ဖွင့်ခြင်းမအောင်မြင်ပါ။"</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"ပေါင်းစည်းပါ"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> မှအကြံပြုထားသည့် အဆက်အသွယ်များ</item>
-      <item quantity="one"> မှ အဆက်အသွယ်တစ်ခုအကြံပြုထားသည်</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"ပေါင်းစည်းထားသည့် အဆက်အသွယ်များ"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>

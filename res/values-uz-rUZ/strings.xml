@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Bosh ekranga joylash"</string>
     <string name="menu_call" msgid="3992595586042260618">"Qo‘ng‘iroq qilish"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS/MMS yuborish"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Ajratish"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Ajratish"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Tahrirlash"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"O‘chirish"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Kontakt qo‘shish"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Guruh qo‘shish"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Kontakt ajratilsinmi?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Bu kontakt bir nechta kontaktga ajratiladi."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"Birlashtirish"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"Kontakt ajratilsinmi?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"Bu kontakt bir nechta kontaktga ajratiladi."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Bog‘lash"</string>
     <string name="menu_save" msgid="1727844363591825909">"Saqlash"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontaktlarni birlashtirish"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> bilan birlashtirmoqchi bo‘lgan kontaktni tanlang:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Barcha kontaktlarni ko‘rsatish"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Taklif etilgan kontaktlar"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Barcha kontaktlar"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"Kontaktlar birlashtirildi"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontaktlar bog‘landi"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontaktlar o\'chirildi"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Rington o‘rnatish"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Faqat ovozli xabarlar"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Faqat o‘qishga ruxsat etilgan hisoblar kontaktlarini o‘chira olmaysiz, ammo ularni kontaktlaringiz ro‘yxatida ko‘rinmaydigan qila olasiz."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Bu kontaktda bir nechta hisoblardan ma’lumotlar jamlangan. Faqat o‘qishga ruxsat etilgan hisoblar ma’lumoti kontaktlar ro‘yxatingizda ko‘rinmay qoladi, lekin o‘chirilmaydi."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Birlashtirish uchun kamida ikkita kontaktni tanlash lozim."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Tanlangan kontaktlar yagona kontaktga birlashtiriladi."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Bog‘lash uchun kamida ikkita kontaktni tanlash lozim."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"Tanlangan kontaktlar yagona kontaktga bog‘lanadi."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"Tanlangan kontaktlar o‘chirib tashlanadi."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Faqat o‘qish rejimidagi hisoblardan olingan ma’lumotlar kontaktlaringiz ro‘yxatida ko‘rsatilmaydi, lekin o‘chirib tashlanmaydi."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Ushbu kontaktlarda bir nechta hisobga aloqador ma’lumotlar mavjud. Faqat o‘qish rejimidagi hisoblardan olingan ma’lumotlar kontaktlaringiz ro‘yxatida ko‘rsatilmaydi, lekin o‘chirib tashlanmaydi."</string>
@@ -166,10 +166,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"Asosiy rasm"</string>
     <string name="description_star" msgid="2605854427360036550">"ajratilgan"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Kontaktni tahrirlash"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> ta manbadan birlashtirilgan</item>
-      <item quantity="one">birlashtirilmagan</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Joriy kontakt tanlangan kontaktga qo‘shilsinmi?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Tanlangan kontaktni tahrir qilishga o‘tilsinmi? Hozirgacha kiritgan ma’lumotlaringizdan nusxa ko‘chiriladi."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kontaktlarimga nusxalash"</string>
@@ -273,16 +269,26 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Boshqa maydonlar"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Rasmni o‘zgartirish"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Muharrirni ochib bo‘lmadi."</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"Birlashtirish"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta kontakt</item>
-      <item quantity="one">1 ta kontakt</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"Birlashtirilgan kontaktlar"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>

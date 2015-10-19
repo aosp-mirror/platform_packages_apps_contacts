@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ホーム画面に配置"</string>
     <string name="menu_call" msgid="3992595586042260618">"連絡先に発信"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"連絡先にSMS"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"分割"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"リンクを解除"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"編集"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"削除"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"連絡先を追加"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"グループを追加"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"連絡先を分けますか？"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"この連絡先を複数の連絡先に分割します。"</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"統合"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"連絡先をリンク解除しますか？"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"この連絡先を複数の連絡先にリンク解除します。"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"リンク"</string>
     <string name="menu_save" msgid="1727844363591825909">"保存"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"連絡先の統合"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g>と統合する連絡先を選択します:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"すべての連絡先を表示"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"連絡先候補"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"すべての連絡先"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"連絡先を統合しました"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"連絡先をリンクしました"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"連絡先を削除しました"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"着信音を設定"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"すべての通話をボイスメールへ"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"読み取り専用アカウントの連絡先は削除できません。ただし、連絡先リストで非表示にすることができます。"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"この連絡先には、複数のアカウント情報が含まれています。読み取り専用アカウントの情報を連絡先リストで非表示にすることはできますが、削除はできません。"</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"統合するには連絡先を2件以上選択してください。"</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"選択した連絡先を1つの連絡先に統合します。"</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"リンクするには連絡先を2件以上選択してください。"</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"選択した連絡先を1つの連絡先にリンクします。"</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"選択した連絡先を削除します。"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"読み取り専用アカウントの情報を連絡先リストで非表示にすることはできますが、削除はできません。"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"この連絡先には、複数のアカウント情報が含まれています。読み取り専用アカウントの情報を連絡先リストで非表示にすることはできますが、削除はできません。"</string>
@@ -166,10 +166,6 @@
     <string name="primary_photo" msgid="8517942231868516999">"メインの写真"</string>
     <string name="description_star" msgid="2605854427360036550">"お気に入り"</string>
     <string name="edit_contact" msgid="7529281274005689512">"連絡先の編集"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g>件の連絡先から結合</item>
-      <item quantity="one">結合する連絡先はありません</item>
-    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"現在の連絡先を選択した連絡先に統合しますか？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"選択した連絡先の編集に切り替えますか？これまでに入力した情報はコピーされます。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Myコンタクトにコピー"</string>
@@ -273,16 +269,26 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"他の項目"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"写真を変更"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"エディタを開けませんでした。"</string>
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>（<xliff:g id="PHONETIC_NAME">%s</xliff:g>）"</string>
-    <string name="quickcontact_suggestion_merge_button" msgid="999382746596425704">"統合"</string>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="8256080965964850367">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>件の連絡先候補</item>
-      <item quantity="one">1件の連絡先候補</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">（<xliff:g id="COUNT">%d</xliff:g>）</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="2909603826185430979">"統合済みの連絡先"</string>
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
+    <skip />
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <skip />
 </resources>
