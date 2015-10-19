@@ -24,6 +24,7 @@
         android:orientation="horizontal"
         android:background="?android:attr/selectableItemBackground"
         android:paddingTop="8dip"
+        android:visibility="gone"
         >
 
     <ImageView
