@@ -809,4 +809,16 @@
     <!-- Help message showing in suggestion card in Quick contact. [CHAR LIMIT=500]-->
     <string name="suggestion_card_help_message">Clean up duplicate contacts to see all info in one place. For more details on a contact tap on the avatar. You can always change the profile photo or separate contacts at anytime.</string>
 
+    <!-- Linked contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
+    <string name="compact_editor_linked_contacts_title">Linked contacts</string>
+
+    <!-- Title of profile photos that are from your various accounts -->
+    <string name="from_your_accounts">From your accounts</string>
+
+    <!-- Button used in photo picker to open camera -->
+    <string name="take_a_photo_button">Take a photo</string>
+
+    <!-- Button used in photo picker to open photo/gallery -->
+    <string name="all_photos_button">All photos</string>
+
 </resources>
