@@ -43,6 +43,7 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
 
     private static final String STATE_PHOTO_MODE = "photo_mode";
     private static final String STATE_IS_PHOTO_SELECTION = "is_photo_selection";
+    private static final String STATE_ACTION_BAR_TITLE = "action_bar_title";
 
     /**
      * Displays a PopupWindow with photo edit options.
@@ -145,6 +146,7 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
             // Restore state
             mPhotoMode = savedState.getInt(STATE_PHOTO_MODE);
             mIsPhotoSelection = savedState.getBoolean(STATE_IS_PHOTO_SELECTION);
+            mActionBarTitleResId = savedState.getInt(STATE_ACTION_BAR_TITLE);
 
             // Show/hide the editor and photo selection fragments (w/o animations)
             mFragment = (CompactContactEditorFragment) getFragmentManager()
@@ -154,8 +156,10 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
             final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             if (mIsPhotoSelection) {
                 fragmentTransaction.hide(getEditorFragment()).show(mPhotoSelectionFragment);
+                getActionBar().setTitle(getResources().getString(R.string.photo_picker_title));
             } else {
                 fragmentTransaction.show(getEditorFragment()).hide(mPhotoSelectionFragment);
+                getActionBar().setTitle(getResources().getString(mActionBarTitleResId));
             }
             fragmentTransaction.commit();
         }
@@ -172,8 +176,9 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_PHOTO_MODE,  mPhotoMode);
+        outState.putInt(STATE_PHOTO_MODE, mPhotoMode);
         outState.putBoolean(STATE_IS_PHOTO_SELECTION, mIsPhotoSelection);
+        outState.putInt(STATE_ACTION_BAR_TITLE, mActionBarTitleResId);
     }
 
     @Override
@@ -221,6 +226,7 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
                 .hide(getEditorFragment())
                 .show(mPhotoSelectionFragment)
                 .commit();
+        getActionBar().setTitle(getResources().getString(R.string.photo_picker_title));
     }
 
     private void showEditorFragment() {
@@ -229,7 +235,7 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
                 .hide(mPhotoSelectionFragment)
                 .show((CompactContactEditorFragment) mFragment)
                 .commit();
-
+        getActionBar().setTitle(getResources().getString(mActionBarTitleResId));
         mIsPhotoSelection = false;
     }
 

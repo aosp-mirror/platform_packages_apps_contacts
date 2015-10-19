@@ -315,7 +315,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      * Constructs an intent for picking a photo from Gallery, and returning the bitmap.
      */
     private Intent getPhotoPickIntent(Uri outputUri) {
-        final Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+        final Intent intent = new Intent(Intent.ACTION_PICK, null);
         intent.setType("image/*");
         ContactPhotoUtils.addPhotoPickerExtras(intent, outputUri);
         return intent;
