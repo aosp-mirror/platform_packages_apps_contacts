@@ -730,7 +730,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Font family used when drawing letters for letter tile avatars.
          Do not translate. -->
-    <string name="letter_tile_letter_font_family">sans-serif-light</string>
+    <string name="letter_tile_letter_font_family">sans-serif-medium</string>
 
     <!-- Content description for the fake action menu up button as used
      inside search. [CHAR LIMIT=NONE] -->
