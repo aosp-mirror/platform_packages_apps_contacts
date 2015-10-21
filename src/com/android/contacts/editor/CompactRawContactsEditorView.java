@@ -1024,7 +1024,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         if (TextUtils.isEmpty(mReadOnlyDisplayName)) return;
         final List<CompactKindSectionView> kindSectionViews
                 = mKindSectionViewsMap.get(StructuredName.CONTENT_ITEM_TYPE);
-        if (kindSectionViews.isEmpty()) return;
+        if (kindSectionViews == null || kindSectionViews.isEmpty()) return;
         final CompactKindSectionView primaryNameKindSectionView = kindSectionViews.get(0);
         if (primaryNameKindSectionView.isEmptyName()) {
             vlog("name: using read only display name as primary name");
