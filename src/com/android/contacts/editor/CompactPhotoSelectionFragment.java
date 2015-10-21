@@ -312,9 +312,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
         final int paddingWidth = (int) getResources().getDimension(R.dimen
                 .photo_picker_column_padding_width);
         float density  = getResources().getDisplayMetrics().density;
-        float dpScreenWidth  = outMetrics.widthPixels / density;
-        float dpColumnWidth = (dpScreenWidth - paddingWidth * mNumberOfColumns) * density /
-                mNumberOfColumns;
+        float dpColumnWidth  = (outMetrics.widthPixels - paddingWidth * (mNumberOfColumns - 1) *
+                density) / mNumberOfColumns;
         gridView.setColumnWidth((int) dpColumnWidth);
 
         return view;

@@ -233,7 +233,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             final ArrayList<CompactPhotoSelectionFragment.Photo> photos = getContent().getPhotos();
             if (photos.size() > 1) {
                 // For aggregate contacts, the user may select a new super primary photo from among
-                // the (non-default) raw contact photos, or source a new photo from the ActionBar
+                // the (non-default) raw contact photos, or source a new photo.
                 getEditorActivity().selectPhoto(photos, getPhotoMode());
                 return;
             }

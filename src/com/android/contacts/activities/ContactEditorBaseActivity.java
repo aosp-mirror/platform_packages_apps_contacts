@@ -67,6 +67,8 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
     public static final String ACTION_JOIN_COMPLETED = "joinCompleted";
     public static final String ACTION_SAVE_COMPLETED = "saveCompleted";
 
+    protected int mActionBarTitleResId;
+
     /**
      * Contract for contact editors Fragments that are managed by this Activity.
      */
@@ -218,12 +220,11 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             if (Intent.ACTION_EDIT.equals(action) || ACTION_EDIT.equals(action)) {
-                actionBar.setTitle(getResources().getString(
-                        R.string.contact_editor_title_existing_contact));
+                mActionBarTitleResId = R.string.contact_editor_title_existing_contact;
             } else {
-                actionBar.setTitle(getResources().getString(
-                        R.string.contact_editor_title_new_contact));
+                mActionBarTitleResId = R.string.contact_editor_title_new_contact;
             }
+            actionBar.setTitle(getResources().getString(mActionBarTitleResId));
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
