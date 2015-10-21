@@ -70,7 +70,7 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Semua panggilan ke mel suara"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Anda tidak boleh memadamkan kenalan daripada akaun baca sahaja, tetapi anda boleh menyembunyikan mereka dalam senarai kenalan anda."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Kenalan ini mengandungi maklumat daripada berbilang akaun. Maklumat daripada akaun baca sahaja akan disembunyikan dalam senarai kenalan anda, dan bukannya dipadamkan."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Anda memerlukan sekurang-kurangnya dua kenalan yang dipilih untuk melakukan pautan."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Anda perlu memilih sekurang-kurangnya dua kenalan untuk melakukan pautan."</string>
     <string name="batch_link_confirmation" msgid="6874108358830894848">"Kenalan yang dipilih akan dipautkan menjadi kenalan tunggal."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"Kenalan yang dipilih akan dipadamkan."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Maklumat daripada akaun baca sahaja akan disembunyikan dalam senarai kenalan anda, bukannya dipadamkan."</string>
@@ -269,26 +269,31 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Lagi Medan"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Tukar foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Gagal membuka editor."</string>
-    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
-    <skip />
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
-    <skip />
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Menyimpan ke"</string>
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Kenalan dipaut (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
-    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"PAUT KENALAN"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"BATAL"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Pendua Dikesan</item>
+      <item quantity="one">1 Pendua Dikesan</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kenalan dipaut</item>
+      <item quantity="one">1 kenalan dipaut</item>
+    </plurals>
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
-    <skip />
-    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Kenalan ini"</string>
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Pendua"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Kosongkan kenalan pendua untuk melihat semua maklumat pada satu tempat. Ketik pada avatar untuk mendapatkan maklumat lanjut tentang kenalan. Anda boleh menukar gambar profil atau memisahkan kenalan pada bila-bila masa."</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Kenalan yang dipaut"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"Daripada akaun anda"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"Ambil foto"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"Semua foto"</string>
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

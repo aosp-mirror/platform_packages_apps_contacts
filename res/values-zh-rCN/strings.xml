@@ -291,4 +291,13 @@
     <skip />
     <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
     <skip />
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"已关联的联系人"</string>
+    <!-- no translation found for from_your_accounts (1746293107836889912) -->
+    <skip />
+    <!-- no translation found for take_a_photo_button (6268693854069113488) -->
+    <skip />
+    <!-- no translation found for all_photos_button (1943122929420111351) -->
+    <skip />
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
+    <skip />
 </resources>

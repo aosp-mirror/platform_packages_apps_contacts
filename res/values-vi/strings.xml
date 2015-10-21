@@ -269,26 +269,31 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Trường khác"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Thay đổi ảnh"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Không mở được trình chỉnh sửa."</string>
-    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
-    <skip />
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
-    <skip />
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Lưu vào"</string>
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Liên hệ được liên kết (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
-    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LIÊN KẾT LIÊN HỆ"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"HỦY"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other">Đã phát hiện <xliff:g id="COUNT">%d</xliff:g> bản sao</item>
+      <item quantity="one">Đã phát hiện 1 bản sao</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> liên hệ được liên kết</item>
+      <item quantity="one">1 liên hệ được liên kết</item>
+    </plurals>
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
-    <skip />
-    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Liên hệ này"</string>
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Bản sao"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Xóa các liên hệ trùng lặp để xem tất cả thông tin tại một nơi. Nhấn vào hình đại diện để biết thêm chi tiết về liên hệ. Bạn luôn có thể thay đổi ảnh hồ sơ hoặc tách riêng liên hệ bất cứ lúc nào."</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Liên hệ đã liên kết"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"Từ các tài khoản của bạn"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"Chụp ảnh"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"Tất cả ảnh"</string>
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

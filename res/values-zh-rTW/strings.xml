@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"新增聯絡人"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"新增群組"</string>
     <string name="splitConfirmation_title" msgid="7323598548437734615">"確定要取消連結聯絡人嗎？"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"系統會將這位聯絡人的連結取消，還原為多個聯絡人。"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"系統會將這筆聯絡人的連結取消，還原為多筆聯絡人資料。"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"建立連結"</string>
     <string name="menu_save" msgid="1727844363591825909">"儲存"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合併聯絡人"</string>
@@ -70,8 +70,8 @@
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"將所有來電轉到語音信箱"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"您無法刪除唯讀帳戶的聯絡人，但可在聯絡人清單中隱藏這些聯絡人。"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"此聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"您必須選取至少兩個聯絡人才可執行連結。"</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"您選取的聯絡人將連結為單一聯絡人。"</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"您至少必須選取兩筆聯絡人資料才可執行連結。"</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"您選取的多筆聯絡人資料將連結彙整成一筆聯絡人資料。"</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"所選的聯絡人將被刪除。"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"您的聯絡人清單不會顯示唯讀帳戶的資訊 (系統不會刪除這些資訊)。"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"這些聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (系統不會刪除這些資訊)。"</string>
@@ -269,26 +269,31 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"更多欄位"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"更換相片"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"無法開啟編輯器。"</string>
-    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
-    <skip />
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
-    <skip />
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"儲存到"</string>
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"已連結的聯絡人 (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
-    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"連結聯絡人"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"取消"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other">偵測到 <xliff:g id="COUNT">%d</xliff:g> 位重複的聯絡人</item>
+      <item quantity="one">偵測到 1 位重複的聯絡人</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位已連結的聯絡人</item>
+      <item quantity="one">1 位已連結的聯絡人</item>
+    </plurals>
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g> <xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
-    <skip />
-    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"這位聯絡人"</string>
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"重複的聯絡人"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"清除重複的聯絡人，就能在同一個地方集中查看所有資訊。輕按聯絡人的顯示圖片可取得詳細資料。您隨時可以變更個人資料相片或拆分聯絡人資料。"</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"已連結的聯絡人"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"來自您的帳戶"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"拍照"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"所有相片"</string>
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

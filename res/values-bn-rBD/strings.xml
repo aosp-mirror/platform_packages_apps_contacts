@@ -269,26 +269,31 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"আরো ফিল্ড"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ফটো পরিবর্তন করুন"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"সম্পাদক খুলতে ব্যর্থ হচ্ছে৷"</string>
-    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
-    <skip />
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
-    <skip />
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"এ সংরক্ষণ করা হচ্ছে"</string>
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"(<xliff:g id="COUNT">%d</xliff:g>)টি লিঙ্ক করা পরিচিতি"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
-    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"পরিচিতি লিঙ্ক করুন"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"বাতিল করুন"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি সদৃশ সনাক্ত করা হয়েছে</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি সদৃশ সনাক্ত করা হয়েছে</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি লিঙ্ক করা পরিচিতি</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি লিঙ্ক করা পরিচিতি</item>
+    </plurals>
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="one">(<xliff:g id="COUNT">%d</xliff:g>টি)</item>
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>টি)</item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
-    <skip />
-    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"এই পরিচিতি"</string>
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"সদৃশগুলি"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"এক জায়গায় সব তথ্য দেখতে সদৃশ পরিচিতিগুলিকে পরিষ্কার করুন৷ বিশদ বিবরণের জন্য একটি পরিচিতির অবতারের উপরে আলতো চাপ দিন৷ আপনি সর্বদা যে কোনো সময়ে প্রোফাইল ফটো অথবা পৃথক পরিচিতি পরিবর্তন করতে পারবেন৷"</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"লিঙ্ক করা পরিচিতিগুলি"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"আপনার অ্যাকাউন্টগুলি থেকে"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"একটি ফটো তুলুন"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"সকল ফটো"</string>
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

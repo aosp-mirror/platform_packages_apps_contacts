@@ -269,26 +269,31 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"ਹੋਰ ਖੇਤਰ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ਫੋਟੋ ਬਦਲੋ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ਸੰਪਾਦਕ ਨੂੰ ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਫਲ।"</string>
-    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
-    <skip />
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
-    <skip />
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"ਨੂੰ ਸਹੇਜ ਰਿਹਾ ਹੈ"</string>
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"(<xliff:g id="COUNT">%d</xliff:g>) ਲਿੰਕ ਕੀਤੇ ਸੰਪਰਕ"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
-    <skip />
-    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
-    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ਸੰਪਰਕ ਲਿੰਕ ਕਰੋ"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ਰੱਦ ਕਰੋ"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ਡੁਪਲੀਕੇਟ ਮਿਲੇ</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ਡੁਪਲੀਕੇਟ ਮਿਲੇ</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ਲਿੰਕ ਕੀਤੇ ਸੰਪਰਕ</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ਲਿੰਕ ਕੀਤੇ ਸੰਪਰਕ</item>
+    </plurals>
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="one">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
-    <skip />
-    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ਇਹ ਸੰਪਰਕ"</string>
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"ਡੁਪਲੀਕੇਟ"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"ਸਾਰੀ ਜਾਣਕਾਰੀ ਇੱਕ ਜਗ੍ਹਾਂ ਤੇ ਵੇਖਣ ਲਈ ਡੁਪਲੀਕੇਟ ਸੰਪਰਕਾਂ ਨੂੰ ਕਲੀਨ ਕਰੋ। ਇੱਕ ਸੰਪਰਕ ਤੇ ਜ਼ਿਆਦਾ ਜਾਣਕਾਰੀ ਲੈਣ ਲਈ ਅਵਤਾਰ ਤੇ ਟੈਪ ਕਰੋ। ਤੁਸੀਂ ਹਮੇਸ਼ਾ ਕਿਸੇ ਵੀ ਸਮੇਂ ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਅਤੇ ਵੱਖਰੇ ਸੰਪਰਕਾਂ ਨੂੰ ਬਦਲ ਸਕਦੇ ਹੋ।"</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"ਲਿੰਕ ਕੀਤੇ ਗਏ ਸੰਪਰਕ"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"ਤੁਹਾਡੇ ਖਾਤਿਆਂ ਤੋਂ"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"ਇੱਕ ਫੋਟੋ ਲਓ"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"ਸਾਰੀਆਂ ਫੋਟੋਆਂ"</string>
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>
