@@ -326,6 +326,16 @@
         <item name="android:layout_marginTop">@dimen/editor_kind_icon_top_margin</item>
     </style>
 
+    <style name="EditSelectorIconStyle">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <!-- We want 32dp of padding between these icon's and EditText's. Since EditText's have
+            4dp of starting padding built in, we set this as 28dp. -->
+        <item name="android:layout_marginEnd">28dp</item>
+        <item name="android:layout_marginTop">@dimen/editor_kind_icon_top_margin</item>
+    </style>
+
     <style name="AccountTypeIconStyle">
         <item name="android:layout_width">12dp</item>
         <item name="android:layout_height">12dp</item>
