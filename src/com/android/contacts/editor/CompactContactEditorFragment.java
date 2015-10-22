@@ -19,6 +19,7 @@ package com.android.contacts.editor;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
+import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -161,8 +162,27 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(),
                 CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos);
-        mContext.startService(intent);
-
+        try {
+            mContext.startService(intent);
+        } catch (Exception exception) {
+            final int resId;
+            switch (saveMode) {
+                case ContactEditorBaseActivity.ContactEditor.SaveMode.SPLIT:
+                    resId = R.string.contactUnlinkErrorToast;
+                    break;
+                case ContactEditorBaseActivity.ContactEditor.SaveMode.RELOAD:
+                    resId = R.string.contactJoinErrorToast;
+                    break;
+                case ContactEditorBaseActivity.ContactEditor.SaveMode.CLOSE:
+                    resId = R.string.contactSavedErrorToast;
+                    break;
+                default:
+                    resId = R.string.contactGenericErrorToast;
+            }
+            Toast.makeText(mContext, resId, Toast.LENGTH_SHORT).show();
+            onCancelEditConfirmed();
+            return false;
+        }
         return true;
     }
 
