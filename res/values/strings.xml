@@ -275,6 +275,15 @@
     <!-- Toast displayed when saving a contact failed. [CHAR LIMIT=NONE] -->
     <string name="contactSavedErrorToast">Couldn\'t save contact changes.</string>
 
+    <!-- Toast displayed when unlinking a contact failed. [CHAR LIMIT=NONE] -->
+    <string name="contactUnlinkErrorToast">Couldn\'t unlink contact.</string>
+
+    <!-- Toast displayed when joining a contact failed. [CHAR LIMIT=NONE] -->
+    <string name="contactJoinErrorToast">Couldn\'t join contact.</string>
+
+    <!-- Generic error default clause displayed when saving a contact failed. [CHAR LIMIT=NONE] -->
+    <string name="contactGenericErrorToast">Error saving contact.</string>
+
     <!-- Toast displayed when saving a contact photo failed. [CHAR LIMIT=NONE] -->
     <string name="contactPhotoSavedErrorToast">Couldn\'t save contact photo changes.</string>
 
