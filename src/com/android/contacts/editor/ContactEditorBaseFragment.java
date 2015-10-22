@@ -744,20 +744,15 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         final MenuItem splitMenu = menu.findItem(R.id.menu_split);
         final MenuItem joinMenu = menu.findItem(R.id.menu_join);
         final MenuItem helpMenu = menu.findItem(R.id.menu_help);
-        final MenuItem discardMenu = menu.findItem(R.id.menu_discard);
         final MenuItem sendToVoiceMailMenu = menu.findItem(R.id.menu_send_to_voicemail);
         final MenuItem ringToneMenu = menu.findItem(R.id.menu_set_ringtone);
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
 
         // Set visibility of menus
-        // Discard menu is only available if at least one raw contact is editable
-        discardMenu.setVisible(mState != null &&
-                mState.getFirstWritableRawContact(mContext) != null);
 
         // help menu depending on whether this is inserting or editing
         if (isInsert(mAction) || mRawContactIdToDisplayAlone != -1) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
-            discardMenu.setVisible(false);
             splitMenu.setVisible(false);
             joinMenu.setVisible(false);
             deleteMenu.setVisible(false);
@@ -783,7 +778,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // Save menu is invisible when there's only one read only contact in the editor.
         saveMenu.setVisible(!mRawContactDisplayAloneIsReadOnly);
 
-        if (mRawContactIdToDisplayAlone != -1) {
+        if (mRawContactIdToDisplayAlone != -1 || mIsUserProfile) {
             sendToVoiceMailMenu.setVisible(false);
             ringToneMenu.setVisible(false);
         } else {
@@ -812,8 +807,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         switch (item.getItemId()) {
             case R.id.menu_save:
                 return save(SaveMode.CLOSE);
-            case R.id.menu_discard:
-                return revert();
             case R.id.menu_delete:
                 if (mListener != null) mListener.onDeleteRequested(mLookupUri);
                 return true;

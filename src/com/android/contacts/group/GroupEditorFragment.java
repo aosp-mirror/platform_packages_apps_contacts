@@ -514,24 +514,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         inflater.inflate(R.menu.edit_group, menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_discard:
-                return revert();
-        }
-        return false;
-    }
-
-    private boolean revert() {
-        if (!hasNameChange() && !hasMembershipChange()) {
-            doRevertAction();
-        } else {
-            CancelEditDialogFragment.show(this);
-        }
-        return true;
-    }
-
     private void doRevertAction() {
         // When this Fragment is closed we don't want it to auto-save
         mStatus = Status.CLOSING;
