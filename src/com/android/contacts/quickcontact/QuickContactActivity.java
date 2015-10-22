@@ -1316,6 +1316,7 @@ public class QuickContactActivity extends ContactsActivity
             mAggregationSuggestionEngine.setListener(this);
             mAggregationSuggestionEngine.setSuggestionsLimit(getResources().getInteger(
                     R.integer.quickcontact_suggestions_limit));
+            mAggregationSuggestionEngine.setPruneInvisibleContacts(true);
             mAggregationSuggestionEngine.start();
         }
 
