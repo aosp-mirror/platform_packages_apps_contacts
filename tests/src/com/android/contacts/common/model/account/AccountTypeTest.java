@@ -20,7 +20,7 @@ import android.content.Context;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.common.unittest.R;
+import com.android.contacts.common.R;
 
 /**
  * Test case for {@link AccountType}.
