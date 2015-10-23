@@ -45,7 +45,7 @@
 
         <TextView
             android:id="@+id/expand_suggestion_card_help"
-            android:textSize="@dimen/expanding_entry_card_title_text_size"
+            android:textSize="@dimen/quickcontact_expanding_help_text_size"
             android:text="@string/suggestion_card_help_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,10 +66,8 @@
             android:paddingStart="@dimen/quickcontact_suggestion_card_image_spacing"/>
 
         <LinearLayout
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/quickcontact_expanding_item_height"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/quickcontact_suggestion_card_layout_margin"
-            android:layout_marginBottom="@dimen/quickcontact_suggestion_card_layout_margin"
             android:orientation="horizontal">
 
             <ImageView
@@ -80,7 +78,16 @@
                 android:layout_marginStart="@dimen/quickcontact_suggestion_card_image_spacing"
                 android:scaleType="fitCenter" />
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/suggestion_for_contact_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/quickcontact_expanding_item_image_padding"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+                <TextView
                     android:id="@+id/suggestion_for_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,8 +96,18 @@
                     android:textColor="@color/quickcontact_entry_header_text_color"
                     android:singleLine="true"
                     android:ellipsize="end"
-                    android:layout_marginStart="@dimen/expanding_entry_card_item_image_spacing"
-                    android:layout_marginEnd="@dimen/expanding_entry_card_item_image_spacing"/>
+                    android:layout_marginTop="@dimen/quickcontact_suggestion_card_layout_margin" />
+
+                <TextView
+                    android:id="@+id/suggestion_for_contacts_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_marginBottom="@dimen/quickcontact_suggestion_card_layout_margin"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -114,8 +131,11 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/quickcontact_expanding_button_section_height"
             android:layout_gravity="center_vertical|end"
+            android:layout_marginRight="@dimen/quickcontact_expanding_button_right_padding"
+            android:layout_marginTop="@dimen/quickcontact_expanding_button_section_padding"
+            android:layout_marginBottom="@dimen/quickcontact_expanding_button_section_padding"
             android:orientation="horizontal">
 
             <Button
@@ -127,11 +147,9 @@
 
             <Button
                 android:id="@+id/link_button"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quickcontact_suggestion_link_button"
-                android:paddingEnd="@dimen/quickcontact_suggestion_card_image_spacing"/>
+                android:text="@string/quickcontact_suggestion_link_button"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
