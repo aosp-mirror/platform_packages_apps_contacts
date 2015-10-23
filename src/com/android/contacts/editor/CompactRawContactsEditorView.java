@@ -143,7 +143,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             mContext = context;
             mRawContactDeltas = new RawContactDeltaList();
             for (RawContactDelta rawContactDelta : rawContactDeltas) {
-                if (rawContactDelta.isVisible()) {
+                if (rawContactDelta.isVisible() && rawContactDelta.getRawContactId() > 0) {
                     mRawContactDeltas.add(rawContactDelta);
                 }
             }
@@ -749,7 +749,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                         rawContactDelta.getAccountName(),
                         rawContactDelta.getAccountType(mAccountTypeManager));
 
-        // Only one of the account header, selector, and raw contact selector should be shown
+        // Either the account header or selector should be shown, not both.
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(getContext()).getAccounts(true);
         if (mHasNewContact && !mIsUserProfile) {
@@ -758,10 +758,20 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             } else {
                 addAccountHeader(accountInfo);
             }
-        } else if (rawContactDeltas.size() > 1) {
-            addRawContactAccountSelector(rawContactDeltas);
         } else {
             addAccountHeader(accountInfo);
+        }
+
+        // The raw contact selector should only display linked raw contacts that can be edited in
+        // the full editor (i.e. they are not newly created raw contacts)
+        Collections.sort(rawContactDeltas, new RawContactDeltaComparator(getContext()));
+        final RawContactAccountListAdapter adapter =
+                new RawContactAccountListAdapter(getContext(), rawContactDeltas);
+        if (adapter.getCount() > 1) {
+            final String accountsSummary = getResources().getString(
+                    R.string.compact_editor_linked_contacts_selector_title,
+                    adapter.getCount());
+            addRawContactAccountSelector(accountsSummary, adapter);
         }
     }
 
@@ -847,21 +857,16 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         });
     }
 
-    private void addRawContactAccountSelector(final RawContactDeltaList rawContactDeltas) {
+    private void addRawContactAccountSelector(String accountsSummary,
+            final RawContactAccountListAdapter adapter) {
         mRawContactContainer.setVisibility(View.VISIBLE);
 
-        Collections.sort(rawContactDeltas, new RawContactDeltaComparator(getContext()));
-
-        final String accountsSummary = getResources().getString(
-                R.string.compact_editor_linked_contacts_selector_title, rawContactDeltas.size());
         mRawContactSummary.setText(accountsSummary);
 
         mRawContactContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final ListPopupWindow popup = new ListPopupWindow(getContext(), null);
-                final RawContactAccountListAdapter adapter =
-                        new RawContactAccountListAdapter(getContext(), rawContactDeltas);
                 popup.setWidth(mRawContactContainer.getWidth());
                 popup.setAnchorView(mRawContactContainer);
                 popup.setAdapter(adapter);

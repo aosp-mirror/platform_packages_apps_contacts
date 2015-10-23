@@ -249,7 +249,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     @Override
     public void onPhotoEditorViewClicked() {
-        if (isMultiAccountContact()) {
+        if (isEditingMultipleRawContacts()) {
             final ArrayList<CompactPhotoSelectionFragment.Photo> photos = getContent().getPhotos();
             if (photos.size() > 1) {
                 // For aggregate contacts, the user may select a new super primary photo from among
@@ -280,7 +280,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     private int getPhotoMode() {
         if (getContent().isWritablePhotoSet()) {
-            return isMultiAccountContact()
+            return isEditingMultipleRawContacts()
                     ? PhotoActionPopup.Modes.MULTIPLE_WRITE_ABLE_PHOTOS
                     : PhotoActionPopup.Modes.WRITE_ABLE_PHOTO;
         }
