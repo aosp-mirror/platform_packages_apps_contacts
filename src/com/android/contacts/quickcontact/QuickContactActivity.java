@@ -1329,6 +1329,9 @@ public class QuickContactActivity extends ContactsActivity
         mPreviousContactId = mContactData.getId();
 
         // Trigger suggestion engine to compute suggestions.
+        if (mContactData.getId() <= 0) {
+            return;
+        }
         final ContentValues values = new ContentValues();
         values.put(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
                 mContactData.getDisplayName());
