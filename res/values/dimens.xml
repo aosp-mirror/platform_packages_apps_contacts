@@ -264,4 +264,7 @@
 
     <!-- Margin between name field and whatever fields are above it. -->
     <dimen name="compact_editor_name_top_margin">8dp</dimen>
+
+    <!-- Top margin for "Saving to" account header text field. -->
+    <dimen name="compact_editor_account_header_top_margin">3dp</dimen>
 </resources>
