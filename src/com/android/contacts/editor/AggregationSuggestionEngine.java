@@ -25,6 +25,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.os.Process;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -115,6 +116,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
     private ContentObserver mContentObserver;
     private Uri mSuggestionsUri;
     private int mSuggestionsLimit = 3;
+    private boolean mPruneInvisibleContacts;
 
     public AggregationSuggestionEngine(Context context) {
         super("AggregationSuggestions", Process.THREAD_PRIORITY_BACKGROUND);
@@ -148,6 +150,10 @@ public class AggregationSuggestionEngine extends HandlerThread {
 
     public void setSuggestionsLimit(int suggestionsLimit) {
         mSuggestionsLimit = suggestionsLimit;
+    }
+
+    public void setPruneInvisibleContacts (boolean pruneInvisibleContacts) {
+        mPruneInvisibleContacts = pruneInvisibleContacts;
     }
 
     public void setListener(Listener listener) {
@@ -377,6 +383,27 @@ public class AggregationSuggestionEngine extends HandlerThread {
     }
 
     public List<Suggestion> getSuggestions() {
+        final ArrayList<Long> visibleContacts = new ArrayList<>();
+        if (mPruneInvisibleContacts) {
+            final Uri contactFilterUri = Data.CONTENT_URI.buildUpon()
+                    .appendQueryParameter(Data.VISIBLE_CONTACTS_ONLY, "true")
+                    .build();
+            final ContentResolver contentResolver = mContext.getContentResolver();
+            final Cursor contactCursor = contentResolver.query(contactFilterUri,
+                    new String[]{Data.CONTACT_ID}, null, null, null);
+            try {
+                if (contactCursor != null) {
+                    while (contactCursor.moveToNext()) {
+                        final long contactId = contactCursor.getLong(0);
+                        visibleContacts.add(contactId);
+                    }
+                }
+            } finally {
+                contactCursor.close();
+            }
+
+        }
+
         ArrayList<Suggestion> list = Lists.newArrayList();
         if (mDataCursor != null) {
             Suggestion suggestion = null;
@@ -384,6 +411,9 @@ public class AggregationSuggestionEngine extends HandlerThread {
             mDataCursor.moveToPosition(-1);
             while (mDataCursor.moveToNext()) {
                 long contactId = mDataCursor.getLong(DataQuery.CONTACT_ID);
+                if (mPruneInvisibleContacts && !visibleContacts.contains(contactId)) {
+                    continue;
+                }
                 if (contactId != currentContactId) {
                     suggestion = new Suggestion();
                     suggestion.contactId = contactId;
