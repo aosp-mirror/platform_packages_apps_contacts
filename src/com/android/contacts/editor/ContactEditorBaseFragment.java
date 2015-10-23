@@ -758,15 +758,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             deleteMenu.setVisible(false);
         } else if (isEdit(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
-            // Split only if there is more than one raw contact, it is not a user-profile, and
-            // splitting won't result in an empty contact. For the empty contact case, we only guard
-            // against this when there is a single read-only contact in the aggregate.  If the user
-            // has joined >1 read-only contacts together, we allow them to split it,
-            // even if they have never added their own information and splitting will create a
-            // name only contact.
-            final boolean isSingleReadOnlyContact = mHasNewContact && mState.size() == 2;
-            splitMenu.setVisible(isMultiAccountContact() && !isEditingUserProfile()
-                    && !isSingleReadOnlyContact);
+            splitMenu.setVisible(canUnlinkRawContacts());
             // Cannot join a user profile
             joinMenu.setVisible(!isEditingUserProfile());
             deleteMenu.setVisible(!mDisableDeleteMenuOption && !isEditingUserProfile());
@@ -966,8 +958,20 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         return mNewLocalProfile || mIsUserProfile;
     }
 
-    protected boolean isMultiAccountContact() {
+    /**
+     * Whether the contact being edited spans multiple raw contacts.
+     * The may also span multiple accounts.
+     */
+    public boolean isEditingMultipleRawContacts() {
         return mState.size() > 1;
+    }
+
+    /**
+     * Whether the contact being edited is composed of a single read-only raw contact
+     * aggregated with a newly created writable raw contact.
+     */
+    protected boolean isEditingReadOnlyRawContactWithNewContact() {
+        return mHasNewContact && mState.size() == 2;
     }
 
     /**
@@ -977,6 +981,19 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     protected boolean hasPendingRawContactChanges() {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         return RawContactModifier.hasChanges(mState, accountTypes);
+    }
+
+    /**
+     * We allow unlinking only if there is more than one raw contact, it is not a user-profile,
+     * and unlinking won't result in an empty contact.  For the empty contact case, we only guard
+     * against this when there is a single read-only contact in the aggregate.  If the user
+     * has joined >1 read-only contacts together, we allow them to unlink it, even if they have
+     * never added their own information and unlinking will create a name only contact.
+     */
+    protected boolean canUnlinkRawContacts() {
+        return isEditingMultipleRawContacts()
+                && !isEditingUserProfile()
+                && !isEditingReadOnlyRawContactWithNewContact();
     }
 
     /**
