@@ -774,7 +774,10 @@
     <string name="compact_editor_account_selector_title">Saving to</string>
 
     <!-- Label for the linked contacts selector which indicates the number of raw contacts which have been linked together into the aggregate being viewed. [CHAR LIMIT=40] -->
-    <string name="compact_editor_linked_contacts_selector_title">Linked contacts (<xliff:g id="count">%d</xliff:g>)</string>
+    <plurals name="compact_editor_linked_contacts_selector_title">
+        <item quantity="one">Linked contact</item>
+        <item quantity="other">Linked contacts (<xliff:g id="count">%d</xliff:g>)</item>
+    </plurals>
 
     <!-- Quick contact display name with phonetic name -->
     <string name="quick_contact_display_name_with_phonetic"><xliff:g id="display_name">%s</xliff:g> (<xliff:g id="phonetic_name">%s</xliff:g>)</string>

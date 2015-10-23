@@ -261,4 +261,7 @@
 
     <!-- Width of padding between columns of photos in photo picker -->
     <dimen name="photo_picker_column_padding_width">1dp</dimen>
+
+    <!-- Margin between name field and whatever fields are above it. -->
+    <dimen name="compact_editor_name_top_margin">8dp</dimen>
 </resources>
