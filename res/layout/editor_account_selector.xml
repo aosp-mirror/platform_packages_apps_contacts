@@ -21,23 +21,23 @@
     android:id="@+id/account_selector_container"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:minHeight="48dip"
-    android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
+    android:minHeight="@dimen/editor_min_line_item_height"
     android:orientation="horizontal"
-    android:paddingTop="16dp"
     android:visibility="gone" >
 
     <ImageView
         android:id="@+id/kind_icon"
         android:src="@drawable/ic_account_circle_black_24dp"
+        android:tint="@color/editor_icon_color"
         android:contentDescription="@string/header_account_entry"
-        style="@style/EditKindIconStyle" />
+        style="@style/EditSelectorIconStyle"/>
 
     <LinearLayout
         android:id="@+id/account"
         android:layout_height="wrap_content"
         android:layout_width="0dip"
         android:layout_weight="1"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical"
         android:layout_marginEnd="48dp"
         style="@android:style/Widget.Material.Spinner.Underlined">

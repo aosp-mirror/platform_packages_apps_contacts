@@ -21,26 +21,23 @@
         android:id="@+id/account_container"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:minHeight="@dimen/editor_min_line_item_height"
         android:orientation="horizontal"
         android:background="?android:attr/selectableItemBackground"
-        android:paddingTop="8dip"
         android:visibility="gone"
         >
 
+
     <ImageView
             android:id="@+id/account_type_icon"
-            android:layout_width="@dimen/detail_network_icon_size"
-            android:layout_height="@dimen/detail_network_icon_size"
-            android:layout_margin="16dip"
-            android:layout_gravity="center_vertical" />
+            style="@style/EditSelectorIconStyle"/>
 
     <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:paddingBottom="24dp"
-            android:paddingTop="24dp"
             android:layout_marginStart="@dimen/compact_editor_account_left_margin"
+            android:layout_gravity="center_vertical"
             android:orientation="vertical"
             >
 

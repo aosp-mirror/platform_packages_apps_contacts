@@ -21,18 +21,14 @@
         android:id="@+id/all_rawcontacts_accounts_container"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:minHeight="@dimen/editor_min_line_item_height"
         android:orientation="horizontal"
-        android:paddingTop="8dip"
-        android:paddingBottom="8dip"
-        android:gravity="center_vertical"
         android:visibility="gone" >
 
     <ImageView
             android:src="@drawable/ic_link_grey600_drawable_24dp"
-            android:layout_width="@dimen/detail_network_icon_size"
-            android:layout_height="@dimen/detail_network_icon_size"
-            android:layout_margin="16dip"
-            android:layout_gravity="center_vertical"/>
+            android:tint="@color/editor_icon_color"
+            style="@style/EditSelectorIconStyle"/>
 
     <TextView
             android:id="@+id/rawcontacts_accounts_summary"

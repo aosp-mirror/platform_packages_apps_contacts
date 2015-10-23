@@ -17,7 +17,7 @@
     <dimen name="account_selector_popup_width">400dip</dimen>
 
     <!-- Account info left margin in Compact editor. -->
-    <dimen name="compact_editor_account_left_margin">8dp</dimen>
+    <dimen name="compact_editor_account_left_margin">4dp</dimen>
 
     <!-- Initial height of transparent space above QuickContacts -->
     <dimen name="quickcontact_starting_empty_height">150dp</dimen>
