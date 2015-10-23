@@ -17,9 +17,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/quickcontact_suggestion_card_layout_margin"
-    android:layout_marginBottom="@dimen/quickcontact_suggestion_card_layout_margin">
+    android:layout_height="@dimen/quickcontact_expanding_item_height"
+    android:paddingTop="@dimen/quickcontact_expanding_item_padding">
 
     <ImageView
         android:id="@+id/aggregation_suggestion_photo"
@@ -33,7 +32,7 @@
         android:id="@+id/suggestion_contact_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/expanding_entry_card_item_image_spacing"
+        android:layout_marginStart="@dimen/quickcontact_expanding_item_image_padding"
         android:layout_weight="1"
         android:orientation="vertical"
         android:layout_gravity="center_vertical">

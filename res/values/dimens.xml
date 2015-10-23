@@ -231,11 +231,22 @@
     <dimen name="expanding_entry_card_item_header_only_margin_bottom">2dp</dimen>
     <dimen name="expanding_entry_card_item_no_icon_margin_top">6dp</dimen>
 
-    <dimen name="quickcontact_suggestion_card_icon_height">24dp</dimen>
-    <dimen name="quickcontact_suggestion_card_icon_width">24dp</dimen>
+    <dimen name="quickcontact_suggestion_card_icon_height">40dp</dimen>
+    <dimen name="quickcontact_suggestion_card_icon_width">40dp</dimen>
     <dimen name="quickcontact_suggestion_card_image_spacing">20dp</dimen>
     <dimen name="quickcontact_suggestion_card_layout_margin">8dp</dimen>
     <dimen name="quickcontact_suggestion_card_checkbox_right_margin">16dp</dimen>
+    <dimen name="quickcontact_collapse_view_height">48dp</dimen>
+    <dimen name="quickcontact_collapse_icon_size">24dp</dimen>
+    <dimen name="quickcontact_collapse_text_padding">12dp</dimen>
+    <dimen name="quickcontact_collapse_image_padding">16dp</dimen>
+    <dimen name="quickcontact_expanding_help_text_size">14sp</dimen>
+    <dimen name="quickcontact_expanding_button_right_padding">16dp</dimen>
+    <dimen name="quickcontact_expanding_item_height">72dp</dimen>
+    <dimen name="quickcontact_expanding_item_padding">8dp</dimen>
+    <dimen name="quickcontact_expanding_item_image_padding">12dp</dimen>
+    <dimen name="quickcontact_expanding_button_section_height">48dp</dimen>
+    <dimen name="quickcontact_expanding_button_section_padding">8dp</dimen>
 
     <!-- The width the that the tabs occupy in the ActionBar when in landscape mode.
          426dp is the height of a "small" screen. We should leave 240dp for

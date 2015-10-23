@@ -776,6 +776,9 @@
     <!-- Label for the linked contacts selector which indicates the number of raw contacts which have been linked together into the aggregate being viewed. [CHAR LIMIT=40] -->
     <string name="compact_editor_linked_contacts_selector_title">Linked contacts (<xliff:g id="count">%d</xliff:g>)</string>
 
+    <!-- Number of linked contacts of the current contact, only shown when there are more than 2 linked contacts (plural only!!!) [CHAR LIMIT=60] -->
+    <string name="quickcontact_contacts_number"><xliff:g id="count">%d</xliff:g> linked contacts</string>
+
     <!-- Quick contact display name with phonetic name -->
     <string name="quick_contact_display_name_with_phonetic"><xliff:g id="display_name">%s</xliff:g> (<xliff:g id="phonetic_name">%s</xliff:g>)</string>
 
@@ -787,8 +790,8 @@
 
     <!-- Suggestion card title in quick contact UI [CHAR LIMIT=100] -->
     <plurals name="quickcontact_suggestion_card_title">
-        <item quantity="one">1 Duplicate Detected</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> Duplicates Detected</item>
+        <item quantity="one">1 Possible duplicate detected</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> Possible duplicates detected</item>
     </plurals>
 
     <!-- Suggestions number in quick contact suggestion card [CHAR LIMIT=60] -->
@@ -810,10 +813,10 @@
     <string name="suggestion_card_this_contact_title">This contact</string>
 
     <!-- "Duplicates" title showing in suggestion card in Quick contact. [CHAR LIMIT=30]-->
-    <string name="suggestion_card_duplicates_title">Duplicates</string>
+    <string name="suggestion_card_duplicates_title">Possible duplicates</string>
 
     <!-- Help message showing in suggestion card in Quick contact. [CHAR LIMIT=500]-->
-    <string name="suggestion_card_help_message">Clean up duplicate contacts to see all info in one place. For more details on a contact tap on the avatar. You can always change the profile photo or separate contacts at anytime.</string>
+    <string name="suggestion_card_help_message">Clean up duplicate contacts for the same person by linking them together.</string>
 
     <!-- Linked contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
     <string name="compact_editor_linked_contacts_title">Linked contacts</string>
@@ -829,5 +832,8 @@
 
     <!-- Title of photo picker [CHAR LIMIT=30]-->
     <string name="photo_picker_title">Choose photo</string>
+
+    <!-- Message below contact name, showing from which account [CHAR LIMIT=NONE]-->
+    <string name="contact_from_account_name">From <xliff:g id="account_name">%s</xliff:g></string>
 
 </resources>
