@@ -40,6 +40,7 @@
             android:layout_weight="1"
             android:paddingBottom="24dp"
             android:paddingTop="24dp"
+            android:layout_marginStart="@dimen/compact_editor_account_left_margin"
             android:orientation="vertical"
             >
 
