@@ -23,6 +23,7 @@
     android:layout_width="match_parent"
     android:minHeight="@dimen/editor_min_line_item_height"
     android:orientation="horizontal"
+    android:layout_marginBottom="@dimen/compact_editor_name_top_margin"
     android:visibility="gone" >
 
     <ImageView

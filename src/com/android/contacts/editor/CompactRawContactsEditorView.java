@@ -756,27 +756,69 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             if (accounts.size() > 1) {
                 addAccountSelector(accountInfo, rawContactDelta);
             } else {
-                addAccountHeader(accountInfo);
+                addAccountHeader(accountInfo, rawContactDeltas);
             }
         } else {
-            addAccountHeader(accountInfo);
+            addAccountHeader(accountInfo, rawContactDeltas);
         }
 
         // The raw contact selector should only display linked raw contacts that can be edited in
         // the full editor (i.e. they are not newly created raw contacts)
-        Collections.sort(rawContactDeltas, new RawContactDeltaComparator(getContext()));
-        final RawContactAccountListAdapter adapter =
-                new RawContactAccountListAdapter(getContext(), rawContactDeltas);
-        if (adapter.getCount() > 1) {
-            final String accountsSummary = getResources().getString(
-                    R.string.compact_editor_linked_contacts_selector_title,
-                    adapter.getCount());
+        final RawContactAccountListAdapter adapter =  new RawContactAccountListAdapter(getContext(),
+                getRawContactDeltaListForSelector(rawContactDeltas));
+        if (adapter.getCount() > 0) {
+            final String accountsSummary = getResources().getQuantityString(
+                    R.plurals.compact_editor_linked_contacts_selector_title,
+                    adapter.getCount(), adapter.getCount());
             addRawContactAccountSelector(accountsSummary, adapter);
         }
     }
 
-    private void addAccountHeader(Pair<String,String> accountInfo) {
+    private RawContactDeltaList getRawContactDeltaListForSelector(
+            RawContactDeltaList rawContactDeltas) {
+        // Sort raw contacts so google accounts come first
+        Collections.sort(rawContactDeltas, new RawContactDeltaComparator(getContext()));
+
+        final RawContactDeltaList result = new RawContactDeltaList();
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (rawContactDelta.isVisible() && rawContactDelta.getRawContactId() > 0) {
+                // Only add raw contacts that can be opened in the editor
+                result.add(rawContactDelta);
+            }
+        }
+        // Don't return a list of size 1 that would just open the raw contact being edited
+        // in the compact editor in the full editor
+        if (result.size() == 1 && result.get(0).getRawContactAccountType(
+                getContext()).areContactsWritable()) {
+            result.clear();
+            return result;
+        }
+        return result;
+    }
+
+    // Returns true if there're multiple writable and no read only, or there're both writable and
+    // read only. For ME profile, return false if there's a read only contact and unsaved local one.
+    private boolean shouldHideAccountHeader(RawContactDeltaList rawContactDeltas) {
+        int writable = 0;
+        int readonly = 0;
+        for (RawContactDelta rawContactDelta : rawContactDeltas) {
+            if (rawContactDelta.isVisible() && rawContactDelta.getRawContactId() > 0) {
+                if (rawContactDelta.getRawContactAccountType(getContext()).areContactsWritable()) {
+                    writable++;
+                } else {
+                    readonly++;
+                }
+            }
+        }
+        return (writable > 1 || (writable > 0 && readonly > 0));
+    }
+
+    private void addAccountHeader(Pair<String,String> accountInfo,
+            RawContactDeltaList rawContactDeltas) {
         mAccountHeaderContainer.setVisibility(View.VISIBLE);
+        if (shouldHideAccountHeader(rawContactDeltas)) {
+            mAccountHeaderContainer.setVisibility(View.GONE);
+        }
 
         // Set the account name
         final String accountName = TextUtils.isEmpty(accountInfo.first)
