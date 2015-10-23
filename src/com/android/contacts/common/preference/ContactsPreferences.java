@@ -16,14 +16,11 @@
 
 package com.android.contacts.common.preference;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.database.ContentObserver;
 import android.os.Handler;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.text.TextUtils;
@@ -61,11 +58,17 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
     public static final int SORT_ORDER_ALTERNATIVE = 2;
 
     public static final String PREF_DISPLAY_ONLY_PHONES = "only_phones";
+
     public static final boolean PREF_DISPLAY_ONLY_PHONES_DEFAULT = false;
 
+    /**
+     * Value to use when a preference is unassigned and needs to be read from the shared preferences
+     */
+    private static final int PREFERENCE_UNASSIGNED = -1;
+
     private final Context mContext;
-    private int mSortOrder = -1;
-    private int mDisplayOrder = -1;
+    private int mSortOrder = PREFERENCE_UNASSIGNED;
+    private int mDisplayOrder = PREFERENCE_UNASSIGNED;
     private String mDefaultAccount = null;
     private ChangeListener mListener = null;
     private Handler mHandler;
@@ -101,7 +104,7 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
         if (!isSortOrderUserChangeable()) {
             return getDefaultSortOrder();
         }
-        if (mSortOrder == -1) {
+        if (mSortOrder == PREFERENCE_UNASSIGNED) {
             mSortOrder = mPreferences.getInt(SORT_ORDER_KEY, getDefaultSortOrder());
         }
         return mSortOrder;
@@ -130,7 +133,7 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
         if (!isDisplayOrderUserChangeable()) {
             return getDefaultDisplayOrder();
         }
-        if (mDisplayOrder == -1) {
+        if (mDisplayOrder == PREFERENCE_UNASSIGNED) {
             mDisplayOrder = mPreferences.getInt(DISPLAY_ORDER_KEY, getDefaultDisplayOrder());
         }
         return mDisplayOrder;
@@ -152,7 +155,8 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
             return mDefaultAccount;
         }
         if (TextUtils.isEmpty(mDefaultAccount)) {
-            final String accountString = mPreferences.getString(mDefaultAccountKey, mDefaultAccount);
+            final String accountString = mPreferences
+                    .getString(mDefaultAccountKey, mDefaultAccount);
             if (!TextUtils.isEmpty(accountString)) {
                 final AccountWithDataSet accountWithDataSet = AccountWithDataSet.unstringify(
                         accountString);
@@ -181,8 +185,8 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
 
         // Reset preferences to "unknown" because they may have changed while the
         // listener was unregistered.
-        mDisplayOrder = -1;
-        mSortOrder = -1;
+        mDisplayOrder = PREFERENCE_UNASSIGNED;
+        mSortOrder = PREFERENCE_UNASSIGNED;
         mDefaultAccount = null;
 
         mPreferences.registerOnSharedPreferenceChangeListener(this);
@@ -203,16 +207,29 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (DISPLAY_ORDER_KEY.equals(key)) {
-                    mDisplayOrder = getDisplayOrder();
-                } else if (SORT_ORDER_KEY.equals(key)) {
-                    mSortOrder = getSortOrder();
-                } else if (mDefaultAccountKey.equals(key)) {
-                    mDefaultAccount = getDefaultAccount();
-                }
-                if (mListener != null) mListener.onChange();
+                refreshValue(key);
             }
         });
+    }
+
+    /**
+     * Forces the value for the given key to be looked up from shared preferences and notifies
+     * the registered {@link ChangeListener}
+     *
+     * @param key the {@link SharedPreferences} key to look up
+     */
+    public void refreshValue(String key) {
+        if (DISPLAY_ORDER_KEY.equals(key)) {
+            mDisplayOrder = PREFERENCE_UNASSIGNED;
+            mDisplayOrder = getDisplayOrder();
+        } else if (SORT_ORDER_KEY.equals(key)) {
+            mSortOrder = PREFERENCE_UNASSIGNED;
+            mSortOrder = getSortOrder();
+        } else if (mDefaultAccountKey.equals(key)) {
+            mDefaultAccount = null;
+            mDefaultAccount = getDefaultAccount();
+        }
+        if (mListener != null) mListener.onChange();
     }
 
     public interface ChangeListener {
