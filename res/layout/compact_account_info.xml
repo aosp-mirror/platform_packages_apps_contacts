@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_marginTop="@dimen/compact_editor_account_header_top_margin"
             android:layout_marginStart="@dimen/compact_editor_account_left_margin"
             android:layout_gravity="center_vertical"
             android:orientation="vertical"
