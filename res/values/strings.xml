@@ -147,17 +147,18 @@
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
     <string name="splitConfirmation">This contact will be unlinked into multiple contacts.</string>
 
-    <!-- Menu item that joins an aggregate with another aggregate -->
+    <!-- Menu item that links an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Link</string>
 
     <!-- Menu item (in the action bar) to indicate that changes should be saved [CHAR LIMIT=20] -->
     <string name="menu_save">Save</string>
 
-    <!-- Heading of the Join Contact screen -->
-    <string name="titleJoinContactDataWith">Join contacts</string>
+    <!-- Heading of the Link Contact screen -->
+    <string name="titleJoinContactDataWith">Link contacts</string>
 
-    <!-- Info blurb on the Join Contact screen [CHAR LIMIT=NONE]-->
-    <string name="blurbJoinContactDataWith">Choose the contact you want to join with <xliff:g id="name">%s</xliff:g>:</string>
+    <!-- Info blurb on the Link Contact screen [CHAR LIMIT=NONE]-->
+    <string name="blurbJoinContactDataWith">Choose the contact you want to link with <xliff:g
+        id="name">%s</xliff:g>:</string>
 
     <!-- An item in the Join Contact activity that opens up the full contact A-Z list -->
     <string name="showAllContactsJoinItem">Show all contacts</string>
@@ -168,7 +169,7 @@
     <!-- List separator for the Join Contact list: A-Z -->
     <string name="separatorJoinAggregateAll">All contacts</string>
 
-    <!-- Toast shown after two contacts have been joined by a user action. [CHAR LIMIT=NONE] -->
+    <!-- Toast shown after two contacts have been linked by a user action. [CHAR LIMIT=NONE] -->
     <string name="contactsJoinedMessage">Contacts linked</string>
 
     <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=NONE] -->
@@ -278,8 +279,8 @@
     <!-- Toast displayed when unlinking a contact failed. [CHAR LIMIT=NONE] -->
     <string name="contactUnlinkErrorToast">Couldn\'t unlink contact.</string>
 
-    <!-- Toast displayed when joining a contact failed. [CHAR LIMIT=NONE] -->
-    <string name="contactJoinErrorToast">Couldn\'t join contact.</string>
+    <!-- Toast displayed when linking a contact failed. [CHAR LIMIT=NONE] -->
+    <string name="contactJoinErrorToast">Couldn\'t link contact.</string>
 
     <!-- Generic error default clause displayed when saving a contact failed. [CHAR LIMIT=NONE] -->
     <string name="contactGenericErrorToast">Error saving contact.</string>
@@ -474,7 +475,7 @@
 
     <!-- The message in a confirmation dialog shown when the user selects a
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
-    <string name="aggregation_suggestion_join_dialog_message">Join
+    <string name="aggregation_suggestion_join_dialog_message">Link
         the current contact with the selected contact?</string>
 
     <!-- The message in a confirmation dialog shown when the user selects a
@@ -579,9 +580,9 @@
         <item quantity="other"><xliff:g id="count">%1$d</xliff:g> people</item>
     </plurals>
 
-    <!-- Toast displayed when the user creates a new contact and attempts to join it
+    <!-- Toast displayed when the user creates a new contact and attempts to link it
       with another before entering any data  [CHAR LIMIT=256] -->
-    <string name="toast_join_with_empty_contact">Type contact name before joining
+    <string name="toast_join_with_empty_contact">Type contact name before linking
       with another.
     </string>
 
@@ -793,8 +794,8 @@
 
     <!-- Suggestion card title in quick contact UI [CHAR LIMIT=100] -->
     <plurals name="quickcontact_suggestion_card_title">
-        <item quantity="one">1 Possible duplicate detected</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> Possible duplicates detected</item>
+        <item quantity="one">1 Possible duplicate</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> Possible duplicates</item>
     </plurals>
 
     <!-- Suggestions number in quick contact suggestion card [CHAR LIMIT=60] -->
