@@ -71,6 +71,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
     public static final class Suggestion {
 
         public long contactId;
+        public long photoId;
         public String lookupKey;
         public String name;
         public String phoneNumber;
@@ -459,6 +460,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
                     long photoId = mDataCursor.getLong(DataQuery.PHOTO_ID);
                     if (dataId == photoId && !mDataCursor.isNull(DataQuery.PHOTO)) {
                         suggestion.photo = mDataCursor.getBlob(DataQuery.PHOTO);
+                        suggestion.photoId = photoId;
                     }
                 }
             }
