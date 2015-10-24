@@ -632,10 +632,10 @@ public class QuickContactActivity extends ContactsActivity
 
     private void enableLinkButton() {
         mSuggestionsLinkButton.setClickable(true);
-        mSuggestionsLinkButton.getBackground().setColorFilter(
-                ContextCompat.getColor(this, R.color.primary_color), PorterDuff.Mode.MULTIPLY);
-        mSuggestionsLinkButton.setElevation(6.0f); // reset elevation
-        mSuggestionsLinkButton.setTextColor(getResources().getColor(android.R.color.white, null));
+        mSuggestionsLinkButton.getBackground().setColorFilter(getResources().getColor(
+                R.color.primary_color, getTheme()), PorterDuff.Mode.SRC_ATOP);
+        mSuggestionsLinkButton.setTextColor(getResources().getColor(android.R.color.white,
+                getTheme()));
         mSuggestionsLinkButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -657,11 +657,10 @@ public class QuickContactActivity extends ContactsActivity
     private void disableLinkButton() {
         mSuggestionsLinkButton.setClickable(false);
         mSuggestionsLinkButton.getBackground().setColorFilter(
-                ContextCompat.getColor(this, R.color.disabled_button_background),
-                PorterDuff.Mode.MULTIPLY);
-        mSuggestionsLinkButton.setElevation(0.0f); // makes it look flat and removed shadow
+                getResources().getColor(R.color.disabled_button_background, getTheme()),
+                PorterDuff.Mode.SRC_ATOP);
         mSuggestionsLinkButton.setTextColor(
-                getResources().getColor(R.color.disabled_button_text, null));
+                getResources().getColor(R.color.disabled_button_text, getTheme()));
     }
 
     private interface ContextMenuIds {
