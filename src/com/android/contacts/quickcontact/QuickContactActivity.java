@@ -513,7 +513,7 @@ public class QuickContactActivity extends ContactsActivity
         final byte[] photoBytes = mContactData.getThumbnailPhotoBinaryData();
         if (photoBytes != null) {
             ContactPhotoManager.getInstance(this).loadThumbnail(mSuggestionSummaryPhoto, photoId,
-                /* darkTheme */ false , /* isCircular */ true , request, null);
+                /* darkTheme */ false , /* isCircular */ true , request);
         } else {
             ContactPhotoManager.DEFAULT_AVATAR.applyDefaultImage(mSuggestionSummaryPhoto,
                     -1, false, request);
@@ -579,7 +579,7 @@ public class QuickContactActivity extends ContactsActivity
                 R.id.aggregation_suggestion_photo);
         if (suggestion.photo != null) {
             ContactPhotoManager.getInstance(this).loadThumbnail(photo, suggestion.photoId,
-                   /* darkTheme */ false, /* isCircular */ true, null, null);
+                   /* darkTheme */ false, /* isCircular */ true, request);
         } else {
             ContactPhotoManager.DEFAULT_AVATAR.applyDefaultImage(photo, -1, false, request);
         }
