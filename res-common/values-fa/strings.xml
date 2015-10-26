@@ -62,9 +62,9 @@
     <string name="sms_assistant" msgid="2677586547377136683">"ارسال پیامک به <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"‏ارسال پیامک به MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"برقراری تماس ویدیویی"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"لیست تماس مکرر پاک شود؟"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"بااین‌کار، فهرست افرادی را که بیشتر با آن‌ها تماس گرفته‌اید، در برنامه‌های «مخاطبین» و «تلفن» پاک می‌کنید و برنامه‌های ایمیل را وادار می‌کنید تنظیمات برگزیده مخاطبین شما را از اول یاد بگیرند."</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"در حال پاک کردن لیست تماس مکرر…"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"فهرست مکرر تماس‌گرفته‌شده پاک شود؟"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"فهرست افرادی را که مکرر با آن‌ها تماس گرفته‌اید در برنامه‌های «مخاطبین» و «تلفن» پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند که تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"درحال پاک کردن مکرر تماس‌گرفته‌شده…"</string>
     <string name="status_available" msgid="4832569677396634846">"در دسترس"</string>
     <string name="status_away" msgid="6267905184545881094">"غایب"</string>
     <string name="status_busy" msgid="7111912905211403545">"مشغول"</string>
@@ -83,7 +83,7 @@
     <string name="description_quick_contact_for" msgid="6355240770807101947">"تماس سریع برای <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(بدون نام)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"بیشتر تماس‌ گرفته شده"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"بیشتر ارتباط برقرار شده"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"مکرر تماس‌گرفته‌شده"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"مشاهده مخاطب"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"همه مخاطبین دارای شماره تلفن"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"مشاهده به‌روزرسانی‌ها"</string>
