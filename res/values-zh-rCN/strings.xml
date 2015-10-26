@@ -59,10 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"系统将取消此联系人与多个联系人的关联。"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"关联"</string>
     <string name="menu_save" msgid="1727844363591825909">"保存"</string>
-    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
-    <skip />
-    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
-    <skip />
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合并联系人"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"选择要与<xliff:g id="NAME">%s</xliff:g>合并的联系人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"显示所有联系人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建议的联系人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有联系人"</string>
@@ -79,6 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"这些联系人的信息中包含来自多个帐户的信息。来自只读帐户的信息将在您的联系人列表中隐藏，而不会被删除。"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"删除该联系人将会删除多个帐户中的信息。"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"将会删除此联系人。"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"舍弃更改"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"该联系人不存在。"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"联系人小部件已添加到主屏幕。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"新建联系人"</string>
@@ -101,12 +100,6 @@
     <string name="savingContact" msgid="4075751076741924939">"正在保存联系人…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"此联系人已保存。"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"无法保存联系人更改。"</string>
-    <!-- no translation found for contactUnlinkErrorToast (2758070702785994171) -->
-    <skip />
-    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
-    <skip />
-    <!-- no translation found for contactGenericErrorToast (7774911165341591714) -->
-    <skip />
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"无法保存联系人照片更改。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"群组已保存。"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"无法保存所做的群组更改。"</string>
@@ -173,8 +166,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"主照片"</string>
     <string name="description_star" msgid="2605854427360036550">"收藏"</string>
     <string name="edit_contact" msgid="7529281274005689512">"编辑联系人"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"要合并当前联系人与所选联系人吗？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切换至编辑所选联系人吗？系统会复制您到目前为止输入的所有信息。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"复制到“我的联系人”"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"添加到“我的联系人”"</string>
@@ -211,8 +203,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> 个联系人</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> 个联系人</item>
     </plurals>
-    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
-    <skip />
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"与其他联系人合并，请先键入联系人姓名。"</string>
     <string name="copy_text" msgid="3257145021583508761">"复制到剪贴板"</string>
     <string name="set_default" msgid="4417505153468300351">"设置默认值"</string>
     <string name="clear_default" msgid="7193185801596678067">"清除默认值"</string>
@@ -278,33 +269,35 @@
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"更多字段"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"更换照片"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"无法开启编辑器。"</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"保存到"</string>
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
-    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
+    <!-- no translation found for compact_editor_account_selector_title (5119592614151786601) -->
+    <skip />
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (4639435067931889048) -->
     <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"关联联系人"</string>
-    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"取消"</string>
-    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位已关联的联系人</item>
-      <item quantity="one">1 位已关联的联系人</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_link_button (3244619714781727946) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_cancel_button (8236954313106630862) -->
+    <skip />
+    <!-- no translation found for quickcontact_suggestion_card_title (8353114911992509644) -->
+    <!-- no translation found for quickcontact_suggestions_number (495992931510695330) -->
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g> <xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
-    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"此联系人"</string>
-    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
+    <!-- no translation found for suggestion_card_this_contact_title (3039457405374454914) -->
     <skip />
-    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
+    <!-- no translation found for suggestion_card_duplicates_title (7231024048865265864) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (7190055396979881094) -->
     <skip />
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"已关联的联系人"</string>
-    <string name="from_your_accounts" msgid="1746293107836889912">"来自您的帐号"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"拍摄照片"</string>
-    <string name="all_photos_button" msgid="1943122929420111351">"所有照片"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"选择照片"</string>
-    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
+    <!-- no translation found for from_your_accounts (1746293107836889912) -->
+    <skip />
+    <!-- no translation found for take_a_photo_button (6268693854069113488) -->
+    <skip />
+    <!-- no translation found for all_photos_button (1943122929420111351) -->
+    <skip />
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

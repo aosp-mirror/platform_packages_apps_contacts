@@ -59,10 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Aquest contacte es desenllaçarà en diversos contactes."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Enllaça"</string>
     <string name="menu_save" msgid="1727844363591825909">"Desa"</string>
-    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
-    <skip />
-    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
-    <skip />
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unió de contactes"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Tria el contacte que vols unir amb <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostra tots els contactes"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactes suggerits"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tots els contactes"</string>
@@ -79,6 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Aquests contactes inclouen informació de diversos comptes. La informació dels comptes només de lectura s\'ocultarà a les llistes de contactes, però no se suprimirà."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Si suprimiu aquest contacte se suprimirà informació de diversos comptes."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Aquest contacte se suprimirà."</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Descarta els canvis"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"El contacte no existeix."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"El widget de contacte s\'ha afegit a la pantalla d\'inici."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crea un contacte nou"</string>
@@ -101,10 +100,6 @@
     <string name="savingContact" msgid="4075751076741924939">"S\'està desant el contacte..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"S\'ha desat el contacte."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No s\'han pogut desar els canvis al contacte."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"No s\'ha pogut desenllaçar el contacte."</string>
-    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
-    <skip />
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"S\'ha produït un error en desar el contacte."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"No s\'han pogut desar els canvis de la foto de contacte."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grup desat."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"No s\'han pogut desar els canvis al grup."</string>
@@ -171,8 +166,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Foto principal"</string>
     <string name="description_star" msgid="2605854427360036550">"preferit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Edita contacte"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Vols ajuntar el contacte actual amb el contacte seleccionat?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vols canviar per editar el contacte seleccionat? Es copiarà la informació que hagis introduït fins ara."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copia a Els meus contactes"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Afegeix a Els meus contactes"</string>
@@ -209,8 +203,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> persones</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persona</item>
     </plurals>
-    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
-    <skip />
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Escriu el nom del contacte abans d\'unir-lo amb un altre contacte."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copia al porta-retalls"</string>
     <string name="set_default" msgid="4417505153468300351">"Predeterminat"</string>
     <string name="clear_default" msgid="7193185801596678067">"Esborra els valors predeterminats"</string>
@@ -277,13 +270,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Canvia la foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"No s\'ha pogut obrir l\'editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Es desa a"</string>
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
-    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
-    <skip />
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Contactes enllaçats (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ENLLAÇA ELS CONTACTES"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"CANCEL·LA"</string>
-    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other">S\'han detectat <xliff:g id="COUNT">%d</xliff:g> duplicats</item>
+      <item quantity="one">S\'ha detectat 1 duplicat</item>
+    </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other">S\'han enllaçat <xliff:g id="COUNT">%d</xliff:g> contactes</item>
       <item quantity="one">S\'ha enllaçat 1 contacte</item>
@@ -294,15 +288,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Aquest contacte"</string>
-    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
-    <skip />
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Duplicats"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Organitza els contactes duplicats per veure tota la informació en un sol lloc. Per obtenir més informació sobre un contacte, toca\'n l\'avatar. Pots canviar la foto de perfil o separar els contactes sempre que vulguis."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Contactes enllaçats"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Dels teus comptes"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Fes una foto"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Totes les fotos"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Tria una foto"</string>
-    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

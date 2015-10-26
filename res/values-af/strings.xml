@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Hierdie kontak sal tussen veelvuldige kontakte verdeel word."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Voeg saam"</string>
     <string name="menu_save" msgid="1727844363591825909">"Stoor"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Skakel kontakte"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Kies die kontak wat jy aan <xliff:g id="NAME">%s</xliff:g> wil skakel:"</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Voeg kontakte saam"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Kies die kontak wat jy wil saamvoeg met <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Wys alle kontakte"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Voorgestelde kontakte"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakte"</string>
@@ -77,6 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Hierdie kontakte bevat inligting vanaf veelvuldige rekeninge. Inligting uit leesalleen-rekeninge sal in jou kontaklyste versteek word, nie uitgevee word nie."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"As jy hierdie kontak uitvee, sal dit inligting uit meerdere rekeninge uitvee."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Hierdie kontak sal uitgevee word."</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Verwerp wysigings"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Die kontak bestaan ​​nie."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontak-legstuk by tuisskerm gevoeg."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Skep nuwe kontak"</string>
@@ -99,9 +100,6 @@
     <string name="savingContact" msgid="4075751076741924939">"Stoor tans kontak..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontak gestoor."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kon nie kontakveranderinge stoor nie."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Kon nie kontak ontkoppel nie."</string>
-    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kon nie kontak skakel nie."</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Kon nie kontak stoor nie."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Kon nie kontakfotoveranderings stoor nie."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Groep gestoor."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Kon nie groepsveranderinge stoor nie."</string>
@@ -168,7 +166,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Primêre foto"</string>
     <string name="description_star" msgid="2605854427360036550">"gunsteling"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Redigeer kontak"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Skakel die huidige kontak aan die geselekteerde kontak?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Voeg die huidige kontak by die gekose kontak saam?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Wissel na redigering van die gekose kontak? Inligting wat jy tot dusver ingevoer het, sal gekopieer word."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopieer na My kontakte"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Voeg by My kontakte"</string>
@@ -205,7 +203,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> mense</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persoon</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Voer kontaknaam in voordat jy dit aan \'n ander kontak skakel."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Voer kontaknaam in voor jy dit by \'n ander kontak voeg."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopieer na knipbord"</string>
     <string name="set_default" msgid="4417505153468300351">"Stel verstek op"</string>
     <string name="clear_default" msgid="7193185801596678067">"Vee verstek uit"</string>
@@ -272,17 +270,13 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Verander foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Kon nie redigeer oopmaak nie."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Stoor na"</string>
-    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
-      <item quantity="other">Geskakelde kontakte (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">Geskakelde kontak</item>
-    </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> geskakelde kontakte"</string>
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Gekoppelde kontakte (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"KOPPEL KONTAKTE"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"KANSELLEER"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> moontlike duplikate</item>
-      <item quantity="one">1 moontlike duplikaat</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Duplikate is bespeur</item>
+      <item quantity="one">1 Duplikaat is bespeur</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> gekoppelde kontakte</item>
@@ -294,12 +288,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Hierdie kontak"</string>
-    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Moontlike duplikate"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Maak duplikaatkontakte vir dieselfde persoon skoon deur hulle aan mekaar te skakel."</string>
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Duplikate"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Vee duplikate van kontakte uit om alle inligting op een plek te sien. Vir meer besonderhede oor \'n kontak, tik op die avatar. Jy kan die profielfoto altyd verander of kontakte enige tyd van mekaar skei."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Saamgevoegde kontakte"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Van jou rekeninge af"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Neem \'n foto"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Alle foto\'s"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Kies foto"</string>
-    <string name="contact_from_account_name" msgid="2078526819634079406">"Van <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
+    <skip />
 </resources>

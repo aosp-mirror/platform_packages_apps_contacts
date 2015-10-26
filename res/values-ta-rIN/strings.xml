@@ -59,10 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"இந்தத் தொடர்பு பல தொடர்புகளாகப் பிரிக்கப்படும்."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"இணைப்பு"</string>
     <string name="menu_save" msgid="1727844363591825909">"சேமி"</string>
-    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
-    <skip />
-    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
-    <skip />
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"தொடர்புகளில் இணை"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> உடன் இணைய விரும்பும் தொடர்பைத் தேர்வுசெய்யவும்:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"எல்லா தொடர்புகளையும் காட்டு"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்பட்ட தொடர்புகள்"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"எல்லா தொடர்புகளும்"</string>
@@ -79,6 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"இந்தத் தொடர்புகள் பல கணக்குகளின் தகவலைக் கொண்டுள்ளன. படிக்க மட்டுமேயான கணக்குகளின் தகவல்கள் உங்கள் தொடர்புப் பட்டியல்களில் மறைக்கப்படும் ஆனால் நீக்கப்படாது."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"தொடர்பை நீக்குவது பல கணக்குகளில் உள்ள தகவலை நீக்கும்."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"தொடர்பு நீக்கப்படும்."</string>
+    <string name="menu_discard" msgid="6854657936970228164">"மாற்றங்களை நிராகரி"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"தொடர்பு இல்லை."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"முகப்புத் திரையில் தொடர்பு விட்ஜெட் சேர்க்கப்பட்டது."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"புதிய தொடர்பை உருவாக்கவும்"</string>
@@ -101,10 +100,6 @@
     <string name="savingContact" msgid="4075751076741924939">"தொடர்பைச் சேமிக்கிறது…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"தொடர்பு சேமிக்கப்பட்டது."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"தொடர்பின் மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"தொடர்பை அகற்ற முடியவில்லை."</string>
-    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
-    <skip />
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"தொடர்பைச் சேமிப்பதில் பிழை."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"தொடர்பின் பட மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"குழு சேமிக்கப்பட்டது."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"குழு மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
@@ -171,8 +166,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"முதன்மை படம்"</string>
     <string name="description_star" msgid="2605854427360036550">"பிடித்தது"</string>
     <string name="edit_contact" msgid="7529281274005689512">"தொடர்பைத் திருத்து"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"தேர்ந்தெடுத்த தொடர்புடன் தற்போதைய தொடர்பை இணைக்கவா?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"தேர்ந்தெடுத்த தொடர்பைத் திருத்துதலுக்கு மாறவா? இதுவரை உள்ளிட்ட தகவல் நகலெடுக்கப்படும்."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"எனது தொடர்புகளுக்கு நகலெடு"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"எனது தொடர்புகளில் சேர்"</string>
@@ -209,8 +203,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> பேர்</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> நபர்</item>
     </plurals>
-    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
-    <skip />
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"வேறொன்றுடன் இணைப்பதற்கு முன் தொடர்பின் பெயரை உள்ளிடவும்."</string>
     <string name="copy_text" msgid="3257145021583508761">"கிளிப்போர்டுக்கு நகலெடு"</string>
     <string name="set_default" msgid="4417505153468300351">"இயல்புநிலையாக அமை"</string>
     <string name="clear_default" msgid="7193185801596678067">"இயல்பை அழி"</string>
@@ -277,13 +270,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"படத்தை மாற்றவும்"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"எடிட்டரைத் திறக்க முடியவில்லை."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"இதில் சேமிக்கிறது"</string>
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
-    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
-    <skip />
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"இணைக்கப்பட்ட தொடர்புகள் (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"தொடர்புகளை இணை"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ரத்துசெய்"</string>
-    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> நகல்கள் உள்ளன</item>
+      <item quantity="one">1 நகல் உள்ளது</item>
+    </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> இணைக்கப்பட்ட தொடர்புகள்</item>
       <item quantity="one">1 இணைக்கப்பட்ட தொடர்பு</item>
@@ -294,15 +288,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"இந்தத் தொடர்பு"</string>
-    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
-    <skip />
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"நகல்கள்"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"எல்லா தகவல்களையும் ஒரே இடத்தில் பார்க்க, நகல் தொடர்புகளை அழிக்கவும். தொடர்பைப் பற்றிய கூடுதல் விவரங்களுக்கு, தோற்றத்தைத் தட்டவும். எப்போது வேண்டுமானாலும் சுயவிவரப் படத்தை மாற்றலாம் அல்லது தொடர்புகளைப் பிரிக்கலாம்."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"இணைத்த தொடர்புகள்"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"உங்கள் கணக்குகளில் இருந்து"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"படமெடு"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"எல்லா படங்களும்"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"படத்தைத் தேர்வுசெய்க"</string>
-    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"This contact will be unlinked into multiple contacts."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Link"</string>
     <string name="menu_save" msgid="1727844363591825909">"Save"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Link contacts"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Choose the contact who you want to link with <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Join contacts"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Choose the contact that you want to join with <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Show all  contacts"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Suggested Contacts"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"All contacts"</string>
@@ -77,6 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"These contacts contain information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Deleting this contact will delete information from multiple accounts."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"This contact will be deleted."</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Discard changes"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"The contact doesn\'t exist."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Contact widget added to Home screen."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Create new contact"</string>
@@ -99,9 +100,6 @@
     <string name="savingContact" msgid="4075751076741924939">"Saving contact…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contact saved."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Couldn\'t save contact changes."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Couldn\'t unlink contact."</string>
-    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Couldn\'t link contact."</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Error while saving contact."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Couldn\'t save contact photo changes."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Group saved."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Couldn\'t save group changes."</string>
@@ -168,7 +166,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Primary photo"</string>
     <string name="description_star" msgid="2605854427360036550">"favourite"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Edit contact"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Link the current contact with the selected contact?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Join the current contact with the selected contact?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Switch to editing the selected contact? Information that you\'ve entered so far will be copied."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copy to My Contacts"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Add to My Contacts"</string>
@@ -205,7 +203,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> people</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> person</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Type contact name before linking with another."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Type contact name before joining with another."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copy to clipboard"</string>
     <string name="set_default" msgid="4417505153468300351">"Set default"</string>
     <string name="clear_default" msgid="7193185801596678067">"Clear default"</string>
@@ -272,17 +270,13 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Change photo"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Failed to open editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Saving to"</string>
-    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
-      <item quantity="other">Linked contacts (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">Linked contact</item>
-    </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> linked contacts"</string>
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Linked contacts (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LINK CONTACTS"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"CANCEL"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Possible duplicates</item>
-      <item quantity="one">1 Possible duplicate</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Duplicates Detected</item>
+      <item quantity="one">1 Duplicate Detected</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> linked contacts</item>
@@ -294,12 +288,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"This contact"</string>
-    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Possible duplicates"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Clean up duplicate contacts for the same person by linking them together."</string>
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Duplicates"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Clean up duplicate contacts to see all info in one place. For more details on a contact tap on the avatar. You can always change the profile photo or separate contacts at anytime."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Linked contacts"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"From your accounts"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Take a photo"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"All photos"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Choose photo"</string>
-    <string name="contact_from_account_name" msgid="2078526819634079406">"From <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
+    <skip />
 </resources>

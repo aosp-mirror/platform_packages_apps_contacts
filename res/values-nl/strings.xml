@@ -59,10 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Dit contact wordt losgekoppeld tot meerdere contacten."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Koppelen"</string>
     <string name="menu_save" msgid="1727844363591825909">"Opslaan"</string>
-    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
-    <skip />
-    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
-    <skip />
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Contacten samenvoegen"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Selecteer het contact dat je met <xliff:g id="NAME">%s</xliff:g> wilt samenvoegen:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle contacten weergeven"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mogelijke contacten"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle contacten"</string>
@@ -79,6 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Deze contacten bevatten gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen in je contactenlijst, maar niet verwijderd."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Als je dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Dit contact wordt verwijderd."</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Wijzigingen niet opslaan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Het contact bestaat niet."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget voor contacten toegevoegd aan het startscherm."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Nieuw contact maken"</string>
@@ -101,10 +100,6 @@
     <string name="savingContact" msgid="4075751076741924939">"Contact opslaan..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contact opgeslagen."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kan wijzigingen in contact niet opslaan."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Kan contact niet loskoppelen."</string>
-    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
-    <skip />
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Fout bij opslaan van contact."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Kan wijzigingen in contactfoto niet opslaan."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Groep opgeslagen."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Kan wijzigingen in groep niet opslaan."</string>
@@ -171,8 +166,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Primaire foto"</string>
     <string name="description_star" msgid="2605854427360036550">"favoriet"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Contact bewerken"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Wil je het huidige contact samenvoegen met het geselecteerde contact?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Wil je overschakelen naar het bewerken van het geselecteerde contact? Gegevens die je tot nu toe hebt ingevoerd, worden gekopieerd."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiëren naar mijn contacten"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Toevoegen aan Mijn contacten"</string>
@@ -209,8 +203,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> mensen</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persoon</item>
     </plurals>
-    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
-    <skip />
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Geef een contactnaam op voordat je dit contact samenvoegt met een ander contact."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiëren naar klembord"</string>
     <string name="set_default" msgid="4417505153468300351">"Standaard instellen"</string>
     <string name="clear_default" msgid="7193185801596678067">"Standaardwaarden wissen"</string>
@@ -277,13 +270,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Foto wijzigen"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Kan editor niet openen."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Opslaan in"</string>
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
-    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
-    <skip />
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Gelinkte contacten (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"CONTACTEN LINKEN"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ANNULEREN"</string>
-    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> duplicaten gedetecteerd</item>
+      <item quantity="one">1 duplicaat gedetecteerd</item>
+    </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> gelinkte contacten</item>
       <item quantity="one">1 gelinkt contact</item>
@@ -294,15 +288,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Dit contact"</string>
-    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
-    <skip />
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Duplicaten"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Schoon dubbele contacten op om alle informatie op één centrale locatie te bekijken. Voor meer informatie over een contact tik je op de avatar. Je kunt de profielfoto of afzonderlijke contacten op elk gewenst moment wijzigen."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Gekoppelde contacten"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Vanuit je accounts"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Een foto maken"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Alle foto\'s"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Foto kiezen"</string>
-    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

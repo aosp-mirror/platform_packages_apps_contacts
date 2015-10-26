@@ -59,10 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Kenalan ini akan dinyahpaut kepada beberapa kenalan."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Pautkan"</string>
     <string name="menu_save" msgid="1727844363591825909">"Simpan"</string>
-    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
-    <skip />
-    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
-    <skip />
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Gabungkan kenalan"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Pilih kenalan yang anda mahu untuk menyertai <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Tunjukkan semua kenalan"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Kenalan cadangan"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kenalan"</string>
@@ -79,6 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Kenalan ini mengandungi maklumat daripada berbilang akaun. Maklumat daripada akaun baca sahaja akan disembunyikan dalam senarai kenalan anda, bukannya dipadamkan."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Pemadaman kenalan ini akan turut memadamkan maklumat daripada berbilang akaun."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Kenalan ini akan dipadamkan."</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Buang perubahan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kenalan tidak wujud."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget kenalan telah ditambahkan ke skrin Utama."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Buat kenalan baharu"</string>
@@ -101,10 +100,6 @@
     <string name="savingContact" msgid="4075751076741924939">"Simpan kenalan..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kenalan disimpan."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Tidak dapat menyimpan perubahan kenalan."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Tidak dapat menyahpaut kenalan."</string>
-    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
-    <skip />
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Ralat semasa menyimpan kenalan."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Tidak dapat menyimpan perubahan foto kenalan."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Kumpulan sudah disimpan."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Tidak dapat menyimpan perubahan kumpulan."</string>
@@ -171,8 +166,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Foto utama"</string>
     <string name="description_star" msgid="2605854427360036550">"kegemaran"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Edit kenalan"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Gabungkan kenalan semasa dengan kenalan pilihan?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Bertukar kepada mengedit kenalan pilihan? Maklumat yang anda masukkan setakat ini akan disalin."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Salin ke Kenalan Saya"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Tambahkan pada Kenalan Saya"</string>
@@ -209,8 +203,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> orang</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> orang</item>
     </plurals>
-    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
-    <skip />
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Taip nama kenalan sebelum bergabung dengan yang lain."</string>
     <string name="copy_text" msgid="3257145021583508761">"Salin ke papan keratan"</string>
     <string name="set_default" msgid="4417505153468300351">"Tetapkan lalai"</string>
     <string name="clear_default" msgid="7193185801596678067">"Kosongkan lalai"</string>
@@ -277,13 +270,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Tukar foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Gagal membuka editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Menyimpan ke"</string>
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
-    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
-    <skip />
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Kenalan dipaut (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"PAUT KENALAN"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"BATAL"</string>
-    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Pendua Dikesan</item>
+      <item quantity="one">1 Pendua Dikesan</item>
+    </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kenalan dipaut</item>
       <item quantity="one">1 kenalan dipaut</item>
@@ -294,15 +288,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Kenalan ini"</string>
-    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
-    <skip />
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Pendua"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Kosongkan kenalan pendua untuk melihat semua maklumat pada satu tempat. Ketik pada avatar untuk mendapatkan maklumat lanjut tentang kenalan. Anda boleh menukar gambar profil atau memisahkan kenalan pada bila-bila masa."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Kenalan yang dipaut"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Daripada akaun anda"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Ambil foto"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Semua foto"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Pilih foto"</string>
-    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>

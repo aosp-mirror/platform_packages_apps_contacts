@@ -59,10 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Овој контакт ќе се раздели во повеќе контакти."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Поврзи"</string>
     <string name="menu_save" msgid="1727844363591825909">"Зачувај"</string>
-    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
-    <skip />
-    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
-    <skip />
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Поврзи контакти"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Изберете го контактот што сакате да го поврзете со <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Прикажи ги сите контакти"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Препорачани контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Сите контакти"</string>
@@ -79,6 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Овие контакти содржат информации од повеќе сметки. Информациите од сметките само за читање ќе се скријат во вашите списоци со контакти, нема да се избришат."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Со бришење на овој контакт ќе се избришат информации од повеќе сметки."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Овој контакт ќе се избрише."</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Отфрли ги промените"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Контактот не постои."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Виџет на контакт е додаден на почетниот екран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создај нов контакт"</string>
@@ -101,10 +100,6 @@
     <string name="savingContact" msgid="4075751076741924939">"Контактот се зачувува..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контактот е зачуван."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не можеа да се зачуваат промените на контактот."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Не може да се прекине врската со контактот."</string>
-    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
-    <skip />
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Грешка при зачувување на контактот."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Не можеше да се зачуваат промените на фотографијата на контактот."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Групата е зачувана."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Не можеа да се зачуваат промените на групата."</string>
@@ -171,8 +166,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Пр. фотографија"</string>
     <string name="description_star" msgid="2605854427360036550">"омилено"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Уреди контакт"</string>
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Да го поврзе тековниот контакт со избраниот контакт?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Да се префрли на уредување на избраниот контакт? Информациите што ги внесовте досега ќе бидат копирани."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Копирај во Мои контакти"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Додај во Мои контакти"</string>
@@ -209,8 +203,7 @@
       <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> лице</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> лица</item>
     </plurals>
-    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
-    <skip />
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Впишете го името на контактот пред да го поврзете со друг."</string>
     <string name="copy_text" msgid="3257145021583508761">"Копирај во клип-табла"</string>
     <string name="set_default" msgid="4417505153468300351">"Подеси стандарден метод"</string>
     <string name="clear_default" msgid="7193185801596678067">"Исчисти стандарден метод"</string>
@@ -277,13 +270,14 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Промени фотографија"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Не успеа да го отвори уредникот."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Се зачувува на"</string>
-    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
-    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
-    <skip />
+    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Поврзани контакти (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ПОВРЗИ КОНТАКТИ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ОТКАЖИ"</string>
-    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> откриен дупликат</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> откриени дупликати</item>
+    </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> поврзан контакт</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> поврзани контакти</item>
@@ -294,15 +288,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Овој контакт"</string>
-    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
-    <skip />
-    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
-    <skip />
+    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Дупликати"</string>
+    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Исчистете ги дупликат-контактите за да ги видите сите информации на едно место. За повеќе детали за контактот, допрете на аватарот. Секогаш може да ја менувате фотографијата на профилот или да ги разделувате контактите во секое време."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Поврзани контакти"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Од вашите сметки"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Фотографирај"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Сите фотографии"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Избери фотографија"</string>
-    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
+    <!-- no translation found for photo_picker_title (5272832995550042801) -->
     <skip />
 </resources>
