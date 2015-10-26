@@ -84,9 +84,6 @@ public class EventFieldEditorView extends LabeledEditorView {
         mDateView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isTypeVisible()) {
-                    showType();
-                }
                 showDialog(R.id.dialog_event_date_picker);
             }
         });
@@ -134,9 +131,6 @@ public class EventFieldEditorView extends LabeledEditorView {
             mDateView.setText(data);
             mDateView.setTextColor(mPrimaryTextColor);
             setDeleteButtonVisible(true);
-            if (!isTypeVisible()) {
-                showType();
-            }
         }
     }
 

@@ -194,13 +194,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                     layoutResId + " for MIME type " + mKind.mimeType +
                     " with error " + e.toString());
         }
-        // Hide the types drop downs until the associated edit field is focused
-        if (view instanceof LabeledEditorView) {
-            ((LabeledEditorView) view).setHideTypeInitially(true);
-        }
-
         view.setEnabled(isEnabled());
-
         if (view instanceof Editor) {
             Editor editor = (Editor) view;
             editor.setDeletable(true);

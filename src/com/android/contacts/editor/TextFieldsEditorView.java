@@ -152,16 +152,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
             if (getEditorListener() != null) {
                 getEditorListener().onRequest(EditorListener.EDITOR_FOCUS_CHANGED);
             }
-            // Check whether this field contains focus by calling findFocus() instead of
-            // hasFocus(). The hasFocus() value is not necessarily up to date.
-            final boolean foundFocus = TextFieldsEditorView.this.findFocus() != null;
-            if (foundFocus && !isTypeVisible()) {
-                // We just got focus and the types are not visible
-                showType();
-            } else if (isEmpty()) {
-                // We just lost focus and the field is empty
-                hideType();
-            }
             // Rebuild the label spinner using the new colors.
             rebuildLabel();
         }
@@ -254,11 +244,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
             final String column = field.column;
             final String value = entry.getAsString(column);
             fieldView.setText(value);
-
-            // Show the type drop down if we have a non-empty value.
-            if (!isTypeVisible() && !TextUtils.isEmpty(value)) {
-                showType();
-            }
 
             // Show the delete button if we have a non-null value
             setDeleteButtonVisible(value != null);
