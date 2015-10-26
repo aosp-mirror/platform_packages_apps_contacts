@@ -47,15 +47,7 @@ public class EditorAnimator {
 
     private AnimatorRunner mRunner = new AnimatorRunner();
 
-    public void hideEditorView(final View victim) {
-        removeEditorView(victim, /* removeVictimFromParent =*/ false);
-    }
-
     public void removeEditorView(final View victim) {
-        removeEditorView(victim, /* removeVictimFromParent =*/ true);
-    }
-
-    private void removeEditorView(final View victim, final boolean removeVictimFromParent) {
         mRunner.endOldAnimation();
         final int offset = victim.getHeight();
 
@@ -79,15 +71,11 @@ public class EditorAnimator {
                     final View view = viewsToMove.get(i);
                     view.setTranslationY(0.0f);
                 }
-                if (removeVictimFromParent) {
-                    // Remove our target view (if parent is null, we were run several times by quick
-                    // fingers. Just ignore)
-                    final ViewGroup victimParent = (ViewGroup) victim.getParent();
-                    if (victimParent != null) {
-                        victimParent.removeView(victim);
-                    }
-                } else {
-                    victim.setVisibility(View.GONE);
+                // Remove our target view (if parent is null, we were run several times by quick
+                // fingers. Just ignore)
+                final ViewGroup victimParent = (ViewGroup) victim.getParent();
+                if (victimParent != null) {
+                    victimParent.removeView(victim);
                 }
             }
         });
