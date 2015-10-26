@@ -271,7 +271,10 @@
     <string name="savingContact">Saving contact\u2026</string>
 
     <!-- Toast displayed when a contact is saved [CHAR LIMIT=NONE] -->
-    <string name="contactSavedToast">Contact saved.</string>
+    <string name="contactSavedToast">Contact saved</string>
+
+    <!-- Toast displayed when linked contacts get unlinked [CHAR LIMIT=NONE] -->
+    <string name="contactUnlinkedToast">Contacts unlinked</string>
 
     <!-- Toast displayed when saving a contact failed. [CHAR LIMIT=NONE] -->
     <string name="contactSavedErrorToast">Couldn\'t save contact changes.</string>
