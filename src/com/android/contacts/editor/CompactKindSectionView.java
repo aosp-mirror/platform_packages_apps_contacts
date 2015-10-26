@@ -417,12 +417,6 @@ public class CompactKindSectionView extends LinearLayout {
         final View view = mLayoutInflater.inflate(
                 EditorUiUtils.getLayoutResourceId(dataKind.mimeType), mEditors, false);
         view.setEnabled(isEnabled());
-
-        // Hide the types drop downs until the associated edit field is focused
-        if (view instanceof LabeledEditorView) {
-            ((LabeledEditorView) view).setHideTypeInitially(true);
-        }
-
         if (view instanceof Editor) {
             final Editor editor = (Editor) view;
             editor.setDeletable(true);
