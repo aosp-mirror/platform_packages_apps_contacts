@@ -497,6 +497,10 @@ public class QuickContactActivity extends ContactsActivity
         mExpandSuggestionCardView.setVisibility(View.GONE);
         mSuggestionList.removeAllViews();
 
+        if (mContactData == null) {
+            return;
+        }
+
         final String suggestionForName = mContactData.getDisplayName();
         final int suggestionNumber = mSuggestions.size();
 
@@ -527,9 +531,13 @@ public class QuickContactActivity extends ContactsActivity
         mSuggestionForName.setText(suggestionForName);
         final int linkedContactsNumber = mContactData.getRawContacts().size();
         final String contactsInfo;
-        if (linkedContactsNumber == 1) {
+        final String accountName = mContactData.getRawContacts().get(0).getAccountName();
+        if (linkedContactsNumber == 1 && accountName == null) {
+            mSuggestionContactsNumber.setVisibility(View.INVISIBLE);
+        }
+        if (linkedContactsNumber == 1 && accountName != null) {
             contactsInfo = getResources().getString(R.string.contact_from_account_name,
-                    mContactData.getRawContacts().get(0).getAccountName());
+                    accountName);
         } else {
             contactsInfo = getResources().getString(
                     R.string.quickcontact_contacts_number, linkedContactsNumber);
@@ -552,6 +560,9 @@ public class QuickContactActivity extends ContactsActivity
         final Set<Long> selectedSuggestionIds = com.google.common.collect.Sets.intersection(
                 mSelectedAggregationIds, suggestionContactIds);
         mSelectedAggregationIds = new TreeSet<>(selectedSuggestionIds);
+        if (!mSelectedAggregationIds.isEmpty()) {
+            enableLinkButton();
+        }
     }
 
     private void collapseSuggestionList() {
@@ -594,7 +605,7 @@ public class QuickContactActivity extends ContactsActivity
             accountNameView.setText(
                     getResources().getString(R.string.contact_from_account_name, accountName));
         } else {
-            accountNameView.setVisibility(View.GONE);
+            accountNameView.setVisibility(View.INVISIBLE);
         }
 
         final CheckBox checkbox = (CheckBox) suggestionView.findViewById(R.id.suggestion_checkbox);
