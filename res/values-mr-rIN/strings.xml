@@ -79,7 +79,7 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"हा संपर्क हटविला जाईल."</string>
     <string name="menu_discard" msgid="6854657936970228164">"बदल टाकून द्या"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"संपर्क अस्तित्वात नाही."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्‍यपृष्‍ठ स्‍क्रीनवर संपर्क विजेट जोडले."</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्‍य स्‍क्रीनवर संपर्क विजेट जोडले."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नवीन संपर्क तयार करा"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"नवीन संपर्क तयार करा"</string>
   <string-array name="otherLabels">

@@ -94,7 +94,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"Eliminaţi fotografia"</string>
     <string name="noContacts" msgid="8579310973261953559">"Nicio persoană în agendă."</string>
     <string name="noGroups" msgid="8614664663561385253">"Nu există grupuri."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Pentru a crea grupuri aveţi nevoie de un cont."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Pentru a crea grupuri aveți nevoie de un cont."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Nu există persoane în acest grup."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Pentru a adăuga persoane, editaţi grupul."</string>
     <string name="savingContact" msgid="4075751076741924939">"Se salvează persoana din agendă..."</string>
@@ -176,7 +176,7 @@
     </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Îmbinați intrarea curentă din agendă cu intrarea selectată?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Comutaţi la funcţia de editare a persoanei din agendă selectate? Informaţiile introduse până acum vor fi copiate."</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"Copiaţi în Agendă"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Copiați în Agendă"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adăugaţi în Agendă"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Director <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizată"</string>
@@ -215,7 +215,7 @@
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persoană</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Introduceţi un nume pentru intrarea din agendă înainte de îmbinarea cu altă intrare."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Copiaţi în clipboard"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Copiați în clipboard"</string>
     <string name="set_default" msgid="4417505153468300351">"Setaţi ca prestabilit"</string>
     <string name="clear_default" msgid="7193185801596678067">"Ștergeţi datele prestabilite"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text copiat"</string>
@@ -232,7 +232,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adăugaţi un cont"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noul contact nu se va crea o copie de rezervă. Adăugați un cont care creează online copii de rezervă pentru contacte?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Noul dvs. contact va fi sincronizat cu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puteţi să sincronizați noul dvs. contact cu unul dintre următoarele conturi. Pe care doriţi să îl utilizaţi?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puteţi să sincronizați noul dvs. contact cu unul dintre următoarele conturi. Pe care doriți să îl utilizaţi?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adăugați contact nou"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editați intrarea"</string>
     <string name="keep_local" msgid="1258761699192993322">"Păstraţi local"</string>
