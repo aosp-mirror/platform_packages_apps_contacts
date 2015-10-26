@@ -1405,9 +1405,18 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             Uri contactLookupUri) {
         if (hadChanges) {
             if (saveSucceeded) {
-                if (saveMode != SaveMode.JOIN) {
-                    Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
+                switch (saveMode) {
+                    case SaveMode.JOIN:
+                        break;
+                    case SaveMode.SPLIT:
+                        Toast.makeText(mContext, R.string.contactUnlinkedToast, Toast.LENGTH_SHORT)
+                                .show();
+                        break;
+                    default:
+                        Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT)
+                                .show();
                 }
+
             } else {
                 Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
             }
