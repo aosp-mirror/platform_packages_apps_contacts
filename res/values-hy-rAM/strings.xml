@@ -59,8 +59,10 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Այս կոնտակտի հղումը կբաժանվի մի քանի կոնտակտների:"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Հղում"</string>
     <string name="menu_save" msgid="1727844363591825909">"Պահել"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Միացնել կոնտակտները"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Ընտրեք կոնտակտը, որը ցանկանում եք միացնել <xliff:g id="NAME">%s</xliff:g>-ին"</string>
+    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
+    <skip />
+    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
+    <skip />
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Ցույց տալ բոլոր կոնտակտները"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Առաջարկվող կոնտակները"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Բոլոր կոնտակտները"</string>
@@ -77,7 +79,6 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Այս կոնտակտները պարունակում են տվյալներ մի քանի հաշիվներից: Միայն կարդալու հաշիվների տվյալները ձեր կոնտակտների ցանկերում կթաքցվեն, սակայն չեն ջնջվի:"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Այս կոնտակտը ջնջելիս տվյալները ևս մի քանի հաշիվներից կջնջվեն:"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Այս կոնտակտը կջնջվի:"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Հրաժարվել փոփոխություններից"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Կոնտակտը գոյություն չունի:"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Կոնտակտի վիջեթը ավելացվեց Գլխավոր էկրանին:"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Ստեղծել նոր կոնտակտ"</string>
@@ -100,6 +101,12 @@
     <string name="savingContact" msgid="4075751076741924939">"Կոնտակտի պահվում է..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Կոնտակտը պահվեց:"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Հնարավոր չէ պահել կոնտակտային փոփոխությունները:"</string>
+    <!-- no translation found for contactUnlinkErrorToast (2758070702785994171) -->
+    <skip />
+    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
+    <skip />
+    <!-- no translation found for contactGenericErrorToast (7774911165341591714) -->
+    <skip />
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Չհաջողվեց պահել կոնտակտի լուսանկարի փոփոխությունները:"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Խումբը պահվեց:"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Հնարավոր չէ պահել խմբի փոփոխությունները:"</string>
@@ -166,7 +173,8 @@
     <string name="primary_photo" msgid="8517942231868516999">"Հիմնական լուսանկար"</string>
     <string name="description_star" msgid="2605854427360036550">"ընտրյալ"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Խմբագրել կոնտակտը"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Միացնե՞լ այս կոնտակտը ընտրված կոնտակտի հետ"</string>
+    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
+    <skip />
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Փոխարկե՞լ ընտրված կոնտակտի խմբագրմանը: Մինչ այս պահը ձեր մուտքագրած տեղեկությունները կպատճենվեն:"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Պատճենել Իմ կոնտակտներում"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Ավելացնել Իմ կոնտակտներին"</string>
@@ -203,7 +211,8 @@
       <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> մարդ</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> մարդ</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Մուտքագրեք կոնտակտի անունը մեկ ուրիշի հետ միացնելուց առաջ:"</string>
+    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
+    <skip />
     <string name="copy_text" msgid="3257145021583508761">"Պատճենել սեղմատախտակին"</string>
     <string name="set_default" msgid="4417505153468300351">"Սահմանել լռելյայն"</string>
     <string name="clear_default" msgid="7193185801596678067">"Մաքրել լռելյայն"</string>
@@ -270,14 +279,13 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Փոխել լուսանկարը"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Չհաջողվեց բացել խմբագրիչը:"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Պահվում է հետևյալ հաշվում՝"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Կապված կոնտակտներ (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
+    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ԿԱՊԵԼ ԿՈՆՏԱԿՏՆԵՐԸ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ՉԵՂԱՐԿԵԼ"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one">Գտնվել է <xliff:g id="COUNT">%d</xliff:g> կրկնօրինակ</item>
-      <item quantity="other">Գտնվել է <xliff:g id="COUNT">%d</xliff:g> կրկնօրինակ</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> կապված կոնտակտ</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> կապված կոնտակտ</item>
@@ -288,12 +296,15 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Այս կոնտակտը"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Կրկնօրինակներ"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Մաքրեք կրկնօրինակ կոնտակտները, որպեսզի տեսնեք բոլոր տվյալները մեկ տեղում: Կոնտակտի լրացուցիչ տվյալները տեսնելու համար հպեք ավատարին: Դուք ցանկացած պահի կարող եք փոխել պրոֆիլի լուսանկարը կամ առանձնացնել կոնտակտները:"</string>
+    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
+    <skip />
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Հղված կոնտակտներ"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Ձեր հաշիվներից"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Լուսանկարել"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Բոլոր լուսանկարները"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
+    <string name="photo_picker_title" msgid="5272832995550042801">"Ընտրել լուսանկար"</string>
+    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
     <skip />
 </resources>

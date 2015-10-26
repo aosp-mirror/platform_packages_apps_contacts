@@ -59,8 +59,10 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"यो सम्पर्क ठेगाना धेरै सम्पर्क ठेगानाहरूमा अनलिंक गरिने छ।"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"लिंक"</string>
     <string name="menu_save" msgid="1727844363591825909">"सुरक्षित गर्नुहोस्"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"सम्पर्कहरू जोड्नुहोस्"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"तपाईँले सहभागी हुन चाहनु भएको सम्पर्क <xliff:g id="NAME">%s</xliff:g>: चयन गर्नुहोस्"</string>
+    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
+    <skip />
+    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
+    <skip />
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सबै सम्पर्कहरू देखाउनुहोस्"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सुझाव गरिएका सम्पर्कहरू"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"सबै सम्पर्कहरू"</string>
@@ -77,7 +79,6 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"यी सम्पर्कहरूले धेरै खाताहरूबाट जानकारी समावेश गर्दछ। पढ्ने-मात्र खाताहरूबाट जानकारी तपाईँको सम्पर्क सूचीमा लुकाइने छन्, मेटिने छैनन्।"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"यो सम्पर्कलाइ हटाउनाले धेरै खाताहरूबाट जानकारीहरू नष्ट गर्ने छ।"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"यो सम्पर्क हटाइने छ।"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"परिवर्तनहरू रद्द गर्नुहोस्"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"सम्पर्क उपलब्ध छैन।"</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"सम्पर्क विजेट होम स्क्रिनमा थपियो।"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नयाँ सम्पर्क सिर्जना गर्नुहोस्"</string>
@@ -100,6 +101,10 @@
     <string name="savingContact" msgid="4075751076741924939">"सम्पर्क बचत गर्दै..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"सम्पर्क बचत गरियो।"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"सम्पर्क परिवर्तनहरू सुरक्षित गर्न सकेन।"</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"सम्पर्क अनलिंक गर्न सकेन।"</string>
+    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
+    <skip />
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"सम्पर्क सुरक्षित गर्दा त्रूटि।"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"सम्पर्क तस्बिर परिवर्तनहरू सुरक्षित गर्न सकिएन।"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"समूह बचत गरियो।"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"समूह परिवर्तनहरू बचत गर्न सकेन।"</string>
@@ -166,7 +171,8 @@
     <string name="primary_photo" msgid="8517942231868516999">"प्राथमिक तस्बिर"</string>
     <string name="description_star" msgid="2605854427360036550">"मनपर्ने"</string>
     <string name="edit_contact" msgid="7529281274005689512">"सम्पर्क सम्पादन गर्नुहोस्"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"हालको सम्पर्कलाई चयनित सम्पर्कसँग जोड्ने हो?"</string>
+    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
+    <skip />
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित सम्पर्कको सम्पादन गर्नका लागि स्विच गर्ने हो? तपाईँले अहिलेसम्म प्रविष्टि गरिएका जानकारीहरू प्रतिलिप हुने छन्।"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"मेरा सम्पर्कहरूमा प्रतिलिपि गर्नुहोस्"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"मेरो सम्पर्कहरूमा थप्नुहोस्"</string>
@@ -203,7 +209,8 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> व्यक्तिहरु</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> व्यक्ति</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"अर्कोसँग सामेल हुनुअघि सम्पर्क नाम टाइप गर्नुहोस्।"</string>
+    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
+    <skip />
     <string name="copy_text" msgid="3257145021583508761">"क्लिपबोर्डमा प्रतिलिपि गर्नुहोस्"</string>
     <string name="set_default" msgid="4417505153468300351">"पूर्वनिर्धारित मिलाउनुहोस्"</string>
     <string name="clear_default" msgid="7193185801596678067">"पूर्वनिर्धारित हटाउनुहोस्"</string>
@@ -270,14 +277,13 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"तस्बिर परिवर्तन गर्नुहोस्"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"सम्पादक खोल्न असफल भयो।"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"यसमा सुरक्षित गर्दै"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"लिंक गरिएका सम्पर्क ठेगानाहरू (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
+    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> ( <xliff:g id="PHONETIC_NAME">%s</xliff:g> )"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"सम्पर्क ठेगानाहरू लिंक गर्नुहोस्"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"रद्द गर्नुहोस्"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> दोहोरिएका प्रतिलिपिहरू पाइयो</item>
-      <item quantity="one">१ दोहोरिएको प्रतिलिपि पाइयो</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> लिंक गरिएका सम्पर्क ठेगानाहरू</item>
       <item quantity="one">१ लिंक गरिएको सम्पर्क ठेगाना</item>
@@ -288,12 +294,15 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"यो सम्पर्क ठेगाना"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"दोहोरिएका प्रतिलिपिहरू"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"सबै जानकारीहरू एउटै ठाउँमा हेर्नको लागि दोहोरिएका सम्पर्क ठेगानाहरू हटाउनुहोस्। सम्पर्क ठेगाना बारे थप विवरणहरूको लागि अवतारमा ट्याप गर्नुहोस्। तपाईँ सधैँ प्रोफाइल तस्बिर परिवर्तन गर्न वा कुनै पनि समयमा सम्पर्क ठेगानाहरू अलग गर्न सक्नुहुन्छ।"</string>
+    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
+    <skip />
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"लिंक गरिएका सम्पर्क ठेगानाहरू"</string>
-    <string name="from_your_accounts" msgid="1746293107836889912">"आफ्ना खाताहरूबाट"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"तस्बिर लिनुहोस्"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"तपाईंका खाताहरूबाट"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"तस्बिर खिच्नुहोस्"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"सबै तस्बिरहरू"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
+    <string name="photo_picker_title" msgid="5272832995550042801">"तस्बिर छान्‍नुहोस्"</string>
+    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
     <skip />
 </resources>

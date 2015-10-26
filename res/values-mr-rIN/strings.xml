@@ -59,8 +59,10 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"या संपर्काचा एकाधिक संपर्कांमध्‍ये दुवा रद्द केला जाईल."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"दुवा"</string>
     <string name="menu_save" msgid="1727844363591825909">"जतन करा"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"संपर्कांमध्‍ये सामील व्हा"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"आपण <xliff:g id="NAME">%s</xliff:g> सह सामील होऊ इच्‍छिता तो संपर्क निवडा:"</string>
+    <!-- no translation found for titleJoinContactDataWith (6825255752748313944) -->
+    <skip />
+    <!-- no translation found for blurbJoinContactDataWith (5864256698061641841) -->
+    <skip />
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सर्व संपर्क दर्शवा"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सूचित संपर्क"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"सर्व संपर्क"</string>
@@ -77,7 +79,6 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"या संपर्कांमध्‍ये एकाधिक खात्यांमधील माहिती आहे. केवळ-वाचनीय खात्यांमधील माहिती आपल्‍या संपर्क सूचींमध्‍ये लपविली जाईल, ती हटविली जाणार नाही."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"हा संपर्क हटविल्याने एकाधिक खात्‍यांमधून माहिती हटवली जाईल."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"हा संपर्क हटविला जाईल."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"बदल टाकून द्या"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"संपर्क अस्तित्वात नाही."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्‍य स्‍क्रीनवर संपर्क विजेट जोडले."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नवीन संपर्क तयार करा"</string>
@@ -100,6 +101,10 @@
     <string name="savingContact" msgid="4075751076741924939">"संपर्क जतन करीत आहे..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"संपर्क जतन केला."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"संपर्क बदल जतन करू शकलो नाही."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"संपर्काचा दुवा रद्द करणे शक्य झाले नाही."</string>
+    <!-- no translation found for contactJoinErrorToast (3977932531264809035) -->
+    <skip />
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"संपर्क जतन करताना त्रुटी."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"संपर्क फोटो बदल जतन करणे शक्य झाले नाही."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"गट जतन केला."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"गट बदल जतन करू शकलो नाही."</string>
@@ -166,7 +171,8 @@
     <string name="primary_photo" msgid="8517942231868516999">"प्राथमिक फोटो"</string>
     <string name="description_star" msgid="2605854427360036550">"आवडते"</string>
     <string name="edit_contact" msgid="7529281274005689512">"संपर्क संपादित करा"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"निवडलेल्‍या संपर्कासह वर्तमान संपर्कामध्‍ये सामील व्‍हायचे?"</string>
+    <!-- no translation found for aggregation_suggestion_join_dialog_message (6786192560870357912) -->
+    <skip />
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"निवडलेले संपर्क संपादित करण्‍यावर स्‍विच करायचे? आपण आत्तापर्यंत प्रविष्‍ट केलेली माहिती कॉपी केली जाईल."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"माझे संपर्क वर कॉपी करा"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"माझे संपर्क मध्ये जोडा"</string>
@@ -203,7 +209,8 @@
       <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> व्‍यक्‍ती</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> लोक</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"दुसर्‍यासह सामील होण्‍यापूर्वी संपर्क नाव टाईप करा."</string>
+    <!-- no translation found for toast_join_with_empty_contact (1215465657839085613) -->
+    <skip />
     <string name="copy_text" msgid="3257145021583508761">"क्लिपबोर्डवर कॉपी करा"</string>
     <string name="set_default" msgid="4417505153468300351">"डीफॉल्ट म्हणून सेट करा"</string>
     <string name="clear_default" msgid="7193185801596678067">"डीफॉल्ट साफ करा"</string>
@@ -270,14 +277,13 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"फोटो बदला"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"संपादक उघडण्यात अयशस्वी."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"यावर जतन करीत आहे"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"(<xliff:g id="COUNT">%d</xliff:g>) दुवा साधलेले संपर्क"</string>
+    <!-- no translation found for compact_editor_linked_contacts_selector_title (9156207930915878316) -->
+    <!-- no translation found for quickcontact_contacts_number (6036916944287597682) -->
+    <skip />
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"संपर्कांचा दुवा साधा"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"रद्द करा"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> डुप्लिकेट आढळला</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> डुप्लिकेट आढळले</item>
-    </plurals>
+    <!-- no translation found for quickcontact_suggestion_card_title (2660005966628746406) -->
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> दुवा साधलेला संपर्क</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> दुवा साधलेले संपर्क</item>
@@ -288,12 +294,15 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"हा संपर्क"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"डुप्लिकेट"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"सर्व माहिती एकाच ठिकाणी पाहण्‍यासाठी डुप्लिकेट खाती साफ करा. अवतार वरील संपर्क टॅप वरील अधिक तपशीलांसाठी. आपण प्रोफाइल फोटो नेहमी बदलू शकता किंवा कधीही संपर्क विभक्त करू शकता."</string>
+    <!-- no translation found for suggestion_card_duplicates_title (9107788743178980902) -->
+    <skip />
+    <!-- no translation found for suggestion_card_help_message (3875880517935998480) -->
+    <skip />
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"दुवा साधलेले संपर्क"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"आपल्‍या खात्यांमधून"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"एक फोटो घ्या"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"सर्व फोटो"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
+    <string name="photo_picker_title" msgid="5272832995550042801">"फोटो निवडा"</string>
+    <!-- no translation found for contact_from_account_name (2078526819634079406) -->
     <skip />
 </resources>
