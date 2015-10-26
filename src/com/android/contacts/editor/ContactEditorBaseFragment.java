@@ -123,7 +123,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     private static final String KEY_HAS_NEW_CONTACT = "hasNewContact";
     private static final String KEY_NEW_CONTACT_READY = "newContactDataReady";
-    private static final String KEY_NEW_CONTACT_ACCOUNT_CHANGED = "newContactAccountChanged";
 
     private static final String KEY_IS_EDIT = "isEdit";
     private static final String KEY_EXISTING_CONTACT_READY = "existingContactDataReady";
@@ -497,7 +496,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
             mHasNewContact = savedState.getBoolean(KEY_HAS_NEW_CONTACT);
             mNewContactDataReady = savedState.getBoolean(KEY_NEW_CONTACT_READY);
-            mNewContactAccountChanged = savedState.getBoolean(KEY_NEW_CONTACT_ACCOUNT_CHANGED);
 
             mIsEdit = savedState.getBoolean(KEY_IS_EDIT);
             mExistingContactDataReady = savedState.getBoolean(KEY_EXISTING_CONTACT_READY);
@@ -615,7 +613,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         outState.putInt(KEY_STATUS, mStatus);
         outState.putBoolean(KEY_HAS_NEW_CONTACT, mHasNewContact);
         outState.putBoolean(KEY_NEW_CONTACT_READY, mNewContactDataReady);
-        outState.putBoolean(KEY_NEW_CONTACT_ACCOUNT_CHANGED, mNewContactAccountChanged);
         outState.putBoolean(KEY_IS_EDIT, mIsEdit);
         outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
         outState.putBoolean(KEY_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY,
@@ -917,10 +914,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         mStatus = Status.SAVING;
 
-        // If the user did nothing else expect change the account type, we must still
-        // consider this as an unsaved change so the new rawcontact is passed back to the
-        // compact editor on inserts.
-        if (!mNewContactAccountChanged && !hasPendingChanges()) {
+        if (!hasPendingChanges()) {
             if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
                 // We don't have anything to save and there isn't even an existing contact yet.
                 // Nothing to do, simply go back to editing mode
