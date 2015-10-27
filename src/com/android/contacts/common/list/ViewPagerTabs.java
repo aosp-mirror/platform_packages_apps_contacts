@@ -219,14 +219,26 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
         tabView.setOnLongClickListener(new OnTabLongClickListener(position));
 
         tabView.setPadding(mSidePadding, 0, mSidePadding, 0);
-        mTabStrip.addView(tabView, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.MATCH_PARENT, 1));
+
+        mTabStrip.addView(tabView, position, new LinearLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 1));
 
         // Default to the first child being selected
         if (position == 0) {
             mPrevSelected = 0;
             tabView.setSelected(true);
         }
+    }
+
+    /**
+     * Refresh a tab at a certain index by removing it and reconstructing it.
+     *
+     * @param index The index of the tab view we wish to update.
+     */
+    public void updateTab(int index) {
+        View view = mTabStrip.getChildAt(index);
+        mTabStrip.removeView(view);
+        addTab(mPager.getAdapter().getPageTitle(index), index);
     }
 
     @Override
