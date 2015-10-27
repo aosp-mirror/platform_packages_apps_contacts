@@ -28,11 +28,13 @@
         android:background="@drawable/unread_count_background"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/tab_unread_count_background_size"
+        android:minWidth="@dimen/tab_unread_count_background_size"
         android:layout_marginStart="@dimen/tab_unread_count_margin_left"
         android:layout_marginTop="@dimen/tab_unread_count_margin_top"
         android:layout_toEndOf="@id/icon"
         android:paddingLeft="@dimen/tab_unread_count_text_padding"
         android:paddingRight="@dimen/tab_unread_count_text_padding"
+        android:textAlignment="center"
         android:textSize="@dimen/tab_unread_count_text_size"
         android:textColor="@color/tab_accent_color"
         android:fontFamily="sans-serif-medium" />
