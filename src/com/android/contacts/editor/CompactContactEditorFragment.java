@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -98,9 +99,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
         editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId,
-                mReadOnlyDisplayName, mHasNewContact, mIsUserProfile, mAccountWithDataSet);
-        if (mReadOnlyDisplayName != null) {
+                mHasNewContact, mIsUserProfile, mAccountWithDataSet);
+        if (mHasNewContact && !TextUtils.isEmpty(mReadOnlyDisplayName)) {
             mReadOnlyNameEditorView = editorView.getPrimaryNameEditorView();
+            editorView.maybeSetReadOnlyDisplayNameAsPrimary(mReadOnlyDisplayName);
         }
 
         // Set up the photo widget

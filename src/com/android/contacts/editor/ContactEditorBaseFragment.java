@@ -65,6 +65,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
@@ -83,7 +84,9 @@ import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Base Fragment for contact editors.
@@ -144,6 +147,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     // Join Activity
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
+
+    private static final String KEY_READ_ONLY_DISPLAY_NAME = "readOnlyDisplayName";
 
     protected static final int REQUEST_CODE_JOIN = 0;
     protected static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
@@ -380,12 +385,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Join Activity
     protected long mContactIdForJoin;
 
+    // Used to pre-populate the editor with a display name when a user edits a read-only contact.
+    protected String mReadOnlyDisplayName;
+
     //
     // Not saved/restored on rotates
     //
-
-    // Used to pre-populate the editor with a display name when a user edits a read-only contact.
-    protected String mReadOnlyDisplayName;
 
     // The name editor view for the new raw contact that was created so that the user can
     // edit a read-only contact (to which the new raw contact was joined)
@@ -515,6 +520,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
             // Join Activity
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
+
+            mReadOnlyDisplayName = savedState.getString(KEY_READ_ONLY_DISPLAY_NAME);
         }
 
         // mState can still be null because it may not have have finished loading before
@@ -633,6 +640,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // Join Activity
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
+
+        outState.putString(KEY_READ_ONLY_DISPLAY_NAME, mReadOnlyDisplayName);
 
         super.onSaveInstanceState(outState);
     }
@@ -972,9 +981,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Return true if there are any edits to the current contact which need to
      * be saved.
      */
-    protected boolean hasPendingRawContactChanges() {
+    protected boolean hasPendingRawContactChanges(Set<String> excludedMimeTypes) {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        return RawContactModifier.hasChanges(mState, accountTypes);
+        return RawContactModifier.hasChanges(mState, accountTypes, excludedMimeTypes);
     }
 
     /**
@@ -996,28 +1005,18 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * See go/editing-read-only-contacts
      */
     protected boolean hasPendingChanges() {
-        if (mReadOnlyNameEditorView == null || mReadOnlyDisplayName == null) {
-            return hasPendingRawContactChanges();
-        }
-        // We created a new raw contact delta with a default display name.
-        // We must test for pending changes while ignoring the default display name.
-        final String displayName = mReadOnlyNameEditorView.getDisplayName();
-        if (mReadOnlyDisplayName.equals(displayName)) {
-            // The user did not modify the default display name, erase it and
-            // check if the user made any other changes
-            mReadOnlyNameEditorView.clearAllFields();
-            if (hasPendingRawContactChanges()) {
-                // Other changes were made to the aggregate contact, restore
-                // the display name and proceed.
-                mReadOnlyNameEditorView.setDisplayName(displayName);
-                return true;
-            } else {
-                // No other changes were made to the aggregate contact. Don't add back
-                // the displayName so that a "bogus" contact is not created.
-                return false;
+        if (mReadOnlyNameEditorView != null && mReadOnlyDisplayName != null) {
+            // We created a new raw contact delta with a default display name.
+            // We must test for pending changes while ignoring the default display name.
+            final String displayName = mReadOnlyNameEditorView.getDisplayName();
+            if (mReadOnlyDisplayName.equals(displayName)) {
+                final Set<String> excludedMimeTypes = new HashSet<>();
+                excludedMimeTypes.add(StructuredName.CONTENT_ITEM_TYPE);
+                return hasPendingRawContactChanges(excludedMimeTypes);
             }
+            return true;
         }
-        return true;
+        return hasPendingRawContactChanges(/* excludedMimeTypes =*/ null);
     }
 
     /**
