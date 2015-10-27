@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ដាក់​លើ​អេក្រង់​ដើម"</string>
     <string name="menu_call" msgid="3992595586042260618">"ហៅ​ទំនាក់ទំនង"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"អត្ថបទ​ទំនាក់ទំនង"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"បំបែក"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"ផ្តាច់ការតភ្ជាប់"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"កែសម្រួល​"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"លុប"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"បន្ថែម​ទំនាក់ទំនង"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"បន្ថែម​ក្រុម"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"បំបែក​ទំនាក់ទំនង?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"នឹង​បំបែក​ទំនាក់ទំនង​នេះ​ទៅជា​ទំនាក់ទំនង​ច្រើន។"</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"បញ្ចូលគ្នា"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"ផ្តាច់ការតភ្ជាប់ទំនាក់ទំនងឬទេ?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"ទំនាក់ទំនងនេះនឹងត្រូវបានផ្តាច់ការតភ្ជាប់ទៅជាទំនាក់ទំនងច្រើន"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"តភ្ជាប់"</string>
     <string name="menu_save" msgid="1727844363591825909">"រក្សាទុក"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ភ្ជាប់​ទំនាក់ទំនង"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"ជ្រើស​ទំនាក់ទំនង​ដែល​អ្នក​ចង់​ភ្ជាប់​ជាមួយ <xliff:g id="NAME">%s</xliff:g>៖"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"តភ្ជាប់ទំនាក់ទំនង"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"ជ្រើសទំនាក់ទំនងដែលអ្នកចង់តភ្ជាប់ជាមួយ <xliff:g id="NAME">%s</xliff:g>៖"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"បង្ហាញ​ទំនាក់​ទំនង​ទាំងអស់"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ទំនាក់ទំនង​ដែល​បាន​ស្នើ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ទំនាក់ទំនង​ទាំងអស់"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"ទំនាក់ទំនងត្រូវបានរួមបញ្ចូលគ្នា"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"បានតភ្ជាប់ទំនាក់ទំនង"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"ទំនាក់ទំនងត្រូវបានលុប"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"កំណត់​សំឡេង​រោទ៍"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ការ​ហៅ​ទាំងអស់​ទៅ​សារ​ជា​សំឡេង"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"អ្នក​មិន​អាច​លុប​ទំនាក់ទំនង​ពី​គណនី​បាន​តែ​អាន​ទេ ប៉ុន្តែ​អ្នក​អាច​លាក់​ពួក​វា​នៅ​ក្នុង​បញ្ជី​ទំនាក់ទំនង​របស់​អ្នក​បាន។"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ទំនាក់ទំនង​នេះ​មាន​ព័ត៌មាន​ពី​គណនី​ច្រើន។ នឹង​លាក់​ព័ត៌មាន​ពី​គណនី​បានតែ​អាន, មិនមែន​លុប​ទេ។"</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"អ្នកត្រូវការទំនាក់ទំនងដែលបានជ្រើសរើសយ៉ាងហោចណាស់ 2 ដើម្បីធ្វើការរួមបញ្ចូលគ្នា។"</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"ទំនាក់ទំនងដែលបានជ្រើសរើសនឹងត្រូវបានរួមបញ្ចូលជាមួយទំនាក់ទំនងទោល។"</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"អ្នកត្រូវការទំនាក់ទំនងដែលបានជ្រើសយ៉ាងតិចបំផុតពីរដើម្បីធ្វើការតភ្ជាប់។"</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"ទំនាក់ទំនងដែលបានជ្រើសនឹងត្រូវបានតភ្ជាប់ទៅទំនាក់ទំនងទោល។"</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"ទំនាក់ទំនងដែលបានជ្រើសរើសនឹងត្រូវបានលុប។"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"ព័ត៌មានដែលបានមកពីគណនីដែលអាចត្រឹមតែអាន នឹងត្រូវបានលាក់ក្នុងបញ្ជីទំនាក់ទំនងរបស់អ្នក មិនមែនលុបចោលទេ។"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"ទំនាក់ទំនងទាំងនេះផ្ទុកព័ត៌មានដែលបានមកពីគណនីជាច្រើន។ ព័ត៌មានដែលបានមកពីគណនីដែលអាចត្រឹមតែអាន នឹងត្រូវបានលាក់នៅក្នុងបញ្ជីទំនាក់ទំនងរបស់អ្នក មិនមែនលុបចោលទេ។"</string>
@@ -92,14 +92,18 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ឈ្មោះ​ស្លាក​ផ្ទាល់ខ្លួន"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"បញ្ជូន​ការ​ហៅ​ដោយ​ផ្ទាល់​ទៅ​សារ​ជា​សំឡេង"</string>
     <string name="removePhoto" msgid="4898105274130284565">"លុប​រូបថត​ចេញ"</string>
-    <string name="noContacts" msgid="8579310973261953559">"មិន​មាន​ទំនាក់ទំនង។"</string>
+    <string name="noContacts" msgid="4955659076981974652">"គ្មាន​ទំនាក់ទំនង"</string>
     <string name="noGroups" msgid="8614664663561385253">"មិន​មាន​ក្រុម។"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ដើម្បី​បង្កើត​ក្រុម​អ្នក​ចាំបាច់​ត្រូវ​មាន​គណនី​មួយ។"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"មិន​មាន​មនុស្ស​នៅ​ក្នុង​ក្រុម​នេះ​ទេ។"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"ដើម្បី​បន្ថែម, កែ​សម្រួល​ក្រុម។"</string>
     <string name="savingContact" msgid="4075751076741924939">"កំពុង​រក្សាទុក​ទំនាក់ទំនង..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"បាន​រក្សាទុក​ទំនាក់ទំនង។"</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"បាន​រក្សាទុក​ទំនាក់ទំនង"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"ទំនាក់ទំនងដែលមិនបានតភ្ជាប់"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"មិន​អាច​រក្សាទុក​ការ​ប្ដូរ​ទំនាក់ទំនង។"</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"មិនអាចផ្តាច់ទំនាក់ទំនងបានទេ"</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"មិនអាចតភ្ជាប់ទំនាក់ទំនងបានទេ"</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"មានកំហុសក្នុងការរក្សាទុកទំនាក់ទំនង"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"មិនអាចរក្សាទុកការប្ដូររូបថតទំនាក់ទំនង។"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"បាន​រក្សាទុក​ក្រុម។"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"មិន​អាច​រក្សាទុក​ការ​ប្ដូរ​ក្រុម។"</string>
@@ -166,11 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"រូបថតបឋម"</string>
     <string name="description_star" msgid="2605854427360036550">"សំណព្វ"</string>
     <string name="edit_contact" msgid="7529281274005689512">"កែ​ទំនាក់ទំនង"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other">បានរួមបញ្ចូលគ្នាពីប្រភព <xliff:g id="COUNT">%0$d</xliff:g></item>
-      <item quantity="one">មិនបានរួមបញ្ចូលគ្នា</item>
-    </plurals>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"ភ្ជាប់​ទំនាក់ទំនង​បច្ចុប្បន្ន​ជាមួយ​ទំនាក់ទំនង​ដែល​បាន​ជ្រើស?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"តភ្ជាប់ទំនាក់ទំនងបច្ចុប្បន្នជាមួយទំនាក់ទំនងដែលបានជ្រើស?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ប្ដូរ​ដើម្បី​កែ​ទំនាក់ទំនង​ដែល​បាន​ជ្រើស? ព័ត៌មាន​ដែល​អ្នក​បញ្ចូល​នឹង​បាន​ចម្លង។"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"ចម្លង​ទៅ​ទំនាក់ទំនង​របស់​ខ្ញុំ"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"បន្ថែម​ទៅ​ទំនាក់ទំនង​របស់​ខ្ញុំ"</string>
@@ -190,7 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"ទំនាក់ទំនង"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"កំពុង​ផ្ទុក..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"បង្កើត​ទំនាក់ទំនង​ថ្មី"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ចូល​គណនី"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"បន្ថែមគណនី"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"នាំចូល​ទំនាក់ទំនង"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"បង្កើត​ក្រុម​ថ្មី"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"បង្កើត​ក្រុម​ថ្មី"</string>
@@ -207,7 +207,7 @@
       <item quantity="other">មនុស្ស <xliff:g id="COUNT_1">%1$d</xliff:g> នាក់</item>
       <item quantity="one">មនុស្ស <xliff:g id="COUNT_0">%1$d</xliff:g> នាក់</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"សូម​បញ្ចូល​ឈ្មោះ​ទំនាក់ទំនង​មុន​ពេល​ចូលរួម​ជាមួយ​ទំនាក់ទំនង​ផ្សេងទៀត។"</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"សូមបញ្ចូលឈ្មោះទំនាក់ទំនងមុនពេលតភ្ជាប់ជាមួយទំនាក់ទំនងផ្សេងទៀត។"</string>
     <string name="copy_text" msgid="3257145021583508761">"ចម្លង​ទៅ​ក្ដារ​តម្បៀត​ខ្ទាស់"</string>
     <string name="set_default" msgid="4417505153468300351">"កំណត់​លំនាំដើម"</string>
     <string name="clear_default" msgid="7193185801596678067">"សម្អាត​លំនាំដើម"</string>
@@ -272,5 +272,36 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ដំណើរការបានយ៉ាងល្អ នៅពេលដែលអ្នកបញ្ចូលអត្តសញ្ញាណ Hangouts របស់បុគ្គលនោះទៅក្នុងប្រអប់អ៊ីម៉ែល ឬប្រអប់លេខទូរស័ព្ទ។"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"ប្រអប់ច្រើនទៀត"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ប្ដូររូបថត"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"បានបរាជ័យក្នុងការបើកកម្មវិធីកែ"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"កំពុងរក្សាទុកទៅ"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">ទំនាក់ទំនងដែលបានតភ្ជាប់ (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">ទំនាក់ទំនងដែលបានតភ្ជាប់ 1</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"ទំនាក់ទំនងដែលបានតភ្ជាប់ <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ភ្ជាប់ទំនាក់ទំនង"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"បោះបង់"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other">អាចមានស្ទួន <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">អាចមានស្ទួន 1</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="other">ទំនាក់ទំនងដែលបានតភ្ជាប់ <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">ទំនាក់ទំនងដែលបានតភ្ជាប់ 1</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ទំនាក់ទំនងនេះ"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"អាចនឹងស្ទួន"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"ជម្រះទំនាក់ទំនងស្ទួនដែលមានឈ្មោះតែមួយដោយតភ្ជាប់ពួកគេជាមួយគ្នា"</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"ទំនាក់ទំនងដែលបានតភ្ជាប់"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"ពីគណនីរបស់អ្នក"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"ថតរូប"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"រូបថតទាំងអស់"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"ជ្រើសរូបថត"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"ពី <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

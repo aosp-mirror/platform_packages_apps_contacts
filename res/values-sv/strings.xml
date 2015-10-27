@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Placera på startskärmen"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring upp kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Skicka SMS till kontakt"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Dela upp"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Ta bort länk"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Redigera"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ta bort"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Lägg till kontakt"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Lägg till grupp"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Dela upp kontakten?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Kontakten kommer att delas upp i flera kontakter."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"Sammanfoga"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"Vill du ta bort länken för kontakten?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"Länken tas bort och kontakten delas upp i flera kontakter."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Länka"</string>
     <string name="menu_save" msgid="1727844363591825909">"Spara"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kombinera kontakter"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Välj en kontakt som du vill slå ihop med <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Länka kontakter"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Välj vilken kontakt du vill länka till <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Visa alla kontakter"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Föreslagna kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alla kontakter"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"Kontakterna har sammanfogats"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontakterna har länkats"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontakterna har raderats"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ställ in ringsignal"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alla samtal till röstbrevlådan"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Du kan inte ta bort kontakter från skrivskyddade konton, men du kan dölja dem i kontaktlistorna."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Den här kontakten har information från flera konton. Information från skrivskyddade konton döljs i kontaktlistan, men tas inte bort."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Du måste markera minst två kontakter som ska sammanfogas."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"De valda kontakterna sammanfogas till en."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Du måste markera minst två kontakter som ska länkas."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"De valda kontakterna länkas till en enda kontakt."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"De valda kontakterna raderas."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Information från skrivskyddade konton döljs i kontaktlistan, men tas inte bort."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"De här kontakterna har information från flera konton. Information från skrivskyddade konton döljs i kontaktlistan, men tas inte bort."</string>
@@ -92,14 +92,19 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Anpassat etikettsnamn"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Skicka samtal direkt till röstbrevlåda"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Ta bort foto"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Inga kontakter."</string>
+    <string name="noContacts" msgid="4955659076981974652">"Inga kontakter"</string>
     <string name="noGroups" msgid="8614664663561385253">"Inga grupper."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Om du vill skapa grupper måste du ha ett konto."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Inga personer i denna grupp."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Redigera gruppen om du vill lägga till personer."</string>
     <string name="savingContact" msgid="4075751076741924939">"Sparar kontakt..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt sparad."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt sparad"</string>
+    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
+    <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Det gick inte att spara ändringarna i kontakten."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Det gick inte att ta bort länken för kontakten."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Det gick inte att länka kontakten."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Det gick inte att spara kontakten."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Det gick inte att spara ändringarna av kontaktfotot."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen sparades."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Det gick inte att spara ändringarna i gruppen."</string>
@@ -166,11 +171,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Primärt foto"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Redigera kontakt"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other">slagits samman från <xliff:g id="COUNT">%0$d</xliff:g> källor</item>
-      <item quantity="one">har inte slagits samman</item>
-    </plurals>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Vill du kombinera kontakten med den markerade kontakten?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Vill du länka den aktuella kontakten till den markerade kontakten?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vill du fortsätta att redigera den markerade kontakten? Information som du har angett hittills kommer att kopieras."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiera till mina kontakter"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Lägg till i mina kontakter"</string>
@@ -190,7 +191,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Läser in …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Skapa en ny kontakt"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Logga in på ett konto"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Lägg till ett konto"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importera kontakter"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Skapa ny grupp"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Skapa ny grupp"</string>
@@ -207,7 +208,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> personer</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> person</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Skriv in kontaktens namn innan du slår ihop den med en annan."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Skriv kontaktens namn innan du länkar den till en annan."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiera till Urklipp"</string>
     <string name="set_default" msgid="4417505153468300351">"Ange standard"</string>
     <string name="clear_default" msgid="7193185801596678067">"Rensa standardinställningar"</string>
@@ -272,5 +273,36 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts fungerar bättre när du anger personens identifierare i Hangouts i e-postfältet eller mobilfältet."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Fler fält"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Byt bild"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Det gick inte att öppna redigeringsappen."</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Sparas till"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">Länkade kontakter (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Länkad kontakt</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> länkade kontakter"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LÄNKA KONTAKTER"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"AVBRYT"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> möjliga dubbletter</item>
+      <item quantity="one">1 möjlig dubblett</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> länkade kontakter</item>
+      <item quantity="one">1 länkad kontakt</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Den här kontakten"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Möjlig dubblett"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Städa bort dubbletter som avser samma kontakt genom att länka samman dem."</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Länkade kontakter"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"Från dina konton"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"Ta en bild"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"Alla foton"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"Välj foto"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Från <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

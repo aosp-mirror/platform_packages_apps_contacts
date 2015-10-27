@@ -47,31 +47,31 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Editaţi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Ștergeţi"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Schimbați fotografia"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plasaţi în ecranul de pornire"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plasați în ecranul de pornire"</string>
     <string name="menu_call" msgid="3992595586042260618">"Apelaţi persoana din agendă"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteţi mesaj text către o persoană din agendă"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Separaţi"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteți mesaj text către o persoană din agendă"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Separați"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editaţi"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ștergeţi"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Adăugaţi o persoană de contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Adăugaţi un grup"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Intrare separată?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Această intrare din Agendă va fi separată în mai multe intrări."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"Îmbinați"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"Separați persoanele de contact?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"Această persoană de contact va fi separată în mai multe persoane de contact."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Asociați"</string>
     <string name="menu_save" msgid="1727844363591825909">"Salvați"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Îmbinați intrările din Agendă"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Alegeţi persoana de contact de asociat cu <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Asociați persoanele de contact"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Alegeți persoana de contact pe care doriți să o asociați cu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afişaţi toate persoanele din agendă"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toate persoanele din agendă"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"Persoane de contact îmbinate"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"Persoanele de contact au fost asociate"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Persoane de contact șterse"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setaţi ton apel"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Toate apel. către mesag. voc."</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Nu puteţi șterge persoane din agendă, din conturi cu permisiuni doar de citire, însă puteţi să le ascundeţi în lista dvs. de persoane din agendă."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Informaţiile despre această persoană din agendă provin din mai multe conturi. Informaţiile provenite din conturile numai în citire nu vor fi şterse din lista dvs., ci doar ascunse."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Pentru o îmbinare aveți nevoie de cel puțin două persoane de contact selectate."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Persoanele de contact selectate vor fi îmbinate într-o singură persoană de contact."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Pentru o asociere aveți nevoie de cel puțin două persoane de contact selectate."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"Persoanele de contact selectate vor fi asociate într-o singură persoană de contact."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"Persoanele de contact selectate vor fi șterse."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Informațiile din conturile numai în citire vor fi ascunse în lista persoanelor de contact, nu vor fi șterse."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Pentru aceste persoane de contact există informații din mai multe conturi. Informațiile din conturile numai în citire vor fi ascunse în lista persoanelor de contact, nu vor fi șterse."</string>
@@ -83,23 +83,28 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Creaţi o intrare nouă în agendă"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Creaţi o intrare nouă în Agendă"</string>
   <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"Organizaţie"</item>
+    <item msgid="8287841928119937597">"Organizație"</item>
     <item msgid="7196592230748086755">"Notă"</item>
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nu există imagini disponibile pe tabletă."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Nicio fotografie disponibilă în telefon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Fotografie persoană din agendă"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Numele etichetei personalizate"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Trimiteţi apelurile direct către mesageria vocală"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Trimiteți apelurile direct către mesageria vocală"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminaţi fotografia"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Nicio persoană în agendă."</string>
+    <string name="noContacts" msgid="4955659076981974652">"Nu există persoane în agendă"</string>
     <string name="noGroups" msgid="8614664663561385253">"Nu există grupuri."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Pentru a crea grupuri aveţi nevoie de un cont."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Pentru a crea grupuri aveți nevoie de un cont."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Nu există persoane în acest grup."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Pentru a adăuga persoane, editaţi grupul."</string>
     <string name="savingContact" msgid="4075751076741924939">"Se salvează persoana din agendă..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Intrarea din agendă a fost salvată."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Persoana din agendă a fost salvată"</string>
+    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
+    <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nu s-au putut salva modificările aduse persoanei de contact."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Persoana de contact nu a putut fi separată."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Persoana de contact nu a putut fi asociată."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Eroare la salvarea persoanei de contact."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Modificările privind fotografia persoanei de contact nu au putut fi salvate."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupul a fost salvat."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nu s-au putut salva modificările aduse grupului."</string>
@@ -158,25 +163,20 @@
     <string name="upgrade_in_progress" msgid="474511436863451061">"Se actualizează lista de persoane din agendă."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Se caută..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Afişaţi elementele selectate"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"Afişaţi-i pe toţi"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"Afișați-i pe toţi"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Selectaţi-le pe toate"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Deselectaţi-le pe toate"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Adăugaţi intrare nouă"</string>
-    <string name="add_organization" msgid="7311893231158291197">"Adăugaţi o organizaţie"</string>
+    <string name="add_organization" msgid="7311893231158291197">"Adăugaţi o organizație"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Dată"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Nume grup"</string>
     <string name="change_photo" msgid="8530597935483526383">"Modificați"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Foto. de bază"</string>
     <string name="description_star" msgid="2605854427360036550">"preferate"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editaţi informaţiile despre persoana din agendă"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="few">au fost îmbinate din <xliff:g id="COUNT">%0$d</xliff:g> surse</item>
-      <item quantity="other">au fost îmbinate din <xliff:g id="COUNT">%0$d</xliff:g> de surse</item>
-      <item quantity="one">nu au fost îmbinate</item>
-    </plurals>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Îmbinați intrarea curentă din agendă cu intrarea selectată?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Asociați persoana de contact actuală cu persoana de contact selectată?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Comutaţi la funcţia de editare a persoanei din agendă selectate? Informaţiile introduse până acum vor fi copiate."</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"Copiaţi în Agendă"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Copiați în Agendă"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adăugaţi în Agendă"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Director <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizată"</string>
@@ -194,7 +194,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Persoană din agendă"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Se încarcă..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Creaţi o intrare nouă în Agendă"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Conectați-vă la un cont"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Adăugați un cont"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importaţi Agenda"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Creaţi un grup nou"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Creaţi un grup nou"</string>
@@ -214,8 +214,8 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> de persoane</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persoană</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Introduceţi un nume pentru intrarea din agendă înainte de îmbinarea cu altă intrare."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Copiaţi în clipboard"</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Introduceți numele persoanei de contact înainte de a o asocia cu altă persoană."</string>
+    <string name="copy_text" msgid="3257145021583508761">"Copiați în clipboard"</string>
     <string name="set_default" msgid="4417505153468300351">"Setaţi ca prestabilit"</string>
     <string name="clear_default" msgid="7193185801596678067">"Ștergeţi datele prestabilite"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text copiat"</string>
@@ -232,7 +232,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adăugaţi un cont"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noul contact nu se va crea o copie de rezervă. Adăugați un cont care creează online copii de rezervă pentru contacte?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Noul dvs. contact va fi sincronizat cu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puteţi să sincronizaţi noul dvs. contact cu unul dintre următoarele conturi. Pe care doriţi să îl utilizaţi?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puteţi să sincronizați noul dvs. contact cu unul dintre următoarele conturi. Pe care doriți să îl utilizaţi?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adăugați contact nou"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editați intrarea"</string>
     <string name="keep_local" msgid="1258761699192993322">"Păstraţi local"</string>
@@ -279,5 +279,40 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funcționează mai bine când introduceți identificatorul Hangouts al persoanei în câmpul pentru adresa de e-mail sau în câmpul pentru numărul de telefon."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Mai multe câmpuri"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Schimbați fotografia"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Editorul nu a putut fi deschis."</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Se salvează în"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="few">Persoane de contact asociate (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Persoane de contact asociate (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Persoană de contact asociată</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane de contact asociate"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ASOCIAȚI PERSOANELE DE CONTACT"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ANULAȚI"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> dubluri posibile</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> de dubluri posibile</item>
+      <item quantity="one">O dublură posibilă</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> persoane de contact asociate</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> de persoane de contact asociate</item>
+      <item quantity="one">O persoană de contact asociată</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="few">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Această persoană de contact"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Dubluri posibile"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Ștergeți persoanele de contact dubluri pentru aceeași persoană asociindu-le."</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Persoane de contact asociate"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"Din conturile dvs."</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"Fotografiați"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"Toate fotografiile"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"Alegeți o fotografie"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Din contul <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

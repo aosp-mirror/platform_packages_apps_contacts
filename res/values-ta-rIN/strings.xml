@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"முகப்புத் திரையில் அமை"</string>
     <string name="menu_call" msgid="3992595586042260618">"தொடர்பை அழை"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"தொடர்பிற்கு உரைச் செய்தியை அனுப்பு"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"பிரி"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"தொடர்பைப் பிரி"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"திருத்து"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"நீக்கு"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"தொடர்பைச் சேர்"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"குழுவைச் சேர்"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"தொடர்பைப் பிரிக்கவா?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"இந்தத் தொடர்பு பல தொடர்புகளாகப் பிரிக்கப்படும்."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"ஒன்றிணை"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"தொடர்பைப் பிரிக்கவா?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"இந்தத் தொடர்பு பல தொடர்புகளாகப் பிரிக்கப்படும்."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"இணைப்பு"</string>
     <string name="menu_save" msgid="1727844363591825909">"சேமி"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"தொடர்புகளில் இணை"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> உடன் இணைய விரும்பும் தொடர்பைத் தேர்வுசெய்யவும்:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"தொடர்புகளை இணைத்தல்"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> உடன் இணைக்க விரும்பும் தொடர்பைத் தேர்வுசெய்க:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"எல்லா தொடர்புகளையும் காட்டு"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்பட்ட தொடர்புகள்"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"எல்லா தொடர்புகளும்"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"தொடர்புகள் இணைக்கப்பட்டன"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"தொடர்புகள் இணைக்கப்பட்டன"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"தொடர்புகள் நீக்கப்பட்டன"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ரிங்டோனை அமை"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"எல்லா அழைப்புகளையும் குரலஞ்சலிற்கு திருப்பு"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"படிக்க மட்டுமேயான கணக்குகளின் தொடர்புகளை நீக்க முடியாது, ஆனால் தொடர்புகள் பட்டியல்களில் அவற்றை மறைக்கலாம்."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"தொடர்பில் பல கணக்குகளின் தகவல் உள்ளது. படிக்க மட்டுமேயான கணக்குகளின் தகவல் தொடர்புகள் பட்டியல்களில் மறைக்கப்படும், ஆனால் நீக்கப்படாது."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ஒன்றிணைப்பதற்கு, குறைந்தபட்சம் இரண்டு தொடர்புகளையாவது தேர்ந்தெடுத்திருக்க வேண்டும்."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"தேர்ந்தெடுத்த தொடர்புகள் ஒரே தொடர்பாக்கப்படும்."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"ஒன்றிணைப்பதற்கு, குறைந்தபட்சம் இரண்டு தொடர்புகளையாவது தேர்ந்தெடுத்திருக்க வேண்டும்."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"தேர்ந்தெடுத்த தொடர்புகள் ஒரே தொடர்பாக்கப்படும்."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"தேர்ந்தெடுத்த தொடர்புகள் நீக்கப்படும்."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"படிக்க மட்டுமேயான கணக்குகளின் தகவல்கள் உங்கள் தொடர்புப் பட்டியல்களில் மறைக்கப்படும் ஆனால் நீக்கப்படாது."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"இந்தத் தொடர்புகள் பல கணக்குகளின் தகவலைக் கொண்டுள்ளன. படிக்க மட்டுமேயான கணக்குகளின் தகவல்கள் உங்கள் தொடர்புப் பட்டியல்களில் மறைக்கப்படும் ஆனால் நீக்கப்படாது."</string>
@@ -92,14 +92,18 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"தனிப்பயன் லேபிள் பெயர்"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"அழைப்புகளை நேரடியாகக் குரலஞ்சலுக்கு அனுப்பு"</string>
     <string name="removePhoto" msgid="4898105274130284565">"படத்தை அகற்று"</string>
-    <string name="noContacts" msgid="8579310973261953559">"தொடர்புகள் இல்லை."</string>
+    <string name="noContacts" msgid="4955659076981974652">"தொடர்புகள் இல்லை"</string>
     <string name="noGroups" msgid="8614664663561385253">"குழுக்கள் இல்லை."</string>
     <string name="noAccounts" msgid="7768267764545265909">"குழுக்களை உருவாக்க கணக்கு அவசியம்."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"குழுவில் யாரும் இல்லை."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"சிலவற்றைச் சேர்க்க, குழுவைத் திருத்தவும்."</string>
     <string name="savingContact" msgid="4075751076741924939">"தொடர்பைச் சேமிக்கிறது…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"தொடர்பு சேமிக்கப்பட்டது."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"தொடர்பு சேமிக்கப்பட்டது"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"தொடர்புகள் பிரிக்கப்பட்டன"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"தொடர்பின் மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"தொடர்பை அகற்ற முடியவில்லை."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"தொடர்பை இணைக்க முடியவில்லை."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"தொடர்பைச் சேமிப்பதில் பிழை."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"தொடர்பின் பட மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"குழு சேமிக்கப்பட்டது."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"குழு மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
@@ -166,11 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"முதன்மை படம்"</string>
     <string name="description_star" msgid="2605854427360036550">"பிடித்தது"</string>
     <string name="edit_contact" msgid="7529281274005689512">"தொடர்பைத் திருத்து"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> மூலங்களிலிருந்து இணைக்கப்பட்டன</item>
-      <item quantity="one">இணைக்கப்படவில்லை</item>
-    </plurals>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"தேர்ந்தெடுத்த தொடர்புடன் தற்போதைய தொடர்பை இணைக்கவா?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"தேர்ந்தெடுத்த தொடர்புடன் தற்போதைய தொடர்பை இணைக்கவா?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"தேர்ந்தெடுத்த தொடர்பைத் திருத்துதலுக்கு மாறவா? இதுவரை உள்ளிட்ட தகவல் நகலெடுக்கப்படும்."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"எனது தொடர்புகளுக்கு நகலெடு"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"எனது தொடர்புகளில் சேர்"</string>
@@ -190,7 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"தொடர்பு"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ஏற்றுகிறது..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"புதிய தொடர்பை உருவாக்கு"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"கணக்கில் உள்நுழைக"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"கணக்கைச் சேர்"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"தொடர்புகளை இறக்குமதி செய்"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"புதிய குழுவை உருவாக்கு"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"புதிய குழு"</string>
@@ -207,7 +207,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> பேர்</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> நபர்</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"வேறொன்றுடன் இணைப்பதற்கு முன் தொடர்பின் பெயரை உள்ளிடவும்."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"வேறொன்றுடன் இணைப்பதற்கு முன் தொடர்பின் பெயரை உள்ளிடவும்."</string>
     <string name="copy_text" msgid="3257145021583508761">"கிளிப்போர்டுக்கு நகலெடு"</string>
     <string name="set_default" msgid="4417505153468300351">"இயல்புநிலையாக அமை"</string>
     <string name="clear_default" msgid="7193185801596678067">"இயல்பை அழி"</string>
@@ -272,5 +272,36 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"பிறரின் Hangouts அடையாளத்தை மின்னஞ்சல் அல்லது ஃபோன் புலத்தில் உள்ளிடும் போது, Hangouts இன்னும் சிறப்பாகச் செயல்படும்."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"மேலும்  விவரங்கள்"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"படத்தை மாற்றவும்"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"எடிட்டரைத் திறக்க முடியவில்லை."</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"இதில் சேமிக்கிறது"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">இணைக்கப்பட்ட தொடர்புகள் (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">இணைக்கப்பட்ட தொடர்பு</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> இணைக்கப்பட்ட தொடர்புகள்"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"தொடர்புகளை இணை"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ரத்துசெய்"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> சாத்தியமுள்ள நகல்கள்</item>
+      <item quantity="one">1 சாத்தியமுள்ள நகல்</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> இணைக்கப்பட்ட தொடர்புகள்</item>
+      <item quantity="one">1 இணைக்கப்பட்ட தொடர்பு</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"இந்தத் தொடர்பு"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"சாத்தியமுள்ள நகல்கள்"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"ஒரே நபரின் நகல் தொடர்புகளை ஒன்றிணைப்பதன் மூலம், நகல்களை நீக்கவும்."</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"இணைத்த தொடர்புகள்"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"உங்கள் கணக்குகளில் இருந்து"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"படமெடு"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"எல்லா படங்களும்"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"படத்தைத் தேர்வுசெய்க"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> இலிருந்து"</string>
 </resources>

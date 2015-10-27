@@ -50,28 +50,28 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"הצב במסך הבית"</string>
     <string name="menu_call" msgid="3992595586042260618">"התקשר לאיש קשר"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"הפרד"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"בטל קישור"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"ערוך"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"מחק"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"הוסף איש קשר"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"הוסף קבוצה"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"לפצל את איש הקשר?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"איש קשר זה יפוצל למספר אנשי קשר."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"מזג"</string>
+    <string name="splitConfirmation_title" msgid="7323598548437734615">"האם לבטל את הקישור של איש הקשר?"</string>
+    <string name="splitConfirmation" msgid="7571509181690496920">"הקישור של איש הקשר יבוטל, והוא יפוצל למספר אנשי קשר."</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"קשר"</string>
     <string name="menu_save" msgid="1727844363591825909">"שמור"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"צרף אנשי קשר"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"בחר את איש הקשר שברצונך לצרף אל <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"קישור אנשי קשר"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"בחר את איש הקשר שברצונך לקשר עם <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"הצג את כל אנשי הקשר"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"אנשי קשר מוצעים"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"כל אנשי הקשר"</string>
-    <string name="contactsJoinedMessage" msgid="656936718666768589">"נעשה מיזוג של אנשי הקשר"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"אנשי הקשר קושרו"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"אנשי הקשר נמחקו"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"הגדר רינגטון"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"כל השיחות לתא הקולי"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה בלבד, אך ניתן להסתיר אותם ברשימות אנשי הקשר."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"איש קשר זה מכיל מידע מחשבונות מרובים. מידע מחשבונות לקריאה בלבד יוסתר ברשימות אנשי הקשר ולא יימחק."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"כדי לבצע מיזוג עליך לבחור שני אנשי קשר לפחות."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"אנשי הקשר הנבחרים ימוזגו לרשומת איש קשר אחת."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"כדי לבצע קישור עליך לבחור שני אנשי קשר לפחות."</string>
+    <string name="batch_link_confirmation" msgid="6874108358830894848">"אנשי הקשר הנבחרים יקושרו לרשומת איש קשר אחת."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"אנשי הקשר הנבחרים יימחקו."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"מידע מחשבונות לקריאה בלבד יוסתר ברשימות אנשי הקשר ולא יימחק."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"אנשי הקשר האלה מכילים מידע מחשבונות מרובים. מידע מחשבונות לקריאה בלבד יוסתר ברשימות אנשי הקשר ולא יימחק."</string>
@@ -92,14 +92,19 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"שם תווית בהתאמה אישית"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"שלח שיחות ישירות לדואר הקולי"</string>
     <string name="removePhoto" msgid="4898105274130284565">"הסר תמונה"</string>
-    <string name="noContacts" msgid="8579310973261953559">"אין אנשי קשר."</string>
+    <string name="noContacts" msgid="4955659076981974652">"אין אנשי קשר"</string>
     <string name="noGroups" msgid="8614664663561385253">"אין קבוצות."</string>
     <string name="noAccounts" msgid="7768267764545265909">"כדי ליצור קבוצות, נחוץ חשבון."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"אין אנשים בקבוצה זו."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"כדי להוסיף, ערוך את הקבוצה."</string>
     <string name="savingContact" msgid="4075751076741924939">"שומר איש קשר…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"איש הקשר נשמר."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"איש הקשר נשמר"</string>
+    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
+    <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"לא ניתן לשמור את השינויים באנשי הקשר."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"לא ניתן לבטל את הקישור של איש הקשר."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"לא ניתן היה לקשר איש קשר."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"אירעה שגיאה בעת שמירת איש הקשר."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"לא ניתן היה לשמור את השינויים בתמונות של אנשי הקשר."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"הקבוצה נשמרה."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"לא ניתן לשמור את השינויים בקבוצות."</string>
@@ -172,13 +177,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"תמונה ראשית"</string>
     <string name="description_star" msgid="2605854427360036550">"מועדף"</string>
     <string name="edit_contact" msgid="7529281274005689512">"ערוך איש קשר"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="two">מוזגו מ-<xliff:g id="COUNT">%0$d</xliff:g> מקורות</item>
-      <item quantity="many">מוזגו מ-<xliff:g id="COUNT">%0$d</xliff:g> מקורות</item>
-      <item quantity="other">מוזגו מ-<xliff:g id="COUNT">%0$d</xliff:g> מקורות</item>
-      <item quantity="one">לא מוזגו</item>
-    </plurals>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"לצרף את איש הקשר הנוכחי לאיש הקשר שנבחר?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"לקשר את איש הקשר הנוכחי לאיש הקשר שנבחר?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"לעבור לעריכה של איש הקשר שנבחר? המידע שהזנת עד עכשיו יועתק."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"העתק אל \'אנשי הקשר שלי\'"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"הוסף ל\'אנשי הקשר שלי\'"</string>
@@ -198,7 +197,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"איש קשר"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"טוען..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"צור איש קשר חדש"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"היכנס לחשבון"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"הוסף חשבון"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"יבא אנשי קשר"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"צור קבוצה חדשה"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"צור קבוצה חדשה"</string>
@@ -221,7 +220,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> אנשים</item>
       <item quantity="one">אדם <xliff:g id="COUNT_0">%1$d</xliff:g></item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"הקלד שם של איש קשר לפני צירופו לאחר."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"הקלד שם של איש קשר לפני קישורו לאחר."</string>
     <string name="copy_text" msgid="3257145021583508761">"העתק ללוח"</string>
     <string name="set_default" msgid="4417505153468300351">"קבע כברירת מחדל"</string>
     <string name="clear_default" msgid="7193185801596678067">"נקה ברירת מחדל"</string>
@@ -286,5 +285,44 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏Hangouts פועל טוב יותר כשאתה מזין את מזהה ה-Hangouts של המשתמש בשדה האימייל או בשדה הטלפון."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"שדות נוספים"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"שנה תמונה"</string>
+    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"פתיחת העורך נכשלה."</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"שומר ב-"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="two">שני אנשי קשר מקושרים (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="many">אנשי קשר מקושרים (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">אנשי קשר מקושרים (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">איש קשר מקושר אחד</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> אנשי קשר מקושרים"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>‏ (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"קשר אנשי קשר"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"בטל"</string>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> כפילויות</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> כפילויות</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> כפילויות</item>
+      <item quantity="one">כפילות אחת</item>
+    </plurals>
+    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
+      <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר מקושרים</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר מקושרים</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר מקושרים</item>
+      <item quantity="one">איש קשר מקושר אחד</item>
+    </plurals>
+    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
+      <item quantity="two">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="many">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one"></item>
+    </plurals>
+    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
+    <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"איש קשר זה"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"כפילויות אפשריות"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"נקה את הכפילויות באנשי הקשר לאותו אדם באמצעות קישורן ביחד."</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"אנשי קשר שקושרו"</string>
+    <string name="from_your_accounts" msgid="1746293107836889912">"מהחשבונות שלך"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"צלם תמונה"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"כל התמונות"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"בחירת תמונה"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"מאת <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>
