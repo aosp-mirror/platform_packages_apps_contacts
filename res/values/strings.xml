@@ -208,6 +208,9 @@
     <!-- Confirmation dialog contents after users selects to delete a Writable contact. -->
     <string name="deleteConfirmation">This contact will be deleted.</string>
 
+    <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=30] -->
+    <string name="menu_discard">Discard changes</string>
+
     <!-- Message displayed in a toast when you try to view the details of a contact that
          for some reason doesn't exist anymore. [CHAR LIMIT=NONE]-->
     <string name="invalidContactMessage">The contact doesn\'t exist.</string>
