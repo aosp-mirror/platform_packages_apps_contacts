@@ -159,11 +159,12 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     }
 
     @Override
-    protected boolean doSaveAction(int saveMode) {
+    protected boolean doSaveAction(int saveMode, Long joinContactId) {
         final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(),
-                CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos);
+                CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos,
+                JOIN_CONTACT_ID_EXTRA_KEY, joinContactId);
         try {
             mContext.startService(intent);
         } catch (Exception exception) {
