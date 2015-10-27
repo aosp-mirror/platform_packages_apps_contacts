@@ -239,58 +239,67 @@ public class ContactListItemView extends ViewGroup
     public ContactListItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        // Read all style values
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
-        mPreferredHeight = a.getDimensionPixelSize(
-                R.styleable.ContactListItemView_list_item_height, mPreferredHeight);
-        mActivatedBackgroundDrawable = a.getDrawable(
-                R.styleable.ContactListItemView_activated_background);
+        TypedArray a;
 
-        mGapBetweenImageAndText = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_gap_between_image_and_text,
-                mGapBetweenImageAndText);
-        mGapBetweenLabelAndData = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_gap_between_label_and_data,
-                mGapBetweenLabelAndData);
-        mPresenceIconMargin = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_presence_icon_margin,
-                mPresenceIconMargin);
-        mPresenceIconSize = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_presence_icon_size, mPresenceIconSize);
-        mDefaultPhotoViewSize = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_photo_size, mDefaultPhotoViewSize);
-        mTextIndent = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_text_indent, mTextIndent);
-        mTextOffsetTop = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_text_offset_top, mTextOffsetTop);
-        mDataViewWidthWeight = a.getInteger(
-                R.styleable.ContactListItemView_list_item_data_width_weight, mDataViewWidthWeight);
-        mLabelViewWidthWeight = a.getInteger(
-                R.styleable.ContactListItemView_list_item_label_width_weight,
-                mLabelViewWidthWeight);
-        mNameTextViewTextColor = a.getColor(
-                R.styleable.ContactListItemView_list_item_name_text_color, mNameTextViewTextColor);
-        mNameTextViewTextSize = (int) a.getDimension(
-                R.styleable.ContactListItemView_list_item_name_text_size,
-                (int) getResources().getDimension(R.dimen.contact_browser_list_item_text_size));
+        if (R.styleable.ContactListItemView != null) {
+            // Read all style values
+            a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
+            mPreferredHeight = a.getDimensionPixelSize(
+                    R.styleable.ContactListItemView_list_item_height, mPreferredHeight);
+            mActivatedBackgroundDrawable = a.getDrawable(
+                    R.styleable.ContactListItemView_activated_background);
 
-        setPaddingRelative(
-                a.getDimensionPixelOffset(
-                        R.styleable.ContactListItemView_list_item_padding_left, 0),
-                a.getDimensionPixelOffset(
-                        R.styleable.ContactListItemView_list_item_padding_top, 0),
-                a.getDimensionPixelOffset(
-                        R.styleable.ContactListItemView_list_item_padding_right, 0),
-                a.getDimensionPixelOffset(
-                        R.styleable.ContactListItemView_list_item_padding_bottom, 0));
+            mGapBetweenImageAndText = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_gap_between_image_and_text,
+                    mGapBetweenImageAndText);
+            mGapBetweenLabelAndData = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_gap_between_label_and_data,
+                    mGapBetweenLabelAndData);
+            mPresenceIconMargin = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_presence_icon_margin,
+                    mPresenceIconMargin);
+            mPresenceIconSize = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_presence_icon_size,
+                    mPresenceIconSize);
+            mDefaultPhotoViewSize = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_photo_size, mDefaultPhotoViewSize);
+            mTextIndent = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_text_indent, mTextIndent);
+            mTextOffsetTop = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_text_offset_top, mTextOffsetTop);
+            mDataViewWidthWeight = a.getInteger(
+                    R.styleable.ContactListItemView_list_item_data_width_weight,
+                    mDataViewWidthWeight);
+            mLabelViewWidthWeight = a.getInteger(
+                    R.styleable.ContactListItemView_list_item_label_width_weight,
+                    mLabelViewWidthWeight);
+            mNameTextViewTextColor = a.getColor(
+                    R.styleable.ContactListItemView_list_item_name_text_color,
+                    mNameTextViewTextColor);
+            mNameTextViewTextSize = (int) a.getDimension(
+                    R.styleable.ContactListItemView_list_item_name_text_size,
+                    (int) getResources().getDimension(R.dimen.contact_browser_list_item_text_size));
+
+            setPaddingRelative(
+                    a.getDimensionPixelOffset(
+                            R.styleable.ContactListItemView_list_item_padding_left, 0),
+                    a.getDimensionPixelOffset(
+                            R.styleable.ContactListItemView_list_item_padding_top, 0),
+                    a.getDimensionPixelOffset(
+                            R.styleable.ContactListItemView_list_item_padding_right, 0),
+                    a.getDimensionPixelOffset(
+                            R.styleable.ContactListItemView_list_item_padding_bottom, 0));
+
+            a.recycle();
+        }
 
         mTextHighlighter = new TextHighlighter(Typeface.BOLD);
 
-        a.recycle();
-
-        a = getContext().obtainStyledAttributes(R.styleable.Theme);
-        mSecondaryTextColor = a.getColorStateList(R.styleable.Theme_android_textColorSecondary);
-        a.recycle();
+        if (R.styleable.Theme != null) {
+            a = getContext().obtainStyledAttributes(R.styleable.Theme);
+            mSecondaryTextColor = a.getColorStateList(R.styleable.Theme_android_textColorSecondary);
+            a.recycle();
+        }
 
         mHeaderWidth =
                 getResources().getDimensionPixelSize(R.dimen.contact_list_section_header_width);
