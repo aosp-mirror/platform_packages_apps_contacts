@@ -402,6 +402,11 @@ public class RawContactModifier {
     }
 
     public static boolean hasChanges(RawContactDeltaList set, AccountTypeManager accountTypes) {
+        return hasChanges(set, accountTypes, /* excludedMimeTypes =*/ null);
+    }
+
+    public static boolean hasChanges(RawContactDeltaList set, AccountTypeManager accountTypes,
+            Set<String> excludedMimeTypes) {
         if (set.isMarkedForSplitting() || set.isMarkedForJoining()) {
             return true;
         }
@@ -411,7 +416,7 @@ public class RawContactModifier {
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
             final String dataSet = values.getAsString(RawContacts.DATA_SET);
             final AccountType type = accountTypes.getAccountType(accountType, dataSet);
-            if (hasChanges(state, type)) {
+            if (hasChanges(state, type, excludedMimeTypes)) {
                 return true;
             }
         }
@@ -463,9 +468,11 @@ public class RawContactModifier {
         }
     }
 
-    private static boolean hasChanges(RawContactDelta state, AccountType accountType) {
+    private static boolean hasChanges(RawContactDelta state, AccountType accountType,
+            Set<String> excludedMimeTypes) {
         for (DataKind kind : accountType.getSortedDataKinds()) {
             final String mimeType = kind.mimeType;
+            if (excludedMimeTypes != null && excludedMimeTypes.contains(mimeType)) continue;
             final ArrayList<ValuesDelta> entries = state.getMimeEntries(mimeType);
             if (entries == null) continue;
 
