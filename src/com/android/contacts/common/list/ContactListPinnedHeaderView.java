@@ -38,6 +38,9 @@ public class ContactListPinnedHeaderView extends TextView {
     public ContactListPinnedHeaderView(Context context, AttributeSet attrs, View parent) {
         super(context, attrs);
 
+        if (R.styleable.ContactListItemView == null) {
+            return;
+        }
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
         int backgroundColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_background_color, Color.WHITE);
