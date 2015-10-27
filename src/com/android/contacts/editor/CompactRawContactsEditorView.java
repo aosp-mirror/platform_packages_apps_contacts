@@ -465,14 +465,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     public void updatePhoto(Uri photoUri) {
         mPhotoValuesDelta.setFromTemplate(false);
-
-        if (!mIsUserProfile) {
-            // Unset primary for all photos
-            unsetSuperPrimary();
-
-            // Mark the currently displayed photo as primary
-            mPhotoValuesDelta.setSuperPrimary(true);
-        }
+        // Unset primary for all photos
+        unsetSuperPrimary();
+        // Mark the currently displayed photo as primary
+        mPhotoValuesDelta.setSuperPrimary(true);
 
         // Even though high-res photos cannot be saved by passing them via
         // an EntityDeltaList (since they cause the Bundle size limit to be
@@ -587,14 +583,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
         final ValuesDelta valuesDelta = valuesDeltaList.get(photo.valuesDeltaListIndex);
         valuesDelta.setFromTemplate(false);
-
-        if (!mIsUserProfile) {
-            // Unset primary for all other photos
-            unsetSuperPrimary();
-
-            valuesDelta.setSuperPrimary(true);
-        }
-
+        // Unset primary for all photos
+        unsetSuperPrimary();
+        // Mark the currently displayed photo as primary
+        valuesDelta.setSuperPrimary(true);
         // Update the UI
         mPhotoView.setPhoto(valuesDelta, mMaterialPalette);
     }
