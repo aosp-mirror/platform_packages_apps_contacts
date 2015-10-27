@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Þessum tengilið verður skipt upp í fleiri tengiliði."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Tengja saman"</string>
     <string name="menu_save" msgid="1727844363591825909">"Vista"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Sameina tengiliði"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Veldu tengiliðinn sem þú vilt að <xliff:g id="NAME">%s</xliff:g> sameinist:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Tengja tengiliði saman"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Veldu tengiliðinn sem þú vilt tengja við <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Sýna alla tengiliði"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Tillögur að tengiliðum"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Allir tengiliðir"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Það er enginn í þessum hóp."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Breyttu hópnum til að bæta fólki við hann."</string>
     <string name="savingContact" msgid="4075751076741924939">"Vistar tengilið…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Tengiliður vistaður."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Tengiliður vistaður"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Tengiliðir aðskildir"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ekki tókst að vista breytingar á tengiliðnum."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Ekki var hægt að skipta upp tengiliðnum."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Ekki tókst að tengja tengilið."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Villa við að vista tengilið."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Ekki var hægt að vista breytingar á mynd tengiliðar."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Hópur vistaður."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Ekki tókst að vista breytingarnar á hópnum."</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Aðalmynd"</string>
     <string name="description_star" msgid="2605854427360036550">"uppáhald"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Breyta tengilið"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Viltu sameina núverandi tengilið og valda tengiliðinn?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Viltu tengja saman núverandi tengilið og valda tengiliðinn?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Skipta yfir í að breyta völdum tengilið? Upplýsingarnar sem þú hefur sett inn nú þegar verða afritaðar."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Afrita í tengiliðina mína"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Bæta við tengiliði"</string>
@@ -203,7 +207,7 @@
       <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> aðili</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> aðilar</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Sláðu inn nafn tengiliðar áður en þú sameinar hann öðrum."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Sláðu inn nafn tengiliðar áður en þú tengir hann saman við annan."</string>
     <string name="copy_text" msgid="3257145021583508761">"Afrita á klippiborð"</string>
     <string name="set_default" msgid="4417505153468300351">"Velja sem sjálfgefið"</string>
     <string name="clear_default" msgid="7193185801596678067">"Hreinsa sjálfgefið"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Skipta um mynd"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Mistókst að opna ritilinn."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Vistar í"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Tengdir tengiliðir (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="one">Tengdir tengiliðir (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Tengdir tengiliðir (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> tengdir tengiliðir"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"TENGJA TENGILIÐI SAMAN"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"HÆTTA VIÐ"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> tvítekning fannst</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> tvítekningar fundust</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> möguleg tvítekning</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> mögulegar tvítekningar</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> tengdur tengiliður</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Þessi tengiliður"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Tvítekningar"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Hreinsaðu upp alla tvítekna tengiliði til að sjá allar upplýsingar á einum stað. Til að fá frekari upplýsingar um tengilið skaltu ýta á notandamynd hans. Þú getur alltaf breytt um prófílmynd eða aðskilið tengiliði."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mögulegar tvítekningar"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Hreinsaðu upp tvítekningar af sama tengilið með því að tengja þær saman."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Samtengdir tengiliðir"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Af reikningunum þínum"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Taka mynd"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Allar myndir"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Velja mynd"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Af <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

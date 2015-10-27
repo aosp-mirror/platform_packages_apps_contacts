@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Овај контакт ће бити раздвојен у више контаката."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Обједини"</string>
     <string name="menu_save" msgid="1727844363591825909">"Сачувај"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Придруживање контаката"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Изаберите контакт који желите да придружите контакту <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Обједините контакте"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Изаберите контакт који желите да обједините са контактом <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Прикажи све контакте"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Предложени контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Сви контакти"</string>
@@ -98,8 +98,13 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Нема људи у овој групи."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Да бисте додали неке, измените групу."</string>
     <string name="savingContact" msgid="4075751076741924939">"Чување контакта је у току..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт је сачуван."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Контакт је сачуван"</string>
+    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
+    <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Није могуће сачувати измене контаката."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Раздвајање контакта на више њих није успело."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Обједињавање контаката није успело."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Дошло је до грешке при чувању контакта."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Чување измена слике контакта није успело."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Група је сачувана."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Није могуће сачувати измене група."</string>
@@ -169,7 +174,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Главна слика"</string>
     <string name="description_star" msgid="2605854427360036550">"омиљено"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Измени контакт"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Желите ли да тренутни контакт придружите изабраном контакту?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Желите ли да актуелни контакт обједините са изабраним контактом?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Желите ли да пребаците на уређивање изабраног контакта? Биће копиране информације које сте унели до сада."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Копирај у моје контакте"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Додај у Моје контакте"</string>
@@ -209,7 +214,7 @@
       <item quantity="few"><xliff:g id="COUNT_1">%1$d</xliff:g> особе</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> особа</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Унесите име контакта пре него што га придружите другом контакту."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Унесите име контакта пре него што га обједините са другим контактом."</string>
     <string name="copy_text" msgid="3257145021583508761">"Копирај у прив. меморију"</string>
     <string name="set_default" msgid="4417505153468300351">"Постави на подразумевано"</string>
     <string name="clear_default" msgid="7193185801596678067">"Обриши подразумевану вредност"</string>
@@ -276,14 +281,19 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Промените слику"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Oтварање уређивача није успело."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Чува се на"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Обједињени контакти (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="one">Обједињени контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="few">Обједињени контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Обједињени контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Обједињених контаката: <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ОБЈЕДИНИ КОНТАКТЕ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ОТКАЖИ"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one">Откривен је <xliff:g id="COUNT">%d</xliff:g> дупликат</item>
-      <item quantity="few">Откривена су <xliff:g id="COUNT">%d</xliff:g> дупликата</item>
-      <item quantity="other">Откривено је <xliff:g id="COUNT">%d</xliff:g> дупликата</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> могућ дупликат</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> могућа дупликата</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> могућих дупликата</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> обједињен контакт</item>
@@ -297,12 +307,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Овај контакт"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Дупликати"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Обришите дуплиране контакте да бисте видели све информације на једном месту. Да бисте видели још детаља о контакту, додирните аватар. У сваком тренутку можете да промените слику профила или да раздвојите контакте."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Могући дупликати"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Обједињавањем контаката обришите дуплиране контакте за исту особу."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Обједињени контакти"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Са ваших налога"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Сними слику"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Све слике"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Изаберите слику"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Са <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

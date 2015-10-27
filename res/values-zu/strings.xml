@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Lona oxhumana naye uzosuswa ukuxhumanisa ukuze abe oxhumana nabo abaningi."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Isixhumanisi"</string>
     <string name="menu_save" msgid="1727844363591825909">"Londoloza"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Joyina othintana nabo"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Khetha oxhumana naye ofuna ukujoyina naye <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Xhumanisa oxhumana nabo"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Khetha oxhumana naye ofuna ukumxhuma no-<xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Bonakalisa bonke  othintana nabo"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Othintana nabo abasikiselwayo"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Bonke othintana nabo"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Akunabanti kuleli qembu."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Ukungeza okunye, hlela iqembu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Igcina othintana naye..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Othintana naye ulondoloziwe"</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Oxhumana naye olondoloziwe"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Oxhumana nabo basuswe ukuxhumana"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Yehlulekile ukulondoloza izinguquko zoxhumana nabo."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Ayikwazanga ukususa isixhumanisi koxhumana naye."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Ayikwazanga ukuxhuma oxhumana naye."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Iphutha lokulondoloza oxhumana naye."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Ayikwazanga ukulondoloza izinguquko zesithombe sokuxhumana."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Isigcawu silondiwe"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Yehlulekile ukulana izinguquko zeqembu."</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Isithombe esiyinhloko"</string>
     <string name="description_star" msgid="2605854427360036550">"intandokazi"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Hlela othintana naye"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Joyina othintana naye wamanje nothintana naye okhethiwe?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Xhuma oxhumana naye wamanje noxhumana naye okhethiwe?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Shintshela ekuhleleni othintana naye okhethiwe? Ulwazi olufakile kuze kube manje luzokopishwa."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopisha kwengithintana nabo"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Faka Kothintana Nabo"</string>
@@ -203,7 +207,7 @@
       <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> abantu</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> abantu</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Bhala igama lomuntu oxhuana naye ngaphambili kokujoyina nomunye."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Bhala igama lomuntu oxhumana naye ngaphambili kokujoyina nomunye."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopisha ku-clipboard"</string>
     <string name="set_default" msgid="4417505153468300351">"Hlela okuzenzakalelayo"</string>
     <string name="clear_default" msgid="7193185801596678067">"Sula okuzenzakalelayo"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Guqula isithombe"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Yehlulekile ukuvula umhleli."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Ukulondoloza ku-"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Oxhumana nabo abaxhunyiwe (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="one">Oxhumana nabo abaxhunyiwe (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Oxhumana nabo abaxhunyiwe (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> oxhumana nabo abaxhunyiwe"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"XHUMANISA AMA-AKHAWUNTI"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"KHANSELA"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> Ukuphinda kutholakele</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Ukuphinda kutholakele</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> Izimpinda ezingenzeka</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Izimpinda ezingenzeka</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> oxhumana nabo abaxhunyiwe</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Lo oxhumana naye"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Impinda"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Hlanza oxhumana nabo abayizimpinda ukubona lonke ulwazi endaweni eyodwa. Ngemininingwane engeziwe koxhumana naye thepha isithombe. Ungahlala ushintsha isithombe sephrofayela noma oxhumana naye ohlukile noma kunini."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Izimpinda ezingenzeka"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Hlanza oxhumana nabo abayizimpinda kumuntu oyedwa ngokubahlanganisa."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Oxhumana nabo abaxhunyiwe"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Kusuka kuma-akhawunti wakho"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Thatha isithombe"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Zonke izithombe"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Khetha isithombe"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Kusuka ku-<xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

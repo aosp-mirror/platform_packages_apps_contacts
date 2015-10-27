@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Prepojenie kontaktov sa zruší a vytvorí sa viacero kontaktov."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Prepojiť"</string>
     <string name="menu_save" msgid="1727844363591825909">"Uložiť"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Spojiť kontakty"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Vyberte kontakt, ktorý chcete spojiť s kontaktom <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Prepojenie kontaktov"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vyberte kontakt, ktorý chcete prepojiť s kontaktom <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Zobraziť všetky kontakty"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Navrhnuté kontakty"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Všetky kontakty"</string>
@@ -98,8 +98,13 @@
     <string name="emptyGroup" msgid="7502116218697177370">"V tejto skupine nie sú žiadni ľudia."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Ak chcete pridať členov, upravte skupinu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Prebieha ukladanie kontaktu..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt bol uložený"</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt bol uložený"</string>
+    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
+    <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nepodarilo sa uložiť zmeny kontaktu."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Zrušenie prepojenia kontaktu zlyhalo."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontakt sa nepodarilo prepojiť."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Pri ukladaní kontaktu sa vyskytla chyba."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nepodarilo sa uložiť zmeny fotky kontaktu"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Skupina bola uložená."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nepodarilo sa uložiť zmeny skupiny."</string>
@@ -172,7 +177,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Hlavná fotka"</string>
     <string name="description_star" msgid="2605854427360036550">"zaradiť medzi obľúbené"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Upraviť kontakt"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Spojiť aktuálny kontakt s vybraným kontaktom?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Prepojiť aktuálny kontakt s vybraným kontaktom?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Prepnúť do režimu úpravy vybraného kontaktu? Doposiaľ zadané informácie budú skopírované."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Skopírovať do priečinka Moje kontakty"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Pridať medzi moje kontakty"</string>
@@ -215,7 +220,7 @@
       <item quantity="other">Počet ľudí: <xliff:g id="COUNT_1">%1$d</xliff:g></item>
       <item quantity="one">Počet ľudí: <xliff:g id="COUNT_0">%1$d</xliff:g></item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Pred spojením s iným kontaktom zadajte meno kontaktu."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Pred prepojením s iným kontaktom zadajte meno kontaktu."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopírovať do schránky"</string>
     <string name="set_default" msgid="4417505153468300351">"Nastaviť ako predvolené"</string>
     <string name="clear_default" msgid="7193185801596678067">"Vymazať predvolené nastavenia"</string>
@@ -282,15 +287,21 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Zmeniť fotku"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Nepodarilo sa otvoriť editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Ukladá sa do"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Prepojené kontakty (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="few">Prepojené kontakty (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="many">Prepojené kontakty (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Prepojené kontakty (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Prepojený kontakt</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Prepojené kontakty (počet: <xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"PREPOJIŤ KONTAKTY"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ZRUŠIŤ"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="few">Boli zistené <xliff:g id="COUNT">%d</xliff:g> duplikáty</item>
-      <item quantity="many">Bolo zistené <xliff:g id="COUNT">%d</xliff:g> duplikátu</item>
-      <item quantity="other">Bolo zistených <xliff:g id="COUNT">%d</xliff:g> duplikátov</item>
-      <item quantity="one">Bol zistený 1 duplikát</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> možné duplikáty</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> možného duplikátu</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> možných duplikátov</item>
+      <item quantity="one">1 možný duplikát</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> prepojené kontakty</item>
@@ -306,12 +317,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Tento kontakt"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Duplikáty"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Vymažte duplicitné kontakty, aby sa zobrazili všetky informácie na jednom mieste. Ďalšie podrobnosti o kontakte zobrazíte klepnutím na avatar. Kedykoľvek môžete zmeniť svoju profilovú fotku alebo oddeliť kontakty."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Možné duplikáty"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Vymažte duplicitné kontakty rovnakej osoby ich vzájomným prepojením."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Prepojené kontakty"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Z vašich účtov"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Odfotiť"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Všetky fotky"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Výber fotky"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Z účtu <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

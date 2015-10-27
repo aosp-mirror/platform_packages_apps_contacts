@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"এই পরিচিতিকে একাধিক পরিচিতিগুলির মধ্যে লিঙ্কমুক্ত করা হবে৷"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"লিঙ্ক করুন"</string>
     <string name="menu_save" msgid="1727844363591825909">"সংরক্ষণ করুন"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"পরিচিতিগুলিকে যোগ করুন"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> এর সাথে যোগ করতে চান সেই পরিচিতিটি চয়ন করুন:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"পরিচিতিগুলি লিঙ্ক করুন"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"যে পরিচিতিটিকে <xliff:g id="NAME">%s</xliff:g> এর সাথে লিঙ্ক করতে চান চয়ন করুন:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"সকল পরিচিতি দেখান"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"প্রস্তাবিত পরিচিতিগুলি"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"সকল পরিচিতি"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"এই গোষ্ঠীতে কেউ নেই৷"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"কিছু যোগ করতে, গোষ্ঠী সম্পাদনা করুন৷"</string>
     <string name="savingContact" msgid="4075751076741924939">"পরিচিতি সংরক্ষণ করা হচ্ছে…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"পরিচিতি সংরক্ষিত হয়েছে৷"</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"পরিচিতি সংরক্ষণ করা হয়েছে"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"পরিচিতিগুলি লিঙ্কমুক্ত করা হয়েছে"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"পরিচিতির পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"পরিচিতিতে লিঙ্কমুক্ত করা যায়নি৷"</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"পরিচিতি লিঙ্ক করা যায়নি৷"</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"পরিচিতি সংরক্ষণ করতে ত্রুটি হয়েছে৷"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"পরিচিতির ফটোর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"গোষ্ঠী সংরক্ষিত হয়েছে৷"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"গোষ্ঠীর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"প্রাথমিক ফটো"</string>
     <string name="description_star" msgid="2605854427360036550">"পছন্দসই"</string>
     <string name="edit_contact" msgid="7529281274005689512">"পরিচিতি সম্পাদনা করুন"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"নির্বাচিত পরিচিতির সঙ্গে বর্তমান পরিচিতিগুলি যোগ করবেন?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"নির্বাচিত পরিচিতির সঙ্গে বর্তমান পরিচিতিটি লিঙ্ক করবেন?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"নির্বাচিত পরিচিতি সম্পাদনায় নিয়ে যাবেন? আপনার এ পর্যন্ত প্রবেশ করানো তথ্য অনুলিপি করা হবে৷"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"আমার পরিচিতিগুলিতে অনুলিপি করুন"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"আমার পরিচিতিগুলিতে যুক্ত করুন"</string>
@@ -203,7 +207,7 @@
       <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> জন</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> জন</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"অন্য একটির সাথে যোগ করার আগে পরিচিতির নাম লিখুন৷"</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"অন্য একটির সাথে লিঙ্ক করার আগে পরিচিতির নাম লিখুন৷"</string>
     <string name="copy_text" msgid="3257145021583508761">"ক্লিপবোর্ডে অনুলিপি করুন"</string>
     <string name="set_default" msgid="4417505153468300351">"ডিফল্ট সেট করুন"</string>
     <string name="clear_default" msgid="7193185801596678067">"ডিফল্ট সাফ করুন"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ফটো পরিবর্তন করুন"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"সম্পাদক খুলতে ব্যর্থ হচ্ছে৷"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"এ সংরক্ষণ করা হচ্ছে"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"(<xliff:g id="COUNT">%d</xliff:g>)টি লিঙ্ক করা পরিচিতি"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="one">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
+      <item quantity="other">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g>টি লিঙ্ক করা পরিচিতি"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"পরিচিতি লিঙ্ক করুন"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"বাতিল করুন"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি সদৃশ সনাক্ত করা হয়েছে</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি সদৃশ সনাক্ত করা হয়েছে</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য সদৃশ</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য সদৃশ</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি লিঙ্ক করা পরিচিতি</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"এই পরিচিতি"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"সদৃশগুলি"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"এক জায়গায় সব তথ্য দেখতে সদৃশ পরিচিতিগুলিকে পরিষ্কার করুন৷ বিশদ বিবরণের জন্য একটি পরিচিতির অবতারের উপরে আলতো চাপ দিন৷ আপনি সর্বদা যে কোনো সময়ে প্রোফাইল ফটো অথবা পৃথক পরিচিতি পরিবর্তন করতে পারবেন৷"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"সম্ভাব্য সদৃশগুলি"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"একই ব্যক্তির ক্ষেত্রে সদৃশ পরিচিতিগুলিকে একসঙ্গে লিঙ্ক করার মাধ্যমে সেগুলিকে সরিয়ে দিন৷"</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"লিঙ্ক করা পরিচিতিগুলি"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"আপনার অ্যাকাউন্টগুলি থেকে"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"একটি ফটো তুলুন"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"সকল ফটো"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"ফটো চয়ন করুন"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> থেকে"</string>
 </resources>

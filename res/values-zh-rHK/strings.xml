@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"將會解除連結此聯絡人為多個聯絡人。"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"連結"</string>
     <string name="menu_save" msgid="1727844363591825909">"儲存"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合併聯絡人"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"選擇要與<xliff:g id="NAME">%s</xliff:g>合併的聯絡人："</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"連結聯絡人"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"選擇您想與 <xliff:g id="NAME">%s</xliff:g> 連結的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議的聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"這個群組中沒有成員。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"如要新增成員，請編輯群組。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在儲存聯絡人…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"聯絡人已儲存。"</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"聯絡人記錄已儲存"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"已解除連結聯絡人"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"無法儲存聯絡人變更。"</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"無法解除連結聯絡人。"</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"無法連結聯絡人。"</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"儲存聯絡人時發生錯誤。"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"無法儲存聯絡人相片變更。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"群組已儲存。"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"無法儲存群組變更。"</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"主要相片"</string>
     <string name="description_star" msgid="2605854427360036550">"我的最愛"</string>
     <string name="edit_contact" msgid="7529281274005689512">"編輯聯絡人"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"要將目前聯絡人與所選聯絡人合併嗎？"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"要將目前的聯絡人連結至已選的聯絡人嗎？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？您目前已輸入的資訊將會被複製。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"複製到我的通訊錄"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"新增至通訊錄"</string>
@@ -203,7 +207,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> 人</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> 人</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"請先輸入聯絡人姓名，然後才能與另一個聯絡人合併。"</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"請先輸入聯絡人姓名，然後連結聯絡人。"</string>
     <string name="copy_text" msgid="3257145021583508761">"複製到剪貼簿"</string>
     <string name="set_default" msgid="4417505153468300351">"設為預設"</string>
     <string name="clear_default" msgid="7193185801596678067">"清除預設值"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"變更相片"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"無法打開編輯器。"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"正在儲存至以下帳戶："</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"已連結聯絡人 (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">已連結的聯絡人 (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">已連結的聯絡人</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> 個已連結的聯絡人"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"連結聯絡人"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"取消"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other">已偵測到 <xliff:g id="COUNT">%d</xliff:g> 個重複聯絡人</item>
-      <item quantity="one">已偵測到 1 個重複聯絡人</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 個可能重複的聯絡人</item>
+      <item quantity="one">1 個可能重複的聯絡人</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other">已連結 <xliff:g id="COUNT">%d</xliff:g> 個聯絡人</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"這個聯絡人"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"重複"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"清除重複的聯絡人，以便在同一地方查看所有資料。輕按頭像即可查看聯絡人詳情。您可以隨時變更個人資料相片或分拆聯絡人。"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"可能重複"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"連結聯絡人，即可清除重複的聯絡人。"</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"已連結的聯絡人"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"來自您的帳戶"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"拍照"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"所有相片"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"選擇相片"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"來自 <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

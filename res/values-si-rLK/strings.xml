@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"මෙම සම්බන්ධතාව සම්බන්ධතා කිහිපයකට වෙන් කරනු ඇත."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"සබැඳි කරන්න"</string>
     <string name="menu_save" msgid="1727844363591825909">"සුරකින්න"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"සම්බන්ධතා එකතු කරන්න"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> සමඟ එක් කළ යුතු සම්බන්ධතාවය තෝරන්න:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"සම්බන්ධතා සබැඳි කරන්න"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"ඔබට <xliff:g id="NAME">%s</xliff:g> සමඟ සබැඳි කිරීමට අවශ්‍ය සම්බන්ධතාව තෝරන්න:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"සියලු සම්බන්ධතා පෙන්වන්න"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"යෝජිත සම්බන්ධතා"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"සියලුම සම්බන්ධතා"</string>
@@ -98,8 +98,13 @@
     <string name="emptyGroup" msgid="7502116218697177370">"මෙම කණ්ඩායම තුළ පුද්ගලයින් නොමැත."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"කිහිපයක් එක් කිරීමට, කණ්ඩායම සංස්කරණය කරන්න."</string>
     <string name="savingContact" msgid="4075751076741924939">"සම්බන්ධතාවය සුරකමින්…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"සම්බන්ධතාවය සුරකින ලදි."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"සම්බන්ධතාවය සුරකින ලදි"</string>
+    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
+    <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"සම්බන්ධතා වෙනස්කම් සුරැකීමට නොහැක."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"සම්බන්ධතාව සබැඳි ඉවත් කිරීමට නොහැකි විය."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"සම්බන්ධතාව සබැඳි කළ නොහැකි විය."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"සම්බන්ධතාව සුරැකීමේ දෝෂය."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"සම්බන්ධතා ඡායාරූපය වෙනස් කිරීම් සුරැකිය නොහැකි විය."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"කණ්ඩායම සුරකින ලදි."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"කණ්ඩායම් වෙනස්කම් සුරැකීමට නොහැක."</string>
@@ -166,7 +171,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"ප්‍රාථමික රූප"</string>
     <string name="description_star" msgid="2605854427360036550">"ප්‍රියතම"</string>
     <string name="edit_contact" msgid="7529281274005689512">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"වත්මන් සම්බන්ධතාවය තෝරාගෙන ඇති සම්බන්ධතාවය සමඟ එකතු කරන්නද?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"වත්මන් සම්බන්ධතාව තෝරන ලද සම්බන්ධතාව සමඟ සබැඳි කරන්නද?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"තෝරාගෙන ඇති සම්බන්ධතාවය සංස්කරණය කිරීමට මාරු වෙන්නද? ඔබ දැනට ඇතුළු කළ තොරතුරු පිටපත් වනු ඇත."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"මගේ සම්බන්ධතා වෙතට පිටපත් කරන්න"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"මගේ සම්බන්ධතා වලට එක් කරන්න"</string>
@@ -203,7 +208,7 @@
       <item quantity="one">පුද්ගලයින් <xliff:g id="COUNT_1">%1$d</xliff:g></item>
       <item quantity="other">පුද්ගලයින් <xliff:g id="COUNT_1">%1$d</xliff:g></item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"වෙනත් එකක් සමඟ එක් කිරීමට කලින් සම්බන්ධතා නම ටයිප් කරන්න."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"වෙනත් එකක් සමඟ එක් කිරීමට පෙර සම්බන්ධතා නම ටයිප් කරන්න."</string>
     <string name="copy_text" msgid="3257145021583508761">"පසුරු පුවරුවට පිටපත් කරන්න"</string>
     <string name="set_default" msgid="4417505153468300351">"සුපුරුදු ලෙස සකසන්න"</string>
     <string name="clear_default" msgid="7193185801596678067">"සුපුරුදු හිස් කරන්න"</string>
@@ -270,13 +275,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ඡායාරූපය වෙනස් කරන්න"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"සංස්කාරකය විවෘත කිරීමට නොහැකි විය."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"සුරැකීම"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"සබැඳි කළ සම්බන්ධතා (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="one">සබැඳි කළ සම්බන්ධතා (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">සබැඳි කළ සම්බන්ධතා (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"සබැඳි කළ සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"සම්බන්ධතා සබැඳි කරන්න"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"අවලංගු කරන්න"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one">අනුපිටපත් <xliff:g id="COUNT">%d</xliff:g>ක් අනාවරණය කර ගන්නා ලදී</item>
-      <item quantity="other">අනුපිටපත් <xliff:g id="COUNT">%d</xliff:g>ක් අනාවරණය කර ගන්නා ලදී</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="one">විය හැකි අනුපිටපත් <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">විය හැකි අනුපිටපත් <xliff:g id="COUNT">%d</xliff:g></item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one">සබැඳි කළ සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g></item>
@@ -288,12 +297,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"මෙම සම්බන්ධතාව"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"අනුපිටපත්"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"සියලු තොරතුරු එක් ස්ථානයක බැලීමට අනුපිටපත් සම්බන්ධතා ඉවත් කරන්න. සම්බන්ධතාවක් පිළිබඳ වැඩි විස්තර සඳහා ඇවටාර් මත තට්ටු කරන්න. ඔබට ඕනෑම අවස්ථාවක පැතිකඩ ඡායාරූපය වෙනස් කිරීමට හෝ සම්බන්ධතා වෙන් කිරීමට හැකිය."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"විය හැකි අනුපිටපත්"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"එකම පුද්ගලයා සඳහා වන අනුපිටපත් සම්බන්ධතා එකට සබැඳි කිරීමෙන් පිරිසිදු කරන්න."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"සබැඳි කළ සම්බන්ධතා"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"ඔබගේ ගිණුම් වෙතින්"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"ඡායාරූපයක් ගන්න"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"සියලු ඡායාරූප"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"ඡායාරූපය තෝරන්න"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> වෙතින්"</string>
 </resources>

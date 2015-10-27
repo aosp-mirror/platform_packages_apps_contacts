@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Kontaktua hainbat kontaktu sortzeko desestekatuko da."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Estekatu"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gorde"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Batu kontaktuak"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Aukeratu <xliff:g id="NAME">%s</xliff:g> kontaktuarekin batu nahi duzun kontaktua:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Lotu kontaktuak"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Aukeratu <xliff:g id="NAME">%s</xliff:g> kontaktuarekin lotu nahi duzuna:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Erakutsi kontaktu guztiak"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Gomendatutako kontaktuak"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Kontaktu guztiak"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Ez dago jenderik talde honetan."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Batzuk gehitzeko, editatu taldea."</string>
     <string name="savingContact" msgid="4075751076741924939">"Kontaktua gordetzen…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontaktua gorde da."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Gorde da kontaktua"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Desestekatu dira kontaktuak"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ezin izan dira gorde kontaktuari egindako aldaketak."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Ezin izan da desestekatu kontaktua."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Ezin izan da lotu kontaktua."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Errore bat gertatu da kontaktua gordetzean."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Ezin izan dira gorde kontaktuaren argazkiari egindako aldaketak."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Taldea gorde da."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Ezin izan dira gorde taldeari egindako aldaketak."</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Argazki nagusia"</string>
     <string name="description_star" msgid="2605854427360036550">"gogokoa"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editatu kontaktua"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Uneko kontaktua eta hautatutako kontaktua batu nahi dituzu?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Uneko kontaktua eta hautatutako kontaktua lotu nahi dituzu?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Hautatutako kontaktua editatu nahi duzu? Orain arte idatzi duzun informazioa kopiatu egingo da."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiatu Nire kontaktuetan"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Gehitu Nire kontaktuak atalean"</string>
@@ -203,7 +207,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> pertsona</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> pertsona</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Idatzi kontaktuaren izena beste batekin batu aurretik."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Beste batekin lotu aurretik, idatzi kontaktuaren izena."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiatu arbelean"</string>
     <string name="set_default" msgid="4417505153468300351">"Ezarri lehenetsi gisa"</string>
     <string name="clear_default" msgid="7193185801596678067">"Garbitu metodo lehenetsia"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Aldatu argazkia"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Ezin izan da ireki editorea."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Gorde hemen:"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Lotutako kontaktuak (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">Lotutako kontaktuak (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Lotutako kontaktu bat</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> kontaktu lotuta"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LOTU KONTUAK"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LOTU KONTAKTUAK"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"UTZI"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> bikoiztu hauteman dira</item>
-      <item quantity="one">Bikoiztu bat hauteman da</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> bikoiztu posible</item>
+      <item quantity="one">Bikoiztu posible bat</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other">Lotutako <xliff:g id="COUNT">%d</xliff:g> kontaktu</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Kontaktu hau"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Bikoiztuak"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Garbitu kontaktu bikoiztuak, informazio guztia toki berean ikusteko. Kontaktuari buruzko xehetasunak ikusteko, sakatu haren avatarra. Profilaren argazkia alda dezakezu edo kontaktuak bereiz ditzakezu edonoiz."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Baliteke bikoiztuak egotea"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Bikoiztuak ekiditeko, lotu pertsona berari dagozkion kontaktu guztiak."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Estekatutako kontaktuak"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Zure kontuetatik"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Atera argazkia"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Argazki guztiak"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Aukeratu argazkia"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Kontua: <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

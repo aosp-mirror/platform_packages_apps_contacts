@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Desligarase este contacto en varios contactos."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Ligar"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gardar"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unir contactos"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Escolle o contacto que queres unir con <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Ligar contactos"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Selecciona o contacto que queres ligar con <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contactos"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos suxeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contactos"</string>
@@ -98,8 +98,14 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Non hai ninguén neste grupo."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Para engadir algo, edita o grupo."</string>
     <string name="savingContact" msgid="4075751076741924939">"Gardando contacto..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Contacto gardado"</string>
+    <!-- no translation found for contactSavedToast (9171862279493213075) -->
+    <skip />
+    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
+    <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Non se puideron gardar os cambios nos contactos."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Non foi posible desligarse do contacto."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Non se puido ligar o contacto."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Produciuse un erro ao gardar o contacto."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Non se puideron gardar os cambios na foto do contacto."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupo gardado"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Non se puideron gardar os cambios no grupo."</string>
@@ -166,7 +172,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Foto principal"</string>
     <string name="description_star" msgid="2605854427360036550">"favorito"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editar contacto"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Queres unir o contacto actual coa conta seleccionada?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Queres ligar o contacto actual co contacto seleccionado?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Cambiar para editar o contacto seleccionado? Copiarase a información introducida ata o momento."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copiar en Os meus contactos"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Engadir a Os meus contactos"</string>
@@ -203,7 +209,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> persoas</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persoa</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Escribe o nome do contacto antes de unilo con outro."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Escribe o nome do contacto antes de ligalo con outro."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copiar no portapapeis"</string>
     <string name="set_default" msgid="4417505153468300351">"Definir como predeterminado"</string>
     <string name="clear_default" msgid="7193185801596678067">"Borrar valores predeterminados"</string>
@@ -270,13 +276,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Cambiar foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Produciuse un erro ao abrir o editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Gardando en"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Contactos ligados (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">Ligáronse os contactos (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Ligouse o contacto</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Ligáronse <xliff:g id="COUNT">%d</xliff:g> contactos"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LIGAR CONTACTOS"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"CANCELAR"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other">Detectáronse <xliff:g id="COUNT">%d</xliff:g> duplicados</item>
-      <item quantity="one">Detectouse 1 duplicado</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> posibles duplicados</item>
+      <item quantity="one">1 posible duplicado</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other">Ligáronse <xliff:g id="COUNT">%d</xliff:g> contactos</item>
@@ -288,12 +298,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Este contacto"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Duplicados"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Limpa contactos duplicados para ver toda a información nun só lugar. Para obter máis detalles sobre un contacto, toca o avatar. Sempre podes cambiar a foto de perfil ou contactos separados en calquera momento."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Posibles duplicados"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Limpa os contactos duplicados da mesma persoa ligándoos."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Contactos ligados"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Das túas contas"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Tirar unha foto"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Todas as fotos"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Escoller foto"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"De <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

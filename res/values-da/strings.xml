@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Sammenfletningen af denne kontaktperson vil blive ophævet og opdelt i flere kontaktpersoner."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Sammenflet"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gem"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Føj til kontakter"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Vælg den kontaktperson, som du vil knytte til <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Tilknyt kontaktpersoner"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vælg den kontaktperson, der skal knyttes til <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Vis alle kontakter"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Foreslåede kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Ingen personer i denne gruppe."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Rediger gruppen for at tilføje nogen."</string>
     <string name="savingContact" msgid="4075751076741924939">"Gemmer kontakt..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakten er gemt."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Kontaktpersonen er gemt"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Sammenfletningen af kontaktpersonerne blev ophævet"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Der kunne ikke gemmes ændringer i kontaktpersoner."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Tilknytningen til kontaktpersonen kunne ikke fjernes."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontaktpersonen kunne ikke tilknyttes."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Kontaktpersonen kunne ikke gemmes."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Det ændrede billede af kontaktpersonen kunne ikke gemmes."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen er gemt."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Gruppeændringerne kunne ikke gemmes."</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Primært foto"</string>
     <string name="description_star" msgid="2605854427360036550">"foretrukken"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Rediger kontaktperson"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Forbind den aktuelle kontaktperson med den valgte kontaktperson?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Vil du knytte den aktuelle kontaktperson til den valgte kontaktperson?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vil du redigere den valgte kontaktperson? Dine indtastninger kopieres."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopier til Mine kontaktpersoner"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Føj til mine kontaktpersoner"</string>
@@ -203,7 +207,7 @@
       <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> personer</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> personer</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Skriv navnet på kontaktpersonen, før den knyttes sammen med en anden."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Skriv kontaktpersonens navn, før den knyttes sammen med en anden."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopier til udklipsholder"</string>
     <string name="set_default" msgid="4417505153468300351">"Indstil standard"</string>
     <string name="clear_default" msgid="7193185801596678067">"Ryd standarder"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Skift billede"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Redigeringsværktøjet kunne ikke åbnes."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Gemmes på"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Tilknyttede kontaktpersoner (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="one">Tilknyttet kontaktperson (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Tilknyttede kontaktpersoner (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> tilknyttede kontaktpersoner"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"TILKNYT KONTAKTPERSONER"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ANNULLER"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one">Der blev registreret <xliff:g id="COUNT">%d</xliff:g> dublet</item>
-      <item quantity="other">Der blev registreret <xliff:g id="COUNT">%d</xliff:g> dubletter</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> mulig dublet</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> mulige dubletter</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> tilknyttet kontaktperson</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Denne kontaktperson"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Dubletter"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Fjern dubletter af kontaktpersoner for at se alle oplysninger på ét sted. Tryk på avataren for at få flere oplysninger om en kontaktperson. Du kan altid ændre profilbilledet eller skille kontaktpersoner ad."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mulige dubletter"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Ryd op i dublerede kontaktpersoner for den samme person ved at knytte dem sammen."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Sammenflettede kontaktpersoner"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Fra dine konti"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Tag et billede"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Alle billeder"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Vælg billede"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Fra <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Bu kontakt çoxsaylı kontaktlara parçalanacaq."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Əlaqə"</string>
     <string name="menu_save" msgid="1727844363591825909">"Yadda saxlayın"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontaktları birləşdirin"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> ilə birləşdirmək istədiyiniz kontaktı seçin:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Kontaktları əlaqələndirin"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> ilə əlaqələndirmək istədiyiniz kontaktı seçin:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Bütün kontaktları göstərin"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Təklif edilmiş kontaktlar"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Bütün kontaktlar"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Bu qrupda adam yoxdur."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Bəzilərini əlavə etmək üçün qrupu redaktə edin"</string>
     <string name="savingContact" msgid="4075751076741924939">"Kontakt yadda saxlanır..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt yadda saxlanıldı."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt yadda saxlanıldı"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktlar əlaqələndirilməyib"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kontakt dəyişiklikləri saxlanıla bilmədi."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Kontaktdan ayrıla bilmədi."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontaktı əlaqələndirə bilmədi."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Kontaktın yadda saxlanmasında xəta"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Kontakt foto dəyişiklikləri yadda saxlanılmadı."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Qrup yadda saxlanıldı."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Qrup dəyişiklikləri yadda saxlanılmadı."</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Əsas şəkil"</string>
     <string name="description_star" msgid="2605854427360036550">"sevimli"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Kontaktı redaktə edin"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Cari kontakt seçilmiş kontakta birləşdirilsin?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Cari kontakt seçilmiş kontaktla əlaqələndirilsin?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Seçilmiş kontaktın redaktəsinə keçirilsin? Hazırda daxil etdiyiniz informasiya kopyalanacaq."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kontaktlarıma Kopyalayın"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Kontaktlarıma Əlavə Edin"</string>
@@ -203,7 +207,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> nəfər</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> nəfər</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Digəri ilə birləşmədən öncə kontakt adı yazın."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Digəri ilə əlaqələndirilmədən öncə kontakt adı yazın."</string>
     <string name="copy_text" msgid="3257145021583508761">"Panoya kopyalayın"</string>
     <string name="set_default" msgid="4417505153468300351">"Defolt ayarlayın"</string>
     <string name="clear_default" msgid="7193185801596678067">"Defoltu təmizləyin"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Şəkli dəyişin"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Redaktoru açmaq uğursuz oldu."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Hesabda yadda saxlanır"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Əlaqələnmiş kontaktlar ( <xliff:g id="COUNT">%d</xliff:g> )"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">Əlaqələnmiş kontakt (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Əlaqələnmiş kontakt</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> əlaqələnmiş kontakt"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"KONTAKTLARI ƏLAQƏLƏNDİRİN"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"LƏĞV EDİN"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Dublikat Aşkarlandı</item>
-      <item quantity="one">1 Dublikat Aşkarlandı</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Mümkün dublikat</item>
+      <item quantity="one">1 Mümkün dublikat </item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> əlaqələnmiş kontakt</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Bu kontakt"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Dublikatlar"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Bütün məlumatları bir yerdə görmək üçün dublikat kontaktları təmizləyin. Kontakt haqqında ətraflı məlumat üçün avatara klikləyin. Profil fotosunu hər zaman dəyişə və ya kontaktları istədiyiniz vaxt ayıra bilərsiniz."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mümkün dublikatlar"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Kontaktları əlaqələndirərək eyni insana məxsus dublikat kontaktları təmizləyin."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Əlaqələndirilmiş kontaktlar"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Hesablarınızdan"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Şəkil çək"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Bütün fotolar"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Foto seçin"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> hesabından"</string>
 </resources>

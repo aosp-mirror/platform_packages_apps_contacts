@@ -82,9 +82,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Бул байланыш бир нече байланыштарга ажыратылат."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Шилтемелөө"</string>
     <string name="menu_save" msgid="1727844363591825909">"Сактоо"</string>
-    <!-- no translation found for titleJoinContactDataWith (7684875775798635354) -->
-    <skip />
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> менен бириктиргиңиз келген байланышты тандаңыз."</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Байланыштарды шилтемелөө"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> дегенге шилтемелегиңиз келген байланышты тандаңыз."</string>
     <!-- no translation found for showAllContactsJoinItem (2189695051430392383) -->
     <skip />
     <!-- no translation found for separatorJoinAggregateSuggestions (2831414448851313345) -->
@@ -135,9 +134,14 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Бирөөнү кошуш үчүн топту өзгөртүңүз."</string>
     <!-- no translation found for savingContact (4075751076741924939) -->
     <skip />
-    <!-- no translation found for contactSavedToast (7152589189385441091) -->
+    <!-- no translation found for contactSavedToast (9171862279493213075) -->
+    <skip />
+    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
     <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Байланыштын өзгөрүүлөрү сакталган жок."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Байланыш ажыратылбай койду."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Байланыш шилтемеленбей койду."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Байланышты сактоодогу ката."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Байланыштын сүрөт өзгөрүүлөрү сакталган жок."</string>
     <!-- no translation found for groupSavedToast (1168756874239833756) -->
     <skip />
@@ -227,8 +231,7 @@
     <skip />
     <!-- no translation found for edit_contact (7529281274005689512) -->
     <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Учурдагы байланыш тандалган байланышка шилтемеленсинби?"</string>
     <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
     <skip />
     <string name="menu_copyContact" msgid="1573960845106822639">"Менин Байланыштарыма көчүрүү"</string>
@@ -281,7 +284,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> киши</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> киши</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Башка менен бириктирүүдөн мурун, байланыштын атын териңиз."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Башка байланышка шилтемелөөдөн мурун, байланыштын атын териңиз."</string>
     <string name="copy_text" msgid="3257145021583508761">"Алмашуу буферине көчүрүү"</string>
     <string name="set_default" msgid="4417505153468300351">"Негизги кылуу"</string>
     <string name="clear_default" msgid="7193185801596678067">"Негизгини тазалоо"</string>
@@ -349,13 +352,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Сүрөттү өзгөртүү"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Түзөткүч ачылбай калды."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Төмөнкүгө сакталууда"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Шилтемеленген байланыштар (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">Шилтемеленген байланыштар (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Шилтемеленген байланыш</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> байланыш шилтемеленген"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"БАЙЛАНЫШТАРДЫ ШИЛТЕМЕЛӨӨ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ЖОККО ЧЫГАРУУ"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Жупнуска табылды</item>
-      <item quantity="one">1 Жупнуска табылды</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Жупнуска кылса болот</item>
+      <item quantity="one">1 Жупнуска кылса болот</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> шилтемеленген байланыш</item>
@@ -367,12 +374,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ушул байланыш"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Жупнускалар"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Бардык маалыматты бир жерден көрүү үчүн жупнуска байланыштарды тазалап чыгыңыз. Байланыш тууралуу кененирээк маалымат үчүн аватарды таптаңыз. Каалаган убакта профиль сүрөтүн өзгөртүп же байланыштарды бөлө аласыз."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Булар жупнуска болушу мүмкүн"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Бир эле адамдын жупнуска байланыштарын аларды бири-бирине шилтемелөө менен тазалап чыгыңыз."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Шилтемеленген байланыштар"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Каттоо эсептериңизден"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Сүрөткө тартуу"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Бардык сүрөттөр"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Сүрөт тандаңыз"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> дегенден"</string>
 </resources>

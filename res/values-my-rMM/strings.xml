@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"ဤအဆက်အသွယ် ကွင်းဆက်ထားမှုကို အဆက်အသွယ် အများအပြားအဖြစ် ခွဲပစ်လိုက်မည်။"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"လင့်ခ်"</string>
     <string name="menu_save" msgid="1727844363591825909">"သိမ်းဆည်းရန်"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"အဆက်အသွယ်များကို ပူးပေါင်းလိုက်သည်"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> နှင့် ပေါင်းချင်သော လိပ်စာအားရွေးပါ:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"အဆက်အသွယ်များကို ကွင်းဆက်ချိတ်ပါ"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> နှင့်ကွင်းဆက်ချိတ်လိုသည့် အဆက်အသွယ်ကိုရွေးပါ −"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"ဒီအုပ်စုထဲမှာ လူတစ်ယောက်မှမရှိပါ"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"တချို့ကိုထည့်ရန်, အုပ်စုကိုပြင်ပါ"</string>
     <string name="savingContact" msgid="4075751076741924939">"အဆက်အသွယ်အား သိမ်းဆည်းနေစဉ်…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"လိပ်စာအား သိမ်းဆည်းထားလိုက်ပြီ"</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"အဆက်အသွယ်အား သိမ်းဆည်းပြီးပါပြီ"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"အဆက်အသွယ်များကို ကွင်းဆက်ဖြုတ်လိုက်ပြီ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"လိပ်စာပြောင်းလဲမှုအား သိမ်းဆည်းလို့မရပါ"</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"အဆက်အသွယ်ကို လင့်ခ်ဖြုတ်၍မရပါ"</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"အဆက်အသွယ်ကို ကွင်းဆက်ချိတ်၍မရပါ။"</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"အဆက်အသွယ် သိမ်းဆည်းရာတွင် ပြဿနာရှိနေသည်။"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"အဆက်အသွယ်၏ ဓာတ်ပုံပြောင်းလဲမှု သိမ်းဆည်းနိုင်ခြင်းမရှိပါ။"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"အုပ်စုသိမ်းဆည်ပြီးပါပြီ"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"အုပ်စုအတွက် ထပ်ပြင်မှုများဟာ သိမ်းဆည်းလို့မရပါ"</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"အဓိက ဓာတ်ပုံ"</string>
     <string name="description_star" msgid="2605854427360036550">"အနှစ်သက်ဆုံး"</string>
     <string name="edit_contact" msgid="7529281274005689512">"အဆက်အသွယ်အားပြင်ရန်"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"လက်ရှိလိပ်စာအား ရွေးထားသောလိပ်စာနှင့် ပေါင်းမည်လား"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"လက်ရှိအဆက်အသွယ်ကို ရွေးချယ်ထားသည့်အဆက်အသွယ်နှင့် ကွင်းဆက်ချိတ်မလား။"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ရွေးထားသော လိပ်စာအား ပြင်ဆင်ခြင်းသို့ပြောင်းမလား? သင် အခုထိ ရိုက်ထားသော စာများအားလုံး ကူးယူပြီးဖြစ်ပါလိမ့်မည်"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"ကျွန်ုပ်၏လိပ်စာများထဲ ထည့်ပါ"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"ကျွန်ုပ်၏လိပ်စာများထဲ ထည့်ပါ"</string>
@@ -203,7 +207,7 @@
       <item quantity="other">လူ <xliff:g id="COUNT_1">%1$d</xliff:g> ယောက်</item>
       <item quantity="one">လူ <xliff:g id="COUNT_0">%1$d</xliff:g> ယောက်</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"တခြားတစ်ခုနှင့် မပေါင်းခင် အဆက်အသွယ်နာမည်ကို အရင်ရိုက်ပါ"</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"အခြားတစ်ခုနှင့် ကွင်းဆက်မချိတ်မီ အဆက်အသွယ်အမည်ကိုရိုက်ပါ။"</string>
     <string name="copy_text" msgid="3257145021583508761">"ခဏကူးယူထားပါ"</string>
     <string name="set_default" msgid="4417505153468300351">"ပုံသေအဖြစ် သတ်မှတ်ခြင်း"</string>
     <string name="clear_default" msgid="7193185801596678067">"မူရင်းများကို ရှင်းလင်းခြင်း"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ဓာတ်ပုံ ပြောင်းလဲ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"တည်းဖြတ်သူကို ဖွင့်ခြင်းမအောင်မြင်ပါ။"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"သိမ်းဆည်းရန်နေရာ"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"ချိတ်ဆက်ထားသည့် အဆက်အသွယ် (<xliff:g id="COUNT">%d</xliff:g>) ခု"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">ကွင်းဆက်ချိတ်ထားသည့်အကောင့် (<xliff:g id="COUNT">%d</xliff:g>) ခု</item>
+      <item quantity="one"> ကွင်းဆက်ချိတ်ထားသည့် အဆက်အသွယ်</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"ကွင်းဆက်ချိတ်ထားသည့် အကောင့် <xliff:g id="COUNT">%d</xliff:g> ခု"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"အဆက်အသွယ်များ ချိတ်ဆက်ပါ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ပယ်ဖျက်ပါ"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other"> မိတ္တုပွား <xliff:g id="COUNT">%d</xliff:g> ခုတွေ့ရှိသည်</item>
-      <item quantity="one">မိတ္တူပွား ၁ ခုတွေ့ရှိသည်</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other">ဖြစ်နိုင်သည့် မိတ္တုပွား <xliff:g id="COUNT">%d</xliff:g> ခု</item>
+      <item quantity="one">ဖြစ်နိုင်သည့် မိတ္တုပွား ၁ ခု</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other">ချိတ်ဆက်ထားသည့် အဆက်အသွယ် <xliff:g id="COUNT">%d</xliff:g> ခု</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ဤအဆက်အသွယ်"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"မိတ္တူပွားများ"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"အချက်လက်များအားလုံးကို တစ်နေရာတည်းတွင် တွေ့နိုင်ရန် မိတ္တူပွား အဆက်အသွယ်များကိုရှင်းလင်းပါ။ အဆက်အသွယ်တစ်ခု၏ အသေးစိတ်ကိုသိလိုလျှင် ရုပ်ပုံကိုနှိပ်ပါ။ ကိုယ်ရေးအချက်အလက်ပုံ သို့မဟုတ် သီးခြားအဆက်အသွယ်များကို အချိန်မရွေး ပြောင်းလဲနိုင်သည်။"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"ဖြစ်နိုင်သည့် မိတ္တုပွားများ"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"မိတ္တုပွားအဆက်အသွယ်များကို ကွင်းဆက်ချိတ်ပေးခြင်းဖြင့် တူညီသည့်လူများကို ရှင်းလင်းပါ။"</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"ကွင်းဆက် အဆက်အသွယ်များ"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"သင့်အကောင့်များမှ"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"ဓာတ်ပုံရိုက်ရန်"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"ဓာတ်ပုံများအားလုံး"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"ဓာတ်ပုံ ရွေးပါ"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> မှ"</string>
 </resources>

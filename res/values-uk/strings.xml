@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Цей контакт буде розділено."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Об’єднати"</string>
     <string name="menu_save" msgid="1727844363591825909">"Зберегти"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Об\'єдн. контакти"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Виберіть контакт, який треба об’єднати з <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Об’єднання контактів"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Виберіть контакт, який ви хочете об’єднати з контактом <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показ. всі контакти"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Пропоновані контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Усі контакти"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"У цій групі немає людей."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Щоб додати когось, відредагуйте групу."</string>
     <string name="savingContact" msgid="4075751076741924939">"Збереж-ня контакту…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт збережено"</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Контакт збережено"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контакти розділено"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не вдалося зберегти зміни в контакті."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Не вдалося розділити контакт."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Не вдалося об’єднати контакти."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Не вдалося зберегти контакт."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Не вдалося зберегти зміни у фотографії контакта."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Групу збережено."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Не вдалося зберегти зміни в групі."</string>
@@ -172,7 +176,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Основн. фото"</string>
     <string name="description_star" msgid="2605854427360036550">"вибране"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Редаг. контакта"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Об\'єднати поточний контакт із вибраним контактом?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Об’єднати поточний контакт із вибраним контактом?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Перейти до редагування вибраного контакта? Введену досі інформацію буде скопійовано."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Копіювати в мої контакти"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Додати до групи \"Мої контакти\""</string>
@@ -215,7 +219,7 @@
       <item quantity="many"><xliff:g id="COUNT_1">%1$d</xliff:g> осіб</item>
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> особи</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Введіть ім’я контакта, перш ніж об’єднати його з іншим."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Введіть ім’я контакта, перш ніж об’єднати його."</string>
     <string name="copy_text" msgid="3257145021583508761">"Копіювати в буфер обміну"</string>
     <string name="set_default" msgid="4417505153468300351">"Установити за умовчанням"</string>
     <string name="clear_default" msgid="7193185801596678067">"Очистити налаштування за умовчанням"</string>
@@ -282,15 +286,21 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Змінити фотографію"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Не вдалося відкрити редактор."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Зберігання в обліковий запис"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="one">Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="few">Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="many">Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Об’єднаних контактів: <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ОБ’ЄДНАТИ КОНТАКТИ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"СКАСУВАТИ"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="one">Виявлено <xliff:g id="COUNT">%d</xliff:g> копію</item>
-      <item quantity="few">Виявлено <xliff:g id="COUNT">%d</xliff:g> копії</item>
-      <item quantity="many">Виявлено <xliff:g id="COUNT">%d</xliff:g> копій</item>
-      <item quantity="other">Виявлено <xliff:g id="COUNT">%d</xliff:g> копії</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> можлива копія</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> можливі копії</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> можливих копій</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> можливої копії</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> об’єднаний контакт</item>
@@ -306,12 +316,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Цей контакт"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Копії"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Об’єднайте копії контактів, щоб бачити всю інформацю в одному місці. Щоб дізнатися більше про контакт, торкніться аватара. Ви завжди можете змінити фотографію профілю або розділити контакти."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Можливі копії"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Щоб позбутися копій контактів, об’єднайте їх."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Об’єднані контакти"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"З ваших облікових записів"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Сфотографувати"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Усі фотографії"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Вибрати фотографію"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"З облікового запису <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

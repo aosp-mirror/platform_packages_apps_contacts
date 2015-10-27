@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Αυτή η επαφή θα αποσυνδεθεί σε πολλαπλές επαφές."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Σύνδεση"</string>
     <string name="menu_save" msgid="1727844363591825909">"Aποθήκευση"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Ένωση επαφών"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Επιλέξτε την επαφή που θέλετε να ενώσετε με τον χρήστη <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Σύνδεση επαφών"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Επιλέξτε την επαφή που θέλετε να συνδέσετε με τον χρήστη <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Εμφάνιση όλων των επαφών"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Προτεινόμενες επαφές"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Όλες οι επαφές"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Δεν υπάρχουν άτομα σε αυτήν την ομάδα."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Αν θέλετε να προσθέσετε άτομα, επεξεργαστείτε την ομάδα."</string>
     <string name="savingContact" msgid="4075751076741924939">"Αποθήκευση επαφής…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Η επαφή αποθηκεύτηκε."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Η επαφή αποθηκεύτηκε"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Οι επαφές αποσυνδέθηκαν"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στις επαφές."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Δεν ήταν δυνατή η αποσύνδεση επαφής."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Δεν ήταν δυνατή η σύνδεση της επαφής."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Σφάλμα κατά την αποθήκευση επαφής."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στη φωτογραφία της επαφής."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Η ομάδα αποθηκεύτηκε."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στην ομάδα."</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Κύρια φωτογραφία"</string>
     <string name="description_star" msgid="2605854427360036550">"αγαπημένο"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Επεξεργασία"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Να γίνει ένωση της τρέχουσας επαφής με την επιλεγμένη επαφή;"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Να γίνει σύνδεση της τρέχουσας επαφής με την επιλεγμένη επαφή;"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Να γίνει μετάβαση σε επεξεργασία της επιλεγμένης επαφής; Θα γίνει αντιγραφή των στοιχείων που έχετε εισαγάγει μέχρι τώρα."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Αντιγραφή στις Επαφές μου"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Προσθήκη στις Επαφές μου"</string>
@@ -203,7 +207,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> άτομα</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> άτομο</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Προτού συνδεθείτε με κάποια άλλη επαφή, πληκτρολογήστε το όνομα της επαφής."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Πληκτρολογήστε το όνομα της επαφής προτού τη συνδέσετε με κάποια άλλη."</string>
     <string name="copy_text" msgid="3257145021583508761">"Αντιγραφή στο πρόχειρο"</string>
     <string name="set_default" msgid="4417505153468300351">"Ορισμός ως προεπιλογή"</string>
     <string name="clear_default" msgid="7193185801596678067">"Εκκαθάριση προεπιλεγμένων"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Αλλαγή φωτογραφίας"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Αποτυχία ανοίγματος προγράμματος επεξεργασίας."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Αποθήκευση σε"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Συνδεδεμένες επαφές (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">Συνδεδεμένες επαφές (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Συνδεδεμένη επαφή</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> συνδεδεμένες επαφές"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ΣΥΝΔΕΣΗ ΕΠΑΦΩΝ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ΑΚΥΡΩΣΗ"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other">Εντοπίστηκαν <xliff:g id="COUNT">%d</xliff:g> διπλότυπα</item>
-      <item quantity="one">Εντοπίστηκε 1 διπλότυπο</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> πιθανά διπλότυπα</item>
+      <item quantity="one">1 πιθανό διπλότυπο</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> συνδεδεμένες επαφές</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Αυτή η επαφή"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Διπλότυπα"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Κάντε εκκαθάριση των διπλότυπων επαφών για να βλέπετε όλες τις πληροφορίες σε ένα μέρος. Για περισσότερες λεπτομέρειες για μια επαφή, πατήστε το avatar. Μπορείτε πάντα να αλλάξετε τη φωτογραφία προφίλ ή να ξεχωρίσετε τις επαφές ανά πάσα στιγμή."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Πιθανά διπλότυπα"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Κάντε εκκαθάριση των διπλότυπων επαφών για το ίδιο άτομο συνδέοντας τις επαφές μεταξύ τους."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Συνδεδεμένες επαφές"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Από τους λογαριασμούς σας"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Λήψη φωτογραφίας"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Όλες οι φωτογραφίες"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Επιλογή φωτογραφίας"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Από <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>

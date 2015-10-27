@@ -59,8 +59,8 @@
     <string name="splitConfirmation" msgid="7571509181690496920">"Ezt a névjegyet több névjegyre bontja szét."</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Társítás"</string>
     <string name="menu_save" msgid="1727844363591825909">"Mentés"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Névjegyek összekapcsolása"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Válassza ki azt a névjegyet, amelyet össze kíván kapcsolni ezzel a névjeggyel: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Névjegyek társítása"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Válassza ki a névjegyet, amelyet a következővel szeretne társítani: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Az összes névjegy megjelenítése"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Javasolt névjegyek"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Összes névjegy"</string>
@@ -98,8 +98,12 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Ebben a csoportban nincsenek személyek."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Felhasználók hozzáadásához szerkessze a csoportot."</string>
     <string name="savingContact" msgid="4075751076741924939">"Névjegy mentése..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Névjegy mentve."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Névjegy elmentve"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Névjegyek szétválasztva"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nem sikerült menteni a névjegymódosításokat."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Nem sikerült szétbontani a névjegyet."</string>
+    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Nem sikerült társítani a névjegyet."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Hiba történt a névjegy mentése során"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nem sikerült menteni a névjegyfotó módosításait."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Csoport mentve."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nem sikerült menteni a csoportmódosításokat."</string>
@@ -166,7 +170,7 @@
     <string name="primary_photo" msgid="8517942231868516999">"Elsődleges fotó"</string>
     <string name="description_star" msgid="2605854427360036550">"kedvenc"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Névjegy szerkesztése"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Összekapcsolja a jelenlegi névjegyet a kiválasztott névjeggyel?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Társítja a jelenlegi és a kijelölt névjegyet?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"A kiválasztott névjegy szerkesztésére vált? Az eddig beírt információk át lesznek másolva."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Másolás a saját névjegyeim közé"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Hozzáadás a Címtárhoz"</string>
@@ -203,7 +207,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> személy</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> személy</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Írja be az ismerős nevét, mielőtt összekapcsolná egy másik ismerősével."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Adja meg a névjegyhez tartozó nevet, mielőtt társítana egy másik névjegyet."</string>
     <string name="copy_text" msgid="3257145021583508761">"Másolás vágólapra"</string>
     <string name="set_default" msgid="4417505153468300351">"Beállítás alapértelmezettként"</string>
     <string name="clear_default" msgid="7193185801596678067">"Alapértelmezés törlése"</string>
@@ -270,13 +274,17 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Fénykép lecserélése"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Nem sikerült megnyitni a szerkesztőt."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Mentés ide"</string>
-    <string name="compact_editor_linked_contacts_selector_title" msgid="4639435067931889048">"Társított névjegyek (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
+      <item quantity="other">Társított névjegyek (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">Társított névjegy</item>
+    </plurals>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> társított névjegy"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"NÉVJEGYEK TÁRSÍTÁSA"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"MÉGSE"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="8353114911992509644">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ismétlődés észlelve</item>
-      <item quantity="one">1 ismétlődés észlelve</item>
+    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> lehetséges ismétlődő névjegy</item>
+      <item quantity="one">1 lehetséges ismétlődő névjegy</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> társított névjegy</item>
@@ -288,12 +296,12 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ez a névjegy"</string>
-    <string name="suggestion_card_duplicates_title" msgid="7231024048865265864">"Ismétlődések"</string>
-    <string name="suggestion_card_help_message" msgid="7190055396979881094">"Törölje az ismétlődő névjegyeket, hogy minden információt egy helyen láthasson. Adott névjegy részleteinek megtekintéséhez koppintson az avatarra. Bármikor módosíthatja a profilfotót, illetve szétválaszthatja a társított névjegyeket."</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Lehetséges ismétlődések"</string>
+    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Megszabadulhat az azonos nevű ismétlődő névjegyektől úgy, hogy összekapcsolja őket egymással."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Társított névjegyek"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Az Ön fiókjaiból"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Fotó készítése"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Az összes fotó"</string>
-    <!-- no translation found for photo_picker_title (5272832995550042801) -->
-    <skip />
+    <string name="photo_picker_title" msgid="5272832995550042801">"Fotó kiválasztása"</string>
+    <string name="contact_from_account_name" msgid="2078526819634079406">"Innen: <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
 </resources>
