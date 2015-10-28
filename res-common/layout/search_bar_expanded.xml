@@ -20,8 +20,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:visibility="gone"
-    android:background="@android:color/white">
+    android:visibility="gone" >
 
     <ImageButton
         android:id="@+id/search_back_button"
