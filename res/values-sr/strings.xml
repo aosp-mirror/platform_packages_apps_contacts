@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Да бисте додали неке, измените групу."</string>
     <string name="savingContact" msgid="4075751076741924939">"Чување контакта је у току..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Контакт је сачуван"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контакти су раздвојени"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Није могуће сачувати измене контаката."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Раздвајање контакта на више њих није успело."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Обједињавање контаката није успело."</string>

@@ -98,10 +98,8 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Non hai ninguén neste grupo."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Para engadir algo, edita o grupo."</string>
     <string name="savingContact" msgid="4075751076741924939">"Gardando contacto..."</string>
-    <!-- no translation found for contactSavedToast (9171862279493213075) -->
-    <skip />
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactSavedToast" msgid="9171862279493213075">"Gardouse o contacto"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Desligáronse os contactos"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Non se puideron gardar os cambios nos contactos."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Non foi posible desligarse do contacto."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Non se puido ligar o contacto."</string>

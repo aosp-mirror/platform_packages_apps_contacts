@@ -98,10 +98,8 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Ushbu guruhda odam yo‘q."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Bir nechtani qo‘shish uchun guruhni tahrirlang."</string>
     <string name="savingContact" msgid="4075751076741924939">"Kontakt saqlanmoqda…"</string>
-    <!-- no translation found for contactSavedToast (9171862279493213075) -->
-    <skip />
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt saqlandi"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktlar ajratildi"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kontakt o‘zgarishlari saqlanmadi."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Kontaktni ajratib bo‘lmadi."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontaktni bog‘lab bo‘lmadi."</string>

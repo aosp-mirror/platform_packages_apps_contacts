@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"사람을 추가하려면 그룹을 수정하세요."</string>
     <string name="savingContact" msgid="4075751076741924939">"연락처 저장 중..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"연락처가 저장되었습니다."</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"연락처 연결 해제됨"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"연락처 변경사항을 저장할 수 없습니다."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"연락처를 연결 해제하지 못했습니다."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"연락처를 연결할 수 없습니다."</string>

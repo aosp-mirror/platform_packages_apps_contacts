@@ -99,12 +99,11 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Pour ajouter des membres, veuillez le modifier."</string>
     <string name="savingContact" msgid="4075751076741924939">"Enregistrement du contact…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contact enregistré."</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"La fusion des contacts a été annulée"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Impossible d\'enregistrer les modifications apportées au contact."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Impossible de dissocier le contact."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Impossible d\'associer le contact."</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Erreur lors de l\'enregistrement des contacts."</string>
+    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Erreur lors de l\'enregistrement du contact."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Impossible d\'enregistrer les changements apportés à la photo du contact."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Groupe enregistré"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Impossible d\'enregistrer les modifications apportées au groupe."</string>

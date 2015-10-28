@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"หากต้องการเพิ่มสมาชิก ให้แก้ไขกลุ่ม"</string>
     <string name="savingContact" msgid="4075751076741924939">"กำลังบันทึกรายชื่อ…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"บันทึกรายชื่อติดต่อแล้ว"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"ยกเลิกการลิงก์รายชื่อติดต่อแล้ว"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ไม่สามารถบันทึกการเปลี่ยนแปลงรายชื่อติดต่อ"</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"ไม่สามารถยกเลิกการลิงก์รายชื่อติดต่อ"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"ไม่สามารถลิงก์รายชื่อติดต่อ"</string>

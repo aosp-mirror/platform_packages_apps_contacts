@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"කිහිපයක් එක් කිරීමට, කණ්ඩායම සංස්කරණය කරන්න."</string>
     <string name="savingContact" msgid="4075751076741924939">"සම්බන්ධතාවය සුරකමින්…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"සම්බන්ධතාවය සුරකින ලදි"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"සම්බන්ධතා සබැඳි ඉවත් කරන ලදී"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"සම්බන්ධතා වෙනස්කම් සුරැකීමට නොහැක."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"සම්බන්ධතාව සබැඳි ඉවත් කිරීමට නොහැකි විය."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"සම්බන්ධතාව සබැඳි කළ නොහැකි විය."</string>

@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"ເພື່ອເພີ່ມລາຍຊື່, ກະລຸນາແກ້ໄຂກຸ່ມ."</string>
     <string name="savingContact" msgid="4075751076741924939">"ກຳລັງບັນທຶກລາຍຊື່ຜູ່ຕິດຕໍ່..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"ບັນທຶກລາຍຊື່ຜູ່ຕິດຕໍ່ແລ້ວ"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"ຖອນ​ລິ້ງ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ແລ້ວ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ບໍ່ສາມາດບັນທຶກການແກ້ໄຂລາຍຊື່ຜູ່ຕິດຕໍ່ໄດ້."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"ບໍ່​ສາ​ມາດ​ຖອນ​ລິ້ງ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໄດ້."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"ບໍ່​ສາ​ມາດ​ລິ້ງ​ລາຍ​ຊື່​ຜູ້​ຕິດ​ຕໍ່​ໄດ້."</string>

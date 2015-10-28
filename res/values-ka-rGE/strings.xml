@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"წევრთა დასამატებლად შეასრულეთ ჯგუფის რედაქტირება."</string>
     <string name="savingContact" msgid="4075751076741924939">"კონტაქტის შენახვა…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"კონტაქტი შენახულია"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"კონტაქტების მიბმა გაუქმდა"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"კონტაქტის ცვლილებების შენახვა ვერ მოხერხდა."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"კონტაქტის მიბმის გაუქმება ვერ მოხერხდა."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"კონტაქტის მიბმა ვერ მოხერხდა."</string>
