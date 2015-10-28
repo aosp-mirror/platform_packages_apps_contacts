@@ -1140,6 +1140,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             selectAccountAndCreateContact();
 
             readOnlyDisplayName = contact.getDisplayName();
+        } else {
+            mHasNewContact = false;
         }
 
         // This also adds deltas to list.  If readOnlyDisplayName is null at this point it is
