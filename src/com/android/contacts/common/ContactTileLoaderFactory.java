@@ -48,6 +48,7 @@ public final class ContactTileLoaderFactory {
     // contacts._id because the query is performed on the data table. In order to obtain the
     // contact id for strequent items, we thus have to use Phone.contact_id instead.
     public final static int CONTACT_ID_FOR_DATA = 10;
+    public final static int DISPLAY_NAME_ALTERNATIVE = 11;
 
     private static final String[] COLUMNS = new String[] {
         Contacts._ID, // ..........................................0
@@ -68,7 +69,7 @@ public final class ContactTileLoaderFactory {
     @VisibleForTesting
     public static final String[] COLUMNS_PHONE_ONLY = new String[] {
         Contacts._ID, // ..........................................0
-        Contacts.DISPLAY_NAME, // .................................1
+        Contacts.DISPLAY_NAME_PRIMARY, // .........................1
         Contacts.STARRED, // ......................................2
         Contacts.PHOTO_URI, // ....................................3
         Contacts.LOOKUP_KEY, // ...................................4
@@ -77,7 +78,8 @@ public final class ContactTileLoaderFactory {
         Phone.LABEL, // ...........................................7
         Phone.IS_SUPER_PRIMARY, //.................................8
         Contacts.PINNED, // .......................................9
-        Phone.CONTACT_ID //........................................10
+        Phone.CONTACT_ID, //.......................................10
+        Contacts.DISPLAY_NAME_ALTERNATIVE, // .....................11
     };
 
     private static final String STARRED_ORDER = Contacts.DISPLAY_NAME+" COLLATE NOCASE ASC";

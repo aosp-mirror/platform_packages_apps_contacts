@@ -243,7 +243,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
         ContactEntry contact = new ContactEntry();
         String name = cursor.getString(mNameIndex);
-        contact.name = (name != null) ? name : mResources.getString(R.string.missing_name);
+        contact.namePrimary = (name != null) ? name : mResources.getString(R.string.missing_name);
         contact.status = cursor.getString(mStatusIndex);
         contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
         contact.lookupKey = lookupKey;
