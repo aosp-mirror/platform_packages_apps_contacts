@@ -62,9 +62,9 @@
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> എന്നതിലേക്ക് വാചക സന്ദേശമയയ്‌ക്കുക"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS നമ്പറിലേക്ക് വാചകസന്ദേശമയയ്‌ക്കുക"</string>
     <string name="description_video_call" msgid="4907306403398614909">"വീഡിയോ കോൾ ചെയ്യുക"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരെ മായ്‌ക്കണോ?"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കണോ?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"നിങ്ങൾ കോൺടാക്‌റ്റുകളുടെയും ഫോണിന്റെയും അപ്ലിക്കേഷനുകളിലെ പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരുടെ ലിസ്റ്റ് മായ്‌ക്കുകയും സ്‌ക്രാച്ചിൽ നിന്നും ബന്ധപ്പെടൽ മുൻഗണനകൾ അറിയാൻ ഇമെയിൽ അപ്ലിക്കേഷനുകളെ പ്രേരിപ്പിക്കുകയും ചെയ്യും."</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരെ മായ്‌ക്കുന്നു…"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കുന്നു…"</string>
     <string name="status_available" msgid="4832569677396634846">"ലഭ്യം"</string>
     <string name="status_away" msgid="6267905184545881094">"ലഭ്യമല്ല"</string>
     <string name="status_busy" msgid="7111912905211403545">"തിരക്കിലാണ്"</string>
@@ -238,7 +238,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ദൃശ്യമായ കോൺടാക്റ്റുകളൊന്നുമില്ല."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"പ്രിയപ്പെട്ടവർ ആരുമില്ല."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> എന്നതിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരെ മായ്‌ക്കുക"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കുക"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"സിം കാർഡ് തിരഞ്ഞെടുക്കുക"</string>
     <string name="menu_accounts" msgid="795417468541517082">"അക്കൗണ്ടുകൾ"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"ഡൗൺലോഡ്/അപ്‌ലോഡ്"</string>
