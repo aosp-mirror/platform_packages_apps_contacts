@@ -748,10 +748,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             if (accounts.size() > 1) {
                 addAccountSelector(accountInfo, rawContactDelta);
             } else {
-                addAccountHeader(accountInfo, rawContactDeltas);
+                addAccountHeader(accountInfo);
             }
-        } else {
-            addAccountHeader(accountInfo, rawContactDeltas);
+        } else if (mIsUserProfile || !shouldHideAccountContainer(rawContactDeltas)) {
+            addAccountHeader(accountInfo);
         }
 
         // The raw contact selector should only display linked raw contacts that can be edited in
@@ -788,9 +788,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return result;
     }
 
-    // Returns true if there're multiple writable and no read only, or there're both writable and
-    // read only. For ME profile, return false if there's a read only contact and unsaved local one.
-    private boolean shouldHideAccountHeader(RawContactDeltaList rawContactDeltas) {
+    // Returns true if there are multiple writable rawcontacts and no read-only ones,
+    // or there are both writable and read-only rawcontacts.
+    private boolean shouldHideAccountContainer(RawContactDeltaList rawContactDeltas) {
         int writable = 0;
         int readonly = 0;
         for (RawContactDelta rawContactDelta : rawContactDeltas) {
@@ -805,12 +805,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return (writable > 1 || (writable > 0 && readonly > 0));
     }
 
-    private void addAccountHeader(Pair<String,String> accountInfo,
-            RawContactDeltaList rawContactDeltas) {
+    private void addAccountHeader(Pair<String,String> accountInfo) {
         mAccountHeaderContainer.setVisibility(View.VISIBLE);
-        if (shouldHideAccountHeader(rawContactDeltas)) {
-            mAccountHeaderContainer.setVisibility(View.GONE);
-        }
 
         // Set the account name
         final String accountName = TextUtils.isEmpty(accountInfo.first)
