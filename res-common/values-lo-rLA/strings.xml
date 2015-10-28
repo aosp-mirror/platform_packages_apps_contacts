@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"ນຳເຂົ້າ/ສົ່ງອອກ ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="share_error" msgid="665756457151793108">"ບໍ່ສາມາດແບ່ງປັນລາຍຊື່ລາຍຊື່ຜູ່ຕິດຕໍ່ນີ້ໄດ້."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"ບໍ່​ມີ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ທີ່​ຈະ​ໂທ."</string>
     <string name="menu_search" msgid="7464453023659824700">"ຊອກຫາ"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ລາຍຊື່ຜູ່ຕິດຕໍ່ເພື່ອສະແດງ"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ລາຍຊື່ຜູ່ຕິດຕໍ່ເພື່ອສະແດງ"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ລາຍການທີ່ມັກ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ເບິ່ງເຫັນໄດ້."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ບໍ່ມີລາຍການທີ່ມັກ"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"ບໍ່ມີລາຍການທີ່ມັກ"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ໃນ <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"ລຶບລາຍຊື່ຄົນທີ່ຕິດຕໍ່ຫາເລື້ອຍໆ"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"ເລືອກ SIM ກາດ"</string>

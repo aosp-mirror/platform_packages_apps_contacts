@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"នាំចេញ/នាំចូល​ទំនាក់ទំនង"</string>
     <string name="dialog_import" msgid="5177004290082451296">"នាំចូល​ទំនាក់ទំនង"</string>
     <string name="share_error" msgid="665756457151793108">"ទំនាក់ទំនង​នេះ​មិន​អាច​ចែករំលែក​បាន​ទេ។"</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"មិនមានទំនាក់ទំនងដើម្បីចែករំលែកទេ"</string>
     <string name="menu_search" msgid="7464453023659824700">"ស្វែងរក"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ទំនាក់ទំនង​ដែល​ត្រូវ​បង្ហាញ"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ទំនាក់ទំនង​ដែល​ត្រូវ​បង្ហាញ"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"សំណព្វ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"មិន​មាន​ទំនាក់ទំនង។"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"មើល​មិន​ឃើញ​ទំនាក់ទំនង។"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"គ្មាន​សំណព្វ។"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"គ្មានសំណព្វទេ"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"មិន​មាន​ទំនាក់ទំនង​នៅ​ក្នុង <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"សម្អាត​ញឹកញាប់"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"ជ្រើស​ស៊ី​ម​កាត"</string>

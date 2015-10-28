@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Importér/eksportér kontaktpersoner"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importér kontaktpersoner"</string>
     <string name="share_error" msgid="665756457151793108">"Denne kontaktperson kan ikke deles."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Der er ingen kontaktpersoner, der kan deles."</string>
     <string name="menu_search" msgid="7464453023659824700">"Søg"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontaktpersoner, der skal vises"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontaktpersoner, der skal vises"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Foretrukne"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ingen kontaktpersoner."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ingen synlige kontaktpersoner."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Der er ingen foretrukne."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Der er ingen favoritter"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Ingen kontaktpersoner i <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Ryd hyppige"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Vælg SIM-kort"</string>

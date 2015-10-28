@@ -37,7 +37,7 @@
     <string name="call_telex" msgid="2909886619224843563">"Gọi số telex"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"Gọi số điện thoại TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"Gọi số điện thoại di động tại cơ quan"</string>
-    <string name="call_work_pager" msgid="3036932765279753793">"Gọi số máy nhắn tin tại cơ quan"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Gọi số máy nhắn tin cơ quan"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Gọi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Gọi MMS"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Nhắn tin tới <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -58,7 +58,7 @@
     <string name="sms_telex" msgid="5469333785775443999">"Nhắn tin tới số telex"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"Nhắn tới số TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"Nhắn tới số điện thoại di động tại cơ quan"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"Nhắn tin tới số máy nhắn tin tại cơ quan"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Nhắn tin tới số máy nhắn tin cơ quan"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Nhắn tin tới <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Nhắn tin tới số điện thoại MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Gọi điện video"</string>
@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Nhập/xuất danh bạ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Nhập danh bạ"</string>
     <string name="share_error" msgid="665756457151793108">"Không thể chia sẻ liên hệ này."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Không có liên hệ nào để chia sẻ."</string>
     <string name="menu_search" msgid="7464453023659824700">"Tìm kiếm"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Danh bạ hiển thị"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Danh bạ hiển thị"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Mục yêu thích"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Không có địa chỉ liên hệ nào."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Không có địa chỉ liên hệ nào hiển thị."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Không có liên hệ yêu thích nào."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Không có liên hệ yêu thích nào"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Không có địa chỉ liên hệ nào trong <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Xóa DS liên hệ thường xuyên"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Chọn thẻ SIM"</string>

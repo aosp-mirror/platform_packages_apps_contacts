@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Εισαγωγή/Εξαγωγή επαφών"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Εισαγωγή επαφών"</string>
     <string name="share_error" msgid="665756457151793108">"Δεν είναι δυνατή η κοινή χρήση αυτής της επαφής."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Δεν υπάρχουν επαφές για κοινή χρήση."</string>
     <string name="menu_search" msgid="7464453023659824700">"Αναζήτηση"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Επαφές για προβολή"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Επαφές για προβολή"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Αγαπημένα"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Δεν υπάρχουν επαφές."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Δεν υπάρχουν ορατές επαφές."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Δεν υπάρχουν αγαπημένα."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Δεν υπάρχουν αγαπημένα"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Δεν υπάρχουν επαφές στο <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Διαγραφή ατόμ. με συχνή επικ."</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Επιλογή κάρτας SIM"</string>

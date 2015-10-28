@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"आयात/निर्यात सम्पर्कहरू"</string>
     <string name="dialog_import" msgid="5177004290082451296">"सम्पर्क आयात गर्नुहोस्"</string>
     <string name="share_error" msgid="665756457151793108">"यस सम्पर्कलाई साझेदारी गर्न सकिँदैन।"</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"साझेदारी गर्न कुनै सम्पर्क ठेगानाहरू छैनन्।"</string>
     <string name="menu_search" msgid="7464453023659824700">"खोज्नुहोस्"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"प्रदर्शन गर्नका लागि सम्पर्कहरू"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"प्रदर्शन गर्न सम्पर्कहरू"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"मनपर्नेहरू"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"कुनै सम्पर्कहरू छैनन्।"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"देखिने कुनै सम्पर्कहरू छैनन्।"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"मनपर्ने कुनै छैन।"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"मनपर्नेहरू छैनन्"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> मा कुनै सम्पर्कहरू छैनन्"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"बारम्बारताहरू हटाउनुहोस्"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"सिम कार्ड चयन गर्नुहोस्"</string>

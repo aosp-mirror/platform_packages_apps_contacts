@@ -230,6 +230,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Uvoz/izvoz kontakata"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Uvoz kontakata"</string>
     <string name="share_error" msgid="665756457151793108">"Ovaj kontakt nije moguće dijeliti."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Nema kontakata za dijeljenje."</string>
     <string name="menu_search" msgid="7464453023659824700">"Pretraži"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakti za prikaz"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakti za prikaz"</string>
@@ -238,7 +239,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriti"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nema kontakata."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Nema vidljivih kontakata."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Nema favorita."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Nema favorita"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nema kontakata pod: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Briši često kontaktirane"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Odaberi SIM karticu"</string>

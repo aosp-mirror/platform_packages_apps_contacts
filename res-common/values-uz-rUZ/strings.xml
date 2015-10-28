@@ -229,7 +229,8 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktlarni import/eksport qilish"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktlarni import qilish"</string>
     <string name="share_error" msgid="665756457151793108">"Kontaktni yuborib bo‘lmadi."</string>
-    <string name="menu_search" msgid="7464453023659824700">"Izlash"</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Ulashish uchun hech qanday kontakt yo‘q."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Qidirish"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontaktlarni filtrlash"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontaktlarni filtrlash"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Kontaktlar guruhini tanlang"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Saralar"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Hech qanday kontakt yo‘q."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ko‘rinadigan kontaktlar yo‘q."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Hech qanday sevimli kontakt yo‘q."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Hech narsa yo‘q"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> guruhida hech qanday kontakt yo‘q"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Muntazam qo‘n-qlarni tozalash"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM kartani tanlash"</string>

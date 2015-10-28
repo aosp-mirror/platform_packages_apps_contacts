@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontakte importieren/exportieren"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontakte importieren"</string>
     <string name="share_error" msgid="665756457151793108">"Dieser Kontakt kann nicht geteilt werden."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Keine Kontakte zum Teilen vorhanden."</string>
     <string name="menu_search" msgid="7464453023659824700">"Suchen"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Angezeigte Kontakte"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Angezeigte Kontakte"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriten"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Keine Kontakte"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Keine sichtbaren Kontakte"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Keine Favoriten"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Keine Favoriten"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Keine Kontakte in <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"\"Häufig kontaktiert\" löschen"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM-Karte auswählen"</string>

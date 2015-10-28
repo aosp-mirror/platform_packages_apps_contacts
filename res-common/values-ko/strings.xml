@@ -229,6 +229,7 @@
     <string name="dialog_import_export" msgid="1125776851100740858">"주소록 가져오기/내보내기"</string>
     <string name="dialog_import" msgid="5177004290082451296">"주소록 가져오기"</string>
     <string name="share_error" msgid="665756457151793108">"연락처를 공유할 수 없습니다."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"공유할 연락처가 없습니다."</string>
     <string name="menu_search" msgid="7464453023659824700">"검색"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"표시할 연락처"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"표시할 연락처"</string>
@@ -237,7 +238,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"즐겨찾기"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"연락처가 없습니다."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"표시할 수 있는 연락처가 없습니다."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"즐겨찾기가 없습니다."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"즐겨찾기가 없습니다."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>에 연락처가 없습니다."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"자주 연락하는 사람 목록 삭제"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM 카드 선택"</string>
