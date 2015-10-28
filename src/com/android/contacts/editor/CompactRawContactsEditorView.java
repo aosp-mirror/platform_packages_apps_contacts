@@ -324,7 +324,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ViewIdGenerator mViewIdGenerator;
     private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
     private long mPhotoId = -1;
-    private String mReadOnlyDisplayName;
     private boolean mHasNewContact;
     private boolean mIsUserProfile;
     private AccountWithDataSet mPrimaryAccount;
@@ -357,7 +356,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ValuesDelta mPhotoValuesDelta;
 
     private Pair<KindSectionData, ValuesDelta> mPrimaryNameKindSectionData;
-    private StructuredNameEditorView mPrimaryNameEditorView;
 
     public CompactRawContactsEditorView(Context context) {
         super(context);
@@ -515,7 +513,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public StructuredNameEditorView getPrimaryNameEditorView() {
-        return mPrimaryNameEditorView;
+        final CompactKindSectionView primaryNameKindSectionView = getPrimaryNameKindSectionView();
+        return primaryNameKindSectionView == null
+                ? null : primaryNameKindSectionView.getPrimaryNameEditorView();
     }
 
     /**
@@ -614,8 +614,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
-            long photoId, String readOnlyDisplayName, boolean hasNewContact,
-            boolean isUserProfile, AccountWithDataSet primaryAccount) {
+            long photoId, boolean hasNewContact, boolean isUserProfile,
+            AccountWithDataSet primaryAccount) {
         mKindSectionDataMap.clear();
         mKindSectionViews.removeAllViews();
         mMoreFields.setVisibility(View.VISIBLE);
@@ -623,7 +623,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mMaterialPalette = materialPalette;
         mViewIdGenerator = viewIdGenerator;
         mPhotoId = photoId;
-        mReadOnlyDisplayName = readOnlyDisplayName;
 
         mHasNewContact = hasNewContact;
         mIsUserProfile = isUserProfile;
@@ -667,9 +666,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         addAccountInfo(rawContactDeltas);
         addPhotoView();
         addKindSectionViews();
-        if (mHasNewContact) {
-            maybeCopyPrimaryDisplayName();
-        }
+
         if (mIsExpanded) showAllFields();
 
         if (mListener != null) mListener.onEditorsBound();
@@ -1055,17 +1052,20 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return kindSectionView;
     }
 
-    private void maybeCopyPrimaryDisplayName() {
-        if (TextUtils.isEmpty(mReadOnlyDisplayName)) return;
+    void maybeSetReadOnlyDisplayNameAsPrimary(String readOnlyDisplayName) {
+        if (TextUtils.isEmpty(readOnlyDisplayName)) return;
+        final CompactKindSectionView primaryNameKindSectionView = getPrimaryNameKindSectionView();
+        if (primaryNameKindSectionView != null && primaryNameKindSectionView.isEmptyName()) {
+            vlog("name: using read only display name as primary name");
+            primaryNameKindSectionView.setName(readOnlyDisplayName);
+        }
+    }
+
+    private CompactKindSectionView getPrimaryNameKindSectionView() {
         final List<CompactKindSectionView> kindSectionViews
                 = mKindSectionViewsMap.get(StructuredName.CONTENT_ITEM_TYPE);
-        if (kindSectionViews == null || kindSectionViews.isEmpty()) return;
-        final CompactKindSectionView primaryNameKindSectionView = kindSectionViews.get(0);
-        if (primaryNameKindSectionView.isEmptyName()) {
-            vlog("name: using read only display name as primary name");
-            primaryNameKindSectionView.setName(mReadOnlyDisplayName);
-            mPrimaryNameEditorView = primaryNameKindSectionView.getPrimaryNameEditorView();
-        }
+        return kindSectionViews == null || kindSectionViews.isEmpty()
+                ? null : kindSectionViews.get(0);
     }
 
     private void showAllFields() {
