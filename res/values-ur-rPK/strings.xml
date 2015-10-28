@@ -98,10 +98,8 @@
     <string name="emptyGroup" msgid="7502116218697177370">"اس گروپ میں کوئی لوگ نہیں ہیں۔"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"کچھ شامل کرنے کیلئے، گروپ میں ترمیم کریں۔"</string>
     <string name="savingContact" msgid="4075751076741924939">"رابطہ محفوظ ہو رہا ہے…"</string>
-    <!-- no translation found for contactSavedToast (9171862279493213075) -->
-    <skip />
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactSavedToast" msgid="9171862279493213075">"رابطہ محفوظ ہوگیا"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"رابطے اَن لنک ہو گئے"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"رابطہ میں تبدیلیاں محفوظ نہیں ہوسکیں۔"</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"رابطہ غیر منسلک نہیں ہو سکا۔"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"رابطہ لنک نہیں ہو سکا۔"</string>

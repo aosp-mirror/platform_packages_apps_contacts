@@ -134,10 +134,8 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Бирөөнү кошуш үчүн топту өзгөртүңүз."</string>
     <!-- no translation found for savingContact (4075751076741924939) -->
     <skip />
-    <!-- no translation found for contactSavedToast (9171862279493213075) -->
-    <skip />
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactSavedToast" msgid="9171862279493213075">"Байланыш сакталды"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Байланыштар ажыратылды"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Байланыштын өзгөрүүлөрү сакталган жок."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Байланыш ажыратылбай койду."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Байланыш шилтемеленбей койду."</string>

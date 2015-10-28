@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"要添加联系人，请修改该群组。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在保存联系人…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"联系人已保存"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"已将联系人取消关联"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"无法保存联系人更改。"</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"无法取消关联此联系人。"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"无法关联该联系人。"</string>

@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Redigera gruppen om du vill lägga till personer."</string>
     <string name="savingContact" msgid="4075751076741924939">"Sparar kontakt..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt sparad"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Länken mellan kontakterna har tagits bort"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Det gick inte att spara ändringarna i kontakten."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Det gick inte att ta bort länken för kontakten."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Det gick inte att länka kontakten."</string>

@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Pentru a adăuga persoane, editaţi grupul."</string>
     <string name="savingContact" msgid="4075751076741924939">"Se salvează persoana din agendă..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Persoana din agendă a fost salvată"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Persoanele de contact au fost separate"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nu s-au putut salva modificările aduse persoanei de contact."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Persoana de contact nu a putut fi separată."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Persoana de contact nu a putut fi asociată."</string>

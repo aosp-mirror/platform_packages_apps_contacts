@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"メンバーを追加するにはグループを編集します。"</string>
     <string name="savingContact" msgid="4075751076741924939">"連絡先を保存しています..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"連絡先を保存しました"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"連絡先のリンクを解除しました"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"連絡先の変更を保存できませんでした。"</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"連絡先のリンクを解除できませんでした。"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"連絡先をリンクできませんでした。"</string>

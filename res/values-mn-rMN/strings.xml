@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Нэмэхийн тулд бүлгэмд өөрчлөлт оруулна уу."</string>
     <string name="savingContact" msgid="4075751076741924939">"Харилцагчийг хадгалж байна…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Харилцагчийг хадгалсан"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Харилцагчийг салгасан"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Харилцагчийн өөрчлөлтүүдийг хадгалж чадсангүй."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Харилцагчийг салгаж чадсангүй."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Харилцагчийг холбож чадсангүй."</string>

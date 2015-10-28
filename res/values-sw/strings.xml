@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Kuongeza baadhi, hariri kikundi."</string>
     <string name="savingContact" msgid="4075751076741924939">"Inahifadhi anwani..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Anwani imehifadhiwa"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Imetenganisha anwani"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Haikuweza kuhifadhi mabadiliko ya mwasiliani."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Haikuweza kutenganisha anwani."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Haikuweza kuunganisha anwani."</string>

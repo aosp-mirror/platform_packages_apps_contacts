@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Muokkaa ryhmää, niin voit lisätä ihmisiä."</string>
     <string name="savingContact" msgid="4075751076741924939">"Tallennetaan yhteystietoa…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Yhteystieto tallennettu"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Yhteystietojen linkitys on poistettu."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ei voitu tallentaa yhteystietojen muutoksia."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Kontaktien erottaminen epäonnistui."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontaktien yhdistäminen epäonnistui."</string>

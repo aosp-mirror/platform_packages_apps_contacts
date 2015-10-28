@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Чтобы добавить участников, откройте меню и нажмите \"Изменить\"."</string>
     <string name="savingContact" msgid="4075751076741924939">"Контакт сохраняется..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Контакт сохранен"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контакты разделены"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не удалось сохранить изменения."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Не удалось разделить контакты"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Не удалось связать контакты"</string>

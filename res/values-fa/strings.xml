@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"برای افزودن چند عضو، گروه را ویرایش کنید."</string>
     <string name="savingContact" msgid="4075751076741924939">"در حال ذخیره مخاطب..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"مخاطب ذخیره شد"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"ارتباط مخاطبین لغو شد."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ذخیره تغییرات مخاطب انجام نشد."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"مخاطب جدا نشد."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"مخاطب پیوند داده نشد."</string>

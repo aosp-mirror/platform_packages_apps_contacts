@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Ak chcete pridať členov, upravte skupinu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Prebieha ukladanie kontaktu..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt bol uložený"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakty boli odpojené"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nepodarilo sa uložiť zmeny kontaktu."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Zrušenie prepojenia kontaktu zlyhalo."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontakt sa nepodarilo prepojiť."</string>

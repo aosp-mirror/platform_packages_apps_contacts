@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Խմբագրեք` խմբին անդամ ավելացնելու համար:"</string>
     <string name="savingContact" msgid="4075751076741924939">"Կոնտակտի պահվում է..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Կոնտակտը պահվեց"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Կոնտակտներն անջատվեցին"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Հնարավոր չէ պահել կոնտակտային փոփոխությունները:"</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Չհաջողվեց անջատել կոնտակտը:"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Չհաջողվեց կապել կոնտակտը:"</string>

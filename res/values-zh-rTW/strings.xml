@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"如要新增成員，請編輯群組。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在儲存聯絡人…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"聯絡人已儲存"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"已取消連結聯絡人"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"無法儲存聯絡人變更。"</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"無法取消連結聯絡人。"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"無法連結聯絡人。"</string>

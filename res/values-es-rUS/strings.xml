@@ -99,8 +99,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Para agregar alguno, edita el grupo."</string>
     <string name="savingContact" msgid="4075751076741924939">"Guardando contacto..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contacto guardado"</string>
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Contactos desvinculados"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No se pudieron guardar los cambios realizados al contacto."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"No se pudo desvincular el contacto."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"No se pudo vincular el contacto."</string>

@@ -98,10 +98,8 @@
     <string name="emptyGroup" msgid="7502116218697177370">"ഈ ഗ്രൂപ്പിൽ ആരുമില്ല."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"കുറച്ചുപേരെ ചേർക്കാൻ ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക."</string>
     <string name="savingContact" msgid="4075751076741924939">"കോൺടാക്റ്റ് സംരക്ഷിക്കുന്നു…"</string>
-    <!-- no translation found for contactSavedToast (9171862279493213075) -->
-    <skip />
-    <!-- no translation found for contactUnlinkedToast (7122823195786012553) -->
-    <skip />
+    <string name="contactSavedToast" msgid="9171862279493213075">"കോൺടാക്റ്റ് സംരക്ഷിച്ചു"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"കോൺടാക്റ്റുകൾ അൺലിങ്കുചെയ്തു"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"കോൺടാക്റ്റ് മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"കോൺടാക്റ്റ് അൺലിങ്കുചെയ്യാനായില്ല."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"കോൺടാക്റ്റ് ലിങ്കുചെയ്യാൻ കഴിഞ്ഞില്ല."</string>
