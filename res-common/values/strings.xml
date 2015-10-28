@@ -781,4 +781,17 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          Example: Mobile • 650-555-1212  -->
     <string name="call_subject_type_and_number"><xliff:g id="type" example="Mobile">%1$s</xliff:g> • <xliff:g id="number" example="(650) 555-1212">%2$s</xliff:g></string>
 
+    <!-- String format to describe the number of unread items in a tab.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <plurals name="tab_title_with_unread_items">
+        <item quantity="one">
+            <xliff:g id="title">%1$s</xliff:g>. <xliff:g id="count">%2$d</xliff:g> unread item.
+        </item>
+        <item quantity="other">
+            <xliff:g id="title">%1$s</xliff:g>. <xliff:g id="count">%2$d</xliff:g> unread items.
+        </item>
+    </plurals>
 </resources>
