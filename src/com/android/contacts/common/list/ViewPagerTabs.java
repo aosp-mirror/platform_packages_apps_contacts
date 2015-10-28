@@ -184,8 +184,14 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
             if (mUnreadCounts != null && mUnreadCounts[position] > 0) {
                 textView.setText(Integer.toString(mUnreadCounts[position]));
                 textView.setVisibility(View.VISIBLE);
+                iconView.setContentDescription(getResources().getQuantityString(
+                        R.plurals.tab_title_with_unread_items,
+                        mUnreadCounts[position],
+                        tabTitle.toString(),
+                        mUnreadCounts[position]));
             } else {
                 textView.setVisibility(View.INVISIBLE);
+                iconView.setContentDescription(tabTitle);
             }
             tabView = layout;
         } else {
