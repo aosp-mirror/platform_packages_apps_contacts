@@ -21,6 +21,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.text.TextUtils;
@@ -238,8 +239,10 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
 
     /**
      * If there are currently no preferences (which means this is the first time we are run),
-     * check to see if there are any preferences stored in system settings (pre-L) which can be
-     * copied into our own SharedPreferences.
+     * For sort order and display order, check to see if there are any preferences stored in
+     * system settings (pre-L) which can be copied into our own SharedPreferences.
+     * For default account setting, check to see if there are any preferences stored in the previous
+     * SharedPreferences which can be copied into current SharedPreferences.
      */
     private void maybeMigrateSystemSettings() {
         if (!mPreferences.contains(SORT_ORDER_KEY)) {
@@ -260,6 +263,17 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
             } catch (SettingNotFoundException e) {
             }
             setDisplayOrder(displayOrder);
+        }
+
+        if (!mPreferences.contains(mDefaultAccountKey)) {
+            final SharedPreferences previousPrefs =
+                    PreferenceManager.getDefaultSharedPreferences(mContext);
+            final String defaultAccount = previousPrefs.getString(mDefaultAccountKey, null);
+            if (!TextUtils.isEmpty(defaultAccount)) {
+                final AccountWithDataSet accountWithDataSet = AccountWithDataSet.unstringify(
+                        defaultAccount);
+                setDefaultAccount(accountWithDataSet);
+            }
         }
     }
 }
