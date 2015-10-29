@@ -33,7 +33,7 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.R;
+import com.android.contacts.common.tests.R;
 import com.google.common.base.Objects;
 
 import java.util.List;
