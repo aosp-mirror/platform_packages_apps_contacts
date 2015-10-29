@@ -23,6 +23,8 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -188,8 +190,7 @@ public class PeopleActivity extends ContactsActivity implements
     }
 
     public boolean areContactsAvailable() {
-        return (mProviderStatus != null)
-                && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
+        return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
     }
 
     private boolean areContactWritableAccountsAvailable() {
@@ -1128,9 +1129,18 @@ public class PeopleActivity extends ContactsActivity implements
         makeMenuItemEnabled(menu, R.id.menu_join, mAllFragment.getSelectedContactIds().size() > 1);
 
         // Debug options need to be visible even in search mode.
-        makeMenuItemVisible(menu, R.id.export_database, mEnableDebugMenuOptions);
+        makeMenuItemVisible(menu, R.id.export_database, mEnableDebugMenuOptions &&
+                hasExportIntentHandler());
 
         return true;
+    }
+
+    private boolean hasExportIntentHandler() {
+        final Intent intent = new Intent();
+        intent.setAction("com.android.providers.contacts.DUMP_DATABASE");
+        final List<ResolveInfo> receivers = getPackageManager().queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        return receivers != null && receivers.size() > 0;
     }
 
     /**
