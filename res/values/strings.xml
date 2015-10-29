@@ -147,6 +147,9 @@
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
     <string name="splitConfirmation">This contact will be unlinked into multiple contacts.</string>
 
+    <!-- Confirmation dialog for unlinking contacts into multiple instances when there are also unsaved changes for the current contact. [CHAR LIMIT=NONE] -->
+    <string name="splitConfirmationWithPendingChanges">There are unsaved changes. Do you want to save them before unlinking this contact into multiple contacts?</string>
+
     <!-- Title of the confirmation dialog for joining contacts when there are unsaved changes. [CHAR LIMIT=40] -->
     <string name="joinConfirmation_title">Link contact?</string>
 

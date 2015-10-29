@@ -85,6 +85,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -860,7 +861,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     @Override
-    public void onSplitContactConfirmed() {
+    public void onSplitContactConfirmed(boolean hasPendingChanges) {
         if (mState.isEmpty()) {
             // This may happen when this Fragment is recreated by the system during users
             // confirming the split action (and thus this method is called just before onCreate()),
@@ -870,6 +871,17 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             return;
         }
 
+        if (!hasPendingChanges && mHasNewContact) {
+            // If the user didn't add anything new, we don't want to split out the newly created
+            // raw contact into a name-only contact so remove them.
+            final Iterator<RawContactDelta> iterator = mState.iterator();
+            while (iterator.hasNext()) {
+                final RawContactDelta rawContactDelta = iterator.next();
+                if (rawContactDelta.getRawContactId() < 0) {
+                    iterator.remove();
+                }
+            }
+        }
         mState.markRawContactsForSplitting();
         save(SaveMode.SPLIT);
     }
@@ -877,7 +889,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private boolean doSplitContactAction() {
         if (!hasValidState()) return false;
 
-        SplitContactConfirmationDialogFragment.show(this);
+        SplitContactConfirmationDialogFragment.show(this, hasPendingChanges());
         return true;
     }
 
