@@ -1012,7 +1012,15 @@ public class ContactSaveService extends IntentService {
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
             getContentResolver().delete(contactUri, null, null);
         }
-        showToast(R.string.contacts_deleted_toast);
+        final String deleteToastMessage = getResources().getQuantityString(R.plurals
+                .contacts_deleted_toast, contactIds.length);
+        mMainHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ContactSaveService.this, deleteToastMessage, Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
     }
 
     /**

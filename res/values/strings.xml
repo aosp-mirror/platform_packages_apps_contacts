@@ -172,8 +172,11 @@
     <!-- Toast shown after two contacts have been linked by a user action. [CHAR LIMIT=NONE] -->
     <string name="contactsJoinedMessage">Contacts linked</string>
 
-    <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=NONE] -->
-    <string name="contacts_deleted_toast">Contacts deleted</string>
+    <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=30] -->
+    <plurals name="contacts_deleted_toast">
+        <item quantity="one">Contact deleted</item>
+        <item quantity="other">Contacts deleted</item>
+    </plurals>
 
     <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=15] -->
     <string name="menu_set_ring_tone">Set ringtone</string>
