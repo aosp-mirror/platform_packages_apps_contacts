@@ -1124,8 +1124,9 @@ public class PeopleActivity extends ContactsActivity implements
                 && mAllFragment.getSelectedContactIds().size() != 0;
         makeMenuItemVisible(menu, R.id.menu_share, showSelectedContactOptions);
         makeMenuItemVisible(menu, R.id.menu_delete, showSelectedContactOptions);
-        makeMenuItemVisible(menu, R.id.menu_join, showSelectedContactOptions);
-        makeMenuItemEnabled(menu, R.id.menu_join, mAllFragment.getSelectedContactIds().size() > 1);
+        final boolean showLinkContactsOptions = mActionBarAdapter.isSelectionMode()
+                && mAllFragment.getSelectedContactIds().size() > 1;
+        makeMenuItemVisible(menu, R.id.menu_join, showLinkContactsOptions);
 
         // Debug options need to be visible even in search mode.
         makeMenuItemVisible(menu, R.id.export_database, mEnableDebugMenuOptions);

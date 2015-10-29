@@ -34,6 +34,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
@@ -333,6 +334,9 @@ public class ContactDeletionInteraction extends Fragment
         if (isAdded() && mFinishActivityWhenDone) {
             getActivity().setResult(RESULT_CODE_DELETED);
             getActivity().finish();
+            final String deleteToastMessage = getResources().getQuantityString(R.plurals
+                    .contacts_deleted_toast, /* quantity */ 1);
+            Toast.makeText(mContext, deleteToastMessage, Toast.LENGTH_LONG).show();
         }
     }
 }
