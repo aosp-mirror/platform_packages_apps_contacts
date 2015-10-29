@@ -40,8 +40,9 @@
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="48dp"
-        style="@android:style/Widget.Material.Spinner.Underlined">
+        >
 
         <TextView
             android:id="@+id/account_type_selector"
@@ -64,5 +65,17 @@
              android:ellipsize="end" />
 
     </LinearLayout>
+
+    <ImageView
+        android:src="@drawable/ic_menu_expander_minimized_holo_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:layout_alignParentEnd="true"
+        android:paddingStart="@dimen/editor_round_button_padding_left"
+        android:paddingEnd="@dimen/editor_round_button_padding_right"
+        android:paddingTop="@dimen/editor_round_button_padding_top"
+        android:paddingBottom="@dimen/editor_round_button_padding_bottom"/>
+
 
 </LinearLayout>
