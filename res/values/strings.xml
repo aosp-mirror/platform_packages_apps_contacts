@@ -141,9 +141,6 @@
     <!-- Menu item (in the action bar) that creates a new group [CHAR LIMIT=30] -->
     <string name="menu_new_group_action_bar">Add Group</string>
 
-    <!-- Title of the confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=40] -->
-    <string name="splitConfirmation_title">Unlink contact?</string>
-
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
     <string name="splitConfirmation">Unlink this contact into multiple contacts?</string>
 
@@ -155,9 +152,6 @@
 
     <!-- Positive button text from the confirmation dialog for unlinking contacts with pending changes [CHAR LIMIT = 60] -->
     <string name="splitConfirmationWithPendingChanges_positive_button">Save and Unlink</string>
-
-    <!-- Title of the confirmation dialog for joining contacts when there are unsaved changes. [CHAR LIMIT=40] -->
-    <string name="joinConfirmation_title">Link contact?</string>
 
     <!-- Confirmation dialog message for joining contacts when there are unsaved changes. [CHAR LIMIT=NONE] -->
     <string name="joinConfirmation">Would you like to save the changes you already made and link with the contact selected?</string>
@@ -202,11 +196,14 @@
     <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=30] -->
     <string name="menu_redirect_calls_to_vm">All calls to voicemail</string>
 
-    <!-- Warning dialog contents after users selects to delete a ReadOnly contact. [CHAR LIMIT=NONE] -->
-    <string name="readOnlyContactWarning">Contacts from your read-only accounts will be hidden on this device, not deleted.</string>
+    <!-- Warning dialog contents after users select to delete a ReadOnly contact. [CHAR LIMIT=NONE] -->
+    <string name="readOnlyContactWarning">Contacts from your read-only accounts cannot be deleted, but they can be hidden on this device.</string>
 
-    <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. -->
-    <string name="readOnlyContactDeleteConfirmation">This contact has details from multiple accounts. Details from read-only accounts will be hidden on this device, not deleted.</string>
+    <!-- Positive button text of the warning dialog contents after users select to delete a ReadOnly contact. [CHAR LIMIT=30]-->
+    <string name="readOnlyContactWarning_positive_button">Hide</string>
+
+    <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. [CHAR LIMIT=NONE]-->
+    <string name="readOnlyContactDeleteConfirmation">This contact to be deleted has details from multiple accounts. Details from read-only accounts will be hidden on this device, not deleted.</string>
 
     <!-- Warning dialog. Shown if user selects a single contact to link. [CHAR LIMIT=NONE]  -->
     <string name="batch_link_single_contact_warning">You need at least two contacts selected to perform a link.</string>
@@ -224,10 +221,10 @@
     <string name="batch_delete_confirmation">Delete selected contacts?</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete readonly contacts. [CHAR LIMIT=NONE] -->
-    <string name="batch_delete_read_only_contact_confirmation">Contacts from your read-only accounts will be hidden on this device, not deleted.</string>
+    <string name="batch_delete_read_only_contact_confirmation">Contacts from your read-only accounts cannot be deleted, but they can be hidden on this device.</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete contacts from multiple accounts. [CHAR LIMIT=NONE]  -->
-    <string name="batch_delete_multiple_accounts_confirmation">These contacts have details from multiple accounts. Details from read-only accounts will be hidden on this device, not deleted.</string>
+    <string name="batch_delete_multiple_accounts_confirmation">These contacts to be deleted have details from multiple accounts. Details from read-only accounts will be hidden on this device, not deleted.</string>
 
     <!-- Warning dialog contents after users selects to delete a contact with multiple Writable sources. -->
     <string name="multipleContactDeleteConfirmation">Deleting this contact will delete details from multiple accounts.</string>

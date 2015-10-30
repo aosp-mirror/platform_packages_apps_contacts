@@ -70,8 +70,6 @@ public class JoinContactConfirmationDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.joinConfirmation_title);
-        builder.setIconAttribute(android.R.attr.alertDialogIcon);
         builder.setMessage(R.string.joinConfirmation);
         builder.setPositiveButton(R.string.joinConfirmation_positive_button,
                 new DialogInterface.OnClickListener() {

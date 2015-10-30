@@ -269,6 +269,7 @@ public class ContactDeletionInteraction extends Fragment
             mMessageId = R.string.readOnlyContactDeleteConfirmation;
         } else if (readOnlyCount > 0 && writableCount == 0) {
             mMessageId = R.string.readOnlyContactWarning;
+            positiveButtonId = R.string.readOnlyContactWarning_positive_button;
         } else if (readOnlyCount == 0 && writableCount > 1) {
             mMessageId = R.string.multipleContactDeleteConfirmation;
             positiveButtonId = R.string.deleteConfirmation_positive_button;

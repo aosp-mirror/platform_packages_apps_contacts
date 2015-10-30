@@ -219,6 +219,7 @@ public class ContactMultiDeletionInteraction extends Fragment
             messageId = R.string.batch_delete_multiple_accounts_confirmation;
         } else if (readOnlyCount > 0 && writableCount == 0) {
             messageId = R.string.batch_delete_read_only_contact_confirmation;
+            positiveButtonId = R.string.readOnlyContactWarning_positive_button;
         } else if (writableCount == 1) {
             messageId = R.string.single_delete_confirmation;
             positiveButtonId = R.string.deleteConfirmation_positive_button;
