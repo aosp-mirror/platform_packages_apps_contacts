@@ -145,16 +145,25 @@
     <string name="splitConfirmation_title">Unlink contact?</string>
 
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
-    <string name="splitConfirmation">This contact will be unlinked into multiple contacts.</string>
+    <string name="splitConfirmation">Unlink this contact into multiple contacts?</string>
+
+    <!-- Positive button text from the confirmation dialog for unlinking contacts [CHAR LIMIT = 30] -->
+    <string name="splitConfirmation_positive_button">Unlink</string>
 
     <!-- Confirmation dialog for unlinking contacts into multiple instances when there are also unsaved changes for the current contact. [CHAR LIMIT=NONE] -->
-    <string name="splitConfirmationWithPendingChanges">There are unsaved changes. Do you want to save them before unlinking this contact into multiple contacts?</string>
+    <string name="splitConfirmationWithPendingChanges">Would you like to save the changes you already made and unlink this contact into multiple contacts?</string>
+
+    <!-- Positive button text from the confirmation dialog for unlinking contacts with pending changes [CHAR LIMIT = 60] -->
+    <string name="splitConfirmationWithPendingChanges_positive_button">Save and Unlink</string>
 
     <!-- Title of the confirmation dialog for joining contacts when there are unsaved changes. [CHAR LIMIT=40] -->
     <string name="joinConfirmation_title">Link contact?</string>
 
     <!-- Confirmation dialog message for joining contacts when there are unsaved changes. [CHAR LIMIT=NONE] -->
-    <string name="joinConfirmation">There are unsaved changes. Do you want to save them before linking?</string>
+    <string name="joinConfirmation">Would you like to save the changes you already made and link with the contact selected?</string>
+
+    <!-- Positive button text from the confirmation dialog for joining contacts when there are unsaved changes. [CHAR LIMIT = 60] -->
+    <string name="joinConfirmation_positive_button">Save and Link</string>
 
     <!-- Menu item that links an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Link</string>
@@ -194,31 +203,40 @@
     <string name="menu_redirect_calls_to_vm">All calls to voicemail</string>
 
     <!-- Warning dialog contents after users selects to delete a ReadOnly contact. [CHAR LIMIT=NONE] -->
-    <string name="readOnlyContactWarning">You can\'t delete contacts from read-only accounts, but you can hide them in your contacts lists.</string>
+    <string name="readOnlyContactWarning">Contacts from your read-only accounts will be hidden on this device, not deleted.</string>
 
     <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. -->
-    <string name="readOnlyContactDeleteConfirmation">This contact contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
+    <string name="readOnlyContactDeleteConfirmation">This contact has details from multiple accounts. Details from read-only accounts will be hidden on this device, not deleted.</string>
 
     <!-- Warning dialog. Shown if user selects a single contact to link. [CHAR LIMIT=NONE]  -->
     <string name="batch_link_single_contact_warning">You need at least two contacts selected to perform a link.</string>
 
     <!-- Confirmation dialog. Shown after user selects to link contacts. [CHAR LIMIT=NONE]  -->
-    <string name="batch_link_confirmation">The selected contacts will be linked into a single contact.</string>
+    <string name="batch_link_confirmation">Link selected contacts?</string>
 
-    <!-- Confirmation dialog. Shown after user selects to delete writable contacts. [CHAR LIMIT=NONE]  -->
-    <string name="batch_delete_confirmation">The selected contacts will be deleted.</string>
+    <!-- Positive button text from confirmation dialog. Shown after user selects to link contacts. [CHAR LIMIT=40]  -->
+    <string name="batch_link_confirmation_positive_button">Link</string>
+
+    <!-- Confirmation dialog. Shown after user selects to delete one writable contact [CHAR LIMIT=NONE]  -->
+    <string name="single_delete_confirmation">Delete this contact?</string>
+
+    <!-- Confirmation dialog. Shown after user selects to delete multimple writable contacts. [CHAR LIMIT=NONE]  -->
+    <string name="batch_delete_confirmation">Delete selected contacts?</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete readonly contacts. [CHAR LIMIT=NONE] -->
-    <string name="batch_delete_read_only_contact_confirmation">Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
+    <string name="batch_delete_read_only_contact_confirmation">Contacts from your read-only accounts will be hidden on this device, not deleted.</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete contacts from multiple accounts. [CHAR LIMIT=NONE]  -->
-    <string name="batch_delete_multiple_accounts_confirmation">These contacts contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted.</string>
+    <string name="batch_delete_multiple_accounts_confirmation">These contacts have details from multiple accounts. Details from read-only accounts will be hidden on this device, not deleted.</string>
 
     <!-- Warning dialog contents after users selects to delete a contact with multiple Writable sources. -->
-    <string name="multipleContactDeleteConfirmation">Deleting this contact will delete information from multiple accounts.</string>
+    <string name="multipleContactDeleteConfirmation">Deleting this contact will delete details from multiple accounts.</string>
 
     <!-- Confirmation dialog contents after users selects to delete a Writable contact. -->
-    <string name="deleteConfirmation">This contact will be deleted.</string>
+    <string name="deleteConfirmation">Delete this contact?</string>
+
+    <!-- Positive button text of confirmation dialog contents after users selects to delete a Writable contact. [CHAR LIMIT=30] -->
+    <string name="deleteConfirmation_positive_button">Delete</string>
 
     <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=30] -->
     <string name="menu_discard">Discard changes</string>
@@ -227,8 +245,11 @@
          for some reason doesn't exist anymore. [CHAR LIMIT=NONE]-->
     <string name="invalidContactMessage">The contact doesn\'t exist.</string>
 
-    <!-- Message displayed in a toast after you create a contact shortcut in the launcher [CHAR LIMIT=NONE]-->
-    <string name="createContactShortcutSuccessful">Contact widget added to Home screen.</string>
+    <!-- Message without name displayed in a toast after you create a contact shortcut in the launcher [CHAR LIMIT=NONE]-->
+    <string name="createContactShortcutSuccessful_NoName">Contact added to Home screen.</string>
+
+    <!-- Message with name displayed in a toast after you create a contact shortcut in the launcher [CHAR LIMIT=NONE]-->
+    <string name="createContactShortcutSuccessful"><xliff:g id="name">%s</xliff:g> added to Home screen.</string>
 
     <!-- When picking a contact from a list of all contacts there is an entry at the top of the
          list that allows the user to create a new contact, which this string is used for -->
@@ -337,7 +358,7 @@
     </plurals>
 
     <!-- The title of "all contacts" tab. [CHAR LIMIT=14] -->
-    <string name="all_contacts_tab_label">All contacts</string>
+    <string name="all_contacts_tab_label">All</string>
 
     <!-- The title of "favorites" tab. [CHAR LIMIT=14] -->
     <string name="favorites_tab_label">Favorites</string>
@@ -619,6 +640,9 @@
     <!-- Contents of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=128] -->
     <string name="cancel_confirmation_dialog_message">Discard your changes?</string>
 
+    <!-- Positive button text of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=40] -->
+    <string name="cancel_confirmation_dialog_message_positive_button">Discard</string>
+
     <!-- Description of a call log entry, made of a call type and a date -->
     <string name="call_type_and_date">
         <xliff:g id="call_type" example="Friends">%1$s</xliff:g>  <xliff:g id="call_short_date" example="Friends">%2$s</xliff:g>
@@ -660,7 +684,7 @@
     <string name="contact_editor_prompt_one_account">Your new contact will be synchronized with <xliff:g id="account_name">%1$s</xliff:g>.</string>
 
     <!-- Message in the contact editor prompt that asks the user which account they want to save the newly created contact to. [CHAR LIMIT=NONE] -->
-    <string name="contact_editor_prompt_multiple_accounts">You can synchronize your new contact with one of the following accounts. Which do you want to use?</string>
+    <string name="contact_editor_prompt_multiple_accounts">Choose a default account for new contacts:</string>
 
     <!-- Title of the ContactEditorActivity when creating a new contact. The char
          limit is short and cannot be increased, since this needs to be displayed in a single line
@@ -837,8 +861,8 @@
     <!-- "Duplicates" title showing in suggestion card in Quick contact. [CHAR LIMIT=30]-->
     <string name="suggestion_card_duplicates_title">Possible duplicates</string>
 
-    <!-- Help message showing in suggestion card in Quick contact. [CHAR LIMIT=500]-->
-    <string name="suggestion_card_help_message">Clean up duplicate contacts for the same person by linking them together.</string>
+    <!-- Help message showing in suggestion card in Quick contact. [CHAR LIMIT=NONE]-->
+    <string name="suggestion_card_help_message">These contacts might be the same person. You can link them together as a single contact.</string>
 
     <!-- Linked contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
     <string name="compact_editor_linked_contacts_title">Linked contacts</string>

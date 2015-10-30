@@ -2685,8 +2685,11 @@ public class QuickContactActivity extends ContactsActivity
 
                         // Send a toast to give feedback to the user that a shortcut to this
                         // contact was added to the launcher.
-                        Toast.makeText(QuickContactActivity.this,
-                                R.string.createContactShortcutSuccessful,
+                        final String displayName = mContactData.getDisplayName();
+                        final String toastMessage = TextUtils.isEmpty(displayName)
+                                ? getString(R.string.createContactShortcutSuccessful_NoName)
+                                : getString(R.string.createContactShortcutSuccessful, displayName);
+                        Toast.makeText(QuickContactActivity.this, toastMessage,
                                 Toast.LENGTH_SHORT).show();
                     }
 

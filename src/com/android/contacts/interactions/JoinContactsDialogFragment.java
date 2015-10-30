@@ -73,7 +73,7 @@ public class JoinContactsDialogFragment extends DialogFragment {
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(R.string.batch_link_confirmation)
                 .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(android.R.string.ok,
+                .setPositiveButton(R.string.batch_link_confirmation_positive_button,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {

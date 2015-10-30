@@ -46,7 +46,8 @@ public class CancelEditDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(R.string.cancel_confirmation_dialog_message)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.cancel_confirmation_dialog_message_positive_button,
+                        new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 final Listener targetListener = (Listener) getTargetFragment();

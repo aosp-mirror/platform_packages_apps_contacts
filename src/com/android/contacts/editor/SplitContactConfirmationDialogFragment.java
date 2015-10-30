@@ -76,13 +76,16 @@ public class SplitContactConfirmationDialogFragment extends DialogFragment {
         builder.setMessage(mHasPendingChanges
                 ? R.string.splitConfirmationWithPendingChanges
                 : R.string.splitConfirmation);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                final Listener targetListener = (Listener) getTargetFragment();
-                targetListener.onSplitContactConfirmed(mHasPendingChanges);
-            }
-        });
+        builder.setPositiveButton(mHasPendingChanges
+                ? R.string.splitConfirmationWithPendingChanges_positive_button
+                : R.string.splitConfirmation_positive_button,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final Listener targetListener = (Listener) getTargetFragment();
+                        targetListener.onSplitContactConfirmed(mHasPendingChanges);
+                    }
+                });
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setCancelable(false);
         return builder.create();

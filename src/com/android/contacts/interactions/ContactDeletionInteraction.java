@@ -264,18 +264,21 @@ public class ContactDeletionInteraction extends Fragment
 
         int readOnlyCount = readOnlyRawContacts.size();
         int writableCount = writableRawContacts.size();
+        int positiveButtonId = android.R.string.ok;
         if (readOnlyCount > 0 && writableCount > 0) {
             mMessageId = R.string.readOnlyContactDeleteConfirmation;
         } else if (readOnlyCount > 0 && writableCount == 0) {
             mMessageId = R.string.readOnlyContactWarning;
         } else if (readOnlyCount == 0 && writableCount > 1) {
             mMessageId = R.string.multipleContactDeleteConfirmation;
+            positiveButtonId = R.string.deleteConfirmation_positive_button;
         } else {
             mMessageId = R.string.deleteConfirmation;
+            positiveButtonId = R.string.deleteConfirmation_positive_button;
         }
 
         final Uri contactUri = Contacts.getLookupUri(contactId, lookupKey);
-        showDialog(mMessageId, contactUri);
+        showDialog(mMessageId, positiveButtonId, contactUri);
 
         // We don't want onLoadFinished() calls any more, which may come when the database is
         // updating.
@@ -286,12 +289,12 @@ public class ContactDeletionInteraction extends Fragment
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
-    private void showDialog(int messageId, final Uri contactUri) {
+    private void showDialog(int messageId, int positiveButtonId, final Uri contactUri) {
         mDialog = new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(messageId)
                 .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(android.R.string.ok,
+                .setPositiveButton(positiveButtonId,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int whichButton) {
