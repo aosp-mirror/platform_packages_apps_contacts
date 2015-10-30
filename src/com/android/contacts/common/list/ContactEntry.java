@@ -19,12 +19,31 @@ package com.android.contacts.common.list;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract.PinnedPositions;
+import android.text.TextUtils;
+
+import com.android.contacts.common.preference.ContactsPreferences;
 
 /**
  * Class to hold contact information
  */
 public class ContactEntry {
-    public String name;
+
+    private static final int UNSET_DISPLAY_ORDER_PREFERENCE = -1;
+
+    /**
+     * Primary name for a Contact
+     */
+    public String namePrimary;
+    /**
+     * Alternative name for a Contact, e.g. last name first
+     */
+    public String nameAlternative;
+    /**
+     * The user's preference on name display order, last name first or first time first.
+     * {@see ContactsPreferences}
+     */
+    public int nameDisplayOrder = UNSET_DISPLAY_ORDER_PREFERENCE;
+
     public String status;
     public String phoneLabel;
     public String phoneNumber;
@@ -38,4 +57,13 @@ public class ContactEntry {
     public boolean isDefaultNumber = false;
 
     public static final ContactEntry BLANK_ENTRY = new ContactEntry();
+
+    public String getPreferredDisplayName() {
+        if (nameDisplayOrder == UNSET_DISPLAY_ORDER_PREFERENCE
+                || nameDisplayOrder == ContactsPreferences.DISPLAY_ORDER_PRIMARY
+                || TextUtils.isEmpty(nameAlternative)) {
+            return namePrimary;
+        }
+        return nameAlternative;
+    }
 }
