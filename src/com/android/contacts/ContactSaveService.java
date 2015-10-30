@@ -56,7 +56,6 @@ import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
-import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import com.google.common.collect.Lists;
@@ -375,6 +374,7 @@ public class ContactSaveService extends IntentService {
         Uri lookupUri = null;
 
         final ContentResolver resolver = getContentResolver();
+
         boolean succeeded = false;
 
         // Keep track of the id of a newly raw-contact (if any... there can be at most one).
@@ -386,6 +386,7 @@ public class ContactSaveService extends IntentService {
             try {
                 // Build operations and try applying
                 final ArrayList<ContentProviderOperation> diff = state.buildDiff();
+
                 if (DEBUG) {
                     Log.v(TAG, "Content Provider Operations:");
                     for (ContentProviderOperation operation : diff) {
@@ -393,14 +394,23 @@ public class ContactSaveService extends IntentService {
                     }
                 }
 
-                ContentProviderResult[] results = null;
-                if (!diff.isEmpty()) {
-                    results = resolver.applyBatch(ContactsContract.AUTHORITY, diff);
-                    if (results == null) {
+                int numberProcessed = 0;
+                boolean batchFailed = false;
+                final ContentProviderResult[] results = new ContentProviderResult[diff.size()];
+                while (numberProcessed < diff.size()) {
+                    final int subsetCount = applyDiffSubset(diff, numberProcessed, results, resolver);
+                    if (subsetCount == -1) {
                         Log.w(TAG, "Resolver.applyBatch failed in saveContacts");
-                        // Retry save
-                        continue;
+                        batchFailed = true;
+                        break;
+                    } else {
+                        numberProcessed += subsetCount;
                     }
+                }
+
+                if (batchFailed) {
+                    // Retry save
+                    continue;
                 }
 
                 final long rawContactId = getRawContactId(state, diff, results);
@@ -523,6 +533,29 @@ public class ContactSaveService extends IntentService {
             callbackIntent.setData(lookupUri);
             deliverCallback(callbackIntent);
         }
+    }
+
+    /**
+     * Splits "diff" into subsets based on "MAX_CONTACTS_PROVIDER_BATCH_SIZE", applies each of the
+     * subsets, adds the returned array to "results".
+     *
+     * @return the size of the array, if not null; -1 when the array is null.
+     */
+    private int applyDiffSubset(ArrayList<ContentProviderOperation> diff, int offset,
+            ContentProviderResult[] results, ContentResolver resolver)
+            throws RemoteException, OperationApplicationException {
+        final int subsetCount = Math.min(diff.size() - offset, MAX_CONTACTS_PROVIDER_BATCH_SIZE);
+        final ArrayList<ContentProviderOperation> subset = new ArrayList<>();
+        subset.addAll(diff.subList(offset, offset + subsetCount));
+        final ContentProviderResult[] subsetResult = resolver.applyBatch(ContactsContract
+                .AUTHORITY, subset);
+        if (subsetResult == null || (offset + subsetResult.length) > results.length) {
+            return -1;
+        }
+        for (ContentProviderResult c : subsetResult) {
+            results[offset++] = c;
+        }
+        return subsetResult.length;
     }
 
     /**
