@@ -6,12 +6,18 @@ LOCAL_MODULE_TAGS := optional
 contacts_common_dir := ../ContactsCommon
 phone_common_dir := ../PhoneCommon
 
+ifeq ($(TARGET_BUILD_APPS),)
+support_library_root_dir := frameworks/support
+else
+support_library_root_dir := prebuilts/sdk/current/support
+endif
+
 src_dirs := src $(contacts_common_dir)/src $(phone_common_dir)/src
 res_dirs := res $(contacts_common_dir)/res $(phone_common_dir)/res
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs)) \
-    frameworks/support/v7/cardview/res
+    $(support_library_root_dir)/v7/cardview/res
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
