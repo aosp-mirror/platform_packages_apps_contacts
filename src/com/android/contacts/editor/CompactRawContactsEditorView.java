@@ -852,7 +852,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 EditorUiUtils.getAccountInfoContentDescription(
                         accountInfo.first, selectorTitle));
 
-        mAccountSelector.setOnClickListener(new View.OnClickListener() {
+        mAccountSelectorContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final ListPopupWindow popup = new ListPopupWindow(getContext(), null);
