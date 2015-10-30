@@ -61,6 +61,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
 
     private TextView mAccountHeaderTypeTextView;
     private TextView mAccountHeaderNameTextView;
+    private ImageView mAccountIconImageView;
 
     private String mAccountName;
     private String mAccountType;
@@ -91,6 +92,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
 
         mAccountHeaderTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountHeaderNameTextView = (TextView) findViewById(R.id.account_name);
+        mAccountIconImageView = (ImageView) findViewById(android.R.id.icon);
     }
 
     /**
@@ -127,6 +129,9 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         }
         mAccountHeaderTypeTextView.setText(accountInfo.second);
         updateAccountHeaderContentDescription();
+
+        mAccountIconImageView.setImageDrawable(state.getRawContactAccountType(getContext())
+                .getDisplayIcon(getContext()));
 
         // TODO: Expose data set in the UI somehow?
 

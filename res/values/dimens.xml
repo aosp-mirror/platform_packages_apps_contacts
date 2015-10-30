@@ -108,6 +108,12 @@
     <!-- Top margin for the first field of the compact contact editor -->
     <dimen name="editor_compact_first_field_padding">10dp</dimen>
 
+    <!-- Top and bottom padding for the two text views in editor account header expandable -->
+    <dimen name="editor_account_header_expandable_top_bottom_padding">24dp</dimen>
+
+    <!-- left padding for the two text views in editor account header expandable -->
+    <dimen name="editor_account_header_expandable_left_padding">4dp</dimen>
+
     <!-- Width and height of the expanded contact photo on the contact detail page -->
     <dimen name="detail_contact_photo_expanded_size">400dip</dimen>
 
@@ -278,4 +284,5 @@
 
     <!-- Top margin for "Saving to" account header text field. -->
     <dimen name="compact_editor_account_header_top_margin">3dp</dimen>
+
 </resources>

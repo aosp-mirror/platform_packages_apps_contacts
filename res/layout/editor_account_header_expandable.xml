@@ -25,12 +25,22 @@
     android:focusable="true"
     >
 
+    <!-- TODO: consider making this a new style, like EditKindIconStyle -->
+    <ImageView
+        android:id="@android:id/icon"
+        android:layout_width="@dimen/editor_kind_icon_size"
+        android:layout_height="@dimen/editor_kind_icon_size"
+        android:layout_marginEnd="28dp"
+        android:layout_gravity="center_vertical"
+        />
+
     <LinearLayout
+        android:id="@+id/account_info"
         android:layout_height="wrap_content"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_weight="1"
-        android:paddingBottom="24dp"
-        android:paddingTop="24dp"
+        android:paddingBottom="@dimen/editor_account_header_expandable_top_bottom_padding"
+        android:paddingTop="@dimen/editor_account_header_expandable_top_bottom_padding"
         android:orientation="vertical"
         >
 
