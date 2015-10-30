@@ -313,7 +313,8 @@ public class ContactSaveService extends IntentService {
         Bundle bundle = new Bundle();
         bundle.putParcelable(String.valueOf(rawContactId), updatedPhotoPath);
         return createSaveContactIntent(context, state, saveModeExtraKey, saveMode, isProfile,
-                callbackActivity, callbackAction, bundle);
+                callbackActivity, callbackAction, bundle,
+                /* joinContactIdExtraKey */ null, /* joinContactId */ null);
     }
 
     /**
@@ -321,12 +322,15 @@ public class ContactSaveService extends IntentService {
      * using data presented as a set of ContentValues.
      * This variant is used when multiple contacts' photos may be updated, as in the
      * Contact Editor.
+     *
      * @param updatedPhotos maps each raw-contact's ID to the file-path of the new photo.
+     * @param joinContactIdExtraKey the key used to pass the joinContactId in the callback intent.
+     * @param joinContactId the raw contact ID to join to the contact after doing the save.
      */
     public static Intent createSaveContactIntent(Context context, RawContactDeltaList state,
             String saveModeExtraKey, int saveMode, boolean isProfile,
             Class<? extends Activity> callbackActivity, String callbackAction,
-            Bundle updatedPhotos) {
+            Bundle updatedPhotos, String joinContactIdExtraKey, Long joinContactId) {
         Intent serviceIntent = new Intent(
                 context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_SAVE_CONTACT);
@@ -344,6 +348,9 @@ public class ContactSaveService extends IntentService {
             // the callback intent.
             Intent callbackIntent = new Intent(context, callbackActivity);
             callbackIntent.putExtra(saveModeExtraKey, saveMode);
+            if (joinContactIdExtraKey != null && joinContactId != null) {
+                callbackIntent.putExtra(joinContactIdExtraKey, joinContactId);
+            }
             callbackIntent.setAction(callbackAction);
             serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
         }

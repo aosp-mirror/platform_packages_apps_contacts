@@ -147,6 +147,12 @@
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
     <string name="splitConfirmation">This contact will be unlinked into multiple contacts.</string>
 
+    <!-- Title of the confirmation dialog for joining contacts when there are unsaved changes. [CHAR LIMIT=40] -->
+    <string name="joinConfirmation_title">Link contact?</string>
+
+    <!-- Confirmation dialog message for joining contacts when there are unsaved changes. [CHAR LIMIT=NONE] -->
+    <string name="joinConfirmation">There are unsaved changes. Do you want to save them before linking?</string>
+
     <!-- Menu item that links an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Link</string>
 

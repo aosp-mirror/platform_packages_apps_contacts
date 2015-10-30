@@ -93,6 +93,7 @@ import java.util.Set;
  */
 abstract public class ContactEditorBaseFragment extends Fragment implements
         ContactEditor, SplitContactConfirmationDialogFragment.Listener,
+        JoinContactConfirmationDialogFragment.Listener,
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         CancelEditDialogFragment.Listener {
 
@@ -206,6 +207,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
      * Intent extra to specify a {@link ContactEditor.SaveMode}.
      */
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
+
+    /**
+     * Intent extra key for the contact ID to join the current contact to after saving.
+     */
+    public static final String JOIN_CONTACT_ID_EXTRA_KEY = "joinContactId";
 
     /**
      * Callbacks for Activities that host contact editors Fragments.
@@ -668,7 +674,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 if (resultCode != Activity.RESULT_OK) return;
                 if (data != null) {
                     final long contactId = ContentUris.parseId(data.getData());
-                    joinAggregate(contactId);
+                    if (hasPendingChanges()) {
+                        // Ask the user if they want to save changes before doing the join
+                        JoinContactConfirmationDialogFragment.show(this, contactId);
+                    } else {
+                        // Do the join immediately
+                        joinAggregate(contactId);
+                    }
                 }
                 break;
             }
@@ -870,7 +882,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     private boolean doJoinContactAction() {
-        if (!hasValidState()) {
+        if (!hasValidState() || mLookupUri == null) {
             return false;
         }
 
@@ -883,7 +895,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             return true;
         }
 
-        return save(SaveMode.JOIN);
+        showJoinAggregateActivity(mLookupUri);
+        return true;
+    }
+
+    @Override
+    public void onJoinContactConfirmed(long joinContactId) {
+        doSaveAction(SaveMode.JOIN, joinContactId);
     }
 
     private void doPickRingtone() {
@@ -931,19 +949,22 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 return true;
             }
             onSaveCompleted(/* hadChanges =*/ false, saveMode,
-                    /* saveSucceeded =*/ mLookupUri != null, mLookupUri);
+                    /* saveSucceeded =*/ mLookupUri != null, mLookupUri, /* joinContactId =*/ null);
             return true;
         }
 
         setEnabled(false);
 
-        return doSaveAction(saveMode);
+        return doSaveAction(saveMode, /* joinContactId */ null);
     }
 
     /**
      * Persist the accumulated editor deltas.
+     *
+     * @param joinContactId the raw contact ID to join the contact being saved to after the save,
+     *         may be null.
      */
-    abstract protected boolean doSaveAction(int saveMode);
+    abstract protected boolean doSaveAction(int saveMode, Long joinContactId);
 
     //
     // State accessor methods
@@ -1392,12 +1413,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
     @Override
     public void onJoinCompleted(Uri uri) {
-        onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri);
+        onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri, /* joinContactId */ null);
     }
 
     @Override
     public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
-            Uri contactLookupUri) {
+            Uri contactLookupUri, Long joinContactId) {
         if (hadChanges) {
             if (saveSucceeded) {
                 switch (saveMode) {
@@ -1438,14 +1459,13 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 if (mListener != null) mListener.onSaveFinished(/* resultIntent= */ null);
                 break;
             }
-            case SaveMode.RELOAD:
             case SaveMode.JOIN:
+                if (saveSucceeded && contactLookupUri != null && joinContactId != null) {
+                    joinAggregate(joinContactId);
+                }
+                break;
+            case SaveMode.RELOAD:
                 if (saveSucceeded && contactLookupUri != null) {
-                    // If it was a JOIN, we are now ready to bring up the join activity.
-                    if (saveMode == SaveMode.JOIN && hasValidState()) {
-                        showJoinAggregateActivity(contactLookupUri);
-                    }
-
                     // If this was in INSERT, we are changing into an EDIT now.
                     // If it already was an EDIT, we are changing to the new Uri now
                     mState = new RawContactDeltaList();
