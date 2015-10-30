@@ -22,12 +22,16 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.preference.ContactsPreferences;
 
 /**
  * Unit tests for (@link ContactDisplayUtils}
  */
 @SmallTest
 public class ContactDisplayUtilTests extends AndroidTestCase {
+
+    private static final String NAME_PRIMARY = "Name Primary";
+    private static final String NAME_ALTERNATIVE = "Name Alternative";
 
     public void testIsCustomPhoneTypeReturnsTrue() {
         assertTrue(ContactDisplayUtils.isCustomPhoneType(Phone.TYPE_CUSTOM));
@@ -92,4 +96,23 @@ public class ContactDisplayUtilTests extends AndroidTestCase {
         assertEquals(R.string.sms_home, ContactDisplayUtils.getSmsLabelResourceId(Phone.TYPE_HOME));
     }
 
+    public void testGetPreferredNameEmptyAlternative() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredName(NAME_PRIMARY, "",
+                ContactsPreferences.DISPLAY_ORDER_PRIMARY));
+    }
+
+    public void testGetPreferredInvalidPreference() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredName(NAME_PRIMARY,
+                NAME_ALTERNATIVE, -1));
+    }
+
+    public void testGetPreferredNamePrimary() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredName(NAME_PRIMARY,
+                NAME_ALTERNATIVE, ContactsPreferences.DISPLAY_ORDER_PRIMARY));
+    }
+
+    public void testGetPreferredNameAlternative() {
+        assertEquals(NAME_ALTERNATIVE, ContactDisplayUtils.getPreferredName(NAME_PRIMARY,
+                NAME_ALTERNATIVE, ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE));
+    }
 }

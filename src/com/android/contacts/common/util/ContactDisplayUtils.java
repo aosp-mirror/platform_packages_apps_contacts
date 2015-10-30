@@ -22,11 +22,14 @@ import android.content.Context;
 import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.TtsSpan;
 import android.util.Log;
 import android.util.Patterns;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.common.testing.NeededForTesting;
 
 import com.google.common.base.Preconditions;
 
@@ -219,5 +222,41 @@ public class ContactDisplayUtils {
             start = message.indexOf(phoneNumber, end);
         }
         return spannable;
+    }
+
+    /**
+     * Returns either namePrimary or nameAlternative based on the value of displayOrderPreference
+     *
+     * In the event that nameAlternative is empty or displayOrderPreference is neither
+     * {@link ContactsPreferences#DISPLAY_ORDER_PRIMARY} nor
+     * {@link ContactsPreferences#DISPLAY_ORDER_ALTERNATIVE}, namePrimary is returned
+     *
+     * @param namePrimary the primary name
+     * @param nameAlternative the alternative name
+     * @param displayOrderPreference one of {@link ContactsPreferences#DISPLAY_ORDER_PRIMARY} or
+     *          {@link ContactsPreferences#DISPLAY_ORDER_ALTERNATIVE}
+     * @return namePrimary or nameAlternative depending on the value of displayOrderPreference
+     */
+    @NeededForTesting // TODO Temporary until used in source
+    public static String getPreferredName(String namePrimary, String nameAlternative,
+            int displayOrderPreference) {
+        if (TextUtils.isEmpty(nameAlternative)) {
+            Log.d(TAG, "nameAlternative was empty - defaulting to primary");
+            return namePrimary;
+        }
+
+        if (displayOrderPreference != ContactsPreferences.DISPLAY_ORDER_PRIMARY
+                && displayOrderPreference != ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE) {
+            Log.d(TAG, "Attempted to get preferredName with invalid preference "
+                    + "- defaulting to primary");
+            return namePrimary;
+        }
+
+
+        if (displayOrderPreference == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
+            return namePrimary;
+        }
+
+        return nameAlternative;
     }
 }
