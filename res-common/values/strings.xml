@@ -656,8 +656,8 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- An allowable value for the "view names as" contact display option  -->
     <string name="display_options_view_family_name_first">Last name first</string>
 
-    <!--Label of the "default account" setting option to set default editor account-->
-    <string name="default_editor_account">Default account</string>
+    <!--Label of the "default account" setting option to set default editor account. [CHAR LIMIT=80]-->
+    <string name="default_editor_account">Default account for new contacts</string>
 
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
@@ -718,8 +718,8 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Menu item to select SIM card -->
     <string name="menu_select_sim">Select SIM card</string>
 
-    <!-- The menu item to open the list of accounts -->
-    <string name="menu_accounts">Accounts</string>
+    <!-- The menu item to open the list of accounts. [CHAR LIMIT=60]-->
+    <string name="menu_accounts">Manage Accounts</string>
 
     <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
     <string name="menu_import_export">Import/export</string>
