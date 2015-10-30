@@ -719,7 +719,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <string name="menu_select_sim">Select SIM card</string>
 
     <!-- The menu item to open the list of accounts. [CHAR LIMIT=60]-->
-    <string name="menu_accounts">Manage Accounts</string>
+    <string name="menu_accounts">Manage accounts</string>
 
     <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
     <string name="menu_import_export">Import/export</string>
