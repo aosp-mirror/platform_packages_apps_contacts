@@ -214,12 +214,17 @@ public class ContactMultiDeletionInteraction extends Fragment
         final int writableCount = writableRawContacts.size();
 
         final int messageId;
+        int positiveButtonId = android.R.string.ok;
         if (readOnlyCount > 0 && writableCount > 0) {
             messageId = R.string.batch_delete_multiple_accounts_confirmation;
         } else if (readOnlyCount > 0 && writableCount == 0) {
             messageId = R.string.batch_delete_read_only_contact_confirmation;
+        } else if (writableCount == 1) {
+            messageId = R.string.single_delete_confirmation;
+            positiveButtonId = R.string.deleteConfirmation_positive_button;
         } else {
             messageId = R.string.batch_delete_confirmation;
+            positiveButtonId = R.string.deleteConfirmation_positive_button;
         }
 
         // Convert set of contact ids into a format that is easily parcellable and iterated upon
@@ -230,7 +235,7 @@ public class ContactMultiDeletionInteraction extends Fragment
             contactIdArray[i] = contactIdObjectArray[i];
         }
 
-        showDialog(messageId, contactIdArray);
+        showDialog(messageId, positiveButtonId, contactIdArray);
 
         // We don't want onLoadFinished() calls any more, which may come when the database is
         // updating.
@@ -241,12 +246,12 @@ public class ContactMultiDeletionInteraction extends Fragment
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
-    private void showDialog(int messageId, final long[] contactIds) {
+    private void showDialog(int messageId, int positiveButtonId, final long[] contactIds) {
         mDialog = new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(messageId)
                 .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(android.R.string.ok,
+                .setPositiveButton(positiveButtonId,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int whichButton) {

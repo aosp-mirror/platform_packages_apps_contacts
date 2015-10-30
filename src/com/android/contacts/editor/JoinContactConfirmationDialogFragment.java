@@ -73,13 +73,14 @@ public class JoinContactConfirmationDialogFragment extends DialogFragment {
         builder.setTitle(R.string.joinConfirmation_title);
         builder.setIconAttribute(android.R.attr.alertDialogIcon);
         builder.setMessage(R.string.joinConfirmation);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                final Listener targetListener = (Listener) getTargetFragment();
-                targetListener.onJoinContactConfirmed(mContactId);
-            }
-        });
+        builder.setPositiveButton(R.string.joinConfirmation_positive_button,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final Listener targetListener = (Listener) getTargetFragment();
+                        targetListener.onJoinContactConfirmed(mContactId);
+                    }
+                });
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setCancelable(false);
         return builder.create();
