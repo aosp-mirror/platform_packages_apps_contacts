@@ -197,13 +197,13 @@
     <string name="menu_redirect_calls_to_vm">All calls to voicemail</string>
 
     <!-- Warning dialog contents after users select to delete a ReadOnly contact. [CHAR LIMIT=NONE] -->
-    <string name="readOnlyContactWarning">Contacts from your read-only accounts cannot be deleted, but they can be hidden on this device.</string>
+    <string name="readOnlyContactWarning">Contacts from your read-only accounts cannot be deleted, but they can be hidden.</string>
 
     <!-- Positive button text of the warning dialog contents after users select to delete a ReadOnly contact. [CHAR LIMIT=30]-->
     <string name="readOnlyContactWarning_positive_button">Hide</string>
 
     <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. [CHAR LIMIT=NONE]-->
-    <string name="readOnlyContactDeleteConfirmation">This contact to be deleted has details from multiple accounts. Details from read-only accounts will be hidden on this device, not deleted.</string>
+    <string name="readOnlyContactDeleteConfirmation">The contact to be deleted has details from multiple accounts. Details from read-only accounts will be hidden, not deleted.</string>
 
     <!-- Warning dialog. Shown if user selects a single contact to link. [CHAR LIMIT=NONE]  -->
     <string name="batch_link_single_contact_warning">You need at least two contacts selected to perform a link.</string>
@@ -221,10 +221,10 @@
     <string name="batch_delete_confirmation">Delete selected contacts?</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete readonly contacts. [CHAR LIMIT=NONE] -->
-    <string name="batch_delete_read_only_contact_confirmation">Contacts from your read-only accounts cannot be deleted, but they can be hidden on this device.</string>
+    <string name="batch_delete_read_only_contact_confirmation">Contacts from your read-only accounts cannot be deleted, but they can be hidden.</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete contacts from multiple accounts. [CHAR LIMIT=NONE]  -->
-    <string name="batch_delete_multiple_accounts_confirmation">These contacts to be deleted have details from multiple accounts. Details from read-only accounts will be hidden on this device, not deleted.</string>
+    <string name="batch_delete_multiple_accounts_confirmation">The contacts to be deleted have details from multiple accounts. Details from read-only accounts will be hidden, not deleted.</string>
 
     <!-- Warning dialog contents after users selects to delete a contact with multiple Writable sources. -->
     <string name="multipleContactDeleteConfirmation">Deleting this contact will delete details from multiple accounts.</string>
@@ -802,7 +802,7 @@
     <string name="contact_editor_hangouts_im_alert">Hangouts works better when you enter the person\'s Hangouts identifier into the email field or phone field.</string>
 
     <!-- Button to expand the compact contact editor to show all available input fields. [CHAR LIMIT=60] -->
-    <string name="compact_editor_more_fields">More Fields</string>
+    <string name="compact_editor_more_fields">More fields</string>
 
     <!-- Content description for the compact contact editor photo overlay which, when clicked, shows a dialog with the options for changing the contact photo. [CHAR LIMIT=30] -->
     <string name="compact_editor_change_photo_content_description">Change photo</string>
