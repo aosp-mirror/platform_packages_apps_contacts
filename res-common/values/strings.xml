@@ -371,6 +371,9 @@
          [CHAR LIMIT=NONE] -->
     <string name="expand_collapse_name_fields_description">Expand or collapse name fields</string>
 
+    <!-- Content description for the expand or collapse phonetic name fields button. [CHAR LIMIT=100] -->
+    <string name="expand_collapse_phonetic_name_fields_description">Expand or collapse phonetic
+        name fields</string>
 
     <!-- Contact list filter label indicating that the list is showing all available accounts [CHAR LIMIT=64] -->
     <string name="list_filter_all_accounts">All contacts</string>
