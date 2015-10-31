@@ -35,7 +35,7 @@
 
     <include
         android:id="@+id/expansion_view_container"
-        layout="@layout/name_edit_expansion_view"
+        layout="@layout/phonetic_name_edit_expansion_view"
         android:visibility="visible" />
 
     <!-- This isn't used in PhoneticNameEditorView. It is only included so that
