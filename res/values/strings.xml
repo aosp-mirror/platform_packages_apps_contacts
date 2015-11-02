@@ -813,6 +813,9 @@
     <!-- Label for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=30] -->
     <string name="compact_editor_account_selector_title">Saving to</string>
 
+    <!-- Content description for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=NONE] -->
+    <string name="compact_editor_account_selector_description">Currently saving to <xliff:g id="account_name">%s</xliff:g>. Double-tap to pick a different account.</string>
+
     <!-- Label for the linked contacts selector which indicates the number of raw contacts which have been linked together into the aggregate being viewed. [CHAR LIMIT=40] -->
     <plurals name="compact_editor_linked_contacts_selector_title">
         <item quantity="one">Linked contact</item>
