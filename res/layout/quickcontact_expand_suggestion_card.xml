@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/quickcontact_entry_header_text_color"
+            android:lineSpacingMultiplier="1.2"
             android:paddingBottom="@dimen/quickcontact_suggestion_card_image_spacing"
             android:paddingStart="@dimen/quickcontact_suggestion_card_image_spacing"
             android:paddingEnd="@dimen/quickcontact_suggestion_card_image_spacing"/>

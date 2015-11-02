@@ -245,7 +245,7 @@
     <dimen name="quickcontact_collapse_view_height">48dp</dimen>
     <dimen name="quickcontact_collapse_icon_size">24dp</dimen>
     <dimen name="quickcontact_collapse_text_padding">12dp</dimen>
-    <dimen name="quickcontact_collapse_image_padding">16dp</dimen>
+    <dimen name="quickcontact_collapse_image_padding">20dp</dimen>
     <dimen name="quickcontact_expanding_help_text_size">14sp</dimen>
     <dimen name="quickcontact_expanding_button_right_padding">16dp</dimen>
     <dimen name="quickcontact_expanding_item_height">72dp</dimen>

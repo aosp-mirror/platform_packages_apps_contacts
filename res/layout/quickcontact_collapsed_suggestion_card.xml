@@ -29,7 +29,7 @@
         android:id="@+id/collapsed_suggestion_header">
 
         <ImageView
-                android:src="@drawable/quantum_ic_assistant_grey600_24"
+                android:src="@drawable/quantum_ic_assistant_grey600_48"
                 android:layout_width="@dimen/quickcontact_collapse_icon_size"
                 android:layout_height="@dimen/quickcontact_collapse_icon_size"
                 android:layout_margin="@dimen/quickcontact_collapse_image_padding"
@@ -38,7 +38,7 @@
         <TextView
                 android:id="@+id/collapsed_suggestion_card_title"
                 android:textSize="@dimen/expanding_entry_card_title_text_size"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
