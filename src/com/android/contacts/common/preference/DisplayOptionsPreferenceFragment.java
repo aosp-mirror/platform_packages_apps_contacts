@@ -16,8 +16,11 @@
 
 package com.android.contacts.common.preference;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 
@@ -46,6 +49,17 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         if (accounts.isEmpty()) {
             final PreferenceScreen preferenceScreen = getPreferenceScreen();
             preferenceScreen.removePreference((ListPreference) findPreference("accounts"));
+        }
+
+        // Set build version of Contacts App.
+        final PackageManager manager = getActivity().getPackageManager();
+        try {
+            final PackageInfo info = manager.getPackageInfo(getActivity().getPackageName(), 0);
+            final Preference versionPreference = findPreference(
+                    getString(R.string.pref_build_version_key));
+            versionPreference.setSummary(info.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            // Nothing
         }
     }
 }
