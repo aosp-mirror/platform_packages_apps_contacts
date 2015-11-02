@@ -848,9 +848,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 R.string.compact_editor_account_selector_title);
         mAccountSelectorType.setText(selectorTitle);
 
-        mAccountSelectorContainer.setContentDescription(
-                EditorUiUtils.getAccountInfoContentDescription(
-                        accountInfo.first, selectorTitle));
+        mAccountSelectorContainer.setContentDescription(getResources().getString(
+                R.string.compact_editor_account_selector_description, accountInfo.first));
 
         mAccountSelectorContainer.setOnClickListener(new View.OnClickListener() {
             @Override
