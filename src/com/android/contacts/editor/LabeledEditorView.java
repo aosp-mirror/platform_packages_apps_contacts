@@ -29,10 +29,12 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -137,6 +139,18 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         // Turn off the Spinner's own state management. We do this ourselves on rotation
         mLabel.setId(View.NO_ID);
         mLabel.setOnItemSelectedListener(mSpinnerListener);
+        mLabel.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (v == mLabel) {
+                    final InputMethodManager inputMethodManager = (InputMethodManager)
+                            getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(
+                            mLabel.getWindowToken(), /* flags */ 0);
+                }
+                return false;
+            }
+        });
 
         mDelete = (ImageView) findViewById(R.id.delete_button);
         mDeleteContainer = findViewById(R.id.delete_button_container);
