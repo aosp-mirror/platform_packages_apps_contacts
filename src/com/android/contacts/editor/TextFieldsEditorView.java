@@ -123,13 +123,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
         final View editor = mFields.getChildAt(0);
 
         // Show the soft-keyboard.
-        InputMethodManager imm =
-                (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            if (!imm.showSoftInput(editor, InputMethodManager.SHOW_IMPLICIT)) {
-                Log.w(TAG, "Failed to show soft input method.");
-            }
-        }
+        showSoftKeyboard(editor);
     }
 
     @Override
@@ -178,12 +172,26 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 }
                 if (editText.hasFocus()) {
                     anyFieldHasFocus = true;
+                    showSoftKeyboard(editText);
                     break;
                 }
             }
             if (!anyFieldHasFocus && firstField != null) {
                 firstField.requestFocus();
+                showSoftKeyboard(firstField);
             }
+        }
+    }
+
+    /**
+     * Show soft keyboard for the currently focused view.
+     */
+    private void showSoftKeyboard(View v) {
+        final InputMethodManager inputMethodManager = (InputMethodManager)
+                getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null &&
+                !inputMethodManager.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)) {
+            Log.w(TAG, "Failed to show soft input method.");
         }
     }
 
