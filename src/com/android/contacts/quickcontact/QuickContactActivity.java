@@ -72,6 +72,7 @@ import android.support.v7.widget.CardView;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
 import android.text.BidiFormatter;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
@@ -1700,6 +1701,7 @@ public class QuickContactActivity extends ContactsActivity
         String text = null;
         Drawable textIcon = null;
         StringBuilder primaryContentDescription = new StringBuilder();
+        Spannable phoneContentDescription = null;
         Intent intent = null;
         boolean shouldApplyColor = true;
         Drawable alternateIcon = null;
@@ -1845,6 +1847,8 @@ public class QuickContactActivity extends ContactsActivity
                     }
                 }
                 primaryContentDescription.append(header);
+                phoneContentDescription = com.android.contacts.common.util.ContactDisplayUtils
+                        .getTelephoneTtsSpannable(primaryContentDescription.toString(), header);
                 icon = res.getDrawable(R.drawable.ic_phone_24dp);
                 iconResourceId = R.drawable.ic_phone_24dp;
                 if (PhoneCapabilityTester.isPhone(context)) {
@@ -2076,7 +2080,9 @@ public class QuickContactActivity extends ContactsActivity
                 -1 : (int) dataItem.getId();
 
         return new Entry(dataId, icon, header, subHeader, subHeaderIcon, text, textIcon,
-                new SpannableString(primaryContentDescription.toString()),
+                phoneContentDescription == null
+                        ? new SpannableString(primaryContentDescription.toString())
+                        : phoneContentDescription,
                 intent, alternateIcon, alternateIntent,
                 alternateContentDescription.toString(), shouldApplyColor, isEditable,
                 entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription, thirdAction,
