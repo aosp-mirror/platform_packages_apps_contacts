@@ -20,6 +20,8 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
+import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -243,7 +245,11 @@ public class TextFieldsEditorView extends LabeledEditorView {
             // Read current value from state
             final String column = field.column;
             final String value = entry.getAsString(column);
-            fieldView.setText(value);
+            if (ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(kind.mimeType)) {
+                fieldView.setText(PhoneNumberUtils.createTtsSpannable(value));
+            } else {
+                fieldView.setText(value);
+            }
 
             // Show the delete button if we have a non-null value
             setDeleteButtonVisible(value != null);
