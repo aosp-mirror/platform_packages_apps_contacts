@@ -96,23 +96,43 @@ public class ContactDisplayUtilTests extends AndroidTestCase {
         assertEquals(R.string.sms_home, ContactDisplayUtils.getSmsLabelResourceId(Phone.TYPE_HOME));
     }
 
-    public void testGetPreferredNameEmptyAlternative() {
-        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredName(NAME_PRIMARY, "",
-                ContactsPreferences.DISPLAY_ORDER_PRIMARY));
+    public void testGetPreferredDisplayNameEmptyAlternative() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY, "",
+                ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE));
     }
 
-    public void testGetPreferredInvalidPreference() {
-        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredName(NAME_PRIMARY,
+    public void testGetPreferredDisplayNameInvalidPreference() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY,
                 NAME_ALTERNATIVE, -1));
     }
 
-    public void testGetPreferredNamePrimary() {
-        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredName(NAME_PRIMARY,
+    public void testGetPreferredDisplayNamePrimary() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY,
                 NAME_ALTERNATIVE, ContactsPreferences.DISPLAY_ORDER_PRIMARY));
     }
 
-    public void testGetPreferredNameAlternative() {
-        assertEquals(NAME_ALTERNATIVE, ContactDisplayUtils.getPreferredName(NAME_PRIMARY,
+    public void testGetPreferredDisplayNameAlternative() {
+        assertEquals(NAME_ALTERNATIVE, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY,
                 NAME_ALTERNATIVE, ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE));
+    }
+
+    public void testGetPreferredSortNameEmptyAlternative() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY, "",
+                ContactsPreferences.SORT_ORDER_ALTERNATIVE));
+    }
+
+    public void testGetPreferredSortNameInvalidPreference() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY,
+                NAME_ALTERNATIVE, -1));
+    }
+
+    public void testGetPreferredSortNamePrimary() {
+        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY,
+                NAME_ALTERNATIVE, ContactsPreferences.SORT_ORDER_PRIMARY));
+    }
+
+    public void testGetPreferredSortNameAlternative() {
+        assertEquals(NAME_ALTERNATIVE, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY,
+                NAME_ALTERNATIVE, ContactsPreferences.SORT_ORDER_ALTERNATIVE));
     }
 }
