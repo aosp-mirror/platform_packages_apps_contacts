@@ -16,16 +16,19 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <com.android.contacts.common.preference.SortOrderPreference
+        android:icon="@null"
         android:key="sortOrder"
         android:title="@string/display_options_sort_list_by"
         android:dialogTitle="@string/display_options_sort_list_by" />
 
     <com.android.contacts.common.preference.DisplayOrderPreference
+        android:icon="@null"
         android:key="displayOrder"
         android:title="@string/display_options_view_names_as"
         android:dialogTitle="@string/display_options_view_names_as" />
 
     <com.android.contacts.common.preference.DefaultAccountPreference
+        android:icon="@null"
         android:key="accounts"
         android:title="@string/default_editor_account"
         android:dialogTitle="@string/default_editor_account" />
