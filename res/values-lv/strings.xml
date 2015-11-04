@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Dzēst"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Pievienot kontaktpersonu"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Pievienot grupu"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Atsaistīt kontaktpersonu?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Šī kontaktpersona tiks atsaistīta vairākās kontaktpersonās."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Vai atsaistīt šo kontaktpersonu un sadalīt vairākās kontaktpersonās?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Atsaistīt"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vai vēlaties saglabāt veiktās izmaiņas, atsaistīt šo kontaktpersonu un sadalīt vairākās kontaktpersonās?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Saglabāt un atsaistīt"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Vai vēlaties saglabāt veiktās izmaiņas un saistīt ar atlasīto kontaktpersonu?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Saglabāt un saistīt"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Saistīt"</string>
     <string name="menu_save" msgid="1727844363591825909">"Saglabāt"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"KONTAKTPERSONU SAISTĪŠANA"</string>
@@ -65,21 +69,30 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Ieteiktās kontaktpersonas"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Visas kontaktpersonas"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontaktpersonas tika saistītas."</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontaktpersonas ir dzēstas."</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="zero">Kontaktpersonas ir izdzēstas</item>
+      <item quantity="one">Kontaktpersonas ir izdzēstas</item>
+      <item quantity="other">Kontaktpersonas ir izdzēstas</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Iestatīt zv. signālu"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Visi zvani uz balss pastu"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Jūs nevarat dzēst kontaktpersonas no tikai lasāmiem kontiem, taču varat tās slēpt kontaktpersonu sarakstos."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Šī kontaktpersona satur informāciju no vairākiem kontiem. Informācija no tikai lasāmiem kontiem jūsu kontaktpersonu sarakstā tiks slēpta, nevis dzēsta."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontaktpersonas no tikai lasāmiem kontiem nevar dzēst, taču tās var paslēpt."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Paslēpt"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Dzēšamajā kontaktpersonā ir ietverta informācija no vairākiem kontiem. Informācija no tikai lasāmiem kontiem tiks paslēpta, nevis izdzēsta."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Lai veiktu saistīšanu, ir jāatlasa vismaz divas kontaktpersonas."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"Atlasītās kontaktpersonas tiks saistītas vienā kontaktpersonā."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Atlasītās kontaktpersonas tiks dzēstas."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Informācija no tikai lasāmiem kontiem jūsu kontaktpersonu sarakstā tiks slēpta, nevis dzēsta."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Šis kontaktpersonu saraksts ietver informāciju no vairākiem kontiem. Informācija no tikai lasāmiem kontiem jūsu kontaktpersonu sarakstā tiks slēpta, nevis dzēsta."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Dzēšot šo kontaktpersonu, tiks dzēsta informācija no vairākiem kontiem."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Šī kontaktpersona tiks dzēsta."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Vai saistīt atlasītās kontaktpersonas?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Saistīt"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Vai dzēst šo kontaktpersonu?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Vai dzēst atlasītās kontaktpersonas?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontaktpersonas no tikai lasāmiem kontiem nevar dzēst, taču tās var paslēpt."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Dzēšamajās kontaktpersonās ir ietverta informācija no vairākiem kontiem. Informācija no tikai lasāmiem kontiem tiks paslēpta, nevis izdzēsta."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Dzēšot šo kontaktpersonu, tiks dzēsta informācija no vairākiem kontiem."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Vai dzēst šo kontaktpersonu?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Dzēst"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Atmest izmaiņas"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Šāda kontaktpersona nepastāv."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktpersonas logrīks pievienots sākuma ekrānam."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontaktpersona ir pievienota sākuma ekrānam."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontaktpersona <xliff:g id="NAME">%s</xliff:g> ir pievienota sākuma ekrānam."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Izveidot jaunu kontaktpersonu"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Izveidot jaunu kontaktpersonu"</string>
   <string-array name="otherLabels">
@@ -124,7 +137,7 @@
       <item quantity="one">Atrasta <xliff:g id="COUNT">%d</xliff:g> kontaktpersona</item>
       <item quantity="other">Atrastas <xliff:g id="COUNT">%d</xliff:g> kontaktpersonas</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Visas"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Visas"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Izlase"</string>
     <string name="callBack" msgid="5498224409038809224">"Atzvanīt"</string>
     <string name="callAgain" msgid="3197312117049874778">"Zvanīt vēlreiz"</string>
@@ -219,6 +232,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Notīrīt noklusējuma iestatījumus"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Teksts ir nokopēts"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vai atmest veiktās izmaiņas?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Atmest"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> — <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Iestatīt savu profilu"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Rakstiet personas vārdu."</string>
@@ -231,7 +245,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konta pievienošana"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Jaunā kontaktinformācija netiks dublēta. Vai pievienot kontu, kurā tiek tiešsaistē dublēta kontaktinformācija?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Jaunā kontaktinformācija tiks sinhronizēta ar kontu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Varat sinhronizēt jauno kontaktinformāciju ar vienu no tālāk norādītajiem kontiem. Kuru kontu vēlaties izmantot?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Izvēlieties noklusējuma kontu, kurā saglabāt jaunās kontaktpersonas:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Pievienošana"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediģēšana"</string>
     <string name="keep_local" msgid="1258761699192993322">"Saglabāt vietēji"</string>
@@ -276,10 +290,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Nesen saņemts zvans. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Noklikšķiniet, lai atzvanītu."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Jūs: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Funkcija Hangouts darbojas precīzāk, ja e-pasta vai tālruņa laukā ievadāt personas Hangouts identifikatoru."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Vairāk lauku"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Vairāk lauku"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Mainīt fotoattēlu"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Neizdevās atvērt redaktoru."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Tiks saglabāts šajā kontā:"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="zero">Saistītas kontaktpersonas (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Saistītas kontaktpersonas (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -307,7 +323,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Šī kontaktpersona"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Iespējamie dublikāti"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Dzēsiet kontaktpersonu dublikātus, saistot tos kopā."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Iespējams, šīs kontaktpersonas ir viena un tā pati persona. Varat tās apvienot vienā kontaktpersonā."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Saistītās kontaktpersonas"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"No jūsu kontiem"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Uzņemt fotoattēlu"</string>

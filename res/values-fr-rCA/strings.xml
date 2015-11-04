@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Supprimer"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Ajouter un contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Ajouter un groupe"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Annuler la fusion de contact?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Ce contact sera séparé en plusieurs contacts."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Annuler la fusion et diviser ce contact en plusieurs contacts?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Annuler la fusion"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Voulez-vous enregistrer les modifications que vous avez déjà apportées et diviser ce contact en plusieurs contacts?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Enregistrer et annuler la fusion"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Voulez-vous enregistrer les modifications que vous avez déjà apportées et les associer au contact sélectionné?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Enregistrer et fusionner"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Fusionner"</string>
     <string name="menu_save" msgid="1727844363591825909">"Enregistrer"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Associer les contacts"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contacts suggérés"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tous les contacts"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contacts associés"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Contacts supprimés"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="one">Contact supprimé</item>
+      <item quantity="other">Contacts supprimés</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Régler sonnerie"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Tous appels vers messag. voc."</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Impossible de supprimer les contacts des comptes en lecture seule. Vous pouvez les masquer dans la liste des contacts."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ce contact contient des informations provenant de plusieurs comptes. Vous pouvez masquer dans votre liste de contacts les informations des comptes en lecture seule, mais pas les supprimer."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Les contacts issus de vos comptes en lecture seule ne peuvent pas être supprimés, mais ils peuvent être masqués."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Masquer"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Le contact à supprimer contient des renseignements issus de plusieurs comptes. Les détails issus des comptes en lecture seule seront masqués, mais pas supprimés."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Au moins deux contacts doivent être sélectionnés pour effectuer une fusion."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"Les contacts sélectionnés seront fusionnés en un seul contact."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Les contacts sélectionnés seront supprimés."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Les renseignements provenant de comptes en lecture seule seront cachés dans vos listes de contacts, pas supprimés."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Ces contacts contiennent des renseignements provenant de plusieurs comptes. Les renseignements de comptes en lecture seule seront cachés dans vos listes de contacts, pas supprimés."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"La suppression de ce contact entraînera celle d\'informations provenant de plusieurs comptes."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Ce contact sera supprimé."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Fusionner les contacts sélectionnés?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Fusionner"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Supprimer ce contact?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Supprimer les contacts sélectionnés?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Les contacts issus de vos comptes en lecture seule ne peuvent pas être supprimés, mais ils peuvent être masqués."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Les contacts à supprimer contiennent des renseignements détaillés provenant de plusieurs comptes. Les renseignements détaillés issus des comptes en lecture seule seront masqués, mais pas supprimés."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"La suppression de ce contact entraînera la suppression de renseignements dans plusieurs comptes."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Supprimer ce contact?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Supprimer"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Supprimer les modifications"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Ce contact n\'existe pas."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget de contact ajouté à l\'écran d\'accueil."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Le contact a été ajouté à l\'écran d\'accueil."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"« <xliff:g id="NAME">%s</xliff:g> » a été ajouté à l\'écran d\'accueil."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Créer un nouveau contact"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Créer un nouveau contact"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> résultat</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> résultats</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tous les contacts"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Tout"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoris"</string>
     <string name="callBack" msgid="5498224409038809224">"Rappeler"</string>
     <string name="callAgain" msgid="3197312117049874778">"Renouveler l\'appel"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Effacer les valeurs par défaut"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texte copié."</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Annuler les modifications?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Ignorer"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configurer mon profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Saisissez le nom de la personne"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ajouter un compte"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Votre nouveau contact ne sera pas sauvegardé. Ajouter un compte qui sauvegarde les contacts en ligne?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Votre nouveau contact va être synchronisé avec <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Vous pouvez synchroniser votre nouveau contact avec l\'un des comptes suivants. Lequel souhaitez-vous utiliser?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Choisissez un compte par défaut pour les nouveaux contacts :"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ajouter un contact"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier un contact"</string>
     <string name="keep_local" msgid="1258761699192993322">"Enreg. copie locale"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Appel récent : <xliff:g id="CALL_TYPE">%s</xliff:g>, <xliff:g id="PHONE_NUMBER">%s</xliff:g>, <xliff:g id="DATE">%s</xliff:g>. Touchez l\'écran pour rappeler ce numéro."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vous : <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Google Hangout fonctionne mieux lorsque vous entrez l\'identifiant Hangout de la personne dans le champ de l\'adresse de courriel ou du numéro de téléphone."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Autres champs"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Autres champs"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Changer de photo"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Échec d\'ouverture de l\'éditeur."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Enregistrer dans le compte"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Contact associé (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">Contacts associés (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g> <xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ce contact"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Doublons possibles"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Supprimez les contacts en double désignant la même personne en les associant."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Ces contacts correspondent peut-être à la même personne. Vous pouvez les regrouper dans un seul contact."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Contacts associés"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"De vos comptes"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Prendre une photo"</string>

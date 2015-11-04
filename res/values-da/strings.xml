@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Slet"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Tilføj kontaktperson"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Tilføj gruppe"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Vil du ophæve sammenfletningen?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Sammenfletningen af denne kontaktperson vil blive ophævet og opdelt i flere kontaktpersoner."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Vil du ophæve sammenfletningen og opdele denne kontaktperson i flere kontaktpersoner?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Ophæv sammenfletningen"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vil du gemme de ændringer, du allerede har foretaget, og ophæve sammenfletningen og opdele kontaktpersonen i flere kontaktpersoner?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Gem, og ophæv sammenfletningen"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Vil du gemme de ændringer, du allerede har foretaget, og sammenflette med den valgte kontaktperson?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Gem, og sammenflet"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Sammenflet"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gem"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Tilknyt kontaktpersoner"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Foreslåede kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontaktpersonerne er sammenflettet"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontaktpersonerne blev slettet"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="one">Kontaktpersonerne blev slettet</item>
+      <item quantity="other">Kontaktpersonerne blev slettet</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Angiv ringetone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle opkald til telefonsvareren"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Du kan ikke slette kontaktpersoner fra skrivebeskyttede konti, men du kan skjule dem på listerne over dine kontaktpersoner."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Denne kontakt indeholder oplysninger fra flere konti. Oplysningerne fra skrivebeskyttede konti vil blive skjult i dine lister over kontakter, men ikke slettet."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontaktpersoner fra dine skrivebeskyttede konti kan ikke slettes, men de kan skjules."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Skjul"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Den kontaktperson, du vil slette, indeholder oplysninger fra flere konti. Oplysninger fra skrivebeskyttede konti skjules fremfor at blive slettet."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Du skal vælge mindst to kontaktpersoner for at foretage en sammenfletning."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"De valgte kontaktpersoner sammenflettes til en enkelt kontaktperson."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"De valgte kontakter slettes."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Oplysninger fra skrivebeskyttede konti vil blive skjult i dine kontaktlister, men ikke slettet."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Disse kontakter indeholder oplysninger fra flere konti. Oplysningerne fra skrivebeskyttede konti vil blive skjult i dine lister over kontakter, men ikke slettet."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Sletning af denne kontakt sletter oplysninger fra flere konti."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Denne kontakt slettes."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Vil du sammenflette de valgte kontaktpersoner?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Sammenflet"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Vil du slette denne kontaktperson?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Vil du slette de valgte kontaktpersoner?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontaktpersoner fra dine skrivebeskyttede konti kan ikke slettes, men de kan skjules."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"De kontaktpersoner, du vil slette, indeholder oplysninger fra flere konti. Oplysninger fra skrivebeskyttede konti skjules fremfor at blive slettet."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Sletning af denne kontaktperson sletter oplysninger fra flere konti."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Vil du slette denne kontaktperson?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Slet"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Kassér ændringer"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontaktpersonen findes ikke."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktwidgetten føjes til startskærmen."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontaktpersonen blev føjet til startskærmen."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> blev føjet til startskærmen."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Opret ny kontaktperson"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Opret ny kontaktperson"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="one">Der blev fundet <xliff:g id="COUNT">%d</xliff:g></item>
       <item quantity="other">Der blev fundet <xliff:g id="COUNT">%d</xliff:g></item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle kontakter"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Alle"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Foretrukne"</string>
     <string name="callBack" msgid="5498224409038809224">"Ring tilbage"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ring op igen"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Ryd standarder"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Kopieret tekst"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Skal ændringerne slettes?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Kassér"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer min profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Indtast personens navn"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tilføj en konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nye kontaktperson bliver ikke sikkerhedskopieret. Vil du tilføje en konto, der sikkerhedskopierer kontaktpersoner online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nye kontaktperson vil blive synkroniseret med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere din nye kontaktperson med en af de ​​følgende konti. Hvilken vil du bruge?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Vælg en standardkonto til nye kontaktpersoner:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tilføj ny kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediger kontaktperson"</string>
     <string name="keep_local" msgid="1258761699192993322">"Gem kun lokalt"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"seneste opkald. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Klik for at ringe tilbage"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Dig: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts fungerer bedre, når du indtaster personens Hangouts-id i e-mailfeltet eller telefonfeltet."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Flere felter"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Flere felter"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Skift billede"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Redigeringsværktøjet kunne ikke åbnes."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Gemmes på"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Tilknyttet kontaktperson (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">Tilknyttede kontaktpersoner (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Denne kontaktperson"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mulige dubletter"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Ryd op i dublerede kontaktpersoner for den samme person ved at knytte dem sammen."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Disse kontaktpersoner kan være den samme person. Du kan sammenflette dem til én enkelt kontaktperson."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Sammenflettede kontaktpersoner"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Fra dine konti"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Tag et billede"</string>

@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Suprimeix"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Afegeix el contacte"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Afegeix un grup"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Desenllacem el contacte?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Aquest contacte es desenllaçarà en diversos contactes."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Vols desenllaçar aquest contacte en diversos contactes?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Desenllaça"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vols desar els canvis que ja has aplicat i desenllaçar aquest contacte en diversos contactes?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Desa i desenllaça"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Vols desar els canvis que ja has aplicat i enllaçar-los amb el contacte seleccionat?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Desa i enllaça"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Enllaça"</string>
     <string name="menu_save" msgid="1727844363591825909">"Desa"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Enllaça els contactes"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactes suggerits"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tots els contactes"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contactes enllaçats"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"S\'han suprimit els contactes"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other">S\'han suprimit els contactes</item>
+      <item quantity="one">S\'ha suprimit el contacte</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Estableix so"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Trucades a la bústia de veu"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"No pots suprimir cap contacte dels comptes només de lectura, però pots amagar-los a les llistes de contactes."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Aquest contacte inclou informació de diversos comptes. La informació dels comptes només de lectura s\'ocultarà a les llistes de contactes, però no se suprimirà."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Els contactes dels teus comptes de només lectura no es poden suprimir, però sí que es poden ocultar."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Amaga"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"El contacte que s\'ha de suprimir té informació de diversos comptes. La informació dels comptes de només lectura s\'ocultarà, però no se suprimirà."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Has de tenir com a mínim dos contactes seleccionats per enllaçar-los."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"Els contactes seleccionats s\'enllaçaran i se\'n crearà un de sol."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Els contactes seleccionats se suprimiran."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"La informació dels comptes només de lectura s\'ocultarà a les llistes de contactes, però no se suprimirà."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Aquests contactes inclouen informació de diversos comptes. La informació dels comptes només de lectura s\'ocultarà a les llistes de contactes, però no se suprimirà."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Si suprimiu aquest contacte se suprimirà informació de diversos comptes."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Aquest contacte se suprimirà."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Vols enllaçar els contactes seleccionats?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Enllaça"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Vols suprimir aquest contacte?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Vols suprimir els contactes seleccionats?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Els contactes dels teus comptes de només lectura no es poden suprimir, però sí que es poden ocultar."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Els contactes que s\'han de suprimir tenen informació de diversos comptes. La informació dels comptes de només lectura s\'ocultarà, però no se suprimirà."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Si suprimeixes aquest contacte se suprimirà informació de diversos comptes."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Vols suprimir aquest contacte?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Suprimeix"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Descarta els canvis"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"El contacte no existeix."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"El widget de contacte s\'ha afegit a la pantalla d\'inici."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"S\'ha afegit el contacte a la pantalla d\'inici."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"S\'ha afegit <xliff:g id="NAME">%s</xliff:g> a la pantalla d\'inici."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crea un contacte nou"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Crea un contacte nou"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactes</item>
       <item quantity="one">1 contacte</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tots els contactes"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Tots"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Preferits"</string>
     <string name="callBack" msgid="5498224409038809224">"Truca"</string>
     <string name="callAgain" msgid="3197312117049874778">"Torna a trucar"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Esborra els valors predeterminats"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text copiat"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vols descartar els canvis?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Descarta"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configura el perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Escriu el nom de la persona"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Afegeix compte"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte per fer còpies de seguretat en línia dels contactes?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"El teu contacte nou se sincronitzarà amb <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pots sincronitzar el teu contacte nou amb un dels comptes següents. Quin vols utilitzar?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Tria un compte predeterminat per als contactes nous:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Afegeix un contacte"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edita el contacte"</string>
     <string name="keep_local" msgid="1258761699192993322">"Còpia local"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Trucada recent. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Fes clic per tornar la trucada."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Usuari: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funciona millor si introdueixes l\'identificador de Hangouts de la persona corresponent al camp de l\'adreça electrònica o del telèfon."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Més camps"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Més camps"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Canvia la foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"No s\'ha pogut obrir l\'editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Es desa a"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">S\'han enllaçat els contactes (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">S\'ha enllaçat el contacte</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Aquest contacte"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Possibles duplicats"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Enllaça els contactes d\'una mateixa persona per organitzar els contactes duplicats."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"És possible que aquests contactes corresponguin a la mateixa persona. Els pots desenllaçar i crear un contacte únic."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Contactes enllaçats"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Dels teus comptes"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Fes una foto"</string>

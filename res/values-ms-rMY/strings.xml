@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Padam"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Tambah Kenalan"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Tambah Kumpulan"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Nyahpaut kenalan?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Kenalan ini akan dinyahpaut kepada beberapa kenalan."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Nyahpaut kenalan ini menjadi beberapa kenalan?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Nyahpaut"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Adakah anda ingin menyimpan perubahan yang telah dibuat dan menyahpaut kenalan ini menjadi beberapa kenalan?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Simpan dan nyahpaut"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Adakah anda ingin menyimpan perubahan yang telah dibuat dan memaut kenalan yang dipilih?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Simpan dan paut"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Pautkan"</string>
     <string name="menu_save" msgid="1727844363591825909">"Simpan"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Paut kenalan"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Kenalan cadangan"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kenalan"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kenalan dipaut"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Kenalan dipadamkan"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other">Kenalan dipadamkan</item>
+      <item quantity="one">Kenalan dipadamkan</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Tetapkan nada dering"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Semua panggilan ke mel suara"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Anda tidak boleh memadamkan kenalan daripada akaun baca sahaja, tetapi anda boleh menyembunyikan mereka dalam senarai kenalan anda."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Kenalan ini mengandungi maklumat daripada berbilang akaun. Maklumat daripada akaun baca sahaja akan disembunyikan dalam senarai kenalan anda, dan bukannya dipadamkan."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kenalan daripada akaun baca sahaja tidak boleh dipadamkan tetapi boleh disembunyikan."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Sembunyikan"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Kenalan yang hendak dipadamkan mempunyai butiran daripada berbilang akaun. Butiran daripada akaun baca sahaja akan disembunyikan, bukan dipadamkan."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Anda perlu memilih sekurang-kurangnya dua kenalan untuk melakukan pautan."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"Kenalan yang dipilih akan dipautkan menjadi kenalan tunggal."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Kenalan yang dipilih akan dipadamkan."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Maklumat daripada akaun baca sahaja akan disembunyikan dalam senarai kenalan anda, bukannya dipadamkan."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Kenalan ini mengandungi maklumat daripada berbilang akaun. Maklumat daripada akaun baca sahaja akan disembunyikan dalam senarai kenalan anda, bukannya dipadamkan."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Pemadaman kenalan ini akan turut memadamkan maklumat daripada berbilang akaun."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Kenalan ini akan dipadamkan."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Paut kenalan dipilih?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Pautkan"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Padam kenalan ini?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Padam kenalan yang dipilih?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kenalan daripada akaun baca sahaja tidak boleh dipadamkan tetapi boleh disembunyikan."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Kenalan yang hendak dipadamkan mempunyai butiran daripada berbilang akaun. Butiran daripada akaun baca sahaja akan disembunyikan, bukan dipadamkan."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Memadamkan kenalan ini akan memadamkan butiran daripada berbilang akaun."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Padam kenalan ini?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Padam"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Buang perubahan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kenalan tidak wujud."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget kenalan telah ditambahkan ke skrin Utama."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kenalan ditambahkan pada Skrin utama."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ditambahkan pada Skrin utama."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Buat kenalan baharu"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Buat kenalan baharu"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ditemui</item>
       <item quantity="one">1 ditemui</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Semua kenalan"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Semua"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Kegemaran"</string>
     <string name="callBack" msgid="5498224409038809224">"Panggil balik"</string>
     <string name="callAgain" msgid="3197312117049874778">"Panggil semula"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Kosongkan lalai"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Teks disalin"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Buang perubahan anda?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Buang"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Sediakan profil saya"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Taip nama orang"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tambah akaun"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kenalan baharu anda tidak akan dibuat sandaran. Tambahkan akaun yang membuat sandaran kenalan dalam talian?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Kenalan baharu anda akan disegerakkan dengan <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Anda boleh menyegerakkan kenalan baharu anda dengan salah satu akaun berikut. Mana satu yang anda mahu gunakan?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pilih akaun lalai untuk kenalan baharu:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tambah kenalan baru"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit kenalan"</string>
     <string name="keep_local" msgid="1258761699192993322">"Simpan setempat"</string>
@@ -270,10 +283,11 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"panggilan terbaharu. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. klik untuk memanggil balik"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Anda: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts berfungsi lebih baik apabila anda memasukkan pengecam Hangouts individu itu ke dalam medan e-mel atau telefon."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Lagi Medan"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Lagi medan"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Tukar foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Gagal membuka editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Menyimpan ke"</string>
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Pada masa ini menyimpan ke <xliff:g id="ACCOUNT_NAME">%s</xliff:g> . Ketik dua kali untuk memilih akaun yang lain."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Kenalan dipaut (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Kenalan dipaut</item>
@@ -297,7 +311,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Kenalan ini"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Pendua berkemungkinan"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Bersihkan kenalan pendua untuk orang yang sama dengan memautkannya bersama."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Kenalan ini mungkin orang yang sama. Anda boleh memautnya bersama sebagai satu kenalan."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Kenalan yang dipaut"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Daripada akaun anda"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Ambil foto"</string>
