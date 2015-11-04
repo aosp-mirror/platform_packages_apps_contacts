@@ -678,7 +678,7 @@
     <string name="contact_editor_prompt_zero_accounts">Your new contact won\'t be backed up. Add an account that backs up contacts online?</string>
 
     <!-- Message in the contact editor prompt that asks the user if it's okay to save the newly created contact to the account shown. [CHAR LIMIT=NONE] -->
-    <string name="contact_editor_prompt_one_account">Your new contact will be synchronized with <xliff:g id="account_name">%1$s</xliff:g>.</string>
+    <string name="contact_editor_prompt_one_account">New contacts will be saved to <xliff:g id="account_name">%1$s</xliff:g>.</string>
 
     <!-- Message in the contact editor prompt that asks the user which account they want to save the newly created contact to. [CHAR LIMIT=NONE] -->
     <string name="contact_editor_prompt_multiple_accounts">Choose a default account for new contacts:</string>
