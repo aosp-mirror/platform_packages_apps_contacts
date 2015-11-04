@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"நீக்கு"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"தொடர்பைச் சேர்"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"குழுவைச் சேர்"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"தொடர்பைப் பிரிக்கவா?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"இந்தத் தொடர்பு பல தொடர்புகளாகப் பிரிக்கப்படும்."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"பல தொடர்புகளிலிருந்து இந்தத் தொடர்பை அகற்றவா?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"தொடர்பை அகற்று"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"நீங்கள் ஏற்கனவே செய்த மாற்றங்களைச் சேமித்து, பல தொடர்புகளிலிருந்து இந்தத் தொடர்பை அகற்றவா?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"சேமித்து தொடர்பை அகற்று"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"நீங்கள் ஏற்கனவே செய்த மாற்றங்களைச் சேமித்து, தேர்ந்தெடுத்த தொடர்புடன் இணைக்கவா?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"சேமித்து இணை"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"இணைப்பு"</string>
     <string name="menu_save" msgid="1727844363591825909">"சேமி"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"தொடர்புகளை இணைத்தல்"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்பட்ட தொடர்புகள்"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"எல்லா தொடர்புகளும்"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"தொடர்புகள் இணைக்கப்பட்டன"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"தொடர்புகள் நீக்கப்பட்டன"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other">தொடர்புகள் நீக்கப்பட்டன</item>
+      <item quantity="one">தொடர்பு நீக்கப்பட்டது</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ரிங்டோனை அமை"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"எல்லா அழைப்புகளையும் குரலஞ்சலிற்கு திருப்பு"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"படிக்க மட்டுமேயான கணக்குகளின் தொடர்புகளை நீக்க முடியாது, ஆனால் தொடர்புகள் பட்டியல்களில் அவற்றை மறைக்கலாம்."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"தொடர்பில் பல கணக்குகளின் தகவல் உள்ளது. படிக்க மட்டுமேயான கணக்குகளின் தகவல் தொடர்புகள் பட்டியல்களில் மறைக்கப்படும், ஆனால் நீக்கப்படாது."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"படிக்க மட்டுமேயான கணக்குகளிலிருந்து தொடர்புகளை நீக்க முடியாது, ஆனால் அவற்றை மறைக்கலாம்."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"மறை"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"நீக்குவதற்குத் தேர்ந்தெடுத்த தொடர்பில் பல கணக்குகளின் விவரங்கள் உள்ளன. படிக்க மட்டுமேயான கணக்குகளின் விவரங்கள் மறைக்கப்படுமே தவிர நீக்கப்படாது."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"ஒன்றிணைப்பதற்கு, குறைந்தபட்சம் இரண்டு தொடர்புகளையாவது தேர்ந்தெடுத்திருக்க வேண்டும்."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"தேர்ந்தெடுத்த தொடர்புகள் ஒரே தொடர்பாக்கப்படும்."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"தேர்ந்தெடுத்த தொடர்புகள் நீக்கப்படும்."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"படிக்க மட்டுமேயான கணக்குகளின் தகவல்கள் உங்கள் தொடர்புப் பட்டியல்களில் மறைக்கப்படும் ஆனால் நீக்கப்படாது."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"இந்தத் தொடர்புகள் பல கணக்குகளின் தகவலைக் கொண்டுள்ளன. படிக்க மட்டுமேயான கணக்குகளின் தகவல்கள் உங்கள் தொடர்புப் பட்டியல்களில் மறைக்கப்படும் ஆனால் நீக்கப்படாது."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"தொடர்பை நீக்குவது பல கணக்குகளில் உள்ள தகவலை நீக்கும்."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"தொடர்பு நீக்கப்படும்."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"தேர்ந்தெடுத்த தொடர்புகளை இணைக்கவா?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"இணை"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"தொடர்பை நீக்கவா?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"தேர்ந்தெடுத்த தொடர்புகளை நீக்கவா?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"படிக்க மட்டுமேயான கணக்குகளிலிருந்து தொடர்புகளை நீக்க முடியாது, ஆனால் அவற்றை மறைக்கலாம்."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"நீக்குவதற்குத் தேர்ந்தெடுத்த தொடர்புகளில் பல கணக்குகளின் விவரங்கள் உள்ளன. படிக்க மட்டுமேயான கணக்குகளின் விவரங்கள் மறைக்கப்படுமே தவிர நீக்கப்படாது."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"தொடர்பை நீக்கினால், பல கணக்குகளிலிருக்கும் விவரங்கள் நீக்கப்படும்."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"தொடர்பை நீக்கவா?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"நீக்கு"</string>
     <string name="menu_discard" msgid="6854657936970228164">"மாற்றங்களை நிராகரி"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"தொடர்பு இல்லை."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"முகப்புத் திரையில் தொடர்பு விட்ஜெட் சேர்க்கப்பட்டது."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"தொடர்பு முகப்புத் திரையில் சேர்க்கப்பட்டது."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> என்ற தொடர்பு முகப்புத் திரையில் சேர்க்கப்பட்டது."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"புதிய தொடர்பை உருவாக்கவும்"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"புதிய தொடர்பை உருவாக்கவும்"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> கண்டறியப்பட்டன</item>
       <item quantity="one">1 கண்டறியப்பட்டது</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"எல்லா தொடர்புகளும்"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"எல்லாம்"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"பிடித்தவை"</string>
     <string name="callBack" msgid="5498224409038809224">"அழை"</string>
     <string name="callAgain" msgid="3197312117049874778">"மீண்டும் அழை"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"இயல்பை அழி"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"உரை நகலெடுக்கப்பட்டது"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"மாற்றங்களை விலக்கவா?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"நிராகரி"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"எனது சுயவிவரத்தை அமை"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"பெயரை உள்ளிடவும்"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"கணக்கைச் சேர்"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"புதிய தொடர்பை நகலெடுக்க முடியாது. தொடர்புகளை ஆன்லைனில் சேமிக்க, கணக்கைச் சேர்க்க விரும்புகிறீர்களா?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"புதிய தொடர்பு <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> உடன் ஒத்திசைக்கப்படும்."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"புதிய தொடர்பை பின்வரும் கணக்குகள் ஒன்றுடன் ஒத்திசைக்கலாம். எதைப் பயன்படுத்த விரும்புகிறீர்கள்?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"புதிய தொடர்புகளுக்கான இயல்பு கணக்கைத் தேர்வுசெய்க:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"புதிய தொடர்பைச் சேர்"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"தொடர்பைத் திருத்து"</string>
     <string name="keep_local" msgid="1258761699192993322">"ஃபோனில் சேமி"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"சமீபத்திய அழைப்பு. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. திரும்ப அழைக்க, கிளிக் செய்க"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"நீங்கள்: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"பிறரின் Hangouts அடையாளத்தை மின்னஞ்சல் அல்லது ஃபோன் புலத்தில் உள்ளிடும் போது, Hangouts இன்னும் சிறப்பாகச் செயல்படும்."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"மேலும்  விவரங்கள்"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"மேலும் புலங்கள்"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"படத்தை மாற்றவும்"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"எடிட்டரைத் திறக்க முடியவில்லை."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"இதில் சேமிக்கிறது"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">இணைக்கப்பட்ட தொடர்புகள் (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">இணைக்கப்பட்ட தொடர்பு</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"இந்தத் தொடர்பு"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"சாத்தியமுள்ள நகல்கள்"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"ஒரே நபரின் நகல் தொடர்புகளை ஒன்றிணைப்பதன் மூலம், நகல்களை நீக்கவும்."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"இவை ஒரே பயனருடையதாக இருக்கக்கூடும். அவற்றை ஒரே தொடர்பில் இணைக்கலாம்."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"இணைத்த தொடர்புகள்"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"உங்கள் கணக்குகளில் இருந்து"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"படமெடு"</string>

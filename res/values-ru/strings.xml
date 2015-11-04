@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Удалить"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Добавить контакт"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Добавить группу"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Разделить контакт?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Этот контакт будет разделен."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Разделить этот контакт?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Разделить"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Сохранить изменения и разделить этот контакт?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Да"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Сохранить изменения и связать с выбранным контактом?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Да"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Связать"</string>
     <string name="menu_save" msgid="1727844363591825909">"Сохранить"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Связать контакты"</string>
@@ -65,21 +69,31 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Предлагаемые контакты"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Все контакты"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Контакты связаны"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Контакты удалены"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="one">Контакты удалены</item>
+      <item quantity="few">Контакты удалены</item>
+      <item quantity="many">Контакты удалены</item>
+      <item quantity="other">Контакты удалены</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Задать рингтон"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Только голос. почта"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Невозможно удалить контакты из аккаунта, доступного только для чтения, однако их можно скрыть в списках контактов."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Этот контакт содержит информацию из различных аккаунтов. Информация из аккаунтов, доступных только для чтения, будет скрыта в ваших списках контактов, но не удалена."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Контакты из аккаунтов, доступных только для чтения, будут скрыты, но не удалены."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Скрыть"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Этот контакт содержит информацию из различных аккаунтов. Информация из аккаунтов, доступных только для чтения, будет скрыта, но не удалена."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Для связывания нужно хотя бы два контакта"</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"Выбранные контакты будут связаны в один"</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Выбранные контакты будут удалены."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Информация из аккаунтов, доступных только для чтения, будет скрыта в списках контактов, но не удалена."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Эти контакты содержат данные из нескольких аккаунтов. Информация из аккаунтов, доступных только для чтения, будет скрыта в списках контактов, но не удалена."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Удаление этого контакта приведет к потере данных из нескольких аккаунтов."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Этот контакт будет удален."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Связать выбранные контакты?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Связать"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Удалить контакт?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Удалить выбранные контакты?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Контакты из аккаунтов, доступных только для чтения, будут скрыты, но не удалены."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Эти контакты содержат данные из нескольких аккаунтов. Информация из аккаунтов, доступных только для чтения, будет скрыта, но не удалена."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Будут удалены данные из нескольких аккаунтов."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Удалить контакт?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Удалить"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Удалить изменения"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Нет такого контакта."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Виджет \"Контакты\" добавлен на главный экран."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Контакт добавлен на главный экран"</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Контакт \"<xliff:g id="NAME">%s</xliff:g>\" добавлен на главный экран"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Добавить контакт"</string>
   <string-array name="otherLabels">
@@ -127,7 +141,7 @@
       <item quantity="many">Найдено <xliff:g id="COUNT">%d</xliff:g> контактов</item>
       <item quantity="other">Найдено <xliff:g id="COUNT">%d</xliff:g> контактов</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Все"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Все"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Избранные"</string>
     <string name="callBack" msgid="5498224409038809224">"Перезвонить"</string>
     <string name="callAgain" msgid="3197312117049874778">"Позвонить снова"</string>
@@ -225,6 +239,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Удалить настройки по умолчанию"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текст скопирован"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Удалить изменения?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Отменить"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> (<xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>)"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Настроить профиль"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Имя контакта"</string>
@@ -237,7 +252,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Добавить аккаунт"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Резервная копия нового контакта не будет сохранена. Добавить аккаунт для сохранения контактов в Интернете?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Контакт будет добавлен в аккаунт <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Выберите аккаунт, в который следует добавить новый контакт."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Выберите аккаунт по умолчанию для новых контактов:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Добавить контакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Изменить контакт"</string>
     <string name="keep_local" msgid="1258761699192993322">"Сохранить локально"</string>
@@ -282,10 +297,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Недавний вызов. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Нажмите, чтобы перезвонить."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Вы: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Чтобы обеспечить надежную работу Hangouts, указывайте вместо адреса электронной почты или номера телефона идентификатор пользователя в Hangouts."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Другие поля"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Показать другие поля"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Сменить фото"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Не удалось открыть редактор"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Выберите аккаунт"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Связанные контакты (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="few">Связанные контакты (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -317,7 +334,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g> <xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Этот контакт"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Повторяющие контакты"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Свяжите повторяющиеся контакты, чтобы удалить лишние данные."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Возможно, эти контакты относятся к одному человеку. Объедините их."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Связанные контакты"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Из ваших аккаунтов"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Сделать фото"</string>
