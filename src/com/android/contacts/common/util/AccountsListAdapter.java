@@ -41,6 +41,7 @@ public final class AccountsListAdapter extends BaseAdapter {
     private final List<AccountWithDataSet> mAccounts;
     private final AccountTypeManager mAccountTypes;
     private final Context mContext;
+    private int mCustomLayout = -1;
 
     /**
      * Filters that affect the list of accounts that is displayed by this adapter.
@@ -81,10 +82,15 @@ public final class AccountsListAdapter extends BaseAdapter {
                 accountListFilter == AccountListFilter.ACCOUNTS_CONTACT_WRITABLE));
     }
 
+    public void setCustomLayout(int customLayout) {
+        mCustomLayout = customLayout;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final View resultView = convertView != null ? convertView
-                : mInflater.inflate(R.layout.account_selector_list_item, parent, false);
+        final View resultView = convertView != null ? convertView :
+                mInflater.inflate(mCustomLayout > 0 ? mCustomLayout :
+                        R.layout.account_selector_list_item, parent, false);
 
         final TextView text1 = (TextView) resultView.findViewById(android.R.id.text1);
         final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
