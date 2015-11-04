@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Видалити"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Додати контакт"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Додати групу"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Розділити контакт?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Цей контакт буде розділено."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Розділити цей контакт?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Розділити"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Зберегти зміни та розділити цей контакт?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Зберегти та розділити"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Зберегти зміни й об’єднати з вибраним контактом?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Зберегти й об’єднати"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Об’єднати"</string>
     <string name="menu_save" msgid="1727844363591825909">"Зберегти"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Об’єднання контактів"</string>
@@ -65,21 +69,31 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Пропоновані контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Усі контакти"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Контакти об’єднано"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Контакти видалено"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="one">Контакти видалено</item>
+      <item quantity="few">Контакти видалено</item>
+      <item quantity="many">Контакти видалено</item>
+      <item quantity="other">Контакти видалено</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Мелодія"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Усі виклики на голосову пошту"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Неможливо видалити контакти з облікових записів \"лише для читання\", але можна сховати їх у списках контактів."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Цей контакт містить інфор-цію з декількох обл. записів. Інф-цію із записів лише для читання буде сховано у ваших списках контактів, а не видалено."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Дані з облікових записів лише для перегляду не можна видалити, але можна сховати."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Сховати"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"У контакті, який ви хочете видалити, є дані з кількох облікових записів. Дані з облікових записів лише для перегляду буде сховано, а не видалено."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Виберіть принаймні два контакти, щоб об’єднати їх."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"Вибрані контакти буде об’єднано."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Вибрані контакти буде видалено."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Дані з облікових записів лише для перегляду буде приховано у ваших списках контактів, а не видалено."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Ці контакти містять дані з декількох облікових записів. Дані з облікових записів лише для перегляду буде приховано у ваших списках контактів, а не видалено."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Якщо видал. цей контакт, буде видалено інф-ю з декількох обл. записів."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Цей контакт буде видалено."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Об’єднати вибрані контакти?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Об’єднати"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Видалити цей контакт?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Видалити вибрані контакти?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Дані з облікових записів лише для перегляду не можна видалити, але можна сховати."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"У контактах, які ви хочете видалити, є дані з кількох облікових записів. Дані з облікових записів лише для перегляду буде сховано, а не видалено."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Якщо видалити цей контакт, буде видалено дані з кількох облікових записів."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Видалити цей контакт?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Видалити"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Відхилити зміни"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Контакт не існує."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Віджет контакта додано на головний екран."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Контакт додано на головний екран."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Контакт <xliff:g id="NAME">%s</xliff:g> додано на головний екран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Створ. новий контакт"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Створити новий контакт"</string>
   <string-array name="otherLabels">
@@ -127,7 +141,7 @@
       <item quantity="many">Знайдено <xliff:g id="COUNT">%d</xliff:g></item>
       <item quantity="other">Знайдено <xliff:g id="COUNT">%d</xliff:g></item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Усі контакти"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Усі контакти"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Вибране"</string>
     <string name="callBack" msgid="5498224409038809224">"Передзвонити"</string>
     <string name="callAgain" msgid="3197312117049874778">"Набрати знову"</string>
@@ -225,6 +239,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Очистити налаштування за умовчанням"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текст скопійовано"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Відхилити зміни?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Відхилити"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Налаштувати профіль"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Введіть ім’я особи"</string>
@@ -237,7 +252,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додати обліковий запис"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Для вашого нового контакта не буде створено резервні копії. Додати обліковий запис, у якому буде збережено резервні копії контактів в Інтернеті?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Новий контакт буде синхронізовано з обліковим записом <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Свій новий контакт можна синхронізувати з одним з указаних нижче облікових записів. Який із них використати?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Виберіть обліковий запис за умовчанням для нових контактів:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додати контакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Змінити контакт"</string>
     <string name="keep_local" msgid="1258761699192993322">"Зберегти локально"</string>
@@ -282,10 +297,11 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Останній дзвінок: <xliff:g id="CALL_TYPE">%s</xliff:g>, <xliff:g id="PHONE_NUMBER">%s</xliff:g>, <xliff:g id="DATE">%s</xliff:g>. Натисніть, щоб зателефонувати"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ви: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Щоб сервіс Hangouts працював краще, введіть свій ідентифікатор Hangouts у поле \"Електронна адреса\" або \"Телефон\"."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Більше полів"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Більше полів"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Змінити фотографію"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Не вдалося відкрити редактор."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Зберігання в обліковий запис"</string>
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Зараз контакт зберігається в обліковий запис <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Двічі торкніться, щоб вибрати інший обліковий запис."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="few">Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -317,7 +333,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Цей контакт"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Можливі копії"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Щоб позбутися копій контактів, об’єднайте їх."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Ці контакти можуть стосуватися однієї людини. Ви можете об’єднати їх."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Об’єднані контакти"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"З ваших облікових записів"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Сфотографувати"</string>

@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Διαγραφή"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Προσθήκη επαφής"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Προσθήκη ομάδας"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Αποσύνδεση επαφής;"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Αυτή η επαφή θα αποσυνδεθεί σε πολλαπλές επαφές."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Θέλετε να αναιρέσετε τη σύνδεση αυτής της επαφής για να μετατραπεί σε πολλαπλές επαφές;"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Αναίρεση σύνδεσης"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Θέλετε να αποθηκεύσετε τις αλλαγές που έχετε πραγματοποιήσει ήδη και να αναιρέσετε τη σύνδεση αυτής της επαφής για να μετατραπεί σε πολλαπλές επαφές;"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Αποθήκευση και αναίρεση σύνδεσης"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Θα θέλατε να αποθηκεύσετε τις αλλαγές που έχετε πραγματοποιήσει ήδη και να κάνετε σύνδεση με την επιλεγμένη επαφή;"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Αποθήκευση και σύνδεση"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Σύνδεση"</string>
     <string name="menu_save" msgid="1727844363591825909">"Aποθήκευση"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Σύνδεση επαφών"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Προτεινόμενες επαφές"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Όλες οι επαφές"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Οι επαφές συνδέθηκαν"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Οι επαφές διαγράφηκαν"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other"> επαφές διαγράφηκαν</item>
+      <item quantity="one"> επαφή διαγράφηκε</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ήχος κλήσης"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Όλες οι κλήσ. στον τηλεφωνητή"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Δεν μπορείτε να διαγράψετε επαφές από λογαριασμούς οι οποίοι προορίζονται μόνο για ανάγνωση, αλλά μπορείτε να τις αποκρύψετε στις λίστες επαφών σας."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Αυτή η επαφή περιέχει πληροφορίες από πολλούς λογαριασμούς. Θα γίνει απόκρυψη και όχι διαγραφή των πληροφοριών που προέρχονται από λογαριασμούς μόνο για ανάγνωση στις λίστες επαφών σας."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Δεν είναι δυνατή η διαγραφή επαφών από λογαριασμούς που προορίζονται μόνο για ανάγνωση, αλλά είναι δυνατή η απόκρυψή τους."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Απόκρυψη"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Η επαφή που πρόκειται να διαγραφεί περιέχει στοιχεία από πολλαπλούς λογαριασμούς. Τα στοιχεία που προέρχονται από λογαριασμούς που προορίζονται μόνο για ανάγνωση θα είναι κρυφά, αλλά δεν θα διαγραφούν."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Θα πρέπει να έχουν επιλεγεί τουλάχιστον δύο επαφές για να πραγματοποιηθεί μια σύνδεση."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"Οι επιλεγμένες επαφές θα συνδεθούν σε μια μεμονωμένη επαφή."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Οι επιλεγμένες επαφές θα διαγραφούν."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Οι πληροφορίες από λογαριασμούς μόνο για ανάγνωση θα βρίσκονται κρυμμένες στις λίστες επαφών σας, δεν θα διαγραφούν."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Αυτές οι επαφές περιέχουν πληροφορίες από πολλαπλούς λογαριασμούς. Οι πληροφορίες από λογαριασμούς μόνο για ανάγνωση θα βρίσκονται κρυμμένες στις λίστες επαφών σας, δεν θα διαγραφούν."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Εάν διαγράψετε αυτήν την επαφή, θα γίνει διαγραφή των πληροφοριών από πολλούς λογαριασμούς."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Αυτή η επαφή θα διαγραφεί."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Θέλετε να συνδέσετε τις επιλεγμένες επαφές;"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Σύνδεση"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Να διαγραφεί αυτή η επαφή;"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Να διαγραφούν οι επιλεγμένες επαφές;"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Δεν είναι δυνατή η διαγραφή επαφών από λογαριασμούς που προορίζονται μόνο για ανάγνωση, αλλά είναι δυνατή η απόκρυψή τους."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Οι επαφές που πρόκειται να διαγραφούν περιέχουν στοιχεία από πολλαπλούς λογαριασμούς. Τα στοιχεία που προέρχονται από λογαριασμούς που προορίζονται μόνο για ανάγνωση θα είναι κρυφά, δεν θα διαγραφούν."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Με τη διαγραφή αυτής της επαφής, θα διαγραφούν στοιχεία από πολλαπλούς λογαριασμούς."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Να διαγραφεί αυτή η επαφή;"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Διαγραφή"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Απόρριψη αλλαγών"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Η επαφή δεν υπάρχει."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Το γραφικό στοιχείο επαφών προστέθηκε στην αρχική οθόνη."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Η επαφή προστέθηκε στην Αρχική οθόνη."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Ο/Η <xliff:g id="NAME">%s</xliff:g> προστέθηκε στην Αρχική οθόνη."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Δημιουργία νέας επαφής"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Δημιουργία νέας επαφής"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="other">Βρέθηκαν <xliff:g id="COUNT">%d</xliff:g></item>
       <item quantity="one">Βρέθηκε 1</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Όλες οι επαφές"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Όλες"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Αγαπημένα"</string>
     <string name="callBack" msgid="5498224409038809224">"Επανάκληση"</string>
     <string name="callAgain" msgid="3197312117049874778">"Επανάληψη κλήσης"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Εκκαθάριση προεπιλεγμένων"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Το κείμενο αντιγράφηκε"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Να απορριφθούν οι αλλαγές σας;"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Απόρριψη"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Ρύθμιση του προφίλ μου"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Πληκτρολογήστε το όνομα του ατόμου"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Προσθήκη λογαριασμού"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Δεν θα δημιουργηθεί αντίγραφο ασφαλείας για τη νέα επαφή σας. Θέλετε να προσθέσετε ένα λογαριασμό που δημιουργεί αντίγραφα ασφαλείας επαφών στο διαδίκτυο;"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Η νέα επαφή σας θα συγχρονιστεί με <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Μπορείτε να συγχρονίσετε τη νέα επαφή με έναν από τους παρακάτω λογαριασμούς. Ποιον θέλετε να χρησιμοποιήσετε;"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Επιλέξτε έναν προεπιλεγμένο λογαριασμό για νέες επαφές:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Προσθήκης επαφής"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Επεξεργασία επαφής"</string>
     <string name="keep_local" msgid="1258761699192993322">"Αποθ. τοπικά"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"πρόσφατη κλήση. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. κάντε κλικ για επιστροφή της κλήσης"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Εσείς: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Το Hangouts λειτουργεί καλύτερα όταν εισάγετε το αναγνωριστικό Hangouts του ατόμου στο πεδίο ηλεκτρονικού ταχυδρομείου ή τηλεφώνου."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Περισσότερα πεδία"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Περισσότερα πεδία"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Αλλαγή φωτογραφίας"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Αποτυχία ανοίγματος προγράμματος επεξεργασίας."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Αποθήκευση σε"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Συνδεδεμένες επαφές (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Συνδεδεμένη επαφή</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Αυτή η επαφή"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Πιθανά διπλότυπα"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Κάντε εκκαθάριση των διπλότυπων επαφών για το ίδιο άτομο συνδέοντας τις επαφές μεταξύ τους."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Αυτές οι επαφές μπορεί να αντιστοιχούν στο ίδιο άτομο. Μπορείτε να τις συνδέσετε σε μία μεμονωμένη επαφή."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Συνδεδεμένες επαφές"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Από τους λογαριασμούς σας"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Λήψη φωτογραφίας"</string>

@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"ลบ"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"เพิ่มรายชื่อผู้ติดต่อ"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"เพิ่มกลุ่ม"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"ยกเลิกการลิงก์รายชื่อไหม"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"รายชื่อติดต่อนี้จะถูกยกเลิกการลิงก์ออกเป็นหลายรายการ"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"ยกเลิกการลิงก์รายชื่อติดต่อนี้กับรายชื่อติดต่อหลายรายการไหม"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ยกเลิกการลิงก์"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"คุณต้องการบันทึกการเปลี่ยนแปลงที่ได้ทำไปแล้วและยกเลิกการลิงก์รายชื่อติดต่อนี้กับรายชื่อติดต่อหลายรายการไหม"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"บันทึกและยกเลิกการลิงก์"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"คุณต้องการบันทึกการเปลี่ยนแปลงที่ได้ทำไปแล้วและลิงก์กับรายชื่อติดต่อที่เลือกไว้ไหม"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"บันทึกและลิงก์"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"ลิงก์"</string>
     <string name="menu_save" msgid="1727844363591825909">"บันทึก"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"ลิงก์รายชื่อติดต่อ"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"รายชื่อที่แนะนำ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"รายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ลิงก์รายชื่อติดต่อแล้ว"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"ลบรายชื่อติดต่อแล้ว"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other">รายชื่อติดต่อที่ลบแล้ว</item>
+      <item quantity="one">รายชื่อติดต่อที่ลบแล้ว</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ตั้งเสียงเรียกเข้า"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"โอนทุกสายไปยังข้อความเสียง"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"คุณไม่สามารถลบรายชื่อติดต่อจากบัญชีแบบอ่านอย่างเดียวได้ แต่ซ่อนไว้ในรายการรายชื่อได้"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"สมุดโทรศัพท์นี้มีข้อมูลจากหลายบัญชี ข้อมูลจากบัญชีแบบอ่านอย่างเดียวจะถูกซ่อนในรายการรายชื่อของคุณโดยไม่ถูกลบออก"</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"ไม่สามารถลบรายชื่อติดต่อจากบัญชีอ่านอย่างเดียว แต่สามารถซ่อนรายชื่อติดต่อได้"</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ซ่อน"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"รายชื่อติดต่อที่จะลบมีรายละเอียดจากหลายบัญชี ระบบจะซ่อนรายละเอียดจากบัญชีอ่านอย่างเดียว แต่ไม่ได้ลบรายละเอียด"</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"คุณต้องเลือกรายชื่อติดต่ออย่างน้อย 2 รายการเพื่อทำการลิงก์"</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"รายชื่อติดต่อที่เลือกไว้จะลิงก์เข้าด้วยกันเป็นรายการเดียว"</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"ระบบจะลบรายชื่อติดต่อที่เลือก"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"ระบบจะซ่อนข้อมูลจากบัญชีที่อ่านอย่างเดียวไว้ในรายชื่อติดต่อโดยไม่ลบออก"</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"รายชื่อติดต่อเหล่านี้มีข้อมูลจากหลายบัญชี ระบบจะซ่อนข้อมูลจากบัญชีที่อ่านอย่างเดียวไว้ในรายชื่อติดต่อของคุณโดยไม่ลบออก"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"การลบสมุดโทรศัพท์นี้จะลบข้อมูลจากบัญชีแบบหลายรายการ"</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"รายชื่อนี้จะถูกลบ"</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"ลิงก์รายชื่อติดต่อที่เลือกไว้ไหม"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"ลิงก์"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"ลบรายชื่อติดต่อนี้ไหม"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"ลบรายชื่อติดต่อที่เลือกไว้ไหม"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"ไม่สามารถลบรายชื่อติดต่อจากบัญชีอ่านอย่างเดียว แต่สามารถซ่อนรายชื่อติดต่อได้"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"รายชื่อติดต่อที่จะลบมีข้อมูลจากหลายบัญชี ระบบจะซ่อนรายละเอียดจากบัญชีอ่านอย่างเดียว แต่ไม่ได้ลบรายละเอียด"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"การลบรายชื่อติดต่อนี้จะลบรายละเอียดจากหลายบัญชี"</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"ลบรายชื่อติดต่อนี้ไหม"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ลบ"</string>
     <string name="menu_discard" msgid="6854657936970228164">"ยกเลิกการเปลี่ยนแปลง"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"ไม่มีรายชื่อติดต่อนี้"</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"เพิ่มวิดเจ็ตสมุดโทรศัพท์ในหน้าจอหลักแล้ว"</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"เพิ่มรายชื่อติดต่อลงในหน้าจอหลักแล้ว"</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"เพิ่ม <xliff:g id="NAME">%s</xliff:g> ลงในหน้าจอหลักแล้ว"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"สร้างรายชื่อในสมุดโทรศัพท์ใหม่"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"สร้างรายชื่อติดต่อใหม่"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="other">พบ <xliff:g id="COUNT">%d</xliff:g> รายการ</item>
       <item quantity="one">พบ 1 รายการ</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"รายชื่อทั้งหมด"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"ทั้งหมด"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"รายการโปรด"</string>
     <string name="callBack" msgid="5498224409038809224">"ติดต่อกลับ"</string>
     <string name="callAgain" msgid="3197312117049874778">"โทรอีกครั้ง"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"ล้างจากค่าเริ่มต้น"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"คัดลอกข้อความแล้ว"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ยกเลิกการเปลี่ยนแปลงหรือไม่"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"ยกเลิก"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"ตั้งค่าโปรไฟล์ของฉัน"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"พิมพ์ชื่อของบุคคล"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ผู้ติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลผู้ติดต่อออนไลน์หรือไม่"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"ผู้ติดต่อใหม่ของคุณจะซิงค์กับ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"คุณสามารถซิงค์ผู้ติดต่อใหม่กับบัญชีใด บัญชีหนึ่งต่อไปนี้ได้ คุณต้องการใช้บัญชีใด"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"เลือกบัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"เพิ่มรายชื่อติดต่อ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"แก้ไขรายชื่อติดต่อ"</string>
     <string name="keep_local" msgid="1258761699192993322">"จัดเก็บในตัวเครื่อง"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"โทรล่าสุด <xliff:g id="CALL_TYPE">%s</xliff:g> <xliff:g id="PHONE_NUMBER">%s</xliff:g> <xliff:g id="DATE">%s</xliff:g> คลิกเพื่อโทรกลับ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"คุณ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"แฮงเอาท์ทำงานได้ดียิ่งขึ้นเมื่อคุณป้อนตัวระบุแฮงเอาท์ของบุคคลที่ต้องการลงในช่องอีเมลหรือช่องโทรศัพท์"</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"ช่องเพิ่มเติม"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"ช่องอื่นๆ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"เปลี่ยนรูปภาพ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ไม่สามารถเปิดตัวแก้ไข"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"บันทึกลงใน"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">รายชื่อติดต่อที่ลิงก์ (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">รายชื่อติดต่อที่ลิงก์</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"รายชื่อติดต่อนี้"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"อาจซ้ำกับรายการอื่น"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"จัดระเบียบรายชื่อติดต่อที่ซ้ำกันของบุคคลเดียวกันโดยการลิงก์รายชื่อเข้าด้วยกัน"</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"รายชื่อติดต่อเหล่านี้อาจเป็นบุคคลเดียวกัน คุณสามารถลิงก์รายชื่อติดต่อดังกล่าวเป็นรายชื่อติดต่อเดียว"</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"รายชื่อติดต่อที่ลิงก์"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"จากบัญชีของคุณ"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"ถ่ายภาพ"</string>
