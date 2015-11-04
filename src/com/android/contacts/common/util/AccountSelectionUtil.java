@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.contacts.common.R;
@@ -111,30 +112,28 @@ public class AccountSelectionUtil {
         final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ArrayAdapter<AccountWithDataSet> accountAdapter =
-            new ArrayAdapter<AccountWithDataSet>(context, android.R.layout.simple_list_item_2,
-                    writableAccountList) {
-
+            new ArrayAdapter<AccountWithDataSet>(
+                    context, R.layout.account_selector_list_item_condensed, writableAccountList) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if (convertView == null) {
                     convertView = dialogInflater.inflate(
-                            android.R.layout.simple_list_item_2,
+                            R.layout.account_selector_list_item_condensed,
                             parent, false);
                 }
 
-                // TODO: show icon along with title
-                final TextView text1 =
-                        (TextView)convertView.findViewById(android.R.id.text1);
-                final TextView text2 =
-                        (TextView)convertView.findViewById(android.R.id.text2);
+                final TextView text1 = (TextView) convertView.findViewById(android.R.id.text1);
+                final TextView text2 = (TextView) convertView.findViewById(android.R.id.text2);
+                final ImageView icon = (ImageView) convertView.findViewById(android.R.id.icon);
 
                 final AccountWithDataSet account = this.getItem(position);
                 final AccountType accountType = accountTypes.getAccountType(
                         account.type, account.dataSet);
                 final Context context = getContext();
 
-                text1.setText(account.name);
-                text2.setText(accountType.getDisplayLabel(context));
+                text1.setText(accountType.getDisplayLabel(context));
+                text2.setText(account.name);
+                icon.setImageDrawable(accountType.getDisplayIcon(getContext()));
 
                 return convertView;
             }
