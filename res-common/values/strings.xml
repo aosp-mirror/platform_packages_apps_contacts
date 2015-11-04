@@ -420,7 +420,8 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Displayed at the top of the contacts showing single contact. [CHAR LIMIT=64] -->
     <string name="listSingleContact">Single contact</string>
 
-    <string name="dialog_new_contact_account">Create contact under account</string>
+    <!-- Message asking user to select an account to save contacts imported from vcard or SIM card [CHAR LIMIT=64] -->
+    <string name="dialog_new_contact_account">Save imported contacts to:</string>
 
     <!-- Action string for selecting SIM for importing contacts -->
     <string name="import_from_sim">Import from SIM card</string>
