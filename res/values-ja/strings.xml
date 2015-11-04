@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"削除"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"連絡先を追加"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"グループを追加"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"連絡先をリンク解除しますか？"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"この連絡先を複数の連絡先にリンク解除します。"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"この連絡先を複数の連絡先にリンク解除しますか？"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"リンク解除"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ここまでの変更を保存してこの連絡先を複数の連絡先にリンク解除しますか？"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"保存してリンク解除"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"ここまでの変更を保存して選択した連絡先にリンクしますか？"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"保存してリンク"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"リンク"</string>
     <string name="menu_save" msgid="1727844363591825909">"保存"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"連絡先をリンク"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"連絡先候補"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"すべての連絡先"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"連絡先をリンクしました"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"連絡先を削除しました"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other">連絡先を削除しました</item>
+      <item quantity="one">連絡先を削除しました</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"着信音を設定"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"すべての通話をボイスメールへ"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"読み取り専用アカウントの連絡先は削除できません。ただし、連絡先リストで非表示にすることができます。"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"この連絡先には、複数のアカウント情報が含まれています。読み取り専用アカウントの情報を連絡先リストで非表示にすることはできますが、削除はできません。"</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"読み取り専用のアカウントからの連絡先は削除できませんが非表示にすることはできます。"</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"非表示"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"削除しようとしている連絡先には複数のアカウントからの詳細情報が含まれています。読み取り専用のアカウントからの詳細情報は非表示になるだけで削除はされません。"</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"リンクするには連絡先を2件以上選択してください。"</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"選択した連絡先を1つの連絡先にリンクします。"</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"選択した連絡先を削除します。"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"読み取り専用アカウントの情報を連絡先リストで非表示にすることはできますが、削除はできません。"</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"この連絡先には、複数のアカウント情報が含まれています。読み取り専用アカウントの情報を連絡先リストで非表示にすることはできますが、削除はできません。"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"この連絡先を削除すると、複数のアカウント情報が削除されます。"</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"この連絡先を削除します。"</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"選択した連絡先をリンクしますか？"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"リンク"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"この連絡先を削除しますか？"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"選択した連絡先を削除しますか？"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"読み取り専用のアカウントからの連絡先は削除できませんが非表示にすることはできます。"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"削除しようとしている連絡先には複数のアカウントからの詳細情報が含まれています。読み取り専用のアカウントからの詳細情報は非表示になるだけで削除はされません。"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"この連絡先を削除すると複数のアカウントから詳細情報が削除されます。"</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"この連絡先を削除しますか？"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"削除"</string>
     <string name="menu_discard" msgid="6854657936970228164">"変更を破棄"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"連絡先が存在しません。"</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"ホーム画面に連絡先ウィジェットを追加しました。"</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"連絡先をホーム画面に追加しました。"</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>をホーム画面に追加しました。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"連絡先を新規登録"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"新しい連絡先を作成"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>件見つかりました</item>
       <item quantity="one">1件見つかりました</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"すべての連絡先"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"すべて"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"お気に入り"</string>
     <string name="callBack" msgid="5498224409038809224">"コールバック"</string>
     <string name="callAgain" msgid="3197312117049874778">"再発信"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"デフォルトを解除"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"テキストをコピーしました"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"変更を破棄しますか？"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"破棄"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"プロファイルを設定"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"名前を入力"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"アカウントの追加"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"新しい連絡先はバックアップされません。オンラインで連絡先をバックアップするアカウントを追加しますか？"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"新しい連絡先は<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>と同期されます。"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"新しい連絡先を次のいずれかのアカウントと同期させることができます。使用するアカウントを選択してください。"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"新しい連絡先のデフォルトアカウントを選択してください。"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新しい連絡先を追加"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"連絡先を編集"</string>
     <string name="keep_local" msgid="1258761699192993322">"ローカルに保存"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"最近の通話。<xliff:g id="CALL_TYPE">%s</xliff:g>。<xliff:g id="PHONE_NUMBER">%s</xliff:g>。<xliff:g id="DATE">%s</xliff:g>。折り返し電話するにはタップしてください。"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"あなた: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ハングアウトを使いやすくするには、相手のハングアウトIDをメールアドレス欄または電話番号欄に入力します。"</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"他の項目"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"他の項目"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"写真を変更"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"エディタを開けませんでした。"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"保存先"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">リンクされた連絡先（<xliff:g id="COUNT">%d</xliff:g>件）</item>
       <item quantity="one">リンクされた連絡先</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"この連絡先"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"重複の可能性"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"同一人物の重複する連絡先を整理するには、その連絡先をリンクします。"</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"これらの連絡先は同一人物である可能性があります。リンクして1つの連絡先にまとめることができます。"</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"リンクした連絡先"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"アカウントの写真"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"写真を撮る"</string>

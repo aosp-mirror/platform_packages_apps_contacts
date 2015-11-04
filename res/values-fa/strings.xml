@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"حذف"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"افزودن مخاطب"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"افزودن گروه"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"مخاطب قطع پیوند شود؟"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"این مخاطب به چند مخاطب لغو پیوند می‌شود."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"این مخاطب به چند مخاطب لغو پیوند شود؟"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"لغو ارتباط"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"می‌خواهید تغییراتی را که قبلاً ایجاد کرده‌اید، ذخیره کنید و این مخاطب را به چند مخاطب لغو پیوند کنید؟"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"ذخیره و لغو پیوند"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"می‌خواهید تغییراتی را که قبلاً ایجاد کرده‌اید، ذخیره کنید و با مخاطب انتخاب‌شده پیوند دهید؟"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"ذخیره و پیوند کردن"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"پیوند"</string>
     <string name="menu_save" msgid="1727844363591825909">"ذخیره‌"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"پیوند دادن مخاطبین"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"مخاطبین پیشنهادی"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"همه مخاطبین"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"مخاطبین پیوند داده شدند"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"مخاطبین حذف شدند"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="one">مخاطب حذف شد</item>
+      <item quantity="other">مخاطب حذف شد</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"تنظیم آهنگ زنگ"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"همه تماس‌ها به پست صوتی"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"شما نمی‌توانید مخاطبین را از حساب‌های فقط خواندنی حذف کنید اما می‌توانید آن‌ها را در لیست‌های مخاطبین خود پنهان کنید."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"این مخاطب دارای اطلاعاتی از چند حساب است. اطلاعات حساب‌های فقط خواندنی در لیست‌های مخاطبین پنهان می‌شوند اما حذف نمی‌شوند."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"مخاطبین از حساب‌های فقط خواندنی شما قابل حذف نیستند، اما می‌توان آن‌ها را پنهان کرد."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"پنهان کردن"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"مخاطبی که برای حذف انتخاب کرده‌اید، جزئیاتی از چند حساب دارد. جزئیات از حساب‌های فقط خواندنی حذف نمی‌شود، بلکه پنهان می‌شود."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"برای پیوند دادن، حداقل باید دو مخاطب انتخاب شوند."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"مخاطب‌های انتخاب شده به‌عنوان یک مخاطب واحد پیوند داده می‌شوند."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"مخاطب‌های انتخاب شده حذف می‌شوند."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"اطلاعات حساب‌های فقط خواندنی در فهرست‌های مخاطبین شما پنهان می‌شوند اما حذف نمی‌شوند."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"این مخاطب‌ها دارای اطلاعاتی از چند حساب هستند. اطلاعات حساب‌های فقط خواندنی در فهرست‌های مخاطبین شما پنهان می‌شوند اما حذف نمی‌شوند."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"حذف این مخاطب اطلاعات را از حساب‌های متعدد حذف می‌کند."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"این مخاطب حذف می‌شود."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"مخاطبین انتخاب‌شده پیوند داده شوند؟"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"پیوند کردن"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"این مخاطب حذف شود؟"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"مخاطبین انتخاب‌شده حذف شوند؟"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"مخاطبین از حساب‌های فقط خواندنی شما قابل حذف نیستند، اما می‌توان آن‌ها را پنهان کرد."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"مخاطبینی که برای حذف انتخاب شده‌اند، جزئیاتی از چند حساب دارند. جزئیات از مخاطبین فقط خواندنی حذف نمی‌شود، بلکه پنهان می‌شود."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"حذف این مخاطب، جزئیات از چند حساب را حذف می‌کند."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"این مخاطب حذف شود؟"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"حذف"</string>
     <string name="menu_discard" msgid="6854657936970228164">"صرف‌نظر از تغییرات"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"مخاطبی موجود نیست."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"ابزارک مخاطب به صفحهٔ اصلی شما اضافه شد."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"مخاطب به صفحه اصلی اضافه شد."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> به صفحه اصلی اضافه شد."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"ایجاد مخاطب جدید"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"ایجاد مخاطب جدید"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مورد پیدا شد</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مورد پیدا شد</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"همه مخاطبین"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"همه"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"موارد دلخواه"</string>
     <string name="callBack" msgid="5498224409038809224">"بازگرداندن تماس"</string>
     <string name="callAgain" msgid="3197312117049874778">"تماس مجدد"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"پاک کردن پیش فرض‌ها"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"متن کپی شده"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"از تغییرات صرف‌نظر می‌کنید؟"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"صرف‌نظر کردن"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"راه‌اندازی نمایه من"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"نام شخص را تایپ کنید"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"افزودن یک حساب"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدید شما نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتبان تهیه کند؟"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"مخاطب جدید شما با <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> همگام‌سازی خواهد شد."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"شما می‌توانید مخاطب جدید خود را با یکی از حساب‌های زیر همگام‌سازی کنید. از کدام‌یک می‌خواهید استفاده کنید؟"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"انتخاب حساب پیش‌فرض برای مخاطبین جدید:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"افزودن مخاطب جدید"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ویرایش مخاطب"</string>
     <string name="keep_local" msgid="1258761699192993322">"ذخیره به‌صورت محلی"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"تماس اخیر. <xliff:g id="CALL_TYPE">%s</xliff:g>‏. <xliff:g id="PHONE_NUMBER">%s</xliff:g>‏. ‏<xliff:g id="DATE">%s</xliff:g>. برای بازگرداندن تماس کلیک کنید"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"شما: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏وقتی شناسه Hangouts شخص را در فیلد ایمیل یا فیلد تلفن وارد کنید، Hangouts بهتر کار می‌کند."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"فیلدهای بیشتر"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"فیلدهای بیشتر"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"تغییر عکس"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ویرایشگر باز نشد."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"ذخیره در"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">مخاطبین پیوند داده شده (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">مخاطبین پیوند داده شده (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"این مخاطب"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"مخاطبین تکراری ممکن"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"مخاطبین تکراری برای یک نفر را با پیوند دادن آن‌ها به یکدیگر، پاک کنید."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"ممکن است این مخاطب‌ها یک نفر باشند. می‌توانید آن‌ها را به‌عنوان یک مخاطب به هم پیوند دهید."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"مخاطب‌های پیوند داده شده"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"از حساب‌های شما"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"عکس گرفتن"</string>

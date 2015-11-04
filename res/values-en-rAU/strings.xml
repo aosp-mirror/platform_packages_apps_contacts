@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Delete"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Add Contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Add Group"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Unlink contact?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"This contact will be unlinked into multiple contacts."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Unlink this contact into multiple contacts?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Unlink"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Would you like to save the changes that you already made and unlink this contact into multiple contacts?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Save and Unlink"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Would you like to save the changes that you already made and link with the contact selected?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Save and Link"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Link"</string>
     <string name="menu_save" msgid="1727844363591825909">"Save"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Link contacts"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Suggested Contacts"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"All contacts"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contacts linked"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Contacts deleted"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other">Contacts deleted</item>
+      <item quantity="one">Contact deleted</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Set ringtone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"All calls to voicemail"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"You can\'t delete contacts from read-only accounts, but you can hide them in your contacts lists."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"This contact contains information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Contacts from your read-only accounts cannot be deleted, but they can be hidden."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Hide"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"The contact to be deleted has details from multiple accounts. Details from read-only accounts will be hidden, not deleted."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"You need at least two contacts selected to perform a link."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"The selected contacts will be linked into a single contact."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"The selected contacts will be deleted."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Information from read-only accounts will be hidden in your contacts lists, not deleted."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"These contacts contain information from multiple accounts. Information from read-only accounts will be hidden in your contacts lists, not deleted."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Deleting this contact will delete information from multiple accounts."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"This contact will be deleted."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Link selected contacts?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Link"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Delete this contact?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Delete selected contacts?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Contacts from your read-only accounts cannot be deleted, but they can be hidden."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"The contacts to be deleted have details from multiple accounts. Details from read-only accounts will be hidden, not deleted."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Deleting this contact will delete details from multiple accounts."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Delete this contact?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"delete"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Discard changes"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"The contact doesn\'t exist."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Contact widget added to Home screen."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Contact added to Home screen."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> added to Home screen."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Create new contact"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Create new contact"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> found</item>
       <item quantity="one">1 found</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"All contacts"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"All"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favourites"</string>
     <string name="callBack" msgid="5498224409038809224">"Call back"</string>
     <string name="callAgain" msgid="3197312117049874778">"Call again"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Clear default"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text copied"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Discard your changes?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Discard"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Set up my profile"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Type person\'s name"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Add an account"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Your new contact won\'t be backed up. Add an account that backs up contacts online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Your new contact will be synchronised with <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"You can synchronise your new contact with one of the following accounts. Which do you want to use?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Choose a default account for new contacts:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Add new contact"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit contact"</string>
     <string name="keep_local" msgid="1258761699192993322">"Keep locally"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"recent call. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. click to call back"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"You: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts works better when you enter the person\'s Hangouts identifier into the email field or phone field."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"More Fields"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"More fields"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Change photo"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Failed to open editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Saving to"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Linked contacts (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Linked contact</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"This contact"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Possible duplicates"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Clean up duplicate contacts for the same person by linking them together."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"These contacts might be the same person. You can link them together as a single contact."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Linked contacts"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"From your accounts"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Take a photo"</string>

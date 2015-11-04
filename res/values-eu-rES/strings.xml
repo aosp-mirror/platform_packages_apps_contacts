@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ezabatu"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Gehitu kontaktua"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Gehitu taldea"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"Kontaktua desestekatu?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"Kontaktua hainbat kontaktu sortzeko desestekatuko da."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Kontaktuaren loturak desegin eta hainbat kontaktutan banandu nahi duzu?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Banandu"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Egin dituzun aldaketak gorde, eta hautatutako kontaktua hainbat kontaktutan banandu nahi duzu?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Gorde eta banandu"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Egin dituzun aldaketak gorde, eta hautatutako kontaktuarekin lotu nahi duzu?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Gorde eta lotu"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Estekatu"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gorde"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Lotu kontaktuak"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Gomendatutako kontaktuak"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Kontaktu guztiak"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Estekatu dira kontaktuak"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontaktuak ezabatu dira"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other">Ezabatu dira kontaktuak</item>
+      <item quantity="one">Ezabatu da kontaktua</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ezarri tonua"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Erantzungailuko dei guztiak"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ezin dituzu irakurtzeko soilik diren kontuetako kontaktuak ezabatu, baina zure kontaktuen zerrendatik ezkuta ditzakezu."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Kontaktu honek hainbat kontutako informazioa du. Irakurtzeko soilik diren kontuetako informazioa kontaktuen zerrendatik ezkutatuko da, baina ez da ezabatuko."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Irakurtzeko soilik diren kontuetako kontaktuak ezin dira ezabatu, baina ezkutatu egin daitezke."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Ezkutatu"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Ezabatzeko hautatu duzun kontaktuak hainbat kontutako informazioa du. Irakurtzeko soilik diren kontuetako informazioa kontaktuen zerrendatik ezkutatuko da, baina ez da ezabatuko."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Gutxienez bi kontaktu behar dituzu estekatu ahal izateko."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"Hautatutako kontaktuak kontaktu bakarrera estekatuko dira."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"Hautatutako kontaktuak ezabatu egingo dira."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Irakurtzeko soilik diren kontuetako informazioa kontaktuen zerrendatik ezkutatuko da, baina ez da ezabatuko."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Kontaktu hauek hainbat kontutako informazioa dute. Irakurtzeko soilik diren kontuetako informazioa kontaktuen zerrendatik ezkutatuko da, baina ez da ezabatuko."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Kontaktua ezabatzen baduzu, hainbat kontutako informazioa ezabatuko da."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Kontaktua ezabatu egingo da."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"Hautatutako kontaktuak lotu nahi dituzu?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Lotu"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Kontaktua ezabatu nahi duzu?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"Hautatutako kontaktuak ezabatu nahi dituzu?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Irakurtzeko soilik diren kontuetako kontaktuak ezin dira ezabatu, baina ezkutatu egin daitezke."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Ezabatzeko hautatu dituzun kontaktuek hainbat kontutako informazioa dute. Irakurtzeko soilik diren kontuetako informazioa kontaktuen zerrendatik ezkutatuko da, baina ez da ezabatuko."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Kontaktua ezabatzen baduzu, hainbat kontutatik ezabatuko da informazioa."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"Kontaktua ezabatu nahi duzu?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Ezabatu"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Baztertu aldaketak"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Ez dago horrelako kontakturik."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktuen widgeta hasierako pantailan gehitu da."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Hasierako pantailan gehitu da kontaktua."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Hasierako pantailan gehitu da <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Sortu kontaktua"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Sortu kontaktua"</string>
   <string-array name="otherLabels">
@@ -99,7 +111,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Batzuk gehitzeko, editatu taldea."</string>
     <string name="savingContact" msgid="4075751076741924939">"Kontaktua gordetzen…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Gorde da kontaktua"</string>
-    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Desestekatu dira kontaktuak"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kendu da kontaktuen lotura"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ezin izan dira gorde kontaktuari egindako aldaketak."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Ezin izan da desestekatu kontaktua."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Ezin izan da lotu kontaktua."</string>
@@ -121,7 +133,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> aurkitu dira</item>
       <item quantity="one">Bat aurkitu da</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Kontaktu guztiak"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Guztiak"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Gogokoak"</string>
     <string name="callBack" msgid="5498224409038809224">"Itzuli deia"</string>
     <string name="callAgain" msgid="3197312117049874778">"Deitu berriro"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Garbitu metodo lehenetsia"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Testua kopiatu da"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Aldaketak baztertu nahi dituzu?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Baztertu"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> (<xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>)"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Konfiguratu nire profila"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Idatzi pertsonaren izena"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Gehitu kontu bat"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ez da kontaktu berriaren babeskopiarik egingo. Kontaktuen babeskopia sarean gordetzeko kontua gehitu nahi duzu?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Kontaktu berria <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> kontuarekin sinkronizatuko da."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Kontaktu berria kontu hauetako batekin sinkroniza dezakezu. Zein erabili nahi duzu?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Aukeratu kontaktu berriak gordetzeko erabili nahi duzun kontua:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Gehitu kontaktu berria"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editatu kontaktua"</string>
     <string name="keep_local" msgid="1258761699192993322">"Mantendu gailuan"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"duela gutxiko deia. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. sakatu deitzeko"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Zu: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts-ek hobeto funtzionatzen du pertsonaren Hangouts identifikatzailea idazten baduzu helbide elektronikoaren edo telefonoaren eremuan."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"Eremu gehiago"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Eremu gehiago"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Aldatu argazkia"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Ezin izan da ireki editorea."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Gorde hemen:"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Lotutako kontaktuak (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Lotutako kontaktu bat</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Kontaktu hau"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Baliteke bikoiztuak egotea"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"Bikoiztuak ekiditeko, lotu pertsona berari dagozkion kontaktu guztiak."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Kontaktu hauek pertsona bera izan daitezke. Lotu egin ditzakezu, informazioa kontaktu bakarrean bilduta izateko."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Estekatutako kontaktuak"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Zure kontuetatik"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Atera argazkia"</string>

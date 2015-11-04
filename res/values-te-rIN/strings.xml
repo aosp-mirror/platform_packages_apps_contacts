@@ -55,8 +55,12 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"తొలగించు"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"పరిచయాన్ని జోడించు"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"సమూహాన్ని జోడించు"</string>
-    <string name="splitConfirmation_title" msgid="7323598548437734615">"పరిచయాన్ని వేరు చేయాలా?"</string>
-    <string name="splitConfirmation" msgid="7571509181690496920">"ఈ పరిచయం బహుళ పరిచయాలుగా వేరు చేయబడుతుంది."</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"ఈ పరిచయాన్ని పలు పరిచయాలుగా వేరు చేయాలా?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"వేరు చేయి"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"మీరు ఇప్పటికే చేసిన మార్పులను సేవ్ చేసి, ఈ పరిచయాన్ని పలు పరిచయాలుగా వేరు చేయాలనుకుంటున్నారా?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"సేవ్ చేసి, వేరు చేయి"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"మీరు ఇప్పటికే చేసిన మార్పులను సేవ్ చేసి, ఎంచుకున్న పరిచయంతో లింక్ చేయాలనుకుంటున్నారా?"</string>
+    <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"సేవ్ చేసి, లింక్ చేయి"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"లింక్ చేయి"</string>
     <string name="menu_save" msgid="1727844363591825909">"సేవ్ చేయి"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"పరిచయాలను లింక్ చేయండి"</string>
@@ -65,21 +69,29 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"సూచిత పరిచయాలు"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"అన్ని పరిచయాలు"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"పరిచయాలు లింక్ చేయబడ్డాయి"</string>
-    <string name="contacts_deleted_toast" msgid="286851430992788215">"పరిచయాలు తొలగించబడ్డాయి"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
+      <item quantity="other">పరిచయాలు తొలగించబడ్డాయి</item>
+      <item quantity="one">పరిచయం తొలగించబడింది</item>
+    </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"రింగ్‌టో‌న్‌ను సెట్ చేయి"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"అన్ని కాల్‌లు వాయిస్ మెయిల్‌కు"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"మీరు చదవడానికి-మాత్రమే అనుమతి ఉన్న ఖాతాల నుండి పరిచయాలను తొలగించలేరు, కానీ వాటిని మీ పరిచయాల జాబితాల్లో దాచవచ్చు."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ఈ పరిచయం బహుళ ఖాతాల నుండి సమాచారాన్ని కలిగి ఉంటుంది. చదవడానికి-మాత్రమే అనుమతి ఉన్న ఖాతాల్లోని సమాచారం మీ పరిచయాల జాబితాల్లో దాచబడుతుంది, తొలగించబడదు."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"మీ చదవడానికి మాత్రమే ఖాతాల నుండి పరిచయాలు తొలగించబడవు, కానీ అవి దాచబడవచ్చు."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"దాచు"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"తొలగించాల్సిన పరిచయం పలు ఖాతాల నుండి వివరాలను కలిగి ఉంది. చదవడానికి మాత్రమే ఖాతాల నుండి వివరాలు దాచబడతాయి, తొలగించబడవు."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"మీరు లింక్ చర్యను అమలు చేయడానికి కనీసం రెండు పరిచయాలను ఎంచుకోవాలి."</string>
-    <string name="batch_link_confirmation" msgid="6874108358830894848">"ఎంచుకున్న పరిచయాలు ఒకే పరిచయంగా లింక్ చేయబడతాయి."</string>
-    <string name="batch_delete_confirmation" msgid="2564172328268885394">"ఎంచుకున్న పరిచయాలు తొలగించబడతాయి."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"చదవడానికి మాత్రమే అనుమతి ఉన్న ఖాతాల్లోని సమాచారం మీ పరిచయాల జాబితాల్లో దాచబడుతుంది కానీ తొలగించబడదు."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"ఈ పరిచయాలు బహుళ ఖాతాల నుండి సమాచారాన్ని కలిగి ఉన్నాయి. చదవడానికి మాత్రమే అనుమతి ఉన్న ఖాతాల్లోని సమాచారం మీ పరిచయాల జాబితాల్లో దాచబడుతుంది కానీ తొలగించబడదు."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ఈ పరిచయాన్ని తొలగించడం వలన బహుళ ఖాతాల నుండి సమాచారం తొలగించబడుతుంది."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"ఈ పరిచయం తొలగించబడుతుంది."</string>
+    <string name="batch_link_confirmation" msgid="5845237114309114908">"ఎంచుకున్న పరిచయాలను లింక్ చేయాలా?"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"లింక్ చేయి"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"ఈ పరిచయాన్ని తొలగించాలా?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"ఎంచుకున్న పరిచయాలను తొలగించాలా?"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"మీ చదవడానికి మాత్రమే ఖాతాల నుండి పరిచయాలు తొలగించబడవు, కానీ అవి దాచబడవచ్చు."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"తొలగించాల్సిన పరిచయాలు పలు ఖాతాల నుండి వివరాలను కలిగి ఉన్నాయి. చదవడానికి మాత్రమే ఖాతాల నుండి వివరాలు దాచబడతాయి, తొలగించబడవు."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ఈ పరిచయాన్ని తొలగించడం వలన పలు ఖాతాల నుండి వివరాలు తొలగించబడతాయి."</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"ఈ పరిచయాన్ని తొలగించాలా?"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"తొలగించు"</string>
     <string name="menu_discard" msgid="6854657936970228164">"మార్పులను విస్మరించు"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"పరిచయం ఉనికిలో లేదు."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"హోమ్ స్క్రీన్‌కు పరిచయ విడ్జెట్ జోడించబడింది."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"పరిచయం హోమ్ స్క్రీన్‌కు జోడించబడింది."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> హోమ్ స్క్రీన్‌కు జోడించబడింది."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"కొత్త పరిచయాన్ని సృష్టించండి"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"కొత్త పరిచయాన్ని సృష్టించండి"</string>
   <string-array name="otherLabels">
@@ -121,7 +133,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> కనుగొనబడ్డాయి</item>
       <item quantity="one">1 కనుగొనబడింది</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"అన్ని పరిచయాలు"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"అన్నీ"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"ఇష్టమైనవి"</string>
     <string name="callBack" msgid="5498224409038809224">"కాల్ చేయి"</string>
     <string name="callAgain" msgid="3197312117049874778">"మళ్లీ కాల్ చేయి"</string>
@@ -213,6 +225,7 @@
     <string name="clear_default" msgid="7193185801596678067">"డిఫాల్ట్‌ను క్లియర్ చేయి"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"వచనం కాపీ చేయబడింది"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"మీ మార్పులను విస్మరించాలా?"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"విస్మరించు"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"నా ప్రొఫైల్‌ను సెటప్ చేయి"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"వ్యక్తి పేరు టైప్ చేయండి"</string>
@@ -225,7 +238,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ఖాతాను జోడించండి"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"మీ కొత్త పరిచయం బ్యాకప్ చేయబడదు. ఆన్‌లైన్‌లో పరిచయాలను బ్యాకప్ చేసే ఖాతాను జోడించాలా?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"మీ కొత్త పరిచయం <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>తో సమకాలీకరించబడుతుంది."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"మీరు క్రింది ఖాతాల్లో ఒకదానితో మీ కొత్త పరిచయాన్ని సమకాలీకరించవచ్చు. మీరు దేన్ని ఉపయోగించాలనుకుంటున్నారు?"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"కొత్త పరిచయాల కోసం డిఫాల్ట్ ఖాతాను ఎంచుకోండి:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"కొత్త పరిచయం చేర్చు"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"సవరించండి"</string>
     <string name="keep_local" msgid="1258761699192993322">"స్థానికంగా ఉంచండి"</string>
@@ -270,10 +283,12 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"ఇటీవలి కాల్. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. తిరిగి కాల్ చేయడానికి క్లిక్ చేయండి"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"మీరు: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"మీరు ఇమెయిల్ ఫీల్డ్ లేదా ఫోన్ ఫీల్డ్‌లో వ్యక్తి యొక్క Hangouts ఐడెంటిఫైయర్‌ని నమోదు చేసినప్పుడు Hangouts ఉత్తమంగా పని చేస్తాయి."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"మరిన్ని ఫీల్డ్‌లు"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"మరిన్ని ఫీల్డ్‌లు"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ఫోటోను మార్చండి"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ఎడిటర్‌ను తెరవడం విఫలమైంది."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"దీనికి సేవ్ చేయబడుతోంది"</string>
+    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
+    <skip />
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">లింక్ చేయబడిన పరిచయాలు (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">లింక్ చేయబడిన పరిచయం</item>
@@ -297,7 +312,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ఈ పరిచయం"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"సంభావ్య నకిలీలు"</string>
-    <string name="suggestion_card_help_message" msgid="3875880517935998480">"ఒకే వ్యక్తికి సంబంధించిన నకిలీ పరిచయాలను ఒక్కటిగా లింక్ చేయడం ద్వారా వాటిని తీసివేయండి."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"ఈ పరిచయాలు ఒకే వ్యక్తికి సంబంధించినవి అయ్యి ఉండవచ్చు. మీరు వాటిని ఒకే పరిచయంగా లింక్ చేయవచ్చు."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"లింక్ చేయబడిన పరిచయాలు"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"మీ ఖాతాల నుండి"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"ఫోటో తీయి"</string>
