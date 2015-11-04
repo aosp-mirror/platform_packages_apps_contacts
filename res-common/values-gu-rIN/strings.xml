@@ -144,6 +144,7 @@
     <string name="chat" msgid="6297650784873558837">"ચેટ"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"કાઢી નાખો"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"નામ ફીલ્ડ્સ વિસ્તૃત કરો અથવા સંકુચિત કરો"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ધ્વન્યાત્મક નામ ફીલ્ડ્સ વિસ્તૃત કરો અથવા સંકુચિત કરો"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"તમામ સંપર્કો"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"તારાંકિત"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"કસ્ટમાઇઝ કરો"</string>
@@ -223,7 +224,7 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"નામ ફોર્મેટ"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"પ્રથમ નામ પહેલા"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"છેલ્લું નામ પહેલા"</string>
-    <string name="default_editor_account" msgid="646471755212285574">"ડિફોલ્ટ એકાઉન્ટ"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"નવા સંપર્કો માટે ડિફોલ્ટ એકાઉન્ટ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"દૃશ્યક્ષમ સંપર્કોને શેર કરો"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"દૃશ્યક્ષમ સંપર્કો શેર કરવામાં નિષ્ફળ થયાં."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"સંપર્કો આયાત/નિકાસ કરો"</string>
@@ -242,7 +243,7 @@
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> માં કોઈ સંપર્કો નથી"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"વારંવારના સાફ કરો"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM કાર્ડ પસંદ કરો"</string>
-    <string name="menu_accounts" msgid="795417468541517082">"એકાઉન્ટ્સ"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"એકાઉન્ટ્સ સંચાલિત કરો"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"આયાત/નિકાસ કરો"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> મારફતે"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> મારફતે <xliff:g id="DATE">%1$s</xliff:g> ના રોજ"</string>
@@ -257,4 +258,8 @@
     <string name="send_and_call_button" msgid="7459507823002185202">"મોકલો અને કૉલ કરો"</string>
     <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> વાંચ્યા વગરની આઇટમ. </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> વાંચ્યા વગરની આઇટમ. </item>
+    </plurals>
 </resources>

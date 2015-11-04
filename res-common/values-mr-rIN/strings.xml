@@ -144,6 +144,8 @@
     <string name="chat" msgid="6297650784873558837">"चॅट करा"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"हटवा"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"नाव फील्‍ड विस्‍तृत करा किंवा संकुचित करा"</string>
+    <!-- no translation found for expand_collapse_phonetic_name_fields_description (5241493357460353777) -->
+    <skip />
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"सर्व संपर्क"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"तारांकित"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"सानुकूलित करा"</string>
@@ -223,7 +225,7 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"नाव स्वरूपन"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाव प्रथम"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"आडनाव प्रथम"</string>
-    <string name="default_editor_account" msgid="646471755212285574">"डीफॉल्ट खाते"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"नवीन संपर्कांसाठी डीफॉल्ट खाते"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दृश्यमान संपर्क सामायिक करा"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"दृश्यमान संपर्क सामायिक करण्‍यात अयशस्वी झाले."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्क आयात/निर्यात करा"</string>
@@ -242,7 +244,7 @@
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> मध्ये कोणतेही सपंर्क नाहीत"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"वारंवारता साफ करा"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"सिम कार्ड निवडा"</string>
-    <string name="menu_accounts" msgid="795417468541517082">"खाती"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"खाती व्यवस्थापित करा"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"आयात/निर्यात"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> द्वारे"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> द्वारे <xliff:g id="DATE">%1$s</xliff:g>"</string>
@@ -257,4 +259,8 @@
     <string name="send_and_call_button" msgid="7459507823002185202">"पाठवा आणि कॉल करा"</string>
     <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> न वाचलेला आयटम. </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> न वाचलेले आयटम. </item>
+    </plurals>
 </resources>
