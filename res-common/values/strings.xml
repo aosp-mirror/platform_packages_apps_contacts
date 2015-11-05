@@ -663,6 +663,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!--Label of the "default account" setting option to set default editor account. [CHAR LIMIT=80]-->
     <string name="default_editor_account">Default account for new contacts</string>
 
+    <!-- Label of the "About" setting -->
+    <string name="setting_about">About</string>
+
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
 
@@ -798,4 +801,19 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
             <xliff:g id="title">%1$s</xliff:g>. <xliff:g id="count">%2$d</xliff:g> unread items.
         </item>
     </plurals>
+
+    <!-- Build version title in About preference. [CHAR LIMIT=40]-->
+    <string name="about_build_version">Build version</string>
+
+    <!-- Open source licenses title in About preference. [CHAR LIMIT=60] -->
+    <string name="about_open_source_licenses">Open source licenses</string>
+
+    <!-- Open source licenses summary in About preference. [CHAR LIMIT=NONE] -->
+    <string name="about_open_source_licenses_summary">License details for open source software</string>
+
+    <!-- Privacy policy title in About preference. [CHAR LIMIT=40]-->
+    <string name="about_privacy_policy">Privacy policy</string>
+
+    <!-- Terms of service title in about preference. [CHAR LIMIT=60]-->
+    <string name="about_terms_of_service">Terms of service</string>
 </resources>
