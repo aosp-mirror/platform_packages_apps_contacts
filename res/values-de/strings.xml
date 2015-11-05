@@ -55,9 +55,10 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Löschen"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Kontakt hinzufügen"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Gruppe hinzufügen"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Kontakt aufteilen?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Kontakt trennen?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Dieser Kontakt wird in mehrere Kontakte aufgeteilt."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Zusammenführen"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Speichern"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontakte zusammenführen"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Wählen Sie den Kontakt aus, den Sie mit <xliff:g id="NAME">%s</xliff:g> zusammenführen möchten."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle Kontakte anzeigen"</string>
@@ -99,22 +100,23 @@
     <string name="savingContact" msgid="4075751076741924939">"Kontakt wird gespeichert..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt gespeichert"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kontaktänderungen konnten nicht gespeichert werden."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Änderungen des Kontaktfotos konnten nicht gespeichert werden."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppe gespeichert"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Gruppenänderungen konnten nicht gespeichert werden."</string>
-    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Kontakte mit Telefonnummern</item>
-      <item quantity="one">1 Kontakt mit Telefonnummer</item>
-    </plurals>
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="3015357862286673986">"1 Kontakt mit Telefonnummer"</item>
+    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> Kontakte mit Telefonnummern"</item>
+  </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Keine sichtbaren Kontakte mit Telefonnummern"</string>
-    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Kontakte gefunden</item>
-      <item quantity="one">1 Kontakt gefunden</item>
-    </plurals>
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="5517063038754171134">"1 gefunden"</item>
+    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> gefunden"</item>
+  </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Keine Kontakte"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Kontakte gefunden</item>
-      <item quantity="one">1 Kontakt gefunden</item>
-    </plurals>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="4826918429708286628">"1 gefunden"</item>
+    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> gefunden"</item>
+  </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle Kontakte"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoriten"</string>
     <string name="callBack" msgid="5498224409038809224">"Rückruf"</string>
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Neueste Nachrichten"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Neueste Updates"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-Kontakt"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-Konto"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"In dieser App nicht bearbeitbar"</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Neues Foto aufnehmen"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Foto auswählen"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Neues Foto auswählen"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktliste wird an die geänderte Sprache angepasst..."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktliste wird aktualisiert..."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Suche..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Auswahl anzeigen"</string>
@@ -164,10 +166,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Hauptfoto"</string>
     <string name="description_star" msgid="2605854427360036550">"Favorit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Kontakt bearbeiten"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="other">aus <xliff:g id="COUNT">%0$d</xliff:g> Quellen zusammengeführt</item>
-      <item quantity="one">nicht zusammengeführt</item>
-    </plurals>
+  <plurals name="merge_info">
+    <item quantity="one" msgid="148365587896371969">"nicht zusammengeführt"</item>
+    <item quantity="other" msgid="425683718017380845">"aus <xliff:g id="COUNT">%0$d</xliff:g> Quellen zusammengeführt"</item>
+  </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Aktuellen Kontakt mit ausgewähltem Kontakt zusammenführen?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Zur Bearbeitung des ausgewählten Kontakts wechseln? Die bisher eingegebenen Informationen werden kopiert."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"In meine Kontakte kopieren"</string>
@@ -192,19 +194,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Kontakte importieren"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Neue Gruppe erstellen"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Neue Gruppe erstellen"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> Gruppen</item>
-      <item quantity="one">1 Gruppe</item>
-    </plurals>
+  <plurals name="num_groups_in_account">
+    <item quantity="one" msgid="2944819210288517794">"1 Gruppe"</item>
+    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> Gruppen"</item>
+  </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Soll die Gruppe \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" wirklich gelöscht werden? Die Kontakte selbst werden nicht gelöscht."</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> Personen von <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> Person von <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> Personen</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> Person</item>
-    </plurals>
+  <plurals name="num_contacts_in_group">
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> Person von <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> Personen von <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+  </plurals>
+  <plurals name="group_list_num_contacts_in_group">
+    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> Person"</item>
+    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> Personen"</item>
+  </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Geben Sie einen Namen für den Kontakt ein, bevor Sie ihn mit einem anderen Kontakt zusammenführen."</string>
     <string name="copy_text" msgid="3257145021583508761">"In Zwischenablage kopieren"</string>
     <string name="set_default" msgid="4417505153468300351">"Als Standard festlegen"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ich: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funktioniert besser, wenn Sie die Hangouts-ID der Person in das E-Mail- oder Telefonfeld eingeben."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Weitere Felder"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Foto ändern"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

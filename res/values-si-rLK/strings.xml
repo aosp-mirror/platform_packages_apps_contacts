@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"සම්බන්ධතාව වෙන් කරන්නද?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"මෙම සම්බන්ධතාවය සම්බන්ධතා කිහිපයකට වෙන් කෙරෙනු ඇත."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"ඒකාබද්ධ කරන්න"</string>
+    <string name="menu_save" msgid="1727844363591825909">"සුරකින්න"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"සම්බන්ධතා එකතු කරන්න"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> සමඟ එක් කළ යුතු සම්බන්ධතාවය තෝරන්න:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"සියලු සම්බන්ධතා පෙන්වන්න"</string>
@@ -99,22 +100,23 @@
     <string name="savingContact" msgid="4075751076741924939">"සම්බන්ධතාවය සුරකමින්…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"සම්බන්ධතාවය සුරකින ලදි."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"සම්බන්ධතා වෙනස්කම් සුරැකීමට නොහැක."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"සම්බන්ධතා ඡායාරූපය වෙනස් කිරීම් සුරැකිය නොහැකි විය."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"කණ්ඩායම සුරකින ලදි."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"කණ්ඩායම් වෙනස්කම් සුරැකීමට නොහැක."</string>
-    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
-      <item quantity="one">දුරකථන අංක සමඟ සම්බන්ධතාවන් <xliff:g id="COUNT">%d</xliff:g></item>
-      <item quantity="other">දුරකථන අංක සමඟ සම්බන්ධතාවන් <xliff:g id="COUNT">%d</xliff:g></item>
-    </plurals>
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="3015357862286673986">"දුරකථන අංක සහිත සම්බන්ධතා 1"</item>
+    <item quantity="other" msgid="3299954047880968205">"දුරකථන අංක සහිත සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"දුරකථන අංක සහිත සම්බන්ධතා නැත"</string>
-    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ක් හුමු වුණි</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ක් හුමු වුණි</item>
-    </plurals>
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="5517063038754171134">"1 ක් සොයාගන්නා ලදී"</item>
+    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> ක් සොයාගන්නා ලදී"</item>
+  </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"සම්බන්ධතා නැත"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="one">සොයා ගැනීම් <xliff:g id="COUNT">%d</xliff:g></item>
-      <item quantity="other">සොයා ගැනීම් <xliff:g id="COUNT">%d</xliff:g></item>
-    </plurals>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="4826918429708286628">"1 ක් සොයාගන්නා ලදී"</item>
+    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ක් සොයාගන්නා ලදී"</item>
+  </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"සියලුම සම්බන්ධතා"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"ප්‍රියතම"</string>
     <string name="callBack" msgid="5498224409038809224">"නැවත අමතන්න"</string>
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"මෑත"</string>
     <string name="recent_updates" msgid="4267258535615860710">"මෑත යාවත්කාලීන"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> සම්බන්ධතාව"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> ගිණුම"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"මෙම යෙදුමෙන් සංස්කරණය කළ නොහැක."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"නව ඡායාරූපයක් ගන්න"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ඡායාරූපය තෝරන්න"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"අලුත් ඡායාරූපය තෝරන්න"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"භාෂා වෙනස්වීම පෙන්වීමට සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"සොයමින්..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"තෝරාගත් ඒවා පෙන්වන්න"</string>
@@ -164,10 +166,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"ප්‍රාථමික රූප"</string>
     <string name="description_star" msgid="2605854427360036550">"ප්‍රියතම"</string>
     <string name="edit_contact" msgid="7529281274005689512">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
-    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> මූලාශ්‍රයකින් ඒකාබද්ධ කර තිබේ</item>
-      <item quantity="other">මූලාශ්‍ර <xliff:g id="COUNT">%0$d</xliff:g> කින් ඒකාබද්ධ කර තිබේ</item>
-    </plurals>
+  <plurals name="merge_info">
+    <item quantity="one" msgid="148365587896371969">"ඒකාබද්ධ කර නැත"</item>
+    <item quantity="other" msgid="425683718017380845">"මූලාශ්‍ර <xliff:g id="COUNT">%0$d</xliff:g> කින් ඒකාබද්ධ කර ඇත"</item>
+  </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"වත්මන් සම්බන්ධතාවය තෝරාගෙන ඇති සම්බන්ධතාවය සමඟ එකතු කරන්නද?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"තෝරාගෙන ඇති සම්බන්ධතාවය සංස්කරණය කිරීමට මාරු වෙන්නද? ඔබ දැනට ඇතුළු කළ තොරතුරු පිටපත් වනු ඇත."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"මගේ සම්බන්ධතා වෙතට පිටපත් කරන්න"</string>
@@ -192,19 +194,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"සම්බන්ධතා ආයාත කරන්න"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"නව කණ්ඩායමක් නිර්මාණය කරන්න"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"නව කණ්ඩායමක් නිර්මාණය කිරීම"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one">කණ්ඩායම් <xliff:g id="COUNT">%0$d</xliff:g></item>
-      <item quantity="other">කණ්ඩායම් <xliff:g id="COUNT">%0$d</xliff:g></item>
-    </plurals>
+  <plurals name="num_groups_in_account">
+    <item quantity="one" msgid="2944819210288517794">"කණ්ඩායම් 1"</item>
+    <item quantity="other" msgid="1276758425904917367">"කණ්ඩායම් <xliff:g id="COUNT">%0$d</xliff:g>"</item>
+  </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" කණ්ඩායම මකා දමන්නද? (සම්බන්ධතා මකා දමන්නේ නැත.)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> වෙතින් පුද්ගලයන් <xliff:g id="COUNT_2">%1$d</xliff:g> යි</item>
-      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> වෙතින් පුද්ගලයන් <xliff:g id="COUNT_2">%1$d</xliff:g> යි</item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="one">පුද්ගලයින් <xliff:g id="COUNT_1">%1$d</xliff:g></item>
-      <item quantity="other">පුද්ගලයින් <xliff:g id="COUNT_1">%1$d</xliff:g></item>
-    </plurals>
+  <plurals name="num_contacts_in_group">
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> වෙතින් පුද්ගලයින් <xliff:g id="COUNT_0">%1$d</xliff:g>"</item>
+    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> වෙතින් පුද්ගලයින් <xliff:g id="COUNT_0">%1$d</xliff:g>"</item>
+  </plurals>
+  <plurals name="group_list_num_contacts_in_group">
+    <item quantity="one" msgid="3323065321661972446">"පුද්ගලයින් <xliff:g id="COUNT">%1$d</xliff:g>"</item>
+    <item quantity="other" msgid="6251996206137048525">"පුද්ගලයින් <xliff:g id="COUNT">%1$d</xliff:g>"</item>
+  </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"වෙනත් එකක් සමඟ එක් කිරීමට කලින් සම්බන්ධතා නම ටයිප් කරන්න."</string>
     <string name="copy_text" msgid="3257145021583508761">"පසුරු පුවරුවට පිටපත් කරන්න"</string>
     <string name="set_default" msgid="4417505153468300351">"සුපුරුදු ලෙස සකසන්න"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ඔබ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ඔබ පුද්ගලයාගේ Hangouts හඳුන්වනය ඊ-තැපැල් හෝ දුරකථන ක්ෂේත්‍රයට ඇතුළත් කළ විටHangouts වඩා හොඳින් ක්‍රියා කරයි."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"තව ක්ෂේත්‍ර"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ඡායාරූපය වෙනස් කරන්න"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>
