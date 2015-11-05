@@ -86,4 +86,8 @@
     <!-- Flag indicating whether Contacts app is allowed to share contacts with devices outside -->
     <bool name="config_allow_share_visible_contacts">true</bool>
 
+    <string name="pref_build_version_key">pref_build_version</string>
+    <string name="pref_open_source_licenses_key">pref_open_source_licenses</string>
+    <string name="pref_privacy_policy_key">pref_privacy_policy</string>
+    <string name="pref_terms_of_service_key">pref_terms_of_service</string>
 </resources>
