@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.preference;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.activity.LicenseActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 
@@ -61,6 +63,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         } catch (PackageManager.NameNotFoundException e) {
             // Nothing
         }
+
+        final Preference licensePreference = findPreference(
+                getString(R.string.pref_open_source_licenses_key));
+        licensePreference.setIntent(new Intent(getActivity(), LicenseActivity.class));
     }
 }
 
