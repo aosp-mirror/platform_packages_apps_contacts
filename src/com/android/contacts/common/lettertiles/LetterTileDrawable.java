@@ -28,10 +28,8 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.contacts.common.R;
-import com.android.contacts.common.util.BitmapUtil;
 
 import junit.framework.Assert;
 
@@ -65,18 +63,15 @@ public class LetterTileDrawable extends Drawable {
     public static final int TYPE_VOICEMAIL = 3;
     public static final int TYPE_DEFAULT = TYPE_PERSON;
 
-    private String mDisplayName;
-    private String mIdentifier;
     private int mContactType = TYPE_DEFAULT;
     private float mScale = 1.0f;
     private float mOffset = 0.0f;
     private boolean mIsCircle = false;
 
-    public LetterTileDrawable(final Resources res) {
-        mPaint = new Paint();
-        mPaint.setFilterBitmap(true);
-        mPaint.setDither(true);
+    private int mColor;
+    private Character mLetter = null;
 
+    public LetterTileDrawable(final Resources res) {
         if (sColors == null) {
             sColors = res.obtainTypedArray(R.array.letter_tile_colors);
             sDefaultColor = res.getColor(R.color.letter_tile_default_color);
@@ -93,6 +88,10 @@ public class LetterTileDrawable extends Drawable {
             sPaint.setTextAlign(Align.CENTER);
             sPaint.setAntiAlias(true);
         }
+        mPaint = new Paint();
+        mPaint.setFilterBitmap(true);
+        mPaint.setDither(true);
+        mColor = sDefaultColor;
     }
 
     @Override
@@ -130,7 +129,7 @@ public class LetterTileDrawable extends Drawable {
 
     private void drawLetterTile(final Canvas canvas) {
         // Draw background color.
-        sPaint.setColor(pickColor(mIdentifier));
+        sPaint.setColor(mColor);
 
         sPaint.setAlpha(mPaint.getAlpha());
         final Rect bounds = getBounds();
@@ -142,10 +141,11 @@ public class LetterTileDrawable extends Drawable {
             canvas.drawRect(bounds, sPaint);
         }
 
-        // Draw letter/digit only if the first character is an english letter
-        if (mDisplayName != null && isEnglishLetter(mDisplayName.charAt(0))) {
+        // Draw letter/digit only if the first character is an english letter or there's a override
+
+        if (mLetter != null) {
             // Draw letter or digit.
-            sFirstChar[0] = Character.toUpperCase(mDisplayName.charAt(0));
+            sFirstChar[0] = mLetter;
 
             // Scale text by canvas bounds and user selected scaling factor
             sPaint.setTextSize(mScale * sLetterToTileRatio * minDimension);
@@ -156,7 +156,7 @@ public class LetterTileDrawable extends Drawable {
             // Draw the letter in the canvas, vertically shifted up or down by the user-defined
             // offset
             canvas.drawText(sFirstChar, 0, 1, bounds.centerX(),
-                    bounds.centerY() + mOffset * bounds.height() + sRect.height() / 2,
+                    bounds.centerY() + mOffset * bounds.height() - sRect.exactCenterY(),
                     sPaint);
         } else {
             // Draw the default image if there is no letter/digit to be drawn
@@ -167,7 +167,7 @@ public class LetterTileDrawable extends Drawable {
     }
 
     public int getColor() {
-        return pickColor(mIdentifier);
+        return mColor;
     }
 
     /**
@@ -222,8 +222,9 @@ public class LetterTileDrawable extends Drawable {
      * @param scale The ratio the letter tile should be scaled to as a percentage of its default
      * size, from a scale of 0 to 2.0f. The default is 1.0f.
      */
-    public void setScale(float scale) {
+    public LetterTileDrawable setScale(float scale) {
         mScale = scale;
+        return this;
     }
 
     /**
@@ -238,21 +239,41 @@ public class LetterTileDrawable extends Drawable {
      * at the bottom edge of the canvas.
      * The default is 0.0f.
      */
-    public void setOffset(float offset) {
+    public LetterTileDrawable setOffset(float offset) {
         Assert.assertTrue(offset >= -0.5f && offset <= 0.5f);
         mOffset = offset;
+        return this;
     }
 
-    public void setContactDetails(final String displayName, final String identifier) {
-        mDisplayName = displayName;
-        mIdentifier = identifier;
+    public LetterTileDrawable setLetter(Character letter){
+        mLetter = letter;
+        return this;
     }
 
-    public void setContactType(int contactType) {
+    public LetterTileDrawable setColor(int color){
+        mColor = color;
+        return this;
+    }
+
+    public LetterTileDrawable setLetterAndColorFromContactDetails(final String displayName,
+            final String identifier) {
+        if (displayName != null && displayName.length() > 0
+                && isEnglishLetter(displayName.charAt(0))) {
+            mLetter = Character.toUpperCase(displayName.charAt(0));
+        }else{
+            mLetter = null;
+        }
+        mColor = pickColor(identifier);
+        return this;
+    }
+
+    public LetterTileDrawable setContactType(int contactType) {
         mContactType = contactType;
+        return this;
     }
 
-    public void setIsCircular(boolean isCircle) {
+    public LetterTileDrawable setIsCircular(boolean isCircle) {
         mIsCircle = isCircle;
+        return this;
     }
 }

@@ -399,9 +399,10 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
                 // display name so that a default bitmap will be used instead of a
                 // letter
                 if (TextUtils.isEmpty(defaultImageRequest.identifier)) {
-                    drawable.setContactDetails(null, defaultImageRequest.displayName);
+                    drawable.setLetterAndColorFromContactDetails(null,
+                            defaultImageRequest.displayName);
                 } else {
-                    drawable.setContactDetails(defaultImageRequest.displayName,
+                    drawable.setLetterAndColorFromContactDetails(defaultImageRequest.displayName,
                             defaultImageRequest.identifier);
                 }
                 drawable.setContactType(defaultImageRequest.contactType);
