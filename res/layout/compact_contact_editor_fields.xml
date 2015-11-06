@@ -41,6 +41,7 @@
                 android:paddingStart="72dp"
                 android:gravity="center_vertical"
                 android:text="@string/compact_editor_more_fields"
+                android:textAlignment="viewStart"
                 android:textColor="?android:attr/colorAccent"
                 android:textSize="@dimen/expanding_entry_card_title_text_size"/>
 
