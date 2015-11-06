@@ -882,4 +882,12 @@
     <!-- Message below contact name, showing from which account [CHAR LIMIT=NONE]-->
     <string name="contact_from_account_name">From <xliff:g id="account_name">%s</xliff:g></string>
 
+    <!-- Content description of delete button to the right of each section in editor, including
+    data type. For example: Delete Home Phone, Delete Work Email, etc [CHAR LIMIT=30]-->
+    <string name="editor_delete_view_description">Delete <xliff:g id="data_type">%s </xliff:g><xliff:g id="data_kind">%s</xliff:g></string>
+
+    <!-- Content description of delete button to the right of each section in editor, without data
+    type. For example: Delete Website, Delete SIP, etc [CHAR LIMIT=30]-->
+    <string name="editor_delete_view_description_short">Delete <xliff:g id="data_kind">%s</xliff:g></string>
+
 </resources>
