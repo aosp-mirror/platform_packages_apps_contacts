@@ -90,7 +90,7 @@
 
                 <TextView
                     android:id="@+id/suggestion_for_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -134,6 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/quickcontact_expanding_button_section_height"
             android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="@dimen/quickcontact_expanding_button_right_padding"
             android:layout_marginRight="@dimen/quickcontact_expanding_button_right_padding"
             android:layout_marginTop="@dimen/quickcontact_expanding_button_section_padding"
             android:layout_marginBottom="@dimen/quickcontact_expanding_button_section_padding"
