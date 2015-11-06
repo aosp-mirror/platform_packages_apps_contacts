@@ -67,8 +67,6 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
     public static final String ACTION_JOIN_COMPLETED = "joinCompleted";
     public static final String ACTION_SAVE_COMPLETED = "saveCompleted";
 
-    public static final int RESULT_SPLIT_COMPLETED = 2;
-
     protected int mActionBarTitleResId;
 
     /**
@@ -307,7 +305,6 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
 
         @Override
         public void onContactSplit(Uri newLookupUri) {
-            setResult(RESULT_SPLIT_COMPLETED, /* data */ null);
             finish();
         }
 
