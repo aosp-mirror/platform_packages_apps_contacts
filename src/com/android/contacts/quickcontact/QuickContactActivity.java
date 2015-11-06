@@ -1200,15 +1200,16 @@ public class QuickContactActivity extends ContactsActivity
     /** Assign this string to the view if it is not empty. */
     private void setHeaderNameText(int resId) {
         if (mScroller != null) {
-            mScroller.setTitle(getText(resId) == null ? null : getText(resId).toString());
+            mScroller.setTitle(getText(resId) == null ? null : getText(resId).toString(),
+                    /* isPhoneNumber= */ false);
         }
     }
 
     /** Assign this string to the view if it is not empty. */
-    private void setHeaderNameText(String value) {
+    private void setHeaderNameText(String value, boolean isPhoneNumber) {
         if (!TextUtils.isEmpty(value)) {
             if (mScroller != null) {
-                mScroller.setTitle(value);
+                mScroller.setTitle(value, isPhoneNumber);
             }
         }
     }
@@ -1242,7 +1243,8 @@ public class QuickContactActivity extends ContactsActivity
         mPhotoSetter.setupContactPhoto(data, mPhotoView);
         extractAndApplyTintFromPhotoViewAsynchronously();
         final String displayName = ContactDisplayUtils.getDisplayName(this, data).toString();
-        setHeaderNameText(displayName);
+        setHeaderNameText(
+                displayName, mContactData.getDisplayNameSource() == DisplayNameSources.PHONE);
         final String phoneticName = ContactDisplayUtils.getPhoneticName(this, data);
         if (mScroller != null) {
             if (mContactData.getDisplayNameSource() != DisplayNameSources.STRUCTURED_PHONETIC_NAME

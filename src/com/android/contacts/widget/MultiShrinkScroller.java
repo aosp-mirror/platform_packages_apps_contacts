@@ -395,8 +395,12 @@ public class MultiShrinkScroller extends FrameLayout {
         mTitleGradientView.setLayoutParams(titleGradientLayoutParams);
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title, boolean isPhoneNumber) {
         mLargeTextView.setText(title);
+        // We have a phone number as "mLargeTextView" so make it always LTR.
+        if (isPhoneNumber) {
+            mLargeTextView.setTextDirection(View.TEXT_DIRECTION_LTR);
+        }
         mPhotoTouchInterceptOverlay.setContentDescription(title);
     }
 
