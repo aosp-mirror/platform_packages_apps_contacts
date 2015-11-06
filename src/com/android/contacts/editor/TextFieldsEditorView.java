@@ -234,6 +234,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(getContext(), fieldView);
                 fieldView.setTextDirection(View.TEXT_DIRECTION_LTR);
             }
+            fieldView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
 
             // Set either a minimum line requirement or a minimum height (because {@link TextView}
             // only takes one or the other at a single time).
