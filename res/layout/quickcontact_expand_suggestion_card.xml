@@ -39,6 +39,7 @@
             android:textColor="@color/quickcontact_entry_header_text_color"
             android:singleLine="true"
             android:ellipsize="end"
+            android:textAlignment="viewStart"
             android:paddingTop="@dimen/quickcontact_suggestion_card_image_spacing"
             android:paddingBottom="@dimen/quickcontact_suggestion_card_image_spacing"
             android:paddingStart="@dimen/quickcontact_suggestion_card_image_spacing"/>
@@ -51,6 +52,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/quickcontact_entry_header_text_color"
             android:lineSpacingMultiplier="1.2"
+            android:textAlignment="viewStart"
             android:paddingBottom="@dimen/quickcontact_suggestion_card_image_spacing"
             android:paddingStart="@dimen/quickcontact_suggestion_card_image_spacing"
             android:paddingEnd="@dimen/quickcontact_suggestion_card_image_spacing"/>
@@ -64,6 +66,7 @@
             android:textColor="@color/quickcontact_entry_sub_header_text_color"
             android:singleLine="true"
             android:ellipsize="end"
+            android:textAlignment="viewStart"
             android:paddingStart="@dimen/quickcontact_suggestion_card_image_spacing"/>
 
         <LinearLayout
@@ -121,6 +124,7 @@
             android:textColor="@color/quickcontact_entry_sub_header_text_color"
             android:singleLine="true"
             android:ellipsize="end"
+            android:textAlignment="viewStart"
             android:paddingStart="@dimen/quickcontact_suggestion_card_image_spacing"/>
 
         <LinearLayout

@@ -50,9 +50,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/editor_delete_button_width"
+                android:layout_marginEnd="@dimen/editor_delete_button_width"
                 android:singleLine="true"
                 android:textSize="@dimen/editor_form_text_size"
                 android:textColor="?android:attr/textColorSecondary"
+                android:textAlignment="viewStart"
                 android:enabled="false"/>
 
         </LinearLayout>

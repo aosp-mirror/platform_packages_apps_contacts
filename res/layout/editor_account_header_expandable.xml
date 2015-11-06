@@ -52,6 +52,7 @@
             android:singleLine="true"
             android:textColor="@color/primary_text_color"
             android:ellipsize="end"
+            android:textAlignment="viewStart"
             />
 
         <TextView
@@ -62,6 +63,7 @@
             android:singleLine="true"
             android:textColor="@color/secondary_text_color"
             android:ellipsize="end"
+            android:textAlignment="viewStart"
             />
 
     </LinearLayout>
