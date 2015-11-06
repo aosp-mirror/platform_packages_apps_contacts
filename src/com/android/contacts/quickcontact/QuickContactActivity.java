@@ -99,7 +99,6 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
@@ -1107,11 +1106,6 @@ public class QuickContactActivity extends ContactsActivity
                 resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED) {
             // The contact that we were showing has been deleted.
             finish();
-        } else if (requestCode == REQUEST_CODE_CONTACT_EDITOR_ACTIVITY &&
-                resultCode == ContactEditorBaseActivity.RESULT_SPLIT_COMPLETED) {
-            // The contact that we were showing has been unlinked, and we reload this activity.
-            finish();
-            startActivity(getIntent());
         } else if (requestCode == REQUEST_CODE_CONTACT_SELECTION_ACTIVITY &&
                 resultCode != RESULT_CANCELED) {
             processIntent(data);
