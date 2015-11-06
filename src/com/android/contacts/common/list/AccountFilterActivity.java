@@ -165,13 +165,21 @@ public class AccountFilterActivity extends Activity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        final ContactListFilterView listFilterView = (ContactListFilterView) view;
         final ContactListFilter filter = (ContactListFilter) view.getTag();
         if (filter == null) return; // Just in case
         if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
             final Intent intent = new Intent(this,
                     CustomContactListFilterActivity.class);
+            listFilterView.setActivated(true);
+            // Switching activity has the highest priority. So when we open another activity, the
+            // announcement that indicates an account is checked will be interrupted. This is the
+            // way to overcome -- View.announceForAccessibility(CharSequence text);
+            listFilterView.announceForAccessibility(listFilterView.generateContentDescription());
             startActivityForResult(intent, SUBACTIVITY_CUSTOMIZE_FILTER);
         } else {
+            listFilterView.setActivated(true);
+            listFilterView.announceForAccessibility(listFilterView.generateContentDescription());
             final Intent intent = new Intent();
             intent.putExtra(KEY_EXTRA_CONTACT_LIST_FILTER, filter);
             setResult(Activity.RESULT_OK, intent);
