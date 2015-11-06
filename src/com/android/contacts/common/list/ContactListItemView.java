@@ -1224,6 +1224,7 @@ public class ContactListItemView extends ViewGroup
 
         if (ContactDisplayUtils.isPossiblePhoneNumber(name)) {
             // Give the text-to-speech engine a hint that it's a phone number
+            mNameTextView.setTextDirection(View.TEXT_DIRECTION_LTR);
             mNameTextView.setContentDescription(
                     PhoneNumberUtils.createTtsSpannable(name.toString()));
         } else {
