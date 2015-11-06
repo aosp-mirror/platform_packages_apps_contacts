@@ -100,6 +100,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
@@ -1103,9 +1104,10 @@ public class QuickContactActivity extends ContactsActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_CONTACT_EDITOR_ACTIVITY &&
-                resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED) {
-            // The contact that we were showing has been deleted.
+        final boolean deletedOrSplit = requestCode == REQUEST_CODE_CONTACT_EDITOR_ACTIVITY &&
+                (resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED ||
+                resultCode == ContactEditorBaseActivity.RESULT_CODE_SPLIT);
+        if (deletedOrSplit) {
             finish();
         } else if (requestCode == REQUEST_CODE_CONTACT_SELECTION_ACTIVITY &&
                 resultCode != RESULT_CANCELED) {
