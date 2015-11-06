@@ -21,6 +21,7 @@ import static android.provider.ContactsContract.CommonDataKinds.Phone;
 import com.google.common.base.Preconditions;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -222,6 +223,21 @@ public class ContactDisplayUtils {
             start = message.indexOf(phoneNumber, end);
         }
         return spannable;
+    }
+
+    /**
+     * Retrieves a string from a string template that takes 1 phone number as argument,
+     * span the number with a telephone {@link TtsSpan}, and return the spanned string.
+     *
+     * @param resources to retrieve the string from
+     * @param stringId ID of the string
+     * @param number to pass in the template
+     * @return CharSequence with the phone number wrapped in a TtsSpan
+     */
+    public static CharSequence getTtsSpannedPhoneNumber(Resources resources,
+            int stringId, String number){
+        String msg = resources.getString(stringId, number);
+        return ContactDisplayUtils.getTelephoneTtsSpannable(msg, number);
     }
 
     /**
