@@ -816,4 +816,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Terms of service title in about preference. [CHAR LIMIT=60]-->
     <string name="about_terms_of_service">Terms of service</string>
+
+    <!-- Title for the activity that displays licenses for open source libraries. [CHAR LIMIT=100]-->
+    <string name="activity_title_licenses">Open source licenses</string>
 </resources>
