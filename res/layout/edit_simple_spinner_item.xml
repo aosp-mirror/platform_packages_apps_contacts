@@ -27,4 +27,5 @@
     android:paddingStart="0dp"
     android:paddingEnd="0dp"
     android:maxLines="1"
+    android:textAlignment="viewStart"
     android:ellipsize="end" />

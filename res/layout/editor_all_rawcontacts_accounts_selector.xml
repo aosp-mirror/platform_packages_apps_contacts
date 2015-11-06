@@ -39,6 +39,7 @@
             android:singleLine="true"
             android:layout_weight="1"
             android:textColor="@color/primary_text_color"
+            android:textAlignment="viewStart"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:ellipsize="end" />
