@@ -14,10 +14,12 @@ endif
 
 src_dirs := src $(contacts_common_dir)/src $(phone_common_dir)/src
 res_dirs := res $(contacts_common_dir)/res $(phone_common_dir)/res
+asset_dirs := $(contacts_common_dir)/assets
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs)) \
     $(support_library_root_dir)/v7/cardview/res
+LOCAL_ASSET_DIR := $(addprefix $(LOCAL_PATH)/, $(asset_dirs))
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
