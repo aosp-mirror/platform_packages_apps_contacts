@@ -41,6 +41,7 @@
             android:textColor="?android:attr/textColorSecondary"
             android:singleLine="true"
             android:saveEnabled="false"
+            android:textAlignment="viewStart"
             android:enabled="false"/>
 
         <TextView
@@ -51,6 +52,7 @@
             android:textColor="?android:attr/textColorSecondary"
             android:singleLine="true"
             android:saveEnabled="false"
+            android:textAlignment="viewStart"
             android:enabled="false"/>
 
     </LinearLayout>

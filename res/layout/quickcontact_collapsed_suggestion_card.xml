@@ -45,6 +45,7 @@
                 android:textColor="@color/quickcontact_entry_header_text_color"
                 android:singleLine="true"
                 android:ellipsize="end"
+                android:textAlignment="viewStart"
                 android:paddingTop="@dimen/quickcontact_collapse_text_padding"/>
 
         <ImageView
