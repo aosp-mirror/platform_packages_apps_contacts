@@ -107,7 +107,8 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"تنظیم"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"تعلق"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"خصوصی تاریخیں"</string>
+    <!-- no translation found for eventLabelsGroup (4801419345682462171) -->
+    <skip />
     <string name="sms" msgid="8086289395154598654">"متنی پیغام"</string>
     <string name="postal_address" msgid="7692926530081579786">"پتہ"</string>
     <string name="ghostData_company" msgid="22470841482615409">"کمپنی"</string>
@@ -144,8 +145,7 @@
     <string name="chat" msgid="6297650784873558837">"چیٹ کریں"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"حذف کریں"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"نام کی فیلڈز کو پھیلائیں یا چھوٹا کریں"</string>
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (5241493357460353777) -->
-    <skip />
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"فونیٹک نام کی فیلڈز کو پھیلائیں یا سکیڑیں"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"سبھی رابطے"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"ستارے کے نشان والے"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"حسب ضرورت بنائیں"</string>
@@ -162,7 +162,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> میں رابطے"</string>
     <string name="listCustomView" msgid="1915154113477432033">"حسب ضرورت منظر میں رابطے"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"واحد رابطہ"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"اکاؤنٹ کے تحت رابطہ بنائیں"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"درآمد کردہ رابطے اس میں محفوظ کریں:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"‏SIM کارڈ سے درآمد کریں"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"‏SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>‎ سے درآمد کریں"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"‏SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>‎ سے درآمد کریں"</string>
@@ -226,6 +226,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"پہلا نام پہلے"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"آخری نام پہلے"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"نئے رابطوں کیلئے ڈیفالٹ اکاؤنٹ"</string>
+    <string name="setting_about" msgid="1864724372154478151">"بارے میں"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مرئی رابطوں کا اشتراک کریں"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"مرئی رابطوں کا اشتراک کرنے میں ناکام ہو گیا۔"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"رابطے درآمد/برآمد کریں"</string>
@@ -263,4 +264,15 @@
       <item quantity="other"><xliff:g id="TITLE_2">%1$s</xliff:g>۔ <xliff:g id="COUNT_3">%2$d</xliff:g> بغیر پڑھی ہوئی آئٹمز۔ </item>
       <item quantity="one"><xliff:g id="TITLE_0">%1$s</xliff:g>۔ <xliff:g id="COUNT_1">%2$d</xliff:g> بغیر پڑھی ہوئی آئٹم۔ </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"بلڈ ورژن"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"اوپن سورس لائسنسز"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"اوپن سورس سافٹ ویئر کیلئے لائسنس کی تفصیلات"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"رازداری کی پالیسی"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"سروس کی شرائط"</string>
+    <!-- no translation found for activity_title_licenses (7812517458691564230) -->
+    <skip />
+    <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
+    <skip />
+    <!-- no translation found for account_filter_view_not_checked (5652044086126815700) -->
+    <skip />
 </resources>
