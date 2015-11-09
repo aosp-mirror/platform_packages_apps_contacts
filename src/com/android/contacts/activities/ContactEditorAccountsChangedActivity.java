@@ -17,6 +17,8 @@
 package com.android.contacts.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract.Intents;
@@ -84,19 +86,21 @@ public class ContactEditorAccountsChangedActivity extends Activity {
             throw new IllegalStateException("Cannot have a negative number of accounts");
         }
 
+        final View view;
         if (numAccounts >= 2) {
             // When the user has 2+ writable accounts, show a list of accounts so the user can pick
             // which account to create a contact in.
-            setContentView(R.layout.contact_editor_accounts_changed_activity_with_picker);
+            view = View.inflate(this,
+                    R.layout.contact_editor_accounts_changed_activity_with_picker, null);
 
-            final TextView textView = (TextView) findViewById(R.id.text);
+            final TextView textView = (TextView) view.findViewById(R.id.text);
             textView.setText(getString(R.string.contact_editor_prompt_multiple_accounts));
 
-            final Button button = (Button) findViewById(R.id.add_account_button);
+            final Button button = (Button) view.findViewById(R.id.add_account_button);
             button.setText(getString(R.string.add_new_account));
             button.setOnClickListener(mAddAccountClickListener);
 
-            final ListView accountListView = (ListView) findViewById(R.id.account_list);
+            final ListView accountListView = (ListView) view.findViewById(R.id.account_list);
             mAccountListAdapter = new AccountsListAdapter(this,
                     AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
             accountListView.setAdapter(mAccountListAdapter);
@@ -104,11 +108,12 @@ public class ContactEditorAccountsChangedActivity extends Activity {
         } else if (numAccounts == 1) {
             // If the user has 1 writable account we will just show the user a message with 2
             // possible action buttons.
-            setContentView(R.layout.contact_editor_accounts_changed_activity_with_text);
+            view = View.inflate(this,
+                    R.layout.contact_editor_accounts_changed_activity_with_text, null);
 
-            final TextView textView = (TextView) findViewById(R.id.text);
-            final Button leftButton = (Button) findViewById(R.id.left_button);
-            final Button rightButton = (Button) findViewById(R.id.right_button);
+            final TextView textView = (TextView) view.findViewById(R.id.text);
+            final Button leftButton = (Button) view.findViewById(R.id.left_button);
+            final Button rightButton = (Button) view.findViewById(R.id.right_button);
 
             final AccountWithDataSet account = accounts.get(0);
             textView.setText(getString(R.string.contact_editor_prompt_one_account,
@@ -131,11 +136,12 @@ public class ContactEditorAccountsChangedActivity extends Activity {
         } else {
             // If the user has 0 writable accounts, we will just show the user a message with 2
             // possible action buttons.
-            setContentView(R.layout.contact_editor_accounts_changed_activity_with_text);
+            view = View.inflate(this,
+                    R.layout.contact_editor_accounts_changed_activity_with_text, null);
 
-            final TextView textView = (TextView) findViewById(R.id.text);
-            final Button leftButton = (Button) findViewById(R.id.left_button);
-            final Button rightButton = (Button) findViewById(R.id.right_button);
+            final TextView textView = (TextView) view.findViewById(R.id.text);
+            final Button leftButton = (Button) view.findViewById(R.id.left_button);
+            final Button rightButton = (Button) view.findViewById(R.id.right_button);
 
             textView.setText(getString(R.string.contact_editor_prompt_zero_accounts));
 
@@ -158,6 +164,17 @@ public class ContactEditorAccountsChangedActivity extends Activity {
             rightButton.setText(getString(R.string.add_account));
             rightButton.setOnClickListener(mAddAccountClickListener);
         }
+
+        new AlertDialog.Builder(this)
+                .setView(view)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        finish();
+                    }
+                })
+                .create()
+                .show();
     }
 
     @Override
