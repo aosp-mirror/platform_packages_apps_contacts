@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"மொபைலை தொலைத்தாலும் தொடர்புகளைப் பாதுகாப்புடன் வைத்திருக்கலாம்: ஆன்லைன் சேவையுடன் ஒத்திசைக்கவும்."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"கணக்கைச் சேர்"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"புதிய தொடர்பை நகலெடுக்க முடியாது. தொடர்புகளை ஆன்லைனில் சேமிக்க, கணக்கைச் சேர்க்க விரும்புகிறீர்களா?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"புதிய தொடர்பு <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> உடன் ஒத்திசைக்கப்படும்."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"புதிய தொடர்புகள் <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> இல் சேமிக்கப்படும்."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"புதிய தொடர்புகளுக்கான இயல்பு கணக்கைத் தேர்வுசெய்க:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"புதிய தொடர்பைச் சேர்"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"தொடர்பைத் திருத்து"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"படத்தை மாற்றவும்"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"எடிட்டரைத் திறக்க முடியவில்லை."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"இதில் சேமிக்கிறது"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"தற்போது <xliff:g id="ACCOUNT_NAME">%s</xliff:g> இல் சேமிக்கிறது. வேறொரு கணக்கைத் தேர்ந்தெடுக்க, இருமுறை தட்டவும்."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">இணைக்கப்பட்ட தொடர்புகள் (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">இணைக்கப்பட்ட தொடர்பு</item>
@@ -319,4 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"எல்லா படங்களும்"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"படத்தைத் தேர்வுசெய்க"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> இலிருந்து"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>ஐ நீக்கு"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g>ஐ நீக்கு"</string>
 </resources>

@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"आपण आपला फोन गमावला तरीही आपले संपर्क सुरक्षित ठेवा: ऑनलाइन सेवेसह संकालित करा."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"खाते जोडा"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"आपल्‍या नवीन संपर्काचा बॅकअप घेतला जाणार नाही. संपर्कांचे ऑनलाइन बॅकअप घेणारे खाते जोडायचे?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"आपला नवीन संपर्क <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> सह संकालित केला जाईल."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"नवीन संपर्क <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> वर जतन केले जातील."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"नवीन संपर्कांसाठी एक डीफॉल्ट खाते निवडा:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"नवीन संपर्क जोडा"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"संपर्क संपादित करा"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"फोटो बदला"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"संपादक उघडण्यात अयशस्वी."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"यावर जतन करीत आहे"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"सध्या <xliff:g id="ACCOUNT_NAME">%s</xliff:g> मध्ये जतन करीत आहे. भिन्न खाते निवडण्यासाठी दोनदा टॅप करा."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">दुवा जोडलेला संपर्क (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">दुवा जोडलेले संपर्क (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -319,4 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"सर्व फोटो"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"फोटो निवडा"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> कडील"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> हटवा"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> हटवा"</string>
 </resources>
