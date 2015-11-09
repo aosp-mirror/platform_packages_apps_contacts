@@ -130,10 +130,10 @@
     <string name="postal_region" msgid="1695206048198921115">"Stat"</string>
     <string name="postal_postcode" msgid="6542806670034753265">"Cod poştal"</string>
     <string name="postal_country" msgid="3988452247038791892">"Țară"</string>
-    <string name="map_home" msgid="1221397355014741634">"Vizualizaţi adresa de domiciliu"</string>
-    <string name="map_work" msgid="9015981646907637207">"Vizualizaţi adresa de serviciu"</string>
-    <string name="map_other" msgid="55098598855607997">"Vizualizaţi adresa poştală"</string>
-    <string name="map_custom" msgid="4943554530347163288">"Vizualizaţi adresa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="map_home" msgid="1221397355014741634">"Vizualizați adresa de domiciliu"</string>
+    <string name="map_work" msgid="9015981646907637207">"Vizualizați adresa de serviciu"</string>
+    <string name="map_other" msgid="55098598855607997">"Vizualizați adresa poştală"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Vizualizați adresa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="6479001490307452172">"Conversaţi prin AIM"</string>
     <string name="chat_msn" msgid="627481952525245054">"Conversaţi prin Windows Live"</string>
     <string name="chat_yahoo" msgid="5542489454092719897">"Conversaţi prin Yahoo"</string>
@@ -143,7 +143,7 @@
     <string name="chat_icq" msgid="7538190395602030726">"Conversaţi prin ICQ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"Conversaţi prin Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"Conversaţi prin chat"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"ştergeţi"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"ștergeți"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Extindeţi sau restrângeți câmpurile pentru nume"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Toată agenda"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Cu stea"</string>

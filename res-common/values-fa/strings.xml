@@ -60,7 +60,7 @@
     <string name="sms_work_mobile" msgid="8426872094268475047">"ارسال پیامک به تلفن همراه محل کار"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"ارسال پیامک به پی‌جوی محل کار"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ارسال پیامک به <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"‏ارسال پیامک به MMS"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"ارسال پیامک به خدمات پیام چندرسانه‌ای"</string>
     <string name="description_video_call" msgid="4907306403398614909">"برقراری تماس ویدیویی"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"فهرست مکرر تماس‌گرفته‌شده پاک شود؟"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"فهرست افرادی را که مکرر با آن‌ها تماس گرفته‌اید در برنامه‌های «مخاطبین» و «تلفن» پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند که تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
