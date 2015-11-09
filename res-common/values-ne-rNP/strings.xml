@@ -107,7 +107,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"संगठन"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"सम्बन्ध"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"विशेष मितिहरु"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"विशेष मिति"</string>
     <string name="sms" msgid="8086289395154598654">"पाठ सन्देश"</string>
     <string name="postal_address" msgid="7692926530081579786">"ठेगाना"</string>
     <string name="ghostData_company" msgid="22470841482615409">"कम्पनी"</string>
@@ -144,8 +144,7 @@
     <string name="chat" msgid="6297650784873558837">"कुराकानी"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"मेटाउनुहोस्"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"नाम फिल्डहरू विस्तार गर्नुहोस् वा खुम्चाउनुहोस्"</string>
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (5241493357460353777) -->
-    <skip />
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"फोनेटिक नाम क्षेत्रहरू विस्तृत गर्नुहोस् वा संक्षिप्त गर्नुहोस्"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"सबै सम्पर्कहरू"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"ताराङ्कित"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"व्यक्तिगत बनाउनुहोस्"</string>
@@ -162,7 +161,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g>मा सम्पर्कहरू"</string>
     <string name="listCustomView" msgid="1915154113477432033">"कस्टम दृश्यमा रहेका सम्पर्कहरू"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"एकल सम्पर्क"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"खाताअन्तर्गत सम्पर्क सिर्जना गर्नुहोस्"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"आयातित् सम्पर्कहरू सुरक्षित गर्नुहोस्:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM कार्डबाट आयात गर्नुहोस्"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> बाट आयात"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> सिमबाट आयात"</string>
@@ -225,7 +224,8 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"नाम ढाँचा"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहिले"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"थर पहिला"</string>
-    <string name="default_editor_account" msgid="4338725881650654966">"नयाँ सम्पर्क ठेगानाहरूको लागि पूर्वनिर्धारित खाता"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"नयाँ सम्पर्कहरूका लागि पूर्वनिर्धारित खाता"</string>
+    <string name="setting_about" msgid="1864724372154478151">"बारेमा"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"देखिने सम्पर्कहरू साझेदारी गर्नुहोस्"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"देख्न सकिने सम्पर्कहरू साझेदारी गर्न असफल भयो।"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"आयात/निर्यात सम्पर्कहरू"</string>
@@ -263,4 +263,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> पढ्न बाँकी वस्तुहरू। </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> पढ्न बाँकी वस्तु। </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"संस्करण बनाउनुहोस्"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"खुला स्रोत इजाजतपत्रहरू"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"खुला स्रोत सफ्टवेयरका लागि इजाजतपत्र विवरणहरू"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"गोपनीयता नीति"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"सेवा सर्तहरू"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"खुलास्रोत इजाजतपत्रहरू"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> जाँच गरियो"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> जाँच गरिएन"</string>
 </resources>
