@@ -107,7 +107,8 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Nettprat"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organisasjon"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Tilknytning"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"Spesielle datoer"</string>
+    <!-- no translation found for eventLabelsGroup (4801419345682462171) -->
+    <skip />
     <string name="sms" msgid="8086289395154598654">"Tekstmelding"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adresse"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Firma"</string>
@@ -144,8 +145,7 @@
     <string name="chat" msgid="6297650784873558837">"Nettprat"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"slett"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Vis eller skjul navnefelt"</string>
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (5241493357460353777) -->
-    <skip />
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Vis eller skjul fonetiske navnefelt"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Alle kontakter"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Med stjerne"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Tilpass"</string>
@@ -162,7 +162,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Kontakter i tilpasset visning"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Enkeltkontakt"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Opprett kontakt under konto"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Lagre importerte kontakter i:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importér fra SIM-kort"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -226,6 +226,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Fornavnet først"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Etternavnet først"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Standardkonto for nye kontakter"</string>
+    <string name="setting_about" msgid="1864724372154478151">"Info"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Del synlige kontakter"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Delingen av synlige kontakter mislyktes."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importer/eksporter kontakter"</string>
@@ -263,4 +264,15 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> uleste elementer. </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> ulest element. </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Delversjon"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Åpen kildekode-lisenser"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Lisensdetaljer for programvare med åpen kildekode"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Personvernregler"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Vilkår for bruk"</string>
+    <!-- no translation found for activity_title_licenses (7812517458691564230) -->
+    <skip />
+    <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
+    <skip />
+    <!-- no translation found for account_filter_view_not_checked (5652044086126815700) -->
+    <skip />
 </resources>

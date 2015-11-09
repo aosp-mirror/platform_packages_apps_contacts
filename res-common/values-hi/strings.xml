@@ -107,7 +107,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"संगठन"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"संबंध"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"विशेष दिनांक"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"विशेष दिनांक"</string>
     <string name="sms" msgid="8086289395154598654">"लेख संदेश"</string>
     <string name="postal_address" msgid="7692926530081579786">"पता"</string>
     <string name="ghostData_company" msgid="22470841482615409">"कंपनी"</string>
@@ -161,7 +161,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> के संपर्क"</string>
     <string name="listCustomView" msgid="1915154113477432033">"कस्टम दृश्य में संपर्क"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"एकल संपर्क"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"खाते के अंतर्गत संपर्क बनाएं"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"आयातित संपर्कों को इसमें सहेजें:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"सिम कार्ड से आयात करें"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> सिम से आयात करें"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> सिम से आयात करें"</string>
@@ -225,6 +225,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहले"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"उपनाम पहले"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"नए संपर्कों के लिए डिफ़ॉल्ट खाता"</string>
+    <string name="setting_about" msgid="1864724372154478151">"इसके बारे में"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दिखाई देने वाले संपर्क साझा करें"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"दृश्‍यमान संपर्क साझा करने में विफल रहा."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्कों को आयात/निर्यात करें"</string>
@@ -262,4 +263,12 @@
       <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> नहीं पढ़े गए आइटम. </item>
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> नहीं पढ़े गए आइटम. </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"बिल्ड वर्शन"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"ओपन सोर्स लाइसेंस"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ओपन सोर्स सॉफ़्टवेयर के लि‍ए लाइसेंस वि‍वरण"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"गोपनीयता नीति"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"सेवा की शर्तें"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"ओपन सोर्स लाइसेंस"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक किया गया"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक नहीं किया गया"</string>
 </resources>

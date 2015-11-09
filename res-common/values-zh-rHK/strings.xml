@@ -107,7 +107,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"即時通訊"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"機構"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"關係"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"特別日子"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"特別日期"</string>
     <string name="sms" msgid="8086289395154598654">"傳送短訊"</string>
     <string name="postal_address" msgid="7692926530081579786">"地址"</string>
     <string name="ghostData_company" msgid="22470841482615409">"公司"</string>
@@ -161,7 +161,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> 中的聯絡人"</string>
     <string name="listCustomView" msgid="1915154113477432033">"聯絡人自訂檢視"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"單一聯絡人"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"在帳戶中建立聯絡人"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"儲存匯入的聯絡人至以下帳戶："</string>
     <string name="import_from_sim" msgid="4749894687871835873">"從 SIM 卡匯入"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"從 SIM 卡匯入 <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"從 SIM 卡匯入 <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -225,6 +225,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"名字在前"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"姓氏在前"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"新聯絡人的預設帳戶"</string>
+    <string name="setting_about" msgid="1864724372154478151">"關於"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享正常顯示的聯絡人"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"無法分享顯示的聯絡人"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"匯入/匯出聯絡人資料"</string>
@@ -262,4 +263,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g> (<xliff:g id="COUNT_3">%2$d</xliff:g> 個未讀取項目)</item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g> (<xliff:g id="COUNT_1">%2$d</xliff:g> 個未讀取項目)</item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"版本"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"開放原始碼授權"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"開放原始碼軟件的授權詳細資料"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"私隱權政策"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"服務條款"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"開放原始碼授權"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"已選取 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"未選取 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
 </resources>

@@ -109,7 +109,8 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Чат"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Организация"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Связи"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"Значимые даты"</string>
+    <!-- no translation found for eventLabelsGroup (4801419345682462171) -->
+    <skip />
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адрес"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Организация"</string>
@@ -146,8 +147,7 @@
     <string name="chat" msgid="6297650784873558837">"Чат"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"удалить"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Показать/скрыть дополнительные поля"</string>
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (5241493357460353777) -->
-    <skip />
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Показать или скрыть поля с транскрипцией имени"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Все контакты"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Помеченные"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Настроить"</string>
@@ -164,7 +164,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Контакты аккаунта \"<xliff:g id="NAME">%s</xliff:g>\""</string>
     <string name="listCustomView" msgid="1915154113477432033">"Пользовательский фильтр"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Один контакт"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Создать контакт в аккаунте"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Куда сохранить контакты?"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Импорт с SIM-карты"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Импорт с SIM-карты <xliff:g id="SIM_NAME">^1</xliff:g> (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Импорт с SIM-карты <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -228,6 +228,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Сначала имя"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Сначала фамилия"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Аккаунт по умолчанию для новых контактов"</string>
+    <string name="setting_about" msgid="1864724372154478151">"О приложении"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Передать видимые контакты"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Не удалось поделиться видимыми контактами."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Импорт/экспорт контактов"</string>
@@ -267,4 +268,15 @@
       <item quantity="many"><xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитанных элементов. </item>
       <item quantity="other"><xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитанного элемента. </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Версия сборки"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Лицензии на ПО с открытым исходным кодом"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Сведения о лицензиях на ПО с открытым исходным кодом"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Политика конфиденциальности"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Условия использования"</string>
+    <!-- no translation found for activity_title_licenses (7812517458691564230) -->
+    <skip />
+    <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
+    <skip />
+    <!-- no translation found for account_filter_view_not_checked (5652044086126815700) -->
+    <skip />
 </resources>

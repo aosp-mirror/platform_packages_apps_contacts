@@ -109,7 +109,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Chat"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizace"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Vztah"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"Zvláštní data"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Zvláštní datum"</string>
     <string name="sms" msgid="8086289395154598654">"Textová zpráva"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adresa"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Společnost"</string>
@@ -146,8 +146,7 @@
     <string name="chat" msgid="6297650784873558837">"Chatovat"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"smazat"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Rozbalit nebo sbalit pole jména"</string>
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (5241493357460353777) -->
-    <skip />
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Rozbalí nebo sbalí pole s fonetickým přepisem jména"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Všechny kontakty"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Označené hvězdičkou"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Personalizovat"</string>
@@ -164,7 +163,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakty v účtu <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Kontakty ve vlastním zobrazení"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Jeden kontakt"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Vytvořit kontakt na základě účtu"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Účet k uložení importovaných kontaktů:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importovat ze SIM karty"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importovat ze SIM karty <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importovat ze SIM karty <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -228,6 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nejprve jméno"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nejprve příjmení"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Výchozí účet pro nové kontakty"</string>
+    <string name="setting_about" msgid="1864724372154478151">"O aplikaci"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Sdílet viditelné kontakty"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Sdílení viditelných kontaktů se nezdařilo."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importovat nebo exportovat kontakty"</string>
@@ -267,4 +267,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> nepřečtených položek. </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> nepřečtená položka. </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Verze sestavení"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Licence open source"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Podrobnosti o licencích pro software open source"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Zásady ochrany soukromí"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Smluvní podmínky"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Licence open source"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – zaškrtnuto"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – nezaškrtnuto"</string>
 </resources>

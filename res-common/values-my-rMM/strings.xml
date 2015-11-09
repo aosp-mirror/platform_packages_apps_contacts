@@ -107,7 +107,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"အဖွဲ့အစည်း"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"ပတ်သတ်မှု"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"အထူးနေ့စွဲများ"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"အထူးနေ့"</string>
     <string name="sms" msgid="8086289395154598654">"စာတို စာပို့ခြင်း"</string>
     <string name="postal_address" msgid="7692926530081579786">"လိပ်စာ"</string>
     <string name="ghostData_company" msgid="22470841482615409">"ကုမ္ပဏီ"</string>
@@ -144,8 +144,7 @@
     <string name="chat" msgid="6297650784873558837">"ချက်တင်းပြောသည်"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"ဖျက်သည်"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"နာမည်အကွက်များအား ဖြန့်ချ သို့မဟုတ် လိပ်တင်ပါ"</string>
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (5241493357460353777) -->
-    <skip />
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"အသံထွက်ဆိုင်ရာ အကွက်များကို တိုးချဲ့ သို့မဟုတ် ခေါက်သိမ်းပါ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"လိပ်စာများအားလုံး"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"စတားပေးထားသော အရာ"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"မိမိစိတ်ကြိုက်ပြုလုပ်ခြင်း"</string>
@@ -162,7 +161,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> ထဲမှ အဆက်အသွယ်များ"</string>
     <string name="listCustomView" msgid="1915154113477432033">"မိမိစိတ်ကြိုက် မြင်ကွင်းမှ"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"အဆက်အသွယ်တစ်ခုတည်း"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"အကောင့်အောက်မှာ အဆက်အသွယ်များပြုလုပ်ပါ"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"သွင်းထားသည့် အဆက်အသွယ်များကို သိမ်းဆည်းရန် −"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"ဆင်းမ်ကဒ်ထဲမှ အထဲသို့သွင်းရန်"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"ဆင်းမ်ကဒ်မှ သွင်းယူရန် <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"ဆင်းမ်ကဒ်မှ သွင်းယူရန် <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -226,6 +225,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ပထမ အမည် ဦးစွာ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"နောက်ဆုံး အမည် ဦးစွာ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"အဆက်အသွယ် အသစ်များအတွက် မူရင်း အကောင့်"</string>
+    <string name="setting_about" msgid="1864724372154478151">"အကြောင်း"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"မြင်နိုင်သော အဆက်အသွယ်များအား မျှဝေပါ"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"မြင်သာသော အဆက်အသွယ်တွေကိုဝေမျှခြင်းမပြုနိုင်ခဲ့ပါ။"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များ သွင်းယူ၊ ထုတ်ယူရန်"</string>
@@ -263,4 +263,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>။ မဖတ်ရသေးသည့် အရာ <xliff:g id="COUNT_3">%2$d</xliff:g> ခု။ </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>။ မဖတ်ရသေးသည့် အရာ <xliff:g id="COUNT_1">%2$d</xliff:g> ခု။ </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"တည်ဆောက်မှု ဗားရှင်း"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"အခမဲ့ ရင်းမြစ် လိုင်စင်များ"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"အခမဲ့  ဆော့ဝဲအတွက် လိုင်စင် အသေးစိတ်များ"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"ပုဂ္ဂိုလ်ရေး မူဝါဒ"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"ဝန်ဆောင်မှု စည်းကမ်းချက်များ"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"အခမဲ့ ရင်းမြစ် လိုင်စင်များ"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ကိုစစ်ဆေးပြီးပါပြီ"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ကိုမစစ်ဆေးရသေးပါ"</string>
 </resources>
